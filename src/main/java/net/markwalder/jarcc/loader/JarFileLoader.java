@@ -57,7 +57,12 @@ class JarFileLoader {
 
 				// load class file
 				InputStream stream = jarFile.getInputStream(entry);
-				ClassDef classDef = classDefLoader.load(stream);
+				ClassDef classDef;
+				try {
+					classDef = classDefLoader.load(stream);
+				} catch (IOException e) {
+					throw new IOException("Unable to parse class entry: " + entry.getName(), e);
+				}
 
 				classDefs.add(classDef);
 			}

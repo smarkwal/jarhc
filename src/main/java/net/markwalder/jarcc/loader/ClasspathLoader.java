@@ -39,7 +39,12 @@ public class ClasspathLoader {
 		// load all JAR files
 		List<JarFile> jarFiles = new ArrayList<>();
 		for (File file : files) {
-			JarFile jarFile = jarFileLoader.load(file);
+			JarFile jarFile;
+			try {
+				jarFile = jarFileLoader.load(file);
+			} catch (IOException e) {
+				throw new IOException("Unable to parse JAR file: " + file.getAbsolutePath(), e);
+			}
 			jarFiles.add(jarFile);
 		}
 
