@@ -16,7 +16,7 @@ import java.util.jar.JarEntry;
  * Loader for a JAR file, using a file as source.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
-public class JarFileLoader {
+class JarFileLoader {
 
 	private final ClassDefLoader classDefLoader = new ClassDefLoader();
 
@@ -31,7 +31,7 @@ public class JarFileLoader {
 	 * @throws FileNotFoundException    If the file does not exist.
 	 * @throws IOException              If the file cannot be parsed.
 	 */
-	public JarFile load(File file) throws IOException {
+	JarFile load(File file) throws IOException {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
