@@ -4,14 +4,15 @@ import net.markwalder.jarcc.model.ClassDef;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ClassLoader {
+public class ClassDefLoader {
 
-	public ClassDef load(String filePath) throws IOException {
-		try (InputStream stream = new FileInputStream(filePath)) {
+	public ClassDef load(File file) throws IOException {
+		try (InputStream stream = new FileInputStream(file)) {
 			return load(stream);
 		}
 	}

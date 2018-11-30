@@ -4,24 +4,26 @@ import net.markwalder.jarcc.utils.JavaVersion;
 
 public class ClassDef {
 
-	private final String name;
-	private final int version;
+	private final String className;
+	private final int classVersion;
 
-	public ClassDef(String name, int version) {
-		this.name = name;
-		this.version = version;
+	public ClassDef(String className, int classVersion) {
+		if (className == null) throw new IllegalArgumentException("className");
+		if (classVersion < JavaVersion.MIN_CLASS_VERSION) throw new IllegalArgumentException("classVersion");
+		this.className = className;
+		this.classVersion = classVersion;
 	}
 
-	public String getName() {
-		return name;
+	public String getClassName() {
+		return className;
 	}
 
-	public int getVersion() {
-		return version;
+	public int getClassVersion() {
+		return classVersion;
 	}
 
 	public String getJavaVersion() {
-		return JavaVersion.fromClassVersion(version);
+		return JavaVersion.fromClassVersion(classVersion);
 	}
 
 }
