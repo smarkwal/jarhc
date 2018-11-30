@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -43,7 +45,7 @@ public class ClasspathLoader {
 			try {
 				jarFile = jarFileLoader.load(file);
 			} catch (IOException e) {
-				throw new IOException("Unable to parse JAR file: " + file.getAbsolutePath(), e);
+				throw new IOException(String.format("Unable to parse JAR file: %s", file.getAbsolutePath()), e);
 			}
 			jarFiles.add(jarFile);
 		}
@@ -61,6 +63,10 @@ public class ClasspathLoader {
 	private static void collectFiles(File directory, List<File> files, boolean recursive) {
 		File[] array = directory.listFiles();
 		if (array == null) return;
+
+		// sort files alphabetically and case-sensitive by name
+		// TODO: is there a better order?
+		Arrays.sort(array, Comparator.comparing(File::getName));
 
 		for (File file : array) {
 			if (file.isDirectory()) {
