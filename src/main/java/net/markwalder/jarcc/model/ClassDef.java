@@ -51,4 +51,9 @@ public class ClassDef {
 		return JavaVersion.fromClassVersion(classVersion);
 	}
 
+	@Override
+	public String toString() {
+		return String.format("ClassDef[%s,%d]", className, classVersion);
+	}
+
 }

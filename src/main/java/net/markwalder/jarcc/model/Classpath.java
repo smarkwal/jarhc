@@ -34,4 +34,9 @@ public class Classpath {
 		return Collections.unmodifiableList(jarFiles);
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Classpath[%d]", jarFiles.size());
+	}
+
 }

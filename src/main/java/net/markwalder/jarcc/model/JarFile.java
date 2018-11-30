@@ -2,6 +2,7 @@ package net.markwalder.jarcc.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -31,6 +32,9 @@ public class JarFile {
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
 		this.classDefs = new ArrayList<>(classDefs);
+
+		// sort class definitions by class name (case-sensitive)
+		this.classDefs.sort(Comparator.comparing(ClassDef::getClassName));
 	}
 
 	public String getFileName() {
@@ -44,6 +48,11 @@ public class JarFile {
 	 */
 	public List<ClassDef> getClassDefs() {
 		return Collections.unmodifiableList(classDefs);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("JarFile[%s,%d]", fileName, classDefs.size());
 	}
 
 }
