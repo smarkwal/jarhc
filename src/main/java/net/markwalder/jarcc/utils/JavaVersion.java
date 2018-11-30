@@ -14,13 +14,18 @@ public class JavaVersion {
 	 * @return Java version string
 	 */
 	public static String fromClassVersion(int classVersion) {
-		if (classVersion < MIN_CLASS_VERSION) {
+		int version = getJavaVersionNumber(classVersion);
+		if (version < 1) {
 			return String.format("[unknown:%d]", classVersion);
-		} else if (classVersion < 49) {
-			return String.format("Java 1.%d", classVersion - MIN_CLASS_VERSION + 1);
+		} else if (version < 5) {
+			return String.format("Java 1.%d", version);
 		} else {
-			return String.format("Java %d", classVersion - MIN_CLASS_VERSION + 1);
+			return String.format("Java %d", version);
 		}
+	}
+
+	private static int getJavaVersionNumber(int classVersion) {
+		return classVersion - MIN_CLASS_VERSION + 1;
 	}
 
 }
