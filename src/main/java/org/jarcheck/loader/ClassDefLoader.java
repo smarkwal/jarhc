@@ -49,8 +49,13 @@ class ClassDefLoader {
 		ClassReader classReader = new ClassReader(stream);
 		classReader.accept(classNode, 0);
 
+		// split into major and minor version
+		// (see https://asm.ow2.io/javadoc/org/objectweb/asm/tree/ClassNode.html#version)
+		int majorClassVersion = classNode.version & 0xFF;
+		int minorClassVersion = classNode.version >> 16;
+
 		// create class definition
-		return new ClassDef(classNode.name, classNode.version);
+		return new ClassDef(classNode.name, majorClassVersion, minorClassVersion);
 	}
 
 }

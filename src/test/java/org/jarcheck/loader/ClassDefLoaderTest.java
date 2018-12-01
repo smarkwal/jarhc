@@ -23,7 +23,7 @@ class ClassDefLoaderTest {
 
 		assertNotNull(classDef);
 		assertEquals("Main", classDef.getClassName());
-		assertEquals(52, classDef.getClassVersion());
+		assertEquals(52, classDef.getMajorClassVersion());
 		assertEquals("Java 8", classDef.getJavaVersion());
 	}
 
@@ -35,7 +35,7 @@ class ClassDefLoaderTest {
 
 		assertNotNull(classDef);
 		assertEquals("Main", classDef.getClassName());
-		assertEquals(51, classDef.getClassVersion());
+		assertEquals(51, classDef.getMajorClassVersion());
 		assertEquals("Java 7", classDef.getJavaVersion());
 	}
 
@@ -47,7 +47,7 @@ class ClassDefLoaderTest {
 
 		assertNotNull(classDef);
 		assertEquals("Main", classDef.getClassName());
-		assertEquals(50, classDef.getClassVersion());
+		assertEquals(50, classDef.getMajorClassVersion());
 		assertEquals("Java 6", classDef.getJavaVersion());
 	}
 
@@ -60,7 +60,7 @@ class ClassDefLoaderTest {
 
 		assertNotNull(classDef);
 		assertEquals("Main", classDef.getClassName());
-		assertEquals(52, classDef.getClassVersion());
+		assertEquals(52, classDef.getMajorClassVersion());
 		assertEquals("Java 8", classDef.getJavaVersion());
 	}
 

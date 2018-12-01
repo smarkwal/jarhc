@@ -68,7 +68,7 @@ class JarFileLoader {
 			}
 		}
 
-		return new JarFile(file.getName(), classDefs);
+		return new JarFile(file.getName(), file.length(), classDefs);
 	}
 
 }

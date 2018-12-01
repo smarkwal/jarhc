@@ -16,29 +16,42 @@ public class ClassDef {
 	 * Major version number of the class file format.
 	 * See https://en.wikipedia.org/wiki/Java_class_file
 	 */
-	private final int classVersion;
+	private final int majorClassVersion;
+
+	/**
+	 * Minor version number of the class file format.
+	 * See https://en.wikipedia.org/wiki/Java_class_file
+	 */
+	private final int minorClassVersion;
 
 	/**
 	 * Create a class definition for the given class name and class version.
 	 *
-	 * @param className    Class name
-	 * @param classVersion Class version
+	 * @param className         Class name
+	 * @param majorClassVersion Class version
 	 * @throws IllegalArgumentException If <code>className</code> is <code>null</code>
-	 *                                  or <code>classVersion</code> is less than {@link JavaVersion#MIN_CLASS_VERSION 45}.
+	 *                                  or <code>majorClassVersion</code> is less than {@link JavaVersion#MIN_CLASS_VERSION 45}.
+	 *                                  or <code>minorClassVersion</code> is less than 0.
 	 */
-	public ClassDef(String className, int classVersion) {
+	public ClassDef(String className, int majorClassVersion, int minorClassVersion) {
 		if (className == null) throw new IllegalArgumentException("className");
-		if (classVersion < JavaVersion.MIN_CLASS_VERSION) throw new IllegalArgumentException("classVersion");
+		if (majorClassVersion < JavaVersion.MIN_CLASS_VERSION) throw new IllegalArgumentException("majorClassVersion");
+		if (minorClassVersion < 0) throw new IllegalArgumentException("minorClassVersion");
 		this.className = className;
-		this.classVersion = classVersion;
+		this.majorClassVersion = majorClassVersion;
+		this.minorClassVersion = minorClassVersion;
 	}
 
 	public String getClassName() {
 		return className;
 	}
 
-	public int getClassVersion() {
-		return classVersion;
+	public int getMajorClassVersion() {
+		return majorClassVersion;
+	}
+
+	public int getMinorClassVersion() {
+		return minorClassVersion;
 	}
 
 	/**
@@ -48,12 +61,12 @@ public class ClassDef {
 	 * @see JavaVersion#fromClassVersion(int)
 	 */
 	public String getJavaVersion() {
-		return JavaVersion.fromClassVersion(classVersion);
+		return JavaVersion.fromClassVersion(majorClassVersion);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ClassDef[%s,%d]", className, classVersion);
+		return String.format("ClassDef[%s,%d.%d]", className, majorClassVersion, minorClassVersion);
 	}
 
 }

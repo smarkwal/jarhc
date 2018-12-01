@@ -16,6 +16,11 @@ public class JarFile {
 	private final String fileName;
 
 	/**
+	 * JAR file size in bytes
+	 */
+	private final long fileSize;
+
+	/**
 	 * List of class definitions for classes found in the JAR file.
 	 */
 	private final List<ClassDef> classDefs;
@@ -27,10 +32,11 @@ public class JarFile {
 	 * @param classDefs Class definitions
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	public JarFile(String fileName, List<ClassDef> classDefs) {
+	public JarFile(String fileName, long fileSize, List<ClassDef> classDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
+		this.fileSize = fileSize;
 		this.classDefs = new ArrayList<>(classDefs);
 
 		// sort class definitions by class name (case-sensitive)
@@ -39,6 +45,10 @@ public class JarFile {
 
 	public String getFileName() {
 		return fileName;
+	}
+
+	public long getFileSize() {
+		return fileSize;
 	}
 
 	/**
