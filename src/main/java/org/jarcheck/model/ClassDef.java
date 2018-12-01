@@ -1,6 +1,6 @@
-package net.markwalder.jarcc.model;
+package org.jarcheck.model;
 
-import net.markwalder.jarcc.utils.JavaVersion;
+import org.jarcheck.utils.JavaVersion;
 
 /**
  * Class definition representing a single Java class file.

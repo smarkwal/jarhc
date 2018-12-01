@@ -1,4 +1,4 @@
-package net.markwalder.jarcc.utils;
+package org.jarcheck.utils;
 
 import org.junit.jupiter.api.Test;
 

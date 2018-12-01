@@ -1,6 +1,6 @@
-package net.markwalder.jarcc.loader;
+package org.jarcheck.loader;
 
-import net.markwalder.jarcc.model.ClassDef;
+import org.jarcheck.model.ClassDef;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 

@@ -1,8 +1,8 @@
-package net.markwalder.jarcc;
+package org.jarcheck;
 
-import net.markwalder.jarcc.loader.ClasspathLoader;
-import net.markwalder.jarcc.model.Classpath;
-import net.markwalder.jarcc.model.JarFile;
+import org.jarcheck.loader.ClasspathLoader;
+import org.jarcheck.model.Classpath;
+import org.jarcheck.model.JarFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("JarCC 1.0-SNAPSHOT");
-		System.out.println("------------------");
+		System.out.println("JarCheck 1.0-SNAPSHOT");
+		System.out.println("---------------------");
 
 		CommandLine commandLine = new CommandLine(args);
 		int exitCode = commandLine.parse();

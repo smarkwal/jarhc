@@ -1,4 +1,4 @@
-package net.markwalder.jarcc;
+package org.jarcheck;
 
 import java.io.File;
 
@@ -44,7 +44,7 @@ class CommandLine {
 		if (errorMessage != null) {
 			System.err.println(errorMessage);
 		}
-		System.err.println("Usage: java -jar JarCC.jar <path>");
+		System.err.println("Usage: java -jar JarCheck.jar <path>");
 		System.err.println("   <path>: Path to directory with JAR files.");
 	}
 

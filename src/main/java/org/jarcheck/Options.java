@@ -1,4 +1,4 @@
-package net.markwalder.jarcc;
+package org.jarcheck;
 
 import java.io.File;
 

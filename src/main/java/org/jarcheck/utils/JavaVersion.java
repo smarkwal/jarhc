@@ -1,4 +1,4 @@
-package net.markwalder.jarcc.utils;
+package org.jarcheck.utils;
 
 public class JavaVersion {
 

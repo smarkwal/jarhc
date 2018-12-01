@@ -1,4 +1,4 @@
-package net.markwalder.jarcc.model;
+package org.jarcheck.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

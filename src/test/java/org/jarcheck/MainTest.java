@@ -1,4 +1,4 @@
-package net.markwalder.jarcc;
+package org.jarcheck;
 
 import org.junit.jupiter.api.*;
 
@@ -44,7 +44,7 @@ class MainTest {
 
 		// assert
 		String output = new String(buffer.toByteArray(), StandardCharsets.UTF_8);
-		String expectedOutput = "JarCC 1.0-SNAPSHOT" + System.lineSeparator();
+		String expectedOutput = "JarCheck 1.0-SNAPSHOT" + System.lineSeparator();
 		Assertions.assertEquals(expectedOutput, output);
 
 	}

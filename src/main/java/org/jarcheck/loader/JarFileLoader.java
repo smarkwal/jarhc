@@ -1,7 +1,7 @@
-package net.markwalder.jarcc.loader;
+package org.jarcheck.loader;
 
-import net.markwalder.jarcc.model.ClassDef;
-import net.markwalder.jarcc.model.JarFile;
+import org.jarcheck.model.ClassDef;
+import org.jarcheck.model.JarFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;

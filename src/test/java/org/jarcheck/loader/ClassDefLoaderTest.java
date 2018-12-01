@@ -1,7 +1,7 @@
-package net.markwalder.jarcc.loader;
+package org.jarcheck.loader;
 
-import net.markwalder.jarcc.TestUtils;
-import net.markwalder.jarcc.model.ClassDef;
+import org.jarcheck.TestUtils;
+import org.jarcheck.model.ClassDef;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
