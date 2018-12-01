@@ -14,15 +14,26 @@ public class ClassVersionAnalyzer extends Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
+		ReportTable table = buildTable(classpath);
+
+		ReportSection section = new ReportSection("Class Versions", "Java class file format information.");
+		section.add(table);
+		return section;
+	}
+
+	private ReportTable buildTable(Classpath classpath) {
+
 		ReportTable table = new ReportTable("JAR file", "Java version");
 
 		int minClassVersion_Classpath = Integer.MAX_VALUE;
-		int maxClassVersion_Classpath = 45;
+		int maxClassVersion_Classpath = Integer.MIN_VALUE;
 
-		for (JarFile jarFile : classpath.getJarFiles()) {
+		// for every JAR file ...
+		List<JarFile> jarFiles = classpath.getJarFiles();
+		for (JarFile jarFile : jarFiles) {
 
 			int minClassVersion_JarFile = Integer.MAX_VALUE;
-			int maxClassVersion_JarFile = 45;
+			int maxClassVersion_JarFile = Integer.MIN_VALUE;
 
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			if (classDefs.isEmpty()) {
@@ -38,29 +49,31 @@ public class ClassVersionAnalyzer extends Analyzer {
 				maxClassVersion_JarFile = Math.max(maxClassVersion_JarFile, classVersion);
 			}
 
+			// add row for JAR file
 			String javaVersions = formatJavaVersions(minClassVersion_JarFile, maxClassVersion_JarFile);
 			table.addRow(jarFile.getFileName(), javaVersions);
 
 			// update min/max class version for classpath
 			minClassVersion_Classpath = Math.min(minClassVersion_Classpath, minClassVersion_JarFile);
 			maxClassVersion_Classpath = Math.max(maxClassVersion_Classpath, maxClassVersion_JarFile);
-
 		}
 
-		String javaVersions = formatJavaVersions(minClassVersion_Classpath, maxClassVersion_Classpath);
-		table.addRow("Classpath", javaVersions);
+		if (minClassVersion_Classpath > 0) {
+			// add row with summary
+			String javaVersions = formatJavaVersions(minClassVersion_Classpath, maxClassVersion_Classpath);
+			table.addRow("Classpath", javaVersions);
+		}
 
-		ReportSection section = new ReportSection("Class Versions", "Java class file format information.");
-		section.append(table.toString());
-		return section;
-
+		return table;
 	}
 
 	private static String formatJavaVersions(int minClassVersion, int maxClassVersion) {
 		if (minClassVersion == maxClassVersion) {
 			return JavaVersion.fromClassVersion(minClassVersion);
 		} else {
-			return String.format("%s - %s", JavaVersion.fromClassVersion(minClassVersion), JavaVersion.fromClassVersion(maxClassVersion));
+			String minJavaVersion = JavaVersion.fromClassVersion(minClassVersion);
+			String maxJavaVersion = JavaVersion.fromClassVersion(maxClassVersion);
+			return String.format("%s - %s", minJavaVersion, maxJavaVersion);
 		}
 	}
 

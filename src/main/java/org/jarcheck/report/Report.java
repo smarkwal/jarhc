@@ -1,6 +1,7 @@
 package org.jarcheck.report;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Report {
@@ -16,7 +17,7 @@ public class Report {
 	}
 
 	public List<ReportSection> getSections() {
-		return sections;
+		return Collections.unmodifiableList(sections);
 	}
 
 }

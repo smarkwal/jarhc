@@ -1,17 +1,26 @@
 package org.jarcheck.report;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class ReportSection extends PrintWriter {
+public class ReportSection {
 
 	private final String title;
 	private final String description;
+	private final List<Object> content = new ArrayList<>();
 
 	public ReportSection(String title, String description) {
-		super(new StringWriter());
 		this.title = title;
 		this.description = description;
+	}
+
+	public void add(CharSequence text) {
+		content.add(text);
+	}
+
+	public void add(ReportTable table) {
+		content.add(table);
 	}
 
 	public String getTitle() {
@@ -22,9 +31,8 @@ public class ReportSection extends PrintWriter {
 		return description;
 	}
 
-	public String getText() {
-		StringWriter writer = (StringWriter) out;
-		return writer.toString();
+	public List<Object> getContent() {
+		return Collections.unmodifiableList(content);
 	}
 
 }
