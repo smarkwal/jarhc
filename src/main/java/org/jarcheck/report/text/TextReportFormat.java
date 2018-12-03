@@ -6,8 +6,12 @@ import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
 import org.jarcheck.utils.StringUtils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.io.StringReader;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class TextReportFormat implements ReportFormat {
 
@@ -60,32 +64,64 @@ public class TextReportFormat implements ReportFormat {
 	private static int[] calculateColumnWidths(String[] columns, List<String[]> rows) {
 		int[] columnSizes = new int[columns.length];
 		for (int i = 0; i < columnSizes.length; i++) {
-			int length = columns[i].length();
+			int length = getColumnWidth(columns[i]);
 			columnSizes[i] = Math.max(columnSizes[i], length);
 		}
 		for (String[] values : rows) {
 			for (int i = 0; i < values.length; i++) {
-				int length = values[i].length();
+				int length = getColumnWidth(values[i]);
 				columnSizes[i] = Math.max(columnSizes[i], length);
 			}
 		}
 		return columnSizes;
 	}
 
-	private static void formatTableRow(PrintStream out, String[] values, int[] widths) {
-		for (int i = 0; i < values.length; i++) {
-			if (i > 0) {
-				out.print(" | ");
+	private static int getColumnWidth(String text) {
+		if (text == null || text.isEmpty()) return 0;
+		BufferedReader reader = new BufferedReader(new StringReader(text));
+		int maxLength = 0;
+		try {
+			while (true) {
+				String line = reader.readLine();
+				if (line == null) break;
+				int width = line.length();
+				maxLength = Math.max(maxLength, width);
+
 			}
-			String value = values[i];
-			out.print(value);
-			if (i < values.length - 1) {
-				int width = widths[i];
-				String padding = StringUtils.repeat(" ", width - value.length());
-				out.print(padding);
-			}
+		} catch (IOException e) {
+			// ignore
 		}
-		out.println();
+		return maxLength;
+	}
+
+	private static void formatTableRow(PrintStream out, String[] values, int[] widths) {
+
+		String[][] cells = new String[values.length][];
+
+		int maxHeight = 1;
+		for (int i = 0; i < values.length; i++) {
+			String value = values[i];
+			String[] lines = value.split(Pattern.quote(System.lineSeparator()));
+			cells[i] = lines;
+			maxHeight = Math.max(maxHeight, lines.length);
+		}
+
+		for (int h = 0; h < maxHeight; h++) {
+			for (int i = 0; i < cells.length; i++) {
+				String[] cell = cells[i];
+				String value = h < cell.length ? cell[h] : "";
+				if (i > 0) {
+					out.print(" | ");
+				}
+				out.print(value);
+				if (i < cells.length - 1) {
+					int width = widths[i];
+					String padding = StringUtils.repeat(" ", width - value.length());
+					out.print(padding);
+				}
+			}
+			out.println();
+		}
 	}
 
 	private static void printTableSeparator(PrintStream out, int[] widths) {

@@ -7,6 +7,7 @@ import org.jarcheck.report.ReportTable;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class HtmlReportFormat implements ReportFormat {
 
@@ -78,6 +79,7 @@ public class HtmlReportFormat implements ReportFormat {
 
 	private static String escape(String text) {
 		// TODO: implement HTML escaping
+		text = text.replaceAll(Pattern.quote(System.lineSeparator()), "<br>");
 		return text;
 	}
 
