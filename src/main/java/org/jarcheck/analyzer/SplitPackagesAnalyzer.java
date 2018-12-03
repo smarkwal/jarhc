@@ -54,11 +54,15 @@ public class SplitPackagesAnalyzer extends Analyzer {
 			Set<String> fileNames = map.get(packageName);
 			// if package has been found in more than one JAR file ...
 			if (fileNames.size() > 1) {
-				table.addRow(packageName, fileNames.stream().collect(Collectors.joining(System.lineSeparator())));
+				table.addRow(formatPackageName(packageName), fileNames.stream().collect(Collectors.joining(System.lineSeparator())));
 			}
 		}
 
 		return table;
+	}
+
+	private static String formatPackageName(String name) {
+		return name.replaceAll("/", ".");
 	}
 
 }

@@ -51,11 +51,15 @@ public class DuplicateClassesAnalyzer extends Analyzer {
 			Set<String> fileNames = map.get(className);
 			// if class has been found in more than one JAR file ...
 			if (fileNames.size() > 1) {
-				table.addRow(className, fileNames.stream().collect(Collectors.joining(System.lineSeparator())));
+				table.addRow(formatClassName(className), fileNames.stream().collect(Collectors.joining(System.lineSeparator())));
 			}
 		}
 
 		return table;
+	}
+
+	private static String formatClassName(String name) {
+		return name.replaceAll("/", ".");
 	}
 
 }
