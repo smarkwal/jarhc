@@ -1,9 +1,6 @@
 package org.jarcheck;
 
-import org.jarcheck.analyzer.ClassVersionAnalyzer;
-import org.jarcheck.analyzer.DuplicateClassesAnalyzer;
-import org.jarcheck.analyzer.JarFilesListAnalyzer;
-import org.jarcheck.analyzer.SplitPackagesAnalyzer;
+import org.jarcheck.analyzer.*;
 import org.jarcheck.loader.ClasspathLoader;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
@@ -43,7 +40,8 @@ public class Main {
 				new JarFilesListAnalyzer(),
 				new ClassVersionAnalyzer(),
 				new SplitPackagesAnalyzer(),
-				new DuplicateClassesAnalyzer()
+				new DuplicateClassesAnalyzer(),
+				new ShadowedClassesAnalyzer()
 		);
 		Report report = analysis.run(classpath);
 
