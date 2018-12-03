@@ -1,12 +1,14 @@
 package org.jarcheck;
 
 import org.jarcheck.analyzer.ClassVersionAnalyzer;
+import org.jarcheck.analyzer.DuplicateClassesAnalyzer;
 import org.jarcheck.analyzer.JarFilesListAnalyzer;
+import org.jarcheck.analyzer.SplitPackagesAnalyzer;
 import org.jarcheck.loader.ClasspathLoader;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
 import org.jarcheck.report.ReportFormat;
-import org.jarcheck.report.html.HtmlReportFormat;
+import org.jarcheck.report.text.TextReportFormat;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,13 +41,15 @@ public class Main {
 		// analyze classpath and create report
 		Analysis analysis = new Analysis(
 				new JarFilesListAnalyzer(),
-				new ClassVersionAnalyzer()
+				new ClassVersionAnalyzer(),
+				new SplitPackagesAnalyzer(),
+				new DuplicateClassesAnalyzer()
 		);
 		Report report = analysis.run(classpath);
 
 		// format report as text to STDOUT
-//		ReportFormat format = new TextReportFormat();
-		ReportFormat format = new HtmlReportFormat();
+		ReportFormat format = new TextReportFormat();
+		// ReportFormat format = new HtmlReportFormat();
 		format.format(report, System.out);
 
 	}
