@@ -39,12 +39,16 @@ public class TextReportFormat implements ReportFormat {
 		out.println();
 
 		// format contents
-		for (Object content : contents) {
+		for (int i = 0; i < contents.size(); i++) {
+			Object content = contents.get(i);
+			if (i > 0) {
+				out.println(); // add an empty line between all content blocks
+			}
 			if (content instanceof ReportTable) {
 				ReportTable table = (ReportTable) content;
 				formatTable(table, out);
 			} else {
-				out.print(content);
+				out.println(content);
 			}
 		}
 

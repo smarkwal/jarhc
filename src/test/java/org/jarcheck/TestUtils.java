@@ -1,8 +1,6 @@
 package org.jarcheck;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -16,6 +14,19 @@ public class TestUtils {
 		InputStream stream = TestUtils.class.getResourceAsStream(resource);
 		if (stream == null) throw new IOException("Resource not found: " + resource);
 		return stream;
+	}
+
+	public static String getResourceAsString(String resource, String encoding) throws IOException {
+		if (resource == null) throw new IllegalArgumentException("resource");
+		InputStream stream = getResourceAsStream(resource);
+		ByteArrayOutputStream result = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		while (true) {
+			int len = stream.read(buffer);
+			if (len < 0) break;
+			result.write(buffer, 0, len);
+		}
+		return result.toString(encoding);
 	}
 
 	public static File getResourceAsFile(String resource, String prefix, String suffix) throws IOException {

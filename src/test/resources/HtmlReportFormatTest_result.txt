@@ -1,0 +1,23 @@
+<h2>Section 1</h2>
+<p>Description 1</p>
+<p>Some text.</p>
+
+<h2>Section 2</h2>
+<p>Description 2, Line 1<br>Description 2, Line 2</p>
+<table>
+	<tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
+	<tr><td>Short</td><td>Medium Medium</td><td>Long Long Long Long Long Long Long</td></tr>
+	<tr><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3</td></tr>
+</table>
+
+<h2>Section 3</h2>
+<table>
+	<tr><th>Values</th></tr>
+	<tr><td>1</td></tr>
+	<tr><td>2</td></tr>
+	<tr><td>3</td></tr>
+</table>
+<table>
+	<tr><th>Empty</th></tr>
+</table>
+
