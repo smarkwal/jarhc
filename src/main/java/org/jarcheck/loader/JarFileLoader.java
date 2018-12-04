@@ -64,6 +64,19 @@ class JarFileLoader {
 					throw new IOException(String.format("Unable to parse class entry: %s", entry.getName()), e);
 				}
 
+				/*
+				Certificate[] certificates = entry.getCertificates();
+				if (certificates != null && certificates.length > 0) {
+					Certificate certificate = certificates[0];
+					if (certificate instanceof X509Certificate) {
+						X509Certificate x509 = (X509Certificate) certificate;
+						String subject = x509.getSubjectDN().getName();
+						// TODO: save subject
+					}
+				}
+				// TODO: verify signature
+				*/
+
 				classDefs.add(classDef);
 			}
 		}
