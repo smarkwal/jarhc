@@ -8,6 +8,9 @@ import org.jarcheck.report.ReportTable;
 import org.jarcheck.utils.JavaVersion;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class ClassVersionAnalyzer extends Analyzer {
 
@@ -25,56 +28,64 @@ public class ClassVersionAnalyzer extends Analyzer {
 
 		ReportTable table = new ReportTable("JAR file", "Java version");
 
-		int minClassVersion_Classpath = Integer.MAX_VALUE;
-		int maxClassVersion_Classpath = Integer.MIN_VALUE;
+		ClassVersionsCounter classpathCounter = new ClassVersionsCounter();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			int minClassVersion_JarFile = Integer.MAX_VALUE;
-			int maxClassVersion_JarFile = Integer.MIN_VALUE;
+			ClassVersionsCounter jarFileCounter = new ClassVersionsCounter();
 
+			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
-			if (classDefs.isEmpty()) {
-				table.addRow(jarFile.getFileName(), "[no class files]");
-				continue;
-			}
-
 			for (ClassDef classDef : classDefs) {
 				int classVersion = classDef.getMajorClassVersion();
 
-				// update min/max class version for JAR file
-				minClassVersion_JarFile = Math.min(minClassVersion_JarFile, classVersion);
-				maxClassVersion_JarFile = Math.max(maxClassVersion_JarFile, classVersion);
+				jarFileCounter.count(classVersion);
+				classpathCounter.count(classVersion);
 			}
 
 			// add row for JAR file
-			String javaVersions = formatJavaVersions(minClassVersion_JarFile, maxClassVersion_JarFile);
+			String javaVersions = jarFileCounter.toString();
 			table.addRow(jarFile.getFileName(), javaVersions);
-
-			// update min/max class version for classpath
-			minClassVersion_Classpath = Math.min(minClassVersion_Classpath, minClassVersion_JarFile);
-			maxClassVersion_Classpath = Math.max(maxClassVersion_Classpath, maxClassVersion_JarFile);
 		}
 
-		if (minClassVersion_Classpath > 0) {
-			// add row with summary
-			String javaVersions = formatJavaVersions(minClassVersion_Classpath, maxClassVersion_Classpath);
-			table.addRow("Classpath", javaVersions);
-		}
+		// add row with summary
+		String javaVersions = classpathCounter.toString();
+		table.addRow("Classpath", javaVersions);
 
 		return table;
 	}
 
-	private static String formatJavaVersions(int minClassVersion, int maxClassVersion) {
-		if (minClassVersion == maxClassVersion) {
-			return JavaVersion.fromClassVersion(minClassVersion);
-		} else {
-			String minJavaVersion = JavaVersion.fromClassVersion(minClassVersion);
-			String maxJavaVersion = JavaVersion.fromClassVersion(maxClassVersion);
-			return String.format("%s - %s", minJavaVersion, maxJavaVersion);
+	private static class ClassVersionsCounter {
+
+		// map from major class version to number of classes
+		private final Map<Integer, Integer> map = new TreeMap<>();
+
+		void count(int majorClassVersion) {
+			map.merge(majorClassVersion, 1, (a, b) -> a + b);
 		}
+
+		@Override
+		public String toString() {
+			int size = map.size();
+			if (size == 0) {
+				return "[no class files]";
+			}
+			return map.entrySet().stream()
+					.sorted(this::sortByClassVersion)
+					.map(this::formatJavaVersion)
+					.collect(Collectors.joining(", "));
+		}
+
+		private int sortByClassVersion(Map.Entry<Integer, Integer> entry1, Map.Entry<Integer, Integer> entry2) {
+			return entry2.getKey() - entry1.getKey();
+		}
+
+		private String formatJavaVersion(Map.Entry<Integer, Integer> entry) {
+			return JavaVersion.fromClassVersion(entry.getKey()) + " (" + entry.getValue() + ")";
+		}
+
 	}
 
 }

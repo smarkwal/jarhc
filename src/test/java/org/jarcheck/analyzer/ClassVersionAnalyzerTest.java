@@ -51,17 +51,17 @@ class ClassVersionAnalyzerTest {
 		String[] values1 = rows.get(0);
 		assertEquals(2, values1.length);
 		assertEquals("a.jar", values1[0]);
-		assertEquals("Java 8", values1[1]);
+		assertEquals("Java 8 (1)", values1[1]);
 
 		String[] values2 = rows.get(1);
 		assertEquals(2, values2.length);
 		assertEquals("b.jar", values2[0]);
-		assertEquals("Java 7 - Java 8", values2[1]);
+		assertEquals("Java 8 (1), Java 7 (1)", values2[1]);
 
 		String[] values3 = rows.get(2);
 		assertEquals(2, values3.length);
 		assertEquals("c.jar", values3[0]);
-		assertEquals("Java 1.4", values3[1]);
+		assertEquals("Java 1.4 (1)", values3[1]);
 
 		String[] values4 = rows.get(3);
 		assertEquals(2, values4.length);
@@ -71,7 +71,7 @@ class ClassVersionAnalyzerTest {
 		String[] values5 = rows.get(4);
 		assertEquals(2, values5.length);
 		assertEquals("Classpath", values5[0]);
-		assertEquals("Java 1.4 - Java 8", values5[1]);
+		assertEquals("Java 8 (2), Java 7 (1), Java 1.4 (1)", values5[1]);
 
 	}
 
