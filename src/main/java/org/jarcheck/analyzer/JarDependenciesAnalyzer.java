@@ -6,16 +6,18 @@ import org.jarcheck.model.Classpath;
 import org.jarcheck.model.JarFile;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
+import org.jarcheck.utils.MultiMap;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 public class JarDependenciesAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		Map<String, List<String>> index = createClassNameToJarFileIndex(classpath);
-		Map<String, Set<String>> dependencies = calculateJarFileDependencies(classpath, index);
+		MultiMap<String, String> index = createClassNameToJarFileIndex(classpath);
+		MultiMap<String, String> dependencies = calculateJarFileDependencies(classpath, index);
 
 		ReportTable table = buildTable(classpath, dependencies);
 
@@ -24,14 +26,14 @@ public class JarDependenciesAnalyzer extends Analyzer {
 		return section;
 	}
 
-	private ReportTable buildTable(Classpath classpath, Map<String, Set<String>> dependencies) {
+	private ReportTable buildTable(Classpath classpath, MultiMap<String, String> dependencies) {
 
 		ReportTable table = new ReportTable("JAR file", "Depends on");
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 			String sourceFileName = jarFile.getFileName();
-			Set<String> targetFileNames = dependencies.get(sourceFileName);
+			Set<String> targetFileNames = dependencies.getValues(sourceFileName);
 			if (targetFileNames == null || targetFileNames.isEmpty()) {
 				table.addRow(sourceFileName, "[none]");
 			} else {
@@ -43,10 +45,10 @@ public class JarDependenciesAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private Map<String, Set<String>> calculateJarFileDependencies(Classpath classpath, Map<String, List<String>> index) {
+	private MultiMap<String, String> calculateJarFileDependencies(Classpath classpath, MultiMap<String, String> index) {
 
-		// map from source JAR file name to target JAR file name
-		Map<String, Set<String>> dependencies = new TreeMap<>();
+		// map from source JAR file name to target JAR file names
+		MultiMap<String, String> dependencies = new MultiMap<>();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -63,14 +65,19 @@ public class JarDependenciesAnalyzer extends Analyzer {
 
 					// get target JAR file names
 					String className = classRef.getClassName();
-					List<String> targetFileNames = index.get(className);
-					if (targetFileNames == null) continue; // ignore unknown class
+					Set<String> targetFileNames = index.getValues(className);
+					if (targetFileNames == null) {
+						// ignore unknown class
+						continue;
+					}
 
 					for (String targetFileName : targetFileNames) {
-						if (targetFileName.equals(jarFileName)) continue; // ignore references to classes in same JAR file
+						if (targetFileName.equals(jarFileName)) {
+							// ignore references to classes in same JAR file
+							continue;
+						}
 
-						Set<String> list = dependencies.computeIfAbsent(jarFileName, c -> new TreeSet<>());
-						list.add(targetFileName);
+						dependencies.add(jarFileName, targetFileName);
 					}
 				}
 			}
@@ -79,10 +86,10 @@ public class JarDependenciesAnalyzer extends Analyzer {
 		return dependencies;
 	}
 
-	private Map<String, List<String>> createClassNameToJarFileIndex(Classpath classpath) {
+	private MultiMap<String, String> createClassNameToJarFileIndex(Classpath classpath) {
 
-		// map from class name to JAR file name
-		Map<String, List<String>> index = new TreeMap<>();
+		// map from class name to JAR file names
+		MultiMap<String, String> index = new MultiMap<>();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -92,11 +99,9 @@ public class JarDependenciesAnalyzer extends Analyzer {
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
-
 				String className = classDef.getClassName();
-				List<String> list = index.computeIfAbsent(className, c -> new ArrayList<>());
-				list.add(jarFileName);
 
+				index.add(className, jarFileName);
 			}
 		}
 
