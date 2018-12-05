@@ -26,6 +26,8 @@ public class Main {
 		Options options = commandLine.getOptions();
 		File directory = options.getDirectory();
 
+		System.out.println("Scan JAR files ...");
+
 		ClasspathLoader loader = new ClasspathLoader();
 		Classpath classpath = null;
 		try {
@@ -35,13 +37,16 @@ public class Main {
 			System.exit(2);
 		}
 
+		System.out.println("Analyze classpath ...");
+
 		// analyze classpath and create report
 		Analysis analysis = new Analysis(
 				new JarFilesListAnalyzer(),
 				new ClassVersionAnalyzer(),
 				new SplitPackagesAnalyzer(),
 				new DuplicateClassesAnalyzer(),
-				new ShadowedClassesAnalyzer()
+				new ShadowedClassesAnalyzer(),
+				new JarDependenciesAnalyzer()
 		);
 		Report report = analysis.run(classpath);
 

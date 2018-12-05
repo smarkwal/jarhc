@@ -62,6 +62,7 @@ public class TextReportFormat implements ReportFormat {
 		printTableSeparator(out, widths);
 		for (String[] values : rows) {
 			formatTableRow(out, values, widths);
+			// printTableSeparator(out, widths);
 		}
 	}
 
