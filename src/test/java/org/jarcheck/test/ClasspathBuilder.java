@@ -1,6 +1,7 @@
 package org.jarcheck.test;
 
 import org.jarcheck.model.ClassDef;
+import org.jarcheck.model.ClassRef;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.model.JarFile;
 
@@ -21,6 +22,7 @@ public class ClasspathBuilder {
 	private String className;
 	private int majorClassVersion;
 	private int minorClassVersion;
+	private List<ClassRef> classRefs;
 
 	private ClasspathBuilder() {
 	}
@@ -50,6 +52,12 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addClassRef(String className) {
+		if (classRefs == null) throw new IllegalStateException();
+		classRefs.add(new ClassRef(className));
+		return this;
+	}
+
 	public Classpath build() {
 		closeClassDef();
 		closeJarFile();
@@ -73,12 +81,14 @@ public class ClasspathBuilder {
 		this.className = className;
 		this.majorClassVersion = majorClassVersion;
 		this.minorClassVersion = minorClassVersion;
+		this.classRefs = new ArrayList<>();
 	}
 
 	private void closeClassDef() {
 		if (className != null) {
-			classDefs.add(new ClassDef(className, majorClassVersion, minorClassVersion));
+			classDefs.add(new ClassDef(className, majorClassVersion, minorClassVersion, classRefs));
 			className = null;
+			classRefs = null;
 		}
 	}
 

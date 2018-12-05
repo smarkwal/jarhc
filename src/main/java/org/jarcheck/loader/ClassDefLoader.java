@@ -1,10 +1,12 @@
 package org.jarcheck.loader;
 
 import org.jarcheck.model.ClassDef;
+import org.jarcheck.model.ClassRef;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Loader for class definitions, using a file or a stream as source.
@@ -54,8 +56,11 @@ class ClassDefLoader {
 		int majorClassVersion = classNode.version & 0xFF;
 		int minorClassVersion = classNode.version >> 16;
 
+		// find all references to other classes
+		List<ClassRef> classRefs = ClassRefFinder.findClassRefs(classNode);
+
 		// create class definition
-		return new ClassDef(classNode.name, majorClassVersion, minorClassVersion);
+		return new ClassDef(classNode.name, majorClassVersion, minorClassVersion, classRefs);
 	}
 
 }

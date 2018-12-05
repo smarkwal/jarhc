@@ -13,8 +13,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(new ClassDef("a/A", 52, 0));
-		classDefs.add(new ClassDef("b/B", 52, 0));
+		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
+		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
 		JarFile jarFile = new JarFile("abc.jar", 1024, classDefs);
 
 		// test

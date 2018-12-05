@@ -10,7 +10,7 @@ class ClassDefTest {
 	void test_toString() {
 
 		// prepare
-		ClassDef classDef = new ClassDef("a/b/C", 52, 0);
+		ClassDef classDef = new ClassDef("a/b/C", 52, 0, ClassRef.NONE);
 
 		// test
 		String result = classDef.toString();
