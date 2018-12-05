@@ -14,12 +14,27 @@ public class MultiMap<K, V> {
 		set.add(value);
 	}
 
+	public int getSize() {
+		return map.size();
+	}
+
 	public Set<K> getKeys() {
 		return map.keySet();
 	}
 
 	public Set<V> getValues(K key) {
 		return map.get(key);
+	}
+
+	public MultiMap<V, K> invert() {
+		MultiMap<V, K> result = new MultiMap<>();
+		for (Map.Entry<K, Set<V>> entry : map.entrySet()) {
+			K key = entry.getKey();
+			for (V value : entry.getValue()) {
+				result.add(value, key);
+			}
+		}
+		return result;
 	}
 
 }
