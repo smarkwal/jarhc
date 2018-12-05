@@ -41,33 +41,37 @@ class JarDependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
+		assertEquals(3, columns.length);
 		assertEquals("JAR file", columns[0]);
-		assertEquals("Depends on", columns[1]);
+		assertEquals("Uses", columns[1]);
+		assertEquals("Used by", columns[2]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
 
 		String[] values1 = rows.get(0);
-		assertEquals(2, values1.length);
+		assertEquals(3, values1.length);
 		assertEquals("a.jar", values1[0]);
 		assertEquals("b.jar" + System.lineSeparator() + "c.jar", values1[1]);
+		assertEquals("[none]", values1[2]);
 
 		String[] values2 = rows.get(1);
-		assertEquals(2, values2.length);
+		assertEquals(3, values2.length);
 		assertEquals("b.jar", values2[0]);
 		assertEquals("c.jar", values2[1]);
+		assertEquals("a.jar", values2[2]);
 
 		String[] values3 = rows.get(2);
-		assertEquals(2, values3.length);
+		assertEquals(3, values3.length);
 		assertEquals("c.jar", values3[0]);
 		assertEquals("[none]", values3[1]);
+		assertEquals("a.jar" + System.lineSeparator() + "b.jar", values3[2]);
 
 		String[] values4 = rows.get(3);
-		assertEquals(2, values4.length);
+		assertEquals(3, values4.length);
 		assertEquals("d.jar", values4[0]);
 		assertEquals("[none]", values4[1]);
-
+		assertEquals("[none]", values4[2]);
 
 	}
 

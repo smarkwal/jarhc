@@ -28,19 +28,30 @@ public class JarDependenciesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath, MultiMap<String, String> dependencies) {
 
-		ReportTable table = new ReportTable("JAR file", "Depends on");
+		// calculate "used by" dependencies
+		MultiMap<String, String> inverted = dependencies.invert();
+
+		ReportTable table = new ReportTable("JAR file", "Uses", "Used by");
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String sourceFileName = jarFile.getFileName();
-			Set<String> targetFileNames = dependencies.getValues(sourceFileName);
-			if (targetFileNames == null || targetFileNames.isEmpty()) {
-				table.addRow(sourceFileName, "[none]");
+			String jarFileName = jarFile.getFileName();
+			Set<String> targetFileNames = dependencies.getValues(jarFileName);
+			Set<String> sourceFileNames = inverted.getValues(jarFileName);
+			String uses;
+			if (targetFileNames == null) {
+				uses = "[none]";
 			} else {
-				table.addRow(sourceFileName, String.join(System.lineSeparator(), targetFileNames));
+				uses = String.join(System.lineSeparator(), targetFileNames);
 			}
+			String usedBy;
+			if (sourceFileNames == null) {
+				usedBy = "[none]";
+			} else {
+				usedBy = String.join(System.lineSeparator(), sourceFileNames);
+			}
+			table.addRow(jarFileName, uses, usedBy);
 		}
-
 
 		return table;
 	}
