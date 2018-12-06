@@ -5,6 +5,7 @@ import org.jarcheck.model.Classpath;
 import org.jarcheck.model.JarFile;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
+import org.jarcheck.utils.JavaUtils;
 
 import java.util.List;
 import java.util.Properties;
@@ -32,8 +33,6 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ClassLoader parentClassLoader = this.getClass().getClassLoader().getParent();
-
 		ReportTable table = new ReportTable("Class name", "JAR file", "ClassLoader");
 
 		// for every JAR file ...
@@ -47,18 +46,12 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 				String className = classDef.getClassName();
 
 				String realClassName = formatClassName(className);
-
-				Class cls;
-				try {
-					cls = Class.forName(realClassName, false, parentClassLoader);
-				} catch (ClassNotFoundException e) {
-					continue;
-				} catch (Throwable t) {
-					// TODO: ignore ?
+				Class javaClass = JavaUtils.loadBootstrapClass(realClassName);
+				if (javaClass == null) {
 					continue;
 				}
 
-				ClassLoader classLoader = cls.getClassLoader();
+				ClassLoader classLoader = javaClass.getClassLoader();
 				String classLoaderInfo = classLoader != null ? classLoader.toString() : "Bootstrap";
 				table.addRow(realClassName, jarFile.getFileName(), classLoaderInfo);
 
