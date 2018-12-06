@@ -32,7 +32,9 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("Class name", "ClassLoader");
+		ClassLoader parentClassLoader = this.getClass().getClassLoader().getParent();
+
+		ReportTable table = new ReportTable("Class name", "JAR file", "ClassLoader");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -48,7 +50,7 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 				Class cls;
 				try {
-					cls = Class.forName(realClassName, false, this.getClass().getClassLoader());
+					cls = Class.forName(realClassName, false, parentClassLoader);
 				} catch (ClassNotFoundException e) {
 					continue;
 				} catch (Throwable t) {
@@ -58,7 +60,7 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 				ClassLoader classLoader = cls.getClassLoader();
 				String classLoaderInfo = classLoader != null ? classLoader.toString() : "Bootstrap";
-				table.addRow(realClassName, classLoaderInfo);
+				table.addRow(realClassName, jarFile.getFileName(), classLoaderInfo);
 
 			}
 		}

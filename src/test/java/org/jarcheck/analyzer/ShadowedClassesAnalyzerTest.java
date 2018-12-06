@@ -1,5 +1,6 @@
 package org.jarcheck.analyzer;
 
+import org.jarcheck.Main;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
@@ -16,9 +17,10 @@ class ShadowedClassesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
+		String mainClassName = Main.class.getName().replace(".", "/");
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar").addClassDef("a/A").addClassDef("java/lang/String")
-				.addJarFile("b.jar").addClassDef("b/B")
+				.addJarFile("b.jar").addClassDef("b/B").addClassDef(mainClassName)
 				.build();
 
 		// test
@@ -35,16 +37,18 @@ class ShadowedClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
+		assertEquals(3, columns.length);
 		assertEquals("Class name", columns[0]);
-		assertEquals("ClassLoader", columns[1]);
+		assertEquals("JAR file", columns[1]);
+		assertEquals("ClassLoader", columns[2]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
 		String[] values = rows.get(0);
-		assertEquals(2, values.length);
+		assertEquals(3, values.length);
 		assertEquals("java.lang.String", values[0]);
-		assertEquals("Bootstrap", values[1]);
+		assertEquals("a.jar", values[1]);
+		assertEquals("Bootstrap", values[2]);
 
 	}
 
