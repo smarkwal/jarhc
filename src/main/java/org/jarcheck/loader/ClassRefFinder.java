@@ -122,7 +122,14 @@ class ClassRefFinder {
 	}
 
 	private void collectClassRefs(MethodInsnNode methodInsnNode) {
-		classRefs.add(methodInsnNode.owner);
+
+		String owner = methodInsnNode.owner;
+		if (owner.startsWith("[")) {
+			Type ownerType = Type.getType(owner);
+			collectClassRefs(ownerType);
+		} else {
+			classRefs.add(owner);
+		}
 
 		Type methodType = Type.getType(methodInsnNode.desc);
 
@@ -138,7 +145,14 @@ class ClassRefFinder {
 	}
 
 	private void collectClassRefs(FieldInsnNode fieldInsnNode) {
-		classRefs.add(fieldInsnNode.owner);
+
+		String owner = fieldInsnNode.owner;
+		if (owner.startsWith("[")) {
+			Type ownerType = Type.getType(owner);
+			collectClassRefs(ownerType);
+		} else {
+			classRefs.add(owner);
+		}
 
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
