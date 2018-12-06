@@ -1,9 +1,6 @@
 package org.jarcheck.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents the content of a JAR file.
@@ -26,6 +23,11 @@ public class JarFile {
 	private final List<ClassDef> classDefs;
 
 	/**
+	 * Fast lookup map for class definition given the class name.
+	 */
+	private final Map<String, ClassDef> classDefsMap = new HashMap<>();
+
+	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
 	 * @param fileName  JAR file name
@@ -41,6 +43,17 @@ public class JarFile {
 
 		// sort class definitions by class name (case-sensitive)
 		this.classDefs.sort(Comparator.comparing(ClassDef::getClassName));
+
+		// for every class definition ...
+		this.classDefs.forEach(classDef -> {
+
+			// set reference to this JAR file in class definition
+			classDef.setJarFile(this);
+
+			// add class definition to fast lookup map
+			classDefsMap.put(classDef.getClassName(), classDef);
+
+		});
 	}
 
 	public String getFileName() {
@@ -58,6 +71,17 @@ public class JarFile {
 	 */
 	public List<ClassDef> getClassDefs() {
 		return Collections.unmodifiableList(classDefs);
+	}
+
+	/**
+	 * Get the class definition with the given class name,
+	 * or <code>null</code> if the class is not found in this JAR file.
+	 *
+	 * @param className Class name
+	 * @return Class definition, or <code>null</code>
+	 */
+	public ClassDef getClassDef(String className) {
+		return classDefsMap.get(className);
 	}
 
 	@Override

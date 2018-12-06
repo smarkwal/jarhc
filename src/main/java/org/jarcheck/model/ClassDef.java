@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Class definition representing a single Java class file.
  */
-public class ClassDef {
+public class ClassDef implements Comparable<ClassDef> {
 
 	/**
 	 * Class name in the form "org/something/MyClass".
@@ -32,6 +32,11 @@ public class ClassDef {
 	 * List with references to other classes.
 	 */
 	private final List<ClassRef> classRefs;
+
+	/**
+	 * Reference to parent JAR file.
+	 */
+	private JarFile jarFile;
 
 	/**
 	 * Create a class definition for the given class name and class version.
@@ -80,9 +85,24 @@ public class ClassDef {
 		return Collections.unmodifiableList(classRefs);
 	}
 
+	public JarFile getJarFile() {
+		return jarFile;
+	}
+
+	void setJarFile(JarFile jarFile) {
+		this.jarFile = jarFile;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("ClassDef[%s,%d.%d]", className, majorClassVersion, minorClassVersion);
+	}
+
+	@Override
+	public int compareTo(ClassDef classDef) {
+		int diff = this.className.compareTo(classDef.className);
+		if (diff != 0) return diff;
+		return System.identityHashCode(this) - System.identityHashCode(classDef);
 	}
 
 }
