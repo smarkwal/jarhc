@@ -46,7 +46,8 @@ public class Main {
 				new SplitPackagesAnalyzer(),
 				new DuplicateClassesAnalyzer(),
 				new ShadowedClassesAnalyzer(),
-				new JarDependenciesAnalyzer()
+				new JarDependenciesAnalyzer(),
+				new UnknownClassesAnalyzer()
 		);
 		Report report = analysis.run(classpath);
 
