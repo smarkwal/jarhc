@@ -16,8 +16,7 @@ public class JarDependenciesAnalyzer extends Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		MultiMap<String, String> index = createClassNameToJarFileIndex(classpath);
-		MultiMap<String, String> dependencies = calculateJarFileDependencies(classpath, index);
+		MultiMap<String, String> dependencies = calculateJarFileDependencies(classpath);
 
 		ReportTable table = buildTable(classpath, dependencies);
 
@@ -56,7 +55,7 @@ public class JarDependenciesAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private MultiMap<String, String> calculateJarFileDependencies(Classpath classpath, MultiMap<String, String> index) {
+	private MultiMap<String, String> calculateJarFileDependencies(Classpath classpath) {
 
 		// map from source JAR file name to target JAR file names
 		MultiMap<String, String> dependencies = new MultiMap<>();
@@ -74,49 +73,34 @@ public class JarDependenciesAnalyzer extends Analyzer {
 				List<ClassRef> classRefs = classDef.getClassRefs();
 				for (ClassRef classRef : classRefs) {
 
-					// get target JAR file names
+					// get target class definitions
 					String className = classRef.getClassName();
-					Set<String> targetFileNames = index.getValues(className);
-					if (targetFileNames == null) {
+					Set<ClassDef> targetClassDefs = classpath.getClassDefs(className);
+					if (targetClassDefs == null) {
 						// ignore unknown class
 						continue;
 					}
 
-					for (String targetFileName : targetFileNames) {
-						if (targetFileName.equals(jarFileName)) {
+					// for every class definition ...
+					targetClassDefs.forEach(targetClassDef -> {
+
+						// get JAR file
+						JarFile targetJarFile = targetClassDef.getJarFile();
+						if (targetJarFile == jarFile) {
 							// ignore references to classes in same JAR file
-							continue;
+							return;
 						}
 
+						// add dependency
+						String targetFileName = targetJarFile.getFileName();
 						dependencies.add(jarFileName, targetFileName);
-					}
+					});
+
 				}
 			}
 		}
 
 		return dependencies;
-	}
-
-	private MultiMap<String, String> createClassNameToJarFileIndex(Classpath classpath) {
-
-		// map from class name to JAR file names
-		MultiMap<String, String> index = new MultiMap<>();
-
-		// for every JAR file ...
-		List<JarFile> jarFiles = classpath.getJarFiles();
-		for (JarFile jarFile : jarFiles) {
-			String jarFileName = jarFile.getFileName();
-
-			// for every class definition ...
-			List<ClassDef> classDefs = jarFile.getClassDefs();
-			for (ClassDef classDef : classDefs) {
-				String className = classDef.getClassName();
-
-				index.add(className, jarFileName);
-			}
-		}
-
-		return index;
 	}
 
 }
