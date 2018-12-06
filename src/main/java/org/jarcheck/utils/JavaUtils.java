@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class JavaUtils {
 
+	private static final ClassLoader BOOTSTRAP_CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
+
 	private static final Set<String> primitiveTypes = new HashSet<>();
 
 	static {
@@ -24,6 +26,23 @@ public class JavaUtils {
 
 	public static boolean isVoidType(String type) {
 		return "void".equals(type);
+	}
+
+	public static boolean isBootstrapClass(String className) {
+		Class javaClass = loadBootstrapClass(className);
+		return javaClass != null;
+	}
+
+	public static Class loadBootstrapClass(String className) {
+		className = className.replace('/', '.');
+		try {
+			return Class.forName(className, false, BOOTSTRAP_CLASSLOADER);
+		} catch (ClassNotFoundException e) {
+			return null;
+		} catch (Throwable t) {
+			// TODO: ignore ?
+			return null;
+		}
 	}
 
 }
