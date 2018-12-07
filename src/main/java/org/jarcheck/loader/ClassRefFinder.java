@@ -8,6 +8,7 @@ import org.objectweb.asm.tree.*;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 class ClassRefFinder {
@@ -34,8 +35,6 @@ class ClassRefFinder {
 		classRefs.add(classNode.superName);
 		classRefs.addAll(classNode.interfaces);
 
-		// TODO: scan annotations
-
 		// scan fields
 		for (FieldNode fieldNode : classNode.fields) {
 			collectClassRefs(fieldNode);
@@ -45,10 +44,21 @@ class ClassRefFinder {
 		for (MethodNode methodNode : classNode.methods) {
 			collectClassRefs(methodNode);
 		}
+
+		// scan inner methods
+		for (InnerClassNode innerClassNode : classNode.innerClasses) {
+			classRefs.add(innerClassNode.name);
+		}
+
+		// scan annotations
+		collectClassRefs(classNode.visibleAnnotations, a -> a.desc);
+		collectClassRefs(classNode.invisibleAnnotations, a -> a.desc);
+		collectClassRefs(classNode.visibleTypeAnnotations, a -> a.desc);
+		collectClassRefs(classNode.invisibleTypeAnnotations, a -> a.desc);
+
 	}
 
 	private void collectClassRefs(FieldNode fieldNode) {
-		// TODO: scan annotations
 
 		// scan field type
 		Type fieldType = Type.getType(fieldNode.desc);
@@ -56,10 +66,16 @@ class ClassRefFinder {
 
 		// TODO: scan field initializer?
 		// TODO: scan generic type?
+
+		// scan annotations
+		collectClassRefs(fieldNode.visibleAnnotations, a -> a.desc);
+		collectClassRefs(fieldNode.invisibleAnnotations, a -> a.desc);
+		collectClassRefs(fieldNode.visibleTypeAnnotations, a -> a.desc);
+		collectClassRefs(fieldNode.invisibleTypeAnnotations, a -> a.desc);
+
 	}
 
 	private void collectClassRefs(MethodNode methodNode) {
-		// TODO: annotations
 
 		Type methodType = Type.getType(methodNode.desc);
 
@@ -99,6 +115,24 @@ class ClassRefFinder {
 			if (exceptionType == null) continue; // finally block
 			classRefs.add(exceptionType);
 		}
+
+		// scan annotations
+		collectClassRefs(methodNode.visibleAnnotations, a -> a.desc);
+		collectClassRefs(methodNode.invisibleAnnotations, a -> a.desc);
+		collectClassRefs(methodNode.visibleTypeAnnotations, a -> a.desc);
+		collectClassRefs(methodNode.invisibleTypeAnnotations, a -> a.desc);
+		if (methodNode.visibleParameterAnnotations != null) {
+			for (List<AnnotationNode> parameterAnnotations : methodNode.visibleParameterAnnotations) {
+				collectClassRefs(parameterAnnotations, a -> a.desc);
+			}
+		}
+		if (methodNode.invisibleParameterAnnotations != null) {
+			for (List<AnnotationNode> parameterAnnotations : methodNode.invisibleParameterAnnotations) {
+				collectClassRefs(parameterAnnotations, a -> a.desc);
+			}
+		}
+		collectClassRefs(methodNode.visibleLocalVariableAnnotations, a -> a.desc);
+		collectClassRefs(methodNode.invisibleLocalVariableAnnotations, a -> a.desc);
 
 	}
 
@@ -157,6 +191,16 @@ class ClassRefFinder {
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
 		collectClassRefs(fieldType);
+	}
+
+	private <T> void collectClassRefs(List<T> annotationNodes, Function<T, String> function) {
+		if (annotationNodes == null) return;
+		for (T annotationNode : annotationNodes) {
+			String desc = function.apply(annotationNode);
+			Type type = Type.getType(desc);
+			collectClassRefs(type);
+			// TODO: scan annotation values?
+		}
 	}
 
 	private void collectClassRefs(Type type) {
