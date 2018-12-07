@@ -12,37 +12,37 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class UnknownClassesAnalyzer extends Analyzer {
+public class MissingClassesAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Unknown Classes", "References to classes not found on the classpath.");
+		ReportSection section = new ReportSection("Missing Classes", "References to classes not found on the classpath.");
 		section.add(table);
 		return section;
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
-		ReportTable table = new ReportTable("JAR file", "Unknown class");
+		ReportTable table = new ReportTable("JAR file", "Missing class");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			// find all unknown classes
-			Set<String> unknownClasses = collectUnknownClasses(jarFile, classpath);
-			if (unknownClasses.isEmpty()) continue;
+			// find all missing classes
+			Set<String> missingClasses = collectMissingClasses(jarFile, classpath);
+			if (missingClasses.isEmpty()) continue;
 
-			table.addRow(jarFile.getFileName(), String.join(System.lineSeparator(), unknownClasses));
+			table.addRow(jarFile.getFileName(), String.join(System.lineSeparator(), missingClasses));
 		}
 
 		return table;
 	}
 
-	private Set<String> collectUnknownClasses(JarFile jarFile, Classpath classpath) {
-		Set<String> unknownClasses = new TreeSet<>();
+	private Set<String> collectMissingClasses(JarFile jarFile, Classpath classpath) {
+		Set<String> missingClasses = new TreeSet<>();
 
 		// for every class definition ...
 		List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -57,12 +57,12 @@ public class UnknownClassesAnalyzer extends Analyzer {
 				boolean exists = findClass(classpath, className);
 				if (!exists) {
 					className = className.replace('/', '.');
-					unknownClasses.add(className);
+					missingClasses.add(className);
 				}
 			}
 		}
 
-		return unknownClasses;
+		return missingClasses;
 	}
 
 	private boolean findClass(Classpath classpath, String className) {

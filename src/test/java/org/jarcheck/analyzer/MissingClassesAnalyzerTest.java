@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UnknownClassesAnalyzerTest {
+class MissingClassesAnalyzerTest {
 
 	@Test
 	void test_analyze() {
@@ -24,12 +24,12 @@ class UnknownClassesAnalyzerTest {
 				.build();
 
 		// test
-		UnknownClassesAnalyzer analyzer = new UnknownClassesAnalyzer();
+		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Unknown Classes", section.getTitle());
+		assertEquals("Missing Classes", section.getTitle());
 		assertEquals("References to classes not found on the classpath.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
@@ -39,7 +39,7 @@ class UnknownClassesAnalyzerTest {
 		String[] columns = table.getColumns();
 		assertEquals(2, columns.length);
 		assertEquals("JAR file", columns[0]);
-		assertEquals("Unknown class", columns[1]);
+		assertEquals("Missing class", columns[1]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());

@@ -47,7 +47,7 @@ public class Main {
 				new DuplicateClassesAnalyzer(),
 				new ShadowedClassesAnalyzer(),
 				new JarDependenciesAnalyzer(),
-				new UnknownClassesAnalyzer()
+				new MissingClassesAnalyzer()
 		);
 		Report report = analysis.run(classpath);
 
