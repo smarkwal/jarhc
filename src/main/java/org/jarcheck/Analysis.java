@@ -8,15 +8,15 @@ import org.jarcheck.report.ReportSection;
 import java.util.Arrays;
 import java.util.List;
 
-class Analysis {
+public class Analysis {
 
 	private final List<Analyzer> analyzers;
 
-	Analysis(Analyzer... analyzers) {
+	public Analysis(Analyzer... analyzers) {
 		this.analyzers = Arrays.asList(analyzers);
 	}
 
-	Report run(Classpath classpath) {
+	public Report run(Classpath classpath) {
 		Report report = new Report();
 		for (Analyzer analyzer : analyzers) {
 			ReportSection section = analyzer.analyze(classpath);

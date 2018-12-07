@@ -1,6 +1,5 @@
 package org.jarcheck;
 
-import org.jarcheck.analyzer.*;
 import org.jarcheck.loader.ClasspathLoader;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
@@ -40,16 +39,7 @@ public class Main {
 		System.out.println("Analyze classpath ...");
 
 		// analyze classpath and create report
-		Analysis analysis = new Analysis(
-				new JarFilesListAnalyzer(),
-				new ClassVersionAnalyzer(),
-				new PackagesAnalyzer(),
-				new SplitPackagesAnalyzer(),
-				new DuplicateClassesAnalyzer(),
-				new ShadowedClassesAnalyzer(),
-				new JarDependenciesAnalyzer(),
-				new MissingClassesAnalyzer()
-		);
+		Analysis analysis = new FullAnalysis();
 		Report report = analysis.run(classpath);
 
 		// format report as text to STDOUT
