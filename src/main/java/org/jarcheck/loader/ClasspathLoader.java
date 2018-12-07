@@ -38,6 +38,21 @@ public class ClasspathLoader {
 		List<File> files = new ArrayList<>();
 		collectFiles(directory, files, recursive);
 
+		return load(files);
+	}
+
+	/**
+	 * Create a classpath with the given JAR files.
+	 *
+	 * @param files List of JAR files.
+	 * @return Classpath
+	 * @throws IllegalArgumentException If <code>files</code> is <code>null</code>.
+	 * @throws FileNotFoundException    If any of the files does not exist.
+	 * @throws IOException              If a JAR file cannot be parsed.
+	 */
+	public Classpath load(List<File> files) throws IOException {
+		if (files == null) throw new IllegalArgumentException("files");
+
 		// load all JAR files
 		List<JarFile> jarFiles = new ArrayList<>();
 		for (File file : files) {
