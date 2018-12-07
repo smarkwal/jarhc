@@ -12,21 +12,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class SplitPackagesAnalyzer extends Analyzer {
+public class PackagesAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Split Packages", "Packages found in multiple JAR files.");
+		ReportSection section = new ReportSection("Packages", "List of packages per JAR file.");
 		section.add(table);
 		return section;
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		// map from package name to JAR file names
+		// map from JAR file name to package Names
 		MultiMap<String, String> map = new MultiMap<>();
 
 		// for every JAR file ...
@@ -44,18 +44,18 @@ public class SplitPackagesAnalyzer extends Analyzer {
 				String packageName = JavaUtils.getPackageName(className);
 
 				// remember JAR files for package name
-				map.add(packageName, fileName);
+				map.add(fileName, packageName);
 			}
 		}
 
-		ReportTable table = new ReportTable("Package", "JAR files");
+		ReportTable table = new ReportTable("JAR file", "Packages");
 
-		// for every package ...
-		for (String packageName : map.getKeys()) {
-			Set<String> fileNames = map.getValues(packageName);
+		// for every JAR file ...
+		for (String fileName : map.getKeys()) {
+			Set<String> packageNames = map.getValues(fileName);
 			// if package has been found in more than one JAR file ...
-			if (fileNames.size() > 1) {
-				table.addRow(packageName, fileNames.stream().collect(Collectors.joining(System.lineSeparator())));
+			if (packageNames.size() > 0) {
+				table.addRow(fileName, packageNames.stream().collect(Collectors.joining(System.lineSeparator())));
 			}
 		}
 

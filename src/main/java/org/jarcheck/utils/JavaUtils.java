@@ -45,4 +45,14 @@ public class JavaUtils {
 		}
 	}
 
+	public static String getPackageName(String className) {
+		className = className.replace('/', '.');
+		if (className.contains(".")) {
+			int pos = className.lastIndexOf('.');
+			return className.substring(0, pos);
+		} else {
+			return ""; // empty package
+		}
+	}
+
 }

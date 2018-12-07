@@ -43,6 +43,7 @@ public class Main {
 		Analysis analysis = new Analysis(
 				new JarFilesListAnalyzer(),
 				new ClassVersionAnalyzer(),
+				new PackagesAnalyzer(),
 				new SplitPackagesAnalyzer(),
 				new DuplicateClassesAnalyzer(),
 				new ShadowedClassesAnalyzer(),
