@@ -1,0 +1,404 @@
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file                | Size    | Java class files
+------------------------+---------+-----------------
+camel-core-2.17.7.jar   | 3.33 MB | 2086
+camel-jdbc-2.17.7.jar   | 43.0 KB | 18
+camel-jms-2.17.7.jar    | 173 KB  | 70
+camel-jmx-2.17.7.jar    | 56.4 KB | 20
+camel-jxpath-2.17.7.jar | 18.0 KB | 3
+camel-ldap-2.17.7.jar   | 22.3 KB | 3
+camel-mail-2.17.7.jar   | 152 KB  | 32
+camel-soap-2.17.7.jar   | 71.6 KB | 32
+camel-spring-2.17.7.jar | 314 KB  | 127
+Classpath               | 4.16 MB | 2391
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file                | Java version
+------------------------+---------------------------
+camel-core-2.17.7.jar   | Java 7 (2008), Java 6 (78)
+camel-jdbc-2.17.7.jar   | Java 7 (18)
+camel-jms-2.17.7.jar    | Java 7 (70)
+camel-jmx-2.17.7.jar    | Java 7 (20)
+camel-jxpath-2.17.7.jar | Java 7 (3)
+camel-ldap-2.17.7.jar   | Java 7 (3)
+camel-mail-2.17.7.jar   | Java 7 (32)
+camel-soap-2.17.7.jar   | Java 7 (32)
+camel-spring-2.17.7.jar | Java 7 (127)
+Classpath               | Java 7 (2313), Java 6 (78)
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file                | Packages
+------------------------+--------------------------------------------------------
+camel-core-2.17.7.jar   | org.apache.camel
+                        | org.apache.camel.api.management
+                        | org.apache.camel.api.management.mbean
+                        | org.apache.camel.builder
+                        | org.apache.camel.builder.xml
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap
+                        | org.apache.camel.component
+                        | org.apache.camel.component.bean
+                        | org.apache.camel.component.beanclass
+                        | org.apache.camel.component.binding
+                        | org.apache.camel.component.browse
+                        | org.apache.camel.component.controlbus
+                        | org.apache.camel.component.dataformat
+                        | org.apache.camel.component.dataset
+                        | org.apache.camel.component.direct
+                        | org.apache.camel.component.directvm
+                        | org.apache.camel.component.file
+                        | org.apache.camel.component.file.strategy
+                        | org.apache.camel.component.language
+                        | org.apache.camel.component.log
+                        | org.apache.camel.component.mock
+                        | org.apache.camel.component.properties
+                        | org.apache.camel.component.ref
+                        | org.apache.camel.component.rest
+                        | org.apache.camel.component.scheduler
+                        | org.apache.camel.component.seda
+                        | org.apache.camel.component.stub
+                        | org.apache.camel.component.test
+                        | org.apache.camel.component.timer
+                        | org.apache.camel.component.validator
+                        | org.apache.camel.component.vm
+                        | org.apache.camel.component.xslt
+                        | org.apache.camel.converter
+                        | org.apache.camel.converter.jaxp
+                        | org.apache.camel.converter.stream
+                        | org.apache.camel.impl
+                        | org.apache.camel.impl.converter
+                        | org.apache.camel.impl.osgi
+                        | org.apache.camel.impl.osgi.tracker
+                        | org.apache.camel.impl.scan
+                        | org.apache.camel.language
+                        | org.apache.camel.language.bean
+                        | org.apache.camel.language.constant
+                        | org.apache.camel.language.header
+                        | org.apache.camel.language.property
+                        | org.apache.camel.language.ref
+                        | org.apache.camel.language.simple
+                        | org.apache.camel.language.simple.ast
+                        | org.apache.camel.language.simple.types
+                        | org.apache.camel.language.tokenizer
+                        | org.apache.camel.language.xpath
+                        | org.apache.camel.main
+                        | org.apache.camel.management
+                        | org.apache.camel.management.event
+                        | org.apache.camel.management.mbean
+                        | org.apache.camel.model
+                        | org.apache.camel.model.config
+                        | org.apache.camel.model.dataformat
+                        | org.apache.camel.model.language
+                        | org.apache.camel.model.loadbalancer
+                        | org.apache.camel.model.rest
+                        | org.apache.camel.processor
+                        | org.apache.camel.processor.aggregate
+                        | org.apache.camel.processor.binding
+                        | org.apache.camel.processor.exceptionpolicy
+                        | org.apache.camel.processor.idempotent
+                        | org.apache.camel.processor.interceptor
+                        | org.apache.camel.processor.loadbalancer
+                        | org.apache.camel.processor.resequencer
+                        | org.apache.camel.processor.validation
+                        | org.apache.camel.spi
+                        | org.apache.camel.support
+                        | org.apache.camel.util
+                        | org.apache.camel.util.component
+                        | org.apache.camel.util.concurrent
+                        | org.apache.camel.util.jndi
+                        | org.apache.camel.util.jsse
+                        | org.apache.camel.util.toolbox
+camel-jdbc-2.17.7.jar   | org.apache.camel.component.jdbc
+camel-jms-2.17.7.jar    | org.apache.camel.component.jms
+                        | org.apache.camel.component.jms.reply
+camel-jmx-2.17.7.jar    | org.apache.camel.component.jmx
+                        | org.apache.camel.component.jmx.jaxb
+camel-jxpath-2.17.7.jar | org.apache.camel.language.jxpath
+camel-ldap-2.17.7.jar   | org.apache.camel.component.ldap
+camel-mail-2.17.7.jar   | org.apache.camel.component.mail
+                        | org.apache.camel.dataformat.mime.multipart
+camel-soap-2.17.7.jar   | org.apache.camel.dataformat.soap
+                        | org.apache.camel.dataformat.soap.name
+                        | org.w3._2003._05.soap_envelope
+                        | org.xmlsoap.schemas.soap.envelope
+camel-spring-2.17.7.jar | org.apache.camel.component.event
+                        | org.apache.camel.core.osgi
+                        | org.apache.camel.core.osgi.utils
+                        | org.apache.camel.core.xml
+                        | org.apache.camel.core.xml.util.jsse
+                        | org.apache.camel.language.spel
+                        | org.apache.camel.osgi
+                        | org.apache.camel.spring
+                        | org.apache.camel.spring.converter
+                        | org.apache.camel.spring.handler
+                        | org.apache.camel.spring.pollingconsumer
+                        | org.apache.camel.spring.processor.idempotent
+                        | org.apache.camel.spring.remoting
+                        | org.apache.camel.spring.spi
+                        | org.apache.camel.spring.util
+                        | org.apache.camel.util.spring
+
+Split Packages
+--------------
+Packages found in multiple JAR files.
+
+Package | JAR files
+--------+----------
+
+Duplicate Classes
+-----------------
+Classes found in multiple JAR files.
+
+Class name | JAR files
+-----------+----------
+
+Shadowed Classes
+----------------
+Classes shadowing JRE/JDK classes.
+Java home   : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime: Java(TM) SE Runtime Environment
+Java version: 1.8.0_144
+Java vendor : Oracle Corporation
+
+Class name | JAR file | ClassLoader
+-----------+----------+------------
+
+JAR File Dependencies
+---------------------
+Dependencies between JAR files.
+
+JAR file                | Uses                  | Used by
+------------------------+-----------------------+------------------------
+camel-core-2.17.7.jar   | [none]                | camel-jdbc-2.17.7.jar
+                        |                       | camel-jms-2.17.7.jar
+                        |                       | camel-jmx-2.17.7.jar
+                        |                       | camel-jxpath-2.17.7.jar
+                        |                       | camel-ldap-2.17.7.jar
+                        |                       | camel-mail-2.17.7.jar
+                        |                       | camel-soap-2.17.7.jar
+                        |                       | camel-spring-2.17.7.jar
+camel-jdbc-2.17.7.jar   | camel-core-2.17.7.jar | [none]
+camel-jms-2.17.7.jar    | camel-core-2.17.7.jar | [none]
+camel-jmx-2.17.7.jar    | camel-core-2.17.7.jar | [none]
+camel-jxpath-2.17.7.jar | camel-core-2.17.7.jar | [none]
+camel-ldap-2.17.7.jar   | camel-core-2.17.7.jar | [none]
+camel-mail-2.17.7.jar   | camel-core-2.17.7.jar | [none]
+camel-soap-2.17.7.jar   | camel-core-2.17.7.jar | [none]
+camel-spring-2.17.7.jar | camel-core-2.17.7.jar | [none]
+
+Missing Classes
+---------------
+References to classes not found on the classpath.
+
+JAR file                | Missing class
+------------------------+---------------------------------------------------------------------------
+camel-core-2.17.7.jar   | javax.annotation.concurrent.GuardedBy
+                        | javax.annotation.concurrent.Immutable
+                        | javax.annotation.concurrent.NotThreadSafe
+                        | javax.annotation.concurrent.ThreadSafe
+                        | org.osgi.framework.Bundle
+                        | org.osgi.framework.BundleActivator
+                        | org.osgi.framework.BundleContext
+                        | org.osgi.framework.BundleEvent
+                        | org.osgi.framework.BundleListener
+                        | org.osgi.framework.ServiceRegistration
+                        | org.osgi.framework.SynchronousBundleListener
+                        | org.osgi.framework.wiring.BundleCapability
+                        | org.osgi.framework.wiring.BundleWire
+                        | org.osgi.framework.wiring.BundleWiring
+                        | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+                        | org.slf4j.MDC
+                        | org.slf4j.Marker
+                        | org.slf4j.MarkerFactory
+camel-jdbc-2.17.7.jar   | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+camel-jms-2.17.7.jar    | javax.jms.BytesMessage
+                        | javax.jms.Connection
+                        | javax.jms.ConnectionFactory
+                        | javax.jms.Destination
+                        | javax.jms.ExceptionListener
+                        | javax.jms.JMSException
+                        | javax.jms.MapMessage
+                        | javax.jms.Message
+                        | javax.jms.MessageFormatException
+                        | javax.jms.MessageProducer
+                        | javax.jms.ObjectMessage
+                        | javax.jms.Queue
+                        | javax.jms.QueueBrowser
+                        | javax.jms.Session
+                        | javax.jms.TemporaryQueue
+                        | javax.jms.TemporaryTopic
+                        | javax.jms.TextMessage
+                        | javax.jms.Topic
+                        | org.apache.commons.logging.Log
+                        | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+                        | org.springframework.beans.BeansException
+                        | org.springframework.context.ApplicationContext
+                        | org.springframework.context.ApplicationContextAware
+                        | org.springframework.core.task.SimpleAsyncTaskExecutor
+                        | org.springframework.core.task.TaskExecutor
+                        | org.springframework.jms.JmsException
+                        | org.springframework.jms.connection.JmsTransactionManager
+                        | org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter
+                        | org.springframework.jms.core.BrowserCallback
+                        | org.springframework.jms.core.JmsOperations
+                        | org.springframework.jms.core.JmsTemplate
+                        | org.springframework.jms.core.MessageCreator
+                        | org.springframework.jms.core.SessionCallback
+                        | org.springframework.jms.listener.AbstractMessageListenerContainer
+                        | org.springframework.jms.listener.DefaultMessageListenerContainer
+                        | org.springframework.jms.listener.SessionAwareMessageListener
+                        | org.springframework.jms.listener.SimpleMessageListenerContainer
+                        | org.springframework.jms.support.JmsUtils
+                        | org.springframework.jms.support.converter.MessageConverter
+                        | org.springframework.jms.support.destination.DestinationResolver
+                        | org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+                        | org.springframework.transaction.PlatformTransactionManager
+                        | org.springframework.util.Assert
+                        | org.springframework.util.ErrorHandler
+camel-jmx-2.17.7.jar    | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+camel-jxpath-2.17.7.jar | org.apache.commons.jxpath.CompiledExpression
+                        | org.apache.commons.jxpath.JXPathContext
+                        | org.apache.commons.jxpath.JXPathException
+camel-ldap-2.17.7.jar   | org.slf4j.Logger
+camel-mail-2.17.7.jar   | com.sun.mail.imap.IMAPFolder
+                        | com.sun.mail.imap.IMAPStore
+                        | com.sun.mail.imap.SortTerm
+                        | javax.mail.Address
+                        | javax.mail.Authenticator
+                        | javax.mail.BodyPart
+                        | javax.mail.Flags
+                        | javax.mail.Flags$Flag
+                        | javax.mail.Folder
+                        | javax.mail.FolderNotFoundException
+                        | javax.mail.Header
+                        | javax.mail.Message
+                        | javax.mail.Message$RecipientType
+                        | javax.mail.MessagingException
+                        | javax.mail.Multipart
+                        | javax.mail.NoSuchProviderException
+                        | javax.mail.Part
+                        | javax.mail.PasswordAuthentication
+                        | javax.mail.Session
+                        | javax.mail.Store
+                        | javax.mail.Transport
+                        | javax.mail.internet.AddressException
+                        | javax.mail.internet.ContentType
+                        | javax.mail.internet.InternetAddress
+                        | javax.mail.internet.InternetHeaders
+                        | javax.mail.internet.MimeBodyPart
+                        | javax.mail.internet.MimeMessage
+                        | javax.mail.internet.MimeMultipart
+                        | javax.mail.internet.MimeUtility
+                        | javax.mail.internet.ParseException
+                        | javax.mail.search.AndTerm
+                        | javax.mail.search.BodyTerm
+                        | javax.mail.search.ComparisonTerm
+                        | javax.mail.search.FlagTerm
+                        | javax.mail.search.FromStringTerm
+                        | javax.mail.search.HeaderTerm
+                        | javax.mail.search.NotTerm
+                        | javax.mail.search.OrTerm
+                        | javax.mail.search.ReceivedDateTerm
+                        | javax.mail.search.RecipientStringTerm
+                        | javax.mail.search.SearchTerm
+                        | javax.mail.search.SentDateTerm
+                        | javax.mail.search.SubjectTerm
+                        | javax.mail.util.ByteArrayDataSource
+                        | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+camel-soap-2.17.7.jar   | org.apache.camel.converter.jaxb.JaxbDataFormat
+                        | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+camel-spring-2.17.7.jar | org.osgi.framework.Bundle
+                        | org.osgi.framework.BundleActivator
+                        | org.osgi.framework.BundleContext
+                        | org.osgi.framework.InvalidSyntaxException
+                        | org.osgi.framework.ServiceReference
+                        | org.osgi.framework.ServiceRegistration
+                        | org.osgi.framework.Version
+                        | org.osgi.service.event.Event
+                        | org.osgi.service.event.EventAdmin
+                        | org.osgi.util.tracker.ServiceTracker
+                        | org.osgi.util.tracker.ServiceTrackerCustomizer
+                        | org.slf4j.Logger
+                        | org.slf4j.LoggerFactory
+                        | org.springframework.beans.BeanInstantiationException
+                        | org.springframework.beans.BeansException
+                        | org.springframework.beans.MutablePropertyValues
+                        | org.springframework.beans.factory.BeanCreationException
+                        | org.springframework.beans.factory.BeanDefinitionStoreException
+                        | org.springframework.beans.factory.BeanFactory
+                        | org.springframework.beans.factory.BeanFactoryUtils
+                        | org.springframework.beans.factory.BeanNotOfRequiredTypeException
+                        | org.springframework.beans.factory.DisposableBean
+                        | org.springframework.beans.factory.FactoryBean
+                        | org.springframework.beans.factory.InitializingBean
+                        | org.springframework.beans.factory.ListableBeanFactory
+                        | org.springframework.beans.factory.NoSuchBeanDefinitionException
+                        | org.springframework.beans.factory.config.BeanDefinition
+                        | org.springframework.beans.factory.config.BeanPostProcessor
+                        | org.springframework.beans.factory.config.ConfigurableListableBeanFactory
+                        | org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
+                        | org.springframework.beans.factory.config.RuntimeBeanReference
+                        | org.springframework.beans.factory.parsing.BeanComponentDefinition
+                        | org.springframework.beans.factory.parsing.ComponentDefinition
+                        | org.springframework.beans.factory.support.BeanDefinitionBuilder
+                        | org.springframework.beans.factory.support.BeanDefinitionRegistry
+                        | org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser
+                        | org.springframework.beans.factory.xml.BeanDefinitionParser
+                        | org.springframework.beans.factory.xml.NamespaceHandlerSupport
+                        | org.springframework.beans.factory.xml.ParserContext
+                        | org.springframework.cache.Cache
+                        | org.springframework.cache.Cache$ValueWrapper
+                        | org.springframework.cache.CacheManager
+                        | org.springframework.context.ApplicationContext
+                        | org.springframework.context.ApplicationContextAware
+                        | org.springframework.context.ApplicationEvent
+                        | org.springframework.context.ApplicationListener
+                        | org.springframework.context.ConfigurableApplicationContext
+                        | org.springframework.context.expression.BeanFactoryResolver
+                        | org.springframework.context.support.AbstractApplicationContext
+                        | org.springframework.context.support.ClassPathXmlApplicationContext
+                        | org.springframework.context.support.FileSystemXmlApplicationContext
+                        | org.springframework.core.Constants
+                        | org.springframework.core.Conventions
+                        | org.springframework.core.io.Resource
+                        | org.springframework.expression.BeanResolver
+                        | org.springframework.expression.EvaluationContext
+                        | org.springframework.expression.Expression
+                        | org.springframework.expression.ParserContext
+                        | org.springframework.expression.common.TemplateParserContext
+                        | org.springframework.expression.spel.standard.SpelExpressionParser
+                        | org.springframework.expression.spel.support.StandardEvaluationContext
+                        | org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource
+                        | org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
+                        | org.springframework.jmx.export.metadata.JmxAttributeSource
+                        | org.springframework.osgi.context.BundleContextAware
+                        | org.springframework.remoting.support.RemoteExporter
+                        | org.springframework.remoting.support.UrlBasedRemoteAccessor
+                        | org.springframework.scheduling.Trigger
+                        | org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+                        | org.springframework.scheduling.support.CronTrigger
+                        | org.springframework.transaction.PlatformTransactionManager
+                        | org.springframework.transaction.TransactionStatus
+                        | org.springframework.transaction.support.TransactionCallback
+                        | org.springframework.transaction.support.TransactionCallbackWithoutResult
+                        | org.springframework.transaction.support.TransactionTemplate
+                        | org.springframework.util.Assert
+                        | org.springframework.util.PropertyPlaceholderHelper
+                        | org.springframework.util.PropertyPlaceholderHelper$PlaceholderResolver
+                        | org.springframework.util.ReflectionUtils
+                        | org.springframework.util.StringUtils
+

@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AbstractIT {
+abstract class AbstractIT {
 
 	protected void test(String baseResourcePath, String[] fileNames) throws IOException {
 
@@ -39,15 +39,15 @@ class AbstractIT {
 		// create text report
 		TextReportFormat textFormat = new TextReportFormat();
 		String textReport = textFormat.format(report);
-		String expectedTextReport = TestUtils.getResourceAsString(baseResourcePath + "report.txt", "UTF-8");
 		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.txt"), textReport.getBytes());
+		String expectedTextReport = TestUtils.getResourceAsString(baseResourcePath + "report.txt", "UTF-8");
 		assertEquals(expectedTextReport, textReport);
 
 		// create HTML report
 		HtmlReportFormat htmlFormat = new HtmlReportFormat();
 		String htmlReport = htmlFormat.format(report);
-		String expectedHtmlReport = TestUtils.getResourceAsString(baseResourcePath + "report.html", "UTF-8");
 		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.html"), htmlReport.getBytes());
+		String expectedHtmlReport = TestUtils.getResourceAsString(baseResourcePath + "report.html", "UTF-8");
 		assertEquals(expectedHtmlReport, htmlReport);
 
 	}
