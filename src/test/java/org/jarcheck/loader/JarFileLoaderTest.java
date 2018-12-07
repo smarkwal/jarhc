@@ -17,7 +17,7 @@ class JarFileLoaderTest {
 
 		// prepare
 		String resource = "/test2/a.jar";
-		File file = TestUtils.getResourceAsFile(resource, "JarFileLoaderTest-", ".jar");
+		File file = TestUtils.getResourceAsFile(resource, "JarFileLoaderTest-");
 
 		// test
 		JarFileLoader jarFileLoader = new JarFileLoader();

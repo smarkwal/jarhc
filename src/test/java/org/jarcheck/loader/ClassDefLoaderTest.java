@@ -55,7 +55,7 @@ class ClassDefLoaderTest {
 	void test_load_file() throws IOException {
 
 		String resource = "/test/java8/Main.class";
-		File file = TestUtils.getResourceAsFile(resource, "ClassDefLoaderTest-", ".class");
+		File file = TestUtils.getResourceAsFile(resource, "ClassDefLoaderTest-");
 		ClassDef classDef = classDefLoader.load(file);
 
 		assertNotNull(classDef);

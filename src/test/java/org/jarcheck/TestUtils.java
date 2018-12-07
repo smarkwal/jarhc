@@ -1,6 +1,9 @@
 package org.jarcheck;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -29,13 +32,23 @@ public class TestUtils {
 		return result.toString(encoding);
 	}
 
-	public static File getResourceAsFile(String resource, String prefix, String suffix) throws IOException {
+	public static File getResourceAsFile(String resource, String prefix) throws IOException {
 		if (resource == null) throw new IllegalArgumentException("resource");
 		InputStream stream = getResourceAsStream(resource);
 		File directory = createTempDirectory(prefix);
-		File file = File.createTempFile(prefix, suffix, directory);
+		String fileName = getFileName(resource);
+		File file = new File(directory, fileName);
 		Files.copy(stream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		return file;
+	}
+
+	private static String getFileName(String resource) {
+		if (resource.contains("/")) {
+			int post = resource.lastIndexOf('/');
+			return resource.substring(post + 1);
+		} else {
+			return resource;
+		}
 	}
 
 	private static File createTempDirectory(String prefix) throws IOException {

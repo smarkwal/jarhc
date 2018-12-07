@@ -19,7 +19,7 @@ class ClasspathLoaderTest {
 
 		// prepare
 		String resource = "/test2/a.jar";
-		File file = TestUtils.getResourceAsFile(resource, "ClasspathLoader-", ".jar");
+		File file = TestUtils.getResourceAsFile(resource, "ClasspathLoader-");
 
 		// test
 		Classpath classpath = classpathLoader.load(file.getParentFile(), false);
