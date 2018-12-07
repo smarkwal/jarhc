@@ -1,0 +1,1462 @@
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file                                 | Size    | Java class files
+-----------------------------------------+---------+-----------------
+spring-aop-5.1.3.RELEASE.jar             | 360 KB  | 277
+spring-beans-5.1.3.RELEASE.jar           | 656 KB  | 380
+spring-context-5.1.3.RELEASE.jar         | 1.05 MB | 822
+spring-context-support-5.1.3.RELEASE.jar | 177 KB  | 119
+spring-core-5.1.3.RELEASE.jar            | 1.23 MB | 876
+spring-expression-5.1.3.RELEASE.jar      | 274 KB  | 150
+spring-jdbc-5.1.3.RELEASE.jar            | 395 KB  | 287
+spring-jms-5.1.3.RELEASE.jar             | 254 KB  | 163
+spring-messaging-5.1.3.RELEASE.jar       | 374 KB  | 239
+spring-orm-5.1.3.RELEASE.jar             | 195 KB  | 100
+spring-tx-5.1.3.RELEASE.jar              | 250 KB  | 217
+spring-web-5.1.3.RELEASE.jar             | 1.31 MB | 909
+Classpath                                | 6.46 MB | 4539
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file                                 | Java version
+-----------------------------------------+----------------------------
+spring-aop-5.1.3.RELEASE.jar             | Java 8 (277)
+spring-beans-5.1.3.RELEASE.jar           | Java 8 (380)
+spring-context-5.1.3.RELEASE.jar         | Java 8 (822)
+spring-context-support-5.1.3.RELEASE.jar | Java 8 (119)
+spring-core-5.1.3.RELEASE.jar            | Java 8 (660), Java 5 (216)
+spring-expression-5.1.3.RELEASE.jar      | Java 8 (150)
+spring-jdbc-5.1.3.RELEASE.jar            | Java 8 (287)
+spring-jms-5.1.3.RELEASE.jar             | Java 8 (163)
+spring-messaging-5.1.3.RELEASE.jar       | Java 8 (239)
+spring-orm-5.1.3.RELEASE.jar             | Java 8 (100)
+spring-tx-5.1.3.RELEASE.jar              | Java 8 (217)
+spring-web-5.1.3.RELEASE.jar             | Java 8 (909)
+Classpath                                | Java 8 (4323), Java 5 (216)
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file                                 | Packages
+-----------------------------------------+---------------------------------------------------------
+spring-aop-5.1.3.RELEASE.jar             | org.aopalliance.aop
+                                         | org.aopalliance.intercept
+                                         | org.springframework.aop
+                                         | org.springframework.aop.aspectj
+                                         | org.springframework.aop.aspectj.annotation
+                                         | org.springframework.aop.aspectj.autoproxy
+                                         | org.springframework.aop.config
+                                         | org.springframework.aop.framework
+                                         | org.springframework.aop.framework.adapter
+                                         | org.springframework.aop.framework.autoproxy
+                                         | org.springframework.aop.framework.autoproxy.target
+                                         | org.springframework.aop.interceptor
+                                         | org.springframework.aop.scope
+                                         | org.springframework.aop.support
+                                         | org.springframework.aop.support.annotation
+                                         | org.springframework.aop.target
+                                         | org.springframework.aop.target.dynamic
+spring-beans-5.1.3.RELEASE.jar           | org.springframework.beans
+                                         | org.springframework.beans.annotation
+                                         | org.springframework.beans.factory
+                                         | org.springframework.beans.factory.annotation
+                                         | org.springframework.beans.factory.config
+                                         | org.springframework.beans.factory.groovy
+                                         | org.springframework.beans.factory.parsing
+                                         | org.springframework.beans.factory.serviceloader
+                                         | org.springframework.beans.factory.support
+                                         | org.springframework.beans.factory.wiring
+                                         | org.springframework.beans.factory.xml
+                                         | org.springframework.beans.propertyeditors
+                                         | org.springframework.beans.support
+spring-context-5.1.3.RELEASE.jar         | org.springframework.cache
+                                         | org.springframework.cache.annotation
+                                         | org.springframework.cache.concurrent
+                                         | org.springframework.cache.config
+                                         | org.springframework.cache.interceptor
+                                         | org.springframework.cache.support
+                                         | org.springframework.context
+                                         | org.springframework.context.annotation
+                                         | org.springframework.context.config
+                                         | org.springframework.context.event
+                                         | org.springframework.context.expression
+                                         | org.springframework.context.i18n
+                                         | org.springframework.context.index
+                                         | org.springframework.context.support
+                                         | org.springframework.context.weaving
+                                         | org.springframework.ejb.access
+                                         | org.springframework.ejb.config
+                                         | org.springframework.format
+                                         | org.springframework.format.annotation
+                                         | org.springframework.format.datetime
+                                         | org.springframework.format.datetime.joda
+                                         | org.springframework.format.datetime.standard
+                                         | org.springframework.format.number
+                                         | org.springframework.format.number.money
+                                         | org.springframework.format.support
+                                         | org.springframework.instrument.classloading
+                                         | org.springframework.instrument.classloading.glassfish
+                                         | org.springframework.instrument.classloading.jboss
+                                         | org.springframework.instrument.classloading.tomcat
+                                         | org.springframework.instrument.classloading.weblogic
+                                         | org.springframework.instrument.classloading.websphere
+                                         | org.springframework.jmx
+                                         | org.springframework.jmx.access
+                                         | org.springframework.jmx.export
+                                         | org.springframework.jmx.export.annotation
+                                         | org.springframework.jmx.export.assembler
+                                         | org.springframework.jmx.export.metadata
+                                         | org.springframework.jmx.export.naming
+                                         | org.springframework.jmx.export.notification
+                                         | org.springframework.jmx.support
+                                         | org.springframework.jndi
+                                         | org.springframework.jndi.support
+                                         | org.springframework.remoting
+                                         | org.springframework.remoting.rmi
+                                         | org.springframework.remoting.soap
+                                         | org.springframework.remoting.support
+                                         | org.springframework.scheduling
+                                         | org.springframework.scheduling.annotation
+                                         | org.springframework.scheduling.concurrent
+                                         | org.springframework.scheduling.config
+                                         | org.springframework.scheduling.support
+                                         | org.springframework.scripting
+                                         | org.springframework.scripting.bsh
+                                         | org.springframework.scripting.config
+                                         | org.springframework.scripting.groovy
+                                         | org.springframework.scripting.support
+                                         | org.springframework.stereotype
+                                         | org.springframework.ui
+                                         | org.springframework.ui.context
+                                         | org.springframework.ui.context.support
+                                         | org.springframework.validation
+                                         | org.springframework.validation.annotation
+                                         | org.springframework.validation.beanvalidation
+                                         | org.springframework.validation.support
+spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine
+                                         | org.springframework.cache.ehcache
+                                         | org.springframework.cache.jcache
+                                         | org.springframework.cache.jcache.config
+                                         | org.springframework.cache.jcache.interceptor
+                                         | org.springframework.cache.transaction
+                                         | org.springframework.mail
+                                         | org.springframework.mail.javamail
+                                         | org.springframework.scheduling.commonj
+                                         | org.springframework.scheduling.quartz
+                                         | org.springframework.ui.freemarker
+spring-core-5.1.3.RELEASE.jar            | org.springframework.asm
+                                         | org.springframework.cglib
+                                         | org.springframework.cglib.beans
+                                         | org.springframework.cglib.core
+                                         | org.springframework.cglib.core.internal
+                                         | org.springframework.cglib.proxy
+                                         | org.springframework.cglib.reflect
+                                         | org.springframework.cglib.transform
+                                         | org.springframework.cglib.transform.impl
+                                         | org.springframework.cglib.util
+                                         | org.springframework.core
+                                         | org.springframework.core.annotation
+                                         | org.springframework.core.codec
+                                         | org.springframework.core.convert
+                                         | org.springframework.core.convert.converter
+                                         | org.springframework.core.convert.support
+                                         | org.springframework.core.env
+                                         | org.springframework.core.io
+                                         | org.springframework.core.io.buffer
+                                         | org.springframework.core.io.support
+                                         | org.springframework.core.log
+                                         | org.springframework.core.serializer
+                                         | org.springframework.core.serializer.support
+                                         | org.springframework.core.style
+                                         | org.springframework.core.task
+                                         | org.springframework.core.task.support
+                                         | org.springframework.core.type
+                                         | org.springframework.core.type.classreading
+                                         | org.springframework.core.type.filter
+                                         | org.springframework.lang
+                                         | org.springframework.objenesis
+                                         | org.springframework.objenesis.instantiator
+                                         | org.springframework.objenesis.instantiator.android
+                                         | org.springframework.objenesis.instantiator.annotations
+                                         | org.springframework.objenesis.instantiator.basic
+                                         | org.springframework.objenesis.instantiator.gcj
+                                         | org.springframework.objenesis.instantiator.perc
+                                         | org.springframework.objenesis.instantiator.sun
+                                         | org.springframework.objenesis.instantiator.util
+                                         | org.springframework.objenesis.strategy
+                                         | org.springframework.util
+                                         | org.springframework.util.backoff
+                                         | org.springframework.util.comparator
+                                         | org.springframework.util.concurrent
+                                         | org.springframework.util.function
+                                         | org.springframework.util.unit
+                                         | org.springframework.util.xml
+spring-expression-5.1.3.RELEASE.jar      | org.springframework.expression
+                                         | org.springframework.expression.common
+                                         | org.springframework.expression.spel
+                                         | org.springframework.expression.spel.ast
+                                         | org.springframework.expression.spel.standard
+                                         | org.springframework.expression.spel.support
+spring-jdbc-5.1.3.RELEASE.jar            | org.springframework.jdbc
+                                         | org.springframework.jdbc.config
+                                         | org.springframework.jdbc.core
+                                         | org.springframework.jdbc.core.metadata
+                                         | org.springframework.jdbc.core.namedparam
+                                         | org.springframework.jdbc.core.simple
+                                         | org.springframework.jdbc.core.support
+                                         | org.springframework.jdbc.datasource
+                                         | org.springframework.jdbc.datasource.embedded
+                                         | org.springframework.jdbc.datasource.init
+                                         | org.springframework.jdbc.datasource.lookup
+                                         | org.springframework.jdbc.object
+                                         | org.springframework.jdbc.support
+                                         | org.springframework.jdbc.support.incrementer
+                                         | org.springframework.jdbc.support.lob
+                                         | org.springframework.jdbc.support.rowset
+                                         | org.springframework.jdbc.support.xml
+spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms
+                                         | org.springframework.jms.annotation
+                                         | org.springframework.jms.config
+                                         | org.springframework.jms.connection
+                                         | org.springframework.jms.core
+                                         | org.springframework.jms.core.support
+                                         | org.springframework.jms.listener
+                                         | org.springframework.jms.listener.adapter
+                                         | org.springframework.jms.listener.endpoint
+                                         | org.springframework.jms.remoting
+                                         | org.springframework.jms.support
+                                         | org.springframework.jms.support.converter
+                                         | org.springframework.jms.support.destination
+spring-messaging-5.1.3.RELEASE.jar       | org.springframework.messaging
+                                         | org.springframework.messaging.converter
+                                         | org.springframework.messaging.core
+                                         | org.springframework.messaging.handler
+                                         | org.springframework.messaging.handler.annotation
+                                         | org.springframework.messaging.handler.annotation.support
+                                         | org.springframework.messaging.handler.invocation
+                                         | org.springframework.messaging.simp
+                                         | org.springframework.messaging.simp.annotation
+                                         | org.springframework.messaging.simp.annotation.support
+                                         | org.springframework.messaging.simp.broker
+                                         | org.springframework.messaging.simp.config
+                                         | org.springframework.messaging.simp.stomp
+                                         | org.springframework.messaging.simp.user
+                                         | org.springframework.messaging.support
+                                         | org.springframework.messaging.tcp
+                                         | org.springframework.messaging.tcp.reactor
+spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm
+                                         | org.springframework.orm.hibernate5
+                                         | org.springframework.orm.hibernate5.support
+                                         | org.springframework.orm.jpa
+                                         | org.springframework.orm.jpa.persistenceunit
+                                         | org.springframework.orm.jpa.support
+                                         | org.springframework.orm.jpa.vendor
+spring-tx-5.1.3.RELEASE.jar              | org.springframework.dao
+                                         | org.springframework.dao.annotation
+                                         | org.springframework.dao.support
+                                         | org.springframework.jca.cci
+                                         | org.springframework.jca.cci.connection
+                                         | org.springframework.jca.cci.core
+                                         | org.springframework.jca.cci.core.support
+                                         | org.springframework.jca.cci.object
+                                         | org.springframework.jca.context
+                                         | org.springframework.jca.endpoint
+                                         | org.springframework.jca.support
+                                         | org.springframework.jca.work
+                                         | org.springframework.transaction
+                                         | org.springframework.transaction.annotation
+                                         | org.springframework.transaction.config
+                                         | org.springframework.transaction.event
+                                         | org.springframework.transaction.interceptor
+                                         | org.springframework.transaction.jta
+                                         | org.springframework.transaction.support
+spring-web-5.1.3.RELEASE.jar             | org.springframework.http
+                                         | org.springframework.http.client
+                                         | org.springframework.http.client.reactive
+                                         | org.springframework.http.client.support
+                                         | org.springframework.http.codec
+                                         | org.springframework.http.codec.json
+                                         | org.springframework.http.codec.multipart
+                                         | org.springframework.http.codec.protobuf
+                                         | org.springframework.http.codec.support
+                                         | org.springframework.http.codec.xml
+                                         | org.springframework.http.converter
+                                         | org.springframework.http.converter.cbor
+                                         | org.springframework.http.converter.feed
+                                         | org.springframework.http.converter.json
+                                         | org.springframework.http.converter.protobuf
+                                         | org.springframework.http.converter.smile
+                                         | org.springframework.http.converter.support
+                                         | org.springframework.http.converter.xml
+                                         | org.springframework.http.server
+                                         | org.springframework.http.server.reactive
+                                         | org.springframework.remoting.caucho
+                                         | org.springframework.remoting.httpinvoker
+                                         | org.springframework.remoting.jaxws
+                                         | org.springframework.web
+                                         | org.springframework.web.accept
+                                         | org.springframework.web.bind
+                                         | org.springframework.web.bind.annotation
+                                         | org.springframework.web.bind.support
+                                         | org.springframework.web.client
+                                         | org.springframework.web.client.support
+                                         | org.springframework.web.context
+                                         | org.springframework.web.context.annotation
+                                         | org.springframework.web.context.request
+                                         | org.springframework.web.context.request.async
+                                         | org.springframework.web.context.support
+                                         | org.springframework.web.cors
+                                         | org.springframework.web.cors.reactive
+                                         | org.springframework.web.filter
+                                         | org.springframework.web.filter.reactive
+                                         | org.springframework.web.jsf
+                                         | org.springframework.web.jsf.el
+                                         | org.springframework.web.method
+                                         | org.springframework.web.method.annotation
+                                         | org.springframework.web.method.support
+                                         | org.springframework.web.multipart
+                                         | org.springframework.web.multipart.commons
+                                         | org.springframework.web.multipart.support
+                                         | org.springframework.web.server
+                                         | org.springframework.web.server.adapter
+                                         | org.springframework.web.server.handler
+                                         | org.springframework.web.server.i18n
+                                         | org.springframework.web.server.session
+                                         | org.springframework.web.util
+                                         | org.springframework.web.util.pattern
+
+Split Packages
+--------------
+Packages found in multiple JAR files.
+
+Package | JAR files
+--------+----------
+
+Duplicate Classes
+-----------------
+Classes found in multiple JAR files.
+
+Class name | JAR files
+-----------+----------
+
+Shadowed Classes
+----------------
+Classes shadowing JRE/JDK classes.
+Java home   : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime: Java(TM) SE Runtime Environment
+Java version: 1.8.0_144
+Java vendor : Oracle Corporation
+
+Class name | JAR file | ClassLoader
+-----------+----------+------------
+
+JAR File Dependencies
+---------------------
+Dependencies between JAR files.
+
+JAR file                                 | Uses                                | Used by
+-----------------------------------------+-------------------------------------+-----------------------------------------
+spring-aop-5.1.3.RELEASE.jar             | spring-beans-5.1.3.RELEASE.jar      | spring-context-5.1.3.RELEASE.jar
+                                         | spring-core-5.1.3.RELEASE.jar       | spring-context-support-5.1.3.RELEASE.jar
+                                         |                                     | spring-jms-5.1.3.RELEASE.jar
+                                         |                                     | spring-orm-5.1.3.RELEASE.jar
+                                         |                                     | spring-tx-5.1.3.RELEASE.jar
+                                         |                                     | spring-web-5.1.3.RELEASE.jar
+spring-beans-5.1.3.RELEASE.jar           | spring-core-5.1.3.RELEASE.jar       | spring-aop-5.1.3.RELEASE.jar
+                                         |                                     | spring-context-5.1.3.RELEASE.jar
+                                         |                                     | spring-context-support-5.1.3.RELEASE.jar
+                                         |                                     | spring-jdbc-5.1.3.RELEASE.jar
+                                         |                                     | spring-jms-5.1.3.RELEASE.jar
+                                         |                                     | spring-messaging-5.1.3.RELEASE.jar
+                                         |                                     | spring-orm-5.1.3.RELEASE.jar
+                                         |                                     | spring-tx-5.1.3.RELEASE.jar
+                                         |                                     | spring-web-5.1.3.RELEASE.jar
+spring-context-5.1.3.RELEASE.jar         | spring-aop-5.1.3.RELEASE.jar        | spring-context-support-5.1.3.RELEASE.jar
+                                         | spring-beans-5.1.3.RELEASE.jar      | spring-jdbc-5.1.3.RELEASE.jar
+                                         | spring-core-5.1.3.RELEASE.jar       | spring-jms-5.1.3.RELEASE.jar
+                                         | spring-expression-5.1.3.RELEASE.jar | spring-messaging-5.1.3.RELEASE.jar
+                                         |                                     | spring-orm-5.1.3.RELEASE.jar
+                                         |                                     | spring-tx-5.1.3.RELEASE.jar
+                                         |                                     | spring-web-5.1.3.RELEASE.jar
+spring-context-support-5.1.3.RELEASE.jar | spring-aop-5.1.3.RELEASE.jar        | [none]
+                                         | spring-beans-5.1.3.RELEASE.jar      | 
+                                         | spring-context-5.1.3.RELEASE.jar    | 
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+                                         | spring-jdbc-5.1.3.RELEASE.jar       | 
+                                         | spring-tx-5.1.3.RELEASE.jar         | 
+spring-core-5.1.3.RELEASE.jar            | [none]                              | spring-aop-5.1.3.RELEASE.jar
+                                         |                                     | spring-beans-5.1.3.RELEASE.jar
+                                         |                                     | spring-context-5.1.3.RELEASE.jar
+                                         |                                     | spring-context-support-5.1.3.RELEASE.jar
+                                         |                                     | spring-expression-5.1.3.RELEASE.jar
+                                         |                                     | spring-jdbc-5.1.3.RELEASE.jar
+                                         |                                     | spring-jms-5.1.3.RELEASE.jar
+                                         |                                     | spring-messaging-5.1.3.RELEASE.jar
+                                         |                                     | spring-orm-5.1.3.RELEASE.jar
+                                         |                                     | spring-tx-5.1.3.RELEASE.jar
+                                         |                                     | spring-web-5.1.3.RELEASE.jar
+spring-expression-5.1.3.RELEASE.jar      | spring-core-5.1.3.RELEASE.jar       | spring-context-5.1.3.RELEASE.jar
+                                         |                                     | spring-messaging-5.1.3.RELEASE.jar
+spring-jdbc-5.1.3.RELEASE.jar            | spring-beans-5.1.3.RELEASE.jar      | spring-context-support-5.1.3.RELEASE.jar
+                                         | spring-context-5.1.3.RELEASE.jar    | spring-orm-5.1.3.RELEASE.jar
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+                                         | spring-tx-5.1.3.RELEASE.jar         | 
+spring-jms-5.1.3.RELEASE.jar             | spring-aop-5.1.3.RELEASE.jar        | [none]
+                                         | spring-beans-5.1.3.RELEASE.jar      | 
+                                         | spring-context-5.1.3.RELEASE.jar    | 
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+                                         | spring-messaging-5.1.3.RELEASE.jar  | 
+                                         | spring-tx-5.1.3.RELEASE.jar         | 
+spring-messaging-5.1.3.RELEASE.jar       | spring-beans-5.1.3.RELEASE.jar      | spring-jms-5.1.3.RELEASE.jar
+                                         | spring-context-5.1.3.RELEASE.jar    | 
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+                                         | spring-expression-5.1.3.RELEASE.jar | 
+spring-orm-5.1.3.RELEASE.jar             | spring-aop-5.1.3.RELEASE.jar        | [none]
+                                         | spring-beans-5.1.3.RELEASE.jar      | 
+                                         | spring-context-5.1.3.RELEASE.jar    | 
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+                                         | spring-jdbc-5.1.3.RELEASE.jar       | 
+                                         | spring-tx-5.1.3.RELEASE.jar         | 
+                                         | spring-web-5.1.3.RELEASE.jar        | 
+spring-tx-5.1.3.RELEASE.jar              | spring-aop-5.1.3.RELEASE.jar        | spring-context-support-5.1.3.RELEASE.jar
+                                         | spring-beans-5.1.3.RELEASE.jar      | spring-jdbc-5.1.3.RELEASE.jar
+                                         | spring-context-5.1.3.RELEASE.jar    | spring-jms-5.1.3.RELEASE.jar
+                                         | spring-core-5.1.3.RELEASE.jar       | spring-orm-5.1.3.RELEASE.jar
+spring-web-5.1.3.RELEASE.jar             | spring-aop-5.1.3.RELEASE.jar        | spring-orm-5.1.3.RELEASE.jar
+                                         | spring-beans-5.1.3.RELEASE.jar      | 
+                                         | spring-context-5.1.3.RELEASE.jar    | 
+                                         | spring-core-5.1.3.RELEASE.jar       | 
+
+Missing Classes
+---------------
+References to classes not found on the classpath.
+
+JAR file                                 | Missing class
+-----------------------------------------+-------------------------------------------------------------------------------
+spring-aop-5.1.3.RELEASE.jar             | com.jamonapi.MonKey
+                                         | com.jamonapi.MonKeyImp
+                                         | com.jamonapi.Monitor
+                                         | com.jamonapi.MonitorFactory
+                                         | com.jamonapi.utils.Misc
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.apache.commons.pool2.ObjectPool
+                                         | org.apache.commons.pool2.PooledObject
+                                         | org.apache.commons.pool2.PooledObjectFactory
+                                         | org.apache.commons.pool2.impl.DefaultPooledObject
+                                         | org.apache.commons.pool2.impl.GenericObjectPool
+                                         | org.apache.commons.pool2.impl.GenericObjectPoolConfig
+                                         | org.aspectj.bridge.AbortException
+                                         | org.aspectj.bridge.IMessage
+                                         | org.aspectj.bridge.IMessage$Kind
+                                         | org.aspectj.bridge.IMessageHandler
+                                         | org.aspectj.lang.JoinPoint
+                                         | org.aspectj.lang.JoinPoint$StaticPart
+                                         | org.aspectj.lang.ProceedingJoinPoint
+                                         | org.aspectj.lang.Signature
+                                         | org.aspectj.lang.annotation.AfterReturning
+                                         | org.aspectj.lang.annotation.AfterThrowing
+                                         | org.aspectj.lang.annotation.Aspect
+                                         | org.aspectj.lang.annotation.DeclareParents
+                                         | org.aspectj.lang.reflect.AjType
+                                         | org.aspectj.lang.reflect.AjTypeSystem
+                                         | org.aspectj.lang.reflect.DeclarePrecedence
+                                         | org.aspectj.lang.reflect.MethodSignature
+                                         | org.aspectj.lang.reflect.PerClause
+                                         | org.aspectj.lang.reflect.PerClauseKind
+                                         | org.aspectj.lang.reflect.SourceLocation
+                                         | org.aspectj.runtime.internal.AroundClosure
+                                         | org.aspectj.util.FuzzyBoolean
+                                         | org.aspectj.util.PartialOrder
+                                         | org.aspectj.util.PartialOrder$PartialComparable
+                                         | org.aspectj.weaver.ReferenceType
+                                         | org.aspectj.weaver.ReferenceTypeDelegate
+                                         | org.aspectj.weaver.ResolvedType
+                                         | org.aspectj.weaver.UnresolvedType
+                                         | org.aspectj.weaver.ast.And
+                                         | org.aspectj.weaver.ast.Call
+                                         | org.aspectj.weaver.ast.FieldGetCall
+                                         | org.aspectj.weaver.ast.HasAnnotation
+                                         | org.aspectj.weaver.ast.ITestVisitor
+                                         | org.aspectj.weaver.ast.Instanceof
+                                         | org.aspectj.weaver.ast.Literal
+                                         | org.aspectj.weaver.ast.Not
+                                         | org.aspectj.weaver.ast.Or
+                                         | org.aspectj.weaver.ast.Test
+                                         | org.aspectj.weaver.ast.Var
+                                         | org.aspectj.weaver.internal.tools.MatchingContextBasedTest
+                                         | org.aspectj.weaver.patterns.ExposedState
+                                         | org.aspectj.weaver.patterns.NamePattern
+                                         | org.aspectj.weaver.reflect.ReflectionVar
+                                         | org.aspectj.weaver.reflect.ReflectionWorld$ReflectionWorldException
+                                         | org.aspectj.weaver.reflect.ShadowMatchImpl
+                                         | org.aspectj.weaver.tools.ContextBasedMatcher
+                                         | org.aspectj.weaver.tools.FuzzyBoolean
+                                         | org.aspectj.weaver.tools.JoinPointMatch
+                                         | org.aspectj.weaver.tools.MatchingContext
+                                         | org.aspectj.weaver.tools.PointcutDesignatorHandler
+                                         | org.aspectj.weaver.tools.PointcutExpression
+                                         | org.aspectj.weaver.tools.PointcutParameter
+                                         | org.aspectj.weaver.tools.PointcutParser
+                                         | org.aspectj.weaver.tools.PointcutPrimitive
+                                         | org.aspectj.weaver.tools.ShadowMatch
+                                         | org.aspectj.weaver.tools.TypePatternMatcher
+spring-beans-5.1.3.RELEASE.jar           | groovy.lang.Binding
+                                         | groovy.lang.Closure
+                                         | groovy.lang.GroovyObject
+                                         | groovy.lang.GroovyObjectSupport
+                                         | groovy.lang.GroovyShell
+                                         | groovy.lang.GroovySystem
+                                         | groovy.lang.MetaClass
+                                         | groovy.lang.MetaClassRegistry
+                                         | groovy.lang.Reference
+                                         | groovy.transform.Generated
+                                         | groovy.xml.StreamingMarkupBuilder
+                                         | javax.inject.Provider
+                                         | kotlin.Metadata
+                                         | kotlin.jvm.JvmClassMappingKt
+                                         | kotlin.jvm.internal.Intrinsics
+                                         | kotlin.reflect.KClass
+                                         | kotlin.reflect.KFunction
+                                         | kotlin.reflect.KParameter
+                                         | kotlin.reflect.KProperty
+                                         | kotlin.reflect.KType
+                                         | kotlin.reflect.full.KClasses
+                                         | kotlin.reflect.jvm.ReflectJvmMapping
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.codehaus.groovy.reflection.ClassInfo
+                                         | org.codehaus.groovy.runtime.BytecodeInterface8
+                                         | org.codehaus.groovy.runtime.DefaultGroovyMethods
+                                         | org.codehaus.groovy.runtime.GStringImpl
+                                         | org.codehaus.groovy.runtime.GeneratedClosure
+                                         | org.codehaus.groovy.runtime.InvokerHelper
+                                         | org.codehaus.groovy.runtime.ScriptBytecodeAdapter
+                                         | org.codehaus.groovy.runtime.callsite.CallSite
+                                         | org.codehaus.groovy.runtime.callsite.CallSiteArray
+                                         | org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation
+                                         | org.codehaus.groovy.runtime.typehandling.ShortTypeHandling
+                                         | org.jetbrains.annotations.NotNull
+                                         | org.yaml.snakeyaml.LoaderOptions
+                                         | org.yaml.snakeyaml.Yaml
+                                         | org.yaml.snakeyaml.reader.UnicodeReader
+spring-context-5.1.3.RELEASE.jar         | bsh.EvalError
+                                         | bsh.Interpreter
+                                         | bsh.Primitive
+                                         | bsh.XThis
+                                         | groovy.lang.Binding
+                                         | groovy.lang.GroovyClassLoader
+                                         | groovy.lang.GroovyObject
+                                         | groovy.lang.GroovyRuntimeException
+                                         | groovy.lang.GroovyShell
+                                         | groovy.lang.GroovySystem
+                                         | groovy.lang.MetaClass
+                                         | groovy.lang.MetaClassRegistry
+                                         | groovy.lang.Script
+                                         | javax.ejb.EJB
+                                         | javax.ejb.EJBLocalObject
+                                         | javax.ejb.EJBObject
+                                         | javax.enterprise.concurrent.LastExecution
+                                         | javax.enterprise.concurrent.ManagedExecutors
+                                         | javax.enterprise.concurrent.ManagedScheduledExecutorService
+                                         | javax.enterprise.concurrent.ManagedTaskListener
+                                         | javax.enterprise.concurrent.Trigger
+                                         | javax.money.CurrencyUnit
+                                         | javax.money.Monetary
+                                         | javax.money.MonetaryAmount
+                                         | javax.money.MonetaryAmountFactory
+                                         | javax.money.NumberValue
+                                         | javax.money.format.MonetaryAmountFormat
+                                         | javax.money.format.MonetaryFormats
+                                         | javax.validation.Configuration
+                                         | javax.validation.ConstraintValidator
+                                         | javax.validation.ConstraintValidatorFactory
+                                         | javax.validation.ConstraintViolation
+                                         | javax.validation.ConstraintViolationException
+                                         | javax.validation.ElementKind
+                                         | javax.validation.MessageInterpolator
+                                         | javax.validation.MessageInterpolator$Context
+                                         | javax.validation.ParameterNameProvider
+                                         | javax.validation.Path
+                                         | javax.validation.Path$Node
+                                         | javax.validation.TraversableResolver
+                                         | javax.validation.Validation
+                                         | javax.validation.ValidationException
+                                         | javax.validation.ValidationProviderResolver
+                                         | javax.validation.Validator
+                                         | javax.validation.ValidatorContext
+                                         | javax.validation.ValidatorFactory
+                                         | javax.validation.bootstrap.GenericBootstrap
+                                         | javax.validation.bootstrap.ProviderSpecificBootstrap
+                                         | javax.validation.executable.ExecutableValidator
+                                         | javax.validation.metadata.BeanDescriptor
+                                         | javax.validation.metadata.ConstraintDescriptor
+                                         | kotlin.Metadata
+                                         | kotlin.PublishedApi
+                                         | kotlin.TypeCastException
+                                         | kotlin.collections.ArraysKt
+                                         | kotlin.jvm.functions.Function0
+                                         | kotlin.jvm.functions.Function1
+                                         | kotlin.jvm.internal.DefaultConstructorMarker
+                                         | kotlin.jvm.internal.FunctionReference
+                                         | kotlin.jvm.internal.Intrinsics
+                                         | kotlin.jvm.internal.Lambda
+                                         | kotlin.jvm.internal.Reflection
+                                         | kotlin.reflect.KClass
+                                         | kotlin.reflect.KDeclarationContainer
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter
+                                         | org.codehaus.groovy.control.CompilationFailedException
+                                         | org.codehaus.groovy.control.CompilerConfiguration
+                                         | org.codehaus.groovy.control.customizers.CompilationCustomizer
+                                         | org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator
+                                         | org.hibernate.validator.spi.resourceloading.ResourceBundleLocator
+                                         | org.jetbrains.annotations.NotNull
+                                         | org.joda.time.Chronology
+                                         | org.joda.time.DateMidnight
+                                         | org.joda.time.DateTime
+                                         | org.joda.time.DateTimeZone
+                                         | org.joda.time.Duration
+                                         | org.joda.time.Instant
+                                         | org.joda.time.LocalDate
+                                         | org.joda.time.LocalDateTime
+                                         | org.joda.time.LocalTime
+                                         | org.joda.time.MonthDay
+                                         | org.joda.time.MutableDateTime
+                                         | org.joda.time.Period
+                                         | org.joda.time.ReadableInstant
+                                         | org.joda.time.ReadablePartial
+                                         | org.joda.time.YearMonth
+                                         | org.joda.time.format.DateTimeFormat
+                                         | org.joda.time.format.DateTimeFormatter
+                                         | org.joda.time.format.ISODateTimeFormat
+                                         | org.springframework.instrument.InstrumentationSavingAgent
+spring-context-support-5.1.3.RELEASE.jar | com.github.benmanes.caffeine.cache.Cache
+                                         | com.github.benmanes.caffeine.cache.CacheLoader
+                                         | com.github.benmanes.caffeine.cache.Caffeine
+                                         | com.github.benmanes.caffeine.cache.CaffeineSpec
+                                         | com.github.benmanes.caffeine.cache.LoadingCache
+                                         | commonj.timers.Timer
+                                         | commonj.timers.TimerListener
+                                         | commonj.timers.TimerManager
+                                         | commonj.work.Work
+                                         | commonj.work.WorkException
+                                         | commonj.work.WorkItem
+                                         | commonj.work.WorkListener
+                                         | commonj.work.WorkManager
+                                         | commonj.work.WorkRejectedException
+                                         | freemarker.cache.FileTemplateLoader
+                                         | freemarker.cache.MultiTemplateLoader
+                                         | freemarker.cache.TemplateLoader
+                                         | freemarker.template.Configuration
+                                         | freemarker.template.ObjectWrapper
+                                         | freemarker.template.SimpleHash
+                                         | freemarker.template.Template
+                                         | freemarker.template.TemplateException
+                                         | freemarker.template.TemplateHashModelEx
+                                         | freemarker.template.Version
+                                         | javax.cache.Cache
+                                         | javax.cache.CacheManager
+                                         | javax.cache.Caching
+                                         | javax.cache.annotation.CacheDefaults
+                                         | javax.cache.annotation.CacheInvocationContext
+                                         | javax.cache.annotation.CacheInvocationParameter
+                                         | javax.cache.annotation.CacheKeyGenerator
+                                         | javax.cache.annotation.CacheKeyInvocationContext
+                                         | javax.cache.annotation.CacheMethodDetails
+                                         | javax.cache.annotation.CachePut
+                                         | javax.cache.annotation.CacheRemove
+                                         | javax.cache.annotation.CacheRemoveAll
+                                         | javax.cache.annotation.CacheResolver
+                                         | javax.cache.annotation.CacheResolverFactory
+                                         | javax.cache.annotation.CacheResult
+                                         | javax.cache.annotation.GeneratedCacheKey
+                                         | javax.cache.processor.EntryProcessor
+                                         | javax.cache.processor.EntryProcessorException
+                                         | javax.cache.processor.MutableEntry
+                                         | javax.cache.spi.CachingProvider
+                                         | javax.mail.Address
+                                         | javax.mail.AuthenticationFailedException
+                                         | javax.mail.BodyPart
+                                         | javax.mail.Message
+                                         | javax.mail.Message$RecipientType
+                                         | javax.mail.MessagingException
+                                         | javax.mail.Multipart
+                                         | javax.mail.NoSuchProviderException
+                                         | javax.mail.Session
+                                         | javax.mail.Transport
+                                         | javax.mail.internet.AddressException
+                                         | javax.mail.internet.InternetAddress
+                                         | javax.mail.internet.MimeBodyPart
+                                         | javax.mail.internet.MimeMessage
+                                         | javax.mail.internet.MimeMultipart
+                                         | javax.mail.internet.MimePart
+                                         | javax.mail.internet.MimeUtility
+                                         | net.sf.ehcache.Cache
+                                         | net.sf.ehcache.CacheException
+                                         | net.sf.ehcache.CacheManager
+                                         | net.sf.ehcache.Ehcache
+                                         | net.sf.ehcache.Element
+                                         | net.sf.ehcache.Status
+                                         | net.sf.ehcache.bootstrap.BootstrapCacheLoader
+                                         | net.sf.ehcache.config.CacheConfiguration
+                                         | net.sf.ehcache.config.Configuration
+                                         | net.sf.ehcache.config.ConfigurationFactory
+                                         | net.sf.ehcache.constructs.blocking.BlockingCache
+                                         | net.sf.ehcache.constructs.blocking.CacheEntryFactory
+                                         | net.sf.ehcache.constructs.blocking.SelfPopulatingCache
+                                         | net.sf.ehcache.constructs.blocking.UpdatingCacheEntryFactory
+                                         | net.sf.ehcache.constructs.blocking.UpdatingSelfPopulatingCache
+                                         | net.sf.ehcache.event.CacheEventListener
+                                         | net.sf.ehcache.event.RegisteredEventListeners
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.quartz.Calendar
+                                         | org.quartz.CronTrigger
+                                         | org.quartz.DisallowConcurrentExecution
+                                         | org.quartz.Job
+                                         | org.quartz.JobDataMap
+                                         | org.quartz.JobDetail
+                                         | org.quartz.JobExecutionContext
+                                         | org.quartz.JobExecutionException
+                                         | org.quartz.JobKey
+                                         | org.quartz.JobListener
+                                         | org.quartz.ListenerManager
+                                         | org.quartz.ObjectAlreadyExistsException
+                                         | org.quartz.PersistJobDataAfterExecution
+                                         | org.quartz.Scheduler
+                                         | org.quartz.SchedulerConfigException
+                                         | org.quartz.SchedulerContext
+                                         | org.quartz.SchedulerException
+                                         | org.quartz.SchedulerFactory
+                                         | org.quartz.SchedulerListener
+                                         | org.quartz.SimpleTrigger
+                                         | org.quartz.Trigger
+                                         | org.quartz.TriggerKey
+                                         | org.quartz.TriggerListener
+                                         | org.quartz.impl.JobDetailImpl
+                                         | org.quartz.impl.SchedulerRepository
+                                         | org.quartz.impl.StdSchedulerFactory
+                                         | org.quartz.impl.jdbcjobstore.JobStoreCMT
+                                         | org.quartz.impl.jdbcjobstore.Semaphore
+                                         | org.quartz.impl.jdbcjobstore.SimpleSemaphore
+                                         | org.quartz.impl.triggers.CronTriggerImpl
+                                         | org.quartz.impl.triggers.SimpleTriggerImpl
+                                         | org.quartz.simpl.SimpleThreadPool
+                                         | org.quartz.spi.ClassLoadHelper
+                                         | org.quartz.spi.JobFactory
+                                         | org.quartz.spi.OperableTrigger
+                                         | org.quartz.spi.SchedulerSignaler
+                                         | org.quartz.spi.ThreadPool
+                                         | org.quartz.spi.TriggerFiredBundle
+                                         | org.quartz.utils.ConnectionProvider
+                                         | org.quartz.utils.DBConnectionManager
+                                         | org.quartz.xml.XMLSchedulingDataProcessor
+spring-core-5.1.3.RELEASE.jar            | io.netty.buffer.ByteBuf
+                                         | io.netty.buffer.ByteBufAllocator
+                                         | io.netty.buffer.ByteBufInputStream
+                                         | io.netty.buffer.ByteBufOutputStream
+                                         | io.netty.buffer.CompositeByteBuf
+                                         | io.netty.buffer.Unpooled
+                                         | io.netty.util.ByteProcessor
+                                         | io.reactivex.BackpressureStrategy
+                                         | io.reactivex.Completable
+                                         | io.reactivex.Flowable
+                                         | io.reactivex.Maybe
+                                         | io.reactivex.Observable
+                                         | io.reactivex.Single
+                                         | javax.annotation.Nonnull
+                                         | javax.annotation.meta.TypeQualifierDefault
+                                         | javax.annotation.meta.TypeQualifierNickname
+                                         | joptsimple.OptionSet
+                                         | joptsimple.OptionSpec
+                                         | kotlin.Metadata
+                                         | kotlin.jvm.internal.Intrinsics
+                                         | kotlin.reflect.KFunction
+                                         | kotlin.reflect.KParameter
+                                         | kotlin.reflect.KParameter$Kind
+                                         | kotlin.reflect.KType
+                                         | kotlin.reflect.jvm.ReflectJvmMapping
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.apache.commons.logging.impl.NoOpLog
+                                         | org.apache.tools.ant.BuildException
+                                         | org.apache.tools.ant.DirectoryScanner
+                                         | org.apache.tools.ant.Project
+                                         | org.apache.tools.ant.Task
+                                         | org.apache.tools.ant.types.FileSet
+                                         | org.aspectj.bridge.IMessageHandler
+                                         | org.aspectj.weaver.ICrossReferenceHandler
+                                         | org.aspectj.weaver.ResolvedType
+                                         | org.aspectj.weaver.World
+                                         | org.aspectj.weaver.bcel.BcelWorld
+                                         | org.aspectj.weaver.patterns.Bindings
+                                         | org.aspectj.weaver.patterns.FormalBinding
+                                         | org.aspectj.weaver.patterns.IScope
+                                         | org.aspectj.weaver.patterns.PatternParser
+                                         | org.aspectj.weaver.patterns.SimpleScope
+                                         | org.aspectj.weaver.patterns.TypePattern
+                                         | org.jetbrains.annotations.NotNull
+                                         | org.jetbrains.annotations.Nullable
+                                         | org.reactivestreams.Publisher
+                                         | org.reactivestreams.Subscription
+                                         | reactor.core.CoreSubscriber
+                                         | reactor.core.Disposable
+                                         | reactor.core.publisher.BaseSubscriber
+                                         | reactor.core.publisher.Flux
+                                         | reactor.core.publisher.FluxSink
+                                         | reactor.core.publisher.Mono
+                                         | reactor.core.publisher.MonoProcessor
+                                         | reactor.core.publisher.SynchronousSink
+                                         | rx.Completable
+                                         | rx.Observable
+                                         | rx.RxReactiveStreams
+                                         | rx.Single
+spring-expression-5.1.3.RELEASE.jar      | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+spring-jdbc-5.1.3.RELEASE.jar            | kotlin.Metadata
+                                         | kotlin.jvm.functions.Function1
+                                         | kotlin.jvm.functions.Function2
+                                         | kotlin.jvm.internal.Intrinsics
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.apache.derby.jdbc.EmbeddedDriver
+                                         | org.jetbrains.annotations.NotNull
+                                         | org.jetbrains.annotations.Nullable
+spring-jms-5.1.3.RELEASE.jar             | com.fasterxml.jackson.annotation.JsonView
+                                         | com.fasterxml.jackson.databind.DeserializationFeature
+                                         | com.fasterxml.jackson.databind.JavaType
+                                         | com.fasterxml.jackson.databind.MapperFeature
+                                         | com.fasterxml.jackson.databind.ObjectMapper
+                                         | com.fasterxml.jackson.databind.ObjectWriter
+                                         | com.fasterxml.jackson.databind.type.TypeFactory
+                                         | javax.jms.BytesMessage
+                                         | javax.jms.CompletionListener
+                                         | javax.jms.Connection
+                                         | javax.jms.ConnectionFactory
+                                         | javax.jms.Destination
+                                         | javax.jms.ExceptionListener
+                                         | javax.jms.IllegalStateException
+                                         | javax.jms.InvalidClientIDException
+                                         | javax.jms.InvalidDestinationException
+                                         | javax.jms.InvalidSelectorException
+                                         | javax.jms.JMSContext
+                                         | javax.jms.JMSException
+                                         | javax.jms.JMSSecurityException
+                                         | javax.jms.MapMessage
+                                         | javax.jms.Message
+                                         | javax.jms.MessageConsumer
+                                         | javax.jms.MessageEOFException
+                                         | javax.jms.MessageFormatException
+                                         | javax.jms.MessageListener
+                                         | javax.jms.MessageNotReadableException
+                                         | javax.jms.MessageNotWriteableException
+                                         | javax.jms.MessageProducer
+                                         | javax.jms.ObjectMessage
+                                         | javax.jms.Queue
+                                         | javax.jms.QueueBrowser
+                                         | javax.jms.QueueConnection
+                                         | javax.jms.QueueConnectionFactory
+                                         | javax.jms.QueueReceiver
+                                         | javax.jms.QueueRequestor
+                                         | javax.jms.QueueSender
+                                         | javax.jms.QueueSession
+                                         | javax.jms.ResourceAllocationException
+                                         | javax.jms.Session
+                                         | javax.jms.TemporaryQueue
+                                         | javax.jms.TextMessage
+                                         | javax.jms.Topic
+                                         | javax.jms.TopicConnection
+                                         | javax.jms.TopicConnectionFactory
+                                         | javax.jms.TopicPublisher
+                                         | javax.jms.TopicSession
+                                         | javax.jms.TopicSubscriber
+                                         | javax.jms.TransactionInProgressException
+                                         | javax.jms.TransactionRolledBackException
+                                         | javax.resource.ResourceException
+                                         | javax.resource.spi.ActivationSpec
+                                         | javax.resource.spi.ResourceAdapter
+                                         | javax.resource.spi.UnavailableException
+                                         | javax.resource.spi.endpoint.MessageEndpointFactory
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.springframework.oxm.Marshaller
+                                         | org.springframework.oxm.Unmarshaller
+                                         | org.springframework.oxm.XmlMappingException
+spring-messaging-5.1.3.RELEASE.jar       | com.fasterxml.jackson.annotation.JsonView
+                                         | com.fasterxml.jackson.core.JsonEncoding
+                                         | com.fasterxml.jackson.core.JsonFactory
+                                         | com.fasterxml.jackson.core.JsonGenerator
+                                         | com.fasterxml.jackson.databind.DeserializationFeature
+                                         | com.fasterxml.jackson.databind.JavaType
+                                         | com.fasterxml.jackson.databind.MapperFeature
+                                         | com.fasterxml.jackson.databind.ObjectMapper
+                                         | com.fasterxml.jackson.databind.ObjectReader
+                                         | com.fasterxml.jackson.databind.ObjectWriter
+                                         | com.fasterxml.jackson.databind.SerializationFeature
+                                         | com.fasterxml.jackson.databind.type.TypeFactory
+                                         | io.netty.buffer.ByteBuf
+                                         | io.netty.buffer.ByteBufAllocator
+                                         | io.netty.channel.Channel
+                                         | io.netty.channel.ChannelHandler
+                                         | io.netty.channel.ChannelHandlerContext
+                                         | io.netty.channel.group.ChannelGroup
+                                         | io.netty.channel.group.ChannelGroupFuture
+                                         | io.netty.channel.group.DefaultChannelGroup
+                                         | io.netty.handler.codec.ByteToMessageDecoder
+                                         | io.netty.util.concurrent.EventExecutor
+                                         | io.netty.util.concurrent.Future
+                                         | io.netty.util.concurrent.ImmediateEventExecutor
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.reactivestreams.Publisher
+                                         | org.springframework.oxm.Marshaller
+                                         | org.springframework.oxm.Unmarshaller
+                                         | reactor.core.Disposable
+                                         | reactor.core.publisher.DirectProcessor
+                                         | reactor.core.publisher.Flux
+                                         | reactor.core.publisher.Mono
+                                         | reactor.core.publisher.MonoProcessor
+                                         | reactor.core.scheduler.Scheduler
+                                         | reactor.core.scheduler.Schedulers
+                                         | reactor.netty.Connection
+                                         | reactor.netty.FutureMono
+                                         | reactor.netty.NettyInbound
+                                         | reactor.netty.NettyOutbound
+                                         | reactor.netty.resources.ConnectionProvider
+                                         | reactor.netty.resources.LoopResources
+                                         | reactor.netty.tcp.TcpClient
+spring-orm-5.1.3.RELEASE.jar             | javax.persistence.EntityManager
+                                         | javax.persistence.EntityManagerFactory
+                                         | javax.persistence.EntityNotFoundException
+                                         | javax.persistence.EntityTransaction
+                                         | javax.persistence.OptimisticLockException
+                                         | javax.persistence.ParameterMode
+                                         | javax.persistence.Persistence
+                                         | javax.persistence.PersistenceContext
+                                         | javax.persistence.PersistenceContextType
+                                         | javax.persistence.PersistenceException
+                                         | javax.persistence.PersistenceProperty
+                                         | javax.persistence.PersistenceUnit
+                                         | javax.persistence.Query
+                                         | javax.persistence.RollbackException
+                                         | javax.persistence.SharedCacheMode
+                                         | javax.persistence.StoredProcedureQuery
+                                         | javax.persistence.SynchronizationType
+                                         | javax.persistence.TransactionRequiredException
+                                         | javax.persistence.ValidationMode
+                                         | javax.persistence.spi.ClassTransformer
+                                         | javax.persistence.spi.PersistenceProvider
+                                         | javax.persistence.spi.PersistenceUnitInfo
+                                         | javax.persistence.spi.PersistenceUnitTransactionType
+                                         | javax.servlet.FilterChain
+                                         | javax.servlet.ServletContext
+                                         | javax.servlet.ServletException
+                                         | javax.servlet.ServletRequest
+                                         | javax.servlet.ServletResponse
+                                         | javax.servlet.http.HttpServletRequest
+                                         | javax.servlet.http.HttpServletResponse
+                                         | javax.transaction.Synchronization
+                                         | javax.transaction.SystemException
+                                         | javax.transaction.Transaction
+                                         | javax.transaction.TransactionManager
+                                         | javax.transaction.TransactionSynchronizationRegistry
+                                         | javax.transaction.UserTransaction
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.eclipse.persistence.jpa.PersistenceProvider
+                                         | org.eclipse.persistence.sessions.DatabaseLogin
+                                         | org.eclipse.persistence.sessions.UnitOfWork
+                                         | org.hibernate.ConnectionReleaseMode
+                                         | org.hibernate.Criteria
+                                         | org.hibernate.Filter
+                                         | org.hibernate.FlushMode
+                                         | org.hibernate.Hibernate
+                                         | org.hibernate.HibernateException
+                                         | org.hibernate.Interceptor
+                                         | org.hibernate.JDBCException
+                                         | org.hibernate.LockMode
+                                         | org.hibernate.LockOptions
+                                         | org.hibernate.MappingException
+                                         | org.hibernate.PessimisticLockException
+                                         | org.hibernate.Query
+                                         | org.hibernate.QueryException
+                                         | org.hibernate.QueryTimeoutException
+                                         | org.hibernate.ReplicationMode
+                                         | org.hibernate.Session
+                                         | org.hibernate.Session$LockRequest
+                                         | org.hibernate.SessionBuilder
+                                         | org.hibernate.SessionFactory
+                                         | org.hibernate.StaleObjectStateException
+                                         | org.hibernate.StaleStateException
+                                         | org.hibernate.Transaction
+                                         | org.hibernate.TransactionException
+                                         | org.hibernate.UnresolvableObjectException
+                                         | org.hibernate.WrongClassException
+                                         | org.hibernate.boot.MetadataSources
+                                         | org.hibernate.boot.model.naming.ImplicitNamingStrategy
+                                         | org.hibernate.boot.model.naming.PhysicalNamingStrategy
+                                         | org.hibernate.boot.registry.BootstrapServiceRegistry
+                                         | org.hibernate.boot.registry.BootstrapServiceRegistryBuilder
+                                         | org.hibernate.cache.spi.RegionFactory
+                                         | org.hibernate.cfg.Configuration
+                                         | org.hibernate.context.internal.JTASessionContext
+                                         | org.hibernate.context.spi.CurrentSessionContext
+                                         | org.hibernate.context.spi.CurrentTenantIdentifierResolver
+                                         | org.hibernate.criterion.Criterion
+                                         | org.hibernate.criterion.DetachedCriteria
+                                         | org.hibernate.criterion.Example
+                                         | org.hibernate.dialect.lock.OptimisticEntityLockException
+                                         | org.hibernate.engine.jdbc.connections.spi.ConnectionProvider
+                                         | org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+                                         | org.hibernate.engine.jdbc.spi.JdbcCoordinator
+                                         | org.hibernate.engine.spi.SessionFactoryImplementor
+                                         | org.hibernate.engine.spi.SessionImplementor
+                                         | org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform
+                                         | org.hibernate.exception.ConstraintViolationException
+                                         | org.hibernate.exception.DataException
+                                         | org.hibernate.exception.LockAcquisitionException
+                                         | org.hibernate.exception.SQLGrammarException
+                                         | org.hibernate.integrator.spi.Integrator
+                                         | org.hibernate.jpa.HibernatePersistenceProvider
+                                         | org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl
+                                         | org.hibernate.jpa.boot.internal.PersistenceUnitInfoDescriptor
+                                         | org.hibernate.jpa.boot.spi.PersistenceUnitDescriptor
+                                         | org.hibernate.resource.beans.container.spi.BeanContainer
+                                         | org.hibernate.resource.beans.container.spi.BeanContainer$LifecycleOptions
+                                         | org.hibernate.resource.beans.container.spi.ContainedBean
+                                         | org.hibernate.resource.beans.spi.BeanInstanceProducer
+                                         | org.hibernate.resource.jdbc.spi.LogicalConnectionImplementor
+                                         | org.hibernate.resource.transaction.spi.TransactionStatus
+                                         | org.hibernate.service.Service
+                                         | org.hibernate.service.ServiceRegistry
+                                         | org.hibernate.service.UnknownServiceException
+                                         | org.hibernate.service.spi.ServiceRegistryImplementor
+                                         | org.hibernate.transform.ResultTransformer
+spring-tx-5.1.3.RELEASE.jar              | com.ibm.wsspi.uow.UOWAction
+                                         | com.ibm.wsspi.uow.UOWActionException
+                                         | com.ibm.wsspi.uow.UOWException
+                                         | com.ibm.wsspi.uow.UOWManager
+                                         | com.ibm.wsspi.uow.UOWManagerFactory
+                                         | javax.ejb.ApplicationException
+                                         | javax.ejb.TransactionAttribute
+                                         | javax.ejb.TransactionAttributeType
+                                         | javax.resource.NotSupportedException
+                                         | javax.resource.ResourceException
+                                         | javax.resource.cci.Connection
+                                         | javax.resource.cci.ConnectionFactory
+                                         | javax.resource.cci.ConnectionSpec
+                                         | javax.resource.cci.IndexedRecord
+                                         | javax.resource.cci.Interaction
+                                         | javax.resource.cci.InteractionSpec
+                                         | javax.resource.cci.LocalTransaction
+                                         | javax.resource.cci.MappedRecord
+                                         | javax.resource.cci.Record
+                                         | javax.resource.cci.RecordFactory
+                                         | javax.resource.cci.ResourceAdapterMetaData
+                                         | javax.resource.cci.ResultSet
+                                         | javax.resource.cci.Streamable
+                                         | javax.resource.spi.ActivationSpec
+                                         | javax.resource.spi.ApplicationServerInternalException
+                                         | javax.resource.spi.BootstrapContext
+                                         | javax.resource.spi.ConnectionManager
+                                         | javax.resource.spi.IllegalStateException
+                                         | javax.resource.spi.LocalTransactionException
+                                         | javax.resource.spi.ManagedConnectionFactory
+                                         | javax.resource.spi.ResourceAdapter
+                                         | javax.resource.spi.ResourceAdapterInternalException
+                                         | javax.resource.spi.UnavailableException
+                                         | javax.resource.spi.XATerminator
+                                         | javax.resource.spi.endpoint.MessageEndpoint
+                                         | javax.resource.spi.endpoint.MessageEndpointFactory
+                                         | javax.resource.spi.work.ExecutionContext
+                                         | javax.resource.spi.work.Work
+                                         | javax.resource.spi.work.WorkAdapter
+                                         | javax.resource.spi.work.WorkCompletedException
+                                         | javax.resource.spi.work.WorkEvent
+                                         | javax.resource.spi.work.WorkException
+                                         | javax.resource.spi.work.WorkListener
+                                         | javax.resource.spi.work.WorkManager
+                                         | javax.resource.spi.work.WorkRejectedException
+                                         | javax.transaction.HeuristicMixedException
+                                         | javax.transaction.HeuristicRollbackException
+                                         | javax.transaction.NotSupportedException
+                                         | javax.transaction.RollbackException
+                                         | javax.transaction.Synchronization
+                                         | javax.transaction.SystemException
+                                         | javax.transaction.Transaction
+                                         | javax.transaction.TransactionManager
+                                         | javax.transaction.TransactionSynchronizationRegistry
+                                         | javax.transaction.Transactional
+                                         | javax.transaction.UserTransaction
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+spring-web-5.1.3.RELEASE.jar             | com.caucho.hessian.client.HessianConnectionFactory
+                                         | com.caucho.hessian.client.HessianProxyFactory
+                                         | com.caucho.hessian.io.AbstractHessianInput
+                                         | com.caucho.hessian.io.AbstractHessianOutput
+                                         | com.caucho.hessian.io.Hessian2Input
+                                         | com.caucho.hessian.io.Hessian2Output
+                                         | com.caucho.hessian.io.HessianDebugInputStream
+                                         | com.caucho.hessian.io.HessianDebugOutputStream
+                                         | com.caucho.hessian.io.HessianInput
+                                         | com.caucho.hessian.io.HessianOutput
+                                         | com.caucho.hessian.io.HessianRemoteResolver
+                                         | com.caucho.hessian.io.SerializerFactory
+                                         | com.caucho.hessian.server.HessianSkeleton
+                                         | com.fasterxml.aalto.AsyncByteBufferFeeder
+                                         | com.fasterxml.aalto.AsyncInputFeeder
+                                         | com.fasterxml.aalto.AsyncXMLInputFactory
+                                         | com.fasterxml.aalto.AsyncXMLStreamReader
+                                         | com.fasterxml.aalto.evt.EventAllocatorImpl
+                                         | com.fasterxml.aalto.stax.InputFactoryImpl
+                                         | com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility
+                                         | com.fasterxml.jackson.annotation.JsonInclude$Include
+                                         | com.fasterxml.jackson.annotation.JsonView
+                                         | com.fasterxml.jackson.annotation.ObjectIdGenerator
+                                         | com.fasterxml.jackson.annotation.ObjectIdResolver
+                                         | com.fasterxml.jackson.annotation.PropertyAccessor
+                                         | com.fasterxml.jackson.core.JsonEncoding
+                                         | com.fasterxml.jackson.core.JsonFactory
+                                         | com.fasterxml.jackson.core.JsonFactory$Feature
+                                         | com.fasterxml.jackson.core.JsonGenerator
+                                         | com.fasterxml.jackson.core.JsonGenerator$Feature
+                                         | com.fasterxml.jackson.core.JsonParser
+                                         | com.fasterxml.jackson.core.JsonParser$Feature
+                                         | com.fasterxml.jackson.core.JsonProcessingException
+                                         | com.fasterxml.jackson.core.JsonToken
+                                         | com.fasterxml.jackson.core.ObjectCodec
+                                         | com.fasterxml.jackson.core.PrettyPrinter
+                                         | com.fasterxml.jackson.core.async.ByteArrayFeeder
+                                         | com.fasterxml.jackson.core.async.NonBlockingInputFeeder
+                                         | com.fasterxml.jackson.core.util.DefaultIndenter
+                                         | com.fasterxml.jackson.core.util.DefaultPrettyPrinter
+                                         | com.fasterxml.jackson.core.util.DefaultPrettyPrinter$Indenter
+                                         | com.fasterxml.jackson.databind.AnnotationIntrospector
+                                         | com.fasterxml.jackson.databind.DeserializationConfig
+                                         | com.fasterxml.jackson.databind.DeserializationFeature
+                                         | com.fasterxml.jackson.databind.JavaType
+                                         | com.fasterxml.jackson.databind.JsonDeserializer
+                                         | com.fasterxml.jackson.databind.JsonSerializer
+                                         | com.fasterxml.jackson.databind.KeyDeserializer
+                                         | com.fasterxml.jackson.databind.MapperFeature
+                                         | com.fasterxml.jackson.databind.Module
+                                         | com.fasterxml.jackson.databind.ObjectMapper
+                                         | com.fasterxml.jackson.databind.ObjectReader
+                                         | com.fasterxml.jackson.databind.ObjectWriter
+                                         | com.fasterxml.jackson.databind.PropertyNamingStrategy
+                                         | com.fasterxml.jackson.databind.SerializationConfig
+                                         | com.fasterxml.jackson.databind.SerializationFeature
+                                         | com.fasterxml.jackson.databind.cfg.HandlerInstantiator
+                                         | com.fasterxml.jackson.databind.cfg.MapperConfig
+                                         | com.fasterxml.jackson.databind.deser.ValueInstantiator
+                                         | com.fasterxml.jackson.databind.exc.InvalidDefinitionException
+                                         | com.fasterxml.jackson.databind.introspect.Annotated
+                                         | com.fasterxml.jackson.databind.jsontype.TypeIdResolver
+                                         | com.fasterxml.jackson.databind.jsontype.TypeResolverBuilder
+                                         | com.fasterxml.jackson.databind.module.SimpleModule
+                                         | com.fasterxml.jackson.databind.ser.FilterProvider
+                                         | com.fasterxml.jackson.databind.ser.VirtualBeanPropertyWriter
+                                         | com.fasterxml.jackson.databind.type.TypeFactory
+                                         | com.fasterxml.jackson.databind.util.Converter
+                                         | com.fasterxml.jackson.databind.util.TokenBuffer
+                                         | com.fasterxml.jackson.dataformat.cbor.CBORFactory
+                                         | com.fasterxml.jackson.dataformat.smile.SmileFactory
+                                         | com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
+                                         | com.fasterxml.jackson.dataformat.xml.XmlFactory
+                                         | com.fasterxml.jackson.dataformat.xml.XmlMapper
+                                         | com.google.gson.Gson
+                                         | com.google.gson.GsonBuilder
+                                         | com.google.gson.JsonDeserializationContext
+                                         | com.google.gson.JsonDeserializer
+                                         | com.google.gson.JsonElement
+                                         | com.google.gson.JsonParseException
+                                         | com.google.gson.JsonPrimitive
+                                         | com.google.gson.JsonSerializationContext
+                                         | com.google.gson.JsonSerializer
+                                         | com.google.protobuf.CodedInputStream
+                                         | com.google.protobuf.CodedOutputStream
+                                         | com.google.protobuf.Descriptors$Descriptor
+                                         | com.google.protobuf.Descriptors$FileDescriptor
+                                         | com.google.protobuf.ExtensionRegistry
+                                         | com.google.protobuf.ExtensionRegistryLite
+                                         | com.google.protobuf.Message
+                                         | com.google.protobuf.Message$Builder
+                                         | com.google.protobuf.MessageOrBuilder
+                                         | com.google.protobuf.TextFormat
+                                         | com.google.protobuf.util.JsonFormat
+                                         | com.google.protobuf.util.JsonFormat$Parser
+                                         | com.google.protobuf.util.JsonFormat$Printer
+                                         | com.googlecode.protobuf.format.FormatFactory
+                                         | com.googlecode.protobuf.format.FormatFactory$Formatter
+                                         | com.googlecode.protobuf.format.ProtobufFormatter
+                                         | com.rometools.rome.feed.WireFeed
+                                         | com.rometools.rome.io.FeedException
+                                         | com.rometools.rome.io.WireFeedInput
+                                         | com.rometools.rome.io.WireFeedOutput
+                                         | groovy.lang.GroovyObject
+                                         | groovy.lang.GroovySystem
+                                         | groovy.lang.MetaClass
+                                         | groovy.lang.MetaClassRegistry
+                                         | io.netty.bootstrap.AbstractBootstrap
+                                         | io.netty.bootstrap.Bootstrap
+                                         | io.netty.buffer.ByteBuf
+                                         | io.netty.buffer.ByteBufAllocator
+                                         | io.netty.buffer.ByteBufInputStream
+                                         | io.netty.buffer.ByteBufOutputStream
+                                         | io.netty.buffer.Unpooled
+                                         | io.netty.channel.Channel
+                                         | io.netty.channel.ChannelFuture
+                                         | io.netty.channel.ChannelFutureListener
+                                         | io.netty.channel.ChannelHandler
+                                         | io.netty.channel.ChannelHandlerContext
+                                         | io.netty.channel.ChannelId
+                                         | io.netty.channel.ChannelInitializer
+                                         | io.netty.channel.ChannelPipeline
+                                         | io.netty.channel.EventLoopGroup
+                                         | io.netty.channel.SimpleChannelInboundHandler
+                                         | io.netty.channel.nio.NioEventLoopGroup
+                                         | io.netty.channel.socket.SocketChannel
+                                         | io.netty.channel.socket.SocketChannelConfig
+                                         | io.netty.handler.codec.http.DefaultFullHttpRequest
+                                         | io.netty.handler.codec.http.FullHttpRequest
+                                         | io.netty.handler.codec.http.FullHttpResponse
+                                         | io.netty.handler.codec.http.HttpClientCodec
+                                         | io.netty.handler.codec.http.HttpHeaderNames
+                                         | io.netty.handler.codec.http.HttpHeaders
+                                         | io.netty.handler.codec.http.HttpMethod
+                                         | io.netty.handler.codec.http.HttpObjectAggregator
+                                         | io.netty.handler.codec.http.HttpResponseStatus
+                                         | io.netty.handler.codec.http.HttpVersion
+                                         | io.netty.handler.codec.http.cookie.Cookie
+                                         | io.netty.handler.codec.http.cookie.DefaultCookie
+                                         | io.netty.handler.ssl.SslContext
+                                         | io.netty.handler.ssl.SslContextBuilder
+                                         | io.netty.handler.ssl.SslHandler
+                                         | io.netty.handler.timeout.ReadTimeoutHandler
+                                         | io.netty.util.AsciiString
+                                         | io.netty.util.concurrent.Future
+                                         | io.netty.util.concurrent.GenericFutureListener
+                                         | io.undertow.connector.ByteBufferPool
+                                         | io.undertow.connector.PooledByteBuffer
+                                         | io.undertow.server.ExchangeCompletionListener
+                                         | io.undertow.server.ExchangeCompletionListener$NextListener
+                                         | io.undertow.server.HttpHandler
+                                         | io.undertow.server.HttpServerExchange
+                                         | io.undertow.server.ServerConnection
+                                         | io.undertow.server.handlers.Cookie
+                                         | io.undertow.server.handlers.CookieImpl
+                                         | io.undertow.util.HeaderMap
+                                         | io.undertow.util.HeaderValues
+                                         | io.undertow.util.HttpString
+                                         | javax.el.ELContext
+                                         | javax.el.ELException
+                                         | javax.el.ELResolver
+                                         | javax.el.PropertyNotWritableException
+                                         | javax.faces.application.Application
+                                         | javax.faces.application.NavigationHandler
+                                         | javax.faces.application.ResourceHandler
+                                         | javax.faces.component.UIViewRoot
+                                         | javax.faces.context.ExternalContext
+                                         | javax.faces.context.FacesContext
+                                         | javax.faces.context.Flash
+                                         | javax.faces.event.PhaseEvent
+                                         | javax.faces.event.PhaseId
+                                         | javax.faces.event.PhaseListener
+                                         | javax.json.bind.Jsonb
+                                         | javax.json.bind.JsonbBuilder
+                                         | javax.json.bind.JsonbConfig
+                                         | javax.mail.internet.MimeUtility
+                                         | javax.servlet.AsyncContext
+                                         | javax.servlet.AsyncEvent
+                                         | javax.servlet.AsyncListener
+                                         | javax.servlet.DispatcherType
+                                         | javax.servlet.Filter
+                                         | javax.servlet.FilterChain
+                                         | javax.servlet.FilterConfig
+                                         | javax.servlet.ReadListener
+                                         | javax.servlet.Servlet
+                                         | javax.servlet.ServletConfig
+                                         | javax.servlet.ServletContainerInitializer
+                                         | javax.servlet.ServletContext
+                                         | javax.servlet.ServletContextEvent
+                                         | javax.servlet.ServletContextListener
+                                         | javax.servlet.ServletException
+                                         | javax.servlet.ServletInputStream
+                                         | javax.servlet.ServletOutputStream
+                                         | javax.servlet.ServletRegistration
+                                         | javax.servlet.ServletRegistration$Dynamic
+                                         | javax.servlet.ServletRequest
+                                         | javax.servlet.ServletRequestEvent
+                                         | javax.servlet.ServletRequestListener
+                                         | javax.servlet.ServletRequestWrapper
+                                         | javax.servlet.ServletResponse
+                                         | javax.servlet.ServletResponseWrapper
+                                         | javax.servlet.WriteListener
+                                         | javax.servlet.annotation.HandlesTypes
+                                         | javax.servlet.http.Cookie
+                                         | javax.servlet.http.HttpServlet
+                                         | javax.servlet.http.HttpServletRequest
+                                         | javax.servlet.http.HttpServletRequestWrapper
+                                         | javax.servlet.http.HttpServletResponse
+                                         | javax.servlet.http.HttpServletResponseWrapper
+                                         | javax.servlet.http.HttpSession
+                                         | javax.servlet.http.HttpSessionBindingEvent
+                                         | javax.servlet.http.HttpSessionBindingListener
+                                         | javax.servlet.http.HttpSessionEvent
+                                         | javax.servlet.http.HttpSessionListener
+                                         | javax.servlet.http.Part
+                                         | javax.servlet.jsp.tagext.Tag
+                                         | javax.validation.ConstraintValidator
+                                         | javax.validation.ConstraintValidatorFactory
+                                         | kotlin.Metadata
+                                         | kotlin.jvm.internal.Intrinsics
+                                         | okhttp3.Cache
+                                         | okhttp3.Call
+                                         | okhttp3.Callback
+                                         | okhttp3.Dispatcher
+                                         | okhttp3.Headers
+                                         | okhttp3.MediaType
+                                         | okhttp3.OkHttpClient
+                                         | okhttp3.OkHttpClient$Builder
+                                         | okhttp3.Request
+                                         | okhttp3.Request$Builder
+                                         | okhttp3.RequestBody
+                                         | okhttp3.Response
+                                         | okhttp3.ResponseBody
+                                         | okhttp3.internal.http.HttpMethod
+                                         | org.apache.catalina.connector.CoyoteInputStream
+                                         | org.apache.catalina.connector.CoyoteOutputStream
+                                         | org.apache.catalina.connector.Request
+                                         | org.apache.catalina.connector.Response
+                                         | org.apache.commons.fileupload.FileItem
+                                         | org.apache.commons.fileupload.FileItemFactory
+                                         | org.apache.commons.fileupload.FileUpload
+                                         | org.apache.commons.fileupload.FileUploadBase$FileSizeLimitExceededException
+                                         | org.apache.commons.fileupload.FileUploadBase$SizeLimitExceededException
+                                         | org.apache.commons.fileupload.FileUploadException
+                                         | org.apache.commons.fileupload.disk.DiskFileItem
+                                         | org.apache.commons.fileupload.disk.DiskFileItemFactory
+                                         | org.apache.commons.fileupload.servlet.ServletFileUpload
+                                         | org.apache.commons.logging.Log
+                                         | org.apache.commons.logging.LogFactory
+                                         | org.apache.coyote.Request
+                                         | org.apache.coyote.Response
+                                         | org.apache.http.Header
+                                         | org.apache.http.HttpEntity
+                                         | org.apache.http.HttpEntityEnclosingRequest
+                                         | org.apache.http.HttpResponse
+                                         | org.apache.http.NoHttpResponseException
+                                         | org.apache.http.StatusLine
+                                         | org.apache.http.client.HttpClient
+                                         | org.apache.http.client.config.RequestConfig
+                                         | org.apache.http.client.config.RequestConfig$Builder
+                                         | org.apache.http.client.methods.Configurable
+                                         | org.apache.http.client.methods.HttpEntityEnclosingRequestBase
+                                         | org.apache.http.client.methods.HttpGet
+                                         | org.apache.http.client.methods.HttpHead
+                                         | org.apache.http.client.methods.HttpOptions
+                                         | org.apache.http.client.methods.HttpPatch
+                                         | org.apache.http.client.methods.HttpPost
+                                         | org.apache.http.client.methods.HttpPut
+                                         | org.apache.http.client.methods.HttpTrace
+                                         | org.apache.http.client.methods.HttpUriRequest
+                                         | org.apache.http.client.protocol.HttpClientContext
+                                         | org.apache.http.concurrent.FutureCallback
+                                         | org.apache.http.config.Registry
+                                         | org.apache.http.config.RegistryBuilder
+                                         | org.apache.http.conn.HttpClientConnectionManager
+                                         | org.apache.http.conn.socket.PlainConnectionSocketFactory
+                                         | org.apache.http.conn.ssl.SSLConnectionSocketFactory
+                                         | org.apache.http.entity.ByteArrayEntity
+                                         | org.apache.http.impl.client.CloseableHttpClient
+                                         | org.apache.http.impl.client.HttpClientBuilder
+                                         | org.apache.http.impl.client.HttpClients
+                                         | org.apache.http.impl.conn.PoolingHttpClientConnectionManager
+                                         | org.apache.http.impl.nio.client.CloseableHttpAsyncClient
+                                         | org.apache.http.impl.nio.client.HttpAsyncClients
+                                         | org.apache.http.message.BasicHeader
+                                         | org.apache.http.nio.client.HttpAsyncClient
+                                         | org.apache.http.nio.entity.NByteArrayEntity
+                                         | org.apache.http.protocol.HttpContext
+                                         | org.apache.http.util.EntityUtils
+                                         | org.apache.tomcat.util.buf.MessageBytes
+                                         | org.apache.tomcat.util.http.MimeHeaders
+                                         | org.eclipse.jetty.client.HttpClient
+                                         | org.eclipse.jetty.client.api.Request
+                                         | org.eclipse.jetty.http.HttpField
+                                         | org.eclipse.jetty.http.HttpFields
+                                         | org.eclipse.jetty.http.MetaData$Request
+                                         | org.eclipse.jetty.io.ByteBufferPool
+                                         | org.eclipse.jetty.io.MappedByteBufferPool
+                                         | org.eclipse.jetty.reactive.client.ContentChunk
+                                         | org.eclipse.jetty.reactive.client.ReactiveRequest
+                                         | org.eclipse.jetty.reactive.client.ReactiveRequest$Builder
+                                         | org.eclipse.jetty.reactive.client.ReactiveRequest$Content
+                                         | org.eclipse.jetty.reactive.client.ReactiveResponse
+                                         | org.eclipse.jetty.server.HttpOutput
+                                         | org.eclipse.jetty.server.Request
+                                         | org.eclipse.jetty.server.Response
+                                         | org.eclipse.jetty.util.Callback
+                                         | org.eclipse.jetty.util.ProcessorUtils
+                                         | org.eclipse.jetty.util.component.LifeCycle
+                                         | org.eclipse.jetty.util.thread.QueuedThreadPool
+                                         | org.eclipse.jetty.util.thread.ScheduledExecutorScheduler
+                                         | org.eclipse.jetty.util.thread.Scheduler
+                                         | org.eclipse.jetty.util.thread.ThreadPool$SizedThreadPool
+                                         | org.jetbrains.annotations.NotNull
+                                         | org.reactivestreams.Processor
+                                         | org.reactivestreams.Publisher
+                                         | org.reactivestreams.Subscriber
+                                         | org.reactivestreams.Subscription
+                                         | org.springframework.oxm.Marshaller
+                                         | org.springframework.oxm.Unmarshaller
+                                         | org.synchronoss.cloud.nio.multipart.DefaultPartBodyStreamStorageFactory
+                                         | org.synchronoss.cloud.nio.multipart.Multipart
+                                         | org.synchronoss.cloud.nio.multipart.Multipart$Builder
+                                         | org.synchronoss.cloud.nio.multipart.MultipartContext
+                                         | org.synchronoss.cloud.nio.multipart.MultipartUtils
+                                         | org.synchronoss.cloud.nio.multipart.NioMultipartParser
+                                         | org.synchronoss.cloud.nio.multipart.NioMultipartParserListener
+                                         | org.synchronoss.cloud.nio.multipart.PartBodyStreamStorageFactory
+                                         | org.synchronoss.cloud.nio.stream.storage.StreamStorage
+                                         | org.xnio.ChannelListener
+                                         | org.xnio.ChannelListener$Setter
+                                         | org.xnio.channels.Channels
+                                         | org.xnio.channels.StreamSinkChannel
+                                         | org.xnio.channels.StreamSourceChannel
+                                         | reactor.core.CoreSubscriber
+                                         | reactor.core.Disposable
+                                         | reactor.core.Exceptions
+                                         | reactor.core.Scannable
+                                         | reactor.core.Scannable$Attr
+                                         | reactor.core.publisher.Flux
+                                         | reactor.core.publisher.FluxSink
+                                         | reactor.core.publisher.Mono
+                                         | reactor.core.publisher.Operators
+                                         | reactor.core.publisher.SignalType
+                                         | reactor.netty.ByteBufFlux
+                                         | reactor.netty.Connection
+                                         | reactor.netty.NettyInbound
+                                         | reactor.netty.NettyOutbound
+                                         | reactor.netty.http.HttpResources
+                                         | reactor.netty.http.client.HttpClient
+                                         | reactor.netty.http.client.HttpClient$RequestSender
+                                         | reactor.netty.http.client.HttpClient$ResponseReceiver
+                                         | reactor.netty.http.client.HttpClient$UriConfiguration
+                                         | reactor.netty.http.client.HttpClientRequest
+                                         | reactor.netty.http.client.HttpClientResponse
+                                         | reactor.netty.http.server.HttpServerRequest
+                                         | reactor.netty.http.server.HttpServerResponse
+                                         | reactor.netty.resources.ConnectionProvider
+                                         | reactor.netty.resources.LoopResources
+                                         | reactor.netty.tcp.TcpClient
+                                         | reactor.util.context.Context
+                                         | reactor.util.function.Tuple3
+
