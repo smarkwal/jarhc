@@ -8,6 +8,7 @@ import org.jarcheck.report.text.TextReportFormat;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Main {
 
@@ -45,7 +46,9 @@ public class Main {
 		// format report as text to STDOUT
 		ReportFormat format = new TextReportFormat();
 		// ReportFormat format = new HtmlReportFormat();
-		format.format(report, System.out);
+		PrintWriter out = new PrintWriter(System.out, true);
+		format.format(report, out);
+		out.flush();
 
 	}
 

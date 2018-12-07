@@ -8,7 +8,6 @@ import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
 import org.jarcheck.report.html.HtmlReportFormat;
 import org.jarcheck.report.text.TextReportFormat;
-import org.jarcheck.test.PrintStreamBuffer;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,19 +38,17 @@ class AbstractIT {
 
 		// create text report
 		TextReportFormat textFormat = new TextReportFormat();
-		PrintStreamBuffer textReport = new PrintStreamBuffer();
-		textFormat.format(report, textReport);
+		String textReport = textFormat.format(report);
 		String expectedTextReport = TestUtils.getResourceAsString(baseResourcePath + "report.txt", "UTF-8");
-		// Files.write(Paths.get("src/test/resources/it/spring5/report.txt"), textReport.getText().getBytes());
-		assertEquals(expectedTextReport, textReport.getText());
+		// Files.write(Paths.get("src/test/resources/it/spring5/report.txt"), textReport.getBytes());
+		assertEquals(expectedTextReport, textReport);
 
 		// create HTML report
 		HtmlReportFormat htmlFormat = new HtmlReportFormat();
-		PrintStreamBuffer htmlReport = new PrintStreamBuffer();
-		htmlFormat.format(report, htmlReport);
+		String htmlReport = htmlFormat.format(report);
 		String expectedHtmlReport = TestUtils.getResourceAsString(baseResourcePath + "report.html", "UTF-8");
-		// Files.write(Paths.get("src/test/resources/it/spring5/report.html"), htmlReport.getText().getBytes());
-		assertEquals(expectedHtmlReport, htmlReport.getText());
+		// Files.write(Paths.get("src/test/resources/it/spring5/report.html"), htmlReport.getBytes());
+		assertEquals(expectedHtmlReport, htmlReport);
 
 	}
 

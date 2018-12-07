@@ -5,14 +5,14 @@ import org.jarcheck.report.ReportFormat;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
 
-import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class HtmlReportFormat implements ReportFormat {
 
 	@Override
-	public void format(Report report, PrintStream out) {
+	public void format(Report report, PrintWriter out) {
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, out);
@@ -20,7 +20,7 @@ public class HtmlReportFormat implements ReportFormat {
 		}
 	}
 
-	private void formatSection(ReportSection section, PrintStream out) {
+	private void formatSection(ReportSection section, PrintWriter out) {
 
 		String title = section.getTitle();
 		String description = section.getDescription();
@@ -50,7 +50,7 @@ public class HtmlReportFormat implements ReportFormat {
 
 	}
 
-	private void formatTable(ReportTable table, PrintStream out) {
+	private void formatTable(ReportTable table, PrintWriter out) {
 		out.println("<table>");
 		String[] columns = table.getColumns();
 		printTableRow(out, columns, true);
@@ -61,7 +61,7 @@ public class HtmlReportFormat implements ReportFormat {
 		out.println("</table>");
 	}
 
-	private static void printTableRow(PrintStream out, String[] values, boolean header) {
+	private static void printTableRow(PrintWriter out, String[] values, boolean header) {
 		out.print("\t<tr>");
 		for (String value : values) {
 			if (header) {

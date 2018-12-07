@@ -8,7 +8,7 @@ import org.jarcheck.utils.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class TextReportFormat implements ReportFormat {
 
 	@Override
-	public void format(Report report, PrintStream out) {
+	public void format(Report report, PrintWriter out) {
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, out);
@@ -24,7 +24,7 @@ public class TextReportFormat implements ReportFormat {
 		}
 	}
 
-	private void formatSection(ReportSection section, PrintStream out) {
+	private void formatSection(ReportSection section, PrintWriter out) {
 
 		String title = section.getTitle();
 		String description = section.getDescription();
@@ -54,7 +54,7 @@ public class TextReportFormat implements ReportFormat {
 
 	}
 
-	private void formatTable(ReportTable table, PrintStream out) {
+	private void formatTable(ReportTable table, PrintWriter out) {
 		String[] columns = table.getColumns();
 		List<String[]> rows = table.getRows();
 		int[] widths = calculateColumnWidths(columns, rows);
@@ -99,7 +99,7 @@ public class TextReportFormat implements ReportFormat {
 		return maxLength;
 	}
 
-	private static void formatTableRow(PrintStream out, String[] values, int[] widths) {
+	private static void formatTableRow(PrintWriter out, String[] values, int[] widths) {
 
 		String[][] cells = new String[values.length][];
 
@@ -129,7 +129,7 @@ public class TextReportFormat implements ReportFormat {
 		}
 	}
 
-	private static void printTableSeparator(PrintStream out, int[] widths) {
+	private static void printTableSeparator(PrintWriter out, int[] widths) {
 		for (int i = 0; i < widths.length; i++) {
 			if (i > 0) {
 				out.print("-+-");
