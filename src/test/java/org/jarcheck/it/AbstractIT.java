@@ -40,14 +40,14 @@ class AbstractIT {
 		TextReportFormat textFormat = new TextReportFormat();
 		String textReport = textFormat.format(report);
 		String expectedTextReport = TestUtils.getResourceAsString(baseResourcePath + "report.txt", "UTF-8");
-		// Files.write(Paths.get("src/test/resources/it/spring5/report.txt"), textReport.getBytes());
+		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.txt"), textReport.getBytes());
 		assertEquals(expectedTextReport, textReport);
 
 		// create HTML report
 		HtmlReportFormat htmlFormat = new HtmlReportFormat();
 		String htmlReport = htmlFormat.format(report);
 		String expectedHtmlReport = TestUtils.getResourceAsString(baseResourcePath + "report.html", "UTF-8");
-		// Files.write(Paths.get("src/test/resources/it/spring5/report.html"), htmlReport.getBytes());
+		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.html"), htmlReport.getBytes());
 		assertEquals(expectedHtmlReport, htmlReport);
 
 	}

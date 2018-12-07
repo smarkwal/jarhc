@@ -1,0 +1,373 @@
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file                      | Size    | Java class files
+------------------------------+---------+-----------------
+commons-beanutils-1.9.2.jar   | 228 KB  | 137
+commons-betwixt-0.8.jar       | 237 KB  | 166
+commons-codec-1.10.jar        | 278 KB  | 92
+commons-collections-3.2.2.jar | 575 KB  | 460
+commons-compress-1.5.jar      | 250 KB  | 135
+commons-configuration-1.9.jar | 350 KB  | 192
+commons-dbcp2-2.5.0.jar       | 193 KB  | 76
+commons-dbutils-1.5.jar       | 60.4 KB | 43
+commons-digester-2.1.jar      | 192 KB  | 155
+commons-email-1.5.jar         | 53.2 KB | 21
+commons-fileupload-1.3.3.jar  | 68.9 KB | 49
+commons-io-2.4.jar            | 181 KB  | 110
+commons-jxpath-1.3.jar        | 293 KB  | 180
+commons-lang-2.6.jar          | 278 KB  | 133
+commons-logging-1.2.jar       | 60.4 KB | 28
+commons-net-3.3.jar           | 274 KB  | 174
+commons-pool2-2.6.0.jar       | 128 KB  | 77
+Classpath                     | 3.61 MB | 2228
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file                      | Java version
+------------------------------+------------------------------------------------------------------------------------
+commons-beanutils-1.9.2.jar   | Java 5 (137)
+commons-betwixt-0.8.jar       | Java 1.3 (166)
+commons-codec-1.10.jar        | Java 6 (92)
+commons-collections-3.2.2.jar | Java 1.3 (460)
+commons-compress-1.5.jar      | Java 5 (135)
+commons-configuration-1.9.jar | Java 5 (192)
+commons-dbcp2-2.5.0.jar       | Java 8 (76)
+commons-dbutils-1.5.jar       | Java 6 (43)
+commons-digester-2.1.jar      | Java 5 (155)
+commons-email-1.5.jar         | Java 6 (21)
+commons-fileupload-1.3.3.jar  | Java 5 (49)
+commons-io-2.4.jar            | Java 6 (110)
+commons-jxpath-1.3.jar        | Java 1.3 (180)
+commons-lang-2.6.jar          | Java 1.3 (133)
+commons-logging-1.2.jar       | Java 1.2 (28)
+commons-net-3.3.jar           | Java 5 (174)
+commons-pool2-2.6.0.jar       | Java 7 (77)
+Classpath                     | Java 8 (76), Java 7 (77), Java 6 (266), Java 5 (842), Java 1.3 (939), Java 1.2 (28)
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file                      | Packages
+------------------------------+-------------------------------------------------------------
+commons-beanutils-1.9.2.jar   | org.apache.commons.beanutils
+                              | org.apache.commons.beanutils.converters
+                              | org.apache.commons.beanutils.expression
+                              | org.apache.commons.beanutils.locale
+                              | org.apache.commons.beanutils.locale.converters
+commons-betwixt-0.8.jar       | org.apache.commons.betwixt
+                              | org.apache.commons.betwixt.digester
+                              | org.apache.commons.betwixt.expression
+                              | org.apache.commons.betwixt.io
+                              | org.apache.commons.betwixt.io.id
+                              | org.apache.commons.betwixt.io.read
+                              | org.apache.commons.betwixt.registry
+                              | org.apache.commons.betwixt.schema
+                              | org.apache.commons.betwixt.schema.strategy
+                              | org.apache.commons.betwixt.schema.strategy.impl
+                              | org.apache.commons.betwixt.strategy
+                              | org.apache.commons.betwixt.strategy.impl
+                              | org.apache.commons.betwixt.strategy.impl.propertysuppression
+commons-codec-1.10.jar        | org.apache.commons.codec
+                              | org.apache.commons.codec.binary
+                              | org.apache.commons.codec.digest
+                              | org.apache.commons.codec.language
+                              | org.apache.commons.codec.language.bm
+                              | org.apache.commons.codec.net
+commons-collections-3.2.2.jar | org.apache.commons.collections
+                              | org.apache.commons.collections.bag
+                              | org.apache.commons.collections.bidimap
+                              | org.apache.commons.collections.buffer
+                              | org.apache.commons.collections.collection
+                              | org.apache.commons.collections.comparators
+                              | org.apache.commons.collections.functors
+                              | org.apache.commons.collections.iterators
+                              | org.apache.commons.collections.keyvalue
+                              | org.apache.commons.collections.list
+                              | org.apache.commons.collections.map
+                              | org.apache.commons.collections.set
+commons-compress-1.5.jar      | org.apache.commons.compress.archivers
+                              | org.apache.commons.compress.archivers.ar
+                              | org.apache.commons.compress.archivers.cpio
+                              | org.apache.commons.compress.archivers.dump
+                              | org.apache.commons.compress.archivers.jar
+                              | org.apache.commons.compress.archivers.tar
+                              | org.apache.commons.compress.archivers.zip
+                              | org.apache.commons.compress.changes
+                              | org.apache.commons.compress.compressors
+                              | org.apache.commons.compress.compressors.bzip2
+                              | org.apache.commons.compress.compressors.gzip
+                              | org.apache.commons.compress.compressors.pack200
+                              | org.apache.commons.compress.compressors.xz
+                              | org.apache.commons.compress.utils
+commons-configuration-1.9.jar | org.apache.commons.configuration
+                              | org.apache.commons.configuration.beanutils
+                              | org.apache.commons.configuration.event
+                              | org.apache.commons.configuration.interpol
+                              | org.apache.commons.configuration.plist
+                              | org.apache.commons.configuration.reloading
+                              | org.apache.commons.configuration.resolver
+                              | org.apache.commons.configuration.tree
+                              | org.apache.commons.configuration.tree.xpath
+                              | org.apache.commons.configuration.web
+commons-dbcp2-2.5.0.jar       | org.apache.commons.dbcp2
+                              | org.apache.commons.dbcp2.cpdsadapter
+                              | org.apache.commons.dbcp2.datasources
+                              | org.apache.commons.dbcp2.managed
+commons-dbutils-1.5.jar       | org.apache.commons.dbutils
+                              | org.apache.commons.dbutils.handlers
+                              | org.apache.commons.dbutils.wrappers
+commons-digester-2.1.jar      | org.apache.commons.digester
+                              | org.apache.commons.digester.annotations
+                              | org.apache.commons.digester.annotations.handlers
+                              | org.apache.commons.digester.annotations.internal
+                              | org.apache.commons.digester.annotations.providers
+                              | org.apache.commons.digester.annotations.reflect
+                              | org.apache.commons.digester.annotations.rules
+                              | org.apache.commons.digester.annotations.spi
+                              | org.apache.commons.digester.annotations.utils
+                              | org.apache.commons.digester.parser
+                              | org.apache.commons.digester.plugins
+                              | org.apache.commons.digester.plugins.strategies
+                              | org.apache.commons.digester.substitution
+                              | org.apache.commons.digester.xmlrules
+commons-email-1.5.jar         | org.apache.commons.mail
+                              | org.apache.commons.mail.resolver
+                              | org.apache.commons.mail.util
+commons-fileupload-1.3.3.jar  | org.apache.commons.fileupload
+                              | org.apache.commons.fileupload.disk
+                              | org.apache.commons.fileupload.portlet
+                              | org.apache.commons.fileupload.servlet
+                              | org.apache.commons.fileupload.util
+                              | org.apache.commons.fileupload.util.mime
+commons-io-2.4.jar            | org.apache.commons.io
+                              | org.apache.commons.io.comparator
+                              | org.apache.commons.io.filefilter
+                              | org.apache.commons.io.input
+                              | org.apache.commons.io.monitor
+                              | org.apache.commons.io.output
+commons-jxpath-1.3.jar        | org.apache.commons.jxpath
+                              | org.apache.commons.jxpath.functions
+                              | org.apache.commons.jxpath.ri
+                              | org.apache.commons.jxpath.ri.axes
+                              | org.apache.commons.jxpath.ri.compiler
+                              | org.apache.commons.jxpath.ri.model
+                              | org.apache.commons.jxpath.ri.model.beans
+                              | org.apache.commons.jxpath.ri.model.container
+                              | org.apache.commons.jxpath.ri.model.dom
+                              | org.apache.commons.jxpath.ri.model.dynabeans
+                              | org.apache.commons.jxpath.ri.model.dynamic
+                              | org.apache.commons.jxpath.ri.model.jdom
+                              | org.apache.commons.jxpath.ri.parser
+                              | org.apache.commons.jxpath.servlet
+                              | org.apache.commons.jxpath.util
+                              | org.apache.commons.jxpath.xml
+commons-lang-2.6.jar          | org.apache.commons.lang
+                              | org.apache.commons.lang.builder
+                              | org.apache.commons.lang.enum
+                              | org.apache.commons.lang.enums
+                              | org.apache.commons.lang.exception
+                              | org.apache.commons.lang.math
+                              | org.apache.commons.lang.mutable
+                              | org.apache.commons.lang.reflect
+                              | org.apache.commons.lang.text
+                              | org.apache.commons.lang.time
+commons-logging-1.2.jar       | org.apache.commons.logging
+                              | org.apache.commons.logging.impl
+commons-net-3.3.jar           | org.apache.commons.net
+                              | org.apache.commons.net.bsd
+                              | org.apache.commons.net.chargen
+                              | org.apache.commons.net.daytime
+                              | org.apache.commons.net.discard
+                              | org.apache.commons.net.echo
+                              | org.apache.commons.net.finger
+                              | org.apache.commons.net.ftp
+                              | org.apache.commons.net.ftp.parser
+                              | org.apache.commons.net.imap
+                              | org.apache.commons.net.io
+                              | org.apache.commons.net.nntp
+                              | org.apache.commons.net.ntp
+                              | org.apache.commons.net.pop3
+                              | org.apache.commons.net.smtp
+                              | org.apache.commons.net.telnet
+                              | org.apache.commons.net.tftp
+                              | org.apache.commons.net.time
+                              | org.apache.commons.net.util
+                              | org.apache.commons.net.whois
+commons-pool2-2.6.0.jar       | org.apache.commons.pool2
+                              | org.apache.commons.pool2.impl
+                              | org.apache.commons.pool2.proxy
+
+Split Packages
+--------------
+Packages found in multiple JAR files.
+
+Package | JAR files
+--------+----------
+
+Duplicate Classes
+-----------------
+Classes found in multiple JAR files.
+
+Class name | JAR files
+-----------+----------
+
+Shadowed Classes
+----------------
+Classes shadowing JRE/JDK classes.
+Java home   : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime: Java(TM) SE Runtime Environment
+Java version: 1.8.0_144
+Java vendor : Oracle Corporation
+
+Class name | JAR file | ClassLoader
+-----------+----------+------------
+
+JAR File Dependencies
+---------------------
+Dependencies between JAR files.
+
+JAR file                      | Uses                          | Used by
+------------------------------+-------------------------------+------------------------------
+commons-beanutils-1.9.2.jar   | commons-collections-3.2.2.jar | commons-betwixt-0.8.jar
+                              | commons-logging-1.2.jar       | commons-configuration-1.9.jar
+                              |                               | commons-digester-2.1.jar
+                              |                               | commons-jxpath-1.3.jar
+commons-betwixt-0.8.jar       | commons-beanutils-1.9.2.jar   | [none]
+                              | commons-collections-3.2.2.jar | 
+                              | commons-digester-2.1.jar      | 
+                              | commons-logging-1.2.jar       | 
+commons-codec-1.10.jar        | [none]                        | commons-configuration-1.9.jar
+commons-collections-3.2.2.jar | [none]                        | commons-beanutils-1.9.2.jar
+                              |                               | commons-betwixt-0.8.jar
+                              |                               | commons-configuration-1.9.jar
+commons-compress-1.5.jar      | [none]                        | [none]
+commons-configuration-1.9.jar | commons-beanutils-1.9.2.jar   | [none]
+                              | commons-codec-1.10.jar        | 
+                              | commons-collections-3.2.2.jar | 
+                              | commons-digester-2.1.jar      | 
+                              | commons-jxpath-1.3.jar        | 
+                              | commons-lang-2.6.jar          | 
+                              | commons-logging-1.2.jar       | 
+commons-dbcp2-2.5.0.jar       | commons-logging-1.2.jar       | [none]
+                              | commons-pool2-2.6.0.jar       | 
+commons-dbutils-1.5.jar       | [none]                        | [none]
+commons-digester-2.1.jar      | commons-beanutils-1.9.2.jar   | commons-betwixt-0.8.jar
+                              | commons-logging-1.2.jar       | commons-configuration-1.9.jar
+commons-email-1.5.jar         | [none]                        | [none]
+commons-fileupload-1.3.3.jar  | commons-io-2.4.jar            | [none]
+commons-io-2.4.jar            | [none]                        | commons-fileupload-1.3.3.jar
+commons-jxpath-1.3.jar        | commons-beanutils-1.9.2.jar   | commons-configuration-1.9.jar
+commons-lang-2.6.jar          | [none]                        | commons-configuration-1.9.jar
+commons-logging-1.2.jar       | [none]                        | commons-beanutils-1.9.2.jar
+                              |                               | commons-betwixt-0.8.jar
+                              |                               | commons-configuration-1.9.jar
+                              |                               | commons-dbcp2-2.5.0.jar
+                              |                               | commons-digester-2.1.jar
+commons-net-3.3.jar           | [none]                        | [none]
+commons-pool2-2.6.0.jar       | [none]                        | commons-dbcp2-2.5.0.jar
+
+Missing Classes
+---------------
+References to classes not found on the classpath.
+
+JAR file                      | Missing class
+------------------------------+------------------------------------------------
+commons-compress-1.5.jar      | org.tukaani.xz.FilterOptions
+                              | org.tukaani.xz.LZMA2Options
+                              | org.tukaani.xz.SingleXZInputStream
+                              | org.tukaani.xz.XZ
+                              | org.tukaani.xz.XZInputStream
+                              | org.tukaani.xz.XZOutputStream
+commons-configuration-1.9.jar | javax.servlet.FilterConfig
+                              | javax.servlet.Servlet
+                              | javax.servlet.ServletConfig
+                              | javax.servlet.ServletContext
+                              | javax.servlet.ServletRequest
+                              | org.apache.commons.jexl2.Expression
+                              | org.apache.commons.jexl2.JexlContext
+                              | org.apache.commons.jexl2.JexlEngine
+                              | org.apache.commons.jexl2.MapContext
+                              | org.apache.commons.vfs2.FileContent
+                              | org.apache.commons.vfs2.FileName
+                              | org.apache.commons.vfs2.FileObject
+                              | org.apache.commons.vfs2.FileSystemConfigBuilder
+                              | org.apache.commons.vfs2.FileSystemException
+                              | org.apache.commons.vfs2.FileSystemManager
+                              | org.apache.commons.vfs2.FileSystemOptions
+                              | org.apache.commons.vfs2.FileType
+                              | org.apache.commons.vfs2.VFS
+                              | org.apache.commons.vfs2.provider.UriParser
+                              | org.apache.xml.resolver.Catalog
+                              | org.apache.xml.resolver.CatalogException
+                              | org.apache.xml.resolver.CatalogManager
+                              | org.apache.xml.resolver.helpers.Debug
+                              | org.apache.xml.resolver.readers.CatalogReader
+                              | org.apache.xml.resolver.tools.CatalogResolver
+commons-dbcp2-2.5.0.jar       | javax.transaction.RollbackException
+                              | javax.transaction.Synchronization
+                              | javax.transaction.SystemException
+                              | javax.transaction.Transaction
+                              | javax.transaction.TransactionManager
+commons-email-1.5.jar         | javax.mail.Address
+                              | javax.mail.Authenticator
+                              | javax.mail.BodyPart
+                              | javax.mail.Message
+                              | javax.mail.Message$RecipientType
+                              | javax.mail.MessagingException
+                              | javax.mail.Multipart
+                              | javax.mail.Part
+                              | javax.mail.PasswordAuthentication
+                              | javax.mail.Session
+                              | javax.mail.Store
+                              | javax.mail.Transport
+                              | javax.mail.internet.AddressException
+                              | javax.mail.internet.ContentType
+                              | javax.mail.internet.InternetAddress
+                              | javax.mail.internet.MimeBodyPart
+                              | javax.mail.internet.MimeMessage
+                              | javax.mail.internet.MimeMultipart
+                              | javax.mail.internet.MimePart
+                              | javax.mail.internet.MimeUtility
+                              | javax.mail.internet.ParseException
+                              | javax.mail.util.ByteArrayDataSource
+commons-fileupload-1.3.3.jar  | javax.portlet.ActionRequest
+                              | javax.servlet.ServletContext
+                              | javax.servlet.ServletContextEvent
+                              | javax.servlet.ServletContextListener
+                              | javax.servlet.ServletInputStream
+                              | javax.servlet.http.HttpServletRequest
+commons-jxpath-1.3.jar        | javax.servlet.ServletContext
+                              | javax.servlet.ServletRequest
+                              | javax.servlet.http.HttpServletRequest
+                              | javax.servlet.http.HttpSession
+                              | javax.servlet.jsp.PageContext
+                              | org.jdom.Attribute
+                              | org.jdom.CDATA
+                              | org.jdom.Comment
+                              | org.jdom.Content
+                              | org.jdom.Document
+                              | org.jdom.Element
+                              | org.jdom.Namespace
+                              | org.jdom.Parent
+                              | org.jdom.ProcessingInstruction
+                              | org.jdom.Text
+                              | org.jdom.input.SAXBuilder
+commons-logging-1.2.jar       | javax.servlet.ServletContextEvent
+                              | javax.servlet.ServletContextListener
+                              | org.apache.avalon.framework.logger.Logger
+                              | org.apache.log.Hierarchy
+                              | org.apache.log.Logger
+                              | org.apache.log4j.Level
+                              | org.apache.log4j.Logger
+                              | org.apache.log4j.Priority
+commons-pool2-2.6.0.jar       | net.sf.cglib.proxy.Callback
+                              | net.sf.cglib.proxy.Enhancer
+                              | net.sf.cglib.proxy.Factory
+                              | net.sf.cglib.proxy.MethodInterceptor
+                              | net.sf.cglib.proxy.MethodProxy
+
