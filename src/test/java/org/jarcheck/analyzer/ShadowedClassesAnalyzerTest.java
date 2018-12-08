@@ -1,6 +1,7 @@
 package org.jarcheck.analyzer;
 
 import org.jarcheck.Main;
+import org.jarcheck.env.JavaRuntime;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
@@ -25,7 +26,8 @@ class ShadowedClassesAnalyzerTest {
 				.build();
 
 		// test
-		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(new JavaRuntimeMock());
+		JavaRuntime javaRuntime = new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.txt");
+		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(javaRuntime);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

@@ -1,11 +1,10 @@
 package org.jarcheck;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Test utility methods.
@@ -30,6 +29,19 @@ public class TestUtils {
 			result.write(buffer, 0, len);
 		}
 		return result.toString(encoding);
+	}
+
+	public static List<String> getResourceAsLines(String resource, String encoding) throws IOException {
+		List<String> lines = new ArrayList<>();
+		try (InputStream stream = getResourceAsStream(resource)) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(stream, encoding));
+			while (true) {
+				String line = reader.readLine();
+				if (line == null) break;
+				lines.add(line);
+			}
+		}
+		return lines;
 	}
 
 	public static File getResourceAsFile(String resource, String prefix) throws IOException {

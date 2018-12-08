@@ -4,6 +4,7 @@ import org.jarcheck.Analysis;
 import org.jarcheck.TestUtils;
 import org.jarcheck.analyzer.Analyzer;
 import org.jarcheck.analyzer.AnalyzerRegistry;
+import org.jarcheck.env.JavaRuntime;
 import org.jarcheck.loader.ClasspathLoader;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
@@ -49,7 +50,8 @@ abstract class AbstractIT {
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();
-		AnalyzerRegistry registry = new AnalyzerRegistry(true, new JavaRuntimeMock());
+		JavaRuntime javaRuntime = new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.txt");
+		AnalyzerRegistry registry = new AnalyzerRegistry(true, javaRuntime);
 		for (String analyzerName : registry.getAnalyzerNames()) {
 			Analyzer analyzer = registry.getAnalyzer(analyzerName);
 			tests.add(DynamicTest.dynamicTest(analyzerName + "-txt", () -> test(classpath, analyzer, analyzerName, "txt")));
