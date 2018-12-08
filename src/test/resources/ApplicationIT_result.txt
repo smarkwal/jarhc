@@ -1,0 +1,72 @@
+JarCheck 1.0-SNAPSHOT
+=====================
+
+Scan JAR files ...
+Analyze classpath ...
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file  | Size  | Java class files
+----------+-------+-----------------
+a.jar     | 678 B | 1
+Classpath | 678 B | 1
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file  | Java version
+----------+-------------
+a.jar     | Java 8 (1)
+Classpath | Java 8 (1)
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file | Packages
+---------+---------
+a.jar    | a
+
+Split Packages
+--------------
+Packages found in multiple JAR files.
+
+Package | JAR files
+--------+----------
+
+Duplicate Classes
+-----------------
+Classes found in multiple JAR files.
+
+Class name | JAR files
+-----------+----------
+
+Shadowed Classes
+----------------
+Classes shadowing JRE/JDK classes.
+Java home   : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime: Java(TM) SE Runtime Environment
+Java version: 1.8.0_144
+Java vendor : Oracle Corporation
+
+Class name | JAR file | ClassLoader
+-----------+----------+------------
+
+JAR File Dependencies
+---------------------
+Dependencies between JAR files.
+
+JAR file | Uses   | Used by
+---------+--------+--------
+a.jar    | [none] | [none]
+
+Missing Classes
+---------------
+References to classes not found on the classpath.
+
+JAR file | Missing class
+---------+--------------
+
