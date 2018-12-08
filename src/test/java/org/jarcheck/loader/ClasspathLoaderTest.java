@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,9 +22,10 @@ class ClasspathLoaderTest {
 		// prepare
 		String resource = "/test2/a.jar";
 		File file = TestUtils.getResourceAsFile(resource, "ClasspathLoader-");
+		List<File> files = Collections.singletonList(file);
 
 		// test
-		Classpath classpath = classpathLoader.load(file.getParentFile(), false);
+		Classpath classpath = classpathLoader.load(files);
 
 		// assert
 		assertNotNull(classpath);

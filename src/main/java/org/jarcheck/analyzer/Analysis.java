@@ -1,6 +1,5 @@
-package org.jarcheck;
+package org.jarcheck.analyzer;
 
-import org.jarcheck.analyzer.Analyzer;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
 import org.jarcheck.report.ReportSection;

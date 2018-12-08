@@ -1,6 +1,6 @@
 package org.jarcheck.it;
 
-import org.jarcheck.Analysis;
+import org.jarcheck.analyzer.Analysis;
 import org.jarcheck.TestUtils;
 import org.jarcheck.analyzer.Analyzer;
 import org.jarcheck.analyzer.AnalyzerRegistry;
