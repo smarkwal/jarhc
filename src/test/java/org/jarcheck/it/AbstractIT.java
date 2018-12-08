@@ -34,7 +34,7 @@ abstract class AbstractIT {
 		Classpath classpath = classpathLoader.load(files);
 
 		// analyze classpath
-		Analysis analysis = new FullAnalysis();
+		Analysis analysis = FullAnalysis.build();
 		Report report = analysis.run(classpath);
 
 		// create text report

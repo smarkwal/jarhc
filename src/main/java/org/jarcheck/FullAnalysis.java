@@ -1,20 +1,19 @@
 package org.jarcheck;
 
-import org.jarcheck.analyzer.*;
+import org.jarcheck.analyzer.Analyzer;
+import org.jarcheck.analyzer.AnalyzerRegistry;
 
-public class FullAnalysis extends Analysis {
+import java.util.List;
 
-	public FullAnalysis() {
-		super(
-				new JarFilesListAnalyzer(),
-				new ClassVersionAnalyzer(),
-				new PackagesAnalyzer(),
-				new SplitPackagesAnalyzer(),
-				new DuplicateClassesAnalyzer(),
-				new ShadowedClassesAnalyzer(),
-				new JarDependenciesAnalyzer(),
-				new MissingClassesAnalyzer()
-		);
+public final class FullAnalysis {
+
+	public static Analysis build() {
+		AnalyzerRegistry registry = new AnalyzerRegistry(true);
+		List<Analyzer> analyzers = registry.getAnalyzers();
+		return new Analysis(analyzers.toArray(new Analyzer[0]));
+	}
+
+	private FullAnalysis() {
 	}
 
 }

@@ -40,7 +40,7 @@ public class Main {
 		System.out.println("Analyze classpath ...");
 
 		// analyze classpath and create report
-		Analysis analysis = new FullAnalysis();
+		Analysis analysis = FullAnalysis.build();
 		Report report = analysis.run(classpath);
 
 		// format report as text to STDOUT
