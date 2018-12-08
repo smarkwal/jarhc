@@ -116,7 +116,11 @@ public class TextReportFormat implements ReportFormat {
 				String[] cell = cells[i];
 				String value = h < cell.length ? cell[h] : "";
 				if (i > 0) {
-					out.print(" | ");
+					if (i < cells.length - 1 || !value.isEmpty()) {
+						out.print(" | ");
+					} else {
+						out.print(" |"); // no trailing space in an empty last cell
+					}
 				}
 				out.print(value);
 				if (i < cells.length - 1) {
