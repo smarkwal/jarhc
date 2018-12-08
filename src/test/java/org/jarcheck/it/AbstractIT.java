@@ -10,6 +10,7 @@ import org.jarcheck.report.Report;
 import org.jarcheck.report.ReportFormat;
 import org.jarcheck.report.html.HtmlReportFormat;
 import org.jarcheck.report.text.TextReportFormat;
+import org.jarcheck.test.JavaRuntimeMock;
 import org.jarcheck.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -48,7 +49,7 @@ abstract class AbstractIT {
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();
-		AnalyzerRegistry registry = new AnalyzerRegistry(true);
+		AnalyzerRegistry registry = new AnalyzerRegistry(true, new JavaRuntimeMock());
 		for (String analyzerName : registry.getAnalyzerNames()) {
 			Analyzer analyzer = registry.getAnalyzer(analyzerName);
 			tests.add(DynamicTest.dynamicTest(analyzerName + "-txt", () -> test(classpath, analyzer, analyzerName, "txt")));

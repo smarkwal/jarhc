@@ -5,6 +5,7 @@ import org.jarcheck.model.Classpath;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
 import org.jarcheck.test.ClasspathBuilder;
+import org.jarcheck.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,7 +25,7 @@ class ShadowedClassesAnalyzerTest {
 				.build();
 
 		// test
-		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer();
+		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(new JavaRuntimeMock());
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

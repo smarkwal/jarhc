@@ -1,16 +1,22 @@
 package org.jarcheck.analyzer;
 
+import org.jarcheck.env.JavaRuntime;
 import org.jarcheck.model.ClassDef;
 import org.jarcheck.model.Classpath;
 import org.jarcheck.model.JarFile;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
-import org.jarcheck.utils.JavaUtils;
 
 import java.util.List;
-import java.util.Properties;
 
 public class ShadowedClassesAnalyzer extends Analyzer {
+
+	private final JavaRuntime javaRuntime;
+
+	public ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
+		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
+		this.javaRuntime = javaRuntime;
+	}
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -20,11 +26,10 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 		StringBuilder description = new StringBuilder("Classes shadowing JRE/JDK classes.").append(System.lineSeparator());
 
 		// print information about JRE/JDK in description
-		Properties properties = System.getProperties();
-		description.append("Java home   : ").append(properties.getProperty("java.home")).append(System.lineSeparator());
-		description.append("Java runtime: ").append(properties.getProperty("java.runtime.name")).append(System.lineSeparator());
-		description.append("Java version: ").append(properties.getProperty("java.version")).append(System.lineSeparator());
-		description.append("Java vendor : ").append(properties.getProperty("java.vendor"));
+		description.append("Java home   : ").append(javaRuntime.getJavaHome()).append(System.lineSeparator());
+		description.append("Java runtime: ").append(javaRuntime.getName()).append(System.lineSeparator());
+		description.append("Java version: ").append(javaRuntime.getJavaVersion()).append(System.lineSeparator());
+		description.append("Java vendor : ").append(javaRuntime.getJavaVendor());
 
 		ReportSection section = new ReportSection("Shadowed Classes", description.toString());
 		section.add(table);
@@ -46,14 +51,12 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 				String className = classDef.getClassName();
 
 				String realClassName = formatClassName(className);
-				Class javaClass = JavaUtils.loadBootstrapClass(realClassName);
-				if (javaClass == null) {
+				String classLoader = javaRuntime.getClassLoaderName(realClassName);
+				if (classLoader == null) {
 					continue;
 				}
 
-				ClassLoader classLoader = javaClass.getClassLoader();
-				String classLoaderInfo = classLoader != null ? classLoader.toString() : "Bootstrap";
-				table.addRow(realClassName, jarFile.getFileName(), classLoaderInfo);
+				table.addRow(realClassName, jarFile.getFileName(), classLoader);
 
 			}
 		}

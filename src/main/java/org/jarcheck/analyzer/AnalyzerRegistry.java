@@ -1,5 +1,7 @@
 package org.jarcheck.analyzer;
 
+import org.jarcheck.env.JavaRuntime;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,21 +23,31 @@ public class AnalyzerRegistry {
 	 * @param registerDefaultAnalyzers Pass <code>true</code> to automatically register all default analyzers.
 	 */
 	public AnalyzerRegistry(boolean registerDefaultAnalyzers) {
+		this(registerDefaultAnalyzers, JavaRuntime.getDefault());
+	}
+
+	/**
+	 * Create a new registry.
+	 *
+	 * @param registerDefaultAnalyzers Pass <code>true</code> to automatically register all default analyzers.
+	 * @param javaRuntime              Java runtime
+	 */
+	public AnalyzerRegistry(boolean registerDefaultAnalyzers, JavaRuntime javaRuntime) {
 		if (registerDefaultAnalyzers) {
-			registerDefaultAnalyzers();
+			registerDefaultAnalyzers(javaRuntime);
 		}
 	}
 
 	/**
 	 * Register all default analyzers.
 	 */
-	public void registerDefaultAnalyzers() {
+	public void registerDefaultAnalyzers(JavaRuntime javaRuntime) {
 		register(new JarFilesListAnalyzer());
 		register(new ClassVersionAnalyzer());
 		register(new PackagesAnalyzer());
 		register(new SplitPackagesAnalyzer());
 		register(new DuplicateClassesAnalyzer());
-		register(new ShadowedClassesAnalyzer());
+		register(new ShadowedClassesAnalyzer(javaRuntime));
 		register(new JarDependenciesAnalyzer());
 		register(new MissingClassesAnalyzer());
 	}
