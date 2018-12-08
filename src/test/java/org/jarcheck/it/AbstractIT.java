@@ -8,6 +8,7 @@ import org.jarcheck.model.Classpath;
 import org.jarcheck.report.Report;
 import org.jarcheck.report.html.HtmlReportFormat;
 import org.jarcheck.report.text.TextReportFormat;
+import org.jarcheck.test.TextUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,14 +41,26 @@ abstract class AbstractIT {
 		TextReportFormat textFormat = new TextReportFormat();
 		String textReport = textFormat.format(report);
 		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.txt"), textReport.getBytes());
+
+		// normalize
+		textReport = TextUtils.toUnixLineSeparators(textReport);
 		String expectedTextReport = TestUtils.getResourceAsString(baseResourcePath + "report.txt", "UTF-8");
+		expectedTextReport = TextUtils.toUnixLineSeparators(expectedTextReport);
+
+		// assert
 		assertEquals(expectedTextReport, textReport);
 
 		// create HTML report
 		HtmlReportFormat htmlFormat = new HtmlReportFormat();
 		String htmlReport = htmlFormat.format(report);
 		// Files.write(Paths.get("src/test/resources" + baseResourcePath + "report.html"), htmlReport.getBytes());
+
+		// normalize
+		htmlReport = TextUtils.toUnixLineSeparators(htmlReport);
 		String expectedHtmlReport = TestUtils.getResourceAsString(baseResourcePath + "report.html", "UTF-8");
+		expectedHtmlReport = TextUtils.toUnixLineSeparators(expectedHtmlReport);
+
+		// assert
 		assertEquals(expectedHtmlReport, htmlReport);
 
 	}

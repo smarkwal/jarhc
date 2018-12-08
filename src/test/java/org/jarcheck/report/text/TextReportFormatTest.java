@@ -4,6 +4,7 @@ import org.jarcheck.TestUtils;
 import org.jarcheck.report.Report;
 import org.jarcheck.report.ReportSection;
 import org.jarcheck.report.ReportTable;
+import org.jarcheck.test.TextUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -43,8 +44,12 @@ class TextReportFormatTest {
 		TextReportFormat format = new TextReportFormat();
 		String text = format.format(report);
 
-		// assert
+		// normalize
+		text = TextUtils.toUnixLineSeparators(text);
 		String expectedResult = TestUtils.getResourceAsString("/TextReportFormatTest_result.txt", "UTF-8");
+		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
+
+		// assert
 		assertEquals(expectedResult, text);
 
 	}
