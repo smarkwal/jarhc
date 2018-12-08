@@ -1,0 +1,25 @@
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file                      | Size    | Java class files
+------------------------------+---------+-----------------
+commons-beanutils-1.9.2.jar   | 228 KB  | 137
+commons-betwixt-0.8.jar       | 237 KB  | 166
+commons-codec-1.10.jar        | 278 KB  | 92
+commons-collections-3.2.2.jar | 575 KB  | 460
+commons-compress-1.5.jar      | 250 KB  | 135
+commons-configuration-1.9.jar | 350 KB  | 192
+commons-dbcp2-2.5.0.jar       | 193 KB  | 76
+commons-dbutils-1.5.jar       | 60.4 KB | 43
+commons-digester-2.1.jar      | 192 KB  | 155
+commons-email-1.5.jar         | 53.2 KB | 21
+commons-fileupload-1.3.3.jar  | 68.9 KB | 49
+commons-io-2.4.jar            | 181 KB  | 110
+commons-jxpath-1.3.jar        | 293 KB  | 180
+commons-lang-2.6.jar          | 278 KB  | 133
+commons-logging-1.2.jar       | 60.4 KB | 28
+commons-net-3.3.jar           | 274 KB  | 174
+commons-pool2-2.6.0.jar       | 128 KB  | 77
+Classpath                     | 3.61 MB | 2228
+

@@ -1,16 +1,9 @@
 package org.jarcheck.it;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
 class CommonsIT extends AbstractIT {
 
-	@Test
-	void test() throws IOException {
-
-		String baseResourcePath = "/it/commons/";
-		String[] fileNames = new String[]{
+	CommonsIT() {
+		super("/it/commons/", new String[]{
 				"commons-beanutils-1.9.2.jar",
 				"commons-betwixt-0.8.jar",
 				"commons-codec-1.10.jar",
@@ -28,9 +21,7 @@ class CommonsIT extends AbstractIT {
 				"commons-logging-1.2.jar",
 				"commons-net-3.3.jar",
 				"commons-pool2-2.6.0.jar"
-		};
-
-		test(baseResourcePath, fileNames);
+		});
 	}
 
 }

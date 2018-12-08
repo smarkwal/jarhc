@@ -1,16 +1,9 @@
 package org.jarcheck.it;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
 class Spring5IT extends AbstractIT {
 
-	@Test
-	void test() throws IOException {
-
-		String baseResourcePath = "/it/spring5/";
-		String[] fileNames = new String[]{
+	Spring5IT() {
+		super("/it/spring5/", new String[]{
 				"spring-aop-5.1.3.RELEASE.jar",
 				"spring-beans-5.1.3.RELEASE.jar",
 				"spring-context-5.1.3.RELEASE.jar",
@@ -23,9 +16,7 @@ class Spring5IT extends AbstractIT {
 				"spring-orm-5.1.3.RELEASE.jar",
 				"spring-tx-5.1.3.RELEASE.jar",
 				"spring-web-5.1.3.RELEASE.jar"
-		};
-
-		test(baseResourcePath, fileNames);
+		});
 	}
 
 }

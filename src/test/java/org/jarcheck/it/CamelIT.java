@@ -1,16 +1,9 @@
 package org.jarcheck.it;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
 class CamelIT extends AbstractIT {
 
-	@Test
-	void test() throws IOException {
-
-		String baseResourcePath = "/it/camel/";
-		String[] fileNames = new String[]{
+	CamelIT() {
+		super("/it/camel/", new String[]{
 				"camel-core-2.17.7.jar",
 				"camel-jdbc-2.17.7.jar",
 				"camel-jms-2.17.7.jar",
@@ -20,9 +13,7 @@ class CamelIT extends AbstractIT {
 				"camel-mail-2.17.7.jar",
 				"camel-soap-2.17.7.jar",
 				"camel-spring-2.17.7.jar"
-		};
-
-		test(baseResourcePath, fileNames);
+		});
 	}
 
 }
