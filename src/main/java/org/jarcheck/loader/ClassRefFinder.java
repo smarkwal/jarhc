@@ -32,8 +32,12 @@ class ClassRefFinder {
 	private void collectClassRefs(ClassNode classNode) {
 
 		// scan superclass and interfaces
-		classRefs.add(classNode.superName);
-		classRefs.addAll(classNode.interfaces);
+		if (classNode.superName != null) {
+			classRefs.add(classNode.superName);
+		}
+		if (classNode.interfaces != null) {
+			classRefs.addAll(classNode.interfaces);
+		}
 
 		// scan fields
 		for (FieldNode fieldNode : classNode.fields) {
