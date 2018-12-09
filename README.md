@@ -1,2 +1,2 @@
-# JarCheck
+# JarHC - JAR Health Check
 
