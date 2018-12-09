@@ -22,11 +22,12 @@ import org.objectweb.asm.tree.ClassNode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class definition representing a single Java class file.
  */
-public class ClassDef implements Comparable<ClassDef> {
+public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 	/**
 	 * ASM class definition.
@@ -71,19 +72,28 @@ public class ClassDef implements Comparable<ClassDef> {
 	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
 	private ClassDef(ClassNode classNode, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
+		super(classNode.access);
 		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
 		this.classNode = classNode;
 		this.fieldDefs = new ArrayList<>(fieldDefs);
 		this.methodDefs = new ArrayList<>(methodDefs);
 		this.classRefs = new ArrayList<>(classRefs);
-		this.fieldDefs = new ArrayList<>(fieldDefs);
-		this.methodDefs = new ArrayList<>(methodDefs);
+		this.fieldRefs = new ArrayList<>(fieldRefs);
+		this.methodRefs = new ArrayList<>(methodRefs);
 		// TODO: remove unused information from class node?
 	}
 
 	public String getClassName() {
 		return classNode.name;
+	}
+
+	public String getSuperName() {
+		return classNode.superName;
+	}
+
+	public List<String> getInterfaceNames() {
+		return Collections.unmodifiableList(classNode.interfaces);
 	}
 
 	public int getMajorClassVersion() {
@@ -106,6 +116,11 @@ public class ClassDef implements Comparable<ClassDef> {
 
 	public List<FieldDef> getFieldDefs() {
 		return Collections.unmodifiableList(fieldDefs);
+	}
+
+	public Optional<FieldDef> getFieldDef(String fieldName) {
+		// TODO: what if there is more than one field with the same name?
+		return fieldDefs.stream().filter(f -> f.getFieldName().equals(fieldName)).findFirst();
 	}
 
 	public List<MethodDef> getMethodDefs() {
@@ -221,7 +236,8 @@ public class ClassDef implements Comparable<ClassDef> {
 		}
 
 		public ClassDef build() {
-			return new ClassDef(classNode, classRefs);
+			// TODO: support defs and refs
+			return new ClassDef(classNode, Collections.emptyList(), Collections.emptyList(), classRefs, Collections.emptyList(), Collections.emptyList());
 		}
 
 	}

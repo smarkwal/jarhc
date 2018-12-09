@@ -68,6 +68,7 @@ public class AnalyzerRegistry {
 		register(new ShadowedClassesAnalyzer(javaRuntime));
 		register(new JarDependenciesAnalyzer());
 		register(new MissingClassesAnalyzer());
+		register(new FieldRefAnalyzer());
 	}
 
 	/**
