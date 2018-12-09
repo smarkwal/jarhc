@@ -26,7 +26,7 @@ class ShadowedClassesAnalyzerTest {
 				.build();
 
 		// test
-		JavaRuntime javaRuntime = new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.txt");
+		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
 		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(javaRuntime);
 		ReportSection section = analyzer.analyze(classpath);
 

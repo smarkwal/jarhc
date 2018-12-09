@@ -50,7 +50,7 @@ abstract class AbstractIT {
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();
-		JavaRuntime javaRuntime = new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.txt");
+		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
 		AnalyzerRegistry registry = new AnalyzerRegistry(true, javaRuntime);
 		for (String analyzerName : registry.getAnalyzerNames()) {
 			Analyzer analyzer = registry.getAnalyzer(analyzerName);

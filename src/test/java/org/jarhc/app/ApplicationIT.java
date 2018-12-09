@@ -1,8 +1,12 @@
 package org.jarhc.app;
 
 import org.jarhc.TestUtils;
+import org.jarhc.env.JavaRuntime;
+import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -11,6 +15,27 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationIT {
+
+	private static JavaRuntime defaultRuntime;
+
+	@BeforeAll
+	static void beforeAll() {
+
+		// remember default Java runtime
+		defaultRuntime = JavaRuntime.getDefault();
+
+		// install a Java runtime mock
+		JavaRuntime.setDefault(JavaRuntimeMock.createOracleRuntime());
+
+	}
+
+	@AfterAll
+	static void afterAll() {
+
+		// restore original Java runtime
+		JavaRuntime.setDefault(defaultRuntime);
+
+	}
 
 	@Test
 	void test() throws IOException {

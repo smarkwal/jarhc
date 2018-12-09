@@ -1,26 +1,58 @@
 package org.jarhc.env;
 
-public interface JavaRuntime {
+import java.util.Properties;
 
-	JavaRuntime DEFAULT = new JavaRuntimeImpl();
+public class JavaRuntime {
 
-	static JavaRuntime getDefault() {
-		return DEFAULT;
+	private static JavaRuntime defaultRuntime = new JavaRuntime();
+
+	public static JavaRuntime getDefault() {
+		return defaultRuntime;
 	}
 
-	String getName();
+	public static void setDefault(JavaRuntime javaRuntime) {
+		defaultRuntime = javaRuntime;
+	}
 
-	String getJavaVersion();
+	// ---------------------------------------------------------------------------
 
-	String getJavaVendor();
+	private static final ClassLoader CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
 
-	String getJavaHome();
+	private final Properties systemProperties;
 
-	String getClassLoaderName(String className);
+	protected JavaRuntime() {
+		systemProperties = System.getProperties();
+	}
 
-	default boolean classExists(String className) {
-		String classLoader = getClassLoaderName(className);
-		return classLoader != null;
+	public String getName() {
+		return systemProperties.getProperty("java.runtime.name");
+	}
+
+	public String getJavaVersion() {
+		return systemProperties.getProperty("java.version");
+	}
+
+	public String getJavaVendor() {
+		return systemProperties.getProperty("java.vendor");
+	}
+
+	public String getJavaHome() {
+		return systemProperties.getProperty("java.home");
+	}
+
+	public String getClassLoaderName(String className) {
+		try {
+			Class<?> javaClass = Class.forName(className, false, CLASSLOADER);
+			ClassLoader classLoader = javaClass.getClassLoader();
+			if (classLoader == null) return "Bootstrap";
+			return classLoader.toString();
+		} catch (ClassNotFoundException e) {
+			return null;
+		} catch (Throwable t) {
+			// TODO: ignore ?
+			t.printStackTrace(System.err);
+			return null;
+		}
 	}
 
 }
