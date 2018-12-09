@@ -1,6 +1,6 @@
 package org.jarhc.model;
 
-import jdk.internal.org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Opcodes;
 
 abstract class AccessFlags {
 
