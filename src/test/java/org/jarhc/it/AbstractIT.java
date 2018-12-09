@@ -15,15 +15,20 @@ import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junitpioneer.jupiter.TempDirectory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
+@ExtendWith(TempDirectory.class)
 abstract class AbstractIT {
 
 	private final String baseResourcePath;
@@ -35,13 +40,13 @@ abstract class AbstractIT {
 	}
 
 	@TestFactory
-	Collection<DynamicTest> testAnalyzers() throws IOException {
+	Collection<DynamicTest> testAnalyzers(@TempDir Path tempDir) throws IOException {
 
 		// prepare list of files
 		List<File> files = new ArrayList<>();
 		for (String fileName : fileNames) {
 			String resourcePath = baseResourcePath + fileName;
-			File file = TestUtils.getResourceAsFile(resourcePath, "IntegrationTest-");
+			File file = TestUtils.getResourceAsFile(resourcePath, tempDir);
 			files.add(file);
 		}
 

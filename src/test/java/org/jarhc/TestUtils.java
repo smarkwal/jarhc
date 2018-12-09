@@ -2,6 +2,7 @@ package org.jarhc;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +45,12 @@ public class TestUtils {
 		return lines;
 	}
 
-	public static File getResourceAsFile(String resource, String prefix) throws IOException {
+	public static File getResourceAsFile(String resource, Path directory) throws IOException {
 		if (resource == null) throw new IllegalArgumentException("resource");
+		if (directory == null) throw new IllegalArgumentException("directory");
 		InputStream stream = getResourceAsStream(resource);
-		File directory = createTempDirectory(prefix);
 		String fileName = getFileName(resource);
-		File file = new File(directory, fileName);
+		File file = new File(directory.toFile(), fileName);
 		Files.copy(stream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		return file;
 	}

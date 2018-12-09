@@ -3,14 +3,19 @@ package org.jarhc.loader;
 import org.jarhc.TestUtils;
 import org.jarhc.model.ClassDef;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junitpioneer.jupiter.TempDirectory;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
+@ExtendWith(TempDirectory.class)
 class ClassDefLoaderTest {
 
 	private final ClassDefLoader classDefLoader = new ClassDefLoader();
@@ -52,10 +57,10 @@ class ClassDefLoaderTest {
 	}
 
 	@Test
-	void test_load_file() throws IOException {
+	void test_load_file(@TempDir Path tempDir) throws IOException {
 
 		String resource = "/test/java8/Main.class";
-		File file = TestUtils.getResourceAsFile(resource, "ClassDefLoaderTest-");
+		File file = TestUtils.getResourceAsFile(resource, tempDir);
 		ClassDef classDef = classDefLoader.load(file);
 
 		assertNotNull(classDef);

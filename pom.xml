@@ -37,6 +37,13 @@
 			<version>5.2.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<!-- TODO: remove this after migration to JUnit 5.4+ -->
+			<groupId>org.junit-pioneer</groupId>
+			<artifactId>junit-pioneer</artifactId>
+			<version>0.3.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
