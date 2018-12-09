@@ -4,7 +4,7 @@ import org.objectweb.asm.Type;
 
 import java.util.Objects;
 
-public class FieldRef {
+public class FieldRef implements Comparable<FieldRef> {
 
 	private final String fieldOwner;
 	private final String fieldDescriptor;
@@ -63,6 +63,17 @@ public class FieldRef {
 	@Override
 	public int hashCode() {
 		return Objects.hash(fieldOwner, fieldDescriptor, fieldName, staticAccess);
+	}
+
+	@Override
+	public int compareTo(FieldRef fieldRef) {
+		int diff = fieldOwner.compareTo(fieldRef.fieldOwner);
+		if (diff != 0) return diff;
+		diff = fieldName.compareTo(fieldRef.fieldName);
+		if (diff != 0) return diff;
+		diff = fieldDescriptor.compareTo(fieldRef.fieldDescriptor);
+		if (diff != 0) return diff;
+		return Boolean.compare(staticAccess, fieldRef.staticAccess);
 	}
 
 }

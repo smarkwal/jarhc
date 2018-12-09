@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class MethodRef {
+public class MethodRef implements Comparable<MethodRef> {
 
 	private final String methodOwner;
 	private final String methodDescriptor;
@@ -74,6 +74,19 @@ public class MethodRef {
 	@Override
 	public int hashCode() {
 		return Objects.hash(methodOwner, methodDescriptor, methodName, interfaceMethod, staticAccess);
+	}
+
+	@Override
+	public int compareTo(MethodRef methodRef) {
+		int diff = methodOwner.compareTo(methodRef.methodOwner);
+		if (diff != 0) return diff;
+		diff = methodName.compareTo(methodRef.methodName);
+		if (diff != 0) return diff;
+		diff = methodDescriptor.compareTo(methodRef.methodDescriptor);
+		if (diff != 0) return diff;
+		diff = Boolean.compare(interfaceMethod, methodRef.interfaceMethod);
+		if (diff != 0) return diff;
+		return Boolean.compare(staticAccess, methodRef.staticAccess);
 	}
 
 }

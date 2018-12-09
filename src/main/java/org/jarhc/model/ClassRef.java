@@ -16,13 +16,9 @@
 
 package org.jarhc.model;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
-public class ClassRef {
-
-	public static final List<ClassRef> NONE = Collections.emptyList();
+public class ClassRef implements Comparable<ClassRef> {
 
 	private final String className;
 
@@ -50,6 +46,11 @@ public class ClassRef {
 	@Override
 	public int hashCode() {
 		return Objects.hash(className);
+	}
+
+	@Override
+	public int compareTo(ClassRef classRef) {
+		return className.compareTo(classRef.className);
 	}
 
 }

@@ -24,12 +24,13 @@ import org.objectweb.asm.tree.ClassNode;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ClassRefFinderTest {
+class ClassScannerTest {
 
 	@Test
 	void test_findClassRefs() throws IOException {
@@ -42,7 +43,9 @@ class ClassRefFinderTest {
 		}
 
 		// test
-		List<ClassRef> classRefs = ClassRefFinder.findClassRefs(classNode);
+		ClassScanner scanner = new ClassScanner();
+		scanner.scan(classNode);
+		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
 
 		// assert
 		String[] classNames = new String[]{

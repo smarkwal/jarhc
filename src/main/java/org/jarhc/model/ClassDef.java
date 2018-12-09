@@ -34,9 +34,29 @@ public class ClassDef implements Comparable<ClassDef> {
 	private final ClassNode classNode;
 
 	/**
+	 * List of field definitions.
+	 */
+	private final List<FieldDef> fieldDefs;
+
+	/**
+	 * List of method definitions.
+	 */
+	private final List<MethodDef> methodDefs;
+
+	/**
 	 * List with references to other classes.
 	 */
 	private final List<ClassRef> classRefs;
+
+	/**
+	 * List with references to fields.
+	 */
+	private final List<FieldRef> fieldRefs;
+
+	/**
+	 * List with references to methods.
+	 */
+	private final List<MethodRef> methodRefs;
 
 	/**
 	 * Reference to parent JAR file.
@@ -50,12 +70,15 @@ public class ClassDef implements Comparable<ClassDef> {
 	 * @param classRefs References to other classes
 	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
-	private ClassDef(ClassNode classNode, List<ClassRef> classRefs) {
+	private ClassDef(ClassNode classNode, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
 		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
 		this.classNode = classNode;
+		this.fieldDefs = new ArrayList<>(fieldDefs);
+		this.methodDefs = new ArrayList<>(methodDefs);
 		this.classRefs = new ArrayList<>(classRefs);
-
+		this.fieldDefs = new ArrayList<>(fieldDefs);
+		this.methodDefs = new ArrayList<>(methodDefs);
 		// TODO: remove unused information from class node?
 	}
 
@@ -81,8 +104,24 @@ public class ClassDef implements Comparable<ClassDef> {
 		return JavaVersion.fromClassVersion(getMajorClassVersion());
 	}
 
+	public List<FieldDef> getFieldDefs() {
+		return Collections.unmodifiableList(fieldDefs);
+	}
+
+	public List<MethodDef> getMethodDefs() {
+		return Collections.unmodifiableList(methodDefs);
+	}
+
 	public List<ClassRef> getClassRefs() {
 		return Collections.unmodifiableList(classRefs);
+	}
+
+	public List<FieldRef> getFieldRefs() {
+		return Collections.unmodifiableList(fieldRefs);
+	}
+
+	public List<MethodRef> getMethodRefs() {
+		return Collections.unmodifiableList(methodRefs);
 	}
 
 	public JarFile getJarFile() {
@@ -94,8 +133,44 @@ public class ClassDef implements Comparable<ClassDef> {
 	}
 
 	@Override
+	public String getModifiers() {
+		List<String> parts = new ArrayList<>();
+
+		// access flags
+		if (isPublic()) parts.add("public");
+		if (isProtected()) parts.add("protected");
+		if (isPrivate()) parts.add("private");
+
+		// modifiers
+		if (isStatic()) parts.add("static");
+		if (isFinal()) parts.add("final");
+		if (isVolatile()) parts.add("volatile");
+		if (isTransient()) parts.add("transient");
+		if (isAbstract()) parts.add("abstract");
+
+		// special flags
+		if (isSynthetic()) parts.add("(synthetic)");
+		if (isSuper()) parts.add("(super)");
+		if (isDeprecated()) parts.add("@Deprecated");
+
+		// type
+		if (isInterface()) parts.add("interface");
+		if (isAnnotation()) parts.add("@interface");
+		if (isEnum()) parts.add("enum");
+		if (!isInterface() && !isEnum() && !isAnnotation()) parts.add("class");
+
+		return String.join(" ", parts);
+	}
+
+	public String getDisplayName() {
+		String className = classNode.name.replace('/', '.');
+		String modifiers = getModifiers();
+		return String.format("%s %s", modifiers, className);
+	}
+
+	@Override
 	public String toString() {
-		return String.format("ClassDef[%s,%d.%d]", getClassName(), getMajorClassVersion(), getMinorClassVersion());
+		return String.format("ClassDef[%s,%d.%d]", getDisplayName(), getMajorClassVersion(), getMinorClassVersion());
 	}
 
 	@Override

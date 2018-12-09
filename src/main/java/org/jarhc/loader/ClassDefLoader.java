@@ -16,11 +16,11 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.model.ClassDef;
-import org.jarhc.model.ClassRef;
+import org.jarhc.model.*;
 import org.objectweb.asm.tree.ClassNode;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,8 +65,18 @@ class ClassDefLoader {
 
 		ClassNode classNode = classFileParser.parse(stream);
 
-		// find all references to other classes
-		List<ClassRef> classRefs = ClassRefFinder.findClassRefs(classNode);
+		// find all fields, methods and references to other classes
+		ClassScanner scanner = new ClassScanner();
+		scanner.scan(classNode);
+
+		int access = classNode.access;
+		List<FieldDef> fieldDefs = scanner.getFieldDefs();
+		List<MethodDef> methodDefs = scanner.getMethodDefs();
+		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
+		List<FieldRef> fieldRefs = new ArrayList<>(scanner.getFieldRefs());
+		List<MethodRef> methodRefs = new ArrayList<>(scanner.getMethodRefs());
+
+		// TODO: pass defs and refs
 
 		// create class definition
 		return ClassDef.forClassNode(classNode).withClassRefs(classRefs).build();

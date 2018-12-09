@@ -32,7 +32,7 @@ class ClassDefTest {
 		String result = classDef.toString();
 
 		// assert
-		assertEquals("ClassDef[a/b/C,52.0]", result);
+		assertEquals("ClassDef[class a.b.C,52.0]", result);
 
 	}
 

@@ -16,104 +16,124 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.model.ClassRef;
-import org.jarhc.model.FieldRef;
-import org.jarhc.model.MethodRef;
+import org.jarhc.model.*;
 import org.jarhc.utils.JavaUtils;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
-class ClassRefFinder {
+class ClassScanner {
 
-	static List<ClassRef> findClassRefs(ClassNode classNode) {
-		ClassRefFinder finder = new ClassRefFinder();
-		finder.collectClassRefs(classNode);
-		Set<String> classRefs = finder.getClassRefs();
-		return classRefs.stream().map(ClassRef::new).collect(Collectors.toList());
+	private final List<FieldDef> fieldDefs = new ArrayList<>();
+	private final List<MethodDef> methodDefs = new ArrayList<>();
+
+	private final Set<ClassRef> classRefs = new TreeSet<>();
+	private final Set<FieldRef> fieldRefs = new TreeSet<>();
+	private final Set<MethodRef> methodRefs = new TreeSet<>();
+
+	ClassScanner() {
 	}
 
-	private final Set<String> classRefs = new TreeSet<>();
-
-	private ClassRefFinder() {
+	List<FieldDef> getFieldDefs() {
+		return fieldDefs;
 	}
 
-	private Set<String> getClassRefs() {
+	List<MethodDef> getMethodDefs() {
+		return methodDefs;
+	}
+
+	Set<ClassRef> getClassRefs() {
 		return classRefs;
 	}
 
-	private void collectClassRefs(ClassNode classNode) {
+	Set<FieldRef> getFieldRefs() {
+		return fieldRefs;
+	}
+
+	Set<MethodRef> getMethodRefs() {
+		return methodRefs;
+	}
+
+	void scan(ClassNode classNode) {
 
 		// scan superclass and interfaces
 		if (classNode.superName != null) {
-			classRefs.add(classNode.superName);
+			classRefs.add(new ClassRef(classNode.superName));
 		}
 		if (classNode.interfaces != null) {
-			classRefs.addAll(classNode.interfaces);
+			classNode.interfaces.forEach(i -> classRefs.add(new ClassRef(i)));
 		}
 
 		// scan fields
 		for (FieldNode fieldNode : classNode.fields) {
-			collectClassRefs(fieldNode);
+			scan(fieldNode);
 		}
 
 		// scan methods
 		for (MethodNode methodNode : classNode.methods) {
-			collectClassRefs(methodNode);
+			scan(methodNode);
 		}
 
 		// scan inner methods
 		for (InnerClassNode innerClassNode : classNode.innerClasses) {
-			classRefs.add(innerClassNode.name);
+			classRefs.add(new ClassRef(innerClassNode.name));
 		}
 
 		// scan annotations
-		collectClassRefs(classNode.visibleAnnotations, a -> a.desc);
-		collectClassRefs(classNode.invisibleAnnotations, a -> a.desc);
-		collectClassRefs(classNode.visibleTypeAnnotations, a -> a.desc);
-		collectClassRefs(classNode.invisibleTypeAnnotations, a -> a.desc);
+		scan(classNode.visibleAnnotations, a -> a.desc);
+		scan(classNode.invisibleAnnotations, a -> a.desc);
+		scan(classNode.visibleTypeAnnotations, a -> a.desc);
+		scan(classNode.invisibleTypeAnnotations, a -> a.desc);
 
 	}
 
-	private void collectClassRefs(FieldNode fieldNode) {
+	private void scan(FieldNode fieldNode) {
+
+		// create field definition
+		FieldDef fieldDef = new FieldDef(fieldNode.access, fieldNode.name, fieldNode.desc);
+		fieldDefs.add(fieldDef);
 
 		// scan field type
 		Type fieldType = Type.getType(fieldNode.desc);
-		collectClassRefs(fieldType);
+		scan(fieldType);
 
 		// TODO: scan field initializer?
 		// TODO: scan generic type?
 
 		// scan annotations
-		collectClassRefs(fieldNode.visibleAnnotations, a -> a.desc);
-		collectClassRefs(fieldNode.invisibleAnnotations, a -> a.desc);
-		collectClassRefs(fieldNode.visibleTypeAnnotations, a -> a.desc);
-		collectClassRefs(fieldNode.invisibleTypeAnnotations, a -> a.desc);
+		scan(fieldNode.visibleAnnotations, a -> a.desc);
+		scan(fieldNode.invisibleAnnotations, a -> a.desc);
+		scan(fieldNode.visibleTypeAnnotations, a -> a.desc);
+		scan(fieldNode.invisibleTypeAnnotations, a -> a.desc);
 
 	}
 
-	private void collectClassRefs(MethodNode methodNode) {
+	private void scan(MethodNode methodNode) {
+
+		// create method definition
+		MethodDef methodDef = new MethodDef(methodNode.access, methodNode.name, methodNode.desc);
+		methodDefs.add(methodDef);
 
 		Type methodType = Type.getType(methodNode.desc);
 
 		// scan return type
 		Type returnType = methodType.getReturnType();
-		collectClassRefs(returnType);
+		scan(returnType);
 
 		// scan parameter types
 		Type[] argumentTypes = methodType.getArgumentTypes();
 		for (Type argumentType : argumentTypes) {
-			collectClassRefs(argumentType);
+			scan(argumentType);
 		}
 
 		// scan exceptions ("throws" declarations)
-		classRefs.addAll(methodNode.exceptions);
+		methodNode.exceptions.forEach(e -> classRefs.add(new ClassRef(e)));
 
 		// scan local variables
 		List<LocalVariableNode> localVariables = methodNode.localVariables;
@@ -123,43 +143,43 @@ class ClassRefFinder {
 				if (variableName.equals("this")) continue;
 
 				Type variableType = Type.getType(localVariable.desc);
-				collectClassRefs(variableType);
+				scan(variableType);
 			}
 		}
 
 		// scan instructions
 		InsnList instructions = methodNode.instructions;
-		collectClassRefs(instructions);
+		scan(instructions);
 
 		// scan exception handlers
 		List<TryCatchBlockNode> tryCatchBlocks = methodNode.tryCatchBlocks;
 		for (TryCatchBlockNode tryCatchBlock : tryCatchBlocks) {
 			String exceptionType = tryCatchBlock.type;
 			if (exceptionType == null) continue; // finally block
-			classRefs.add(exceptionType);
+			classRefs.add(new ClassRef(exceptionType));
 		}
 
 		// scan annotations
-		collectClassRefs(methodNode.visibleAnnotations, a -> a.desc);
-		collectClassRefs(methodNode.invisibleAnnotations, a -> a.desc);
-		collectClassRefs(methodNode.visibleTypeAnnotations, a -> a.desc);
-		collectClassRefs(methodNode.invisibleTypeAnnotations, a -> a.desc);
+		scan(methodNode.visibleAnnotations, a -> a.desc);
+		scan(methodNode.invisibleAnnotations, a -> a.desc);
+		scan(methodNode.visibleTypeAnnotations, a -> a.desc);
+		scan(methodNode.invisibleTypeAnnotations, a -> a.desc);
 		if (methodNode.visibleParameterAnnotations != null) {
 			for (List<AnnotationNode> parameterAnnotations : methodNode.visibleParameterAnnotations) {
-				collectClassRefs(parameterAnnotations, a -> a.desc);
+				scan(parameterAnnotations, a -> a.desc);
 			}
 		}
 		if (methodNode.invisibleParameterAnnotations != null) {
 			for (List<AnnotationNode> parameterAnnotations : methodNode.invisibleParameterAnnotations) {
-				collectClassRefs(parameterAnnotations, a -> a.desc);
+				scan(parameterAnnotations, a -> a.desc);
 			}
 		}
-		collectClassRefs(methodNode.visibleLocalVariableAnnotations, a -> a.desc);
-		collectClassRefs(methodNode.invisibleLocalVariableAnnotations, a -> a.desc);
+		scan(methodNode.visibleLocalVariableAnnotations, a -> a.desc);
+		scan(methodNode.invisibleLocalVariableAnnotations, a -> a.desc);
 
 	}
 
-	private void collectClassRefs(InsnList instructions) {
+	private void scan(InsnList instructions) {
 
 		// for every instruction ...
 		for (int i = 0; i < instructions.size(); i++) {
@@ -167,10 +187,10 @@ class ClassRefFinder {
 			AbstractInsnNode node = instructions.get(i);
 			if (node instanceof MethodInsnNode) {
 				MethodInsnNode methodInsnNode = (MethodInsnNode) node;
-				collectClassRefs(methodInsnNode);
+				scan(methodInsnNode);
 			} else if (node instanceof FieldInsnNode) {
 				FieldInsnNode fieldInsnNode = (FieldInsnNode) node;
-				collectClassRefs(fieldInsnNode);
+				scan(fieldInsnNode);
 			}
 			// TODO: scan more instructions?
 
@@ -178,26 +198,26 @@ class ClassRefFinder {
 
 	}
 
-	private void collectClassRefs(MethodInsnNode methodInsnNode) {
+	private void scan(MethodInsnNode methodInsnNode) {
 
 		String owner = methodInsnNode.owner;
 		if (owner.startsWith("[")) {
 			Type ownerType = Type.getType(owner);
-			collectClassRefs(ownerType);
+			scan(ownerType);
 		} else {
-			classRefs.add(owner);
+			classRefs.add(new ClassRef(owner));
 		}
 
 		Type methodType = Type.getType(methodInsnNode.desc);
 
 		// scan return type
 		Type returnType = methodType.getReturnType();
-		collectClassRefs(returnType);
+		scan(returnType);
 
 		// scan parameter types
 		Type[] argumentTypes = methodType.getArgumentTypes();
 		for (Type argumentType : argumentTypes) {
-			collectClassRefs(argumentType);
+			scan(argumentType);
 		}
 
 		// create reference to method
@@ -205,43 +225,43 @@ class ClassRefFinder {
 		boolean staticMethod = opcode == Opcodes.INVOKESTATIC;
 		boolean interfaceMethod = opcode == Opcodes.INVOKEINTERFACE || methodInsnNode.itf; // TODO: what has priority?
 		MethodRef methodRef = new MethodRef(methodInsnNode.owner, methodInsnNode.desc, methodInsnNode.name, interfaceMethod, staticMethod);
-		System.out.println(methodRef);
+		methodRefs.add(methodRef);
 
 	}
 
-	private void collectClassRefs(FieldInsnNode fieldInsnNode) {
+	private void scan(FieldInsnNode fieldInsnNode) {
 
 		String owner = fieldInsnNode.owner;
 		if (owner.startsWith("[")) {
 			Type ownerType = Type.getType(owner);
-			collectClassRefs(ownerType);
+			scan(ownerType);
 		} else {
-			classRefs.add(owner);
+			classRefs.add(new ClassRef(owner));
 		}
 
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
-		collectClassRefs(fieldType);
+		scan(fieldType);
 
 		// create reference to field
 		int opcode = fieldInsnNode.getOpcode();
 		boolean staticField = opcode == Opcodes.GETSTATIC || opcode == Opcodes.PUTSTATIC;
 		FieldRef fieldRef = new FieldRef(fieldInsnNode.owner, fieldInsnNode.desc, fieldInsnNode.name, staticField);
-		System.out.println(fieldRef);
+		fieldRefs.add(fieldRef);
 
 	}
 
-	private <T> void collectClassRefs(List<T> annotationNodes, Function<T, String> function) {
+	private <T> void scan(List<T> annotationNodes, Function<T, String> function) {
 		if (annotationNodes == null) return;
 		for (T annotationNode : annotationNodes) {
 			String desc = function.apply(annotationNode);
 			Type type = Type.getType(desc);
-			collectClassRefs(type);
+			scan(type);
 			// TODO: scan annotation values?
 		}
 	}
 
-	private void collectClassRefs(Type type) {
+	private void scan(Type type) {
 		String className = type.getClassName();
 
 		// get array element type
@@ -259,7 +279,7 @@ class ClassRefFinder {
 		// convert to internal class name
 		className = className.replace('.', '/');
 
-		classRefs.add(className);
+		classRefs.add(new ClassRef(className));
 	}
 
 }
