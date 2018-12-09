@@ -17,7 +17,10 @@
 package org.jarhc.loader;
 
 import org.jarhc.model.ClassRef;
+import org.jarhc.model.FieldRef;
+import org.jarhc.model.MethodRef;
 import org.jarhc.utils.JavaUtils;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
@@ -196,6 +199,14 @@ class ClassRefFinder {
 		for (Type argumentType : argumentTypes) {
 			collectClassRefs(argumentType);
 		}
+
+		// create reference to method
+		int opcode = methodInsnNode.getOpcode();
+		boolean staticMethod = opcode == Opcodes.INVOKESTATIC;
+		boolean interfaceMethod = opcode == Opcodes.INVOKEINTERFACE || methodInsnNode.itf; // TODO: what has priority?
+		MethodRef methodRef = new MethodRef(methodInsnNode.owner, methodInsnNode.desc, methodInsnNode.name, interfaceMethod, staticMethod);
+		System.out.println(methodRef);
+
 	}
 
 	private void collectClassRefs(FieldInsnNode fieldInsnNode) {
@@ -211,6 +222,13 @@ class ClassRefFinder {
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
 		collectClassRefs(fieldType);
+
+		// create reference to field
+		int opcode = fieldInsnNode.getOpcode();
+		boolean staticField = opcode == Opcodes.GETSTATIC || opcode == Opcodes.PUTSTATIC;
+		FieldRef fieldRef = new FieldRef(fieldInsnNode.owner, fieldInsnNode.desc, fieldInsnNode.name, staticField);
+		System.out.println(fieldRef);
+
 	}
 
 	private <T> void collectClassRefs(List<T> annotationNodes, Function<T, String> function) {
