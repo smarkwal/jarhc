@@ -134,6 +134,12 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>default-prepare-agent-integration</id>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -169,6 +175,7 @@
 					<reportSet>
 						<reports>
 							<report>report</report>
+							<report>report-integration</report>
 						</reports>
 					</reportSet>
 				</reportSets>
