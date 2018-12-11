@@ -8,6 +8,12 @@
 
 	<name>JarHC - JAR Health Check</name>
 	<url>https://bitbucket.org/smarkwal/jarhc</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
 	<developers>
 		<developer>
 			<name>Stephan Markwalder</name>
@@ -97,6 +103,27 @@
 						<goals>
 							<goal>report</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.16</version>
+				<executions>
+					<execution>
+						<id>download-licenses</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>download-licenses</goal>
+						</goals>
+						<configuration>
+							<includedScopes>compile</includedScopes>
+							<includeTransitiveDependencies>false</includeTransitiveDependencies>
+							<licensesOutputDirectory>${project.build.directory}/classes/licenses</licensesOutputDirectory>
+							<licensesOutputFile>${project.build.directory}/classes/licenses/licenses.xml</licensesOutputFile>
+							<sortByGroupIdAndArtifactId>true</sortByGroupIdAndArtifactId>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
