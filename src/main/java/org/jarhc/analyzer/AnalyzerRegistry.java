@@ -56,6 +56,8 @@ public class AnalyzerRegistry {
 
 	/**
 	 * Register all default analyzers.
+	 *
+	 * @param javaRuntime Java runtime used for Shadowed Classes analyzer.
 	 */
 	public void registerDefaultAnalyzers(JavaRuntime javaRuntime) {
 		register(new JarFilesListAnalyzer());

@@ -58,7 +58,9 @@ public class ClassDef implements Comparable<ClassDef> {
 	 * Create a class definition for the given class name and class version.
 	 *
 	 * @param className         Class name
-	 * @param majorClassVersion Class version
+	 * @param majorClassVersion Major class version
+	 * @param minorClassVersion Minor class version
+	 * @param classRefs         References to other classes
 	 * @throws IllegalArgumentException If <code>className</code> is <code>null</code>
 	 *                                  or <code>majorClassVersion</code> is less than {@link JavaVersion#MIN_CLASS_VERSION 45}
 	 *                                  or <code>minorClassVersion</code> is less than 0

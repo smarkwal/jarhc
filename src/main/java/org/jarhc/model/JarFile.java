@@ -47,6 +47,7 @@ public class JarFile {
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
 	 * @param fileName  JAR file name
+	 * @param fileSize  JAR file size in bytes
 	 * @param classDefs Class definitions
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
