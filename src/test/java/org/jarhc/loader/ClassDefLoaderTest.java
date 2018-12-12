@@ -37,6 +37,42 @@ class ClassDefLoaderTest {
 	private final ClassDefLoader classDefLoader = new ClassDefLoader();
 
 	@Test
+	void test_load_java11() throws IOException {
+
+		String resource = "/test/java11/Main.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("Main", classDef.getClassName());
+		assertEquals(55, classDef.getMajorClassVersion());
+		assertEquals("Java 11", classDef.getJavaVersion());
+	}
+
+	@Test
+	void test_load_java10() throws IOException {
+
+		String resource = "/test/java10/Main.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("Main", classDef.getClassName());
+		assertEquals(54, classDef.getMajorClassVersion());
+		assertEquals("Java 10", classDef.getJavaVersion());
+	}
+
+	@Test
+	void test_load_java9() throws IOException {
+
+		String resource = "/test/java9/Main.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("Main", classDef.getClassName());
+		assertEquals(53, classDef.getMajorClassVersion());
+		assertEquals("Java 9", classDef.getJavaVersion());
+	}
+
+	@Test
 	void test_load_java8() throws IOException {
 
 		String resource = "/test/java8/Main.class";
