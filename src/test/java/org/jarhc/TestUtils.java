@@ -80,18 +80,4 @@ public class TestUtils {
 		}
 	}
 
-	private static File createTempDirectory(String prefix) throws IOException {
-
-		// create a file with a unique name
-		File file = File.createTempFile(prefix, ".dir");
-
-		// delete the file and create a directory with the same name
-		boolean deleted = file.delete();
-		if (!deleted) throw new IOException("Unable to delete file: " + file.getAbsolutePath());
-		boolean created = file.mkdirs();
-		if (!created) throw new IOException("Unable to create directory: " + file.getAbsolutePath());
-
-		return file;
-	}
-
 }
