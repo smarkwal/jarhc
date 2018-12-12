@@ -36,7 +36,7 @@ class ClassRefFinderTest {
 
 		// prepare
 		ClassNode classNode = new ClassNode();
-		try (InputStream stream = TestUtils.getResourceAsStream("/test3/Main.class")) {
+		try (InputStream stream = TestUtils.getResourceAsStream("/ClassRefFinderTest/Main.class")) {
 			ClassReader classReader = new ClassReader(stream);
 			classReader.accept(classNode, 0);
 		}

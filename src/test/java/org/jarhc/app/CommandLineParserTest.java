@@ -56,7 +56,7 @@ class CommandLineParserTest {
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser parser = new CommandLineParser(err);
-		File file = TestUtils.getResourceAsFile("/test/Main.java", tempDir);
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{file.getAbsolutePath()});
@@ -92,7 +92,7 @@ class CommandLineParserTest {
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser parser = new CommandLineParser(err);
-		File file = TestUtils.getResourceAsFile("/test/Main.java", tempDir);
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
 		File directory = file.getParentFile();
 
 		// test
@@ -111,7 +111,7 @@ class CommandLineParserTest {
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser parser = new CommandLineParser(err);
-		File file = TestUtils.getResourceAsFile("/test2/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{file.getAbsolutePath()});
@@ -133,7 +133,7 @@ class CommandLineParserTest {
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser parser = new CommandLineParser(err);
-		File file = TestUtils.getResourceAsFile("/test2/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 		File directory = file.getParentFile();
 
 		// test
@@ -156,8 +156,8 @@ class CommandLineParserTest {
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser parser = new CommandLineParser(err);
-		File file1 = TestUtils.getResourceAsFile("/test2/a.jar", tempDir);
-		File file2 = TestUtils.getResourceAsFile("/test2/a.jar", tempDir); // TODO: use a different JAR file here
+		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{file1.getAbsolutePath(), file2.getAbsolutePath()});

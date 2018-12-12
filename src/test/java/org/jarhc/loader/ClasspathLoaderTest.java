@@ -41,7 +41,7 @@ class ClasspathLoaderTest {
 	void test_load_file(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/test2/a.jar";
+		String resource = "/ClasspathLoaderTest/a.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 		List<File> files = Collections.singletonList(file);
 

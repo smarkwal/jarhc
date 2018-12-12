@@ -19,7 +19,7 @@ package org.jarhc.it;
 class CommonsIT extends AbstractIT {
 
 	CommonsIT() {
-		super("/it/commons/", new String[]{
+		super("/CommonsIT/", new String[]{
 				"commons-beanutils-1.9.2.jar",
 				"commons-betwixt-0.8.jar",
 				"commons-codec-1.10.jar",

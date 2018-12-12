@@ -62,7 +62,7 @@ class TextReportFormatTest {
 
 		// normalize
 		text = TextUtils.toUnixLineSeparators(text);
-		String expectedResult = TestUtils.getResourceAsString("/TextReportFormatTest_result.txt", "UTF-8");
+		String expectedResult = TestUtils.getResourceAsString("/TextReportFormatTest/result.txt", "UTF-8");
 		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
 
 		// assert

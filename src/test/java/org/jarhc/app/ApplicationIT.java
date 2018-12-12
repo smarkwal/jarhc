@@ -66,7 +66,7 @@ class ApplicationIT {
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser commandLineParser = new CommandLineParser(err);
 		Application application = new Application(commandLineParser, out, err);
-		File file = TestUtils.getResourceAsFile("/test2/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);
 		String[] args = {file.getAbsolutePath()};
 
 		// test
@@ -77,7 +77,7 @@ class ApplicationIT {
 		assertEquals("", err.getText());
 
 		String output = out.getText();
-		String expectedOutput = TestUtils.getResourceAsString("/ApplicationIT_result.txt", "UTF-8");
+		String expectedOutput = TestUtils.getResourceAsString("/ApplicationIT/result.txt", "UTF-8");
 
 		// normalize output
 		output = TextUtils.toUnixLineSeparators(output);

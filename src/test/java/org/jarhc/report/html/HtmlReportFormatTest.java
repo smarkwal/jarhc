@@ -62,7 +62,7 @@ class HtmlReportFormatTest {
 
 		// normalize
 		text = TextUtils.toUnixLineSeparators(text);
-		String expectedResult = TestUtils.getResourceAsString("/HtmlReportFormatTest_result.txt", "UTF-8");
+		String expectedResult = TestUtils.getResourceAsString("/HtmlReportFormatTest/result.txt", "UTF-8");
 		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
 
 		// assert

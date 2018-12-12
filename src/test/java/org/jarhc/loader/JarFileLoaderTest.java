@@ -37,7 +37,7 @@ class JarFileLoaderTest {
 	void test_load(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/test2/a.jar";
+		String resource = "/JarFileLoaderTest/a.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
