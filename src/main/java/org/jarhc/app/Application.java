@@ -22,6 +22,7 @@ import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.text.TextReportFormat;
+import org.jarhc.utils.VersionUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +44,8 @@ public class Application {
 
 	public int run(String[] args) {
 
-		out.println("JarHC - JAR Health Check 1.0-SNAPSHOT");
+		String version = VersionUtils.getVersion();
+		out.println("JarHC - JAR Health Check " + version);
 		out.println("=====================================");
 		out.println();
 
