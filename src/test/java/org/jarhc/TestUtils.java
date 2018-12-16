@@ -19,9 +19,13 @@ package org.jarhc;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * Test utility methods.
@@ -78,6 +82,36 @@ public class TestUtils {
 		} else {
 			return resource;
 		}
+	}
+
+	/**
+	 * Checks if the system property "jarhc.test.resources.generate" is set.
+	 * This property is used as flag to instruct tests to re-generate their test resources.
+	 *
+	 * @return <code>true</code> if test resources should be generated.
+	 */
+	public static boolean createResources() {
+		Properties properties = System.getProperties();
+		return properties.containsKey("jarhc.test.resources.generate");
+	}
+
+	/**
+	 * Save the given text as test resource.
+	 * <p>
+	 * Note: This method works as expected only if the current working directory
+	 * is set to the root repository directory (where the "src" directory is located).
+	 *
+	 * @param resource Resource path
+	 * @param text     Text to save
+	 * @param encoding File encoding
+	 */
+	public static void saveResource(String resource, String text, String encoding) throws IOException {
+		Path path = Paths.get("src/test/resources" + resource);
+		byte[] data = text.getBytes(encoding);
+		Files.write(path, data);
+
+		//noinspection ConstantConditions
+		assumeTrue(false, "Test resource generated.");
 	}
 
 }

@@ -102,7 +102,11 @@ abstract class AbstractIT {
 
 		// create report
 		String output = reportFormat.format(report);
-		// Files.write(Paths.get("src/test/resources" + getReportResourcePath(analyzerName, reportType)), output.getBytes());
+
+		if (TestUtils.createResources()) {
+			TestUtils.saveResource(getReportResourcePath(analyzerName, reportType), output, "UTF-8");
+			return;
+		}
 
 		// normalize
 		output = TextUtils.toUnixLineSeparators(output);
