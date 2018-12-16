@@ -130,6 +130,7 @@ class JarFileLoader {
 
 	private boolean isMultiRelease(java.util.jar.JarFile jarFile) throws IOException {
 		Manifest manifest = jarFile.getManifest();
+		if (manifest == null) return false;
 		Attributes attributes = manifest.getMainAttributes();
 		String value = attributes.getValue("Multi-Release");
 		return value != null && value.equals("true");
