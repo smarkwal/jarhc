@@ -41,7 +41,7 @@ public class HtmlReportFormat implements ReportFormat {
 	@Override
 	public void format(Report report, PrintWriter out) {
 		out.println("<!DOCTYPE html>");
-		out.println("<html>");
+		out.println("<html lang=\"en\">");
 		formatHtmlHead(report, out);
 		formatHtmlBody(report, out);
 		out.println("</html>");
