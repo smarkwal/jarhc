@@ -43,6 +43,10 @@ public class ReportSection {
 		return title;
 	}
 
+	public String getId() {
+		return title.replaceAll("[^a-zA-Z0-9]", "");
+	}
+
 	public String getDescription() {
 		return description;
 	}

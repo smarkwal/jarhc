@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="ClassVersions">
 <h2>Class Versions</h2>
 <p>Java class file format information.</p>
 <table>
@@ -14,6 +40,7 @@
 	<tr><td>xml-resolver-1.2.jar</td><td>Java 1.1 (30)</td></tr>
 	<tr><td>Classpath</td><td>Java 1.3 (952), Java 1.1 (376)</td></tr>
 </table>
+</section>
 
 </body>
 </html>

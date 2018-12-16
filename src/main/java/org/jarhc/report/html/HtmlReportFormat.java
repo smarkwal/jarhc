@@ -27,11 +27,27 @@ import java.util.regex.Pattern;
 
 public class HtmlReportFormat implements ReportFormat {
 
+	private final StyleProvider styleProvider;
+
+	public HtmlReportFormat() {
+		// TODO: use dependency injection
+		this(new DefaultStyleProvider());
+	}
+
+	public HtmlReportFormat(StyleProvider styleProvider) {
+		this.styleProvider = styleProvider;
+	}
+
 	@Override
 	public void format(Report report, PrintWriter out) {
-
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
+		formatHtmlHead(report, out);
+		formatHtmlBody(report, out);
+		out.println("</html>");
+	}
+
+	private void formatHtmlHead(Report report, PrintWriter out) {
 		out.println("<head>");
 
 		// add optional report title
@@ -42,25 +58,70 @@ public class HtmlReportFormat implements ReportFormat {
 			out.println("</title>");
 		}
 
+		// include CSS styles
+		String css = styleProvider.getStyle();
+		if (css != null) {
+			out.println("<style>");
+			out.println(css);
+			out.println("</style>");
+		}
+
 		out.println("</head>");
+	}
+
+	private void formatHtmlBody(Report report, PrintWriter out) {
 		out.println("<body>");
 		out.println();
 
+		// add optional title
+		String title = report.getTitle();
+		if (title != null) {
+			out.print("<h1>");
+			out.print(escape(title));
+			out.println("</h1>");
+			out.println();
+		}
+
+		// if report contains more than 1 section ...
 		List<ReportSection> sections = report.getSections();
+		if (sections.size() > 1) {
+			// add table of contents
+			formatToC(report, out);
+		}
+
+		// add individual sections
 		for (ReportSection section : sections) {
 			formatSection(section, out);
 			out.println();
 		}
 
 		out.println("</body>");
-		out.println("</html>");
+	}
+
+	private void formatToC(Report report, PrintWriter out) {
+		out.println("<h3>Table of Contents</h3>");
+		out.println("<ul>");
+		List<ReportSection> sections = report.getSections();
+		for (ReportSection section : sections) {
+			String title = section.getTitle();
+			String id = section.getId();
+			out.printf("<li><a href=\"#%s\">%s</a></li>%s", id, escape(title), System.lineSeparator());
+		}
+		out.println("</ul>");
+		out.println();
 	}
 
 	private void formatSection(ReportSection section, PrintWriter out) {
 
 		String title = section.getTitle();
+		String id = section.getId();
 		String description = section.getDescription();
 		List<Object> contents = section.getContent();
+
+		// section start
+		out.print("<section id=\"");
+		out.print(id);
+		out.println("\">");
 
 		// format header
 		out.print("<h2>");
@@ -83,6 +144,8 @@ public class HtmlReportFormat implements ReportFormat {
 				out.println("</p>");
 			}
 		}
+
+		out.println("</section>");
 
 	}
 

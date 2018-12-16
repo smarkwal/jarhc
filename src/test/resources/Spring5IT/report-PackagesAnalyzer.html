@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="Packages">
 <h2>Packages</h2>
 <p>List of packages per JAR file.</p>
 <table>
@@ -22,6 +48,7 @@
 	<tr><td>spring-tx-5.1.3.RELEASE.jar</td><td>org.springframework.dao<br>org.springframework.dao.annotation<br>org.springframework.dao.support<br>org.springframework.jca.cci<br>org.springframework.jca.cci.connection<br>org.springframework.jca.cci.core<br>org.springframework.jca.cci.core.support<br>org.springframework.jca.cci.object<br>org.springframework.jca.context<br>org.springframework.jca.endpoint<br>org.springframework.jca.support<br>org.springframework.jca.work<br>org.springframework.transaction<br>org.springframework.transaction.annotation<br>org.springframework.transaction.config<br>org.springframework.transaction.event<br>org.springframework.transaction.interceptor<br>org.springframework.transaction.jta<br>org.springframework.transaction.support</td></tr>
 	<tr><td>spring-web-5.1.3.RELEASE.jar</td><td>org.springframework.http<br>org.springframework.http.client<br>org.springframework.http.client.reactive<br>org.springframework.http.client.support<br>org.springframework.http.codec<br>org.springframework.http.codec.json<br>org.springframework.http.codec.multipart<br>org.springframework.http.codec.protobuf<br>org.springframework.http.codec.support<br>org.springframework.http.codec.xml<br>org.springframework.http.converter<br>org.springframework.http.converter.cbor<br>org.springframework.http.converter.feed<br>org.springframework.http.converter.json<br>org.springframework.http.converter.protobuf<br>org.springframework.http.converter.smile<br>org.springframework.http.converter.support<br>org.springframework.http.converter.xml<br>org.springframework.http.server<br>org.springframework.http.server.reactive<br>org.springframework.remoting.caucho<br>org.springframework.remoting.httpinvoker<br>org.springframework.remoting.jaxws<br>org.springframework.web<br>org.springframework.web.accept<br>org.springframework.web.bind<br>org.springframework.web.bind.annotation<br>org.springframework.web.bind.support<br>org.springframework.web.client<br>org.springframework.web.client.support<br>org.springframework.web.context<br>org.springframework.web.context.annotation<br>org.springframework.web.context.request<br>org.springframework.web.context.request.async<br>org.springframework.web.context.support<br>org.springframework.web.cors<br>org.springframework.web.cors.reactive<br>org.springframework.web.filter<br>org.springframework.web.filter.reactive<br>org.springframework.web.jsf<br>org.springframework.web.jsf.el<br>org.springframework.web.method<br>org.springframework.web.method.annotation<br>org.springframework.web.method.support<br>org.springframework.web.multipart<br>org.springframework.web.multipart.commons<br>org.springframework.web.multipart.support<br>org.springframework.web.server<br>org.springframework.web.server.adapter<br>org.springframework.web.server.handler<br>org.springframework.web.server.i18n<br>org.springframework.web.server.session<br>org.springframework.web.util<br>org.springframework.web.util.pattern</td></tr>
 </table>
+</section>
 
 </body>
 </html>

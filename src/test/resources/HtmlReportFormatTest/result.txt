@@ -2,13 +2,48 @@
 <html>
 <head>
 <title>Report Title</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>Report Title</h1>
+
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#Section1">Section 1</a></li>
+<li><a href="#Section2">Section 2</a></li>
+<li><a href="#Section3">Section 3</a></li>
+</ul>
+
+<section id="Section1">
 <h2>Section 1</h2>
 <p>Description 1</p>
 <p>Some text.</p>
+</section>
 
+<section id="Section2">
 <h2>Section 2</h2>
 <p>Description 2, Line 1<br>Description 2, Line 2</p>
 <table>
@@ -16,7 +51,9 @@
 	<tr><td>Short</td><td>Medium Medium</td><td>Long Long Long Long Long Long Long</td></tr>
 	<tr><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3</td></tr>
 </table>
+</section>
 
+<section id="Section3">
 <h2>Section 3</h2>
 <table>
 	<tr><th>Values</th></tr>
@@ -27,6 +64,7 @@
 <table>
 	<tr><th>Empty</th></tr>
 </table>
+</section>
 
 </body>
 </html>

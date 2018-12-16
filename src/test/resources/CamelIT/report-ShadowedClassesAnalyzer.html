@@ -2,14 +2,41 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="ShadowedClasses">
 <h2>Shadowed Classes</h2>
 <p>Classes shadowing JRE/JDK classes.<br>Java home   : /opt/java/jdk-1.8.0_144<br>Java runtime: Java(TM) SE Runtime Environment<br>Java version: 1.8.0_144<br>Java vendor : Oracle Corporation</p>
 <table>
 	<tr><th>Class name</th><th>JAR file</th><th>ClassLoader</th></tr>
 </table>
+</section>
 
 </body>
 </html>

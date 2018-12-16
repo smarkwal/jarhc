@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="JARFiles">
 <h2>JAR Files</h2>
 <p>List of JAR files found in classpath.</p>
 <table>
@@ -20,6 +46,7 @@
 	<tr><td>camel-spring-2.17.7.jar</td><td>314 KB</td><td>127</td></tr>
 	<tr><td>Classpath</td><td>4.16 MB</td><td>2391</td></tr>
 </table>
+</section>
 
 </body>
 </html>

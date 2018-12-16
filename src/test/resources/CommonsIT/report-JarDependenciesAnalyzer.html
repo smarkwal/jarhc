@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="JARFileDependencies">
 <h2>JAR File Dependencies</h2>
 <p>Dependencies between JAR files.</p>
 <table>
@@ -27,6 +53,7 @@
 	<tr><td>commons-net-3.3.jar</td><td>[none]</td><td>[none]</td></tr>
 	<tr><td>commons-pool2-2.6.0.jar</td><td>[none]</td><td>commons-dbcp2-2.5.0.jar</td></tr>
 </table>
+</section>
 
 </body>
 </html>

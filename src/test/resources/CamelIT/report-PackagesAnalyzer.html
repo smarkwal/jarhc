@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="Packages">
 <h2>Packages</h2>
 <p>List of packages per JAR file.</p>
 <table>
@@ -19,6 +45,7 @@
 	<tr><td>camel-soap-2.17.7.jar</td><td>org.apache.camel.dataformat.soap<br>org.apache.camel.dataformat.soap.name<br>org.w3._2003._05.soap_envelope<br>org.xmlsoap.schemas.soap.envelope</td></tr>
 	<tr><td>camel-spring-2.17.7.jar</td><td>org.apache.camel.component.event<br>org.apache.camel.core.osgi<br>org.apache.camel.core.osgi.utils<br>org.apache.camel.core.xml<br>org.apache.camel.core.xml.util.jsse<br>org.apache.camel.language.spel<br>org.apache.camel.osgi<br>org.apache.camel.spring<br>org.apache.camel.spring.converter<br>org.apache.camel.spring.handler<br>org.apache.camel.spring.pollingconsumer<br>org.apache.camel.spring.processor.idempotent<br>org.apache.camel.spring.remoting<br>org.apache.camel.spring.spi<br>org.apache.camel.spring.util<br>org.apache.camel.util.spring</td></tr>
 </table>
+</section>
 
 </body>
 </html>

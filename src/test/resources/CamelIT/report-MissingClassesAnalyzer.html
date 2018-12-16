@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="MissingClasses">
 <h2>Missing Classes</h2>
 <p>References to classes not found on the classpath.</p>
 <table>
@@ -19,6 +45,7 @@
 	<tr><td>camel-soap-2.17.7.jar</td><td>org.apache.camel.converter.jaxb.JaxbDataFormat<br>org.slf4j.Logger<br>org.slf4j.LoggerFactory</td></tr>
 	<tr><td>camel-spring-2.17.7.jar</td><td>org.osgi.framework.Bundle<br>org.osgi.framework.BundleActivator<br>org.osgi.framework.BundleContext<br>org.osgi.framework.InvalidSyntaxException<br>org.osgi.framework.ServiceReference<br>org.osgi.framework.ServiceRegistration<br>org.osgi.framework.Version<br>org.osgi.service.event.Event<br>org.osgi.service.event.EventAdmin<br>org.osgi.util.tracker.ServiceTracker<br>org.osgi.util.tracker.ServiceTrackerCustomizer<br>org.slf4j.Logger<br>org.slf4j.LoggerFactory<br>org.springframework.beans.BeanInstantiationException<br>org.springframework.beans.BeansException<br>org.springframework.beans.MutablePropertyValues<br>org.springframework.beans.factory.BeanCreationException<br>org.springframework.beans.factory.BeanDefinitionStoreException<br>org.springframework.beans.factory.BeanFactory<br>org.springframework.beans.factory.BeanFactoryUtils<br>org.springframework.beans.factory.BeanNotOfRequiredTypeException<br>org.springframework.beans.factory.DisposableBean<br>org.springframework.beans.factory.FactoryBean<br>org.springframework.beans.factory.InitializingBean<br>org.springframework.beans.factory.ListableBeanFactory<br>org.springframework.beans.factory.NoSuchBeanDefinitionException<br>org.springframework.beans.factory.config.BeanDefinition<br>org.springframework.beans.factory.config.BeanPostProcessor<br>org.springframework.beans.factory.config.ConfigurableListableBeanFactory<br>org.springframework.beans.factory.config.PropertyPlaceholderConfigurer<br>org.springframework.beans.factory.config.RuntimeBeanReference<br>org.springframework.beans.factory.parsing.BeanComponentDefinition<br>org.springframework.beans.factory.parsing.ComponentDefinition<br>org.springframework.beans.factory.support.BeanDefinitionBuilder<br>org.springframework.beans.factory.support.BeanDefinitionRegistry<br>org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser<br>org.springframework.beans.factory.xml.BeanDefinitionParser<br>org.springframework.beans.factory.xml.NamespaceHandlerSupport<br>org.springframework.beans.factory.xml.ParserContext<br>org.springframework.cache.Cache<br>org.springframework.cache.Cache$ValueWrapper<br>org.springframework.cache.CacheManager<br>org.springframework.context.ApplicationContext<br>org.springframework.context.ApplicationContextAware<br>org.springframework.context.ApplicationEvent<br>org.springframework.context.ApplicationListener<br>org.springframework.context.ConfigurableApplicationContext<br>org.springframework.context.expression.BeanFactoryResolver<br>org.springframework.context.support.AbstractApplicationContext<br>org.springframework.context.support.ClassPathXmlApplicationContext<br>org.springframework.context.support.FileSystemXmlApplicationContext<br>org.springframework.core.Constants<br>org.springframework.core.Conventions<br>org.springframework.core.io.Resource<br>org.springframework.expression.BeanResolver<br>org.springframework.expression.EvaluationContext<br>org.springframework.expression.Expression<br>org.springframework.expression.ParserContext<br>org.springframework.expression.common.TemplateParserContext<br>org.springframework.expression.spel.standard.SpelExpressionParser<br>org.springframework.expression.spel.support.StandardEvaluationContext<br>org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource<br>org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler<br>org.springframework.jmx.export.metadata.JmxAttributeSource<br>org.springframework.osgi.context.BundleContextAware<br>org.springframework.remoting.support.RemoteExporter<br>org.springframework.remoting.support.UrlBasedRemoteAccessor<br>org.springframework.scheduling.Trigger<br>org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler<br>org.springframework.scheduling.support.CronTrigger<br>org.springframework.transaction.PlatformTransactionManager<br>org.springframework.transaction.TransactionStatus<br>org.springframework.transaction.support.TransactionCallback<br>org.springframework.transaction.support.TransactionCallbackWithoutResult<br>org.springframework.transaction.support.TransactionTemplate<br>org.springframework.util.Assert<br>org.springframework.util.PropertyPlaceholderHelper<br>org.springframework.util.PropertyPlaceholderHelper$PlaceholderResolver<br>org.springframework.util.ReflectionUtils<br>org.springframework.util.StringUtils</td></tr>
 </table>
+</section>
 
 </body>
 </html>

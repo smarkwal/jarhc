@@ -2,9 +2,35 @@
 <html>
 <head>
 <title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
 </head>
 <body>
 
+<h1>JAR Health Check Report</h1>
+
+<section id="Packages">
 <h2>Packages</h2>
 <p>List of packages per JAR file.</p>
 <table>
@@ -27,6 +53,7 @@
 	<tr><td>commons-net-3.3.jar</td><td>org.apache.commons.net<br>org.apache.commons.net.bsd<br>org.apache.commons.net.chargen<br>org.apache.commons.net.daytime<br>org.apache.commons.net.discard<br>org.apache.commons.net.echo<br>org.apache.commons.net.finger<br>org.apache.commons.net.ftp<br>org.apache.commons.net.ftp.parser<br>org.apache.commons.net.imap<br>org.apache.commons.net.io<br>org.apache.commons.net.nntp<br>org.apache.commons.net.ntp<br>org.apache.commons.net.pop3<br>org.apache.commons.net.smtp<br>org.apache.commons.net.telnet<br>org.apache.commons.net.tftp<br>org.apache.commons.net.time<br>org.apache.commons.net.util<br>org.apache.commons.net.whois</td></tr>
 	<tr><td>commons-pool2-2.6.0.jar</td><td>org.apache.commons.pool2<br>org.apache.commons.pool2.impl<br>org.apache.commons.pool2.proxy</td></tr>
 </table>
+</section>
 
 </body>
 </html>
