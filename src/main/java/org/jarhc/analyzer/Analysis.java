@@ -33,6 +33,7 @@ public class Analysis {
 
 	public Report run(Classpath classpath) {
 		Report report = new Report();
+		report.setTitle("JAR Health Check Report");
 		for (Analyzer analyzer : analyzers) {
 			ReportSection section = analyzer.analyze(classpath);
 			report.addSection(section);

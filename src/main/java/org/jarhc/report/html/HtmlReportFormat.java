@@ -30,20 +30,30 @@ public class HtmlReportFormat implements ReportFormat {
 	@Override
 	public void format(Report report, PrintWriter out) {
 
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+
 		// add optional report title
 		String title = report.getTitle();
 		if (title != null) {
-			out.print("<h1>");
+			out.print("<title>");
 			out.print(escape(title));
-			out.println("</h1>");
-			out.println();
+			out.println("</title>");
 		}
+
+		out.println("</head>");
+		out.println("<body>");
+		out.println();
 
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, out);
 			out.println();
 		}
+
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 	private void formatSection(ReportSection section, PrintWriter out) {

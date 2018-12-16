@@ -1,4 +1,9 @@
-<h1>Report Title</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report Title</title>
+</head>
+<body>
 
 <h2>Section 1</h2>
 <p>Description 1</p>
@@ -23,3 +28,5 @@
 	<tr><th>Empty</th></tr>
 </table>
 
+</body>
+</html>
