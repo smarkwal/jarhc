@@ -41,11 +41,17 @@ class CommandLineParserTest {
 		CommandLineParser parser = new CommandLineParser(err);
 
 		// test
-		Options options = parser.parse(new String[0]);
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[0]);
+		} catch (CommandLineException e) {
+			exception = e;
+		}
 
 		// assert
-		assertNotNull(options);
-		assertEquals(-1, options.getErrorCode());
+		assertNotNull(exception);
+		assertEquals(-1, exception.getExitCode());
+		assertEquals("Argument <path> is missing.", exception.getMessage());
 		assertTrue(err.getText().startsWith("Argument <path> is missing."));
 
 	}
@@ -59,11 +65,17 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
 
 		// test
-		Options options = parser.parse(new String[]{file.getAbsolutePath()});
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{file.getAbsolutePath()});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
 
 		// assert
-		assertNotNull(options);
-		assertEquals(-2, options.getErrorCode());
+		assertNotNull(exception);
+		assertEquals(-2, exception.getExitCode());
+		assertEquals("File is not a *.jar file: " + file.getAbsolutePath(), exception.getMessage());
 		assertTrue(err.getText().startsWith("File is not a *.jar file: " + file.getAbsolutePath()));
 
 	}
@@ -77,11 +89,17 @@ class CommandLineParserTest {
 		File file = new File("file.jar");
 
 		// test
-		Options options = parser.parse(new String[]{file.getAbsolutePath()});
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{file.getAbsolutePath()});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
 
 		// assert
-		assertNotNull(options);
-		assertEquals(-3, options.getErrorCode());
+		assertNotNull(exception);
+		assertEquals(-3, exception.getExitCode());
+		assertEquals("File or directory not found: " + file.getAbsolutePath(), exception.getMessage());
 		assertTrue(err.getText().startsWith("File or directory not found: " + file.getAbsolutePath()));
 
 	}
@@ -96,17 +114,115 @@ class CommandLineParserTest {
 		File directory = file.getParentFile();
 
 		// test
-		Options options = parser.parse(new String[]{directory.getAbsolutePath()});
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{directory.getAbsolutePath()});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
 
 		// assert
-		assertNotNull(options);
-		assertEquals(-4, options.getErrorCode());
+		assertNotNull(exception);
+		assertEquals(-4, exception.getExitCode());
+		assertEquals("No *.jar files found in path.", exception.getMessage());
 		assertTrue(err.getText().startsWith("No *.jar files found in path."));
 
 	}
 
 	@Test
-	void test_one_jar_file(@TempDir Path tempDir) throws IOException {
+	void test_no_report_format() {
+
+		// prepare
+		PrintStreamBuffer err = new PrintStreamBuffer();
+		CommandLineParser parser = new CommandLineParser(err);
+
+		// test
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{"-f"});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
+
+		// assert
+		assertNotNull(exception);
+		assertEquals(-5, exception.getExitCode());
+		assertEquals("Report format not specified.", exception.getMessage());
+		assertTrue(err.getText().startsWith("Report format not specified."));
+
+	}
+
+	@Test
+	void test_unknown_report_format() {
+
+		// prepare
+		PrintStreamBuffer err = new PrintStreamBuffer();
+		CommandLineParser parser = new CommandLineParser(err);
+
+		// test
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{"-f", "pdf"});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
+
+		// assert
+		assertNotNull(exception);
+		assertEquals(-6, exception.getExitCode());
+		assertEquals("Unknown report format: 'pdf'.", exception.getMessage());
+		assertTrue(err.getText().startsWith("Unknown report format: 'pdf'."));
+
+	}
+
+	@Test
+	void test_no_report_file() {
+
+		// prepare
+		PrintStreamBuffer err = new PrintStreamBuffer();
+		CommandLineParser parser = new CommandLineParser(err);
+
+		// test
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{"-o"});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
+
+		// assert
+		assertNotNull(exception);
+		assertEquals(-7, exception.getExitCode());
+		assertEquals("Report file not specified.", exception.getMessage());
+		assertTrue(err.getText().startsWith("Report file not specified."));
+
+	}
+
+	@Test
+	void test_unknown_option() {
+
+		// prepare
+		PrintStreamBuffer err = new PrintStreamBuffer();
+		CommandLineParser parser = new CommandLineParser(err);
+
+		// test
+		CommandLineException exception = null;
+		try {
+			parser.parse(new String[]{"-u"});
+		} catch (CommandLineException e) {
+			exception = e;
+		}
+
+		// assert
+		assertNotNull(exception);
+		assertEquals(-100, exception.getExitCode());
+		assertEquals("Unknown option: '-u'.", exception.getMessage());
+		assertTrue(err.getText().startsWith("Unknown option: '-u'."));
+
+	}
+
+	@Test
+	void test_one_jar_file(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
@@ -114,21 +230,23 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[]{file.getAbsolutePath()});
+		Options options = parser.parse(new String[]{"-f", "text", "-o", "report.txt", file.getAbsolutePath()});
 
 		// assert
 		assertNotNull(options);
-		assertEquals(0, options.getErrorCode());
 		assertEquals("", err.getText());
 
-		List<File> files = options.getFiles();
+		List<File> files = options.getJarFiles();
 		assertEquals(1, files.size());
 		assertEquals(file, files.get(0));
+
+		assertEquals("text", options.getReportFormat());
+		assertEquals("report.txt", options.getReportFile());
 
 	}
 
 	@Test
-	void test_one_jar_file_in_directory(@TempDir Path tempDir) throws IOException {
+	void test_one_jar_file_in_directory(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
@@ -137,21 +255,23 @@ class CommandLineParserTest {
 		File directory = file.getParentFile();
 
 		// test
-		Options options = parser.parse(new String[]{directory.getAbsolutePath()});
+		Options options = parser.parse(new String[]{"-f", "html", directory.getAbsolutePath()});
 
 		// assert
 		assertNotNull(options);
-		assertEquals(0, options.getErrorCode());
 		assertEquals("", err.getText());
 
-		List<File> files = options.getFiles();
+		List<File> files = options.getJarFiles();
 		assertEquals(1, files.size());
 		assertEquals(file, files.get(0));
+
+		assertEquals("html", options.getReportFormat());
+		assertNull(options.getReportFile());
 
 	}
 
 	@Test
-	void test_two_jar_files(@TempDir Path tempDir) throws IOException {
+	void test_two_jar_files(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
 		PrintStreamBuffer err = new PrintStreamBuffer();
@@ -160,17 +280,19 @@ class CommandLineParserTest {
 		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
-		Options options = parser.parse(new String[]{file1.getAbsolutePath(), file2.getAbsolutePath()});
+		Options options = parser.parse(new String[]{"-o", "report.html", file1.getAbsolutePath(), file2.getAbsolutePath()});
 
 		// assert
 		assertNotNull(options);
-		assertEquals(0, options.getErrorCode());
 		assertEquals("", err.getText());
 
-		List<File> files = options.getFiles();
+		List<File> files = options.getJarFiles();
 		assertEquals(2, files.size());
 		assertEquals(file1, files.get(0));
 		assertEquals(file2, files.get(1));
+
+		assertEquals("html", options.getReportFormat());
+		assertEquals("report.html", options.getReportFile());
 
 	}
 

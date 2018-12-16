@@ -16,32 +16,23 @@
 
 package org.jarhc.app;
 
-import java.io.File;
-import java.util.List;
+/**
+ * Thrown by {@link CommandLineParser#parse(String[])} to indicate that parsing of command line options has failed.
+ */
+class CommandLineException extends Exception {
 
-class Options {
+	/**
+	 * Exit code returned by the application.
+	 */
+	private final int exitCode;
 
-	private final List<File> jarFiles;
-	private final String reportFormat;
-	private final String reportFile;
-
-	Options(List<File> jarFiles, String reportFormat, String reportFile) {
-		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
-		this.jarFiles = jarFiles;
-		this.reportFormat = reportFormat;
-		this.reportFile = reportFile;
+	CommandLineException(int exitCode, String message) {
+		super(message);
+		this.exitCode = exitCode;
 	}
 
-	public List<File> getJarFiles() {
-		return jarFiles;
-	}
-
-	public String getReportFormat() {
-		return reportFormat;
-	}
-
-	public String getReportFile() {
-		return reportFile;
+	int getExitCode() {
+		return exitCode;
 	}
 
 }
