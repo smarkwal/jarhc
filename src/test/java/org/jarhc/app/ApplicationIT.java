@@ -77,6 +77,12 @@ class ApplicationIT {
 		assertEquals("", err.getText());
 
 		String output = out.getText();
+
+		if (TestUtils.createResources()) {
+			TestUtils.saveResource("/ApplicationIT/result.txt", output, "UTF-8");
+			return;
+		}
+
 		String expectedOutput = TestUtils.getResourceAsString("/ApplicationIT/result.txt", "UTF-8");
 
 		// normalize output

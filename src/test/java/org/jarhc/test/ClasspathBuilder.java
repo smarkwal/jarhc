@@ -23,6 +23,8 @@ import org.jarhc.model.JarFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ClasspathBuilder {
 
@@ -32,6 +34,7 @@ public class ClasspathBuilder {
 	// JarFile properties
 	private String fileName;
 	private long fileSize;
+	private Set<Integer> releases;
 	private List<ClassDef> classDefs;
 
 	// ClassDef properties
@@ -55,6 +58,12 @@ public class ClasspathBuilder {
 		closeClassDef();
 		closeJarFile();
 		openJarFile(fileName, fileSize);
+		return this;
+	}
+
+	public ClasspathBuilder addRelease(int release) {
+		if (releases == null) throw new IllegalStateException();
+		releases.add(release);
 		return this;
 	}
 
@@ -83,12 +92,13 @@ public class ClasspathBuilder {
 	private void openJarFile(String fileName, long fileSize) {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
+		this.releases = new TreeSet<>();
 		this.classDefs = new ArrayList<>();
 	}
 
 	private void closeJarFile() {
 		if (fileName != null) {
-			jarFiles.add(new JarFile(fileName, fileSize, classDefs));
+			jarFiles.add(new JarFile(fileName, fileSize, releases, classDefs));
 			fileName = null;
 		}
 	}

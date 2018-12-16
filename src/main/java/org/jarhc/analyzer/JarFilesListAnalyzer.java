@@ -22,6 +22,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
@@ -39,7 +40,7 @@ public class JarFilesListAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Java class files");
+		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release");
 
 		// total values
 		long totalFileSize = 0;
@@ -53,7 +54,8 @@ public class JarFilesListAnalyzer extends Analyzer {
 			String fileName = jarFile.getFileName();
 			long fileSize = jarFile.getFileSize();
 			int classCount = jarFile.getClassDefs().size();
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount));
+			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -61,9 +63,18 @@ public class JarFilesListAnalyzer extends Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount));
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-");
 
 		return table;
+	}
+
+	private String getMultiReleaseInfo(JarFile jarFile) {
+		if (jarFile.isMultiRelease()) {
+			String releases = jarFile.getReleases().stream().map(r -> "Java " + r).collect(Collectors.joining(", "));
+			return "Yes (" + releases + ")";
+		} else {
+			return "No";
+		}
 	}
 
 }

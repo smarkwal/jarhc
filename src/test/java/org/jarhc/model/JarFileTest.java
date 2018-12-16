@@ -32,7 +32,7 @@ class JarFileTest {
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
 		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
 		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
-		JarFile jarFile = new JarFile("abc.jar", 1024, classDefs);
+		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
 		String result = jarFile.toString();
@@ -49,7 +49,7 @@ class JarFileTest {
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
 		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
 		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
-		JarFile jarFile = new JarFile("abc.jar", 1024, classDefs);
+		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
 		List<ClassDef> result = jarFile.getClassDefs();
@@ -68,7 +68,7 @@ class JarFileTest {
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
 		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
 		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
-		JarFile jarFile = new JarFile("abc.jar", 1024, classDefs);
+		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
 		ClassDef result = jarFile.getClassDef("b/B");

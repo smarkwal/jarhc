@@ -34,6 +34,11 @@ public class JarFile {
 	private final long fileSize;
 
 	/**
+	 * Releases supported if this is a multi-release JAR file
+	 */
+	private final Set<Integer> releases;
+
+	/**
 	 * List of class definitions for classes found in the JAR file.
 	 */
 	private final List<ClassDef> classDefs;
@@ -48,14 +53,17 @@ public class JarFile {
 	 *
 	 * @param fileName  JAR file name
 	 * @param fileSize  JAR file size in bytes
+	 * @param releases  List of releases supported by this JAR file (for multi-release JAR files)
 	 * @param classDefs Class definitions
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	public JarFile(String fileName, long fileSize, List<ClassDef> classDefs) {
+	public JarFile(String fileName, long fileSize, Set<Integer> releases, List<ClassDef> classDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
+		if (releases == null) throw new IllegalArgumentException("releases");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
 		this.fileSize = fileSize;
+		this.releases = new TreeSet<>(releases);
 		this.classDefs = new ArrayList<>(classDefs);
 
 		// sort class definitions by class name (case-sensitive)
@@ -81,6 +89,14 @@ public class JarFile {
 		return fileSize;
 	}
 
+	public boolean isMultiRelease() {
+		return !releases.isEmpty();
+	}
+
+	public Set<Integer> getReleases() {
+		return Collections.unmodifiableSet(releases);
+	}
+
 	/**
 	 * Returns an unmodifiable list of class definitions.
 	 *
@@ -104,6 +120,47 @@ public class JarFile {
 	@Override
 	public String toString() {
 		return String.format("JarFile[%s,%d]", fileName, classDefs.size());
+	}
+
+	public static Builder withName(String fileName) {
+		return new Builder(fileName);
+	}
+
+	public static class Builder {
+
+		private String fileName;
+		private long fileSize = -1;
+		private Set<Integer> releases = new TreeSet<>();
+		private List<ClassDef> classDefs = new ArrayList<>();
+
+		Builder(String fileName) {
+			this.fileName = fileName;
+		}
+
+		public Builder withFileSize(long fileSize) {
+			this.fileSize = fileSize;
+			return this;
+		}
+
+		public Builder withRelease(int release) {
+			this.releases.add(release);
+			return this;
+		}
+
+		public Builder withClassDef(ClassDef classDef) {
+			this.classDefs.add(classDef);
+			return this;
+		}
+
+		public Builder withClassDefs(List<ClassDef> classDefs) {
+			this.classDefs.addAll(classDefs);
+			return this;
+		}
+
+		public JarFile build() {
+			return new JarFile(fileName, fileSize, releases, classDefs);
+		}
+
 	}
 
 }
