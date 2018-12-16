@@ -29,6 +29,16 @@ public class HtmlReportFormat implements ReportFormat {
 
 	@Override
 	public void format(Report report, PrintWriter out) {
+
+		// add optional report title
+		String title = report.getTitle();
+		if (title != null) {
+			out.print("<h1>");
+			out.print(escape(title));
+			out.println("</h1>");
+			out.println();
+		}
+
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, out);
@@ -94,7 +104,10 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private static String escape(String text) {
-		// TODO: implement HTML escaping
+		// TODO: implement full HTML escaping
+		text = text.replace("<", "&lt;");
+		text = text.replace(">", "&gt;");
+		text = text.replace("\"", "&quote;");
 		text = text.replaceAll(Pattern.quote(System.lineSeparator()), "<br>");
 		return text;
 	}

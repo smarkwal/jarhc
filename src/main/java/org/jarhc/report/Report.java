@@ -22,10 +22,19 @@ import java.util.List;
 
 public class Report {
 
+	private String title;
 	private final List<ReportSection> sections = new ArrayList<>();
 
 	public Report() {
 
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void addSection(ReportSection section) {

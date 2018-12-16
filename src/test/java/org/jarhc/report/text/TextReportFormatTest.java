@@ -34,6 +34,7 @@ class TextReportFormatTest {
 
 		// prepare
 		Report report = new Report();
+		report.setTitle("Report Title");
 
 		ReportSection section1 = new ReportSection("Section 1", "Description 1");
 		section1.add("Some text.");

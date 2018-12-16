@@ -33,6 +33,15 @@ public class TextReportFormat implements ReportFormat {
 
 	@Override
 	public void format(Report report, PrintWriter out) {
+
+		// add optional report title
+		String title = report.getTitle();
+		if (title != null) {
+			out.println(title);
+			out.println(StringUtils.repeat("=", title.length()));
+			out.println();
+		}
+
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, out);
