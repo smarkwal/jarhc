@@ -35,12 +35,6 @@ public class ClasspathBuilder {
 	private ModuleInfo moduleInfo;
 	private List<ClassDef> classDefs;
 
-	// TODO: add support for modular JAR files
-	// ModuleInfo properties
-	private String moduleName = null;
-	private List<String> exports = null;
-	private List<String> requires = null;
-
 	// ClassDef properties
 	private String className;
 	private int majorClassVersion;
@@ -71,6 +65,11 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addModuleInfo(String moduleName, List<String> exports, List<String> requires) {
+		this.moduleInfo = new ModuleInfo(moduleName, exports, requires);
+		return this;
+	}
+
 	public ClasspathBuilder addClassDef(String className) {
 		return addClassDef(className, 52, 0);
 	}
@@ -97,6 +96,7 @@ public class ClasspathBuilder {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.releases = new TreeSet<>();
+		this.moduleInfo = null;
 		this.classDefs = new ArrayList<>();
 	}
 

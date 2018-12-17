@@ -22,6 +22,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,6 +37,7 @@ class JarFilesListAnalyzerTest {
 				.addJarFile("a.jar", 128)
 				.addClassDef("a/A")
 				.addJarFile("b.jar", 4096)
+				.addModuleInfo("b", Collections.singletonList("b"), Collections.singletonList("java.base"))
 				.addClassDef("b/B1")
 				.addClassDef("b/B2")
 				.addJarFile("c.jar", 24000)
@@ -59,49 +61,55 @@ class JarFilesListAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(4, columns.length);
+		assertEquals(5, columns.length);
 		assertEquals("JAR file", columns[0]);
 		assertEquals("Size", columns[1]);
 		assertEquals("Class files", columns[2]);
 		assertEquals("Multi-release", columns[3]);
+		assertEquals("Module", columns[4]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
 
 		String[] values1 = rows.get(0);
-		assertEquals(4, values1.length);
+		assertEquals(5, values1.length);
 		assertEquals("a.jar", values1[0]);
 		assertEquals("128 B", values1[1]);
 		assertEquals("1", values1[2]);
 		assertEquals("No", values1[3]);
+		assertEquals("No", values1[4]);
 
 		String[] values2 = rows.get(1);
-		assertEquals(4, values2.length);
+		assertEquals(5, values2.length);
 		assertEquals("b.jar", values2[0]);
 		assertEquals("4.00 KB", values2[1]);
 		assertEquals("2", values2[2]);
 		assertEquals("No", values2[3]);
+		assertEquals("Yes (b)", values2[4]);
 
 		String[] values3 = rows.get(2);
-		assertEquals(4, values3.length);
+		assertEquals(5, values3.length);
 		assertEquals("c.jar", values3[0]);
 		assertEquals("23.4 KB", values3[1]);
 		assertEquals("1", values3[2]);
 		assertEquals("Yes (Java 9, Java 11)", values3[3]);
+		assertEquals("No", values3[4]);
 
 		String[] values4 = rows.get(3);
-		assertEquals(4, values4.length);
+		assertEquals(5, values4.length);
 		assertEquals("d.jar", values4[0]);
 		assertEquals("1.18 MB", values4[1]);
 		assertEquals("0", values4[2]);
 		assertEquals("No", values4[3]);
+		assertEquals("No", values4[4]);
 
 		String[] values5 = rows.get(4);
-		assertEquals(4, values5.length);
+		assertEquals(5, values5.length);
 		assertEquals("Classpath", values5[0]);
 		assertEquals("1.20 MB", values5[1]);
 		assertEquals("4", values5[2]);
 		assertEquals("-", values5[3]);
+		assertEquals("-", values5[4]);
 
 	}
 

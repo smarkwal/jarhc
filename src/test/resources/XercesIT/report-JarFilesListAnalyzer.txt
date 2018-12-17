@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file              | Size    | Class files | Multi-release
-----------------------+---------+-------------+--------------
-xercesImpl-2.11.0.jar | 1.30 MB | 952         | No
-xml-apis-1.4.01.jar   | 215 KB  | 346         | No
-xml-resolver-1.2.jar  | 82.1 KB | 30          | No
-Classpath             | 1.59 MB | 1328        | -
+JAR file              | Size    | Class files | Multi-release | Module
+----------------------+---------+-------------+---------------+-------
+xercesImpl-2.11.0.jar | 1.30 MB | 952         | No            | No
+xml-apis-1.4.01.jar   | 215 KB  | 346         | No            | No
+xml-resolver-1.2.jar  | 82.1 KB | 30          | No            | No
+Classpath             | 1.59 MB | 1328        | -             | -
 

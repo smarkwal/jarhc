@@ -5,19 +5,19 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                                 | Size    | Class files | Multi-release
------------------------------------------+---------+-------------+--------------
-spring-aop-5.1.3.RELEASE.jar             | 360 KB  | 277         | No
-spring-beans-5.1.3.RELEASE.jar           | 656 KB  | 380         | No
-spring-context-5.1.3.RELEASE.jar         | 1.05 MB | 822         | No
-spring-context-support-5.1.3.RELEASE.jar | 177 KB  | 119         | No
-spring-core-5.1.3.RELEASE.jar            | 1.23 MB | 876         | No
-spring-expression-5.1.3.RELEASE.jar      | 274 KB  | 150         | No
-spring-jdbc-5.1.3.RELEASE.jar            | 395 KB  | 287         | No
-spring-jms-5.1.3.RELEASE.jar             | 254 KB  | 163         | No
-spring-messaging-5.1.3.RELEASE.jar       | 374 KB  | 239         | No
-spring-orm-5.1.3.RELEASE.jar             | 195 KB  | 100         | No
-spring-tx-5.1.3.RELEASE.jar              | 250 KB  | 217         | No
-spring-web-5.1.3.RELEASE.jar             | 1.31 MB | 909         | No
-Classpath                                | 6.46 MB | 4539        | -
+JAR file                                 | Size    | Class files | Multi-release | Module
+-----------------------------------------+---------+-------------+---------------+-------
+spring-aop-5.1.3.RELEASE.jar             | 360 KB  | 277         | No            | No
+spring-beans-5.1.3.RELEASE.jar           | 656 KB  | 380         | No            | No
+spring-context-5.1.3.RELEASE.jar         | 1.05 MB | 822         | No            | No
+spring-context-support-5.1.3.RELEASE.jar | 177 KB  | 119         | No            | No
+spring-core-5.1.3.RELEASE.jar            | 1.23 MB | 876         | No            | No
+spring-expression-5.1.3.RELEASE.jar      | 274 KB  | 150         | No            | No
+spring-jdbc-5.1.3.RELEASE.jar            | 395 KB  | 287         | No            | No
+spring-jms-5.1.3.RELEASE.jar             | 254 KB  | 163         | No            | No
+spring-messaging-5.1.3.RELEASE.jar       | 374 KB  | 239         | No            | No
+spring-orm-5.1.3.RELEASE.jar             | 195 KB  | 100         | No            | No
+spring-tx-5.1.3.RELEASE.jar              | 250 KB  | 217         | No            | No
+spring-web-5.1.3.RELEASE.jar             | 1.31 MB | 909         | No            | No
+Classpath                                | 6.46 MB | 4539        | -             | -
 

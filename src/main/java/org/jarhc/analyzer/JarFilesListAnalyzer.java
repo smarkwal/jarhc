@@ -40,7 +40,7 @@ public class JarFilesListAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release");
+		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module");
 
 		// total values
 		long totalFileSize = 0;
@@ -55,7 +55,8 @@ public class JarFilesListAnalyzer extends Analyzer {
 			long fileSize = jarFile.getFileSize();
 			int classCount = jarFile.getClassDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo);
+			String moduleInfo = getModuleInfo(jarFile);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -63,7 +64,7 @@ public class JarFilesListAnalyzer extends Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-");
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-");
 
 		return table;
 	}
@@ -72,6 +73,14 @@ public class JarFilesListAnalyzer extends Analyzer {
 		if (jarFile.isMultiRelease()) {
 			String releases = jarFile.getReleases().stream().map(r -> "Java " + r).collect(Collectors.joining(", "));
 			return "Yes (" + releases + ")";
+		} else {
+			return "No";
+		}
+	}
+
+	private String getModuleInfo(JarFile jarFile) {
+		if (jarFile.isModule()) {
+			return "Yes (" + jarFile.getModuleInfo().getModuleName() + ")";
 		} else {
 			return "No";
 		}
