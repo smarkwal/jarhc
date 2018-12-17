@@ -1,0 +1,19 @@
+JAR Health Check Report
+=======================
+
+JAR File Dependencies
+---------------------
+Dependencies between JAR files.
+
+JAR file             | Uses             | Used by
+---------------------+------------------+---------------------
+asm-7.0.jar          | [none]           | asm-analysis-7.0.jar
+                     |                  | asm-commons-7.0.jar
+                     |                  | asm-tree-7.0.jar
+asm-analysis-7.0.jar | asm-7.0.jar      | [none]
+                     | asm-tree-7.0.jar |
+asm-commons-7.0.jar  | asm-7.0.jar      | [none]
+                     | asm-tree-7.0.jar |
+asm-tree-7.0.jar     | asm-7.0.jar      | asm-analysis-7.0.jar
+                     |                  | asm-commons-7.0.jar
+

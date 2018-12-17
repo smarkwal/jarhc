@@ -1,0 +1,15 @@
+JAR Health Check Report
+=======================
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file             | Size    | Class files | Multi-release | Module
+---------------------+---------+-------------+---------------+--------------------------------------
+asm-7.0.jar          | 111 KB  | 36          | No            | Yes (org.objectweb.asm)
+asm-analysis-7.0.jar | 32.5 KB | 15          | No            | Yes (org.objectweb.asm.tree.analysis)
+asm-commons-7.0.jar  | 78.0 KB | 33          | No            | Yes (org.objectweb.asm.commons)
+asm-tree-7.0.jar     | 49.2 KB | 38          | No            | Yes (org.objectweb.asm.tree)
+Classpath            | 271 KB  | 122         | -             | -
+
