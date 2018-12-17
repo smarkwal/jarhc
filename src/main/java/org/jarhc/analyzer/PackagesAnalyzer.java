@@ -55,8 +55,10 @@ public class PackagesAnalyzer extends Analyzer {
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
 
-				// get package name from class name
 				String className = classDef.getClassName();
+				if (className.equals("module-info")) continue;
+
+				// get package name from class name
 				String packageName = JavaUtils.getPackageName(className);
 
 				// remember JAR files for package name

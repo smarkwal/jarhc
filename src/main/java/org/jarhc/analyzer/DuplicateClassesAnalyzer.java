@@ -53,6 +53,7 @@ public class DuplicateClassesAnalyzer extends Analyzer {
 			for (ClassDef classDef : classDefs) {
 
 				String className = classDef.getClassName();
+				if (className.equals("module-info")) continue;
 
 				// remember JAR files for class name
 				Set<String> fileNames = map.computeIfAbsent(className, k -> new TreeSet<>());
