@@ -16,10 +16,7 @@
 
 package org.jarhc.test;
 
-import org.jarhc.model.ClassDef;
-import org.jarhc.model.ClassRef;
-import org.jarhc.model.Classpath;
-import org.jarhc.model.JarFile;
+import org.jarhc.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,14 @@ public class ClasspathBuilder {
 	private String fileName;
 	private long fileSize;
 	private Set<Integer> releases;
+	private ModuleInfo moduleInfo;
 	private List<ClassDef> classDefs;
+
+	// TODO: add support for modular JAR files
+	// ModuleInfo properties
+	private String moduleName = null;
+	private List<String> exports = null;
+	private List<String> requires = null;
 
 	// ClassDef properties
 	private String className;
@@ -98,7 +102,7 @@ public class ClasspathBuilder {
 
 	private void closeJarFile() {
 		if (fileName != null) {
-			jarFiles.add(new JarFile(fileName, fileSize, releases, classDefs));
+			jarFiles.add(new JarFile(fileName, fileSize, releases, moduleInfo, classDefs));
 			fileName = null;
 		}
 	}

@@ -18,6 +18,7 @@ package org.jarhc.loader;
 
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,8 @@ class JarFileLoader {
 
 	private final ClassDefLoader classDefLoader = new ClassDefLoader();
 
+	private final ModuleInfoLoader moduleInfoLoader = new ModuleInfoLoader();
+
 	/**
 	 * Load a JAR file from the given file.
 	 * This method does not check whether the given file
@@ -52,6 +55,7 @@ class JarFileLoader {
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
 		Set<Integer> releases = new TreeSet<>();
+		ModuleInfo moduleInfo = null;
 		List<ClassDef> classDefs = new ArrayList<>();
 
 		// open JAR file for reading
@@ -99,6 +103,12 @@ class JarFileLoader {
 					continue;
 				}
 
+				if (name.equals("module-info.class")) {
+					// load module info
+					InputStream stream = jarFile.getInputStream(entry);
+					moduleInfo = moduleInfoLoader.load(stream);
+				}
+
 				// load class file
 				InputStream stream = jarFile.getInputStream(entry);
 				ClassDef classDef;
@@ -125,7 +135,7 @@ class JarFileLoader {
 			}
 		}
 
-		return new JarFile(file.getName(), file.length(), releases, classDefs);
+		return new JarFile(file.getName(), file.length(), releases, moduleInfo, classDefs);
 	}
 
 	private boolean isMultiRelease(java.util.jar.JarFile jarFile) throws IOException {

@@ -39,6 +39,11 @@ public class JarFile {
 	private final Set<Integer> releases;
 
 	/**
+	 * Module information (for modular JAR files)
+	 */
+	private final ModuleInfo moduleInfo;
+
+	/**
 	 * List of class definitions for classes found in the JAR file.
 	 */
 	private final List<ClassDef> classDefs;
@@ -51,19 +56,21 @@ public class JarFile {
 	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
-	 * @param fileName  JAR file name
-	 * @param fileSize  JAR file size in bytes
-	 * @param releases  List of releases supported by this JAR file (for multi-release JAR files)
-	 * @param classDefs Class definitions
+	 * @param fileName   JAR file name
+	 * @param fileSize   JAR file size in bytes
+	 * @param releases   List of releases supported by this JAR file (for multi-release JAR files)
+	 * @param moduleInfo Module information (for modular JAR files)
+	 * @param classDefs  Class definitions
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	public JarFile(String fileName, long fileSize, Set<Integer> releases, List<ClassDef> classDefs) {
+	public JarFile(String fileName, long fileSize, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.releases = new TreeSet<>(releases);
+		this.moduleInfo = moduleInfo;
 		this.classDefs = new ArrayList<>(classDefs);
 
 		// sort class definitions by class name (case-sensitive)
@@ -95,6 +102,14 @@ public class JarFile {
 
 	public Set<Integer> getReleases() {
 		return Collections.unmodifiableSet(releases);
+	}
+
+	public boolean isModule() {
+		return moduleInfo != null;
+	}
+
+	public ModuleInfo getModuleInfo() {
+		return moduleInfo;
 	}
 
 	/**
@@ -131,6 +146,7 @@ public class JarFile {
 		private String fileName;
 		private long fileSize = -1;
 		private Set<Integer> releases = new TreeSet<>();
+		private ModuleInfo moduleInfo = null;
 		private List<ClassDef> classDefs = new ArrayList<>();
 
 		Builder(String fileName) {
@@ -147,6 +163,11 @@ public class JarFile {
 			return this;
 		}
 
+		public Builder withModuleInfo(ModuleInfo moduleInfo) {
+			this.moduleInfo = moduleInfo;
+			return this;
+		}
+
 		public Builder withClassDef(ClassDef classDef) {
 			this.classDefs.add(classDef);
 			return this;
@@ -158,7 +179,7 @@ public class JarFile {
 		}
 
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, releases, classDefs);
+			return new JarFile(fileName, fileSize, releases, moduleInfo, classDefs);
 		}
 
 	}
