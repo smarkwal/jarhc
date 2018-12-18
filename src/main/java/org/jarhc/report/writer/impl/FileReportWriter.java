@@ -26,17 +26,22 @@ import java.nio.charset.StandardCharsets;
  */
 public class FileReportWriter implements ReportWriter {
 
-	private final Writer writer;
+	private final File file;
+	private Writer writer;
 
-	public FileReportWriter(File file) throws FileNotFoundException {
+	public FileReportWriter(File file) {
 		if (file == null) throw new IllegalArgumentException("file");
-		FileOutputStream stream = new FileOutputStream(file);
-		writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8);
+		this.file = file;
 	}
 
 	@Override
 	public void print(String text) {
 		try {
+			if (writer == null) {
+				// lazy opening of file stream when first text is written
+				FileOutputStream stream = new FileOutputStream(file);
+				writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8);
+			}
 			writer.append(text);
 		} catch (IOException e) {
 			// TODO: use a ReportWriterException?

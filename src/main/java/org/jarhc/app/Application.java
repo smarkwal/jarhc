@@ -29,7 +29,6 @@ import org.jarhc.utils.StringUtils;
 import org.jarhc.utils.VersionUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
@@ -110,7 +109,7 @@ public class Application {
 	}
 
 	// TODO: move into a factory class and inject as dependency?
-	private ReportWriter createReportWriter(Options options) throws FileNotFoundException {
+	private ReportWriter createReportWriter(Options options) {
 		String path = options.getReportFile();
 		if (path == null) {
 			return new StreamReportWriter(this.out);
