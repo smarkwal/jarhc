@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package org.jarhc.app;
+package org.jarhc.it;
 
 import org.jarhc.TestUtils;
+import org.jarhc.app.Application;
+import org.jarhc.app.CommandLineParser;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
