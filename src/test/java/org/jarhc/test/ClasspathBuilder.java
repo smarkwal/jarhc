@@ -17,15 +17,11 @@
 package org.jarhc.test;
 
 import org.jarhc.model.*;
-import org.objectweb.asm.tree.ModuleExportNode;
-import org.objectweb.asm.tree.ModuleNode;
-import org.objectweb.asm.tree.ModuleRequireNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class ClasspathBuilder {
 
@@ -69,11 +65,8 @@ public class ClasspathBuilder {
 		return this;
 	}
 
-	public ClasspathBuilder addModuleInfo(String moduleName, List<String> exports, List<String> requires) {
-		ModuleNode moduleNode = new ModuleNode(moduleName, 0, "1");
-		moduleNode.exports = exports.stream().map(e -> new ModuleExportNode(e, 0, null)).collect(Collectors.toList());
-		moduleNode.requires = requires.stream().map(e -> new ModuleRequireNode(e, 0, "1")).collect(Collectors.toList());
-		this.moduleInfo = new ModuleInfo(moduleNode);
+	public ClasspathBuilder addModuleInfo(ModuleInfo moduleInfo) {
+		this.moduleInfo = moduleInfo;
 		return this;
 	}
 
@@ -123,7 +116,8 @@ public class ClasspathBuilder {
 
 	private void closeClassDef() {
 		if (className != null) {
-			classDefs.add(new ClassDef(className, majorClassVersion, minorClassVersion, classRefs));
+			ClassDef classDef = ClassDef.forClassName(className).withVersion(majorClassVersion, minorClassVersion).withClassRefs(classRefs).build();
+			classDefs.add(classDef);
 			className = null;
 			classRefs = null;
 		}

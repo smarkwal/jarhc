@@ -17,6 +17,7 @@
 package org.jarhc.model;
 
 import org.jarhc.utils.JavaVersion;
+import org.objectweb.asm.tree.ClassNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,21 +29,9 @@ import java.util.List;
 public class ClassDef implements Comparable<ClassDef> {
 
 	/**
-	 * Class name in the form "org/something/MyClass".
+	 * ASM class definition.
 	 */
-	private final String className;
-
-	/**
-	 * Major version number of the class file format.
-	 * See https://en.wikipedia.org/wiki/Java_class_file
-	 */
-	private final int majorClassVersion;
-
-	/**
-	 * Minor version number of the class file format.
-	 * See https://en.wikipedia.org/wiki/Java_class_file
-	 */
-	private final int minorClassVersion;
+	private final ClassNode classNode;
 
 	/**
 	 * List with references to other classes.
@@ -55,38 +44,31 @@ public class ClassDef implements Comparable<ClassDef> {
 	private JarFile jarFile;
 
 	/**
-	 * Create a class definition for the given class name and class version.
+	 * Create a class definition for the given class and class references.
 	 *
-	 * @param className         Class name
-	 * @param majorClassVersion Major class version
-	 * @param minorClassVersion Minor class version
-	 * @param classRefs         References to other classes
-	 * @throws IllegalArgumentException If <code>className</code> is <code>null</code>
-	 *                                  or <code>majorClassVersion</code> is less than {@link JavaVersion#MIN_CLASS_VERSION 45}
-	 *                                  or <code>minorClassVersion</code> is less than 0
-	 *                                  or <code>classRefs</code> is <code>null</code>.
+	 * @param classNode ASM class definition
+	 * @param classRefs References to other classes
+	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
-	public ClassDef(String className, int majorClassVersion, int minorClassVersion, List<ClassRef> classRefs) {
-		if (className == null) throw new IllegalArgumentException("className");
-		if (majorClassVersion < JavaVersion.MIN_CLASS_VERSION) throw new IllegalArgumentException("majorClassVersion");
-		if (minorClassVersion < 0) throw new IllegalArgumentException("minorClassVersion");
+	public ClassDef(ClassNode classNode, List<ClassRef> classRefs) {
+		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
-		this.className = className;
-		this.majorClassVersion = majorClassVersion;
-		this.minorClassVersion = minorClassVersion;
+		this.classNode = classNode;
 		this.classRefs = new ArrayList<>(classRefs);
+
+		// TODO: remove unused information from class node?
 	}
 
 	public String getClassName() {
-		return className;
+		return classNode.name;
 	}
 
 	public int getMajorClassVersion() {
-		return majorClassVersion;
+		return classNode.version & 0xFF;
 	}
 
 	public int getMinorClassVersion() {
-		return minorClassVersion;
+		return classNode.version >> 16;
 	}
 
 	/**
@@ -96,7 +78,7 @@ public class ClassDef implements Comparable<ClassDef> {
 	 * @see JavaVersion#fromClassVersion(int)
 	 */
 	public String getJavaVersion() {
-		return JavaVersion.fromClassVersion(majorClassVersion);
+		return JavaVersion.fromClassVersion(getMajorClassVersion());
 	}
 
 	public List<ClassRef> getClassRefs() {
@@ -113,14 +95,49 @@ public class ClassDef implements Comparable<ClassDef> {
 
 	@Override
 	public String toString() {
-		return String.format("ClassDef[%s,%d.%d]", className, majorClassVersion, minorClassVersion);
+		return String.format("ClassDef[%s,%d.%d]", getClassName(), getMajorClassVersion(), getMinorClassVersion());
 	}
 
 	@Override
 	public int compareTo(ClassDef classDef) {
-		int diff = this.className.compareTo(classDef.className);
+		int diff = this.getClassName().compareTo(classDef.getClassName());
 		if (diff != 0) return diff;
 		return System.identityHashCode(this) - System.identityHashCode(classDef);
+	}
+
+	public static Builder forClassName(String className) {
+		return new Builder(className);
+	}
+
+	public static class Builder {
+
+		private final ClassNode classNode = new ClassNode();
+		private final List<ClassRef> classRefs = new ArrayList<>();
+
+		private Builder(String className) {
+			this.classNode.name = className;
+			this.classNode.version = 52; // Java 8
+		}
+
+		public Builder withVersion(int majorClassVersion, int minorClassVersion) {
+			this.classNode.version = majorClassVersion + (minorClassVersion << 16);
+			return this;
+		}
+
+		public Builder withClassRef(ClassRef classRef) {
+			this.classRefs.add(classRef);
+			return this;
+		}
+
+		public Builder withClassRefs(List<ClassRef> classRefs) {
+			this.classRefs.addAll(classRefs);
+			return this;
+		}
+
+		public ClassDef build() {
+			return new ClassDef(classNode, classRefs);
+		}
+
 	}
 
 }

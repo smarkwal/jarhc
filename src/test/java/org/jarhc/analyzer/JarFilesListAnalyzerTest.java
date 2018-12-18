@@ -17,12 +17,12 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.model.Classpath;
+import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,7 +37,7 @@ class JarFilesListAnalyzerTest {
 				.addJarFile("a.jar", 128)
 				.addClassDef("a/A")
 				.addJarFile("b.jar", 4096)
-				.addModuleInfo("b", Collections.singletonList("b"), Collections.singletonList("java.base"))
+				.addModuleInfo(ModuleInfo.forModuleName("b").exports("b").requires("java.base").build())
 				.addClassDef("b/B1")
 				.addClassDef("b/B2")
 				.addJarFile("c.jar", 24000)

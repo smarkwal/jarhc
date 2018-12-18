@@ -16,8 +16,11 @@
 
 package org.jarhc.model;
 
+import org.objectweb.asm.tree.ModuleExportNode;
 import org.objectweb.asm.tree.ModuleNode;
+import org.objectweb.asm.tree.ModuleRequireNode;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +50,40 @@ public class ModuleInfo {
 	@Override
 	public String toString() {
 		return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
+	}
+
+	public static Builder forModuleName(String moduleName) {
+		return new Builder(moduleName);
+	}
+
+	public static class Builder {
+
+		private final ModuleNode moduleNode;
+
+		private Builder(String moduleName) {
+			this.moduleNode = new ModuleNode(moduleName, 0, "1");
+		}
+
+		public Builder exports(String export) {
+			if (this.moduleNode.exports == null) {
+				this.moduleNode.exports = new ArrayList<>();
+			}
+			this.moduleNode.exports.add(new ModuleExportNode(export, 0, null));
+			return this;
+		}
+
+		public Builder requires(String require) {
+			if (this.moduleNode.requires == null) {
+				this.moduleNode.requires = new ArrayList<>();
+			}
+			this.moduleNode.requires.add(new ModuleRequireNode(require, 0, "1"));
+			return this;
+		}
+
+		public ModuleInfo build() {
+			return new ModuleInfo(moduleNode);
+		}
+
 	}
 
 }

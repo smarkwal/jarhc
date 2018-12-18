@@ -26,7 +26,7 @@ class ClassDefTest {
 	void test_toString() {
 
 		// prepare
-		ClassDef classDef = new ClassDef("a/b/C", 52, 0, ClassRef.NONE);
+		ClassDef classDef = ClassDef.forClassName("a/b/C").withVersion(52, 0).build();
 
 		// test
 		String result = classDef.toString();

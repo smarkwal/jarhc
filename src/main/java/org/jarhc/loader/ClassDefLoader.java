@@ -18,7 +18,6 @@ package org.jarhc.loader;
 
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
-import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
 
 import java.io.*;
@@ -29,6 +28,8 @@ import java.util.List;
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
 class ClassDefLoader {
+
+	private final ClassFileParser classFileParser = new ClassFileParser();
 
 	/**
 	 * Load a class definition from the given file.
@@ -62,21 +63,13 @@ class ClassDefLoader {
 	ClassDef load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
-		// parse class file with ASM
-		ClassNode classNode = new ClassNode();
-		ClassReader classReader = new ClassReader(stream);
-		classReader.accept(classNode, 0);
-
-		// split into major and minor version
-		// (see https://asm.ow2.io/javadoc/org/objectweb/asm/tree/ClassNode.html#version)
-		int majorClassVersion = classNode.version & 0xFF;
-		int minorClassVersion = classNode.version >> 16;
+		ClassNode classNode = classFileParser.parse(stream);
 
 		// find all references to other classes
 		List<ClassRef> classRefs = ClassRefFinder.findClassRefs(classNode);
 
 		// create class definition
-		return new ClassDef(classNode.name, majorClassVersion, minorClassVersion, classRefs);
+		return new ClassDef(classNode, classRefs);
 	}
 
 }

@@ -30,8 +30,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
-		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
+		classDefs.add(buildClassDef("a/A"));
+		classDefs.add(buildClassDef("b/B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
@@ -47,8 +47,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
-		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
+		classDefs.add(buildClassDef("a/A"));
+		classDefs.add(buildClassDef("b/B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
@@ -66,8 +66,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(new ClassDef("a/A", 52, 0, ClassRef.NONE));
-		classDefs.add(new ClassDef("b/B", 52, 0, ClassRef.NONE));
+		classDefs.add(buildClassDef("a/A"));
+		classDefs.add(buildClassDef("b/B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
@@ -83,6 +83,10 @@ class JarFileTest {
 		// assert
 		assertNull(result);
 
+	}
+
+	private ClassDef buildClassDef(String className) {
+		return ClassDef.forClassName(className).build();
 	}
 
 }
