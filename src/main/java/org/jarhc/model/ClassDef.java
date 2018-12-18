@@ -50,7 +50,7 @@ public class ClassDef implements Comparable<ClassDef> {
 	 * @param classRefs References to other classes
 	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
-	public ClassDef(ClassNode classNode, List<ClassRef> classRefs) {
+	private ClassDef(ClassNode classNode, List<ClassRef> classRefs) {
 		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
 		this.classNode = classNode;
@@ -105,16 +105,27 @@ public class ClassDef implements Comparable<ClassDef> {
 		return System.identityHashCode(this) - System.identityHashCode(classDef);
 	}
 
+	// BUILDER --------------------------------------------------------------------------------------
+
+	public static Builder forClassNode(ClassNode classNode) {
+		return new Builder(classNode);
+	}
+
 	public static Builder forClassName(String className) {
 		return new Builder(className);
 	}
 
 	public static class Builder {
 
-		private final ClassNode classNode = new ClassNode();
+		private final ClassNode classNode;
 		private final List<ClassRef> classRefs = new ArrayList<>();
 
+		private Builder(ClassNode classNode) {
+			this.classNode = classNode;
+		}
+
 		private Builder(String className) {
+			this.classNode = new ClassNode();
 			this.classNode.name = className;
 			this.classNode.version = 52; // Java 8
 		}

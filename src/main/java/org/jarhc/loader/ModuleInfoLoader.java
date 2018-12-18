@@ -32,7 +32,7 @@ public class ModuleInfoLoader {
 		ClassNode classNode = classFileParser.parse(stream);
 
 		// create module definition
-		return new ModuleInfo(classNode.module);
+		return ModuleInfo.forModuleNode(classNode.module).build();
 	}
 
 }

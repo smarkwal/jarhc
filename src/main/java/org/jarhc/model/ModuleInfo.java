@@ -28,7 +28,7 @@ public class ModuleInfo {
 
 	private final ModuleNode moduleNode;
 
-	public ModuleInfo(ModuleNode moduleNode) {
+	private ModuleInfo(ModuleNode moduleNode) {
 		if (moduleNode == null) throw new IllegalArgumentException("moduleNode");
 		this.moduleNode = moduleNode;
 	}
@@ -52,6 +52,12 @@ public class ModuleInfo {
 		return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
 	}
 
+	// BUILDER --------------------------------------------------------------------------------------
+
+	public static Builder forModuleNode(ModuleNode moduleNode) {
+		return new Builder(moduleNode);
+	}
+
 	public static Builder forModuleName(String moduleName) {
 		return new Builder(moduleName);
 	}
@@ -60,8 +66,12 @@ public class ModuleInfo {
 
 		private final ModuleNode moduleNode;
 
+		private Builder(ModuleNode moduleNode) {
+			this.moduleNode = moduleNode;
+		}
+
 		private Builder(String moduleName) {
-			this.moduleNode = new ModuleNode(moduleName, 0, "1");
+			this(new ModuleNode(moduleName, 0, "1"));
 		}
 
 		public Builder exports(String export) {

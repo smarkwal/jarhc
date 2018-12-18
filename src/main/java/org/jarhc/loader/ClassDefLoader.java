@@ -69,7 +69,7 @@ class ClassDefLoader {
 		List<ClassRef> classRefs = ClassRefFinder.findClassRefs(classNode);
 
 		// create class definition
-		return new ClassDef(classNode, classRefs);
+		return ClassDef.forClassNode(classNode).withClassRefs(classRefs).build();
 	}
 
 }
