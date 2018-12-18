@@ -14,19 +14,29 @@
  * limitations under the License.
  */
 
-package org.jarhc.report;
+package org.jarhc.report.writer.impl;
 
 import org.jarhc.report.writer.ReportWriter;
-import org.jarhc.report.writer.impl.MemoryReportWriter;
 
-public interface ReportFormat {
+import java.io.PrintStream;
 
-	void format(Report report, ReportWriter writer);
+/**
+ * Report writer writing to a print stream.
+ * <p>
+ * This class may be used to write to STDOUT.
+ */
+public class StreamReportWriter implements ReportWriter {
 
-	default String format(Report report) {
-		MemoryReportWriter writer = new MemoryReportWriter();
-		format(report, writer);
-		return writer.getText();
+	private final PrintStream stream;
+
+	public StreamReportWriter(PrintStream stream) {
+		if (stream == null) throw new IllegalArgumentException("stream");
+		this.stream = stream;
+	}
+
+	@Override
+	public void print(String text) {
+		stream.print(text);
 	}
 
 }

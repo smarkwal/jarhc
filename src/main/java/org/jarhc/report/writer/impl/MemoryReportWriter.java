@@ -14,19 +14,29 @@
  * limitations under the License.
  */
 
-package org.jarhc.report;
+package org.jarhc.report.writer.impl;
 
 import org.jarhc.report.writer.ReportWriter;
-import org.jarhc.report.writer.impl.MemoryReportWriter;
 
-public interface ReportFormat {
+/**
+ * A report writer buffering all output in memory.
+ */
+public class MemoryReportWriter implements ReportWriter {
 
-	void format(Report report, ReportWriter writer);
+	private final StringBuilder buffer = new StringBuilder();
 
-	default String format(Report report) {
-		MemoryReportWriter writer = new MemoryReportWriter();
-		format(report, writer);
-		return writer.getText();
+	@Override
+	public void print(String text) {
+		buffer.append(text);
+	}
+
+	/**
+	 * Get the report output.
+	 *
+	 * @return Report output as text.
+	 */
+	public String getText() {
+		return buffer.toString();
 	}
 
 }

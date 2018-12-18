@@ -22,10 +22,16 @@ import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportFormatFactory;
+import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.report.writer.impl.FileReportWriter;
+import org.jarhc.report.writer.impl.StreamReportWriter;
 import org.jarhc.utils.StringUtils;
 import org.jarhc.utils.VersionUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.List;
 
 public class Application {
@@ -78,32 +84,20 @@ public class Application {
 		Report report = analysis.run(classpath);
 
 		out.println("Create report ...");
-
-		// create report format and output stream
-		ReportFormat format = createReportFormat(options);
-		OutputStream stream;
-		try {
-			stream = createReportStream(options);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace(err);
-			return 2; // TODO: exit code?
-		}
-
 		out.println();
 
-		// print report
-		PrintWriter writer = new PrintWriter(stream, true);
-		format.format(report, writer);
-		writer.flush();
+		// create report format
+		ReportFormat format = createReportFormat(options);
 
-		// if report has been written into a file ...
-		if (stream instanceof FileOutputStream) {
-			// close the file stream
-			try {
-				stream.close();
-			} catch (IOException e) {
-				// ignore
-			}
+		// create report writer
+		try (ReportWriter writer = createReportWriter(options)) {
+
+			// print report
+			format.format(report, writer);
+
+		} catch (IOException e) {
+			e.printStackTrace(err);
+			return 2; // TODO: exit code?
 		}
 
 		return 0;
@@ -115,12 +109,14 @@ public class Application {
 		return factory.getReportFormat(format);
 	}
 
-	private OutputStream createReportStream(Options options) throws FileNotFoundException {
-		String file = options.getReportFile();
-		if (file == null) {
-			return this.out; // use STDOUT
+	// TODO: move into a factory class and inject as dependency?
+	private ReportWriter createReportWriter(Options options) throws FileNotFoundException {
+		String path = options.getReportFile();
+		if (path == null) {
+			return new StreamReportWriter(this.out);
 		} else {
-			return new FileOutputStream(file);
+			File file = new File(path);
+			return new FileReportWriter(file);
 		}
 	}
 

@@ -20,8 +20,8 @@ import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.report.writer.ReportWriter;
 
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -39,79 +39,75 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	@Override
-	public void format(Report report, PrintWriter out) {
-		out.println("<!DOCTYPE html>");
-		out.println("<html lang=\"en\">");
-		formatHtmlHead(report, out);
-		formatHtmlBody(report, out);
-		out.println("</html>");
+	public void format(Report report, ReportWriter writer) {
+		writer.println("<!DOCTYPE html>");
+		writer.println("<html lang=\"en\">");
+		formatHtmlHead(report, writer);
+		formatHtmlBody(report, writer);
+		writer.println("</html>");
 	}
 
-	private void formatHtmlHead(Report report, PrintWriter out) {
-		out.println("<head>");
+	private void formatHtmlHead(Report report, ReportWriter writer) {
+		writer.println("<head>");
 
 		// add optional report title
 		String title = report.getTitle();
 		if (title != null) {
-			out.print("<title>");
-			out.print(escape(title));
-			out.println("</title>");
+			writer.println("<title>%s</title>", escape(title));
 		}
 
 		// include CSS styles
 		String css = styleProvider.getStyle();
 		if (css != null) {
-			out.println("<style>");
-			out.println(css);
-			out.println("</style>");
+			writer.println("<style>");
+			writer.println(css);
+			writer.println("</style>");
 		}
 
-		out.println("</head>");
+		writer.println("</head>");
 	}
 
-	private void formatHtmlBody(Report report, PrintWriter out) {
-		out.println("<body>");
-		out.println();
+	private void formatHtmlBody(Report report, ReportWriter writer) {
+		writer.println("<body>");
+		writer.println();
 
 		// add optional title
 		String title = report.getTitle();
 		if (title != null) {
-			out.print("<h1>");
-			out.print(escape(title));
-			out.println("</h1>");
-			out.println();
+			writer.println("<h1>%s</h1>", escape(title));
+			writer.println();
 		}
 
 		// if report contains more than 1 section ...
 		List<ReportSection> sections = report.getSections();
 		if (sections.size() > 1) {
 			// add table of contents
-			formatToC(report, out);
+			formatToC(report, writer);
 		}
 
 		// add individual sections
 		for (ReportSection section : sections) {
-			formatSection(section, out);
-			out.println();
+			formatSection(section, writer);
+			writer.println();
 		}
 
-		out.println("</body>");
+		writer.println("</body>");
 	}
 
-	private void formatToC(Report report, PrintWriter out) {
-		out.println("<h3>Table of Contents</h3>");
-		out.println("<ul>");
+	private void formatToC(Report report, ReportWriter writer) {
+		writer.println("<h3>Table of Contents</h3>");
+		writer.println("<ul>");
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			String title = section.getTitle();
 			String id = section.getId();
-			out.printf("<li><a href=\"#%s\">%s</a></li>%s", id, escape(title), System.lineSeparator());
+			writer.println("<li><a href=\"#%s\">%s</a></li>", id, escape(title));
 		}
-		out.println("</ul>");
-		out.println();
+		writer.println("</ul>");
+		writer.println();
 	}
 
-	private void formatSection(ReportSection section, PrintWriter out) {
+	private void formatSection(ReportSection section, ReportWriter writer) {
 
 		String title = section.getTitle();
 		String id = section.getId();
@@ -119,61 +115,49 @@ public class HtmlReportFormat implements ReportFormat {
 		List<Object> contents = section.getContent();
 
 		// section start
-		out.print("<section id=\"");
-		out.print(id);
-		out.println("\">");
+		writer.println("<section id=\"%s\">", id);
 
 		// format header
-		out.print("<h2>");
-		out.print(escape(title));
-		out.println("</h2>");
+		writer.println("<h2>%s</h2>", escape(title));
 		if (description != null) {
-			out.print("<p>");
-			out.print(escape(description));
-			out.println("</p>");
+			writer.println("<p>%s</p>", escape(description));
 		}
 
 		// format contents
 		for (Object content : contents) {
 			if (content instanceof ReportTable) {
 				ReportTable table = (ReportTable) content;
-				formatTable(table, out);
+				formatTable(table, writer);
 			} else {
-				out.print("<p>");
-				out.print(escape(content.toString()));
-				out.println("</p>");
+				writer.println("<p>%s</p>", escape(content.toString()));
 			}
 		}
 
-		out.println("</section>");
+		writer.println("</section>");
 
 	}
 
-	private void formatTable(ReportTable table, PrintWriter out) {
-		out.println("<table>");
+	private void formatTable(ReportTable table, ReportWriter writer) {
+		writer.println("<table>");
 		String[] columns = table.getColumns();
-		printTableRow(out, columns, true);
+		printTableRow(writer, columns, true);
 		List<String[]> rows = table.getRows();
 		for (String[] values : rows) {
-			printTableRow(out, values, false);
+			printTableRow(writer, values, false);
 		}
-		out.println("</table>");
+		writer.println("</table>");
 	}
 
-	private static void printTableRow(PrintWriter out, String[] values, boolean header) {
-		out.print("\t<tr>");
+	private static void printTableRow(ReportWriter writer, String[] values, boolean header) {
+		writer.print("\t<tr>");
 		for (String value : values) {
 			if (header) {
-				out.print("<th>");
-				out.print(escape(value));
-				out.print("</th>");
+				writer.print("<th>%s</th>", escape(value));
 			} else {
-				out.print("<td>");
-				out.print(escape(value));
-				out.print("</td>");
+				writer.print("<td>%s</td>", escape(value));
 			}
 		}
-		out.println("</tr>");
+		writer.println("</tr>");
 	}
 
 	private static String escape(String text) {
