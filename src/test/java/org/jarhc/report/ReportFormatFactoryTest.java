@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ReportFactoryTest {
+class ReportFormatFactoryTest {
 
 	@Test
 	void test_getReportFormat_null() {
