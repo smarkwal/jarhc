@@ -135,7 +135,12 @@ class JarFileLoader {
 			}
 		}
 
-		return new JarFile(file.getName(), file.length(), releases, moduleInfo, classDefs);
+		return JarFile.withName(file.getName())
+				.withFileSize(file.length())
+				.withReleases(releases)
+				.withModuleInfo(moduleInfo)
+				.withClassDefs(classDefs)
+				.build();
 	}
 
 	private boolean isMultiRelease(java.util.jar.JarFile jarFile) throws IOException {

@@ -102,7 +102,13 @@ public class ClasspathBuilder {
 
 	private void closeJarFile() {
 		if (fileName != null) {
-			jarFiles.add(new JarFile(fileName, fileSize, releases, moduleInfo, classDefs));
+			JarFile jarFile = JarFile.withName(fileName)
+					.withFileSize(fileSize)
+					.withReleases(releases)
+					.withModuleInfo(moduleInfo)
+					.withClassDefs(classDefs)
+					.build();
+			jarFiles.add(jarFile);
 			fileName = null;
 		}
 	}

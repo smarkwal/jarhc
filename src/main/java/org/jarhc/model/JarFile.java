@@ -63,7 +63,7 @@ public class JarFile {
 	 * @param classDefs  Class definitions
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	public JarFile(String fileName, long fileSize, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs) {
+	private JarFile(String fileName, long fileSize, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
@@ -149,7 +149,7 @@ public class JarFile {
 		private ModuleInfo moduleInfo = null;
 		private List<ClassDef> classDefs = new ArrayList<>();
 
-		Builder(String fileName) {
+		private Builder(String fileName) {
 			this.fileName = fileName;
 		}
 
@@ -160,6 +160,11 @@ public class JarFile {
 
 		public Builder withRelease(int release) {
 			this.releases.add(release);
+			return this;
+		}
+
+		public Builder withReleases(Set<Integer> releases) {
+			this.releases.addAll(releases);
 			return this;
 		}
 
