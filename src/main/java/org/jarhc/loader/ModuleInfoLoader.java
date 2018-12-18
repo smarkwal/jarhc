@@ -19,12 +19,9 @@ package org.jarhc.loader;
 import org.jarhc.model.ModuleInfo;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.ModuleNode;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ModuleInfoLoader {
 
@@ -36,12 +33,8 @@ public class ModuleInfoLoader {
 		ClassReader classReader = new ClassReader(stream);
 		classReader.accept(classNode, 0);
 
-		ModuleNode moduleNode = classNode.module;
-		List<String> exports = moduleNode.exports.stream().map(e -> e.packaze).collect(Collectors.toList());
-		List<String> requires = moduleNode.requires.stream().map(e -> e.module).collect(Collectors.toList());
-
 		// create module definition
-		return new ModuleInfo(moduleNode.name, exports, requires);
+		return new ModuleInfo(classNode.module);
 	}
 
 }

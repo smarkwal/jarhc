@@ -16,51 +16,37 @@
 
 package org.jarhc.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import org.objectweb.asm.tree.ModuleNode;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ModuleInfo {
 
-	/**
-	 * Module name
-	 */
-	private final String moduleName;
+	private final ModuleNode moduleNode;
 
-	/**
-	 * List of exports
-	 */
-	private final List<String> exports;
-
-	/**
-	 * List of requires
-	 */
-	private final List<String> requires;
-
-	public ModuleInfo(String moduleName, List<String> exports, List<String> requires) {
-		if (moduleName == null) throw new IllegalArgumentException("moduleName");
-		if (exports == null) throw new IllegalArgumentException("exports");
-		if (requires == null) throw new IllegalArgumentException("requires");
-		this.moduleName = moduleName;
-		this.exports = new ArrayList<>(exports);
-		this.requires = new ArrayList<>(requires);
+	public ModuleInfo(ModuleNode moduleNode) {
+		if (moduleNode == null) throw new IllegalArgumentException("moduleNode");
+		this.moduleNode = moduleNode;
 	}
 
 	public String getModuleName() {
-		return moduleName;
+		return moduleNode.name;
 	}
 
 	public List<String> getExports() {
-		return Collections.unmodifiableList(exports);
+		// TODO: cache list?
+		return moduleNode.exports.stream().map(e -> e.packaze).collect(Collectors.toList());
 	}
 
 	public List<String> getRequires() {
-		return Collections.unmodifiableList(requires);
+		// TODO: cache list?
+		return moduleNode.requires.stream().map(r -> r.module).collect(Collectors.toList());
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ModuleInfo[%s,exports=%s,requires=%s]", moduleName, exports, requires);
+		return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
 	}
 
 }

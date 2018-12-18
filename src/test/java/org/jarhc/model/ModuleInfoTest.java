@@ -17,8 +17,12 @@
 package org.jarhc.model;
 
 import org.junit.jupiter.api.Test;
+import org.objectweb.asm.tree.ModuleExportNode;
+import org.objectweb.asm.tree.ModuleNode;
+import org.objectweb.asm.tree.ModuleRequireNode;
 
-import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,7 +32,10 @@ class ModuleInfoTest {
 	void test_toString() {
 
 		// prepare
-		ModuleInfo moduleInfo = new ModuleInfo("m", Arrays.asList("a", "b"), Arrays.asList("java.base", "x", "y"));
+		ModuleNode moduleNode = new ModuleNode("m", 0, "1");
+		moduleNode.exports = Stream.of("a", "b").map(e -> new ModuleExportNode(e, 0, null)).collect(Collectors.toList());
+		moduleNode.requires = Stream.of("java.base", "x", "y").map(r -> new ModuleRequireNode(r, 0, "1")).collect(Collectors.toList());
+		ModuleInfo moduleInfo = new ModuleInfo(moduleNode);
 
 		// test
 		String result = moduleInfo.toString();
