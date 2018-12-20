@@ -36,7 +36,7 @@ public class JarDependenciesAnalyzer extends Analyzer {
 
 		ReportTable table = buildTable(classpath, dependencies);
 
-		ReportSection section = new ReportSection("JAR File Dependencies", "Dependencies between JAR files.");
+		ReportSection section = new ReportSection("JAR Dependencies", "Dependencies between JAR files.");
 		section.add(table);
 		return section;
 	}

@@ -49,7 +49,7 @@ class JarDependenciesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("JAR File Dependencies", section.getTitle());
+		assertEquals("JAR Dependencies", section.getTitle());
 		assertEquals("Dependencies between JAR files.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
