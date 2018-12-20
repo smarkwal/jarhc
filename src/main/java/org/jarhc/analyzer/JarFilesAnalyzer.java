@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
-public class JarFilesListAnalyzer extends Analyzer {
+public class JarFilesAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {

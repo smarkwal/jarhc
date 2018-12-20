@@ -60,7 +60,7 @@ public class AnalyzerRegistry {
 	 * @param javaRuntime Java runtime used for Shadowed Classes analyzer.
 	 */
 	public void registerDefaultAnalyzers(JavaRuntime javaRuntime) {
-		register(new JarFilesListAnalyzer());
+		register(new JarFilesAnalyzer());
 		register(new ClassVersionAnalyzer());
 		register(new PackagesAnalyzer());
 		register(new SplitPackagesAnalyzer());

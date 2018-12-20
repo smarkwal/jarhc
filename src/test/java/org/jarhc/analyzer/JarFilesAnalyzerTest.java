@@ -27,7 +27,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JarFilesListAnalyzerTest {
+class JarFilesAnalyzerTest {
 
 	@Test
 	void test_analyze() {
@@ -48,7 +48,7 @@ class JarFilesListAnalyzerTest {
 				.build();
 
 		// test
-		JarFilesListAnalyzer analyzer = new JarFilesListAnalyzer();
+		JarFilesAnalyzer analyzer = new JarFilesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
