@@ -246,7 +246,8 @@ class ClassScanner {
 		// create reference to field
 		int opcode = fieldInsnNode.getOpcode();
 		boolean staticField = opcode == Opcodes.GETSTATIC || opcode == Opcodes.PUTSTATIC;
-		FieldRef fieldRef = new FieldRef(fieldInsnNode.owner, fieldInsnNode.desc, fieldInsnNode.name, staticField);
+		boolean writeAccess = opcode == Opcodes.PUTFIELD || opcode == Opcodes.PUTSTATIC;
+		FieldRef fieldRef = new FieldRef(fieldInsnNode.owner, fieldInsnNode.desc, fieldInsnNode.name, staticField, writeAccess);
 		fieldRefs.add(fieldRef);
 
 	}

@@ -26,12 +26,14 @@ public class FieldRef implements Comparable<FieldRef> {
 	private final String fieldDescriptor;
 	private final String fieldName;
 	private final boolean staticAccess;
+	private final boolean writeAccess;
 
-	public FieldRef(String fieldOwner, String fieldDescriptor, String fieldName, boolean staticAccess) {
+	public FieldRef(String fieldOwner, String fieldDescriptor, String fieldName, boolean staticAccess, boolean writeAccess) {
 		this.fieldOwner = fieldOwner;
 		this.fieldDescriptor = fieldDescriptor;
 		this.fieldName = fieldName;
 		this.staticAccess = staticAccess;
+		this.writeAccess = writeAccess;
 	}
 
 	public String getFieldOwner() {
@@ -48,6 +50,14 @@ public class FieldRef implements Comparable<FieldRef> {
 
 	public boolean isStaticAccess() {
 		return staticAccess;
+	}
+
+	public boolean isReadAccess() {
+		return !writeAccess;
+	}
+
+	public boolean isWriteAccess() {
+		return writeAccess;
 	}
 
 	public String getDisplayName() {
@@ -71,6 +81,7 @@ public class FieldRef implements Comparable<FieldRef> {
 		if (obj == null || getClass() != obj.getClass()) return false;
 		FieldRef fieldRef = (FieldRef) obj;
 		return staticAccess == fieldRef.staticAccess &&
+				writeAccess == fieldRef.writeAccess &&
 				Objects.equals(fieldOwner, fieldRef.fieldOwner) &&
 				Objects.equals(fieldDescriptor, fieldRef.fieldDescriptor) &&
 				Objects.equals(fieldName, fieldRef.fieldName);
@@ -78,7 +89,7 @@ public class FieldRef implements Comparable<FieldRef> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(fieldOwner, fieldDescriptor, fieldName, staticAccess);
+		return Objects.hash(fieldOwner, fieldDescriptor, fieldName, staticAccess, writeAccess);
 	}
 
 	@Override
@@ -89,7 +100,9 @@ public class FieldRef implements Comparable<FieldRef> {
 		if (diff != 0) return diff;
 		diff = fieldDescriptor.compareTo(fieldRef.fieldDescriptor);
 		if (diff != 0) return diff;
-		return Boolean.compare(staticAccess, fieldRef.staticAccess);
+		diff = Boolean.compare(staticAccess, fieldRef.staticAccess);
+		if (diff != 0) return diff;
+		return Boolean.compare(writeAccess, fieldRef.writeAccess);
 	}
 
 }

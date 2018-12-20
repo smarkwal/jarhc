@@ -112,6 +112,16 @@ public class FieldRefAnalyzer extends Analyzer {
 			}
 		}
 
+		// check access to final fields
+		// TODO: this check generate false-positives for when the final field is initialized
+		/*
+		if (field.isFinal()) {
+			if (fieldRef.isWriteAccess()) {
+				errorMessages.add("Write access to final field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+			}
+		}
+		*/
+
 		// TODO: more checks ...?
 
 		return errorMessages;
@@ -127,13 +137,27 @@ public class FieldRefAnalyzer extends Analyzer {
 		if (targetClassDefs == null || targetClassDefs.isEmpty()) {
 			// target class not found in classpath
 
+			// TODO: remove this hack
+			if (targetClassName.equals("java/lang/Object")) {
+				return Optional.empty();
+			}
+
 			// if class is a JDK/JRE class ...
 			String javaClassName = targetClassName.replace('/', '.');
 			String classLoaderName = JavaRuntime.getDefault().getClassLoaderName(javaClassName);
 			if (classLoaderName != null) {
 				// TODO: search for field in Java class
+				//  if field is found, create and return a FieldDef for this field
 			} else {
-				// class not found
+				if (targetClassName.equals(fieldRef.getFieldOwner())) {
+					// owner class not found
+					// TODO: return a special value so that this fieldRef is not validated
+					//  since the missing class has already been reported
+				} else {
+					// superclass or superinterface not found
+					// -> field not found in owner class
+					return Optional.empty();
+				}
 			}
 
 			// TODO: rethink: create a fake-field to avoid an error
@@ -146,11 +170,24 @@ public class FieldRefAnalyzer extends Analyzer {
 			Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
 			if (fieldDef.isPresent()) return fieldDef;
 
+			// try to find field in superclass
 			String superName = targetClassDef.getSuperName();
-			if (superName == null) return Optional.empty();
+			if (superName != null) {
+				fieldDef = findFieldDef(fieldRef, superName, classpath);
+				if (fieldDef.isPresent()) return fieldDef;
+			}
 
-			fieldDef = findFieldDef(fieldRef, superName, classpath);
-			if (fieldDef.isPresent()) return fieldDef;
+			// try to find field in superinterfaces
+			List<String> interfaceNames = targetClassDef.getInterfaceNames();
+			if (interfaceNames != null) {
+				for (String interfaceName : interfaceNames) {
+					fieldDef = findFieldDef(fieldRef, interfaceName, classpath);
+					if (fieldDef.isPresent()) {
+						return fieldDef;
+					}
+				}
+			}
+
 		}
 
 		// field not found
