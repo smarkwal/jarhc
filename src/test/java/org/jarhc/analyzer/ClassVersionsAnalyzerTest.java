@@ -26,7 +26,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ClassVersionAnalyzerTest {
+class ClassVersionsAnalyzerTest {
 
 	@Test
 	void test_analyze() {
@@ -44,7 +44,7 @@ class ClassVersionAnalyzerTest {
 				.build();
 
 		// test
-		ClassVersionAnalyzer analyzer = new ClassVersionAnalyzer();
+		ClassVersionsAnalyzer analyzer = new ClassVersionsAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

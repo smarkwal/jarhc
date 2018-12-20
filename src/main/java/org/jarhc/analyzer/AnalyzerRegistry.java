@@ -61,7 +61,7 @@ public class AnalyzerRegistry {
 	 */
 	public void registerDefaultAnalyzers(JavaRuntime javaRuntime) {
 		register(new JarFilesAnalyzer());
-		register(new ClassVersionAnalyzer());
+		register(new ClassVersionsAnalyzer());
 		register(new PackagesAnalyzer());
 		register(new SplitPackagesAnalyzer());
 		register(new DuplicateClassesAnalyzer());

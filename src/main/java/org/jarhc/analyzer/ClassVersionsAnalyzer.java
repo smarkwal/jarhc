@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class ClassVersionAnalyzer extends Analyzer {
+public class ClassVersionsAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
