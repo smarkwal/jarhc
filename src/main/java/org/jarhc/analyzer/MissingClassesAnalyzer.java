@@ -16,19 +16,29 @@
 
 package org.jarhc.analyzer;
 
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-import org.jarhc.utils.JavaUtils;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class MissingClassesAnalyzer extends Analyzer {
+
+	private final JavaRuntime javaRuntime;
+
+	public MissingClassesAnalyzer() {
+		this(JavaRuntime.getDefault());
+	}
+
+	public MissingClassesAnalyzer(JavaRuntime javaRuntime) {
+		this.javaRuntime = javaRuntime;
+	}
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -88,8 +98,12 @@ public class MissingClassesAnalyzer extends Analyzer {
 		if (classDefs != null) return true;
 
 		// check if class is a Java bootstrap class
-		return JavaUtils.isBootstrapClass(className);
+		String realClassName = className.replace('/', '.');
+		String classLoader = javaRuntime.getClassLoaderName(realClassName);
+		if (classLoader != null) return true;
 
+		// class not found
+		return false;
 	}
 
 }

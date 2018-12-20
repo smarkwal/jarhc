@@ -44,23 +44,6 @@ public class JavaUtils {
 		return "void".equals(type);
 	}
 
-	public static boolean isBootstrapClass(String className) {
-		Class javaClass = loadBootstrapClass(className);
-		return javaClass != null;
-	}
-
-	public static Class loadBootstrapClass(String className) {
-		className = className.replace('/', '.');
-		try {
-			return Class.forName(className, false, BOOTSTRAP_CLASSLOADER);
-		} catch (ClassNotFoundException e) {
-			return null;
-		} catch (Throwable t) {
-			// TODO: ignore ?
-			return null;
-		}
-	}
-
 	public static String getPackageName(String className) {
 		className = className.replace('/', '.');
 		if (className.contains(".")) {
