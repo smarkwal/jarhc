@@ -76,10 +76,14 @@ class ClassDefLoader {
 		List<FieldRef> fieldRefs = new ArrayList<>(scanner.getFieldRefs());
 		List<MethodRef> methodRefs = new ArrayList<>(scanner.getMethodRefs());
 
-		// TODO: pass defs and refs
-
 		// create class definition
-		return ClassDef.forClassNode(classNode).withClassRefs(classRefs).build();
+		return ClassDef.forClassNode(classNode)
+				.withFieldDefs(fieldDefs)
+				.withMethodDefs(methodDefs)
+				.withClassRefs(classRefs)
+				.withFieldRefs(fieldRefs)
+				.withMethodRefs(methodRefs)
+				.build();
 	}
 
 }

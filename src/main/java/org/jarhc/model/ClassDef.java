@@ -208,7 +208,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	public static class Builder {
 
 		private final ClassNode classNode;
+		private final List<FieldDef> fieldDefs = new ArrayList<>();
+		private final List<MethodDef> methodDefs = new ArrayList<>();
 		private final List<ClassRef> classRefs = new ArrayList<>();
+		private final List<FieldRef> fieldRefs = new ArrayList<>();
+		private final List<MethodRef> methodRefs = new ArrayList<>();
 
 		private Builder(ClassNode classNode) {
 			this.classNode = classNode;
@@ -225,8 +229,13 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 			return this;
 		}
 
-		public Builder withClassRef(ClassRef classRef) {
-			this.classRefs.add(classRef);
+		public Builder withFieldDefs(List<FieldDef> fieldDefs) {
+			this.fieldDefs.addAll(fieldDefs);
+			return this;
+		}
+
+		public Builder withMethodDefs(List<MethodDef> methodDefs) {
+			this.methodDefs.addAll(methodDefs);
 			return this;
 		}
 
@@ -235,9 +244,23 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 			return this;
 		}
 
+		public Builder withClassRef(ClassRef classRef) {
+			this.classRefs.add(classRef);
+			return this;
+		}
+
+		public Builder withFieldRefs(List<FieldRef> fieldRefs) {
+			this.fieldRefs.addAll(fieldRefs);
+			return this;
+		}
+
+		public Builder withMethodRefs(List<MethodRef> methodRefs) {
+			this.methodRefs.addAll(methodRefs);
+			return this;
+		}
+
 		public ClassDef build() {
-			// TODO: support defs and refs
-			return new ClassDef(classNode, Collections.emptyList(), Collections.emptyList(), classRefs, Collections.emptyList(), Collections.emptyList());
+			return new ClassDef(classNode, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
 		}
 
 	}
