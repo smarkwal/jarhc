@@ -17,7 +17,7 @@
 package org.jarhc.loader;
 
 import org.jarhc.TestUtils;
-import org.jarhc.model.ClassRef;
+import org.jarhc.model.*;
 import org.junit.jupiter.api.Test;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
@@ -26,28 +26,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ClassScannerTest {
 
 	@Test
 	void test_findClassRefs() throws IOException {
 
-		// prepare
-		ClassNode classNode = new ClassNode();
-		try (InputStream stream = TestUtils.getResourceAsStream("/ClassRefFinderTest/Main.class")) {
-			ClassReader classReader = new ClassReader(stream);
-			classReader.accept(classNode, 0);
-		}
-
 		// test
-		ClassScanner scanner = new ClassScanner();
-		scanner.scan(classNode);
-		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
+		ClassScanner scanner = scanTestClass();
 
 		// assert
+		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
 		String[] classNames = new String[]{
 				"a/Main",
 				"a/Base",
@@ -74,6 +66,126 @@ class ClassScannerTest {
 		}
 		assertEquals(classNames.length, classRefs.size());
 
+	}
+
+	@Test
+	void test_getFieldDefs() throws IOException {
+
+		// test
+		ClassScanner scanner = scanTestClass();
+
+		// assert
+		List<FieldDef> fieldDefs = scanner.getFieldDefs();
+
+		FieldDef nameField = fieldDefs.stream().filter(f -> f.getFieldName().equals("name")).findFirst().orElse(null);
+		assertNotNull(nameField);
+		assertEquals("public java.lang.String name", nameField.getDisplayName());
+
+		FieldDef numberField = fieldDefs.stream().filter(f -> f.getFieldName().equals("number")).findFirst().orElse(null);
+		assertNotNull(numberField);
+		assertEquals("public int number", numberField.getDisplayName());
+
+		FieldDef dataField = fieldDefs.stream().filter(f -> f.getFieldName().equals("data")).findFirst().orElse(null);
+		assertNotNull(dataField);
+		assertEquals("public byte[] data", dataField.getDisplayName());
+
+		assertEquals(3, fieldDefs.size());
+	}
+
+	@Test
+	void test_getMethodDefs() throws IOException {
+
+		// test
+		ClassScanner scanner = scanTestClass();
+
+		// assert
+		List<MethodDef> methodDefs = scanner.getMethodDefs();
+
+		MethodDef mainMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("main")).findFirst().orElse(null);
+		assertNotNull(mainMethod);
+		assertEquals("public static void main(java.lang.String[])", mainMethod.getDisplayName());
+
+		MethodDef testMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("test")).findFirst().orElse(null);
+		assertNotNull(testMethod);
+		assertEquals("public void test()", testMethod.getDisplayName());
+
+		MethodDef createListMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("createList")).findFirst().orElse(null);
+		assertNotNull(createListMethod);
+		assertEquals("public static java.util.List createList()", createListMethod.getDisplayName());
+
+		MethodDef initMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("<init>")).findFirst().orElse(null);
+		assertNotNull(initMethod);
+		assertEquals("public void <init>()", initMethod.getDisplayName());
+
+		assertEquals(4, methodDefs.size());
+	}
+
+	@Test
+	void test_getFieldRefs() throws IOException {
+
+		// test
+		ClassScanner scanner = scanTestClass();
+
+		// assert
+		Set<FieldRef> fieldRefs = scanner.getFieldRefs();
+
+		FieldRef outField = fieldRefs.stream().filter(f -> f.getFieldName().equals("out")).findFirst().orElse(null);
+		assertNotNull(outField);
+		assertEquals("static java.io.PrintStream java.lang.System.out", outField.getDisplayName());
+
+		assertEquals(1, fieldRefs.size());
+	}
+
+	@Test
+	void test_getMethodRefs() throws IOException {
+
+		// test
+		ClassScanner scanner = scanTestClass();
+
+		// assert
+		Set<MethodRef> methodRefs = scanner.getMethodRefs();
+
+		MethodRef initBaseMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("<init>") && f.getMethodOwner().contains("Base")).findFirst().orElse(null);
+		assertNotNull(initBaseMethod);
+		assertEquals("void a.Base.<init>()", initBaseMethod.getDisplayName());
+
+		MethodRef initMainMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("<init>") && f.getMethodOwner().contains("Main")).findFirst().orElse(null);
+		assertNotNull(initMainMethod);
+		assertEquals("void a.Main.<init>()", initMainMethod.getDisplayName());
+
+		MethodRef printlnObjectMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("println") && f.getMethodDescriptor().contains("Object")).findFirst().orElse(null);
+		assertNotNull(printlnObjectMethod);
+		assertEquals("void java.io.PrintStream.println(java.lang.Object)", printlnObjectMethod.getDisplayName());
+
+		MethodRef printlnStringMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("println") && f.getMethodDescriptor().contains("String")).findFirst().orElse(null);
+		assertNotNull(printlnStringMethod);
+		assertEquals("void java.io.PrintStream.println(java.lang.String)", printlnStringMethod.getDisplayName());
+
+		MethodRef initLongMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("<init>") && f.getMethodOwner().contains("Long")).findFirst().orElse(null);
+		assertNotNull(initLongMethod);
+		assertEquals("void java.lang.Long.<init>(long)", initLongMethod.getDisplayName());
+
+		MethodRef initArrayListMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("<init>") && f.getMethodOwner().contains("ArrayList")).findFirst().orElse(null);
+		assertNotNull(initArrayListMethod);
+		assertEquals("void java.util.ArrayList.<init>()", initArrayListMethod.getDisplayName());
+
+		assertEquals(6, methodRefs.size());
+	}
+
+	private ClassScanner scanTestClass() throws IOException {
+
+		// prepare
+		ClassNode classNode = new ClassNode();
+		try (InputStream stream = TestUtils.getResourceAsStream("/ClassScannerTest/Main.class")) {
+			ClassReader classReader = new ClassReader(stream);
+			classReader.accept(classNode, 0);
+		}
+
+		// test
+		ClassScanner scanner = new ClassScanner();
+		scanner.scan(classNode);
+
+		return scanner;
 	}
 
 }
