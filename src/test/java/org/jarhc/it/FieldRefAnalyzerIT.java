@@ -88,10 +88,15 @@ class FieldRefAnalyzerIT {
 		assertEquals("a.jar", values[0]);
 
 		String expectedMessage = "Field not found: int b.B.existingField" + System.lineSeparator()
+				+ "- b.B (field not found)" + System.lineSeparator()
+				+ "- java.lang.Object (field not found)" + System.lineSeparator()
 				+ "Incompatible field type: int b.B.intField -> public boolean intField" + System.lineSeparator()
+				+ "- b.B (field found)" + System.lineSeparator()
 				// TODO: + "Write access to final field: int b.B.nonFinalField -> public final int nonFinalField" + System.lineSeparator()
 				+ "Instance access to static field: int b.B.nonStaticField -> public static int nonStaticField" + System.lineSeparator()
-				+ "Static access to instance field: static int b.B.staticField -> public int staticField";
+				+ "- b.B (field found)" + System.lineSeparator()
+				+ "Static access to instance field: static int b.B.staticField -> public int staticField" + System.lineSeparator()
+				+ "- b.B (field found)";
 		assertEquals(expectedMessage, values[1]);
 
 	}

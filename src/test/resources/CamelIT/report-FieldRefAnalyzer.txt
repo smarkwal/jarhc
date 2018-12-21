@@ -5,6 +5,9 @@ Field References
 ----------------
 Problems with field access.
 
-JAR File | Errors
----------+-------
+JAR File             | Errors
+---------------------+-------------------------------------------------------------------------------------------------------------------------
+camel-jms-2.17.7.jar | Field not found: org.apache.commons.logging.Log org.apache.camel.component.jms.DefaultJmsMessageListenerContainer.logger
+                     | - org.apache.camel.component.jms.DefaultJmsMessageListenerContainer (field not found)
+                     | - org.springframework.jms.listener.DefaultMessageListenerContainer (class not found)
 
