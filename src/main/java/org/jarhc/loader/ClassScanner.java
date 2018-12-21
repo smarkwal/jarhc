@@ -30,6 +30,8 @@ import java.util.function.Function;
 
 class ClassScanner {
 
+	private ClassNode classNode;
+
 	private final List<FieldDef> fieldDefs = new ArrayList<>();
 	private final List<MethodDef> methodDefs = new ArrayList<>();
 
@@ -61,6 +63,8 @@ class ClassScanner {
 	}
 
 	void scan(ClassNode classNode) {
+
+		this.classNode = classNode;
 
 		// scan superclass and interfaces
 		if (classNode.superName != null) {
@@ -231,23 +235,37 @@ class ClassScanner {
 
 	private void scan(FieldInsnNode fieldInsnNode) {
 
-		String owner = fieldInsnNode.owner;
-		if (owner.startsWith("[")) {
-			Type ownerType = Type.getType(owner);
+		String fieldOwner = fieldInsnNode.owner;
+		if (fieldOwner.startsWith("[")) {
+			Type ownerType = Type.getType(fieldOwner);
 			scan(ownerType);
 		} else {
-			classRefs.add(new ClassRef(owner));
+			classRefs.add(new ClassRef(fieldOwner));
 		}
 
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
 		scan(fieldType);
 
-		// create reference to field
+		String fieldName = fieldInsnNode.name;
 		int opcode = fieldInsnNode.getOpcode();
 		boolean staticField = opcode == Opcodes.GETSTATIC || opcode == Opcodes.PUTSTATIC;
 		boolean writeAccess = opcode == Opcodes.PUTFIELD || opcode == Opcodes.PUTSTATIC;
-		FieldRef fieldRef = new FieldRef(fieldInsnNode.owner, fieldInsnNode.desc, fieldInsnNode.name, staticField, writeAccess);
+
+		// ignore write access to final fields in declaring class
+		// assumption: instruction is used to initialize the final field
+		if (writeAccess) {
+			if (classNode.name.equals(fieldOwner)) {
+				// check if field is present in current class and is final
+				FieldDef fieldDef = fieldDefs.stream().filter(f -> f.getFieldName().equals(fieldName)).findAny().orElse(null);
+				if (fieldDef != null && fieldDef.isFinal()) {
+					return;
+				}
+			}
+		}
+
+		// create reference to field
+		FieldRef fieldRef = new FieldRef(fieldOwner, fieldInsnNode.desc, fieldName, staticField, writeAccess);
 		fieldRefs.add(fieldRef);
 
 	}

@@ -120,14 +120,11 @@ public class FieldRefAnalyzer extends Analyzer {
 		}
 
 		// check access to final fields
-		// TODO: this check generate false-positives for when the final field is initialized
-		/*
 		if (field.isFinal()) {
 			if (fieldRef.isWriteAccess()) {
 				searchResult.addErrorMessage("Write access to final field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
 			}
 		}
-		*/
 
 		// TODO: more checks ...?
 
