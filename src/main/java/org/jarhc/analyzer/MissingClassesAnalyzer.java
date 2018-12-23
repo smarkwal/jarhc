@@ -24,6 +24,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -70,11 +71,11 @@ public class MissingClassesAnalyzer extends Analyzer {
 	}
 
 	private Set<String> collectMissingClasses(JarFile jarFile, Classpath classpath) {
-		Set<String> missingClasses = new TreeSet<>();
+		Set<String> missingClasses = Collections.synchronizedSet(new TreeSet<>());
 
-		// for every class definition ...
+		// for every class definition (in parallel) ...
 		List<ClassDef> classDefs = jarFile.getClassDefs();
-		for (ClassDef classDef : classDefs) {
+		classDefs.parallelStream().forEach(classDef -> {
 
 			// for every class reference ...
 			List<ClassRef> classRefs = classDef.getClassRefs();
@@ -88,7 +89,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 					missingClasses.add(className);
 				}
 			}
-		}
+		});
 
 		return missingClasses;
 	}
