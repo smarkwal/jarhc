@@ -20,13 +20,9 @@ import org.jarhc.Context;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineParser;
-import org.jarhc.env.JavaRuntime;
 import org.jarhc.test.ContextMock;
-import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junitpioneer.jupiter.TempDirectory;
@@ -40,27 +36,6 @@ import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
 @ExtendWith(TempDirectory.class)
 class ApplicationIT {
-
-	private static JavaRuntime defaultRuntime;
-
-	@BeforeAll
-	static void beforeAll() {
-
-		// remember default Java runtime
-		defaultRuntime = JavaRuntime.getDefault();
-
-		// install a Java runtime mock
-		JavaRuntime.setDefault(JavaRuntimeMock.createOracleRuntime());
-
-	}
-
-	@AfterAll
-	static void afterAll() {
-
-		// restore original Java runtime
-		JavaRuntime.setDefault(defaultRuntime);
-
-	}
 
 	@Test
 	void test(@TempDir Path tempDir) throws IOException {

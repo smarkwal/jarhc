@@ -16,85 +16,16 @@
 
 package org.jarhc.env;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+public interface JavaRuntime {
 
-public class JavaRuntime {
+	String getName();
 
-	private static JavaRuntime defaultRuntime = new JavaRuntime();
+	String getJavaVersion();
 
-	public static JavaRuntime getDefault() {
-		return defaultRuntime;
-	}
+	String getJavaVendor();
 
-	public static void setDefault(JavaRuntime javaRuntime) {
-		defaultRuntime = javaRuntime;
-	}
+	String getJavaHome();
 
-	// ---------------------------------------------------------------------------
-
-	private static final ClassLoader CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
-
-	private final Properties systemProperties;
-
-	/**
-	 * Cache for class name -> class loader mapping
-	 */
-	private final Map<String, String> classLoaders = new HashMap<>();
-
-	protected JavaRuntime() {
-		systemProperties = System.getProperties();
-	}
-
-	public String getName() {
-		return systemProperties.getProperty("java.runtime.name");
-	}
-
-	public String getJavaVersion() {
-		return systemProperties.getProperty("java.version");
-	}
-
-	public String getJavaVendor() {
-		return systemProperties.getProperty("java.vendor");
-	}
-
-	public String getJavaHome() {
-		return systemProperties.getProperty("java.home");
-	}
-
-	public String getClassLoaderName(String className) {
-
-		// check cache
-		synchronized (this) {
-			if (classLoaders.containsKey(className)) {
-				return classLoaders.get(className);
-			}
-		}
-
-		String classLoader = getClassLoaderNameInternal(className);
-
-		// update cache
-		synchronized (this) {
-			classLoaders.put(className, classLoader);
-		}
-
-		return classLoader;
-	}
-
-	private String getClassLoaderNameInternal(String className) {
-		try {
-			Class<?> javaClass = Class.forName(className, false, CLASSLOADER);
-			ClassLoader classLoader = javaClass.getClassLoader();
-			if (classLoader == null) return "Bootstrap";
-			return classLoader.toString();
-		} catch (ClassNotFoundException e) {
-			return null;
-		} catch (Throwable t) {
-			// TODO: ignore ?
-			t.printStackTrace(System.err);
-			return null;
-		}
-	}
+	String getClassLoaderName(String className);
 
 }

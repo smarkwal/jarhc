@@ -22,13 +22,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class JavaRuntimeTest {
+class DefaultJavaRuntimeTest {
 
 	@Test
 	void test_getName() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getName();
@@ -42,7 +42,7 @@ class JavaRuntimeTest {
 	void test_getJavaVersion() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getJavaVersion();
@@ -56,7 +56,7 @@ class JavaRuntimeTest {
 	void test_getJavaVendor() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getJavaVendor();
@@ -70,7 +70,7 @@ class JavaRuntimeTest {
 	void test_getJavaHome() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getJavaHome();
@@ -84,7 +84,7 @@ class JavaRuntimeTest {
 	void test_getClassLoaderName_String() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getClassLoaderName("java.lang.String");
@@ -98,7 +98,7 @@ class JavaRuntimeTest {
 	void test_getClassLoaderName_Unknown() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getClassLoaderName("u.Unknown");
@@ -112,7 +112,7 @@ class JavaRuntimeTest {
 	void test_getClassLoaderName_Main() {
 
 		// prepare
-		JavaRuntime javaRuntime = new JavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
 		String result = javaRuntime.getClassLoaderName(Main.class.getName());

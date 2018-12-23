@@ -21,6 +21,7 @@ import org.jarhc.app.CommandLineParser;
 import org.jarhc.artifacts.CachedResolver;
 import org.jarhc.artifacts.MavenCentralResolver;
 import org.jarhc.artifacts.Resolver;
+import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
 
 import java.time.Duration;
@@ -30,16 +31,24 @@ public class Main {
 	public static void main(String[] args) {
 		CommandLineParser commandLineParser = new CommandLineParser(System.err);
 
-		// prepare context
-		JavaRuntime javaRuntime = JavaRuntime.getDefault();
+		// use default Java runtime (the one used to run JarHC)
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+
+		// resolve artifacts using Maven Central and a local disk cache
 		Duration timeout = Duration.ofSeconds(5);
 		Resolver mavenResolver = new MavenCentralResolver(timeout);
 		Resolver cachedResolver = new CachedResolver(mavenResolver);
+
+		// prepare context
 		Context context = new Context(javaRuntime, cachedResolver);
 
+		// create and run application
 		Application application = new Application(commandLineParser, context, System.out, System.err);
 		int exitCode = application.run(args);
-		System.exit(exitCode);
+
+		if (exitCode != 0) {
+			System.exit(exitCode);
+		}
 	}
 
 }
