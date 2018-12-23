@@ -20,10 +20,12 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * Loader for a classpath.
@@ -39,24 +41,41 @@ public class ClasspathLoader {
 	 * @param files List of JAR files.
 	 * @return Classpath
 	 * @throws IllegalArgumentException If <code>files</code> is <code>null</code>.
-	 * @throws FileNotFoundException    If any of the files does not exist.
-	 * @throws IOException              If a JAR file cannot be parsed.
 	 */
-	public Classpath load(List<File> files) throws IOException {
+	public Classpath load(List<File> files) {
 		if (files == null) throw new IllegalArgumentException("files");
 
-		// load all JAR files
-		List<JarFile> jarFiles = new ArrayList<>(files.size());
-		for (File file : files) {
+		// long totalTime = System.nanoTime();
+
+		// temporary map to remember input file -> JAR file relation
+		Map<File, JarFile> filesMap = new ConcurrentHashMap<>();
+
+		// load all JAR files in parallel
+		files.parallelStream().forEach(file -> {
+
+			// long time = System.nanoTime();
+
 			JarFile jarFile;
 			try {
 				jarFile = jarFileLoader.load(file);
 			} catch (IOException e) {
 				String message = String.format("Unable to parse JAR file: %s", file.getAbsolutePath());
-				throw new IOException(message, e);
+				System.err.println(message);
+				e.printStackTrace();
+				return;
 			}
-			jarFiles.add(jarFile);
-		}
+
+			// time = System.nanoTime() - time;
+			// System.out.println("\t" + jarFile.getFileName() + ": " + (time / 1000 / 1000) + " ms");
+
+			filesMap.put(file, jarFile);
+		});
+
+		// create list of JAR files (same order as list of input files)
+		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).collect(Collectors.toList());
+
+		// totalTime = System.nanoTime() - totalTime;
+		// System.out.println("\tTotal: " + (totalTime / 1000 / 1000) + " ms");
 
 		return new Classpath(jarFiles);
 	}

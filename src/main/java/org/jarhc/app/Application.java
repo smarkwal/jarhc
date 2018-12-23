@@ -63,24 +63,23 @@ public class Application {
 			return e.getExitCode();
 		}
 
+		// long time = System.nanoTime();
+
 		out.println("Scan JAR files ...");
 
 		// scan JAR files
 		List<File> files = options.getJarFiles();
-		Classpath classpath;
-		try {
-			ClasspathLoader loader = new ClasspathLoader();
-			classpath = loader.load(files);
-		} catch (IOException e) {
-			e.printStackTrace(err);
-			return 1;
-		}
+		ClasspathLoader loader = new ClasspathLoader();
+		Classpath classpath = loader.load(files);
 
 		out.println("Analyze classpath ...");
 
 		// analyze classpath
 		Analysis analysis = FullAnalysis.build();
 		Report report = analysis.run(classpath);
+
+		// time = System.nanoTime() - time;
+		// System.out.println("Time: " + (time / 1000 / 1000) + " ms");
 
 		out.println("Create report ...");
 		out.println();
