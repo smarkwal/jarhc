@@ -23,7 +23,10 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class ShadowedClassesAnalyzer extends Analyzer {
 
@@ -60,21 +63,34 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			// for every class definition ...
+			// map with duplicate classes (class name -> class loader)
+			Map<String, String> duplicates = Collections.synchronizedMap(new TreeMap<>());
+
+			// for every class definition (in parallel) ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
-			for (ClassDef classDef : classDefs) {
+			classDefs.parallelStream().forEach(classDef -> {
 
 				String className = classDef.getClassName();
 
+				// check if class is shadowing a runtime class
 				String realClassName = formatClassName(className);
 				String classLoader = javaRuntime.getClassLoaderName(realClassName);
 				if (classLoader == null) {
-					continue;
+					return;
 				}
 
-				table.addRow(realClassName, jarFile.getFileName(), classLoader);
+				// duplicate found
+				duplicates.put(realClassName, classLoader);
 
+			});
+
+			// add a table row for every duplicate class
+			for (Map.Entry<String, String> duplicate : duplicates.entrySet()) {
+				String className = duplicate.getKey();
+				String classLoader = duplicate.getValue();
+				table.addRow(className, jarFile.getFileName(), classLoader);
 			}
+
 		}
 
 		return table;
