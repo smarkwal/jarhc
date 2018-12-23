@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JarDependenciesAnalyzerTest {
@@ -68,7 +69,7 @@ class JarDependenciesAnalyzerTest {
 		String[] values1 = rows.get(0);
 		assertEquals(3, values1.length);
 		assertEquals("a.jar", values1[0]);
-		assertEquals("b.jar" + System.lineSeparator() + "c.jar", values1[1]);
+		assertEquals(joinLines("b.jar", "c.jar"), values1[1]);
 		assertEquals("[none]", values1[2]);
 
 		String[] values2 = rows.get(1);
@@ -81,7 +82,7 @@ class JarDependenciesAnalyzerTest {
 		assertEquals(3, values3.length);
 		assertEquals("c.jar", values3[0]);
 		assertEquals("[none]", values3[1]);
-		assertEquals("a.jar" + System.lineSeparator() + "b.jar", values3[2]);
+		assertEquals(joinLines("a.jar", "b.jar"), values3[2]);
 
 		String[] values4 = rows.get(3);
 		assertEquals(3, values4.length);

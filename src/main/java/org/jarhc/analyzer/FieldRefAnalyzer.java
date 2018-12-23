@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
@@ -69,7 +70,7 @@ public class FieldRefAnalyzer extends Analyzer {
 			}
 
 			if (!errorMessages.isEmpty()) {
-				table.addRow(jarFile.getFileName(), String.join(System.lineSeparator(), errorMessages));
+				table.addRow(jarFile.getFileName(), joinLines(errorMessages));
 			}
 		}
 

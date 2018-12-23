@@ -16,6 +16,10 @@
 
 package org.jarhc.utils;
 
+import java.util.Collection;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 public class StringUtils {
 
 	public static String repeat(String text, int count) {
@@ -28,6 +32,18 @@ public class StringUtils {
 			count--;
 		}
 		return buffer.toString();
+	}
+
+	public static String joinLines(Collection<String> lines) {
+		return String.join(System.lineSeparator(), lines);
+	}
+
+	public static String joinLines(String... lines) {
+		return String.join(System.lineSeparator(), lines);
+	}
+
+	public static Collector<CharSequence, ?, String> joinLines() {
+		return Collectors.joining(System.lineSeparator());
 	}
 
 }

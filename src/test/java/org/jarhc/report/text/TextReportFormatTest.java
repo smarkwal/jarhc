@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TextReportFormatTest {
@@ -40,10 +41,10 @@ class TextReportFormatTest {
 		section1.add("Some text.");
 		report.addSection(section1);
 
-		ReportSection section2 = new ReportSection("Section 2", "Description 2, Line 1" + System.lineSeparator() + "Description 2, Line 2");
+		ReportSection section2 = new ReportSection("Section 2", joinLines("Description 2, Line 1", "Description 2, Line 2"));
 		ReportTable table2 = new ReportTable("Column 1", "Column 2", "Column 3");
 		table2.addRow("Short", "Medium Medium", "Long Long Long Long Long Long Long");
-		table2.addRow("Line 1", "Line 1" + System.lineSeparator() + "Longer Line 2", "Line 1" + System.lineSeparator() + "Longer Line 2" + System.lineSeparator() + "Extra Long Line 3");
+		table2.addRow("Line 1", joinLines("Line 1", "Longer Line 2"), joinLines("Line 1", "Longer Line 2", "Extra Long Line 3"));
 		section2.add(table2);
 		report.addSection(section2);
 

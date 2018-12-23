@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SplitPackagesAnalyzerTest {
@@ -62,7 +63,7 @@ class SplitPackagesAnalyzerTest {
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
 		assertEquals("a.b", values[0]);
-		assertEquals("a.jar" + System.lineSeparator() + "b.jar", values[1]);
+		assertEquals(joinLines("a.jar", "b.jar"), values[1]);
 
 	}
 

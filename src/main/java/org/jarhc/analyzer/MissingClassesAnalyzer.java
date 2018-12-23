@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+
 public class MissingClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
@@ -61,7 +63,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 			Set<String> missingClasses = collectMissingClasses(jarFile, classpath);
 			if (missingClasses.isEmpty()) continue;
 
-			table.addRow(jarFile.getFileName(), String.join(System.lineSeparator(), missingClasses));
+			table.addRow(jarFile.getFileName(), joinLines(missingClasses));
 		}
 
 		return table;

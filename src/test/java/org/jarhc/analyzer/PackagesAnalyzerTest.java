@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PackagesAnalyzerTest {
@@ -67,7 +68,7 @@ class PackagesAnalyzerTest {
 		String[] values1 = rows.get(0);
 		assertEquals(2, values1.length);
 		assertEquals("a.jar", values1[0]);
-		assertEquals("a" + System.lineSeparator() + "a.a1" + System.lineSeparator() + "a.a2", values1[1]);
+		assertEquals(joinLines("a", "a.a1", "a.a2"), values1[1]);
 
 		String[] values2 = rows.get(1);
 		assertEquals(2, values2.length);

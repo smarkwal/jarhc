@@ -27,6 +27,8 @@ import org.jarhc.utils.MultiMap;
 import java.util.List;
 import java.util.Set;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+
 public class JarDependenciesAnalyzer extends Analyzer {
 
 	@Override
@@ -57,13 +59,13 @@ public class JarDependenciesAnalyzer extends Analyzer {
 			if (targetFileNames == null) {
 				uses = "[none]";
 			} else {
-				uses = String.join(System.lineSeparator(), targetFileNames);
+				uses = joinLines(targetFileNames);
 			}
 			String usedBy;
 			if (sourceFileNames == null) {
 				usedBy = "[none]";
 			} else {
-				usedBy = String.join(System.lineSeparator(), sourceFileNames);
+				usedBy = joinLines(sourceFileNames);
 			}
 			table.addRow(jarFileName, uses, usedBy);
 		}

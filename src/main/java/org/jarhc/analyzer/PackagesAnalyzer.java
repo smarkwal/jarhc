@@ -23,10 +23,10 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
+import org.jarhc.utils.StringUtils;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class PackagesAnalyzer extends Analyzer {
 
@@ -73,7 +73,7 @@ public class PackagesAnalyzer extends Analyzer {
 			Set<String> packageNames = map.getValues(fileName);
 			// if package has been found in more than one JAR file ...
 			if (packageNames.size() > 0) {
-				table.addRow(fileName, packageNames.stream().collect(Collectors.joining(System.lineSeparator())));
+				table.addRow(fileName, StringUtils.joinLines(packageNames));
 			}
 		}
 
