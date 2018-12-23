@@ -1,0 +1,18 @@
+JAR Health Check Report
+=======================
+
+Blacklist
+---------
+Use of unsafe or dangerous classes and methods.
+
+JAR file              | Issues
+----------------------+------------------------------------------
+xercesImpl-2.11.0.jar | org.apache.xerces.impl.xpath.regex.REUtil
+                      | - static void java.lang.System.exit(int)
+xml-resolver-1.2.jar  | org.apache.xml.resolver.apps.resolver
+                      | - static void java.lang.System.exit(int)
+                      | org.apache.xml.resolver.apps.xparse
+                      | - static void java.lang.System.exit(int)
+                      | org.apache.xml.resolver.apps.xread
+                      | - static void java.lang.System.exit(int)
+

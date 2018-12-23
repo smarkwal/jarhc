@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JAR Health Check Report</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<h1>JAR Health Check Report</h1>
+
+<section id="Blacklist">
+<h2>Blacklist</h2>
+<p>Use of unsafe or dangerous classes and methods.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+	<tr><td>xercesImpl-2.11.0.jar</td><td>org.apache.xerces.impl.xpath.regex.REUtil<br>- static void java.lang.System.exit(int)</td></tr>
+	<tr><td>xml-resolver-1.2.jar</td><td>org.apache.xml.resolver.apps.resolver<br>- static void java.lang.System.exit(int)<br>org.apache.xml.resolver.apps.xparse<br>- static void java.lang.System.exit(int)<br>org.apache.xml.resolver.apps.xread<br>- static void java.lang.System.exit(int)</td></tr>
+</table>
+</section>
+
+</body>
+</html>
