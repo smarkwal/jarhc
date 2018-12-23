@@ -19,6 +19,7 @@ package org.jarhc.loader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -135,8 +136,12 @@ class JarFileLoader {
 			}
 		}
 
+		// calculate SHA-1 checksum of JAR file
+		String checksum = FileUtils.sha1Hex(file);
+
 		return JarFile.withName(file.getName())
 				.withFileSize(file.length())
+				.withChecksum(checksum)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
 				.withClassDefs(classDefs)

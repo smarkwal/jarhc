@@ -16,6 +16,11 @@
 
 package org.jarhc.utils;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class FileUtils {
@@ -43,6 +48,12 @@ public class FileUtils {
 			format = new DecimalFormat("0");
 		}
 		return format.format(number);
+	}
+
+	public static String sha1Hex(File file) throws IOException {
+		try (FileInputStream stream = new FileInputStream(file)) {
+			return DigestUtils.sha1Hex(stream);
+		}
 	}
 
 }

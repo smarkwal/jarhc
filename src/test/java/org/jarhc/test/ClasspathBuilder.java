@@ -103,8 +103,10 @@ public class ClasspathBuilder {
 
 	private void closeJarFile() {
 		if (fileName != null) {
+			String checksum = DigestUtils.sha1Hex(fileName + fileSize); // fake checksum based on file name and size
 			JarFile jarFile = JarFile.withName(fileName)
 					.withFileSize(fileSize)
+					.withChecksum(checksum)
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)

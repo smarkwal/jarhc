@@ -40,7 +40,7 @@ public class JarFilesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module");
+		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module", "Checksum (SHA-1)");
 
 		// total values
 		long totalFileSize = 0;
@@ -53,10 +53,11 @@ public class JarFilesAnalyzer extends Analyzer {
 			// add a row with file name, size and class count
 			String fileName = jarFile.getFileName();
 			long fileSize = jarFile.getFileSize();
+			String checksum = getChecksumInfo(jarFile);
 			int classCount = jarFile.getClassDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo, checksum);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -64,9 +65,15 @@ public class JarFilesAnalyzer extends Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-");
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-", "-");
 
 		return table;
+	}
+
+	private String getChecksumInfo(JarFile jarFile) {
+		String checksum = jarFile.getChecksum();
+		if (checksum == null || checksum.isEmpty()) return "n/a";
+		return checksum;
 	}
 
 	private String getMultiReleaseInfo(JarFile jarFile) {
