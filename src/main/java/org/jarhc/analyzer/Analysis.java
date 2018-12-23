@@ -22,6 +22,8 @@ import org.jarhc.report.ReportSection;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Analysis {
 
@@ -32,12 +34,21 @@ public class Analysis {
 	}
 
 	public Report run(Classpath classpath) {
+
+		// run all analyzers in parallel
+		Map<Analyzer, ReportSection> sections = new ConcurrentHashMap<>();
+		analyzers.parallelStream().forEach(analyzer -> {
+			ReportSection section = analyzer.analyze(classpath);
+			sections.put(analyzer, section);
+		});
+
+		// create a new report
 		Report report = new Report();
 		report.setTitle("JAR Health Check Report");
-		for (Analyzer analyzer : analyzers) {
-			ReportSection section = analyzer.analyze(classpath);
-			report.addSection(section);
-		}
+
+		// add all sections to the report (in the order of the analyzers)
+		analyzers.stream().map(sections::get).forEach(report::addSection);
+
 		return report;
 	}
 
