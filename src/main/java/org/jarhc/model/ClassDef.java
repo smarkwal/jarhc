@@ -16,6 +16,7 @@
 
 package org.jarhc.model;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.jarhc.utils.JavaVersion;
 import org.objectweb.asm.tree.ClassNode;
 
@@ -33,6 +34,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 * ASM class definition.
 	 */
 	private final ClassNode classNode;
+
+	/**
+	 * Class file checksum.
+	 */
+	private final String classFileChecksum;
 
 	/**
 	 * List of field definitions.
@@ -71,11 +77,12 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 * @param classRefs References to other classes
 	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
-	private ClassDef(ClassNode classNode, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
+	private ClassDef(ClassNode classNode, String classFileChecksum, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
 		super(classNode.access);
 		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
 		this.classNode = classNode;
+		this.classFileChecksum = classFileChecksum;
 		this.fieldDefs = new ArrayList<>(fieldDefs);
 		this.methodDefs = new ArrayList<>(methodDefs);
 		this.classRefs = new ArrayList<>(classRefs);
@@ -112,6 +119,49 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 */
 	public String getJavaVersion() {
 		return JavaVersion.fromClassVersion(getMajorClassVersion());
+	}
+
+	public String getClassFileChecksum() {
+		return classFileChecksum;
+	}
+
+	/**
+	 * Calculate a checksum over all non-private API elements
+	 * (modifiers, superclass, interfaces, fields, methods, ...)
+	 *
+	 * @return SHA-1 checksum
+	 */
+	public String getApiChecksum() {
+		String code = getApiDescription();
+		return DigestUtils.sha1Hex(code);
+	}
+
+	/**
+	 * Get a description of the non-private API of this class.
+	 *
+	 * @return API description
+	 */
+	private String getApiDescription() {
+		StringBuilder api = new StringBuilder();
+		api.append(getModifiers()).append(" ").append(classNode.name);
+		// add superclass and interfaces
+		api.append("\nextends: ").append(classNode.superName);
+		api.append("\nimplements: ").append(classNode.interfaces);
+		// TODO: add annotations for class, fields and methods?
+		// add all fields
+		fieldDefs.stream()
+				.filter(f -> !f.isPrivate()) // ignore private fields
+				.map(FieldDef::getDisplayName) // get field description
+				.sorted() // sort fields
+				.forEach(f -> api.append("\nfield: ").append(f));
+		// add all methods (including constructors)
+		methodDefs.stream()
+				.filter(m -> !m.isPrivate()) // ignore private methods
+				.map(MethodDef::getDisplayName) // get method description
+				// TODO: add throws exceptions?
+				.sorted() // sort methods
+				.forEach(m -> api.append("\nmethod: ").append(m));
+		return api.toString();
 	}
 
 	public List<FieldDef> getFieldDefs() {
@@ -208,6 +258,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	public static class Builder {
 
 		private final ClassNode classNode;
+		private String classFileChecksum;
 		private final List<FieldDef> fieldDefs = new ArrayList<>();
 		private final List<MethodDef> methodDefs = new ArrayList<>();
 		private final List<ClassRef> classRefs = new ArrayList<>();
@@ -226,6 +277,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 		public Builder withVersion(int majorClassVersion, int minorClassVersion) {
 			this.classNode.version = majorClassVersion + (minorClassVersion << 16);
+			return this;
+		}
+
+		public Builder withClassFileChecksum(String classFileChecksum) {
+			this.classFileChecksum = classFileChecksum;
 			return this;
 		}
 
@@ -260,7 +316,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		}
 
 		public ClassDef build() {
-			return new ClassDef(classNode, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
+			return new ClassDef(classNode, classFileChecksum, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
 		}
 
 	}

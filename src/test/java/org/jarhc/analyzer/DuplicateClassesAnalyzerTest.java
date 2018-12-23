@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DuplicateClassesAnalyzerTest {
@@ -52,16 +53,18 @@ class DuplicateClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
+		assertEquals(3, columns.length);
 		assertEquals("Class name", columns[0]);
 		assertEquals("JAR files", columns[1]);
+		assertEquals("Similarity", columns[2]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
 		String[] values = rows.get(0);
-		assertEquals(2, values.length);
+		assertEquals(3, values.length);
 		assertEquals("a.b.C", values[0]);
-		assertEquals("a-1.jar" + System.lineSeparator() + "a-2.jar", values[1]);
+		assertEquals(joinLines("a-1.jar", "a-2.jar"), values[1]);
+		assertEquals("Exact copy", values[2]);
 
 	}
 

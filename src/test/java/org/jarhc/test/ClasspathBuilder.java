@@ -16,10 +16,10 @@
 
 package org.jarhc.test;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.jarhc.model.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -123,7 +123,8 @@ public class ClasspathBuilder {
 
 	private void closeClassDef() {
 		if (className != null) {
-			ClassDef classDef = ClassDef.forClassName(className).withVersion(majorClassVersion, minorClassVersion).withClassRefs(classRefs).build();
+			String classFileChecksum = DigestUtils.sha1Hex(className); // fake checksum
+			ClassDef classDef = ClassDef.forClassName(className).withClassFileChecksum(classFileChecksum).withVersion(majorClassVersion, minorClassVersion).withClassRefs(classRefs).build();
 			classDefs.add(classDef);
 			className = null;
 			classRefs = null;

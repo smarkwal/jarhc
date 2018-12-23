@@ -16,6 +16,8 @@
 
 package org.jarhc.loader;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
 import org.jarhc.model.*;
 import org.objectweb.asm.tree.ClassNode;
 
@@ -63,13 +65,17 @@ class ClassDefLoader {
 	ClassDef load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
+		// read data, calculate SHA-1 checksum, and re-create stream
+		byte[] data = IOUtils.toByteArray(stream);
+		String classFileChecksum = DigestUtils.sha1Hex(data);
+		stream = new ByteArrayInputStream(data);
+
 		ClassNode classNode = classFileParser.parse(stream);
 
 		// find all fields, methods and references to other classes
 		ClassScanner scanner = new ClassScanner();
 		scanner.scan(classNode);
 
-		int access = classNode.access;
 		List<FieldDef> fieldDefs = scanner.getFieldDefs();
 		List<MethodDef> methodDefs = scanner.getMethodDefs();
 		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
@@ -78,6 +84,7 @@ class ClassDefLoader {
 
 		// create class definition
 		return ClassDef.forClassNode(classNode)
+				.withClassFileChecksum(classFileChecksum)
 				.withFieldDefs(fieldDefs)
 				.withMethodDefs(methodDefs)
 				.withClassRefs(classRefs)
