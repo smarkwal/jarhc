@@ -35,11 +35,8 @@ public class MissingClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
 
-	public MissingClassesAnalyzer() {
-		this(JavaRuntime.getDefault());
-	}
-
 	public MissingClassesAnalyzer(JavaRuntime javaRuntime) {
+		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
 	}
 

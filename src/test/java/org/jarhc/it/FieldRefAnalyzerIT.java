@@ -18,10 +18,12 @@ package org.jarhc.it;
 
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.FieldRefAnalyzer;
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junitpioneer.jupiter.TempDirectory;
@@ -39,7 +41,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FieldRefAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = new ClasspathLoader();
-	private final FieldRefAnalyzer analyzer = new FieldRefAnalyzer();
+	private final JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+	private final FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime);
 
 	@Test
 	void test_compatible(@TempDirectory.TempDir Path tempDir) throws IOException {

@@ -16,6 +16,7 @@
 
 package org.jarhc.app;
 
+import org.jarhc.Context;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.Classpath;
@@ -36,11 +37,13 @@ import java.util.List;
 public class Application {
 
 	private final CommandLineParser commandLineParser;
+	private final Context context;
 	private final PrintStream out;
 	private final PrintStream err;
 
-	public Application(CommandLineParser commandLineParser, PrintStream out, PrintStream err) {
+	public Application(CommandLineParser commandLineParser, Context context, PrintStream out, PrintStream err) {
 		this.commandLineParser = commandLineParser;
+		this.context = context;
 		this.out = out;
 		this.err = err;
 	}
@@ -75,7 +78,7 @@ public class Application {
 		out.println("Analyze classpath ...");
 
 		// analyze classpath
-		Analysis analysis = FullAnalysis.build();
+		Analysis analysis = FullAnalysis.build(context);
 		Report report = analysis.run(classpath);
 
 		// time = System.nanoTime() - time;

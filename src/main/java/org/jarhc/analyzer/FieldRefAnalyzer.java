@@ -32,6 +32,13 @@ import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
 public class FieldRefAnalyzer extends Analyzer {
 
+	private final JavaRuntime javaRuntime;
+
+	public FieldRefAnalyzer(JavaRuntime javaRuntime) {
+		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
+		this.javaRuntime = javaRuntime;
+	}
+
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
@@ -151,7 +158,7 @@ public class FieldRefAnalyzer extends Analyzer {
 			}
 
 			// if class is a JDK/JRE class ...
-			String classLoaderName = JavaRuntime.getDefault().getClassLoaderName(realClassName);
+			String classLoaderName = javaRuntime.getClassLoaderName(realClassName);
 			if (classLoaderName != null) {
 				// TODO: search for field in Java class
 				//  if field is found, create and return a FieldDef for this field

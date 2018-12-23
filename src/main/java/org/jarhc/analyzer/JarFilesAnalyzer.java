@@ -16,6 +16,9 @@
 
 package org.jarhc.analyzer;
 
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.ResolverException;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
@@ -27,6 +30,13 @@ import java.util.stream.Collectors;
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
 public class JarFilesAnalyzer extends Analyzer {
+
+	private final Resolver resolver;
+
+	public JarFilesAnalyzer(Resolver resolver) {
+		if (resolver == null) throw new IllegalArgumentException("resolver");
+		this.resolver = resolver;
+	}
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -40,7 +50,7 @@ public class JarFilesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module", "Checksum (SHA-1)");
+		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module", "Checksum (SHA-1)", "Artifact coordinates");
 
 		// total values
 		long totalFileSize = 0;
@@ -57,7 +67,8 @@ public class JarFilesAnalyzer extends Analyzer {
 			int classCount = jarFile.getClassDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo, checksum);
+			String coordinates = getCoordinates(jarFile);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo, checksum, coordinates);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -65,14 +76,14 @@ public class JarFilesAnalyzer extends Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-", "-");
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-", "-", "-");
 
 		return table;
 	}
 
 	private String getChecksumInfo(JarFile jarFile) {
 		String checksum = jarFile.getChecksum();
-		if (checksum == null || checksum.isEmpty()) return "n/a";
+		if (checksum == null || checksum.isEmpty()) return "[unknown]";
 		return checksum;
 	}
 
@@ -91,6 +102,27 @@ public class JarFilesAnalyzer extends Analyzer {
 		} else {
 			return "No";
 		}
+	}
+
+	private String getCoordinates(JarFile jarFile) {
+
+		String checksum = jarFile.getChecksum();
+		if (checksum == null || checksum.isEmpty()) {
+			return "[unknown]";
+		}
+
+		Artifact artifact;
+		try {
+			artifact = resolver.getArtifact(checksum);
+		} catch (ResolverException e) {
+			System.err.println("Resolver error for JAR file: " + jarFile.getFileName());
+			e.printStackTrace();
+			return "[error]";
+		}
+
+		if (artifact == null) return "[unknown]";
+
+		return artifact.toString();
 	}
 
 }

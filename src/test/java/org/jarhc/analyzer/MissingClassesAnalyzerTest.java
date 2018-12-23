@@ -16,10 +16,12 @@
 
 package org.jarhc.analyzer;
 
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
+import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -39,8 +41,11 @@ class MissingClassesAnalyzerTest {
 				.addClassDef("b/B")
 				.build();
 
+		// prepare Java runtime
+		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+
 		// test
-		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer();
+		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer(javaRuntime);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

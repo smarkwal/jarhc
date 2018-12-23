@@ -16,7 +16,7 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.env.JavaRuntime;
+import org.jarhc.Context;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -33,42 +33,35 @@ public class AnalyzerRegistry {
 	 */
 	private final Map<String, Analyzer> analyzers = new LinkedHashMap<>();
 
-	/**
-	 * Create a new registry.
-	 *
-	 * @param registerDefaultAnalyzers Pass <code>true</code> to automatically register all default analyzers.
-	 */
-	public AnalyzerRegistry(boolean registerDefaultAnalyzers) {
-		this(registerDefaultAnalyzers, JavaRuntime.getDefault());
-	}
+	private final Context context;
 
 	/**
 	 * Create a new registry.
 	 *
+	 * @param context                  Context
 	 * @param registerDefaultAnalyzers Pass <code>true</code> to automatically register all default analyzers.
-	 * @param javaRuntime              Java runtime
 	 */
-	public AnalyzerRegistry(boolean registerDefaultAnalyzers, JavaRuntime javaRuntime) {
+	public AnalyzerRegistry(Context context, boolean registerDefaultAnalyzers) {
+		if (context == null) throw new IllegalArgumentException("context");
+		this.context = context;
 		if (registerDefaultAnalyzers) {
-			registerDefaultAnalyzers(javaRuntime);
+			registerDefaultAnalyzers();
 		}
 	}
 
 	/**
 	 * Register all default analyzers.
-	 *
-	 * @param javaRuntime Java runtime used for Shadowed Classes analyzer.
 	 */
-	public void registerDefaultAnalyzers(JavaRuntime javaRuntime) {
-		register(new JarFilesAnalyzer());
+	public void registerDefaultAnalyzers() {
+		register(new JarFilesAnalyzer(context.getResolver()));
 		register(new ClassVersionsAnalyzer());
 		register(new PackagesAnalyzer());
 		register(new SplitPackagesAnalyzer());
 		register(new DuplicateClassesAnalyzer());
-		register(new ShadowedClassesAnalyzer(javaRuntime));
+		register(new ShadowedClassesAnalyzer(context.getJavaRuntime()));
 		register(new JarDependenciesAnalyzer());
-		register(new MissingClassesAnalyzer());
-		register(new FieldRefAnalyzer());
+		register(new MissingClassesAnalyzer(context.getJavaRuntime()));
+		register(new FieldRefAnalyzer(context.getJavaRuntime()));
 	}
 
 	/**

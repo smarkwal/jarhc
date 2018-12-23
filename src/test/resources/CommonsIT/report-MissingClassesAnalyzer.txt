@@ -7,6 +7,8 @@ References to classes not found on the classpath.
 
 JAR file                      | Missing class
 ------------------------------+------------------------------------------------
+commons-codec-1.10.jar        | javax.crypto.Mac
+                              | javax.crypto.spec.SecretKeySpec
 commons-compress-1.5.jar      | org.tukaani.xz.FilterOptions
                               | org.tukaani.xz.LZMA2Options
                               | org.tukaani.xz.SingleXZInputStream
@@ -95,6 +97,8 @@ commons-logging-1.2.jar       | javax.servlet.ServletContextEvent
                               | org.apache.log4j.Level
                               | org.apache.log4j.Logger
                               | org.apache.log4j.Priority
+commons-net-3.3.jar           | javax.crypto.Mac
+                              | javax.crypto.spec.SecretKeySpec
 commons-pool2-2.6.0.jar       | net.sf.cglib.proxy.Callback
                               | net.sf.cglib.proxy.Enhancer
                               | net.sf.cglib.proxy.Factory

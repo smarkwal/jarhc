@@ -16,18 +16,18 @@
 
 package org.jarhc.it;
 
+import org.jarhc.Context;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
-import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.text.TextReportFormat;
-import org.jarhc.test.JavaRuntimeMock;
+import org.jarhc.test.ContextMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -66,13 +66,15 @@ abstract class AbstractIT {
 			files.add(file);
 		}
 
+		// prepare context
+		Context context = ContextMock.createContext();
+
 		// load classpath
 		ClasspathLoader classpathLoader = new ClasspathLoader();
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();
-		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
-		AnalyzerRegistry registry = new AnalyzerRegistry(true, javaRuntime);
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, true);
 		for (String analyzerName : registry.getAnalyzerNames()) {
 			Analyzer analyzer = registry.getAnalyzer(analyzerName);
 			tests.add(DynamicTest.dynamicTest(analyzerName + "-txt", () -> test(classpath, analyzer, analyzerName, "txt")));

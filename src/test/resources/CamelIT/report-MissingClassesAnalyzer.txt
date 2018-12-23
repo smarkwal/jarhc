@@ -11,6 +11,12 @@ camel-core-2.17.7.jar   | javax.annotation.concurrent.GuardedBy
                         | javax.annotation.concurrent.Immutable
                         | javax.annotation.concurrent.NotThreadSafe
                         | javax.annotation.concurrent.ThreadSafe
+                        | javax.crypto.Cipher
+                        | javax.crypto.CipherInputStream
+                        | javax.crypto.CipherOutputStream
+                        | javax.crypto.KeyGenerator
+                        | javax.crypto.SecretKey
+                        | javax.crypto.spec.IvParameterSpec
                         | org.osgi.framework.Bundle
                         | org.osgi.framework.BundleActivator
                         | org.osgi.framework.BundleContext

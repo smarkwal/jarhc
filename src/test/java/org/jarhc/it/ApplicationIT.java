@@ -16,10 +16,12 @@
 
 package org.jarhc.it;
 
+import org.jarhc.Context;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.test.ContextMock;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
@@ -67,7 +69,8 @@ class ApplicationIT {
 		PrintStreamBuffer out = new PrintStreamBuffer();
 		PrintStreamBuffer err = new PrintStreamBuffer();
 		CommandLineParser commandLineParser = new CommandLineParser(err);
-		Application application = new Application(commandLineParser, out, err);
+		Context context = ContextMock.createContext();
+		Application application = new Application(commandLineParser, context, out, err);
 		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);
 		String[] args = {file.getAbsolutePath()};
 

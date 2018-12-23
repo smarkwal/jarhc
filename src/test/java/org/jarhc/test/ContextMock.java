@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
-package org.jarhc.app;
+package org.jarhc.test;
 
 import org.jarhc.Context;
-import org.jarhc.analyzer.Analysis;
-import org.jarhc.analyzer.Analyzer;
-import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Resolver;
+import org.jarhc.env.JavaRuntime;
 
-import java.util.List;
+public class ContextMock {
 
-public final class FullAnalysis {
-
-	public static Analysis build(Context context) {
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, true);
-		List<Analyzer> analyzers = registry.getAnalyzers();
-		return new Analysis(analyzers.toArray(new Analyzer[0]));
-	}
-
-	private FullAnalysis() {
+	public static Context createContext() {
+		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+		Resolver resolver = ResolverMock.createResolver();
+		return new Context(javaRuntime, resolver);
 	}
 
 }

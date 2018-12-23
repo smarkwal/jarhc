@@ -18,12 +18,26 @@ package org.jarhc;
 
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineParser;
+import org.jarhc.artifacts.CachedResolver;
+import org.jarhc.artifacts.MavenCentralResolver;
+import org.jarhc.artifacts.Resolver;
+import org.jarhc.env.JavaRuntime;
+
+import java.time.Duration;
 
 public class Main {
 
 	public static void main(String[] args) {
 		CommandLineParser commandLineParser = new CommandLineParser(System.err);
-		Application application = new Application(commandLineParser, System.out, System.err);
+
+		// prepare context
+		JavaRuntime javaRuntime = JavaRuntime.getDefault();
+		Duration timeout = Duration.ofSeconds(5);
+		Resolver mavenResolver = new MavenCentralResolver(timeout);
+		Resolver cachedResolver = new CachedResolver(mavenResolver);
+		Context context = new Context(javaRuntime, cachedResolver);
+
+		Application application = new Application(commandLineParser, context, System.out, System.err);
 		int exitCode = application.run(args);
 		System.exit(exitCode);
 	}

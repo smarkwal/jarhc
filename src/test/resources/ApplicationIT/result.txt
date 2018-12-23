@@ -12,10 +12,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file  | Size  | Class files | Multi-release | Module | Checksum (SHA-1)
-----------+-------+-------------+---------------+--------+-----------------------------------------
-a.jar     | 678 B | 1           | No            | No     | b2de6f7c6eff51a28729be9c4f6555354f16a1ca
-Classpath | 678 B | 1           | -             | -      | -
+JAR file  | Size  | Class files | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
+----------+-------+-------------+---------------+--------+------------------------------------------+---------------------
+a.jar     | 678 B | 1           | No            | No     | b2de6f7c6eff51a28729be9c4f6555354f16a1ca | [unknown]
+Classpath | 678 B | 1           | -             | -      | -                                        | -
 
 Class Versions
 --------------

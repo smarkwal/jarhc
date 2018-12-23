@@ -16,8 +16,11 @@
 
 package org.jarhc.analyzer;
 
+import org.jarhc.Context;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
+import org.jarhc.test.ContextMock;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -26,18 +29,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AnalyzerRegistryTest {
 
+	private Context context;
+
+	@BeforeEach
+	void setUp() {
+		// prepare context
+		context = ContextMock.createContext();
+	}
+
 	@Test
 	void test_constructor() {
 
 		// test
-		AnalyzerRegistry registry = new AnalyzerRegistry(false);
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
 
 		// assert
 		assertTrue(registry.getAnalyzerNames().isEmpty());
 		assertTrue(registry.getAnalyzers().isEmpty());
 
 		// test
-		registry = new AnalyzerRegistry(true);
+		registry = new AnalyzerRegistry(context, true);
 
 		// assert
 		assertFalse(registry.getAnalyzerNames().isEmpty());
@@ -49,7 +60,7 @@ class AnalyzerRegistryTest {
 	void test_getAnalyzerNames() {
 
 		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(false);
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
 		registry.register(new TestAnalyzer());
 
 		// test
@@ -65,7 +76,7 @@ class AnalyzerRegistryTest {
 	void test_getAnalyzers() {
 
 		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(false);
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
 		registry.register(new TestAnalyzer());
 
 		// test
@@ -95,7 +106,7 @@ class AnalyzerRegistryTest {
 	void test_getAnalyzer() {
 
 		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(false);
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
 		registry.register(new TestAnalyzer());
 
 		// test
