@@ -16,6 +16,8 @@
 
 package org.jarhc.env;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class JavaRuntime {
@@ -35,6 +37,11 @@ public class JavaRuntime {
 	private static final ClassLoader CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
 
 	private final Properties systemProperties;
+
+	/**
+	 * Cache for class name -> class loader mapping
+	 */
+	private final Map<String, String> classLoaders = new HashMap<>();
 
 	protected JavaRuntime() {
 		systemProperties = System.getProperties();
@@ -57,6 +64,25 @@ public class JavaRuntime {
 	}
 
 	public String getClassLoaderName(String className) {
+
+		// check cache
+		synchronized (this) {
+			if (classLoaders.containsKey(className)) {
+				return classLoaders.get(className);
+			}
+		}
+
+		String classLoader = getClassLoaderNameInternal(className);
+
+		// update cache
+		synchronized (this) {
+			classLoaders.put(className, classLoader);
+		}
+
+		return classLoader;
+	}
+
+	private String getClassLoaderNameInternal(String className) {
 		try {
 			Class<?> javaClass = Class.forName(className, false, CLASSLOADER);
 			ClassLoader classLoader = javaClass.getClassLoader();
