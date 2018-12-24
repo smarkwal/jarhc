@@ -1,6 +1,7 @@
 package a;
 
 import b.B;
+import b.E;
 
 public class A {
 
@@ -13,6 +14,12 @@ public class A {
 		b.nonFinalField = 4;
 		b.intField = 5;
 		b.existingField = 6;
+
+		b.superField = b.interfaceField;
+		b.nonStaticSuperField = 7;
+		B.staticSuperField = 8;
+
+		Object x = E.E3;
 
 	}
 

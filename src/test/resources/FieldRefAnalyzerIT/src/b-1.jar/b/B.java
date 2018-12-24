@@ -1,6 +1,6 @@
 package b;
 
-public class B {
+public class B extends S implements I {
 
 	public int publicField;
 
