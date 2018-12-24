@@ -61,7 +61,7 @@ public class AnalyzerRegistry {
 		register(new ShadowedClassesAnalyzer(context.getJavaRuntime()));
 		register(new JarDependenciesAnalyzer());
 		register(new MissingClassesAnalyzer(context.getJavaRuntime()));
-		register(new FieldRefAnalyzer(context.getJavaRuntime()));
+		register(new FieldRefAnalyzer(context.getJavaRuntime(), false));
 		register(new BlacklistAnalyzer());
 	}
 

@@ -45,7 +45,7 @@ class FieldRefAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = new ClasspathLoader();
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
-	private final FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime);
+	private FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
 
 	@Test
 	void test_fieldrefs(@TempDirectory.TempDir Path tempDir) throws IOException {
@@ -149,6 +149,78 @@ class FieldRefAnalyzerIT {
 		);
 		assertEquals(expectedMessage, values[1]);
 
+	}
+
+	@Test
+	void test_reportOwnerClassNotFound_false(@TempDirectory.TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
+		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		List<Object> content = section.getContent();
+		assertEquals(1, content.size());
+		Object object = content.get(0);
+		assertTrue(object instanceof ReportTable);
+		ReportTable table = (ReportTable) object;
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+
+	}
+
+	@Test
+	void test_reportOwnerClassNotFound_true(@TempDirectory.TempDir Path tempDir) throws IOException {
+
+		// prepare: analyzer reporting missing owner classes
+		analyzer = new FieldRefAnalyzer(javaRuntime, true);
+
+		// prepare
+		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
+		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		List<Object> content = section.getContent();
+		assertEquals(1, content.size());
+		Object object = content.get(0);
+		assertTrue(object instanceof ReportTable);
+		ReportTable table = (ReportTable) object;
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+
+		String[] values = rows.get(0);
+		assertEquals(2, values.length);
+		assertEquals("a.jar", values[0]);
+
+		String expectedMessage = StringUtils.joinLines(
+				"Field not found: int b.B.existingField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.intField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.nonFinalField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.nonStaticField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.nonStaticSuperField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.publicField",
+				"- b.B (owner class not found)",
+				"Field not found: static int b.B.staticField",
+				"- b.B (owner class not found)",
+				"Field not found: static int b.B.staticSuperField",
+				"- b.B (owner class not found)",
+				"Field not found: int b.B.superField",
+				"- b.B (owner class not found)",
+				"Field not found: static b.E b.E.E3",
+				"- b.E (owner class not found)"
+		);
+		assertEquals(expectedMessage, values[1]);
 	}
 
 }

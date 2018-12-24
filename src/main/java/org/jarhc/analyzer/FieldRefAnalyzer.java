@@ -33,10 +33,12 @@ import static org.objectweb.asm.Opcodes.ACC_STATIC;
 public class FieldRefAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
+	private final boolean reportOwnerClassNotFound;
 
-	public FieldRefAnalyzer(JavaRuntime javaRuntime) {
+	public FieldRefAnalyzer(JavaRuntime javaRuntime, boolean reportOwnerClassNotFound) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
+		this.reportOwnerClassNotFound = reportOwnerClassNotFound;
 	}
 
 	@Override
@@ -69,9 +71,11 @@ public class FieldRefAnalyzer extends Analyzer {
 
 					// validate field reference
 					SearchResult result = validateFieldRef(classDef, fieldRef, classpath);
-					String text = result.getResult();
-					if (text != null) {
-						errorMessages.add(text);
+					if (!result.isIgnoreResult()) {
+						String text = result.getResult();
+						if (text != null) {
+							errorMessages.add(text);
+						}
 					}
 				}
 			}
@@ -162,24 +166,28 @@ public class FieldRefAnalyzer extends Analyzer {
 			if (classLoaderName != null) {
 				// TODO: search for field in Java class
 				//  if field is found, create and return a FieldDef for this field
-			} else {
-				if (targetClassName.equals(fieldRef.getFieldOwner())) {
-					// owner class not found
-					// TODO: return a special value so that this fieldRef is not validated
-					//  since the missing class has already been reported
-				} else {
-					// superclass or superinterface not found
-					searchResult.addSearchInfo("- " + realClassName + " (class not found)");
-					// -> field not found in owner class
-					return Optional.empty();
-				}
+
+				// TODO: rethink: create a fake-field to avoid an error
+				int access = fieldRef.isStaticAccess() ? ACC_PUBLIC + ACC_STATIC : ACC_PUBLIC;
+				return Optional.of(new FieldDef(access, fieldName, fieldRef.getFieldDescriptor()));
+
 			}
 
-			searchResult.addSearchInfo("- " + realClassName + " (???)");
+			if (targetClassName.equals(fieldRef.getFieldOwner())) {
+				// owner class not found
+				if (reportOwnerClassNotFound) {
+					searchResult.addSearchInfo("- " + realClassName + " (owner class not found)");
+				} else {
+					// ignore result if owner class is not found
+					// (already reported in missing classes)
+					searchResult.setIgnoreResult(true);
+				}
+			} else {
+				// superclass or superinterface of owner class not found
+				searchResult.addSearchInfo("- " + realClassName + " (class not found)");
+			}
 
-			// TODO: rethink: create a fake-field to avoid an error
-			int access = fieldRef.isStaticAccess() ? ACC_PUBLIC + ACC_STATIC : ACC_PUBLIC;
-			return Optional.of(new FieldDef(access, fieldName, fieldRef.getFieldDescriptor()));
+			return Optional.empty();
 		}
 
 		for (ClassDef targetClassDef : targetClassDefs) {
@@ -224,6 +232,7 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		private StringBuilder errorMessages;
 		private StringBuilder searchInfos;
+		private boolean ignoreResult = false;
 
 		void addErrorMessage(String message) {
 			if (errorMessages == null) {
@@ -252,6 +261,14 @@ public class FieldRefAnalyzer extends Analyzer {
 				}
 				return errorMessages.toString();
 			}
+		}
+
+		public boolean isIgnoreResult() {
+			return ignoreResult;
+		}
+
+		public void setIgnoreResult(boolean ignoreResult) {
+			this.ignoreResult = ignoreResult;
 		}
 
 	}
