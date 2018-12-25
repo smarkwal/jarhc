@@ -16,73 +16,116 @@
 
 package org.jarhc.env;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import org.jarhc.loader.ClassDefLoader;
+import org.jarhc.model.ClassDef;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * Default implementation of {@link JavaRuntime} based on the Java runtime used to run JarHC.
+ */
 public class DefaultJavaRuntime implements JavaRuntime {
 
-	private static final ClassLoader CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
+	/**
+	 * Class definition loader used to load Java runtime classes.
+	 * This loader does not scan Java classes for references to other classes, methods or fields.
+	 */
+	private static final ClassDefLoader loader = new ClassDefLoader(false);
 
+	/**
+	 * Java system properties used to retrieve information about the Java runtime.
+	 */
 	private final Properties systemProperties;
 
 	/**
-	 * Cache for class name -> class loader mapping
+	 * Cache for class definitions. May contain "negative results" in the form of empty Optionals.
 	 */
-	private final Map<String, String> classLoaders = new HashMap<>();
+	private final Map<String, Optional<ClassDef>> classDefs = new ConcurrentHashMap<>();
 
 	public DefaultJavaRuntime() {
 		systemProperties = System.getProperties();
 	}
 
+	@Override
 	public String getName() {
 		return systemProperties.getProperty("java.runtime.name");
 	}
 
+	@Override
 	public String getJavaVersion() {
 		return systemProperties.getProperty("java.version");
 	}
 
+	@Override
 	public String getJavaVendor() {
 		return systemProperties.getProperty("java.vendor");
 	}
 
+	@Override
 	public String getJavaHome() {
 		return systemProperties.getProperty("java.home");
 	}
 
-	public String getClassLoaderName(String className) {
-
-		// check cache
-		synchronized (this) {
-			if (classLoaders.containsKey(className)) {
-				return classLoaders.get(className);
-			}
+	@Override
+	public Optional<String> getClassLoaderName(String className) {
+		Optional<ClassDef> classDef = getClassDef(className);
+		if (classDef.isPresent()) {
+			return Optional.of("Bootstrap");
+		} else {
+			return Optional.empty();
 		}
-
-		String classLoader = getClassLoaderNameInternal(className);
-
-		// update cache
-		synchronized (this) {
-			classLoaders.put(className, classLoader);
-		}
-
-		return classLoader;
 	}
 
-	private String getClassLoaderNameInternal(String className) {
-		try {
-			Class<?> javaClass = Class.forName(className, false, CLASSLOADER);
-			ClassLoader classLoader = javaClass.getClassLoader();
-			if (classLoader == null) return "Bootstrap";
-			return classLoader.toString();
-		} catch (ClassNotFoundException e) {
-			return null;
-		} catch (Throwable t) {
-			// TODO: ignore ?
-			t.printStackTrace(System.err);
-			return null;
+	@Override
+	public Optional<ClassDef> getClassDef(String className) {
+
+		// check cache
+		Optional<ClassDef> classDef = classDefs.get(className);
+		//noinspection OptionalAssignedToNull
+		if (classDef != null) {
+			return classDef;
 		}
+
+		// create class definition
+		classDef = createClassDef(className);
+
+		// update cache
+		classDefs.put(className, classDef);
+
+		return classDef;
+	}
+
+	private Optional<ClassDef> createClassDef(String className) {
+
+		// use the parent class loader of the system class loader
+		// (bootstrap class loader or extension class loader)
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader().getParent();
+
+		// construct the resource name of the Java class file
+		String resourceName = className.replace('.', '/') + ".class";
+
+		try (InputStream stream = classLoader.getResourceAsStream(resourceName)) {
+
+			if (stream == null) {
+				// .class resource not found -> class not found
+				return Optional.empty();
+			}
+
+			ClassDef classDef = loader.load(stream);
+			return Optional.of(classDef);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
+			// unexpected error -> class not found
+			return Optional.empty();
+		}
+
 	}
 
 }

@@ -17,10 +17,12 @@
 package org.jarhc.env;
 
 import org.jarhc.Main;
+import org.jarhc.model.ClassDef;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DefaultJavaRuntimeTest {
 
@@ -87,10 +89,11 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
-		String result = javaRuntime.getClassLoaderName("java.lang.String");
+		Optional<String> result = javaRuntime.getClassLoaderName("java.lang.String");
 
 		// assert
-		assertEquals("Bootstrap", result);
+		assertTrue(result.isPresent());
+		assertEquals("Bootstrap", result.get());
 
 	}
 
@@ -101,10 +104,10 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
-		String result = javaRuntime.getClassLoaderName("u.Unknown");
+		Optional<String> result = javaRuntime.getClassLoaderName("u.Unknown");
 
 		// assert
-		assertNull(result);
+		assertFalse(result.isPresent());
 
 	}
 
@@ -115,10 +118,53 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime();
 
 		// test
-		String result = javaRuntime.getClassLoaderName(Main.class.getName());
+		Optional<String> result = javaRuntime.getClassLoaderName(Main.class.getName());
 
 		// assert
-		assertNull(result);
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
+	void test_getClassDef_String() {
+
+		// prepare
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+
+		// test
+		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.String");
+
+		// assert
+		assertTrue(result.isPresent());
+		assertEquals("java/lang/String", result.get().getClassName());
+
+	}
+
+	@Test
+	void test_getClassDef_Unknown() {
+
+		// prepare
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+
+		// test
+		Optional<ClassDef> result = javaRuntime.getClassDef("u.Unknown");
+
+		// assert
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
+	void test_getClassDef_Main() {
+
+		// prepare
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+
+		// test
+		Optional<ClassDef> result = javaRuntime.getClassDef(Main.class.getName());
+
+		// assert
+		assertFalse(result.isPresent());
 
 	}
 
