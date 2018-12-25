@@ -23,7 +23,7 @@ import org.jarhc.env.JavaRuntime;
 public class ContextMock {
 
 	public static Context createContext() {
-		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Resolver resolver = ResolverMock.createResolver();
 		return new Context(javaRuntime, resolver);
 	}

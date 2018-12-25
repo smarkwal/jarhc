@@ -42,7 +42,7 @@ class MissingClassesAnalyzerTest {
 				.build();
 
 		// prepare Java runtime
-		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 
 		// test
 		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer(javaRuntime);

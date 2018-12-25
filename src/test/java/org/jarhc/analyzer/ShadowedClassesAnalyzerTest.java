@@ -42,7 +42,7 @@ class ShadowedClassesAnalyzerTest {
 				.build();
 
 		// test
-		JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(javaRuntime);
 		ReportSection section = analyzer.analyze(classpath);
 

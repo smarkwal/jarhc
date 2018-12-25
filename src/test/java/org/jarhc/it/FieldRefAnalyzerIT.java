@@ -44,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FieldRefAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = new ClasspathLoader();
-	private final JavaRuntime javaRuntime = JavaRuntimeMock.createOracleRuntime();
+	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
 
 	@Test

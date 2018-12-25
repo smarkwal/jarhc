@@ -31,6 +31,15 @@ import java.util.zip.GZIPOutputStream;
 
 public class JavaRuntimeMock implements JavaRuntime {
 
+	private static JavaRuntime oracleRuntime;
+
+	public static JavaRuntime getOracleRuntime() {
+		if (oracleRuntime == null) {
+			oracleRuntime = createOracleRuntime();
+		}
+		return oracleRuntime;
+	}
+
 	public static JavaRuntime createOracleRuntime() {
 		return new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.dat.gz");
 	}
