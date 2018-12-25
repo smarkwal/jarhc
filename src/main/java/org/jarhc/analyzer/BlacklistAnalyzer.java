@@ -40,8 +40,9 @@ public class BlacklistAnalyzer extends Analyzer {
 		rules.add(new Rule("* sun.misc.Unsafe.*(*)"));
 
 		// JVM shutdown
-		rules.add(new Rule("* java.lang.System.exit(*)"));
-		rules.add(new Rule("* java.lang.System.halt(*)"));
+		rules.add(new Rule("static void java.lang.System.exit(int)"));
+		rules.add(new Rule("void java.lang.Runtime.exit(int)"));
+		rules.add(new Rule("void java.lang.Runtime.halt(int)"));
 
 		// loading of native libraries
 		rules.add(new Rule("static void java.lang.System.load(java.lang.String)"));
@@ -50,7 +51,7 @@ public class BlacklistAnalyzer extends Analyzer {
 		rules.add(new Rule("void java.lang.Runtime.loadLibrary(java.lang.String)"));
 
 		// execution of system commands
-		rules.add(new Rule("* java.lang.Runtime.exec(*)"));
+		rules.add(new Rule("java.lang.Process java.lang.Runtime.exec(*)"));
 
 		// deprecated com.sun.image.codec.jpeg API (removed in Java 9)
 		rules.add(new Rule("* com.sun.image.codec.jpeg.*"));
