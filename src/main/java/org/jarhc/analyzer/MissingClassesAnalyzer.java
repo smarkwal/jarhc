@@ -24,10 +24,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
@@ -35,7 +32,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
 
-	public MissingClassesAnalyzer(JavaRuntime javaRuntime) {
+	MissingClassesAnalyzer(JavaRuntime javaRuntime) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
 	}
@@ -99,11 +96,8 @@ public class MissingClassesAnalyzer extends Analyzer {
 
 		// check if class is a Java bootstrap class
 		String realClassName = className.replace('/', '.');
-		String classLoader = javaRuntime.getClassLoaderName(realClassName);
-		if (classLoader != null) return true;
-
-		// class not found
-		return false;
+		Optional<String> classLoader = javaRuntime.getClassLoaderName(realClassName);
+		return classLoader.isPresent();
 	}
 
 }

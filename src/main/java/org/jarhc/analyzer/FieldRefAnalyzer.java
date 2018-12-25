@@ -162,10 +162,11 @@ public class FieldRefAnalyzer extends Analyzer {
 			}
 
 			// if class is a JDK/JRE class ...
-			String classLoaderName = javaRuntime.getClassLoaderName(realClassName);
-			if (classLoaderName != null) {
+			Optional<String> classLoaderName = javaRuntime.getClassLoaderName(realClassName);
+			if (classLoaderName.isPresent()) {
 				// TODO: search for field in Java class
 				//  if field is found, create and return a FieldDef for this field
+				//  if field is not found, search in superclass and superinterfaces
 
 				// TODO: rethink: create a fake-field to avoid an error
 				int access = fieldRef.isStaticAccess() ? ACC_PUBLIC + ACC_STATIC : ACC_PUBLIC;
@@ -180,7 +181,7 @@ public class FieldRefAnalyzer extends Analyzer {
 				} else {
 					// ignore result if owner class is not found
 					// (already reported in missing classes)
-					searchResult.setIgnoreResult(true);
+					searchResult.setIgnoreResult();
 				}
 			} else {
 				// superclass or superinterface of owner class not found
@@ -263,12 +264,12 @@ public class FieldRefAnalyzer extends Analyzer {
 			}
 		}
 
-		public boolean isIgnoreResult() {
+		boolean isIgnoreResult() {
 			return ignoreResult;
 		}
 
-		public void setIgnoreResult(boolean ignoreResult) {
-			this.ignoreResult = ignoreResult;
+		void setIgnoreResult() {
+			this.ignoreResult = true;
 		}
 
 	}

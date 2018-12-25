@@ -23,16 +23,13 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ShadowedClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
 
-	public ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
+	ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
 	}
@@ -63,8 +60,8 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			// map with duplicate classes (class name -> class loader)
-			Map<String, String> duplicates = Collections.synchronizedMap(new TreeMap<>());
+			// map with shadowed classes (class name -> class loader)
+			Map<String, String> shadowed = Collections.synchronizedMap(new TreeMap<>());
 
 			// for every class definition (in parallel) ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -74,18 +71,18 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 				// check if class is shadowing a runtime class
 				String realClassName = formatClassName(className);
-				String classLoader = javaRuntime.getClassLoaderName(realClassName);
-				if (classLoader == null) {
-					return;
-				}
+				Optional<String> classLoader = javaRuntime.getClassLoaderName(realClassName);
 
-				// duplicate found
-				duplicates.put(realClassName, classLoader);
+				//noinspection OptionalIsPresent
+				if (classLoader.isPresent()) {
+					// shadowed class found
+					shadowed.put(realClassName, classLoader.get());
+				}
 
 			});
 
-			// add a table row for every duplicate class
-			for (Map.Entry<String, String> duplicate : duplicates.entrySet()) {
+			// add a table row for every shadowed class
+			for (Map.Entry<String, String> duplicate : shadowed.entrySet()) {
 				String className = duplicate.getKey();
 				String classLoader = duplicate.getValue();
 				table.addRow(className, jarFile.getFileName(), classLoader);
