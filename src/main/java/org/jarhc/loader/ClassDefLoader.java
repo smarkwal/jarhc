@@ -20,6 +20,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.jarhc.model.*;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldNode;
+import org.objectweb.asm.tree.MethodNode;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -29,9 +31,25 @@ import java.util.List;
  * Loader for class definitions, using a file or a stream as source.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
-class ClassDefLoader {
+public class ClassDefLoader {
 
 	private final ClassFileParser classFileParser = new ClassFileParser();
+
+	/**
+	 * Flag used to control whether the Java class should be scanned for
+	 * references to other classes, methods and fields.
+	 */
+	private final boolean scanForReferences;
+
+	/**
+	 * Creates a new class definition loader.
+	 *
+	 * @param scanForReferences Set to <code>true</code> to have this loader find
+	 *                          references to other classes, methods and fields.
+	 */
+	public ClassDefLoader(boolean scanForReferences) {
+		this.scanForReferences = scanForReferences;
+	}
 
 	/**
 	 * Load a class definition from the given file.
@@ -44,7 +62,7 @@ class ClassDefLoader {
 	 * @throws FileNotFoundException    If the file does not exist.
 	 * @throws IOException              If the file cannot be parsed.
 	 */
-	ClassDef load(File file) throws IOException {
+	public ClassDef load(File file) throws IOException {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
@@ -62,7 +80,7 @@ class ClassDefLoader {
 	 * @throws IllegalArgumentException If <code>stream</code> is <code>null</code>.
 	 * @throws IOException              If the stream cannot be parsed.
 	 */
-	ClassDef load(InputStream stream) throws IOException {
+	public ClassDef load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
 		// read data, calculate SHA-1 checksum, and re-create stream
@@ -72,15 +90,21 @@ class ClassDefLoader {
 
 		ClassNode classNode = classFileParser.parse(stream);
 
-		// find all fields, methods and references to other classes
-		ClassScanner scanner = new ClassScanner();
-		scanner.scan(classNode);
+		// find all field and method definitions
+		List<FieldDef> fieldDefs = getFieldDefs(classNode);
+		List<MethodDef> methodDefs = getMethodDefs(classNode);
 
-		List<FieldDef> fieldDefs = scanner.getFieldDefs();
-		List<MethodDef> methodDefs = scanner.getMethodDefs();
-		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
-		List<FieldRef> fieldRefs = new ArrayList<>(scanner.getFieldRefs());
-		List<MethodRef> methodRefs = new ArrayList<>(scanner.getMethodRefs());
+		List<ClassRef> classRefs = new ArrayList<>();
+		List<FieldRef> fieldRefs = new ArrayList<>();
+		List<MethodRef> methodRefs = new ArrayList<>();
+		if (scanForReferences) {
+			// find all references to other classes, fields and methods
+			ClassScanner scanner = new ClassScanner();
+			scanner.scan(classNode);
+			classRefs.addAll(scanner.getClassRefs());
+			fieldRefs.addAll(scanner.getFieldRefs());
+			methodRefs.addAll(scanner.getMethodRefs());
+		}
 
 		// create class definition
 		return ClassDef.forClassNode(classNode)
@@ -91,6 +115,28 @@ class ClassDefLoader {
 				.withFieldRefs(fieldRefs)
 				.withMethodRefs(methodRefs)
 				.build();
+	}
+
+	private List<FieldDef> getFieldDefs(ClassNode classNode) {
+		// for every field in the class ...
+		List<FieldDef> fieldDefs = new ArrayList<>();
+		for (FieldNode fieldNode : classNode.fields) {
+			// create field definition
+			FieldDef fieldDef = new FieldDef(fieldNode.access, fieldNode.name, fieldNode.desc);
+			fieldDefs.add(fieldDef);
+		}
+		return fieldDefs;
+	}
+
+	private List<MethodDef> getMethodDefs(ClassNode classNode) {
+		// for every method in the class ...
+		List<MethodDef> methodDefs = new ArrayList<>();
+		for (MethodNode methodNode : classNode.methods) {
+			// create method definition
+			MethodDef methodDef = new MethodDef(methodNode.access, methodNode.name, methodNode.desc);
+			methodDefs.add(methodDef);
+		}
+		return methodDefs;
 	}
 
 }

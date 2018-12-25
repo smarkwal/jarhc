@@ -18,10 +18,12 @@ package org.jarhc.test;
 
 import org.jarhc.TestUtils;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.model.ClassDef;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class JavaRuntimeMock implements JavaRuntime {
@@ -70,11 +72,25 @@ public class JavaRuntimeMock implements JavaRuntime {
 	}
 
 	@Override
-	public String getClassLoaderName(String className) {
+	public Optional<String> getClassLoaderName(String className) {
 		if (classNames.contains(className)) {
-			return "Bootstrap";
+			return Optional.of("Bootstrap");
 		} else {
-			return null;
+			return Optional.empty();
+		}
+	}
+
+	@Override
+	public Optional<ClassDef> getClassDef(String className) {
+		if (classNames.contains(className)) {
+			// TODO: add additional information like
+			//  - superclass and interfaces
+			//  - field definitions
+			//  - method definitions
+			//  - annotations (@Deprecated)
+			return Optional.of(ClassDef.forClassName(className).build());
+		} else {
+			return Optional.empty();
 		}
 	}
 

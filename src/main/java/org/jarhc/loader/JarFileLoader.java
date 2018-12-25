@@ -36,7 +36,7 @@ import java.util.jar.Manifest;
  */
 class JarFileLoader {
 
-	private final ClassDefLoader classDefLoader = new ClassDefLoader();
+	private final ClassDefLoader classDefLoader = new ClassDefLoader(true);
 
 	private final ModuleInfoLoader moduleInfoLoader = new ModuleInfoLoader();
 

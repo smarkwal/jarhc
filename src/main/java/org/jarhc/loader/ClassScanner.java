@@ -16,38 +16,32 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.model.*;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.FieldRef;
+import org.jarhc.model.MethodRef;
 import org.jarhc.utils.JavaUtils;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Function;
 
+/**
+ * A class scanner is used to scan an ASM {@link ClassNode}
+ * for references to other classes, fields and methods.
+ */
 class ClassScanner {
 
 	private ClassNode classNode;
-
-	private final List<FieldDef> fieldDefs = new ArrayList<>();
-	private final List<MethodDef> methodDefs = new ArrayList<>();
 
 	private final Set<ClassRef> classRefs = new TreeSet<>();
 	private final Set<FieldRef> fieldRefs = new TreeSet<>();
 	private final Set<MethodRef> methodRefs = new TreeSet<>();
 
 	ClassScanner() {
-	}
-
-	List<FieldDef> getFieldDefs() {
-		return fieldDefs;
-	}
-
-	List<MethodDef> getMethodDefs() {
-		return methodDefs;
 	}
 
 	Set<ClassRef> getClassRefs() {
@@ -76,12 +70,12 @@ class ClassScanner {
 
 		// scan fields
 		for (FieldNode fieldNode : classNode.fields) {
-			scan(fieldNode);
+			scanField(fieldNode);
 		}
 
 		// scan methods
 		for (MethodNode methodNode : classNode.methods) {
-			scan(methodNode);
+			scanMethod(methodNode);
 		}
 
 		// scan inner methods
@@ -90,51 +84,34 @@ class ClassScanner {
 		}
 
 		// scan annotations
-		scan(classNode.visibleAnnotations, a -> a.desc);
-		scan(classNode.invisibleAnnotations, a -> a.desc);
-		scan(classNode.visibleTypeAnnotations, a -> a.desc);
-		scan(classNode.invisibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(classNode.visibleAnnotations, a -> a.desc);
+		scanAnnotations(classNode.invisibleAnnotations, a -> a.desc);
+		scanAnnotations(classNode.visibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(classNode.invisibleTypeAnnotations, a -> a.desc);
 
 	}
 
-	private void scan(FieldNode fieldNode) {
-
-		// create field definition
-		FieldDef fieldDef = new FieldDef(fieldNode.access, fieldNode.name, fieldNode.desc);
-		fieldDefs.add(fieldDef);
+	private void scanField(FieldNode fieldNode) {
 
 		// scan field type
 		Type fieldType = Type.getType(fieldNode.desc);
-		scan(fieldType);
+		scanType(fieldType);
 
 		// TODO: scan field initializer?
 		// TODO: scan generic type?
 
 		// scan annotations
-		scan(fieldNode.visibleAnnotations, a -> a.desc);
-		scan(fieldNode.invisibleAnnotations, a -> a.desc);
-		scan(fieldNode.visibleTypeAnnotations, a -> a.desc);
-		scan(fieldNode.invisibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(fieldNode.visibleAnnotations, a -> a.desc);
+		scanAnnotations(fieldNode.invisibleAnnotations, a -> a.desc);
+		scanAnnotations(fieldNode.visibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(fieldNode.invisibleTypeAnnotations, a -> a.desc);
 
 	}
 
-	private void scan(MethodNode methodNode) {
-
-		// create method definition
-		MethodDef methodDef = new MethodDef(methodNode.access, methodNode.name, methodNode.desc);
-		methodDefs.add(methodDef);
+	private void scanMethod(MethodNode methodNode) {
 
 		Type methodType = Type.getType(methodNode.desc);
-
-		// scan return type
-		Type returnType = methodType.getReturnType();
-		scan(returnType);
-
-		// scan parameter types
-		Type[] argumentTypes = methodType.getArgumentTypes();
-		for (Type argumentType : argumentTypes) {
-			scan(argumentType);
-		}
+		scanMethodSignature(methodType);
 
 		// scan exceptions ("throws" declarations)
 		methodNode.exceptions.forEach(e -> classRefs.add(new ClassRef(e)));
@@ -147,13 +124,13 @@ class ClassScanner {
 				if (variableName.equals("this")) continue;
 
 				Type variableType = Type.getType(localVariable.desc);
-				scan(variableType);
+				scanType(variableType);
 			}
 		}
 
 		// scan instructions
 		InsnList instructions = methodNode.instructions;
-		scan(instructions);
+		scanInstructions(instructions);
 
 		// scan exception handlers
 		List<TryCatchBlockNode> tryCatchBlocks = methodNode.tryCatchBlocks;
@@ -164,26 +141,40 @@ class ClassScanner {
 		}
 
 		// scan annotations
-		scan(methodNode.visibleAnnotations, a -> a.desc);
-		scan(methodNode.invisibleAnnotations, a -> a.desc);
-		scan(methodNode.visibleTypeAnnotations, a -> a.desc);
-		scan(methodNode.invisibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.visibleAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.invisibleAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.visibleTypeAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.invisibleTypeAnnotations, a -> a.desc);
 		if (methodNode.visibleParameterAnnotations != null) {
 			for (List<AnnotationNode> parameterAnnotations : methodNode.visibleParameterAnnotations) {
-				scan(parameterAnnotations, a -> a.desc);
+				scanAnnotations(parameterAnnotations, a -> a.desc);
 			}
 		}
 		if (methodNode.invisibleParameterAnnotations != null) {
 			for (List<AnnotationNode> parameterAnnotations : methodNode.invisibleParameterAnnotations) {
-				scan(parameterAnnotations, a -> a.desc);
+				scanAnnotations(parameterAnnotations, a -> a.desc);
 			}
 		}
-		scan(methodNode.visibleLocalVariableAnnotations, a -> a.desc);
-		scan(methodNode.invisibleLocalVariableAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.visibleLocalVariableAnnotations, a -> a.desc);
+		scanAnnotations(methodNode.invisibleLocalVariableAnnotations, a -> a.desc);
 
 	}
 
-	private void scan(InsnList instructions) {
+	private void scanMethodSignature(Type methodType) {
+
+		// scan return type
+		Type returnType = methodType.getReturnType();
+		scanType(returnType);
+
+		// scan parameter types
+		Type[] argumentTypes = methodType.getArgumentTypes();
+		for (Type argumentType : argumentTypes) {
+			scanType(argumentType);
+		}
+
+	}
+
+	private void scanInstructions(InsnList instructions) {
 
 		// for every instruction ...
 		for (int i = 0; i < instructions.size(); i++) {
@@ -191,10 +182,10 @@ class ClassScanner {
 			AbstractInsnNode node = instructions.get(i);
 			if (node instanceof MethodInsnNode) {
 				MethodInsnNode methodInsnNode = (MethodInsnNode) node;
-				scan(methodInsnNode);
+				scanMethodCall(methodInsnNode);
 			} else if (node instanceof FieldInsnNode) {
 				FieldInsnNode fieldInsnNode = (FieldInsnNode) node;
-				scan(fieldInsnNode);
+				scanFieldAccess(fieldInsnNode);
 			}
 			// TODO: scan more instructions?
 
@@ -202,27 +193,13 @@ class ClassScanner {
 
 	}
 
-	private void scan(MethodInsnNode methodInsnNode) {
+	private void scanMethodCall(MethodInsnNode methodInsnNode) {
 
 		String owner = methodInsnNode.owner;
-		if (owner.startsWith("[")) {
-			Type ownerType = Type.getType(owner);
-			scan(ownerType);
-		} else {
-			classRefs.add(new ClassRef(owner));
-		}
+		scanOwner(owner);
 
 		Type methodType = Type.getType(methodInsnNode.desc);
-
-		// scan return type
-		Type returnType = methodType.getReturnType();
-		scan(returnType);
-
-		// scan parameter types
-		Type[] argumentTypes = methodType.getArgumentTypes();
-		for (Type argumentType : argumentTypes) {
-			scan(argumentType);
-		}
+		scanMethodSignature(methodType);
 
 		// create reference to method
 		int opcode = methodInsnNode.getOpcode();
@@ -233,19 +210,23 @@ class ClassScanner {
 
 	}
 
-	private void scan(FieldInsnNode fieldInsnNode) {
+	private void scanOwner(String owner) {
+		if (owner.startsWith("[")) {
+			Type ownerType = Type.getType(owner);
+			scanType(ownerType);
+		} else {
+			classRefs.add(new ClassRef(owner));
+		}
+	}
+
+	private void scanFieldAccess(FieldInsnNode fieldInsnNode) {
 
 		String fieldOwner = fieldInsnNode.owner;
-		if (fieldOwner.startsWith("[")) {
-			Type ownerType = Type.getType(fieldOwner);
-			scan(ownerType);
-		} else {
-			classRefs.add(new ClassRef(fieldOwner));
-		}
+		scanOwner(fieldOwner);
 
 		// scan field type
 		Type fieldType = Type.getType(fieldInsnNode.desc);
-		scan(fieldType);
+		scanType(fieldType);
 
 		String fieldName = fieldInsnNode.name;
 		int opcode = fieldInsnNode.getOpcode();
@@ -257,9 +238,12 @@ class ClassScanner {
 		if (writeAccess) {
 			if (classNode.name.equals(fieldOwner)) {
 				// check if field is present in current class and is final
-				FieldDef fieldDef = fieldDefs.stream().filter(f -> f.getFieldName().equals(fieldName)).findAny().orElse(null);
-				if (fieldDef != null && fieldDef.isFinal()) {
-					return;
+				FieldNode fieldNode = classNode.fields.stream().filter(f -> f.name.equals(fieldName)).findAny().orElse(null);
+				if (fieldNode != null) {
+					boolean isFinal = (fieldNode.access & Opcodes.ACC_FINAL) != 0;
+					if (isFinal) {
+						return;
+					}
 				}
 			}
 		}
@@ -270,17 +254,17 @@ class ClassScanner {
 
 	}
 
-	private <T> void scan(List<T> annotationNodes, Function<T, String> function) {
+	private <T> void scanAnnotations(List<T> annotationNodes, Function<T, String> function) {
 		if (annotationNodes == null) return;
 		for (T annotationNode : annotationNodes) {
 			String desc = function.apply(annotationNode);
 			Type type = Type.getType(desc);
-			scan(type);
+			scanType(type);
 			// TODO: scan annotation values?
 		}
 	}
 
-	private void scan(Type type) {
+	private void scanType(Type type) {
 		String className = type.getClassName();
 
 		// get array element type
