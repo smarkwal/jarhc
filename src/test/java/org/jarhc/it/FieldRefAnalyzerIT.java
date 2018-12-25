@@ -66,9 +66,12 @@ class FieldRefAnalyzerIT {
 				"int b.B.nonStaticSuperField",
 				"int b.B.publicField",
 				"int b.B.superField",
+				"int[] b.B.arrayField",
 				"static b.E b.E.E3",
 				"static int b.B.staticField",
-				"static int b.B.staticSuperField"
+				"static int b.B.staticSuperField",
+				"static java.lang.Boolean java.lang.Boolean.TRUE",
+				"static java.lang.String java.io.File.separator"
 		);
 		assertEquals(expectedList, list);
 	}
@@ -145,6 +148,14 @@ class FieldRefAnalyzerIT {
 				"- b.S (field not found)",
 				"- java.lang.Object (field not found)",
 				"- b.I (field not found)",
+				"- java.lang.Object (field not found)",
+				"Field not found: static b.E b.E.E3",
+				"- b.E (field not found)",
+				"- java.lang.Enum (field not found)",
+				"- java.lang.Object (field not found)",
+				"- java.lang.Comparable (field not found)",
+				"- java.lang.Object (field not found)",
+				"- java.io.Serializable (field not found)",
 				"- java.lang.Object (field not found)"
 		);
 		assertEquals(expectedMessage, values[1]);
@@ -199,6 +210,8 @@ class FieldRefAnalyzerIT {
 		assertEquals("a.jar", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
+				"Field not found: int[] b.B.arrayField",
+				"- b.B (owner class not found)",
 				"Field not found: int b.B.existingField",
 				"- b.B (owner class not found)",
 				"Field not found: int b.B.intField",

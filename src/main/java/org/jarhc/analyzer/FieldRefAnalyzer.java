@@ -27,8 +27,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.jarhc.utils.StringUtils.joinLines;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
 public class FieldRefAnalyzer extends Analyzer {
 
@@ -150,29 +148,11 @@ public class FieldRefAnalyzer extends Analyzer {
 		String fieldName = fieldRef.getFieldName();
 		String realClassName = targetClassName.replace('/', '.');
 
-		Set<ClassDef> targetClassDefs = classpath.getClassDefs(targetClassName);
-		if (targetClassDefs == null || targetClassDefs.isEmpty()) {
-			// target class not found in classpath
+		// try to find target class in classpath or Java runtime
+		ClassDef targetClassDef = findClassDef(classpath, targetClassName).orElse(null);
 
-			// TODO: remove this hack
-			if (targetClassName.equals("java/lang/Object")) {
-				// assumption: java.lang.Object anyway does not contain any fields
-				searchResult.addSearchInfo("- " + realClassName + " (field not found)");
-				return Optional.empty();
-			}
-
-			// if class is a JDK/JRE class ...
-			Optional<String> classLoaderName = javaRuntime.getClassLoaderName(realClassName);
-			if (classLoaderName.isPresent()) {
-				// TODO: search for field in Java class
-				//  if field is found, create and return a FieldDef for this field
-				//  if field is not found, search in superclass and superinterfaces
-
-				// TODO: rethink: create a fake-field to avoid an error
-				int access = fieldRef.isStaticAccess() ? ACC_PUBLIC + ACC_STATIC : ACC_PUBLIC;
-				return Optional.of(new FieldDef(access, fieldName, fieldRef.getFieldDescriptor()));
-
-			}
+		// if class has not been found ...
+		if (targetClassDef == null) {
 
 			if (targetClassName.equals(fieldRef.getFieldOwner())) {
 				// owner class not found
@@ -188,44 +168,60 @@ public class FieldRefAnalyzer extends Analyzer {
 				searchResult.addSearchInfo("- " + realClassName + " (class not found)");
 			}
 
+			// class not found -> field not found
 			return Optional.empty();
 		}
 
-		for (ClassDef targetClassDef : targetClassDefs) {
+		// try to find field in target class
+		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
+		if (fieldDef.isPresent()) {
+			// TODO: special handling for private fields?
+			searchResult.addSearchInfo("- " + realClassName + " (field found)");
+			return fieldDef;
+		}
 
-			Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
+		// field not found in target class
+		searchResult.addSearchInfo("- " + realClassName + " (field not found)");
+
+		// try to find field in superclass
+		String superName = targetClassDef.getSuperName();
+		if (superName != null) {
+			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult);
 			if (fieldDef.isPresent()) {
-				searchResult.addSearchInfo("- " + realClassName + " (field found)");
 				return fieldDef;
 			}
+		}
 
-			searchResult.addSearchInfo("- " + realClassName + " (field not found)");
-
-			// try to find field in superclass
-			String superName = targetClassDef.getSuperName();
-			if (superName != null) {
-				fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult);
+		// try to find field in interfaces
+		// TODO: scan interfaces before superclass?
+		List<String> interfaceNames = targetClassDef.getInterfaceNames();
+		if (interfaceNames != null) {
+			for (String interfaceName : interfaceNames) {
+				fieldDef = findFieldDef(fieldRef, interfaceName, classpath, searchResult);
 				if (fieldDef.isPresent()) {
 					return fieldDef;
 				}
 			}
-
-			// try to find field in interfaces
-			// TODO: scan interfaces before superclass?
-			List<String> interfaceNames = targetClassDef.getInterfaceNames();
-			if (interfaceNames != null) {
-				for (String interfaceName : interfaceNames) {
-					fieldDef = findFieldDef(fieldRef, interfaceName, classpath, searchResult);
-					if (fieldDef.isPresent()) {
-						return fieldDef;
-					}
-				}
-			}
-
 		}
 
 		// field not found
 		return Optional.empty();
+
+	}
+
+	private Optional<ClassDef> findClassDef(Classpath classpath, String className) {
+
+		// try to find class on classpath
+		Set<ClassDef> targetClassDefs = classpath.getClassDefs(className);
+		if (targetClassDefs != null && !targetClassDefs.isEmpty()) {
+			// use the first class definition (ignore duplicate classes)
+			ClassDef classDef = targetClassDefs.iterator().next();
+			return Optional.of(classDef);
+		}
+
+		// try to find class in JDK/JRE implementation
+		String realClassName = className.replace('/', '.');
+		return javaRuntime.getClassDef(realClassName);
 
 	}
 

@@ -20,6 +20,10 @@ public class A {
 		B.staticSuperField = 8;
 
 		Object x = E.E3;
+		boolean y = Boolean.TRUE;
+		String z = java.io.File.separator;
+
+		int len = b.arrayField.length;
 
 	}
 

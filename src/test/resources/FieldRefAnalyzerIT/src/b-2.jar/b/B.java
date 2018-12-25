@@ -14,6 +14,8 @@ public class B extends S implements I {
 
 	public boolean intField;
 
+	public int[] arrayField = new int[] { 1, 2, 3 };
+
 	public B() {
 
 	}

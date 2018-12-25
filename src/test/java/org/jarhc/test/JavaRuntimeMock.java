@@ -53,7 +53,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 			int numClassDefs = dis.readInt();
 			for (int c = 0; c < numClassDefs; c++) {
 				ClassDef classDef = ClassDefUtils.read(dis);
-				String className = classDef.getClassName();
+				String className = classDef.getClassName().replace('/', '.');
 				classDefs.put(className, classDef);
 			}
 		} catch (IOException e) {
