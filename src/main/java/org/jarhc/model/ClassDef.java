@@ -280,6 +280,16 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 			return this;
 		}
 
+		public Builder withSuperName(String superName) {
+			this.classNode.superName = superName;
+			return this;
+		}
+
+		public Builder withInterfaceNames(List<String> interfaces) {
+			this.classNode.interfaces.addAll(interfaces);
+			return this;
+		}
+
 		public Builder withClassFileChecksum(String classFileChecksum) {
 			this.classFileChecksum = classFileChecksum;
 			return this;

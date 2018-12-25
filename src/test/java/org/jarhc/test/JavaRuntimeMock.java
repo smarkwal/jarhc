@@ -18,21 +18,24 @@ package org.jarhc.test;
 
 import org.jarhc.TestUtils;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.ClassDef;
+import org.jarhc.model.Classpath;
+import org.jarhc.model.JarFile;
+import org.jarhc.utils.ClassDefUtils;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class JavaRuntimeMock implements JavaRuntime {
 
 	public static JavaRuntime createOracleRuntime() {
-		return new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.txt");
+		return new JavaRuntimeMock("/classes-oracle-jdk-1.8.0_144.dat.gz");
 	}
 
-	private final Set<String> classNames = new HashSet<>();
+	private final Map<String, ClassDef> classDefs = new HashMap<>();
 
 	/**
 	 * Create a fake Java runtime using the class names loaded from the given resource.
@@ -40,11 +43,18 @@ public class JavaRuntimeMock implements JavaRuntime {
 	 * @param resource Resource with class names
 	 */
 	private JavaRuntimeMock(String resource) {
-		try {
-			List<String> lines = TestUtils.getResourceAsLines(resource, "UTF-8");
-			for (String line : lines) {
-				if (line.startsWith("#")) continue;
-				classNames.add(line);
+
+		// open test resource for reading
+		try (InputStream is = TestUtils.getResourceAsStream(resource)) {
+			if (is == null) throw new RuntimeException("Resource not found: " + resource);
+
+			// read compressed class definitions
+			DataInputStream dis = new DataInputStream(new GZIPInputStream(is));
+			int numClassDefs = dis.readInt();
+			for (int c = 0; c < numClassDefs; c++) {
+				ClassDef classDef = ClassDefUtils.read(dis);
+				String className = classDef.getClassName();
+				classDefs.put(className, classDef);
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -73,7 +83,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 
 	@Override
 	public Optional<String> getClassLoaderName(String className) {
-		if (classNames.contains(className)) {
+		if (classDefs.containsKey(className)) {
 			return Optional.of("Bootstrap");
 		} else {
 			return Optional.empty();
@@ -82,16 +92,45 @@ public class JavaRuntimeMock implements JavaRuntime {
 
 	@Override
 	public Optional<ClassDef> getClassDef(String className) {
-		if (classNames.contains(className)) {
-			// TODO: add additional information like
-			//  - superclass and interfaces
-			//  - field definitions
-			//  - method definitions
-			//  - annotations (@Deprecated)
-			return Optional.of(ClassDef.forClassName(className).build());
-		} else {
-			return Optional.empty();
+		return Optional.ofNullable(classDefs.get(className));
+	}
+
+	/**
+	 * Small Java application to generate the test resource "classes-oracle-jdk-1.8.0_144.dat.gz",
+	 * given the path to the rt.jar file of an Oracle JDK/JRE 1.8.0_144.
+	 */
+	public static void main(String[] args) throws IOException {
+
+		// get path to rt.jar file
+		String rtPath = args[0];
+		File rtFile = new File(rtPath);
+		if (!rtFile.isFile()) {
+			System.err.println("File not found: " + rtFile.getAbsolutePath());
+			System.exit(1);
 		}
+
+		// load all classes from rt.jar file into memory
+		ClasspathLoader loader = new ClasspathLoader();
+		Classpath classpath = loader.load(Collections.singletonList(rtFile));
+		JarFile jarFile = classpath.getJarFiles().get(0);
+		List<ClassDef> classDefs = jarFile.getClassDefs();
+
+		// open compressed output stream to test resource file
+		String resourcePath = "./src/test/resources/classes-oracle-jdk-1.8.0_144.dat.gz";
+		try (FileOutputStream fos = new FileOutputStream(new File(resourcePath))) {
+			try (GZIPOutputStream zos = new GZIPOutputStream(fos)) {
+				try (DataOutputStream dos = new DataOutputStream(zos)) {
+
+					// write all class definitions
+					dos.writeInt(classDefs.size());
+					for (ClassDef classDef : classDefs) {
+						ClassDefUtils.write(classDef, dos);
+					}
+
+				}
+			}
+		}
+
 	}
 
 }
