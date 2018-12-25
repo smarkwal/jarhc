@@ -21,10 +21,7 @@ import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
@@ -89,10 +86,11 @@ public class FieldRefAnalyzer extends Analyzer {
 	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, Classpath classpath) {
 
 		SearchResult searchResult = new SearchResult();
+		Set<String> scannedClasses = new HashSet<>();
 
 		// find target field definition
 		String targetClassName = fieldRef.getFieldOwner();
-		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classpath, searchResult);
+		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classpath, searchResult, scannedClasses);
 		if (!fieldDef.isPresent()) {
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			return searchResult;
@@ -141,12 +139,18 @@ public class FieldRefAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, Classpath classpath, SearchResult searchResult) {
+	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, Classpath classpath, SearchResult searchResult, Set<String> scannedClasses) {
 
 		// TODO: use a cache for field definitions like System.out, System.err, ...
 
-		String fieldName = fieldRef.getFieldName();
 		String realClassName = targetClassName.replace('/', '.');
+
+		// if class has already been scanned ...
+		if (!scannedClasses.add(targetClassName)) {
+			// field not found
+			// searchResult.addSearchInfo("- " + realClassName + " (already scanned)");
+			return Optional.empty();
+		}
 
 		// try to find target class in classpath or Java runtime
 		ClassDef targetClassDef = findClassDef(classpath, targetClassName).orElse(null);
@@ -173,6 +177,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		}
 
 		// try to find field in target class
+		String fieldName = fieldRef.getFieldName();
 		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
 		if (fieldDef.isPresent()) {
 			// TODO: special handling for private fields?
@@ -186,7 +191,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		// try to find field in superclass
 		String superName = targetClassDef.getSuperName();
 		if (superName != null) {
-			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult);
+			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult, scannedClasses);
 			if (fieldDef.isPresent()) {
 				return fieldDef;
 			}
@@ -197,7 +202,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		List<String> interfaceNames = targetClassDef.getInterfaceNames();
 		if (interfaceNames != null) {
 			for (String interfaceName : interfaceNames) {
-				fieldDef = findFieldDef(fieldRef, interfaceName, classpath, searchResult);
+				fieldDef = findFieldDef(fieldRef, interfaceName, classpath, searchResult, scannedClasses);
 				if (fieldDef.isPresent()) {
 					return fieldDef;
 				}

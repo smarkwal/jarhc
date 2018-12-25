@@ -128,7 +128,6 @@ class FieldRefAnalyzerIT {
 				"- b.S (field not found)",
 				"- java.lang.Object (field not found)",
 				"- b.I (field not found)",
-				"- java.lang.Object (field not found)",
 				"Incompatible field type: int b.B.intField -> public boolean intField",
 				"- b.B (field found)",
 				"Write access to final field: int b.B.nonFinalField -> public final int nonFinalField",
@@ -148,15 +147,12 @@ class FieldRefAnalyzerIT {
 				"- b.S (field not found)",
 				"- java.lang.Object (field not found)",
 				"- b.I (field not found)",
-				"- java.lang.Object (field not found)",
 				"Field not found: static b.E b.E.E3",
 				"- b.E (field not found)",
 				"- java.lang.Enum (field not found)",
 				"- java.lang.Object (field not found)",
 				"- java.lang.Comparable (field not found)",
-				"- java.lang.Object (field not found)",
-				"- java.io.Serializable (field not found)",
-				"- java.lang.Object (field not found)"
+				"- java.io.Serializable (field not found)"
 		);
 		assertEquals(expectedMessage, values[1]);
 
