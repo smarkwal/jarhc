@@ -21,8 +21,6 @@ import java.util.Set;
 
 public class JavaUtils {
 
-	private static final ClassLoader BOOTSTRAP_CLASSLOADER = ClassLoader.getSystemClassLoader().getParent();
-
 	private static final Set<String> primitiveTypes = new HashSet<>();
 
 	static {
