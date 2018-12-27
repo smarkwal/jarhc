@@ -16,6 +16,8 @@
 
 package org.jarhc.artifacts;
 
+import java.util.Optional;
+
 public interface Resolver {
-	Artifact getArtifact(String checksum) throws ResolverException;
+	Optional<Artifact> getArtifact(String checksum) throws ResolverException;
 }

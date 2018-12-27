@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Optional;
 
 public class MavenCentralResolver implements Resolver {
 
@@ -45,7 +46,7 @@ public class MavenCentralResolver implements Resolver {
 	}
 
 	@Override
-	public Artifact getArtifact(String checksum) throws ResolverException {
+	public Optional<Artifact> getArtifact(String checksum) throws ResolverException {
 
 		URL url;
 		try {
@@ -76,7 +77,7 @@ public class MavenCentralResolver implements Resolver {
 
 		int numFound = response.getInt("numFound");
 		if (numFound == 0) {
-			return null; // artifact not found
+			return Optional.empty(); // artifact not found
 		}
 
 		if (!response.has("docs")) {
@@ -96,7 +97,8 @@ public class MavenCentralResolver implements Resolver {
 
 		// TODO: what if there are more matches?
 
-		return new Artifact(groupId, artifactId, version, type);
+		Artifact artifact = new Artifact(groupId, artifactId, version, type);
+		return Optional.of(artifact);
 	}
 
 	private String executeHttpRequest(URL url) throws ResolverException {

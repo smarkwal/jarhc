@@ -22,12 +22,25 @@ import org.jarhc.artifacts.Resolver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 public class ResolverMock implements Resolver {
 
 	public static Resolver createResolver() {
 		return new ResolverMock("/resolver.properties");
+	}
+
+	public static Resolver createFakeResolver() {
+		return checksum -> {
+			String artifactId = checksum.substring(0, 5);
+			Artifact artifact = new Artifact("org.jarhc", artifactId, "1.0", "jar");
+			return Optional.of(artifact);
+		};
+	}
+
+	public static Resolver createNullResolver() {
+		return checksum -> Optional.empty();
 	}
 
 	private final Properties properties = new Properties();
@@ -43,13 +56,14 @@ public class ResolverMock implements Resolver {
 	}
 
 	@Override
-	public Artifact getArtifact(String checksum) {
+	public Optional<Artifact> getArtifact(String checksum) {
 		String coordinates = properties.getProperty("artifact." + checksum);
 		if (coordinates != null) {
-			return new Artifact(coordinates);
+			Artifact artifact = new Artifact(coordinates);
+			return Optional.of(artifact);
 		} else {
 			// artifact not found
-			return null;
+			return Optional.empty();
 		}
 	}
 

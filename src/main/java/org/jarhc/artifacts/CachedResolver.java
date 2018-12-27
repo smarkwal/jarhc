@@ -21,6 +21,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 public class CachedResolver implements Resolver {
 
@@ -38,7 +39,7 @@ public class CachedResolver implements Resolver {
 	}
 
 	@Override
-	public Artifact getArtifact(String checksum) throws ResolverException {
+	public Optional<Artifact> getArtifact(String checksum) throws ResolverException {
 		if (checksum == null || checksum.matches("[^a-z0-9]")) throw new IllegalArgumentException("checksum");
 
 		// create path to cache file
@@ -49,23 +50,24 @@ public class CachedResolver implements Resolver {
 
 			// get artifact information from cache
 			// (may be null in case of a cached negative response)
-			return getFromCache(file);
+			Artifact artifact = getFromCache(file);
+			return Optional.ofNullable(artifact);
 		}
 
 		// if a parent resolver is available ...
 		if (resolver != null) {
 
 			// delegate to parent resolver
-			Artifact artifact = resolver.getArtifact(checksum);
+			Optional<Artifact> artifact = resolver.getArtifact(checksum);
 
 			// update cache with response
-			saveToCache(artifact, file);
+			saveToCache(artifact.orElse(null), file);
 
 			return artifact;
 		}
 
 		// artifact not found
-		return null;
+		return Optional.empty();
 	}
 
 	private Artifact getFromCache(File file) throws ResolverException {

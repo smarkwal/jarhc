@@ -25,6 +25,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
@@ -111,7 +112,7 @@ public class JarFilesAnalyzer extends Analyzer {
 			return "[unknown]";
 		}
 
-		Artifact artifact;
+		Optional<Artifact> artifact;
 		try {
 			artifact = resolver.getArtifact(checksum);
 		} catch (ResolverException e) {
@@ -120,9 +121,7 @@ public class JarFilesAnalyzer extends Analyzer {
 			return "[error]";
 		}
 
-		if (artifact == null) return "[unknown]";
-
-		return artifact.toString();
+		return artifact.map(Artifact::toString).orElse("[unknown]");
 	}
 
 }

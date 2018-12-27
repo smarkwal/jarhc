@@ -22,6 +22,7 @@ import org.jarhc.artifacts.ResolverException;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,14 +35,14 @@ class MavenCentralResolverIT {
 	void test_commons_io() throws ResolverException {
 
 		// test
-		Artifact artifact = resolver.getArtifact("815893df5f31da2ece4040fe0a12fd44b577afaf");
+		Optional<Artifact> artifact = resolver.getArtifact("815893df5f31da2ece4040fe0a12fd44b577afaf");
 
 		// assert
-		assertNotNull(artifact);
-		assertEquals("commons-io", artifact.getGroupId());
-		assertEquals("commons-io", artifact.getArtifactId());
-		assertEquals("2.6", artifact.getVersion());
-		assertEquals("jar", artifact.getType());
+		assertTrue(artifact.isPresent());
+		assertEquals("commons-io", artifact.get().getGroupId());
+		assertEquals("commons-io", artifact.get().getArtifactId());
+		assertEquals("2.6", artifact.get().getVersion());
+		assertEquals("jar", artifact.get().getType());
 
 	}
 
@@ -49,14 +50,14 @@ class MavenCentralResolverIT {
 	void test_commons_codec() throws ResolverException {
 
 		// test
-		Artifact artifact = resolver.getArtifact("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
+		Optional<Artifact> artifact = resolver.getArtifact("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
 
 		// assert
-		assertNotNull(artifact);
-		assertEquals("commons-codec", artifact.getGroupId());
-		assertEquals("commons-codec", artifact.getArtifactId());
-		assertEquals("1.11", artifact.getVersion());
-		assertEquals("jar", artifact.getType());
+		assertTrue(artifact.isPresent());
+		assertEquals("commons-codec", artifact.get().getGroupId());
+		assertEquals("commons-codec", artifact.get().getArtifactId());
+		assertEquals("1.11", artifact.get().getVersion());
+		assertEquals("jar", artifact.get().getType());
 
 	}
 
@@ -64,26 +65,25 @@ class MavenCentralResolverIT {
 	void test_asm() throws ResolverException {
 
 		// test
-		Artifact artifact = resolver.getArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+		Optional<Artifact> artifact = resolver.getArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
 
 		// assert
-		assertNotNull(artifact);
-		assertEquals("org.ow2.asm", artifact.getGroupId());
-		assertEquals("asm", artifact.getArtifactId());
-		assertEquals("7.0", artifact.getVersion());
-		assertEquals("jar", artifact.getType());
+		assertTrue(artifact.isPresent());
+		assertEquals("org.ow2.asm", artifact.get().getGroupId());
+		assertEquals("asm", artifact.get().getArtifactId());
+		assertEquals("7.0", artifact.get().getVersion());
+		assertEquals("jar", artifact.get().getType());
 
 	}
-
 
 	@Test
 	void test_notfound() throws ResolverException {
 
 		// test
-		Artifact artifact = resolver.getArtifact("1234567890123456789012345678901234567890");
+		Optional<Artifact> artifact = resolver.getArtifact("1234567890123456789012345678901234567890");
 
 		// assert
-		assertNull(artifact);
+		assertFalse(artifact.isPresent());
 
 	}
 

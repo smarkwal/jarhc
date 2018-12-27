@@ -20,6 +20,7 @@ import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.test.JavaRuntimeMock;
+import org.jarhc.test.ResolverMock;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.File;
@@ -90,7 +91,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_JarFilesAnalyzer() {
-		Analyzer analyzer = new JarFilesAnalyzer(checksum -> null);
+		Analyzer analyzer = new JarFilesAnalyzer(ResolverMock.createNullResolver());
 		analyzer.analyze(classpath);
 	}
 
