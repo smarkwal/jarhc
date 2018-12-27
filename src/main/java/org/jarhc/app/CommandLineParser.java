@@ -40,6 +40,7 @@ public class CommandLineParser {
 		}
 
 		List<File> paths = new ArrayList<>();
+		String reportTitle = "JAR Health Check Report";
 		String reportFormat = null;
 		String reportFile = null;
 
@@ -61,6 +62,12 @@ public class CommandLineParser {
 					reportFile = iterator.next();
 				} else {
 					handleError(-7, "Report file not specified.");
+				}
+			} else if (arg.equals("-t") || arg.equals("--title")) {
+				if (iterator.hasNext()) {
+					reportTitle = iterator.next();
+				} else {
+					handleError(-8, "Report title not specified.");
 				}
 			} else if (arg.startsWith("-")) {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
@@ -97,7 +104,7 @@ public class CommandLineParser {
 		}
 
 		// exit code 0 -> no errors
-		return new Options(jarFiles, reportFormat, reportFile);
+		return new Options(jarFiles, reportTitle, reportFormat, reportFile);
 	}
 
 	private void collectJarFiles(List<File> paths, boolean strict, List<File> jarFiles) throws CommandLineException {
@@ -137,6 +144,7 @@ public class CommandLineParser {
 		err.println("   Options:");
 		err.println("   -f <type> | --format <type>: Report format type ('text' or 'html').");
 		err.println("   -o <file> | --output <file>: Report file path.");
+		err.println("   -t <text> | --title <text>: Report title.");
 	}
 
 }

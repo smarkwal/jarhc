@@ -84,6 +84,8 @@ public class Application {
 		// time = System.nanoTime() - time;
 		// System.out.println("Time: " + (time / 1000 / 1000) + " ms");
 
+		report.setTitle(options.getReportTitle());
+
 		out.println("Create report ...");
 		out.println();
 

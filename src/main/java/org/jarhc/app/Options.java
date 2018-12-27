@@ -22,11 +22,13 @@ import java.util.List;
 class Options {
 
 	private final List<File> jarFiles;
+	private final String reportTitle;
 	private final String reportFormat;
 	private final String reportFile;
 
-	Options(List<File> jarFiles, String reportFormat, String reportFile) {
+	Options(List<File> jarFiles, String reportTitle, String reportFormat, String reportFile) {
 		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
+		this.reportTitle = reportTitle;
 		this.jarFiles = jarFiles;
 		this.reportFormat = reportFormat;
 		this.reportFile = reportFile;
@@ -34,6 +36,10 @@ class Options {
 
 	public List<File> getJarFiles() {
 		return jarFiles;
+	}
+
+	public String getReportTitle() {
+		return reportTitle;
 	}
 
 	public String getReportFormat() {
