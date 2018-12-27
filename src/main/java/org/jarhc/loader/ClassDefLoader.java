@@ -36,6 +36,11 @@ public class ClassDefLoader {
 	private final ClassFileParser classFileParser = new ClassFileParser();
 
 	/**
+	 * Name of class loader (will be stored in class definition).
+	 */
+	private final String classLoader;
+
+	/**
 	 * Flag used to control whether the Java class should be scanned for
 	 * references to other classes, methods and fields.
 	 */
@@ -44,10 +49,11 @@ public class ClassDefLoader {
 	/**
 	 * Creates a new class definition loader.
 	 *
+	 * @param classLoader       Name of class loader, for example "Classpath" or "Bootstrap"
 	 * @param scanForReferences Set to <code>true</code> to have this loader find
-	 *                          references to other classes, methods and fields.
 	 */
-	public ClassDefLoader(boolean scanForReferences) {
+	public ClassDefLoader(String classLoader, boolean scanForReferences) {
+		this.classLoader = classLoader;
 		this.scanForReferences = scanForReferences;
 	}
 
@@ -108,6 +114,7 @@ public class ClassDefLoader {
 
 		// create class definition
 		return ClassDef.forClassNode(classNode)
+				.withClassLoader(classLoader)
 				.withClassFileChecksum(classFileChecksum)
 				.withFieldDefs(fieldDefs)
 				.withMethodDefs(methodDefs)

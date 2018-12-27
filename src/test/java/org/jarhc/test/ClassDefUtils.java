@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jarhc.utils;
+package org.jarhc.test;
 
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
@@ -26,12 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassDefUtils {
+class ClassDefUtils {
 
-	public static ClassDef read(DataInputStream stream) throws IOException {
+	static ClassDef read(DataInputStream stream) throws IOException {
 
 		String className = stream.readUTF();
-		// TODO: read class version
 		String superName = stream.readBoolean() ? stream.readUTF() : null;
 		int numInterfaceNames = stream.readInt();
 		List<String> interfaceNames = new ArrayList<>(numInterfaceNames);
@@ -40,6 +39,15 @@ public class ClassDefUtils {
 				interfaceNames.add(stream.readUTF());
 			}
 		}
+
+		// read meta data
+		int classAccess = stream.readInt();
+		String classLoader = stream.readUTF();
+		String classFileChecksum = stream.readUTF();
+		int majorClassVersion = stream.readInt();
+		int minorClassVersion = stream.readInt();
+
+		// read field definitions
 		int numFieldDefs = stream.readInt();
 		List<FieldDef> fieldDefs = new ArrayList<>(numFieldDefs);
 		for (int f = 0; f < numFieldDefs; f++) {
@@ -50,6 +58,7 @@ public class ClassDefUtils {
 			fieldDefs.add(fieldDef);
 		}
 
+		// read method definitions
 		int numMethodDefs = stream.readInt();
 		List<MethodDef> methodDefs = new ArrayList<>(numMethodDefs);
 		for (int f = 0; f < numMethodDefs; f++) {
@@ -61,6 +70,10 @@ public class ClassDefUtils {
 		}
 
 		return ClassDef.forClassName(className)
+				.withAccess(classAccess)
+				.withClassLoader(classLoader)
+				.withClassFileChecksum(classFileChecksum)
+				.withVersion(majorClassVersion, minorClassVersion)
 				.withSuperName(superName)
 				.withInterfaceNames(interfaceNames)
 				.withFieldDefs(fieldDefs)
@@ -68,7 +81,7 @@ public class ClassDefUtils {
 				.build();
 	}
 
-	public static void write(ClassDef classDef, DataOutputStream stream) throws IOException {
+	static void write(ClassDef classDef, DataOutputStream stream) throws IOException {
 
 		String className = classDef.getClassName();
 		String superName = classDef.getSuperName();
@@ -78,7 +91,6 @@ public class ClassDefUtils {
 
 		// write class name, superclass, and interfaces
 		stream.writeUTF(className);
-		// TODO: write class version
 		if (superName != null) {
 			stream.writeBoolean(true);
 			stream.writeUTF(superName);
@@ -89,6 +101,13 @@ public class ClassDefUtils {
 		for (String interfaceName : interfaceNames) {
 			stream.writeUTF(interfaceName);
 		}
+
+		// write meta data
+		stream.writeInt(classDef.getAccess());
+		stream.writeUTF(classDef.getClassLoader());
+		stream.writeUTF(classDef.getClassFileChecksum());
+		stream.writeInt(classDef.getMajorClassVersion());
+		stream.writeInt(classDef.getMinorClassVersion());
 
 		// write field definitions
 		stream.writeInt(fieldDefs.size());

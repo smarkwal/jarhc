@@ -36,6 +36,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	private final ClassNode classNode;
 
 	/**
+	 * Name of the class loader.
+	 */
+	private final String classLoader;
+
+	/**
 	 * Class file checksum.
 	 */
 	private final String classFileChecksum;
@@ -73,15 +78,17 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	/**
 	 * Create a class definition for the given class and class references.
 	 *
-	 * @param classNode ASM class definition
-	 * @param classRefs References to other classes
+	 * @param classNode   ASM class definition
+	 * @param classLoader Name of class loader
+	 * @param classRefs   References to other classes
 	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
 	 */
-	private ClassDef(ClassNode classNode, String classFileChecksum, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
+	private ClassDef(ClassNode classNode, String classLoader, String classFileChecksum, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
 		super(classNode.access);
 		if (classNode == null) throw new IllegalArgumentException("classNode");
 		if (classRefs == null) throw new IllegalArgumentException("classRefs");
 		this.classNode = classNode;
+		this.classLoader = classLoader;
 		this.classFileChecksum = classFileChecksum;
 		this.fieldDefs = new ArrayList<>(fieldDefs);
 		this.methodDefs = new ArrayList<>(methodDefs);
@@ -121,6 +128,10 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return JavaVersion.fromClassVersion(getMajorClassVersion());
 	}
 
+	public String getClassLoader() {
+		return classLoader;
+	}
+
 	public String getClassFileChecksum() {
 		return classFileChecksum;
 	}
@@ -151,12 +162,14 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		// add all fields
 		fieldDefs.stream()
 				.filter(f -> !f.isPrivate()) // ignore private fields
+				.filter(f -> !f.isSynthetic()) // ignore synthetic fields
 				.map(FieldDef::getDisplayName) // get field description
 				.sorted() // sort fields
 				.forEach(f -> api.append("\nfield: ").append(f));
 		// add all methods (including constructors)
 		methodDefs.stream()
 				.filter(m -> !m.isPrivate()) // ignore private methods
+				.filter(m -> !m.isSynthetic()) // ignore synthetic methods
 				.map(MethodDef::getDisplayName) // get method description
 				// TODO: add throws exceptions?
 				.sorted() // sort methods
@@ -258,6 +271,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	public static class Builder {
 
 		private final ClassNode classNode;
+		private String classLoader = "Classpath";
 		private String classFileChecksum;
 		private final List<FieldDef> fieldDefs = new ArrayList<>();
 		private final List<MethodDef> methodDefs = new ArrayList<>();
@@ -273,6 +287,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 			this.classNode = new ClassNode();
 			this.classNode.name = className;
 			this.classNode.version = 52; // Java 8
+		}
+
+		public Builder withAccess(int access) {
+			this.classNode.access = access;
+			return this;
 		}
 
 		public Builder withVersion(int majorClassVersion, int minorClassVersion) {
@@ -292,6 +311,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 		public Builder withClassFileChecksum(String classFileChecksum) {
 			this.classFileChecksum = classFileChecksum;
+			return this;
+		}
+
+		public Builder withClassLoader(String classLoader) {
+			this.classLoader = classLoader;
 			return this;
 		}
 
@@ -326,7 +350,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		}
 
 		public ClassDef build() {
-			return new ClassDef(classNode, classFileChecksum, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
+			return new ClassDef(classNode, classLoader, classFileChecksum, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
 		}
 
 	}

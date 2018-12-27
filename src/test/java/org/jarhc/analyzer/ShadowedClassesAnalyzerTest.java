@@ -56,18 +56,20 @@ class ShadowedClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
+		assertEquals(4, columns.length);
 		assertEquals("Class name", columns[0]);
 		assertEquals("JAR file", columns[1]);
-		assertEquals("ClassLoader", columns[2]);
+		assertEquals("Class loader", columns[2]);
+		assertEquals("Similarity", columns[3]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
 		String[] values = rows.get(0);
-		assertEquals(3, values.length);
+		assertEquals(4, values.length);
 		assertEquals("java.lang.String", values[0]);
 		assertEquals("a.jar", values[1]);
 		assertEquals("Bootstrap", values[2]);
+		assertEquals("Different API", values[3]);
 
 	}
 

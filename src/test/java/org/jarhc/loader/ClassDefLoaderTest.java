@@ -34,7 +34,7 @@ import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 @ExtendWith(TempDirectory.class)
 class ClassDefLoaderTest {
 
-	private final ClassDefLoader classDefLoader = new ClassDefLoader(true);
+	private final ClassDefLoader classDefLoader = new ClassDefLoader("Classpath", true);
 
 	@Test
 	void test_load_java11() throws IOException {

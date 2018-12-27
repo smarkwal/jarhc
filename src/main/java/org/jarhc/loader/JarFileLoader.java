@@ -36,9 +36,17 @@ import java.util.jar.Manifest;
  */
 class JarFileLoader {
 
-	private final ClassDefLoader classDefLoader = new ClassDefLoader(true);
+	private final ClassDefLoader classDefLoader;
 
 	private final ModuleInfoLoader moduleInfoLoader = new ModuleInfoLoader();
+
+	public JarFileLoader() {
+		this("Classpath");
+	}
+
+	public JarFileLoader(String classLoader) {
+		this.classDefLoader = new ClassDefLoader(classLoader, true);
+	}
 
 	/**
 	 * Load a JAR file from the given file.

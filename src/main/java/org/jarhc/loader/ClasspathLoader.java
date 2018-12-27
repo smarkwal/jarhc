@@ -33,7 +33,15 @@ import java.util.stream.Collectors;
  */
 public class ClasspathLoader {
 
-	private final JarFileLoader jarFileLoader = new JarFileLoader();
+	private final JarFileLoader jarFileLoader;
+
+	public ClasspathLoader() {
+		this("Classpath");
+	}
+
+	public ClasspathLoader(String classLoader) {
+		this.jarFileLoader = new JarFileLoader(classLoader);
+	}
 
 	/**
 	 * Create a classpath with the given JAR files.
