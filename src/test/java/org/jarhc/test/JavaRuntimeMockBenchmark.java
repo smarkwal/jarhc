@@ -21,13 +21,11 @@ import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Mode;
 
+@BenchmarkMode(Mode.SingleShotTime)
+@Fork(warmups = 1, value = 10)
 public class JavaRuntimeMockBenchmark {
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
-	// @Warmup(iterations = 2, time = 2)
-	// @Measurement(iterations = 2, time = 2)
 	public void createOracleRuntime() {
 		JavaRuntimeMock.createOracleRuntime();
 	}

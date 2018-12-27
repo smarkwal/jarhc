@@ -26,6 +26,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>ASCII</project.build.sourceEncoding>
 		<timestamp>${maven.build.timestamp}</timestamp>
+		<benchmarks>.*</benchmarks>
 	</properties>
 
 	<dependencies>
@@ -251,7 +252,9 @@
 								<argument>-classpath</argument>
 								<classpath />
 								<argument>org.openjdk.jmh.Main</argument>
-								<argument>.*</argument>
+								<argument>${benchmarks}</argument>
+								<argument>-jvmArgs</argument>
+								<argument>-Xms1G -Xmx2G</argument>
 							</arguments>
 						</configuration>
 					</execution>

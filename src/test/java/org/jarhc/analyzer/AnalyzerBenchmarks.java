@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@BenchmarkMode(Mode.SingleShotTime)
+@Fork(warmups = 1, value = 10)
 @State(Scope.Benchmark)
 public class AnalyzerBenchmarks {
 
@@ -57,80 +59,60 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_BlacklistAnalyzer() {
 		Analyzer analyzer = new BlacklistAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_ClassVersionsAnalyzer() {
 		Analyzer analyzer = new ClassVersionsAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_DuplicateClassesAnalyzer() {
 		Analyzer analyzer = new DuplicateClassesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_FieldRefAnalyzer() {
 		Analyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_JarDependenciesAnalyzer() {
 		Analyzer analyzer = new JarDependenciesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_JarFilesAnalyzer() {
 		Analyzer analyzer = new JarFilesAnalyzer(checksum -> null);
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_MissingClassesAnalyzer() {
 		Analyzer analyzer = new MissingClassesAnalyzer(javaRuntime);
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_PackagesAnalyzer() {
 		Analyzer analyzer = new PackagesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_ShadowedClassesAnalyzer() {
 		Analyzer analyzer = new ShadowedClassesAnalyzer(javaRuntime);
 		analyzer.analyze(classpath);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.SingleShotTime)
-	@Fork(warmups = 1, value = 10, jvmArgs = {"-Xms1G", "-Xmx2G"})
 	public void test_SplitPackagesAnalyzer() {
 		Analyzer analyzer = new SplitPackagesAnalyzer();
 		analyzer.analyze(classpath);
