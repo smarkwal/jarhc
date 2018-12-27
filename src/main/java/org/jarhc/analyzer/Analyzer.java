@@ -21,6 +21,20 @@ import org.jarhc.report.ReportSection;
 
 public abstract class Analyzer {
 
+	private final String name;
+
+	public Analyzer() {
+		String name = this.getClass().getSimpleName();
+		if (name.endsWith("Analyzer")) {
+			name = name.substring(0, name.length() - "Analyzer".length());
+		}
+		this.name = name;
+	}
+
+	public final String getName() {
+		return name;
+	}
+
 	public abstract ReportSection analyze(Classpath classpath);
 
 }

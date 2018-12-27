@@ -24,6 +24,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,7 +69,7 @@ class AnalyzerRegistryTest {
 
 		// assert
 		assertEquals(1, analyzerNames.size());
-		assertTrue(analyzerNames.contains("TestAnalyzer"));
+		assertTrue(analyzerNames.contains("Test"));
 
 	}
 
@@ -89,20 +90,6 @@ class AnalyzerRegistryTest {
 	}
 
 	@Test
-	void test_getAnalyzerName() {
-
-		// prepare
-		TestAnalyzer analyzer = new TestAnalyzer();
-
-		// test
-		String analyzerName = AnalyzerRegistry.getAnalyzerName(analyzer);
-
-		// assert
-		assertEquals("TestAnalyzer", analyzerName);
-
-	}
-
-	@Test
 	void test_getAnalyzer() {
 
 		// prepare
@@ -110,16 +97,16 @@ class AnalyzerRegistryTest {
 		registry.register(new TestAnalyzer());
 
 		// test
-		Analyzer analyzer = registry.getAnalyzer("TestAnalyzer");
+		Optional<Analyzer> analyzer = registry.getAnalyzer("Test");
 
 		// assert
-		assertNotNull(analyzer);
-		assertTrue(analyzer instanceof TestAnalyzer);
+		assertTrue(analyzer.isPresent());
+		assertTrue(analyzer.get() instanceof TestAnalyzer);
 
-		analyzer = registry.getAnalyzer("UnknownAnalyzer");
+		analyzer = registry.getAnalyzer("Unknown");
 
 		// assert
-		assertNull(analyzer);
+		assertFalse(analyzer.isPresent());
 
 	}
 

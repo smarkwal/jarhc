@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommandLineParser {
 
@@ -40,6 +41,7 @@ public class CommandLineParser {
 		}
 
 		List<File> paths = new ArrayList<>();
+		List<String> sections = null;
 		String reportTitle = "JAR Health Check Report";
 		String reportFormat = null;
 		String reportFile = null;
@@ -68,6 +70,14 @@ public class CommandLineParser {
 					reportTitle = iterator.next();
 				} else {
 					handleError(-8, "Report title not specified.");
+				}
+			} else if (arg.equals("-s") || arg.equals("--sections")) {
+				if (iterator.hasNext()) {
+					String value = iterator.next();
+					String[] values = value.split(",");
+					sections = Arrays.stream(values).map(String::trim).collect(Collectors.toList());
+				} else {
+					handleError(-8, "Report sections not specified.");
 				}
 			} else if (arg.startsWith("-")) {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
@@ -104,7 +114,7 @@ public class CommandLineParser {
 		}
 
 		// exit code 0 -> no errors
-		return new Options(jarFiles, reportTitle, reportFormat, reportFile);
+		return new Options(jarFiles, sections, reportTitle, reportFormat, reportFile);
 	}
 
 	private void collectJarFiles(List<File> paths, boolean strict, List<File> jarFiles) throws CommandLineException {
@@ -141,10 +151,25 @@ public class CommandLineParser {
 		}
 		err.println("Usage: java -jar JarHC.jar [options] <path> [<path>]*");
 		err.println("   <path>: Path to JAR file or directory with JAR files.");
-		err.println("   Options:");
+		err.println();
+		err.println("Options:");
 		err.println("   -f <type> | --format <type>: Report format type ('text' or 'html').");
 		err.println("   -o <file> | --output <file>: Report file path.");
 		err.println("   -t <text> | --title <text>: Report title.");
+		err.println("   -s <sections> | --sections <sections>: List of report sections (example: 'jf,dc,sc').");
+		err.println();
+		err.println("Sections:"); // TODO: auto-generate the following list
+		err.println("   jf - JAR Files");
+		err.println("   cv - Class Versions");
+		err.println("   p  - Packages");
+		err.println("   sp - Split Packages");
+		err.println("   dc - Duplicate Classes");
+		err.println("   sc - Shadowed Classes");
+		err.println("   jd - JAR Dependencies");
+		err.println("   mc - Missing Classes");
+		err.println("   fr - Field References");
+		err.println("   b  - Blacklist");
+
 	}
 
 }

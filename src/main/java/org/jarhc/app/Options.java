@@ -22,20 +22,26 @@ import java.util.List;
 class Options {
 
 	private final List<File> jarFiles;
+	private final List<String> sections;
 	private final String reportTitle;
 	private final String reportFormat;
 	private final String reportFile;
 
-	Options(List<File> jarFiles, String reportTitle, String reportFormat, String reportFile) {
+	Options(List<File> jarFiles, List<String> sections, String reportTitle, String reportFormat, String reportFile) {
 		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
-		this.reportTitle = reportTitle;
 		this.jarFiles = jarFiles;
+		this.sections = sections;
+		this.reportTitle = reportTitle;
 		this.reportFormat = reportFormat;
 		this.reportFile = reportFile;
 	}
 
 	public List<File> getJarFiles() {
 		return jarFiles;
+	}
+
+	public List<String> getSections() {
+		return sections;
 	}
 
 	public String getReportTitle() {

@@ -18,6 +18,8 @@ package org.jarhc.app;
 
 import org.jarhc.Context;
 import org.jarhc.analyzer.Analysis;
+import org.jarhc.analyzer.Analyzer;
+import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
@@ -32,7 +34,9 @@ import org.jarhc.utils.VersionUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Application {
 
@@ -78,7 +82,26 @@ public class Application {
 		out.println("Analyze classpath ...");
 
 		// analyze classpath
-		Analysis analysis = FullAnalysis.build(context);
+
+		AnalyzerRegistry registry = new AnalyzerRegistry(context, true);
+
+		List<String> sections = options.getSections();
+		if (sections == null || sections.isEmpty()) {
+			sections = registry.getAnalyzerNames();
+		}
+
+		List<Analyzer> analyzers = new ArrayList<>(sections.size());
+		for (String section : sections) {
+			Optional<Analyzer> analyzer = registry.getAnalyzer(section);
+			if (!analyzer.isPresent()) {
+				System.err.println("Analyzer not found: " + section);
+				return 3;
+			}
+			analyzers.add(analyzer.get());
+		}
+
+		Analysis analysis = new Analysis(analyzers.toArray(new Analyzer[0]));
+
 		Report report = analysis.run(classpath);
 
 		// time = System.nanoTime() - time;

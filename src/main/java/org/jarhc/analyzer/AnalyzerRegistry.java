@@ -19,9 +19,9 @@ package org.jarhc.analyzer;
 import org.jarhc.Context;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Registry for analyzers.
@@ -31,7 +31,7 @@ public class AnalyzerRegistry {
 	/**
 	 * Map with analyzers, sorted by order of insertion.
 	 */
-	private final Map<String, Analyzer> analyzers = new LinkedHashMap<>();
+	private final List<Analyzer> analyzers = new ArrayList<>();
 
 	private final Context context;
 
@@ -71,7 +71,7 @@ public class AnalyzerRegistry {
 	 * @param analyzer Analyzer
 	 */
 	public void register(Analyzer analyzer) {
-		analyzers.put(getAnalyzerName(analyzer), analyzer);
+		analyzers.add(analyzer);
 	}
 
 	/**
@@ -80,7 +80,9 @@ public class AnalyzerRegistry {
 	 * @return Analyzer names
 	 */
 	public List<String> getAnalyzerNames() {
-		return new ArrayList<>(analyzers.keySet());
+		return analyzers.stream()
+				.map(Analyzer::getName)
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -90,8 +92,17 @@ public class AnalyzerRegistry {
 	 * @param name Analyzer name
 	 * @return Analyzer, or <code>null</code>
 	 */
-	public Analyzer getAnalyzer(String name) {
-		return analyzers.get(name);
+	public Optional<Analyzer> getAnalyzer(String name) {
+		return analyzers.stream()
+				.filter(a -> hasName(a, name))
+				.findFirst();
+	}
+
+	private static boolean hasName(Analyzer analyzer, String name) {
+		String longName = analyzer.getName();
+		if (name.equalsIgnoreCase(longName)) return true;
+		String shortName = longName.replaceAll("[^A-Z]", "");
+		return name.equalsIgnoreCase(shortName);
 	}
 
 	/**
@@ -100,17 +111,7 @@ public class AnalyzerRegistry {
 	 * @return List of analyzers
 	 */
 	public List<Analyzer> getAnalyzers() {
-		return new ArrayList<>(analyzers.values());
-	}
-
-	/**
-	 * Get the name of the given analyzer.
-	 *
-	 * @param analyzer Analyzer
-	 * @return Analyzer name
-	 */
-	public static String getAnalyzerName(Analyzer analyzer) {
-		return analyzer.getClass().getSimpleName();
+		return new ArrayList<>(analyzers);
 	}
 
 }
