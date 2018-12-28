@@ -27,6 +27,7 @@ public class FieldDef extends AccessFlags {
 	private final String fieldDescriptor;
 	// TODO: initial value? e.g. constant string containing a class name
 	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
+	private ClassDef classDef;
 
 	public FieldDef(int access, String fieldName, String fieldDescriptor) {
 		super(access);
@@ -40,6 +41,14 @@ public class FieldDef extends AccessFlags {
 
 	public String getFieldDescriptor() {
 		return fieldDescriptor;
+	}
+
+	public ClassDef getClassDef() {
+		return classDef;
+	}
+
+	void setClassDef(ClassDef classDef) {
+		this.classDef = classDef;
 	}
 
 	@Override

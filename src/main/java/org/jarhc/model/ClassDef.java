@@ -102,9 +102,24 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 		// for every field definition ...
 		this.fieldDefs.forEach(fieldDef -> {
+
+			// set reference to this class definition in field definition
+			fieldDef.setClassDef(this);
+
 			// add field definition to fast lookup map
 			String fieldName = fieldDef.getFieldName();
 			fieldDefsMap.put(fieldName, fieldDef);
+		});
+
+		// for every method definition ...
+		this.methodDefs.forEach(methodDef -> {
+
+			// set reference to this class definition in method definition
+			methodDef.setClassDef(this);
+
+			// TODO: add method definition to fast lookup map?
+			// String methodName = methodDef.getMethodName();
+			// methodDefsMap.put(methodName, methodDef);
 		});
 
 	}

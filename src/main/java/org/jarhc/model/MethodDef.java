@@ -29,6 +29,7 @@ public class MethodDef extends AccessFlags {
 	private final String methodDescriptor;
 	// TODO: exceptions?
 	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
+	private ClassDef classDef;
 
 	public MethodDef(int access, String methodName, String methodDescriptor) {
 		super(access);
@@ -42,6 +43,14 @@ public class MethodDef extends AccessFlags {
 
 	public String getMethodDescriptor() {
 		return methodDescriptor;
+	}
+
+	public ClassDef getClassDef() {
+		return classDef;
+	}
+
+	void setClassDef(ClassDef classDef) {
+		this.classDef = classDef;
 	}
 
 	@Override
