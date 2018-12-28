@@ -180,7 +180,6 @@ public class FieldRefAnalyzer extends Analyzer {
 		String fieldName = fieldRef.getFieldName();
 		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
 		if (fieldDef.isPresent()) {
-			// TODO: special handling for private fields?
 			searchResult.addSearchInfo("- " + realClassName + " (field found)");
 			return fieldDef;
 		}
