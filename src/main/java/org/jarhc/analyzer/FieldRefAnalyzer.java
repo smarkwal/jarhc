@@ -17,9 +17,13 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.AccessCheck;
+import org.jarhc.java.ClassResolver;
+import org.jarhc.java.ClassResolverImpl;
 import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.JavaUtils;
 
 import java.util.*;
 
@@ -48,6 +52,8 @@ public class FieldRefAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
+		ClassResolver classResolver = new ClassResolverImpl(classpath, javaRuntime);
+
 		ReportTable table = new ReportTable("JAR File", "Errors");
 
 		// for every JAR file ...
@@ -65,7 +71,7 @@ public class FieldRefAnalyzer extends Analyzer {
 				for (FieldRef fieldRef : fieldRefs) {
 
 					// validate field reference
-					SearchResult result = validateFieldRef(classDef, fieldRef, classpath);
+					SearchResult result = validateFieldRef(classDef, fieldRef, classResolver);
 					if (!result.isIgnoreResult()) {
 						String text = result.getResult();
 						if (text != null) {
@@ -83,32 +89,52 @@ public class FieldRefAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, Classpath classpath) {
+	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, ClassResolver classResolver) {
 
 		SearchResult searchResult = new SearchResult();
+
+		// try to find owner class
+		String targetClassName = fieldRef.getFieldOwner();
+		ClassDef ownerClassDef = classResolver.getClassDef(targetClassName).orElse(null);
+		if (ownerClassDef == null) {
+			// owner class not found
+			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
+			if (reportOwnerClassNotFound) {
+				searchResult.addSearchInfo("- " + JavaUtils.toExternalName(targetClassName) + " (owner class not found)");
+			} else {
+				// ignore result if owner class is not found
+				// (already reported in missing classes)
+				searchResult.setIgnoreResult();
+			}
+			return searchResult;
+		}
+
+		AccessCheck accessCheck = new AccessCheck(classResolver);
+
+		// check access to owner class
+		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
+		if (!access) {
+			String className = classDef.getClassName();
+			searchResult.addErrorMessage("Illegal access from " + JavaUtils.toExternalName(className) + " to class: " + JavaUtils.toExternalName(targetClassName));
+			return searchResult;
+		}
+
 		Set<String> scannedClasses = new HashSet<>();
 
 		// find target field definition
-		String targetClassName = fieldRef.getFieldOwner();
-		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classpath, searchResult, scannedClasses);
+		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classResolver, searchResult, scannedClasses);
 		if (!fieldDef.isPresent()) {
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			return searchResult;
 		}
 
-		// TODO: add reference from FieldDef to ClassDef (declaring class)
-
-		// check access level
-		// TODO: handle inner classes
 		FieldDef field = fieldDef.get();
-		if (field.isPublic()) {
-			// OK
-		} else if (field.isPrivate()) {
-			// TODO: access only inside same class
-		} else if (field.isProtected()) {
-			// TODO: access only in same package or subclass
-		} else {
-			// TODO: access only in same package
+
+		// check access to field
+		access = accessCheck.hasAccess(classDef, field);
+		if (!access) {
+			String className = classDef.getClassName();
+			searchResult.addErrorMessage("Illegal access from " + JavaUtils.toExternalName(className) + ": " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
 		}
 
 		// check field type
@@ -139,7 +165,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, Classpath classpath, SearchResult searchResult, Set<String> scannedClasses) {
+	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, ClassResolver classResolver, SearchResult searchResult, Set<String> scannedClasses) {
 
 		// TODO: use a cache for field definitions like System.out, System.err, ...
 
@@ -153,25 +179,11 @@ public class FieldRefAnalyzer extends Analyzer {
 		}
 
 		// try to find target class in classpath or Java runtime
-		ClassDef targetClassDef = findClassDef(classpath, targetClassName).orElse(null);
+		ClassDef targetClassDef = classResolver.getClassDef(targetClassName).orElse(null);
 
 		// if class has not been found ...
 		if (targetClassDef == null) {
-
-			if (targetClassName.equals(fieldRef.getFieldOwner())) {
-				// owner class not found
-				if (reportOwnerClassNotFound) {
-					searchResult.addSearchInfo("- " + realClassName + " (owner class not found)");
-				} else {
-					// ignore result if owner class is not found
-					// (already reported in missing classes)
-					searchResult.setIgnoreResult();
-				}
-			} else {
-				// superclass or superinterface of owner class not found
-				searchResult.addSearchInfo("- " + realClassName + " (class not found)");
-			}
-
+			searchResult.addSearchInfo("- " + realClassName + " (class not found)");
 			// class not found -> field not found
 			return Optional.empty();
 		}
@@ -190,19 +202,17 @@ public class FieldRefAnalyzer extends Analyzer {
 		// try to find field in interfaces first
 		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
 		List<String> interfaceNames = targetClassDef.getInterfaceNames();
-		if (interfaceNames != null) {
-			for (String interfaceName : interfaceNames) {
-				fieldDef = findFieldDef(fieldRef, interfaceName, classpath, searchResult, scannedClasses);
-				if (fieldDef.isPresent()) {
-					return fieldDef;
-				}
+		for (String interfaceName : interfaceNames) {
+			fieldDef = findFieldDef(fieldRef, interfaceName, classResolver, searchResult, scannedClasses);
+			if (fieldDef.isPresent()) {
+				return fieldDef;
 			}
 		}
 
 		// try to find field in superclass
 		String superName = targetClassDef.getSuperName();
 		if (superName != null) {
-			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult, scannedClasses);
+			fieldDef = findFieldDef(fieldRef, superName, classResolver, searchResult, scannedClasses);
 			if (fieldDef.isPresent()) {
 				return fieldDef;
 			}
@@ -210,22 +220,6 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		// field not found
 		return Optional.empty();
-
-	}
-
-	private Optional<ClassDef> findClassDef(Classpath classpath, String className) {
-
-		// try to find class on classpath
-		Set<ClassDef> targetClassDefs = classpath.getClassDefs(className);
-		if (targetClassDefs != null && !targetClassDefs.isEmpty()) {
-			// use the first class definition (ignore duplicate classes)
-			ClassDef classDef = targetClassDefs.iterator().next();
-			return Optional.of(classDef);
-		}
-
-		// try to find class in JDK/JRE implementation
-		String realClassName = className.replace('/', '.');
-		return javaRuntime.getClassDef(realClassName);
 
 	}
 

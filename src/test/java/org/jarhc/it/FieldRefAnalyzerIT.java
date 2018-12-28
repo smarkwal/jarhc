@@ -139,6 +139,8 @@ class FieldRefAnalyzerIT {
 				"- b.I (field not found)",
 				"- java.lang.Object (field not found)",
 				"- b.S (field found)",
+				"Illegal access from a.A: int b.B.publicField -> private int publicField",
+				"- b.B (field found)",
 				"Static access to instance field: static int b.B.staticField -> public int staticField",
 				"- b.B (field found)",
 				"Static access to instance field: static int b.B.staticSuperField -> public int staticSuperField",
