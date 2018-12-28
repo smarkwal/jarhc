@@ -12,3 +12,18 @@ o.j.analyzer.AnalyzerBenchmarks.test_SplitPackagesAnalyzer       ss   10  0.005 
 o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                  ss   10  0.099    0.027   s/op
 o.j.env.DefaultJavaRuntimeBenchmark.getClassLoaderName           ss   10  0.096    0.011   s/op
 o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime            ss   10  0.664    0.006   s/op
+
+After warmup (5 warmup iterations, 10 measurement iterations):
+
+Benchmark                                         Mode  Cnt  Score    Error  Units
+AnalyzerBenchmarks.test_BlacklistAnalyzer           ss  100  0.105    0.004   s/op
+AnalyzerBenchmarks.test_ClassVersionsAnalyzer       ss  100  0.002    0.001   s/op
+AnalyzerBenchmarks.test_DuplicateClassesAnalyzer    ss  100  0.006    0.002   s/op
+AnalyzerBenchmarks.test_FieldRefAnalyzer            ss  100  0.010    0.001   s/op
+AnalyzerBenchmarks.test_JarDependenciesAnalyzer     ss  100  0.018    0.006   s/op
+AnalyzerBenchmarks.test_JarFilesAnalyzer            ss  100  0.001    0.001   s/op
+AnalyzerBenchmarks.test_MissingClassesAnalyzer      ss  100  0.005    0.001   s/op
+AnalyzerBenchmarks.test_PackagesAnalyzer            ss  100  0.008    0.007   s/op
+AnalyzerBenchmarks.test_ShadowedClassesAnalyzer     ss  100  0.004    0.001   s/op
+AnalyzerBenchmarks.test_SplitPackagesAnalyzer       ss  100  0.007    0.006   s/op
+

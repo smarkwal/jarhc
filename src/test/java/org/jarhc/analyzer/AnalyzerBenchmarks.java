@@ -31,6 +31,8 @@ import java.util.stream.Collectors;
 @BenchmarkMode(Mode.SingleShotTime)
 @Fork(warmups = 1, value = 10)
 @State(Scope.Benchmark)
+// @Warmup(iterations = 5)
+// @Measurement(iterations = 10)
 public class AnalyzerBenchmarks {
 
 	private Classpath classpath;

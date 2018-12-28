@@ -255,6 +255,12 @@
 								<argument>${benchmarks}</argument>
 								<argument>-jvmArgs</argument>
 								<argument>-Xms1G -Xmx2G</argument>
+								<!--
+								<argument>-prof</argument>
+								<argument>gc</argument>
+								<argument>stack</argument>
+								<argument>pauses</argument>
+								-->
 							</arguments>
 						</configuration>
 					</execution>
