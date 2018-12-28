@@ -52,4 +52,12 @@ public class JavaUtils {
 		}
 	}
 
+	public static String toExternalName(String name) {
+		return name.replace('/', '.');
+	}
+
+	public static String toInternalName(String name) {
+		return name.replace('.', '/');
+	}
+
 }

@@ -44,6 +44,10 @@ abstract class AccessFlags {
 		return hasFlag(Opcodes.ACC_PROTECTED);
 	}
 
+	public final boolean isPackagePrivate() {
+		return !isPublic() && !isProtected() && !isPrivate();
+	}
+
 	public final boolean isStatic() {
 		return hasFlag(Opcodes.ACC_STATIC);
 	}

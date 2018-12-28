@@ -16,6 +16,8 @@
 
 package org.jarhc.model;
 
+import org.jarhc.java.ClassResolver;
+import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 
 import java.util.*;
@@ -23,7 +25,7 @@ import java.util.*;
 /**
  * Represents a set of JAR files found on a Java classpath.
  */
-public class Classpath {
+public class Classpath implements ClassResolver {
 
 	/**
 	 * List of JAR files on the classpath.
@@ -93,7 +95,18 @@ public class Classpath {
 	 * @return Class definitions, or <code>null</code>
 	 */
 	public Set<ClassDef> getClassDefs(String className) {
+		className = JavaUtils.toInternalName(className);
 		return classDefsMap.getValues(className);
+	}
+
+	@Override
+	public Optional<ClassDef> getClassDef(String className) {
+		Set<ClassDef> set = getClassDefs(className);
+		if (set == null || set.isEmpty()) {
+			return Optional.empty();
+		}
+		ClassDef classDef = set.iterator().next();
+		return Optional.of(classDef);
 	}
 
 	@Override

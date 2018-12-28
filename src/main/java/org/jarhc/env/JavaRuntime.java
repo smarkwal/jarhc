@@ -16,6 +16,7 @@
 
 package org.jarhc.env;
 
+import org.jarhc.java.ClassResolver;
 import org.jarhc.model.ClassDef;
 
 import java.util.Optional;
@@ -31,7 +32,7 @@ import java.util.Optional;
  *
  * @see DefaultJavaRuntime
  */
-public interface JavaRuntime {
+public interface JavaRuntime extends ClassResolver {
 
 	/**
 	 * Get the name of the Java runtime.
@@ -77,6 +78,7 @@ public interface JavaRuntime {
 	 * @param className Class name
 	 * @return Class definition, or <code>null</code> if the class cannot be found.
 	 */
+	@Override
 	Optional<ClassDef> getClassDef(String className);
 
 }

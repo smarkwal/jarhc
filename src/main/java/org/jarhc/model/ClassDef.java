@@ -292,6 +292,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	}
 
 	public static Builder forClassName(String className) {
+		if (className.contains(".")) throw new IllegalArgumentException(className);
 		return new Builder(className);
 	}
 
@@ -333,6 +334,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 		public Builder withInterfaceNames(List<String> interfaces) {
 			this.classNode.interfaces.addAll(interfaces);
+			return this;
+		}
+
+		public Builder withInterfaceName(String interfaceName) {
+			this.classNode.interfaces.add(interfaceName);
 			return this;
 		}
 
