@@ -188,17 +188,8 @@ public class FieldRefAnalyzer extends Analyzer {
 		// field not found in target class
 		searchResult.addSearchInfo("- " + realClassName + " (field not found)");
 
-		// try to find field in superclass
-		String superName = targetClassDef.getSuperName();
-		if (superName != null) {
-			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult, scannedClasses);
-			if (fieldDef.isPresent()) {
-				return fieldDef;
-			}
-		}
-
-		// try to find field in interfaces
-		// TODO: scan interfaces before superclass?
+		// try to find field in interfaces first
+		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
 		List<String> interfaceNames = targetClassDef.getInterfaceNames();
 		if (interfaceNames != null) {
 			for (String interfaceName : interfaceNames) {
@@ -206,6 +197,15 @@ public class FieldRefAnalyzer extends Analyzer {
 				if (fieldDef.isPresent()) {
 					return fieldDef;
 				}
+			}
+		}
+
+		// try to find field in superclass
+		String superName = targetClassDef.getSuperName();
+		if (superName != null) {
+			fieldDef = findFieldDef(fieldRef, superName, classpath, searchResult, scannedClasses);
+			if (fieldDef.isPresent()) {
+				return fieldDef;
 			}
 		}
 
