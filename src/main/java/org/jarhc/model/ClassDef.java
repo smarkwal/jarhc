@@ -20,10 +20,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.jarhc.utils.JavaVersion;
 import org.objectweb.asm.tree.ClassNode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Class definition representing a single Java class file.
@@ -49,6 +46,12 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 * List of field definitions.
 	 */
 	private final List<FieldDef> fieldDefs;
+
+
+	/**
+	 * Fast lookup map for field definition given the field name.
+	 */
+	private final Map<String, FieldDef> fieldDefsMap = new HashMap<>();
 
 	/**
 	 * List of method definitions.
@@ -96,6 +99,14 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		this.fieldRefs = new ArrayList<>(fieldRefs);
 		this.methodRefs = new ArrayList<>(methodRefs);
 		// TODO: remove unused information from class node?
+
+		// for every field definition ...
+		this.fieldDefs.forEach(fieldDef -> {
+			// add field definition to fast lookup map
+			String fieldName = fieldDef.getFieldName();
+			fieldDefsMap.put(fieldName, fieldDef);
+		});
+
 	}
 
 	public String getClassName() {
@@ -183,7 +194,8 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 	public Optional<FieldDef> getFieldDef(String fieldName) {
 		// TODO: what if there is more than one field with the same name?
-		return fieldDefs.stream().filter(f -> f.getFieldName().equals(fieldName)).findFirst();
+		FieldDef fieldDef = fieldDefsMap.get(fieldName);
+		return Optional.ofNullable(fieldDef);
 	}
 
 	public List<MethodDef> getMethodDefs() {
