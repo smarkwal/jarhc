@@ -16,6 +16,9 @@
 
 package org.jarhc.app;
 
+import org.jarhc.analyzer.AnalyzerDescription;
+import org.jarhc.analyzer.AnalyzerRegistry;
+
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -158,17 +161,15 @@ public class CommandLineParser {
 		err.println("   -t <text> | --title <text>: Report title.");
 		err.println("   -s <sections> | --sections <sections>: List of report sections (example: 'jf,dc,sc').");
 		err.println();
-		err.println("Sections:"); // TODO: auto-generate the following list
-		err.println("   jf - JAR Files");
-		err.println("   cv - Class Versions");
-		err.println("   p  - Packages");
-		err.println("   sp - Split Packages");
-		err.println("   dc - Duplicate Classes");
-		err.println("   sc - Shadowed Classes");
-		err.println("   jd - JAR Dependencies");
-		err.println("   mc - Missing Classes");
-		err.println("   fr - Field References");
-		err.println("   b  - Blacklist");
+		err.println("Sections:");
+
+		// TODO: find a better solution than creating an instance here
+		AnalyzerRegistry registry = new AnalyzerRegistry();
+		List<String> codes = registry.getCodes();
+		for (String code : codes) {
+			AnalyzerDescription description = registry.getDescription(code);
+			err.println(String.format("   %-2s - %s", code, description.getName()));
+		}
 
 	}
 
