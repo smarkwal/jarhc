@@ -18,16 +18,25 @@ package org.jarhc.app;
 
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.utils.ArrayUtils;
+import org.jarhc.utils.ResourceUtils;
+import org.jarhc.utils.VersionUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CommandLineParser {
+
+	// TODO: inject dependency
+	private final AnalyzerRegistry registry = new AnalyzerRegistry();
+
+	// TODO: inject dependency
+	private final PrintStream out = System.out;
 
 	private final PrintStream err;
 
@@ -37,11 +46,6 @@ public class CommandLineParser {
 	}
 
 	Options parse(String[] args) throws CommandLineException {
-
-		if (args.length < 1) {
-			String errorMessage = "Argument <path> is missing.";
-			handleError(-1, errorMessage);
-		}
 
 		List<File> paths = new ArrayList<>();
 		List<String> sections = null;
@@ -77,11 +81,29 @@ public class CommandLineParser {
 			} else if (arg.equals("-s") || arg.equals("--sections")) {
 				if (iterator.hasNext()) {
 					String value = iterator.next();
-					String[] values = value.split(",");
-					sections = Arrays.stream(values).map(String::trim).collect(Collectors.toList());
+					if (value.startsWith("-")) {
+						value = value.substring(1);
+						// exclude specified sections
+						sections = registry.getCodes();
+						String[] values = value.split(",");
+						for (String section : values) {
+							sections.remove(section.trim());
+						}
+					} else {
+						// include specified sections
+						sections = new ArrayList<>();
+						String[] values = value.split(",");
+						for (String section : values) {
+							sections.add(section.trim());
+						}
+					}
 				} else {
-					handleError(-8, "Report sections not specified.");
+					handleError(-9, "Report sections not specified.");
 				}
+			} else if (arg.equals("-h") || arg.equals("--help")) {
+				printUsage(null, out);
+			} else if (arg.equals("-v") || arg.equals("--version")) {
+				out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
 			} else if (arg.startsWith("-")) {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
 				handleError(-100, errorMessage);
@@ -89,6 +111,19 @@ public class CommandLineParser {
 				File path = new File(arg);
 				paths.add(path);
 			}
+		}
+
+		// if path argument is missing ...
+		if (paths.isEmpty()) {
+
+			// if help or version information has been printed ...
+			if (ArrayUtils.containsAny(args, "-h", "--help", "-v", "--version")) {
+				// stop execution (path argument is not mandatory)
+				throw new CommandLineException(0, "OK");
+			}
+
+			String errorMessage = "Argument <path> is missing.";
+			handleError(-1, errorMessage);
 		}
 
 		if (reportFormat == null) {
@@ -144,31 +179,33 @@ public class CommandLineParser {
 	}
 
 	private void handleError(int exitCode, String errorMessage) throws CommandLineException {
-		printUsage(errorMessage);
+		printUsage(errorMessage, err);
 		throw new CommandLineException(exitCode, errorMessage);
 	}
 
-	private void printUsage(String errorMessage) {
-		if (errorMessage != null) {
-			err.println(errorMessage);
-		}
-		err.println("Usage: java -jar JarHC.jar [options] <path> [<path>]*");
-		err.println("   <path>: Path to JAR file or directory with JAR files.");
-		err.println();
-		err.println("Options:");
-		err.println("   -f <type> | --format <type>: Report format type ('text' or 'html').");
-		err.println("   -o <file> | --output <file>: Report file path.");
-		err.println("   -t <text> | --title <text>: Report title.");
-		err.println("   -s <sections> | --sections <sections>: List of report sections (example: 'jf,dc,sc').");
-		err.println();
-		err.println("Sections:");
+	private void printUsage(String errorMessage, PrintStream out) {
 
-		// TODO: find a better solution than creating an instance here
-		AnalyzerRegistry registry = new AnalyzerRegistry();
+		// optional: print error message
+		if (errorMessage != null) {
+			out.println(errorMessage);
+		}
+
+		// load usage text from resource
+		String usage;
+		try {
+			usage = ResourceUtils.getResourceAsString("/usage.txt", "UTF-8");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		// print usage text
+		out.println(usage);
+
+		// append list of sections
 		List<String> codes = registry.getCodes();
 		for (String code : codes) {
 			AnalyzerDescription description = registry.getDescription(code);
-			err.println(String.format("   %-2s - %s", code, description.getName()));
+			out.println(String.format("   %-2s - %s", code, description.getName()));
 		}
 
 	}

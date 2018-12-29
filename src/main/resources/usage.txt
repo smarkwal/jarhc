@@ -1,0 +1,35 @@
+Usage: java -jar JarHC.jar [options] <path> [<path>]*
+
+Arguments:
+
+   <path> : Path to JAR file or directory with JAR files.
+
+Options:
+
+   --help                : Print this usage information.
+    -h
+
+   --version             : Print version information.
+    -v
+
+   --format <type>       : Report format type ("text" or "html").
+    -f                     Example: -f html
+                           Default: text
+
+   --output <file>       : Report file output path.
+    -o                     Example: -o report.html
+                           Default: [none] (print to STDOUT)
+
+   --title <text>        : Report title.
+    -t                     Example: -t "MyApp 1.0"
+                           Default: "JAR Health Check Report"
+
+   --sections <sections> : List of sections to include in the report.
+    -s                     Example: -s "jf,cv,jd"
+                           Default: [none] (include all sections)
+
+                           If the list of sections is prefixed with '-'
+                           the given sections are excluded.
+                           Example: -s "-p,sp"
+
+Sections:
