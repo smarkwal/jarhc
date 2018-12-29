@@ -32,7 +32,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
 
-	MissingClassesAnalyzer(JavaRuntime javaRuntime) {
+	public MissingClassesAnalyzer(JavaRuntime javaRuntime) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
 	}

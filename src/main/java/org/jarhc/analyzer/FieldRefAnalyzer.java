@@ -34,6 +34,10 @@ public class FieldRefAnalyzer extends Analyzer {
 	private final JavaRuntime javaRuntime;
 	private final boolean reportOwnerClassNotFound;
 
+	public FieldRefAnalyzer(JavaRuntime javaRuntime) {
+		this(javaRuntime, false);
+	}
+
 	public FieldRefAnalyzer(JavaRuntime javaRuntime, boolean reportOwnerClassNotFound) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;

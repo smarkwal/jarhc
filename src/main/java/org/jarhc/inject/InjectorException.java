@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package org.jarhc.analyzer;
+package org.jarhc.inject;
 
-import org.jarhc.model.Classpath;
-import org.jarhc.report.ReportSection;
+public class InjectorException extends Exception {
 
-public abstract class Analyzer {
+	public InjectorException(String message) {
+		super(message);
+	}
 
-	public abstract ReportSection analyze(Classpath classpath);
+	public InjectorException(String message, Throwable cause) {
+		super(message, cause);
+	}
 
 }

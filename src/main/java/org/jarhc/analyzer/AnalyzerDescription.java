@@ -16,11 +16,28 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.model.Classpath;
-import org.jarhc.report.ReportSection;
+public class AnalyzerDescription {
 
-public abstract class Analyzer {
+	private final String code;
+	private final String name;
+	private final Class<? extends Analyzer> analyzerClass;
 
-	public abstract ReportSection analyze(Classpath classpath);
+	AnalyzerDescription(String code, String name, Class<? extends Analyzer> analyzerClass) {
+		this.code = code;
+		this.name = name;
+		this.analyzerClass = analyzerClass;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	Class<? extends Analyzer> getAnalyzerClass() {
+		return analyzerClass;
+	}
 
 }

@@ -17,10 +17,13 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.Context;
+import org.jarhc.artifacts.Resolver;
+import org.jarhc.env.JavaRuntime;
+import org.jarhc.inject.Injector;
+import org.jarhc.inject.InjectorException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -28,90 +31,57 @@ import java.util.stream.Collectors;
  */
 public class AnalyzerRegistry {
 
-	/**
-	 * Map with analyzers, sorted by order of insertion.
-	 */
-	private final List<Analyzer> analyzers = new ArrayList<>();
 
-	private final Context context;
+	private final List<AnalyzerDescription> descriptions = new ArrayList<>();
 
 	/**
 	 * Create a new registry.
-	 *
-	 * @param context                  Context
-	 * @param registerDefaultAnalyzers Pass <code>true</code> to automatically register all default analyzers.
 	 */
-	public AnalyzerRegistry(Context context, boolean registerDefaultAnalyzers) {
-		if (context == null) throw new IllegalArgumentException("context");
-		this.context = context;
-		if (registerDefaultAnalyzers) {
-			registerDefaultAnalyzers();
+	public AnalyzerRegistry() {
+		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("p", "Packages", PackagesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("sp", "Split Packages", SplitPackagesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("sc", "Shadowed Classes", ShadowedClassesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("mc", "Missing Classes", MissingClassesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("fr", "Field References", FieldRefAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
+	}
+
+	public List<String> getCodes() {
+		return descriptions.stream().map(AnalyzerDescription::getCode).collect(Collectors.toList());
+	}
+
+	public AnalyzerDescription getDescription(String code) {
+		return descriptions.stream().filter(d -> d.getCode().equals(code)).findFirst().orElse(null);
+	}
+
+	public Analyzer createAnalyzer(String code, Context context) {
+
+		// try to find analyzer description
+		AnalyzerDescription description = getDescription(code);
+		if (description == null) {
+			throw new IllegalArgumentException("Analyzer not found: " + code);
 		}
-	}
 
-	/**
-	 * Register all default analyzers.
-	 */
-	public void registerDefaultAnalyzers() {
-		register(new JarFilesAnalyzer(context.getResolver()));
-		register(new ClassVersionsAnalyzer());
-		register(new PackagesAnalyzer());
-		register(new SplitPackagesAnalyzer());
-		register(new DuplicateClassesAnalyzer());
-		register(new ShadowedClassesAnalyzer(context.getJavaRuntime()));
-		register(new JarDependenciesAnalyzer());
-		register(new MissingClassesAnalyzer(context.getJavaRuntime()));
-		register(new FieldRefAnalyzer(context.getJavaRuntime(), false));
-		register(new BlacklistAnalyzer());
-	}
+		// get analyzer implementation class
+		Class<? extends Analyzer> analyzerClass = description.getAnalyzerClass();
 
-	/**
-	 * Register the given analyzer.
-	 *
-	 * @param analyzer Analyzer
-	 */
-	public void register(Analyzer analyzer) {
-		analyzers.add(analyzer);
-	}
+		// prepare an injector
+		Injector injector = new Injector();
+		injector.addBinding(JavaRuntime.class, context.getJavaRuntime());
+		injector.addBinding(Resolver.class, context.getResolver());
 
-	/**
-	 * Get the names of all analyzers.
-	 *
-	 * @return Analyzer names
-	 */
-	public List<String> getAnalyzerNames() {
-		return analyzers.stream()
-				.map(Analyzer::getName)
-				.collect(Collectors.toList());
-	}
+		// try to create an instance of the analyzer
+		// (inject dependencies)
+		try {
+			return injector.createInstance(analyzerClass);
+		} catch (InjectorException e) {
+			throw new RuntimeException("Unable to create analyzer: " + code, e);
+		}
 
-	/**
-	 * Get the analyzer with the given name.
-	 * This method returns <code>null</code> if there is no such analyzer.
-	 *
-	 * @param name Analyzer name
-	 * @return Analyzer, or <code>null</code>
-	 */
-	public Optional<Analyzer> getAnalyzer(String name) {
-		return analyzers.stream()
-				.filter(a -> hasName(a, name))
-				.findFirst();
-	}
-
-	private static boolean hasName(Analyzer analyzer, String name) {
-		String longName = analyzer.getName();
-		if (name.equalsIgnoreCase(longName)) return true;
-		String shortName = longName.replaceAll("[^A-Z]", "");
-		return name.equalsIgnoreCase(shortName);
-	}
-
-	/**
-	 * Get all registered analyzers.
-	 *
-	 * @return List of analyzers
-	 */
-	public List<Analyzer> getAnalyzers() {
-		return new ArrayList<>(analyzers);
 	}
 
 }

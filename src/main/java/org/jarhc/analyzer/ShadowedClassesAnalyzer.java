@@ -29,7 +29,7 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 	private final JavaRuntime javaRuntime;
 
-	ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
+	public ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
 		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
 		this.javaRuntime = javaRuntime;
 	}

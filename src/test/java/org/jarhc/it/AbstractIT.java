@@ -74,9 +74,10 @@ abstract class AbstractIT {
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, true);
-		for (String analyzerName : registry.getAnalyzerNames()) {
-			Analyzer analyzer = registry.getAnalyzer(analyzerName).orElseThrow(() -> new RuntimeException("Analyzer not found: " + analyzerName));
+		AnalyzerRegistry registry = new AnalyzerRegistry();
+		for (String code : registry.getCodes()) {
+			Analyzer analyzer = registry.createAnalyzer(code, context);
+			String analyzerName = analyzer.getClass().getSimpleName().replace("Analyzer", "");
 			tests.add(DynamicTest.dynamicTest(analyzerName + "-txt", () -> test(classpath, analyzer, analyzerName, "txt")));
 			tests.add(DynamicTest.dynamicTest(analyzerName + "-html", () -> test(classpath, analyzer, analyzerName, "html")));
 		}

@@ -17,104 +17,67 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.Context;
-import org.jarhc.model.Classpath;
-import org.jarhc.report.ReportSection;
 import org.jarhc.test.ContextMock;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AnalyzerRegistryTest {
 
-	private Context context;
-
-	@BeforeEach
-	void setUp() {
-		// prepare context
-		context = ContextMock.createContext();
-	}
+	private final AnalyzerRegistry registry = new AnalyzerRegistry();
+	private final Context context = ContextMock.createContext();
 
 	@Test
-	void test_constructor() {
+	void test_getCodes() {
 
 		// test
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
+		List<String> codes = registry.getCodes();
 
 		// assert
-		assertTrue(registry.getAnalyzerNames().isEmpty());
-		assertTrue(registry.getAnalyzers().isEmpty());
-
-		// test
-		registry = new AnalyzerRegistry(context, true);
-
-		// assert
-		assertFalse(registry.getAnalyzerNames().isEmpty());
-		assertFalse(registry.getAnalyzers().isEmpty());
+		assertEquals(10, codes.size());
+		assertTrue(codes.contains("jf"));
 
 	}
 
 	@Test
-	void test_getAnalyzerNames() {
-
-		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
-		registry.register(new TestAnalyzer());
+	void test_getDescription() {
 
 		// test
-		List<String> analyzerNames = registry.getAnalyzerNames();
+		AnalyzerDescription description = registry.getDescription("jf");
 
 		// assert
-		assertEquals(1, analyzerNames.size());
-		assertTrue(analyzerNames.contains("Test"));
+		assertNotNull(description);
+		assertEquals("jf", description.getCode());
 
 	}
 
-	@Test
-	void test_getAnalyzers() {
+	@TestFactory
+	Collection<DynamicTest> test_createAnalyzer() {
 
-		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
-		registry.register(new TestAnalyzer());
+		List<DynamicTest> tests = new ArrayList<>();
 
-		// test
-		List<Analyzer> analyzers = registry.getAnalyzers();
-
-		// assert
-		assertEquals(1, analyzers.size());
-		assertTrue(analyzers.get(0) instanceof TestAnalyzer);
-
-	}
-
-	@Test
-	void test_getAnalyzer() {
-
-		// prepare
-		AnalyzerRegistry registry = new AnalyzerRegistry(context, false);
-		registry.register(new TestAnalyzer());
-
-		// test
-		Optional<Analyzer> analyzer = registry.getAnalyzer("Test");
-
-		// assert
-		assertTrue(analyzer.isPresent());
-		assertTrue(analyzer.get() instanceof TestAnalyzer);
-
-		analyzer = registry.getAnalyzer("Unknown");
-
-		// assert
-		assertFalse(analyzer.isPresent());
-
-	}
-
-	private static class TestAnalyzer extends Analyzer {
-		@Override
-		public ReportSection analyze(Classpath classpath) {
-			return null;
+		List<String> codes = registry.getCodes();
+		for (String code : codes) {
+			tests.add(DynamicTest.dynamicTest("Analyzer: " + code, () -> test_createAnalyzer(code)));
 		}
+
+		return tests;
+	}
+
+	private void test_createAnalyzer(String code) {
+
+		// test
+		Analyzer analyzer = registry.createAnalyzer(code, context);
+
+		// assert
+		assertNotNull(analyzer);
+
 	}
 
 }
