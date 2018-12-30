@@ -71,6 +71,7 @@ class FieldRefAnalyzerIT {
 				"static int b.B.staticField",
 				"static int b.B.staticSuperField",
 				"static java.lang.Boolean java.lang.Boolean.TRUE",
+				"static java.lang.Object b.B.interfaceObjectField",
 				"static java.lang.String java.io.File.separator"
 		);
 		assertEquals(expectedList, list);
@@ -130,6 +131,11 @@ class FieldRefAnalyzerIT {
 				"- b.S (field not found)",
 				"Incompatible field type: int b.B.intField -> public boolean intField",
 				"- b.B (field found)",
+				"Field not found: static java.lang.Object b.B.interfaceObjectField",
+				"- b.B (field not found)",
+				"- b.I (field not found)",
+				"- java.lang.Object (field not found)",
+				"- b.S (field not found)",
 				"Write access to final field: int b.B.nonFinalField -> public final int nonFinalField",
 				"- b.B (field found)",
 				"Instance access to static field: int b.B.nonStaticField -> public static int nonStaticField",
@@ -217,6 +223,8 @@ class FieldRefAnalyzerIT {
 				"Field not found: int b.B.existingField",
 				"- b.B (owner class not found)",
 				"Field not found: int b.B.intField",
+				"- b.B (owner class not found)",
+				"Field not found: static java.lang.Object b.B.interfaceObjectField",
 				"- b.B (owner class not found)",
 				"Field not found: int b.B.nonFinalField",
 				"- b.B (owner class not found)",

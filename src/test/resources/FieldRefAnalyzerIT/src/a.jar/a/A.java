@@ -16,6 +16,7 @@ public class A {
 		b.existingField = 6;
 
 		b.superField = b.interfaceField;
+		Object o = b.interfaceObjectField;
 		b.nonStaticSuperField = 7;
 		B.staticSuperField = 8;
 
