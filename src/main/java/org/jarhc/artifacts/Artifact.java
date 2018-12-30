@@ -16,8 +16,6 @@
 
 package org.jarhc.artifacts;
 
-import java.util.Objects;
-
 public class Artifact {
 
 	private final String groupId;
@@ -69,19 +67,4 @@ public class Artifact {
 		return result;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Artifact artifact = (Artifact) o;
-		return groupId.equals(artifact.groupId) &&
-				artifactId.equals(artifact.artifactId) &&
-				version.equals(artifact.version) &&
-				Objects.equals(type, artifact.type);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(groupId, artifactId, version, type);
-	}
 }

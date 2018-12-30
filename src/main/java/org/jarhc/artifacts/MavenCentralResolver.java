@@ -47,6 +47,7 @@ public class MavenCentralResolver implements Resolver {
 
 	@Override
 	public Optional<Artifact> getArtifact(String checksum) throws ResolverException {
+		validateChecksum(checksum);
 
 		URL url;
 		try {

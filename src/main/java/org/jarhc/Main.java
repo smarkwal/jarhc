@@ -24,6 +24,7 @@ import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
 
+import java.io.File;
 import java.time.Duration;
 
 public class Main {
@@ -37,7 +38,8 @@ public class Main {
 		// resolve artifacts using Maven Central and a local disk cache
 		Duration timeout = Duration.ofSeconds(5);
 		Resolver mavenResolver = new MavenCentralResolver(timeout);
-		Resolver cachedResolver = new CachedResolver(mavenResolver);
+		File cacheDir = new File("./.jarhc/cache/resolver"); // TODO: make thisc onfigurable
+		Resolver cachedResolver = new CachedResolver(cacheDir, mavenResolver);
 
 		// prepare context
 		Context context = new Context(javaRuntime, cachedResolver);

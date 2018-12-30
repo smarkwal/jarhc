@@ -28,11 +28,6 @@ public class CachedResolver implements Resolver {
 	private final File cacheDir;
 	private final Resolver resolver;
 
-	public CachedResolver(Resolver resolver) {
-		this.cacheDir = new File("./.jarhc/cache/resolver");
-		this.resolver = resolver;
-	}
-
 	public CachedResolver(File cacheDir, Resolver resolver) {
 		this.cacheDir = cacheDir;
 		this.resolver = resolver;
@@ -40,7 +35,7 @@ public class CachedResolver implements Resolver {
 
 	@Override
 	public Optional<Artifact> getArtifact(String checksum) throws ResolverException {
-		if (checksum == null || checksum.matches("[^a-z0-9]")) throw new IllegalArgumentException("checksum");
+		validateChecksum(checksum);
 
 		// create path to cache file
 		File file = new File(cacheDir, checksum + ".txt");

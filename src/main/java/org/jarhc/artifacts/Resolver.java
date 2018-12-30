@@ -18,6 +18,40 @@ package org.jarhc.artifacts;
 
 import java.util.Optional;
 
+/**
+ * Implementations of this interface are used to identify an artifact
+ * given the SHA-1 checksum of a JAR file.
+ *
+ * @see MavenCentralResolver
+ */
 public interface Resolver {
+
+	/**
+	 * Try to resolve the given checksum and return information
+	 * about the artifact with that checksum.
+	 *
+	 * @param checksum SHA-1 checksum of a JAR file
+	 * @return Artifact information (if found)
+	 * @throws ResolverException if an unexpected exception occurs
+	 */
 	Optional<Artifact> getArtifact(String checksum) throws ResolverException;
+
+	/**
+	 * Checks if the given checksum is valid:
+	 * <ol>
+	 * <li>checksum must not be <code>null</code>.</li>
+	 * <li>checksum must contain only the digits '0' - '9' and letters 'a' - 'f' (hex numbers).</li>
+	 * </ol>
+	 * <p>
+	 * This method can be used by resolver implementations to validate the input value.
+	 *
+	 * @param checksum Checksum
+	 * @throws IllegalArgumentException if the given checksum is not valid.
+	 */
+	default void validateChecksum(String checksum) {
+		if (checksum == null || !checksum.matches("[0-9a-f]+")) {
+			throw new IllegalArgumentException("checksum: " + checksum);
+		}
+	}
+
 }

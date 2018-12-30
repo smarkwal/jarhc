@@ -168,4 +168,27 @@ class DefaultJavaRuntimeTest {
 
 	}
 
+	@Test
+	void test_getClassDef_Integer_cached() {
+
+		// prepare
+		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+
+		// test
+		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.Integer");
+
+		// assert
+		assertTrue(result.isPresent());
+		assertEquals("java/lang/Integer", result.get().getClassName());
+
+		// test 2: fetch again
+		Optional<ClassDef> result2 = javaRuntime.getClassDef("java.lang.Integer");
+
+		// assert
+		assertTrue(result2.isPresent());
+		assertEquals("java/lang/Integer", result2.get().getClassName());
+		assertSame(result2.get(), result.get());
+
+	}
+
 }
