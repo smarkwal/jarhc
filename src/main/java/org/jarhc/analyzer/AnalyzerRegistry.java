@@ -48,6 +48,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("mc", "Missing Classes", MissingClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("fr", "Field References", FieldRefAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("dr", "Duplicate Resources", DuplicateResourcesAnalyzer.class));
 	}
 
 	public List<String> getCodes() {

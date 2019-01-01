@@ -59,17 +59,28 @@ public class JarFile {
 	private final Map<String, ClassDef> classDefsMap = new HashMap<>();
 
 	/**
+	 * List of resources found in the JAR file.
+	 */
+	private final List<ResourceDef> resourceDefs;
+
+	/**
+	 * Fast lookup map for resources given the resource path.
+	 */
+	private final Map<String, ResourceDef> resourceDefsMap = new HashMap<>();
+
+	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
-	 * @param fileName   JAR file name
-	 * @param fileSize   JAR file size in bytes
-	 * @param checksum   JAR file SHA-1 checksum
-	 * @param releases   List of releases supported by this JAR file (for multi-release JAR files)
-	 * @param moduleInfo Module information (for modular JAR files)
-	 * @param classDefs  Class definitions
+	 * @param fileName     JAR file name
+	 * @param fileSize     JAR file size in bytes
+	 * @param checksum     JAR file SHA-1 checksum
+	 * @param releases     List of releases supported by this JAR file (for multi-release JAR files)
+	 * @param moduleInfo   Module information (for modular JAR files)
+	 * @param classDefs    Class definitions
+	 * @param resourceDefs Resources
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	private JarFile(String fileName, long fileSize, String checksum, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs) {
+	private JarFile(String fileName, long fileSize, String checksum, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
@@ -79,6 +90,7 @@ public class JarFile {
 		this.releases = new TreeSet<>(releases);
 		this.moduleInfo = moduleInfo;
 		this.classDefs = new ArrayList<>(classDefs);
+		this.resourceDefs = new ArrayList<>(resourceDefs);
 
 		// sort class definitions by class name (case-sensitive)
 		this.classDefs.sort(Comparator.comparing(ClassDef::getClassName));
@@ -93,6 +105,21 @@ public class JarFile {
 			classDefsMap.put(classDef.getClassName(), classDef);
 
 		});
+
+		// sort resources by path (case-sensitive)
+		this.resourceDefs.sort(Comparator.comparing(ResourceDef::getPath));
+
+		// for every resource ...
+		this.resourceDefs.forEach(resourceDef -> {
+
+			// set reference to this JAR file in resource
+			resourceDef.setJarFile(this);
+
+			// add resource to fast lookup map
+			resourceDefsMap.put(resourceDef.getPath(), resourceDef);
+
+		});
+
 	}
 
 	public String getFileName() {
@@ -143,6 +170,26 @@ public class JarFile {
 		return classDefsMap.get(className);
 	}
 
+	/**
+	 * Returns an unmodifiable list of resources.
+	 *
+	 * @return Resources
+	 */
+	public List<ResourceDef> getResourceDefs() {
+		return Collections.unmodifiableList(resourceDefs);
+	}
+
+	/**
+	 * Get the resource with the given path,
+	 * or <code>null</code> if the resource is not found in this JAR file.
+	 *
+	 * @param path Resource path
+	 * @return Resource, or <code>null</code>
+	 */
+	public ResourceDef getResourceDef(String path) {
+		return resourceDefsMap.get(path);
+	}
+
 	@Override
 	public String toString() {
 		return String.format("JarFile[%s,%d]", fileName, classDefs.size());
@@ -160,6 +207,7 @@ public class JarFile {
 		private Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = null;
 		private List<ClassDef> classDefs = new ArrayList<>();
+		private List<ResourceDef> resourceDefs = new ArrayList<>();
 
 		private Builder(String fileName) {
 			this.fileName = fileName;
@@ -200,8 +248,13 @@ public class JarFile {
 			return this;
 		}
 
+		public Builder withResourceDefs(List<ResourceDef> resourceDefs) {
+			this.resourceDefs.addAll(resourceDefs);
+			return this;
+		}
+
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, checksum, releases, moduleInfo, classDefs);
+			return new JarFile(fileName, fileSize, checksum, releases, moduleInfo, classDefs, resourceDefs);
 		}
 
 	}

@@ -19,6 +19,7 @@ package org.jarhc.loader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.ResourceDef;
 import org.jarhc.utils.FileUtils;
 
 import java.io.File;
@@ -66,6 +67,7 @@ class JarFileLoader {
 		Set<Integer> releases = new TreeSet<>();
 		ModuleInfo moduleInfo = null;
 		List<ClassDef> classDefs = new ArrayList<>();
+		List<ResourceDef> resourceDefs = new ArrayList<>();
 
 		// open JAR file for reading
 		try (java.util.jar.JarFile jarFile = new java.util.jar.JarFile(file)) {
@@ -109,6 +111,12 @@ class JarFileLoader {
 
 				// only accept *.class files
 				if (!name.endsWith(".class")) {
+
+					// add as resource
+					// TODO: calculate SHA-1 checksum
+					ResourceDef resourceDef = new ResourceDef(name, null);
+					resourceDefs.add(resourceDef);
+
 					continue;
 				}
 
@@ -153,6 +161,7 @@ class JarFileLoader {
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
 				.withClassDefs(classDefs)
+				.withResourceDefs(resourceDefs)
 				.build();
 	}
 

@@ -35,6 +35,7 @@ public class ClasspathBuilder {
 	private Set<Integer> releases;
 	private ModuleInfo moduleInfo;
 	private List<ClassDef> classDefs;
+	private List<ResourceDef> resourceDefs;
 
 	// ClassDef properties
 	private String className;
@@ -81,6 +82,12 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addResourceDef(String resourcePath) {
+		String resourceChecksum = DigestUtils.sha1Hex(resourcePath); // fake checksum
+		resourceDefs.add(new ResourceDef(resourcePath, resourceChecksum));
+		return this;
+	}
+
 	public ClasspathBuilder addClassRef(String className) {
 		if (classRefs == null) throw new IllegalStateException();
 		classRefs.add(new ClassRef(className));
@@ -99,6 +106,7 @@ public class ClasspathBuilder {
 		this.releases = new TreeSet<>();
 		this.moduleInfo = null;
 		this.classDefs = new ArrayList<>();
+		this.resourceDefs = new ArrayList<>();
 	}
 
 	private void closeJarFile() {
@@ -110,6 +118,7 @@ public class ClasspathBuilder {
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)
+					.withResourceDefs(resourceDefs)
 					.build();
 			jarFiles.add(jarFile);
 			fileName = null;

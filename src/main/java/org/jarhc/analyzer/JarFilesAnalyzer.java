@@ -51,11 +51,12 @@ public class JarFilesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Class files", "Multi-release", "Module", "Checksum (SHA-1)", "Artifact coordinates");
+		ReportTable table = new ReportTable("JAR file", "Size", "Classes", "Resources", "Multi-release", "Module", "Checksum (SHA-1)", "Artifact coordinates");
 
 		// total values
 		long totalFileSize = 0;
 		int totalClassCount = 0;
+		int totalResourceCount = 0;
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -66,18 +67,20 @@ public class JarFilesAnalyzer extends Analyzer {
 			long fileSize = jarFile.getFileSize();
 			String checksum = getChecksumInfo(jarFile);
 			int classCount = jarFile.getClassDefs().size();
+			int resourceCount = jarFile.getResourceDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);
 			String coordinates = getCoordinates(jarFile);
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), multiReleaseInfo, moduleInfo, checksum, coordinates);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), multiReleaseInfo, moduleInfo, checksum, coordinates);
 
 			// update total values
 			totalFileSize += fileSize;
 			totalClassCount += classCount;
+			totalResourceCount += resourceCount;
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), "-", "-", "-", "-");
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), String.valueOf(totalResourceCount), "-", "-", "-", "-");
 
 		return table;
 	}
