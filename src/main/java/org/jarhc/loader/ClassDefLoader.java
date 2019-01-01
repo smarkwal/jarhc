@@ -16,9 +16,9 @@
 
 package org.jarhc.loader;
 
-import org.apache.commons.io.IOUtils;
 import org.jarhc.model.*;
 import org.jarhc.utils.DigestUtils;
+import org.jarhc.utils.IOUtils;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;

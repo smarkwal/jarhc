@@ -16,7 +16,7 @@
 
 package org.jarhc.artifacts;
 
-import org.apache.commons.io.IOUtils;
+import org.jarhc.utils.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +26,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Optional;
 
@@ -124,7 +123,7 @@ public class MavenCentralResolver implements Resolver {
 				}
 
 				try (InputStream stream = connection.getInputStream()) {
-					return IOUtils.toString(stream, StandardCharsets.UTF_8);
+					return IOUtils.toString(stream);
 				}
 
 			} finally {

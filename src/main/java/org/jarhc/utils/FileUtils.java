@@ -16,9 +16,8 @@
 
 package org.jarhc.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 
 public class FileUtils {
@@ -52,6 +51,47 @@ public class FileUtils {
 		try (FileInputStream stream = new FileInputStream(file)) {
 			return DigestUtils.sha1Hex(stream);
 		}
+	}
+
+	public static String readFileToString(File file) throws IOException {
+		try (FileInputStream stream = new FileInputStream(file)) {
+			try (InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+				StringBuilder result = new StringBuilder((int) file.length());
+				char[] buffer = new char[1024];
+				while (true) {
+					int len = reader.read(buffer);
+					if (len < 0) break;
+					result.append(buffer, 0, len);
+				}
+				return result.toString();
+			}
+		}
+	}
+
+	public static void writeStringToFile(String text, File file) throws IOException {
+		try (FileOutputStream stream = new FileOutputStream(file)) {
+			try (OutputStreamWriter writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8)) {
+				writer.write(text);
+			}
+		}
+	}
+
+	public static void touchFile(File file) throws IOException {
+
+		if (!file.exists()) {
+			FileOutputStream stream = null;
+			try {
+				stream = new FileOutputStream(file);
+				// file should have been created
+			} finally {
+				if (stream != null) {
+					stream.close();
+				}
+			}
+		}
+
+		// set modification time to now
+		file.setLastModified(System.currentTimeMillis());
 	}
 
 }

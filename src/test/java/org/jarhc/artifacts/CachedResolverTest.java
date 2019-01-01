@@ -16,8 +16,8 @@
 
 package org.jarhc.artifacts;
 
-import org.apache.commons.io.FileUtils;
 import org.jarhc.test.ResolverMock;
+import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -108,7 +108,7 @@ class CachedResolverTest {
 		assertEquals("7.0", artifact.get().getVersion());
 		assertEquals("jar", artifact.get().getType());
 		assertTrue(cacheFile.isFile()); // result has been cached
-		assertEquals("org.ow2.asm:asm:7.0:jar", FileUtils.readFileToString(cacheFile, "UTF-8"));
+		assertEquals("org.ow2.asm:asm:7.0:jar", FileUtils.readFileToString(cacheFile));
 
 	}
 
@@ -118,7 +118,7 @@ class CachedResolverTest {
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
 		File cacheFile = new File(cacheDir, checksum + ".txt");
-		FileUtils.writeStringToFile(cacheFile, "org.test:test:1.0:jar", "UTF-8");
+		FileUtils.writeStringToFile("org.test:test:1.0:jar", cacheFile);
 
 		// assume
 		assumeTrue(cacheFile.isFile());
@@ -141,7 +141,7 @@ class CachedResolverTest {
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
 		File cacheFile = new File(cacheDir, checksum + ".txt");
-		FileUtils.touch(cacheFile); // cache a negative response
+		FileUtils.touchFile(cacheFile); // cache a negative response
 
 		// assume
 		assumeTrue(cacheFile.isFile());
@@ -182,7 +182,7 @@ class CachedResolverTest {
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
 		File cacheFile = new File(cacheDir, checksum + ".txt");
-		FileUtils.writeStringToFile(cacheFile, "org.test:test:1.0:jar", "UTF-8");
+		FileUtils.writeStringToFile("org.test:test:1.0:jar", cacheFile);
 
 		// assume
 		assumeTrue(cacheFile.isFile());

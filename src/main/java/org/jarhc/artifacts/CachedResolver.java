@@ -16,11 +16,10 @@
 
 package org.jarhc.artifacts;
 
-import org.apache.commons.io.FileUtils;
+import org.jarhc.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 public class CachedResolver implements Resolver {
@@ -80,7 +79,7 @@ public class CachedResolver implements Resolver {
 			file.getParentFile().mkdirs();
 
 			// read coordinates from file
-			String coordinates = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+			String coordinates = FileUtils.readFileToString(file);
 			return new Artifact(coordinates);
 
 		} catch (IOException e) {
@@ -96,10 +95,10 @@ public class CachedResolver implements Resolver {
 			// if parent resolver has found the artifact ...
 			if (artifact != null) {
 				// save in local cache
-				FileUtils.write(file, artifact.toString(), StandardCharsets.UTF_8);
+				FileUtils.writeStringToFile(artifact.toString(), file);
 			} else {
 				// create an empty file (cache negative response)
-				FileUtils.touch(file);
+				FileUtils.touchFile(file);
 			}
 
 		} catch (IOException e) {
