@@ -155,7 +155,12 @@ class JarFileLoader {
 		// calculate SHA-1 checksum of JAR file
 		String checksum = FileUtils.sha1Hex(file);
 
-		return JarFile.withName(file.getName())
+		String fileName = file.getName();
+
+		// TODO: add option to remove version number from JAR file
+		//  fileName = fileName.replaceAll("-[0-9]+(\\.[0-9]+)*", "");
+
+		return JarFile.withName(fileName)
 				.withFileSize(file.length())
 				.withChecksum(checksum)
 				.withReleases(releases)
