@@ -16,8 +16,8 @@
 
 package org.jarhc.test;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.jarhc.model.*;
+import org.jarhc.utils.DigestUtils;
 
 import java.util.ArrayList;
 import java.util.List;

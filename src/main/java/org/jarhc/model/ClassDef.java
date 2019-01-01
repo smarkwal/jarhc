@@ -16,7 +16,7 @@
 
 package org.jarhc.model;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.JavaVersion;
 import org.objectweb.asm.tree.ClassNode;
 
