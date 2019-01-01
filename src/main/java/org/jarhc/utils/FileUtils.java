@@ -69,6 +69,9 @@ public class FileUtils {
 	}
 
 	public static void writeStringToFile(String text, File file) throws IOException {
+		// create parent directories
+		file.getParentFile().mkdirs();
+		// write text to file using UTF-8
 		try (FileOutputStream stream = new FileOutputStream(file)) {
 			try (OutputStreamWriter writer = new OutputStreamWriter(stream, StandardCharsets.UTF_8)) {
 				writer.write(text);
@@ -77,19 +80,13 @@ public class FileUtils {
 	}
 
 	public static void touchFile(File file) throws IOException {
-
+		// if file does not exist ...
 		if (!file.exists()) {
-			FileOutputStream stream = null;
-			try {
-				stream = new FileOutputStream(file);
-				// file should have been created
-			} finally {
-				if (stream != null) {
-					stream.close();
-				}
-			}
+			// create parent directories
+			file.getParentFile().mkdirs();
+			// create empty file
+			file.createNewFile();
 		}
-
 		// set modification time to now
 		file.setLastModified(System.currentTimeMillis());
 	}
