@@ -33,12 +33,15 @@ import java.util.List;
  */
 public class ClassDefLoader {
 
-	private final ClassFileParser classFileParser = new ClassFileParser();
-
 	/**
 	 * Name of class loader (will be stored in class definition).
 	 */
 	private final String classLoader;
+
+	/**
+	 * The parser used to load a class file.
+	 */
+	private final ClassFileParser classFileParser;
 
 	/**
 	 * Flag used to control whether the Java class should be scanned for
@@ -50,10 +53,12 @@ public class ClassDefLoader {
 	 * Creates a new class definition loader.
 	 *
 	 * @param classLoader       Name of class loader, for example "Classpath" or "Bootstrap"
+	 * @param classFileParser   Class file parser.
 	 * @param scanForReferences Set to <code>true</code> to have this loader find
 	 */
-	public ClassDefLoader(String classLoader, boolean scanForReferences) {
+	public ClassDefLoader(String classLoader, ClassFileParser classFileParser, boolean scanForReferences) {
 		this.classLoader = classLoader;
+		this.classFileParser = classFileParser;
 		this.scanForReferences = scanForReferences;
 	}
 

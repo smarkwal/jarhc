@@ -22,6 +22,7 @@ import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
@@ -70,7 +71,7 @@ abstract class AbstractIT {
 		Context context = ContextMock.createContext();
 
 		// load classpath
-		ClasspathLoader classpathLoader = new ClasspathLoader();
+		ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();

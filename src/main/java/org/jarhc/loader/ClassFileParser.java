@@ -22,9 +22,12 @@ import org.objectweb.asm.tree.ClassNode;
 import java.io.IOException;
 import java.io.InputStream;
 
-class ClassFileParser {
+public class ClassFileParser {
 
-	ClassNode parse(InputStream stream) throws IOException {
+	public ClassFileParser() {
+	}
+
+	public ClassNode parse(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
 		// parse class file with ASM

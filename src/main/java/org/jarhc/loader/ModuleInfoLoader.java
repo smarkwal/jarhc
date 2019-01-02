@@ -24,7 +24,11 @@ import java.io.InputStream;
 
 public class ModuleInfoLoader {
 
-	private final ClassFileParser classFileParser = new ClassFileParser();
+	private final ClassFileParser classFileParser;
+
+	public ModuleInfoLoader(ClassFileParser classFileParser) {
+		this.classFileParser = classFileParser;
+	}
 
 	public ModuleInfo load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");

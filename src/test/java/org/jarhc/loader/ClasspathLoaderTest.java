@@ -35,7 +35,7 @@ import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 @ExtendWith(TempDirectory.class)
 class ClasspathLoaderTest {
 
-	private final ClasspathLoader classpathLoader = new ClasspathLoader();
+	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 
 	@Test
 	void test_load_file(@TempDir Path tempDir) throws IOException {

@@ -17,6 +17,7 @@
 package org.jarhc.env;
 
 import org.jarhc.loader.ClassDefLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.utils.JavaUtils;
 
@@ -36,7 +37,7 @@ public class DefaultJavaRuntime implements JavaRuntime {
 	 * Class definition loader used to load Java runtime classes.
 	 * This loader does not scan Java classes for references to other classes, methods or fields.
 	 */
-	private static final ClassDefLoader loader = new ClassDefLoader("Bootstrap", false);
+	private static final ClassDefLoader loader = LoaderBuilder.create().forClassLoader("Bootstrap").scanForReferences(false).buildClassDefLoader();
 
 	/**
 	 * Java system properties used to retrieve information about the Java runtime.

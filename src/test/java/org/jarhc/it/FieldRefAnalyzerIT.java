@@ -20,6 +20,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.analyzer.FieldRefAnalyzer;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.FieldRef;
 import org.jarhc.report.ReportSection;
@@ -43,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(TempDirectory.class)
 class FieldRefAnalyzerIT {
 
-	private final ClasspathLoader classpathLoader = new ClasspathLoader();
+	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
 

@@ -35,12 +35,8 @@ public class ClasspathLoader {
 
 	private final JarFileLoader jarFileLoader;
 
-	public ClasspathLoader() {
-		this("Classpath");
-	}
-
-	public ClasspathLoader(String classLoader) {
-		this.jarFileLoader = new JarFileLoader(classLoader);
+	public ClasspathLoader(JarFileLoader jarFileLoader) {
+		this.jarFileLoader = jarFileLoader;
 	}
 
 	/**

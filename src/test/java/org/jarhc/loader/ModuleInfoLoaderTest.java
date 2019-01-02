@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ModuleInfoLoaderTest {
 
-	private final ModuleInfoLoader moduleInfoLoader = new ModuleInfoLoader();
+	private final ModuleInfoLoader moduleInfoLoader = LoaderBuilder.create().buildModuleInfoLoader();
 
 	@Test
 	void test_load() throws IOException {

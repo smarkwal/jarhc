@@ -22,6 +22,7 @@ import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
@@ -76,7 +77,7 @@ public class Application {
 
 		// scan JAR files
 		List<File> files = options.getJarFiles();
-		ClasspathLoader loader = new ClasspathLoader();
+		ClasspathLoader loader = LoaderBuilder.create().buildClasspathLoader();
 		Classpath classpath = loader.load(files);
 
 		out.println("Analyze classpath ...");

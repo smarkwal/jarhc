@@ -19,6 +19,7 @@ package org.jarhc.it;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.BlacklistAnalyzer;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -39,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(TempDirectory.class)
 class BlacklistAnalyzerIT {
 
-	private final ClasspathLoader classpathLoader = new ClasspathLoader();
+	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 	private BlacklistAnalyzer analyzer = new BlacklistAnalyzer();
 
 	@Test

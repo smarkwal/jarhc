@@ -19,6 +19,7 @@ package org.jarhc.test;
 import org.jarhc.TestUtils;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -122,7 +123,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 		}
 
 		// load all classes from rt.jar file into memory
-		ClasspathLoader loader = new ClasspathLoader("Bootstrap");
+		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Bootstrap").buildClasspathLoader();
 		Classpath classpath = loader.load(Collections.singletonList(rtFile));
 		JarFile jarFile = classpath.getJarFiles().get(0);
 		List<ClassDef> classDefs = jarFile.getClassDefs();

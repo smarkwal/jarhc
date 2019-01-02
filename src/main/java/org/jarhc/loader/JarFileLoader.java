@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.function.UnaryOperator;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.Manifest;
@@ -35,18 +36,16 @@ import java.util.jar.Manifest;
  * Loader for a JAR file, using a file as source.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
-class JarFileLoader {
+public class JarFileLoader {
 
 	private final ClassDefLoader classDefLoader;
+	private final ModuleInfoLoader moduleInfoLoader;
+	private final UnaryOperator<String> jarFileNameNormalizer;
 
-	private final ModuleInfoLoader moduleInfoLoader = new ModuleInfoLoader();
-
-	public JarFileLoader() {
-		this("Classpath");
-	}
-
-	public JarFileLoader(String classLoader) {
-		this.classDefLoader = new ClassDefLoader(classLoader, true);
+	public JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, UnaryOperator<String> jarFileNameNormalizer) {
+		this.classDefLoader = classDefLoader;
+		this.moduleInfoLoader = moduleInfoLoader;
+		this.jarFileNameNormalizer = jarFileNameNormalizer;
 	}
 
 	/**
@@ -155,10 +154,11 @@ class JarFileLoader {
 		// calculate SHA-1 checksum of JAR file
 		String checksum = FileUtils.sha1Hex(file);
 
+		// normalize JAR file name (optional)
 		String fileName = file.getName();
-
-		// TODO: add option to remove version number from JAR file
-		//  fileName = fileName.replaceAll("-[0-9]+(\\.[0-9]+)*", "");
+		if (jarFileNameNormalizer != null) {
+			fileName = jarFileNameNormalizer.apply(fileName);
+		}
 
 		return JarFile.withName(fileName)
 				.withFileSize(file.length())

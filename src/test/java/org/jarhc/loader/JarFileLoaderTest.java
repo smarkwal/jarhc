@@ -35,6 +35,8 @@ import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 @ExtendWith(TempDirectory.class)
 class JarFileLoaderTest {
 
+	private final JarFileLoader jarFileLoader = LoaderBuilder.create().buildJarFileLoader();
+
 	@Test
 	void test_load(@TempDir Path tempDir) throws IOException {
 
@@ -43,7 +45,6 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFileLoader jarFileLoader = new JarFileLoader();
 		JarFile jarFile = jarFileLoader.load(file);
 
 		// assert
@@ -70,7 +71,6 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFileLoader jarFileLoader = new JarFileLoader();
 		JarFile jarFile = jarFileLoader.load(file);
 
 		// assert
@@ -98,7 +98,6 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFileLoader jarFileLoader = new JarFileLoader();
 		JarFile jarFile = jarFileLoader.load(file);
 
 		// assert
