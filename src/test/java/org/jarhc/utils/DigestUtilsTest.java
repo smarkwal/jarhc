@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package org.jarhc.test;
+package org.jarhc.utils;
 
-import org.jarhc.utils.DigestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
