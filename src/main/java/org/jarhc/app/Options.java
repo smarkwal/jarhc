@@ -22,14 +22,18 @@ import java.util.List;
 class Options {
 
 	private final List<File> jarFiles;
+	private final boolean removeVersion;
+	private final boolean useArtifactName;
 	private final List<String> sections;
 	private final String reportTitle;
 	private final String reportFormat;
 	private final String reportFile;
 
-	Options(List<File> jarFiles, List<String> sections, String reportTitle, String reportFormat, String reportFile) {
+	Options(List<File> jarFiles, boolean removeVersion, boolean useArtifactName, List<String> sections, String reportTitle, String reportFormat, String reportFile) {
 		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
 		this.jarFiles = jarFiles;
+		this.removeVersion = removeVersion;
+		this.useArtifactName = useArtifactName;
 		this.sections = sections;
 		this.reportTitle = reportTitle;
 		this.reportFormat = reportFormat;
@@ -38,6 +42,14 @@ class Options {
 
 	public List<File> getJarFiles() {
 		return jarFiles;
+	}
+
+	public boolean isRemoveVersion() {
+		return removeVersion;
+	}
+
+	public boolean isUseArtifactName() {
+		return useArtifactName;
 	}
 
 	public List<String> getSections() {

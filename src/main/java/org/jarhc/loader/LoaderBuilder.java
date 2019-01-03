@@ -16,13 +16,11 @@
 
 package org.jarhc.loader;
 
-import java.util.function.UnaryOperator;
-
 public class LoaderBuilder {
 
 	private String classLoader = "Classpath";
 	private boolean scanForReferences = true;
-	private UnaryOperator<String> jarFileNameNormalizer = null;
+	private JarFileNameNormalizer jarFileNameNormalizer = null;
 
 	private final ClassFileParser classFileParser = new ClassFileParser();
 
@@ -40,7 +38,7 @@ public class LoaderBuilder {
 		return this;
 	}
 
-	public LoaderBuilder withJarFileNameNormalizer(UnaryOperator<String> jarFileNameNormalizer) {
+	public LoaderBuilder withJarFileNameNormalizer(JarFileNameNormalizer jarFileNameNormalizer) {
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
 		return this;
 	}

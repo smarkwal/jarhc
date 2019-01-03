@@ -18,7 +18,7 @@ package org.jarhc.artifacts;
 
 public class ResolverException extends Exception {
 
-	ResolverException(String message) {
+	public ResolverException(String message) {
 		super(message);
 	}
 

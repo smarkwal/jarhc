@@ -27,7 +27,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.function.UnaryOperator;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.Manifest;
@@ -40,9 +39,9 @@ public class JarFileLoader {
 
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
-	private final UnaryOperator<String> jarFileNameNormalizer;
+	private final JarFileNameNormalizer jarFileNameNormalizer;
 
-	public JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, UnaryOperator<String> jarFileNameNormalizer) {
+	public JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer) {
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
@@ -157,7 +156,7 @@ public class JarFileLoader {
 		// normalize JAR file name (optional)
 		String fileName = file.getName();
 		if (jarFileNameNormalizer != null) {
-			fileName = jarFileNameNormalizer.apply(fileName);
+			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
 		}
 
 		return JarFile.withName(fileName)

@@ -48,6 +48,8 @@ public class CommandLineParser {
 	Options parse(String[] args) throws CommandLineException {
 
 		List<File> paths = new ArrayList<>();
+		boolean removeVersion = false;
+		boolean useArtifactName = false;
 		List<String> sections = null;
 		String reportTitle = "JAR Health Check Report";
 		String reportFormat = null;
@@ -100,6 +102,10 @@ public class CommandLineParser {
 				} else {
 					handleError(-9, "Report sections not specified.");
 				}
+			} else if (arg.equals("--remove-version")) {
+				removeVersion = true;
+			} else if (arg.equals("--use-artifact-name")) {
+				useArtifactName = true;
 			} else if (arg.equals("-h") || arg.equals("--help")) {
 				printUsage(null, out);
 			} else if (arg.equals("-v") || arg.equals("--version")) {
@@ -152,7 +158,7 @@ public class CommandLineParser {
 		}
 
 		// exit code 0 -> no errors
-		return new Options(jarFiles, sections, reportTitle, reportFormat, reportFile);
+		return new Options(jarFiles, removeVersion, useArtifactName, sections, reportTitle, reportFormat, reportFile);
 	}
 
 	private void collectJarFiles(List<File> paths, boolean strict, List<File> jarFiles) throws CommandLineException {

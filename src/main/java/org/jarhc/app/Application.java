@@ -21,7 +21,9 @@ import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Resolver;
 import org.jarhc.loader.ClasspathLoader;
+import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
@@ -77,7 +79,8 @@ public class Application {
 
 		// scan JAR files
 		List<File> files = options.getJarFiles();
-		ClasspathLoader loader = LoaderBuilder.create().buildClasspathLoader();
+		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options, context.getResolver());
+		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).buildClasspathLoader();
 		Classpath classpath = loader.load(files);
 
 		out.println("Analyze classpath ...");
@@ -129,6 +132,18 @@ public class Application {
 		}
 
 		return 0;
+	}
+
+	private JarFileNameNormalizer createJarFileNameNormalizer(Options options, Resolver resolver) {
+		boolean useArtifactName = options.isUseArtifactName();
+		boolean removeVersion = options.isRemoveVersion();
+		if (useArtifactName) {
+			return (fileName, checksum) -> JarFileNameNormalizer.getArtifactFileName(checksum, resolver, removeVersion, fileName);
+		} else if (removeVersion) {
+			return (fileName, checksum) -> JarFileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
+		} else {
+			return null;
+		}
 	}
 
 	private ReportFormat createReportFormat(Options options) {

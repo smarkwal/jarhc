@@ -32,4 +32,8 @@ Options:
                            the given sections are excluded.
                            Example: -s "-p,sp"
 
+   --remove-version      : Remove version number from JAR file names.
+
+   --use-artifact-name   : Create JAR file name from artifact name.
+
 Sections:
