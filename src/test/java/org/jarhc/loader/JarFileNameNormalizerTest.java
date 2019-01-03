@@ -19,14 +19,33 @@ package org.jarhc.loader;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Resolver;
 import org.jarhc.artifacts.ResolverException;
+import org.jarhc.test.PrintStreamBuffer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.PrintStream;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JarFileNameNormalizerTest {
+
+	private PrintStream err;
+
+	@BeforeEach
+	void setUp() {
+		// override original STDERR stream
+		err = System.err;
+		System.setErr(new PrintStreamBuffer());
+	}
+
+	@AfterEach
+	void tearDown() {
+		// restore original STDERR stream
+		System.setErr(err);
+	}
 
 	@Test
 	void test_getFileNameWithoutVersionNumber() {
