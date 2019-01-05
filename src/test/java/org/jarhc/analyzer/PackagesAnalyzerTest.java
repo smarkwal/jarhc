@@ -70,7 +70,7 @@ class PackagesAnalyzerTest {
 		assertEquals(3, values1.length);
 		assertEquals("a.jar", values1[0]);
 		assertEquals("3", values1[1]);
-		assertEquals("a (+ 2 subpackages)", values1[2]);
+		assertEquals("a (+2 subpackages)", values1[2]);
 
 		String[] values2 = rows.get(1);
 		assertEquals(3, values2.length);

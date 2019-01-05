@@ -25,11 +25,9 @@ import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 public class PackagesAnalyzer extends Analyzer {
 
@@ -74,133 +72,102 @@ public class PackagesAnalyzer extends Analyzer {
 		// for every JAR file ...
 		for (String fileName : map.getKeys()) {
 			Set<String> packageNames = map.getValues(fileName);
-			List<String> packageGroups = getPackageGroups(map, fileName, packageNames);
+			List<String> packageGroups = getPackageGroups(packageNames, map, fileName);
 			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups));
 		}
 
 		return table;
 	}
 
-	private List<String> getPackageGroups(MultiMap<String, String> map, String fileName, Set<String> packageNames) {
+	private List<String> getPackageGroups(Set<String> packageNames, MultiMap<String, String> map, String fileName) {
 
-		Map<String, PackageGroup> packageGroups = new LinkedHashMap<>();
+		// map from unique package prefix to group of packages
+		Map<String, List<String>> packageGroups = new LinkedHashMap<>();
 
 		for (String packageName : packageNames) {
-
-			PackageIdentifier packageIdentifier = new PackageIdentifier(packageName);
-
-			int maxCommonLength = 0;
-			for (String fileName2 : map.getKeys()) {
-				if (fileName.equals(fileName2)) continue;
-				for (String packageName2 : map.getValues(fileName2)) {
-					PackageIdentifier packageIdentifier2 = new PackageIdentifier(packageName2);
-					int commonLength = PackageIdentifier.getCommonLength(packageIdentifier, packageIdentifier2);
-					if (commonLength > maxCommonLength) maxCommonLength = commonLength;
-				}
-			}
-
-			boolean isSubPackage = false;
-			if (maxCommonLength < packageIdentifier.getLength() - 1) {
-				isSubPackage = true;
-				packageName = packageIdentifier.getParentPackage(maxCommonLength + 1).toString();
-			}
-
-			PackageGroup packageGroup = packageGroups.get(packageName);
-			if (packageGroup == null) {
-				packageGroup = new PackageGroup(packageName, isSubPackage);
-				packageGroups.put(packageName, packageGroup);
-			} else {
-				if (isSubPackage) {
-					packageGroup.addSubPackage();
-				}
-			}
-
+			String uniqueParentPackage = getUniqueParentPackage(packageName, map, fileName);
+			List<String> packageGroup = packageGroups.computeIfAbsent(uniqueParentPackage, k -> new ArrayList<>());
+			packageGroup.add(packageName);
 		}
 
-		return packageGroups.values().stream().map(PackageGroup::toString).collect(Collectors.toList());
+		return packageGroups.values().stream().map(PackagesAnalyzer::getPackageGroupDescription).collect(Collectors.toList());
 	}
 
-	private static class PackageGroup {
+	private static String getUniqueParentPackage(String packageName, MultiMap<String, String> map, String fileName) {
 
-		private final String name;
-		private boolean exists = false;
-		private int subPackages = 0;
-
-		public PackageGroup(String name, boolean subPackage) {
-			this.name = name;
-			if (subPackage) {
-				subPackages = 1;
-			} else {
-				exists = true;
+		int maxLength = 0;
+		for (String fileName2 : map.getKeys()) {
+			if (fileName.equals(fileName2)) continue;
+			for (String packageName2 : map.getValues(fileName2)) {
+				int length = getParentPackageLength(packageName, packageName2);
+				if (length > maxLength) maxLength = length;
 			}
 		}
 
-		public void addSubPackage() {
-			subPackages++;
+		String parentPackage = packageName;
+		if (maxLength < getPackageLength(packageName) - 1) {
+			parentPackage = getParentPackage(packageName, maxLength + 1);
 		}
-
-		@Override
-		public String toString() {
-			if (exists) {
-				if (subPackages == 0) {
-					return name;
-				} else if (subPackages == 1) {
-					return name + " (+ 1 subpackage)";
-				} else {
-					return name + " (+ " + subPackages + " subpackages)";
-				}
-			} else {
-				if (subPackages == 0) {
-					return name + ".*";
-				} else if (subPackages == 1) {
-					return name + ".* (1 subpackage)";
-				} else {
-					return name + ".* (" + subPackages + " subpackages)";
-				}
-			}
-		}
-
+		return parentPackage;
 	}
 
-	private static class PackageIdentifier {
+	private static int getPackageLength(String packageName) {
+		int count = 1;
+		int len = packageName.length();
+		for (int i = 0; i < len; i++) {
+			if (packageName.charAt(i) == '.') count++;
+		}
+		return count;
+	}
 
-		private final String[] parts;
+	private static String getPackageGroupDescription(List<String> packageNames) {
 
-		public PackageIdentifier(String name) {
-			parts = name.split("\\.");
+		if (packageNames.size() == 1) {
+			return packageNames.get(0);
 		}
 
-		private PackageIdentifier(String[] parts, int len) {
-			this.parts = new String[len];
-			System.arraycopy(parts, 0, this.parts, 0, len);
-		}
+		String parentPackage = getParentPackage(packageNames);
 
-		public int getLength() {
-			return parts.length;
-		}
-
-		public PackageIdentifier getParentPackage(int len) {
-			return new PackageIdentifier(parts, len);
-		}
-
-		public static int getCommonLength(PackageIdentifier name1, PackageIdentifier name2) {
-			String[] parts1 = name1.parts;
-			String[] parts2 = name2.parts;
-			int len = Math.min(parts1.length, parts2.length);
-			for (int i = 0; i < len; i++) {
-				String part1 = parts1[i];
-				String part2 = parts2[i];
-				if (!part1.equals(part2)) {
-					return i;
-				}
+		if (packageNames.contains(parentPackage)) {
+			int subPackages = packageNames.size() - 1;
+			if (subPackages == 1) {
+				return parentPackage + " (+1 subpackage)";
+			} else {
+				return parentPackage + " (+" + subPackages + " subpackages)";
 			}
-			return len;
+		} else {
+			int subPackages = packageNames.size();
+			return parentPackage + ".* (" + subPackages + " subpackages)";
 		}
+	}
 
-		@Override
-		public String toString() {
-			return String.join(".", parts);
+	private static String getParentPackage(List<String> packageNames) {
+		String firstPackageName = packageNames.get(0);
+		int minLength = Integer.MAX_VALUE;
+		for (String packageName : packageNames) {
+			int length = getParentPackageLength(firstPackageName, packageName);
+			if (length < minLength) minLength = length;
 		}
+		return getParentPackage(firstPackageName, minLength);
+	}
+
+	private static int getParentPackageLength(String packageName1, String packageName2) {
+		String[] parts1 = packageName1.split("\\.");
+		String[] parts2 = packageName2.split("\\.");
+		int length = Math.min(parts1.length, parts2.length);
+		for (int i = 0; i < length; i++) {
+			String part1 = parts1[i];
+			String part2 = parts2[i];
+			if (!part1.equals(part2)) {
+				return i;
+			}
+		}
+		return length;
+	}
+
+	private static String getParentPackage(String packageName, int length) {
+		String[] parts = packageName.split("\\.", length + 1);
+		return Arrays.stream(parts).limit(length).collect(Collectors.joining("."));
 	}
 
 }

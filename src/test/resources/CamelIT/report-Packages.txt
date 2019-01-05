@@ -6,11 +6,11 @@ Packages
 List of packages per JAR file.
 
 JAR file                | Count | Packages
-------------------------+-------+---------------------------------------------------
+------------------------+-------+--------------------------------------------------------
 camel-core-2.17.7.jar   | 78    | org.apache.camel
-                        |       | org.apache.camel.api.* (2 subpackages)
-                        |       | org.apache.camel.builder (+ 1 subpackage)
-                        |       | org.apache.camel.com.* (1 subpackage)
+                        |       | org.apache.camel.api.management (+1 subpackage)
+                        |       | org.apache.camel.builder (+1 subpackage)
+                        |       | org.apache.camel.com.googlecode.concurrentlinkedhashmap
                         |       | org.apache.camel.component
                         |       | org.apache.camel.component.bean
                         |       | org.apache.camel.component.beanclass
@@ -21,7 +21,7 @@ camel-core-2.17.7.jar   | 78    | org.apache.camel
                         |       | org.apache.camel.component.dataset
                         |       | org.apache.camel.component.direct
                         |       | org.apache.camel.component.directvm
-                        |       | org.apache.camel.component.file (+ 1 subpackage)
+                        |       | org.apache.camel.component.file (+1 subpackage)
                         |       | org.apache.camel.component.language
                         |       | org.apache.camel.component.log
                         |       | org.apache.camel.component.mock
@@ -36,21 +36,21 @@ camel-core-2.17.7.jar   | 78    | org.apache.camel
                         |       | org.apache.camel.component.validator
                         |       | org.apache.camel.component.vm
                         |       | org.apache.camel.component.xslt
-                        |       | org.apache.camel.converter (+ 2 subpackages)
-                        |       | org.apache.camel.impl (+ 4 subpackages)
+                        |       | org.apache.camel.converter (+2 subpackages)
+                        |       | org.apache.camel.impl (+4 subpackages)
                         |       | org.apache.camel.language
                         |       | org.apache.camel.language.bean
                         |       | org.apache.camel.language.constant
                         |       | org.apache.camel.language.header
                         |       | org.apache.camel.language.property
                         |       | org.apache.camel.language.ref
-                        |       | org.apache.camel.language.simple (+ 2 subpackages)
+                        |       | org.apache.camel.language.simple (+2 subpackages)
                         |       | org.apache.camel.language.tokenizer
                         |       | org.apache.camel.language.xpath
                         |       | org.apache.camel.main
-                        |       | org.apache.camel.management (+ 2 subpackages)
-                        |       | org.apache.camel.model (+ 5 subpackages)
-                        |       | org.apache.camel.processor (+ 8 subpackages)
+                        |       | org.apache.camel.management (+2 subpackages)
+                        |       | org.apache.camel.model (+5 subpackages)
+                        |       | org.apache.camel.processor (+8 subpackages)
                         |       | org.apache.camel.spi
                         |       | org.apache.camel.support
                         |       | org.apache.camel.util
@@ -60,19 +60,19 @@ camel-core-2.17.7.jar   | 78    | org.apache.camel
                         |       | org.apache.camel.util.jsse
                         |       | org.apache.camel.util.toolbox
 camel-jdbc-2.17.7.jar   | 1     | org.apache.camel.component.jdbc
-camel-jms-2.17.7.jar    | 2     | org.apache.camel.component.jms (+ 1 subpackage)
-camel-jmx-2.17.7.jar    | 2     | org.apache.camel.component.jmx (+ 1 subpackage)
+camel-jms-2.17.7.jar    | 2     | org.apache.camel.component.jms (+1 subpackage)
+camel-jmx-2.17.7.jar    | 2     | org.apache.camel.component.jmx (+1 subpackage)
 camel-jxpath-2.17.7.jar | 1     | org.apache.camel.language.jxpath
 camel-ldap-2.17.7.jar   | 1     | org.apache.camel.component.ldap
 camel-mail-2.17.7.jar   | 2     | org.apache.camel.component.mail
-                        |       | org.apache.camel.dataformat.mime.* (1 subpackage)
-camel-soap-2.17.7.jar   | 4     | org.apache.camel.dataformat.soap (+ 1 subpackage)
-                        |       | org.w3.* (1 subpackage)
-                        |       | org.xmlsoap.* (1 subpackage)
+                        |       | org.apache.camel.dataformat.mime.multipart
+camel-soap-2.17.7.jar   | 4     | org.apache.camel.dataformat.soap (+1 subpackage)
+                        |       | org.w3._2003._05.soap_envelope
+                        |       | org.xmlsoap.schemas.soap.envelope
 camel-spring-2.17.7.jar | 16    | org.apache.camel.component.event
                         |       | org.apache.camel.core.* (4 subpackages)
                         |       | org.apache.camel.language.spel
                         |       | org.apache.camel.osgi
-                        |       | org.apache.camel.spring (+ 7 subpackages)
+                        |       | org.apache.camel.spring (+7 subpackages)
                         |       | org.apache.camel.util.spring
 
