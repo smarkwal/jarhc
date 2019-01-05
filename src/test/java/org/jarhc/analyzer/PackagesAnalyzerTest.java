@@ -58,22 +58,25 @@ class PackagesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
+		assertEquals(3, columns.length);
 		assertEquals("JAR file", columns[0]);
-		assertEquals("Packages", columns[1]);
+		assertEquals("Count", columns[1]);
+		assertEquals("Packages", columns[2]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
 
 		String[] values1 = rows.get(0);
-		assertEquals(2, values1.length);
+		assertEquals(3, values1.length);
 		assertEquals("a.jar", values1[0]);
-		assertEquals(joinLines("a", "a.a1", "a.a2"), values1[1]);
+		assertEquals("3", values1[1]);
+		assertEquals("a (+ 2 subpackages)", values1[2]);
 
 		String[] values2 = rows.get(1);
-		assertEquals(2, values2.length);
+		assertEquals(3, values2.length);
 		assertEquals("b.jar", values2[0]);
-		assertEquals("b", values2[1]);
+		assertEquals("1", values2[1]);
+		assertEquals("b", values2[2]);
 
 	}
 

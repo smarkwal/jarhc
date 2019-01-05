@@ -38,9 +38,9 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file | Packages
----------+---------
-a.jar    | a
+JAR file | Count | Packages
+---------+-------+---------
+a.jar    | 1     | a
 
 Split Packages
 --------------

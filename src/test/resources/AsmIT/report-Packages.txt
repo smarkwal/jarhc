@@ -5,11 +5,11 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file             | Packages
----------------------+--------------------------------
-asm-7.0.jar          | org.objectweb.asm
-                     | org.objectweb.asm.signature
-asm-analysis-7.0.jar | org.objectweb.asm.tree.analysis
-asm-commons-7.0.jar  | org.objectweb.asm.commons
-asm-tree-7.0.jar     | org.objectweb.asm.tree
+JAR file             | Count | Packages
+---------------------+-------+--------------------------------
+asm-7.0.jar          | 2     | org.objectweb.asm
+                     |       | org.objectweb.asm.signature
+asm-analysis-7.0.jar | 1     | org.objectweb.asm.tree.analysis
+asm-commons-7.0.jar  | 1     | org.objectweb.asm.commons
+asm-tree-7.0.jar     | 1     | org.objectweb.asm.tree
 

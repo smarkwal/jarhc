@@ -25,8 +25,11 @@ import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PackagesAnalyzer extends Analyzer {
 
@@ -66,18 +69,138 @@ public class PackagesAnalyzer extends Analyzer {
 			}
 		}
 
-		ReportTable table = new ReportTable("JAR file", "Packages");
+		ReportTable table = new ReportTable("JAR file", "Count", "Packages");
 
 		// for every JAR file ...
 		for (String fileName : map.getKeys()) {
 			Set<String> packageNames = map.getValues(fileName);
-			// if package has been found in more than one JAR file ...
-			if (packageNames.size() > 0) {
-				table.addRow(fileName, StringUtils.joinLines(packageNames));
-			}
+			List<String> packageGroups = getPackageGroups(map, fileName, packageNames);
+			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups));
 		}
 
 		return table;
+	}
+
+	private List<String> getPackageGroups(MultiMap<String, String> map, String fileName, Set<String> packageNames) {
+
+		Map<String, PackageGroup> packageGroups = new LinkedHashMap<>();
+
+		for (String packageName : packageNames) {
+
+			PackageIdentifier packageIdentifier = new PackageIdentifier(packageName);
+
+			int maxCommonLength = 0;
+			for (String fileName2 : map.getKeys()) {
+				if (fileName.equals(fileName2)) continue;
+				for (String packageName2 : map.getValues(fileName2)) {
+					PackageIdentifier packageIdentifier2 = new PackageIdentifier(packageName2);
+					int commonLength = PackageIdentifier.getCommonLength(packageIdentifier, packageIdentifier2);
+					if (commonLength > maxCommonLength) maxCommonLength = commonLength;
+				}
+			}
+
+			boolean isSubPackage = false;
+			if (maxCommonLength < packageIdentifier.getLength() - 1) {
+				isSubPackage = true;
+				packageName = packageIdentifier.getParentPackage(maxCommonLength + 1).toString();
+			}
+
+			PackageGroup packageGroup = packageGroups.get(packageName);
+			if (packageGroup == null) {
+				packageGroup = new PackageGroup(packageName, isSubPackage);
+				packageGroups.put(packageName, packageGroup);
+			} else {
+				if (isSubPackage) {
+					packageGroup.addSubPackage();
+				}
+			}
+
+		}
+
+		return packageGroups.values().stream().map(PackageGroup::toString).collect(Collectors.toList());
+	}
+
+	private static class PackageGroup {
+
+		private final String name;
+		private boolean exists = false;
+		private int subPackages = 0;
+
+		public PackageGroup(String name, boolean subPackage) {
+			this.name = name;
+			if (subPackage) {
+				subPackages = 1;
+			} else {
+				exists = true;
+			}
+		}
+
+		public void addSubPackage() {
+			subPackages++;
+		}
+
+		@Override
+		public String toString() {
+			if (exists) {
+				if (subPackages == 0) {
+					return name;
+				} else if (subPackages == 1) {
+					return name + " (+ 1 subpackage)";
+				} else {
+					return name + " (+ " + subPackages + " subpackages)";
+				}
+			} else {
+				if (subPackages == 0) {
+					return name + ".*";
+				} else if (subPackages == 1) {
+					return name + ".* (1 subpackage)";
+				} else {
+					return name + ".* (" + subPackages + " subpackages)";
+				}
+			}
+		}
+
+	}
+
+	private static class PackageIdentifier {
+
+		private final String[] parts;
+
+		public PackageIdentifier(String name) {
+			parts = name.split("\\.");
+		}
+
+		private PackageIdentifier(String[] parts, int len) {
+			this.parts = new String[len];
+			System.arraycopy(parts, 0, this.parts, 0, len);
+		}
+
+		public int getLength() {
+			return parts.length;
+		}
+
+		public PackageIdentifier getParentPackage(int len) {
+			return new PackageIdentifier(parts, len);
+		}
+
+		public static int getCommonLength(PackageIdentifier name1, PackageIdentifier name2) {
+			String[] parts1 = name1.parts;
+			String[] parts2 = name2.parts;
+			int len = Math.min(parts1.length, parts2.length);
+			for (int i = 0; i < len; i++) {
+				String part1 = parts1[i];
+				String part2 = parts2[i];
+				if (!part1.equals(part2)) {
+					return i;
+				}
+			}
+			return len;
+		}
+
+		@Override
+		public String toString() {
+			return String.join(".", parts);
+		}
 	}
 
 }

@@ -5,291 +5,62 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file                                 | Packages
------------------------------------------+---------------------------------------------------------
-spring-aop-5.1.3.RELEASE.jar             | org.aopalliance.aop
-                                         | org.aopalliance.intercept
-                                         | org.springframework.aop
-                                         | org.springframework.aop.aspectj
-                                         | org.springframework.aop.aspectj.annotation
-                                         | org.springframework.aop.aspectj.autoproxy
-                                         | org.springframework.aop.config
-                                         | org.springframework.aop.framework
-                                         | org.springframework.aop.framework.adapter
-                                         | org.springframework.aop.framework.autoproxy
-                                         | org.springframework.aop.framework.autoproxy.target
-                                         | org.springframework.aop.interceptor
-                                         | org.springframework.aop.scope
-                                         | org.springframework.aop.support
-                                         | org.springframework.aop.support.annotation
-                                         | org.springframework.aop.target
-                                         | org.springframework.aop.target.dynamic
-spring-beans-5.1.3.RELEASE.jar           | org.springframework.beans
-                                         | org.springframework.beans.annotation
-                                         | org.springframework.beans.factory
-                                         | org.springframework.beans.factory.annotation
-                                         | org.springframework.beans.factory.config
-                                         | org.springframework.beans.factory.groovy
-                                         | org.springframework.beans.factory.parsing
-                                         | org.springframework.beans.factory.serviceloader
-                                         | org.springframework.beans.factory.support
-                                         | org.springframework.beans.factory.wiring
-                                         | org.springframework.beans.factory.xml
-                                         | org.springframework.beans.propertyeditors
-                                         | org.springframework.beans.support
-spring-context-5.1.3.RELEASE.jar         | org.springframework.cache
-                                         | org.springframework.cache.annotation
-                                         | org.springframework.cache.concurrent
-                                         | org.springframework.cache.config
-                                         | org.springframework.cache.interceptor
-                                         | org.springframework.cache.support
-                                         | org.springframework.context
-                                         | org.springframework.context.annotation
-                                         | org.springframework.context.config
-                                         | org.springframework.context.event
-                                         | org.springframework.context.expression
-                                         | org.springframework.context.i18n
-                                         | org.springframework.context.index
-                                         | org.springframework.context.support
-                                         | org.springframework.context.weaving
-                                         | org.springframework.ejb.access
-                                         | org.springframework.ejb.config
-                                         | org.springframework.format
-                                         | org.springframework.format.annotation
-                                         | org.springframework.format.datetime
-                                         | org.springframework.format.datetime.joda
-                                         | org.springframework.format.datetime.standard
-                                         | org.springframework.format.number
-                                         | org.springframework.format.number.money
-                                         | org.springframework.format.support
-                                         | org.springframework.instrument.classloading
-                                         | org.springframework.instrument.classloading.glassfish
-                                         | org.springframework.instrument.classloading.jboss
-                                         | org.springframework.instrument.classloading.tomcat
-                                         | org.springframework.instrument.classloading.weblogic
-                                         | org.springframework.instrument.classloading.websphere
-                                         | org.springframework.jmx
-                                         | org.springframework.jmx.access
-                                         | org.springframework.jmx.export
-                                         | org.springframework.jmx.export.annotation
-                                         | org.springframework.jmx.export.assembler
-                                         | org.springframework.jmx.export.metadata
-                                         | org.springframework.jmx.export.naming
-                                         | org.springframework.jmx.export.notification
-                                         | org.springframework.jmx.support
-                                         | org.springframework.jndi
-                                         | org.springframework.jndi.support
-                                         | org.springframework.remoting
-                                         | org.springframework.remoting.rmi
-                                         | org.springframework.remoting.soap
-                                         | org.springframework.remoting.support
-                                         | org.springframework.scheduling
-                                         | org.springframework.scheduling.annotation
-                                         | org.springframework.scheduling.concurrent
-                                         | org.springframework.scheduling.config
-                                         | org.springframework.scheduling.support
-                                         | org.springframework.scripting
-                                         | org.springframework.scripting.bsh
-                                         | org.springframework.scripting.config
-                                         | org.springframework.scripting.groovy
-                                         | org.springframework.scripting.support
-                                         | org.springframework.stereotype
-                                         | org.springframework.ui
-                                         | org.springframework.ui.context
-                                         | org.springframework.ui.context.support
-                                         | org.springframework.validation
-                                         | org.springframework.validation.annotation
-                                         | org.springframework.validation.beanvalidation
-                                         | org.springframework.validation.support
-spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine
-                                         | org.springframework.cache.ehcache
-                                         | org.springframework.cache.jcache
-                                         | org.springframework.cache.jcache.config
-                                         | org.springframework.cache.jcache.interceptor
-                                         | org.springframework.cache.transaction
-                                         | org.springframework.mail
-                                         | org.springframework.mail.javamail
-                                         | org.springframework.scheduling.commonj
-                                         | org.springframework.scheduling.quartz
-                                         | org.springframework.ui.freemarker
-spring-core-5.1.3.RELEASE.jar            | org.springframework.asm
-                                         | org.springframework.cglib
-                                         | org.springframework.cglib.beans
-                                         | org.springframework.cglib.core
-                                         | org.springframework.cglib.core.internal
-                                         | org.springframework.cglib.proxy
-                                         | org.springframework.cglib.reflect
-                                         | org.springframework.cglib.transform
-                                         | org.springframework.cglib.transform.impl
-                                         | org.springframework.cglib.util
-                                         | org.springframework.core
-                                         | org.springframework.core.annotation
-                                         | org.springframework.core.codec
-                                         | org.springframework.core.convert
-                                         | org.springframework.core.convert.converter
-                                         | org.springframework.core.convert.support
-                                         | org.springframework.core.env
-                                         | org.springframework.core.io
-                                         | org.springframework.core.io.buffer
-                                         | org.springframework.core.io.support
-                                         | org.springframework.core.log
-                                         | org.springframework.core.serializer
-                                         | org.springframework.core.serializer.support
-                                         | org.springframework.core.style
-                                         | org.springframework.core.task
-                                         | org.springframework.core.task.support
-                                         | org.springframework.core.type
-                                         | org.springframework.core.type.classreading
-                                         | org.springframework.core.type.filter
-                                         | org.springframework.lang
-                                         | org.springframework.objenesis
-                                         | org.springframework.objenesis.instantiator
-                                         | org.springframework.objenesis.instantiator.android
-                                         | org.springframework.objenesis.instantiator.annotations
-                                         | org.springframework.objenesis.instantiator.basic
-                                         | org.springframework.objenesis.instantiator.gcj
-                                         | org.springframework.objenesis.instantiator.perc
-                                         | org.springframework.objenesis.instantiator.sun
-                                         | org.springframework.objenesis.instantiator.util
-                                         | org.springframework.objenesis.strategy
-                                         | org.springframework.util
-                                         | org.springframework.util.backoff
-                                         | org.springframework.util.comparator
-                                         | org.springframework.util.concurrent
-                                         | org.springframework.util.function
-                                         | org.springframework.util.unit
-                                         | org.springframework.util.xml
-spring-expression-5.1.3.RELEASE.jar      | org.springframework.expression
-                                         | org.springframework.expression.common
-                                         | org.springframework.expression.spel
-                                         | org.springframework.expression.spel.ast
-                                         | org.springframework.expression.spel.standard
-                                         | org.springframework.expression.spel.support
-spring-jdbc-5.1.3.RELEASE.jar            | org.springframework.jdbc
-                                         | org.springframework.jdbc.config
-                                         | org.springframework.jdbc.core
-                                         | org.springframework.jdbc.core.metadata
-                                         | org.springframework.jdbc.core.namedparam
-                                         | org.springframework.jdbc.core.simple
-                                         | org.springframework.jdbc.core.support
-                                         | org.springframework.jdbc.datasource
-                                         | org.springframework.jdbc.datasource.embedded
-                                         | org.springframework.jdbc.datasource.init
-                                         | org.springframework.jdbc.datasource.lookup
-                                         | org.springframework.jdbc.object
-                                         | org.springframework.jdbc.support
-                                         | org.springframework.jdbc.support.incrementer
-                                         | org.springframework.jdbc.support.lob
-                                         | org.springframework.jdbc.support.rowset
-                                         | org.springframework.jdbc.support.xml
-spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms
-                                         | org.springframework.jms.annotation
-                                         | org.springframework.jms.config
-                                         | org.springframework.jms.connection
-                                         | org.springframework.jms.core
-                                         | org.springframework.jms.core.support
-                                         | org.springframework.jms.listener
-                                         | org.springframework.jms.listener.adapter
-                                         | org.springframework.jms.listener.endpoint
-                                         | org.springframework.jms.remoting
-                                         | org.springframework.jms.support
-                                         | org.springframework.jms.support.converter
-                                         | org.springframework.jms.support.destination
-spring-messaging-5.1.3.RELEASE.jar       | org.springframework.messaging
-                                         | org.springframework.messaging.converter
-                                         | org.springframework.messaging.core
-                                         | org.springframework.messaging.handler
-                                         | org.springframework.messaging.handler.annotation
-                                         | org.springframework.messaging.handler.annotation.support
-                                         | org.springframework.messaging.handler.invocation
-                                         | org.springframework.messaging.simp
-                                         | org.springframework.messaging.simp.annotation
-                                         | org.springframework.messaging.simp.annotation.support
-                                         | org.springframework.messaging.simp.broker
-                                         | org.springframework.messaging.simp.config
-                                         | org.springframework.messaging.simp.stomp
-                                         | org.springframework.messaging.simp.user
-                                         | org.springframework.messaging.support
-                                         | org.springframework.messaging.tcp
-                                         | org.springframework.messaging.tcp.reactor
-spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm
-                                         | org.springframework.orm.hibernate5
-                                         | org.springframework.orm.hibernate5.support
-                                         | org.springframework.orm.jpa
-                                         | org.springframework.orm.jpa.persistenceunit
-                                         | org.springframework.orm.jpa.support
-                                         | org.springframework.orm.jpa.vendor
-spring-tx-5.1.3.RELEASE.jar              | org.springframework.dao
-                                         | org.springframework.dao.annotation
-                                         | org.springframework.dao.support
-                                         | org.springframework.jca.cci
-                                         | org.springframework.jca.cci.connection
-                                         | org.springframework.jca.cci.core
-                                         | org.springframework.jca.cci.core.support
-                                         | org.springframework.jca.cci.object
-                                         | org.springframework.jca.context
-                                         | org.springframework.jca.endpoint
-                                         | org.springframework.jca.support
-                                         | org.springframework.jca.work
-                                         | org.springframework.transaction
-                                         | org.springframework.transaction.annotation
-                                         | org.springframework.transaction.config
-                                         | org.springframework.transaction.event
-                                         | org.springframework.transaction.interceptor
-                                         | org.springframework.transaction.jta
-                                         | org.springframework.transaction.support
-spring-web-5.1.3.RELEASE.jar             | org.springframework.http
-                                         | org.springframework.http.client
-                                         | org.springframework.http.client.reactive
-                                         | org.springframework.http.client.support
-                                         | org.springframework.http.codec
-                                         | org.springframework.http.codec.json
-                                         | org.springframework.http.codec.multipart
-                                         | org.springframework.http.codec.protobuf
-                                         | org.springframework.http.codec.support
-                                         | org.springframework.http.codec.xml
-                                         | org.springframework.http.converter
-                                         | org.springframework.http.converter.cbor
-                                         | org.springframework.http.converter.feed
-                                         | org.springframework.http.converter.json
-                                         | org.springframework.http.converter.protobuf
-                                         | org.springframework.http.converter.smile
-                                         | org.springframework.http.converter.support
-                                         | org.springframework.http.converter.xml
-                                         | org.springframework.http.server
-                                         | org.springframework.http.server.reactive
-                                         | org.springframework.remoting.caucho
-                                         | org.springframework.remoting.httpinvoker
-                                         | org.springframework.remoting.jaxws
-                                         | org.springframework.web
-                                         | org.springframework.web.accept
-                                         | org.springframework.web.bind
-                                         | org.springframework.web.bind.annotation
-                                         | org.springframework.web.bind.support
-                                         | org.springframework.web.client
-                                         | org.springframework.web.client.support
-                                         | org.springframework.web.context
-                                         | org.springframework.web.context.annotation
-                                         | org.springframework.web.context.request
-                                         | org.springframework.web.context.request.async
-                                         | org.springframework.web.context.support
-                                         | org.springframework.web.cors
-                                         | org.springframework.web.cors.reactive
-                                         | org.springframework.web.filter
-                                         | org.springframework.web.filter.reactive
-                                         | org.springframework.web.jsf
-                                         | org.springframework.web.jsf.el
-                                         | org.springframework.web.method
-                                         | org.springframework.web.method.annotation
-                                         | org.springframework.web.method.support
-                                         | org.springframework.web.multipart
-                                         | org.springframework.web.multipart.commons
-                                         | org.springframework.web.multipart.support
-                                         | org.springframework.web.server
-                                         | org.springframework.web.server.adapter
-                                         | org.springframework.web.server.handler
-                                         | org.springframework.web.server.i18n
-                                         | org.springframework.web.server.session
-                                         | org.springframework.web.util
-                                         | org.springframework.web.util.pattern
+JAR file                                 | Count | Packages
+-----------------------------------------+-------+---------------------------------------------------
+spring-aop-5.1.3.RELEASE.jar             | 17    | org.aopalliance.* (2 subpackages)
+                                         |       | org.springframework.aop (+ 14 subpackages)
+spring-beans-5.1.3.RELEASE.jar           | 13    | org.springframework.beans (+ 12 subpackages)
+spring-context-5.1.3.RELEASE.jar         | 64    | org.springframework.cache
+                                         |       | org.springframework.cache.annotation
+                                         |       | org.springframework.cache.concurrent
+                                         |       | org.springframework.cache.config
+                                         |       | org.springframework.cache.interceptor
+                                         |       | org.springframework.cache.support
+                                         |       | org.springframework.context (+ 8 subpackages)
+                                         |       | org.springframework.ejb.* (2 subpackages)
+                                         |       | org.springframework.format (+ 7 subpackages)
+                                         |       | org.springframework.instrument.* (6 subpackages)
+                                         |       | org.springframework.jmx (+ 8 subpackages)
+                                         |       | org.springframework.jndi (+ 1 subpackage)
+                                         |       | org.springframework.remoting
+                                         |       | org.springframework.remoting.rmi
+                                         |       | org.springframework.remoting.soap
+                                         |       | org.springframework.remoting.support
+                                         |       | org.springframework.scheduling
+                                         |       | org.springframework.scheduling.annotation
+                                         |       | org.springframework.scheduling.concurrent
+                                         |       | org.springframework.scheduling.config
+                                         |       | org.springframework.scheduling.support
+                                         |       | org.springframework.scripting (+ 4 subpackages)
+                                         |       | org.springframework.stereotype
+                                         |       | org.springframework.ui
+                                         |       | org.springframework.ui.context (+ 1 subpackage)
+                                         |       | org.springframework.validation (+ 3 subpackages)
+spring-context-support-5.1.3.RELEASE.jar | 11    | org.springframework.cache.caffeine
+                                         |       | org.springframework.cache.ehcache
+                                         |       | org.springframework.cache.jcache (+ 2 subpackages)
+                                         |       | org.springframework.cache.transaction
+                                         |       | org.springframework.mail (+ 1 subpackage)
+                                         |       | org.springframework.scheduling.commonj
+                                         |       | org.springframework.scheduling.quartz
+                                         |       | org.springframework.ui.freemarker
+spring-core-5.1.3.RELEASE.jar            | 47    | org.springframework.asm
+                                         |       | org.springframework.cglib (+ 8 subpackages)
+                                         |       | org.springframework.core (+ 18 subpackages)
+                                         |       | org.springframework.lang
+                                         |       | org.springframework.objenesis (+ 9 subpackages)
+                                         |       | org.springframework.util (+ 6 subpackages)
+spring-expression-5.1.3.RELEASE.jar      | 6     | org.springframework.expression (+ 5 subpackages)
+spring-jdbc-5.1.3.RELEASE.jar            | 17    | org.springframework.jdbc (+ 16 subpackages)
+spring-jms-5.1.3.RELEASE.jar             | 13    | org.springframework.jms (+ 12 subpackages)
+spring-messaging-5.1.3.RELEASE.jar       | 17    | org.springframework.messaging (+ 16 subpackages)
+spring-orm-5.1.3.RELEASE.jar             | 7     | org.springframework.orm (+ 6 subpackages)
+spring-tx-5.1.3.RELEASE.jar              | 19    | org.springframework.dao (+ 2 subpackages)
+                                         |       | org.springframework.jca.* (9 subpackages)
+                                         |       | org.springframework.transaction (+ 6 subpackages)
+spring-web-5.1.3.RELEASE.jar             | 54    | org.springframework.http (+ 19 subpackages)
+                                         |       | org.springframework.remoting.caucho
+                                         |       | org.springframework.remoting.httpinvoker
+                                         |       | org.springframework.remoting.jaxws
+                                         |       | org.springframework.web (+ 30 subpackages)
 
