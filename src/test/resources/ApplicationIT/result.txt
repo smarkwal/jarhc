@@ -38,16 +38,9 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file | Count | Packages
----------+-------+---------
-a.jar    | 1     | a
-
-Split Packages
---------------
-Packages found in multiple JAR files.
-
-Package | JAR files
---------+----------
+JAR file | Count | Packages | Issues
+---------+-------+----------+-------
+a.jar    | 1     | a        |
 
 Duplicate Classes
 -----------------

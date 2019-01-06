@@ -5,26 +5,26 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file              | Count | Packages
-----------------------+-------+-----------------------------------------
-xercesImpl-2.11.0.jar | 40    | org.apache.html.dom
-                      |       | org.apache.wml (+1 subpackage)
-                      |       | org.apache.xerces.* (35 subpackages)
-                      |       | org.apache.xml.serialize
-                      |       | org.w3c.dom.html
-xml-apis-1.4.01.jar   | 29    | javax.xml (+13 subpackages)
-                      |       | org.apache.xmlcommons
-                      |       | org.w3c.dom
-                      |       | org.w3c.dom.bootstrap
-                      |       | org.w3c.dom.css
-                      |       | org.w3c.dom.events
-                      |       | org.w3c.dom.html
-                      |       | org.w3c.dom.ls
-                      |       | org.w3c.dom.ranges
-                      |       | org.w3c.dom.stylesheets
-                      |       | org.w3c.dom.traversal
-                      |       | org.w3c.dom.views
-                      |       | org.w3c.dom.xpath
-                      |       | org.xml.sax (+2 subpackages)
-xml-resolver-1.2.jar  | 5     | org.apache.xml.resolver (+4 subpackages)
+JAR file              | Count | Packages                                 | Issues
+----------------------+-------+------------------------------------------+-----------------------------------------------------
+xercesImpl-2.11.0.jar | 40    | org.apache.html.dom                      | Split Package: org.w3c.dom.html
+                      |       | org.apache.wml (+1 subpackage)           | Fat JAR: org.apache.*, org.w3c.*
+                      |       | org.apache.xerces.* (35 subpackages)     |
+                      |       | org.apache.xml.serialize                 |
+                      |       | org.w3c.dom.html                         |
+xml-apis-1.4.01.jar   | 29    | javax.xml (+13 subpackages)              | Split Package: org.w3c.dom.html
+                      |       | org.apache.xmlcommons                    | Fat JAR: javax.*, org.apache.*, org.w3c.*, org.xml.*
+                      |       | org.w3c.dom                              |
+                      |       | org.w3c.dom.bootstrap                    |
+                      |       | org.w3c.dom.css                          |
+                      |       | org.w3c.dom.events                       |
+                      |       | org.w3c.dom.html                         |
+                      |       | org.w3c.dom.ls                           |
+                      |       | org.w3c.dom.ranges                       |
+                      |       | org.w3c.dom.stylesheets                  |
+                      |       | org.w3c.dom.traversal                    |
+                      |       | org.w3c.dom.views                        |
+                      |       | org.w3c.dom.xpath                        |
+                      |       | org.xml.sax (+2 subpackages)             |
+xml-resolver-1.2.jar  | 5     | org.apache.xml.resolver (+4 subpackages) |
 

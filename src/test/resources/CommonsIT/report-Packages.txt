@@ -5,23 +5,23 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file                      | Count | Packages
-------------------------------+-------+--------------------------------------------------
-commons-beanutils-1.9.2.jar   | 5     | org.apache.commons.beanutils (+4 subpackages)
-commons-betwixt-0.8.jar       | 13    | org.apache.commons.betwixt (+12 subpackages)
-commons-codec-1.10.jar        | 6     | org.apache.commons.codec (+5 subpackages)
-commons-collections-3.2.2.jar | 12    | org.apache.commons.collections (+11 subpackages)
-commons-compress-1.5.jar      | 14    | org.apache.commons.compress.* (14 subpackages)
-commons-configuration-1.9.jar | 10    | org.apache.commons.configuration (+9 subpackages)
-commons-dbcp2-2.5.0.jar       | 4     | org.apache.commons.dbcp2 (+3 subpackages)
-commons-dbutils-1.5.jar       | 3     | org.apache.commons.dbutils (+2 subpackages)
-commons-digester-2.1.jar      | 14    | org.apache.commons.digester (+13 subpackages)
-commons-email-1.5.jar         | 3     | org.apache.commons.mail (+2 subpackages)
-commons-fileupload-1.3.3.jar  | 6     | org.apache.commons.fileupload (+5 subpackages)
-commons-io-2.4.jar            | 6     | org.apache.commons.io (+5 subpackages)
-commons-jxpath-1.3.jar        | 16    | org.apache.commons.jxpath (+15 subpackages)
-commons-lang-2.6.jar          | 10    | org.apache.commons.lang (+9 subpackages)
-commons-logging-1.2.jar       | 2     | org.apache.commons.logging (+1 subpackage)
-commons-net-3.3.jar           | 20    | org.apache.commons.net (+19 subpackages)
-commons-pool2-2.6.0.jar       | 3     | org.apache.commons.pool2 (+2 subpackages)
+JAR file                      | Count | Packages                                          | Issues
+------------------------------+-------+---------------------------------------------------+-------
+commons-beanutils-1.9.2.jar   | 5     | org.apache.commons.beanutils (+4 subpackages)     |
+commons-betwixt-0.8.jar       | 13    | org.apache.commons.betwixt (+12 subpackages)      |
+commons-codec-1.10.jar        | 6     | org.apache.commons.codec (+5 subpackages)         |
+commons-collections-3.2.2.jar | 12    | org.apache.commons.collections (+11 subpackages)  |
+commons-compress-1.5.jar      | 14    | org.apache.commons.compress.* (14 subpackages)    |
+commons-configuration-1.9.jar | 10    | org.apache.commons.configuration (+9 subpackages) |
+commons-dbcp2-2.5.0.jar       | 4     | org.apache.commons.dbcp2 (+3 subpackages)         |
+commons-dbutils-1.5.jar       | 3     | org.apache.commons.dbutils (+2 subpackages)       |
+commons-digester-2.1.jar      | 14    | org.apache.commons.digester (+13 subpackages)     |
+commons-email-1.5.jar         | 3     | org.apache.commons.mail (+2 subpackages)          |
+commons-fileupload-1.3.3.jar  | 6     | org.apache.commons.fileupload (+5 subpackages)    |
+commons-io-2.4.jar            | 6     | org.apache.commons.io (+5 subpackages)            |
+commons-jxpath-1.3.jar        | 16    | org.apache.commons.jxpath (+15 subpackages)       |
+commons-lang-2.6.jar          | 10    | org.apache.commons.lang (+9 subpackages)          |
+commons-logging-1.2.jar       | 2     | org.apache.commons.logging (+1 subpackage)        |
+commons-net-3.3.jar           | 20    | org.apache.commons.net (+19 subpackages)          |
+commons-pool2-2.6.0.jar       | 3     | org.apache.commons.pool2 (+2 subpackages)         |
 

@@ -43,7 +43,7 @@ public class PackagesAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		// map from JAR file name to package Names
+		// map from JAR file name to package names
 		MultiMap<String, String> map = new MultiMap<>();
 
 		// for every JAR file ...
@@ -67,16 +67,59 @@ public class PackagesAnalyzer extends Analyzer {
 			}
 		}
 
-		ReportTable table = new ReportTable("JAR file", "Count", "Packages");
+		// map from package name to JAR file names
+		MultiMap<String, String> packageToJarFile = map.invert();
+
+		ReportTable table = new ReportTable("JAR file", "Count", "Packages", "Issues");
 
 		// for every JAR file ...
 		for (String fileName : map.getKeys()) {
 			Set<String> packageNames = map.getValues(fileName);
 			List<String> packageGroups = getPackageGroups(packageNames, map, fileName);
-			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups));
+			List<String> issues = findIssues(packageNames, packageToJarFile, fileName);
+			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
 		}
 
 		return table;
+	}
+
+	private List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile, String jarFileName) {
+		List<String> issues = new ArrayList<>();
+
+		// check if any package is found in more than one JAR file
+		for (String packageName : packageNames) {
+			Set<String> jarFileNames = packageToJarFile.getValues(packageName);
+			if (jarFileNames.size() > 1) {
+				issues.add("Split Package: " + packageName);
+			}
+		}
+
+		// check if packages have different roots
+		List<String> rootPackageNames = getRootPackageNames(packageNames);
+		if (rootPackageNames.size() > 1) {
+			String roots = rootPackageNames.stream()
+					.map(packageName -> {
+						if (packageNames.contains(packageName)) {
+							return packageName;
+						} else {
+							return packageName + ".*";
+						}
+					})
+					.collect(Collectors.joining(", "));
+			issues.add("Fat JAR: " + roots);
+		}
+
+		return issues;
+	}
+
+	private List<String> getRootPackageNames(Set<String> packageNames) {
+		return packageNames.stream().map(packageName -> {
+			if (packageName.startsWith("org.") || packageName.startsWith("com.") || packageName.startsWith("net.")) {
+				return getParentPackage(packageName, 2);
+			} else {
+				return getParentPackage(packageName, 1);
+			}
+		}).distinct().sorted().collect(Collectors.toList());
 	}
 
 	private List<String> getPackageGroups(Set<String> packageNames, MultiMap<String, String> map, String fileName) {

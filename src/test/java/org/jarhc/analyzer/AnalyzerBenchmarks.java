@@ -116,10 +116,4 @@ public class AnalyzerBenchmarks {
 		analyzer.analyze(classpath);
 	}
 
-	@Benchmark
-	public void test_SplitPackagesAnalyzer() {
-		Analyzer analyzer = new SplitPackagesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
 }
