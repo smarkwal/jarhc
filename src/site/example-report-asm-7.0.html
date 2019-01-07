@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ASM 7.0</title>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<h1>ASM 7.0</h1>
+
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#JARFiles">JAR Files</a></li>
+<li><a href="#ClassVersions">Class Versions</a></li>
+<li><a href="#JARDependencies">JAR Dependencies</a></li>
+<li><a href="#Packages">Packages</a></li>
+<li><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li><a href="#ShadowedClasses">Shadowed Classes</a></li>
+<li><a href="#MissingClasses">Missing Classes</a></li>
+<li><a href="#FieldReferences">Field References</a></li>
+<li><a href="#Blacklist">Blacklist</a></li>
+<li><a href="#DuplicateResources">Duplicate Resources</a></li>
+</ul>
+
+<section id="JARFiles">
+<h2>JAR Files</h2>
+<p>List of JAR files found in classpath.</p>
+<table>
+	<tr><th>JAR file</th><th>Size</th><th>Classes</th><th>Resources</th><th>Multi-release</th><th>Module</th><th>Checksum (SHA-1)</th><th>Artifact coordinates</th></tr>
+	<tr><td>asm-7.0.jar</td><td>111 KB</td><td>36</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm)</td><td>d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912</td><td>org.ow2.asm:asm:7.0:jar</td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>32.5 KB</td><td>15</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm.tree.analysis)</td><td>4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f</td><td>org.ow2.asm:asm-analysis:7.0:jar</td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>78.0 KB</td><td>33</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm.commons)</td><td>478006d07b7c561ae3a92ddc1829bca81ae0cdd1</td><td>org.ow2.asm:asm-commons:7.0:jar</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>49.2 KB</td><td>38</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm.tree)</td><td>29bc62dcb85573af6e62e5b2d735ef65966c4180</td><td>org.ow2.asm:asm-tree:7.0:jar</td></tr>
+	<tr><td>Classpath</td><td>271 KB</td><td>122</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</section>
+
+<section id="ClassVersions">
+<h2>Class Versions</h2>
+<p>Java class file format information.</p>
+<table>
+	<tr><th>JAR file</th><th>Java version</th></tr>
+	<tr><td>asm-7.0.jar</td><td>Java 9 (1), Java 5 (35)</td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>Java 9 (1), Java 5 (14)</td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>Java 9 (1), Java 5 (32)</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>Java 9 (1), Java 5 (37)</td></tr>
+	<tr><td>Classpath</td><td>Java 9 (4), Java 5 (118)</td></tr>
+</table>
+</section>
+
+<section id="JARDependencies">
+<h2>JAR Dependencies</h2>
+<p>Dependencies between JAR files.</p>
+<table>
+	<tr><th>JAR file</th><th>Uses</th><th>Used by</th></tr>
+	<tr><td>asm-7.0.jar</td><td>[none]</td><td>asm-analysis-7.0.jar<br>asm-commons-7.0.jar<br>asm-tree-7.0.jar</td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>asm-7.0.jar<br>asm-tree-7.0.jar</td><td>[none]</td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>asm-7.0.jar<br>asm-tree-7.0.jar</td><td>[none]</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>asm-7.0.jar</td><td>asm-analysis-7.0.jar<br>asm-commons-7.0.jar</td></tr>
+</table>
+</section>
+
+<section id="Packages">
+<h2>Packages</h2>
+<p>List of packages per JAR file.</p>
+<table>
+	<tr><th>JAR file</th><th>Count</th><th>Packages</th><th>Issues</th></tr>
+	<tr><td>asm-7.0.jar</td><td>2</td><td>org.objectweb.asm<br>org.objectweb.asm.signature</td><td></td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>1</td><td>org.objectweb.asm.tree.analysis</td><td></td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>1</td><td>org.objectweb.asm.commons</td><td></td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>1</td><td>org.objectweb.asm.tree</td><td></td></tr>
+</table>
+</section>
+
+<section id="DuplicateClasses">
+<h2>Duplicate Classes</h2>
+<p>Classes found in multiple JAR files.</p>
+<table>
+	<tr><th>Class name</th><th>JAR files</th><th>Similarity</th></tr>
+</table>
+</section>
+
+<section id="ShadowedClasses">
+<h2>Shadowed Classes</h2>
+<p>Classes shadowing JRE/JDK classes.<br>Java home   : C:\Program Files\Java\jdk1.8.0_144\jre<br>Java runtime: Java(TM) SE Runtime Environment<br>Java version: 1.8.0_144<br>Java vendor : Oracle Corporation</p>
+<table>
+	<tr><th>Class name</th><th>JAR file</th><th>Class loader</th><th>Similarity</th></tr>
+</table>
+</section>
+
+<section id="MissingClasses">
+<h2>Missing Classes</h2>
+<p>References to classes not found on the classpath.</p>
+<table>
+	<tr><th>JAR file</th><th>Missing class</th></tr>
+</table>
+</section>
+
+<section id="FieldReferences">
+<h2>Field References</h2>
+<p>Problems with field access.</p>
+<table>
+	<tr><th>JAR File</th><th>Errors</th></tr>
+</table>
+</section>
+
+<section id="Blacklist">
+<h2>Blacklist</h2>
+<p>Use of unsafe or dangerous classes and methods.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+</table>
+</section>
+
+<section id="DuplicateResources">
+<h2>Duplicate Resources</h2>
+<p>Resources found in multiple JAR files.</p>
+<table>
+	<tr><th>Resource path</th><th>JAR files</th><th>Similarity</th></tr>
+</table>
+</section>
+
+</body>
+</html>

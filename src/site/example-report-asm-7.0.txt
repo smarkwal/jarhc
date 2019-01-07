@@ -1,0 +1,101 @@
+ASM 7.0
+=======
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file             | Size    | Classes | Resources | Multi-release | Module                                | Checksum (SHA-1)                         | Artifact coordinates
+---------------------+---------+---------+-----------+---------------+---------------------------------------+------------------------------------------+---------------------------------
+asm-7.0.jar          | 111 KB  | 36      | 0         | No            | Yes (org.objectweb.asm)               | d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 | org.ow2.asm:asm:7.0:jar
+asm-analysis-7.0.jar | 32.5 KB | 15      | 0         | No            | Yes (org.objectweb.asm.tree.analysis) | 4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f | org.ow2.asm:asm-analysis:7.0:jar
+asm-commons-7.0.jar  | 78.0 KB | 33      | 0         | No            | Yes (org.objectweb.asm.commons)       | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0:jar
+asm-tree-7.0.jar     | 49.2 KB | 38      | 0         | No            | Yes (org.objectweb.asm.tree)          | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0:jar
+Classpath            | 271 KB  | 122     | 0         | -             | -                                     | -                                        | -
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file             | Java version
+---------------------+-------------------------
+asm-7.0.jar          | Java 9 (1), Java 5 (35)
+asm-analysis-7.0.jar | Java 9 (1), Java 5 (14)
+asm-commons-7.0.jar  | Java 9 (1), Java 5 (32)
+asm-tree-7.0.jar     | Java 9 (1), Java 5 (37)
+Classpath            | Java 9 (4), Java 5 (118)
+
+JAR Dependencies
+----------------
+Dependencies between JAR files.
+
+JAR file             | Uses             | Used by
+---------------------+------------------+---------------------
+asm-7.0.jar          | [none]           | asm-analysis-7.0.jar
+                     |                  | asm-commons-7.0.jar
+                     |                  | asm-tree-7.0.jar
+asm-analysis-7.0.jar | asm-7.0.jar      | [none]
+                     | asm-tree-7.0.jar |
+asm-commons-7.0.jar  | asm-7.0.jar      | [none]
+                     | asm-tree-7.0.jar |
+asm-tree-7.0.jar     | asm-7.0.jar      | asm-analysis-7.0.jar
+                     |                  | asm-commons-7.0.jar
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file             | Count | Packages                        | Issues
+---------------------+-------+---------------------------------+-------
+asm-7.0.jar          | 2     | org.objectweb.asm               |
+                     |       | org.objectweb.asm.signature     |
+asm-analysis-7.0.jar | 1     | org.objectweb.asm.tree.analysis |
+asm-commons-7.0.jar  | 1     | org.objectweb.asm.commons       |
+asm-tree-7.0.jar     | 1     | org.objectweb.asm.tree          |
+
+Duplicate Classes
+-----------------
+Classes found in multiple JAR files.
+
+Class name | JAR files | Similarity
+-----------+-----------+-----------
+
+Shadowed Classes
+----------------
+Classes shadowing JRE/JDK classes.
+Java home   : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime: Java(TM) SE Runtime Environment
+Java version: 1.8.0_144
+Java vendor : Oracle Corporation
+
+Class name | JAR file | Class loader | Similarity
+-----------+----------+--------------+-----------
+
+Missing Classes
+---------------
+References to classes not found on the classpath.
+
+JAR file | Missing class
+---------+--------------
+
+Field References
+----------------
+Problems with field access.
+
+JAR File | Errors
+---------+-------
+
+Blacklist
+---------
+Use of unsafe or dangerous classes and methods.
+
+JAR file | Issues
+---------+-------
+
+Duplicate Resources
+-------------------
+Resources found in multiple JAR files.
+
+Resource path | JAR files | Similarity
+--------------+-----------+-----------
+
