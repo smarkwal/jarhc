@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2019 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,12 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.model.*;
+import org.jarhc.model.ClassDef;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.IOUtils;
-import org.jarhc.utils.JavaUtils;
-import org.objectweb.asm.Type;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.FieldNode;
-import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.ClassReader;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Loader for class definitions, using a file or a stream as source.
@@ -41,11 +35,6 @@ public class ClassDefLoader {
 	private final String classLoader;
 
 	/**
-	 * The parser used to load a class file.
-	 */
-	private final ClassFileParser classFileParser;
-
-	/**
 	 * Flag used to control whether the Java class should be scanned for
 	 * references to other classes, methods and fields.
 	 */
@@ -55,12 +44,10 @@ public class ClassDefLoader {
 	 * Creates a new class definition loader.
 	 *
 	 * @param classLoader       Name of class loader, for example "Classpath" or "Bootstrap"
-	 * @param classFileParser   Class file parser.
 	 * @param scanForReferences Set to <code>true</code> to have this loader find
 	 */
-	public ClassDefLoader(String classLoader, ClassFileParser classFileParser, boolean scanForReferences) {
+	public ClassDefLoader(String classLoader, boolean scanForReferences) {
 		this.classLoader = classLoader;
-		this.classFileParser = classFileParser;
 		this.scanForReferences = scanForReferences;
 	}
 
@@ -101,95 +88,17 @@ public class ClassDefLoader {
 		String classFileChecksum = DigestUtils.sha1Hex(data);
 		stream = new ByteArrayInputStream(data);
 
-		ClassNode classNode = classFileParser.parse(stream);
+		ClassDefBuilder classDefBuilder = new ClassDefBuilder(scanForReferences);
 
-		// find all field and method definitions
-		List<FieldDef> fieldDefs = getFieldDefs(classNode);
-		List<MethodDef> methodDefs = getMethodDefs(classNode);
+		ClassReader classReader = new ClassReader(stream);
+		classReader.accept(classDefBuilder, 0);
 
-		List<ClassRef> classRefs = new ArrayList<>();
-		List<FieldRef> fieldRefs = new ArrayList<>();
-		List<MethodRef> methodRefs = new ArrayList<>();
-		if (scanForReferences) {
-			// find all references to other classes, fields and methods
-			ClassScanner scanner = new ClassScanner();
-			scanner.scan(classNode);
-			classRefs.addAll(scanner.getClassRefs());
-			fieldRefs.addAll(scanner.getFieldRefs());
-			methodRefs.addAll(scanner.getMethodRefs());
-		}
+		ClassDef classDef = classDefBuilder.getClassDef();
 
-		// create class definition
-		ClassDef classDef = new ClassDef(JavaUtils.toExternalName(classNode.name));
-		classDef.setAccess(classNode.access);
-
-		if (classNode.superName == null) {
-			classDef.setSuperName(null); // only java.lang.Object does not have a superclass
-		} else {
-			classDef.setSuperName(JavaUtils.toExternalName(classNode.superName));
-		}
-
-		for (String interfaceName : classNode.interfaces) {
-			classDef.addInterfaceName(JavaUtils.toExternalName(interfaceName));
-		}
-
-		classDef.setMajorClassVersion(classNode.version & 0xFF);
-		classDef.setMinorClassVersion(classNode.version >> 16);
 		classDef.setClassLoader(classLoader);
 		classDef.setClassFileChecksum(classFileChecksum);
 
-		for (FieldDef fieldDef : fieldDefs) {
-			classDef.addFieldDef(fieldDef);
-		}
-
-		for (MethodDef methodDef : methodDefs) {
-			classDef.addMethodDef(methodDef);
-		}
-
-		for (ClassRef classRef : classRefs) {
-			classDef.addClassRef(classRef);
-		}
-
-		for (FieldRef fieldRef : fieldRefs) {
-			classDef.addFieldRef(fieldRef);
-		}
-
-		for (MethodRef methodRef : methodRefs) {
-			classDef.addMethodRef(methodRef);
-		}
-
 		return classDef;
-
-	}
-
-	private List<FieldDef> getFieldDefs(ClassNode classNode) {
-		// for every field in the class ...
-		List<FieldDef> fieldDefs = new ArrayList<>();
-		for (FieldNode fieldNode : classNode.fields) {
-			// create field definition
-			int fieldAccess = fieldNode.access;
-			String fieldName = fieldNode.name;
-			String fieldType = Type.getType(fieldNode.desc).getClassName();
-			FieldDef fieldDef = new FieldDef(fieldAccess, fieldName, fieldType);
-			fieldDefs.add(fieldDef);
-		}
-		return fieldDefs;
-	}
-
-	private List<MethodDef> getMethodDefs(ClassNode classNode) {
-		// for every method in the class ...
-		List<MethodDef> methodDefs = new ArrayList<>();
-		for (MethodNode methodNode : classNode.methods) {
-
-			int methodAccess = methodNode.access;
-			String methodName = methodNode.name;
-			String methodDescriptor = methodNode.desc;
-
-			// create method definition
-			MethodDef methodDef = new MethodDef(methodAccess, methodName, methodDescriptor);
-			methodDefs.add(methodDef);
-		}
-		return methodDefs;
 	}
 
 }

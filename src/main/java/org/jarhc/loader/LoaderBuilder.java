@@ -44,7 +44,7 @@ public class LoaderBuilder {
 	}
 
 	public ClassDefLoader buildClassDefLoader() {
-		return new ClassDefLoader(classLoader, classFileParser, scanForReferences);
+		return new ClassDefLoader(classLoader, scanForReferences);
 	}
 
 	public ModuleInfoLoader buildModuleInfoLoader() {

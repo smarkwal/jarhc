@@ -66,8 +66,22 @@ public class JavaUtils {
 		return Arrays.stream(methodType.getArgumentTypes()).map(Type::getClassName).collect(Collectors.toList());
 	}
 
+	public static String getFieldType(String fieldDescriptor) {
+		return Type.getType(fieldDescriptor).getClassName();
+	}
+
 	public static String toExternalName(String name) {
 		return name.replace('/', '.');
+	}
+
+	public static boolean isArrayType(String type) {
+		return type.endsWith("[]");
+	}
+
+	public static String getArrayElementType(String type) {
+		int pos = type.indexOf('[');
+		if (pos < 0) throw new IllegalArgumentException("Not an array type: " + type);
+		return type.substring(0, pos);
 	}
 
 }
