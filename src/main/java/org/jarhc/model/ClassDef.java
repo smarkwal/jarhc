@@ -18,7 +18,6 @@ package org.jarhc.model;
 
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.JavaVersion;
-import org.objectweb.asm.tree.ClassNode;
 
 import java.util.*;
 
@@ -28,25 +27,44 @@ import java.util.*;
 public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 
 	/**
-	 * ASM class definition.
+	 * Class name.
 	 */
-	private final ClassNode classNode;
+	private String className;
 
 	/**
-	 * Name of the class loader.
+	 * Name of superclass.
 	 */
-	private final String classLoader;
+	private String superName = "java.lang.Object";
+
+	/**
+	 * List of interfaces implemented by this class.
+	 */
+	private final List<String> interfaceNames = new ArrayList<>();
+
+	/**
+	 * Major class file version.
+	 */
+	private int majorClassVersion = 52;
+
+	/**
+	 * Minor class file version.
+	 */
+	private int minorClassVersion = 0;
+
+	/**
+	 * Name of the class loader used to load this class.
+	 */
+	private String classLoader = "Classpath";
 
 	/**
 	 * Class file checksum.
 	 */
-	private final String classFileChecksum;
+	private String classFileChecksum = null;
 
 	/**
 	 * List of field definitions.
 	 */
-	private final List<FieldDef> fieldDefs;
-
+	private final List<FieldDef> fieldDefs = new ArrayList<>();
 
 	/**
 	 * Fast lookup map for field definition given the field name.
@@ -56,22 +74,22 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	/**
 	 * List of method definitions.
 	 */
-	private final List<MethodDef> methodDefs;
+	private final List<MethodDef> methodDefs = new ArrayList<>();
 
 	/**
 	 * List with references to other classes.
 	 */
-	private final List<ClassRef> classRefs;
+	private final List<ClassRef> classRefs = new ArrayList<>();
 
 	/**
 	 * List with references to fields.
 	 */
-	private final List<FieldRef> fieldRefs;
+	private final List<FieldRef> fieldRefs = new ArrayList<>();
 
 	/**
 	 * List with references to methods.
 	 */
-	private final List<MethodRef> methodRefs;
+	private final List<MethodRef> methodRefs = new ArrayList<>();
 
 	/**
 	 * Reference to parent JAR file.
@@ -79,69 +97,67 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	private JarFile jarFile;
 
 	/**
-	 * Create a class definition for the given class and class references.
+	 * Create a class definition for the given class name.
 	 *
-	 * @param classNode   ASM class definition
-	 * @param classLoader Name of class loader
-	 * @param classRefs   References to other classes
-	 * @throws IllegalArgumentException If <code>classNode</code> or <code>classRefs</code> is <code>null</code>
+	 * @param className Class name
 	 */
-	private ClassDef(ClassNode classNode, String classLoader, String classFileChecksum, List<FieldDef> fieldDefs, List<MethodDef> methodDefs, List<ClassRef> classRefs, List<FieldRef> fieldRefs, List<MethodRef> methodRefs) {
-		super(classNode.access);
-		if (classNode == null) throw new IllegalArgumentException("classNode");
-		if (classRefs == null) throw new IllegalArgumentException("classRefs");
-		this.classNode = classNode;
-		this.classLoader = classLoader;
-		this.classFileChecksum = classFileChecksum;
-		this.fieldDefs = new ArrayList<>(fieldDefs);
-		this.methodDefs = new ArrayList<>(methodDefs);
-		this.classRefs = new ArrayList<>(classRefs);
-		this.fieldRefs = new ArrayList<>(fieldRefs);
-		this.methodRefs = new ArrayList<>(methodRefs);
-		// TODO: remove unused information from class node?
+	public ClassDef(String className) {
+		super(0);
+		this.className = className;
+	}
 
-		// for every field definition ...
-		this.fieldDefs.forEach(fieldDef -> {
-
-			// set reference to this class definition in field definition
-			fieldDef.setClassDef(this);
-
-			// add field definition to fast lookup map
-			String fieldName = fieldDef.getFieldName();
-			fieldDefsMap.put(fieldName, fieldDef);
-		});
-
-		// for every method definition ...
-		this.methodDefs.forEach(methodDef -> {
-
-			// set reference to this class definition in method definition
-			methodDef.setClassDef(this);
-
-			// TODO: add method definition to fast lookup map?
-			// String methodName = methodDef.getMethodName();
-			// methodDefsMap.put(methodName, methodDef);
-		});
-
+	public static ClassDef forClassName(String className) {
+		return new ClassDef(className);
 	}
 
 	public String getClassName() {
-		return classNode.name;
+		return className;
+	}
+
+	public ClassDef setClassName(String className) {
+		this.className = className;
+		return this;
 	}
 
 	public String getSuperName() {
-		return classNode.superName;
+		return superName;
+	}
+
+	public ClassDef setSuperName(String superName) {
+		this.superName = superName;
+		return this;
 	}
 
 	public List<String> getInterfaceNames() {
-		return Collections.unmodifiableList(classNode.interfaces);
+		return Collections.unmodifiableList(interfaceNames);
+	}
+
+	public ClassDef addInterfaceNames(List<String> interfaceNames) {
+		interfaceNames.forEach(this::addInterfaceName);
+		return this;
+	}
+
+	public ClassDef addInterfaceName(String interfaceName) {
+		this.interfaceNames.add(interfaceName);
+		return this;
 	}
 
 	public int getMajorClassVersion() {
-		return classNode.version & 0xFF;
+		return majorClassVersion;
+	}
+
+	public ClassDef setMajorClassVersion(int majorClassVersion) {
+		this.majorClassVersion = majorClassVersion;
+		return this;
 	}
 
 	public int getMinorClassVersion() {
-		return classNode.version >> 16;
+		return minorClassVersion;
+	}
+
+	public ClassDef setMinorClassVersion(int minorClassVersion) {
+		this.minorClassVersion = minorClassVersion;
+		return this;
 	}
 
 	/**
@@ -158,8 +174,18 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return classLoader;
 	}
 
+	public ClassDef setClassLoader(String classLoader) {
+		this.classLoader = classLoader;
+		return this;
+	}
+
 	public String getClassFileChecksum() {
 		return classFileChecksum;
+	}
+
+	public ClassDef setClassFileChecksum(String classFileChecksum) {
+		this.classFileChecksum = classFileChecksum;
+		return this;
 	}
 
 	/**
@@ -180,10 +206,10 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 */
 	private String getApiDescription() {
 		StringBuilder api = new StringBuilder();
-		api.append(getModifiers()).append(" ").append(classNode.name);
+		api.append(getModifiers()).append(" ").append(className);
 		// add superclass and interfaces
-		api.append("\nextends: ").append(classNode.superName);
-		api.append("\nimplements: ").append(classNode.interfaces);
+		api.append("\nextends: ").append(superName);
+		api.append("\nimplements: ").append(interfaceNames);
 		// TODO: add annotations for class, fields and methods?
 		// add all fields
 		fieldDefs.stream()
@@ -213,20 +239,58 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return Optional.ofNullable(fieldDef);
 	}
 
+	public ClassDef addFieldDef(FieldDef fieldDef) {
+		this.fieldDefs.add(fieldDef);
+		fieldDef.setClassDef(this);
+		this.fieldDefsMap.put(fieldDef.getFieldName(), fieldDef);
+		return this;
+	}
+
+	public ClassDef addFieldDefs(Collection<FieldDef> fieldDefs) {
+		fieldDefs.forEach(this::addFieldDef);
+		return this;
+	}
+
 	public List<MethodDef> getMethodDefs() {
 		return Collections.unmodifiableList(methodDefs);
+	}
+
+	public ClassDef addMethodDef(MethodDef methodDef) {
+		this.methodDefs.add(methodDef);
+		methodDef.setClassDef(this);
+		return this;
+	}
+
+	public ClassDef addMethodDefs(Collection<MethodDef> methodDefs) {
+		methodDefs.forEach(this::addMethodDef);
+		return this;
 	}
 
 	public List<ClassRef> getClassRefs() {
 		return Collections.unmodifiableList(classRefs);
 	}
 
+	public ClassDef addClassRef(ClassRef classRef) {
+		this.classRefs.add(classRef);
+		return this;
+	}
+
 	public List<FieldRef> getFieldRefs() {
 		return Collections.unmodifiableList(fieldRefs);
 	}
 
+	public ClassDef addFieldRef(FieldRef fieldRef) {
+		this.fieldRefs.add(fieldRef);
+		return this;
+	}
+
 	public List<MethodRef> getMethodRefs() {
 		return Collections.unmodifiableList(methodRefs);
+	}
+
+	public ClassDef addMethodRef(MethodRef methodRef) {
+		this.methodRefs.add(methodRef);
+		return this;
 	}
 
 	public JarFile getJarFile() {
@@ -268,14 +332,13 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	}
 
 	public String getDisplayName() {
-		String className = classNode.name.replace('/', '.');
 		String modifiers = getModifiers();
 		return String.format("%s %s", modifiers, className);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("ClassDef[%s,%d.%d]", getDisplayName(), getMajorClassVersion(), getMinorClassVersion());
+		return String.format("ClassDef[%s,%d.%d]", getDisplayName(), majorClassVersion, minorClassVersion);
 	}
 
 	@Override
@@ -283,109 +346,6 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		int diff = this.getClassName().compareTo(classDef.getClassName());
 		if (diff != 0) return diff;
 		return System.identityHashCode(this) - System.identityHashCode(classDef);
-	}
-
-	// BUILDER --------------------------------------------------------------------------------------
-
-	public static Builder forClassNode(ClassNode classNode) {
-		return new Builder(classNode);
-	}
-
-	public static Builder forClassName(String className) {
-		if (className.contains(".")) throw new IllegalArgumentException(className);
-		return new Builder(className);
-	}
-
-	public static class Builder {
-
-		private final ClassNode classNode;
-		private String classLoader = "Classpath";
-		private String classFileChecksum;
-		private final List<FieldDef> fieldDefs = new ArrayList<>();
-		private final List<MethodDef> methodDefs = new ArrayList<>();
-		private final List<ClassRef> classRefs = new ArrayList<>();
-		private final List<FieldRef> fieldRefs = new ArrayList<>();
-		private final List<MethodRef> methodRefs = new ArrayList<>();
-
-		private Builder(ClassNode classNode) {
-			this.classNode = classNode;
-		}
-
-		private Builder(String className) {
-			this.classNode = new ClassNode();
-			this.classNode.name = className;
-			this.classNode.version = 52; // Java 8
-		}
-
-		public Builder withAccess(int access) {
-			this.classNode.access = access;
-			return this;
-		}
-
-		public Builder withVersion(int majorClassVersion, int minorClassVersion) {
-			this.classNode.version = majorClassVersion + (minorClassVersion << 16);
-			return this;
-		}
-
-		public Builder withSuperName(String superName) {
-			this.classNode.superName = superName;
-			return this;
-		}
-
-		public Builder withInterfaceNames(List<String> interfaces) {
-			this.classNode.interfaces.addAll(interfaces);
-			return this;
-		}
-
-		public Builder withInterfaceName(String interfaceName) {
-			this.classNode.interfaces.add(interfaceName);
-			return this;
-		}
-
-		public Builder withClassFileChecksum(String classFileChecksum) {
-			this.classFileChecksum = classFileChecksum;
-			return this;
-		}
-
-		public Builder withClassLoader(String classLoader) {
-			this.classLoader = classLoader;
-			return this;
-		}
-
-		public Builder withFieldDefs(List<FieldDef> fieldDefs) {
-			this.fieldDefs.addAll(fieldDefs);
-			return this;
-		}
-
-		public Builder withMethodDefs(List<MethodDef> methodDefs) {
-			this.methodDefs.addAll(methodDefs);
-			return this;
-		}
-
-		public Builder withClassRefs(List<ClassRef> classRefs) {
-			this.classRefs.addAll(classRefs);
-			return this;
-		}
-
-		public Builder withClassRef(ClassRef classRef) {
-			this.classRefs.add(classRef);
-			return this;
-		}
-
-		public Builder withFieldRefs(List<FieldRef> fieldRefs) {
-			this.fieldRefs.addAll(fieldRefs);
-			return this;
-		}
-
-		public Builder withMethodRefs(List<MethodRef> methodRefs) {
-			this.methodRefs.addAll(methodRefs);
-			return this;
-		}
-
-		public ClassDef build() {
-			return new ClassDef(classNode, classLoader, classFileChecksum, fieldDefs, methodDefs, classRefs, fieldRefs, methodRefs);
-		}
-
 	}
 
 }

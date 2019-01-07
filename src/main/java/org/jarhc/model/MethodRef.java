@@ -16,17 +16,18 @@
 
 package org.jarhc.model;
 
-import org.objectweb.asm.Type;
+import org.jarhc.utils.JavaUtils;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MethodRef implements Comparable<MethodRef> {
 
 	private final String methodOwner;
 	private final String methodDescriptor;
 	private final String methodName;
+	private final String returnType;
+	private final List<String> parameterTypes;
 	private final boolean interfaceMethod;
 	private final boolean staticAccess;
 
@@ -36,6 +37,10 @@ public class MethodRef implements Comparable<MethodRef> {
 		this.methodName = methodName;
 		this.interfaceMethod = interfaceMethod;
 		this.staticAccess = staticAccess;
+
+		// create return type and parameter types from descriptor
+		this.returnType = JavaUtils.getReturnType(methodDescriptor);
+		this.parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 	}
 
 	public String getMethodOwner() {
@@ -59,14 +64,10 @@ public class MethodRef implements Comparable<MethodRef> {
 	}
 
 	public String getDisplayName() {
-		String className = this.methodOwner.replace('/', '.');
-		Type methodType = Type.getType(methodDescriptor);
-		String returnType = methodType.getReturnType().getClassName();
-		String argumentTypes = "(" + Arrays.stream(methodType.getArgumentTypes()).map(Type::getClassName).collect(Collectors.joining(",")) + ")";
 		if (staticAccess) {
-			return String.format("static %s %s.%s%s", returnType, className, methodName, argumentTypes);
+			return String.format("static %s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
 		} else {
-			return String.format("%s %s.%s%s", returnType, className, methodName, argumentTypes);
+			return String.format("%s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
 		}
 	}
 

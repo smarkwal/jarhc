@@ -19,6 +19,7 @@ package org.jarhc.java;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
+import org.jarhc.utils.JavaUtils;
 
 import java.lang.reflect.Modifier;
 import java.util.List;
@@ -168,15 +169,9 @@ public class AccessCheck {
 	}
 
 	private boolean inSamePackage(String sourceClassName, String targetClassName) {
-		String sourcePackage = getPackage(sourceClassName);
-		String targetPackage = getPackage(targetClassName);
+		String sourcePackage = JavaUtils.getPackageName(sourceClassName);
+		String targetPackage = JavaUtils.getPackageName(targetClassName);
 		return sourcePackage.equals(targetPackage);
-	}
-
-	private static String getPackage(String className) {
-		int pos = className.lastIndexOf('/');
-		if (pos < 0) return "";
-		return className.substring(0, pos);
 	}
 
 }

@@ -37,16 +37,16 @@ class JarFilesAnalyzerTest {
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar", 128)
-				.addClassDef("a/A")
+				.addClassDef("a.A")
 				.addResourceDef("a/a.txt")
 				.addJarFile("b.jar", 4096)
 				.addModuleInfo(ModuleInfo.forModuleName("b").exports("b").requires("java.base").build())
-				.addClassDef("b/B1")
-				.addClassDef("b/B2")
+				.addClassDef("b.B1")
+				.addClassDef("b.B2")
 				.addJarFile("c.jar", 24000)
 				.addRelease(9)
 				.addRelease(11)
-				.addClassDef("c/C")
+				.addClassDef("c.C")
 				.addJarFile("d.jar", 1234567) // no class files
 				.build();
 

@@ -23,7 +23,6 @@ import org.jarhc.java.ClassResolverImpl;
 import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-import org.jarhc.utils.JavaUtils;
 
 import java.util.*;
 
@@ -104,7 +103,7 @@ public class FieldRefAnalyzer extends Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("- " + JavaUtils.toExternalName(targetClassName) + " (owner class not found)");
+				searchResult.addSearchInfo("- " + targetClassName + " (owner class not found)");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -119,7 +118,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + JavaUtils.toExternalName(className) + " to class: " + JavaUtils.toExternalName(targetClassName));
+			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
 			return searchResult;
 		}
 
@@ -138,11 +137,11 @@ public class FieldRefAnalyzer extends Analyzer {
 		access = accessCheck.hasAccess(classDef, field);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + JavaUtils.toExternalName(className) + ": " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + className + ": " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
 		}
 
 		// check field type
-		if (!field.getFieldDescriptor().equals(fieldRef.getFieldDescriptor())) {
+		if (!field.getFieldType().equals(fieldRef.getFieldType())) {
 			searchResult.addErrorMessage("Incompatible field type: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
 		}
 
@@ -173,8 +172,6 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		// TODO: use a cache for field definitions like System.out, System.err, ...
 
-		String realClassName = targetClassName.replace('/', '.');
-
 		// if class has already been scanned ...
 		if (!scannedClasses.add(targetClassName)) {
 			// field not found
@@ -187,7 +184,7 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		// if class has not been found ...
 		if (targetClassDef == null) {
-			searchResult.addSearchInfo("- " + realClassName + " (class not found)");
+			searchResult.addSearchInfo("- " + targetClassName + " (class not found)");
 			// class not found -> field not found
 			return Optional.empty();
 		}
@@ -196,12 +193,12 @@ public class FieldRefAnalyzer extends Analyzer {
 		String fieldName = fieldRef.getFieldName();
 		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
 		if (fieldDef.isPresent()) {
-			searchResult.addSearchInfo("- " + realClassName + " (field found)");
+			searchResult.addSearchInfo("- " + targetClassName + " (field found)");
 			return fieldDef;
 		}
 
 		// field not found in target class
-		searchResult.addSearchInfo("- " + realClassName + " (field not found)");
+		searchResult.addSearchInfo("- " + targetClassName + " (field not found)");
 
 		// try to find field in interfaces first
 		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)

@@ -17,7 +17,6 @@
 package org.jarhc.model;
 
 import org.jarhc.java.ClassResolver;
-import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 
 import java.util.*;
@@ -95,7 +94,6 @@ public class Classpath implements ClassResolver {
 	 * @return Class definitions, or <code>null</code>
 	 */
 	public Set<ClassDef> getClassDefs(String className) {
-		className = JavaUtils.toInternalName(className);
 		return classDefsMap.getValues(className);
 	}
 

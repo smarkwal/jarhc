@@ -26,13 +26,13 @@ public class ClassRefTest {
 	void test_toString() {
 
 		// prepare
-		ClassRef classRef = new ClassRef("a/A");
+		ClassRef classRef = new ClassRef("a.A");
 
 		// test
 		String result = classRef.toString();
 
 		// assert
-		assertEquals("ClassRef[a/A]", result);
+		assertEquals("ClassRef[a.A]", result);
 
 	}
 

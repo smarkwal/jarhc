@@ -19,6 +19,8 @@ package org.jarhc.loader;
 import org.jarhc.model.*;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.IOUtils;
+import org.jarhc.utils.JavaUtils;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -118,15 +120,46 @@ public class ClassDefLoader {
 		}
 
 		// create class definition
-		return ClassDef.forClassNode(classNode)
-				.withClassLoader(classLoader)
-				.withClassFileChecksum(classFileChecksum)
-				.withFieldDefs(fieldDefs)
-				.withMethodDefs(methodDefs)
-				.withClassRefs(classRefs)
-				.withFieldRefs(fieldRefs)
-				.withMethodRefs(methodRefs)
-				.build();
+		ClassDef classDef = new ClassDef(JavaUtils.toExternalName(classNode.name));
+		classDef.setAccess(classNode.access);
+
+		if (classNode.superName == null) {
+			classDef.setSuperName(null); // only java.lang.Object does not have a superclass
+		} else {
+			classDef.setSuperName(JavaUtils.toExternalName(classNode.superName));
+		}
+
+		for (String interfaceName : classNode.interfaces) {
+			classDef.addInterfaceName(JavaUtils.toExternalName(interfaceName));
+		}
+
+		classDef.setMajorClassVersion(classNode.version & 0xFF);
+		classDef.setMinorClassVersion(classNode.version >> 16);
+		classDef.setClassLoader(classLoader);
+		classDef.setClassFileChecksum(classFileChecksum);
+
+		for (FieldDef fieldDef : fieldDefs) {
+			classDef.addFieldDef(fieldDef);
+		}
+
+		for (MethodDef methodDef : methodDefs) {
+			classDef.addMethodDef(methodDef);
+		}
+
+		for (ClassRef classRef : classRefs) {
+			classDef.addClassRef(classRef);
+		}
+
+		for (FieldRef fieldRef : fieldRefs) {
+			classDef.addFieldRef(fieldRef);
+		}
+
+		for (MethodRef methodRef : methodRefs) {
+			classDef.addMethodRef(methodRef);
+		}
+
+		return classDef;
+
 	}
 
 	private List<FieldDef> getFieldDefs(ClassNode classNode) {
@@ -134,7 +167,10 @@ public class ClassDefLoader {
 		List<FieldDef> fieldDefs = new ArrayList<>();
 		for (FieldNode fieldNode : classNode.fields) {
 			// create field definition
-			FieldDef fieldDef = new FieldDef(fieldNode.access, fieldNode.name, fieldNode.desc);
+			int fieldAccess = fieldNode.access;
+			String fieldName = fieldNode.name;
+			String fieldType = Type.getType(fieldNode.desc).getClassName();
+			FieldDef fieldDef = new FieldDef(fieldAccess, fieldName, fieldType);
 			fieldDefs.add(fieldDef);
 		}
 		return fieldDefs;
@@ -144,8 +180,13 @@ public class ClassDefLoader {
 		// for every method in the class ...
 		List<MethodDef> methodDefs = new ArrayList<>();
 		for (MethodNode methodNode : classNode.methods) {
+
+			int methodAccess = methodNode.access;
+			String methodName = methodNode.name;
+			String methodDescriptor = methodNode.desc;
+
 			// create method definition
-			MethodDef methodDef = new MethodDef(methodNode.access, methodNode.name, methodNode.desc);
+			MethodDef methodDef = new MethodDef(methodAccess, methodName, methodDescriptor);
 			methodDefs.add(methodDef);
 		}
 		return methodDefs;

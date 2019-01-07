@@ -26,9 +26,9 @@ class JavaUtilsTest {
 	void test_getPackageName() {
 
 		assertEquals("", JavaUtils.getPackageName("A"));
-		assertEquals("a", JavaUtils.getPackageName("a/B"));
-		assertEquals("a.b", JavaUtils.getPackageName("a/b/C"));
-		assertEquals("a.b.c", JavaUtils.getPackageName("a/b/c/D"));
+		assertEquals("a", JavaUtils.getPackageName("a.B"));
+		assertEquals("a.b", JavaUtils.getPackageName("a.b.C"));
+		assertEquals("a.b.c", JavaUtils.getPackageName("a.b.c.D"));
 		assertEquals("java.lang", JavaUtils.getPackageName("java.lang.String"));
 		assertEquals("java.io", JavaUtils.getPackageName("java.io.InputStream"));
 		assertEquals("a.b.c.d", JavaUtils.getPackageName("a.b.c.d.E$F"));

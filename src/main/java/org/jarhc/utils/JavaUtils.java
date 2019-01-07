@@ -16,8 +16,13 @@
 
 package org.jarhc.utils;
 
+import org.objectweb.asm.Type;
+
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JavaUtils {
 
@@ -43,7 +48,6 @@ public class JavaUtils {
 	}
 
 	public static String getPackageName(String className) {
-		className = className.replace('/', '.');
 		if (className.contains(".")) {
 			int pos = className.lastIndexOf('.');
 			return className.substring(0, pos);
@@ -52,12 +56,18 @@ public class JavaUtils {
 		}
 	}
 
-	public static String toExternalName(String name) {
-		return name.replace('/', '.');
+	public static String getReturnType(String methodDescriptor) {
+		Type methodType = Type.getType(methodDescriptor);
+		return methodType.getReturnType().getClassName();
 	}
 
-	public static String toInternalName(String name) {
-		return name.replace('.', '/');
+	public static List<String> getParameterTypes(String methodDescriptor) {
+		Type methodType = Type.getType(methodDescriptor);
+		return Arrays.stream(methodType.getArgumentTypes()).map(Type::getClassName).collect(Collectors.toList());
+	}
+
+	public static String toExternalName(String name) {
+		return name.replace('/', '.');
 	}
 
 }

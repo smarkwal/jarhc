@@ -19,6 +19,7 @@ package org.jarhc.test;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
+import org.jarhc.utils.JavaUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -53,8 +54,8 @@ class ClassDefUtils {
 		for (int f = 0; f < numFieldDefs; f++) {
 			int access = stream.readInt();
 			String fieldName = stream.readUTF();
-			String fieldDescriptor = stream.readUTF();
-			FieldDef fieldDef = new FieldDef(access, fieldName, fieldDescriptor);
+			String fieldType = stream.readUTF();
+			FieldDef fieldDef = new FieldDef(access, fieldName, fieldType);
 			fieldDefs.add(fieldDef);
 		}
 
@@ -69,16 +70,17 @@ class ClassDefUtils {
 			methodDefs.add(methodDef);
 		}
 
-		return ClassDef.forClassName(className)
-				.withAccess(classAccess)
-				.withClassLoader(classLoader)
-				.withClassFileChecksum(classFileChecksum)
-				.withVersion(majorClassVersion, minorClassVersion)
-				.withSuperName(superName)
-				.withInterfaceNames(interfaceNames)
-				.withFieldDefs(fieldDefs)
-				.withMethodDefs(methodDefs)
-				.build();
+		ClassDef classDef = ClassDef.forClassName(className)
+				.setClassLoader(classLoader)
+				.setClassFileChecksum(classFileChecksum)
+				.setMajorClassVersion(majorClassVersion)
+				.setMinorClassVersion(minorClassVersion)
+				.setSuperName(superName)
+				.addInterfaceNames(interfaceNames)
+				.addFieldDefs(fieldDefs)
+				.addMethodDefs(methodDefs);
+		classDef.setAccess(classAccess);
+		return classDef;
 	}
 
 	static void write(ClassDef classDef, DataOutputStream stream) throws IOException {
@@ -114,7 +116,7 @@ class ClassDefUtils {
 		for (FieldDef fieldDef : fieldDefs) {
 			stream.writeInt(fieldDef.getAccess());
 			stream.writeUTF(fieldDef.getFieldName());
-			stream.writeUTF(fieldDef.getFieldDescriptor());
+			stream.writeUTF(fieldDef.getFieldType());
 		}
 
 		// write method definitions

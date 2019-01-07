@@ -136,7 +136,7 @@ class DefaultJavaRuntimeTest {
 
 		// assert
 		assertTrue(result.isPresent());
-		assertEquals("java/lang/String", result.get().getClassName());
+		assertEquals("java.lang.String", result.get().getClassName());
 
 	}
 
@@ -179,14 +179,14 @@ class DefaultJavaRuntimeTest {
 
 		// assert
 		assertTrue(result.isPresent());
-		assertEquals("java/lang/Integer", result.get().getClassName());
+		assertEquals("java.lang.Integer", result.get().getClassName());
 
 		// test 2: fetch again
 		Optional<ClassDef> result2 = javaRuntime.getClassDef("java.lang.Integer");
 
 		// assert
 		assertTrue(result2.isPresent());
-		assertEquals("java/lang/Integer", result2.get().getClassName());
+		assertEquals("java.lang.Integer", result2.get().getClassName());
 		assertSame(result2.get(), result.get());
 
 	}

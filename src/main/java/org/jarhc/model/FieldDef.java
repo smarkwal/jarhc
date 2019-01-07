@@ -16,31 +16,29 @@
 
 package org.jarhc.model;
 
-import org.objectweb.asm.Type;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class FieldDef extends AccessFlags {
 
 	private final String fieldName;
-	private final String fieldDescriptor;
+	private final String fieldType;
 	// TODO: initial value? e.g. constant string containing a class name
 	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
 	private ClassDef classDef;
 
-	public FieldDef(int access, String fieldName, String fieldDescriptor) {
+	public FieldDef(int access, String fieldName, String fieldType) {
 		super(access);
 		this.fieldName = fieldName;
-		this.fieldDescriptor = fieldDescriptor;
+		this.fieldType = fieldType;
 	}
 
 	public String getFieldName() {
 		return fieldName;
 	}
 
-	public String getFieldDescriptor() {
-		return fieldDescriptor;
+	public String getFieldType() {
+		return fieldType;
 	}
 
 	public ClassDef getClassDef() {
@@ -75,7 +73,6 @@ public class FieldDef extends AccessFlags {
 	}
 
 	public String getDisplayName() {
-		String fieldType = Type.getType(fieldDescriptor).getClassName();
 		String modifiers = getModifiers();
 		if (modifiers.isEmpty()) {
 			return String.format("%s %s", fieldType, fieldName);

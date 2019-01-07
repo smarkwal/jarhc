@@ -16,21 +16,19 @@
 
 package org.jarhc.model;
 
-import org.objectweb.asm.Type;
-
 import java.util.Objects;
 
 public class FieldRef implements Comparable<FieldRef> {
 
 	private final String fieldOwner;
-	private final String fieldDescriptor;
+	private final String fieldType;
 	private final String fieldName;
 	private final boolean staticAccess;
 	private final boolean writeAccess;
 
-	public FieldRef(String fieldOwner, String fieldDescriptor, String fieldName, boolean staticAccess, boolean writeAccess) {
+	public FieldRef(String fieldOwner, String fieldType, String fieldName, boolean staticAccess, boolean writeAccess) {
 		this.fieldOwner = fieldOwner;
-		this.fieldDescriptor = fieldDescriptor;
+		this.fieldType = fieldType;
 		this.fieldName = fieldName;
 		this.staticAccess = staticAccess;
 		this.writeAccess = writeAccess;
@@ -40,8 +38,8 @@ public class FieldRef implements Comparable<FieldRef> {
 		return fieldOwner;
 	}
 
-	public String getFieldDescriptor() {
-		return fieldDescriptor;
+	public String getFieldType() {
+		return fieldType;
 	}
 
 	public String getFieldName() {
@@ -61,12 +59,10 @@ public class FieldRef implements Comparable<FieldRef> {
 	}
 
 	public String getDisplayName() {
-		String className = this.fieldOwner.replace('/', '.');
-		String fieldType = Type.getType(fieldDescriptor).getClassName();
 		if (staticAccess) {
-			return String.format("static %s %s.%s", fieldType, className, fieldName);
+			return String.format("static %s %s.%s", fieldType, fieldOwner, fieldName);
 		} else {
-			return String.format("%s %s.%s", fieldType, className, fieldName);
+			return String.format("%s %s.%s", fieldType, fieldOwner, fieldName);
 		}
 	}
 
@@ -83,13 +79,13 @@ public class FieldRef implements Comparable<FieldRef> {
 		return staticAccess == fieldRef.staticAccess &&
 				writeAccess == fieldRef.writeAccess &&
 				Objects.equals(fieldOwner, fieldRef.fieldOwner) &&
-				Objects.equals(fieldDescriptor, fieldRef.fieldDescriptor) &&
+				Objects.equals(fieldType, fieldRef.fieldType) &&
 				Objects.equals(fieldName, fieldRef.fieldName);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(fieldOwner, fieldDescriptor, fieldName, staticAccess, writeAccess);
+		return Objects.hash(fieldOwner, fieldType, fieldName, staticAccess, writeAccess);
 	}
 
 	@Override
@@ -98,7 +94,7 @@ public class FieldRef implements Comparable<FieldRef> {
 		if (diff != 0) return diff;
 		diff = fieldName.compareTo(fieldRef.fieldName);
 		if (diff != 0) return diff;
-		diff = fieldDescriptor.compareTo(fieldRef.fieldDescriptor);
+		diff = fieldType.compareTo(fieldRef.fieldType);
 		if (diff != 0) return diff;
 		diff = Boolean.compare(staticAccess, fieldRef.staticAccess);
 		if (diff != 0) return diff;

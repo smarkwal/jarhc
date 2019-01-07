@@ -23,7 +23,6 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
-import org.jarhc.utils.JavaUtils;
 
 import java.io.*;
 import java.util.*;
@@ -63,7 +62,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 			int numClassDefs = dis.readInt();
 			for (int c = 0; c < numClassDefs; c++) {
 				ClassDef classDef = ClassDefUtils.read(dis);
-				String className = JavaUtils.toExternalName(classDef.getClassName());
+				String className = classDef.getClassName();
 				classDefs.put(className, classDef);
 			}
 		} catch (IOException e) {
@@ -93,7 +92,6 @@ public class JavaRuntimeMock implements JavaRuntime {
 
 	@Override
 	public Optional<String> getClassLoaderName(String className) {
-		className = JavaUtils.toExternalName(className);
 		if (classDefs.containsKey(className)) {
 			return Optional.of("Bootstrap");
 		} else {
@@ -103,7 +101,6 @@ public class JavaRuntimeMock implements JavaRuntime {
 
 	@Override
 	public Optional<ClassDef> getClassDef(String className) {
-		className = JavaUtils.toExternalName(className);
 		ClassDef classDef = classDefs.get(className);
 		return Optional.ofNullable(classDef);
 	}

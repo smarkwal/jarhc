@@ -79,7 +79,6 @@ public class MissingClassesAnalyzer extends Analyzer {
 				// check if class exists
 				boolean exists = findClass(classpath, className);
 				if (!exists) {
-					className = className.replace('/', '.');
 					missingClasses.add(className);
 				}
 			}
@@ -95,8 +94,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 		if (classDefs != null) return true;
 
 		// check if class is a Java bootstrap class
-		String realClassName = className.replace('/', '.');
-		Optional<String> classLoader = javaRuntime.getClassLoaderName(realClassName);
+		Optional<String> classLoader = javaRuntime.getClassLoaderName(className);
 		return classLoader.isPresent();
 	}
 

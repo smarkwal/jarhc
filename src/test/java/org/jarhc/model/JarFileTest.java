@@ -30,8 +30,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(buildClassDef("a/A"));
-		classDefs.add(buildClassDef("b/B"));
+		classDefs.add(buildClassDef("a.A"));
+		classDefs.add(buildClassDef("b.B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
@@ -47,8 +47,8 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(buildClassDef("a/A"));
-		classDefs.add(buildClassDef("b/B"));
+		classDefs.add(buildClassDef("a.A"));
+		classDefs.add(buildClassDef("b.B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
@@ -56,8 +56,8 @@ class JarFileTest {
 
 		// assert
 		assertEquals(2, result.size());
-		assertEquals("a/A", result.get(0).getClassName());
-		assertEquals("b/B", result.get(1).getClassName());
+		assertEquals("a.A", result.get(0).getClassName());
+		assertEquals("b.B", result.get(1).getClassName());
 
 	}
 
@@ -66,19 +66,19 @@ class JarFileTest {
 
 		// prepare
 		ArrayList<ClassDef> classDefs = new ArrayList<>();
-		classDefs.add(buildClassDef("a/A"));
-		classDefs.add(buildClassDef("b/B"));
+		classDefs.add(buildClassDef("a.A"));
+		classDefs.add(buildClassDef("b.B"));
 		JarFile jarFile = JarFile.withName("abc.jar").withFileSize(1024).withClassDefs(classDefs).build();
 
 		// test
-		ClassDef result = jarFile.getClassDef("b/B");
+		ClassDef result = jarFile.getClassDef("b.B");
 
 		// assert
 		assertNotNull(result);
-		assertEquals("b/B", result.getClassName());
+		assertEquals("b.B", result.getClassName());
 
 		// test
-		result = jarFile.getClassDef("c/C");
+		result = jarFile.getClassDef("c.C");
 
 		// assert
 		assertNull(result);
@@ -86,7 +86,7 @@ class JarFileTest {
 	}
 
 	private ClassDef buildClassDef(String className) {
-		return ClassDef.forClassName(className).build();
+		return ClassDef.forClassName(className);
 	}
 
 }

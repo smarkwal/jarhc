@@ -135,7 +135,8 @@ public class ClasspathBuilder {
 	private void closeClassDef() {
 		if (className != null) {
 			String classFileChecksum = DigestUtils.sha1Hex(className); // fake checksum
-			ClassDef classDef = ClassDef.forClassName(className).withClassFileChecksum(classFileChecksum).withVersion(majorClassVersion, minorClassVersion).withClassRefs(classRefs).build();
+			ClassDef classDef = ClassDef.forClassName(className).setClassFileChecksum(classFileChecksum).setMajorClassVersion(majorClassVersion).setMinorClassVersion(minorClassVersion);
+			classRefs.forEach(classDef::addClassRef);
 			classDefs.add(classDef);
 			className = null;
 			classRefs = null;

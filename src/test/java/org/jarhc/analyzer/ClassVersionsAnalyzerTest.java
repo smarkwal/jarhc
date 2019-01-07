@@ -34,12 +34,12 @@ class ClassVersionsAnalyzerTest {
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar")
-				.addClassDef("a/A", 52, 0)
+				.addClassDef("a.A", 52, 0)
 				.addJarFile("b.jar")
-				.addClassDef("b/B1", 51, 0)
-				.addClassDef("b/B2", 52, 0)
+				.addClassDef("b.B1", 51, 0)
+				.addClassDef("b.B2", 52, 0)
 				.addJarFile("c.jar")
-				.addClassDef("c/C", 48, 0)
+				.addClassDef("c.C", 48, 0)
 				.addJarFile("d.jar") // no class files
 				.build();
 

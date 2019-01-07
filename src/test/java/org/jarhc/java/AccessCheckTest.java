@@ -37,7 +37,7 @@ class AccessCheckTest {
 	void test_same_class() {
 
 		// prepare
-		ClassDef classDef = getClassDef("java/lang/String");
+		ClassDef classDef = getClassDef("java.lang.String");
 
 		// assume
 		assumeTrue(classDef.isPublic());
@@ -54,8 +54,8 @@ class AccessCheckTest {
 	void test_public_class() {
 
 		// prepare
-		ClassDef classDef1 = getClassDef("java/io/StringWriter");
-		ClassDef classDef2 = getClassDef("java/lang/String");
+		ClassDef classDef1 = getClassDef("java.io.StringWriter");
+		ClassDef classDef2 = getClassDef("java.lang.String");
 
 		// assume
 		assumeTrue(classDef2.isPublic());
@@ -72,8 +72,8 @@ class AccessCheckTest {
 	void test_package_private_class() {
 
 		// prepare
-		ClassDef classDef1 = getClassDef("java/lang/String");
-		ClassDef classDef2 = getClassDef("java/io/FileSystem");
+		ClassDef classDef1 = getClassDef("java.lang.String");
+		ClassDef classDef2 = getClassDef("java.io.FileSystem");
 
 		// assume
 		assumeTrue(classDef2.isPackagePrivate());
@@ -90,8 +90,8 @@ class AccessCheckTest {
 	void test_package_private_class_same_package() {
 
 		// prepare
-		ClassDef classDef1 = getClassDef("java/io/StringWriter");
-		ClassDef classDef2 = getClassDef("java/io/FileSystem");
+		ClassDef classDef1 = getClassDef("java.io.StringWriter");
+		ClassDef classDef2 = getClassDef("java.io.FileSystem");
 
 		// assume
 		assumeTrue(classDef2.isPackagePrivate());
@@ -110,8 +110,8 @@ class AccessCheckTest {
 	void test_public_class_private_field_same_class() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("java/lang/String").build();
-		FieldDef fieldDef = getFieldDef("java/lang/String", "value");
+		ClassDef classDef = ClassDef.forClassName("java.lang.String");
+		FieldDef fieldDef = getFieldDef("java.lang.String", "value");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -129,8 +129,8 @@ class AccessCheckTest {
 	void test_public_class_private_field() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("org/jarhc/Main").build();
-		FieldDef fieldDef = getFieldDef("java/lang/String", "value");
+		ClassDef classDef = ClassDef.forClassName("org.jarhc.Main");
+		FieldDef fieldDef = getFieldDef("java.lang.String", "value");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -148,8 +148,8 @@ class AccessCheckTest {
 	void test_public_class_public_field() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("org/jarhc/Main").build();
-		FieldDef fieldDef = getFieldDef("java/lang/Boolean", "TRUE");
+		ClassDef classDef = ClassDef.forClassName("org.jarhc.Main");
+		FieldDef fieldDef = getFieldDef("java.lang.Boolean", "TRUE");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -167,8 +167,8 @@ class AccessCheckTest {
 	void test_package_private_class_public_field() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("org/jarhc/Main").build();
-		FieldDef fieldDef = getFieldDef("java/io/FileSystem", "ACCESS_READ");
+		ClassDef classDef = ClassDef.forClassName("org.jarhc.Main");
+		FieldDef fieldDef = getFieldDef("java.io.FileSystem", "ACCESS_READ");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPackagePrivate());
@@ -186,8 +186,8 @@ class AccessCheckTest {
 	void test_package_private_class_public_field_same_package() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("java/io/Win32FileSystem").build();
-		FieldDef fieldDef = getFieldDef("java/io/FileSystem", "ACCESS_READ");
+		ClassDef classDef = ClassDef.forClassName("java.io.Win32FileSystem");
+		FieldDef fieldDef = getFieldDef("java.io.FileSystem", "ACCESS_READ");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPackagePrivate());
@@ -205,8 +205,8 @@ class AccessCheckTest {
 	void test_public_class_protected_field() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("org/jarhc/Main").withSuperName("java/lang/Object").withInterfaceName("java/io/Serializable").withInterfaceName("u/Unknown").build();
-		FieldDef fieldDef = getFieldDef("java/io/FilterInputStream", "in");
+		ClassDef classDef = ClassDef.forClassName("org.jarhc.Main").setSuperName("java.lang.Object").addInterfaceName("java.io.Serializable").addInterfaceName("u.Unknown");
+		FieldDef fieldDef = getFieldDef("java.io.FilterInputStream", "in");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -224,8 +224,8 @@ class AccessCheckTest {
 	void test_public_class_protected_field_same_package() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("java/io/FilterOutputStream").build();
-		FieldDef fieldDef = getFieldDef("java/io/FilterInputStream", "in");
+		ClassDef classDef = ClassDef.forClassName("java.io.FilterOutputStream");
+		FieldDef fieldDef = getFieldDef("java.io.FilterInputStream", "in");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -243,8 +243,8 @@ class AccessCheckTest {
 	void test_public_class_protected_field_subclass() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("my/MyOutputStream").withSuperName("java/io/FilterInputStream").build();
-		FieldDef fieldDef = getFieldDef("java/io/FilterInputStream", "in");
+		ClassDef classDef = ClassDef.forClassName("my.MyOutputStream").setSuperName("java.io.FilterInputStream");
+		FieldDef fieldDef = getFieldDef("java.io.FilterInputStream", "in");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -262,8 +262,8 @@ class AccessCheckTest {
 	void test_public_class_package_private_field() {
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("org/jarhc/Main").build();
-		FieldDef fieldDef = getFieldDef("java/text/DateFormatSymbols", "PATTERN_YEAR");
+		ClassDef classDef = ClassDef.forClassName("org.jarhc.Main");
+		FieldDef fieldDef = getFieldDef("java.text.DateFormatSymbols", "PATTERN_YEAR");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPublic());
@@ -281,9 +281,9 @@ class AccessCheckTest {
 	void test_weird_case() { // TODO: rename
 
 		// prepare
-		ClassDef classDef = ClassDef.forClassName("com/sun/xml/internal/ws/addressing/v200408/MemberSubmissionWsaClientTube")
-				.withSuperName("com/sun/xml/internal/ws/addressing.WsaClientTube").build();
-		FieldDef fieldDef = getFieldDef("com/sun/xml/internal/ws/addressing/WsaTube", "addressingVersion");
+		ClassDef classDef = ClassDef.forClassName("com.sun.xml.internal.ws.addressing.v200408.MemberSubmissionWsaClientTube")
+				.setSuperName("com.sun.xml.internal.ws.addressing.WsaClientTube");
+		FieldDef fieldDef = getFieldDef("com.sun.xml.internal.ws.addressing.WsaTube", "addressingVersion");
 
 		// assume
 		assumeTrue(fieldDef.getClassDef().isPackagePrivate());

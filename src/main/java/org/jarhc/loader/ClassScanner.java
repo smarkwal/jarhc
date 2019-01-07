@@ -62,10 +62,10 @@ class ClassScanner {
 
 		// scan superclass and interfaces
 		if (classNode.superName != null) {
-			classRefs.add(new ClassRef(classNode.superName));
+			classRefs.add(new ClassRef(JavaUtils.toExternalName(classNode.superName)));
 		}
 		if (classNode.interfaces != null) {
-			classNode.interfaces.forEach(i -> classRefs.add(new ClassRef(i)));
+			classNode.interfaces.forEach(i -> classRefs.add(new ClassRef(JavaUtils.toExternalName(i))));
 		}
 
 		// scan fields
@@ -80,7 +80,7 @@ class ClassScanner {
 
 		// scan inner methods
 		for (InnerClassNode innerClassNode : classNode.innerClasses) {
-			classRefs.add(new ClassRef(innerClassNode.name));
+			classRefs.add(new ClassRef(JavaUtils.toExternalName(innerClassNode.name)));
 		}
 
 		// scan annotations
@@ -114,7 +114,7 @@ class ClassScanner {
 		scanMethodSignature(methodType);
 
 		// scan exceptions ("throws" declarations)
-		methodNode.exceptions.forEach(e -> classRefs.add(new ClassRef(e)));
+		methodNode.exceptions.forEach(e -> classRefs.add(new ClassRef(JavaUtils.toExternalName(e))));
 
 		// scan local variables
 		List<LocalVariableNode> localVariables = methodNode.localVariables;
@@ -137,7 +137,7 @@ class ClassScanner {
 		for (TryCatchBlockNode tryCatchBlock : tryCatchBlocks) {
 			String exceptionType = tryCatchBlock.type;
 			if (exceptionType == null) continue; // finally block
-			classRefs.add(new ClassRef(exceptionType));
+			classRefs.add(new ClassRef(JavaUtils.toExternalName(exceptionType)));
 		}
 
 		// scan annotations
@@ -195,8 +195,8 @@ class ClassScanner {
 
 	private void scanMethodCall(MethodInsnNode methodInsnNode) {
 
-		String owner = methodInsnNode.owner;
-		scanOwner(owner);
+		String methodOwner = methodInsnNode.owner;
+		scanOwner(methodOwner);
 
 		Type methodType = Type.getType(methodInsnNode.desc);
 		scanMethodSignature(methodType);
@@ -205,7 +205,10 @@ class ClassScanner {
 		int opcode = methodInsnNode.getOpcode();
 		boolean staticMethod = opcode == Opcodes.INVOKESTATIC;
 		boolean interfaceMethod = opcode == Opcodes.INVOKEINTERFACE || methodInsnNode.itf; // TODO: what has priority?
-		MethodRef methodRef = new MethodRef(methodInsnNode.owner, methodInsnNode.desc, methodInsnNode.name, interfaceMethod, staticMethod);
+
+		methodOwner = JavaUtils.toExternalName(methodOwner);
+
+		MethodRef methodRef = new MethodRef(methodOwner, methodInsnNode.desc, methodInsnNode.name, interfaceMethod, staticMethod);
 		methodRefs.add(methodRef);
 
 	}
@@ -215,7 +218,7 @@ class ClassScanner {
 			Type ownerType = Type.getType(owner);
 			scanType(ownerType);
 		} else {
-			classRefs.add(new ClassRef(owner));
+			classRefs.add(new ClassRef(JavaUtils.toExternalName(owner)));
 		}
 	}
 
@@ -248,8 +251,10 @@ class ClassScanner {
 			}
 		}
 
+		fieldOwner = JavaUtils.toExternalName(fieldOwner);
+
 		// create reference to field
-		FieldRef fieldRef = new FieldRef(fieldOwner, fieldInsnNode.desc, fieldName, staticField, writeAccess);
+		FieldRef fieldRef = new FieldRef(fieldOwner, fieldType.getClassName(), fieldName, staticField, writeAccess);
 		fieldRefs.add(fieldRef);
 
 	}
@@ -279,10 +284,7 @@ class ClassScanner {
 			return;
 		}
 
-		// convert to internal class name
-		className = className.replace('.', '/');
-
-		classRefs.add(new ClassRef(className));
+		classRefs.add(new ClassRef(JavaUtils.toExternalName(className)));
 	}
 
 }

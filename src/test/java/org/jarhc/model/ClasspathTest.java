@@ -31,8 +31,8 @@ class ClasspathTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
-				.addJarFile("a.jar").addClassDef("a/A")
-				.addJarFile("b.jar").addClassDef("b/B")
+				.addJarFile("a.jar").addClassDef("a.A")
+				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
 
 		// test
@@ -48,8 +48,8 @@ class ClasspathTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
-				.addJarFile("a.jar").addClassDef("a/A")
-				.addJarFile("b.jar").addClassDef("b/B")
+				.addJarFile("a.jar").addClassDef("a.A")
+				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
 
 		// test
@@ -68,8 +68,8 @@ class ClasspathTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
-				.addJarFile("a.jar").addClassDef("a/A")
-				.addJarFile("b.jar").addClassDef("b/B")
+				.addJarFile("a.jar").addClassDef("a.A")
+				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
 
 		// test
@@ -92,12 +92,12 @@ class ClasspathTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
-				.addJarFile("a.jar").addClassDef("a/A")
-				.addJarFile("b.jar").addClassDef("b/B")
+				.addJarFile("a.jar").addClassDef("a.A")
+				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
 
 		// test
-		Set<ClassDef> result = classpath.getClassDefs("a/A");
+		Set<ClassDef> result = classpath.getClassDefs("a.A");
 
 		// assert
 		assertNotNull(result);

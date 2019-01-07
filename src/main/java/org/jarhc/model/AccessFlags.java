@@ -20,7 +20,7 @@ import org.objectweb.asm.Opcodes;
 
 abstract class AccessFlags {
 
-	private final int flags;
+	private int flags;
 
 	AccessFlags(int flags) {
 		this.flags = flags;
@@ -28,6 +28,10 @@ abstract class AccessFlags {
 
 	public final int getAccess() {
 		return flags;
+	}
+
+	public void setAccess(int flags) {
+		this.flags = flags;
 	}
 
 	public abstract String getModifiers();

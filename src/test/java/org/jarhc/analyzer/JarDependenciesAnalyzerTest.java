@@ -35,12 +35,12 @@ class JarDependenciesAnalyzerTest {
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar")
-				.addClassDef("a/A").addClassRef("b/B1").addClassRef("c/C").addClassRef("x/X")
+				.addClassDef("a.A").addClassRef("b.B1").addClassRef("c.C").addClassRef("x.X")
 				.addJarFile("b.jar")
-				.addClassDef("b/B1")
-				.addClassDef("b/B2").addClassRef("c/C").addClassRef("b/B1")
+				.addClassDef("b.B1")
+				.addClassDef("b.B2").addClassRef("c.C").addClassRef("b.B1")
 				.addJarFile("c.jar")
-				.addClassDef("c/C")
+				.addClassDef("c.C")
 				.addJarFile("d.jar")
 				.build();
 

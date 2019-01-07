@@ -36,9 +36,9 @@ class MissingClassesAnalyzerTest {
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar")
-				.addClassDef("a/A").addClassRef("b/B").addClassRef("c/C").addClassRef("java/lang/String")
+				.addClassDef("a.A").addClassRef("b.B").addClassRef("c.C").addClassRef("java.lang.String")
 				.addJarFile("b.jar")
-				.addClassDef("b/B")
+				.addClassDef("b.B")
 				.build();
 
 		// prepare Java runtime

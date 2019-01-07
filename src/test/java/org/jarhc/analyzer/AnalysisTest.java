@@ -37,7 +37,7 @@ class AnalysisTest {
 				new TestAnalyzer("Title 1", "Description 1"),
 				new TestAnalyzer("Title 2", "Description 2")
 		);
-		Classpath classpath = ClasspathBuilder.create().addJarFile("a.jar").addClassDef("a/A").build();
+		Classpath classpath = ClasspathBuilder.create().addJarFile("a.jar").addClassDef("a.A").build();
 
 		// test
 		Report report = analysis.run(classpath);

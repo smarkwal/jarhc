@@ -16,17 +16,18 @@
 
 package org.jarhc.model;
 
-import org.objectweb.asm.Type;
+import org.jarhc.utils.JavaUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MethodDef extends AccessFlags {
 
 	private final String methodName;
 	private final String methodDescriptor;
+	private final String returnType;
+	private final List<String> parameterTypes;
+
 	// TODO: exceptions?
 	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
 	private ClassDef classDef;
@@ -35,6 +36,10 @@ public class MethodDef extends AccessFlags {
 		super(access);
 		this.methodName = methodName;
 		this.methodDescriptor = methodDescriptor;
+
+		// create return type and parameter types from descriptor
+		this.returnType = JavaUtils.getReturnType(methodDescriptor);
+		this.parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 	}
 
 	public String getMethodName() {
@@ -43,6 +48,14 @@ public class MethodDef extends AccessFlags {
 
 	public String getMethodDescriptor() {
 		return methodDescriptor;
+	}
+
+	public String getReturnType() {
+		return returnType;
+	}
+
+	public List<String> getParameterTypes() {
+		return parameterTypes;
 	}
 
 	public ClassDef getClassDef() {
@@ -80,14 +93,11 @@ public class MethodDef extends AccessFlags {
 	}
 
 	public String getDisplayName() {
-		Type methodType = Type.getType(methodDescriptor);
-		String returnType = methodType.getReturnType().getClassName();
-		String argumentTypes = "(" + Arrays.stream(methodType.getArgumentTypes()).map(Type::getClassName).collect(Collectors.joining(",")) + ")";
 		String modifiers = getModifiers();
 		if (modifiers.isEmpty()) {
-			return String.format("%s %s%s", returnType, methodName, argumentTypes);
+			return String.format("%s %s(%s)", returnType, methodName, String.join(",", parameterTypes));
 		} else {
-			return String.format("%s %s %s%s", modifiers, returnType, methodName, argumentTypes);
+			return String.format("%s %s %s(%s)", modifiers, returnType, methodName, String.join(",", parameterTypes));
 		}
 	}
 

@@ -51,7 +51,7 @@ class JarFileLoaderTest {
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(1, jarFile.getClassDefs().size());
-		assertEquals("a/A", jarFile.getClassDefs().get(0).getClassName());
+		assertEquals("a.A", jarFile.getClassDefs().get(0).getClassName());
 
 		assertFalse(jarFile.isMultiRelease());
 		Set<Integer> releases = jarFile.getReleases();
@@ -77,7 +77,7 @@ class JarFileLoaderTest {
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(1, jarFile.getClassDefs().size());
-		assertEquals("b/B", jarFile.getClassDefs().get(0).getClassName());
+		assertEquals("b.B", jarFile.getClassDefs().get(0).getClassName());
 
 		assertTrue(jarFile.isMultiRelease());
 		Set<Integer> releases = jarFile.getReleases();
@@ -104,7 +104,7 @@ class JarFileLoaderTest {
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(2, jarFile.getClassDefs().size());
-		assertEquals("c/C", jarFile.getClassDefs().get(0).getClassName());
+		assertEquals("c.C", jarFile.getClassDefs().get(0).getClassName());
 		assertEquals("module-info", jarFile.getClassDefs().get(1).getClassName());
 
 		assertFalse(jarFile.isMultiRelease());

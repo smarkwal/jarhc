@@ -19,7 +19,6 @@ package org.jarhc.env;
 import org.jarhc.loader.ClassDefLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
-import org.jarhc.utils.JavaUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,7 +84,6 @@ public class DefaultJavaRuntime implements JavaRuntime {
 
 	@Override
 	public Optional<ClassDef> getClassDef(String className) {
-		className = JavaUtils.toExternalName(className);
 
 		// check cache
 		Optional<ClassDef> classDef = classDefs.get(className);

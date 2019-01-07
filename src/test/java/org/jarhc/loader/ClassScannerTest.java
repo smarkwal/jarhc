@@ -43,25 +43,25 @@ class ClassScannerTest {
 		// assert
 		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
 		String[] classNames = new String[]{
-				"a/Main",
-				"a/Base",
-				"a/Interface",
-				"a/ClassAnnotation",
-				"a/FieldAnnotation",
-				"a/MethodAnnotation",
-				"a/CustomException",
-				"java/lang/RuntimeException",
-				"java/lang/Object",
-				"java/lang/String",
-				// TODO: "java/lang/Number",
-				"java/lang/Long",
-				// TODO: "java/lang/Boolean",
-				"java/lang/System",
-				"java/io/PrintStream",
-				"java/util/List",
-				"java/util/ArrayList",
-				"a/Main$InnerMain",
-				"a/Main$StaticInnerMain"
+				"a.Main",
+				"a.Base",
+				"a.Interface",
+				"a.ClassAnnotation",
+				"a.FieldAnnotation",
+				"a.MethodAnnotation",
+				"a.CustomException",
+				"java.lang.RuntimeException",
+				"java.lang.Object",
+				"java.lang.String",
+				// TODO: "java.lang.Number",
+				"java.lang.Long",
+				// TODO: "java.lang.Boolean",
+				"java.lang.System",
+				"java.io.PrintStream",
+				"java.util.List",
+				"java.util.ArrayList",
+				"a.Main$InnerMain",
+				"a.Main$StaticInnerMain"
 		};
 		for (String className : classNames) {
 			assertTrue(classRefs.contains(new ClassRef(className)), className);

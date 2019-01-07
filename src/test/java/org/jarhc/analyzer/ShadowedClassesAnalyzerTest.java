@@ -35,10 +35,10 @@ class ShadowedClassesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		String mainClassName = Main.class.getName().replace(".", "/");
+		String mainClassName = Main.class.getName();
 		Classpath classpath = ClasspathBuilder.create()
-				.addJarFile("a.jar").addClassDef("a/A").addClassDef("java/lang/String")
-				.addJarFile("b.jar").addClassDef("b/B").addClassDef(mainClassName)
+				.addJarFile("a.jar").addClassDef("a.A").addClassDef("java.lang.String")
+				.addJarFile("b.jar").addClassDef("b.B").addClassDef(mainClassName)
 				.build();
 
 		// test

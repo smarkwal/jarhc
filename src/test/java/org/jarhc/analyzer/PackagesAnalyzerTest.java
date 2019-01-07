@@ -35,12 +35,12 @@ class PackagesAnalyzerTest {
 		// prepare
 		Classpath classpath = ClasspathBuilder.create()
 				.addJarFile("a.jar")
-				.addClassDef("a/A")
-				.addClassDef("a/a1/A")
-				.addClassDef("a/a2/A1")
-				.addClassDef("a/a2/A2")
+				.addClassDef("a.A")
+				.addClassDef("a.a1.A")
+				.addClassDef("a.a2.A1")
+				.addClassDef("a.a2.A2")
 				.addJarFile("b.jar")
-				.addClassDef("b/B")
+				.addClassDef("b.B")
 				.addJarFile("c.jar")
 				.build();
 
