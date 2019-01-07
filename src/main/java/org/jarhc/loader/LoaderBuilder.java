@@ -22,8 +22,6 @@ public class LoaderBuilder {
 	private boolean scanForReferences = true;
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 
-	private final ClassFileParser classFileParser = new ClassFileParser();
-
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
 	}
@@ -48,7 +46,7 @@ public class LoaderBuilder {
 	}
 
 	public ModuleInfoLoader buildModuleInfoLoader() {
-		return new ModuleInfoLoader(classFileParser);
+		return new ModuleInfoLoader();
 	}
 
 	public JarFileLoader buildJarFileLoader() {

@@ -17,18 +17,16 @@
 package org.jarhc.loader;
 
 import org.jarhc.TestUtils;
+import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.FieldRef;
 import org.jarhc.model.MethodRef;
 import org.junit.jupiter.api.Test;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.tree.ClassNode;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,10 +36,10 @@ class ClassScannerTest {
 	void test_getClassRefs() throws IOException {
 
 		// test
-		ClassScanner scanner = scanTestClass();
+		ClassDef classDef = scanTestClass();
 
 		// assert
-		List<ClassRef> classRefs = new ArrayList<>(scanner.getClassRefs());
+		List<ClassRef> classRefs = new ArrayList<>(classDef.getClassRefs());
 		String[] classNames = new String[]{
 				"a.Main",
 				"a.Base",
@@ -74,10 +72,10 @@ class ClassScannerTest {
 	void test_getFieldRefs() throws IOException {
 
 		// test
-		ClassScanner scanner = scanTestClass();
+		ClassDef classDef = scanTestClass();
 
 		// assert
-		Set<FieldRef> fieldRefs = scanner.getFieldRefs();
+		List<FieldRef> fieldRefs = classDef.getFieldRefs();
 
 		FieldRef outField = fieldRefs.stream().filter(f -> f.getFieldName().equals("out")).findFirst().orElse(null);
 		assertNotNull(outField);
@@ -90,10 +88,10 @@ class ClassScannerTest {
 	void test_getMethodRefs() throws IOException {
 
 		// test
-		ClassScanner scanner = scanTestClass();
+		ClassDef classDef = scanTestClass();
 
 		// assert
-		Set<MethodRef> methodRefs = scanner.getMethodRefs();
+		List<MethodRef> methodRefs = classDef.getMethodRefs();
 
 		MethodRef initBaseMethod = methodRefs.stream().filter(f -> f.getMethodName().equals("<init>") && f.getMethodOwner().contains("Base")).findFirst().orElse(null);
 		assertNotNull(initBaseMethod);
@@ -122,20 +120,16 @@ class ClassScannerTest {
 		assertEquals(6, methodRefs.size());
 	}
 
-	private ClassScanner scanTestClass() throws IOException {
+	private ClassDef scanTestClass() throws IOException {
 
 		// prepare
-		ClassNode classNode = new ClassNode();
-		try (InputStream stream = TestUtils.getResourceAsStream("/ClassScannerTest/Main.class")) {
-			ClassReader classReader = new ClassReader(stream);
-			classReader.accept(classNode, 0);
-		}
+		ClassDefLoader loader = new ClassDefLoader("Classpath", true);
 
 		// test
-		ClassScanner scanner = new ClassScanner();
-		scanner.scan(classNode);
+		try (InputStream stream = TestUtils.getResourceAsStream("/ClassScannerTest/Main.class")) {
+			return loader.load(stream);
+		}
 
-		return scanner;
 	}
 
 }

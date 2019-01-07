@@ -17,26 +17,26 @@
 package org.jarhc.loader;
 
 import org.jarhc.model.ModuleInfo;
-import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.ClassReader;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ModuleInfoLoader {
 
-	private final ClassFileParser classFileParser;
-
-	public ModuleInfoLoader(ClassFileParser classFileParser) {
-		this.classFileParser = classFileParser;
+	ModuleInfoLoader() {
 	}
 
 	public ModuleInfo load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
-		ClassNode classNode = classFileParser.parse(stream);
+		ModuleInfoBuilder classVisitor = new ModuleInfoBuilder();
+
+		ClassReader classReader = new ClassReader(stream);
+		classReader.accept(classVisitor, 0);
 
 		// create module definition
-		return ModuleInfo.forModuleNode(classNode.module).build();
+		return classVisitor.getModuleInfo();
 	}
 
 }

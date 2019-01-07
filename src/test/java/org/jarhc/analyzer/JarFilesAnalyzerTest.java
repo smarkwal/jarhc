@@ -40,7 +40,7 @@ class JarFilesAnalyzerTest {
 				.addClassDef("a.A")
 				.addResourceDef("a/a.txt")
 				.addJarFile("b.jar", 4096)
-				.addModuleInfo(ModuleInfo.forModuleName("b").exports("b").requires("java.base").build())
+				.addModuleInfo(ModuleInfo.forModuleName("b").addExport("b").addRequire("java.base"))
 				.addClassDef("b.B1")
 				.addClassDef("b.B2")
 				.addJarFile("c.jar", 24000)

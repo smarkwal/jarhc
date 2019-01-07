@@ -28,9 +28,8 @@ class ModuleInfoTest {
 		// prepare
 		ModuleInfo moduleInfo = ModuleInfo
 				.forModuleName("m")
-				.exports("a").exports("b")
-				.requires("java.base").requires("x").requires("y")
-				.build();
+				.addExport("a").addExport("b")
+				.addRequire("java.base").addRequire("x").addRequire("y");
 
 		// test
 		String result = moduleInfo.toString();
