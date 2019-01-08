@@ -33,12 +33,14 @@ import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 @ExtendWith(TempDirectory.class)
 class CommandLineParserTest {
 
+	private final PrintStreamBuffer out = new PrintStreamBuffer();
+	private final PrintStreamBuffer err = new PrintStreamBuffer();
+	private final CommandLineParser parser = new CommandLineParser(out, err);
+
 	@Test
 	void test_no_arguments() {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 
 		// test
 		CommandLineException exception = null;
@@ -60,8 +62,6 @@ class CommandLineParserTest {
 	void test_file_not_jar(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
 
 		// test
@@ -84,8 +84,6 @@ class CommandLineParserTest {
 	void test_file_not_found() {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file = new File("file.jar");
 
 		// test
@@ -108,8 +106,6 @@ class CommandLineParserTest {
 	void test_no_files_found(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
 		File directory = file.getParentFile();
 
@@ -124,17 +120,13 @@ class CommandLineParserTest {
 		// assert
 		assertNotNull(exception);
 		assertEquals(-4, exception.getExitCode());
-		assertEquals("No *.jar files found in path.", exception.getMessage());
-		assertTrue(err.getText().startsWith("No *.jar files found in path."));
+		assertEquals("No *.jar files found in classpath.", exception.getMessage());
+		assertTrue(err.getText().startsWith("No *.jar files found in classpath."));
 
 	}
 
 	@Test
 	void test_no_report_format() {
-
-		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 
 		// test
 		CommandLineException exception = null;
@@ -155,10 +147,6 @@ class CommandLineParserTest {
 	@Test
 	void test_unknown_report_format() {
 
-		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
-
 		// test
 		CommandLineException exception = null;
 		try {
@@ -178,10 +166,6 @@ class CommandLineParserTest {
 	@Test
 	void test_no_report_file() {
 
-		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
-
 		// test
 		CommandLineException exception = null;
 		try {
@@ -200,10 +184,6 @@ class CommandLineParserTest {
 
 	@Test
 	void test_unknown_option() {
-
-		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 
 		// test
 		CommandLineException exception = null;
@@ -225,8 +205,6 @@ class CommandLineParserTest {
 	void test_one_jar_file(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 
 		// test
@@ -236,7 +214,7 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getJarFiles();
+		List<File> files = options.getClasspathJarFiles();
 		assertEquals(1, files.size());
 		assertEquals(file, files.get(0));
 
@@ -249,8 +227,6 @@ class CommandLineParserTest {
 	void test_one_jar_file_in_directory(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 		File directory = file.getParentFile();
 
@@ -261,7 +237,7 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getJarFiles();
+		List<File> files = options.getClasspathJarFiles();
 		assertEquals(1, files.size());
 		assertEquals(file, files.get(0));
 
@@ -274,8 +250,6 @@ class CommandLineParserTest {
 	void test_two_jar_files(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser parser = new CommandLineParser(err);
 		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
@@ -286,13 +260,184 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getJarFiles();
+		List<File> files = options.getClasspathJarFiles();
 		assertEquals(2, files.size());
 		assertEquals(file1, files.get(0));
 		assertEquals(file2, files.get(1));
 
 		assertEquals("html", options.getReportFormat());
 		assertEquals("report.html", options.getReportFile());
+
+	}
+
+	@Test
+	void test_runtime(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+
+		// test
+		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--runtime", file2.getAbsolutePath()});
+
+		// assert
+		assertNotNull(options);
+		assertEquals("", err.getText());
+
+		List<File> files = options.getClasspathJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file1, files.get(0));
+
+		files = options.getProvidedJarFiles();
+		assertEquals(0, files.size());
+
+		files = options.getRuntimeJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file2, files.get(0));
+
+	}
+
+	@Test
+	void test_provided(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file3 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+
+		// test
+		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--provided", file2.getAbsolutePath()});
+
+		// assert
+		assertNotNull(options);
+		assertEquals("", err.getText());
+
+		List<File> files = options.getClasspathJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file1, files.get(0));
+
+		files = options.getProvidedJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file2, files.get(0));
+
+		files = options.getRuntimeJarFiles();
+		assertEquals(0, files.size());
+
+	}
+
+	@Test
+	void test_provided_runtime(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file3 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+
+		// test
+		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--provided", file2.getAbsolutePath(), "--runtime", file3.getAbsolutePath()});
+
+		// assert
+		assertNotNull(options);
+		assertEquals("", err.getText());
+
+		List<File> files = options.getClasspathJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file1, files.get(0));
+
+		files = options.getProvidedJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file2, files.get(0));
+
+		files = options.getRuntimeJarFiles();
+		assertEquals(1, files.size());
+		assertEquals(file3, files.get(0));
+
+	}
+
+	@Test
+	void test_title(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"-t", "Test Title", file.getAbsolutePath()});
+
+		// assert
+		String title = options.getReportTitle();
+		assertEquals("Test Title", title);
+
+	}
+
+	@Test
+	void test_sections(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"-s", "jf,cv,jd", file.getAbsolutePath()});
+
+		// assert
+		List<String> sections = options.getSections();
+		assertEquals(3, sections.size());
+		assertEquals("jf", sections.get(0));
+		assertEquals("cv", sections.get(1));
+		assertEquals("jd", sections.get(2));
+
+	}
+
+	@Test
+	void test_sections_exclude(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"-s", "-jf,cv,jd", file.getAbsolutePath()});
+
+		// assert
+		List<String> sections = options.getSections();
+		assertTrue(!sections.isEmpty());
+		assertFalse(sections.contains("jf"));
+		assertFalse(sections.contains("cv"));
+		assertFalse(sections.contains("jd"));
+
+	}
+
+	@Test
+	void test_help(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// test
+		try {
+			parser.parse(new String[]{"-h"});
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("OK", e.getMessage());
+			assertEquals(0, e.getExitCode());
+		}
+
+		// assert
+		assertTrue(out.getText().startsWith("Usage:"));
+		assertEquals("", err.getText());
+
+	}
+
+	@Test
+	void test_version(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// test
+		try {
+			parser.parse(new String[]{"-v"});
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("OK", e.getMessage());
+			assertEquals(0, e.getExitCode());
+		}
+
+		// assert
+		assertTrue(out.getText().startsWith("JarHC"));
+		assertEquals("", err.getText());
 
 	}
 

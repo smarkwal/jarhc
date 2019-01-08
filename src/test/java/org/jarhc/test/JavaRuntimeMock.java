@@ -93,7 +93,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 	@Override
 	public Optional<String> getClassLoaderName(String className) {
 		if (classDefs.containsKey(className)) {
-			return Optional.of("Bootstrap");
+			return Optional.of("Runtime");
 		} else {
 			return Optional.empty();
 		}
@@ -120,7 +120,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 		}
 
 		// load all classes from rt.jar file into memory
-		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Bootstrap").buildClasspathLoader();
+		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Runtime").buildClasspathLoader();
 		Classpath classpath = loader.load(Collections.singletonList(rtFile));
 		JarFile jarFile = classpath.getJarFiles().get(0);
 		List<ClassDef> classDefs = jarFile.getClassDefs();

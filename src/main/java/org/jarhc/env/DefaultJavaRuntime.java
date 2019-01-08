@@ -36,7 +36,7 @@ public class DefaultJavaRuntime implements JavaRuntime {
 	 * Class definition loader used to load Java runtime classes.
 	 * This loader does not scan Java classes for references to other classes, methods or fields.
 	 */
-	private static final ClassDefLoader loader = LoaderBuilder.create().forClassLoader("Bootstrap").scanForReferences(false).buildClassDefLoader();
+	private static final ClassDefLoader loader = LoaderBuilder.create().forClassLoader("Runtime").scanForReferences(false).buildClassDefLoader();
 
 	/**
 	 * Java system properties used to retrieve information about the Java runtime.
@@ -76,7 +76,7 @@ public class DefaultJavaRuntime implements JavaRuntime {
 	public Optional<String> getClassLoaderName(String className) {
 		Optional<ClassDef> classDef = getClassDef(className);
 		if (classDef.isPresent()) {
-			return Optional.of("Bootstrap");
+			return Optional.of("Runtime");
 		} else {
 			return Optional.empty();
 		}

@@ -35,48 +35,77 @@ public class CommandLineParser {
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry();
 
-	// TODO: inject dependency
-	private final PrintStream out = System.out;
-
+	private final PrintStream out;
 	private final PrintStream err;
 
-	public CommandLineParser(PrintStream err) {
+	public CommandLineParser(PrintStream out, PrintStream err) {
+		if (out == null) throw new IllegalArgumentException("out");
 		if (err == null) throw new IllegalArgumentException("err");
+		this.out = out;
 		this.err = err;
 	}
 
-	Options parse(String[] args) throws CommandLineException {
+	public Options parse(String[] args) throws CommandLineException {
 
-		List<File> paths = new ArrayList<>();
-		boolean removeVersion = false;
-		boolean useArtifactName = false;
-		List<String> sections = null;
-		String reportTitle = "JAR Health Check Report";
-		String reportFormat = null;
-		String reportFile = null;
+		Options options = new Options();
+
+		options.setRemoveVersion(false);
+		options.setUseArtifactName(false);
+
+		options.setReportTitle("JAR Health Check Report");
+		options.setReportFormat(null);
+		options.setReportFile(null);
+
+		List<File> classpath = new ArrayList<>();
+		List<File> provided = new ArrayList<>();
+		List<File> runtime = new ArrayList<>();
 
 		Iterator<String> iterator = Arrays.asList(args).iterator();
 		while (iterator.hasNext()) {
 			String arg = iterator.next();
-			if (arg.equals("-f") || arg.equals("--format")) {
+			if (arg.equals("-cp") || arg.equals("--classpath")) {
 				if (iterator.hasNext()) {
-					reportFormat = iterator.next();
-					if (!reportFormat.equals("text") && !reportFormat.equals("html")) {
-						String errorMessage = String.format("Unknown report format: '%s'.", reportFormat);
+					String values = iterator.next();
+					addFiles(values, classpath);
+				} else {
+					handleError(-10, "Classpath not specified.");
+				}
+			} else if (arg.equals("--provided")) {
+				if (iterator.hasNext()) {
+					String values = iterator.next();
+					addFiles(values, provided);
+				} else {
+					handleError(-10, "Provided classpath not specified.");
+				}
+			} else if (arg.equals("--runtime")) {
+				if (iterator.hasNext()) {
+					String values = iterator.next();
+					addFiles(values, runtime);
+				} else {
+					handleError(-10, "Runtime classpath not specified.");
+				}
+			} else if (arg.equals("-f") || arg.equals("--format")) {
+				if (iterator.hasNext()) {
+					String value = iterator.next();
+					if (!value.equals("text") && !value.equals("html")) {
+						String errorMessage = String.format("Unknown report format: '%s'.", value);
 						handleError(-6, errorMessage);
 					}
+					options.setReportFormat(value);
 				} else {
 					handleError(-5, "Report format not specified.");
 				}
 			} else if (arg.equals("-o") || arg.equals("--output")) {
 				if (iterator.hasNext()) {
-					reportFile = iterator.next();
+					String value = iterator.next();
+					options.setReportFile(value);
 				} else {
 					handleError(-7, "Report file not specified.");
 				}
 			} else if (arg.equals("-t") || arg.equals("--title")) {
 				if (iterator.hasNext()) {
-					reportTitle = iterator.next();
+					String value = iterator.next();
+					options.setReportTitle(value);
 				} else {
 					handleError(-8, "Report title not specified.");
 				}
@@ -86,41 +115,45 @@ public class CommandLineParser {
 					if (value.startsWith("-")) {
 						value = value.substring(1);
 						// exclude specified sections
-						sections = registry.getCodes();
+						List<String> sections = registry.getCodes();
 						String[] values = value.split(",");
 						for (String section : values) {
 							sections.remove(section.trim());
 						}
+						options.setSections(sections);
 					} else {
 						// include specified sections
-						sections = new ArrayList<>();
+						List<String> sections = new ArrayList<>();
 						String[] values = value.split(",");
 						for (String section : values) {
 							sections.add(section.trim());
 						}
+						options.setSections(sections);
 					}
 				} else {
 					handleError(-9, "Report sections not specified.");
 				}
 			} else if (arg.equals("--remove-version")) {
-				removeVersion = true;
+				options.setRemoveVersion(true);
 			} else if (arg.equals("--use-artifact-name")) {
-				useArtifactName = true;
+				options.setUseArtifactName(true);
 			} else if (arg.equals("-h") || arg.equals("--help")) {
 				printUsage(null, out);
 			} else if (arg.equals("-v") || arg.equals("--version")) {
 				out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
+			} else if (arg.equals("--debug")) {
+				options.setDebug(true);
 			} else if (arg.startsWith("-")) {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
 				handleError(-100, errorMessage);
 			} else {
 				File path = new File(arg);
-				paths.add(path);
+				classpath.add(path);
 			}
 		}
 
 		// if path argument is missing ...
-		if (paths.isEmpty()) {
+		if (classpath.isEmpty()) {
 
 			// if help or version information has been printed ...
 			if (ArrayUtils.containsAny(args, "-h", "--help", "-v", "--version")) {
@@ -132,33 +165,48 @@ public class CommandLineParser {
 			handleError(-1, errorMessage);
 		}
 
-		if (reportFormat == null) {
-			if (reportFile != null) {
-				// guess report format from filename extension
-				if (reportFile.endsWith(".txt")) {
-					reportFormat = "text";
-				} else if (reportFile.endsWith(".html")) {
-					reportFormat = "html";
-				} else {
-					reportFormat = "text"; // use default report format
-				}
-			} else {
-				reportFormat = "text"; // use default report format
-			}
-		}
-
 		// collect JAR files
-		List<File> jarFiles = new ArrayList<>();
-		collectJarFiles(paths, true, jarFiles);
-
+		List<File> classpathJarFiles = new ArrayList<>();
+		collectJarFiles(classpath, true, classpathJarFiles);
 		// check if at least one JAR file has been found
-		if (jarFiles.isEmpty()) {
-			String errorMessage = "No *.jar files found in path.";
+		if (classpathJarFiles.isEmpty()) {
+			String errorMessage = "No *.jar files found in classpath.";
 			handleError(-4, errorMessage);
 		}
+		options.addClasspathJarFiles(classpathJarFiles);
 
-		// exit code 0 -> no errors
-		return new Options(jarFiles, removeVersion, useArtifactName, sections, reportTitle, reportFormat, reportFile);
+		if (!provided.isEmpty()) {
+			// collect JAR files for provided classpath
+			List<File> providedJarFiles = new ArrayList<>();
+			collectJarFiles(provided, true, providedJarFiles);
+			// check if at least one JAR file has been found
+			if (providedJarFiles.isEmpty()) {
+				String errorMessage = "No *.jar files found in provided classpath.";
+				handleError(-4, errorMessage);
+			}
+			options.addProvidedJarFiles(providedJarFiles);
+		}
+
+		if (!runtime.isEmpty()) {
+			// collect JAR files for runtime classpath
+			List<File> runtimeJarFiles = new ArrayList<>();
+			collectJarFiles(runtime, true, runtimeJarFiles);
+			// check if at least one JAR file has been found
+			if (runtimeJarFiles.isEmpty()) {
+				String errorMessage = "No *.jar files found in runtime classpath.";
+				handleError(-4, errorMessage);
+			}
+			options.addRuntimeJarFiles(runtimeJarFiles);
+		}
+
+		return options;
+	}
+
+	private void addFiles(String values, List<File> classpath) {
+		for (String value : values.split(",")) {
+			File path = new File(value);
+			classpath.add(path);
+		}
 	}
 
 	private void collectJarFiles(List<File> paths, boolean strict, List<File> jarFiles) throws CommandLineException {

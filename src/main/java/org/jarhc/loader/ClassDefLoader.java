@@ -43,7 +43,7 @@ public class ClassDefLoader {
 	/**
 	 * Creates a new class definition loader.
 	 *
-	 * @param classLoader       Name of class loader, for example "Classpath" or "Bootstrap"
+	 * @param classLoader       Name of class loader, for example "Classpath", "Provided" or "Runtime"
 	 * @param scanForReferences Set to <code>true</code> to have this loader find
 	 */
 	public ClassDefLoader(String classLoader, boolean scanForReferences) {

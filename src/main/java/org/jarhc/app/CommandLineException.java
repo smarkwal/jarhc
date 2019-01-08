@@ -19,7 +19,7 @@ package org.jarhc.app;
 /**
  * Thrown by {@link CommandLineParser#parse(String[])} to indicate that parsing of command line options has failed.
  */
-class CommandLineException extends Exception {
+public class CommandLineException extends Exception {
 
 	/**
 	 * Exit code returned by the application.
@@ -31,7 +31,7 @@ class CommandLineException extends Exception {
 		this.exitCode = exitCode;
 	}
 
-	int getExitCode() {
+	public int getExitCode() {
 		return exitCode;
 	}
 

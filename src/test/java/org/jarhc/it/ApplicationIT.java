@@ -16,12 +16,12 @@
 
 package org.jarhc.it;
 
-import org.jarhc.Context;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
-import org.jarhc.app.CommandLineParser;
-import org.jarhc.test.ContextMock;
+import org.jarhc.app.Options;
+import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
+import org.jarhc.test.ResolverMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +30,7 @@ import org.junitpioneer.jupiter.TempDirectory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junitpioneer.jupiter.TempDirectory.TempDir;
@@ -43,14 +44,19 @@ class ApplicationIT {
 		// prepare
 		PrintStreamBuffer out = new PrintStreamBuffer();
 		PrintStreamBuffer err = new PrintStreamBuffer();
-		CommandLineParser commandLineParser = new CommandLineParser(err);
-		Context context = ContextMock.createContext();
-		Application application = new Application(commandLineParser, context, out, err);
+
+		Application application = new Application();
+		application.setOut(out);
+		application.setErr(err);
+		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
+		application.setResolver(ResolverMock.createResolver());
+
+		Options options = new Options();
 		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);
-		String[] args = {file.getAbsolutePath()};
+		options.addClasspathJarFiles(Collections.singletonList(file));
 
 		// test
-		int exitCode = application.run(args);
+		int exitCode = application.run(options);
 
 		// assert
 		assertEquals(0, exitCode);

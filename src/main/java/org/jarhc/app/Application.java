@@ -22,6 +22,10 @@ import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Resolver;
+import org.jarhc.env.ClasspathRuntime;
+import org.jarhc.env.DefaultJavaRuntime;
+import org.jarhc.env.ExtendedRuntime;
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
@@ -40,54 +44,58 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Application {
 
-	private final CommandLineParser commandLineParser;
-	private final Context context;
-	private final PrintStream out;
-	private final PrintStream err;
+	private PrintStream out = System.out;
+	private PrintStream err = System.err;
+	private Resolver resolver;
+	private Supplier<JavaRuntime> javaRuntimeFactory = DefaultJavaRuntime::new;
 
-	public Application(CommandLineParser commandLineParser, Context context, PrintStream out, PrintStream err) {
-		this.commandLineParser = commandLineParser;
-		this.context = context;
+	public Application() {
+	}
+
+	public void setOut(PrintStream out) {
 		this.out = out;
+	}
+
+	public void setErr(PrintStream err) {
 		this.err = err;
 	}
 
-	public int run(String[] args) {
+	public void setResolver(Resolver resolver) {
+		this.resolver = resolver;
+	}
+
+	public void setJavaRuntimeFactory(Supplier<JavaRuntime> javaRuntimeFactory) {
+		this.javaRuntimeFactory = javaRuntimeFactory;
+	}
+
+	public int run(Options options) {
 
 		String version = VersionUtils.getVersion();
 		out.println("JarHC - JAR Health Check " + version);
 		out.println("=========================" + StringUtils.repeat("=", version.length()));
 		out.println();
 
-		// parse command line
-		Options options;
-		try {
-			options = commandLineParser.parse(args);
-		} catch (CommandLineException e) {
-			// note: error message has already been printed
-
-			// return with exit code
-			return e.getExitCode();
-		}
-
 		// long time = System.nanoTime();
 
 		out.println("Scan JAR files ...");
 
-		// scan JAR files
-		List<File> files = options.getJarFiles();
-		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options, context.getResolver());
-		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).buildClasspathLoader();
-		Classpath classpath = loader.load(files);
+		List<File> classpathJarFiles = options.getClasspathJarFiles();
+		Classpath classpath = createClasspath(options, classpathJarFiles);
+
+		List<File> runtimeJarFiles = options.getRuntimeJarFiles();
+		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarFiles);
+
+		List<File> providedJarFiles = options.getProvidedJarFiles();
+		javaRuntime = wrapJavaRuntime(javaRuntime, providedJarFiles);
 
 		out.println("Analyze classpath ...");
 
-		// analyze classpath
-
 		AnalyzerRegistry registry = new AnalyzerRegistry();
+		Context context = new Context(javaRuntime, resolver);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
@@ -112,10 +120,11 @@ public class Application {
 		// time = System.nanoTime() - time;
 		// System.out.println("Time: " + (time / 1000 / 1000) + " ms");
 
-		report.setTitle(options.getReportTitle());
-
 		out.println("Create report ...");
 		out.println();
+
+		// set report title
+		report.setTitle(options.getReportTitle());
 
 		// create report format
 		ReportFormat format = createReportFormat(options);
@@ -134,7 +143,14 @@ public class Application {
 		return 0;
 	}
 
-	private JarFileNameNormalizer createJarFileNameNormalizer(Options options, Resolver resolver) {
+	private Classpath createClasspath(Options options, List<File> classpathJarFiles) {
+		// load classpath JAR files
+		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options);
+		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).buildClasspathLoader();
+		return loader.load(classpathJarFiles);
+	}
+
+	private JarFileNameNormalizer createJarFileNameNormalizer(Options options) {
 		boolean useArtifactName = options.isUseArtifactName();
 		boolean removeVersion = options.isRemoveVersion();
 		if (useArtifactName) {
@@ -144,6 +160,36 @@ public class Application {
 		} else {
 			return null;
 		}
+	}
+
+	private JavaRuntime createJavaRuntime(List<File> runtimeJarFiles) {
+
+		if (runtimeJarFiles.isEmpty()) {
+			// create default Java runtime
+			return javaRuntimeFactory.get();
+		}
+
+		// load runtime classpath JAR files
+		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Runtime").scanForReferences(false).buildClasspathLoader();
+		Classpath runtimeClasspath = loader.load(runtimeJarFiles);
+
+		// create Java runtime based on classpath
+		return new ClasspathRuntime(runtimeClasspath);
+	}
+
+	private JavaRuntime wrapJavaRuntime(JavaRuntime javaRuntime, List<File> providedJarFiles) {
+
+		if (providedJarFiles.isEmpty()) {
+			// use original Java runtime
+			return javaRuntime;
+		}
+
+		// load provided classpath JAR files
+		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Provided").scanForReferences(false).buildClasspathLoader();
+		Classpath providedClasspath = loader.load(providedJarFiles);
+
+		// wrap Java runtime
+		return new ExtendedRuntime(providedClasspath, javaRuntime);
 	}
 
 	private ReportFormat createReportFormat(Options options) {

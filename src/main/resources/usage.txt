@@ -12,6 +12,19 @@ Options:
    --version             : Print version information.
     -v
 
+   --debug               : Enable verbose output.
+
+   --classpath <path>    : Add a JAR file or directory with JAR files
+    -cp                    to the classpath of libraries to be analyzed.
+                           Adding JAR files like this has the same
+                           effect as passing them as arguments.
+
+   --provided <path>     : Add a JAR file or directory with JAR files
+                           to the classpath of provided libraries.
+
+   --runtime <path>      : Add a JAR file or directory with JAR files
+                           to the classpath of runtime libraries.
+
    --format <type>       : Report format type ("text" or "html").
     -f                     Example: -f html
                            Default: text

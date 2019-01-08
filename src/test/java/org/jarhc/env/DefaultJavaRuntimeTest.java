@@ -93,7 +93,7 @@ class DefaultJavaRuntimeTest {
 
 		// assert
 		assertTrue(result.isPresent());
-		assertEquals("Bootstrap", result.get());
+		assertEquals("Runtime", result.get());
 
 	}
 

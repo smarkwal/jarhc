@@ -17,55 +17,118 @@
 package org.jarhc.app;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-class Options {
+public class Options {
 
-	private final List<File> jarFiles;
-	private final boolean removeVersion;
-	private final boolean useArtifactName;
-	private final List<String> sections;
-	private final String reportTitle;
-	private final String reportFormat;
-	private final String reportFile;
+	private final List<File> classpathJarFiles = new ArrayList<>();
+	private final List<File> providedJarFiles = new ArrayList<>();
+	private final List<File> runtimeJarFiles = new ArrayList<>();
+	private boolean removeVersion = false;
+	private boolean useArtifactName = false;
 
-	Options(List<File> jarFiles, boolean removeVersion, boolean useArtifactName, List<String> sections, String reportTitle, String reportFormat, String reportFile) {
-		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
-		this.jarFiles = jarFiles;
-		this.removeVersion = removeVersion;
-		this.useArtifactName = useArtifactName;
-		this.sections = sections;
-		this.reportTitle = reportTitle;
-		this.reportFormat = reportFormat;
-		this.reportFile = reportFile;
+	private List<String> sections = null; // all sections
+
+	private String reportTitle = "JAR Health Check Report";
+	private String reportFormat = null;
+	private String reportFile = null; // STDOUT
+
+	private boolean debug = false;
+
+	public Options() {
 	}
 
-	public List<File> getJarFiles() {
-		return jarFiles;
+	public List<File> getClasspathJarFiles() {
+		return classpathJarFiles;
+	}
+
+	public void addClasspathJarFiles(List<File> files) {
+		this.classpathJarFiles.addAll(files);
+	}
+
+	public List<File> getProvidedJarFiles() {
+		return providedJarFiles;
+	}
+
+	public void addProvidedJarFiles(List<File> files) {
+		this.providedJarFiles.addAll(files);
+	}
+
+	public List<File> getRuntimeJarFiles() {
+		return runtimeJarFiles;
+	}
+
+	public void addRuntimeJarFiles(List<File> files) {
+		this.runtimeJarFiles.addAll(files);
 	}
 
 	public boolean isRemoveVersion() {
 		return removeVersion;
 	}
 
+	public void setRemoveVersion(boolean removeVersion) {
+		this.removeVersion = removeVersion;
+	}
+
 	public boolean isUseArtifactName() {
 		return useArtifactName;
+	}
+
+	public void setUseArtifactName(boolean useArtifactName) {
+		this.useArtifactName = useArtifactName;
 	}
 
 	public List<String> getSections() {
 		return sections;
 	}
 
+	public void setSections(List<String> sections) {
+		this.sections = sections;
+	}
+
 	public String getReportTitle() {
 		return reportTitle;
 	}
 
+	public void setReportTitle(String reportTitle) {
+		this.reportTitle = reportTitle;
+	}
+
 	public String getReportFormat() {
-		return reportFormat;
+		if (reportFormat != null) {
+			return reportFormat;
+		}
+		if (reportFile != null) {
+			// guess report format from filename extension
+			if (reportFile.endsWith(".html")) {
+				return "html";
+			} else if (reportFile.endsWith(".txt")) {
+				return "text";
+			}
+		}
+		// use default report format
+		return "text";
+	}
+
+	public void setReportFormat(String reportFormat) {
+		this.reportFormat = reportFormat;
 	}
 
 	public String getReportFile() {
 		return reportFile;
+	}
+
+	public void setReportFile(String reportFile) {
+		this.reportFile = reportFile;
+	}
+
+	public boolean isDebug() {
+		return debug;
+	}
+
+	public void setDebug(boolean debug) {
+		this.debug = debug;
 	}
 
 }
