@@ -19,20 +19,17 @@ package org.jarhc.loader;
 import org.jarhc.model.ModuleInfo;
 import org.objectweb.asm.ClassReader;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 public class ModuleInfoLoader {
 
 	ModuleInfoLoader() {
 	}
 
-	public ModuleInfo load(InputStream stream) throws IOException {
-		if (stream == null) throw new IllegalArgumentException("stream");
+	public ModuleInfo load(byte[] data) {
+		if (data == null) throw new IllegalArgumentException("data");
 
 		ModuleInfoBuilder classVisitor = new ModuleInfoBuilder();
 
-		ClassReader classReader = new ClassReader(stream);
+		ClassReader classReader = new ClassReader(data);
 		classReader.accept(classVisitor, 0);
 
 		// create module definition

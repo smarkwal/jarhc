@@ -21,14 +21,19 @@ import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.IOUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
 /**
@@ -68,14 +73,14 @@ public class JarFileLoader {
 		List<ResourceDef> resourceDefs = new ArrayList<>();
 
 		// open JAR file for reading
-		try (java.util.jar.JarFile jarFile = new java.util.jar.JarFile(file)) {
+		try (JarInputStream stream = new JarInputStream(new FileInputStream(file), false)) {
 
-			boolean multiRelease = isMultiRelease(jarFile);
+			boolean multiRelease = isMultiRelease(stream);
 
 			// for every entry in the JAR file ...
-			Enumeration<JarEntry> entries = jarFile.entries();
-			while (entries.hasMoreElements()) {
-				JarEntry entry = entries.nextElement();
+			while (true) {
+				JarEntry entry = stream.getNextJarEntry();
+				if (entry == null) break;
 
 				// skip directories
 				if (entry.isDirectory()) {
@@ -118,20 +123,21 @@ public class JarFileLoader {
 					continue;
 				}
 
-				if (name.equals("module-info.class")) {
-					// load module info
-					InputStream stream = jarFile.getInputStream(entry);
-					moduleInfo = moduleInfoLoader.load(stream);
-				}
-
-				// load class file
-				InputStream stream = jarFile.getInputStream(entry);
-				ClassDef classDef;
+				// read class file
+				byte[] data;
 				try {
-					classDef = classDefLoader.load(stream);
+					data = IOUtils.toByteArray(stream);
 				} catch (IOException e) {
 					throw new IOException(String.format("Unable to parse class entry: %s", name), e);
 				}
+
+				if (name.equals("module-info.class")) {
+					// load module info
+					moduleInfo = moduleInfoLoader.load(data);
+				}
+
+				// load class file
+				ClassDef classDef = classDefLoader.load(data);
 
 				/*
 				Certificate[] certificates = entry.getCertificates();
@@ -169,8 +175,8 @@ public class JarFileLoader {
 				.build();
 	}
 
-	private boolean isMultiRelease(java.util.jar.JarFile jarFile) throws IOException {
-		Manifest manifest = jarFile.getManifest();
+	private boolean isMultiRelease(JarInputStream stream) throws IOException {
+		Manifest manifest = stream.getManifest();
 		if (manifest == null) return false;
 		Attributes attributes = manifest.getMainAttributes();
 		String value = attributes.getValue("Multi-Release");

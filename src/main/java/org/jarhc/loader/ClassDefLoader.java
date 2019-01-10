@@ -83,14 +83,26 @@ public class ClassDefLoader {
 	public ClassDef load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
-		// read data, calculate SHA-1 checksum, and re-create stream
 		byte[] data = IOUtils.toByteArray(stream);
+		return load(data);
+	}
+
+	/**
+	 * Load a class definition from the given data.
+	 *
+	 * @param data Class data
+	 * @return Class definition
+	 * @throws IllegalArgumentException If <code>data</code> is <code>null</code>.
+	 */
+	public ClassDef load(byte[] data) {
+		if (data == null) throw new IllegalArgumentException("data");
+
+		// calculate SHA-1 checksum
 		String classFileChecksum = DigestUtils.sha1Hex(data);
-		stream = new ByteArrayInputStream(data);
 
 		ClassDefBuilder classDefBuilder = new ClassDefBuilder(scanForReferences);
 
-		ClassReader classReader = new ClassReader(stream);
+		ClassReader classReader = new ClassReader(data);
 		classReader.accept(classDefBuilder, 0);
 
 		ClassDef classDef = classDefBuilder.getClassDef();

@@ -18,6 +18,7 @@ package org.jarhc.loader;
 
 import org.jarhc.TestUtils;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -45,7 +46,8 @@ class ModuleInfoLoaderTest {
 
 	private ModuleInfo loadModuleInfo(String resource) throws IOException {
 		try (InputStream stream = TestUtils.getResourceAsStream(resource)) {
-			return moduleInfoLoader.load(stream);
+			byte[] data = IOUtils.toByteArray(stream);
+			return moduleInfoLoader.load(data);
 		}
 	}
 
