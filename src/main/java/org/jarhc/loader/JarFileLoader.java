@@ -20,11 +20,12 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.model.ResourceDef;
+import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,13 +41,13 @@ import java.util.jar.Manifest;
  * Loader for a JAR file, using a file as source.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
-public class JarFileLoader {
+class JarFileLoader {
 
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
 
-	public JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer) {
+	JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer) {
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
@@ -67,13 +68,22 @@ public class JarFileLoader {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
+		String fileName = file.getName();
+		byte[] data = FileUtils.readFileToByteArray(file);
+		return load(fileName, data);
+	}
+
+	JarFile load(String fileName, byte[] fileData) throws IOException {
+		if (fileName == null) throw new IllegalArgumentException("fileName");
+		if (fileData == null) throw new IllegalArgumentException("fileData");
+
 		Set<Integer> releases = new TreeSet<>();
 		ModuleInfo moduleInfo = null;
 		List<ClassDef> classDefs = new ArrayList<>();
 		List<ResourceDef> resourceDefs = new ArrayList<>();
 
 		// open JAR file for reading
-		try (JarInputStream stream = new JarInputStream(new FileInputStream(file), false)) {
+		try (JarInputStream stream = new JarInputStream(new ByteArrayInputStream(fileData), false)) {
 
 			boolean multiRelease = isMultiRelease(stream);
 
@@ -157,16 +167,15 @@ public class JarFileLoader {
 		}
 
 		// calculate SHA-1 checksum of JAR file
-		String checksum = FileUtils.sha1Hex(file);
+		String checksum = DigestUtils.sha1Hex(fileData);
 
 		// normalize JAR file name (optional)
-		String fileName = file.getName();
 		if (jarFileNameNormalizer != null) {
 			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
 		}
 
 		return JarFile.withName(fileName)
-				.withFileSize(file.length())
+				.withFileSize(fileData.length)
 				.withChecksum(checksum)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
@@ -175,7 +184,7 @@ public class JarFileLoader {
 				.build();
 	}
 
-	private boolean isMultiRelease(JarInputStream stream) throws IOException {
+	private boolean isMultiRelease(JarInputStream stream) {
 		Manifest manifest = stream.getManifest();
 		if (manifest == null) return false;
 		Attributes attributes = manifest.getMainAttributes();

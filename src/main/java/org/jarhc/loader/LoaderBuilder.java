@@ -45,11 +45,11 @@ public class LoaderBuilder {
 		return new ClassDefLoader(classLoader, scanForReferences);
 	}
 
-	public ModuleInfoLoader buildModuleInfoLoader() {
+	ModuleInfoLoader buildModuleInfoLoader() {
 		return new ModuleInfoLoader();
 	}
 
-	public JarFileLoader buildJarFileLoader() {
+	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
 		return new JarFileLoader(classDefLoader, moduleInfoLoader, jarFileNameNormalizer);
@@ -57,7 +57,8 @@ public class LoaderBuilder {
 
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
-		return new ClasspathLoader(jarFileLoader);
+		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
+		return new ClasspathLoader(jarFileLoader, warFileLoader);
 	}
 
 }

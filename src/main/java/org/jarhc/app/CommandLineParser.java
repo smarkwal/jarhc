@@ -217,6 +217,8 @@ public class CommandLineParser {
 				String fileName = path.getName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
 					jarFiles.add(path);
+				} else if (fileName.endsWith(".war")) {
+					jarFiles.add(path);
 				} else if (strict) {
 					String errorMessage = String.format("File is not a *.jar file: %s", path.getAbsolutePath());
 					handleError(-2, errorMessage);

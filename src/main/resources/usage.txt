@@ -4,6 +4,10 @@ Arguments:
 
    <path> : Path to JAR file or directory with JAR files.
 
+   Note:
+   If a path refers to a WAR file instead of a JAR file,
+   JarHC analyzes the JAR files inside the WAR file.
+
 Options:
 
    --help                : Print this usage information.

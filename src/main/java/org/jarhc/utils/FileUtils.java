@@ -53,6 +53,12 @@ public class FileUtils {
 		}
 	}
 
+	public static byte[] readFileToByteArray(File file) throws IOException {
+		try (FileInputStream stream = new FileInputStream(file)) {
+			return IOUtils.toByteArray(stream);
+		}
+	}
+
 	public static String readFileToString(File file) throws IOException {
 		try (FileInputStream stream = new FileInputStream(file)) {
 			try (InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
@@ -89,6 +95,12 @@ public class FileUtils {
 		}
 		// set modification time to now
 		file.setLastModified(System.currentTimeMillis());
+	}
+
+	public static String getFilename(String path) {
+		int pos = path.lastIndexOf("/");
+		if (pos < 0) return path;
+		return path.substring(pos + 1);
 	}
 
 }

@@ -21,9 +21,7 @@ import org.jarhc.model.JarFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -34,9 +32,11 @@ import java.util.stream.Collectors;
 public class ClasspathLoader {
 
 	private final JarFileLoader jarFileLoader;
+	private final WarFileLoader warFileLoader;
 
-	public ClasspathLoader(JarFileLoader jarFileLoader) {
+	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader) {
 		this.jarFileLoader = jarFileLoader;
+		this.warFileLoader = warFileLoader;
 	}
 
 	/**
@@ -52,18 +52,27 @@ public class ClasspathLoader {
 		// long totalTime = System.nanoTime();
 
 		// temporary map to remember input file -> JAR file relation
-		Map<File, JarFile> filesMap = new ConcurrentHashMap<>();
+		Map<File, List<JarFile>> filesMap = new ConcurrentHashMap<>();
 
 		// load all JAR files in parallel
 		files.parallelStream().forEach(file -> {
 
 			// long time = System.nanoTime();
 
-			JarFile jarFile;
+			List<JarFile> jarFiles;
 			try {
-				jarFile = jarFileLoader.load(file);
+				String fileName = file.getName().toLowerCase();
+				if (fileName.endsWith(".jar")) {
+					JarFile jarFile = jarFileLoader.load(file);
+					jarFiles = Collections.singletonList(jarFile);
+				} else if (fileName.endsWith(".war")) {
+					jarFiles = warFileLoader.load(file);
+				} else {
+					String message = String.format("Unsupported file extension: %s", file.getName());
+					throw new IOException(message);
+				}
 			} catch (IOException e) {
-				String message = String.format("Unable to parse JAR file: %s", file.getAbsolutePath());
+				String message = String.format("Unable to parse file: %s", file.getAbsolutePath());
 				System.err.println(message);
 				e.printStackTrace();
 				return;
@@ -72,11 +81,11 @@ public class ClasspathLoader {
 			// time = System.nanoTime() - time;
 			// System.out.println("\t" + jarFile.getFileName() + ": " + (time / 1000 / 1000) + " ms");
 
-			filesMap.put(file, jarFile);
+			filesMap.put(file, jarFiles);
 		});
 
 		// create list of JAR files (same order as list of input files)
-		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).collect(Collectors.toList());
+		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
 
 		// totalTime = System.nanoTime() - totalTime;
 		// System.out.println("\tTotal: " + (totalTime / 1000 / 1000) + " ms");
