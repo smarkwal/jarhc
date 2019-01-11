@@ -174,6 +174,10 @@ class JarFileLoader {
 			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
 		}
 
+		// append JAR file name to class loader name
+		String jarFileName = fileName;
+		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
+
 		return JarFile.withName(fileName)
 				.withFileSize(fileData.length)
 				.withChecksum(checksum)

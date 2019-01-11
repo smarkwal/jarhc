@@ -68,7 +68,7 @@ class ShadowedClassesAnalyzerTest {
 		assertEquals(4, values.length);
 		assertEquals("java.lang.String", values[0]);
 		assertEquals("a.jar", values[1]);
-		assertEquals("Runtime", values[2]);
+		assertEquals("Runtime (rt.jar)", values[2]);
 		assertEquals("Different API", values[3]);
 
 	}
