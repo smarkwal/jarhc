@@ -19,6 +19,7 @@ package org.jarhc.analyzer;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Resolver;
 import org.jarhc.artifacts.ResolverException;
+import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
@@ -66,7 +67,7 @@ public class JarFilesAnalyzer extends Analyzer {
 			String fileName = jarFile.getFileName();
 			long fileSize = jarFile.getFileSize();
 			String checksum = getChecksumInfo(jarFile);
-			int classCount = jarFile.getClassDefs().size();
+			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count();
 			int resourceCount = jarFile.getResourceDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);

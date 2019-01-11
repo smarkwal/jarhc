@@ -55,6 +55,12 @@ public class ClassVersionsAnalyzer extends Analyzer {
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
+
+				if (!classDef.isRegularClass()) {
+					// ignore package-info and module-info classes
+					continue;
+				}
+
 				int classVersion = classDef.getMajorClassVersion();
 
 				jarFileCounter.count(classVersion);

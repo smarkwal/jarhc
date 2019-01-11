@@ -119,6 +119,16 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return this;
 	}
 
+	public boolean isRegularClass() {
+		if (className.equals("module-info")) {
+			return false;
+		} else if (className.endsWith(".package-info")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public String getSuperName() {
 		return superName;
 	}

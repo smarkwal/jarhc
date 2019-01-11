@@ -7,14 +7,14 @@ Java class file format information.
 
 JAR file                | Java version
 ------------------------+---------------------------
-camel-core-2.17.7.jar   | Java 7 (2008), Java 6 (78)
+camel-core-2.17.7.jar   | Java 7 (2001), Java 6 (78)
 camel-jdbc-2.17.7.jar   | Java 7 (18)
 camel-jms-2.17.7.jar    | Java 7 (70)
-camel-jmx-2.17.7.jar    | Java 7 (20)
+camel-jmx-2.17.7.jar    | Java 7 (19)
 camel-jxpath-2.17.7.jar | Java 7 (3)
 camel-ldap-2.17.7.jar   | Java 7 (3)
 camel-mail-2.17.7.jar   | Java 7 (32)
-camel-soap-2.17.7.jar   | Java 7 (32)
-camel-spring-2.17.7.jar | Java 7 (127)
-Classpath               | Java 7 (2313), Java 6 (78)
+camel-soap-2.17.7.jar   | Java 7 (30)
+camel-spring-2.17.7.jar | Java 7 (122)
+Classpath               | Java 7 (2298), Java 6 (78)
 
