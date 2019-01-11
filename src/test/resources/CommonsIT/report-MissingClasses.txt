@@ -5,7 +5,7 @@ Missing Classes
 ---------------
 References to classes not found on the classpath.
 
-JAR file                      | Missing class
+JAR file                      | Missing classes
 ------------------------------+------------------------------------------------
 commons-codec-1.10.jar        | javax.crypto.Mac
                               | javax.crypto.spec.SecretKeySpec

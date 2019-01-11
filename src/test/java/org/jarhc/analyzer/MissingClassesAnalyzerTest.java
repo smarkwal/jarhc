@@ -60,7 +60,7 @@ class MissingClassesAnalyzerTest {
 		String[] columns = table.getColumns();
 		assertEquals(2, columns.length);
 		assertEquals("JAR file", columns[0]);
-		assertEquals("Missing class", columns[1]);
+		assertEquals("Missing classes", columns[1]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());

@@ -5,7 +5,7 @@ Missing Classes
 ---------------
 References to classes not found on the classpath.
 
-JAR file                                 | Missing class
+JAR file                                 | Missing classes
 -----------------------------------------+-------------------------------------------------------------------------------
 spring-aop-5.1.3.RELEASE.jar             | com.jamonapi.MonKey
                                          | com.jamonapi.MonKeyImp

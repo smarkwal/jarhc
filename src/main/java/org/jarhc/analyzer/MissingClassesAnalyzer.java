@@ -48,7 +48,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
-		ReportTable table = new ReportTable("JAR file", "Missing class");
+		ReportTable table = new ReportTable("JAR file", "Missing classes");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();

@@ -5,7 +5,7 @@ Missing Classes
 ---------------
 References to classes not found on the classpath.
 
-JAR file                | Missing class
+JAR file                | Missing classes
 ------------------------+---------------------------------------------------------------------------
 camel-core-2.17.7.jar   | javax.annotation.concurrent.GuardedBy
                         | javax.annotation.concurrent.Immutable
