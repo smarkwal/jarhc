@@ -56,6 +56,7 @@ public class ClassVersionsAnalyzer extends Analyzer {
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
 
+				// TODO: make this configurable ?
 				if (!classDef.isRegularClass()) {
 					// ignore package-info and module-info classes
 					continue;

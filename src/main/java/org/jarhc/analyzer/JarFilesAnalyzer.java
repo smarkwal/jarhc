@@ -67,7 +67,7 @@ public class JarFilesAnalyzer extends Analyzer {
 			String fileName = jarFile.getFileName();
 			long fileSize = jarFile.getFileSize();
 			String checksum = getChecksumInfo(jarFile);
-			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count();
+			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count(); // TODO: make this configurable ?
 			int resourceCount = jarFile.getResourceDefs().size();
 			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);
