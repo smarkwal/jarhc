@@ -89,16 +89,40 @@ public class MavenCentralResolver implements Resolver {
 			throw new ResolverException("JSON array 'docs' is empty: " + text);
 		}
 
-		JSONObject doc = docs.getJSONObject(0);
+		JSONObject doc = findBestMatch(docs);
 		String groupId = doc.getString("g");
 		String artifactId = doc.getString("a");
 		String version = doc.getString("v");
 		String type = doc.getString("p");
 
-		// TODO: what if there are more matches?
-
 		Artifact artifact = new Artifact(groupId, artifactId, version, type);
 		return Optional.of(artifact);
+	}
+
+	private JSONObject findBestMatch(JSONArray docs) {
+
+		int num = docs.length();
+		if (num == 1) {
+			return docs.getJSONObject(0);
+		}
+
+		// multiple matches:
+		// prefer shorter artifact coordinates
+
+		JSONObject bestDoc = null;
+		int minLen = Integer.MAX_VALUE;
+
+		for (int i = 0; i < num; i++) {
+			JSONObject doc = docs.getJSONObject(i);
+			String id = doc.getString("id");
+			int len = id.length();
+			if (len < minLen) {
+				bestDoc = doc;
+				minLen = len;
+			}
+		}
+
+		return bestDoc;
 	}
 
 	private String executeHttpRequest(URL url) throws ResolverException {
