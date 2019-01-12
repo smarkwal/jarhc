@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2019 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,25 @@
  * limitations under the License.
  */
 
-package org.jarhc.test;
+package org.jarhc.java;
 
-import org.jarhc.Context;
-import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
+import org.jarhc.model.ClassDef;
 
-public class ContextMock {
+import java.util.Optional;
 
-	public static Context createContext() {
-		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		ClassLoader parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
-		Resolver resolver = ResolverMock.createResolver();
-		return new Context(parentClassLoader, javaRuntime, resolver);
+public class JavaRuntimeClassLoader extends ClassLoader {
+
+	private final JavaRuntime javaRuntime;
+
+	public JavaRuntimeClassLoader(JavaRuntime javaRuntime) {
+		super("Runtime", null);
+		this.javaRuntime = javaRuntime;
+	}
+
+	@Override
+	protected Optional<ClassDef> findClassDef(String className) {
+		return javaRuntime.getClassDef(className);
 	}
 
 }

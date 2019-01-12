@@ -28,14 +28,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClasspathRuntimeTest {
 
-	private ClasspathRuntime runtime;
+	private ClasspathJavaRuntime runtime;
 
 	@BeforeEach
 	void setUp() {
 		Classpath classpath = Mockito.mock(Classpath.class);
 		Mockito.when(classpath.getClassDef("u.Unknown")).thenReturn(Optional.empty());
 		Mockito.when(classpath.getClassDef("java.lang.String")).thenReturn(Optional.of(ClassDef.forClassName("java.lang.String").setClassLoader("Runtime")));
-		runtime = new ClasspathRuntime(classpath);
+		runtime = new ClasspathJavaRuntime(classpath);
 	}
 
 	@Test
@@ -68,25 +68,6 @@ class ClasspathRuntimeTest {
 		String result = runtime.getJavaHome();
 		// assert
 		assertEquals("[none]", result);
-	}
-
-	@Test
-	void test_getClassLoaderName_Unknown() {
-		// test
-		Optional<String> result = runtime.getClassLoaderName("u.Unknown");
-		// assert
-		assertNotNull(result);
-		assertFalse(result.isPresent());
-	}
-
-	@Test
-	void test_getClassLoaderName_String() {
-		// test
-		Optional<String> result = runtime.getClassLoaderName("java.lang.String");
-		// assert
-		assertNotNull(result);
-		assertTrue(result.isPresent());
-		assertEquals("Runtime", result.get());
 	}
 
 	@Test

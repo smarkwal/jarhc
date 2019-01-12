@@ -33,11 +33,11 @@ public class AccessCheck {
 	/**
 	 * Class resolver used to find superclasses and interfaces.
 	 */
-	private final ClassResolver classResolver;
+	private final ClassLoader classLoader;
 
-	public AccessCheck(ClassResolver classResolver) {
-		if (classResolver == null) throw new IllegalArgumentException("classResolver");
-		this.classResolver = classResolver;
+	public AccessCheck(ClassLoader classLoader) {
+		if (classLoader == null) throw new IllegalArgumentException("classResolver");
+		this.classLoader = classLoader;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class AccessCheck {
 	private boolean isSubclass(String sourceClassName, String targetClassName) {
 
 		// try to find source class
-		Optional<ClassDef> classDef = classResolver.getClassDef(sourceClassName);
+		Optional<ClassDef> classDef = classLoader.getClassDef(sourceClassName);
 		if (!classDef.isPresent()) {
 			// TODO: handle class not found
 			return false;

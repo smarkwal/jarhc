@@ -16,9 +16,8 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassResolver;
-import org.jarhc.java.ClassResolverImpl;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClasspathClassLoader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -35,11 +34,11 @@ import static org.jarhc.utils.StringUtils.joinLines;
 
 public class MissingClassesAnalyzer extends Analyzer {
 
-	private final JavaRuntime javaRuntime;
+	private final ClassLoader parentClassLoader;
 
-	public MissingClassesAnalyzer(JavaRuntime javaRuntime) {
-		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
-		this.javaRuntime = javaRuntime;
+	public MissingClassesAnalyzer(ClassLoader parentClassLoader) {
+		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
+		this.parentClassLoader = parentClassLoader;
 	}
 
 	@Override
@@ -55,14 +54,14 @@ public class MissingClassesAnalyzer extends Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 		ReportTable table = new ReportTable("JAR file", "Missing classes");
 
-		ClassResolver classResolver = new ClassResolverImpl(classpath, javaRuntime);
+		ClassLoader classLoader = new ClasspathClassLoader(classpath, "Classpath", parentClassLoader);
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
 			// find all missing classes
-			Set<String> missingClasses = collectMissingClasses(jarFile, classResolver);
+			Set<String> missingClasses = collectMissingClasses(jarFile, classLoader);
 			if (missingClasses.isEmpty()) continue;
 
 			table.addRow(jarFile.getFileName(), joinLines(missingClasses));
@@ -71,7 +70,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private Set<String> collectMissingClasses(JarFile jarFile, ClassResolver classResolver) {
+	private Set<String> collectMissingClasses(JarFile jarFile, ClassLoader classLoader) {
 		Set<String> missingClasses = Collections.synchronizedSet(new TreeSet<>());
 
 		// for every class definition (in parallel) ...
@@ -84,7 +83,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 				String className = classRef.getClassName();
 
 				// check if class exists
-				boolean exists = classResolver.getClassDef(className).isPresent();
+				boolean exists = classLoader.getClassDef(className).isPresent();
 				if (!exists) {
 					missingClasses.add(className);
 				}

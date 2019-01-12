@@ -18,15 +18,22 @@ package org.jarhc;
 
 import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassLoader;
 
 public class Context {
 
+	private final ClassLoader parentClassLoader;
 	private final JavaRuntime javaRuntime;
 	private final Resolver resolver;
 
-	public Context(JavaRuntime javaRuntime, Resolver resolver) {
+	public Context(ClassLoader parentClassLoader, JavaRuntime javaRuntime, Resolver resolver) {
+		this.parentClassLoader = parentClassLoader;
 		this.javaRuntime = javaRuntime;
 		this.resolver = resolver;
+	}
+
+	public ClassLoader getParentClassLoader() {
+		return parentClassLoader;
 	}
 
 	public JavaRuntime getJavaRuntime() {

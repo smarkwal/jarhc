@@ -38,12 +38,12 @@ class AnalysisTest {
 				new TestAnalyzer("Title 2", "Description 2")
 		);
 		Classpath classpath = ClasspathBuilder.create().addJarFile("a.jar").addClassDef("a.A").build();
+		Report report = new Report();
 
 		// test
-		Report report = analysis.run(classpath);
+		analysis.run(classpath, report);
 
 		// assert
-		assertEquals("JAR Health Check Report", report.getTitle());
 		List<ReportSection> sections = report.getSections();
 		assertNotNull(sections);
 		assertEquals(2, sections.size());

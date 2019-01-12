@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2019 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,22 @@
 package org.jarhc.java;
 
 import org.jarhc.model.ClassDef;
+import org.jarhc.model.Classpath;
 
 import java.util.Optional;
 
-public interface ClassResolver {
+public class ClasspathClassLoader extends ClassLoader {
 
-	Optional<ClassDef> getClassDef(String className);
+	private final Classpath classpath;
+
+	public ClasspathClassLoader(Classpath classpath, String name, ClassLoader parent) {
+		super(name, parent);
+		this.classpath = classpath;
+	}
+
+	@Override
+	protected Optional<ClassDef> findClassDef(String className) {
+		return classpath.getClassDef(className);
+	}
 
 }

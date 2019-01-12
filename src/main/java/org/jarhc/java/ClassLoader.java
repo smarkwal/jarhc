@@ -20,21 +20,35 @@ import org.jarhc.model.ClassDef;
 
 import java.util.Optional;
 
-public class ClassResolverImpl implements ClassResolver {
+public abstract class ClassLoader {
 
-	private final ClassResolver[] resolvers;
+	private final String name;
+	private final ClassLoader parent;
 
-	public ClassResolverImpl(ClassResolver... resolvers) {
-		this.resolvers = resolvers;
+	public ClassLoader(String name, ClassLoader parent) {
+		this.name = name;
+		this.parent = parent;
 	}
 
-	@Override
+	public String getName() {
+		return name;
+	}
+
+	public ClassLoader getParent() {
+		return parent;
+	}
+
 	public Optional<ClassDef> getClassDef(String className) {
-		for (ClassResolver resolver : resolvers) {
-			Optional<ClassDef> classDef = resolver.getClassDef(className);
-			if (classDef.isPresent()) return classDef;
+		Optional<ClassDef> classDef = findClassDef(className);
+		if (classDef.isPresent()) {
+			return classDef;
+		} else if (parent != null) {
+			return parent.getClassDef(className);
+		} else {
+			return Optional.empty();
 		}
-		return Optional.empty();
 	}
+
+	protected abstract Optional<ClassDef> findClassDef(String className);
 
 }

@@ -101,8 +101,9 @@ abstract class AbstractIT {
 		}
 
 		// analyze classpath
+		Report report = new Report();
 		Analysis analysis = new Analysis(analyzer);
-		Report report = analysis.run(classpath);
+		analysis.run(classpath, report);
 
 		// create report
 		String output = reportFormat.format(report);

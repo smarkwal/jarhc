@@ -19,6 +19,8 @@ package org.jarhc.it;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.FieldRefAnalyzer;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -46,7 +48,8 @@ class FieldRefAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-	private FieldRefAnalyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
+	private final ClassLoader parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
+	private FieldRefAnalyzer analyzer = new FieldRefAnalyzer(parentClassLoader, false);
 
 	@Test
 	void test_fieldrefs(@TempDirectory.TempDir Path tempDir) throws IOException {
@@ -196,7 +199,7 @@ class FieldRefAnalyzerIT {
 	void test_reportOwnerClassNotFound_true(@TempDirectory.TempDir Path tempDir) throws IOException {
 
 		// prepare: analyzer reporting missing owner classes
-		analyzer = new FieldRefAnalyzer(javaRuntime, true);
+		analyzer = new FieldRefAnalyzer(parentClassLoader, true);
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);

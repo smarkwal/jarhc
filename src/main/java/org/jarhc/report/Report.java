@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Report {
 
-	private String title;
+	private String title = "JAR Health Check Report";
 	private final List<ReportSection> sections = new ArrayList<>();
 
 	public Report() {

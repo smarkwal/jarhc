@@ -16,7 +16,7 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassLoader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -27,11 +27,11 @@ import java.util.*;
 
 public class ShadowedClassesAnalyzer extends Analyzer {
 
-	private final JavaRuntime javaRuntime;
+	private final ClassLoader parentClassLoader;
 
-	public ShadowedClassesAnalyzer(JavaRuntime javaRuntime) {
-		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
-		this.javaRuntime = javaRuntime;
+	public ShadowedClassesAnalyzer(ClassLoader parentClassLoader) {
+		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
+		this.parentClassLoader = parentClassLoader;
 	}
 
 	@Override
@@ -39,15 +39,7 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		StringBuilder description = new StringBuilder("Classes shadowing JRE/JDK classes.").append(System.lineSeparator());
-
-		// print information about JRE/JDK in description
-		description.append("Java home   : ").append(javaRuntime.getJavaHome()).append(System.lineSeparator());
-		description.append("Java runtime: ").append(javaRuntime.getName()).append(System.lineSeparator());
-		description.append("Java version: ").append(javaRuntime.getJavaVersion()).append(System.lineSeparator());
-		description.append("Java vendor : ").append(javaRuntime.getJavaVendor());
-
-		ReportSection section = new ReportSection("Shadowed Classes", description.toString());
+		ReportSection section = new ReportSection("Shadowed Classes", "Classes shadowing JRE/JDK classes.");
 		section.add(table);
 		return section;
 	}
@@ -71,7 +63,7 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 
 				// check if class is shadowing a runtime class
 				String realClassName = formatClassName(className);
-				Optional<ClassDef> jvmClassDef = javaRuntime.getClassDef(realClassName);
+				Optional<ClassDef> jvmClassDef = parentClassLoader.getClassDef(realClassName);
 
 				//noinspection OptionalIsPresent
 				if (jvmClassDef.isPresent()) {

@@ -21,6 +21,7 @@ import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
+import org.jarhc.java.ClassLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("fr", "Field References", FieldRefAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dr", "Duplicate Resources", DuplicateResourcesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("jr", "Java Runtime", JavaRuntimeAnalyzer.class));
 	}
 
 	public List<String> getCodes() {
@@ -71,6 +73,7 @@ public class AnalyzerRegistry {
 
 		// prepare an injector
 		Injector injector = new Injector();
+		injector.addBinding(ClassLoader.class, context.getParentClassLoader());
 		injector.addBinding(JavaRuntime.class, context.getJavaRuntime());
 		injector.addBinding(Resolver.class, context.getResolver());
 

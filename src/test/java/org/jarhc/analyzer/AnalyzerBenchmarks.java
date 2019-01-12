@@ -17,6 +17,8 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -37,7 +39,7 @@ import java.util.stream.Collectors;
 public class AnalyzerBenchmarks {
 
 	private Classpath classpath;
-	private JavaRuntime javaRuntime;
+	private ClassLoader parentClassLoader;
 
 	@Setup
 	public void setUp() {
@@ -59,7 +61,8 @@ public class AnalyzerBenchmarks {
 		List<File> files = fileNames.stream().map(f -> new File("./src/test/resources/Spring5IT", f)).collect(Collectors.toList());
 		ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 		this.classpath = classpathLoader.load(files);
-		this.javaRuntime = JavaRuntimeMock.getOracleRuntime();
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+		this.parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
 	}
 
 	@Benchmark
@@ -82,7 +85,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_FieldRefAnalyzer() {
-		Analyzer analyzer = new FieldRefAnalyzer(javaRuntime, false);
+		Analyzer analyzer = new FieldRefAnalyzer(parentClassLoader, false);
 		analyzer.analyze(classpath);
 	}
 
@@ -100,7 +103,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_MissingClassesAnalyzer() {
-		Analyzer analyzer = new MissingClassesAnalyzer(javaRuntime);
+		Analyzer analyzer = new MissingClassesAnalyzer(parentClassLoader);
 		analyzer.analyze(classpath);
 	}
 
@@ -112,7 +115,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_ShadowedClassesAnalyzer() {
-		Analyzer analyzer = new ShadowedClassesAnalyzer(javaRuntime);
+		Analyzer analyzer = new ShadowedClassesAnalyzer(parentClassLoader);
 		analyzer.analyze(classpath);
 	}
 

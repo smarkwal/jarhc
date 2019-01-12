@@ -16,7 +16,6 @@
 
 package org.jarhc.env;
 
-import org.jarhc.java.ClassResolver;
 import org.jarhc.model.ClassDef;
 
 import java.util.Optional;
@@ -32,7 +31,7 @@ import java.util.Optional;
  *
  * @see DefaultJavaRuntime
  */
-public interface JavaRuntime extends ClassResolver {
+public interface JavaRuntime {
 
 	/**
 	 * Get the name of the Java runtime.
@@ -63,22 +62,12 @@ public interface JavaRuntime extends ClassResolver {
 	String getJavaHome();
 
 	/**
-	 * Get the name of the class loader used to load the given class,
-	 * or <code>null</code> if the class cannot be found.
-	 *
-	 * @param className Class name
-	 * @return Class loader name, or <code>null</code> if the class cannot be found.
-	 */
-	Optional<String> getClassLoaderName(String className);
-
-	/**
 	 * Get the class definition for the given class,
 	 * or <code>null</code> of the class cannot be found.
 	 *
 	 * @param className Class name
 	 * @return Class definition, or <code>null</code> if the class cannot be found.
 	 */
-	@Override
 	Optional<ClassDef> getClassDef(String className);
 
 }

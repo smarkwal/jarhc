@@ -21,11 +21,11 @@ import org.jarhc.model.Classpath;
 
 import java.util.Optional;
 
-public class ClasspathRuntime implements JavaRuntime {
+public class ClasspathJavaRuntime implements JavaRuntime {
 
 	private final Classpath classpath;
 
-	public ClasspathRuntime(Classpath classpath) {
+	public ClasspathJavaRuntime(Classpath classpath) {
 		this.classpath = classpath;
 	}
 
@@ -47,16 +47,6 @@ public class ClasspathRuntime implements JavaRuntime {
 	@Override
 	public String getJavaHome() {
 		return "[none]";
-	}
-
-	@Override
-	public Optional<String> getClassLoaderName(String className) {
-		Optional<ClassDef> classDef = getClassDef(className);
-		if (classDef.isPresent()) {
-			return Optional.of("Runtime");
-		} else {
-			return Optional.empty();
-		}
 	}
 
 	@Override

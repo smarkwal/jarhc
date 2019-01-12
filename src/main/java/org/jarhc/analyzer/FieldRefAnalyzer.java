@@ -16,10 +16,9 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.env.JavaRuntime;
 import org.jarhc.java.AccessCheck;
-import org.jarhc.java.ClassResolver;
-import org.jarhc.java.ClassResolverImpl;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClasspathClassLoader;
 import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -30,16 +29,16 @@ import static org.jarhc.utils.StringUtils.joinLines;
 
 public class FieldRefAnalyzer extends Analyzer {
 
-	private final JavaRuntime javaRuntime;
+	private final ClassLoader parentClassLoader;
 	private final boolean reportOwnerClassNotFound;
 
-	public FieldRefAnalyzer(JavaRuntime javaRuntime) {
-		this(javaRuntime, false);
+	public FieldRefAnalyzer(ClassLoader parentClassLoader) {
+		this(parentClassLoader, false);
 	}
 
-	public FieldRefAnalyzer(JavaRuntime javaRuntime, boolean reportOwnerClassNotFound) {
-		if (javaRuntime == null) throw new IllegalArgumentException("javaRuntime");
-		this.javaRuntime = javaRuntime;
+	public FieldRefAnalyzer(ClassLoader parentClassLoader, boolean reportOwnerClassNotFound) {
+		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
+		this.parentClassLoader = parentClassLoader;
 		this.reportOwnerClassNotFound = reportOwnerClassNotFound;
 	}
 
@@ -55,7 +54,7 @@ public class FieldRefAnalyzer extends Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ClassResolver classResolver = new ClassResolverImpl(classpath, javaRuntime);
+		ClassLoader classLoader = new ClasspathClassLoader(classpath, "Classpath", parentClassLoader);
 
 		ReportTable table = new ReportTable("JAR File", "Errors");
 
@@ -74,7 +73,7 @@ public class FieldRefAnalyzer extends Analyzer {
 				for (FieldRef fieldRef : fieldRefs) {
 
 					// validate field reference
-					SearchResult result = validateFieldRef(classDef, fieldRef, classResolver);
+					SearchResult result = validateFieldRef(classDef, fieldRef, classLoader);
 					if (!result.isIgnoreResult()) {
 						String text = result.getResult();
 						if (text != null) {
@@ -92,13 +91,13 @@ public class FieldRefAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, ClassResolver classResolver) {
+	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, ClassLoader classLoader) {
 
 		SearchResult searchResult = new SearchResult();
 
 		// try to find owner class
 		String targetClassName = fieldRef.getFieldOwner();
-		ClassDef ownerClassDef = classResolver.getClassDef(targetClassName).orElse(null);
+		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName).orElse(null);
 		if (ownerClassDef == null) {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
@@ -112,7 +111,7 @@ public class FieldRefAnalyzer extends Analyzer {
 			return searchResult;
 		}
 
-		AccessCheck accessCheck = new AccessCheck(classResolver);
+		AccessCheck accessCheck = new AccessCheck(classLoader);
 
 		// check access to owner class
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
@@ -125,7 +124,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		Set<String> scannedClasses = new HashSet<>();
 
 		// find target field definition
-		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classResolver, searchResult, scannedClasses);
+		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classLoader, searchResult, scannedClasses);
 		if (!fieldDef.isPresent()) {
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			return searchResult;
@@ -168,7 +167,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, ClassResolver classResolver, SearchResult searchResult, Set<String> scannedClasses) {
+	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, ClassLoader classLoader, SearchResult searchResult, Set<String> scannedClasses) {
 
 		// TODO: use a cache for field definitions like System.out, System.err, ...
 
@@ -180,7 +179,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		}
 
 		// try to find target class in classpath or Java runtime
-		ClassDef targetClassDef = classResolver.getClassDef(targetClassName).orElse(null);
+		ClassDef targetClassDef = classLoader.getClassDef(targetClassName).orElse(null);
 
 		// if class has not been found ...
 		if (targetClassDef == null) {
@@ -204,7 +203,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
 		List<String> interfaceNames = targetClassDef.getInterfaceNames();
 		for (String interfaceName : interfaceNames) {
-			fieldDef = findFieldDef(fieldRef, interfaceName, classResolver, searchResult, scannedClasses);
+			fieldDef = findFieldDef(fieldRef, interfaceName, classLoader, searchResult, scannedClasses);
 			if (fieldDef.isPresent()) {
 				return fieldDef;
 			}
@@ -213,7 +212,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		// try to find field in superclass
 		String superName = targetClassDef.getSuperName();
 		if (superName != null) {
-			fieldDef = findFieldDef(fieldRef, superName, classResolver, searchResult, scannedClasses);
+			fieldDef = findFieldDef(fieldRef, superName, classLoader, searchResult, scannedClasses);
 			if (fieldDef.isPresent()) {
 				return fieldDef;
 			}

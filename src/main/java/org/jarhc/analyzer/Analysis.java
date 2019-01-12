@@ -33,7 +33,7 @@ public class Analysis {
 		this.analyzers = Arrays.asList(analyzers);
 	}
 
-	public Report run(Classpath classpath) {
+	public void run(Classpath classpath, Report report) {
 
 		// run all analyzers in parallel
 		Map<Analyzer, ReportSection> sections = new ConcurrentHashMap<>();
@@ -42,14 +42,9 @@ public class Analysis {
 			sections.put(analyzer, section);
 		});
 
-		// create a new report
-		Report report = new Report();
-		report.setTitle("JAR Health Check Report");
-
 		// add all sections to the report (in the order of the analyzers)
 		analyzers.stream().map(sections::get).forEach(report::addSection);
 
-		return report;
 	}
 
 }

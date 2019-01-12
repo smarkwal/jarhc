@@ -22,10 +22,12 @@ import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Resolver;
-import org.jarhc.env.ClasspathRuntime;
+import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
-import org.jarhc.env.ExtendedRuntime;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClasspathClassLoader;
+import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
@@ -81,21 +83,24 @@ public class Application {
 
 		// long time = System.nanoTime();
 
-		out.println("Scan JAR files ...");
+		// prepare a new report
+		Report report = new Report();
 
-		List<File> classpathJarFiles = options.getClasspathJarFiles();
-		Classpath classpath = createClasspath(options, classpathJarFiles);
+		out.println("Scan JAR files ...");
 
 		List<File> runtimeJarFiles = options.getRuntimeJarFiles();
 		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarFiles);
 
 		List<File> providedJarFiles = options.getProvidedJarFiles();
-		javaRuntime = wrapJavaRuntime(javaRuntime, providedJarFiles);
+		ClassLoader classLoader = createClassLoader(javaRuntime, providedJarFiles);
+
+		List<File> classpathJarFiles = options.getClasspathJarFiles();
+		Classpath classpath = createClasspath(options, classpathJarFiles);
 
 		out.println("Analyze classpath ...");
 
 		AnalyzerRegistry registry = new AnalyzerRegistry();
-		Context context = new Context(javaRuntime, resolver);
+		Context context = new Context(classLoader, javaRuntime, resolver);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
@@ -115,7 +120,8 @@ public class Application {
 
 		Analysis analysis = new Analysis(analyzers.toArray(new Analyzer[0]));
 
-		Report report = analysis.run(classpath);
+		// run analysis
+		analysis.run(classpath, report);
 
 		// time = System.nanoTime() - time;
 		// System.out.println("Time: " + (time / 1000 / 1000) + " ms");
@@ -174,14 +180,16 @@ public class Application {
 		Classpath runtimeClasspath = loader.load(runtimeJarFiles);
 
 		// create Java runtime based on classpath
-		return new ClasspathRuntime(runtimeClasspath);
+		return new ClasspathJavaRuntime(runtimeClasspath);
 	}
 
-	private JavaRuntime wrapJavaRuntime(JavaRuntime javaRuntime, List<File> providedJarFiles) {
+	private ClassLoader createClassLoader(JavaRuntime javaRuntime, List<File> providedJarFiles) {
+
+		JavaRuntimeClassLoader javaRuntimeClassLoader = new JavaRuntimeClassLoader(javaRuntime);
 
 		if (providedJarFiles.isEmpty()) {
 			// use original Java runtime
-			return javaRuntime;
+			return javaRuntimeClassLoader;
 		}
 
 		// load provided classpath JAR files
@@ -189,7 +197,7 @@ public class Application {
 		Classpath providedClasspath = loader.load(providedJarFiles);
 
 		// wrap Java runtime
-		return new ExtendedRuntime(providedClasspath, javaRuntime);
+		return new ClasspathClassLoader(providedClasspath, "Provided", javaRuntimeClassLoader);
 	}
 
 	private ReportFormat createReportFormat(Options options) {

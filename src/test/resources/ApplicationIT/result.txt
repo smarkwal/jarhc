@@ -52,10 +52,6 @@ Class name | JAR files | Similarity
 Shadowed Classes
 ----------------
 Classes shadowing JRE/JDK classes.
-Java home   : /opt/java/jdk-1.8.0_144
-Java runtime: Java(TM) SE Runtime Environment
-Java version: 1.8.0_144
-Java vendor : Oracle Corporation
 
 Class name | JAR file | Class loader | Similarity
 -----------+----------+--------------+-----------
@@ -87,4 +83,13 @@ Resources found in multiple JAR files.
 
 Resource path | JAR files | Similarity
 --------------+-----------+-----------
+
+Java Runtime
+------------
+Information about JRE/JDK runtime.
+
+Java home    : /opt/java/jdk-1.8.0_144
+Java runtime : Java(TM) SE Runtime Environment
+Java version : 1.8.0_144
+Java vendor  : Oracle Corporation
 

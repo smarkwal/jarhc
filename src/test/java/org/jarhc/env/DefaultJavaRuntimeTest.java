@@ -83,49 +83,6 @@ class DefaultJavaRuntimeTest {
 	}
 
 	@Test
-	void test_getClassLoaderName_String() {
-
-		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
-
-		// test
-		Optional<String> result = javaRuntime.getClassLoaderName("java.lang.String");
-
-		// assert
-		assertTrue(result.isPresent());
-		assertEquals("Runtime", result.get());
-
-	}
-
-	@Test
-	void test_getClassLoaderName_Unknown() {
-
-		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
-
-		// test
-		Optional<String> result = javaRuntime.getClassLoaderName("u.Unknown");
-
-		// assert
-		assertFalse(result.isPresent());
-
-	}
-
-	@Test
-	void test_getClassLoaderName_Main() {
-
-		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
-
-		// test
-		Optional<String> result = javaRuntime.getClassLoaderName(Main.class.getName());
-
-		// assert
-		assertFalse(result.isPresent());
-
-	}
-
-	@Test
 	void test_getClassDef_String() {
 
 		// prepare

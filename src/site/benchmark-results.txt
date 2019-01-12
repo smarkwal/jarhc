@@ -9,7 +9,6 @@ o.j.analyzer.AnalyzerBenchmarks.test_MissingClassesAnalyzer      ss   10  0.017 
 o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer            ss   10  0.093    0.003   s/op
 o.j.analyzer.AnalyzerBenchmarks.test_ShadowedClassesAnalyzer     ss   10  0.013    0.001   s/op
 o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                  ss   10  0.118    0.005   s/op
-o.j.env.DefaultJavaRuntimeBenchmark.getClassLoaderName           ss   10  0.121    0.005   s/op
 o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime            ss   10  0.969    0.019   s/op
 
 After warmup (5 warmup iterations, 10 measurement iterations):

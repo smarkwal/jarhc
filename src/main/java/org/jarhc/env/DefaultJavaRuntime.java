@@ -73,16 +73,6 @@ public class DefaultJavaRuntime implements JavaRuntime {
 	}
 
 	@Override
-	public Optional<String> getClassLoaderName(String className) {
-		Optional<ClassDef> classDef = getClassDef(className);
-		if (classDef.isPresent()) {
-			return Optional.of("Runtime");
-		} else {
-			return Optional.empty();
-		}
-	}
-
-	@Override
 	public Optional<ClassDef> getClassDef(String className) {
 
 		// check cache

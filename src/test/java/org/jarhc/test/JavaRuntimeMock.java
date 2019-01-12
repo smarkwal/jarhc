@@ -91,15 +91,6 @@ public class JavaRuntimeMock implements JavaRuntime {
 	}
 
 	@Override
-	public Optional<String> getClassLoaderName(String className) {
-		if (classDefs.containsKey(className)) {
-			return Optional.of("Runtime");
-		} else {
-			return Optional.empty();
-		}
-	}
-
-	@Override
 	public Optional<ClassDef> getClassDef(String className) {
 		ClassDef classDef = classDefs.get(className);
 		return Optional.ofNullable(classDef);

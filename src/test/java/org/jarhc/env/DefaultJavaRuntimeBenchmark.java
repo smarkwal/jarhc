@@ -54,14 +54,6 @@ public class DefaultJavaRuntimeBenchmark {
 		}
 	}
 
-	@Benchmark
-	public void getClassLoaderName() {
-		for (String className : classNames) {
-			Optional<String> classLoader = javaRuntime.getClassLoaderName(className);
-			classLoader.orElseThrow(() -> new AssertionError("Class not found: " + className));
-		}
-	}
-
 	static {
 		classNames.add("java.lang.AbstractMethodError");
 		classNames.add("java.lang.Appendable");
