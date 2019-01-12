@@ -17,6 +17,8 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.java.ClassResolver;
+import org.jarhc.java.ClassResolverImpl;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -24,7 +26,10 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
@@ -50,12 +55,14 @@ public class MissingClassesAnalyzer extends Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 		ReportTable table = new ReportTable("JAR file", "Missing classes");
 
+		ClassResolver classResolver = new ClassResolverImpl(classpath, javaRuntime);
+
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
 			// find all missing classes
-			Set<String> missingClasses = collectMissingClasses(jarFile, classpath);
+			Set<String> missingClasses = collectMissingClasses(jarFile, classResolver);
 			if (missingClasses.isEmpty()) continue;
 
 			table.addRow(jarFile.getFileName(), joinLines(missingClasses));
@@ -64,7 +71,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private Set<String> collectMissingClasses(JarFile jarFile, Classpath classpath) {
+	private Set<String> collectMissingClasses(JarFile jarFile, ClassResolver classResolver) {
 		Set<String> missingClasses = Collections.synchronizedSet(new TreeSet<>());
 
 		// for every class definition (in parallel) ...
@@ -77,7 +84,7 @@ public class MissingClassesAnalyzer extends Analyzer {
 				String className = classRef.getClassName();
 
 				// check if class exists
-				boolean exists = findClass(classpath, className);
+				boolean exists = classResolver.getClassDef(className).isPresent();
 				if (!exists) {
 					missingClasses.add(className);
 				}
@@ -85,17 +92,6 @@ public class MissingClassesAnalyzer extends Analyzer {
 		});
 
 		return missingClasses;
-	}
-
-	private boolean findClass(Classpath classpath, String className) {
-
-		// check if class exists in classpath
-		Set<ClassDef> classDefs = classpath.getClassDefs(className);
-		if (classDefs != null) return true;
-
-		// check if class is a Java bootstrap class
-		Optional<String> classLoader = javaRuntime.getClassLoaderName(className);
-		return classLoader.isPresent();
 	}
 
 }
