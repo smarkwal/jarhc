@@ -16,6 +16,7 @@
 
 package org.jarhc.loader;
 
+import org.jarhc.java.ClassLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 
@@ -33,10 +34,12 @@ public class ClasspathLoader {
 
 	private final JarFileLoader jarFileLoader;
 	private final WarFileLoader warFileLoader;
+	private final ClassLoader parentClassLoader;
 
-	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader) {
+	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader) {
 		this.jarFileLoader = jarFileLoader;
 		this.warFileLoader = warFileLoader;
+		this.parentClassLoader = parentClassLoader;
 	}
 
 	/**
@@ -90,7 +93,7 @@ public class ClasspathLoader {
 		// totalTime = System.nanoTime() - totalTime;
 		// System.out.println("\tTotal: " + (totalTime / 1000 / 1000) + " ms");
 
-		return new Classpath(jarFiles);
+		return new Classpath(jarFiles, parentClassLoader);
 	}
 
 }

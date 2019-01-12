@@ -31,8 +31,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 class AccessCheckTest {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-	private final JavaRuntimeClassLoader classLoader = new JavaRuntimeClassLoader(javaRuntime);
-	private final AccessCheck accessCheck = new AccessCheck(classLoader);
+	private final AccessCheck accessCheck = new AccessCheck(javaRuntime);
 
 	@Test
 	void test_same_class() {

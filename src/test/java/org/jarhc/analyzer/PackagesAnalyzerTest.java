@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PackagesAnalyzerTest {
@@ -33,7 +32,7 @@ class PackagesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar")
 				.addClassDef("a.A")
 				.addClassDef("a.a1.A")

@@ -16,11 +16,14 @@
 
 package org.jarhc.loader;
 
+import org.jarhc.java.ClassLoader;
+
 public class LoaderBuilder {
 
 	private String classLoader = "Classpath";
 	private boolean scanForReferences = true;
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
+	private ClassLoader parentClassLoader = null;
 
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
@@ -41,6 +44,11 @@ public class LoaderBuilder {
 		return this;
 	}
 
+	public LoaderBuilder withParentClassLoader(ClassLoader parentClassLoader) {
+		this.parentClassLoader = parentClassLoader;
+		return this;
+	}
+
 	public ClassDefLoader buildClassDefLoader() {
 		return new ClassDefLoader(classLoader, scanForReferences);
 	}
@@ -58,7 +66,7 @@ public class LoaderBuilder {
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
 		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
-		return new ClasspathLoader(jarFileLoader, warFileLoader);
+		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader);
 	}
 
 }

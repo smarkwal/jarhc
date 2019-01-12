@@ -33,7 +33,7 @@ class JarDependenciesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar")
 				.addClassDef("a.A").addClassRef("b.B1").addClassRef("c.C").addClassRef("x.X")
 				.addJarFile("b.jar")

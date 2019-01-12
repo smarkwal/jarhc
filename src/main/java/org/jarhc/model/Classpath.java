@@ -16,6 +16,7 @@
 
 package org.jarhc.model;
 
+import org.jarhc.java.ClassLoader;
 import org.jarhc.utils.MultiMap;
 
 import java.util.*;
@@ -23,7 +24,7 @@ import java.util.*;
 /**
  * Represents a set of JAR files found on a Java classpath.
  */
-public class Classpath {
+public class Classpath extends ClassLoader {
 
 	/**
 	 * List of JAR files on the classpath.
@@ -43,10 +44,12 @@ public class Classpath {
 	/**
 	 * Create a new classpath with the given JAR files.
 	 *
-	 * @param jarFiles JAR files
+	 * @param jarFiles          JAR files
+	 * @param parentClassLoader Parent class loader
 	 * @throws IllegalArgumentException If <code>jarFiles</code> is <code>null</code>.
 	 */
-	public Classpath(List<JarFile> jarFiles) {
+	public Classpath(List<JarFile> jarFiles, ClassLoader parentClassLoader) {
+		super("Classpath", parentClassLoader);
 		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
 		this.jarFiles = new ArrayList<>(jarFiles);
 
@@ -96,7 +99,7 @@ public class Classpath {
 		return classDefsMap.getValues(className);
 	}
 
-	public Optional<ClassDef> getClassDef(String className) {
+	protected Optional<ClassDef> findClassDef(String className) {
 		Set<ClassDef> set = getClassDefs(className);
 		if (set == null || set.isEmpty()) {
 			return Optional.empty();

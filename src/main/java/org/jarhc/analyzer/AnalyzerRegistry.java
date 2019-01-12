@@ -21,7 +21,6 @@ import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
-import org.jarhc.java.ClassLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +72,6 @@ public class AnalyzerRegistry {
 
 		// prepare an injector
 		Injector injector = new Injector();
-		injector.addBinding(ClassLoader.class, context.getParentClassLoader());
 		injector.addBinding(JavaRuntime.class, context.getJavaRuntime());
 		injector.addBinding(Resolver.class, context.getResolver());
 

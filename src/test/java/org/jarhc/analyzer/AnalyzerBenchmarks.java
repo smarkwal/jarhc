@@ -17,8 +17,6 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -39,7 +37,7 @@ import java.util.stream.Collectors;
 public class AnalyzerBenchmarks {
 
 	private Classpath classpath;
-	private ClassLoader parentClassLoader;
+	private JavaRuntime javaRuntime;
 
 	@Setup
 	public void setUp() {
@@ -59,10 +57,9 @@ public class AnalyzerBenchmarks {
 		fileNames.add("spring-web-5.1.3.RELEASE.jar");
 
 		List<File> files = fileNames.stream().map(f -> new File("./src/test/resources/Spring5IT", f)).collect(Collectors.toList());
-		ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
+		javaRuntime = JavaRuntimeMock.getOracleRuntime();
+		ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
 		this.classpath = classpathLoader.load(files);
-		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		this.parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
 	}
 
 	@Benchmark
@@ -84,8 +81,14 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_DuplicateResourcesAnalyzer() {
+		Analyzer analyzer = new DuplicateResourcesAnalyzer();
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_FieldRefAnalyzer() {
-		Analyzer analyzer = new FieldRefAnalyzer(parentClassLoader, false);
+		Analyzer analyzer = new FieldRefAnalyzer(false);
 		analyzer.analyze(classpath);
 	}
 
@@ -102,8 +105,14 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_JavaRuntimeAnalyzer() {
+		Analyzer analyzer = new JavaRuntimeAnalyzer(javaRuntime);
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_MissingClassesAnalyzer() {
-		Analyzer analyzer = new MissingClassesAnalyzer(parentClassLoader);
+		Analyzer analyzer = new MissingClassesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 
@@ -115,7 +124,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_ShadowedClassesAnalyzer() {
-		Analyzer analyzer = new ShadowedClassesAnalyzer(parentClassLoader);
+		Analyzer analyzer = new ShadowedClassesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

@@ -27,11 +27,7 @@ import java.util.*;
 
 public class ShadowedClassesAnalyzer extends Analyzer {
 
-	private final ClassLoader parentClassLoader;
-
-	public ShadowedClassesAnalyzer(ClassLoader parentClassLoader) {
-		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
-		this.parentClassLoader = parentClassLoader;
+	public ShadowedClassesAnalyzer() {
 	}
 
 	@Override
@@ -47,6 +43,11 @@ public class ShadowedClassesAnalyzer extends Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 
 		ReportTable table = new ReportTable("Class name", "JAR file", "Class loader", "Similarity");
+
+		ClassLoader parentClassLoader = classpath.getParent();
+		if (parentClassLoader == null) {
+			return table;
+		}
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();

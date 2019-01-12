@@ -18,7 +18,6 @@ package org.jarhc.analyzer;
 
 import org.jarhc.java.AccessCheck;
 import org.jarhc.java.ClassLoader;
-import org.jarhc.java.ClasspathClassLoader;
 import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -29,16 +28,13 @@ import static org.jarhc.utils.StringUtils.joinLines;
 
 public class FieldRefAnalyzer extends Analyzer {
 
-	private final ClassLoader parentClassLoader;
 	private final boolean reportOwnerClassNotFound;
 
-	public FieldRefAnalyzer(ClassLoader parentClassLoader) {
-		this(parentClassLoader, false);
+	public FieldRefAnalyzer() {
+		this(false);
 	}
 
-	public FieldRefAnalyzer(ClassLoader parentClassLoader, boolean reportOwnerClassNotFound) {
-		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
-		this.parentClassLoader = parentClassLoader;
+	public FieldRefAnalyzer(boolean reportOwnerClassNotFound) {
 		this.reportOwnerClassNotFound = reportOwnerClassNotFound;
 	}
 
@@ -53,8 +49,6 @@ public class FieldRefAnalyzer extends Analyzer {
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
-
-		ClassLoader classLoader = new ClasspathClassLoader(classpath, "Classpath", parentClassLoader);
 
 		ReportTable table = new ReportTable("JAR File", "Errors");
 
@@ -73,7 +67,7 @@ public class FieldRefAnalyzer extends Analyzer {
 				for (FieldRef fieldRef : fieldRefs) {
 
 					// validate field reference
-					SearchResult result = validateFieldRef(classDef, fieldRef, classLoader);
+					SearchResult result = validateFieldRef(classDef, fieldRef, classpath);
 					if (!result.isIgnoreResult()) {
 						String text = result.getResult();
 						if (text != null) {

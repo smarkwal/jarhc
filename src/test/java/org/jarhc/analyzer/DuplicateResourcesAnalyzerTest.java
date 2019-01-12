@@ -33,7 +33,7 @@ class DuplicateResourcesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a-1.jar").addResourceDef("a/b/C").addResourceDef("a/b/X")
 				.addJarFile("a-2.jar").addResourceDef("a/b/C").addResourceDef("a/b/Y")
 				.addJarFile("b.jar").addResourceDef("x/y/C")

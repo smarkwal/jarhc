@@ -16,9 +16,7 @@
 
 package org.jarhc.env;
 
-import org.jarhc.model.ClassDef;
-
-import java.util.Optional;
+import org.jarhc.java.ClassLoader;
 
 /**
  * An implementation of this interface represents a Java runtime.
@@ -31,43 +29,38 @@ import java.util.Optional;
  *
  * @see DefaultJavaRuntime
  */
-public interface JavaRuntime {
+public abstract class JavaRuntime extends ClassLoader {
+
+	public JavaRuntime() {
+		super("Runtime", null);
+	}
 
 	/**
 	 * Get the name of the Java runtime.
 	 *
 	 * @return Java runtime name
 	 */
-	String getName();
+	public abstract String getName();
 
 	/**
 	 * The Java version of the Java runtime.
 	 *
 	 * @return Java version
 	 */
-	String getJavaVersion();
+	public abstract String getJavaVersion();
 
 	/**
 	 * The vendor of the Java runtime.
 	 *
 	 * @return Vendor name
 	 */
-	String getJavaVendor();
+	public abstract String getJavaVendor();
 
 	/**
 	 * The path to the installation of the Java runtime.
 	 *
 	 * @return Java runtime installation path
 	 */
-	String getJavaHome();
-
-	/**
-	 * Get the class definition for the given class,
-	 * or <code>null</code> of the class cannot be found.
-	 *
-	 * @param className Class name
-	 * @return Class definition, or <code>null</code> if the class cannot be found.
-	 */
-	Optional<ClassDef> getClassDef(String className);
+	public abstract String getJavaHome();
 
 }

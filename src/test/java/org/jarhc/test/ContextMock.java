@@ -19,16 +19,13 @@ package org.jarhc.test;
 import org.jarhc.Context;
 import org.jarhc.artifacts.Resolver;
 import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
 
 public class ContextMock {
 
 	public static Context createContext() {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		ClassLoader parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
 		Resolver resolver = ResolverMock.createResolver();
-		return new Context(parentClassLoader, javaRuntime, resolver);
+		return new Context(javaRuntime, resolver);
 	}
 
 }

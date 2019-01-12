@@ -17,7 +17,6 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.java.ClassLoader;
-import org.jarhc.java.ClasspathClassLoader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -34,13 +33,6 @@ import static org.jarhc.utils.StringUtils.joinLines;
 
 public class MissingClassesAnalyzer extends Analyzer {
 
-	private final ClassLoader parentClassLoader;
-
-	public MissingClassesAnalyzer(ClassLoader parentClassLoader) {
-		if (parentClassLoader == null) throw new IllegalArgumentException("parentClassLoader");
-		this.parentClassLoader = parentClassLoader;
-	}
-
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
@@ -54,14 +46,12 @@ public class MissingClassesAnalyzer extends Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 		ReportTable table = new ReportTable("JAR file", "Missing classes");
 
-		ClassLoader classLoader = new ClasspathClassLoader(classpath, "Classpath", parentClassLoader);
-
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
 			// find all missing classes
-			Set<String> missingClasses = collectMissingClasses(jarFile, classLoader);
+			Set<String> missingClasses = collectMissingClasses(jarFile, classpath);
 			if (missingClasses.isEmpty()) continue;
 
 			table.addRow(jarFile.getFileName(), joinLines(missingClasses));

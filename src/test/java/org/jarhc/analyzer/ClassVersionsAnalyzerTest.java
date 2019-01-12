@@ -32,7 +32,7 @@ class ClassVersionsAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar")
 				.addClassDef("a.A", 52, 0)
 				.addJarFile("b.jar")

@@ -17,8 +17,6 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -36,19 +34,16 @@ class MissingClassesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
 				.addJarFile("a.jar")
 				.addClassDef("a.A").addClassRef("b.B").addClassRef("c.C").addClassRef("java.lang.String")
 				.addJarFile("b.jar")
 				.addClassDef("b.B")
 				.build();
 
-		// prepare Java runtime
-		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		ClassLoader parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
-
 		// test
-		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer(parentClassLoader);
+		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

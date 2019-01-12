@@ -71,7 +71,7 @@ abstract class AbstractIT {
 		Context context = ContextMock.createContext();
 
 		// load classpath
-		ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
+		ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(context.getJavaRuntime()).buildClasspathLoader();
 		Classpath classpath = classpathLoader.load(files);
 
 		List<DynamicTest> tests = new ArrayList<>();

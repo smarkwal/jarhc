@@ -33,7 +33,7 @@ class DuplicateClassesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a-1.jar").addClassDef("a.b.C").addClassDef("a.b.X")
 				.addJarFile("a-2.jar").addClassDef("a.b.C").addClassDef("a.b.Y")
 				.addJarFile("b.jar").addClassDef("x.y.C")

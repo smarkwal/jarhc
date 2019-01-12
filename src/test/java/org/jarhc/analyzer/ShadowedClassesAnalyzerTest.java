@@ -18,8 +18,6 @@ package org.jarhc.analyzer;
 
 import org.jarhc.Main;
 import org.jarhc.env.JavaRuntime;
-import org.jarhc.java.ClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -37,16 +35,15 @@ class ShadowedClassesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		String mainClassName = Main.class.getName();
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
 				.addJarFile("a.jar").addClassDef("a.A").addClassDef("java.lang.String")
 				.addJarFile("b.jar").addClassDef("b.B").addClassDef(mainClassName)
 				.build();
 
 		// test
-		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		ClassLoader parentClassLoader = new JavaRuntimeClassLoader(javaRuntime);
-		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer(parentClassLoader);
+		ShadowedClassesAnalyzer analyzer = new ShadowedClassesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

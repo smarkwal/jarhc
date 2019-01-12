@@ -29,7 +29,7 @@ import java.util.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class JavaRuntimeMock implements JavaRuntime {
+public class JavaRuntimeMock extends JavaRuntime {
 
 	private static JavaRuntime oracleRuntime;
 
@@ -91,7 +91,7 @@ public class JavaRuntimeMock implements JavaRuntime {
 	}
 
 	@Override
-	public Optional<ClassDef> getClassDef(String className) {
+	protected Optional<ClassDef> findClassDef(String className) {
 		ClassDef classDef = classDefs.get(className);
 		return Optional.ofNullable(classDef);
 	}

@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Default implementation of {@link JavaRuntime} based on the Java runtime used to run JarHC.
  */
-public class DefaultJavaRuntime implements JavaRuntime {
+public class DefaultJavaRuntime extends JavaRuntime {
 
 	/**
 	 * Class definition loader used to load Java runtime classes.
@@ -73,7 +73,7 @@ public class DefaultJavaRuntime implements JavaRuntime {
 	}
 
 	@Override
-	public Optional<ClassDef> getClassDef(String className) {
+	protected Optional<ClassDef> findClassDef(String className) {
 
 		// check cache
 		Optional<ClassDef> classDef = classDefs.get(className);

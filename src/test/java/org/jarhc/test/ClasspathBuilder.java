@@ -16,6 +16,7 @@
 
 package org.jarhc.test;
 
+import org.jarhc.java.ClassLoader;
 import org.jarhc.model.*;
 import org.jarhc.utils.DigestUtils;
 
@@ -27,6 +28,7 @@ import java.util.TreeSet;
 public class ClasspathBuilder {
 
 	// Classpath properties
+	private final ClassLoader parentClassLoader;
 	private final List<JarFile> jarFiles = new ArrayList<>();
 
 	// JarFile properties
@@ -43,11 +45,12 @@ public class ClasspathBuilder {
 	private int minorClassVersion;
 	private List<ClassRef> classRefs;
 
-	private ClasspathBuilder() {
+	private ClasspathBuilder(ClassLoader parentClassLoader) {
+		this.parentClassLoader = parentClassLoader;
 	}
 
-	public static ClasspathBuilder create() {
-		return new ClasspathBuilder();
+	public static ClasspathBuilder create(ClassLoader parentClassLoader) {
+		return new ClasspathBuilder(parentClassLoader);
 	}
 
 	public ClasspathBuilder addJarFile(String fileName) {
@@ -97,7 +100,7 @@ public class ClasspathBuilder {
 	public Classpath build() {
 		closeClassDef();
 		closeJarFile();
-		return new Classpath(jarFiles);
+		return new Classpath(jarFiles, parentClassLoader);
 	}
 
 	private void openJarFile(String fileName, long fileSize) {

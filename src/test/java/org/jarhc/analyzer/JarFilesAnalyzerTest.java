@@ -35,7 +35,7 @@ class JarFilesAnalyzerTest {
 	void test_analyze() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar", 128)
 				.addClassDef("a.A")
 				.addResourceDef("a/a.txt")

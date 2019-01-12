@@ -26,8 +26,6 @@ import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.java.ClassLoader;
-import org.jarhc.java.ClasspathClassLoader;
-import org.jarhc.java.JavaRuntimeClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
@@ -92,15 +90,15 @@ public class Application {
 		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarFiles);
 
 		List<File> providedJarFiles = options.getProvidedJarFiles();
-		ClassLoader classLoader = createClassLoader(javaRuntime, providedJarFiles);
+		ClassLoader parentClassLoader = createClassLoader(javaRuntime, providedJarFiles);
 
 		List<File> classpathJarFiles = options.getClasspathJarFiles();
-		Classpath classpath = createClasspath(options, classpathJarFiles);
+		Classpath classpath = createClasspath(options, classpathJarFiles, parentClassLoader);
 
 		out.println("Analyze classpath ...");
 
 		AnalyzerRegistry registry = new AnalyzerRegistry();
-		Context context = new Context(classLoader, javaRuntime, resolver);
+		Context context = new Context(javaRuntime, resolver);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
@@ -149,10 +147,10 @@ public class Application {
 		return 0;
 	}
 
-	private Classpath createClasspath(Options options, List<File> classpathJarFiles) {
+	private Classpath createClasspath(Options options, List<File> classpathJarFiles, ClassLoader parentClassLoader) {
 		// load classpath JAR files
 		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options);
-		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).buildClasspathLoader();
+		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).withParentClassLoader(parentClassLoader).buildClasspathLoader();
 		return loader.load(classpathJarFiles);
 	}
 
@@ -185,19 +183,14 @@ public class Application {
 
 	private ClassLoader createClassLoader(JavaRuntime javaRuntime, List<File> providedJarFiles) {
 
-		JavaRuntimeClassLoader javaRuntimeClassLoader = new JavaRuntimeClassLoader(javaRuntime);
-
 		if (providedJarFiles.isEmpty()) {
 			// use original Java runtime
-			return javaRuntimeClassLoader;
+			return javaRuntime;
 		}
 
 		// load provided classpath JAR files
-		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Provided").scanForReferences(false).buildClasspathLoader();
-		Classpath providedClasspath = loader.load(providedJarFiles);
-
-		// wrap Java runtime
-		return new ClasspathClassLoader(providedClasspath, "Provided", javaRuntimeClassLoader);
+		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Provided").scanForReferences(false).withParentClassLoader(javaRuntime).buildClasspathLoader();
+		return loader.load(providedJarFiles);
 	}
 
 	private ReportFormat createReportFormat(Options options) {

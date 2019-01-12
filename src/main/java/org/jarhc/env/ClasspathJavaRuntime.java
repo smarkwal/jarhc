@@ -21,7 +21,7 @@ import org.jarhc.model.Classpath;
 
 import java.util.Optional;
 
-public class ClasspathJavaRuntime implements JavaRuntime {
+public class ClasspathJavaRuntime extends JavaRuntime {
 
 	private final Classpath classpath;
 
@@ -50,7 +50,7 @@ public class ClasspathJavaRuntime implements JavaRuntime {
 	}
 
 	@Override
-	public Optional<ClassDef> getClassDef(String className) {
+	protected Optional<ClassDef> findClassDef(String className) {
 		return classpath.getClassDef(className);
 	}
 

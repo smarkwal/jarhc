@@ -30,7 +30,7 @@ class ClasspathTest {
 	void test_toString() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar").addClassDef("a.A")
 				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
@@ -47,7 +47,7 @@ class ClasspathTest {
 	void test_getJarFiles() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar").addClassDef("a.A")
 				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
@@ -67,7 +67,7 @@ class ClasspathTest {
 	void test_getJarFile() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar").addClassDef("a.A")
 				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
@@ -91,7 +91,7 @@ class ClasspathTest {
 	void test_getClassDefs() {
 
 		// prepare
-		Classpath classpath = ClasspathBuilder.create()
+		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar").addClassDef("a.A")
 				.addJarFile("b.jar").addClassDef("b.B")
 				.build();
