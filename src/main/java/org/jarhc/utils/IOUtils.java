@@ -19,6 +19,7 @@ package org.jarhc.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class IOUtils {
@@ -37,13 +38,17 @@ public class IOUtils {
 
 	private static ByteArrayOutputStream toByteArrayOutputStream(InputStream stream) throws IOException {
 		ByteArrayOutputStream result = new ByteArrayOutputStream(1024);
+		copy(stream, result);
+		return result;
+	}
+
+	protected static void copy(InputStream in, OutputStream out) throws IOException {
 		byte[] buffer = new byte[1024];
 		while (true) {
-			int len = stream.read(buffer);
+			int len = in.read(buffer);
 			if (len < 0) break;
-			result.write(buffer, 0, len);
+			out.write(buffer, 0, len);
 		}
-		return result;
 	}
 
 }

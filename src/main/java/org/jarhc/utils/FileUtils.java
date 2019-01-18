@@ -85,6 +85,15 @@ public class FileUtils {
 		}
 	}
 
+	public static void writeStreamToFile(InputStream stream, File file) throws IOException {
+		// create parent directories
+		file.getParentFile().mkdirs();
+		// copy data from stream to file
+		try (FileOutputStream out = new FileOutputStream(file)) {
+			IOUtils.copy(stream, out);
+		}
+	}
+
 	public static void touchFile(File file) throws IOException {
 		// if file does not exist ...
 		if (!file.exists()) {

@@ -21,17 +21,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Optional;
 
 public class MavenCentralResolver implements Resolver {
 
-	private static final String URL_FORMAT = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
+	private static final String SEARCH_URL_FORMAT_1 = "https://search.maven.org/solrsearch/select?q=g:%%22%s%%22+AND+a:%%22%s%%22+AND+v:%%22%s%%22&core=gav&rows=20&wt=json";
+	private static final String SEARCH_URL_FORMAT_2 = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
+	private static final String DOWNLOAD_URL_FORMAT = "https://search.maven.org/remotecontent?filepath=%s";
 
 	private int timeout;
 
@@ -45,17 +49,35 @@ public class MavenCentralResolver implements Resolver {
 	}
 
 	@Override
-	public Optional<Artifact> getArtifact(String checksum) throws ResolverException {
+	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException {
+
+		URL url;
+		try {
+			url = new URL(String.format(SEARCH_URL_FORMAT_1, groupId, artifactId, version));
+		} catch (MalformedURLException e) {
+			throw new ResolverException("Malformed URL for coordinates: " + groupId + ":" + artifactId + ":" + version, e);
+		}
+
+		return findArtifact(url);
+	}
+
+	@Override
+	public Optional<Artifact> findArtifact(String checksum) throws ResolverException {
 		validateChecksum(checksum);
 
 		URL url;
 		try {
-			url = new URL(String.format(URL_FORMAT, checksum));
+			url = new URL(String.format(SEARCH_URL_FORMAT_2, checksum));
 		} catch (MalformedURLException e) {
 			throw new ResolverException("Malformed URL for checksum: " + checksum, e);
 		}
 
-		String text = executeHttpRequest(url);
+		return findArtifact(url);
+	}
+
+	private Optional<Artifact> findArtifact(URL url) throws ResolverException {
+
+		String text = downloadText(url);
 		// TODO: special handling for timeout?
 
 		// parse response
@@ -99,6 +121,88 @@ public class MavenCentralResolver implements Resolver {
 		return Optional.of(artifact);
 	}
 
+	@Override
+	public Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException {
+		URL url = getDownloadURL(artifact);
+		try {
+			byte[] data = downloadFile(url);
+			if (data == null) return Optional.empty();
+			ByteArrayInputStream stream = new ByteArrayInputStream(data);
+			return Optional.of(stream);
+		} catch (IOException e) {
+			throw new ResolverException("Unexpected I/O error for URL: " + url, e);
+		}
+	}
+
+	private URL getDownloadURL(Artifact artifact) throws ResolverException {
+
+		String groupId = artifact.getGroupId();
+		String artifactId = artifact.getArtifactId();
+		String version = artifact.getVersion();
+		String type = artifact.getType();
+
+		StringBuilder path = new StringBuilder();
+		path.append(groupId.replace('.', '/'));
+		path.append('/');
+		path.append(artifactId.replace('.', '/'));
+		path.append('/');
+		path.append(version);
+		path.append('/');
+		path.append(artifactId);
+		path.append('-');
+		path.append(version);
+		path.append(".jar"); // TODO: get extension from type?
+
+		try {
+			return new URL(String.format(DOWNLOAD_URL_FORMAT, path));
+		} catch (MalformedURLException e) {
+			throw new ResolverException("Malformed URL for download: " + groupId + ":" + artifactId + ":" + version, e);
+		}
+	}
+
+	private String downloadText(URL url) throws ResolverException {
+		try {
+			byte[] data = downloadFile(url);
+			if (data == null) throw new ResolverException("URL not found: " + url);
+			return new String(data, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			throw new ResolverException("Unexpected I/O error for URL: " + url, e);
+		}
+	}
+
+	private byte[] downloadFile(URL url) throws IOException {
+
+		HttpURLConnection connection = null;
+		try {
+
+			// prepare connection
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.setConnectTimeout(timeout);
+			connection.setReadTimeout(timeout);
+			connection.setDoOutput(false);
+			connection.setDoInput(true);
+
+			// get response
+			int status = connection.getResponseCode();
+			if (status == 404) {
+				return null;
+			} else if (status != 200) {
+				throw new IOException("Unexpected status code '" + status + "' for URL: " + url);
+			}
+
+			try (InputStream stream = connection.getInputStream()) {
+				return IOUtils.toByteArray(stream);
+			}
+
+		} finally {
+			if (connection != null) {
+				connection.disconnect();
+			}
+		}
+
+	}
+
 	private JSONObject findBestMatch(JSONArray docs) {
 
 		int num = docs.length();
@@ -123,43 +227,6 @@ public class MavenCentralResolver implements Resolver {
 		}
 
 		return bestDoc;
-	}
-
-	private String executeHttpRequest(URL url) throws ResolverException {
-
-		try {
-
-			HttpURLConnection connection = null;
-			try {
-
-				// prepare connection
-				connection = (HttpURLConnection) url.openConnection();
-				connection.setRequestMethod("GET");
-				connection.setConnectTimeout(timeout);
-				connection.setReadTimeout(timeout);
-				connection.setDoOutput(false);
-				connection.setDoInput(true);
-
-				// get response
-				int status = connection.getResponseCode();
-				if (status != 200) {
-					throw new ResolverException("Unexpected status code '" + status + "' for URL: " + url);
-				}
-
-				try (InputStream stream = connection.getInputStream()) {
-					return IOUtils.toString(stream);
-				}
-
-			} finally {
-				if (connection != null) {
-					connection.disconnect();
-				}
-			}
-
-		} catch (IOException e) {
-			throw new ResolverException("Unexpected I/O error for URL: " + url, e);
-		}
-
 	}
 
 }

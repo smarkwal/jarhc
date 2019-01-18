@@ -56,21 +56,21 @@ class CachedResolverTest {
 	void test_illegal_arguments() {
 
 		// test
-		Executable executable = () -> resolver.getArtifact(null);
+		Executable executable = () -> resolver.findArtifact(null);
 		assertThrows(IllegalArgumentException.class, executable);
 
 		// test
-		executable = () -> resolver.getArtifact("");
+		executable = () -> resolver.findArtifact("");
 		assertThrows(IllegalArgumentException.class, executable);
 
 		// test
-		executable = () -> resolver.getArtifact("../test");
+		executable = () -> resolver.findArtifact("../test");
 		assertThrows(IllegalArgumentException.class, executable);
 
 	}
 
 	@Test
-	void test_getArtifact_unknown() throws ResolverException {
+	void test_findArtifact_unknown() throws ResolverException {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
@@ -80,7 +80,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.getArtifact(checksum);
+		Optional<Artifact> artifact = resolver.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -90,7 +90,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_getArtifact_asm() throws ResolverException, IOException {
+	void test_findArtifact_asm() throws ResolverException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -100,7 +100,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.getArtifact(checksum);
+		Optional<Artifact> artifact = resolver.findArtifact(checksum);
 
 		// assert
 		assertTrue(artifact.isPresent()); // artifact has been found
@@ -114,7 +114,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_getArtifact_cached() throws ResolverException, IOException {
+	void test_findArtifact_cached() throws ResolverException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
@@ -125,7 +125,7 @@ class CachedResolverTest {
 		assumeTrue(cacheFile.isFile());
 
 		// test
-		Optional<Artifact> artifact = resolver.getArtifact(checksum);
+		Optional<Artifact> artifact = resolver.findArtifact(checksum);
 
 		// assert
 		assertTrue(artifact.isPresent()); // artifact has been found (in cache)
@@ -137,7 +137,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_getArtifact_cached_unknown() throws ResolverException, IOException {
+	void test_findArtifact_cached_unknown() throws ResolverException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -149,7 +149,7 @@ class CachedResolverTest {
 		assumeTrue(cacheFile.length() == 0);
 
 		// test
-		Optional<Artifact> artifact = resolver.getArtifact(checksum);
+		Optional<Artifact> artifact = resolver.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -157,7 +157,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_getArtifact_no_parent() throws ResolverException {
+	void test_findArtifact_no_parent() throws ResolverException {
 
 		// override
 		resolver = new CachedResolver(cacheDir, null);
@@ -170,7 +170,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.getArtifact(checksum);
+		Optional<Artifact> artifact = resolver.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -179,7 +179,7 @@ class CachedResolverTest {
 
 	@Test
 	@Disabled("Test fails on some platforms")
-	void test_getArtifact_io_exception_read() throws IOException {
+	void test_findArtifact_io_exception_read() throws IOException {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
@@ -195,7 +195,7 @@ class CachedResolverTest {
 
 				// test
 				try {
-					resolver.getArtifact(checksum);
+					resolver.findArtifact(checksum);
 
 					fail("expected exception not thrown");
 				} catch (ResolverException e) {
@@ -214,7 +214,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_getArtifact_io_exception_write() {
+	void test_findArtifact_io_exception_write() {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -226,7 +226,7 @@ class CachedResolverTest {
 
 		// test
 		try {
-			resolver.getArtifact(checksum);
+			resolver.findArtifact(checksum);
 
 			fail("expected exception not thrown");
 		} catch (ResolverException e) {

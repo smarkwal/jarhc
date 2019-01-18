@@ -52,7 +52,7 @@ public interface JarFileNameNormalizer {
 	 */
 	static String getArtifactFileName(String checksum, Resolver resolver, boolean removeVersion, String fileName) {
 		try {
-			Optional<Artifact> artifact = resolver.getArtifact(checksum);
+			Optional<Artifact> artifact = resolver.findArtifact(checksum);
 			if (artifact.isPresent()) {
 				if (removeVersion) {
 					// generate file name without version number

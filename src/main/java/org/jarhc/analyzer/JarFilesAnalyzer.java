@@ -118,7 +118,7 @@ public class JarFilesAnalyzer extends Analyzer {
 
 		Optional<Artifact> artifact;
 		try {
-			artifact = resolver.getArtifact(checksum);
+			artifact = resolver.findArtifact(checksum);
 		} catch (ResolverException e) {
 			System.err.println("Resolver error for JAR file: " + jarFile.getFileName());
 			e.printStackTrace();

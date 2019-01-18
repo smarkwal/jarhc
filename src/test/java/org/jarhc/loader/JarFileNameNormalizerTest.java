@@ -68,9 +68,9 @@ class JarFileNameNormalizerTest {
 	void test_getArtifactFileName() throws ResolverException {
 
 		Resolver resolver = Mockito.mock(Resolver.class);
-		Mockito.when(resolver.getArtifact("c1")).thenReturn(Optional.empty());
-		Mockito.when(resolver.getArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
-		Mockito.when(resolver.getArtifact("c3")).thenThrow(new ResolverException("test"));
+		Mockito.when(resolver.findArtifact("c1")).thenReturn(Optional.empty());
+		Mockito.when(resolver.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
+		Mockito.when(resolver.findArtifact("c3")).thenThrow(new ResolverException("test"));
 
 		String result = JarFileNameNormalizer.getArtifactFileName("c1", resolver, false, "aa-12.jar");
 		assertEquals("aa-12.jar", result);

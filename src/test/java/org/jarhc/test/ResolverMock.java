@@ -19,6 +19,7 @@ package org.jarhc.test;
 import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.ResolverException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,15 +33,49 @@ public class ResolverMock implements Resolver {
 	}
 
 	public static Resolver createFakeResolver() {
-		return checksum -> {
-			String artifactId = checksum.substring(0, 5);
-			Artifact artifact = new Artifact("org.jarhc", artifactId, "1.0", "jar");
-			return Optional.of(artifact);
+
+		return new Resolver() {
+			@Override
+			public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException {
+				if (groupId.equals("ord.jarhc") && version.equals("1.0") && type.equals("jar")) {
+					Artifact artifact = new Artifact("org.jarhc", artifactId, "1.0", "jar");
+					return Optional.of(artifact);
+				} else {
+					return Optional.empty();
+				}
+			}
+
+			@Override
+			public Optional<Artifact> findArtifact(String checksum) throws ResolverException {
+				String artifactId = checksum.substring(0, 5);
+				Artifact artifact = new Artifact("org.jarhc", artifactId, "1.0", "jar");
+				return Optional.of(artifact);
+			}
+
+			@Override
+			public Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException {
+				throw new ResolverException("not implemented");
+			}
 		};
 	}
 
 	public static Resolver createNullResolver() {
-		return checksum -> Optional.empty();
+		return new Resolver() {
+			@Override
+			public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) {
+				return Optional.empty();
+			}
+
+			@Override
+			public Optional<Artifact> findArtifact(String checksum) {
+				return Optional.empty();
+			}
+
+			@Override
+			public Optional<InputStream> downloadArtifact(Artifact artifact) {
+				return Optional.empty();
+			}
+		};
 	}
 
 	private final Properties properties = new Properties();
@@ -56,7 +91,17 @@ public class ResolverMock implements Resolver {
 	}
 
 	@Override
-	public Optional<Artifact> getArtifact(String checksum) {
+	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException {
+		String coordinates = groupId + ":" + artifactId + ":" + version + ":" + type;
+		if (properties.values().contains(coordinates)) {
+			Artifact artifact = new Artifact(groupId, artifactId, version, type);
+			return Optional.of(artifact);
+		}
+		return Optional.empty();
+	}
+
+	@Override
+	public Optional<Artifact> findArtifact(String checksum) {
 		String coordinates = properties.getProperty("artifact." + checksum);
 		if (coordinates != null) {
 			Artifact artifact = new Artifact(coordinates);
@@ -65,6 +110,11 @@ public class ResolverMock implements Resolver {
 			// artifact not found
 			return Optional.empty();
 		}
+	}
+
+	@Override
+	public Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException {
+		throw new ResolverException("not implemented");
 	}
 
 }

@@ -16,6 +16,7 @@
 
 package org.jarhc.artifacts;
 
+import java.io.InputStream;
 import java.util.Optional;
 
 /**
@@ -27,6 +28,11 @@ import java.util.Optional;
 public interface Resolver {
 
 	/**
+	 * TODO: JavaDoc
+	 */
+	Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException;
+
+	/**
 	 * Try to resolve the given checksum and return information
 	 * about the artifact with that checksum.
 	 *
@@ -34,7 +40,12 @@ public interface Resolver {
 	 * @return Artifact information (if found)
 	 * @throws ResolverException if an unexpected exception occurs
 	 */
-	Optional<Artifact> getArtifact(String checksum) throws ResolverException;
+	Optional<Artifact> findArtifact(String checksum) throws ResolverException;
+
+	/**
+	 * TODO: JavaDoc
+	 */
+	Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException;
 
 	/**
 	 * Checks if the given checksum is valid:
