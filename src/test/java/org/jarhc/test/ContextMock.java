@@ -17,15 +17,15 @@
 package org.jarhc.test;
 
 import org.jarhc.Context;
-import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 
 public class ContextMock {
 
 	public static Context createContext() {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		Resolver resolver = ResolverMock.createResolver();
-		return new Context(javaRuntime, resolver);
+		Repository repository = RepositoryMock.createRepository();
+		return new Context(javaRuntime, repository);
 	}
 
 }

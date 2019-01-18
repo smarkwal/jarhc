@@ -20,32 +20,42 @@ import java.io.InputStream;
 import java.util.Optional;
 
 /**
- * Implementations of this interface are used to identify an artifact
- * given the SHA-1 checksum of a JAR file.
+ * Implementations of this interface are used to find and download
+ * artifacts given the artifact coordinates or SHA-1 checksum of a JAR file.
  *
- * @see MavenCentralResolver
+ * @see MavenCentralRepository
  */
-public interface Resolver {
+public interface Repository {
 
 	/**
-	 * TODO: JavaDoc
+	 * Try to find the artifact with the given coordinates.
+	 *
+	 * @param groupId    Group ID
+	 * @param artifactId Artifact ID
+	 * @param version    Version
+	 * @param type       Type
+	 * @return Artifact information (if found)
+	 * @throws RepositoryException if an unexpected exception occurs
 	 */
-	Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException;
+	Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException;
 
 	/**
-	 * Try to resolve the given checksum and return information
-	 * about the artifact with that checksum.
+	 * Try to find the artifact with the SHA-1 checksum.
 	 *
 	 * @param checksum SHA-1 checksum of a JAR file
 	 * @return Artifact information (if found)
-	 * @throws ResolverException if an unexpected exception occurs
+	 * @throws RepositoryException if an unexpected exception occurs
 	 */
-	Optional<Artifact> findArtifact(String checksum) throws ResolverException;
+	Optional<Artifact> findArtifact(String checksum) throws RepositoryException;
 
 	/**
-	 * TODO: JavaDoc
+	 * Try to download the artifact file for the given artifact.
+	 *
+	 * @param artifact Artifact
+	 * @return Artifact file (if found)
+	 * @throws RepositoryException if an unexpected exception occurs
 	 */
-	Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException;
+	Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException;
 
 	/**
 	 * Checks if the given checksum is valid:
@@ -54,7 +64,7 @@ public interface Resolver {
 	 * <li>checksum must contain only the digits '0' - '9' and letters 'a' - 'f' (hex numbers).</li>
 	 * </ol>
 	 * <p>
-	 * This method can be used by resolver implementations to validate the input value.
+	 * This method can be used by repository implementations to validate the input value.
 	 *
 	 * @param checksum Checksum
 	 * @throws IllegalArgumentException if the given checksum is not valid.

@@ -16,13 +16,13 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
-import org.jarhc.test.ResolverMock;
+import org.jarhc.test.RepositoryMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,11 +50,11 @@ class JarFilesAnalyzerTest {
 				.addJarFile("d.jar", 1234567) // no class files
 				.build();
 
-		// prepare: fake artifact resolver
-		Resolver resolver = ResolverMock.createFakeResolver();
+		// prepare: fake artifact repository
+		Repository repository = RepositoryMock.createFakeRepository();
 
 		// test
-		JarFilesAnalyzer analyzer = new JarFilesAnalyzer(resolver);
+		JarFilesAnalyzer analyzer = new JarFilesAnalyzer(repository);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

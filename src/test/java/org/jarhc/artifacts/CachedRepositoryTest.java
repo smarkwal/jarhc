@@ -16,7 +16,7 @@
 
 package org.jarhc.artifacts;
 
-import org.jarhc.test.ResolverMock;
+import org.jarhc.test.RepositoryMock;
 import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -37,40 +37,40 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @ExtendWith(TempDirectory.class)
-class CachedResolverTest {
+class CachedRepositoryTest {
 
 	private static final String CHECKSUM_UNKNOWN = "1234567890123456789012345678901234567890";
 	private static final String CHECKSUM_ASM_70 = "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912";
 
 	private File cacheDir;
-	private CachedResolver resolver;
+	private CachedRepository repository;
 
 	@BeforeEach
 	void setUp(@TempDirectory.TempDir Path tempDir) {
-		Resolver parent = ResolverMock.createResolver();
+		Repository parent = RepositoryMock.createRepository();
 		cacheDir = tempDir.toFile();
-		resolver = new CachedResolver(cacheDir, parent);
+		repository = new CachedRepository(cacheDir, parent);
 	}
 
 	@Test
 	void test_illegal_arguments() {
 
 		// test
-		Executable executable = () -> resolver.findArtifact(null);
+		Executable executable = () -> repository.findArtifact(null);
 		assertThrows(IllegalArgumentException.class, executable);
 
 		// test
-		executable = () -> resolver.findArtifact("");
+		executable = () -> repository.findArtifact("");
 		assertThrows(IllegalArgumentException.class, executable);
 
 		// test
-		executable = () -> resolver.findArtifact("../test");
+		executable = () -> repository.findArtifact("../test");
 		assertThrows(IllegalArgumentException.class, executable);
 
 	}
 
 	@Test
-	void test_findArtifact_unknown() throws ResolverException {
+	void test_findArtifact_unknown() throws RepositoryException {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
@@ -80,7 +80,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact(checksum);
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -90,7 +90,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_findArtifact_asm() throws ResolverException, IOException {
+	void test_findArtifact_asm() throws RepositoryException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -100,7 +100,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact(checksum);
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 		// assert
 		assertTrue(artifact.isPresent()); // artifact has been found
@@ -114,7 +114,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_findArtifact_cached() throws ResolverException, IOException {
+	void test_findArtifact_cached() throws RepositoryException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
@@ -125,7 +125,7 @@ class CachedResolverTest {
 		assumeTrue(cacheFile.isFile());
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact(checksum);
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 		// assert
 		assertTrue(artifact.isPresent()); // artifact has been found (in cache)
@@ -137,7 +137,7 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_findArtifact_cached_unknown() throws ResolverException, IOException {
+	void test_findArtifact_cached_unknown() throws RepositoryException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -149,7 +149,7 @@ class CachedResolverTest {
 		assumeTrue(cacheFile.length() == 0);
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact(checksum);
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -157,10 +157,10 @@ class CachedResolverTest {
 	}
 
 	@Test
-	void test_findArtifact_no_parent() throws ResolverException {
+	void test_findArtifact_no_parent() throws RepositoryException {
 
 		// override
-		resolver = new CachedResolver(cacheDir, null);
+		repository = new CachedRepository(cacheDir, null);
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
@@ -170,7 +170,7 @@ class CachedResolverTest {
 		assumeFalse(cacheFile.exists());
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact(checksum);
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 		// assert
 		assertFalse(artifact.isPresent()); // artifact has not been found
@@ -195,10 +195,10 @@ class CachedResolverTest {
 
 				// test
 				try {
-					resolver.findArtifact(checksum);
+					repository.findArtifact(checksum);
 
 					fail("expected exception not thrown");
-				} catch (ResolverException e) {
+				} catch (RepositoryException e) {
 
 					// assert
 					assertEquals("I/O error", e.getMessage());
@@ -226,10 +226,10 @@ class CachedResolverTest {
 
 		// test
 		try {
-			resolver.findArtifact(checksum);
+			repository.findArtifact(checksum);
 
 			fail("expected exception not thrown");
-		} catch (ResolverException e) {
+		} catch (RepositoryException e) {
 
 			// assert
 			assertEquals("I/O error", e.getMessage());

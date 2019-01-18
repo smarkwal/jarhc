@@ -16,13 +16,13 @@
 
 package org.jarhc.artifacts;
 
-public class ResolverException extends Exception {
+public class RepositoryException extends Exception {
 
-	public ResolverException(String message) {
+	public RepositoryException(String message) {
 		super(message);
 	}
 
-	ResolverException(String message, Throwable cause) {
+	RepositoryException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

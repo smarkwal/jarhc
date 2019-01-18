@@ -21,7 +21,7 @@ import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
-import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
@@ -50,7 +50,7 @@ public class Application {
 
 	private PrintStream out = System.out;
 	private PrintStream err = System.err;
-	private Resolver resolver;
+	private Repository repository;
 	private Supplier<JavaRuntime> javaRuntimeFactory = DefaultJavaRuntime::new;
 
 	public Application() {
@@ -64,8 +64,8 @@ public class Application {
 		this.err = err;
 	}
 
-	public void setResolver(Resolver resolver) {
-		this.resolver = resolver;
+	public void setRepository(Repository repository) {
+		this.repository = repository;
 	}
 
 	public void setJavaRuntimeFactory(Supplier<JavaRuntime> javaRuntimeFactory) {
@@ -98,7 +98,7 @@ public class Application {
 		out.println("Analyze classpath ...");
 
 		AnalyzerRegistry registry = new AnalyzerRegistry();
-		Context context = new Context(javaRuntime, resolver);
+		Context context = new Context(javaRuntime, repository);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
@@ -158,7 +158,7 @@ public class Application {
 		boolean useArtifactName = options.isUseArtifactName();
 		boolean removeVersion = options.isRemoveVersion();
 		if (useArtifactName) {
-			return (fileName, checksum) -> JarFileNameNormalizer.getArtifactFileName(checksum, resolver, removeVersion, fileName);
+			return (fileName, checksum) -> JarFileNameNormalizer.getArtifactFileName(checksum, repository, removeVersion, fileName);
 		} else if (removeVersion) {
 			return (fileName, checksum) -> JarFileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
 		} else {

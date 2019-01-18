@@ -21,18 +21,18 @@ import org.jarhc.utils.FileUtils;
 import java.io.*;
 import java.util.Optional;
 
-public class CachedResolver implements Resolver {
+public class CachedRepository implements Repository {
 
 	private final File cacheDir;
-	private final Resolver resolver;
+	private final Repository repository;
 
-	public CachedResolver(File cacheDir, Resolver resolver) {
+	public CachedRepository(File cacheDir, Repository repository) {
 		this.cacheDir = cacheDir;
-		this.resolver = resolver;
+		this.repository = repository;
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException {
+	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException {
 
 		// create path to cache file
 		String fileName = groupId + "_" + artifactId + "_" + version + "_" + type + ".txt";
@@ -47,11 +47,11 @@ public class CachedResolver implements Resolver {
 			return Optional.ofNullable(artifact);
 		}
 
-		// if a parent resolver is available ...
-		if (resolver != null) {
+		// if a parent repository is available ...
+		if (repository != null) {
 
-			// delegate to parent resolver
-			Optional<Artifact> artifact = resolver.findArtifact(groupId, artifactId, version, type);
+			// delegate to parent repository
+			Optional<Artifact> artifact = repository.findArtifact(groupId, artifactId, version, type);
 
 			// update cache with response
 			saveToCache(artifact.orElse(null), file);
@@ -65,7 +65,7 @@ public class CachedResolver implements Resolver {
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String checksum) throws ResolverException {
+	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 		validateChecksum(checksum);
 
 		// create path to cache file
@@ -81,11 +81,11 @@ public class CachedResolver implements Resolver {
 			return Optional.ofNullable(artifact);
 		}
 
-		// if a parent resolver is available ...
-		if (resolver != null) {
+		// if a parent repository is available ...
+		if (repository != null) {
 
-			// delegate to parent resolver
-			Optional<Artifact> artifact = resolver.findArtifact(checksum);
+			// delegate to parent repository
+			Optional<Artifact> artifact = repository.findArtifact(checksum);
 
 			// update cache with response
 			saveToCache(artifact.orElse(null), file);
@@ -97,7 +97,7 @@ public class CachedResolver implements Resolver {
 		return Optional.empty();
 	}
 
-	private Artifact getFromCache(File file) throws ResolverException {
+	private Artifact getFromCache(File file) throws RepositoryException {
 
 		// if file is empty ...
 		long size = file.length();
@@ -116,16 +116,16 @@ public class CachedResolver implements Resolver {
 			return new Artifact(coordinates);
 
 		} catch (IOException e) {
-			throw new ResolverException("I/O error", e);
+			throw new RepositoryException("I/O error", e);
 		}
 
 	}
 
-	private void saveToCache(Artifact artifact, File file) throws ResolverException {
+	private void saveToCache(Artifact artifact, File file) throws RepositoryException {
 
 		try {
 
-			// if parent resolver has found the artifact ...
+			// if parent repository has found the artifact ...
 			if (artifact != null) {
 				// save in local cache
 				FileUtils.writeStringToFile(artifact.toString(), file);
@@ -135,13 +135,13 @@ public class CachedResolver implements Resolver {
 			}
 
 		} catch (IOException e) {
-			throw new ResolverException("I/O error", e);
+			throw new RepositoryException("I/O error", e);
 		}
 
 	}
 
 	@Override
-	public Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException {
+	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
 
 		String coordinates = artifact.toString();
 		String fileName = coordinates.replace(':', '_') + ".bin";
@@ -156,11 +156,11 @@ public class CachedResolver implements Resolver {
 			return Optional.ofNullable(stream);
 		}
 
-		// if a parent resolver is available ...
-		if (resolver != null) {
+		// if a parent repository is available ...
+		if (repository != null) {
 
-			// delegate to parent resolver
-			Optional<InputStream> stream = resolver.downloadArtifact(artifact);
+			// delegate to parent repository
+			Optional<InputStream> stream = repository.downloadArtifact(artifact);
 
 			// update cache with response
 			downloadToCache(stream.orElse(null), file);
@@ -175,7 +175,7 @@ public class CachedResolver implements Resolver {
 
 	}
 
-	private InputStream downloadFromCache(File file) throws ResolverException {
+	private InputStream downloadFromCache(File file) throws RepositoryException {
 
 		// if file is empty ...
 		long size = file.length();
@@ -188,16 +188,16 @@ public class CachedResolver implements Resolver {
 		try {
 			return new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			throw new ResolverException("I/O error", e);
+			throw new RepositoryException("I/O error", e);
 		}
 
 	}
 
-	private void downloadToCache(InputStream stream, File file) throws ResolverException {
+	private void downloadToCache(InputStream stream, File file) throws RepositoryException {
 
 		try {
 
-			// if parent resolver has found the artifact ...
+			// if parent repository has found the artifact ...
 			if (stream != null) {
 				// save in local cache
 				FileUtils.writeStreamToFile(stream, file);
@@ -207,7 +207,7 @@ public class CachedResolver implements Resolver {
 			}
 
 		} catch (IOException e) {
-			throw new ResolverException("I/O error", e);
+			throw new RepositoryException("I/O error", e);
 		}
 
 	}

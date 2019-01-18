@@ -17,8 +17,8 @@
 package org.jarhc.it;
 
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.MavenCentralResolver;
-import org.jarhc.artifacts.ResolverException;
+import org.jarhc.artifacts.MavenCentralRepository;
+import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.Test;
 
@@ -29,16 +29,16 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MavenCentralResolverIT {
+class MavenCentralRepositoryIT {
 
 	private final Duration timeout = Duration.ofSeconds(10);
-	private final MavenCentralResolver resolver = new MavenCentralResolver(timeout);
+	private final MavenCentralRepository repository = new MavenCentralRepository(timeout);
 
 	@Test
-	void test_findArtifact_byChecksum_CommonsIO() throws ResolverException {
+	void test_findArtifact_byChecksum_CommonsIO() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("815893df5f31da2ece4040fe0a12fd44b577afaf");
+		Optional<Artifact> artifact = repository.findArtifact("815893df5f31da2ece4040fe0a12fd44b577afaf");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -50,10 +50,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byCoordinates_CommonsIO() throws ResolverException {
+	void test_findArtifact_byCoordinates_CommonsIO() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("commons-io", "commons-io", "2.6", "jar");
+		Optional<Artifact> artifact = repository.findArtifact("commons-io", "commons-io", "2.6", "jar");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -65,12 +65,12 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_downloadArtifact_CommonsIO() throws ResolverException, IOException {
+	void test_downloadArtifact_CommonsIO() throws RepositoryException, IOException {
 
 		Artifact artifact = new Artifact("commons-io", "commons-io", "2.6", "jar");
 
 		// test
-		Optional<InputStream> stream = resolver.downloadArtifact(artifact);
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
 
 		// assert
 		assertTrue(stream.isPresent());
@@ -80,10 +80,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_CommonsCodec() throws ResolverException {
+	void test_findArtifact_byChecksum_CommonsCodec() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
+		Optional<Artifact> artifact = repository.findArtifact("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -95,10 +95,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byCoordinates_CommonsCodec() throws ResolverException {
+	void test_findArtifact_byCoordinates_CommonsCodec() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("commons-codec", "commons-codec", "1.11", "jar");
+		Optional<Artifact> artifact = repository.findArtifact("commons-codec", "commons-codec", "1.11", "jar");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -110,12 +110,12 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_downloadArtifact_CommonsCodec() throws ResolverException, IOException {
+	void test_downloadArtifact_CommonsCodec() throws RepositoryException, IOException {
 
 		Artifact artifact = new Artifact("commons-codec", "commons-codec", "1.11", "jar");
 
 		// test
-		Optional<InputStream> stream = resolver.downloadArtifact(artifact);
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
 
 		// assert
 		assertTrue(stream.isPresent());
@@ -125,10 +125,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_ASM() throws ResolverException {
+	void test_findArtifact_byChecksum_ASM() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+		Optional<Artifact> artifact = repository.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -140,10 +140,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byCoordinates_ASM() throws ResolverException {
+	void test_findArtifact_byCoordinates_ASM() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("org.ow2.asm", "asm", "7.0", "jar");
+		Optional<Artifact> artifact = repository.findArtifact("org.ow2.asm", "asm", "7.0", "jar");
 
 		// assert
 		assertTrue(artifact.isPresent());
@@ -155,12 +155,12 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_downloadArtifact_ASM() throws ResolverException, IOException {
+	void test_downloadArtifact_ASM() throws RepositoryException, IOException {
 
 		Artifact artifact = new Artifact("org.ow2.asm", "asm", "7.0", "jar");
 
 		// test
-		Optional<InputStream> stream = resolver.downloadArtifact(artifact);
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
 
 		// assert
 		assertTrue(stream.isPresent());
@@ -170,10 +170,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_notFound() throws ResolverException {
+	void test_findArtifact_byChecksum_notFound() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("1234567890123456789012345678901234567890");
+		Optional<Artifact> artifact = repository.findArtifact("1234567890123456789012345678901234567890");
 
 		// assert
 		assertFalse(artifact.isPresent());
@@ -181,10 +181,10 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_findArtifact_byCoordinates_notFound() throws ResolverException {
+	void test_findArtifact_byCoordinates_notFound() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = resolver.findArtifact("unknown", "unknown", "1.0", "jar");
+		Optional<Artifact> artifact = repository.findArtifact("unknown", "unknown", "1.0", "jar");
 
 		// assert
 		assertFalse(artifact.isPresent());
@@ -192,12 +192,12 @@ class MavenCentralResolverIT {
 	}
 
 	@Test
-	void test_downloadArtifact_notFound() throws ResolverException, IOException {
+	void test_downloadArtifact_notFound() throws RepositoryException, IOException {
 
 		Artifact artifact = new Artifact("unknown", "unknown", "1.0", "jar");
 
 		// test
-		Optional<InputStream> stream = resolver.downloadArtifact(artifact);
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
 
 		// assert
 		assertFalse(stream.isPresent());

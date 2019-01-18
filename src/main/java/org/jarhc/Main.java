@@ -20,9 +20,9 @@ import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Options;
-import org.jarhc.artifacts.CachedResolver;
-import org.jarhc.artifacts.MavenCentralResolver;
-import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.CachedRepository;
+import org.jarhc.artifacts.MavenCentralRepository;
+import org.jarhc.artifacts.Repository;
 
 import java.io.File;
 import java.time.Duration;
@@ -44,11 +44,11 @@ public class Main {
 			System.exit(exitCode);
 		}
 
-		Resolver resolver = createResolver();
+		Repository repository = createRepository();
 
 		// create and run application
 		Application application = new Application();
-		application.setResolver(resolver);
+		application.setRepository(repository);
 
 		int exitCode = application.run(options);
 
@@ -57,13 +57,13 @@ public class Main {
 		}
 	}
 
-	private static Resolver createResolver() {
+	private static Repository createRepository() {
 
 		// resolve artifacts using Maven Central and a local disk cache
 		Duration timeout = Duration.ofSeconds(5);
-		Resolver mavenResolver = new MavenCentralResolver(timeout);
-		File cacheDir = new File("./.jarhc/cache/resolver"); // TODO: make this configurable
-		return new CachedResolver(cacheDir, mavenResolver);
+		Repository mavenRepository = new MavenCentralRepository(timeout);
+		File cacheDir = new File("./.jarhc/cache/repository"); // TODO: make this configurable
+		return new CachedRepository(cacheDir, mavenRepository);
 
 	}
 

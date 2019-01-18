@@ -17,8 +17,8 @@
 package org.jarhc.analyzer;
 
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Resolver;
-import org.jarhc.artifacts.ResolverException;
+import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -33,11 +33,11 @@ import static org.jarhc.utils.FileUtils.formatFileSize;
 
 public class JarFilesAnalyzer extends Analyzer {
 
-	private final Resolver resolver;
+	private final Repository repository;
 
-	public JarFilesAnalyzer(Resolver resolver) {
-		if (resolver == null) throw new IllegalArgumentException("resolver");
-		this.resolver = resolver;
+	public JarFilesAnalyzer(Repository repository) {
+		if (repository == null) throw new IllegalArgumentException("repository");
+		this.repository = repository;
 	}
 
 	@Override
@@ -118,9 +118,9 @@ public class JarFilesAnalyzer extends Analyzer {
 
 		Optional<Artifact> artifact;
 		try {
-			artifact = resolver.findArtifact(checksum);
-		} catch (ResolverException e) {
-			System.err.println("Resolver error for JAR file: " + jarFile.getFileName());
+			artifact = repository.findArtifact(checksum);
+		} catch (RepositoryException e) {
+			System.err.println("Repository error for JAR file: " + jarFile.getFileName());
 			e.printStackTrace();
 			return "[error]";
 		}

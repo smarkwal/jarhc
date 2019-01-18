@@ -21,7 +21,7 @@ import org.jarhc.app.Application;
 import org.jarhc.app.Options;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
-import org.jarhc.test.ResolverMock;
+import org.jarhc.test.RepositoryMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -49,7 +49,7 @@ class ApplicationIT {
 		application.setOut(out);
 		application.setErr(err);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
-		application.setResolver(ResolverMock.createResolver());
+		application.setRepository(RepositoryMock.createRepository());
 
 		Options options = new Options();
 		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);

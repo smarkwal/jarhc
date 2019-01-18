@@ -16,25 +16,25 @@
 
 package org.jarhc;
 
-import org.jarhc.artifacts.Resolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 
 public class Context {
 
 	private final JavaRuntime javaRuntime;
-	private final Resolver resolver;
+	private final Repository repository;
 
-	public Context(JavaRuntime javaRuntime, Resolver resolver) {
+	public Context(JavaRuntime javaRuntime, Repository repository) {
 		this.javaRuntime = javaRuntime;
-		this.resolver = resolver;
+		this.repository = repository;
 	}
 
 	public JavaRuntime getJavaRuntime() {
 		return javaRuntime;
 	}
 
-	public Resolver getResolver() {
-		return resolver;
+	public Repository getRepository() {
+		return repository;
 	}
 
 }

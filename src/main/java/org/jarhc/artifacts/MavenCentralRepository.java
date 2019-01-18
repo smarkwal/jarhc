@@ -31,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Optional;
 
-public class MavenCentralResolver implements Resolver {
+public class MavenCentralRepository implements Repository {
 
 	private static final String SEARCH_URL_FORMAT_1 = "https://search.maven.org/solrsearch/select?q=g:%%22%s%%22+AND+a:%%22%s%%22+AND+v:%%22%s%%22&core=gav&rows=20&wt=json";
 	private static final String SEARCH_URL_FORMAT_2 = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
@@ -40,42 +40,42 @@ public class MavenCentralResolver implements Resolver {
 	private int timeout;
 
 	/**
-	 * Create an artifact resolver using Maven Central REST API.
+	 * Create an artifact repository using Maven Central REST API.
 	 *
 	 * @param timeout Timeout
 	 */
-	public MavenCentralResolver(Duration timeout) {
+	public MavenCentralRepository(Duration timeout) {
 		this.timeout = (int) timeout.toMillis();
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws ResolverException {
+	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException {
 
 		URL url;
 		try {
 			url = new URL(String.format(SEARCH_URL_FORMAT_1, groupId, artifactId, version));
 		} catch (MalformedURLException e) {
-			throw new ResolverException("Malformed URL for coordinates: " + groupId + ":" + artifactId + ":" + version, e);
+			throw new RepositoryException("Malformed URL for coordinates: " + groupId + ":" + artifactId + ":" + version, e);
 		}
 
 		return findArtifact(url);
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String checksum) throws ResolverException {
+	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 		validateChecksum(checksum);
 
 		URL url;
 		try {
 			url = new URL(String.format(SEARCH_URL_FORMAT_2, checksum));
 		} catch (MalformedURLException e) {
-			throw new ResolverException("Malformed URL for checksum: " + checksum, e);
+			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
 
 		return findArtifact(url);
 	}
 
-	private Optional<Artifact> findArtifact(URL url) throws ResolverException {
+	private Optional<Artifact> findArtifact(URL url) throws RepositoryException {
 
 		String text = downloadText(url);
 		// TODO: special handling for timeout?
@@ -85,16 +85,16 @@ public class MavenCentralResolver implements Resolver {
 		try {
 			json = new JSONObject(text);
 		} catch (JSONException e) {
-			throw new ResolverException("JSON parser error for URL: " + url, e);
+			throw new RepositoryException("JSON parser error for URL: " + url, e);
 		}
 
 		if (!json.has("response")) {
-			throw new ResolverException("JSON key 'response' not found: " + text);
+			throw new RepositoryException("JSON key 'response' not found: " + text);
 		}
 
 		JSONObject response = json.getJSONObject("response");
 		if (!response.has("numFound")) {
-			throw new ResolverException("JSON key 'numFound' not found: " + text);
+			throw new RepositoryException("JSON key 'numFound' not found: " + text);
 		}
 
 		int numFound = response.getInt("numFound");
@@ -103,12 +103,12 @@ public class MavenCentralResolver implements Resolver {
 		}
 
 		if (!response.has("docs")) {
-			throw new ResolverException("JSON key 'docs' not found: " + text);
+			throw new RepositoryException("JSON key 'docs' not found: " + text);
 		}
 
 		JSONArray docs = response.getJSONArray("docs");
 		if (docs.length() == 0) {
-			throw new ResolverException("JSON array 'docs' is empty: " + text);
+			throw new RepositoryException("JSON array 'docs' is empty: " + text);
 		}
 
 		JSONObject doc = findBestMatch(docs);
@@ -122,7 +122,7 @@ public class MavenCentralResolver implements Resolver {
 	}
 
 	@Override
-	public Optional<InputStream> downloadArtifact(Artifact artifact) throws ResolverException {
+	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
 		URL url = getDownloadURL(artifact);
 		try {
 			byte[] data = downloadFile(url);
@@ -130,11 +130,11 @@ public class MavenCentralResolver implements Resolver {
 			ByteArrayInputStream stream = new ByteArrayInputStream(data);
 			return Optional.of(stream);
 		} catch (IOException e) {
-			throw new ResolverException("Unexpected I/O error for URL: " + url, e);
+			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
 		}
 	}
 
-	private URL getDownloadURL(Artifact artifact) throws ResolverException {
+	private URL getDownloadURL(Artifact artifact) throws RepositoryException {
 
 		String groupId = artifact.getGroupId();
 		String artifactId = artifact.getArtifactId();
@@ -156,17 +156,17 @@ public class MavenCentralResolver implements Resolver {
 		try {
 			return new URL(String.format(DOWNLOAD_URL_FORMAT, path));
 		} catch (MalformedURLException e) {
-			throw new ResolverException("Malformed URL for download: " + groupId + ":" + artifactId + ":" + version, e);
+			throw new RepositoryException("Malformed URL for download: " + groupId + ":" + artifactId + ":" + version, e);
 		}
 	}
 
-	private String downloadText(URL url) throws ResolverException {
+	private String downloadText(URL url) throws RepositoryException {
 		try {
 			byte[] data = downloadFile(url);
-			if (data == null) throw new ResolverException("URL not found: " + url);
+			if (data == null) throw new RepositoryException("URL not found: " + url);
 			return new String(data, StandardCharsets.UTF_8);
 		} catch (IOException e) {
-			throw new ResolverException("Unexpected I/O error for URL: " + url, e);
+			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
 		}
 	}
 
