@@ -22,6 +22,7 @@ import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.CachedRepository;
 import org.jarhc.artifacts.MavenCentralRepository;
+import org.jarhc.artifacts.MavenLocalRepository;
 import org.jarhc.artifacts.Repository;
 
 import java.io.File;
@@ -59,11 +60,23 @@ public class Main {
 
 	private static Repository createRepository() {
 
-		// resolve artifacts using Maven Central and a local disk cache
-		Duration timeout = Duration.ofSeconds(5);
-		Repository mavenRepository = new MavenCentralRepository(timeout);
+		// resolve artifacts using Maven Central
+		Duration timeout = Duration.ofSeconds(5); // TODO: make this configurable
+		Repository repository = new MavenCentralRepository(timeout);
+
+		// use a local disk cache
 		File cacheDir = new File("./.jarhc/cache/repository"); // TODO: make this configurable
-		return new CachedRepository(cacheDir, mavenRepository);
+		repository = new CachedRepository(cacheDir, repository);
+
+		// if a local Maven repository is present ...
+		String userHome = System.getProperty("user.home");
+		File directory = new File(userHome, ".m2/repository");
+		if (directory.isDirectory()) {
+			// use local Maven repository
+			repository = new MavenLocalRepository(directory, repository);
+		}
+
+		return repository;
 
 	}
 

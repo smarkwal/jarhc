@@ -135,28 +135,11 @@ public class MavenCentralRepository implements Repository {
 	}
 
 	private URL getDownloadURL(Artifact artifact) throws RepositoryException {
-
-		String groupId = artifact.getGroupId();
-		String artifactId = artifact.getArtifactId();
-		String version = artifact.getVersion();
-		String type = artifact.getType();
-
-		StringBuilder path = new StringBuilder();
-		path.append(groupId.replace('.', '/'));
-		path.append('/');
-		path.append(artifactId.replace('.', '/'));
-		path.append('/');
-		path.append(version);
-		path.append('/');
-		path.append(artifactId);
-		path.append('-');
-		path.append(version);
-		path.append(".jar"); // TODO: get extension from type?
-
+		String path = artifact.getPath();
 		try {
 			return new URL(String.format(DOWNLOAD_URL_FORMAT, path));
 		} catch (MalformedURLException e) {
-			throw new RepositoryException("Malformed URL for download: " + groupId + ":" + artifactId + ":" + version, e);
+			throw new RepositoryException("Malformed URL for download: " + artifact, e);
 		}
 	}
 

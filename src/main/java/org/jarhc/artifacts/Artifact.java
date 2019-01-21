@@ -67,4 +67,19 @@ public class Artifact {
 		return result;
 	}
 
+	public String getPath() {
+		StringBuilder path = new StringBuilder();
+		path.append(groupId.replace('.', '/'));
+		path.append('/');
+		path.append(artifactId.replace('.', '/'));
+		path.append('/');
+		path.append(version);
+		path.append('/');
+		path.append(artifactId);
+		path.append('-');
+		path.append(version);
+		path.append(".jar"); // TODO: get extension from type?
+		return path.toString();
+	}
+
 }
