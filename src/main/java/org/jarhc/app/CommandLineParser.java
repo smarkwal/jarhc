@@ -18,6 +18,7 @@ package org.jarhc.app;
 
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Artifact;
 import org.jarhc.utils.ArrayUtils;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.VersionUtils;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CommandLineParser {
 
@@ -56,9 +58,7 @@ public class CommandLineParser {
 		options.setReportFormat(null);
 		options.setReportFile(null);
 
-		List<File> classpath = new ArrayList<>();
-		List<File> provided = new ArrayList<>();
-		List<File> runtime = new ArrayList<>();
+		boolean classpathFound = false;
 
 		Iterator<String> iterator = Arrays.asList(args).iterator();
 		while (iterator.hasNext()) {
@@ -66,21 +66,22 @@ public class CommandLineParser {
 			if (arg.equals("-cp") || arg.equals("--classpath")) {
 				if (iterator.hasNext()) {
 					String values = iterator.next();
-					addFiles(values, classpath);
+					addSources(values, options::addClasspathJarPath);
 				} else {
 					handleError(-10, "Classpath not specified.");
 				}
+				classpathFound = true;
 			} else if (arg.equals("--provided")) {
 				if (iterator.hasNext()) {
 					String values = iterator.next();
-					addFiles(values, provided);
+					addSources(values, options::addProvidedJarPath);
 				} else {
 					handleError(-10, "Provided classpath not specified.");
 				}
 			} else if (arg.equals("--runtime")) {
 				if (iterator.hasNext()) {
 					String values = iterator.next();
-					addFiles(values, runtime);
+					addSources(values, options::addRuntimeJarPath);
 				} else {
 					handleError(-10, "Runtime classpath not specified.");
 				}
@@ -147,13 +148,13 @@ public class CommandLineParser {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
 				handleError(-100, errorMessage);
 			} else {
-				File path = new File(arg);
-				classpath.add(path);
+				addSources(arg, options::addClasspathJarPath);
+				classpathFound = true;
 			}
 		}
 
 		// if path argument is missing ...
-		if (classpath.isEmpty()) {
+		if (!classpathFound) {
 
 			// if help or version information has been printed ...
 			if (ArrayUtils.containsAny(args, "-h", "--help", "-v", "--version")) {
@@ -165,71 +166,64 @@ public class CommandLineParser {
 			handleError(-1, errorMessage);
 		}
 
-		// collect JAR files
-		List<File> classpathJarFiles = new ArrayList<>();
-		collectJarFiles(classpath, true, classpathJarFiles);
 		// check if at least one JAR file has been found
-		if (classpathJarFiles.isEmpty()) {
+		List<String> classpathJarPaths = options.getClasspathJarPaths();
+		if (classpathJarPaths.isEmpty()) {
 			String errorMessage = "No *.jar files found in classpath.";
 			handleError(-4, errorMessage);
-		}
-		options.addClasspathJarFiles(classpathJarFiles);
-
-		if (!provided.isEmpty()) {
-			// collect JAR files for provided classpath
-			List<File> providedJarFiles = new ArrayList<>();
-			collectJarFiles(provided, true, providedJarFiles);
-			// check if at least one JAR file has been found
-			if (providedJarFiles.isEmpty()) {
-				String errorMessage = "No *.jar files found in provided classpath.";
-				handleError(-4, errorMessage);
-			}
-			options.addProvidedJarFiles(providedJarFiles);
-		}
-
-		if (!runtime.isEmpty()) {
-			// collect JAR files for runtime classpath
-			List<File> runtimeJarFiles = new ArrayList<>();
-			collectJarFiles(runtime, true, runtimeJarFiles);
-			// check if at least one JAR file has been found
-			if (runtimeJarFiles.isEmpty()) {
-				String errorMessage = "No *.jar files found in runtime classpath.";
-				handleError(-4, errorMessage);
-			}
-			options.addRuntimeJarFiles(runtimeJarFiles);
 		}
 
 		return options;
 	}
 
-	private void addFiles(String values, List<File> classpath) {
+	private void addSources(String values, Consumer<String> classpath) throws CommandLineException {
 		for (String value : values.split(",")) {
-			File path = new File(value);
-			classpath.add(path);
+			value = value.trim();
+			if (Artifact.validateCoordinates(value)) {
+				classpath.accept(value);
+			} else {
+				File path = new File(value);
+				if (path.isFile()) {
+					String fileName = path.getName().toLowerCase();
+					if (fileName.endsWith(".jar")) {
+						classpath.accept(value);
+					} else if (fileName.endsWith(".war")) {
+						classpath.accept(value);
+					} else {
+						String errorMessage = String.format("File is not a *.jar file: %s", path.getAbsolutePath());
+						handleError(-2, errorMessage);
+					}
+				} else if (path.isDirectory()) {
+					if (findJarFiles(path).isEmpty()) {
+						String errorMessage = String.format("No *.jar files found in directory: %s", path.getAbsolutePath());
+						handleError(-2, errorMessage);
+					}
+					classpath.accept(value);
+				} else {
+					String errorMessage = String.format("File or directory not found: %s", path.getAbsolutePath());
+					handleError(-3, errorMessage);
+				}
+			}
 		}
 	}
 
-	private void collectJarFiles(List<File> paths, boolean strict, List<File> jarFiles) throws CommandLineException {
+	public static List<File> findJarFiles(File directory) {
+		List<File> jarFiles = new ArrayList<>();
+		findJarFiles(directory, jarFiles);
+		return jarFiles;
+	}
 
-		for (File path : paths) {
-			if (path.isFile()) {
-				// if file is a *.jar file ...
-				String fileName = path.getName().toLowerCase();
+	private static void findJarFiles(File directory, List<File> jarFiles) {
+		File[] files = directory.listFiles();
+		if (files == null) return;
+		for (File file : files) {
+			if (file.isFile()) {
+				String fileName = file.getName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
-					jarFiles.add(path);
-				} else if (fileName.endsWith(".war")) {
-					jarFiles.add(path);
-				} else if (strict) {
-					String errorMessage = String.format("File is not a *.jar file: %s", path.getAbsolutePath());
-					handleError(-2, errorMessage);
+					jarFiles.add(file);
 				}
-			} else if (path.isDirectory()) {
-				File[] array = path.listFiles();
-				if (array == null) continue;
-				collectJarFiles(Arrays.asList(array), false, jarFiles);
-			} else if (strict) {
-				String errorMessage = String.format("File or directory not found: %s", path.getAbsolutePath());
-				handleError(-3, errorMessage);
+			} else if (file.isDirectory()) {
+				findJarFiles(file, jarFiles);
 			}
 		}
 	}

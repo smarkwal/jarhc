@@ -21,6 +21,7 @@ import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
@@ -84,16 +85,21 @@ public class Application {
 		// prepare a new report
 		Report report = new Report();
 
+		List<String> runtimeJarPaths = options.getRuntimeJarPaths();
+		List<String> providedJarPaths = options.getProvidedJarPaths();
+		List<String> classpathJarPaths = options.getClasspathJarPaths();
+
+		out.println("Load JAR files ...");
+
+		List<JarSource> runtimeJarSources = loadJarSources(runtimeJarPaths);
+		List<JarSource> providedJarSources = loadJarSources(providedJarPaths);
+		List<JarSource> classpathJarSources = loadJarSources(classpathJarPaths);
+
 		out.println("Scan JAR files ...");
 
-		List<File> runtimeJarFiles = options.getRuntimeJarFiles();
-		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarFiles);
-
-		List<File> providedJarFiles = options.getProvidedJarFiles();
-		ClassLoader parentClassLoader = createClassLoader(javaRuntime, providedJarFiles);
-
-		List<File> classpathJarFiles = options.getClasspathJarFiles();
-		Classpath classpath = createClasspath(options, classpathJarFiles, parentClassLoader);
+		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarSources);
+		ClassLoader parentClassLoader = createClassLoader(javaRuntime, providedJarSources);
+		Classpath classpath = createClasspath(options, classpathJarSources, parentClassLoader);
 
 		out.println("Analyze classpath ...");
 
@@ -147,7 +153,30 @@ public class Application {
 		return 0;
 	}
 
-	private Classpath createClasspath(Options options, List<File> classpathJarFiles, ClassLoader parentClassLoader) {
+	private List<JarSource> loadJarSources(List<String> paths) {
+		List<JarSource> sources = new ArrayList<>();
+		for (String path : paths) {
+			if (Artifact.validateCoordinates(path)) {
+				ArtifactSource source = new ArtifactSource(path, repository);
+				sources.add(source);
+			} else {
+				File file = new File(path);
+				if (file.isFile()) {
+					FileSource source = new FileSource(file);
+					sources.add(source);
+				} else if (file.isDirectory()) {
+					List<File> jarFiles = CommandLineParser.findJarFiles(file);
+					for (File jarFile : jarFiles) {
+						FileSource source = new FileSource(jarFile);
+						sources.add(source);
+					}
+				}
+			}
+		}
+		return sources;
+	}
+
+	private Classpath createClasspath(Options options, List<JarSource> classpathJarFiles, ClassLoader parentClassLoader) {
 		// load classpath JAR files
 		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options);
 		ClasspathLoader loader = LoaderBuilder.create().withJarFileNameNormalizer(jarFileNameNormalizer).withParentClassLoader(parentClassLoader).buildClasspathLoader();
@@ -166,7 +195,7 @@ public class Application {
 		}
 	}
 
-	private JavaRuntime createJavaRuntime(List<File> runtimeJarFiles) {
+	private JavaRuntime createJavaRuntime(List<JarSource> runtimeJarFiles) {
 
 		if (runtimeJarFiles.isEmpty()) {
 			// create default Java runtime
@@ -181,7 +210,7 @@ public class Application {
 		return new ClasspathJavaRuntime(runtimeClasspath);
 	}
 
-	private ClassLoader createClassLoader(JavaRuntime javaRuntime, List<File> providedJarFiles) {
+	private ClassLoader createClassLoader(JavaRuntime javaRuntime, List<JarSource> providedJarFiles) {
 
 		if (providedJarFiles.isEmpty()) {
 			// use original Java runtime

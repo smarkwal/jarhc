@@ -33,6 +33,13 @@ public class Artifact {
 		this.type = type;
 	}
 
+	public static boolean validateCoordinates(String coordinates) {
+		if (coordinates.contains("/") || coordinates.contains("\\")) return false;
+		long separators = coordinates.chars().filter(c -> c == ':').count();
+		if (separators < 3 || separators > 4) return false;
+		return true;
+	}
+
 	public Artifact(String coordinates) {
 		String[] parts = coordinates.split(":");
 		if (parts.length < 3 || parts.length > 4) throw new IllegalArgumentException("coordinates");
@@ -75,11 +82,13 @@ public class Artifact {
 		path.append('/');
 		path.append(version);
 		path.append('/');
-		path.append(artifactId);
-		path.append('-');
-		path.append(version);
-		path.append(".jar"); // TODO: get extension from type?
+		path.append(getFileName());
 		return path.toString();
+	}
+
+	public String getFileName() {
+		// TODO: get extension from type?
+		return artifactId + '-' + version + ".jar";
 	}
 
 }

@@ -16,14 +16,12 @@
 
 package org.jarhc.loader;
 
+import org.jarhc.app.JarSource;
 import org.jarhc.model.JarFile;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -40,14 +38,28 @@ public class WarFileLoader {
 	public List<JarFile> load(File file) throws IOException {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
+		try (InputStream stream = new FileInputStream(file)) {
+			return load(stream);
+		}
+	}
+
+	public List<JarFile> load(JarSource source) throws IOException {
+		if (source == null) throw new IllegalArgumentException("source");
+		try (InputStream stream = source.getData()) {
+			return load(stream);
+		}
+	}
+
+	public List<JarFile> load(InputStream stream) throws IOException {
+		if (stream == null) throw new IllegalArgumentException("stream");
 
 		List<JarFile> jarFiles = new ArrayList<>();
 
-		try (ZipInputStream stream = new ZipInputStream(new FileInputStream(file))) {
+		try (ZipInputStream zip = new ZipInputStream(stream)) {
 
 			// for every entry in the WAR file ...
 			while (true) {
-				ZipEntry entry = stream.getNextEntry();
+				ZipEntry entry = zip.getNextEntry();
 				if (entry == null) break;
 
 				// ignore directories
@@ -56,7 +68,7 @@ public class WarFileLoader {
 				String entryName = entry.getName();
 				if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
 					String fileName = FileUtils.getFilename(entryName);
-					byte[] fileData = IOUtils.toByteArray(stream);
+					byte[] fileData = IOUtils.toByteArray(zip);
 					JarFile jarFile = jarFileLoader.load(fileName, fileData);
 					jarFiles.add(jarFile);
 				} else if (entryName.startsWith("WEB-INF/classes/")) {

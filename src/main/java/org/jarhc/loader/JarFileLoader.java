@@ -16,6 +16,7 @@
 
 package org.jarhc.loader;
 
+import org.jarhc.app.JarSource;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
@@ -24,10 +25,7 @@ import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -70,6 +68,17 @@ class JarFileLoader {
 
 		String fileName = file.getName();
 		byte[] data = FileUtils.readFileToByteArray(file);
+		return load(fileName, data);
+	}
+
+	JarFile load(JarSource source) throws IOException {
+		if (source == null) throw new IllegalArgumentException("source");
+
+		String fileName = source.getName();
+		byte[] data;
+		try (InputStream stream = source.getData()) {
+			data = IOUtils.toByteArray(stream);
+		}
 		return load(fileName, data);
 	}
 

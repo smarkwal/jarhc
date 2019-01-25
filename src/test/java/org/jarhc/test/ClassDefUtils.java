@@ -19,7 +19,6 @@ package org.jarhc.test;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
-import org.jarhc.utils.JavaUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

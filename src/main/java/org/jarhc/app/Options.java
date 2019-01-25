@@ -16,15 +16,14 @@
 
 package org.jarhc.app;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
 
-	private final List<File> classpathJarFiles = new ArrayList<>();
-	private final List<File> providedJarFiles = new ArrayList<>();
-	private final List<File> runtimeJarFiles = new ArrayList<>();
+	private final List<String> classpathJarPaths = new ArrayList<>();
+	private final List<String> providedJarPaths = new ArrayList<>();
+	private final List<String> runtimeJarPaths = new ArrayList<>();
 	private boolean removeVersion = false;
 	private boolean useArtifactName = false;
 
@@ -39,28 +38,28 @@ public class Options {
 	public Options() {
 	}
 
-	public List<File> getClasspathJarFiles() {
-		return classpathJarFiles;
+	public List<String> getClasspathJarPaths() {
+		return classpathJarPaths;
 	}
 
-	public void addClasspathJarFiles(List<File> files) {
-		this.classpathJarFiles.addAll(files);
+	public void addClasspathJarPath(String path) {
+		this.classpathJarPaths.add(path);
 	}
 
-	public List<File> getProvidedJarFiles() {
-		return providedJarFiles;
+	public List<String> getProvidedJarPaths() {
+		return providedJarPaths;
 	}
 
-	public void addProvidedJarFiles(List<File> files) {
-		this.providedJarFiles.addAll(files);
+	public void addProvidedJarPath(String path) {
+		this.providedJarPaths.add(path);
 	}
 
-	public List<File> getRuntimeJarFiles() {
-		return runtimeJarFiles;
+	public List<String> getRuntimeJarPaths() {
+		return runtimeJarPaths;
 	}
 
-	public void addRuntimeJarFiles(List<File> files) {
-		this.runtimeJarFiles.addAll(files);
+	public void addRuntimeJarPath(String path) {
+		this.runtimeJarPaths.add(path);
 	}
 
 	public boolean isRemoveVersion() {

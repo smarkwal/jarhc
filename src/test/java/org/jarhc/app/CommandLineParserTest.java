@@ -119,9 +119,9 @@ class CommandLineParserTest {
 
 		// assert
 		assertNotNull(exception);
-		assertEquals(-4, exception.getExitCode());
-		assertEquals("No *.jar files found in classpath.", exception.getMessage());
-		assertTrue(err.getText().startsWith("No *.jar files found in classpath."));
+		assertEquals(-2, exception.getExitCode());
+		assertEquals("No *.jar files found in directory: " + directory.getAbsolutePath(), exception.getMessage());
+		assertTrue(err.getText().startsWith("No *.jar files found in directory:"));
 
 	}
 
@@ -214,9 +214,9 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file, files.get(0));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file.getAbsolutePath(), paths.get(0));
 
 		assertEquals("text", options.getReportFormat());
 		assertEquals("report.txt", options.getReportFile());
@@ -237,9 +237,9 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file, files.get(0));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(directory.getAbsolutePath(), paths.get(0));
 
 		assertEquals("html", options.getReportFormat());
 		assertNull(options.getReportFile());
@@ -260,10 +260,10 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(2, files.size());
-		assertEquals(file1, files.get(0));
-		assertEquals(file2, files.get(1));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(2, paths.size());
+		assertEquals(file1.getAbsolutePath(), paths.get(0));
+		assertEquals(file2.getAbsolutePath(), paths.get(1));
 
 		assertEquals("html", options.getReportFormat());
 		assertEquals("report.html", options.getReportFile());
@@ -284,16 +284,16 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file1, files.get(0));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file1.getAbsolutePath(), paths.get(0));
 
-		files = options.getProvidedJarFiles();
-		assertEquals(0, files.size());
+		paths = options.getProvidedJarPaths();
+		assertEquals(0, paths.size());
 
-		files = options.getRuntimeJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file2, files.get(0));
+		paths = options.getRuntimeJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file2.getAbsolutePath(), paths.get(0));
 
 	}
 
@@ -303,7 +303,6 @@ class CommandLineParserTest {
 		// prepare
 		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
 		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
-		File file3 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--provided", file2.getAbsolutePath()});
@@ -312,16 +311,16 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file1, files.get(0));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file1.getAbsolutePath(), paths.get(0));
 
-		files = options.getProvidedJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file2, files.get(0));
+		paths = options.getProvidedJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file2.getAbsolutePath(), paths.get(0));
 
-		files = options.getRuntimeJarFiles();
-		assertEquals(0, files.size());
+		paths = options.getRuntimeJarPaths();
+		assertEquals(0, paths.size());
 
 	}
 
@@ -340,17 +339,17 @@ class CommandLineParserTest {
 		assertNotNull(options);
 		assertEquals("", err.getText());
 
-		List<File> files = options.getClasspathJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file1, files.get(0));
+		List<String> paths = options.getClasspathJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file1.getAbsolutePath(), paths.get(0));
 
-		files = options.getProvidedJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file2, files.get(0));
+		paths = options.getProvidedJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file2.getAbsolutePath(), paths.get(0));
 
-		files = options.getRuntimeJarFiles();
-		assertEquals(1, files.size());
-		assertEquals(file3, files.get(0));
+		paths = options.getRuntimeJarPaths();
+		assertEquals(1, paths.size());
+		assertEquals(file3.getAbsolutePath(), paths.get(0));
 
 	}
 
@@ -406,7 +405,7 @@ class CommandLineParserTest {
 	}
 
 	@Test
-	void test_help(@TempDir Path tempDir) throws IOException, CommandLineException {
+	void test_help() {
 
 		// test
 		try {
@@ -424,7 +423,7 @@ class CommandLineParserTest {
 	}
 
 	@Test
-	void test_version(@TempDir Path tempDir) throws IOException, CommandLineException {
+	void test_version() {
 
 		// test
 		try {

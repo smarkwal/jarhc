@@ -30,7 +30,6 @@ import org.junitpioneer.jupiter.TempDirectory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junitpioneer.jupiter.TempDirectory.TempDir;
@@ -53,7 +52,7 @@ class ApplicationIT {
 
 		Options options = new Options();
 		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);
-		options.addClasspathJarFiles(Collections.singletonList(file));
+		options.addClasspathJarPath(file.getAbsolutePath());
 
 		// test
 		int exitCode = application.run(options);

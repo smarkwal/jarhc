@@ -16,6 +16,8 @@
 
 package org.jarhc.loader;
 
+import org.jarhc.app.FileSource;
+import org.jarhc.app.JarSource;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -42,6 +44,11 @@ public class ClasspathLoader {
 		this.parentClassLoader = parentClassLoader;
 	}
 
+	public Classpath load(Collection<File> files) {
+		List<JarSource> sources = files.stream().map(FileSource::new).collect(Collectors.toList());
+		return load(sources);
+	}
+
 	/**
 	 * Create a classpath with the given JAR files.
 	 *
@@ -49,13 +56,13 @@ public class ClasspathLoader {
 	 * @return Classpath
 	 * @throws IllegalArgumentException If <code>files</code> is <code>null</code>.
 	 */
-	public Classpath load(List<File> files) {
+	public Classpath load(List<JarSource> files) {
 		if (files == null) throw new IllegalArgumentException("files");
 
 		// long totalTime = System.nanoTime();
 
 		// temporary map to remember input file -> JAR file relation
-		Map<File, List<JarFile>> filesMap = new ConcurrentHashMap<>();
+		Map<JarSource, List<JarFile>> filesMap = new ConcurrentHashMap<>();
 
 		// load all JAR files in parallel
 		files.parallelStream().forEach(file -> {
@@ -75,7 +82,7 @@ public class ClasspathLoader {
 					throw new IOException(message);
 				}
 			} catch (IOException e) {
-				String message = String.format("Unable to parse file: %s", file.getAbsolutePath());
+				String message = String.format("Unable to parse file: %s", file.getName());
 				System.err.println(message);
 				e.printStackTrace();
 				return;
