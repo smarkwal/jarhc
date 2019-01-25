@@ -23,40 +23,35 @@ import java.util.Optional;
 
 public class CachedRepository implements Repository {
 
-	private final File cacheDir;
+	private final File directory;
 	private final Repository repository;
 
-	public CachedRepository(File cacheDir, Repository repository) {
-		this.cacheDir = cacheDir;
+	public CachedRepository(File directory, Repository repository) {
+		this.directory = directory;
 		this.repository = repository;
 	}
 
 	@Override
 	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException {
 
-		// create path to cache file
-		String fileName = groupId + "_" + artifactId + "_" + version + "_" + type + ".txt";
-		File file = new File(cacheDir, fileName);
+		Artifact artifact = new Artifact(groupId, artifactId, version, type);
 
-		// if cache file exists ...
+		// check if file exists in cache
+		String path = artifact.getPath();
+		File file = new File(directory, path);
 		if (file.isFile()) {
-
-			// get artifact information from cache
-			// (may be null in case of a cached negative response)
-			Artifact artifact = getFromCache(file);
-			return Optional.ofNullable(artifact);
+			return Optional.of(artifact);
 		}
 
 		// if a parent repository is available ...
 		if (repository != null) {
 
 			// delegate to parent repository
-			Optional<Artifact> artifact = repository.findArtifact(groupId, artifactId, version, type);
+			Optional<Artifact> result = repository.findArtifact(groupId, artifactId, version, type);
+			if (result.isPresent()) {
+				return Optional.of(artifact);
+			}
 
-			// update cache with response
-			saveToCache(artifact.orElse(null), file);
-
-			return artifact;
 		}
 
 		// artifact not found
@@ -69,8 +64,8 @@ public class CachedRepository implements Repository {
 		validateChecksum(checksum);
 
 		// create path to cache file
-		String fileName = checksum + ".txt";
-		File file = new File(cacheDir, fileName);
+		String path = "sha1/" + checksum + ".txt";
+		File file = new File(directory, path);
 
 		// if cache file exists ...
 		if (file.isFile()) {
@@ -143,9 +138,8 @@ public class CachedRepository implements Repository {
 	@Override
 	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
 
-		String coordinates = artifact.toString();
-		String fileName = coordinates.replace(':', '_') + ".bin";
-		File file = new File(cacheDir, fileName);
+		String path = artifact.getPath();
+		File file = new File(directory, path);
 
 		// if cache file exists ...
 		if (file.isFile()) {

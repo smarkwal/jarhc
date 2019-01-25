@@ -74,7 +74,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 
 		// assume
 		assumeFalse(cacheFile.exists());
@@ -94,7 +94,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 
 		// assume
 		assumeFalse(cacheFile.exists());
@@ -118,7 +118,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		FileUtils.writeStringToFile("org.test:test:1.0:jar", cacheFile);
 
 		// assume
@@ -141,7 +141,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		FileUtils.touchFile(cacheFile); // cache a negative response
 
 		// assume
@@ -164,7 +164,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 
 		// assume
 		assumeFalse(cacheFile.exists());
@@ -183,7 +183,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_UNKNOWN;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		FileUtils.writeStringToFile("org.test:test:1.0:jar", cacheFile);
 
 		// assume
@@ -218,7 +218,7 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
-		File cacheFile = new File(cacheDir, checksum + ".txt");
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		cacheFile.mkdirs(); // create a directory at the place of the cache file
 
 		// assume

@@ -78,7 +78,7 @@ public class Artifact {
 		StringBuilder path = new StringBuilder();
 		path.append(groupId.replace('.', '/'));
 		path.append('/');
-		path.append(artifactId.replace('.', '/'));
+		path.append(artifactId);
 		path.append('/');
 		path.append(version);
 		path.append('/');

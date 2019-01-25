@@ -64,10 +64,6 @@ public class Main {
 		Duration timeout = Duration.ofSeconds(5); // TODO: make this configurable
 		Repository repository = new MavenCentralRepository(timeout);
 
-		// use a local disk cache
-		File cacheDir = new File("./.jarhc/cache/repository"); // TODO: make this configurable
-		repository = new CachedRepository(cacheDir, repository);
-
 		// if a local Maven repository is present ...
 		String userHome = System.getProperty("user.home");
 		File directory = new File(userHome, ".m2/repository");
@@ -75,6 +71,10 @@ public class Main {
 			// use local Maven repository
 			repository = new MavenLocalRepository(directory, repository);
 		}
+
+		// use a local disk cache
+		File cacheDir = new File("./.jarhc/cache/repository"); // TODO: make this configurable
+		repository = new CachedRepository(cacheDir, repository);
 
 		return repository;
 

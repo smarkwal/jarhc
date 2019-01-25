@@ -56,7 +56,7 @@ class MavenLocalRepositoryTest {
 		directory = tempDir.toFile();
 
 		// add a JAR file to the repository
-		File file = new File(directory, "a/b/c/d/1.0/c.d-1.0.jar");
+		File file = new File(directory, "a/b/c.d/1.0/c.d-1.0.jar");
 		FileUtils.writeStringToFile(CONTENT, file);
 
 	}
