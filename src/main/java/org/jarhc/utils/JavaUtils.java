@@ -84,4 +84,10 @@ public class JavaUtils {
 		return type.substring(0, pos);
 	}
 
+	public static String getSimpleClassName(String className) {
+		int pos = className.lastIndexOf('.');
+		if (pos < 0) return className;
+		return className.substring(pos + 1);
+	}
+
 }

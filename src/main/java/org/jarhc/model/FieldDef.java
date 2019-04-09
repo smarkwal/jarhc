@@ -17,15 +17,21 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class FieldDef extends AccessFlags {
+public class FieldDef extends AccessFlags implements AnnotationHolder {
 
 	private final String fieldName;
 	private final String fieldType;
 	// TODO: initial value? e.g. constant string containing a class name
 	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
 	private ClassDef classDef;
+
+	/**
+	 * List of class annotations.
+	 */
+	private List<AnnotationRef> annotationRefs = new ArrayList<>();
 
 	public FieldDef(int access, String fieldName, String fieldType) {
 		super(access);
@@ -41,12 +47,23 @@ public class FieldDef extends AccessFlags {
 		return fieldType;
 	}
 
+	@Override
 	public ClassDef getClassDef() {
 		return classDef;
 	}
 
 	void setClassDef(ClassDef classDef) {
 		this.classDef = classDef;
+	}
+
+	@Override
+	public List<AnnotationRef> getAnnotationRefs() {
+		return Collections.unmodifiableList(annotationRefs);
+	}
+
+	@Override
+	public void addAnnotationRef(AnnotationRef annotationRef) {
+		this.annotationRefs.add(annotationRef);
 	}
 
 	@Override
@@ -72,6 +89,7 @@ public class FieldDef extends AccessFlags {
 		return String.join(" ", parts);
 	}
 
+	@Override
 	public String getDisplayName() {
 		String modifiers = getModifiers();
 		if (modifiers.isEmpty()) {

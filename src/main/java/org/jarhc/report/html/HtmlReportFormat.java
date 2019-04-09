@@ -56,6 +56,9 @@ public class HtmlReportFormat implements ReportFormat {
 			writer.println("<title>%s</title>", escape(title));
 		}
 
+		// set character set
+		writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
+
 		// include CSS styles
 		String css = styleProvider.getStyle();
 		if (css != null) {

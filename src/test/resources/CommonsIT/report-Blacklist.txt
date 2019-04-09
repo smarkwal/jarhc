@@ -8,5 +8,5 @@ Use of unsafe or dangerous classes and methods.
 JAR file           | Issues
 -------------------+---------------------------------------------------------------
 commons-io-2.4.jar | org.apache.commons.io.FileSystemUtils
-                   | - java.lang.Process java.lang.Runtime.exec(java.lang.String[])
+                   | • java.lang.Process java.lang.Runtime.exec(java.lang.String[])
 

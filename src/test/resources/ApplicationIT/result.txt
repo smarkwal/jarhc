@@ -78,6 +78,13 @@ Use of unsafe or dangerous classes and methods.
 JAR file | Issues
 ---------+-------
 
+Unstable APIs
+-------------
+Use of unstable or deprecated classes, methods, and fields.
+
+JAR file | Issues
+---------+-------
+
 Duplicate Resources
 -------------------
 Resources found in multiple JAR files.

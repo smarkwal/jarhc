@@ -1,0 +1,25 @@
+JAR Health Check Report
+=======================
+
+Unstable APIs
+-------------
+Use of unstable or deprecated classes, methods, and fields.
+
+JAR file                         | Issues
+---------------------------------+---------------------------------------------------------------------------------------------------------------------
+spring-beans-5.1.3.RELEASE.jar   | org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader
+                                 | • @Deprecated: public abstract (varargs) boolean acceptsProfiles(java.lang.String[])
+spring-context-5.1.3.RELEASE.jar | org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader
+                                 | • @Deprecated: public (super) class org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+                                 |
+                                 | org.springframework.remoting.support.SimpleHttpServerFactoryBean
+                                 | • @Deprecated: public abstract interface @interface org.springframework.lang.UsesSunHttpServer
+spring-web-5.1.3.RELEASE.jar     | org.springframework.remoting.caucho.SimpleHessianServiceExporter
+                                 | • @Deprecated: public abstract interface @interface org.springframework.lang.UsesSunHttpServer
+                                 |
+                                 | org.springframework.remoting.httpinvoker.SimpleHttpInvokerServiceExporter
+                                 | • @Deprecated: public abstract interface @interface org.springframework.lang.UsesSunHttpServer
+                                 |
+                                 | org.springframework.remoting.jaxws.SimpleHttpServerJaxWsServiceExporter
+                                 | • @Deprecated: public abstract interface @interface org.springframework.lang.UsesSunHttpServer
+

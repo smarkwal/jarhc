@@ -16,8 +16,3 @@ void java.lang.Runtime.loadLibrary(java.lang.String)
 
 # deprecated com.sun.image.codec.jpeg API (removed in Java 9)
 * com.sun.image.codec.jpeg.*
-
-# annotations
-# @java.lang.Deprecated
-# @com.google.common.annotations.VisibleForTesting
-# @com.google.common.annotations.Beta

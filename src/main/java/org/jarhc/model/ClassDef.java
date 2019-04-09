@@ -24,7 +24,7 @@ import java.util.*;
 /**
  * Class definition representing a single Java class file.
  */
-public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
+public class ClassDef extends AccessFlags implements AnnotationHolder, Comparable<ClassDef> {
 
 	/**
 	 * Class name.
@@ -40,6 +40,11 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	 * List of interfaces implemented by this class.
 	 */
 	private final List<String> interfaceNames = new ArrayList<>();
+
+	/**
+	 * List of class annotations.
+	 */
+	private List<AnnotationRef> annotationRefs = new ArrayList<>();
 
 	/**
 	 * Major class file version.
@@ -150,6 +155,21 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 	public ClassDef addInterfaceName(String interfaceName) {
 		this.interfaceNames.add(interfaceName);
 		return this;
+	}
+
+	@Override
+	public ClassDef getClassDef() {
+		return this;
+	}
+
+	@Override
+	public List<AnnotationRef> getAnnotationRefs() {
+		return Collections.unmodifiableList(annotationRefs);
+	}
+
+	@Override
+	public void addAnnotationRef(AnnotationRef annotationRef) {
+		this.annotationRefs.add(annotationRef);
 	}
 
 	public int getMajorClassVersion() {
@@ -265,6 +285,14 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return Collections.unmodifiableList(methodDefs);
 	}
 
+	public Optional<MethodDef> getMethodDef(String methodName, String methodDescriptor) {
+		// TODO: use methodDefsMap for fast look-up
+		return methodDefs.stream()
+				.filter(m -> m.getMethodName().equals(methodName))
+				.filter(m -> m.getMethodDescriptor().equals(methodDescriptor))
+				.findFirst();
+	}
+
 	public ClassDef addMethodDef(MethodDef methodDef) {
 		this.methodDefs.add(methodDef);
 		methodDef.setClassDef(this);
@@ -341,6 +369,7 @@ public class ClassDef extends AccessFlags implements Comparable<ClassDef> {
 		return String.join(" ", parts);
 	}
 
+	@Override
 	public String getDisplayName() {
 		String modifiers = getModifiers();
 		return String.format("%s %s", modifiers, className);

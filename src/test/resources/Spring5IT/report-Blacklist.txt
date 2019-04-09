@@ -8,5 +8,5 @@ Use of unsafe or dangerous classes and methods.
 JAR file                      | Issues
 ------------------------------+-------------------------------------------------------------------------
 spring-core-5.1.3.RELEASE.jar | org.springframework.objenesis.instantiator.sun.UnsafeFactoryInstantiator
-                              | - java.lang.Object sun.misc.Unsafe.allocateInstance(java.lang.Class)
+                              | • java.lang.Object sun.misc.Unsafe.allocateInstance(java.lang.Class)
 

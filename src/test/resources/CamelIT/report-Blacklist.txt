@@ -8,19 +8,21 @@ Use of unsafe or dangerous classes and methods.
 JAR file              | Issues
 ----------------------+--------------------------------------------------------------------------------------------------------
 camel-core-2.17.7.jar | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8
-                      | - boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
-                      | - boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
-                      | - boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
-                      | - int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
-                      | - int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
-                      | - java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
-                      | - long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
-                      | - static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
-                      | - void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
-                      | - void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
+                      | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                      | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
+                      | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
+                      | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                      | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                      | • java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
+                      | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                      | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
+                      | • void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
+                      | • void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
+                      |
                       | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8$TreeBin
-                      | - boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
-                      | - long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                      | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                      | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                      |
                       | org.apache.camel.main.Main
-                      | - static void java.lang.System.exit(int)
+                      | • static void java.lang.System.exit(int)
 

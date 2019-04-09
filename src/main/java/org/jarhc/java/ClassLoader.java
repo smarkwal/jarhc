@@ -16,8 +16,9 @@
 
 package org.jarhc.java;
 
-import org.jarhc.model.ClassDef;
+import org.jarhc.model.*;
 
+import java.util.List;
 import java.util.Optional;
 
 public abstract class ClassLoader {
@@ -38,6 +39,11 @@ public abstract class ClassLoader {
 		return parent;
 	}
 
+	public Optional<ClassDef> getClassDef(ClassRef classRef) {
+		String className = classRef.getClassName();
+		return getClassDef(className);
+	}
+
 	public Optional<ClassDef> getClassDef(String className) {
 		Optional<ClassDef> classDef = findClassDef(className);
 		if (classDef.isPresent()) {
@@ -50,5 +56,97 @@ public abstract class ClassLoader {
 	}
 
 	protected abstract Optional<ClassDef> findClassDef(String className);
+
+	public Optional<FieldDef> getFieldDef(FieldRef fieldRef) {
+		String fieldOwner = fieldRef.getFieldOwner();
+		String fieldName = fieldRef.getFieldName();
+		return findFieldDef(fieldOwner, fieldName, this);
+	}
+
+	private Optional<FieldDef> findFieldDef(String className, String fieldName, ClassLoader classLoader) {
+
+		// try to find class
+		Optional<ClassDef> classDef = getClassDef(className);
+		if (classDef.isPresent()) {
+
+			// try to find field in class
+			Optional<FieldDef> fieldDef = classDef.get().getFieldDef(fieldName);
+			if (fieldDef.isPresent()) {
+				return fieldDef;
+			}
+
+			// field not found in class
+
+			// try to find field in interfaces first
+			// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
+			List<String> interfaceNames = classDef.get().getInterfaceNames();
+			for (String interfaceName : interfaceNames) {
+				fieldDef = findFieldDef(interfaceName, fieldName, classLoader); // TODO: use class loader of class definition
+				if (fieldDef.isPresent()) {
+					return fieldDef;
+				}
+			}
+
+			// try to find field in superclass
+			String superName = classDef.get().getSuperName();
+			if (superName != null) {
+				fieldDef = findFieldDef(superName, fieldName, classLoader); // TODO: use class loader of class definition
+				if (fieldDef.isPresent()) {
+					return fieldDef;
+				}
+			}
+
+		}
+
+		// field not found in class, superclass, or interfaces
+		return Optional.empty();
+	}
+
+	public Optional<MethodDef> getMethodDef(MethodRef methodRef) {
+		String methodOwner = methodRef.getMethodOwner();
+		String methodName = methodRef.getMethodName();
+		String methodDescriptor = methodRef.getMethodDescriptor();
+		return findMethodDef(methodOwner, methodName, methodDescriptor, this);
+	}
+
+	private Optional<MethodDef> findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader) {
+
+		// try to find class
+		Optional<ClassDef> classDef = getClassDef(className);
+		if (classDef.isPresent()) {
+
+			// try to find method in class
+			Optional<MethodDef> methodDef = classDef.get().getMethodDef(methodName, methodDescriptor);
+			if (methodDef.isPresent()) {
+				return methodDef;
+			}
+
+			// method not found in class
+
+			// TODO: check method resolution strategy
+
+			// try to find method in interfaces
+			List<String> interfaceNames = classDef.get().getInterfaceNames();
+			for (String interfaceName : interfaceNames) {
+				methodDef = findMethodDef(interfaceName, methodName, methodDescriptor, classLoader); // TODO: use class loader of class definition
+				if (methodDef.isPresent()) {
+					return methodDef;
+				}
+			}
+
+			// try to find method in superclass
+			String superName = classDef.get().getSuperName();
+			if (superName != null) {
+				methodDef = findMethodDef(superName, methodName, methodDescriptor, classLoader); // TODO: use class loader of class definition
+				if (methodDef.isPresent()) {
+					return methodDef;
+				}
+			}
+
+		}
+
+		// method not found in class, superclass, or interfaces
+		return Optional.empty();
+	}
 
 }

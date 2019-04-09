@@ -36,8 +36,6 @@ class ClassDefBuilder extends ClassVisitor {
 	private final Set<FieldRef> fieldRefs = new TreeSet<>();
 	private final Set<MethodRef> methodRefs = new TreeSet<>();
 
-	private final FieldVisitor fieldVisitor = new FieldVisitor();
-	private final MethodVisitor methodVisitor = new MethodVisitor();
 	private final AnnotationVisitor annotationVisitor = new AnnotationBuilder();
 
 	ClassDefBuilder(boolean scanForReferences) {
@@ -115,7 +113,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		if (scanForReferences) {
 			addClassRef(fieldType);
-			return fieldVisitor;
+			return new FieldVisitor(fieldDef);
 		} else {
 			return null;
 		}
@@ -137,7 +135,7 @@ class ClassDefBuilder extends ClassVisitor {
 					addClassRef(exceptionClassName);
 				}
 			}
-			return methodVisitor;
+			return new MethodVisitor(methodDef);
 		} else {
 			return null;
 		}
@@ -145,12 +143,12 @@ class ClassDefBuilder extends ClassVisitor {
 
 	@Override
 	public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-		return addAnnotationRef(descriptor);
+		return addAnnotationRef(descriptor, classDef);
 	}
 
 	@Override
 	public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-		return addAnnotationRef(descriptor);
+		return addAnnotationRef(descriptor, null);
 	}
 
 	@Override
@@ -196,10 +194,17 @@ class ClassDefBuilder extends ClassVisitor {
 		}
 	}
 
-	private AnnotationVisitor addAnnotationRef(String descriptor) {
+	private AnnotationVisitor addAnnotationRef(String descriptor, AnnotationHolder annotationHolder) {
 		if (scanForReferences) {
 			String annotationType = Type.getType(descriptor).getClassName();
 			addClassRef(annotationType);
+
+			// add annotation to class, method or field definition
+			if (annotationHolder != null) {
+				AnnotationRef annotationRef = new AnnotationRef(annotationType);
+				annotationHolder.addAnnotationRef(annotationRef);
+			}
+
 			return annotationVisitor;
 		} else {
 			return null;
@@ -233,18 +238,21 @@ class ClassDefBuilder extends ClassVisitor {
 
 	private class FieldVisitor extends org.objectweb.asm.FieldVisitor {
 
-		FieldVisitor() {
+		private final FieldDef fieldDef;
+
+		FieldVisitor(FieldDef fieldDef) {
 			super(Opcodes.ASM7);
+			this.fieldDef = fieldDef;
 		}
 
 		@Override
 		public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, fieldDef);
 		}
 
 		@Override
 		public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
@@ -264,8 +272,11 @@ class ClassDefBuilder extends ClassVisitor {
 
 	private class MethodVisitor extends org.objectweb.asm.MethodVisitor {
 
-		MethodVisitor() {
+		private final MethodDef methodDef;
+
+		MethodVisitor(MethodDef methodDef) {
 			super(Opcodes.ASM7);
+			this.methodDef = methodDef;
 		}
 
 		@Override
@@ -339,32 +350,32 @@ class ClassDefBuilder extends ClassVisitor {
 
 		@Override
 		public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, methodDef);
 		}
 
 		@Override
 		public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
 		public AnnotationVisitor visitParameterAnnotation(int parameter, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
 		public AnnotationVisitor visitInsnAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
 		public AnnotationVisitor visitTryCatchAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
 		public AnnotationVisitor visitLocalVariableAnnotation(int typeRef, TypePath typePath, Label[] start, Label[] end, int[] index, String descriptor, boolean visible) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override
@@ -410,7 +421,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		@Override
 		public AnnotationVisitor visitAnnotation(String name, String descriptor) {
-			return addAnnotationRef(descriptor);
+			return addAnnotationRef(descriptor, null);
 		}
 
 		@Override

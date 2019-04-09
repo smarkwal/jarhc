@@ -68,23 +68,25 @@ class BlacklistAnalyzerIT {
 
 		String expectedMessage = StringUtils.joinLines(
 				"a.Runtime",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String)",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[])",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String[])",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[])",
-				"- java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)",
-				"- void java.lang.Runtime.exit(int)",
-				"- void java.lang.Runtime.halt(int)",
-				"- void java.lang.Runtime.load(java.lang.String)",
-				"- void java.lang.Runtime.loadLibrary(java.lang.String)",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String)",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[])",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[])",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[])",
+				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)",
+				"\u2022 void java.lang.Runtime.exit(int)",
+				"\u2022 void java.lang.Runtime.halt(int)",
+				"\u2022 void java.lang.Runtime.load(java.lang.String)",
+				"\u2022 void java.lang.Runtime.loadLibrary(java.lang.String)",
+				"",
 				"a.System",
-				"- static void java.lang.System.exit(int)",
-				"- static void java.lang.System.load(java.lang.String)",
-				"- static void java.lang.System.loadLibrary(java.lang.String)",
+				"\u2022 static void java.lang.System.exit(int)",
+				"\u2022 static void java.lang.System.load(java.lang.String)",
+				"\u2022 static void java.lang.System.loadLibrary(java.lang.String)",
+				"",
 				"a.Unsafe",
-				"- int sun.misc.Unsafe.addressSize()",
-				"- static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()"
+				"\u2022 int sun.misc.Unsafe.addressSize()",
+				"\u2022 static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()"
 		);
 		assertEquals(expectedMessage, values[1]);
 

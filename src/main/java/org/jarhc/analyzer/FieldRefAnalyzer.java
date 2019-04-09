@@ -71,14 +71,14 @@ public class FieldRefAnalyzer extends Analyzer {
 					if (!result.isIgnoreResult()) {
 						String text = result.getResult();
 						if (text != null) {
-							errorMessages.add(text);
+							errorMessages.add(text + System.lineSeparator());
 						}
 					}
 				}
 			}
 
 			if (!errorMessages.isEmpty()) {
-				table.addRow(jarFile.getFileName(), joinLines(errorMessages));
+				table.addRow(jarFile.getFileName(), joinLines(errorMessages).trim());
 			}
 		}
 
@@ -96,7 +96,7 @@ public class FieldRefAnalyzer extends Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("- " + targetClassName + " (owner class not found)");
+				searchResult.addSearchInfo("\u2022 " + targetClassName + " (owner class not found)");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -168,7 +168,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		// if class has already been scanned ...
 		if (!scannedClasses.add(targetClassName)) {
 			// field not found
-			// searchResult.addSearchInfo("- " + realClassName + " (already scanned)");
+			// searchResult.addSearchInfo("\u2022 " + realClassName + " (already scanned)");
 			return Optional.empty();
 		}
 
@@ -177,7 +177,7 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		// if class has not been found ...
 		if (targetClassDef == null) {
-			searchResult.addSearchInfo("- " + targetClassName + " (class not found)");
+			searchResult.addSearchInfo("\u2022 " + targetClassName + " (class not found)");
 			// class not found -> field not found
 			return Optional.empty();
 		}
@@ -186,12 +186,12 @@ public class FieldRefAnalyzer extends Analyzer {
 		String fieldName = fieldRef.getFieldName();
 		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
 		if (fieldDef.isPresent()) {
-			searchResult.addSearchInfo("- " + targetClassName + " (field found)");
+			searchResult.addSearchInfo("\u2022 " + targetClassName + " (field found)");
 			return fieldDef;
 		}
 
 		// field not found in target class
-		searchResult.addSearchInfo("- " + targetClassName + " (field not found)");
+		searchResult.addSearchInfo("\u2022 " + targetClassName + " (field not found)");
 
 		// try to find field in interfaces first
 		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)

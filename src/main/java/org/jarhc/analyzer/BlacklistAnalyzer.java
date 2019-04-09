@@ -96,13 +96,13 @@ public class BlacklistAnalyzer extends Analyzer {
 
 				if (!classIssues.isEmpty()) {
 					String className = classDef.getClassName();
-					jarIssues.add(className + System.lineSeparator() + classIssues.stream().map(i -> "- " + i).collect(StringUtils.joinLines()));
+					jarIssues.add(className + System.lineSeparator() + classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines()) + System.lineSeparator());
 				}
 
 			});
 
 			if (!jarIssues.isEmpty()) {
-				table.addRow(jarFile.getFileName(), StringUtils.joinLines(jarIssues));
+				table.addRow(jarFile.getFileName(), StringUtils.joinLines(jarIssues).trim());
 			}
 
 		}

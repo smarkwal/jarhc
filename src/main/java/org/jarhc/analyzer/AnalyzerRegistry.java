@@ -47,6 +47,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("mc", "Missing Classes", MissingClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("fr", "Field References", FieldRefAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("ua", "Unstable APIs", UnstableAPIsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dr", "Duplicate Resources", DuplicateResourcesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jr", "Java Runtime", JavaRuntimeAnalyzer.class));
 	}

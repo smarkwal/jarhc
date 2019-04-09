@@ -1,0 +1,28 @@
+JAR Health Check Report
+=======================
+
+Unstable APIs
+-------------
+Use of unstable or deprecated classes, methods, and fields.
+
+JAR file                | Issues
+------------------------+-------------------------------------------------------------------------------------
+camel-jms-2.17.7.jar    | org.apache.camel.component.jms.JmsEndpoint
+                        | • @Deprecated: protected void <init>(java.lang.String)
+camel-ldap-2.17.7.jar   | org.apache.camel.component.ldap.LdapEndpoint
+                        | • @Deprecated: protected void <init>(java.lang.String)
+camel-mail-2.17.7.jar   | org.apache.camel.component.mail.MailEndpoint
+                        | • @Deprecated: protected void <init>(java.lang.String)
+camel-spring-2.17.7.jar | org.apache.camel.component.event.EventEndpoint
+                        | • @Deprecated: protected void <init>(java.lang.String)
+                        |
+                        | org.apache.camel.core.xml.AbstractCamelContextFactoryBean
+                        | • @Deprecated: public (super) class org.apache.camel.processor.interceptor.Delayer
+                        | • @Deprecated: public abstract void setLazyLoadTypeConverters(java.lang.Boolean)
+                        |
+                        | org.apache.camel.language.spel.SpelExpression
+                        | • @Deprecated: public abstract (super) class org.apache.camel.impl.ExpressionSupport
+                        |
+                        | org.apache.camel.spring.Main
+                        | • @Deprecated: public abstract (super) class org.apache.camel.impl.MainSupport
+

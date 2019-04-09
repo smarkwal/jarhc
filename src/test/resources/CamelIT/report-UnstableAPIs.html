@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JAR Health Check Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<h1>JAR Health Check Report</h1>
+
+<section id="UnstableAPIs">
+<h2>Unstable APIs</h2>
+<p>Use of unstable or deprecated classes, methods, and fields.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+	<tr><td>camel-jms-2.17.7.jar</td><td>org.apache.camel.component.jms.JmsEndpoint<br>• @Deprecated: protected void &lt;init&gt;(java.lang.String)</td></tr>
+	<tr><td>camel-ldap-2.17.7.jar</td><td>org.apache.camel.component.ldap.LdapEndpoint<br>• @Deprecated: protected void &lt;init&gt;(java.lang.String)</td></tr>
+	<tr><td>camel-mail-2.17.7.jar</td><td>org.apache.camel.component.mail.MailEndpoint<br>• @Deprecated: protected void &lt;init&gt;(java.lang.String)</td></tr>
+	<tr><td>camel-spring-2.17.7.jar</td><td>org.apache.camel.component.event.EventEndpoint<br>• @Deprecated: protected void &lt;init&gt;(java.lang.String)<br><br>org.apache.camel.core.xml.AbstractCamelContextFactoryBean<br>• @Deprecated: public (super) class org.apache.camel.processor.interceptor.Delayer<br>• @Deprecated: public abstract void setLazyLoadTypeConverters(java.lang.Boolean)<br><br>org.apache.camel.language.spel.SpelExpression<br>• @Deprecated: public abstract (super) class org.apache.camel.impl.ExpressionSupport<br><br>org.apache.camel.spring.Main<br>• @Deprecated: public abstract (super) class org.apache.camel.impl.MainSupport</td></tr>
+</table>
+</section>
+
+</body>
+</html>
