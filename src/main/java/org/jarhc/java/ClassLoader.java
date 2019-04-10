@@ -18,8 +18,10 @@ package org.jarhc.java;
 
 import org.jarhc.model.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public abstract class ClassLoader {
 
@@ -58,12 +60,22 @@ public abstract class ClassLoader {
 	protected abstract Optional<ClassDef> findClassDef(String className);
 
 	public Optional<FieldDef> getFieldDef(FieldRef fieldRef) {
-		String fieldOwner = fieldRef.getFieldOwner();
-		String fieldName = fieldRef.getFieldName();
-		return findFieldDef(fieldOwner, fieldName, this);
+		return getFieldDef(fieldRef, Callback.NONE);
 	}
 
-	private Optional<FieldDef> findFieldDef(String className, String fieldName, ClassLoader classLoader) {
+	public Optional<FieldDef> getFieldDef(FieldRef fieldRef, Callback callback) {
+		String fieldOwner = fieldRef.getFieldOwner();
+		String fieldName = fieldRef.getFieldName();
+		return findFieldDef(fieldOwner, fieldName, this, callback, new HashSet<>());
+	}
+
+	private Optional<FieldDef> findFieldDef(String className, String fieldName, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
+
+		// if class has already been scanned ...
+		if (!scannedClasses.add(className)) {
+			// field not found
+			return Optional.empty();
+		}
 
 		// try to find class
 		Optional<ClassDef> classDef = getClassDef(className);
@@ -72,16 +84,19 @@ public abstract class ClassLoader {
 			// try to find field in class
 			Optional<FieldDef> fieldDef = classDef.get().getFieldDef(fieldName);
 			if (fieldDef.isPresent()) {
+				callback.fieldDefFound(className);
 				return fieldDef;
 			}
 
 			// field not found in class
+			callback.fieldDefNotFound(className);
 
 			// try to find field in interfaces first
 			// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
 			List<String> interfaceNames = classDef.get().getInterfaceNames();
 			for (String interfaceName : interfaceNames) {
-				fieldDef = findFieldDef(interfaceName, fieldName, classLoader); // TODO: use class loader of class definition
+				// TODO: use class loader of class definition
+				fieldDef = findFieldDef(interfaceName, fieldName, classLoader, callback, scannedClasses);
 				if (fieldDef.isPresent()) {
 					return fieldDef;
 				}
@@ -90,11 +105,17 @@ public abstract class ClassLoader {
 			// try to find field in superclass
 			String superName = classDef.get().getSuperName();
 			if (superName != null) {
-				fieldDef = findFieldDef(superName, fieldName, classLoader); // TODO: use class loader of class definition
+				// TODO: use class loader of class definition
+				fieldDef = findFieldDef(superName, fieldName, classLoader, callback, scannedClasses);
 				if (fieldDef.isPresent()) {
 					return fieldDef;
 				}
 			}
+
+		} else {
+
+			// class not found -> field not found
+			callback.classDefNotFound(className);
 
 		}
 
@@ -147,6 +168,34 @@ public abstract class ClassLoader {
 
 		// method not found in class, superclass, or interfaces
 		return Optional.empty();
+	}
+
+	public interface Callback {
+
+		Callback NONE = new NoOpCallback();
+
+		void classDefNotFound(String className);
+
+		void fieldDefNotFound(String className);
+
+		void fieldDefFound(String className);
+
+	}
+
+	private static class NoOpCallback implements Callback {
+
+		@Override
+		public void classDefNotFound(String className) {
+		}
+
+		@Override
+		public void fieldDefNotFound(String className) {
+		}
+
+		@Override
+		public void fieldDefFound(String className) {
+		}
+
 	}
 
 }

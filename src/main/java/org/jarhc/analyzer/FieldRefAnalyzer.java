@@ -22,7 +22,10 @@ import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
@@ -115,10 +118,8 @@ public class FieldRefAnalyzer extends Analyzer {
 			return searchResult;
 		}
 
-		Set<String> scannedClasses = new HashSet<>();
-
 		// find target field definition
-		Optional<FieldDef> fieldDef = findFieldDef(fieldRef, targetClassName, classLoader, searchResult, scannedClasses);
+		Optional<FieldDef> fieldDef = classLoader.getFieldDef(fieldRef, searchResult);
 		if (!fieldDef.isPresent()) {
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			return searchResult;
@@ -161,63 +162,7 @@ public class FieldRefAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private Optional<FieldDef> findFieldDef(FieldRef fieldRef, String targetClassName, ClassLoader classLoader, SearchResult searchResult, Set<String> scannedClasses) {
-
-		// TODO: use a cache for field definitions like System.out, System.err, ...
-
-		// if class has already been scanned ...
-		if (!scannedClasses.add(targetClassName)) {
-			// field not found
-			// searchResult.addSearchInfo("\u2022 " + realClassName + " (already scanned)");
-			return Optional.empty();
-		}
-
-		// try to find target class in classpath or Java runtime
-		ClassDef targetClassDef = classLoader.getClassDef(targetClassName).orElse(null);
-
-		// if class has not been found ...
-		if (targetClassDef == null) {
-			searchResult.addSearchInfo("\u2022 " + targetClassName + " (class not found)");
-			// class not found -> field not found
-			return Optional.empty();
-		}
-
-		// try to find field in target class
-		String fieldName = fieldRef.getFieldName();
-		Optional<FieldDef> fieldDef = targetClassDef.getFieldDef(fieldName);
-		if (fieldDef.isPresent()) {
-			searchResult.addSearchInfo("\u2022 " + targetClassName + " (field found)");
-			return fieldDef;
-		}
-
-		// field not found in target class
-		searchResult.addSearchInfo("\u2022 " + targetClassName + " (field not found)");
-
-		// try to find field in interfaces first
-		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
-		List<String> interfaceNames = targetClassDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
-			fieldDef = findFieldDef(fieldRef, interfaceName, classLoader, searchResult, scannedClasses);
-			if (fieldDef.isPresent()) {
-				return fieldDef;
-			}
-		}
-
-		// try to find field in superclass
-		String superName = targetClassDef.getSuperName();
-		if (superName != null) {
-			fieldDef = findFieldDef(fieldRef, superName, classLoader, searchResult, scannedClasses);
-			if (fieldDef.isPresent()) {
-				return fieldDef;
-			}
-		}
-
-		// field not found
-		return Optional.empty();
-
-	}
-
-	private class SearchResult {
+	private class SearchResult implements ClassLoader.Callback {
 
 		private StringBuilder errorMessages;
 		private StringBuilder searchInfos;
@@ -258,6 +203,21 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		void setIgnoreResult() {
 			this.ignoreResult = true;
+		}
+
+		@Override
+		public void classDefNotFound(String className) {
+			addSearchInfo("\u2022 " + className + " (class not found)");
+		}
+
+		@Override
+		public void fieldDefFound(String className) {
+			addSearchInfo("\u2022 " + className + " (field found)");
+		}
+
+		@Override
+		public void fieldDefNotFound(String className) {
+			addSearchInfo("\u2022 " + className + " (field not found)");
 		}
 
 	}
