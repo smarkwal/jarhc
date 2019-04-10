@@ -67,8 +67,8 @@ public class FieldDef extends Def {
 
 		// special flags
 		if (isSynthetic()) parts.add("(synthetic)");
-		if (isEnum()) parts.add("(enum)");
-		if (isDeprecated()) parts.add("@Deprecated");
+		// if (isEnum()) parts.add("(enum)");
+		// if (isDeprecated()) parts.add("@Deprecated");
 
 		return String.join(" ", parts);
 	}

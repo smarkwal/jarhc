@@ -336,15 +336,15 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 
 		// modifiers
 		if (isStatic()) parts.add("static");
-		if (isFinal()) parts.add("final");
+		if (isFinal() && !isEnum()) parts.add("final");
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");
 		if (isAbstract() && !isInterface()) parts.add("abstract");
 
 		// special flags
 		if (isSynthetic()) parts.add("(synthetic)");
-		if (isSuper()) parts.add("(super)");
-		if (isDeprecated()) parts.add("@Deprecated");
+		// if (isSuper()) parts.add("(super)");
+		// if (isDeprecated()) parts.add("@Deprecated");
 
 		// type
 		if (isAnnotation()) {

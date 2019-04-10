@@ -17,12 +17,12 @@ camel-spring-2.17.7.jar | org.apache.camel.component.event.EventEndpoint
                         | • @Deprecated: protected void org.apache.camel.impl.DefaultEndpoint.<init>(java.lang.String)
                         |
                         | org.apache.camel.core.xml.AbstractCamelContextFactoryBean
-                        | • @Deprecated: public (super) class org.apache.camel.processor.interceptor.Delayer
                         | • @Deprecated: public abstract void org.apache.camel.CamelContext.setLazyLoadTypeConverters(java.lang.Boolean)
+                        | • @Deprecated: public class org.apache.camel.processor.interceptor.Delayer
                         |
                         | org.apache.camel.language.spel.SpelExpression
-                        | • @Deprecated: public abstract (super) class org.apache.camel.impl.ExpressionSupport
+                        | • @Deprecated: public abstract class org.apache.camel.impl.ExpressionSupport
                         |
                         | org.apache.camel.spring.Main
-                        | • @Deprecated: public abstract (super) class org.apache.camel.impl.MainSupport
+                        | • @Deprecated: public abstract class org.apache.camel.impl.MainSupport
 

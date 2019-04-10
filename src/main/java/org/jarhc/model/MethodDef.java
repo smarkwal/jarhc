@@ -87,8 +87,8 @@ public class MethodDef extends Def {
 		// special flags
 		if (isSynthetic()) parts.add("(synthetic)");
 		if (isBridge()) parts.add("(bridge)");
-		if (isVarargs()) parts.add("(varargs)");
-		if (isDeprecated()) parts.add("@Deprecated");
+		// if (isVarargs()) parts.add("(varargs)");
+		// if (isDeprecated()) parts.add("@Deprecated");
 
 		return String.join(" ", parts);
 	}
