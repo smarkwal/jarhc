@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <title>ASM 7.0</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <style>
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -40,7 +41,9 @@ th, td {
 <li><a href="#ShadowedClasses">Shadowed Classes</a></li>
 <li><a href="#MissingClasses">Missing Classes</a></li>
 <li><a href="#FieldReferences">Field References</a></li>
+<li><a href="#MethodReferences">Method References</a></li>
 <li><a href="#Blacklist">Blacklist</a></li>
+<li><a href="#UnstableAPIs">Unstable APIs</a></li>
 <li><a href="#DuplicateResources">Duplicate Resources</a></li>
 <li><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
@@ -127,11 +130,29 @@ th, td {
 </table>
 </section>
 
+<section id="MethodReferences">
+<h2>Method References</h2>
+<p>Problems with method invocations.</p>
+<table>
+	<tr><th>JAR File</th><th>Errors</th></tr>
+</table>
+</section>
+
 <section id="Blacklist">
 <h2>Blacklist</h2>
 <p>Use of unsafe or dangerous classes and methods.</p>
 <table>
 	<tr><th>JAR file</th><th>Issues</th></tr>
+</table>
+</section>
+
+<section id="UnstableAPIs">
+<h2>Unstable APIs</h2>
+<p>Use of unstable or deprecated classes, methods, and fields.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>org.objectweb.asm.commons.AdviceAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.AnalyzerAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.CodeSizeEvaluator<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.InstructionAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.MethodRemapper<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.RemappingMethodAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>org.objectweb.asm.tree.MethodNode<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</td></tr>
 </table>
 </section>
 
