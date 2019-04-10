@@ -79,44 +79,41 @@ public abstract class ClassLoader {
 
 		// try to find class
 		Optional<ClassDef> classDef = getClassDef(className);
-		if (classDef.isPresent()) {
+		if (!classDef.isPresent()) {
+			// class not found -> field not found
+			callback.classNotFound(className);
+			return Optional.empty();
+		}
 
-			// try to find field in class
-			Optional<FieldDef> fieldDef = classDef.get().getFieldDef(fieldName);
+		// try to find field in class
+		Optional<FieldDef> fieldDef = classDef.get().getFieldDef(fieldName);
+		if (fieldDef.isPresent()) {
+			callback.memberFound(className);
+			return fieldDef;
+		}
+
+		// field not found in class
+		callback.memberNotFound(className);
+
+		// try to find field in interfaces first
+		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
+		List<String> interfaceNames = classDef.get().getInterfaceNames();
+		for (String interfaceName : interfaceNames) {
+			// TODO: use class loader of class definition
+			fieldDef = findFieldDef(interfaceName, fieldName, classLoader, callback, scannedClasses);
 			if (fieldDef.isPresent()) {
-				callback.fieldDefFound(className);
 				return fieldDef;
 			}
+		}
 
-			// field not found in class
-			callback.fieldDefNotFound(className);
-
-			// try to find field in interfaces first
-			// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
-			List<String> interfaceNames = classDef.get().getInterfaceNames();
-			for (String interfaceName : interfaceNames) {
-				// TODO: use class loader of class definition
-				fieldDef = findFieldDef(interfaceName, fieldName, classLoader, callback, scannedClasses);
-				if (fieldDef.isPresent()) {
-					return fieldDef;
-				}
+		// try to find field in superclass
+		String superName = classDef.get().getSuperName();
+		if (superName != null) {
+			// TODO: use class loader of class definition
+			fieldDef = findFieldDef(superName, fieldName, classLoader, callback, scannedClasses);
+			if (fieldDef.isPresent()) {
+				return fieldDef;
 			}
-
-			// try to find field in superclass
-			String superName = classDef.get().getSuperName();
-			if (superName != null) {
-				// TODO: use class loader of class definition
-				fieldDef = findFieldDef(superName, fieldName, classLoader, callback, scannedClasses);
-				if (fieldDef.isPresent()) {
-					return fieldDef;
-				}
-			}
-
-		} else {
-
-			// class not found -> field not found
-			callback.classDefNotFound(className);
-
 		}
 
 		// field not found in class, superclass, or interfaces
@@ -124,46 +121,62 @@ public abstract class ClassLoader {
 	}
 
 	public Optional<MethodDef> getMethodDef(MethodRef methodRef) {
+		return getMethodDef(methodRef, Callback.NONE);
+	}
+
+	public Optional<MethodDef> getMethodDef(MethodRef methodRef, Callback callback) {
 		String methodOwner = methodRef.getMethodOwner();
 		String methodName = methodRef.getMethodName();
 		String methodDescriptor = methodRef.getMethodDescriptor();
-		return findMethodDef(methodOwner, methodName, methodDescriptor, this);
+		return findMethodDef(methodOwner, methodName, methodDescriptor, this, callback, new HashSet<>());
 	}
 
-	private Optional<MethodDef> findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader) {
+	private Optional<MethodDef> findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
+
+		// if class has already been scanned ...
+		if (!scannedClasses.add(className)) {
+			// method not found
+			return Optional.empty();
+		}
 
 		// try to find class
 		Optional<ClassDef> classDef = getClassDef(className);
-		if (classDef.isPresent()) {
+		if (!classDef.isPresent()) {
+			// class not found -> method not found
+			callback.classNotFound(className);
+			return Optional.empty();
+		}
 
-			// try to find method in class
-			Optional<MethodDef> methodDef = classDef.get().getMethodDef(methodName, methodDescriptor);
+		// try to find method in class
+		Optional<MethodDef> methodDef = classDef.get().getMethodDef(methodName, methodDescriptor);
+		if (methodDef.isPresent()) {
+			callback.memberFound(className);
+			return methodDef;
+		}
+
+		// method not found in class
+		callback.memberNotFound(className);
+
+		// TODO: check method resolution strategy
+
+		// try to find method in interfaces
+		List<String> interfaceNames = classDef.get().getInterfaceNames();
+		for (String interfaceName : interfaceNames) {
+			// TODO: use class loader of class definition
+			methodDef = findMethodDef(interfaceName, methodName, methodDescriptor, classLoader, callback, scannedClasses);
 			if (methodDef.isPresent()) {
 				return methodDef;
 			}
+		}
 
-			// method not found in class
-
-			// TODO: check method resolution strategy
-
-			// try to find method in interfaces
-			List<String> interfaceNames = classDef.get().getInterfaceNames();
-			for (String interfaceName : interfaceNames) {
-				methodDef = findMethodDef(interfaceName, methodName, methodDescriptor, classLoader); // TODO: use class loader of class definition
-				if (methodDef.isPresent()) {
-					return methodDef;
-				}
+		// try to find method in superclass
+		String superName = classDef.get().getSuperName();
+		if (superName != null) {
+			// TODO: use class loader of class definition
+			methodDef = findMethodDef(superName, methodName, methodDescriptor, classLoader, callback, scannedClasses);
+			if (methodDef.isPresent()) {
+				return methodDef;
 			}
-
-			// try to find method in superclass
-			String superName = classDef.get().getSuperName();
-			if (superName != null) {
-				methodDef = findMethodDef(superName, methodName, methodDescriptor, classLoader); // TODO: use class loader of class definition
-				if (methodDef.isPresent()) {
-					return methodDef;
-				}
-			}
-
 		}
 
 		// method not found in class, superclass, or interfaces
@@ -174,26 +187,26 @@ public abstract class ClassLoader {
 
 		Callback NONE = new NoOpCallback();
 
-		void classDefNotFound(String className);
+		void classNotFound(String className);
 
-		void fieldDefNotFound(String className);
+		void memberNotFound(String className);
 
-		void fieldDefFound(String className);
+		void memberFound(String className);
 
 	}
 
 	private static class NoOpCallback implements Callback {
 
 		@Override
-		public void classDefNotFound(String className) {
+		public void classNotFound(String className) {
 		}
 
 		@Override
-		public void fieldDefNotFound(String className) {
+		public void memberNotFound(String className) {
 		}
 
 		@Override
-		public void fieldDefFound(String className) {
+		public void memberFound(String className) {
 		}
 
 	}

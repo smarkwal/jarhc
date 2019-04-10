@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JAR Health Check Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<h1>JAR Health Check Report</h1>
+
+<section id="MethodReferences">
+<h2>Method References</h2>
+<p>Problems with method invocations.</p>
+<table>
+	<tr><th>JAR File</th><th>Errors</th></tr>
+	<tr><td>commons-configuration-1.9.jar</td><td>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setCatalogFiles(java.lang.String)<br>• org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)<br>• org.apache.xml.resolver.CatalogManager (class not found)<br><br>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setIgnoreMissingProperties(boolean)<br>• org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)<br>• org.apache.xml.resolver.CatalogManager (class not found)<br><br>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setUseStaticCatalog(boolean)<br>• org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)<br>• org.apache.xml.resolver.CatalogManager (class not found)<br><br>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setVerbosity(int)<br>• org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)<br>• org.apache.xml.resolver.CatalogManager (class not found)<br><br>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$Catalog.parseCatalog(java.lang.String,java.io.InputStream)<br>• org.apache.commons.configuration.resolver.CatalogResolver$Catalog (method not found)<br>• org.apache.xml.resolver.Catalog (class not found)<br><br>Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$Catalog.parsePendingCatalogs()<br>• org.apache.commons.configuration.resolver.CatalogResolver$Catalog (method not found)<br>• org.apache.xml.resolver.Catalog (class not found)<br><br>Method not found: boolean org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.getUseStaticCatalog()<br>• org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)<br>• org.apache.xml.resolver.CatalogManager (class not found)</td></tr>
+</table>
+</section>
+
+</body>
+</html>

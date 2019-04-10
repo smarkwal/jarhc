@@ -1,0 +1,110 @@
+JAR Health Check Report
+=======================
+
+Method References
+-----------------
+Problems with method invocations.
+
+JAR File                | Errors
+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+camel-jms-2.17.7.jar    | Method not found: java.lang.String org.apache.camel.component.jms.DefaultJmsMessageListenerContainer.getBeanName()
+                        | • org.apache.camel.component.jms.DefaultJmsMessageListenerContainer (method not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (class not found)
+                        |
+                        | Method not found: int org.apache.camel.component.jms.DefaultJmsMessageListenerContainer.getCacheLevel()
+                        | • org.apache.camel.component.jms.DefaultJmsMessageListenerContainer (method not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (class not found)
+                        |
+                        | Method not found: boolean org.apache.camel.component.jms.DefaultJmsMessageListenerContainer.sharedConnectionEnabled()
+                        | • org.apache.camel.component.jms.DefaultJmsMessageListenerContainer (method not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (class not found)
+                        |
+                        | Method not found: javax.jms.MessageProducer org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.createProducer(javax.jms.Session,javax.jms.Destination)
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: java.lang.Object org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.execute(org.springframework.jms.core.SessionCallback,boolean)
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: int org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.getPriority()
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: boolean org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.isSessionLocallyTransacted(javax.jms.Session)
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: javax.jms.Destination org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.resolveDestinationName(javax.jms.Session,java.lang.String)
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: javax.jms.ConnectionFactory org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.getConnectionFactory()
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+                        |
+                        | Method not found: java.lang.String org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.getDefaultDestinationName()
+                        | • org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate (method not found)
+                        | • org.springframework.jms.core.JmsTemplate (class not found)
+camel-soap-2.17.7.jar   | Method not found: boolean org.apache.camel.dataformat.soap.SoapJaxbDataFormat.isIgnoreJAXBElement()
+                        | • org.apache.camel.dataformat.soap.SoapJaxbDataFormat (method not found)
+                        | • org.apache.camel.converter.jaxb.JaxbDataFormat (class not found)
+                        |
+                        | Method not found: java.lang.String org.apache.camel.dataformat.soap.SoapJaxbDataFormat.getContextPath()
+                        | • org.apache.camel.dataformat.soap.SoapJaxbDataFormat (method not found)
+                        | • org.apache.camel.converter.jaxb.JaxbDataFormat (class not found)
+camel-spring-2.17.7.jar | Method not found: org.springframework.beans.factory.config.BeanDefinition org.apache.camel.spring.handler.BeanDefinitionParser.parse(org.w3c.dom.Element,org.springframework.beans.factory.xml.ParserContext)
+                        | • org.apache.camel.spring.handler.BeanDefinitionParser (method not found)
+                        | • org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser (class not found)
+                        |
+                        | Method not found: void org.apache.camel.spring.handler.CamelNamespaceHandler.registerBeanDefinitionParser(java.lang.String,org.springframework.beans.factory.xml.BeanDefinitionParser)
+                        | • org.apache.camel.spring.handler.CamelNamespaceHandler (method not found)
+                        | • org.springframework.beans.factory.xml.NamespaceHandlerSupport (class not found)
+                        |
+                        | Method not found: void org.apache.camel.spring.handler.BeanDefinitionParser.doParse(org.w3c.dom.Element,org.springframework.beans.factory.xml.ParserContext,org.springframework.beans.factory.support.BeanDefinitionBuilder)
+                        | • org.apache.camel.spring.handler.BeanDefinitionParser (method not found)
+                        | • org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser (class not found)
+                        |
+                        | Method not found: java.lang.Object org.apache.camel.spring.remoting.CamelServiceExporter.getProxyForService()
+                        | • org.apache.camel.spring.remoting.CamelServiceExporter (method not found)
+                        | • org.springframework.beans.factory.InitializingBean (class not found)
+                        | • org.springframework.beans.factory.DisposableBean (class not found)
+                        | • org.springframework.context.ApplicationContextAware (class not found)
+                        | • org.apache.camel.CamelContextAware (method not found)
+                        | • java.lang.Object (method not found)
+                        | • org.springframework.remoting.support.RemoteExporter (class not found)
+                        |
+                        | Method not found: java.lang.Object org.apache.camel.spring.remoting.CamelServiceExporter.getService()
+                        | • org.apache.camel.spring.remoting.CamelServiceExporter (method not found)
+                        | • org.springframework.beans.factory.InitializingBean (class not found)
+                        | • org.springframework.beans.factory.DisposableBean (class not found)
+                        | • org.springframework.context.ApplicationContextAware (class not found)
+                        | • org.apache.camel.CamelContextAware (method not found)
+                        | • java.lang.Object (method not found)
+                        | • org.springframework.remoting.support.RemoteExporter (class not found)
+                        |
+                        | Method not found: void org.apache.camel.spring.remoting.CamelServiceExporter.setService(java.lang.Object)
+                        | • org.apache.camel.spring.remoting.CamelServiceExporter (method not found)
+                        | • org.springframework.beans.factory.InitializingBean (class not found)
+                        | • org.springframework.beans.factory.DisposableBean (class not found)
+                        | • org.springframework.context.ApplicationContextAware (class not found)
+                        | • org.apache.camel.CamelContextAware (method not found)
+                        | • java.lang.Object (method not found)
+                        | • org.springframework.remoting.support.RemoteExporter (class not found)
+                        |
+                        | Method not found: java.lang.String org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer.resolveSystemProperty(java.lang.String)
+                        | • org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer (method not found)
+                        | • org.apache.camel.component.properties.PropertiesResolver (method not found)
+                        | • java.lang.Object (method not found)
+                        | • org.apache.camel.component.properties.AugmentedPropertyNameAwarePropertiesParser (method not found)
+                        | • org.apache.camel.component.properties.PropertiesParser (method not found)
+                        | • org.springframework.beans.factory.config.PropertyPlaceholderConfigurer (class not found)
+                        |
+                        | Method not found: java.util.concurrent.ScheduledExecutorService org.apache.camel.spring.util.CamelThreadPoolTaskScheduler.getScheduledExecutor()
+                        | • org.apache.camel.spring.util.CamelThreadPoolTaskScheduler (method not found)
+                        | • org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler (class not found)
+                        |
+                        | Method not found: static void org.apache.camel.spring.util.ReflectionUtils.handleReflectionException(java.lang.Exception)
+                        | • org.apache.camel.spring.util.ReflectionUtils (method not found)
+                        | • org.springframework.util.ReflectionUtils (class not found)
+

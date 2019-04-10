@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2019 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,15 +29,15 @@ import java.util.Set;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
-public class FieldRefAnalyzer extends Analyzer {
+public class MethodRefAnalyzer extends Analyzer {
 
 	private final boolean reportOwnerClassNotFound;
 
-	public FieldRefAnalyzer() {
+	public MethodRefAnalyzer() {
 		this(false);
 	}
 
-	public FieldRefAnalyzer(boolean reportOwnerClassNotFound) {
+	public MethodRefAnalyzer(boolean reportOwnerClassNotFound) {
 		this.reportOwnerClassNotFound = reportOwnerClassNotFound;
 	}
 
@@ -46,7 +46,7 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Field References", "Problems with field access.");
+		ReportSection section = new ReportSection("Method References", "Problems with method invocations.");
 		section.add(table);
 		return section;
 	}
@@ -65,12 +65,12 @@ public class FieldRefAnalyzer extends Analyzer {
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
 
-				// for every field reference ...
-				List<FieldRef> fieldRefs = classDef.getFieldRefs();
-				for (FieldRef fieldRef : fieldRefs) {
+				// for every method reference ...
+				List<MethodRef> methodRefs = classDef.getMethodRefs();
+				for (MethodRef methodRef : methodRefs) {
 
 					// validate field reference
-					SearchResult result = validateFieldRef(classDef, fieldRef, classpath);
+					SearchResult result = validateMethodRef(classDef, methodRef, classpath);
 					if (!result.isIgnoreResult()) {
 						String text = result.getResult();
 						if (text != null) {
@@ -88,16 +88,16 @@ public class FieldRefAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private SearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, ClassLoader classLoader) {
+	private SearchResult validateMethodRef(ClassDef classDef, MethodRef methodRef, ClassLoader classLoader) {
 
 		SearchResult searchResult = new SearchResult();
 
 		// try to find owner class
-		String targetClassName = fieldRef.getFieldOwner();
+		String targetClassName = methodRef.getMethodOwner();
 		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName).orElse(null);
 		if (ownerClassDef == null) {
 			// owner class not found
-			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
+			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
 				searchResult.addSearchInfo("\u2022 " + targetClassName + " (owner class not found)");
 			} else {
@@ -119,41 +119,37 @@ public class FieldRefAnalyzer extends Analyzer {
 		}
 
 		// find target field definition
-		Optional<FieldDef> fieldDef = classLoader.getFieldDef(fieldRef, searchResult);
-		if (!fieldDef.isPresent()) {
-			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
+		Optional<MethodDef> methodDef = classLoader.getMethodDef(methodRef, searchResult);
+		if (!methodDef.isPresent()) {
+			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
 			return searchResult;
 		}
 
-		FieldDef field = fieldDef.get();
+		MethodDef method = methodDef.get();
 
-		// check access to field
-		access = accessCheck.hasAccess(classDef, field);
+		// check access to method
+		access = accessCheck.hasAccess(classDef, method);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + ": " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + className + ": " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
 		}
 
-		// check field type
-		if (!field.getFieldType().equals(fieldRef.getFieldType())) {
-			searchResult.addErrorMessage("Incompatible field type: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+		// check method return type
+		// TODO
+		/*
+		if (!method.getFieldType().equals(methodRef.getFieldType())) {
+			searchResult.addErrorMessage("Incompatible field type: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
 		}
+		*/
 
 		// check static/instance
-		if (field.isStatic()) {
-			if (!fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Instance access to static field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+		if (method.isStatic()) {
+			if (!methodRef.isStaticAccess()) {
+				searchResult.addErrorMessage("Instance access to static method: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
 			}
 		} else {
-			if (fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Static access to instance field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
-			}
-		}
-
-		// check access to final fields
-		if (field.isFinal()) {
-			if (fieldRef.isWriteAccess()) {
-				searchResult.addErrorMessage("Write access to final field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+			if (methodRef.isStaticAccess()) {
+				searchResult.addErrorMessage("Static access to instance method: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
 			}
 		}
 
@@ -212,12 +208,12 @@ public class FieldRefAnalyzer extends Analyzer {
 
 		@Override
 		public void memberNotFound(String className) {
-			addSearchInfo("\u2022 " + className + " (field not found)");
+			addSearchInfo("\u2022 " + className + " (method not found)");
 		}
 
 		@Override
 		public void memberFound(String className) {
-			addSearchInfo("\u2022 " + className + " (field found)");
+			addSearchInfo("\u2022 " + className + " (method found)");
 		}
 
 	}

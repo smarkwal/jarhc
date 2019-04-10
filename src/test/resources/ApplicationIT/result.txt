@@ -71,6 +71,13 @@ Problems with field access.
 JAR File | Errors
 ---------+-------
 
+Method References
+-----------------
+Problems with method invocations.
+
+JAR File | Errors
+---------+-------
+
 Blacklist
 ---------
 Use of unsafe or dangerous classes and methods.

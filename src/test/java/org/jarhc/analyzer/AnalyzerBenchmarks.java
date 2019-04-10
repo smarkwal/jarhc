@@ -93,6 +93,12 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_MethodRefAnalyzer() {
+		Analyzer analyzer = new MethodRefAnalyzer(false);
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_JarDependenciesAnalyzer() {
 		Analyzer analyzer = new JarDependenciesAnalyzer();
 		analyzer.analyze(classpath);
