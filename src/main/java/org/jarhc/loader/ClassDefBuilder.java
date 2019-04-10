@@ -402,6 +402,16 @@ class ClassDefBuilder extends ClassVisitor {
 		@Override
 		public void visit(String name, Object value) {
 			if (scanForReferences) {
+				if (name != null) {
+					// TODO: create a reference to annotation value
+					//  In ClassDef, there is a MethodDef of every field
+					/*
+					String methodOwner = "";
+					String methodDescriptor = "";
+					MethodRef methodRef = new MethodRef(methodOwner, methodDescriptor, name, false, false);
+					addMethodRef(methodRef);
+					*/
+				}
 				if (value instanceof Type) {
 					Type type = (Type) value;
 					String className = type.getClassName();

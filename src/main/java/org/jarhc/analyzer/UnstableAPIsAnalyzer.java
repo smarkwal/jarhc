@@ -60,25 +60,35 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 				Set<String> classIssues = new TreeSet<>();
 
 				// check class references
-				classDef.getClassRefs().forEach(classRef -> {
-					classpath.getClassDef(classRef).ifPresent(targetClassDef -> {
-						findUnstableAnnotations(classDef, targetClassDef, classIssues);
-					});
-				});
+				classDef.getClassRefs()
+						.forEach(
+								classRef -> classpath.getClassDef(classRef)
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						);
 
 				// check field references
-				classDef.getFieldRefs().forEach(fieldRef -> {
-					classpath.getFieldDef(fieldRef).ifPresent(targetFieldDef -> {
-						findUnstableAnnotations(classDef, targetFieldDef, classIssues);
-					});
-				});
+				classDef.getFieldRefs()
+						.forEach(
+								fieldRef -> classpath.getFieldDef(fieldRef)
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						);
 
 				// check method references
-				classDef.getMethodRefs().forEach(methodRef -> {
-					classpath.getMethodDef(methodRef).ifPresent(targetMethodDef -> {
-						findUnstableAnnotations(classDef, targetMethodDef, classIssues);
-					});
-				});
+				classDef.getMethodRefs()
+						.forEach(
+								methodRef -> classpath.getMethodDef(methodRef)
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						);
+
+				// TODO: report usage of deprecated/unstable annotation fields
+				// TODO: report overriding of deprecated/unstable methods
+				// TODO: report implementation of deprecated/unstable methods
 
 				if (!classIssues.isEmpty()) {
 					String issue = createJarIssue(classDef, classIssues);
@@ -105,8 +115,8 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 
 	private void findUnstableAnnotations(ClassDef classDef, Def def, Set<String> classIssues) {
 
-		// skip if caller and target are in the same JAR file
-		if (inSameJarFile(classDef, def)) {
+		if (def.isFromSameJarFileAs(classDef)) {
+			// skip if caller and target are in the same JAR file
 			return;
 		}
 
@@ -122,16 +132,6 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 				classIssues.add(issue);
 			}
 		}
-	}
-
-	private boolean inSameJarFile(ClassDef classDef, Def def) {
-		ClassDef targetClassDef = def.getClassDef();
-		JarFile jarFile = classDef.getJarFile();
-		JarFile targetJarFile = targetClassDef.getJarFile();
-		if (jarFile == targetJarFile) {
-			return true;
-		}
-		return false;
 	}
 
 	private boolean isUnstableAnnotation(String annotationClassName) {

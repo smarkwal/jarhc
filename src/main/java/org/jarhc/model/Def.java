@@ -43,4 +43,16 @@ public abstract class Def extends AccessFlags {
 		this.annotationRefs.add(annotationRef);
 	}
 
+	/**
+	 * Checks if this definition comes from the same JAR file as the given definition.
+	 *
+	 * @param def Class, method, or field definition.
+	 * @return <code>true</code> if both definitions come from the same JAR file.
+	 */
+	public boolean isFromSameJarFileAs(Def def) {
+		JarFile jarFile1 = this.getClassDef().getJarFile();
+		JarFile jarFile2 = def.getClassDef().getJarFile();
+		return jarFile1 == jarFile2;
+	}
+
 }

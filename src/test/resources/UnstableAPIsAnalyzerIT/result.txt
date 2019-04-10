@@ -6,6 +6,7 @@ a.A
 • @Deprecated: public int b.S.superField
 • @Deprecated: public interface b.I
 • @Deprecated: public static final (enum) b.E b.E.E1
+• @Deprecated: public static int b.B.staticField
 • @Deprecated: public void b.B.<init>()
 • @Deprecated: public void b.I.defaultInterfaceMethod()
 • @Deprecated: public void b.S.<init>()
