@@ -123,6 +123,12 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_ClassHierarchyAnalyzer() {
+		Analyzer analyzer = new ClassHierarchyAnalyzer();
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_PackagesAnalyzer() {
 		Analyzer analyzer = new PackagesAnalyzer();
 		analyzer.analyze(classpath);

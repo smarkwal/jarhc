@@ -45,6 +45,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("sc", "Shadowed Classes", ShadowedClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("mc", "Missing Classes", MissingClassesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("ch", "Class Hierarchy", ClassHierarchyAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("fr", "Field References", FieldRefAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("mr", "Method References", MethodRefAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
