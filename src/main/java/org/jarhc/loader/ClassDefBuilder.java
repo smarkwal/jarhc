@@ -194,15 +194,15 @@ class ClassDefBuilder extends ClassVisitor {
 		}
 	}
 
-	private AnnotationVisitor addAnnotationRef(String descriptor, AnnotationHolder annotationHolder) {
+	private AnnotationVisitor addAnnotationRef(String descriptor, Def def) {
 		if (scanForReferences) {
 			String annotationType = Type.getType(descriptor).getClassName();
 			addClassRef(annotationType);
 
 			// add annotation to class, method or field definition
-			if (annotationHolder != null) {
+			if (def != null) {
 				AnnotationRef annotationRef = new AnnotationRef(annotationType);
-				annotationHolder.addAnnotationRef(annotationRef);
+				def.addAnnotationRef(annotationRef);
 			}
 
 			return annotationVisitor;

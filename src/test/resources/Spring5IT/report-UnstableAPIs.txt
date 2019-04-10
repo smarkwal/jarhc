@@ -6,9 +6,9 @@ Unstable APIs
 Use of unstable or deprecated classes, methods, and fields.
 
 JAR file                         | Issues
----------------------------------+---------------------------------------------------------------------------------------------------------------------
+---------------------------------+------------------------------------------------------------------------------------------------------------------------------
 spring-beans-5.1.3.RELEASE.jar   | org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader
-                                 | • @Deprecated: public abstract (varargs) boolean acceptsProfiles(java.lang.String[])
+                                 | • @Deprecated: public abstract (varargs) boolean org.springframework.core.env.Environment.acceptsProfiles(java.lang.String[])
 spring-context-5.1.3.RELEASE.jar | org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader
                                  | • @Deprecated: public (super) class org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
                                  |

@@ -24,7 +24,7 @@ import java.util.*;
 /**
  * Class definition representing a single Java class file.
  */
-public class ClassDef extends AccessFlags implements AnnotationHolder, Comparable<ClassDef> {
+public class ClassDef extends Def implements Comparable<ClassDef> {
 
 	/**
 	 * Class name.
@@ -40,11 +40,6 @@ public class ClassDef extends AccessFlags implements AnnotationHolder, Comparabl
 	 * List of interfaces implemented by this class.
 	 */
 	private final List<String> interfaceNames = new ArrayList<>();
-
-	/**
-	 * List of class annotations.
-	 */
-	private List<AnnotationRef> annotationRefs = new ArrayList<>();
 
 	/**
 	 * Major class file version.
@@ -160,16 +155,6 @@ public class ClassDef extends AccessFlags implements AnnotationHolder, Comparabl
 	@Override
 	public ClassDef getClassDef() {
 		return this;
-	}
-
-	@Override
-	public List<AnnotationRef> getAnnotationRefs() {
-		return Collections.unmodifiableList(annotationRefs);
-	}
-
-	@Override
-	public void addAnnotationRef(AnnotationRef annotationRef) {
-		this.annotationRefs.add(annotationRef);
 	}
 
 	public int getMajorClassVersion() {
@@ -340,6 +325,7 @@ public class ClassDef extends AccessFlags implements AnnotationHolder, Comparabl
 	}
 
 	@Override
+	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
 		List<String> parts = new ArrayList<>();
 

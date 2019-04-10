@@ -19,10 +19,9 @@ package org.jarhc.model;
 import org.jarhc.utils.JavaUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class MethodDef extends AccessFlags implements AnnotationHolder {
+public class MethodDef extends Def {
 
 	private final String methodName;
 	private final String methodDescriptor;
@@ -31,11 +30,6 @@ public class MethodDef extends AccessFlags implements AnnotationHolder {
 
 	// TODO: exceptions?
 	private ClassDef classDef;
-
-	/**
-	 * List of class annotations.
-	 */
-	private List<AnnotationRef> annotationRefs = new ArrayList<>();
 
 	public MethodDef(int access, String methodName, String methodDescriptor) {
 		super(access);
@@ -73,16 +67,7 @@ public class MethodDef extends AccessFlags implements AnnotationHolder {
 	}
 
 	@Override
-	public List<AnnotationRef> getAnnotationRefs() {
-		return Collections.unmodifiableList(annotationRefs);
-	}
-
-	@Override
-	public void addAnnotationRef(AnnotationRef annotationRef) {
-		this.annotationRefs.add(annotationRef);
-	}
-
-	@Override
+	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
 		List<String> parts = new ArrayList<>();
 

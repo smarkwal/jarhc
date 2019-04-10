@@ -16,16 +16,31 @@
 
 package org.jarhc.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public interface AnnotationHolder {
+public abstract class Def extends AccessFlags {
 
-	ClassDef getClassDef();
+	/**
+	 * List of annotations.
+	 */
+	private List<AnnotationRef> annotationRefs = new ArrayList<>();
 
-	String getDisplayName();
+	Def(int flags) {
+		super(flags);
+	}
 
-	List<AnnotationRef> getAnnotationRefs();
+	public abstract ClassDef getClassDef();
 
-	void addAnnotationRef(AnnotationRef annotationRef);
+	public abstract String getDisplayName();
+
+	public List<AnnotationRef> getAnnotationRefs() {
+		return Collections.unmodifiableList(annotationRefs);
+	}
+
+	public void addAnnotationRef(AnnotationRef annotationRef) {
+		this.annotationRefs.add(annotationRef);
+	}
 
 }

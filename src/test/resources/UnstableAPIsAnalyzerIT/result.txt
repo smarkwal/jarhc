@@ -4,8 +4,9 @@ a.A
 • @Deprecated: public abstract interface @interface b.Z
 • @Deprecated: public abstract interface b.I
 • @Deprecated: public final (super) enum b.E
-• @Deprecated: public int superField
-• @Deprecated: public static final (enum) b.E E1
-• @Deprecated: public void <init>()
-• @Deprecated: public void defaultInterfaceMethod()
-• @Deprecated: public void superMethod()
+• @Deprecated: public int b.S.superField
+• @Deprecated: public static final (enum) b.E b.E.E1
+• @Deprecated: public void b.B.<init>()
+• @Deprecated: public void b.I.defaultInterfaceMethod()
+• @Deprecated: public void b.S.<init>()
+• @Deprecated: public void b.S.superMethod()

@@ -81,14 +81,15 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 				});
 
 				if (!classIssues.isEmpty()) {
-					String className = classDef.getClassName();
-					jarIssues.add(className + System.lineSeparator() + classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines()) + System.lineSeparator());
+					String issue = createJarIssue(classDef, classIssues);
+					jarIssues.add(issue);
 				}
 
 			});
 
 			if (!jarIssues.isEmpty()) {
-				table.addRow(jarFile.getFileName(), StringUtils.joinLines(jarIssues).trim());
+				String lines = StringUtils.joinLines(jarIssues).trim();
+				table.addRow(jarFile.getFileName(), lines);
 			}
 
 		}
@@ -96,27 +97,41 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private void findUnstableAnnotations(ClassDef classDef, AnnotationHolder annotationHolder, Set<String> classIssues) {
+	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
+		String className = classDef.getClassName();
+		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		return className + System.lineSeparator() + lines + System.lineSeparator();
+	}
+
+	private void findUnstableAnnotations(ClassDef classDef, Def def, Set<String> classIssues) {
 
 		// skip if caller and target are in the same JAR file
-		ClassDef targetClassDef = annotationHolder.getClassDef();
-		JarFile jarFile = classDef.getJarFile();
-		JarFile targetJarFile = targetClassDef.getJarFile();
-		if (jarFile == targetJarFile) {
+		if (inSameJarFile(classDef, def)) {
 			return;
 		}
 
-		List<AnnotationRef> annotationRefs = annotationHolder.getAnnotationRefs();
+		// for every annotation ...
+		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
 		for (AnnotationRef annotationRef : annotationRefs) {
-			String className = annotationRef.getClassName();
-			boolean unstable = isUnstableAnnotation(className);
+			String annotationClassName = annotationRef.getClassName();
+
+			// check if annotation is a marker for an unstable API
+			boolean unstable = isUnstableAnnotation(annotationClassName);
 			if (unstable) {
-				String annotation = "@" + JavaUtils.getSimpleClassName(className);
-				String displayName = annotationHolder.getDisplayName().replace(" @Deprecated ", " ");
-				// TODO: add owner class if annotation holder is a method or field
-				classIssues.add(annotation + ": " + displayName);
+				String issue = createClassIssue(annotationClassName, def);
+				classIssues.add(issue);
 			}
 		}
+	}
+
+	private boolean inSameJarFile(ClassDef classDef, Def def) {
+		ClassDef targetClassDef = def.getClassDef();
+		JarFile jarFile = classDef.getJarFile();
+		JarFile targetJarFile = targetClassDef.getJarFile();
+		if (jarFile == targetJarFile) {
+			return true;
+		}
+		return false;
 	}
 
 	private boolean isUnstableAnnotation(String annotationClassName) {
@@ -126,6 +141,12 @@ public class UnstableAPIsAnalyzer extends Analyzer {
 			}
 		}
 		return false;
+	}
+
+	private String createClassIssue(String annotationClassName, Def def) {
+		String annotation = "@" + JavaUtils.getSimpleClassName(annotationClassName);
+		String displayName = def.getDisplayName().replace(" @Deprecated ", " ");
+		return annotation + ": " + displayName;
 	}
 
 }
