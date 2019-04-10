@@ -1,4 +1,5 @@
 a.A
+• @Beta: public void b.S.superMethod()
 • @Deprecated: public @interface b.Z
 • @Deprecated: public class b.B
 • @Deprecated: public class b.S
@@ -11,3 +12,5 @@ a.A
 • @Deprecated: public void b.I.defaultInterfaceMethod()
 • @Deprecated: public void b.S.<init>()
 • @Deprecated: public void b.S.superMethod()
+• @DoNotCall: public void b.S.superMethod()
+• @VisibleForTesting: public void b.S.superMethod()
