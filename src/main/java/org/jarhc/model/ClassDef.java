@@ -360,6 +360,20 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return String.join(" ", parts);
 	}
 
+	public String getType() {
+		if (isAnnotation()) {
+			return "annotation";
+		} else if (isEnum()) {
+			return "enum";
+		} else if (isInterface()) {
+			return "interface";
+		} else if (isAbstract()) {
+			return "abstract class";
+		} else {
+			return "class";
+		}
+	}
+
 	@Override
 	public String getDisplayName() {
 		String modifiers = getModifiers();

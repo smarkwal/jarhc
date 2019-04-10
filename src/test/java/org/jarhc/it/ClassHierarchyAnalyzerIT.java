@@ -18,12 +18,14 @@ package org.jarhc.it;
 
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.ClassHierarchyAnalyzer;
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-import org.jarhc.utils.StringUtils;
+import org.jarhc.test.JavaRuntimeMock;
+import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junitpioneer.jupiter.TempDirectory;
@@ -40,7 +42,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(TempDirectory.class)
 class ClassHierarchyAnalyzerIT {
 
-	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
+	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
 	private ClassHierarchyAnalyzer analyzer = new ClassHierarchyAnalyzer();
 
 	@Test
@@ -90,22 +93,14 @@ class ClassHierarchyAnalyzerIT {
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
 
-		String expectedMessage = StringUtils.joinLines(
-				"Superclass is final: public final class b.B1",
-				"Superclass is an interface: public interface b.B2",
-				"Superclass is an annotation: public @interface b.B3",
-				"Superclass is final: public enum b.B4",
-				"Superclass is an enum: public enum b.B4",
-				"Interface is a class: public class b.B5a",
-				"Interface is an abstract class: public abstract class b.B5b",
-				"Interface is an annotation: public @interface b.B5c",
-				"Interface is an enum: public enum b.B5d",
-				"Interface is a class: public class b.B6",
-				"Interface is an annotation: public @interface b.B7",
-				"Interface is an enum: public enum b.B8",
-				"Interface is an abstract class: public abstract class b.B9"
-		);
-		assertEquals(expectedMessage, values[1]);
+		String value = values[1];
+		String expectedValue = TestUtils.getResourceAsString("/ClassHierarchyAnalyzerIT/result.txt", "UTF-8");
+
+		// normalize
+		value = TextUtils.toUnixLineSeparators(value);
+		expectedValue = TextUtils.toUnixLineSeparators(expectedValue);
+
+		assertEquals(expectedValue, value);
 
 	}
 

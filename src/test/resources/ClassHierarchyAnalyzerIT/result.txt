@@ -1,0 +1,42 @@
+a.A1
+• Superclass is final: public final class b.B1
+
+a.A10
+• Superclass is not accessible: class b.B10
+
+a.A11
+• Interface is not accessible: interface b.B11
+
+a.A12
+• Superclass not found: b.B12
+
+a.A13
+• Interface not found: b.B13
+
+a.A2
+• Superclass is an interface: public interface b.B2
+
+a.A3
+• Superclass is an annotation: public @interface b.B3
+
+a.A4
+• Superclass is an enum: public enum b.B4
+• Superclass is final: public enum b.B4
+
+a.A5
+• Interface is a class: public class b.B5a
+• Interface is an abstract class: public abstract class b.B5b
+• Interface is an annotation: public @interface b.B5c
+• Interface is an enum: public enum b.B5d
+
+a.A6
+• Interface is a class: public class b.B6
+
+a.A7
+• Interface is an annotation: public @interface b.B7
+
+a.A8
+• Interface is an enum: public enum b.B8
+
+a.A9
+• Interface is an abstract class: public abstract class b.B9
