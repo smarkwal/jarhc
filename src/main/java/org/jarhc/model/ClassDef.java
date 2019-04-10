@@ -339,7 +339,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		if (isFinal()) parts.add("final");
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");
-		if (isAbstract()) parts.add("abstract");
+		if (isAbstract() && !isInterface()) parts.add("abstract");
 
 		// special flags
 		if (isSynthetic()) parts.add("(synthetic)");
@@ -347,10 +347,15 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		if (isDeprecated()) parts.add("@Deprecated");
 
 		// type
-		if (isInterface()) parts.add("interface");
-		if (isAnnotation()) parts.add("@interface");
-		if (isEnum()) parts.add("enum");
-		if (!isInterface() && !isEnum() && !isAnnotation()) parts.add("class");
+		if (isAnnotation()) {
+			parts.add("@interface");
+		} else if (isEnum()) {
+			parts.add("enum");
+		} else if (isInterface()) {
+			parts.add("interface");
+		} else {
+			parts.add("class");
+		}
 
 		return String.join(" ", parts);
 	}

@@ -1,10 +1,10 @@
 a.A
 • @Deprecated: public (super) class b.B
 • @Deprecated: public (super) class b.S
-• @Deprecated: public abstract interface @interface b.Z
-• @Deprecated: public abstract interface b.I
+• @Deprecated: public @interface b.Z
 • @Deprecated: public final (super) enum b.E
 • @Deprecated: public int b.S.superField
+• @Deprecated: public interface b.I
 • @Deprecated: public static final (enum) b.E b.E.E1
 • @Deprecated: public void b.B.<init>()
 • @Deprecated: public void b.I.defaultInterfaceMethod()
