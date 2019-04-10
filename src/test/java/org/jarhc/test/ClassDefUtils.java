@@ -16,9 +16,7 @@
 
 package org.jarhc.test;
 
-import org.jarhc.model.ClassDef;
-import org.jarhc.model.FieldDef;
-import org.jarhc.model.MethodDef;
+import org.jarhc.model.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -47,39 +45,56 @@ class ClassDefUtils {
 		int majorClassVersion = stream.readInt();
 		int minorClassVersion = stream.readInt();
 
-		// read field definitions
-		int numFieldDefs = stream.readInt();
-		List<FieldDef> fieldDefs = new ArrayList<>(numFieldDefs);
-		for (int f = 0; f < numFieldDefs; f++) {
-			int access = stream.readInt();
-			String fieldName = stream.readUTF();
-			String fieldType = stream.readUTF();
-			FieldDef fieldDef = new FieldDef(access, fieldName, fieldType);
-			fieldDefs.add(fieldDef);
-		}
-
-		// read method definitions
-		int numMethodDefs = stream.readInt();
-		List<MethodDef> methodDefs = new ArrayList<>(numMethodDefs);
-		for (int f = 0; f < numMethodDefs; f++) {
-			int access = stream.readInt();
-			String methodName = stream.readUTF();
-			String methodDescriptor = stream.readUTF();
-			MethodDef methodDef = new MethodDef(access, methodName, methodDescriptor);
-			methodDefs.add(methodDef);
-		}
-
 		ClassDef classDef = ClassDef.forClassName(className)
 				.setClassLoader(classLoader)
 				.setClassFileChecksum(classFileChecksum)
 				.setMajorClassVersion(majorClassVersion)
 				.setMinorClassVersion(minorClassVersion)
 				.setSuperName(superName)
-				.addInterfaceNames(interfaceNames)
-				.addFieldDefs(fieldDefs)
-				.addMethodDefs(methodDefs);
+				.addInterfaceNames(interfaceNames);
 		classDef.setAccess(classAccess);
+
+		// read class annotations
+		readAnnotationRefs(stream, classDef);
+
+		// read field definitions
+		int numFieldDefs = stream.readInt();
+		for (int f = 0; f < numFieldDefs; f++) {
+			int access = stream.readInt();
+			String fieldName = stream.readUTF();
+			String fieldType = stream.readUTF();
+			FieldDef fieldDef = new FieldDef(access, fieldName, fieldType);
+
+			// read field annotations
+			readAnnotationRefs(stream, fieldDef);
+
+			classDef.addFieldDef(fieldDef);
+		}
+
+		// read method definitions
+		int numMethodDefs = stream.readInt();
+		for (int m = 0; m < numMethodDefs; m++) {
+			int access = stream.readInt();
+			String methodName = stream.readUTF();
+			String methodDescriptor = stream.readUTF();
+			MethodDef methodDef = new MethodDef(access, methodName, methodDescriptor);
+
+			// read method annotations
+			readAnnotationRefs(stream, methodDef);
+
+			classDef.addMethodDef(methodDef);
+		}
+
 		return classDef;
+	}
+
+	private static void readAnnotationRefs(DataInputStream stream, Def def) throws IOException {
+		int num = stream.readInt();
+		for (int a = 0; a < num; a++) {
+			String className = stream.readUTF();
+			AnnotationRef annotationRef = new AnnotationRef(className);
+			def.addAnnotationRef(annotationRef);
+		}
 	}
 
 	static void write(ClassDef classDef, DataOutputStream stream) throws IOException {
@@ -110,12 +125,18 @@ class ClassDefUtils {
 		stream.writeInt(classDef.getMajorClassVersion());
 		stream.writeInt(classDef.getMinorClassVersion());
 
+		// write class annotations
+		writeAnnotationRefs(stream, classDef);
+
 		// write field definitions
 		stream.writeInt(fieldDefs.size());
 		for (FieldDef fieldDef : fieldDefs) {
 			stream.writeInt(fieldDef.getAccess());
 			stream.writeUTF(fieldDef.getFieldName());
 			stream.writeUTF(fieldDef.getFieldType());
+
+			// write field annotations
+			writeAnnotationRefs(stream, fieldDef);
 		}
 
 		// write method definitions
@@ -124,8 +145,19 @@ class ClassDefUtils {
 			stream.writeInt(methodDef.getAccess());
 			stream.writeUTF(methodDef.getMethodName());
 			stream.writeUTF(methodDef.getMethodDescriptor());
+
+			// write field annotations
+			writeAnnotationRefs(stream, methodDef);
 		}
 
+	}
+
+	private static void writeAnnotationRefs(DataOutputStream stream, Def def) throws IOException {
+		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
+		stream.writeInt(annotationRefs.size());
+		for (AnnotationRef annotationRef : annotationRefs) {
+			stream.writeUTF(annotationRef.getClassName());
+		}
 	}
 
 }

@@ -5,6 +5,15 @@ Unstable APIs
 -------------
 Use of unstable or deprecated classes, methods, and fields.
 
-JAR file | Issues
----------+-------
+JAR file                | Issues
+------------------------+-------------------------------------------------------------------------------------------------------------
+commons-dbcp2-2.5.0.jar | org.apache.commons.dbcp2.DelegatingCallableStatement
+                        | • @Deprecated: public abstract java.math.BigDecimal java.sql.CallableStatement.getBigDecimal(int,int)
+                        |
+                        | org.apache.commons.dbcp2.DelegatingPreparedStatement
+                        | • @Deprecated: public abstract void java.sql.PreparedStatement.setUnicodeStream(int,java.io.InputStream,int)
+                        |
+                        | org.apache.commons.dbcp2.DelegatingResultSet
+                        | • @Deprecated: public abstract java.io.InputStream java.sql.ResultSet.getUnicodeStream(int)
+                        | • @Deprecated: public abstract java.io.InputStream java.sql.ResultSet.getUnicodeStream(java.lang.String)
 
