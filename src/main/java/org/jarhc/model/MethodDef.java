@@ -30,7 +30,6 @@ public class MethodDef extends AccessFlags implements AnnotationHolder {
 	private final List<String> parameterTypes;
 
 	// TODO: exceptions?
-	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
 	private ClassDef classDef;
 
 	/**
@@ -112,10 +111,11 @@ public class MethodDef extends AccessFlags implements AnnotationHolder {
 	@Override
 	public String getDisplayName() {
 		String modifiers = getModifiers();
+		String methodOwner = classDef.getClassName();
 		if (modifiers.isEmpty()) {
-			return String.format("%s %s(%s)", returnType, methodName, String.join(",", parameterTypes));
+			return String.format("%s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
 		} else {
-			return String.format("%s %s %s(%s)", modifiers, returnType, methodName, String.join(",", parameterTypes));
+			return String.format("%s %s %s.%s(%s)", modifiers, returnType, methodOwner, methodName, String.join(",", parameterTypes));
 		}
 	}
 

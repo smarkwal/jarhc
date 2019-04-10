@@ -21,7 +21,7 @@ import org.jarhc.utils.JavaUtils;
 import java.util.List;
 import java.util.Objects;
 
-public class MethodRef implements Comparable<MethodRef> {
+public class MethodRef implements Ref, Comparable<MethodRef> {
 
 	private final String methodOwner;
 	private final String methodDescriptor;
@@ -63,6 +63,7 @@ public class MethodRef implements Comparable<MethodRef> {
 		return staticAccess;
 	}
 
+	@Override
 	public String getDisplayName() {
 		if (staticAccess) {
 			return String.format("static %s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));

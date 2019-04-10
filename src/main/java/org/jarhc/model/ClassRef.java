@@ -18,7 +18,7 @@ package org.jarhc.model;
 
 import java.util.Objects;
 
-public class ClassRef implements Comparable<ClassRef> {
+public class ClassRef implements Ref, Comparable<ClassRef> {
 
 	private final String className;
 
@@ -27,6 +27,11 @@ public class ClassRef implements Comparable<ClassRef> {
 	}
 
 	public String getClassName() {
+		return className;
+	}
+
+	@Override
+	public String getDisplayName() {
 		return className;
 	}
 

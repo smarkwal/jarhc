@@ -18,7 +18,7 @@ package org.jarhc.model;
 
 import java.util.Objects;
 
-public class FieldRef implements Comparable<FieldRef> {
+public class FieldRef implements Ref, Comparable<FieldRef> {
 
 	private final String fieldOwner;
 	private final String fieldType;
@@ -58,6 +58,7 @@ public class FieldRef implements Comparable<FieldRef> {
 		return writeAccess;
 	}
 
+	@Override
 	public String getDisplayName() {
 		if (staticAccess) {
 			return String.format("static %s %s.%s", fieldType, fieldOwner, fieldName);

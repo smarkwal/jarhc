@@ -83,7 +83,7 @@ public class BlacklistAnalyzer extends Analyzer {
 				Set<String> classIssues = new TreeSet<>();
 
 				List<String> descriptors = new ArrayList<>();
-				classDef.getClassRefs().forEach(classRef -> descriptors.add(classRef.getClassName()));
+				classDef.getClassRefs().forEach(classRef -> descriptors.add(classRef.getDisplayName()));
 				classDef.getFieldRefs().forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
 				classDef.getMethodRefs().forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
 

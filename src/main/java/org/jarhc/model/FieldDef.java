@@ -25,7 +25,6 @@ public class FieldDef extends AccessFlags implements AnnotationHolder {
 	private final String fieldName;
 	private final String fieldType;
 	// TODO: initial value? e.g. constant string containing a class name
-	// TODO: annotations? e.g. @Deprecated or @VisibleForTesting
 	private ClassDef classDef;
 
 	/**
@@ -92,10 +91,11 @@ public class FieldDef extends AccessFlags implements AnnotationHolder {
 	@Override
 	public String getDisplayName() {
 		String modifiers = getModifiers();
+		String fieldOwner = classDef.getClassName();
 		if (modifiers.isEmpty()) {
-			return String.format("%s %s", fieldType, fieldName);
+			return String.format("%s %s.%s", fieldType, fieldOwner, fieldName);
 		} else {
-			return String.format("%s %s %s", modifiers, fieldType, fieldName);
+			return String.format("%s %s %s.%s", modifiers, fieldType, fieldOwner, fieldName);
 		}
 	}
 
