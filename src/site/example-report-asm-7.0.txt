@@ -74,6 +74,13 @@ References to classes not found on the classpath.
 JAR file | Missing classes
 ---------+----------------
 
+Class Hierarchy
+---------------
+Problems with class hierarchy.
+
+JAR File | Errors
+---------+-------
+
 Field References
 ----------------
 Problems with field access.
