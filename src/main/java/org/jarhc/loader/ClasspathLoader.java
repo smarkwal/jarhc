@@ -73,8 +73,7 @@ public class ClasspathLoader {
 			try {
 				String fileName = file.getName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
-					JarFile jarFile = jarFileLoader.load(file);
-					jarFiles = Collections.singletonList(jarFile);
+					jarFiles = jarFileLoader.load(file);
 				} else if (fileName.endsWith(".war")) {
 					jarFiles = warFileLoader.load(file);
 				} else {

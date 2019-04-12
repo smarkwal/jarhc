@@ -69,8 +69,8 @@ public class WarFileLoader {
 				if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
 					String fileName = FileUtils.getFilename(entryName);
 					byte[] fileData = IOUtils.toByteArray(zip);
-					JarFile jarFile = jarFileLoader.load(fileName, fileData);
-					jarFiles.add(jarFile);
+					List<JarFile> files = jarFileLoader.load(fileName, fileData);
+					jarFiles.addAll(files);
 				} else if (entryName.startsWith("WEB-INF/classes/")) {
 					// TODO: add all files (classes and resources) to an artificial JAR file
 					//  String jarFileName = file.getName() + "-classes.jar";

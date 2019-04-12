@@ -26,7 +26,10 @@ import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -59,7 +62,7 @@ class JarFileLoader {
 	 * @throws FileNotFoundException    If the file does not exist.
 	 * @throws IOException              If the file cannot be parsed.
 	 */
-	JarFile load(File file) throws IOException {
+	List<JarFile> load(File file) throws IOException {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
@@ -68,7 +71,7 @@ class JarFileLoader {
 		return load(fileName, data);
 	}
 
-	JarFile load(JarSource source) throws IOException {
+	List<JarFile> load(JarSource source) throws IOException {
 		if (source == null) throw new IllegalArgumentException("source");
 
 		String fileName = source.getName();
@@ -79,41 +82,26 @@ class JarFileLoader {
 		return load(fileName, data);
 	}
 
-	JarFile load(String fileName, byte[] fileData) throws IOException {
+	List<JarFile> load(String fileName, byte[] fileData) throws IOException {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (fileData == null) throw new IllegalArgumentException("fileData");
 
+		// load JAR file (and nested JAR files if found)
+		List<JarFile> jarFiles = new ArrayList<>();
+		load(fileName, fileData, jarFiles);
+
+		// sort JAR files by name
+		jarFiles.sort((f1, f2) -> String.CASE_INSENSITIVE_ORDER.compare(f1.getFileName(), f2.getFileName()));
+
+		return jarFiles;
+	}
+
+	private void load(String fileName, byte[] fileData, List<JarFile> jarFiles) throws IOException {
+
+		ModuleInfo moduleInfo = null;
 		Set<Integer> releases = new TreeSet<>();
 		List<ClassDef> classDefs = new ArrayList<>();
 		List<ResourceDef> resourceDefs = new ArrayList<>();
-
-		ModuleInfo moduleInfo = load(fileData, releases, classDefs, resourceDefs);
-
-		// calculate SHA-1 checksum of JAR file
-		String checksum = DigestUtils.sha1Hex(fileData);
-
-		// normalize JAR file name (optional)
-		if (jarFileNameNormalizer != null) {
-			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
-		}
-
-		// append JAR file name to class loader name
-		String jarFileName = fileName;
-		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
-
-		return JarFile.withName(fileName)
-				.withFileSize(fileData.length)
-				.withChecksum(checksum)
-				.withReleases(releases)
-				.withModuleInfo(moduleInfo)
-				.withClassDefs(classDefs)
-				.withResourceDefs(resourceDefs)
-				.build();
-	}
-
-	private ModuleInfo load(byte[] fileData, Set<Integer> releases, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) throws IOException {
-
-		ModuleInfo moduleInfo = null;
 
 		// open JAR file for reading
 		try (JarInputStream stream = new JarInputStream(new ByteArrayInputStream(fileData), false)) {
@@ -167,8 +155,8 @@ class JarFileLoader {
 
 					if (name.endsWith(".jar")) {
 
-						// load classes and resources from jar-in-jar
-						load(data, new HashSet<Integer>(), classDefs, resourceDefs);
+						// load nested JAR file
+						load(fileName + "!/" + name, data, jarFiles);
 
 					} else {
 
@@ -209,7 +197,28 @@ class JarFileLoader {
 			}
 		}
 
-		return moduleInfo;
+		// calculate SHA-1 checksum of JAR file
+		String checksum = DigestUtils.sha1Hex(fileData);
+
+		// normalize JAR file name (optional)
+		if (jarFileNameNormalizer != null) {
+			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
+		}
+
+		// append JAR file name to class loader name
+		String jarFileName = fileName;
+		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
+
+		JarFile jarFile = JarFile.withName(fileName)
+				.withFileSize(fileData.length)
+				.withChecksum(checksum)
+				.withReleases(releases)
+				.withModuleInfo(moduleInfo)
+				.withClassDefs(classDefs)
+				.withResourceDefs(resourceDefs)
+				.build();
+
+		jarFiles.add(jarFile);
 	}
 
 	private boolean isMultiRelease(JarInputStream stream) {

@@ -45,9 +45,12 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFile jarFile = jarFileLoader.load(file);
+		List<JarFile> jarFiles = jarFileLoader.load(file);
 
 		// assert
+		assertNotNull(jarFiles);
+		assertEquals(1, jarFiles.size());
+		JarFile jarFile = jarFiles.get(0);
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(1, jarFile.getClassDefs().size());
@@ -71,9 +74,12 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFile jarFile = jarFileLoader.load(file);
+		List<JarFile> jarFiles = jarFileLoader.load(file);
 
 		// assert
+		assertNotNull(jarFiles);
+		assertEquals(1, jarFiles.size());
+		JarFile jarFile = jarFiles.get(0);
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(1, jarFile.getClassDefs().size());
@@ -98,9 +104,12 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFile jarFile = jarFileLoader.load(file);
+		List<JarFile> jarFiles = jarFileLoader.load(file);
 
 		// assert
+		assertNotNull(jarFiles);
+		assertEquals(1, jarFiles.size());
+		JarFile jarFile = jarFiles.get(0);
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
 		assertEquals(2, jarFile.getClassDefs().size());
@@ -134,21 +143,45 @@ class JarFileLoaderTest {
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
-		JarFile jarFile = jarFileLoader.load(file);
+		List<JarFile> jarFiles = jarFileLoader.load(file);
 
 		// assert
+		assertNotNull(jarFiles);
+		assertEquals(3, jarFiles.size());
+
+		JarFile jarFile = jarFiles.get(0);
 		assertNotNull(jarFile);
 		assertEquals(file.getName(), jarFile.getFileName());
-		assertEquals(3, jarFile.getClassDefs().size());
-		assertEquals("a.A", jarFile.getClassDefs().get(0).getClassName());
-		assertEquals("b.B", jarFile.getClassDefs().get(1).getClassName());
-		assertEquals("c.C", jarFile.getClassDefs().get(2).getClassName());
-
+		assertEquals(1, jarFile.getClassDefs().size());
+		assertEquals("c.C", jarFile.getClassDefs().get(0).getClassName());
 		assertFalse(jarFile.isMultiRelease());
 		Set<Integer> releases = jarFile.getReleases();
 		assertNotNull(releases);
 		assertEquals(0, releases.size());
+		assertFalse(jarFile.isModule());
+		assertNull(jarFile.getModuleInfo());
 
+		jarFile = jarFiles.get(1);
+		assertNotNull(jarFile);
+		assertEquals("x.jar!/a.jar", jarFile.getFileName());
+		assertEquals(1, jarFile.getClassDefs().size());
+		assertEquals("a.A", jarFile.getClassDefs().get(0).getClassName());
+		assertFalse(jarFile.isMultiRelease());
+		releases = jarFile.getReleases();
+		assertNotNull(releases);
+		assertEquals(0, releases.size());
+		assertFalse(jarFile.isModule());
+		assertNull(jarFile.getModuleInfo());
+
+		jarFile = jarFiles.get(2);
+		assertNotNull(jarFile);
+		assertEquals("x.jar!/b.jar", jarFile.getFileName());
+		assertEquals(1, jarFile.getClassDefs().size());
+		assertEquals("b.B", jarFile.getClassDefs().get(0).getClassName());
+		assertTrue(jarFile.isMultiRelease());
+		releases = jarFile.getReleases();
+		assertNotNull(releases);
+		assertEquals(1, releases.size());
 		assertFalse(jarFile.isModule());
 		assertNull(jarFile.getModuleInfo());
 
