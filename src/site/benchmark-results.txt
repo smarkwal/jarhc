@@ -1,28 +1,17 @@
 Benchmark                                                        Mode  Cnt  Score    Error  Units
-o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer             ss   10  0.537    0.141   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_ClassVersionsAnalyzer         ss   10  0.013    0.002   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_DuplicateClassesAnalyzer      ss   10  0.014    0.004   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer             ss   10  0.520    0.145   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_ClassHierarchyAnalyzer        ss   10  0.022    0.002   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_ClassVersionsAnalyzer         ss   10  0.013    0.001   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_DuplicateClassesAnalyzer      ss   10  0.015    0.003   s/op
 o.j.analyzer.AnalyzerBenchmarks.test_DuplicateResourcesAnalyzer    ss   10  0.002    0.001   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_FieldRefAnalyzer              ss   10  0.047    0.009   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarDependenciesAnalyzer       ss   10  0.045    0.007   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer              ss   10  0.012    0.002   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_FieldRefAnalyzer              ss   10  0.050    0.006   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JarDependenciesAnalyzer       ss   10  0.047    0.008   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer              ss   10  0.014    0.002   s/op
 o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer           ss   10  0.001    0.001   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_MissingClassesAnalyzer        ss   10  0.030    0.009   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer              ss   10  0.118    0.024   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_ShadowedClassesAnalyzer       ss   10  0.018    0.002   s/op
-o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                    ss   10  0.118    0.006   s/op
-o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime              ss   10  0.971    0.032   s/op
-
-After warmup (5 warmup iterations, 10 measurement iterations):
-
-Benchmark                                         Mode  Cnt  Score    Error  Units
-AnalyzerBenchmarks.test_BlacklistAnalyzer           ss  100  0.105    0.004   s/op
-AnalyzerBenchmarks.test_ClassVersionsAnalyzer       ss  100  0.002    0.001   s/op
-AnalyzerBenchmarks.test_DuplicateClassesAnalyzer    ss  100  0.006    0.002   s/op
-AnalyzerBenchmarks.test_FieldRefAnalyzer            ss  100  0.010    0.001   s/op
-AnalyzerBenchmarks.test_JarDependenciesAnalyzer     ss  100  0.018    0.006   s/op
-AnalyzerBenchmarks.test_JarFilesAnalyzer            ss  100  0.001    0.001   s/op
-AnalyzerBenchmarks.test_MissingClassesAnalyzer      ss  100  0.005    0.001   s/op
-AnalyzerBenchmarks.test_PackagesAnalyzer            ss  100  0.008    0.007   s/op
-AnalyzerBenchmarks.test_ShadowedClassesAnalyzer     ss  100  0.004    0.001   s/op
-
+o.j.analyzer.AnalyzerBenchmarks.test_MethodRefAnalyzer             ss   10  0.292    0.039   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_MissingClassesAnalyzer        ss   10  0.032    0.007   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer              ss   10  0.119    0.017   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_ShadowedClassesAnalyzer       ss   10  0.018    0.001   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_UnstableAPIsAnalyzer          ss   10  0.132    0.027   s/op
+o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                    ss   10  0.125    0.007   s/op
+o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime              ss   10  1.220    0.053   s/op

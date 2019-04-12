@@ -26,10 +26,7 @@ import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -87,9 +84,36 @@ class JarFileLoader {
 		if (fileData == null) throw new IllegalArgumentException("fileData");
 
 		Set<Integer> releases = new TreeSet<>();
-		ModuleInfo moduleInfo = null;
 		List<ClassDef> classDefs = new ArrayList<>();
 		List<ResourceDef> resourceDefs = new ArrayList<>();
+
+		ModuleInfo moduleInfo = load(fileData, releases, classDefs, resourceDefs);
+
+		// calculate SHA-1 checksum of JAR file
+		String checksum = DigestUtils.sha1Hex(fileData);
+
+		// normalize JAR file name (optional)
+		if (jarFileNameNormalizer != null) {
+			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
+		}
+
+		// append JAR file name to class loader name
+		String jarFileName = fileName;
+		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
+
+		return JarFile.withName(fileName)
+				.withFileSize(fileData.length)
+				.withChecksum(checksum)
+				.withReleases(releases)
+				.withModuleInfo(moduleInfo)
+				.withClassDefs(classDefs)
+				.withResourceDefs(resourceDefs)
+				.build();
+	}
+
+	private ModuleInfo load(byte[] fileData, Set<Integer> releases, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) throws IOException {
+
+		ModuleInfo moduleInfo = null;
 
 		// open JAR file for reading
 		try (JarInputStream stream = new JarInputStream(new ByteArrayInputStream(fileData), false)) {
@@ -131,70 +155,61 @@ class JarFileLoader {
 					continue;
 				}
 
-				// only accept *.class files
-				if (!name.endsWith(".class")) {
+				if (name.endsWith(".class") || name.endsWith(".jar")) {
+
+					// read file data
+					byte[] data;
+					try {
+						data = IOUtils.toByteArray(stream);
+					} catch (IOException e) {
+						throw new IOException(String.format("Unable to parse entry: %s", name), e);
+					}
+
+					if (name.endsWith(".jar")) {
+
+						// load classes and resources from jar-in-jar
+						load(data, new HashSet<Integer>(), classDefs, resourceDefs);
+
+					} else {
+
+						if (name.equals("module-info.class")) {
+							// load module info
+							moduleInfo = moduleInfoLoader.load(data);
+						}
+
+						// load class file
+						ClassDef classDef = classDefLoader.load(data);
+
+						/*
+						Certificate[] certificates = entry.getCertificates();
+						if (certificates != null && certificates.length > 0) {
+							Certificate certificate = certificates[0];
+							if (certificate instanceof X509Certificate) {
+								X509Certificate x509 = (X509Certificate) certificate;
+								String subject = x509.getSubjectDN().getName();
+								// TODO: save subject
+							}
+						}
+						// TODO: verify signature
+						*/
+
+						classDefs.add(classDef);
+
+					}
+
+				} else {
 
 					// add as resource
 					// TODO: calculate SHA-1 checksum
 					ResourceDef resourceDef = new ResourceDef(name, null);
 					resourceDefs.add(resourceDef);
 
-					continue;
 				}
 
-				// read class file
-				byte[] data;
-				try {
-					data = IOUtils.toByteArray(stream);
-				} catch (IOException e) {
-					throw new IOException(String.format("Unable to parse class entry: %s", name), e);
-				}
-
-				if (name.equals("module-info.class")) {
-					// load module info
-					moduleInfo = moduleInfoLoader.load(data);
-				}
-
-				// load class file
-				ClassDef classDef = classDefLoader.load(data);
-
-				/*
-				Certificate[] certificates = entry.getCertificates();
-				if (certificates != null && certificates.length > 0) {
-					Certificate certificate = certificates[0];
-					if (certificate instanceof X509Certificate) {
-						X509Certificate x509 = (X509Certificate) certificate;
-						String subject = x509.getSubjectDN().getName();
-						// TODO: save subject
-					}
-				}
-				// TODO: verify signature
-				*/
-
-				classDefs.add(classDef);
 			}
 		}
 
-		// calculate SHA-1 checksum of JAR file
-		String checksum = DigestUtils.sha1Hex(fileData);
-
-		// normalize JAR file name (optional)
-		if (jarFileNameNormalizer != null) {
-			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
-		}
-
-		// append JAR file name to class loader name
-		String jarFileName = fileName;
-		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
-
-		return JarFile.withName(fileName)
-				.withFileSize(fileData.length)
-				.withChecksum(checksum)
-				.withReleases(releases)
-				.withModuleInfo(moduleInfo)
-				.withClassDefs(classDefs)
-				.withResourceDefs(resourceDefs)
-				.build();
+		return moduleInfo;
 	}
 
 	private boolean isMultiRelease(JarInputStream stream) {

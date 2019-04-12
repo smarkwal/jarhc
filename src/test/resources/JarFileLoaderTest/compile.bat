@@ -9,3 +9,5 @@ jar -c -f b.jar -C build/b/java8 b --release 11 -C build/b/java11 b
 
 javac --release 9 --module-path b.jar -d build/c src/c.jar/c/C.java src/c.jar/module-info.java
 jar -c -f c.jar -C build/c c -C build/c module-info.class
+
+jar -c -f x.jar a.jar b.jar -C build/c c

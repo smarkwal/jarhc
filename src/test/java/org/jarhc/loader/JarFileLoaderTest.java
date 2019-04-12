@@ -126,4 +126,32 @@ class JarFileLoaderTest {
 
 	}
 
+	@Test
+	void test_load_jar_in_jar(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		String resource = "/JarFileLoaderTest/x.jar";
+		File file = TestUtils.getResourceAsFile(resource, tempDir);
+
+		// test
+		JarFile jarFile = jarFileLoader.load(file);
+
+		// assert
+		assertNotNull(jarFile);
+		assertEquals(file.getName(), jarFile.getFileName());
+		assertEquals(3, jarFile.getClassDefs().size());
+		assertEquals("a.A", jarFile.getClassDefs().get(0).getClassName());
+		assertEquals("b.B", jarFile.getClassDefs().get(1).getClassName());
+		assertEquals("c.C", jarFile.getClassDefs().get(2).getClassName());
+
+		assertFalse(jarFile.isMultiRelease());
+		Set<Integer> releases = jarFile.getReleases();
+		assertNotNull(releases);
+		assertEquals(0, releases.size());
+
+		assertFalse(jarFile.isModule());
+		assertNull(jarFile.getModuleInfo());
+
+	}
+
 }
