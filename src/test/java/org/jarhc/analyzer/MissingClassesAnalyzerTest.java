@@ -65,7 +65,7 @@ class MissingClassesAnalyzerTest {
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
-		assertEquals("c.C", values[1]);
+		assertEquals("a.A" + System.lineSeparator() + "\u2022 c.C (package not found)", values[1]);
 
 	}
 

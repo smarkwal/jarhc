@@ -23,6 +23,7 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.utils.JavaUtils;
 
 import java.io.*;
 import java.util.*;
@@ -46,6 +47,8 @@ public class JavaRuntimeMock extends JavaRuntime {
 
 	private final Map<String, ClassDef> classDefs = new HashMap<>();
 
+	private final Set<String> packageNames = new HashSet<>();
+
 	/**
 	 * Create a fake Java runtime using the class names loaded from the given resource.
 	 *
@@ -64,6 +67,8 @@ public class JavaRuntimeMock extends JavaRuntime {
 				ClassDef classDef = ClassDefUtils.read(dis);
 				String className = classDef.getClassName();
 				classDefs.put(className, classDef);
+				String packageName = JavaUtils.getPackageName(className);
+				packageNames.add(packageName);
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -88,6 +93,11 @@ public class JavaRuntimeMock extends JavaRuntime {
 	@Override
 	public String getJavaHome() {
 		return "/opt/java/jdk-1.8.0_144";
+	}
+
+	@Override
+	protected boolean findPackage(String packageName) {
+		return packageNames.contains(packageName);
 	}
 
 	@Override

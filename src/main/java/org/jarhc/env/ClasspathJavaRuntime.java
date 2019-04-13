@@ -50,6 +50,11 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
+	protected boolean findPackage(String packageName) {
+		return classpath.containsPackage(packageName);
+	}
+
+	@Override
 	protected Optional<ClassDef> findClassDef(String className) {
 		return classpath.getClassDef(className);
 	}

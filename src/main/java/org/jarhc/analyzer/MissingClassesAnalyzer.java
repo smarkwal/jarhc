@@ -23,6 +23,8 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -51,21 +53,25 @@ public class MissingClassesAnalyzer extends Analyzer {
 		for (JarFile jarFile : jarFiles) {
 
 			// find all missing classes
-			Set<String> missingClasses = collectMissingClasses(jarFile, classpath);
-			if (missingClasses.isEmpty()) continue;
+			Set<String> jarIssues = findMissingClasses(jarFile, classpath);
 
-			table.addRow(jarFile.getFileName(), joinLines(missingClasses));
+			if (!jarIssues.isEmpty()) {
+				String lines = joinLines(jarIssues).trim();
+				table.addRow(jarFile.getFileName(), lines);
+			}
 		}
 
 		return table;
 	}
 
-	private Set<String> collectMissingClasses(JarFile jarFile, ClassLoader classLoader) {
-		Set<String> missingClasses = Collections.synchronizedSet(new TreeSet<>());
+	private Set<String> findMissingClasses(JarFile jarFile, ClassLoader classLoader) {
+		Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
 
 		// for every class definition (in parallel) ...
 		List<ClassDef> classDefs = jarFile.getClassDefs();
 		classDefs.parallelStream().forEach(classDef -> {
+
+			Set<String> classIssues = new TreeSet<>();
 
 			// for every class reference ...
 			List<ClassRef> classRefs = classDef.getClassRefs();
@@ -75,12 +81,32 @@ public class MissingClassesAnalyzer extends Analyzer {
 				// check if class exists
 				boolean exists = classLoader.getClassDef(className).isPresent();
 				if (!exists) {
-					missingClasses.add(className);
+
+					String packageName = JavaUtils.getPackageName(className);
+					boolean found = classLoader.containsPackage(packageName);
+					if (!found) {
+						classIssues.add(className + " (package not found)");
+					} else {
+						classIssues.add(className + " (class not found)");
+					}
+
 				}
 			}
+
+			if (!classIssues.isEmpty()) {
+				String issue = createJarIssue(classDef, classIssues);
+				jarIssues.add(issue);
+			}
+
 		});
 
-		return missingClasses;
+		return jarIssues;
+	}
+
+	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
+		String className = classDef.getClassName();
+		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		return className + System.lineSeparator() + lines + System.lineSeparator();
 	}
 
 }

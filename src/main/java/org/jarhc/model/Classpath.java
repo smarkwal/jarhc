@@ -88,6 +88,11 @@ public class Classpath extends ClassLoader {
 		return jarFilesMap.get(fileName);
 	}
 
+	@Override
+	protected boolean findPackage(String packageName) {
+		return jarFiles.stream().anyMatch(f -> f.containsPackage(packageName));
+	}
+
 	/**
 	 * Get the class definitions with the given class name,
 	 * or <code>null</code> if the class is not found in any JAR file.

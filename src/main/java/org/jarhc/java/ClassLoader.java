@@ -41,6 +41,18 @@ public abstract class ClassLoader {
 		return parent;
 	}
 
+	public boolean containsPackage(String packageName) {
+		if (this.findPackage(packageName)) {
+			return true;
+		} else if (parent != null) {
+			return parent.containsPackage(packageName);
+		} else {
+			return false;
+		}
+	}
+
+	protected abstract boolean findPackage(String packageName);
+
 	public Optional<ClassDef> getClassDef(ClassRef classRef) {
 		String className = classRef.getClassName();
 		return getClassDef(className);

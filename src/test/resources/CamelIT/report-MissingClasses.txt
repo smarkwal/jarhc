@@ -6,216 +6,2346 @@ Missing Classes
 References to classes not found on the classpath.
 
 JAR file                | Missing classes
-------------------------+---------------------------------------------------------------------------
-camel-core-2.17.7.jar   | javax.annotation.concurrent.GuardedBy
-                        | javax.annotation.concurrent.Immutable
-                        | javax.annotation.concurrent.NotThreadSafe
-                        | javax.annotation.concurrent.ThreadSafe
-                        | javax.crypto.Cipher
-                        | javax.crypto.CipherInputStream
-                        | javax.crypto.CipherOutputStream
-                        | javax.crypto.KeyGenerator
-                        | javax.crypto.SecretKey
-                        | javax.crypto.spec.IvParameterSpec
-                        | org.osgi.framework.Bundle
-                        | org.osgi.framework.BundleActivator
-                        | org.osgi.framework.BundleContext
-                        | org.osgi.framework.BundleEvent
-                        | org.osgi.framework.BundleListener
-                        | org.osgi.framework.ServiceRegistration
-                        | org.osgi.framework.SynchronousBundleListener
-                        | org.osgi.framework.wiring.BundleCapability
-                        | org.osgi.framework.wiring.BundleWire
-                        | org.osgi.framework.wiring.BundleWiring
-                        | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-                        | org.slf4j.MDC
-                        | org.slf4j.Marker
-                        | org.slf4j.MarkerFactory
-camel-jdbc-2.17.7.jar   | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-camel-jms-2.17.7.jar    | javax.jms.BytesMessage
-                        | javax.jms.Connection
-                        | javax.jms.ConnectionFactory
-                        | javax.jms.Destination
-                        | javax.jms.ExceptionListener
-                        | javax.jms.JMSException
-                        | javax.jms.MapMessage
-                        | javax.jms.Message
-                        | javax.jms.MessageFormatException
-                        | javax.jms.MessageProducer
-                        | javax.jms.ObjectMessage
-                        | javax.jms.Queue
-                        | javax.jms.QueueBrowser
-                        | javax.jms.Session
-                        | javax.jms.StreamMessage
-                        | javax.jms.TemporaryQueue
-                        | javax.jms.TemporaryTopic
-                        | javax.jms.TextMessage
-                        | javax.jms.Topic
-                        | org.apache.commons.logging.Log
-                        | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-                        | org.springframework.beans.BeansException
-                        | org.springframework.context.ApplicationContext
-                        | org.springframework.context.ApplicationContextAware
-                        | org.springframework.core.task.SimpleAsyncTaskExecutor
-                        | org.springframework.core.task.TaskExecutor
-                        | org.springframework.jms.JmsException
-                        | org.springframework.jms.connection.JmsTransactionManager
-                        | org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter
-                        | org.springframework.jms.core.BrowserCallback
-                        | org.springframework.jms.core.JmsOperations
-                        | org.springframework.jms.core.JmsTemplate
-                        | org.springframework.jms.core.MessageCreator
-                        | org.springframework.jms.core.SessionCallback
-                        | org.springframework.jms.listener.AbstractMessageListenerContainer
-                        | org.springframework.jms.listener.DefaultMessageListenerContainer
-                        | org.springframework.jms.listener.SessionAwareMessageListener
-                        | org.springframework.jms.listener.SimpleMessageListenerContainer
-                        | org.springframework.jms.support.JmsUtils
-                        | org.springframework.jms.support.converter.MessageConverter
-                        | org.springframework.jms.support.destination.DestinationResolver
-                        | org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
-                        | org.springframework.transaction.PlatformTransactionManager
-                        | org.springframework.util.Assert
-                        | org.springframework.util.ErrorHandler
-camel-jmx-2.17.7.jar    | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-camel-jxpath-2.17.7.jar | org.apache.commons.jxpath.CompiledExpression
-                        | org.apache.commons.jxpath.JXPathContext
-                        | org.apache.commons.jxpath.JXPathException
-camel-ldap-2.17.7.jar   | org.slf4j.Logger
-camel-mail-2.17.7.jar   | com.sun.mail.imap.IMAPFolder
-                        | com.sun.mail.imap.IMAPStore
-                        | com.sun.mail.imap.SortTerm
-                        | javax.mail.Address
-                        | javax.mail.Authenticator
-                        | javax.mail.BodyPart
-                        | javax.mail.Flags
-                        | javax.mail.Flags$Flag
-                        | javax.mail.Folder
-                        | javax.mail.FolderNotFoundException
-                        | javax.mail.Header
-                        | javax.mail.Message
-                        | javax.mail.Message$RecipientType
-                        | javax.mail.MessagingException
-                        | javax.mail.Multipart
-                        | javax.mail.NoSuchProviderException
-                        | javax.mail.Part
-                        | javax.mail.PasswordAuthentication
-                        | javax.mail.Session
-                        | javax.mail.Store
-                        | javax.mail.Transport
-                        | javax.mail.internet.AddressException
-                        | javax.mail.internet.ContentType
-                        | javax.mail.internet.InternetAddress
-                        | javax.mail.internet.InternetHeaders
-                        | javax.mail.internet.MimeBodyPart
-                        | javax.mail.internet.MimeMessage
-                        | javax.mail.internet.MimeMultipart
-                        | javax.mail.internet.MimeUtility
-                        | javax.mail.internet.ParseException
-                        | javax.mail.search.AndTerm
-                        | javax.mail.search.BodyTerm
-                        | javax.mail.search.ComparisonTerm
-                        | javax.mail.search.FlagTerm
-                        | javax.mail.search.FromStringTerm
-                        | javax.mail.search.HeaderTerm
-                        | javax.mail.search.NotTerm
-                        | javax.mail.search.OrTerm
-                        | javax.mail.search.ReceivedDateTerm
-                        | javax.mail.search.RecipientStringTerm
-                        | javax.mail.search.SearchTerm
-                        | javax.mail.search.SentDateTerm
-                        | javax.mail.search.SubjectTerm
-                        | javax.mail.util.ByteArrayDataSource
-                        | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-camel-soap-2.17.7.jar   | org.apache.camel.converter.jaxb.JaxbDataFormat
-                        | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-camel-spring-2.17.7.jar | org.osgi.framework.Bundle
-                        | org.osgi.framework.BundleActivator
-                        | org.osgi.framework.BundleContext
-                        | org.osgi.framework.InvalidSyntaxException
-                        | org.osgi.framework.ServiceReference
-                        | org.osgi.framework.ServiceRegistration
-                        | org.osgi.framework.Version
-                        | org.osgi.service.event.Event
-                        | org.osgi.service.event.EventAdmin
-                        | org.osgi.util.tracker.ServiceTracker
-                        | org.osgi.util.tracker.ServiceTrackerCustomizer
-                        | org.slf4j.Logger
-                        | org.slf4j.LoggerFactory
-                        | org.springframework.beans.BeanInstantiationException
-                        | org.springframework.beans.BeansException
-                        | org.springframework.beans.MutablePropertyValues
-                        | org.springframework.beans.factory.BeanCreationException
-                        | org.springframework.beans.factory.BeanDefinitionStoreException
-                        | org.springframework.beans.factory.BeanFactory
-                        | org.springframework.beans.factory.BeanFactoryUtils
-                        | org.springframework.beans.factory.BeanNotOfRequiredTypeException
-                        | org.springframework.beans.factory.DisposableBean
-                        | org.springframework.beans.factory.FactoryBean
-                        | org.springframework.beans.factory.InitializingBean
-                        | org.springframework.beans.factory.ListableBeanFactory
-                        | org.springframework.beans.factory.NoSuchBeanDefinitionException
-                        | org.springframework.beans.factory.config.BeanDefinition
-                        | org.springframework.beans.factory.config.BeanPostProcessor
-                        | org.springframework.beans.factory.config.ConfigurableListableBeanFactory
-                        | org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
-                        | org.springframework.beans.factory.config.RuntimeBeanReference
-                        | org.springframework.beans.factory.parsing.BeanComponentDefinition
-                        | org.springframework.beans.factory.parsing.ComponentDefinition
-                        | org.springframework.beans.factory.support.BeanDefinitionBuilder
-                        | org.springframework.beans.factory.support.BeanDefinitionRegistry
-                        | org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser
-                        | org.springframework.beans.factory.xml.BeanDefinitionParser
-                        | org.springframework.beans.factory.xml.NamespaceHandlerSupport
-                        | org.springframework.beans.factory.xml.ParserContext
-                        | org.springframework.cache.Cache
-                        | org.springframework.cache.Cache$ValueWrapper
-                        | org.springframework.cache.CacheManager
-                        | org.springframework.context.ApplicationContext
-                        | org.springframework.context.ApplicationContextAware
-                        | org.springframework.context.ApplicationEvent
-                        | org.springframework.context.ApplicationListener
-                        | org.springframework.context.ConfigurableApplicationContext
-                        | org.springframework.context.event.ContextClosedEvent
-                        | org.springframework.context.event.ContextRefreshedEvent
-                        | org.springframework.context.event.ContextStoppedEvent
-                        | org.springframework.context.expression.BeanFactoryResolver
-                        | org.springframework.context.support.AbstractApplicationContext
-                        | org.springframework.context.support.ClassPathXmlApplicationContext
-                        | org.springframework.context.support.FileSystemXmlApplicationContext
-                        | org.springframework.core.Constants
-                        | org.springframework.core.Conventions
-                        | org.springframework.core.io.Resource
-                        | org.springframework.expression.BeanResolver
-                        | org.springframework.expression.EvaluationContext
-                        | org.springframework.expression.Expression
-                        | org.springframework.expression.ParserContext
-                        | org.springframework.expression.common.TemplateParserContext
-                        | org.springframework.expression.spel.standard.SpelExpressionParser
-                        | org.springframework.expression.spel.support.StandardEvaluationContext
-                        | org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource
-                        | org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler
-                        | org.springframework.jmx.export.metadata.JmxAttributeSource
-                        | org.springframework.osgi.context.BundleContextAware
-                        | org.springframework.remoting.support.RemoteExporter
-                        | org.springframework.remoting.support.UrlBasedRemoteAccessor
-                        | org.springframework.scheduling.Trigger
-                        | org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
-                        | org.springframework.scheduling.support.CronTrigger
-                        | org.springframework.transaction.PlatformTransactionManager
-                        | org.springframework.transaction.TransactionStatus
-                        | org.springframework.transaction.support.TransactionCallback
-                        | org.springframework.transaction.support.TransactionCallbackWithoutResult
-                        | org.springframework.transaction.support.TransactionTemplate
-                        | org.springframework.util.Assert
-                        | org.springframework.util.PropertyPlaceholderHelper
-                        | org.springframework.util.PropertyPlaceholderHelper$PlaceholderResolver
-                        | org.springframework.util.ReflectionUtils
-                        | org.springframework.util.StringUtils
+------------------------+----------------------------------------------------------------------------------------------------------
+camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$3
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$4
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$5
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.AdviceWithTasks$6
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.BuilderSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.DeadLetterChannelBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.DefaultErrorHandlerBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.LoggingErrorHandlerBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.NotifyBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.NotifyBuilder$CompoundEventPredicate
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.builder.RouteBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.xml.MessageVariableResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.xml.XPathBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.xml.XsltBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.xml.XsltErrorListener
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.builder.xml.XsltUriResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap
+                        | • javax.annotation.concurrent.GuardedBy (package not found)
+                        | • javax.annotation.concurrent.ThreadSafe (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$AddTask
+                        | • javax.annotation.concurrent.GuardedBy (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$Node
+                        | • javax.annotation.concurrent.GuardedBy (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$RemovalTask
+                        | • javax.annotation.concurrent.GuardedBy (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$UpdateTask
+                        | • javax.annotation.concurrent.GuardedBy (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$WeightedValue
+                        | • javax.annotation.concurrent.Immutable (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.EntryWeigher
+                        | • javax.annotation.concurrent.ThreadSafe (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.EvictionListener
+                        | • javax.annotation.concurrent.ThreadSafe (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.LinkedDeque
+                        | • javax.annotation.concurrent.NotThreadSafe (package not found)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.Weigher
+                        | • javax.annotation.concurrent.ThreadSafe (package not found)
+                        |
+                        | org.apache.camel.component.ResourceEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.AbstractCamelInvocationHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.AbstractCamelInvocationHandler$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.bean.BeanComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.BeanInfo
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.BeanInvocation
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.BeanProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.MethodInfo
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.bean.MethodInfo$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.bean.MethodInfo$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.dataset.DataSetEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.direct.DirectBlockingProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.direct.DirectProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.directvm.DirectVmBlockingProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.directvm.DirectVmProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.directvm.DirectVmProducer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.file.AntPathMatcherFileFilter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.FileConsumer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.file.FileEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.file.FileOperations
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFile
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileOnCompletion
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.GenericFileProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.FileChangedExclusiveReadLockStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.FileIdempotentRepositoryReadLockStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.FileLockExclusiveReadLockStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.GenericFileDeleteProcessStrategy
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.GenericFileProcessStrategySupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.GenericFileRenameExclusiveReadLockStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.file.strategy.MarkerFileExclusiveReadLockStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.language.LanguageProducer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.log.LogComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.log.LogEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.mock.MockEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mock.TimeClause
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.properties.DefaultPropertiesParser
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.properties.PropertiesComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.scheduler.SchedulerConsumer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaProducer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.seda.SedaProducer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.test.TestEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.test.TestEndpoint$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.timer.TimerConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.timer.TimerConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.xslt.XsltComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.xslt.XsltEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.xslt.XsltHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.IOConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.IOConverter$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.converter.NIOConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.TimePatternConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.jaxp.StaxConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.jaxp.XmlConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.jaxp.XmlErrorListener
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.stream.CipherPair
+                        | • javax.crypto.Cipher (package not found)
+                        | • javax.crypto.KeyGenerator (package not found)
+                        | • javax.crypto.SecretKey (package not found)
+                        | • javax.crypto.spec.IvParameterSpec (package not found)
+                        |
+                        | org.apache.camel.converter.stream.FileInputStreamCache
+                        | • javax.crypto.Cipher (package not found)
+                        |
+                        | org.apache.camel.converter.stream.FileInputStreamCache$1
+                        | • javax.crypto.Cipher (package not found)
+                        | • javax.crypto.CipherInputStream (package not found)
+                        |
+                        | org.apache.camel.converter.stream.FileInputStreamCache$TempFileManager
+                        | • javax.crypto.Cipher (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.converter.stream.FileInputStreamCache$TempFileManager$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.converter.stream.FileInputStreamCache$TempFileManager$2
+                        | • javax.crypto.Cipher (package not found)
+                        | • javax.crypto.CipherOutputStream (package not found)
+                        |
+                        | org.apache.camel.impl.ActiveMQUuidGenerator
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.CamelContextTrackerRegistry
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.CamelPostProcessorHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ConfigurationHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ConsumerCache
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultAsyncProcessorAwaitManager
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultCamelBeanPostProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultCamelContext
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultComponentResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultConsumerTemplate
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultDebugger
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultExchangeHolder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultExecutorServiceManager
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultFactoryFinder
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultInflightRepository
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultLanguageResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultPackageScanClassResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultPollingConsumerPollStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultRuntimeEndpointRegistry
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultScheduledPollConsumer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultScheduledPollConsumerScheduler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultServicePool
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultShutdownStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultShutdownStrategy$ShutdownTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultStreamCachingStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultStreamCachingStrategy$FixedThresholdSpoolRule
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultStreamCachingStrategy$UsedHeapMemorySpoolRule
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.DefaultUnitOfWork
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.EventDrivenPollingConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.InterceptSendToEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.InterceptSendToEndpoint$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.InterceptSendToMockEndpointStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.LimitedPollingConsumerPollStrategy
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.MDCUnitOfWork
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.slf4j.MDC (package not found)
+                        |
+                        | org.apache.camel.impl.MDCUnitOfWork$MDCCallback
+                        | • org.slf4j.MDC (package not found)
+                        |
+                        | org.apache.camel.impl.PollingConsumerSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ProducerCache
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ProducerCache$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.ProducerCache$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.RouteService
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ScheduledBatchPollingConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ScheduledPollConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.ThrottlingInflightRoutePolicy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.UriComponentConfiguration
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.UriEndpointComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.UriEndpointComponent$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.UriEndpointConfiguration
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.WebSpherePackageScanClassResolver
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.converter.AnnotationTypeConverterLoader
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.converter.BaseTypeConverterRegistry
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.converter.CorePackageScanClassResolver
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.converter.DefaultTypeConverter
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.converter.FutureTypeConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.converter.PropertyEditorTypeConverter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleActivator (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.BundleEvent (package not found)
+                        | • org.osgi.framework.wiring.BundleCapability (package not found)
+                        | • org.osgi.framework.wiring.BundleWire (package not found)
+                        | • org.osgi.framework.wiring.BundleWiring (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BaseResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BaseService
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.ServiceRegistration (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleComponentResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleDataFormatResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleLanguageResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleMetaLanguageResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleTypeConverterLoader
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.Activator$BundleTypeConverterLoader$Loader
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.tracker.BundleTracker
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.BundleEvent (package not found)
+                        | • org.osgi.framework.BundleListener (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.tracker.BundleTracker$Tracked
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleEvent (package not found)
+                        | • org.osgi.framework.SynchronousBundleListener (package not found)
+                        |
+                        | org.apache.camel.impl.osgi.tracker.BundleTrackerCustomizer
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleEvent (package not found)
+                        |
+                        | org.apache.camel.main.MainLifecycleStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.main.MainSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.main.MainSupport$HangupInterceptor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementAgent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementAgent$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementLifecycleStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementLifecycleStrategy$TimerListenerManagerStartupListener
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementMBeanAssembler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.DefaultManagementStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.InstrumentationProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.JmxNotificationEventNotifier
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.LoggingEventNotifier
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.MBeanInfoAssembler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.ManagedManagementStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.ManagementStrategyFactory
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.MixinRequiredModelMBean
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.PublishEventNotifier
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.management.mbean.ManagedCamelContext
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.management.mbean.ManagedLog
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.Marker (package not found)
+                        |
+                        | org.apache.camel.management.mbean.ManagedRoute
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.model.AggregateDefinition
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.model.LogDefinition
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.model.ProcessorDefinition
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.model.ProcessorDefinitionHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.model.ProcessorDefinitionHelper$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.model.RouteDefinition
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.model.ThreadsDefinition
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.model.TransactedDefinition
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.BatchProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.BatchProcessor$BatchSender
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.CamelInternalProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.CamelInternalProcessor$DelayerAdvice
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.CamelInternalProcessor$InstrumentationAdvice
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.CamelInternalProcessor$RoutePolicyAdvice
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.CamelLogger
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.CatchProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ChoiceProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.DelayProcessorSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.DelayProcessorSupport$ProcessCall
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.DelayProcessorSupport$ProcessCall$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.Enricher
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ErrorHandlerSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.FatalFallbackErrorHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.FilterProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.FinallyProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.FinallyProcessor$FinallyAsyncCallback
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.LogProcessor
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.LoopProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.LoopProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.MulticastProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.MulticastProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.MulticastProcessor$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.MulticastProcessor$AggregateOnTheFlyTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.MulticastProcessor$ParallelAggregateTimeoutTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor$OnCompletionSynchronizationAfterConsumer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor$OnCompletionSynchronizationAfterConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor$OnCompletionSynchronizationAfterConsumer$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor$OnCompletionSynchronizationBeforeConsumer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.OnCompletionProcessor$OnCompletionSynchronizationBeforeConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.Pipeline
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.Pipeline$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.PipelineHelper
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.PollEnricher
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.RecipientList
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.RecipientListProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.RecipientListProcessor$RecipientProcessorExchangePair
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryErrorHandler
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryErrorHandler$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryErrorHandler$AsyncRedeliveryTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryErrorHandler$AsyncRedeliveryTask$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryErrorHandler$AsyncRedeliveryTask$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.RedeliveryPolicy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.RoutingSlip
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.RoutingSlip$2$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.SamplingThrottler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.SendDynamicProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.SendDynamicProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.SendProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.SendProcessor$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.StreamResequencer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ThreadsProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ThreadsProcessor$ProcessCall
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.Throttler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ThroughputLogger
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.ThroughputLogger$ScheduledLogTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.TryProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.TryProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.WireTapProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.WireTapProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor$AggregateOnCompletion
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor$AggregationIntervalTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor$AggregationTimeoutMap
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregateProcessor$RecoverTask
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.aggregate.AggregationStrategyBeanInfo
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.exceptionpolicy.DefaultExceptionPolicyStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.idempotent.FileIdempotentRepository
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.idempotent.IdempotentConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.idempotent.IdempotentOnCompletion
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.interceptor.BacklogDebugger
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.interceptor.BacklogTracer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.interceptor.DefaultChannel
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.interceptor.DefaultTraceEventHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.interceptor.TraceInterceptor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.loadbalancer.CircuitBreakerLoadBalancer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.loadbalancer.FailOverLoadBalancer
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.loadbalancer.FailOverLoadBalancer$FailOverAsyncCallback
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.processor.loadbalancer.LoadBalancerSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.validation.DefaultValidationErrorHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.validation.PredicateValidatingProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.validation.SchemaReader
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.processor.validation.ValidatingProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.spi.Container$Instance
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.DefaultTimeoutMap
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.EventNotifierSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.LoggingExceptionHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.RoutePolicySupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.ServiceSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.TimerListenerManager
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.support.XMLTokenExpressionIterator$XMLTokenIterator
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.AsyncProcessorHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.CamelContextHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.CamelLogger
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.slf4j.Marker (package not found)
+                        | • org.slf4j.MarkerFactory (package not found)
+                        |
+                        | org.apache.camel.util.EndpointHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.EventHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.FileUtil
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.IOHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.IntrospectionSupport
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.LRUCache
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.ObjectHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.PackageHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.PlatformHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.ResourceHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.ServiceHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.UnitOfWorkHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.AbstractApiConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.AbstractApiEndpoint
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.AbstractApiProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.AbstractApiProducer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.component.ApiConsumerHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.ApiMethodHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.ApiMethodParser
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.component.ApiMethodParser$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.component.ApiMethodPropertiesHelper
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.concurrent.CamelThreadFactory
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.concurrent.SizedScheduledExecutorService
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$4
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$5
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$SSLContextDecorator
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$SSLContextSpiDecorator
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$SSLServerSocketFactoryDecorator
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.BaseSSLContextParameters$SSLSocketFactoryDecorator
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.JsseParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.KeyManagersParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.KeyStoreParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SSLContextClientParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SSLContextParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SSLContextServerParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SSLContextServerParameters$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SSLContextServerParameters$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.util.jsse.SecureRandomParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.jsse.TrustManagersParameters
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.toolbox.FlexibleAggregationStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.util.toolbox.XsltAggregationStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+camel-jdbc-2.17.7.jar   | org.apache.camel.component.jdbc.DefaultJdbcPrepareStatementStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jdbc.JdbcProducer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jdbc.ResultSetIterator
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+camel-jms-2.17.7.jar    | org.apache.camel.component.jms.DefaultJmsMessageListenerContainer
+                        | • org.apache.commons.logging.Log (package not found)
+                        | • org.springframework.core.task.SimpleAsyncTaskExecutor (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.JmsException (package not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
+                        | • org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor (package not found)
+                        |
+                        | org.apache.camel.component.jms.DefaultQueueBrowseStrategy
+                        | • org.springframework.jms.core.BrowserCallback (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        |
+                        | org.apache.camel.component.jms.DefaultQueueBrowseStrategy$1
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.QueueBrowser (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.BrowserCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.DefaultQueueBrowseStrategy$2
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.QueueBrowser (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.BrowserCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.DefaultSpringErrorHandler
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.DestinationEndpoint
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.EndpointMessageListener
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.listener.SessionAwareMessageListener (package not found)
+                        |
+                        | org.apache.camel.component.jms.EndpointMessageListener$1
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        |
+                        | org.apache.camel.component.jms.EndpointMessageListener$2
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        |
+                        | org.apache.camel.component.jms.EndpointMessageListener$EndpointMessageListenerAsyncCallback
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.InOnlyMessageSentCallback
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsBinding
+                        | • javax.jms.BytesMessage (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.MapMessage (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.MessageFormatException (package not found)
+                        | • javax.jms.ObjectMessage (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.StreamMessage (package not found)
+                        | • javax.jms.TextMessage (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.jms.support.converter.MessageConverter (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsComponent
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.connection.JmsTransactionManager (package not found)
+                        | • org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.support.converter.MessageConverter (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.connection.JmsTransactionManager (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.core.JmsTemplate (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.SimpleMessageListenerContainer (package not found)
+                        | • org.springframework.jms.support.converter.MessageConverter (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$1
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.MessageProducer (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.JmsException (package not found)
+                        | • org.springframework.jms.core.JmsTemplate (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        | • org.springframework.jms.support.JmsUtils (package not found)
+                        | • org.springframework.util.Assert (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate$1
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate$2
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate$3
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate$4
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConsumer
+                        | • javax.jms.Connection (package not found)
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        | • org.springframework.jms.support.JmsUtils (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsConsumer$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsEndpoint
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Queue (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.TemporaryQueue (package not found)
+                        | • javax.jms.TemporaryTopic (package not found)
+                        | • javax.jms.Topic (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.SimpleMessageListenerContainer (package not found)
+                        | • org.springframework.jms.support.converter.MessageConverter (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsMessage
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Queue (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.Topic (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsMessageHelper
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsPollingConsumer
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.core.JmsTemplate (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsProducer
+                        | • javax.jms.Connection (package not found)
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Queue (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.Topic (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        | • org.springframework.jms.support.JmsUtils (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsProducer$1
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsProducer$2
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.core.MessageCreator (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsProviderMetadata
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsProviderMetadata$1
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.TemporaryQueue (package not found)
+                        | • javax.jms.TemporaryTopic (package not found)
+                        | • org.springframework.jms.core.SessionCallback (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsQueueEndpoint
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Queue (package not found)
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsTemporaryQueueEndpoint
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.TemporaryQueue (package not found)
+                        |
+                        | org.apache.camel.component.jms.JmsTemporaryTopicEndpoint
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.TemporaryTopic (package not found)
+                        |
+                        | org.apache.camel.component.jms.MessageCreatedStrategy
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.MessageListenerContainerFactory
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        |
+                        | org.apache.camel.component.jms.MessageSentCallback
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.QueueBrowseStrategy
+                        | • org.springframework.jms.core.JmsOperations (package not found)
+                        |
+                        | org.apache.camel.component.jms.SimpleJmsMessageListenerContainer
+                        | • org.springframework.jms.listener.SimpleMessageListenerContainer (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.CorrelationTimeoutMap
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.CorrelationTimeoutMap$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.MessageSelectorCreator
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.QueueReplyManager
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.QueueReplyManager$DestinationResolverDelegate
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.ReplyHandler
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.ReplyHolder
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.ReplyManager
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • org.springframework.jms.listener.SessionAwareMessageListener (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.ReplyManagerSupport
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.SharedQueueMessageListenerContainer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.TemporaryQueueReplyHandler
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.TemporaryQueueReplyManager
+                        | • javax.jms.ConnectionFactory (package not found)
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.core.task.TaskExecutor (package not found)
+                        | • org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
+                        | • org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        | • org.springframework.util.ErrorHandler (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.TemporaryQueueReplyManager$TemporaryReplyQueueDestinationResolver
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • javax.jms.Session (package not found)
+                        | • javax.jms.TemporaryQueue (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.jms.support.destination.DestinationResolver (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.TemporaryQueueReplyManager$TemporaryReplyQueueExceptionListener
+                        | • javax.jms.ExceptionListener (package not found)
+                        | • javax.jms.JMSException (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jms.reply.UseMessageIdAsCorrelationIdMessageSentCallback
+                        | • javax.jms.Destination (package not found)
+                        | • javax.jms.Message (package not found)
+                        | • javax.jms.Session (package not found)
+camel-jmx-2.17.7.jar    | org.apache.camel.component.jmx.JMXConsumer
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.jmx.JMXConsumer$1
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jmx.JMXConsumer$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jmx.JMXConsumer$ConnectionNotificationListener
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.component.jmx.NotificationXmlFormatter
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+camel-jxpath-2.17.7.jar | org.apache.camel.language.jxpath.JXPathExpression
+                        | • org.apache.commons.jxpath.CompiledExpression (package not found)
+                        | • org.apache.commons.jxpath.JXPathContext (package not found)
+                        | • org.apache.commons.jxpath.JXPathException (package not found)
+camel-ldap-2.17.7.jar   | org.apache.camel.component.ldap.LdapProducer
+                        | • org.slf4j.Logger (package not found)
+camel-mail-2.17.7.jar   | org.apache.camel.component.mail.DefaultAuthenticator
+                        | • javax.mail.Authenticator (package not found)
+                        | • javax.mail.PasswordAuthentication (package not found)
+                        |
+                        | org.apache.camel.component.mail.DefaultJavaMailSender
+                        | • javax.mail.Address (package not found)
+                        | • javax.mail.Authenticator (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.NoSuchProviderException (package not found)
+                        | • javax.mail.Session (package not found)
+                        | • javax.mail.Transport (package not found)
+                        | • javax.mail.internet.MimeMessage (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.DefaultMailUidGenerator
+                        | • javax.mail.Header (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.DummySSLSocketFactory
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.DummyTrustManager
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.JavaMailSender
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Session (package not found)
+                        | • javax.mail.internet.MimeMessage (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailBinding
+                        | • javax.mail.Address (package not found)
+                        | • javax.mail.BodyPart (package not found)
+                        | • javax.mail.Header (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Multipart (package not found)
+                        | • javax.mail.Part (package not found)
+                        | • javax.mail.internet.AddressException (package not found)
+                        | • javax.mail.internet.InternetAddress (package not found)
+                        | • javax.mail.internet.MimeBodyPart (package not found)
+                        | • javax.mail.internet.MimeMessage (package not found)
+                        | • javax.mail.internet.MimeMultipart (package not found)
+                        | • javax.mail.util.ByteArrayDataSource (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailBoxPostProcessAction
+                        | • javax.mail.Folder (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailComponent
+                        | • javax.mail.search.SearchTerm (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailConfiguration
+                        | • javax.mail.Authenticator (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.Session (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailConsumer
+                        | • com.sun.mail.imap.IMAPFolder (package not found)
+                        | • com.sun.mail.imap.IMAPStore (package not found)
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        | • javax.mail.Flags (package not found)
+                        | • javax.mail.Flags$Flag (package not found)
+                        | • javax.mail.Folder (package not found)
+                        | • javax.mail.FolderNotFoundException (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Session (package not found)
+                        | • javax.mail.Store (package not found)
+                        | • javax.mail.search.SearchTerm (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailConsumer$1
+                        | • javax.mail.Message (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailConverters
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        | • javax.mail.BodyPart (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Multipart (package not found)
+                        | • javax.mail.internet.MimeMultipart (package not found)
+                        | • javax.mail.search.SearchTerm (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailEndpoint
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.search.SearchTerm (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailMessage
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailProducer
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Session (package not found)
+                        | • javax.mail.internet.MimeMessage (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailSorter
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        | • javax.mail.Address (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.internet.InternetAddress (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailSorter$1
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailSorter$SortTermWithDescending
+                        | • com.sun.mail.imap.SortTerm (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailUidGenerator
+                        | • javax.mail.Message (package not found)
+                        |
+                        | org.apache.camel.component.mail.MailUtils
+                        | • javax.mail.Address (package not found)
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        |
+                        | org.apache.camel.component.mail.NowSearchTerm
+                        | • javax.mail.Message (package not found)
+                        | • javax.mail.search.ComparisonTerm (package not found)
+                        |
+                        | org.apache.camel.component.mail.SearchTermBuilder
+                        | • javax.mail.Flags (package not found)
+                        | • javax.mail.Flags$Flag (package not found)
+                        | • javax.mail.Message$RecipientType (package not found)
+                        | • javax.mail.search.AndTerm (package not found)
+                        | • javax.mail.search.BodyTerm (package not found)
+                        | • javax.mail.search.FlagTerm (package not found)
+                        | • javax.mail.search.FromStringTerm (package not found)
+                        | • javax.mail.search.HeaderTerm (package not found)
+                        | • javax.mail.search.NotTerm (package not found)
+                        | • javax.mail.search.OrTerm (package not found)
+                        | • javax.mail.search.ReceivedDateTerm (package not found)
+                        | • javax.mail.search.RecipientStringTerm (package not found)
+                        | • javax.mail.search.SearchTerm (package not found)
+                        | • javax.mail.search.SentDateTerm (package not found)
+                        | • javax.mail.search.SubjectTerm (package not found)
+                        |
+                        | org.apache.camel.dataformat.mime.multipart.MimeMultipartDataFormat
+                        | • javax.mail.BodyPart (package not found)
+                        | • javax.mail.Header (package not found)
+                        | • javax.mail.MessagingException (package not found)
+                        | • javax.mail.Multipart (package not found)
+                        | • javax.mail.Part (package not found)
+                        | • javax.mail.Session (package not found)
+                        | • javax.mail.internet.ContentType (package not found)
+                        | • javax.mail.internet.InternetHeaders (package not found)
+                        | • javax.mail.internet.MimeBodyPart (package not found)
+                        | • javax.mail.internet.MimeMessage (package not found)
+                        | • javax.mail.internet.MimeMultipart (package not found)
+                        | • javax.mail.internet.MimeUtility (package not found)
+                        | • javax.mail.internet.ParseException (package not found)
+                        | • javax.mail.util.ByteArrayDataSource (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+camel-soap-2.17.7.jar   | org.apache.camel.dataformat.soap.SoapJaxbDataFormat
+                        | • org.apache.camel.converter.jaxb.JaxbDataFormat (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.dataformat.soap.name.ServiceInterfaceStrategy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+camel-spring-2.17.7.jar | org.apache.camel.component.event.CamelEvent
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        |
+                        | org.apache.camel.component.event.EventComponent
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        | • org.springframework.context.ConfigurableApplicationContext (package not found)
+                        |
+                        | org.apache.camel.component.event.EventEndpoint
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        |
+                        | org.apache.camel.component.event.EventEndpoint$1
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiCamelContextHelper
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiCamelContextNameStrategy
+                        | • org.osgi.framework.BundleContext (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiCamelContextPublisher
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.InvalidSyntaxException (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.osgi.framework.ServiceRegistration (package not found)
+                        | • org.osgi.framework.Version (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiClassResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiComponentResolver
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.InvalidSyntaxException (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiDataFormatResolver
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.InvalidSyntaxException (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiDefaultCamelContext
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiEventAdminNotifier
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.Version (package not found)
+                        | • org.osgi.service.event.Event (package not found)
+                        | • org.osgi.service.event.EventAdmin (package not found)
+                        | • org.osgi.util.tracker.ServiceTracker (package not found)
+                        | • org.osgi.util.tracker.ServiceTrackerCustomizer (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiFactoryFinder
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiFactoryFinder$BundleEntry
+                        | • org.osgi.framework.Bundle (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiFactoryFinderResolver
+                        | • org.osgi.framework.BundleContext (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiLanguageResolver
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.InvalidSyntaxException (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiManagementNameStrategy
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.Version (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiNamingHelper
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.InvalidSyntaxException (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiPackageScanClassResolver
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiServiceRegistry
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        |
+                        | org.apache.camel.core.osgi.OsgiTypeConverter
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.osgi.framework.ServiceReference (package not found)
+                        | • org.osgi.util.tracker.ServiceTracker (package not found)
+                        | • org.osgi.util.tracker.ServiceTrackerCustomizer (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.osgi.utils.BundleContextUtils
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        |
+                        | org.apache.camel.core.osgi.utils.BundleDelegatingClassLoader
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.core.xml.AbstractCamelContextFactoryBean
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        |
+                        | org.apache.camel.language.spel.SpelExpression
+                        | • org.springframework.beans.factory.BeanFactory (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.expression.BeanFactoryResolver (package not found)
+                        | • org.springframework.expression.BeanResolver (package not found)
+                        | • org.springframework.expression.EvaluationContext (package not found)
+                        | • org.springframework.expression.Expression (package not found)
+                        | • org.springframework.expression.ParserContext (package not found)
+                        | • org.springframework.expression.common.TemplateParserContext (package not found)
+                        | • org.springframework.expression.spel.standard.SpelExpressionParser (package not found)
+                        | • org.springframework.expression.spel.support.StandardEvaluationContext (package not found)
+                        |
+                        | org.apache.camel.osgi.Activator
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleActivator (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        |
+                        | org.apache.camel.osgi.CamelContextFactory
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.osgi.context.BundleContextAware (package not found)
+                        |
+                        | org.apache.camel.osgi.CamelContextFactoryBean
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.osgi.context.BundleContextAware (package not found)
+                        |
+                        | org.apache.camel.osgi.CamelNamespaceHandler
+                        | • org.springframework.beans.factory.xml.BeanDefinitionParser (package not found)
+                        |
+                        | org.apache.camel.osgi.OsgiSpringCamelContext
+                        | • org.osgi.framework.Bundle (package not found)
+                        | • org.osgi.framework.BundleContext (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.osgi.SpringCamelContextFactory
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelBeanPostProcessor
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.config.BeanPostProcessor (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelBeanPostProcessor$1
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.CamelBeanPostProcessor$1$1
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.beans.BeanInstantiationException (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.CamelConsumerTemplateFactoryBean
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelContextFactoryBean
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        | • org.springframework.beans.factory.config.BeanPostProcessor (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        | • org.springframework.context.ApplicationListener (package not found)
+                        | • org.springframework.context.event.ContextRefreshedEvent (package not found)
+                        |
+                        | org.apache.camel.spring.CamelEndpointFactoryBean
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelProducerTemplateFactoryBean
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelRedeliveryPolicyFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.CamelRestContextFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        |
+                        | org.apache.camel.spring.CamelRouteContextFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        |
+                        | org.apache.camel.spring.CamelThreadPoolFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.spring.ContextScanRouteBuilderFinder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.GenericBeansException
+                        | • org.springframework.beans.BeansException (package not found)
+                        |
+                        | org.apache.camel.spring.Main
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.support.AbstractApplicationContext (package not found)
+                        | • org.springframework.context.support.ClassPathXmlApplicationContext (package not found)
+                        | • org.springframework.context.support.FileSystemXmlApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.PackageScanRouteBuilderFinder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.factory.config.BeanPostProcessor (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.SpringCamelContext
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.context.ApplicationEvent (package not found)
+                        | • org.springframework.context.ConfigurableApplicationContext (package not found)
+                        | • org.springframework.context.event.ContextClosedEvent (package not found)
+                        | • org.springframework.context.event.ContextRefreshedEvent (package not found)
+                        | • org.springframework.context.event.ContextStoppedEvent (package not found)
+                        | • org.springframework.context.support.ClassPathXmlApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.SpringRouteBuilder
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.transaction.support.TransactionTemplate (package not found)
+                        |
+                        | org.apache.camel.spring.converter.ResourceConverter
+                        | • org.springframework.core.io.Resource (package not found)
+                        |
+                        | org.apache.camel.spring.handler.BeanDefinitionParser
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser (package not found)
+                        | • org.springframework.core.Conventions (package not found)
+                        | • org.springframework.util.Assert (package not found)
+                        | • org.springframework.util.StringUtils (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.MutablePropertyValues (package not found)
+                        | • org.springframework.beans.factory.BeanCreationException (package not found)
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.config.BeanDefinition (package not found)
+                        | • org.springframework.beans.factory.config.RuntimeBeanReference (package not found)
+                        | • org.springframework.beans.factory.parsing.BeanComponentDefinition (package not found)
+                        | • org.springframework.beans.factory.parsing.ComponentDefinition (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionRegistry (package not found)
+                        | • org.springframework.beans.factory.xml.BeanDefinitionParser (package not found)
+                        | • org.springframework.beans.factory.xml.NamespaceHandlerSupport (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler$CamelContextBeanDefinitionParser
+                        | • org.springframework.beans.MutablePropertyValues (package not found)
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.config.BeanDefinition (package not found)
+                        | • org.springframework.beans.factory.config.RuntimeBeanReference (package not found)
+                        | • org.springframework.beans.factory.parsing.BeanComponentDefinition (package not found)
+                        | • org.springframework.beans.factory.parsing.ComponentDefinition (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler$EndpointDefinitionParser
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler$RestContextDefinitionParser
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler$RouteContextDefinitionParser
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.CamelNamespaceHandler$SSLContextParametersFactoryBeanBeanDefinitionParser
+                        | • org.springframework.beans.factory.BeanDefinitionStoreException (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        |
+                        | org.apache.camel.spring.handler.ErrorHandlerDefinitionParser
+                        | • org.springframework.beans.factory.config.BeanDefinition (package not found)
+                        | • org.springframework.beans.factory.support.BeanDefinitionBuilder (package not found)
+                        | • org.springframework.beans.factory.xml.ParserContext (package not found)
+                        | • org.springframework.util.Assert (package not found)
+                        | • org.springframework.util.StringUtils (package not found)
+                        |
+                        | org.apache.camel.spring.pollingconsumer.SpringScheduledPollConsumerScheduler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.scheduling.Trigger (package not found)
+                        | • org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler (package not found)
+                        | • org.springframework.scheduling.support.CronTrigger (package not found)
+                        |
+                        | org.apache.camel.spring.processor.idempotent.SpringCacheIdempotentRepository
+                        | • org.springframework.cache.Cache (package not found)
+                        | • org.springframework.cache.Cache$ValueWrapper (package not found)
+                        | • org.springframework.cache.CacheManager (package not found)
+                        |
+                        | org.apache.camel.spring.remoting.CamelProxyFactoryBean
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.remoting.support.UrlBasedRemoteAccessor (package not found)
+                        |
+                        | org.apache.camel.spring.remoting.CamelServiceExporter
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.DisposableBean (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        | • org.springframework.remoting.support.RemoteExporter (package not found)
+                        |
+                        | org.apache.camel.spring.spi.ApplicationContextRegistry
+                        | • org.springframework.beans.factory.BeanFactoryUtils (package not found)
+                        | • org.springframework.beans.factory.BeanNotOfRequiredTypeException (package not found)
+                        | • org.springframework.beans.factory.ListableBeanFactory (package not found)
+                        | • org.springframework.beans.factory.NoSuchBeanDefinitionException (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer
+                        | • org.springframework.beans.BeansException (package not found)
+                        | • org.springframework.beans.factory.config.ConfigurableListableBeanFactory (package not found)
+                        | • org.springframework.beans.factory.config.PropertyPlaceholderConfigurer (package not found)
+                        | • org.springframework.core.Constants (package not found)
+                        | • org.springframework.util.PropertyPlaceholderHelper (package not found)
+                        | • org.springframework.util.PropertyPlaceholderHelper$PlaceholderResolver (package not found)
+                        |
+                        | org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer$BridgePropertyPlaceholderResolver
+                        | • org.springframework.util.PropertyPlaceholderHelper$PlaceholderResolver (package not found)
+                        |
+                        | org.apache.camel.spring.spi.SpringInjector
+                        | • org.springframework.beans.factory.config.ConfigurableListableBeanFactory (package not found)
+                        | • org.springframework.context.ConfigurableApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.spi.SpringManagementMBeanAssembler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource (package not found)
+                        | • org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler (package not found)
+                        | • org.springframework.jmx.export.metadata.JmxAttributeSource (package not found)
+                        |
+                        | org.apache.camel.spring.spi.SpringTransactionPolicy
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.transaction.support.TransactionTemplate (package not found)
+                        |
+                        | org.apache.camel.spring.spi.TransactionErrorHandler
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.transaction.support.TransactionCallback (package not found)
+                        | • org.springframework.transaction.support.TransactionTemplate (package not found)
+                        |
+                        | org.apache.camel.spring.spi.TransactionErrorHandler$1
+                        | • org.slf4j.Logger (package not found)
+                        | • org.springframework.transaction.TransactionStatus (package not found)
+                        | • org.springframework.transaction.support.TransactionCallbackWithoutResult (package not found)
+                        | • org.springframework.transaction.support.TransactionTemplate (package not found)
+                        |
+                        | org.apache.camel.spring.spi.TransactionErrorHandler$2
+                        | • org.slf4j.Logger (package not found)
+                        |
+                        | org.apache.camel.spring.spi.TransactionErrorHandlerBuilder
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.transaction.PlatformTransactionManager (package not found)
+                        | • org.springframework.transaction.support.TransactionTemplate (package not found)
+                        |
+                        | org.apache.camel.spring.util.CamelContextResolverHelper
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        |
+                        | org.apache.camel.spring.util.CamelThreadPoolTaskScheduler
+                        | • org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler (package not found)
+                        |
+                        | org.apache.camel.spring.util.MainRunner
+                        | • org.slf4j.Logger (package not found)
+                        | • org.slf4j.LoggerFactory (package not found)
+                        | • org.springframework.beans.factory.InitializingBean (package not found)
+                        |
+                        | org.apache.camel.spring.util.ReflectionUtils
+                        | • org.springframework.util.ReflectionUtils (package not found)
+                        |
+                        | org.apache.camel.util.spring.KeyManagersParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.KeyStoreParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.SSLContextClientParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.SSLContextParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.SSLContextServerParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.SecureRandomParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
+                        |
+                        | org.apache.camel.util.spring.TrustManagersParametersFactoryBean
+                        | • org.springframework.beans.factory.FactoryBean (package not found)
+                        | • org.springframework.context.ApplicationContext (package not found)
+                        | • org.springframework.context.ApplicationContextAware (package not found)
 

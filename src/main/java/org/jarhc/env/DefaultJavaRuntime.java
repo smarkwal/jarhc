@@ -73,6 +73,12 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
+	protected boolean findPackage(String packageName) {
+		// TODO: implement
+		return false;
+	}
+
+	@Override
 	protected Optional<ClassDef> findClassDef(String className) {
 
 		// check cache

@@ -16,6 +16,8 @@
 
 package org.jarhc.model;
 
+import org.jarhc.utils.JavaUtils;
+
 import java.util.*;
 
 /**
@@ -69,6 +71,11 @@ public class JarFile {
 	private final Map<String, ResourceDef> resourceDefsMap = new HashMap<>();
 
 	/**
+	 * Set of Java packages in this JAR file.
+	 */
+	private final Set<String> packageNames = new HashSet<>();
+
+	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
 	 * @param fileName     JAR file name
@@ -102,7 +109,12 @@ public class JarFile {
 			classDef.setJarFile(this);
 
 			// add class definition to fast lookup map
-			classDefsMap.put(classDef.getClassName(), classDef);
+			String className = classDef.getClassName();
+			classDefsMap.put(className, classDef);
+
+			// add package name to package list
+			String packageName = JavaUtils.getPackageName(className);
+			packageNames.add(packageName);
 
 		});
 
@@ -148,6 +160,17 @@ public class JarFile {
 
 	public ModuleInfo getModuleInfo() {
 		return moduleInfo;
+	}
+
+	/**
+	 * Check if this JAR file contains Java classes from the given package.
+	 *
+	 * @param packageName Java package name.
+	 * @return <code>true</code> if package exists in this JAR file,
+	 * <code>false</code> otherwise.
+	 */
+	public boolean containsPackage(String packageName) {
+		return packageNames.contains(packageName);
 	}
 
 	/**
