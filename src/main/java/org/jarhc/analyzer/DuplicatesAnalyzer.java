@@ -55,8 +55,15 @@ public class DuplicatesAnalyzer extends Analyzer {
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			collectDuplicateClasses(jarFile, duplicateClasses, parentClassLoader);
+			collectDuplicateClasses(jarFile, duplicateClasses);
 			collectDuplicateResources(jarFile, duplicateResources);
+		}
+
+		if (parentClassLoader != null) {
+			// find shadowed classes
+			collectShadowedClasses(duplicateClasses, parentClassLoader);
+
+			// TODO: search for shadowed resources
 		}
 
 		// remove classes and resources found only once
@@ -70,7 +77,7 @@ public class DuplicatesAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private void collectDuplicateClasses(JarFile jarFile, Map<String, List<ClassDef>> duplicateClasses, ClassLoader parentClassLoader) {
+	private void collectDuplicateClasses(JarFile jarFile, Map<String, List<ClassDef>> duplicateClasses) {
 
 		// for every class definition ...
 		List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -82,11 +89,6 @@ public class DuplicatesAnalyzer extends Analyzer {
 			// remember class definitions for class name
 			List<ClassDef> list = duplicateClasses.computeIfAbsent(className, k -> new ArrayList<>());
 			list.add(classDef);
-
-			// check if class shadows provided class or JRE class
-			if (parentClassLoader != null) {
-				parentClassLoader.getClassDef(className).ifPresent(list::add);
-			}
 
 		}
 	}
@@ -103,9 +105,20 @@ public class DuplicatesAnalyzer extends Analyzer {
 			List<ResourceDef> list = duplicateResources.computeIfAbsent(path, k -> new ArrayList<>());
 			list.add(resourceDef);
 
-			// TODO: search for shadowed resources
-
 		}
+	}
+
+	private void collectShadowedClasses(Map<String, List<ClassDef>> duplicateClasses, ClassLoader parentClassLoader) {
+
+		// for every class ...
+		for (Map.Entry<String, List<ClassDef>> entry : duplicateClasses.entrySet()) {
+			String className = entry.getKey();
+			List<ClassDef> classDefs = entry.getValue();
+
+			// check if class shadows provided class or JRE class
+			parentClassLoader.getClassDef(className).ifPresent(classDefs::add);
+		}
+
 	}
 
 	private void buildDuplicateClassesRows(Map<String, List<ClassDef>> duplicateClasses, ReportTable table) {

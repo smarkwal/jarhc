@@ -50,20 +50,6 @@ Duplicate classes and resources found in multiple JAR files or Java Runtime.
 Class/Resource | Sources | Similarity
 ---------------+---------+-----------
 
-Duplicate Classes
------------------
-Classes found in multiple JAR files.
-
-Class name | JAR files | Similarity
------------+-----------+-----------
-
-Shadowed Classes
-----------------
-Classes shadowing JRE/JDK classes.
-
-Class name | JAR file | Class loader | Similarity
------------+----------+--------------+-----------
-
 Missing Classes
 ---------------
 References to classes not found on the classpath.
@@ -105,13 +91,6 @@ Use of unstable or deprecated classes, methods, and fields.
 
 JAR file | Issues
 ---------+-------
-
-Duplicate Resources
--------------------
-Resources found in multiple JAR files.
-
-Resource path | JAR files | Similarity
---------------+-----------+-----------
 
 Java Runtime
 ------------

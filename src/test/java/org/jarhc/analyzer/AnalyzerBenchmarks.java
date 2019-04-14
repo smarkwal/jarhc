@@ -81,18 +81,6 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
-	public void test_DuplicateClassesAnalyzer() {
-		Analyzer analyzer = new DuplicateClassesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_DuplicateResourcesAnalyzer() {
-		Analyzer analyzer = new DuplicateResourcesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
 	public void test_FieldRefAnalyzer() {
 		Analyzer analyzer = new FieldRefAnalyzer(false);
 		analyzer.analyze(classpath);
@@ -137,12 +125,6 @@ public class AnalyzerBenchmarks {
 	@Benchmark
 	public void test_PackagesAnalyzer() {
 		Analyzer analyzer = new PackagesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_ShadowedClassesAnalyzer() {
-		Analyzer analyzer = new ShadowedClassesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

@@ -37,15 +37,13 @@ th, td {
 <li><a href="#ClassVersions">Class Versions</a></li>
 <li><a href="#JARDependencies">JAR Dependencies</a></li>
 <li><a href="#Packages">Packages</a></li>
-<li><a href="#DuplicateClasses">Duplicate Classes</a></li>
-<li><a href="#ShadowedClasses">Shadowed Classes</a></li>
+<li><a href="#DuplicateClassesandResources">Duplicate Classes and Resources</a></li>
 <li><a href="#MissingClasses">Missing Classes</a></li>
 <li><a href="#ClassHierarchy">Class Hierarchy</a></li>
 <li><a href="#FieldReferences">Field References</a></li>
 <li><a href="#MethodReferences">Method References</a></li>
 <li><a href="#Blacklist">Blacklist</a></li>
 <li><a href="#UnstableAPIs">Unstable APIs</a></li>
-<li><a href="#DuplicateResources">Duplicate Resources</a></li>
 <li><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
 
@@ -99,19 +97,11 @@ th, td {
 </table>
 </section>
 
-<section id="DuplicateClasses">
-<h2>Duplicate Classes</h2>
-<p>Classes found in multiple JAR files.</p>
+<section id="DuplicateClassesandResources">
+<h2>Duplicate Classes and Resources</h2>
+<p>Duplicate classes and resources found in multiple JAR files or Java Runtime.</p>
 <table>
-	<tr><th>Class name</th><th>JAR files</th><th>Similarity</th></tr>
-</table>
-</section>
-
-<section id="ShadowedClasses">
-<h2>Shadowed Classes</h2>
-<p>Classes shadowing JRE/JDK classes.</p>
-<table>
-	<tr><th>Class name</th><th>JAR file</th><th>Class loader</th><th>Similarity</th></tr>
+	<tr><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
 </table>
 </section>
 
@@ -162,14 +152,6 @@ th, td {
 	<tr><th>JAR file</th><th>Issues</th></tr>
 	<tr><td>asm-commons-7.0.jar</td><td>org.objectweb.asm.commons.AdviceAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.AnalyzerAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.CodeSizeEvaluator<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.InstructionAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.MethodRemapper<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)<br><br>org.objectweb.asm.commons.RemappingMethodAdapter<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</td></tr>
 	<tr><td>asm-tree-7.0.jar</td><td>org.objectweb.asm.tree.MethodNode<br>• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</td></tr>
-</table>
-</section>
-
-<section id="DuplicateResources">
-<h2>Duplicate Resources</h2>
-<p>Resources found in multiple JAR files.</p>
-<table>
-	<tr><th>Resource path</th><th>JAR files</th><th>Similarity</th></tr>
 </table>
 </section>
 

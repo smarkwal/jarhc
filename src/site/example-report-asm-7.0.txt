@@ -53,19 +53,12 @@ asm-analysis-7.0.jar | 1     | org.objectweb.asm.tree.analysis |
 asm-commons-7.0.jar  | 1     | org.objectweb.asm.commons       |
 asm-tree-7.0.jar     | 1     | org.objectweb.asm.tree          |
 
-Duplicate Classes
------------------
-Classes found in multiple JAR files.
+Duplicate Classes and Resources
+-------------------------------
+Duplicate classes and resources found in multiple JAR files or Java Runtime.
 
-Class name | JAR files | Similarity
------------+-----------+-----------
-
-Shadowed Classes
-----------------
-Classes shadowing JRE/JDK classes.
-
-Class name | JAR file | Class loader | Similarity
------------+----------+--------------+-----------
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
 
 Missing Classes
 ---------------
@@ -127,13 +120,6 @@ asm-commons-7.0.jar | org.objectweb.asm.commons.AdviceAdapter
                     | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 asm-tree-7.0.jar    | org.objectweb.asm.tree.MethodNode
                     | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-
-Duplicate Resources
--------------------
-Resources found in multiple JAR files.
-
-Resource path | JAR files | Similarity
---------------+-----------+-----------
 
 Java Runtime
 ------------
