@@ -41,7 +41,7 @@ class DuplicatesAnalyzerTest {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 
 		Classpath provided = ClasspathBuilder.create("Provided", javaRuntime)
-				.addJarFile("a.jar").addClassDef("a.A").addClassDef("a.A3").addResourceDef("a/A.txt").addResourceDef("a/A3.txt")
+				.addJarFile("a.jar").addClassDef("a.A").addClassDef("a.A3").addClassDef("java.lang.Integer").addResourceDef("a/A.txt").addResourceDef("a/A3.txt")
 				.build();
 
 		Classpath classpath = ClasspathBuilder.create(provided)
