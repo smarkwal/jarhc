@@ -35,6 +35,69 @@ class DuplicatesAnalyzerTest {
 	private DuplicatesAnalyzer analyzer = new DuplicatesAnalyzer();
 
 	@Test
+	void test_analyze() {
+
+		// prepare
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+
+		Classpath provided = ClasspathBuilder.create("Provided", javaRuntime)
+				.addJarFile("a.jar").addClassDef("a.A").addClassDef("a.A3").addResourceDef("a/A.txt").addResourceDef("a/A3.txt")
+				.build();
+
+		Classpath classpath = ClasspathBuilder.create(provided)
+				.addJarFile("a.jar").addClassDef("a.A").addClassDef("a.A2").addResourceDef("a/A.txt").addResourceDef("a/A2.txt")
+				.addJarFile("r.jar").addClassDef("java.lang.String")
+				.addJarFile("x.jar").addClassDef("x.X").addClassDef("z.Z").addResourceDef("x/X.txt").addResourceDef("z/Z.txt")
+				.addJarFile("y.jar").addClassDef("y.Y").addClassDef("z.Z").addResourceDef("y/Y.txt").addResourceDef("z/Z.txt")
+				.build();
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		assertNotNull(section);
+		assertEquals("Duplicate Classes and Resources", section.getTitle());
+		assertEquals("Duplicate classes and resources found in multiple JAR files or Java Runtime.", section.getDescription());
+		assertEquals(1, section.getContent().size());
+		assertTrue(section.getContent().get(0) instanceof ReportTable);
+
+		ReportTable table = (ReportTable) section.getContent().get(0);
+
+		String[] columns = table.getColumns();
+		assertEquals(3, columns.length);
+		assertEquals("Class/Resource", columns[0]);
+		assertEquals("Sources", columns[1]);
+		assertEquals("Similarity", columns[2]);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(4, rows.size());
+		String[] values = rows.get(0);
+		assertEquals(3, values.length);
+		assertEquals("a.A", values[0]);
+		assertEquals(joinLines("a.jar (Classpath)", "a.jar (Provided)"), values[1]);
+		assertEquals("Exact copy", values[2]);
+
+		values = rows.get(1);
+		assertEquals(3, values.length);
+		assertEquals("java.lang.String", values[0]);
+		assertEquals(joinLines("r.jar (Classpath)", "Runtime (rt.jar)"), values[1]);
+		assertEquals("Different API", values[2]);
+
+		values = rows.get(2);
+		assertEquals(3, values.length);
+		assertEquals("z.Z", values[0]);
+		assertEquals(joinLines("x.jar (Classpath)", "y.jar (Classpath)"), values[1]);
+		assertEquals("Exact copy", values[2]);
+
+		values = rows.get(3);
+		assertEquals(3, values.length);
+		assertEquals("z/Z.txt", values[0]);
+		assertEquals(joinLines("x.jar", "y.jar"), values[1]);
+		assertEquals("[not implemented]", values[2]);
+
+	}
+
+	@Test
 	void test_analyze_duplicate_classes() {
 
 		// prepare

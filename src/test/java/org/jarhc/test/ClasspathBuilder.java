@@ -29,6 +29,7 @@ public class ClasspathBuilder {
 
 	// Classpath properties
 	private final ClassLoader parentClassLoader;
+	private final String classLoader;
 	private final List<JarFile> jarFiles = new ArrayList<>();
 
 	// JarFile properties
@@ -45,12 +46,17 @@ public class ClasspathBuilder {
 	private int minorClassVersion;
 	private List<ClassRef> classRefs;
 
-	private ClasspathBuilder(ClassLoader parentClassLoader) {
+	private ClasspathBuilder(String classLoader, ClassLoader parentClassLoader) {
 		this.parentClassLoader = parentClassLoader;
+		this.classLoader = classLoader;
 	}
 
 	public static ClasspathBuilder create(ClassLoader parentClassLoader) {
-		return new ClasspathBuilder(parentClassLoader);
+		return create("Classpath", parentClassLoader);
+	}
+
+	public static ClasspathBuilder create(String classLoader, ClassLoader parentClassLoader) {
+		return new ClasspathBuilder(classLoader, parentClassLoader);
 	}
 
 	public ClasspathBuilder addJarFile(String fileName) {
@@ -138,7 +144,11 @@ public class ClasspathBuilder {
 	private void closeClassDef() {
 		if (className != null) {
 			String classFileChecksum = DigestUtils.sha1Hex(className); // fake checksum
-			ClassDef classDef = ClassDef.forClassName(className).setClassFileChecksum(classFileChecksum).setMajorClassVersion(majorClassVersion).setMinorClassVersion(minorClassVersion);
+			ClassDef classDef = ClassDef.forClassName(className)
+					.setClassFileChecksum(classFileChecksum)
+					.setClassLoader(classLoader)
+					.setMajorClassVersion(majorClassVersion)
+					.setMinorClassVersion(minorClassVersion);
 			classRefs.forEach(classDef::addClassRef);
 			classDefs.add(classDef);
 			className = null;
