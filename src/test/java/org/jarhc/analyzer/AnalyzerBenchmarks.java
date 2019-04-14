@@ -75,6 +75,12 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_DuplicatesAnalyzer() {
+		Analyzer analyzer = new DuplicatesAnalyzer();
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_DuplicateClassesAnalyzer() {
 		Analyzer analyzer = new DuplicateClassesAnalyzer();
 		analyzer.analyze(classpath);

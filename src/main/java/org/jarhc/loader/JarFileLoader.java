@@ -207,7 +207,7 @@ class JarFileLoader {
 
 		// append JAR file name to class loader name
 		String jarFileName = fileName;
-		classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
+		// classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
 
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(fileData.length)

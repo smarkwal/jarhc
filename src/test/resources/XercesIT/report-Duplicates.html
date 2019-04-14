@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JAR Health Check Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<h1>JAR Health Check Report</h1>
+
+<section id="DuplicateClassesandResources">
+<h2>Duplicate Classes and Resources</h2>
+<p>Duplicate classes and resources found in multiple JAR files or Java Runtime.</p>
+<table>
+	<tr><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
+	<tr><td>javax.xml.XMLConstants</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.DatatypeConfigurationException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.DatatypeConstants</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.datatype.DatatypeConstants$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.DatatypeConstants$Field</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.datatype.DatatypeFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.datatype.Duration</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.datatype.FactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.datatype.XMLGregorianCalendar</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.namespace.NamespaceContext</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.namespace.QName</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.namespace.QName$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.DocumentBuilder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.parsers.DocumentBuilderFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.parsers.FactoryConfigurationError</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.FactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.ParserConfigurationException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.parsers.SAXParser</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.parsers.SAXParserFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.parsers.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.EventFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.FactoryConfigurationError</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.FactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.Location</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.StreamFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLEventFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.XMLEventReader</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLEventWriter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLInputFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.XMLOutputFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.stream.XMLReporter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLStreamConstants</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLStreamException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLStreamReader</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.XMLStreamWriter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.Attribute</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.Characters</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.Comment</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.DTD</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.EndDocument</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.EndElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.EntityDeclaration</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.EntityReference</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.Namespace</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.NotationDeclaration</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.ProcessingInstruction</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.StartDocument</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.StartElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.events.XMLEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.util.EventReaderDelegate</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.util.StreamReaderDelegate</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.util.XMLEventAllocator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.stream.util.XMLEventConsumer</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.ErrorListener</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.FactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.OutputKeys</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.Result</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.Source</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.SourceLocator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.Templates</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.Transformer</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.TransformerConfigurationException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.TransformerException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.TransformerFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.TransformerFactoryConfigurationError</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.transform.URIResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.dom.DOMLocator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.dom.DOMResult</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.dom.DOMSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.sax.SAXResult</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.sax.SAXSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.sax.SAXTransformerFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.sax.TemplatesHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.sax.TransformerHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.stax.StAXResult</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.stax.StAXSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.stream.StreamResult</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.transform.stream.StreamSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.validation.Schema</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.validation.SchemaFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SchemaFactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SchemaFactoryFinder$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SchemaFactoryFinder$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SchemaFactoryLoader</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$6</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$7</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.SecuritySupport$8</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.validation.TypeInfoProvider</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.validation.Validator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.validation.ValidatorHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$5</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$6</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$7</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.SecuritySupport$8</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPath</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathConstants</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPathExpression</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathExpressionException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFactoryConfigurationException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFactoryFinder</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFactoryFinder$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFactoryFinder$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFunction</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFunctionException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathFunctionResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>javax.xml.xpath.XPathVariableResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Attr</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.CDATASection</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.CharacterData</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Comment</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMConfiguration</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMError</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMErrorHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMImplementation</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMImplementationList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMImplementationSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMLocator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DOMStringList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Document</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DocumentFragment</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.DocumentType</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Element</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Entity</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.EntityReference</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.NameList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.NamedNodeMap</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Node</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.NodeList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Notation</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ProcessingInstruction</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.Text</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.TypeInfo</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.UserDataHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.bootstrap.DOMImplementationRegistry</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.bootstrap.DOMImplementationRegistry$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.bootstrap.DOMImplementationRegistry$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.bootstrap.DOMImplementationRegistry$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.bootstrap.DOMImplementationRegistry$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.css.CSS2Properties</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSCharsetRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSFontFaceRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSImportRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSMediaRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSPageRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSPrimitiveValue</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSRuleList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSStyleDeclaration</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSStyleRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSStyleSheet</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSUnknownRule</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSValue</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.CSSValueList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.Counter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.DOMImplementationCSS</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.DocumentCSS</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.ElementCSSInlineStyle</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.RGBColor</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.Rect</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.css.ViewCSS</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.DocumentEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.Event</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.EventException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.EventListener</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.EventTarget</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.MouseEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.MutationEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.events.UIEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLAnchorElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLAppletElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLAreaElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLBRElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLBaseElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLBaseFontElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLBodyElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLButtonElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLCollection</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLDListElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLDOMImplementation</td><td>Runtime (rt.jar)<br>xercesImpl-2.11.0.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLDirectoryElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLDivElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLDocument</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLFieldSetElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLFontElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLFormElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLFrameElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLFrameSetElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLHRElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLHeadElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLHeadingElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLHtmlElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLIFrameElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLImageElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLInputElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLIsIndexElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLLIElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLLabelElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLLegendElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLLinkElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLMapElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLMenuElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLMetaElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLModElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLOListElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLObjectElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLOptGroupElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLOptionElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLParagraphElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLParamElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLPreElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLQuoteElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLScriptElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLSelectElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLStyleElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableCaptionElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableCellElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableColElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableRowElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTableSectionElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTextAreaElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLTitleElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.html.HTMLUListElement</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.DOMImplementationLS</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSInput</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSLoadEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSOutput</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSParser</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSParserFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSProgressEvent</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSResourceResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSSerializer</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ls.LSSerializerFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ranges.DocumentRange</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ranges.Range</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.ranges.RangeException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.stylesheets.DocumentStyle</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.stylesheets.LinkStyle</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.stylesheets.MediaList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.stylesheets.StyleSheet</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.stylesheets.StyleSheetList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.traversal.DocumentTraversal</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.traversal.NodeFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.traversal.NodeIterator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.traversal.TreeWalker</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.views.AbstractView</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.views.DocumentView</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathEvaluator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathExpression</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathNSResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathNamespace</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.w3c.dom.xpath.XPathResult</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.AttributeList</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.Attributes</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ContentHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.DTDHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.DocumentHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.EntityResolver</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ErrorHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.HandlerBase</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.InputSource</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.Locator</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.Parser</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.SAXException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.SAXNotRecognizedException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.SAXNotSupportedException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.SAXParseException</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.XMLFilter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.XMLReader</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.Attributes2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.Attributes2Impl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.DeclHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.DefaultHandler2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.EntityResolver2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.LexicalHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.Locator2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.ext.Locator2Impl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.AttributeListImpl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.AttributesImpl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.DefaultHandler</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.LocatorImpl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.NamespaceSupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.NamespaceSupport$Context</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.NewInstance</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.ParserAdapter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.ParserAdapter$AttributeListAdapter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.ParserFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.SecuritySupport</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.SecuritySupport$1</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.SecuritySupport$2</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.SecuritySupport$3</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.SecuritySupport$4</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+	<tr><td>org.xml.sax.helpers.XMLFilterImpl</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.XMLReaderAdapter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.XMLReaderAdapter$AttributesAdapter</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Same API</td></tr>
+	<tr><td>org.xml.sax.helpers.XMLReaderFactory</td><td>Runtime (rt.jar)<br>xml-apis-1.4.01.jar (Classpath)</td><td>Different API</td></tr>
+</table>
+</section>
+
+</body>
+</html>

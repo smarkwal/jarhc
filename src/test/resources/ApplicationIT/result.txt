@@ -43,6 +43,13 @@ JAR file | Count | Packages | Issues
 ---------+-------+----------+-------
 a.jar    | 1     | a        |
 
+Duplicate Classes and Resources
+-------------------------------
+Duplicate classes and resources found in multiple JAR files or Java Runtime.
+
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
+
 Duplicate Classes
 -----------------
 Classes found in multiple JAR files.
