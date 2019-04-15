@@ -3,8 +3,8 @@ JAR Health Check Report
 
 Binary Compatibility
 --------------------
-Checks class hierarchy, method calls, field access, access permissions etc.
+Compatibility issues between JAR files.
 
-JAR File | Issues
+JAR file | Issues
 ---------+-------
 

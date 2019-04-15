@@ -17,7 +17,7 @@
 package org.jarhc.it;
 
 import org.jarhc.TestUtils;
-import org.jarhc.analyzer.ClassHierarchyAnalyzer;
+import org.jarhc.analyzer.BinaryCompatibilityAnalyzer;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
@@ -44,7 +44,7 @@ class ClassHierarchyAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
-	private ClassHierarchyAnalyzer analyzer = new ClassHierarchyAnalyzer();
+	private BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
 
 	@Test
 	void analyze_compatible(@TempDirectory.TempDir Path tempDir) throws IOException {

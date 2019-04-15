@@ -45,14 +45,14 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Binary Compatibility", "Checks class hierarchy, method calls, field access, access permissions etc.");
+		ReportSection section = new ReportSection("Binary Compatibility", "Compatibility issues between JAR files.");
 		section.add(table);
 		return section;
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR File", "Issues");
+		ReportTable table = new ReportTable("JAR file", "Issues");
 
 		AccessCheck accessCheck = new AccessCheck(classpath);
 
@@ -273,11 +273,12 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
+			// TODO: add method ref to error message
 			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
 			return searchResult;
 		}
 
-		// find target field definition
+		// find target method definition
 		Optional<MethodDef> methodDef = classLoader.getMethodDef(methodRef, searchResult);
 		if (!methodDef.isPresent()) {
 			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
@@ -421,6 +422,7 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
+			// TODO: add field ref to error message
 			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
 			return searchResult;
 		}

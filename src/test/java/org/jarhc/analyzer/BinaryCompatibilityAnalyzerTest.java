@@ -28,7 +28,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MissingClassesAnalyzerTest {
+class BinaryCompatibilityAnalyzerTest {
 
 	@Test
 	void test_analyze() {
@@ -43,13 +43,13 @@ class MissingClassesAnalyzerTest {
 				.build();
 
 		// test
-		MissingClassesAnalyzer analyzer = new MissingClassesAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Missing Classes", section.getTitle());
-		assertEquals("References to classes not found on the classpath.", section.getDescription());
+		assertEquals("Binary Compatibility", section.getTitle());
+		assertEquals("Compatibility issues between JAR files.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
 
@@ -58,14 +58,14 @@ class MissingClassesAnalyzerTest {
 		String[] columns = table.getColumns();
 		assertEquals(2, columns.length);
 		assertEquals("JAR file", columns[0]);
-		assertEquals("Missing classes", columns[1]);
+		assertEquals("Issues", columns[1]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
-		assertEquals("a.A" + System.lineSeparator() + "\u2022 c.C (package not found)", values[1]);
+		assertEquals("a.A" + System.lineSeparator() + "\u2022 Class not found: c.C (package not found)", values[1]);
 
 	}
 

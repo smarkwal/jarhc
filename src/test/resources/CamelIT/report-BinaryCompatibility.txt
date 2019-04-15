@@ -3,9 +3,9 @@ JAR Health Check Report
 
 Binary Compatibility
 --------------------
-Checks class hierarchy, method calls, field access, access permissions etc.
+Compatibility issues between JAR files.
 
-JAR File                | Issues
+JAR file                | Issues
 ------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         | • Class not found: org.slf4j.Logger (package not found)

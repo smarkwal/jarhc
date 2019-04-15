@@ -75,20 +75,14 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
+	public void test_BinaryCompatibilityAnalyzer() {
+		Analyzer analyzer = new BinaryCompatibilityAnalyzer();
+		analyzer.analyze(classpath);
+	}
+
+	@Benchmark
 	public void test_DuplicatesAnalyzer() {
 		Analyzer analyzer = new DuplicatesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_FieldRefAnalyzer() {
-		Analyzer analyzer = new FieldRefAnalyzer(false);
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_MethodRefAnalyzer() {
-		Analyzer analyzer = new MethodRefAnalyzer(false);
 		analyzer.analyze(classpath);
 	}
 
@@ -107,18 +101,6 @@ public class AnalyzerBenchmarks {
 	@Benchmark
 	public void test_JavaRuntimeAnalyzer() {
 		Analyzer analyzer = new JavaRuntimeAnalyzer(javaRuntime);
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_MissingClassesAnalyzer() {
-		Analyzer analyzer = new MissingClassesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_ClassHierarchyAnalyzer() {
-		Analyzer analyzer = new ClassHierarchyAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

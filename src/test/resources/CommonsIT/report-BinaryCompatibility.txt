@@ -3,9 +3,9 @@ JAR Health Check Report
 
 Binary Compatibility
 --------------------
-Checks class hierarchy, method calls, field access, access permissions etc.
+Compatibility issues between JAR files.
 
-JAR File                      | Issues
+JAR file                      | Issues
 ------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------
 commons-codec-1.10.jar        | org.apache.commons.codec.digest.HmacUtils
                               | • Class not found: javax.crypto.Mac (package not found)

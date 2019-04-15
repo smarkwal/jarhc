@@ -1,0 +1,42 @@
+a.A
+• Field not found: int b.B.existingField
+> b.B (field not found)
+> b.I (field not found)
+> java.lang.Object (field not found)
+> b.S (field not found)
+• Incompatible field type: int b.B.intField -> public boolean b.B.intField
+> b.B (field found)
+• Field not found: static java.lang.Object b.B.interfaceObjectField
+> b.B (field not found)
+> b.I (field not found)
+> java.lang.Object (field not found)
+> b.S (field not found)
+• Write access to final field: int b.B.nonFinalField -> public final int b.B.nonFinalField
+> b.B (field found)
+• Instance access to static field: int b.B.nonStaticField -> public static int b.B.nonStaticField
+> b.B (field found)
+• Instance access to static field: int b.B.nonStaticSuperField -> public static int b.S.nonStaticSuperField
+> b.B (field not found)
+> b.I (field not found)
+> java.lang.Object (field not found)
+> b.S (field found)
+• Illegal access from a.A: int b.B.publicField -> private int b.B.publicField
+> b.B (field found)
+• Static access to instance field: static int b.B.staticField -> public int b.B.staticField
+> b.B (field found)
+• Static access to instance field: static int b.B.staticSuperField -> public int b.S.staticSuperField
+> b.B (field not found)
+> b.I (field not found)
+> java.lang.Object (field not found)
+> b.S (field found)
+• Field not found: int b.B.superField
+> b.B (field not found)
+> b.I (field not found)
+> java.lang.Object (field not found)
+> b.S (field not found)
+• Field not found: static b.E b.E.E3
+> b.E (field not found)
+> java.lang.Enum (field not found)
+> java.lang.Comparable (field not found)
+> java.lang.Object (field not found)
+> java.io.Serializable (field not found)

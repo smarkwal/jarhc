@@ -45,9 +45,9 @@ a.jar    | 1     | a        |
 
 Binary Compatibility
 --------------------
-Checks class hierarchy, method calls, field access, access permissions etc.
+Compatibility issues between JAR files.
 
-JAR File | Issues
+JAR file | Issues
 ---------+-------
 
 Duplicate Classes and Resources
@@ -56,34 +56,6 @@ Duplicate classes and resources found in multiple JAR files or Java Runtime.
 
 Class/Resource | Sources | Similarity
 ---------------+---------+-----------
-
-Missing Classes
----------------
-References to classes not found on the classpath.
-
-JAR file | Missing classes
----------+----------------
-
-Class Hierarchy
----------------
-Problems with class hierarchy.
-
-JAR File | Errors
----------+-------
-
-Field References
-----------------
-Problems with field access.
-
-JAR File | Errors
----------+-------
-
-Method References
------------------
-Problems with method invocations.
-
-JAR File | Errors
----------+-------
 
 Blacklist
 ---------
