@@ -43,6 +43,13 @@ JAR file | Count | Packages | Issues
 ---------+-------+----------+-------
 a.jar    | 1     | a        |
 
+Binary Compatibility
+--------------------
+Checks class hierarchy, method calls, field access, access permissions etc.
+
+JAR File | Issues
+---------+-------
+
 Duplicate Classes and Resources
 -------------------------------
 Duplicate classes and resources found in multiple JAR files or Java Runtime.

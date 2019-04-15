@@ -42,6 +42,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("p", "Packages", PackagesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("du", "Duplicate Classes and Resources", DuplicatesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("mc", "Missing Classes", MissingClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("ch", "Class Hierarchy", ClassHierarchyAnalyzer.class));

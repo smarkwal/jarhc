@@ -1,0 +1,342 @@
+JAR Health Check Report
+=======================
+
+Binary Compatibility
+--------------------
+Checks class hierarchy, method calls, field access, access permissions etc.
+
+JAR File                      | Issues
+------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------
+commons-codec-1.10.jar        | org.apache.commons.codec.digest.HmacUtils
+                              | • Class not found: javax.crypto.Mac (package not found)
+                              | • Class not found: javax.crypto.spec.SecretKeySpec (package not found)
+commons-compress-1.5.jar      | org.apache.commons.compress.compressors.xz.XZCompressorInputStream
+                              | • Class not found: org.tukaani.xz.SingleXZInputStream (package not found)
+                              | • Class not found: org.tukaani.xz.XZ (package not found)
+                              | • Class not found: org.tukaani.xz.XZInputStream (package not found)
+                              |
+                              | org.apache.commons.compress.compressors.xz.XZCompressorOutputStream
+                              | • Class not found: org.tukaani.xz.FilterOptions (package not found)
+                              | • Class not found: org.tukaani.xz.LZMA2Options (package not found)
+                              | • Class not found: org.tukaani.xz.XZOutputStream (package not found)
+commons-configuration-1.9.jar | org.apache.commons.configuration.VFSFileSystem
+                              | • Class not found: org.apache.commons.vfs2.FileContent (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileName (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileObject (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemConfigBuilder (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemException (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemManager (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemOptions (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileType (package not found)
+                              | • Class not found: org.apache.commons.vfs2.VFS (package not found)
+                              | • Class not found: org.apache.commons.vfs2.provider.UriParser (package not found)
+                              |
+                              | org.apache.commons.configuration.VFSFileSystem$VFSURLStreamHandler
+                              | • Class not found: org.apache.commons.vfs2.FileName (package not found)
+                              |
+                              | org.apache.commons.configuration.interpol.ExprLookup
+                              | • Class not found: org.apache.commons.jexl2.Expression (package not found)
+                              | • Class not found: org.apache.commons.jexl2.JexlContext (package not found)
+                              | • Class not found: org.apache.commons.jexl2.JexlEngine (package not found)
+                              | • Class not found: org.apache.commons.jexl2.MapContext (package not found)
+                              |
+                              | org.apache.commons.configuration.reloading.VFSFileChangedReloadingStrategy
+                              | • Class not found: org.apache.commons.vfs2.FileContent (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileName (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileObject (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemException (package not found)
+                              | • Class not found: org.apache.commons.vfs2.FileSystemManager (package not found)
+                              | • Class not found: org.apache.commons.vfs2.VFS (package not found)
+                              |
+                              | org.apache.commons.configuration.resolver.CatalogResolver
+                              | • Class not found: org.apache.xml.resolver.CatalogManager (package not found)
+                              | • Class not found: org.apache.xml.resolver.tools.CatalogResolver (package not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setCatalogFiles(java.lang.String)
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)
+                              | > org.apache.xml.resolver.CatalogManager (class not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setIgnoreMissingProperties(boolean)
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)
+                              | > org.apache.xml.resolver.CatalogManager (class not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setUseStaticCatalog(boolean)
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)
+                              | > org.apache.xml.resolver.CatalogManager (class not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.setVerbosity(int)
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)
+                              | > org.apache.xml.resolver.CatalogManager (class not found)
+                              |
+                              | org.apache.commons.configuration.resolver.CatalogResolver$Catalog
+                              | • Superclass not found: org.apache.xml.resolver.Catalog
+                              | • Class not found: org.apache.xml.resolver.Catalog (package not found)
+                              | • Class not found: org.apache.xml.resolver.CatalogException (package not found)
+                              | • Class not found: org.apache.xml.resolver.CatalogManager (package not found)
+                              | • Class not found: org.apache.xml.resolver.helpers.Debug (package not found)
+                              | • Class not found: org.apache.xml.resolver.readers.CatalogReader (package not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$Catalog.parseCatalog(java.lang.String,java.io.InputStream)
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (method not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Method not found: void org.apache.commons.configuration.resolver.CatalogResolver$Catalog.parsePendingCatalogs()
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (method not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Field not found: java.net.URL org.apache.commons.configuration.resolver.CatalogResolver$Catalog.base
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (field not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Field not found: java.net.URL org.apache.commons.configuration.resolver.CatalogResolver$Catalog.catalogCwd
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (field not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Field not found: org.apache.xml.resolver.CatalogManager org.apache.commons.configuration.resolver.CatalogResolver$Catalog.catalogManager
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (field not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Field not found: boolean org.apache.commons.configuration.resolver.CatalogResolver$Catalog.default_override
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (field not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              | • Field not found: java.util.Vector org.apache.commons.configuration.resolver.CatalogResolver$Catalog.readerArr
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$Catalog (field not found)
+                              | > org.apache.xml.resolver.Catalog (class not found)
+                              |
+                              | org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager
+                              | • Superclass not found: org.apache.xml.resolver.CatalogManager
+                              | • Class not found: org.apache.xml.resolver.Catalog (package not found)
+                              | • Class not found: org.apache.xml.resolver.CatalogManager (package not found)
+                              | • Method not found: boolean org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager.getUseStaticCatalog()
+                              | > org.apache.commons.configuration.resolver.CatalogResolver$CatalogManager (method not found)
+                              | > org.apache.xml.resolver.CatalogManager (class not found)
+                              |
+                              | org.apache.commons.configuration.web.ServletConfiguration
+                              | • Class not found: javax.servlet.Servlet (package not found)
+                              | • Class not found: javax.servlet.ServletConfig (package not found)
+                              |
+                              | org.apache.commons.configuration.web.ServletContextConfiguration
+                              | • Class not found: javax.servlet.Servlet (package not found)
+                              | • Class not found: javax.servlet.ServletConfig (package not found)
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              |
+                              | org.apache.commons.configuration.web.ServletFilterConfiguration
+                              | • Class not found: javax.servlet.FilterConfig (package not found)
+                              |
+                              | org.apache.commons.configuration.web.ServletRequestConfiguration
+                              | • Class not found: javax.servlet.ServletRequest (package not found)
+commons-dbcp2-2.5.0.jar       | org.apache.commons.dbcp2.managed.BasicManagedDataSource
+                              | • Class not found: javax.transaction.TransactionManager (package found)
+                              |
+                              | org.apache.commons.dbcp2.managed.DataSourceXAConnectionFactory
+                              | • Class not found: javax.transaction.TransactionManager (package found)
+                              |
+                              | org.apache.commons.dbcp2.managed.LocalXAConnectionFactory
+                              | • Class not found: javax.transaction.TransactionManager (package found)
+                              |
+                              | org.apache.commons.dbcp2.managed.TransactionContext
+                              | • Class not found: javax.transaction.RollbackException (package found)
+                              | • Class not found: javax.transaction.Synchronization (package found)
+                              | • Class not found: javax.transaction.SystemException (package found)
+                              | • Class not found: javax.transaction.Transaction (package found)
+                              |
+                              | org.apache.commons.dbcp2.managed.TransactionContext$1
+                              | • Interface not found: javax.transaction.Synchronization
+                              | • Class not found: javax.transaction.Synchronization (package found)
+                              |
+                              | org.apache.commons.dbcp2.managed.TransactionRegistry
+                              | • Class not found: javax.transaction.SystemException (package found)
+                              | • Class not found: javax.transaction.Transaction (package found)
+                              | • Class not found: javax.transaction.TransactionManager (package found)
+commons-email-1.5.jar         | org.apache.commons.mail.DefaultAuthenticator
+                              | • Superclass not found: javax.mail.Authenticator
+                              | • Class not found: javax.mail.Authenticator (package not found)
+                              | • Class not found: javax.mail.PasswordAuthentication (package not found)
+                              |
+                              | org.apache.commons.mail.Email
+                              | • Class not found: javax.mail.Address (package not found)
+                              | • Class not found: javax.mail.Authenticator (package not found)
+                              | • Class not found: javax.mail.Message (package not found)
+                              | • Class not found: javax.mail.Message$RecipientType (package not found)
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.Multipart (package not found)
+                              | • Class not found: javax.mail.Session (package not found)
+                              | • Class not found: javax.mail.Store (package not found)
+                              | • Class not found: javax.mail.Transport (package not found)
+                              | • Class not found: javax.mail.internet.AddressException (package not found)
+                              | • Class not found: javax.mail.internet.InternetAddress (package not found)
+                              | • Class not found: javax.mail.internet.MimeMessage (package not found)
+                              | • Class not found: javax.mail.internet.MimeMultipart (package not found)
+                              | • Class not found: javax.mail.internet.MimeUtility (package not found)
+                              |
+                              | org.apache.commons.mail.EmailUtils
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.internet.MimeMessage (package not found)
+                              |
+                              | org.apache.commons.mail.HtmlEmail
+                              | • Class not found: javax.mail.BodyPart (package not found)
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.Multipart (package not found)
+                              | • Class not found: javax.mail.internet.MimeBodyPart (package not found)
+                              | • Class not found: javax.mail.internet.MimeMultipart (package not found)
+                              |
+                              | org.apache.commons.mail.HtmlEmail$InlineImage
+                              | • Class not found: javax.mail.internet.MimeBodyPart (package not found)
+                              |
+                              | org.apache.commons.mail.MultiPartEmail
+                              | • Class not found: javax.mail.BodyPart (package not found)
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.Multipart (package not found)
+                              | • Class not found: javax.mail.internet.MimeBodyPart (package not found)
+                              | • Class not found: javax.mail.internet.MimeMultipart (package not found)
+                              | • Class not found: javax.mail.internet.MimePart (package not found)
+                              | • Class not found: javax.mail.internet.MimeUtility (package not found)
+                              |
+                              | org.apache.commons.mail.resolver.DataSourceClassPathResolver
+                              | • Class not found: javax.mail.util.ByteArrayDataSource (package not found)
+                              |
+                              | org.apache.commons.mail.util.IDNEmailAddressConverter
+                              | • Class not found: javax.mail.internet.InternetAddress (package not found)
+                              |
+                              | org.apache.commons.mail.util.MimeMessageParser
+                              | • Class not found: javax.mail.Address (package not found)
+                              | • Class not found: javax.mail.BodyPart (package not found)
+                              | • Class not found: javax.mail.Message$RecipientType (package not found)
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.Multipart (package not found)
+                              | • Class not found: javax.mail.Part (package not found)
+                              | • Class not found: javax.mail.internet.ContentType (package not found)
+                              | • Class not found: javax.mail.internet.InternetAddress (package not found)
+                              | • Class not found: javax.mail.internet.MimeBodyPart (package not found)
+                              | • Class not found: javax.mail.internet.MimeMessage (package not found)
+                              | • Class not found: javax.mail.internet.MimePart (package not found)
+                              | • Class not found: javax.mail.internet.MimeUtility (package not found)
+                              | • Class not found: javax.mail.internet.ParseException (package not found)
+                              | • Class not found: javax.mail.util.ByteArrayDataSource (package not found)
+                              |
+                              | org.apache.commons.mail.util.MimeMessageUtils
+                              | • Class not found: javax.mail.MessagingException (package not found)
+                              | • Class not found: javax.mail.Session (package not found)
+                              | • Class not found: javax.mail.internet.MimeMessage (package not found)
+commons-fileupload-1.3.3.jar  | org.apache.commons.fileupload.DiskFileUpload
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+                              |
+                              | org.apache.commons.fileupload.FileUploadBase
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+                              |
+                              | org.apache.commons.fileupload.portlet.PortletFileUpload
+                              | • Class not found: javax.portlet.ActionRequest (package not found)
+                              |
+                              | org.apache.commons.fileupload.portlet.PortletRequestContext
+                              | • Class not found: javax.portlet.ActionRequest (package not found)
+                              |
+                              | org.apache.commons.fileupload.servlet.FileCleanerCleanup
+                              | • Interface not found: javax.servlet.ServletContextListener
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              | • Class not found: javax.servlet.ServletContextEvent (package not found)
+                              | • Class not found: javax.servlet.ServletContextListener (package not found)
+                              |
+                              | org.apache.commons.fileupload.servlet.ServletFileUpload
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+                              |
+                              | org.apache.commons.fileupload.servlet.ServletRequestContext
+                              | • Class not found: javax.servlet.ServletInputStream (package not found)
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIterator
+                              | • Class not found: org.jdom.Attribute (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              | • Class not found: org.jdom.Namespace (package not found)
+                              |
+                              | org.apache.commons.jxpath.ri.model.jdom.JDOMAttributePointer
+                              | • Class not found: org.jdom.Attribute (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              |
+                              | org.apache.commons.jxpath.ri.model.jdom.JDOMNamespaceIterator
+                              | • Class not found: org.jdom.Document (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              | • Class not found: org.jdom.Namespace (package not found)
+                              | • Class not found: org.jdom.Parent (package not found)
+                              |
+                              | org.apache.commons.jxpath.ri.model.jdom.JDOMNodeIterator
+                              | • Class not found: org.jdom.Document (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              |
+                              | org.apache.commons.jxpath.ri.model.jdom.JDOMNodePointer
+                              | • Class not found: org.jdom.Attribute (package not found)
+                              | • Class not found: org.jdom.CDATA (package not found)
+                              | • Class not found: org.jdom.Comment (package not found)
+                              | • Class not found: org.jdom.Content (package not found)
+                              | • Class not found: org.jdom.Document (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              | • Class not found: org.jdom.Namespace (package not found)
+                              | • Class not found: org.jdom.Parent (package not found)
+                              | • Class not found: org.jdom.ProcessingInstruction (package not found)
+                              | • Class not found: org.jdom.Text (package not found)
+                              |
+                              | org.apache.commons.jxpath.ri.model.jdom.JDOMPointerFactory
+                              | • Class not found: org.jdom.Document (package not found)
+                              | • Class not found: org.jdom.Element (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.HttpSessionAndServletContext
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              | • Class not found: javax.servlet.http.HttpSession (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.HttpSessionHandler
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              | • Class not found: javax.servlet.http.HttpSession (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.JXPathServletContexts
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              | • Class not found: javax.servlet.ServletRequest (package not found)
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+                              | • Class not found: javax.servlet.http.HttpSession (package not found)
+                              | • Class not found: javax.servlet.jsp.PageContext (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.PageContextHandler
+                              | • Class not found: javax.servlet.jsp.PageContext (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.PageScopeContext
+                              | • Class not found: javax.servlet.jsp.PageContext (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.ServletContextHandler
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.ServletRequestAndContext
+                              | • Class not found: javax.servlet.ServletContext (package not found)
+                              | • Class not found: javax.servlet.ServletRequest (package not found)
+                              | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
+                              | • Class not found: javax.servlet.http.HttpSession (package not found)
+                              |
+                              | org.apache.commons.jxpath.servlet.ServletRequestHandler
+                              | • Class not found: javax.servlet.ServletRequest (package not found)
+                              |
+                              | org.apache.commons.jxpath.xml.JDOMParser
+                              | • Class not found: org.jdom.Document (package not found)
+                              | • Class not found: org.jdom.input.SAXBuilder (package not found)
+commons-logging-1.2.jar       | org.apache.commons.logging.impl.AvalonLogger
+                              | • Class not found: org.apache.avalon.framework.logger.Logger (package not found)
+                              |
+                              | org.apache.commons.logging.impl.Log4JLogger
+                              | • Class not found: org.apache.log4j.Level (package not found)
+                              | • Class not found: org.apache.log4j.Logger (package not found)
+                              | • Class not found: org.apache.log4j.Priority (package not found)
+                              |
+                              | org.apache.commons.logging.impl.LogKitLogger
+                              | • Class not found: org.apache.log.Hierarchy (package not found)
+                              | • Class not found: org.apache.log.Logger (package not found)
+                              |
+                              | org.apache.commons.logging.impl.ServletContextCleaner
+                              | • Interface not found: javax.servlet.ServletContextListener
+                              | • Class not found: javax.servlet.ServletContextEvent (package not found)
+                              | • Class not found: javax.servlet.ServletContextListener (package not found)
+commons-net-3.3.jar           | org.apache.commons.net.imap.AuthenticatingIMAPClient
+                              | • Class not found: javax.crypto.Mac (package not found)
+                              | • Class not found: javax.crypto.spec.SecretKeySpec (package not found)
+                              |
+                              | org.apache.commons.net.pop3.ExtendedPOP3Client
+                              | • Class not found: javax.crypto.Mac (package not found)
+                              | • Class not found: javax.crypto.spec.SecretKeySpec (package not found)
+                              |
+                              | org.apache.commons.net.smtp.AuthenticatingSMTPClient
+                              | • Class not found: javax.crypto.Mac (package not found)
+                              | • Class not found: javax.crypto.spec.SecretKeySpec (package not found)
+commons-pool2-2.6.0.jar       | org.apache.commons.pool2.proxy.CglibProxyHandler
+                              | • Interface not found: net.sf.cglib.proxy.MethodInterceptor
+                              | • Class not found: net.sf.cglib.proxy.MethodInterceptor (package not found)
+                              | • Class not found: net.sf.cglib.proxy.MethodProxy (package not found)
+                              |
+                              | org.apache.commons.pool2.proxy.CglibProxySource
+                              | • Class not found: net.sf.cglib.proxy.Callback (package not found)
+                              | • Class not found: net.sf.cglib.proxy.Enhancer (package not found)
+                              | • Class not found: net.sf.cglib.proxy.Factory (package not found)
+
