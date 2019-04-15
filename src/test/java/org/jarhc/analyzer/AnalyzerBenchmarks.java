@@ -110,10 +110,4 @@ public class AnalyzerBenchmarks {
 		analyzer.analyze(classpath);
 	}
 
-	@Benchmark
-	public void test_UnstableAPIsAnalyzer() {
-		Analyzer analyzer = new UnstableAPIsAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
 }

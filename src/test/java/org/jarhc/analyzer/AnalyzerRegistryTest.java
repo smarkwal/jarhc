@@ -40,7 +40,7 @@ class AnalyzerRegistryTest {
 		List<String> codes = registry.getCodes();
 
 		// assert
-		assertEquals(9, codes.size());
+		assertEquals(8, codes.size());
 		assertTrue(codes.contains("jf"));
 
 	}

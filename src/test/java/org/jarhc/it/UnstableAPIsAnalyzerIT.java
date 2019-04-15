@@ -17,7 +17,7 @@
 package org.jarhc.it;
 
 import org.jarhc.TestUtils;
-import org.jarhc.analyzer.UnstableAPIsAnalyzer;
+import org.jarhc.analyzer.BlacklistAnalyzer;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
@@ -44,7 +44,7 @@ class UnstableAPIsAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
-	private UnstableAPIsAnalyzer analyzer = new UnstableAPIsAnalyzer();
+	private BlacklistAnalyzer analyzer = new BlacklistAnalyzer();
 
 	@Test
 	void test_analyze(@TempDirectory.TempDir Path tempDir) throws IOException {
