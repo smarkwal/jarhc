@@ -82,7 +82,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_DuplicatesAnalyzer() {
-		Analyzer analyzer = new DuplicatesAnalyzer();
+		Analyzer analyzer = new DuplicateClassesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

@@ -28,14 +28,14 @@ import org.jarhc.utils.StringUtils;
 import java.util.*;
 import java.util.function.Function;
 
-public class DuplicatesAnalyzer extends Analyzer {
+public class DuplicateClassesAnalyzer extends Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Duplicate Classes and Resources", "Duplicate classes and resources found in multiple JAR files or Java Runtime.");
+		ReportSection section = new ReportSection("Duplicate Classes", "Duplicate classes, shadowed classes, and duplicate resources.");
 		section.add(table);
 		return section;
 	}
@@ -156,7 +156,7 @@ public class DuplicatesAnalyzer extends Analyzer {
 
 	private static String getClassSources(Collection<ClassDef> classDefs) {
 		return classDefs.stream()
-				.map(DuplicatesAnalyzer::getSource) // get JAR file name and/or class loader
+				.map(DuplicateClassesAnalyzer::getSource) // get JAR file name and/or class loader
 				.sorted(String.CASE_INSENSITIVE_ORDER) // sort case-insensitive
 				.collect(StringUtils.joinLines());
 	}

@@ -42,8 +42,8 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("p", "Packages", PackagesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("du", "Duplicate Classes and Resources", DuplicatesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("ua", "Unstable APIs", UnstableAPIsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jr", "Java Runtime", JavaRuntimeAnalyzer.class));

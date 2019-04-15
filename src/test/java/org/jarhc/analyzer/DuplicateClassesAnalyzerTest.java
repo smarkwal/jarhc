@@ -30,9 +30,9 @@ import java.util.List;
 import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.*;
 
-class DuplicatesAnalyzerTest {
+class DuplicateClassesAnalyzerTest {
 
-	private DuplicatesAnalyzer analyzer = new DuplicatesAnalyzer();
+	private DuplicateClassesAnalyzer analyzer = new DuplicateClassesAnalyzer();
 
 	@Test
 	void test_analyze() {
@@ -56,8 +56,8 @@ class DuplicatesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Duplicate Classes and Resources", section.getTitle());
-		assertEquals("Duplicate classes and resources found in multiple JAR files or Java Runtime.", section.getDescription());
+		assertEquals("Duplicate Classes", section.getTitle());
+		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
 
@@ -112,8 +112,8 @@ class DuplicatesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Duplicate Classes and Resources", section.getTitle());
-		assertEquals("Duplicate classes and resources found in multiple JAR files or Java Runtime.", section.getDescription());
+		assertEquals("Duplicate Classes", section.getTitle());
+		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
 
@@ -150,8 +150,8 @@ class DuplicatesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Duplicate Classes and Resources", section.getTitle());
-		assertEquals("Duplicate classes and resources found in multiple JAR files or Java Runtime.", section.getDescription());
+		assertEquals("Duplicate Classes", section.getTitle());
+		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
 
@@ -189,8 +189,8 @@ class DuplicatesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Duplicate Classes and Resources", section.getTitle());
-		assertEquals("Duplicate classes and resources found in multiple JAR files or Java Runtime.", section.getDescription());
+		assertEquals("Duplicate Classes", section.getTitle());
+		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertTrue(section.getContent().get(0) instanceof ReportTable);
 

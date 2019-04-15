@@ -1,9 +1,9 @@
 JAR Health Check Report
 =======================
 
-Duplicate Classes and Resources
--------------------------------
-Duplicate classes and resources found in multiple JAR files or Java Runtime.
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
 
 Class/Resource                                           | Sources                           | Similarity
 ---------------------------------------------------------+-----------------------------------+--------------
