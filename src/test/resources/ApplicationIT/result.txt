@@ -59,7 +59,7 @@ JAR file | Issues
 
 Blacklist
 ---------
-Use of unsafe or dangerous classes and methods.
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 JAR file | Issues
 ---------+-------

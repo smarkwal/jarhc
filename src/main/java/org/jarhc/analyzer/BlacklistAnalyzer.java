@@ -16,46 +16,51 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.model.ClassDef;
-import org.jarhc.model.Classpath;
-import org.jarhc.model.JarFile;
+import org.jarhc.model.*;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.StringUtils;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class BlacklistAnalyzer extends Analyzer {
 
 	private final List<Rule> rules = new ArrayList<>();
+	private final Set<String> annotations = new HashSet<>();
 
 	public BlacklistAnalyzer() {
 
-		// TODO: load rules from file
-		// ClassLoader classLoader = this.getClass().getClassLoader();
-		// InputStream stream = classLoader.getResourceAsStream("/blacklist-patterns.txt");
+		// load rules from file
+		String resource = "/blacklist-patterns.txt";
+		try {
+			init(resource);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		// unsafe
-		rules.add(new Rule("* sun.misc.Unsafe.*(*)"));
+	}
 
-		// JVM shutdown
-		rules.add(new Rule("static void java.lang.System.exit(int)"));
-		rules.add(new Rule("void java.lang.Runtime.exit(int)"));
-		rules.add(new Rule("void java.lang.Runtime.halt(int)"));
+	private void init(String resource) throws IOException {
 
-		// loading of native libraries
-		rules.add(new Rule("static void java.lang.System.load(java.lang.String)"));
-		rules.add(new Rule("static void java.lang.System.loadLibrary(java.lang.String)"));
-		rules.add(new Rule("void java.lang.Runtime.load(java.lang.String)"));
-		rules.add(new Rule("void java.lang.Runtime.loadLibrary(java.lang.String)"));
+		// read lines from configuration resource
+		List<String> lines = ResourceUtils.getResourceAsLines(resource, "UTF-8");
 
-		// execution of system commands
-		rules.add(new Rule("java.lang.Process java.lang.Runtime.exec(*)"));
+		for (String line : lines) {
+			if (line.startsWith("#")) continue; // ignore comments
+			if (line.trim().isEmpty()) continue; // ignore empty lines
 
-		// deprecated com.sun.image.codec.jpeg API (removed in Java 9)
-		rules.add(new Rule("* com.sun.image.codec.jpeg.*"));
+			if (line.startsWith("@")) {
+				String annotation = line.substring(1);
+				annotations.add(annotation);
+			} else {
+				rules.add(new Rule(line));
+			}
 
+		}
 	}
 
 	@Override
@@ -63,7 +68,7 @@ public class BlacklistAnalyzer extends Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Blacklist", "Use of unsafe or dangerous classes and methods.");
+		ReportSection section = new ReportSection("Blacklist", "Use of dangerous, unsafe, unstable, or deprecated classes and methods.");
 		section.add(table);
 		return section;
 	}
@@ -82,32 +87,51 @@ public class BlacklistAnalyzer extends Analyzer {
 
 				Set<String> classIssues = new TreeSet<>();
 
-				List<String> descriptors = new ArrayList<>();
-				classDef.getClassRefs().forEach(classRef -> descriptors.add(classRef.getDisplayName()));
-				classDef.getFieldRefs().forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
-				classDef.getMethodRefs().forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
-
-				for (String descriptor : descriptors) {
-					Rule rule = checkRules(descriptor);
-					if (rule != null) {
-						classIssues.add(descriptor);
-					}
-				}
+				checkRules(classDef, classIssues);
+				checkAnnotations(classDef, classpath, classIssues);
 
 				if (!classIssues.isEmpty()) {
-					String className = classDef.getClassName();
-					jarIssues.add(className + System.lineSeparator() + classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines()) + System.lineSeparator());
+					String issue = createJarIssue(classDef, classIssues);
+					jarIssues.add(issue);
 				}
 
 			});
 
 			if (!jarIssues.isEmpty()) {
-				table.addRow(jarFile.getFileName(), StringUtils.joinLines(jarIssues).trim());
+				String lines = StringUtils.joinLines(jarIssues).trim();
+				table.addRow(jarFile.getFileName(), lines);
 			}
 
 		}
 
 		return table;
+	}
+
+	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
+		String className = classDef.getClassName();
+		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		return className + System.lineSeparator() + lines + System.lineSeparator();
+	}
+
+	// --------------------------------------------------------------------------------------------------
+	// descriptor patterns
+
+	private void checkRules(ClassDef classDef, Set<String> classIssues) {
+
+		// collect all class, field and method descriptors
+		List<String> descriptors = new ArrayList<>();
+		classDef.getClassRefs().forEach(classRef -> descriptors.add(classRef.getDisplayName()));
+		classDef.getFieldRefs().forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
+		classDef.getMethodRefs().forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
+
+		// match every descriptor against all blacklist patterns
+		for (String descriptor : descriptors) {
+			Rule rule = checkRules(descriptor);
+			if (rule != null) {
+				classIssues.add(descriptor);
+			}
+		}
+
 	}
 
 	private Rule checkRules(String descriptor) {
@@ -163,6 +187,79 @@ public class BlacklistAnalyzer extends Analyzer {
 			return Pattern.compile("^" + regex.toString() + "$");
 		}
 
+	}
+
+	// --------------------------------------------------------------------------------------------------
+	// annotations
+
+	private void checkAnnotations(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
+
+		// check class references
+		classDef.getClassRefs()
+				.forEach(
+						classRef -> classpath.getClassDef(classRef)
+								.ifPresent(
+										def -> findUnstableAnnotations(classDef, def, classIssues)
+								)
+				);
+
+		// check field references
+		classDef.getFieldRefs()
+				.forEach(
+						fieldRef -> classpath.getFieldDef(fieldRef)
+								.ifPresent(
+										def -> findUnstableAnnotations(classDef, def, classIssues)
+								)
+				);
+
+		// check method references
+		classDef.getMethodRefs()
+				.forEach(
+						methodRef -> classpath.getMethodDef(methodRef)
+								.ifPresent(
+										def -> findUnstableAnnotations(classDef, def, classIssues)
+								)
+				);
+
+		// TODO: report usage of deprecated/unstable annotation fields
+		// TODO: report overriding of deprecated/unstable methods
+		// TODO: report implementation of deprecated/unstable methods
+	}
+
+	private void findUnstableAnnotations(ClassDef classDef, Def def, Set<String> classIssues) {
+
+		if (def.isFromSameJarFileAs(classDef)) {
+			// skip if caller and target are in the same JAR file
+			return;
+		}
+
+		// for every annotation ...
+		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
+		for (AnnotationRef annotationRef : annotationRefs) {
+			String annotationClassName = annotationRef.getClassName();
+
+			// check if annotation is a marker for an unstable API
+			boolean unstable = isUnstableAnnotation(annotationClassName);
+			if (unstable) {
+				String issue = createClassIssue(annotationClassName, def);
+				classIssues.add(issue);
+			}
+		}
+	}
+
+	private boolean isUnstableAnnotation(String annotationClassName) {
+		for (String className : annotations) {
+			if (className.equals(annotationClassName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private String createClassIssue(String annotationClassName, Def def) {
+		String annotation = "@" + JavaUtils.getSimpleClassName(annotationClassName);
+		String displayName = def.getDisplayName().replace(" @Deprecated ", " ");
+		return annotation + ": " + displayName;
 	}
 
 }

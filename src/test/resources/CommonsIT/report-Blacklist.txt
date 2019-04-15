@@ -3,10 +3,19 @@ JAR Health Check Report
 
 Blacklist
 ---------
-Use of unsafe or dangerous classes and methods.
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file           | Issues
--------------------+---------------------------------------------------------------
-commons-io-2.4.jar | org.apache.commons.io.FileSystemUtils
-                   | • java.lang.Process java.lang.Runtime.exec(java.lang.String[])
+JAR file                | Issues
+------------------------+-------------------------------------------------------------------------------------------------------------
+commons-dbcp2-2.5.0.jar | org.apache.commons.dbcp2.DelegatingCallableStatement
+                        | • @Deprecated: public abstract java.math.BigDecimal java.sql.CallableStatement.getBigDecimal(int,int)
+                        |
+                        | org.apache.commons.dbcp2.DelegatingPreparedStatement
+                        | • @Deprecated: public abstract void java.sql.PreparedStatement.setUnicodeStream(int,java.io.InputStream,int)
+                        |
+                        | org.apache.commons.dbcp2.DelegatingResultSet
+                        | • @Deprecated: public abstract java.io.InputStream java.sql.ResultSet.getUnicodeStream(int)
+                        | • @Deprecated: public abstract java.io.InputStream java.sql.ResultSet.getUnicodeStream(java.lang.String)
+commons-io-2.4.jar      | org.apache.commons.io.FileSystemUtils
+                        | • java.lang.Process java.lang.Runtime.exec(java.lang.String[])
 

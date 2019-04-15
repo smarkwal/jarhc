@@ -2,8 +2,9 @@
 * sun.misc.Unsafe.*(*)
 
 # JVM shutdown
-* java.lang.System.exit(*)
-* java.lang.System.halt(*)
+static void java.lang.System.exit(int)
+void java.lang.Runtime.exit(int)
+void java.lang.Runtime.halt(int)
 
 # loading of native libraries
 static void java.lang.System.load(java.lang.String)
@@ -12,7 +13,13 @@ void java.lang.Runtime.load(java.lang.String)
 void java.lang.Runtime.loadLibrary(java.lang.String)
 
 # execution of system commands
-* java.lang.Runtime.exec(*)
+java.lang.Process java.lang.Runtime.exec(*)
 
 # deprecated com.sun.image.codec.jpeg API (removed in Java 9)
 * com.sun.image.codec.jpeg.*
+
+# annotations marking unstable APIs
+@java.lang.Deprecated
+@com.google.common.annotations.VisibleForTesting
+@com.google.common.annotations.Beta
+@com.google.errorprone.annotations.DoNotCall

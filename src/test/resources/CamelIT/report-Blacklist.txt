@@ -3,26 +3,44 @@ JAR Health Check Report
 
 Blacklist
 ---------
-Use of unsafe or dangerous classes and methods.
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file              | Issues
-----------------------+--------------------------------------------------------------------------------------------------------
-camel-core-2.17.7.jar | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8
-                      | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
-                      | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
-                      | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
-                      | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
-                      | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
-                      | • java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
-                      | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
-                      | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
-                      | • void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
-                      | • void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
-                      |
-                      | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8$TreeBin
-                      | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
-                      | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
-                      |
-                      | org.apache.camel.main.Main
-                      | • static void java.lang.System.exit(int)
+JAR file                | Issues
+------------------------+---------------------------------------------------------------------------------------------------------------
+camel-core-2.17.7.jar   | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8
+                        | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                        | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
+                        | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
+                        | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                        | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                        | • java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
+                        | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                        | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
+                        | • void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
+                        | • void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
+                        |
+                        | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8$TreeBin
+                        | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                        | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                        |
+                        | org.apache.camel.main.Main
+                        | • static void java.lang.System.exit(int)
+camel-jms-2.17.7.jar    | org.apache.camel.component.jms.JmsEndpoint
+                        | • @Deprecated: protected void org.apache.camel.impl.DefaultEndpoint.<init>(java.lang.String)
+camel-ldap-2.17.7.jar   | org.apache.camel.component.ldap.LdapEndpoint
+                        | • @Deprecated: protected void org.apache.camel.impl.DefaultEndpoint.<init>(java.lang.String)
+camel-mail-2.17.7.jar   | org.apache.camel.component.mail.MailEndpoint
+                        | • @Deprecated: protected void org.apache.camel.impl.ScheduledPollEndpoint.<init>(java.lang.String)
+camel-spring-2.17.7.jar | org.apache.camel.component.event.EventEndpoint
+                        | • @Deprecated: protected void org.apache.camel.impl.DefaultEndpoint.<init>(java.lang.String)
+                        |
+                        | org.apache.camel.core.xml.AbstractCamelContextFactoryBean
+                        | • @Deprecated: public abstract void org.apache.camel.CamelContext.setLazyLoadTypeConverters(java.lang.Boolean)
+                        | • @Deprecated: public class org.apache.camel.processor.interceptor.Delayer
+                        |
+                        | org.apache.camel.language.spel.SpelExpression
+                        | • @Deprecated: public abstract class org.apache.camel.impl.ExpressionSupport
+                        |
+                        | org.apache.camel.spring.Main
+                        | • @Deprecated: public abstract class org.apache.camel.impl.MainSupport
 

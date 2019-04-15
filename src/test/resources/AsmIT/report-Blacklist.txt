@@ -3,8 +3,27 @@ JAR Health Check Report
 
 Blacklist
 ---------
-Use of unsafe or dangerous classes and methods.
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file | Issues
----------+-------
+JAR file            | Issues
+--------------------+-----------------------------------------------------------------------------------------------------------------------------------
+asm-commons-7.0.jar | org.objectweb.asm.commons.AdviceAdapter
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+                    |
+                    | org.objectweb.asm.commons.AnalyzerAdapter
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+                    |
+                    | org.objectweb.asm.commons.CodeSizeEvaluator
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+                    |
+                    | org.objectweb.asm.commons.InstructionAdapter
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+                    |
+                    | org.objectweb.asm.commons.MethodRemapper
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+                    |
+                    | org.objectweb.asm.commons.RemappingMethodAdapter
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+asm-tree-7.0.jar    | org.objectweb.asm.tree.MethodNode
+                    | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 

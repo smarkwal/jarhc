@@ -16,9 +16,9 @@
 
 package org.jarhc.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResourceUtils {
 
@@ -40,6 +40,19 @@ public class ResourceUtils {
 			result.write(buffer, 0, len);
 		}
 		return result.toString(encoding);
+	}
+
+	public static List<String> getResourceAsLines(String resource, String encoding) throws IOException {
+		List<String> lines = new ArrayList<>();
+		try (InputStream stream = getResourceAsStream(resource)) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(stream, encoding));
+			while (true) {
+				String line = reader.readLine();
+				if (line == null) break;
+				lines.add(line);
+			}
+		}
+		return lines;
 	}
 
 }
