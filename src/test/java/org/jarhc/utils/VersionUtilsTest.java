@@ -32,7 +32,7 @@ class VersionUtilsTest {
 		// assert
 		assertNotNull(version);
 		assumeFalse(version.equals("${project.version}"), () -> "jarhc.properties not filtered.");
-		assertEquals("1.1", version);
+		assertEquals("1.2-SNAPSHOT", version);
 
 	}
 
