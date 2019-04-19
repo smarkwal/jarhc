@@ -45,7 +45,7 @@ public class Main {
 			System.exit(exitCode);
 		}
 
-		Repository repository = createRepository();
+		Repository repository = createRepository(options);
 
 		// create and run application
 		Application application = new Application();
@@ -58,7 +58,7 @@ public class Main {
 		}
 	}
 
-	private static Repository createRepository() {
+	private static Repository createRepository(Options options) {
 
 		// resolve artifacts using Maven Central
 		Duration timeout = Duration.ofSeconds(5); // TODO: make this configurable
@@ -72,9 +72,14 @@ public class Main {
 			repository = new MavenLocalRepository(directory, repository);
 		}
 
-		// use a local disk cache
-		File cacheDir = new File("./.jarhc/cache/repository"); // TODO: make this configurable
-		repository = new CachedRepository(cacheDir, repository);
+		String dataPath = options.getDataPath();
+		if (dataPath != null) {
+
+			// use a local disk cache
+			File cacheDir = new File(dataPath, "cache/repository");
+			repository = new CachedRepository(cacheDir, repository);
+
+		}
 
 		return repository;
 

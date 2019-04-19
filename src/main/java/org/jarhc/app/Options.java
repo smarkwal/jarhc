@@ -33,6 +33,7 @@ public class Options {
 	private String reportFormat = null;
 	private String reportFile = null; // STDOUT
 
+	private String dataPath = "./.jarhc";
 	private boolean debug = false;
 
 	public Options() {
@@ -120,6 +121,14 @@ public class Options {
 
 	public void setReportFile(String reportFile) {
 		this.reportFile = reportFile;
+	}
+
+	public String getDataPath() {
+		return dataPath;
+	}
+
+	public void setDataPath(String dataPath) {
+		this.dataPath = dataPath;
 	}
 
 	public boolean isDebug() {

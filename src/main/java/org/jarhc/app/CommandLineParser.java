@@ -142,6 +142,15 @@ public class CommandLineParser {
 				printUsage(null, out);
 			} else if (arg.equals("-v") || arg.equals("--version")) {
 				out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
+			} else if (arg.equals("--data")) {
+				if (iterator.hasNext()) {
+					String value = iterator.next();
+					options.setDataPath(value);
+				} else {
+					handleError(-11, "Data path not specified.");
+				}
+			} else if (arg.equals("--nodata")) {
+				options.setDataPath(null);
 			} else if (arg.equals("--debug")) {
 				options.setDebug(true);
 			} else if (arg.startsWith("-")) {
