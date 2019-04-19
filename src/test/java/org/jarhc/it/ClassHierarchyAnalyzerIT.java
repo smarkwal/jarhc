@@ -27,8 +27,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +38,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(TempDirectory.class)
 class ClassHierarchyAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
@@ -47,7 +45,7 @@ class ClassHierarchyAnalyzerIT {
 	private BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
 
 	@Test
-	void analyze_compatible(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void analyze_compatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/a.jar", tempDir);
@@ -68,9 +66,8 @@ class ClassHierarchyAnalyzerIT {
 
 	}
 
-
 	@Test
-	void analyze_incompatible(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void analyze_incompatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/a.jar", tempDir);

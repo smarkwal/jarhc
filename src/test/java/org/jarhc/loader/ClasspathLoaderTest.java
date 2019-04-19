@@ -19,8 +19,7 @@ package org.jarhc.loader;
 import org.jarhc.TestUtils;
 import org.jarhc.model.Classpath;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +29,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
-@ExtendWith(TempDirectory.class)
 class ClasspathLoaderTest {
 
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();

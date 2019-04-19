@@ -32,8 +32,7 @@ import org.jarhc.test.ContextMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,9 +42,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
-@ExtendWith(TempDirectory.class)
 abstract class AbstractIT {
 
 	private final String baseResourcePath;

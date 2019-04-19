@@ -19,8 +19,6 @@ package org.jarhc.artifacts;
 import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-@ExtendWith(TempDirectory.class)
 class MavenLocalRepositoryIT {
 
 	private static final String GROUP_ID = "org.ow2.asm";

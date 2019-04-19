@@ -24,17 +24,14 @@ import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.RepositoryMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
-@ExtendWith(TempDirectory.class)
 class ApplicationIT {
 
 	@Test

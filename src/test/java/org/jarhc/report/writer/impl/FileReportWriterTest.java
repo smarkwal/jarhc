@@ -17,8 +17,7 @@
 package org.jarhc.report.writer.impl;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,11 +27,10 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(TempDirectory.class)
 class FileReportWriterTest {
 
 	@Test
-	void test_print(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_print(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File file = new File(tempDir.toFile(), "file.txt");
@@ -56,7 +54,7 @@ class FileReportWriterTest {
 	}
 
 	@Test
-	void test_print_file_error(@TempDirectory.TempDir Path tempDir) {
+	void test_print_file_error(@TempDir Path tempDir) {
 
 		// prepare
 		File file = tempDir.toFile(); // file is an existing directory
@@ -80,7 +78,7 @@ class FileReportWriterTest {
 	}
 
 	@Test
-	void test_close_no_output(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_close_no_output(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File file = new File(tempDir.toFile(), "file.txt");

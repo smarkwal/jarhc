@@ -20,8 +20,7 @@ import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 
 import java.io.File;
@@ -33,7 +32,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(TempDirectory.class)
 class MavenLocalRepositoryTest {
 
 	private static final String GROUP_ID = "a.b";
@@ -50,7 +48,7 @@ class MavenLocalRepositoryTest {
 	private static File directory;
 
 	@BeforeAll
-	static void setUp(@TempDirectory.TempDir Path tempDir) throws IOException {
+	static void setUp(@TempDir Path tempDir) throws IOException {
 
 		// prepare local repository
 		directory = tempDir.toFile();

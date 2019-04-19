@@ -43,14 +43,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.2.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<!-- TODO: remove this after migration to JUnit 5.4+ -->
-			<groupId>org.junit-pioneer</groupId>
-			<artifactId>junit-pioneer</artifactId>
-			<version>0.3.0</version>
+			<version>5.4.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -152,7 +145,7 @@
 					<dependency>
 						<groupId>org.junit.jupiter</groupId>
 						<artifactId>junit-jupiter-engine</artifactId>
-						<version>5.2.0</version>
+						<version>5.4.2</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -169,7 +162,7 @@
 					<dependency>
 						<groupId>org.junit.jupiter</groupId>
 						<artifactId>junit-jupiter-engine</artifactId>
-						<version>5.2.0</version>
+						<version>5.4.2</version>
 					</dependency>
 				</dependencies>
 				<executions>

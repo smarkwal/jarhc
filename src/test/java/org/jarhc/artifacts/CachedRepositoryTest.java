@@ -21,9 +21,8 @@ import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +35,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-@ExtendWith(TempDirectory.class)
 class CachedRepositoryTest {
 
 	private static final String CHECKSUM_UNKNOWN = "1234567890123456789012345678901234567890";
@@ -46,7 +44,7 @@ class CachedRepositoryTest {
 	private CachedRepository repository;
 
 	@BeforeEach
-	void setUp(@TempDirectory.TempDir Path tempDir) {
+	void setUp(@TempDir Path tempDir) {
 		Repository parent = RepositoryMock.createRepository();
 		cacheDir = tempDir.toFile();
 		repository = new CachedRepository(cacheDir, parent);

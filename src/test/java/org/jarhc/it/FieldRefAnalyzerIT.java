@@ -29,8 +29,7 @@ import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
 import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +41,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(TempDirectory.class)
 class FieldRefAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
@@ -50,7 +48,7 @@ class FieldRefAnalyzerIT {
 	private BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(false);
 
 	@Test
-	void test_fieldrefs(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_fieldrefs(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
@@ -80,7 +78,7 @@ class FieldRefAnalyzerIT {
 	}
 
 	@Test
-	void test_compatible(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_compatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
@@ -102,7 +100,7 @@ class FieldRefAnalyzerIT {
 	}
 
 	@Test
-	void test_incompatible(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_incompatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
@@ -136,7 +134,7 @@ class FieldRefAnalyzerIT {
 	}
 
 	@Test
-	void test_reportOwnerClassNotFound_false(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_reportOwnerClassNotFound_false(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
@@ -168,7 +166,7 @@ class FieldRefAnalyzerIT {
 	}
 
 	@Test
-	void test_reportOwnerClassNotFound_true(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_reportOwnerClassNotFound_true(@TempDir Path tempDir) throws IOException {
 
 		// prepare: analyzer reporting missing owner classes
 		analyzer = new BinaryCompatibilityAnalyzer(true);

@@ -19,8 +19,7 @@ package org.jarhc.app;
 import org.jarhc.TestUtils;
 import org.jarhc.test.PrintStreamBuffer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,9 +27,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
-@ExtendWith(TempDirectory.class)
 class CommandLineParserTest {
 
 	private final PrintStreamBuffer out = new PrintStreamBuffer();

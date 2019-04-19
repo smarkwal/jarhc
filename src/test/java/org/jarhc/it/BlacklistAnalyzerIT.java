@@ -25,8 +25,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,14 +36,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(TempDirectory.class)
 class BlacklistAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
 	private BlacklistAnalyzer analyzer = new BlacklistAnalyzer();
 
 	@Test
-	void test_analyze(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_analyze(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile = TestUtils.getResourceAsFile("/BlacklistAnalyzerIT/a.jar", tempDir);

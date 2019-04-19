@@ -20,8 +20,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junitpioneer.jupiter.TempDirectory.TempDir;
 
-@ExtendWith(TempDirectory.class)
 class JarFileLoaderTest {
 
 	private final JarFileLoader jarFileLoader = LoaderBuilder.create().buildJarFileLoader();

@@ -27,8 +27,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junitpioneer.jupiter.TempDirectory;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +38,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(TempDirectory.class)
 class UnstableAPIsAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
@@ -47,7 +45,7 @@ class UnstableAPIsAnalyzerIT {
 	private BlacklistAnalyzer analyzer = new BlacklistAnalyzer();
 
 	@Test
-	void test_analyze(@TempDirectory.TempDir Path tempDir) throws IOException {
+	void test_analyze(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/UnstableAPIsAnalyzerIT/a.jar", tempDir);
