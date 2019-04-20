@@ -26,7 +26,6 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
-import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.test.ContextMock;
 import org.jarhc.test.TextUtils;
@@ -76,26 +75,15 @@ abstract class AbstractIT {
 		for (String code : registry.getCodes()) {
 			Analyzer analyzer = registry.createAnalyzer(code, context);
 			String analyzerName = analyzer.getClass().getSimpleName().replace("Analyzer", "");
-			tests.add(DynamicTest.dynamicTest(analyzerName + "-txt", () -> test(classpath, analyzer, analyzerName, "txt")));
-			tests.add(DynamicTest.dynamicTest(analyzerName + "-html", () -> test(classpath, analyzer, analyzerName, "html")));
+			tests.add(DynamicTest.dynamicTest(analyzerName, () -> test(classpath, analyzer, analyzerName)));
 		}
 		return tests;
 	}
 
-	private void test(Classpath classpath, Analyzer analyzer, String analyzerName, String reportType) throws IOException {
+	private void test(Classpath classpath, Analyzer analyzer, String analyzerName) throws IOException {
 
 		// prepare
-		ReportFormat reportFormat;
-		switch (reportType) {
-			case "txt":
-				reportFormat = new TextReportFormat();
-				break;
-			case "html":
-				reportFormat = new HtmlReportFormat();
-				break;
-			default:
-				throw new IllegalArgumentException("reportType");
-		}
+		ReportFormat reportFormat = new TextReportFormat();
 
 		// analyze classpath
 		Report report = new Report();
@@ -106,21 +94,21 @@ abstract class AbstractIT {
 		String output = reportFormat.format(report);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource(getReportResourcePath(analyzerName, reportType), output, "UTF-8");
+			TestUtils.saveResource(getReportResourcePath(analyzerName), output, "UTF-8");
 			return;
 		}
 
 		// normalize
 		output = TextUtils.toUnixLineSeparators(output);
-		String expectedOutput = TestUtils.getResourceAsString(getReportResourcePath(analyzerName, reportType), "UTF-8");
+		String expectedOutput = TestUtils.getResourceAsString(getReportResourcePath(analyzerName), "UTF-8");
 		expectedOutput = TextUtils.toUnixLineSeparators(expectedOutput);
 
 		// assert
 		assertEquals(expectedOutput, output);
 	}
 
-	private String getReportResourcePath(String analyzerName, String reportType) {
-		return baseResourcePath + "report-" + analyzerName + "." + reportType;
+	private String getReportResourcePath(String analyzerName) {
+		return baseResourcePath + "report-" + analyzerName + ".txt";
 	}
 
 }
