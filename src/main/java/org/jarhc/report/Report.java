@@ -17,7 +17,6 @@
 package org.jarhc.report;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Report {
@@ -41,8 +40,12 @@ public class Report {
 		sections.add(section);
 	}
 
+	public void removeSection(ReportSection section) {
+		sections.remove(section);
+	}
+
 	public List<ReportSection> getSections() {
-		return Collections.unmodifiableList(sections);
+		return new ArrayList<>(sections);
 	}
 
 }

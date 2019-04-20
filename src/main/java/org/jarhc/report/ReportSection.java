@@ -19,6 +19,7 @@ package org.jarhc.report;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReportSection {
 
@@ -53,6 +54,21 @@ public class ReportSection {
 
 	public List<Object> getContent() {
 		return Collections.unmodifiableList(content);
+	}
+
+	public boolean isEmpty() {
+
+		// get all tables
+		List<ReportTable> tables = content.stream().filter(ReportTable.class::isInstance).map(ReportTable.class::cast).collect(Collectors.toList());
+
+		// special case: a section without tables is never considered empty
+		if (tables.isEmpty()) {
+			return false;
+		}
+
+		// section is empty if all tables are empty
+		return tables.stream().allMatch(t -> t.getRows().isEmpty());
+
 	}
 
 }

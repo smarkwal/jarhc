@@ -134,6 +134,8 @@ public class CommandLineParser {
 				} else {
 					handleError(-9, "Report sections not specified.");
 				}
+			} else if (arg.equals("--skip-empty")) {
+				options.setSkipEmpty(true);
 			} else if (arg.equals("--remove-version")) {
 				options.setRemoveVersion(true);
 			} else if (arg.equals("--use-artifact-name")) {

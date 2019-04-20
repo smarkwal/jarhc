@@ -34,6 +34,7 @@ import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportFormatFactory;
+import org.jarhc.report.ReportSection;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.report.writer.impl.FileReportWriter;
 import org.jarhc.report.writer.impl.StreamReportWriter;
@@ -132,6 +133,15 @@ public class Application {
 
 		out.println("Create report ...");
 		out.println();
+
+		if (options.isSkipEmpty()) {
+			// remove empty report sections.
+			for (ReportSection section : report.getSections()) {
+				if (section.isEmpty()) {
+					report.removeSection(section);
+				}
+			}
+		}
 
 		// set report title
 		report.setTitle(options.getReportTitle());

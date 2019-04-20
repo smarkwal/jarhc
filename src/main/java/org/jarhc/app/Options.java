@@ -28,6 +28,7 @@ public class Options {
 	private boolean useArtifactName = false;
 
 	private List<String> sections = null; // all sections
+	private boolean skipEmpty = false;
 
 	private String reportTitle = "JAR Health Check Report";
 	private String reportFormat = null;
@@ -85,6 +86,14 @@ public class Options {
 
 	public void setSections(List<String> sections) {
 		this.sections = sections;
+	}
+
+	public boolean isSkipEmpty() {
+		return skipEmpty;
+	}
+
+	public void setSkipEmpty(boolean skipEmpty) {
+		this.skipEmpty = skipEmpty;
 	}
 
 	public String getReportTitle() {

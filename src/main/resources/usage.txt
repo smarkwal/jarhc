@@ -49,6 +49,8 @@ Options:
                            the given sections are excluded.
                            Example: -s "-p,sp"
 
+   --skip-empty          : Exclude empty sections from the report.
+
    --remove-version      : Remove version number from JAR file names.
 
    --use-artifact-name   : Create JAR file name from artifact name.
