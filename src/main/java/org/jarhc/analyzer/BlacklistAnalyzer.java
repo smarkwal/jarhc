@@ -29,8 +29,9 @@ import java.util.regex.Pattern;
 
 public class BlacklistAnalyzer extends Analyzer {
 
-	private final List<Rule> rules = new ArrayList<>();
-	private final Set<String> annotations = new HashSet<>();
+	private final List<Pattern> codePatterns = new ArrayList<>();
+	private final List<Pattern> annotationPatterns = new ArrayList<>();
+	private final List<Pattern> resourcePatterns = new ArrayList<>();
 
 	public BlacklistAnalyzer() {
 
@@ -55,9 +56,15 @@ public class BlacklistAnalyzer extends Analyzer {
 
 			if (line.startsWith("@")) {
 				String annotation = line.substring(1);
-				annotations.add(annotation);
+				Pattern pattern = createPattern(annotation, false);
+				annotationPatterns.add(pattern);
+			} else if (line.startsWith("resource:")) {
+				String path = line.substring(9);
+				Pattern pattern = createPattern(path, true);
+				resourcePatterns.add(pattern);
 			} else {
-				rules.add(new Rule(line));
+				Pattern pattern = createPattern(line, false);
+				codePatterns.add(pattern);
 			}
 
 		}
@@ -82,20 +89,8 @@ public class BlacklistAnalyzer extends Analyzer {
 
 			Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
 
-			List<ClassDef> classDefs = jarFile.getClassDefs();
-			classDefs.parallelStream().forEach(classDef -> {
-
-				Set<String> classIssues = new TreeSet<>();
-
-				checkRules(classDef, classIssues);
-				checkAnnotations(classDef, classpath, classIssues);
-
-				if (!classIssues.isEmpty()) {
-					String issue = createJarIssue(classDef, classIssues);
-					jarIssues.add(issue);
-				}
-
-			});
+			validateClassDefs(jarFile, classpath, jarIssues);
+			validateResources(jarFile, jarIssues);
 
 			if (!jarIssues.isEmpty()) {
 				String lines = StringUtils.joinLines(jarIssues).trim();
@@ -107,16 +102,26 @@ public class BlacklistAnalyzer extends Analyzer {
 		return table;
 	}
 
-	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
-		String className = classDef.getClassName();
-		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
-		return className + System.lineSeparator() + lines + System.lineSeparator();
+	private void validateClassDefs(JarFile jarFile, Classpath classpath, Set<String> jarIssues) {
+
+		List<ClassDef> classDefs = jarFile.getClassDefs();
+		classDefs.parallelStream().forEach(classDef -> {
+
+			Set<String> classIssues = new TreeSet<>();
+
+			validateClassDef(classDef, classIssues);
+			validateAnnotations(classDef, classpath, classIssues);
+
+			if (!classIssues.isEmpty()) {
+				String issue = createJarIssue(classDef, classIssues);
+				jarIssues.add(issue);
+			}
+
+		});
+
 	}
 
-	// --------------------------------------------------------------------------------------------------
-	// descriptor patterns
-
-	private void checkRules(ClassDef classDef, Set<String> classIssues) {
+	private void validateClassDef(ClassDef classDef, Set<String> classIssues) {
 
 		// collect all class, field and method descriptors
 		List<String> descriptors = new ArrayList<>();
@@ -124,75 +129,27 @@ public class BlacklistAnalyzer extends Analyzer {
 		classDef.getFieldRefs().forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
 		classDef.getMethodRefs().forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
 
-		// match every descriptor against all blacklist patterns
+		// match every descriptor against all call patterns
 		for (String descriptor : descriptors) {
-			Rule rule = checkRules(descriptor);
-			if (rule != null) {
-				classIssues.add(descriptor);
-			}
-		}
-
-	}
-
-	private Rule checkRules(String descriptor) {
-		for (Rule rule : rules) {
-			if (rule.matches(descriptor)) {
-				return rule;
-			}
-		}
-		return null;
-	}
-
-	private static class Rule {
-
-		private final Pattern regex;
-		private final String name;
-
-		private Rule(String pattern) {
-			this(pattern, pattern);
-		}
-
-		private Rule(String name, String pattern) {
-			this.regex = createPattern(pattern);
-			this.name = name;
-		}
-
-		private boolean matches(String descriptor) {
-			return regex.matcher(descriptor).matches();
-		}
-
-		private String getName() {
-			return name;
-		}
-
-		private static Pattern createPattern(String pattern) {
-
-			StringBuilder regex = new StringBuilder(pattern.length() + 10);
-
-			int end = 0;
-			while (true) {
-				int pos = pattern.indexOf('*', end);
-				if (pos < 0) {
-					regex.append(Pattern.quote(pattern.substring(end)));
-					break;
-				} else {
-					if (pos > end) {
-						regex.append(Pattern.quote(pattern.substring(end, pos)));
-					}
-					regex.append(".*");
-					end = pos + 1;
+			for (Pattern pattern : codePatterns) {
+				if (pattern.matcher(descriptor).matches()) {
+					classIssues.add(descriptor);
 				}
 			}
-
-			return Pattern.compile("^" + regex.toString() + "$");
 		}
 
+	}
+
+	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
+		String className = classDef.getClassName();
+		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		return className + System.lineSeparator() + lines + System.lineSeparator();
 	}
 
 	// --------------------------------------------------------------------------------------------------
 	// annotations
 
-	private void checkAnnotations(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
+	private void validateAnnotations(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
 
 		// check class references
 		classDef.getClassRefs()
@@ -248,8 +205,8 @@ public class BlacklistAnalyzer extends Analyzer {
 	}
 
 	private boolean isUnstableAnnotation(String annotationClassName) {
-		for (String className : annotations) {
-			if (className.equals(annotationClassName)) {
+		for (Pattern pattern : annotationPatterns) {
+			if (pattern.matcher(annotationClassName).matches()) {
 				return true;
 			}
 		}
@@ -260,6 +217,50 @@ public class BlacklistAnalyzer extends Analyzer {
 		String annotation = "@" + JavaUtils.getSimpleClassName(annotationClassName);
 		String displayName = def.getDisplayName().replace(" @Deprecated ", " ");
 		return annotation + ": " + displayName;
+	}
+
+	// --------------------------------------------------------------------------------------------------
+	// resources
+
+	private void validateResources(JarFile jarFile, Set<String> jarIssues) {
+
+		// for every resource ...
+		List<ResourceDef> resourceDefs = jarFile.getResourceDefs();
+		for (ResourceDef resourceDef : resourceDefs) {
+			String name = resourceDef.getPath();
+
+			// check if resource matches any pattern ...
+			for (Pattern pattern : resourcePatterns) {
+				if (pattern.matcher(name).matches()) {
+					jarIssues.add(name);
+					break;
+				}
+			}
+		}
+
+	}
+
+	private static Pattern createPattern(String pattern, boolean caseInsensitive) {
+
+		StringBuilder regex = new StringBuilder(pattern.length() + 10);
+
+		int end = 0;
+		while (true) {
+			int pos = pattern.indexOf('*', end);
+			if (pos < 0) {
+				regex.append(Pattern.quote(pattern.substring(end)));
+				break;
+			} else {
+				if (pos > end) {
+					regex.append(Pattern.quote(pattern.substring(end, pos)));
+				}
+				regex.append(".*");
+				end = pos + 1;
+			}
+		}
+
+		int flags = caseInsensitive ? Pattern.CASE_INSENSITIVE : 0;
+		return Pattern.compile("^" + regex.toString() + "$", flags);
 	}
 
 }

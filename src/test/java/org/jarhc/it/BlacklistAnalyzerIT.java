@@ -84,7 +84,10 @@ class BlacklistAnalyzerIT {
 				"",
 				"a.Unsafe",
 				"\u2022 int sun.misc.Unsafe.addressSize()",
-				"\u2022 static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()"
+				"\u2022 static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()",
+				"",
+				"a/start.bat",
+				"a/start.sh"
 		);
 		assertEquals(expectedMessage, values[1]);
 

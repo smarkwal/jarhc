@@ -23,3 +23,10 @@ java.lang.Process java.lang.Runtime.exec(*)
 @com.google.common.annotations.VisibleForTesting
 @com.google.common.annotations.Beta
 @com.google.errorprone.annotations.DoNotCall
+
+# executable resources
+resource:*.dll
+resource:*.exe
+resource:*.so
+resource:*.bat
+resource:*.sh
