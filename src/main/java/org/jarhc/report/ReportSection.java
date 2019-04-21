@@ -32,7 +32,7 @@ public class ReportSection {
 		this.description = description;
 	}
 
-	public void add(CharSequence text) {
+	public void add(String text) {
 		content.add(text);
 	}
 
@@ -58,10 +58,14 @@ public class ReportSection {
 
 	public boolean isEmpty() {
 
+		if (content.isEmpty()) {
+			return true;
+		}
+
 		// get all tables
 		List<ReportTable> tables = content.stream().filter(ReportTable.class::isInstance).map(ReportTable.class::cast).collect(Collectors.toList());
 
-		// special case: a section without tables is never considered empty
+		// special case: a section with text but no tables is not considered empty
 		if (tables.isEmpty()) {
 			return false;
 		}

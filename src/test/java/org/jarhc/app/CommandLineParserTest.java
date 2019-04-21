@@ -35,6 +35,31 @@ class CommandLineParserTest {
 	private final CommandLineParser parser = new CommandLineParser(out, err);
 
 	@Test
+	void test_default_options(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{file.getAbsolutePath()});
+
+		// assert
+		assertFalse(options.getClasspathJarPaths().isEmpty());
+		assertTrue(options.getProvidedJarPaths().isEmpty());
+		assertTrue(options.getRuntimeJarPaths().isEmpty());
+		assertFalse(options.isRemoveVersion());
+		assertFalse(options.isUseArtifactName());
+		assertNull(options.getSections());
+		assertFalse(options.isSkipEmpty());
+		assertEquals("JAR Health Check Report", options.getReportTitle());
+		assertEquals("text", options.getReportFormat());
+		assertNull(options.getReportFile());
+		assertEquals("./.jarhc", options.getDataPath());
+		assertFalse(options.isDebug());
+
+	}
+
+	@Test
 	void test_no_arguments() {
 
 		// prepare
@@ -394,10 +419,94 @@ class CommandLineParserTest {
 
 		// assert
 		List<String> sections = options.getSections();
-		assertTrue(!sections.isEmpty());
+		assertFalse(sections.isEmpty());
 		assertFalse(sections.contains("jf"));
 		assertFalse(sections.contains("cv"));
 		assertFalse(sections.contains("jd"));
+
+	}
+
+	@Test
+	void test_data(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--data", "/tmp/jarhc", file.getAbsolutePath()});
+
+		// assert
+		assertEquals("/tmp/jarhc", options.getDataPath());
+
+	}
+
+	@Test
+	void test_nodata(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--nodata", file.getAbsolutePath()});
+
+		// assert
+		assertNull(options.getDataPath());
+
+	}
+
+	@Test
+	void test_remove_version(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--remove-version", file.getAbsolutePath()});
+
+		// assert
+		assertTrue(options.isRemoveVersion());
+
+	}
+
+	@Test
+	void test_use_artifac_name(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--use-artifact-name", file.getAbsolutePath()});
+
+		// assert
+		assertTrue(options.isUseArtifactName());
+
+	}
+
+	@Test
+	void test_skip_empty(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--skip-empty", file.getAbsolutePath()});
+
+		// assert
+		assertTrue(options.isSkipEmpty());
+
+	}
+
+	@Test
+	void test_debug(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[]{"--debug", file.getAbsolutePath()});
+
+		// assert
+		assertTrue(options.isDebug());
 
 	}
 
