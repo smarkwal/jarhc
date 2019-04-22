@@ -29,7 +29,7 @@ Options:
    --runtime <path>      : Add a JAR file or directory with JAR files
                            to the classpath of runtime libraries.
 
-   --format <type>       : Report format type ("text" or "html").
+   --format <type>       : Report format type ("text", "list", or "html").
     -f                     Example: -f html
                            Default: text
 

@@ -17,6 +17,7 @@
 package org.jarhc.report;
 
 import org.jarhc.report.html.HtmlReportFormat;
+import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 
 /**
@@ -30,10 +31,14 @@ import org.jarhc.report.text.TextReportFormat;
  */
 public class ReportFormatFactory {
 
+	public static boolean isSupportedFormat(String format) {
+		return format.equals("text") || format.equals("list") || format.equals("html");
+	}
+
 	/**
 	 * Get the report format for the given type.
 	 *
-	 * @param type Report format type ("text" or "html").
+	 * @param type Report format type ("text", "list", or "html").
 	 * @return Report format
 	 */
 	public ReportFormat getReportFormat(String type) {
@@ -41,6 +46,8 @@ public class ReportFormatFactory {
 		switch (type) {
 			case "text":
 				return new TextReportFormat();
+			case "list":
+				return new ListReportFormat();
 			case "html":
 				return new HtmlReportFormat();
 			default:

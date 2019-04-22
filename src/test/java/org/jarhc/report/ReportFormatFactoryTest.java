@@ -17,6 +17,7 @@
 package org.jarhc.report;
 
 import org.jarhc.report.html.HtmlReportFormat;
+import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.junit.jupiter.api.Test;
 
@@ -80,6 +81,20 @@ class ReportFormatFactoryTest {
 
 		// assert
 		assertTrue(format instanceof TextReportFormat);
+
+	}
+
+	@Test
+	void test_getReportFormat_list() {
+
+		// prepare
+		ReportFormatFactory factory = new ReportFormatFactory();
+
+		// test
+		ReportFormat format = factory.getReportFormat("list");
+
+		// assert
+		assertTrue(format instanceof ListReportFormat);
 
 	}
 

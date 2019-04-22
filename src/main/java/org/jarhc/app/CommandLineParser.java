@@ -19,6 +19,7 @@ package org.jarhc.app;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.utils.ArrayUtils;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.VersionUtils;
@@ -88,7 +89,7 @@ public class CommandLineParser {
 			} else if (arg.equals("-f") || arg.equals("--format")) {
 				if (iterator.hasNext()) {
 					String value = iterator.next();
-					if (!value.equals("text") && !value.equals("html")) {
+					if (!ReportFormatFactory.isSupportedFormat(value)) {
 						String errorMessage = String.format("Unknown report format: '%s'.", value);
 						handleError(-6, errorMessage);
 					}
