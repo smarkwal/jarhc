@@ -1,0 +1,221 @@
+ASM 7.0
+=======
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file: asm-7.0.jar
+	Size:
+		111 KB
+	Classes:
+		35
+	Resources:
+		0
+	Multi-release:
+		No
+	Module:
+		Yes (org.objectweb.asm)
+	Checksum (SHA-1):
+		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
+	Artifact coordinates:
+		org.ow2.asm:asm:7.0:jar
+
+JAR file: asm-analysis-7.0.jar
+	Size:
+		32.5 KB
+	Classes:
+		14
+	Resources:
+		0
+	Multi-release:
+		No
+	Module:
+		Yes (org.objectweb.asm.tree.analysis)
+	Checksum (SHA-1):
+		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
+	Artifact coordinates:
+		org.ow2.asm:asm-analysis:7.0:jar
+
+JAR file: asm-commons-7.0.jar
+	Size:
+		78.0 KB
+	Classes:
+		32
+	Resources:
+		0
+	Multi-release:
+		No
+	Module:
+		Yes (org.objectweb.asm.commons)
+	Checksum (SHA-1):
+		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
+	Artifact coordinates:
+		org.ow2.asm:asm-commons:7.0:jar
+
+JAR file: asm-tree-7.0.jar
+	Size:
+		49.2 KB
+	Classes:
+		37
+	Resources:
+		0
+	Multi-release:
+		No
+	Module:
+		Yes (org.objectweb.asm.tree)
+	Checksum (SHA-1):
+		29bc62dcb85573af6e62e5b2d735ef65966c4180
+	Artifact coordinates:
+		org.ow2.asm:asm-tree:7.0:jar
+
+JAR file: Classpath
+	Size:
+		271 KB
+	Classes:
+		118
+	Resources:
+		0
+	Multi-release:
+		-
+	Module:
+		-
+	Checksum (SHA-1):
+		-
+	Artifact coordinates:
+		-
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file: asm-7.0.jar
+	Java version:
+		Java 5 (35)
+
+JAR file: asm-analysis-7.0.jar
+	Java version:
+		Java 5 (14)
+
+JAR file: asm-commons-7.0.jar
+	Java version:
+		Java 5 (32)
+
+JAR file: asm-tree-7.0.jar
+	Java version:
+		Java 5 (37)
+
+JAR file: Classpath
+	Java version:
+		Java 5 (118)
+
+JAR Dependencies
+----------------
+Dependencies between JAR files.
+
+JAR file: asm-7.0.jar
+	Uses:
+		[none]
+	Used by:
+		asm-analysis-7.0.jar
+		asm-commons-7.0.jar
+		asm-tree-7.0.jar
+
+JAR file: asm-analysis-7.0.jar
+	Uses:
+		asm-7.0.jar
+		asm-tree-7.0.jar
+	Used by:
+		[none]
+
+JAR file: asm-commons-7.0.jar
+	Uses:
+		asm-7.0.jar
+		asm-tree-7.0.jar
+	Used by:
+		[none]
+
+JAR file: asm-tree-7.0.jar
+	Uses:
+		asm-7.0.jar
+	Used by:
+		asm-analysis-7.0.jar
+		asm-commons-7.0.jar
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file: asm-7.0.jar
+	Count:
+		2
+	Packages:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+
+JAR file: asm-analysis-7.0.jar
+	Count:
+		1
+	Packages:
+		org.objectweb.asm.tree.analysis
+
+JAR file: asm-commons-7.0.jar
+	Count:
+		1
+	Packages:
+		org.objectweb.asm.commons
+
+JAR file: asm-tree-7.0.jar
+	Count:
+		1
+	Packages:
+		org.objectweb.asm.tree
+
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+JAR file: asm-commons-7.0.jar
+	Issues:
+		org.objectweb.asm.commons.AdviceAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.AnalyzerAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.CodeSizeEvaluator
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.InstructionAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.MethodRemapper
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.RemappingMethodAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+JAR file: asm-tree-7.0.jar
+	Issues:
+		org.objectweb.asm.tree.MethodNode
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+Java Runtime
+------------
+Information about JRE/JDK runtime.
+
+Java home    : C:\Program Files\Java\jdk1.8.0_144\jre
+Java runtime : Java(TM) SE Runtime Environment
+Java version : 1.8.0_144
+Java vendor  : Oracle Corporation
+
