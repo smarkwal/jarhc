@@ -230,8 +230,12 @@ public class DuplicateClassesAnalyzer extends Analyzer {
 	 * @return Similarity
 	 */
 	private static String getResourceSimilarity(Collection<ResourceDef> resourceDefs) {
-		// TODO: implement
-		return "[not implemented]";
+		boolean sameContent = resourceDefs.stream().map(ResourceDef::getChecksum).distinct().limit(2).count() < 2;
+		if (sameContent) {
+			return "Exact copy";
+		} else {
+			return "Different content";
+		}
 	}
 
 }

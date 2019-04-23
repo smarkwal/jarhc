@@ -47,8 +47,8 @@ class DuplicateClassesAnalyzerTest {
 		Classpath classpath = ClasspathBuilder.create(provided)
 				.addJarFile("a.jar").addClassDef("a.A").addClassDef("a.A2").addResourceDef("a/A.txt").addResourceDef("a/A2.txt")
 				.addJarFile("r.jar").addClassDef("java.lang.String")
-				.addJarFile("x.jar").addClassDef("x.X").addClassDef("z.Z").addResourceDef("x/X.txt").addResourceDef("z/Z.txt")
-				.addJarFile("y.jar").addClassDef("y.Y").addClassDef("z.Z").addResourceDef("y/Y.txt").addResourceDef("z/Z.txt")
+				.addJarFile("x.jar").addClassDef("x.X").addClassDef("z.Z").addResourceDef("x/X.txt").addResourceDef("z/Z.txt", "checksum1")
+				.addJarFile("y.jar").addClassDef("y.Y").addClassDef("z.Z").addResourceDef("y/Y.txt").addResourceDef("z/Z.txt", "checksum2")
 				.build();
 
 		// test
@@ -93,7 +93,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals(3, values.length);
 		assertEquals("z/Z.txt", values[0]);
 		assertEquals(joinLines("x.jar", "y.jar"), values[1]);
-		assertEquals("[not implemented]", values[2]);
+		assertEquals("Different content", values[2]);
 
 	}
 
@@ -169,7 +169,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals(3, values.length);
 		assertEquals("a/b/C", values[0]);
 		assertEquals(joinLines("a-1.jar", "a-2.jar"), values[1]);
-		assertEquals("[not implemented]", values[2]);
+		assertEquals("Exact copy", values[2]);
 
 	}
 

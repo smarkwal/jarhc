@@ -92,8 +92,12 @@ public class ClasspathBuilder {
 	}
 
 	public ClasspathBuilder addResourceDef(String resourcePath) {
-		String resourceChecksum = DigestUtils.sha1Hex(resourcePath); // fake checksum
-		resourceDefs.add(new ResourceDef(resourcePath, resourceChecksum));
+		String checksum = DigestUtils.sha1Hex(resourcePath); // fake checksum
+		return addResourceDef(resourcePath, checksum);
+	}
+
+	public ClasspathBuilder addResourceDef(String resourcePath, String checksum) {
+		resourceDefs.add(new ResourceDef(resourcePath, checksum));
 		return this;
 	}
 

@@ -138,58 +138,56 @@ class JarFileLoader {
 					}
 				}
 
-				// ignore files in META-INF
+				// ignore files in META-INF // TODO: why?
 				if (name.startsWith("META-INF/")) {
 					continue;
 				}
 
-				if (name.endsWith(".class") || name.endsWith(".jar")) {
+				// read file data
+				byte[] data;
+				try {
+					data = IOUtils.toByteArray(stream);
+				} catch (IOException e) {
+					throw new IOException(String.format("Unable to parse entry: %s", name), e);
+				}
 
-					// read file data
-					byte[] data;
-					try {
-						data = IOUtils.toByteArray(stream);
-					} catch (IOException e) {
-						throw new IOException(String.format("Unable to parse entry: %s", name), e);
+				if (name.endsWith(".jar")) {
+
+					// load nested JAR file
+					load(fileName + "!/" + name, data, jarFiles);
+
+				} else if (name.endsWith(".class")) {
+
+					if (name.equals("module-info.class")) {
+						// load module info
+						moduleInfo = moduleInfoLoader.load(data);
 					}
 
-					if (name.endsWith(".jar")) {
+					// load class file
+					ClassDef classDef = classDefLoader.load(data);
 
-						// load nested JAR file
-						load(fileName + "!/" + name, data, jarFiles);
-
-					} else {
-
-						if (name.equals("module-info.class")) {
-							// load module info
-							moduleInfo = moduleInfoLoader.load(data);
+					/*
+					Certificate[] certificates = entry.getCertificates();
+					if (certificates != null && certificates.length > 0) {
+						Certificate certificate = certificates[0];
+						if (certificate instanceof X509Certificate) {
+							X509Certificate x509 = (X509Certificate) certificate;
+							String subject = x509.getSubjectDN().getName();
+							// TODO: save subject
 						}
-
-						// load class file
-						ClassDef classDef = classDefLoader.load(data);
-
-						/*
-						Certificate[] certificates = entry.getCertificates();
-						if (certificates != null && certificates.length > 0) {
-							Certificate certificate = certificates[0];
-							if (certificate instanceof X509Certificate) {
-								X509Certificate x509 = (X509Certificate) certificate;
-								String subject = x509.getSubjectDN().getName();
-								// TODO: save subject
-							}
-						}
-						// TODO: verify signature
-						*/
-
-						classDefs.add(classDef);
-
 					}
+					// TODO: verify signature
+					*/
+
+					classDefs.add(classDef);
 
 				} else {
 
+					// calculate SHA-1 checksum
+					String checksum = DigestUtils.sha1Hex(data);
+
 					// add as resource
-					// TODO: calculate SHA-1 checksum
-					ResourceDef resourceDef = new ResourceDef(name, null);
+					ResourceDef resourceDef = new ResourceDef(name, checksum);
 					resourceDefs.add(resourceDef);
 
 				}
