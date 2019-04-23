@@ -21,6 +21,7 @@ a.A2
 
 a.A3
 • Superclass is an annotation: public @interface b.B3
+• Abstract method not implemented: public abstract java.lang.Class java.lang.annotation.Annotation.annotationType()
 
 a.A4
 • Superclass is final: public enum b.B4
@@ -31,6 +32,7 @@ a.A5
 • Interface is an abstract class: public abstract class b.B5b
 • Interface is an annotation: public @interface b.B5c
 • Interface is an enum: public enum b.B5d
+• Abstract method not implemented: public abstract java.lang.Class java.lang.annotation.Annotation.annotationType()
 
 a.A6
 • Interface is a class: public class b.B6

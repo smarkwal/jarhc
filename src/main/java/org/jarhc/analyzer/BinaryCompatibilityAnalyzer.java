@@ -72,6 +72,7 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 
 				// validate class definition
 				validateClassHierarchy(classDef, classpath, accessCheck, classIssues);
+				validateAbstractMethods(classDef, classpath, classIssues);
 				validateClassRefs(classDef, classpath, accessCheck, classIssues);
 				validateMethodRefs(classDef, classpath, accessCheck, classIssues);
 				validateFieldRefs(classDef, classpath, accessCheck, classIssues);
@@ -131,7 +132,6 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 			}
 		}
 
-		// TODO: check if class is abstract OR implements all abstract methods
 	}
 
 	private void validateSuperclass(ClassDef superClass, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
@@ -197,6 +197,108 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 			classIssues.add("Interface is not accessible: " + interfaceClass.getDisplayName());
 		}
 
+	}
+
+	// -----------------------------------------------------------------------------------------------------
+	// implementation of abstract methods
+
+	private void validateAbstractMethods(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
+
+		// skip check if class is abstract
+		if (classDef.isAbstract()) {
+			return;
+		}
+
+		// class must implement all abstract methods declared in superclasses and interfaces
+
+		// collect all concrete and abstract methods
+		List<MethodDef> concreteMethods = new ArrayList<>();
+		List<MethodDef> abstractMethods = new ArrayList<>();
+		Set<String> visitedClasses = new HashSet<>();
+		collectMethodDefs(classDef, classpath, concreteMethods, abstractMethods, visitedClasses);
+
+		// if there is at least one abstract method ...
+		if (!abstractMethods.isEmpty()) {
+
+			// discard all abstract methods for which there is a concrete implementation
+			for (MethodDef concreteMethod : concreteMethods) {
+				abstractMethods.removeIf(abstractMethod -> isImplementedBy(abstractMethod, concreteMethod));
+			}
+
+			// report all remaining (unimplemented) abstract methods
+			for (MethodDef methodDef : abstractMethods) {
+				classIssues.add("Abstract method not implemented: " + methodDef.getDisplayName());
+			}
+
+		}
+
+	}
+
+	/**
+	 * Collect concrete and abstract methods in the given class, all superclasses, and all interfaces.
+	 *
+	 * @param classDef        Class definition
+	 * @param classpath       Classpath
+	 * @param concreteMethods Concrete methods
+	 * @param abstractMethods Abstract methods
+	 * @param visitedClasses  Already visited classes
+	 */
+	private void collectMethodDefs(ClassDef classDef, Classpath classpath, List<MethodDef> concreteMethods, List<MethodDef> abstractMethods, Set<String> visitedClasses) {
+
+		// do not visit the same class twice
+		String className = classDef.getClassName();
+		if (!visitedClasses.add(className)) {
+			return;
+		}
+
+		// collect methods from superclass
+		String superName = classDef.getSuperName();
+		if (superName != null) {
+			Optional<ClassDef> superClass = classpath.getClassDef(superName);
+			superClass.ifPresent(def -> collectMethodDefs(def, classpath, concreteMethods, abstractMethods, visitedClasses));
+		}
+
+		// collect methods from interfaces
+		List<String> interfaceNames = classDef.getInterfaceNames();
+		for (String interfaceName : interfaceNames) {
+			Optional<ClassDef> interfaceDef = classpath.getClassDef(interfaceName);
+			interfaceDef.ifPresent(def -> collectMethodDefs(def, classpath, concreteMethods, abstractMethods, visitedClasses));
+		}
+
+		// categorize methods in class definition
+		List<MethodDef> methodDefs = classDef.getMethodDefs();
+		for (MethodDef methodDef : methodDefs) {
+
+			// ignore static and private methods
+			if (methodDef.isStatic() || methodDef.isPrivate()) {
+				continue;
+			}
+
+			if (methodDef.isAbstract()) {
+				// add method to list of abstract methods
+				abstractMethods.add(methodDef);
+			} else {
+				// add method to list of concrete methods
+				concreteMethods.add(methodDef);
+			}
+		}
+
+	}
+
+	/**
+	 * Check if the given abstract method is implemented by the given concrete method.
+	 *
+	 * @param abstractMethod Abstract method
+	 * @param concreteMethod Concrete method
+	 * @return <code>true</code> if concrete method implements abstract method, <code>false</code> otherwise.
+	 */
+	private boolean isImplementedBy(MethodDef abstractMethod, MethodDef concreteMethod) {
+		if (abstractMethod.getMethodName().equals(concreteMethod.getMethodName())) {
+			if (abstractMethod.getMethodDescriptor().equals(concreteMethod.getMethodDescriptor())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// -----------------------------------------------------------------------------------------------------
