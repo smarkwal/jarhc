@@ -56,18 +56,16 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 
 		AccessCheck accessCheck = new AccessCheck(classpath);
 
-		// TODO: parallelize
-
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
 			// issues found in JAR file (sorted by class name)
-			Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
+			final Set<String> jarIssues = new TreeSet<>();
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
-			for (ClassDef classDef : classDefs) {
+			classDefs.parallelStream().forEach(classDef -> {
 
 				// issues found in class definition (in order or appearance)
 				Set<String> classIssues = new LinkedHashSet<>();
@@ -80,10 +78,12 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 
 				if (!classIssues.isEmpty()) {
 					String issue = createJarIssue(classDef, classIssues);
-					jarIssues.add(issue);
+					synchronized (jarIssues) {
+						jarIssues.add(issue);
+					}
 				}
 
-			}
+			});
 
 			if (!jarIssues.isEmpty()) {
 				String lines = joinLines(jarIssues).trim();
