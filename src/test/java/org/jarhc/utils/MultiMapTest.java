@@ -18,6 +18,7 @@ package org.jarhc.utils;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -92,6 +93,44 @@ class MultiMapTest {
 		assertEquals(2, result.getValues(2).size());
 		assertEquals(2, result.getValues(3).size());
 		assertNull(result.getValues(4));
+
+	}
+
+	@Test
+	void test_sorted() {
+
+		// prepare
+		MultiMap<String, Integer> map = new MultiMap<>(true);
+
+		// test
+		map.add("a", 10);
+		map.add("a", 2);
+		map.add("a", 8);
+
+		// assert
+		assertEquals(1, map.getSize());
+		assertEquals(1, map.getKeys().size());
+		assertEquals(3, map.getValues("a").size());
+		assertArrayEquals(new Object[]{2, 8, 10}, map.getValues("a").toArray());
+
+	}
+
+	@Test
+	void test_ordered() {
+
+		// prepare
+		MultiMap<String, Integer> map = new MultiMap<>(false);
+
+		// test
+		map.add("a", 10);
+		map.add("a", 2);
+		map.add("a", 8);
+
+		// assert
+		assertEquals(1, map.getSize());
+		assertEquals(1, map.getKeys().size());
+		assertEquals(3, map.getValues("a").size());
+		assertArrayEquals(new Object[]{10, 2, 8}, map.getValues("a").toArray());
 
 	}
 

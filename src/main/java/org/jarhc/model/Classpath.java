@@ -39,7 +39,7 @@ public class Classpath extends ClassLoader {
 	/**
 	 * Fast lookup map for class definitions given the class name.
 	 */
-	private final MultiMap<String, ClassDef> classDefsMap = new MultiMap<>();
+	private final MultiMap<String, ClassDef> classDefsMap = new MultiMap<>(false);
 
 	/**
 	 * Create a new classpath with the given JAR files.
