@@ -16,18 +16,30 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.model.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
+import org.jarhc.model.AnnotationRef;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.Classpath;
+import org.jarhc.model.Def;
+import org.jarhc.model.JarFile;
+import org.jarhc.model.ResourceDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.StringUtils;
-
-import java.io.IOException;
-import java.util.*;
-import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BlacklistAnalyzer extends Analyzer {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(BlacklistAnalyzer.class);
 
 	private final List<Pattern> codePatterns = new ArrayList<>();
 	private final List<Pattern> annotationPatterns = new ArrayList<>();
@@ -40,7 +52,7 @@ public class BlacklistAnalyzer extends Analyzer {
 		try {
 			init(resource);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.warn("Failed to load blacklist patterns from resource.", e);
 		}
 
 	}

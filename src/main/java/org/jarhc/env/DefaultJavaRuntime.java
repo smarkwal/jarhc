@@ -16,21 +16,24 @@
 
 package org.jarhc.env;
 
-import org.jarhc.loader.ClassDefLoader;
-import org.jarhc.loader.LoaderBuilder;
-import org.jarhc.model.ClassDef;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import org.jarhc.loader.ClassDefLoader;
+import org.jarhc.loader.LoaderBuilder;
+import org.jarhc.model.ClassDef;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of {@link JavaRuntime} based on the Java runtime used to run JarHC.
  */
 public class DefaultJavaRuntime extends JavaRuntime {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultJavaRuntime.class);
 
 	/**
 	 * Class definition loader used to load Java runtime classes.
@@ -116,7 +119,7 @@ public class DefaultJavaRuntime extends JavaRuntime {
 			return Optional.of(classDef);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.warn("Failed to load class from resource: {}", resourceName, e);
 
 			// unexpected error -> class not found
 			return Optional.empty();

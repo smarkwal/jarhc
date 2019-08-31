@@ -16,16 +16,11 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.app.JarSource;
-import org.jarhc.model.ClassDef;
-import org.jarhc.model.JarFile;
-import org.jarhc.model.ModuleInfo;
-import org.jarhc.model.ResourceDef;
-import org.jarhc.utils.DigestUtils;
-import org.jarhc.utils.FileUtils;
-import org.jarhc.utils.IOUtils;
-
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -34,12 +29,24 @@ import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
+import org.jarhc.app.JarSource;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.ResourceDef;
+import org.jarhc.utils.DigestUtils;
+import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Loader for a JAR file, using a file as source.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
 class JarFileLoader {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarFileLoader.class);
 
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
@@ -129,8 +136,7 @@ class JarFileLoader {
 							int release = Integer.parseInt(version);
 							releases.add(release);
 						} catch (Exception e) {
-							System.err.println("Failed to extract release version: " + name);
-							e.printStackTrace();
+							LOGGER.warn("Failed to extract release version: {}", name, e);
 						}
 
 						// TODO: support multi-release JAR files

@@ -19,8 +19,12 @@ package org.jarhc.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VersionUtils {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(VersionUtils.class);
 
 	private final static Properties properties = new Properties();
 
@@ -33,7 +37,7 @@ public class VersionUtils {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.warn("Failed to load version properties from resource.", e);
 		}
 	}
 

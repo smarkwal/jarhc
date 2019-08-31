@@ -16,23 +16,29 @@
 
 package org.jarhc.loader;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import org.jarhc.app.FileSource;
 import org.jarhc.app.JarSource;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Loader for a classpath.
  * This class is thread-safe and can be used in parallel or multiple times in sequence.
  */
 public class ClasspathLoader {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClasspathLoader.class);
 
 	private final JarFileLoader jarFileLoader;
 	private final WarFileLoader warFileLoader;
@@ -81,9 +87,7 @@ public class ClasspathLoader {
 					throw new IOException(message);
 				}
 			} catch (IOException e) {
-				String message = String.format("Unable to parse file: %s", file.getName());
-				System.err.println(message);
-				e.printStackTrace();
+				LOGGER.warn("Unable to parse file: {}", file.getName(), e);
 				return;
 			}
 

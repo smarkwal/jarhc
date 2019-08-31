@@ -16,6 +16,11 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.FileUtils.formatFileSize;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
@@ -24,14 +29,12 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static org.jarhc.utils.FileUtils.formatFileSize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarFilesAnalyzer extends Analyzer {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(JarFilesAnalyzer.class);
 
 	private final Repository repository;
 
@@ -120,8 +123,7 @@ public class JarFilesAnalyzer extends Analyzer {
 		try {
 			artifact = repository.findArtifact(checksum);
 		} catch (RepositoryException e) {
-			System.err.println("Repository error for JAR file: " + jarFile.getFileName());
-			e.printStackTrace();
+			LOGGER.warn("Repository error for JAR file: {}", jarFile.getFileName(), e);
 			return "[error]";
 		}
 

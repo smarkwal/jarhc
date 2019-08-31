@@ -16,13 +16,16 @@
 
 package org.jarhc.loader;
 
+import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
-
-import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface JarFileNameNormalizer {
+
+	Logger LOGGER = LoggerFactory.getLogger(JarFileNameNormalizer.class);
 
 	String getFileName(String fileName, String checksum);
 
@@ -63,7 +66,7 @@ public interface JarFileNameNormalizer {
 				}
 			}
 		} catch (RepositoryException e) {
-			e.printStackTrace();
+			LOGGER.warn("Failed to find artifact in repository.", e);
 		}
 		if (removeVersion) {
 			return JarFileNameNormalizer.getFileNameWithoutVersionNumber(fileName);

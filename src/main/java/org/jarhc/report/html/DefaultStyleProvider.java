@@ -16,15 +16,18 @@
 
 package org.jarhc.report.html;
 
-import org.jarhc.utils.ResourceUtils;
-
 import java.io.IOException;
+import org.jarhc.utils.ResourceUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of {@link StyleProvider} loading
  * CSS styles from a resource on the classpath.
  */
 class DefaultStyleProvider implements StyleProvider {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultStyleProvider.class);
 
 	private static final String RESOURCE = "/html-report-style.css";
 
@@ -37,8 +40,7 @@ class DefaultStyleProvider implements StyleProvider {
 		try {
 			css = ResourceUtils.getResourceAsString(RESOURCE, "UTF-8");
 		} catch (IOException e) {
-			System.err.println("Failed to load default style: " + RESOURCE);
-			e.printStackTrace();
+			LOGGER.warn("Failed to load default style: {}", RESOURCE, e);
 		}
 		this.style = css;
 	}
