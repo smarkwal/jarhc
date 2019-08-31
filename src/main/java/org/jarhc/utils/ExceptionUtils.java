@@ -18,6 +18,10 @@ package org.jarhc.utils;
 
 public class ExceptionUtils {
 
+	private ExceptionUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	/**
 	 * Get the root cause of an exception.
 	 * If the given exception does not have a cause,

@@ -24,6 +24,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class DigestUtils {
 
+	private DigestUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static String sha1Hex(byte[] input) {
 		if (input == null) throw new IllegalArgumentException("input");
 		MessageDigest digest = getDigest();

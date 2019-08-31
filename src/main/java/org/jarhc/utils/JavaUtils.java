@@ -16,15 +16,18 @@
 
 package org.jarhc.utils;
 
-import org.objectweb.asm.Type;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.objectweb.asm.Type;
 
 public class JavaUtils {
+
+	private JavaUtils() {
+		throw new IllegalStateException("utility class");
+	}
 
 	private static final Set<String> primitiveTypes = new HashSet<>();
 

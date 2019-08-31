@@ -16,11 +16,21 @@
 
 package org.jarhc.utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 
 public class FileUtils {
+
+	private FileUtils() {
+		throw new IllegalStateException("utility class");
+	}
 
 	public static String formatFileSize(long fileSize) {
 		if (fileSize < 0) throw new IllegalArgumentException("fileSize");

@@ -24,9 +24,13 @@ import org.slf4j.LoggerFactory;
 
 public class VersionUtils {
 
+	private VersionUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(VersionUtils.class);
 
-	private final static Properties properties = new Properties();
+	private static final Properties properties = new Properties();
 
 	static {
 		ClassLoader classLoader = VersionUtils.class.getClassLoader();

@@ -20,6 +20,10 @@ import java.util.Objects;
 
 public class ArrayUtils {
 
+	private ArrayUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	/**
 	 * Check if the given array contains any (at least one) of the given values.
 	 *

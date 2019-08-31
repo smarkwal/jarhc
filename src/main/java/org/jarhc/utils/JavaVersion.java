@@ -18,6 +18,10 @@ package org.jarhc.utils;
 
 public class JavaVersion {
 
+	private JavaVersion() {
+		throw new IllegalStateException("utility class");
+	}
+
 	/**
 	 * Minimum class version (file format) 45 for Java 1.1.
 	 */

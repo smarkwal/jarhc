@@ -16,15 +16,37 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.model.*;
-import org.objectweb.asm.*;
+import static org.jarhc.utils.JavaUtils.getArrayElementType;
+import static org.jarhc.utils.JavaUtils.getFieldType;
+import static org.jarhc.utils.JavaUtils.getParameterTypes;
+import static org.jarhc.utils.JavaUtils.getReturnType;
+import static org.jarhc.utils.JavaUtils.isArrayType;
+import static org.jarhc.utils.JavaUtils.isPrimitiveType;
+import static org.jarhc.utils.JavaUtils.isVoidType;
+import static org.jarhc.utils.JavaUtils.toExternalName;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
-
-import static org.jarhc.utils.JavaUtils.*;
+import org.jarhc.model.AnnotationRef;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.Def;
+import org.jarhc.model.FieldDef;
+import org.jarhc.model.FieldRef;
+import org.jarhc.model.MethodDef;
+import org.jarhc.model.MethodRef;
+import org.objectweb.asm.AnnotationVisitor;
+import org.objectweb.asm.Attribute;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.ModuleVisitor;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
+import org.objectweb.asm.TypePath;
 
 class ClassDefBuilder extends ClassVisitor {
 
@@ -103,7 +125,7 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	@Override
-	public org.objectweb.asm.FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
+	public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
 		// TODO: what do to with signature and value ???
 
 		String fieldType = getFieldType(descriptor);
@@ -113,7 +135,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		if (scanForReferences) {
 			addClassRef(fieldType);
-			return new FieldVisitor(fieldDef);
+			return new CustomFieldVisitor(fieldDef);
 		} else {
 			return null;
 		}
@@ -135,7 +157,7 @@ class ClassDefBuilder extends ClassVisitor {
 					addClassRef(exceptionClassName);
 				}
 			}
-			return new MethodVisitor(methodDef);
+			return new CustomMethodVisitor(methodDef);
 		} else {
 			return null;
 		}
@@ -236,11 +258,11 @@ class ClassDefBuilder extends ClassVisitor {
 
 	// -------------------------------------------------------------------------------------------------------
 
-	private class FieldVisitor extends org.objectweb.asm.FieldVisitor {
+	private class CustomFieldVisitor extends FieldVisitor {
 
 		private final FieldDef fieldDef;
 
-		FieldVisitor(FieldDef fieldDef) {
+		CustomFieldVisitor(FieldDef fieldDef) {
 			super(Opcodes.ASM7);
 			this.fieldDef = fieldDef;
 		}
@@ -270,11 +292,11 @@ class ClassDefBuilder extends ClassVisitor {
 
 	// -------------------------------------------------------------------------------------------------------
 
-	private class MethodVisitor extends org.objectweb.asm.MethodVisitor {
+	private class CustomMethodVisitor extends MethodVisitor {
 
 		private final MethodDef methodDef;
 
-		MethodVisitor(MethodDef methodDef) {
+		CustomMethodVisitor(MethodDef methodDef) {
 			super(Opcodes.ASM7);
 			this.methodDef = methodDef;
 		}

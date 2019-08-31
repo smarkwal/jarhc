@@ -24,6 +24,10 @@ import java.nio.charset.StandardCharsets;
 
 public class IOUtils {
 
+	private IOUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static byte[] toByteArray(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 		ByteArrayOutputStream result = toByteArrayOutputStream(stream);

@@ -22,6 +22,10 @@ import java.util.stream.Collectors;
 
 public class StringUtils {
 
+	private StringUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static String repeat(String text, int count) {
 		if (count < 0) throw new IllegalArgumentException("count");
 		if (count == 0 || text == null) return "";

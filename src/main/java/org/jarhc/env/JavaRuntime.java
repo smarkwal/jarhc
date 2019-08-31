@@ -40,6 +40,7 @@ public abstract class JavaRuntime extends ClassLoader {
 	 *
 	 * @return Java runtime name
 	 */
+	@Override
 	public abstract String getName();
 
 	/**

@@ -22,6 +22,10 @@ import java.util.List;
 
 public class ResourceUtils {
 
+	private ResourceUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static InputStream getResourceAsStream(String resource) throws IOException {
 		if (resource == null) throw new IllegalArgumentException("resource");
 		InputStream stream = ResourceUtils.class.getResourceAsStream(resource);
