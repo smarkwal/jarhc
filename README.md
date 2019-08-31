@@ -8,6 +8,8 @@ More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wi
 
 ![JarHC Logo](https://github.com/smarkwal/jarhc/blob/master/src/site/images/jarhc-logo.png?raw=true)
 
-## Builds
+## Master branch status
 
-master: [![Build Status](https://travis-ci.com/smarkwal/jarhc.svg?branch=master)](https://travis-ci.com/smarkwal/jarhc)
+Travis CI: [![Build Status](https://travis-ci.com/smarkwal/jarhc.svg?branch=master)](https://travis-ci.com/smarkwal/jarhc)
+
+SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=smarkwal_jarhc&metric=alert_status)](https://sonarcloud.io/dashboard?id=smarkwal_jarhc)
