@@ -16,6 +16,12 @@
 
 package org.jarhc.app;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
 import org.jarhc.Context;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
@@ -41,22 +47,12 @@ import org.jarhc.report.writer.impl.StreamReportWriter;
 import org.jarhc.utils.StringUtils;
 import org.jarhc.utils.VersionUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
 public class Application {
 
 	private PrintStream out = System.out;
 	private PrintStream err = System.err;
 	private Repository repository;
 	private Supplier<JavaRuntime> javaRuntimeFactory = DefaultJavaRuntime::new;
-
-	public Application() {
-	}
 
 	public void setOut(PrintStream out) {
 		this.out = out;

@@ -16,12 +16,16 @@
 
 package org.jarhc.java;
 
-import org.jarhc.model.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.FieldDef;
+import org.jarhc.model.FieldRef;
+import org.jarhc.model.MethodDef;
+import org.jarhc.model.MethodRef;
 
 public abstract class ClassLoader {
 
@@ -72,7 +76,7 @@ public abstract class ClassLoader {
 	protected abstract Optional<ClassDef> findClassDef(String className);
 
 	public Optional<FieldDef> getFieldDef(FieldRef fieldRef) {
-		return getFieldDef(fieldRef, Callback.NONE);
+		return getFieldDef(fieldRef, NoOpCallback.INSTANCE);
 	}
 
 	public Optional<FieldDef> getFieldDef(FieldRef fieldRef, Callback callback) {
@@ -133,7 +137,7 @@ public abstract class ClassLoader {
 	}
 
 	public Optional<MethodDef> getMethodDef(MethodRef methodRef) {
-		return getMethodDef(methodRef, Callback.NONE);
+		return getMethodDef(methodRef, NoOpCallback.INSTANCE);
 	}
 
 	public Optional<MethodDef> getMethodDef(MethodRef methodRef, Callback callback) {
@@ -197,8 +201,6 @@ public abstract class ClassLoader {
 
 	public interface Callback {
 
-		Callback NONE = new NoOpCallback();
-
 		void classNotFound(String className);
 
 		void memberNotFound(String className);
@@ -209,16 +211,21 @@ public abstract class ClassLoader {
 
 	private static class NoOpCallback implements Callback {
 
+		public static final NoOpCallback INSTANCE = new NoOpCallback();
+
 		@Override
 		public void classNotFound(String className) {
+			// ignore
 		}
 
 		@Override
 		public void memberNotFound(String className) {
+			// ignore
 		}
 
 		@Override
 		public void memberFound(String className) {
+			// ignore
 		}
 
 	}

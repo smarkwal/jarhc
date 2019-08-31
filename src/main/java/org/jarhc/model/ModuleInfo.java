@@ -26,9 +26,6 @@ public class ModuleInfo {
 	private List<String> exports = new ArrayList<>();
 	private List<String> requires = new ArrayList<>();
 
-	public ModuleInfo() {
-	}
-
 	public static ModuleInfo forModuleName(String moduleName) {
 		ModuleInfo moduleInfo = new ModuleInfo();
 		moduleInfo.setModuleName(moduleName);

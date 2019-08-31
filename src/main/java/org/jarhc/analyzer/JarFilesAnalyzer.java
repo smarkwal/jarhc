@@ -36,6 +36,8 @@ public class JarFilesAnalyzer extends Analyzer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarFilesAnalyzer.class);
 
+	private static final String UNKNOWN = "[unknown]";
+
 	private final Repository repository;
 
 	public JarFilesAnalyzer(Repository repository) {
@@ -91,7 +93,7 @@ public class JarFilesAnalyzer extends Analyzer {
 
 	private String getChecksumInfo(JarFile jarFile) {
 		String checksum = jarFile.getChecksum();
-		if (checksum == null || checksum.isEmpty()) return "[unknown]";
+		if (checksum == null || checksum.isEmpty()) return UNKNOWN;
 		return checksum;
 	}
 
@@ -116,7 +118,7 @@ public class JarFilesAnalyzer extends Analyzer {
 
 		String checksum = jarFile.getChecksum();
 		if (checksum == null || checksum.isEmpty()) {
-			return "[unknown]";
+			return UNKNOWN;
 		}
 
 		Optional<Artifact> artifact;
@@ -127,7 +129,7 @@ public class JarFilesAnalyzer extends Analyzer {
 			return "[error]";
 		}
 
-		return artifact.map(Artifact::toString).orElse("[unknown]");
+		return artifact.map(Artifact::toString).orElse(UNKNOWN);
 	}
 
 }

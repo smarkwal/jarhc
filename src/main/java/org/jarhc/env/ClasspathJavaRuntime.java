@@ -16,12 +16,14 @@
 
 package org.jarhc.env;
 
+import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 
-import java.util.Optional;
-
 public class ClasspathJavaRuntime extends JavaRuntime {
+
+	private static final String UNKNOWN = "[unknown]";
+	private static final String NONE = "[none]";
 
 	private final Classpath classpath;
 
@@ -31,22 +33,22 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 
 	@Override
 	public String getName() {
-		return "[unknown]"; // TODO: can we get this from the runtime classes somehow?
+		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaVersion() {
-		return "[unknown]"; // TODO: can we get this from the runtime classes somehow?
+		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaVendor() {
-		return "[unknown]"; // TODO: can we get this from the runtime classes somehow?
+		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaHome() {
-		return "[none]";
+		return NONE;
 	}
 
 	@Override

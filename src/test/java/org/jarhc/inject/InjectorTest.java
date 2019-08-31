@@ -16,11 +16,15 @@
 
 package org.jarhc.inject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.jarhc.utils.ExceptionUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InjectorTest {
 
@@ -33,7 +37,8 @@ class InjectorTest {
 
 	@Test
 	void test_createInstance_no_constructor() throws InjectorException {
-		injector.createInstance(TestObject1.class);
+		TestObject1 instance = injector.createInstance(TestObject1.class);
+		assertNotNull(instance);
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -43,7 +48,8 @@ class InjectorTest {
 
 	@Test
 	void test_createInstance_noarg_constructor() throws InjectorException {
-		injector.createInstance(TestObject2.class);
+		TestObject2 instance = injector.createInstance(TestObject2.class);
+		assertNotNull(instance);
 	}
 
 	public static class TestObject2 {

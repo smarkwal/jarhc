@@ -24,10 +24,6 @@ public class Report {
 	private String title = "JAR Health Check Report";
 	private final List<ReportSection> sections = new ArrayList<>();
 
-	public Report() {
-
-	}
-
 	public String getTitle() {
 		return title;
 	}

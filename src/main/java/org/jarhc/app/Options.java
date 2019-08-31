@@ -37,9 +37,6 @@ public class Options {
 	private String dataPath = "./.jarhc";
 	private boolean debug = false;
 
-	public Options() {
-	}
-
 	public List<String> getClasspathJarPaths() {
 		return classpathJarPaths;
 	}

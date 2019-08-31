@@ -33,9 +33,6 @@ public class Injector {
 	 */
 	private final Map<Class, Object> bindings = new HashMap<>();
 
-	public Injector() {
-	}
-
 	public <T> void addBinding(Class<T> cls, T object) {
 		bindings.put(cls, object);
 	}
