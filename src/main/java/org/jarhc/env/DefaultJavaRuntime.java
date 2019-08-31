@@ -82,9 +82,8 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	protected Optional<ClassDef> findClassDef(String className) {
 
 		// check cache
-		Optional<ClassDef> classDef = classDefs.get(className);
-		//noinspection OptionalAssignedToNull
-		if (classDef != null) {
+		Optional<ClassDef> classDef = classDefs.getOrDefault(className, Optional.empty());
+		if (classDef.isPresent()) {
 			return classDef;
 		}
 

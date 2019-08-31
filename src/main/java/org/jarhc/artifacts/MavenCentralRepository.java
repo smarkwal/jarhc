@@ -186,26 +186,27 @@ public class MavenCentralRepository implements Repository {
 
 	}
 
-	private JSONObject findBestMatch(JSONArray docs) {
+	// visible for testing
+	static JSONObject findBestMatch(JSONArray docs) {
+
+		JSONObject bestDoc = docs.getJSONObject(0);
 
 		int num = docs.length();
-		if (num == 1) {
-			return docs.getJSONObject(0);
-		}
+		if (num > 1) {
 
-		// multiple matches:
-		// prefer shorter artifact coordinates
+			// multiple matches:
+			// prefer shorter artifact coordinates
 
-		JSONObject bestDoc = null;
-		int minLen = Integer.MAX_VALUE;
+			int bestLen = bestDoc.getString("id").length();
 
-		for (int i = 0; i < num; i++) {
-			JSONObject doc = docs.getJSONObject(i);
-			String id = doc.getString("id");
-			int len = id.length();
-			if (len < minLen) {
-				bestDoc = doc;
-				minLen = len;
+			for (int i = 1; i < num; i++) {
+				JSONObject doc = docs.getJSONObject(i);
+				String id = doc.getString("id");
+				int len = id.length();
+				if (len < bestLen) {
+					bestDoc = doc;
+					bestLen = len;
+				}
 			}
 		}
 
