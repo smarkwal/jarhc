@@ -14,3 +14,9 @@ jdk:
   - openjdk10
   - openjdk11
   - openjdk12
+
+addons:
+  sonarcloud:
+    organization: "smarkwal"
+script:
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=smarkwal_jarhc
