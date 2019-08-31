@@ -112,4 +112,17 @@ public class FileUtils {
 		return path.substring(pos + 1);
 	}
 
+	/**
+	 * Compare (sort) files and directories by name (case-insensitive).
+	 */
+	public static int compareByName(File file1, File file2) {
+		int diff = file1.getName().compareToIgnoreCase(file2.getName());
+		if (diff == 0) {
+			// if two files have the same case-insensitive name,
+			// perform a case-sensitive comparison.
+			diff = file1.getName().compareTo(file2.getName());
+		}
+		return diff;
+	}
+
 }
