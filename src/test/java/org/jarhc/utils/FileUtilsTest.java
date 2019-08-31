@@ -17,13 +17,20 @@
 package org.jarhc.utils;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class FileUtilsTest {
+
+	private static final long ONE_DAY = 24 * 60 * 60 * 1000L;
+	private static final long ONE_MINUTE = 60 * 1000L;
 
 	@Test
 	void test_formatFileSize() {
@@ -111,6 +118,61 @@ class FileUtilsTest {
 
 		// assert
 		assertTrue(result > 0);
+
+	}
+
+	@Test
+	void touchFile_createsFile_ifItDoesNotExist(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+
+		// test
+		FileUtils.touchFile(file);
+
+		// assert
+		assertTrue(file.isFile());
+
+	}
+
+	@Test
+	void touchFile_createsFile_ifDirectoryDoesNotExist(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File directory = new File(tempDir.toFile(), "test");
+		File file = new File(directory, "test.txt");
+
+		// test
+		FileUtils.touchFile(file);
+
+		// assert
+		assertTrue(directory.isDirectory());
+		assertTrue(file.isFile());
+
+	}
+
+	@Test
+	void touchFile_changesLastModified(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+		FileUtils.touchFile(file);
+
+		// set modification time to yesterday
+		long today = System.currentTimeMillis();
+		long yesterday = today - ONE_DAY;
+		boolean modified = file.setLastModified(yesterday);
+
+		// assume
+		assumeTrue(modified);
+		assertTrue(file.lastModified() <= yesterday + ONE_MINUTE);
+
+		// test
+		FileUtils.touchFile(file);
+
+		// assert
+		assertTrue(file.isFile());
+		assertTrue(file.lastModified() >= today - ONE_MINUTE);
 
 	}
 

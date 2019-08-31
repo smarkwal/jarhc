@@ -94,16 +94,35 @@ public class FileUtils {
 		}
 	}
 
+	/**
+	 * Make sure that the given file exists and set its "last modified" time
+	 * stamp to the current time.
+	 *
+	 * @param file File
+	 * @throws IOException If the file does not exist and can not be created,
+	 *                     or if the last modified time stamp can not be set.
+	 */
 	public static void touchFile(File file) throws IOException {
+		if (file == null) throw new IllegalArgumentException("file == null");
+
 		// if file does not exist ...
 		if (!file.exists()) {
+
 			// create parent directories
-			file.getParentFile().mkdirs();
+			File directory = file.getParentFile();
+			if (!directory.exists()) {
+				boolean created = directory.mkdirs();
+				if (!created) throw new IOException("Unable to create directory: " + directory.getAbsolutePath());
+			}
+
 			// create empty file
-			file.createNewFile();
+			boolean created = file.createNewFile();
+			if (!created) throw new IOException("Unable to create file: " + file.getAbsolutePath());
 		}
+
 		// set modification time to now
-		file.setLastModified(System.currentTimeMillis());
+		boolean modified = file.setLastModified(System.currentTimeMillis());
+		if (!modified) throw new IOException("Unable to set modification time of file: " + file.getAbsolutePath());
 	}
 
 	public static String getFilename(String path) {
