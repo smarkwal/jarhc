@@ -21,6 +21,7 @@ import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.utils.ArrayUtils;
+import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.VersionUtils;
 
@@ -226,15 +227,28 @@ public class CommandLineParser {
 	}
 
 	private static void findJarFiles(File directory, List<File> jarFiles) {
+
+		// get all files and directories in current directory
 		File[] files = directory.listFiles();
 		if (files == null) return;
+
+		// sort files and directories by name (case-insensitive)
+		// (this guarantees a "stable" order across different platforms)
+		Arrays.sort(files, FileUtils::compareByName);
+
+		// collect all JAR files in current directory
 		for (File file : files) {
 			if (file.isFile()) {
 				String fileName = file.getName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
 					jarFiles.add(file);
 				}
-			} else if (file.isDirectory()) {
+			}
+		}
+
+		// collect all JAR files in subdirectories
+		for (File file : files) {
+			if (file.isDirectory()) {
 				findJarFiles(file, jarFiles);
 			}
 		}
