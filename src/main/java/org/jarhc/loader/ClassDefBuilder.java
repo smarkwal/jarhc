@@ -239,9 +239,6 @@ class ClassDefBuilder extends ClassVisitor {
 				type = getArrayElementType(type);
 			}
 			if (!isPrimitiveType(type)) {
-				if (type.startsWith("[")) {
-					System.out.println(type);
-				}
 				classRefs.add(new ClassRef(type));
 			}
 		}

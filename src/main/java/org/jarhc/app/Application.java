@@ -46,8 +46,12 @@ import org.jarhc.report.writer.impl.FileReportWriter;
 import org.jarhc.report.writer.impl.StreamReportWriter;
 import org.jarhc.utils.StringUtils;
 import org.jarhc.utils.VersionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Application {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
 	private PrintStream out = System.out;
 	private PrintStream err = System.err;
@@ -77,7 +81,7 @@ public class Application {
 		out.println("=========================" + StringUtils.repeat("=", version.length()));
 		out.println();
 
-		// long time = System.nanoTime();
+		long time = System.nanoTime();
 
 		// prepare a new report
 		Report report = new Report();
@@ -124,8 +128,10 @@ public class Application {
 		// run analysis
 		analysis.run(classpath, report);
 
-		// time = System.nanoTime() - time;
-		// System.out.println("Time: " + (time / 1000 / 1000) + " ms");
+		if (LOGGER.isDebugEnabled()) {
+			time = System.nanoTime() - time;
+			LOGGER.debug("Time: {} ms", time / 1000 / 1000);
+		}
 
 		out.println("Create report ...");
 		out.println();
@@ -152,7 +158,7 @@ public class Application {
 			format.format(report, writer);
 
 		} catch (IOException e) {
-			e.printStackTrace(err);
+			LOGGER.error("I/O error while writing report.", e);
 			return 2; // TODO: exit code?
 		}
 
