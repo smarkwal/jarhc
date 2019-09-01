@@ -18,6 +18,7 @@ package org.jarhc.utils;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -54,6 +55,8 @@ class FileUtilsTest {
 		assertEquals("11.8 MB", formatFileSize(12345678));
 		assertEquals("118 MB", formatFileSize(123456789));
 		assertEquals("1177 MB", formatFileSize(1234567890));
+
+		assertThrows(IllegalArgumentException.class, () -> FileUtils.formatFileSize(-1));
 
 	}
 
@@ -179,6 +182,13 @@ class FileUtilsTest {
 		// assert
 		assertTrue(file.isFile());
 		assertTrue(file.lastModified() >= today - ONE_MINUTE);
+
+	}
+
+	@Test
+	void touchFile_throwsIllegalArgumentException_forNullValue() {
+
+		assertThrows(IllegalArgumentException.class, () -> FileUtils.touchFile(null));
 
 	}
 
