@@ -1,0 +1,66 @@
+SLF4J 1.7.28
+============
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+JAR file             | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
+---------------------+---------+---------+-----------+---------------+--------+------------------------------------------+-------------------------------
+slf4j-api-1.7.28.jar | 40.2 KB | 34      | 0         | No            | No     | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28:jar
+Classpath            | 40.2 KB | 34      | 0         | -             | -      | -                                        | -
+
+Class Versions
+--------------
+Java class file format information.
+
+JAR file             | Java version
+---------------------+-------------
+slf4j-api-1.7.28.jar | Java 5 (34)
+Classpath            | Java 5 (34)
+
+JAR Dependencies
+----------------
+Dependencies between JAR files.
+
+JAR file             | Uses   | Used by
+---------------------+--------+--------
+slf4j-api-1.7.28.jar | [none] | [none]
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file             | Count | Packages                   | Issues
+---------------------+-------+----------------------------+-------
+slf4j-api-1.7.28.jar | 4     | org.slf4j (+3 subpackages) |
+
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+JAR file             | Issues
+---------------------+-------------------------------------------------------------------------
+slf4j-api-1.7.28.jar | org.slf4j.LoggerFactory
+                     | • Class not found: org.slf4j.impl.StaticLoggerBinder (package not found)
+                     |
+                     | org.slf4j.MDC
+                     | • Class not found: org.slf4j.impl.StaticMDCBinder (package not found)
+                     |
+                     | org.slf4j.MarkerFactory
+                     | • Class not found: org.slf4j.impl.StaticMarkerBinder (package not found)
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+JAR file | Issues
+---------+-------
+
