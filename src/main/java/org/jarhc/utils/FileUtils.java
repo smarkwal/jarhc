@@ -143,6 +143,12 @@ public class FileUtils {
 
 	/**
 	 * Compare (sort) files and directories by name (case-insensitive).
+	 *
+	 * @param file1 First file
+	 * @param file2 Second file
+	 * @return A negative value if the first file should appear before the
+	 * second file, a positive value if the first file should appear after
+	 * the second file, and zero if both files have the exact same name.
 	 */
 	public static int compareByName(File file1, File file2) {
 		int diff = file1.getName().compareToIgnoreCase(file2.getName());
