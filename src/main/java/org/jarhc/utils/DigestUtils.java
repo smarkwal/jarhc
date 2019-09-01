@@ -24,6 +24,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class DigestUtils {
 
+	private static String algorithm = "SHA-1";
+
+	public static String getAlgorithm() {
+		return algorithm;
+	}
+
+	public static void setAlgorithm(String algorithm) {
+		DigestUtils.algorithm = algorithm;
+	}
+
 	private DigestUtils() {
 		throw new IllegalStateException("utility class");
 	}
@@ -56,7 +66,7 @@ public class DigestUtils {
 
 	private static MessageDigest getDigest() {
 		try {
-			return MessageDigest.getInstance("SHA-1");
+			return MessageDigest.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		}

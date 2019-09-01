@@ -17,14 +17,21 @@
 package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class DigestUtilsTest {
+
+	@Test
+	void test_DigestUtils() {
+		AssertUtils.assertUtilityClass(DigestUtils.class);
+	}
 
 	@Test
 	void test_sha1Hex_ByteArray() {
@@ -65,6 +72,26 @@ class DigestUtilsTest {
 
 		// assert
 		assertEquals("0a4d55a8d778e5022fab701977c5d840bbc486d0", result);
+
+	}
+
+	@Test
+	void test_sha1Hex_unknownAlgorithm() {
+
+		// remember original SHA-1 algorithm
+		String originalAlgorithm = DigestUtils.getAlgorithm();
+		try {
+
+			// prepare: override SHA-1 algorithm
+			DigestUtils.setAlgorithm("Unknown");
+
+			// test & assert
+			assertThrows(RuntimeException.class, () -> DigestUtils.sha1Hex("test"));
+
+		} finally {
+			// remember original SHA-1 algorithm
+			DigestUtils.setAlgorithm(originalAlgorithm);
+		}
 
 	}
 

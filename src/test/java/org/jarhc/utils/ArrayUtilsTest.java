@@ -19,9 +19,15 @@ package org.jarhc.utils;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class ArrayUtilsTest {
+
+	@Test
+	void test_ArrayUtils() {
+		AssertUtils.assertUtilityClass(ArrayUtils.class);
+	}
 
 	@Test
 	void containsAny() {

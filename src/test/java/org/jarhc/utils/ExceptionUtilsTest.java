@@ -19,9 +19,15 @@ package org.jarhc.utils;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class ExceptionUtilsTest {
+
+	@Test
+	void test_ExceptionUtils() {
+		AssertUtils.assertUtilityClass(ExceptionUtils.class);
+	}
 
 	@Test
 	void test_getCause_no_cause() {

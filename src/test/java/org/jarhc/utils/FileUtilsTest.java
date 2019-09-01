@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -31,6 +32,11 @@ class FileUtilsTest {
 
 	private static final long ONE_DAY = 24 * 60 * 60 * 1000L;
 	private static final long ONE_MINUTE = 60 * 1000L;
+
+	@Test
+	void test_FileUtils() {
+		AssertUtils.assertUtilityClass(FileUtils.class);
+	}
 
 	@Test
 	void test_formatFileSize() {

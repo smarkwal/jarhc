@@ -18,43 +18,25 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
-class IOUtilsTest {
+class StringUtilsTest {
 
 	@Test
-	void test_IOUtils() {
-		AssertUtils.assertUtilityClass(IOUtils.class);
+	void test_StringUtils() {
+		AssertUtils.assertUtilityClass(StringUtils.class);
 	}
 
 	@Test
-	void test_toByteArray() throws IOException {
+	void repeat() {
 
-		// prepare
-		ByteArrayInputStream stream = new ByteArrayInputStream("Hello World".getBytes());
-
-		// test
-		byte[] result = IOUtils.toByteArray(stream);
-
-		// assert
-		assertEquals("Hello World", new String(result));
-
-	}
-
-	@Test
-	void test_toString() throws IOException {
-
-		// prepare
-		ByteArrayInputStream stream = new ByteArrayInputStream("Hello World".getBytes());
-
-		// test
-		String result = IOUtils.toString(stream);
-
-		// assert
-		assertEquals("Hello World", result);
+		assertEquals("", StringUtils.repeat(null, 0));
+		assertEquals("", StringUtils.repeat("", 0));
+		assertEquals("", StringUtils.repeat(null, 5));
+		assertEquals("", StringUtils.repeat("", 5));
+		assertEquals("", StringUtils.repeat("X", 0));
+		assertEquals("XXXXX", StringUtils.repeat("X", 5));
 
 	}
 

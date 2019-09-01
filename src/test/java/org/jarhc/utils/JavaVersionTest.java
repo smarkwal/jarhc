@@ -18,9 +18,15 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class JavaVersionTest {
+
+	@Test
+	void test_JavaVersion() {
+		AssertUtils.assertUtilityClass(JavaVersion.class);
+	}
 
 	@Test
 	void test_fromClassVersion() {

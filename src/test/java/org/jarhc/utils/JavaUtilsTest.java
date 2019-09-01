@@ -18,9 +18,15 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class JavaUtilsTest {
+
+	@Test
+	void test_JavaUtils() {
+		AssertUtils.assertUtilityClass(JavaUtils.class);
+	}
 
 	@Test
 	void test_getPackageName() {

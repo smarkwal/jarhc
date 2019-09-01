@@ -21,9 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
+import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
 class VersionUtilsTest {
+
+	@Test
+	void test_VersionUtils() {
+		AssertUtils.assertUtilityClass(VersionUtils.class);
+	}
 
 	@Test
 	void test_getVersion() {
