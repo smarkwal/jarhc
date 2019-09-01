@@ -36,7 +36,7 @@ public class Artifact {
 	public static boolean validateCoordinates(String coordinates) {
 		if (coordinates.contains("/") || coordinates.contains("\\")) return false;
 		long separators = coordinates.chars().filter(c -> c == ':').count();
-		if (separators < 3 || separators > 4) return false;
+		if (separators < 2 || separators > 3) return false;
 		return true;
 	}
 
