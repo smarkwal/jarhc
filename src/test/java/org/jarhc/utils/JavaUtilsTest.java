@@ -35,4 +35,17 @@ class JavaUtilsTest {
 
 	}
 
+	@Test
+	void getSimpleClassName() {
+
+		assertEquals("A", JavaUtils.getSimpleClassName("A"));
+		assertEquals("B", JavaUtils.getSimpleClassName("a.B"));
+		assertEquals("C", JavaUtils.getSimpleClassName("a.b.C"));
+		assertEquals("D", JavaUtils.getSimpleClassName("a.b.c.D"));
+		assertEquals("String", JavaUtils.getSimpleClassName("java.lang.String"));
+		assertEquals("InputStream", JavaUtils.getSimpleClassName("java.io.InputStream"));
+		assertEquals("E$F", JavaUtils.getSimpleClassName("a.b.c.d.E$F"));
+
+	}
+
 }

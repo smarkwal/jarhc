@@ -16,8 +16,12 @@
 
 package org.jarhc.test;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import org.jarhc.TestUtils;
@@ -27,7 +31,7 @@ import org.jarhc.artifacts.RepositoryException;
 
 public class RepositoryMock implements Repository {
 
-	public static Repository createRepository() {
+	public static RepositoryMock createRepository() {
 		return new RepositoryMock("/repository.properties");
 	}
 
@@ -79,6 +83,8 @@ public class RepositoryMock implements Repository {
 
 	private final Properties properties = new Properties();
 
+	private final Map<String, String> artifactData = new HashMap<>();
+
 	private RepositoryMock(String resource) {
 		try {
 			try (InputStream stream = TestUtils.getResourceAsStream(resource)) {
@@ -87,6 +93,10 @@ public class RepositoryMock implements Repository {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public void addArtifactData(Artifact artifact, String data) {
+		artifactData.put(artifact.toString(), data);
 	}
 
 	@Override
@@ -113,7 +123,13 @@ public class RepositoryMock implements Repository {
 
 	@Override
 	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
-		throw new RepositoryException("not implemented");
+		String key = artifact.toString();
+		if (artifactData.containsKey(key)) {
+			String data = artifactData.get(key);
+			InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
+			return Optional.of(stream);
+		}
+		return Optional.empty();
 	}
 
 }

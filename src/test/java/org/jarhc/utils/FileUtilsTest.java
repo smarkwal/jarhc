@@ -176,4 +176,27 @@ class FileUtilsTest {
 
 	}
 
+	@Test
+	void sha1Hex(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+		FileUtils.writeStringToFile("Hello World!", file);
+
+		// test
+		String result = FileUtils.sha1Hex(file);
+
+		// assert
+		assertEquals("2ef7bde608ce5404e97d5f042f95f89f1c232871", result);
+
+	}
+
+	@Test
+	void getFilename() {
+
+		assertEquals("report.html", FileUtils.getFilename("report.html"));
+		assertEquals("slf4j-1.2.27.jar", FileUtils.getFilename("WEB-INF/lib/slf4j-1.2.27.jar"));
+
+	}
+
 }

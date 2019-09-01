@@ -27,12 +27,14 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileLock;
 import java.nio.file.Path;
 import java.util.Optional;
 import org.jarhc.test.RepositoryMock;
 import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -46,12 +48,12 @@ class CachedRepositoryTest {
 
 	private File cacheDir;
 	private CachedRepository repository;
+	private RepositoryMock parentRepository = RepositoryMock.createRepository();
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		Repository parent = RepositoryMock.createRepository();
 		cacheDir = tempDir.toFile();
-		repository = new CachedRepository(cacheDir, parent);
+		repository = new CachedRepository(cacheDir, parentRepository);
 	}
 
 	@Test
@@ -240,6 +242,107 @@ class CachedRepositoryTest {
 			assertTrue(cause instanceof IOException);
 
 		}
+
+	}
+
+	@Test
+	void findArtifact_withUnknownCoordinates() throws RepositoryException {
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.unknown", "unknown", "0.99", "jar");
+
+		// assert
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
+	void findArtifact_withKnownCoordinates() throws RepositoryException {
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.ow2.asm", "asm", "7.0", "jar");
+
+		// assert
+		assertTrue(result.isPresent());
+
+		Artifact artifact = result.get();
+		assertEquals("org.ow2.asm", artifact.getGroupId());
+		assertEquals("asm", artifact.getArtifactId());
+		assertEquals("7.0", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
+
+	}
+
+	@Test
+	void findArtifact_withCachedCoordinates() throws RepositoryException, IOException {
+
+		// prepare
+		File cacheFile = new File(cacheDir, "org/test/test/1.0/test-1.0.jar");
+		FileUtils.writeStringToFile("--content-of-test-1.0.jar--", cacheFile);
+
+		// assume
+		assumeTrue(cacheFile.isFile());
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.test", "test", "1.0", "jar");
+
+		// assert
+		assertTrue(result.isPresent());
+
+		Artifact artifact = result.get();
+		assertEquals("org.test", artifact.getGroupId());
+		assertEquals("test", artifact.getArtifactId());
+		assertEquals("1.0", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
+
+	}
+
+	@Test
+	void downloadArtifact_withUnknownCoordinates() throws RepositoryException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.unknown", "unknown", "0.99", "jar");
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
+	void downloadArtifact_withKnownCoordinates() throws RepositoryException, IOException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.ow2.asm", "asm", "7.0", "jar");
+		parentRepository.addArtifactData(artifact, "--content-of-asm-7.0.jar--");
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(result.isPresent());
+		String data = IOUtils.toString(result.get());
+		assertEquals("--content-of-asm-7.0.jar--", data);
+
+	}
+
+	@Test
+	void downloadArtifact_withCachedCoordinates() throws RepositoryException, IOException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.test", "test", "1.0", "jar");
+		File cacheFile = new File(cacheDir, "org/test/test/1.0/test-1.0.jar");
+		FileUtils.writeStringToFile("--content-of-test-1.0.jar--", cacheFile);
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(result.isPresent());
+		String data = IOUtils.toString(result.get());
+		assertEquals("--content-of-test-1.0.jar--", data);
 
 	}
 
