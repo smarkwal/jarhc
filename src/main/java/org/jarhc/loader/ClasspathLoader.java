@@ -65,7 +65,7 @@ public class ClasspathLoader {
 	public Classpath load(List<JarSource> files) {
 		if (files == null) throw new IllegalArgumentException("files");
 
-		// long totalTime = System.nanoTime();
+		long totalTime = System.nanoTime();
 
 		// temporary map to remember input file -> JAR file relation
 		Map<JarSource, List<JarFile>> filesMap = new ConcurrentHashMap<>();
@@ -73,7 +73,7 @@ public class ClasspathLoader {
 		// load all JAR files in parallel
 		files.parallelStream().forEach(file -> {
 
-			// long time = System.nanoTime();
+			long time = System.nanoTime();
 
 			List<JarFile> jarFiles;
 			try {
@@ -91,8 +91,10 @@ public class ClasspathLoader {
 				return;
 			}
 
-			// time = System.nanoTime() - time;
-			// System.out.println("\t" + jarFile.getFileName() + ": " + (time / 1000 / 1000) + " ms");
+			if (LOGGER.isDebugEnabled()) {
+				time = System.nanoTime() - time;
+				LOGGER.debug("{}: {} ms", file.getName(), time / 1000 / 1000);
+			}
 
 			filesMap.put(file, jarFiles);
 		});
@@ -100,8 +102,10 @@ public class ClasspathLoader {
 		// create list of JAR files (same order as list of input files)
 		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
 
-		// totalTime = System.nanoTime() - totalTime;
-		// System.out.println("\tTotal: " + (totalTime / 1000 / 1000) + " ms");
+		if (LOGGER.isDebugEnabled()) {
+			totalTime = System.nanoTime() - totalTime;
+			LOGGER.debug("Total: {} ms", totalTime / 1000 / 1000);
+		}
 
 		return new Classpath(jarFiles, parentClassLoader);
 	}
