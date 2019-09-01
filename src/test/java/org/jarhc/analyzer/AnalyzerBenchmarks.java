@@ -16,18 +16,23 @@
 
 package org.jarhc.analyzer;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.RepositoryMock;
-import org.openjdk.jmh.annotations.*;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
 
 @BenchmarkMode(Mode.SingleShotTime)
 @Fork(warmups = 1, value = 10)

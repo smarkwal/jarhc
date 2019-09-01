@@ -16,18 +16,19 @@
 
 package org.jarhc.it;
 
-import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.MavenCentralRepository;
-import org.jarhc.artifacts.RepositoryException;
-import org.jarhc.utils.IOUtils;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.MavenCentralRepository;
+import org.jarhc.artifacts.RepositoryException;
+import org.jarhc.utils.IOUtils;
+import org.junit.jupiter.api.Test;
 
 class MavenCentralRepositoryIT {
 

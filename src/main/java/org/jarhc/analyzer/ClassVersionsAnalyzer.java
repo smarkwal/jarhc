@@ -16,17 +16,16 @@
 
 package org.jarhc.analyzer;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaVersion;
-
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class ClassVersionsAnalyzer extends Analyzer {
 

@@ -16,17 +16,16 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.TestUtils;
-import org.jarhc.model.ModuleInfo;
-import org.jarhc.utils.IOUtils;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.jarhc.TestUtils;
+import org.jarhc.model.ModuleInfo;
+import org.jarhc.utils.IOUtils;
+import org.junit.jupiter.api.Test;
 
 class ModuleInfoLoaderTest {
 

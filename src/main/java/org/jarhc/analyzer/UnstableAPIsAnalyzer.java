@@ -16,13 +16,20 @@
 
 package org.jarhc.analyzer;
 
-import org.jarhc.model.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import org.jarhc.model.AnnotationRef;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.Classpath;
+import org.jarhc.model.Def;
+import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.StringUtils;
-
-import java.util.*;
 
 public class UnstableAPIsAnalyzer extends Analyzer {
 

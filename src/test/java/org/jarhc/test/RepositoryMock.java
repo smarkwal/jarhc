@@ -16,15 +16,14 @@
 
 package org.jarhc.test;
 
-import org.jarhc.TestUtils;
-import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
-import org.jarhc.artifacts.RepositoryException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 import java.util.Properties;
+import org.jarhc.TestUtils;
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.RepositoryException;
 
 public class RepositoryMock implements Repository {
 

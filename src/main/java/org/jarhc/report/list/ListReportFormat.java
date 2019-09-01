@@ -16,14 +16,13 @@
 
 package org.jarhc.report.list;
 
+import java.util.List;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.utils.StringUtils;
-
-import java.util.List;
 
 public class ListReportFormat implements ReportFormat {
 

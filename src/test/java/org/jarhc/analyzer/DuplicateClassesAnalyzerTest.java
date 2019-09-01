@@ -16,6 +16,12 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 import org.jarhc.Main;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.Classpath;
@@ -24,11 +30,6 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.jarhc.utils.StringUtils.joinLines;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DuplicateClassesAnalyzerTest {
 

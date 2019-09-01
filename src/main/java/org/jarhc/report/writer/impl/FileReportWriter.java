@@ -16,10 +16,13 @@
 
 package org.jarhc.report.writer.impl;
 
-import org.jarhc.report.writer.ReportWriter;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import org.jarhc.report.writer.ReportWriter;
 
 /**
  * A report writer writing to a file on the local disk.

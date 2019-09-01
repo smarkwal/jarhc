@@ -16,6 +16,11 @@
 
 package org.jarhc.analyzer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.ModuleInfo;
@@ -24,10 +29,6 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.jarhc.test.RepositoryMock;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class JarFilesAnalyzerTest {
 

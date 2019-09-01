@@ -16,17 +16,29 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import org.jarhc.java.AccessCheck;
 import org.jarhc.java.ClassLoader;
-import org.jarhc.model.*;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.Classpath;
+import org.jarhc.model.FieldDef;
+import org.jarhc.model.FieldRef;
+import org.jarhc.model.JarFile;
+import org.jarhc.model.MethodDef;
+import org.jarhc.model.MethodRef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.StringUtils;
-
-import java.util.*;
-
-import static org.jarhc.utils.StringUtils.joinLines;
 
 public class BinaryCompatibilityAnalyzer extends Analyzer {
 

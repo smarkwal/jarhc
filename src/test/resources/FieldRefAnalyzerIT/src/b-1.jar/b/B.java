@@ -16,7 +16,7 @@ public class B extends S implements I {
 
 	public int existingField;
 
-	public int[] arrayField = new int[] { 1, 2,3 };
+	public int[] arrayField = new int[]{1, 2, 3};
 
 	public B() {
 

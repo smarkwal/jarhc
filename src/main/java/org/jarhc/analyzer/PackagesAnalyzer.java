@@ -16,6 +16,13 @@
 
 package org.jarhc.analyzer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -24,9 +31,6 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class PackagesAnalyzer extends Analyzer {

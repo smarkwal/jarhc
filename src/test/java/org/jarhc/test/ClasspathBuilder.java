@@ -16,14 +16,18 @@
 
 package org.jarhc.test;
 
-import org.jarhc.java.ClassLoader;
-import org.jarhc.model.*;
-import org.jarhc.utils.DigestUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import org.jarhc.java.ClassLoader;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.Classpath;
+import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.ResourceDef;
+import org.jarhc.utils.DigestUtils;
 
 public class ClasspathBuilder {
 

@@ -16,18 +16,17 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.TestUtils;
-import org.jarhc.model.ClassDef;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.jarhc.TestUtils;
+import org.jarhc.model.ClassDef;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class ClassDefLoaderTest {
 

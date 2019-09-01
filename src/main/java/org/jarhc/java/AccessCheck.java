@@ -16,14 +16,13 @@
 
 package org.jarhc.java;
 
+import java.lang.reflect.Modifier;
+import java.util.List;
+import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
 import org.jarhc.utils.JavaUtils;
-
-import java.lang.reflect.Modifier;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Access control for classes, fields and methods.

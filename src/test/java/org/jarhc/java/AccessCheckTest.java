@@ -16,17 +16,16 @@
 
 package org.jarhc.java;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import java.util.Optional;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class AccessCheckTest {
 

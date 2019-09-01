@@ -16,6 +16,14 @@
 
 package org.jarhc.it;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.BlacklistAnalyzer;
 import org.jarhc.env.JavaRuntime;
@@ -28,15 +36,6 @@ import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UnstableAPIsAnalyzerIT {
 

@@ -16,6 +16,14 @@
 
 package org.jarhc.it;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import org.jarhc.Context;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.Analysis;
@@ -32,15 +40,6 @@ import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 abstract class AbstractIT {
 

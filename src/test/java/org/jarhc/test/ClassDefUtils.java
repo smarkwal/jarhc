@@ -16,13 +16,16 @@
 
 package org.jarhc.test;
 
-import org.jarhc.model.*;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.model.AnnotationRef;
+import org.jarhc.model.ClassDef;
+import org.jarhc.model.Def;
+import org.jarhc.model.FieldDef;
+import org.jarhc.model.MethodDef;
 
 class ClassDefUtils {
 

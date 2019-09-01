@@ -16,6 +16,21 @@
 
 package org.jarhc.test;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 import org.jarhc.TestUtils;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
@@ -24,11 +39,6 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.utils.JavaUtils;
-
-import java.io.*;
-import java.util.*;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 public class JavaRuntimeMock extends JavaRuntime {
 

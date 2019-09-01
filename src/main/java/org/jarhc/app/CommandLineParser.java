@@ -16,15 +16,6 @@
 
 package org.jarhc.app;
 
-import org.jarhc.analyzer.AnalyzerDescription;
-import org.jarhc.analyzer.AnalyzerRegistry;
-import org.jarhc.artifacts.Artifact;
-import org.jarhc.report.ReportFormatFactory;
-import org.jarhc.utils.ArrayUtils;
-import org.jarhc.utils.FileUtils;
-import org.jarhc.utils.ResourceUtils;
-import org.jarhc.utils.VersionUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -33,6 +24,14 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
+import org.jarhc.analyzer.AnalyzerDescription;
+import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.report.ReportFormatFactory;
+import org.jarhc.utils.ArrayUtils;
+import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.ResourceUtils;
+import org.jarhc.utils.VersionUtils;
 
 public class CommandLineParser {
 

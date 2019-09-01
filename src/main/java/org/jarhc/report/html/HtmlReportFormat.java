@@ -16,14 +16,13 @@
 
 package org.jarhc.report.html;
 
+import java.util.List;
+import java.util.regex.Pattern;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
-
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class HtmlReportFormat implements ReportFormat {
 

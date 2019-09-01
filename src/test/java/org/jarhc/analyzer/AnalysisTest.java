@@ -16,16 +16,15 @@
 
 package org.jarhc.analyzer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportSection;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class AnalysisTest {
 

@@ -16,10 +16,13 @@
 
 package org.jarhc.artifacts;
 
-import org.jarhc.utils.FileUtils;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
+import org.jarhc.utils.FileUtils;
 
 public class CachedRepository implements Repository {
 

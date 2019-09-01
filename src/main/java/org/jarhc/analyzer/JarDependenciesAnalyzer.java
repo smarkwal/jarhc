@@ -16,6 +16,10 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+
+import java.util.List;
+import java.util.Set;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -23,11 +27,6 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.MultiMap;
-
-import java.util.List;
-import java.util.Set;
-
-import static org.jarhc.utils.StringUtils.joinLines;
 
 public class JarDependenciesAnalyzer extends Analyzer {
 

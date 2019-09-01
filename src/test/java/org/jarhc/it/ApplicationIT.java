@@ -16,6 +16,11 @@
 
 package org.jarhc.it;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
@@ -25,12 +30,6 @@ import org.jarhc.test.RepositoryMock;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationIT {
 

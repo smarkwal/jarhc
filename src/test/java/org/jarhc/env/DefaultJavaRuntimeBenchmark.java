@@ -16,12 +16,17 @@
 
 package org.jarhc.env;
 
-import org.jarhc.model.ClassDef;
-import org.openjdk.jmh.annotations.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.jarhc.model.ClassDef;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
 
 /**
  * Loads ~ 100 classes from package java.lang using a fresh {@link DefaultJavaRuntime} instance.

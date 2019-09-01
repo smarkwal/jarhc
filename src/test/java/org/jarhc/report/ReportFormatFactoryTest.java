@@ -16,13 +16,13 @@
 
 package org.jarhc.report;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReportFormatFactoryTest {
 

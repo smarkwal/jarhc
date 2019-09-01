@@ -16,10 +16,15 @@
 
 package org.jarhc.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.utils.MultiMap;
-
-import java.util.*;
 
 /**
  * Represents a set of JAR files found on a Java classpath.

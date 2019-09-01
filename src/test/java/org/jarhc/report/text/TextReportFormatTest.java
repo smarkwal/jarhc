@@ -16,17 +16,16 @@
 
 package org.jarhc.report.text;
 
+import static org.jarhc.utils.StringUtils.joinLines;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
 import org.jarhc.TestUtils;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
-import static org.jarhc.utils.StringUtils.joinLines;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TextReportFormatTest {
 

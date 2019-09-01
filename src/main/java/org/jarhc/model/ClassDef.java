@@ -16,10 +16,15 @@
 
 package org.jarhc.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.JavaVersion;
-
-import java.util.*;
 
 /**
  * Class definition representing a single Java class file.

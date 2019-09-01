@@ -16,6 +16,8 @@
 
 package org.jarhc;
 
+import java.io.File;
+import java.time.Duration;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
@@ -24,9 +26,6 @@ import org.jarhc.artifacts.CachedRepository;
 import org.jarhc.artifacts.MavenCentralRepository;
 import org.jarhc.artifacts.MavenLocalRepository;
 import org.jarhc.artifacts.Repository;
-
-import java.io.File;
-import java.time.Duration;
 
 public class Main {
 

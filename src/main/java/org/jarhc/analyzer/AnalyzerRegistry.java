@@ -16,15 +16,14 @@
 
 package org.jarhc.analyzer;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.jarhc.Context;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Registry for analyzers.

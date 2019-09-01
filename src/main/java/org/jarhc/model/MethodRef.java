@@ -16,10 +16,9 @@
 
 package org.jarhc.model;
 
-import org.jarhc.utils.JavaUtils;
-
 import java.util.List;
 import java.util.Objects;
+import org.jarhc.utils.JavaUtils;
 
 public class MethodRef implements Ref, Comparable<MethodRef> {
 

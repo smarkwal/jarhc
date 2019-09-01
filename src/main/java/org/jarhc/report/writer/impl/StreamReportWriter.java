@@ -16,9 +16,8 @@
 
 package org.jarhc.report.writer.impl;
 
-import org.jarhc.report.writer.ReportWriter;
-
 import java.io.PrintStream;
+import org.jarhc.report.writer.ReportWriter;
 
 /**
  * Report writer writing to a print stream.

@@ -16,12 +16,15 @@
 
 package org.jarhc.loader;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import org.jarhc.model.ClassDef;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.IOUtils;
 import org.objectweb.asm.ClassReader;
-
-import java.io.*;
 
 /**
  * Loader for class definitions, using a file or a stream as source.

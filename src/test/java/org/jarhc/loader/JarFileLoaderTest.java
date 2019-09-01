@@ -16,19 +16,22 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.TestUtils;
-import org.jarhc.model.JarFile;
-import org.jarhc.model.ModuleInfo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.jarhc.TestUtils;
+import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class JarFileLoaderTest {
 

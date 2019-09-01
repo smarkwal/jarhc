@@ -16,12 +16,11 @@
 
 package org.jarhc.app;
 
+import java.io.IOException;
+import java.io.InputStream;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class ArtifactSource implements JarSource {
 

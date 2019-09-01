@@ -16,10 +16,9 @@
 
 package org.jarhc.model;
 
-import org.jarhc.utils.JavaUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.utils.JavaUtils;
 
 public class MethodDef extends Def {
 

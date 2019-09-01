@@ -16,16 +16,19 @@
 
 package org.jarhc.loader;
 
-import org.jarhc.app.JarSource;
-import org.jarhc.model.JarFile;
-import org.jarhc.utils.FileUtils;
-import org.jarhc.utils.IOUtils;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.jarhc.app.JarSource;
+import org.jarhc.model.JarFile;
+import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.IOUtils;
 
 public class WarFileLoader {
 
