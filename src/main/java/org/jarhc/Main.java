@@ -44,6 +44,8 @@ public class Main {
 			System.exit(exitCode);
 		}
 
+		setupLogging(options);
+
 		Repository repository = createRepository(options);
 
 		// create and run application
@@ -55,6 +57,15 @@ public class Main {
 		if (exitCode != 0) {
 			System.exit(exitCode);
 		}
+	}
+
+	private static void setupLogging(Options options) {
+
+		if (options.isDebug()) {
+			// enable debug log output
+			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
+		}
+
 	}
 
 	private static Repository createRepository(Options options) {
