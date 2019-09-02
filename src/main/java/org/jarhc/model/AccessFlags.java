@@ -16,6 +16,8 @@
 
 package org.jarhc.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.objectweb.asm.Opcodes;
 
 abstract class AccessFlags {
@@ -35,6 +37,21 @@ abstract class AccessFlags {
 	}
 
 	public abstract String getModifiers();
+
+	final List<String> getDefaultModifiers() {
+
+		List<String> parts = new ArrayList<>();
+
+		// access flags
+		if (isPublic()) parts.add("public");
+		if (isProtected()) parts.add("protected");
+		if (isPrivate()) parts.add("private");
+
+		// static
+		if (isStatic()) parts.add("static");
+
+		return parts;
+	}
 
 	public final boolean isPublic() {
 		return hasFlag(Opcodes.ACC_PUBLIC);

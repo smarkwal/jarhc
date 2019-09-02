@@ -432,66 +432,6 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private class MethodSearchResult implements ClassLoader.Callback {
-
-		private StringBuilder errorMessages;
-		private StringBuilder searchInfos;
-		private boolean ignoreResult = false;
-
-		void addErrorMessage(String message) {
-			if (errorMessages == null) {
-				errorMessages = new StringBuilder();
-			} else {
-				errorMessages.append(System.lineSeparator());
-			}
-			errorMessages.append(message);
-		}
-
-		void addSearchInfo(String info) {
-			if (searchInfos == null) {
-				searchInfos = new StringBuilder();
-			} else {
-				searchInfos.append(System.lineSeparator());
-			}
-			searchInfos.append(info);
-		}
-
-		String getResult() {
-			if (errorMessages == null) {
-				return null;
-			} else {
-				if (searchInfos != null) {
-					errorMessages.append(System.lineSeparator()).append(searchInfos);
-				}
-				return errorMessages.toString();
-			}
-		}
-
-		boolean isIgnoreResult() {
-			return ignoreResult;
-		}
-
-		void setIgnoreResult() {
-			this.ignoreResult = true;
-		}
-
-		@Override
-		public void classNotFound(String className) {
-			addSearchInfo("> " + className + " (class not found)");
-		}
-
-		@Override
-		public void memberNotFound(String className) {
-			addSearchInfo("> " + className + " (method not found)");
-		}
-
-		@Override
-		public void memberFound(String className) {
-			addSearchInfo("> " + className + " (method found)");
-		}
-
-	}
-
 	// -----------------------------------------------------------------------------------------------------
 	// fields
 
@@ -585,7 +525,10 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		return searchResult;
 	}
 
-	private class FieldSearchResult implements ClassLoader.Callback {
+	// -----------------------------------------------------------------------------------------------------
+	// helper classes
+
+	private abstract static class MemberSearchResult implements ClassLoader.Callback {
 
 		private StringBuilder errorMessages;
 		private StringBuilder searchInfos;
@@ -633,6 +576,10 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 			addSearchInfo("> " + className + " (class not found)");
 		}
 
+	}
+
+	private static class FieldSearchResult extends MemberSearchResult {
+
 		@Override
 		public void memberNotFound(String className) {
 			addSearchInfo("> " + className + " (field not found)");
@@ -641,6 +588,20 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		@Override
 		public void memberFound(String className) {
 			addSearchInfo("> " + className + " (field found)");
+		}
+
+	}
+
+	private static class MethodSearchResult extends MemberSearchResult {
+
+		@Override
+		public void memberNotFound(String className) {
+			addSearchInfo("> " + className + " (method not found)");
+		}
+
+		@Override
+		public void memberFound(String className) {
+			addSearchInfo("> " + className + " (method found)");
 		}
 
 	}

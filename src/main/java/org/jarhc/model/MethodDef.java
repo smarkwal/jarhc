@@ -16,19 +16,16 @@
 
 package org.jarhc.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.jarhc.utils.JavaUtils;
 
-public class MethodDef extends Def {
+public class MethodDef extends MemberDef {
 
 	private final String methodName;
 	private final String methodDescriptor;
 	private final String returnType;
 	private final List<String> parameterTypes;
-
 	// TODO: exceptions?
-	private ClassDef classDef;
 
 	public MethodDef(int access, String methodName, String methodDescriptor) {
 		super(access);
@@ -57,26 +54,11 @@ public class MethodDef extends Def {
 	}
 
 	@Override
-	public ClassDef getClassDef() {
-		return classDef;
-	}
-
-	void setClassDef(ClassDef classDef) {
-		this.classDef = classDef;
-	}
-
-	@Override
 	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
-		List<String> parts = new ArrayList<>();
-
-		// access flags
-		if (isPublic()) parts.add("public");
-		if (isProtected()) parts.add("protected");
-		if (isPrivate()) parts.add("private");
+		List<String> parts = getDefaultModifiers();
 
 		// modifiers
-		if (isStatic()) parts.add("static");
 		if (isFinal()) parts.add("final");
 		if (isSynchronized()) parts.add("synchronized");
 		if (isNative()) parts.add("native");

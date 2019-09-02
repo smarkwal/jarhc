@@ -16,15 +16,13 @@
 
 package org.jarhc.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class FieldDef extends Def {
+public class FieldDef extends MemberDef {
 
 	private final String fieldName;
 	private final String fieldType;
 	// TODO: initial value? e.g. constant string containing a class name
-	private ClassDef classDef;
 
 	public FieldDef(int access, String fieldName, String fieldType) {
 		super(access);
@@ -41,26 +39,11 @@ public class FieldDef extends Def {
 	}
 
 	@Override
-	public ClassDef getClassDef() {
-		return classDef;
-	}
-
-	void setClassDef(ClassDef classDef) {
-		this.classDef = classDef;
-	}
-
-	@Override
 	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
-		List<String> parts = new ArrayList<>();
-
-		// access flags
-		if (isPublic()) parts.add("public");
-		if (isProtected()) parts.add("protected");
-		if (isPrivate()) parts.add("private");
+		List<String> parts = getDefaultModifiers();
 
 		// modifiers
-		if (isStatic()) parts.add("static");
 		if (isFinal()) parts.add("final");
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");

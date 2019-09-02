@@ -76,7 +76,7 @@ public class TextReportFormat implements ReportFormat {
 
 	}
 
-	private void formatTable(ReportTable table, ReportWriter writer) {
+	protected void formatTable(ReportTable table, ReportWriter writer) {
 		String[] columns = table.getColumns();
 		List<String[]> rows = table.getRows();
 		int[] widths = calculateColumnWidths(columns, rows);

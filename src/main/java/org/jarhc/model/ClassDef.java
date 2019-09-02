@@ -332,15 +332,9 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	@Override
 	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
-		List<String> parts = new ArrayList<>();
-
-		// access flags
-		if (isPublic()) parts.add("public");
-		if (isProtected()) parts.add("protected");
-		if (isPrivate()) parts.add("private");
+		List<String> parts = getDefaultModifiers();
 
 		// modifiers
-		if (isStatic()) parts.add("static");
 		if (isFinal() && !isEnum()) parts.add("final");
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");

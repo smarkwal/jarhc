@@ -17,65 +17,14 @@
 package org.jarhc.report.list;
 
 import java.util.List;
-import org.jarhc.report.Report;
-import org.jarhc.report.ReportFormat;
-import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.report.writer.ReportWriter;
-import org.jarhc.utils.StringUtils;
 
-public class ListReportFormat implements ReportFormat {
+public class ListReportFormat extends TextReportFormat {
 
 	@Override
-	public void format(Report report, ReportWriter writer) {
-
-		// add optional report title
-		String title = report.getTitle();
-		if (title != null) {
-			writer.println(title);
-			writer.println(StringUtils.repeat("=", title.length()));
-			writer.println();
-		}
-
-		List<ReportSection> sections = report.getSections();
-		for (ReportSection section : sections) {
-			formatSection(section, writer);
-			writer.println();
-		}
-	}
-
-	private void formatSection(ReportSection section, ReportWriter writer) {
-
-		String title = section.getTitle();
-		String description = section.getDescription();
-		List<Object> contents = section.getContent();
-
-		// format header
-		writer.println(title);
-		writer.println(StringUtils.repeat("-", title.length()));
-		if (description != null) {
-			writer.println(description);
-		}
-		writer.println();
-
-		// format contents
-		for (int i = 0; i < contents.size(); i++) {
-			Object content = contents.get(i);
-			if (i > 0) {
-				writer.println(); // add an empty line between all content blocks
-			}
-			if (content instanceof ReportTable) {
-				ReportTable table = (ReportTable) content;
-				formatTable(table, writer);
-			} else {
-				String text = String.valueOf(content);
-				writer.println(text);
-			}
-		}
-
-	}
-
-	private void formatTable(ReportTable table, ReportWriter writer) {
+	protected void formatTable(ReportTable table, ReportWriter writer) {
 		String[] columns = table.getColumns();
 		List<String[]> rows = table.getRows();
 		for (int i = 0; i < rows.size(); i++) {
