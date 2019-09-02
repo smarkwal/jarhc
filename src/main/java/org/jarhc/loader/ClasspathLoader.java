@@ -83,8 +83,8 @@ public class ClasspathLoader {
 				} else if (fileName.endsWith(".war")) {
 					jarFiles = warFileLoader.load(file);
 				} else {
-					String message = String.format("Unsupported file extension: %s", file.getName());
-					throw new IOException(message);
+					LOGGER.warn("Unsupported file extension: {}", file.getName());
+					return;
 				}
 			} catch (IOException e) {
 				LOGGER.warn("Unable to parse file: {}", file.getName(), e);
