@@ -27,7 +27,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaVersion;
 
-public class ClassVersionsAnalyzer extends Analyzer {
+public class ClassVersionsAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {

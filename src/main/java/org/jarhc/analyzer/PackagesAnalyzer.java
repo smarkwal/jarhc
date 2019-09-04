@@ -33,7 +33,7 @@ import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
 
 
-public class PackagesAnalyzer extends Analyzer {
+public class PackagesAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -80,14 +80,14 @@ public class PackagesAnalyzer extends Analyzer {
 		for (String fileName : map.getKeys()) {
 			Set<String> packageNames = map.getValues(fileName);
 			List<String> packageGroups = getPackageGroups(packageNames, map, fileName);
-			List<String> issues = findIssues(packageNames, packageToJarFile, fileName);
+			List<String> issues = findIssues(packageNames, packageToJarFile);
 			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
 		}
 
 		return table;
 	}
 
-	private List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile, String jarFileName) {
+	private List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile) {
 		List<String> issues = new ArrayList<>();
 
 		// check if any package is found in more than one JAR file

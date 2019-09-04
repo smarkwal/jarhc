@@ -37,7 +37,7 @@ import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BlacklistAnalyzer extends Analyzer {
+public class BlacklistAnalyzer implements Analyzer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BlacklistAnalyzer.class);
 

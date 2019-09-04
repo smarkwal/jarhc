@@ -57,7 +57,7 @@ class AnalysisTest {
 
 	}
 
-	private static class TestAnalyzer extends Analyzer {
+	private static class TestAnalyzer implements Analyzer {
 
 		private final String title;
 		private final String description;

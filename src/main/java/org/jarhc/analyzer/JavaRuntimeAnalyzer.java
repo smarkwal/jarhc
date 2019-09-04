@@ -20,7 +20,7 @@ import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 
-public class JavaRuntimeAnalyzer extends Analyzer {
+public class JavaRuntimeAnalyzer implements Analyzer {
 
 	private final JavaRuntime javaRuntime;
 

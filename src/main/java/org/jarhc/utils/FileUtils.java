@@ -136,7 +136,7 @@ public class FileUtils {
 	}
 
 	public static String getFilename(String path) {
-		int pos = path.lastIndexOf("/");
+		int pos = path.lastIndexOf('/');
 		if (pos < 0) return path;
 		return path.substring(pos + 1);
 	}

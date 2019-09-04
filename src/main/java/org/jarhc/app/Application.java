@@ -111,7 +111,7 @@ public class Application {
 		for (String section : sections) {
 			AnalyzerDescription description = registry.getDescription(section);
 			if (description == null) {
-				System.err.println("Analyzer not found: " + section);
+				LOGGER.error("Analyzer not found: {}", section);
 				return 3;
 			}
 			Analyzer analyzer = registry.createAnalyzer(section, context);

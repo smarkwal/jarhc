@@ -244,15 +244,6 @@ class ClassDefBuilder extends ClassVisitor {
 		}
 	}
 
-	private String toClassName(String type) {
-		if (type.charAt(0) == '[') {
-			type = Type.getType(type).getClassName();
-		} else {
-			type = toExternalName(type);
-		}
-		return type;
-	}
-
 	// -------------------------------------------------------------------------------------------------------
 
 	private class CustomFieldVisitor extends FieldVisitor {
@@ -408,6 +399,15 @@ class ClassDefBuilder extends ClassVisitor {
 		@Override
 		public void visitEnd() {
 			// nothing to do
+		}
+
+		private String toClassName(String type) {
+			if (type.charAt(0) == '[') {
+				type = Type.getType(type).getClassName();
+			} else {
+				type = toExternalName(type);
+			}
+			return type;
 		}
 
 	}

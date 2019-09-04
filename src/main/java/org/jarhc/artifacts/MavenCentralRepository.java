@@ -124,9 +124,9 @@ public class MavenCentralRepository implements Repository {
 	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
 		URL url = getDownloadURL(artifact);
 		try {
-			byte[] data = downloadFile(url);
-			if (data == null) return Optional.empty();
-			ByteArrayInputStream stream = new ByteArrayInputStream(data);
+			Optional<byte[]> data = downloadFile(url);
+			if (!data.isPresent()) return Optional.empty();
+			ByteArrayInputStream stream = new ByteArrayInputStream(data.get());
 			return Optional.of(stream);
 		} catch (IOException e) {
 			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
@@ -144,15 +144,15 @@ public class MavenCentralRepository implements Repository {
 
 	private String downloadText(URL url) throws RepositoryException {
 		try {
-			byte[] data = downloadFile(url);
-			if (data == null) throw new RepositoryException("URL not found: " + url);
-			return new String(data, StandardCharsets.UTF_8);
+			Optional<byte[]> data = downloadFile(url);
+			if (!data.isPresent()) throw new RepositoryException("URL not found: " + url);
+			return new String(data.get(), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
 		}
 	}
 
-	private byte[] downloadFile(URL url) throws IOException {
+	private Optional<byte[]> downloadFile(URL url) throws IOException {
 
 		HttpURLConnection connection = null;
 		try {
@@ -168,13 +168,14 @@ public class MavenCentralRepository implements Repository {
 			// get response
 			int status = connection.getResponseCode();
 			if (status == 404) {
-				return null;
+				return Optional.empty();
 			} else if (status != 200) {
 				throw new IOException("Unexpected status code '" + status + "' for URL: " + url);
 			}
 
 			try (InputStream stream = connection.getInputStream()) {
-				return IOUtils.toByteArray(stream);
+				byte[] data = IOUtils.toByteArray(stream);
+				return Optional.of(data);
 			}
 
 		} finally {

@@ -31,7 +31,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 
-public class DuplicateClassesAnalyzer extends Analyzer {
+public class DuplicateClassesAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {

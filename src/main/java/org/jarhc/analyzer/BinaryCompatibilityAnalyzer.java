@@ -40,7 +40,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.StringUtils;
 
-public class BinaryCompatibilityAnalyzer extends Analyzer {
+public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private final boolean reportOwnerClassNotFound;
 

@@ -32,7 +32,7 @@ import org.jarhc.report.ReportTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JarFilesAnalyzer extends Analyzer {
+public class JarFilesAnalyzer implements Analyzer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarFilesAnalyzer.class);
 

@@ -28,7 +28,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.MultiMap;
 
-public class JarDependenciesAnalyzer extends Analyzer {
+public class JarDependenciesAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
