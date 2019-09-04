@@ -21,8 +21,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
@@ -42,11 +44,41 @@ public class CommandLineParser {
 	private final PrintStream out;
 	private final PrintStream err;
 
+	private final Map<String, OptionParser> optionParsers = new HashMap<>();
+
+	private interface OptionParser {
+		void parse(Iterator<String> args, Options options) throws CommandLineException;
+	}
+
 	public CommandLineParser(PrintStream out, PrintStream err) {
 		if (out == null) throw new IllegalArgumentException("out");
 		if (err == null) throw new IllegalArgumentException("err");
 		this.out = out;
 		this.err = err;
+
+		optionParsers.put("-cp", this::parseClasspath);
+		optionParsers.put("--classpath", this::parseClasspath);
+		optionParsers.put("--provided", this::parseProvided);
+		optionParsers.put("--runtime", this::parseRuntime);
+		optionParsers.put("--strategy", this::parseStrategy);
+		optionParsers.put("-f", this::parseFormat);
+		optionParsers.put("--format", this::parseFormat);
+		optionParsers.put("-o", this::parseOutput);
+		optionParsers.put("--output", this::parseOutput);
+		optionParsers.put("-t", this::parseTitle);
+		optionParsers.put("--title", this::parseTitle);
+		optionParsers.put("-s", this::parseSections);
+		optionParsers.put("--sections", this::parseSections);
+		optionParsers.put("--skip-empty", (args, options) -> options.setSkipEmpty(true));
+		optionParsers.put("--remove-version", (args, options) -> options.setRemoveVersion(true));
+		optionParsers.put("--use-artifact-name", (args, options) -> options.setUseArtifactName(true));
+		optionParsers.put("--data", this::parseData);
+		optionParsers.put("--nodata", (args, options) -> options.setDataPath(null));
+		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
+		optionParsers.put("-h", (args, options) -> printUsage(null, out));
+		optionParsers.put("--help", (args, options) -> printUsage(null, out));
+		optionParsers.put("-v", (args, options) -> printVersion());
+		optionParsers.put("--version", (args, options) -> printVersion());
 	}
 
 	public Options parse(String[] args) throws CommandLineException {
@@ -60,47 +92,17 @@ public class CommandLineParser {
 		options.setReportFormat(null);
 		options.setReportFile(null);
 
-		boolean classpathFound = false;
+		boolean classpathFound = ArrayUtils.containsAny(args, "-cp", "--classpath");
 
 		Iterator<String> iterator = Arrays.asList(args).iterator();
 		while (iterator.hasNext()) {
 			String arg = iterator.next();
-			if (arg.equals("-cp") || arg.equals("--classpath")) {
-				parse_classpath(iterator, options);
-				classpathFound = true;
-			} else if (arg.equals("--provided")) {
-				parse_provided(iterator, options);
-			} else if (arg.equals("--runtime")) {
-				parse_runtime(iterator, options);
-			} else if (arg.equals("--strategy")) {
-				parse_strategy(iterator, options);
-			} else if (arg.equals("-f") || arg.equals("--format")) {
-				parse_format(iterator, options);
-			} else if (arg.equals("-o") || arg.equals("--output")) {
-				parse_output(iterator, options);
-			} else if (arg.equals("-t") || arg.equals("--title")) {
-				parse_title(iterator, options);
-			} else if (arg.equals("-s") || arg.equals("--sections")) {
-				parse_sections(iterator, options);
-			} else if (arg.equals("--skip-empty")) {
-				options.setSkipEmpty(true);
-			} else if (arg.equals("--remove-version")) {
-				options.setRemoveVersion(true);
-			} else if (arg.equals("--use-artifact-name")) {
-				options.setUseArtifactName(true);
-			} else if (arg.equals("-h") || arg.equals("--help")) {
-				printUsage(null, out);
-			} else if (arg.equals("-v") || arg.equals("--version")) {
-				out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
-			} else if (arg.equals("--data")) {
-				parse_data(iterator, options);
-			} else if (arg.equals("--nodata")) {
-				options.setDataPath(null);
-			} else if (arg.equals("--debug")) {
-				options.setDebug(true);
+			if (optionParsers.containsKey(arg)) {
+				OptionParser parser = optionParsers.get(arg);
+				parser.parse(iterator, options);
 			} else if (arg.startsWith("-")) {
 				String errorMessage = String.format("Unknown option: '%s'.", arg);
-				handleError(-100, errorMessage);
+				throw handleError(-100, errorMessage);
 			} else {
 				addSources(arg, options::addClasspathJarPath);
 				classpathFound = true;
@@ -117,126 +119,107 @@ public class CommandLineParser {
 			}
 
 			String errorMessage = "Argument <path> is missing.";
-			handleError(-1, errorMessage);
+			throw handleError(-1, errorMessage);
 		}
 
 		// check if at least one JAR file has been found
 		List<String> classpathJarPaths = options.getClasspathJarPaths();
 		if (classpathJarPaths.isEmpty()) {
 			String errorMessage = "No *.jar files found in classpath.";
-			handleError(-4, errorMessage);
+			throw handleError(-4, errorMessage);
 		}
 
 		return options;
 	}
 
-	private void parse_classpath(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String values = iterator.next();
-			addSources(values, options::addClasspathJarPath);
-		} else {
-			handleError(-10, "Classpath not specified.");
-		}
+	private void parseClasspath(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-10, "Classpath not specified.");
+
+		String values = args.next();
+		addSources(values, options::addClasspathJarPath);
 	}
 
-	private void parse_provided(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String values = iterator.next();
-			addSources(values, options::addProvidedJarPath);
-		} else {
-			handleError(-10, "Provided classpath not specified.");
-		}
+	private void parseProvided(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-10, "Provided classpath not specified.");
+
+		String values = args.next();
+		addSources(values, options::addProvidedJarPath);
 	}
 
-	private void parse_runtime(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String values = iterator.next();
-			addSources(values, options::addRuntimeJarPath);
-		} else {
-			handleError(-10, "Runtime classpath not specified.");
-		}
+	private void parseRuntime(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-10, "Runtime classpath not specified.");
+
+		String values = args.next();
+		addSources(values, options::addRuntimeJarPath);
 	}
 
-	private void parse_strategy(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			ClassLoaderStrategy strategy = null;
-			try {
-				strategy = ClassLoaderStrategy.valueOf(value);
-			} catch (IllegalArgumentException e) {
-				String errorMessage = String.format("Unknown class loader strategy: %s", value);
-				handleError(-13, errorMessage);
-			}
+	private void parseStrategy(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-12, "Class loader strategy not specified.");
+
+		String value = args.next();
+		try {
+			ClassLoaderStrategy strategy = ClassLoaderStrategy.valueOf(value);
 			options.setClassLoaderStrategy(strategy);
-		} else {
-			handleError(-12, "Class loader strategy not specified.");
+		} catch (IllegalArgumentException e) {
+			String errorMessage = String.format("Unknown class loader strategy: %s", value);
+			throw handleError(-13, errorMessage);
 		}
 	}
 
-	private void parse_format(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			if (!ReportFormatFactory.isSupportedFormat(value)) {
-				String errorMessage = String.format("Unknown report format: '%s'.", value);
-				handleError(-6, errorMessage);
+	private void parseFormat(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-5, "Report format not specified.");
+
+		String value = args.next();
+		if (!ReportFormatFactory.isSupportedFormat(value)) {
+			String errorMessage = String.format("Unknown report format: '%s'.", value);
+			throw handleError(-6, errorMessage);
+		}
+		options.setReportFormat(value);
+	}
+
+	private void parseOutput(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-7, "Report file not specified.");
+
+		String value = args.next();
+		options.setReportFile(value);
+	}
+
+	private void parseTitle(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-8, "Report title not specified.");
+
+		String value = args.next();
+		options.setReportTitle(value);
+	}
+
+	private void parseSections(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-9, "Report sections not specified.");
+
+		String value = args.next();
+		if (value.startsWith("-")) {
+			value = value.substring(1);
+			// exclude specified sections
+			List<String> sections = registry.getCodes();
+			String[] values = value.split(",");
+			for (String section : values) {
+				sections.remove(section.trim());
 			}
-			options.setReportFormat(value);
+			options.setSections(sections);
 		} else {
-			handleError(-5, "Report format not specified.");
-		}
-	}
-
-	private void parse_output(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			options.setReportFile(value);
-		} else {
-			handleError(-7, "Report file not specified.");
-		}
-	}
-
-	private void parse_title(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			options.setReportTitle(value);
-		} else {
-			handleError(-8, "Report title not specified.");
-		}
-	}
-
-	private void parse_sections(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			if (value.startsWith("-")) {
-				value = value.substring(1);
-				// exclude specified sections
-				List<String> sections = registry.getCodes();
-				String[] values = value.split(",");
-				for (String section : values) {
-					sections.remove(section.trim());
-				}
-				options.setSections(sections);
-			} else {
-				// include specified sections
-				List<String> sections = new ArrayList<>();
-				String[] values = value.split(",");
-				for (String section : values) {
-					sections.add(section.trim());
-				}
-				options.setSections(sections);
+			// include specified sections
+			List<String> sections = new ArrayList<>();
+			String[] values = value.split(",");
+			for (String section : values) {
+				sections.add(section.trim());
 			}
-		} else {
-			handleError(-9, "Report sections not specified.");
+			options.setSections(sections);
 		}
 	}
 
-	private void parse_data(Iterator<String> iterator, Options options) throws CommandLineException {
-		if (iterator.hasNext()) {
-			String value = iterator.next();
-			options.setDataPath(value);
-		} else {
-			handleError(-11, "Data path not specified.");
-		}
+	private void parseData(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-11, "Data path not specified.");
+
+		String value = args.next();
+		options.setDataPath(value);
 	}
 
 	private void addSources(String values, Consumer<String> classpath) throws CommandLineException {
@@ -260,7 +243,7 @@ public class CommandLineParser {
 				addFiles(path, value, classpath);
 			} else {
 				String errorMessage = String.format("File or directory not found: %s", path.getAbsolutePath());
-				handleError(-3, errorMessage);
+				throw handleError(-3, errorMessage);
 			}
 		}
 
@@ -274,14 +257,14 @@ public class CommandLineParser {
 			classpath.accept(value);
 		} else {
 			String errorMessage = String.format("File is not a *.jar file: %s", path.getAbsolutePath());
-			handleError(-2, errorMessage);
+			throw handleError(-2, errorMessage);
 		}
 	}
 
 	private void addFiles(File path, String value, Consumer<String> classpath) throws CommandLineException {
 		if (findJarFiles(path).isEmpty()) {
 			String errorMessage = String.format("No *.jar files found in directory: %s", path.getAbsolutePath());
-			handleError(-2, errorMessage);
+			throw handleError(-2, errorMessage);
 		}
 		classpath.accept(value);
 	}
@@ -320,9 +303,9 @@ public class CommandLineParser {
 		}
 	}
 
-	private void handleError(int exitCode, String errorMessage) throws CommandLineException {
+	private CommandLineException handleError(int exitCode, String errorMessage) {
 		printUsage(errorMessage, err);
-		throw new CommandLineException(exitCode, errorMessage);
+		return new CommandLineException(exitCode, errorMessage);
 	}
 
 	private void printUsage(String errorMessage, PrintStream out) {
@@ -350,6 +333,10 @@ public class CommandLineParser {
 			out.println(String.format("   %-2s - %s", code, description.getName()));
 		}
 
+	}
+
+	private void printVersion() {
+		out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
 	}
 
 }
