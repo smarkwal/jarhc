@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.utils.MultiMap;
 
 /**
@@ -53,8 +54,8 @@ public class Classpath extends ClassLoader {
 	 * @param parentClassLoader Parent class loader
 	 * @throws IllegalArgumentException If <code>jarFiles</code> is <code>null</code>.
 	 */
-	public Classpath(List<JarFile> jarFiles, ClassLoader parentClassLoader) {
-		super("Classpath", parentClassLoader);
+	public Classpath(List<JarFile> jarFiles, ClassLoader parentClassLoader, ClassLoaderStrategy strategy) {
+		super("Classpath", parentClassLoader, strategy);
 		if (jarFiles == null) throw new IllegalArgumentException("jarFiles");
 		this.jarFiles = new ArrayList<>(jarFiles);
 

@@ -31,10 +31,12 @@ public abstract class ClassLoader {
 
 	private final String name;
 	private final ClassLoader parent;
+	private final ClassLoaderStrategy strategy;
 
-	public ClassLoader(String name, ClassLoader parent) {
+	public ClassLoader(String name, ClassLoader parent, ClassLoaderStrategy strategy) {
 		this.name = name;
 		this.parent = parent;
+		this.strategy = strategy;
 	}
 
 	public String getName() {
@@ -63,14 +65,34 @@ public abstract class ClassLoader {
 	}
 
 	public Optional<ClassDef> getClassDef(String className) {
-		Optional<ClassDef> classDef = findClassDef(className);
+
+		// if parent-first class loader strategy ...
+		Optional<ClassDef> classDef;
+		if (strategy == ClassLoaderStrategy.ParentFirst && parent != null) {
+			// try to find class in parent class loader
+			classDef = parent.getClassDef(className);
+			if (classDef.isPresent()) {
+				return classDef;
+			}
+		}
+
+		// try to find class in this class loader
+		classDef = findClassDef(className);
 		if (classDef.isPresent()) {
 			return classDef;
-		} else if (parent != null) {
-			return parent.getClassDef(className);
-		} else {
-			return Optional.empty();
 		}
+
+		// if parent-last class loader strategy ...
+		if (strategy == ClassLoaderStrategy.ParentLast && parent != null) {
+			// try to find class in parent class loader
+			classDef = parent.getClassDef(className);
+			if (classDef.isPresent()) {
+				return classDef;
+			}
+		}
+
+		// class not found
+		return Optional.empty();
 	}
 
 	protected abstract Optional<ClassDef> findClassDef(String className);
@@ -211,7 +233,7 @@ public abstract class ClassLoader {
 
 	private static class NoOpCallback implements Callback {
 
-		public static final NoOpCallback INSTANCE = new NoOpCallback();
+		static final NoOpCallback INSTANCE = new NoOpCallback();
 
 		@Override
 		public void classNotFound(String className) {

@@ -27,6 +27,7 @@ import java.util.function.Consumer;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.utils.ArrayUtils;
 import org.jarhc.utils.FileUtils;
@@ -85,6 +86,20 @@ public class CommandLineParser {
 					addSources(values, options::addRuntimeJarPath);
 				} else {
 					handleError(-10, "Runtime classpath not specified.");
+				}
+			} else if (arg.equals("--strategy")) {
+				if (iterator.hasNext()) {
+					String value = iterator.next();
+					ClassLoaderStrategy strategy = null;
+					try {
+						strategy = ClassLoaderStrategy.valueOf(value);
+					} catch (IllegalArgumentException e) {
+						String errorMessage = String.format("Unknown class loader strategy: %s", value);
+						handleError(-13, errorMessage);
+					}
+					options.setClassLoaderStrategy(strategy);
+				} else {
+					handleError(-12, "Class loader strategy not specified.");
 				}
 			} else if (arg.equals("-f") || arg.equals("--format")) {
 				if (iterator.hasNext()) {

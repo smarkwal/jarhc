@@ -17,6 +17,7 @@
 package org.jarhc.env;
 
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 
 /**
  * An implementation of this interface represents a Java runtime.
@@ -32,7 +33,7 @@ import org.jarhc.java.ClassLoader;
 public abstract class JavaRuntime extends ClassLoader {
 
 	public JavaRuntime() {
-		super("Runtime", null);
+		super("Runtime", null, ClassLoaderStrategy.ParentLast);
 	}
 
 	/**

@@ -17,6 +17,7 @@
 package org.jarhc.loader;
 
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 
 public class LoaderBuilder {
 
@@ -24,6 +25,7 @@ public class LoaderBuilder {
 	private boolean scanForReferences = true;
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
+	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
 
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
@@ -49,6 +51,11 @@ public class LoaderBuilder {
 		return this;
 	}
 
+	public LoaderBuilder withClassLoaderStrategy(ClassLoaderStrategy strategy) {
+		this.strategy = strategy;
+		return this;
+	}
+
 	public ClassDefLoader buildClassDefLoader() {
 		return new ClassDefLoader(classLoader, scanForReferences);
 	}
@@ -66,7 +73,7 @@ public class LoaderBuilder {
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
 		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
-		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader);
+		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, strategy);
 	}
 
 }

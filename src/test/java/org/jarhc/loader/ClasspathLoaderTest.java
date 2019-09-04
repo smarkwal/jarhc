@@ -33,6 +33,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.app.FileSource;
 import org.jarhc.app.JarSource;
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.junit.jupiter.api.BeforeEach;
@@ -84,7 +85,7 @@ class ClasspathLoaderTest {
 					return Arrays.asList(jarFile1, jarFile2);
 				});
 
-		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader);
+		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast);
 	}
 
 	@Test

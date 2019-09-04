@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import org.jarhc.TestUtils;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.test.PrintStreamBuffer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -547,6 +548,67 @@ class CommandLineParserTest {
 		// assert
 		assertTrue(out.getText().startsWith("JarHC"));
 		assertEquals("", err.getText());
+
+	}
+
+	@Test
+	void test_strategy_ParentFirst() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[]{"--strategy", "ParentFirst", "com.test:test:1.0"});
+
+		// assert
+		assertEquals(ClassLoaderStrategy.ParentFirst, options.getClassLoaderStrategy());
+
+	}
+
+	@Test
+	void test_strategy_ParentLast() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[]{"--strategy", "ParentLast", "com.test:test:1.0"});
+
+		// assert
+		assertEquals(ClassLoaderStrategy.ParentLast, options.getClassLoaderStrategy());
+
+	}
+
+	@Test
+	void test_strategy_Default() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[]{"com.test:test:1.0"});
+
+		// assert
+		assertEquals(ClassLoaderStrategy.ParentLast, options.getClassLoaderStrategy());
+
+	}
+
+	@Test
+	void test_strategy_Unknown() {
+
+		// test
+		try {
+			parser.parse(new String[]{"--strategy", "Unknown", "com.test:test:1.0"});
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("Unknown class loader strategy: Unknown", e.getMessage());
+			assertEquals(-13, e.getExitCode());
+		}
+
+	}
+
+	@Test
+	void test_strategy_Incomplete() {
+
+		// test
+		try {
+			parser.parse(new String[]{"com.test:test:1.0", "--strategy"});
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("Class loader strategy not specified.", e.getMessage());
+			assertEquals(-12, e.getExitCode());
+		}
 
 	}
 

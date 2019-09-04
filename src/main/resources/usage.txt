@@ -29,6 +29,10 @@ Options:
    --runtime <path>      : Add a JAR file or directory with JAR files
                            to the classpath of runtime libraries.
 
+   --strategy <strategy> : Class loader strategy ("ParentLast" or "ParentFirst").
+                           Example: --strategy ParentFirst
+                           Default: ParentLast
+
    --format <type>       : Report format type ("text", "list", or "html").
     -f                     Example: -f html
                            Default: text

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -33,6 +34,7 @@ public class ClasspathBuilder {
 
 	// Classpath properties
 	private final ClassLoader parentClassLoader;
+	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
 	private final String classLoader;
 	private final List<JarFile> jarFiles = new ArrayList<>();
 
@@ -61,6 +63,11 @@ public class ClasspathBuilder {
 
 	public static ClasspathBuilder create(String classLoader, ClassLoader parentClassLoader) {
 		return new ClasspathBuilder(classLoader, parentClassLoader);
+	}
+
+	public ClasspathBuilder withClassLoaderStrategy(ClassLoaderStrategy strategy) {
+		this.strategy = strategy;
+		return this;
 	}
 
 	public ClasspathBuilder addJarFile(String fileName) {
@@ -114,7 +121,7 @@ public class ClasspathBuilder {
 	public Classpath build() {
 		closeClassDef();
 		closeJarFile();
-		return new Classpath(jarFiles, parentClassLoader);
+		return new Classpath(jarFiles, parentClassLoader, strategy);
 	}
 
 	private void openJarFile(String fileName, long fileSize) {

@@ -38,11 +38,9 @@ class ApplicationIT {
 
 		// prepare
 		PrintStreamBuffer out = new PrintStreamBuffer();
-		PrintStreamBuffer err = new PrintStreamBuffer();
 
 		Application application = new Application();
 		application.setOut(out);
-		application.setErr(err);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
 		application.setRepository(RepositoryMock.createRepository());
 
@@ -55,7 +53,6 @@ class ApplicationIT {
 
 		// assert
 		assertEquals(0, exitCode);
-		assertEquals("", err.getText());
 
 		String output = out.getText();
 

@@ -18,12 +18,14 @@ package org.jarhc.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.java.ClassLoaderStrategy;
 
 public class Options {
 
 	private final List<String> classpathJarPaths = new ArrayList<>();
 	private final List<String> providedJarPaths = new ArrayList<>();
 	private final List<String> runtimeJarPaths = new ArrayList<>();
+	private ClassLoaderStrategy classLoaderStrategy = ClassLoaderStrategy.ParentLast;
 	private boolean removeVersion = false;
 	private boolean useArtifactName = false;
 
@@ -59,6 +61,14 @@ public class Options {
 
 	public void addRuntimeJarPath(String path) {
 		this.runtimeJarPaths.add(path);
+	}
+
+	public ClassLoaderStrategy getClassLoaderStrategy() {
+		return classLoaderStrategy;
+	}
+
+	public void setClassLoaderStrategy(ClassLoaderStrategy classLoaderStrategy) {
+		this.classLoaderStrategy = classLoaderStrategy;
 	}
 
 	public boolean isRemoveVersion() {

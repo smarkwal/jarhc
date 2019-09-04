@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 import org.jarhc.app.FileSource;
 import org.jarhc.app.JarSource;
 import org.jarhc.java.ClassLoader;
+import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.slf4j.Logger;
@@ -43,11 +44,13 @@ public class ClasspathLoader {
 	private final JarFileLoader jarFileLoader;
 	private final WarFileLoader warFileLoader;
 	private final ClassLoader parentClassLoader;
+	private final ClassLoaderStrategy strategy;
 
-	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader) {
+	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader, ClassLoaderStrategy strategy) {
 		this.jarFileLoader = jarFileLoader;
 		this.warFileLoader = warFileLoader;
 		this.parentClassLoader = parentClassLoader;
+		this.strategy = strategy;
 	}
 
 	public Classpath load(Collection<File> files) {
@@ -107,7 +110,7 @@ public class ClasspathLoader {
 			LOGGER.debug("Total: {} ms", totalTime / 1000 / 1000);
 		}
 
-		return new Classpath(jarFiles, parentClassLoader);
+		return new Classpath(jarFiles, parentClassLoader, strategy);
 	}
 
 }
