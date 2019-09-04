@@ -399,13 +399,19 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 			return searchResult;
 		}
 
-		MethodDef method = methodDef.get();
+		// check compatibility between method reference and method definition
+		validateMethodDef(classDef, methodRef, methodDef.get(), accessCheck, searchResult);
+
+		return searchResult;
+	}
+
+	private void validateMethodDef(ClassDef classDef, MethodRef methodRef, MethodDef methodDef, AccessCheck accessCheck, MethodSearchResult searchResult) {
 
 		// check access to method
-		access = accessCheck.hasAccess(classDef, method);
+		boolean access = accessCheck.hasAccess(classDef, methodDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + ": " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + className + ": " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
 		}
 
 		// check method return type
@@ -417,19 +423,17 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 		*/
 
 		// check static/instance
-		if (method.isStatic()) {
+		if (methodDef.isStatic()) {
 			if (!methodRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Instance access to static method: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
+				searchResult.addErrorMessage("Instance access to static method: " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
 			}
 		} else {
 			if (methodRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Static access to instance method: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
+				searchResult.addErrorMessage("Static access to instance method: " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
 			}
 		}
 
 		// TODO: more checks ...?
-
-		return searchResult;
 	}
 
 	// -----------------------------------------------------------------------------------------------------
@@ -488,41 +492,45 @@ public class BinaryCompatibilityAnalyzer extends Analyzer {
 			return searchResult;
 		}
 
-		FieldDef field = fieldDef.get();
+		// check compatibility between field reference and field definition
+		validateFieldDef(classDef, fieldRef, fieldDef.get(), accessCheck, searchResult);
+
+		return searchResult;
+	}
+
+	private void validateFieldDef(ClassDef classDef, FieldRef fieldRef, FieldDef fieldDef, AccessCheck accessCheck, FieldSearchResult searchResult) {
 
 		// check access to field
-		access = accessCheck.hasAccess(classDef, field);
+		boolean access = accessCheck.hasAccess(classDef, fieldDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + ": " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + className + ": " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
 		}
 
 		// check field type
-		if (!field.getFieldType().equals(fieldRef.getFieldType())) {
-			searchResult.addErrorMessage("Incompatible field type: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+		if (!fieldDef.getFieldType().equals(fieldRef.getFieldType())) {
+			searchResult.addErrorMessage("Incompatible field type: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
 		}
 
 		// check static/instance
-		if (field.isStatic()) {
+		if (fieldDef.isStatic()) {
 			if (!fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Instance access to static field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+				searchResult.addErrorMessage("Instance access to static field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
 			}
 		} else {
 			if (fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Static access to instance field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+				searchResult.addErrorMessage("Static access to instance field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
 			}
 		}
 
 		// check access to final fields
-		if (field.isFinal()) {
+		if (fieldDef.isFinal()) {
 			if (fieldRef.isWriteAccess()) {
-				searchResult.addErrorMessage("Write access to final field: " + fieldRef.getDisplayName() + " -> " + field.getDisplayName());
+				searchResult.addErrorMessage("Write access to final field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
 			}
 		}
 
 		// TODO: more checks ...?
-
-		return searchResult;
 	}
 
 	// -----------------------------------------------------------------------------------------------------
