@@ -30,15 +30,11 @@ a.A4
 a.A5
 • Interface is a class: public class b.B5a
 • Interface is an abstract class: public abstract class b.B5b
-• Interface is an annotation: public @interface b.B5c
 • Interface is an enum: public enum b.B5d
 • Abstract method not implemented: public abstract java.lang.Class java.lang.annotation.Annotation.annotationType()
 
 a.A6
 • Interface is a class: public class b.B6
-
-a.A7
-• Interface is an annotation: public @interface b.B7
 
 a.A8
 • Interface is an enum: public enum b.B8

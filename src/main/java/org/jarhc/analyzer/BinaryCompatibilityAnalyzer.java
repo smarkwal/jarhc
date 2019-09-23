@@ -192,7 +192,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// check if class is an interface
 		if (interfaceClass.isAnnotation()) {
-			classIssues.add("Interface is an annotation: " + interfaceClass.getDisplayName());
+			// OK (annotation interface)
 		} else if (interfaceClass.isInterface()) {
 			// OK (regular interface)
 		} else if (interfaceClass.isEnum()) {
