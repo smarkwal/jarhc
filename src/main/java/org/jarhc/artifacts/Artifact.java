@@ -45,8 +45,15 @@ public class Artifact {
 		if (parts.length < 3 || parts.length > 4) throw new IllegalArgumentException("coordinates");
 		this.groupId = parts[0];
 		this.artifactId = parts[1];
-		this.version = parts[2];
-		this.type = parts.length > 3 ? parts[3] : "jar";
+
+		if (parts.length == 4 && (parts[2].equals("jar") || parts[2].equals("war"))) {
+			// parse as Buildr coordinates: <groupId>:<artifactId>:<type>:<version>
+			this.type = parts[2];
+			this.version = parts[3];
+		} else {
+			this.version = parts[2];
+			this.type = parts.length > 3 ? parts[3] : "jar";
+		}
 	}
 
 	public String getGroupId() {
