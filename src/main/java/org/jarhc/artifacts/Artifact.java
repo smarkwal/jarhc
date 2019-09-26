@@ -27,6 +27,7 @@ public class Artifact {
 		if (groupId == null) throw new IllegalArgumentException("groupId");
 		if (artifactId == null) throw new IllegalArgumentException("artifactId");
 		if (version == null) throw new IllegalArgumentException("version");
+		if (type == null) throw new IllegalArgumentException("type");
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 		this.version = version;
@@ -35,9 +36,8 @@ public class Artifact {
 
 	public static boolean validateCoordinates(String coordinates) {
 		if (coordinates.contains("/") || coordinates.contains("\\")) return false;
-		long separators = coordinates.chars().filter(c -> c == ':').count();
-		if (separators < 2 || separators > 3) return false;
-		return true;
+		String[] parts = coordinates.split(":");
+		return parts.length == 3 || parts.length == 4;
 	}
 
 	public Artifact(String coordinates) {
@@ -46,7 +46,7 @@ public class Artifact {
 		this.groupId = parts[0];
 		this.artifactId = parts[1];
 		this.version = parts[2];
-		this.type = parts.length > 3 ? parts[3] : null;
+		this.type = parts.length > 3 ? parts[3] : "jar";
 	}
 
 	public String getGroupId() {
@@ -67,28 +67,15 @@ public class Artifact {
 
 	@Override
 	public String toString() {
-		String result = groupId + ":" + artifactId + ":" + version;
-		if (type != null) {
-			result += ":" + type;
-		}
-		return result;
+		return String.format("%s:%s:%s:%s", groupId, artifactId, version, type);
 	}
 
 	public String getPath() {
-		StringBuilder path = new StringBuilder();
-		path.append(groupId.replace('.', '/'));
-		path.append('/');
-		path.append(artifactId);
-		path.append('/');
-		path.append(version);
-		path.append('/');
-		path.append(getFileName());
-		return path.toString();
+		return String.format("%s/%s/%s/%s", groupId.replace('.', '/'), artifactId, version, getFileName());
 	}
 
 	public String getFileName() {
-		// TODO: get extension from type?
-		return artifactId + '-' + version + ".jar";
+		return String.format("%s-%s.%s", artifactId, version, type);
 	}
 
 }
