@@ -72,6 +72,16 @@ public class Artifact {
 		return type;
 	}
 
+	/**
+	 * Create a new derived artifact with the given type.
+	 *
+	 * @param type Type
+	 * @return Artifact with the given type
+	 */
+	public Artifact withType(String type) {
+		return new Artifact(groupId, artifactId, version, type);
+	}
+
 	@Override
 	public String toString() {
 		return String.format("%s:%s:%s:%s", groupId, artifactId, version, type);

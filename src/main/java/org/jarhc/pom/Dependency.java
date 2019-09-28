@@ -72,12 +72,20 @@ public class Dependency {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append(groupId).append(":");
 		buffer.append(artifactId).append(":");
-		buffer.append(version).append(" (");
-		buffer.append(scope.name().toLowerCase());
-		if (optional) {
-			buffer.append(", optional");
+		buffer.append(version);
+		if (scope != Scope.COMPILE || optional) {
+			buffer.append(" (");
+			if (scope != Scope.COMPILE) {
+				buffer.append(scope.name().toLowerCase());
+				if (optional) {
+					buffer.append(", ");
+				}
+			}
+			if (optional) {
+				buffer.append("optional");
+			}
+			buffer.append(")");
 		}
-		buffer.append(")");
 		return buffer.toString();
 	}
 

@@ -67,7 +67,7 @@ public class ModelReader {
 			for (int n = 0; n < dependencyNodes.getLength(); n++) {
 				Node dependencyNode = dependencyNodes.item(n);
 
-				Dependency dependency = read(dependencyNode, xPath);
+				Dependency dependency = read(dependencyNode, xPath, version);
 				model.addDependency(dependency);
 			}
 
@@ -79,12 +79,21 @@ public class ModelReader {
 
 	}
 
-	private Dependency read(Node node, XPath xPath) throws XPathExpressionException {
+	private Dependency read(Node node, XPath xPath, String projectVersion) throws XPathExpressionException {
 
 		// extract coordinates
 		String groupId = xPath.evaluate("groupId", node);
 		String artifactId = xPath.evaluate("artifactId", node);
 		String version = xPath.evaluate("version", node);
+
+		// special handling for version expressions
+		if (version.isEmpty()) {
+			// TODO: look for dependency-management information in parent project.
+			//  see https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management
+			version = "?";
+		} else if (version.equals("${project.version}")) {
+			version = projectVersion;
+		}
 
 		// extract scope (default: "compile")
 		String scope = xPath.evaluate("scope", node);

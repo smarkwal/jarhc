@@ -5,9 +5,10 @@ Dependencies
 ------------
 Direct and transitive dependencies as declared in POM file.
 
-JAR file              | Maven coordinates                 | Direct dependencies | Transitive dependencies
-----------------------+-----------------------------------+---------------------+------------------------
-xercesImpl-2.11.0.jar | xerces:xercesImpl:2.11.0:jar      | [todo]              | [todo]
-xml-apis-1.4.01.jar   | xml-apis:xml-apis:1.4.01:jar      | [todo]              | [todo]
-xml-resolver-1.2.jar  | xml-resolver:xml-resolver:1.2:jar | [todo]              | [todo]
+JAR file              | Maven coordinates                 | Direct dependencies                      | Transitive dependencies
+----------------------+-----------------------------------+------------------------------------------+------------------------
+xercesImpl-2.11.0.jar | xerces:xercesImpl:2.11.0:jar      | xml-apis:xml-apis:1.4.01                 | [todo]
+                      |                                   | xml-resolver:xml-resolver:1.2 (optional) |
+xml-apis-1.4.01.jar   | xml-apis:xml-apis:1.4.01:jar      | [none]                                   | [todo]
+xml-resolver-1.2.jar  | xml-resolver:xml-resolver:1.2:jar | [none]                                   | [todo]
 

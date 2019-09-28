@@ -32,7 +32,11 @@ import org.jarhc.artifacts.RepositoryException;
 public class RepositoryMock implements Repository {
 
 	public static RepositoryMock createRepository() {
-		return new RepositoryMock("/repository.properties");
+		return new RepositoryMock("/repository.properties", null);
+	}
+
+	public static RepositoryMock createRepository(String baseResourcePath) {
+		return new RepositoryMock("/repository.properties", baseResourcePath);
 	}
 
 	public static Repository createFakeRepository() {
@@ -82,10 +86,11 @@ public class RepositoryMock implements Repository {
 	}
 
 	private final Properties properties = new Properties();
+	private final String baseResourcePath;
 
 	private final Map<String, String> artifactData = new HashMap<>();
 
-	private RepositoryMock(String resource) {
+	private RepositoryMock(String resource, String baseResourcePath) {
 		try {
 			try (InputStream stream = TestUtils.getResourceAsStream(resource)) {
 				properties.load(stream);
@@ -93,6 +98,7 @@ public class RepositoryMock implements Repository {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+		this.baseResourcePath = baseResourcePath;
 	}
 
 	public void addArtifactData(Artifact artifact, String data) {
@@ -100,11 +106,22 @@ public class RepositoryMock implements Repository {
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException {
+	public Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) {
 		String coordinates = groupId + ":" + artifactId + ":" + version + ":" + type;
-		if (properties.values().contains(coordinates)) {
-			Artifact artifact = new Artifact(groupId, artifactId, version, type);
+		Artifact artifact = new Artifact(groupId, artifactId, version, type);
+		if (properties.containsValue(coordinates)) {
 			return Optional.of(artifact);
+		}
+		if (baseResourcePath != null) {
+			String fileName = artifact.getFileName();
+			String resourcePath = baseResourcePath + fileName;
+			try (InputStream stream = this.getClass().getResourceAsStream(resourcePath)) {
+				if (stream != null) {
+					return Optional.of(artifact);
+				}
+			} catch (IOException e) {
+				// ignore
+			}
 		}
 		return Optional.empty();
 	}
@@ -128,6 +145,14 @@ public class RepositoryMock implements Repository {
 			String data = artifactData.get(key);
 			InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
 			return Optional.of(stream);
+		}
+		if (baseResourcePath != null) {
+			String fileName = artifact.getFileName();
+			String resourcePath = baseResourcePath + fileName;
+			InputStream stream = this.getClass().getResourceAsStream(resourcePath);
+			if (stream != null) {
+				return Optional.of(stream);
+			}
 		}
 		return Optional.empty();
 	}

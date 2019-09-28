@@ -123,8 +123,8 @@ class ModelReaderTest {
 
 		List<Dependency> dependencies = model.getDependencies();
 		assertEquals(2, dependencies.size());
-		assertEquals(new Dependency("junit", "junit", "", Scope.TEST, true), dependencies.get(0));
-		assertEquals(new Dependency("commons-io", "commons-io", "", Scope.TEST, true), dependencies.get(1));
+		assertEquals(new Dependency("junit", "junit", "?", Scope.TEST, true), dependencies.get(0));
+		assertEquals(new Dependency("commons-io", "commons-io", "?", Scope.TEST, true), dependencies.get(1));
 
 	}
 
