@@ -33,7 +33,7 @@ Direct and transitive dependencies as declared in POM file.
 
 JAR file             | Maven coordinates              | Direct dependencies | Transitive dependencies
 ---------------------+--------------------------------+---------------------+------------------------
-slf4j-api-1.7.28.jar | org.slf4j:slf4j-api:1.7.28:jar | [todo]              | [todo]
+slf4j-api-1.7.28.jar | org.slf4j:slf4j-api:1.7.28:jar | [none]              | [todo]
 
 Packages
 --------

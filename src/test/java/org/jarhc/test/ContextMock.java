@@ -22,9 +22,9 @@ import org.jarhc.env.JavaRuntime;
 
 public class ContextMock {
 
-	public static Context createContext() {
+	public static Context createContext(String resourceBasePath) {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		Repository repository = RepositoryMock.createRepository();
+		Repository repository = RepositoryMock.createRepository(resourceBasePath);
 		return new Context(javaRuntime, repository);
 	}
 

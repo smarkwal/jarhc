@@ -16,15 +16,25 @@
 
 package org.jarhc.analyzer;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.pom.Dependency;
+import org.jarhc.pom.Model;
+import org.jarhc.pom.ModelException;
+import org.jarhc.pom.ModelReader;
+import org.jarhc.pom.Scope;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +42,9 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DependenciesAnalyzer.class);
 
+	private static final String NONE = "[none]";
 	private static final String UNKNOWN = "[unknown]";
+	private static final String ERROR = "[error]";
 
 	private final Repository repository;
 
@@ -62,10 +74,52 @@ public class DependenciesAnalyzer implements Analyzer {
 			// add a row with file name, size and class count
 			String fileName = jarFile.getFileName();
 			String coordinates = getCoordinates(jarFile);
-			table.addRow(fileName, coordinates, "[todo]", "[todo]");
+
+			List<String> dependencies = getDependencies(coordinates);
+
+			table.addRow(fileName, coordinates, StringUtils.joinLines(dependencies), "[todo]");
 		}
 
 		return table;
+	}
+
+	private List<String> getDependencies(String coordinates) {
+
+		if (!Artifact.validateCoordinates(coordinates)) {
+			return Collections.singletonList(UNKNOWN);
+		}
+
+		Artifact artifact = new Artifact(coordinates);
+		artifact = artifact.withType("pom");
+
+		Optional<InputStream> result;
+		try {
+			result = repository.downloadArtifact(artifact);
+			if (!result.isPresent()) {
+				LOGGER.warn("POM file not found: " + artifact);
+				return Collections.singletonList(ERROR);
+			}
+		} catch (RepositoryException e) {
+			LOGGER.warn("Repository error for POM file: " + artifact, e);
+			return Collections.singletonList(ERROR);
+		}
+
+		try (InputStream inputStream = result.get()) {
+			ModelReader reader = new ModelReader();
+			Model model = reader.read(inputStream);
+			List<String> dependencies = model.getDependencies().stream()
+					.filter(d -> d.getScope() != Scope.TEST)
+					.map(Dependency::toString)
+					.collect(Collectors.toList());
+			if (dependencies.isEmpty()) {
+				return Collections.singletonList(NONE);
+			}
+			return dependencies;
+		} catch (IOException | ModelException e) {
+			LOGGER.warn("Repository error for POM file: " + artifact, e);
+			return Collections.singletonList(ERROR);
+		}
+
 	}
 
 	private String getCoordinates(JarFile jarFile) {
@@ -80,7 +134,7 @@ public class DependenciesAnalyzer implements Analyzer {
 			artifact = repository.findArtifact(checksum);
 		} catch (RepositoryException e) {
 			LOGGER.warn("Repository error for JAR file: {}", jarFile.getFileName(), e);
-			return "[error]";
+			return ERROR;
 		}
 
 		return artifact.map(Artifact::toString).orElse(UNKNOWN);

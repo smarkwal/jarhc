@@ -50,7 +50,24 @@ class DependencyTest {
 		assertEquals(Scope.COMPILE, dependency.getScope());
 		assertTrue(dependency.isOptional());
 
-		assertEquals("org.ow2.asm:asm:7.1 (compile, optional)", dependency.toString());
+		assertEquals("org.ow2.asm:asm:7.1 (optional)", dependency.toString());
+
+	}
+
+	@Test
+	void test_ServletAPI() {
+
+		// javax.servlet:javax.servlet-api:jar:3.1.0
+
+		Dependency dependency = new Dependency("javax.servlet", "javax.servlet-api", "3.1.0", Scope.PROVIDED, true);
+
+		assertEquals("javax.servlet", dependency.getGroupId());
+		assertEquals("javax.servlet-api", dependency.getArtifactId());
+		assertEquals("3.1.0", dependency.getVersion());
+		assertEquals(Scope.PROVIDED, dependency.getScope());
+		assertTrue(dependency.isOptional());
+
+		assertEquals("javax.servlet:javax.servlet-api:3.1.0 (provided, optional)", dependency.toString());
 
 	}
 

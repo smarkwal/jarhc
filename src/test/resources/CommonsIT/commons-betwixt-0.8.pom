@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>commons-betwixt</groupId>
+	<artifactId>commons-betwixt</artifactId>
+	<name>Betwixt</name>
+	<version>0.8</version>
+	<description>Commons Betwixt: mapping beans to XML</description>
+	<url>http://jakarta.apache.org/commons/betwixt/</url>
+	<issueManagement>
+		<url>http://issues.apache.org/jira/</url>
+	</issueManagement>
+	<ciManagement>
+		<notifiers>
+			<notifier>
+				<configuration>
+					<address>commons-dev@jakarta.apache.org</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+	<inceptionYear>2002</inceptionYear>
+	<mailingLists>
+		<mailingList>
+			<name>Commons Dev List</name>
+			<subscribe>commons-dev-subscribe@jakarta.apache.org</subscribe>
+			<unsubscribe>commons-dev-unsubscribe@jakarta.apache.org</unsubscribe>
+			<archive>http://mail-archives.apache.org/mod_mbox/jakarta-commons-dev/</archive>
+		</mailingList>
+		<mailingList>
+			<name>Commons User List</name>
+			<subscribe>commons-user-subscribe@jakarta.apache.org</subscribe>
+			<unsubscribe>commons-user-unsubscribe@jakarta.apache.org</unsubscribe>
+			<archive>http://mail-archives.apache.org/mod_mbox/jakarta-commons-user/</archive>
+		</mailingList>
+	</mailingLists>
+	<developers>
+		<developer>
+			<id>jstrachan</id>
+			<name>James Strachan</name>
+			<email>jstrachan@apache.org</email>
+			<organization>SpiritSoft, Inc.</organization>
+		</developer>
+		<developer>
+			<id>rdonkin</id>
+			<name>Robert Burrell Donkin</name>
+			<email>rdonkin@apache.org</email>
+			<organization></organization>
+		</developer>
+		<developer>
+			<id>jvanzyl</id>
+			<name>Jason van Zyl</name>
+			<email>jason@zenplex.com</email>
+			<organization>Zenplex</organization>
+		</developer>
+		<developer>
+			<id>jon</id>
+			<name>Jon Scott Stevens</name>
+			<email>jon@latchkey.com</email>
+			<organization>StudioZ</organization>
+		</developer>
+		<developer>
+			<id>mvdb</id>
+			<name>Martin van den Bemt</name>
+			<email>martin@mvdb.net</email>
+			<organization>mvdb.com</organization>
+		</developer>
+		<developer>
+			<id>dion</id>
+			<name>dIon Gillard</name>
+			<email>dion@apache.org</email>
+			<organization>Multitask Consulting</organization>
+		</developer>
+		<developer>
+			<id>dlr</id>
+			<name>Daniel Rall</name>
+			<email>dlr@apache.org</email>
+			<organization>CollabNet</organization>
+		</developer>
+		<developer>
+			<id>tobrien</id>
+			<name>Tim OBrien</name>
+			<email>tobrien@apache.org</email>
+			<timezone>-6</timezone>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Christian Aust</name>
+			<email></email>
+		</contributor>
+		<contributor>
+			<name>Dave Brosius</name>
+			<email></email>
+		</contributor>
+		<contributor>
+			<name>Thomas Dudziak</name>
+			<email></email>
+		</contributor>
+		<contributor>
+			<name>Brian Ferris</name>
+			<email></email>
+		</contributor>
+		<contributor>
+			<name>Brian Pugh</name>
+			<email></email>
+		</contributor>
+		<contributor>
+			<name>Holger Haag</name>
+			<email></email>
+		</contributor>
+	</contributors>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>/LICENSE.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:svn:http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk</connection>
+		<url>http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk</url>
+	</scm>
+	<organization>
+		<name>The Apache Software Foundation</name>
+		<url>http://jakarta.apache.org</url>
+	</organization>
+	<build>
+		<sourceDirectory>src/java</sourceDirectory>
+		<testSourceDirectory>src/test</testSourceDirectory>
+		<resources>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<directory>${basedir}</directory>
+				<includes>
+					<include>NOTICE.txt</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${pom.build.sourceDirectory}</directory>
+				<includes>
+					<include>**/*.betwixt</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${pom.build.unitTestSourceDirectory}</directory>
+				<includes>
+					<include>**/*.betwixt</include>
+				</includes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/Test*</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>maven-plugins</groupId>
+				<artifactId>maven-cobertura-plugin</artifactId>
+				<version>1.1.1</version>
+				<configuration>
+					<scope>test</scope>
+					<comment>&lt;strong>Site Only&lt;/strong> Generates test coverage reports.</comment>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-artifact-plugin</artifactId>
+				<version>1.5</version>
+				<configuration>
+					<scope>test</scope>
+					<comment>&lt;strong>Build Only&lt;/strong> Generates distributions.</comment>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-xdoc-plugin</artifactId>
+				<version>1.9.2</version>
+				<configuration>
+					<scope>test</scope>
+					<comment>&lt;strong>Site Only&lt;/strong> - v1.9.2 (minimum)
+						required for building the Site documentation.
+					</comment>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils-core</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xerces</artifactId>
+			<version>2.4.0</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.0.b2</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>default</id>
+			<name>Default Repository</name>
+			<url>file:///www/jakarta.apache.org/builds/jakarta-commons/betwixt/</url>
+		</repository>
+		<site>
+			<id>default</id>
+			<name>Default Site</name>
+			<url>scp://people.apache.org//www/jakarta.apache.org/commons/betwixt/</url>
+		</site>
+		<status>converted</status>
+	</distributionManagement>
+</project>
