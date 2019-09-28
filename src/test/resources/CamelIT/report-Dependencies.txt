@@ -1,0 +1,19 @@
+JAR Health Check Report
+=======================
+
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file                | Maven coordinates                           | Direct dependencies | Transitive dependencies
+------------------------+---------------------------------------------+---------------------+------------------------
+camel-core-2.17.7.jar   | org.apache.camel:camel-core:2.17.7:bundle   | [todo]              | [todo]
+camel-jdbc-2.17.7.jar   | org.apache.camel:camel-jdbc:2.17.7:bundle   | [todo]              | [todo]
+camel-jms-2.17.7.jar    | org.apache.camel:camel-jms:2.17.7:bundle    | [todo]              | [todo]
+camel-jmx-2.17.7.jar    | org.apache.camel:camel-jmx:2.17.7:bundle    | [todo]              | [todo]
+camel-jxpath-2.17.7.jar | org.apache.camel:camel-jxpath:2.17.7:bundle | [todo]              | [todo]
+camel-ldap-2.17.7.jar   | org.apache.camel:camel-ldap:2.17.7:bundle   | [todo]              | [todo]
+camel-mail-2.17.7.jar   | org.apache.camel:camel-mail:2.17.7:bundle   | [todo]              | [todo]
+camel-soap-2.17.7.jar   | org.apache.camel:camel-soap:2.17.7:bundle   | [todo]              | [todo]
+camel-spring-2.17.7.jar | org.apache.camel:camel-spring:2.17.7:bundle | [todo]              | [todo]
+

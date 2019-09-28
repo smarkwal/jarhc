@@ -96,6 +96,12 @@ class MainIT {
 		assertTrue(dataDir.isDirectory());
 
 		String actualReport = FileUtils.readFileToString(reportFile);
+
+		if (TestUtils.createResources()) {
+			TestUtils.saveResource("/MainIT/report.txt", actualReport, "UTF-8");
+			return;
+		}
+
 		String expectedReport = TestUtils.getResourceAsString("/MainIT/report.txt", "UTF-8");
 
 		// normalize

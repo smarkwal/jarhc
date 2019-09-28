@@ -51,6 +51,20 @@ jetty-util-9.4.20.v20190813.jar         | [none]                             | j
 websocket-api-9.4.20.v20190813.jar      | [none]                             | websocket-servlet-9.4.20.v20190813.jar
 websocket-servlet-9.4.20.v20190813.jar  | websocket-api-9.4.20.v20190813.jar | [none]
 
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file                                | Maven coordinates                                                  | Direct dependencies | Transitive dependencies
+----------------------------------------+--------------------------------------------------------------------+---------------------+------------------------
+jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813:jar          | [todo]              | [todo]
+jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-http:9.4.20.v20190813:jar                  | [todo]              | [todo]
+jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty:jetty-io:9.4.20.v20190813:jar                    | [todo]              | [todo]
+jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813:jar              | [todo]              | [todo]
+jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-util:9.4.20.v20190813:jar                  | [todo]              | [todo]
+websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813:jar     | [todo]              | [todo]
+websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813:jar | [todo]              | [todo]
+
 Packages
 --------
 List of packages per JAR file.

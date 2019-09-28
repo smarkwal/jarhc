@@ -40,6 +40,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("p", "Packages", PackagesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));
