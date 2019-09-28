@@ -34,7 +34,8 @@ class MavenLocalRepositoryIT {
 	private static final String GROUP_ID = "org.ow2.asm";
 	private static final String ARTIFACT_ID = "asm";
 	private static final String VERSION = "7.0";
-	private static final String TYPE = "jar";
+	private static final String TYPE_JAR = "jar";
+	private static final String TYPE_POM = "pom";
 
 	private static File directory;
 
@@ -52,7 +53,7 @@ class MavenLocalRepositoryIT {
 		MavenLocalRepository repository = new MavenLocalRepository(directory, null);
 
 		// test
-		Optional<Artifact> result = repository.findArtifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE);
+		Optional<Artifact> result = repository.findArtifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE_JAR);
 
 		// assert
 		assertTrue(result.isPresent());
@@ -60,7 +61,26 @@ class MavenLocalRepositoryIT {
 		assertEquals(GROUP_ID, artifact.getGroupId());
 		assertEquals(ARTIFACT_ID, artifact.getArtifactId());
 		assertEquals(VERSION, artifact.getVersion());
-		assertEquals(TYPE, artifact.getType());
+		assertEquals(TYPE_JAR, artifact.getType());
+
+	}
+
+	@Test
+	void test_findArtifact_POM() throws RepositoryException {
+
+		// prepare
+		MavenLocalRepository repository = new MavenLocalRepository(directory, null);
+
+		// test
+		Optional<Artifact> result = repository.findArtifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE_POM);
+
+		// assert
+		assertTrue(result.isPresent());
+		Artifact artifact = result.get();
+		assertEquals(GROUP_ID, artifact.getGroupId());
+		assertEquals(ARTIFACT_ID, artifact.getArtifactId());
+		assertEquals(VERSION, artifact.getVersion());
+		assertEquals(TYPE_POM, artifact.getType());
 
 	}
 
@@ -71,7 +91,7 @@ class MavenLocalRepositoryIT {
 		MavenLocalRepository repository = new MavenLocalRepository(directory, null);
 
 		// test
-		Artifact artifact = new Artifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE);
+		Artifact artifact = new Artifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE_JAR);
 		Optional<InputStream> result = repository.downloadArtifact(artifact);
 
 		try {
@@ -84,6 +104,39 @@ class MavenLocalRepositoryIT {
 
 			byte[] data = IOUtils.toByteArray(stream);
 			assertEquals(113676, data.length);
+
+		} finally {
+			if (result.isPresent()) {
+				try {
+					result.get().close();
+				} catch (IOException e) {
+					// ignore
+				}
+			}
+		}
+
+	}
+
+	@Test
+	void test_downloadArtifact_POM() throws RepositoryException, IOException {
+
+		// prepare
+		MavenLocalRepository repository = new MavenLocalRepository(directory, null);
+
+		// test
+		Artifact artifact = new Artifact(GROUP_ID, ARTIFACT_ID, VERSION, TYPE_POM);
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		try {
+
+			// assert
+			assertTrue(result.isPresent());
+
+			InputStream stream = result.get();
+			assertTrue(stream instanceof FileInputStream);
+
+			byte[] data = IOUtils.toByteArray(stream);
+			assertEquals(2936, data.length);
 
 		} finally {
 			if (result.isPresent()) {

@@ -45,6 +45,7 @@ class CachedRepositoryTest {
 
 	private static final String CHECKSUM_UNKNOWN = "1234567890123456789012345678901234567890";
 	private static final String CHECKSUM_ASM_70 = "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912";
+	private static final String CHECKSUM_ASM_70_POM = "c6b547ce67397df979bde680a1d0cdf8ceb63f6a";
 
 	private File cacheDir;
 	private CachedRepository repository;
@@ -118,6 +119,30 @@ class CachedRepositoryTest {
 	}
 
 	@Test
+	void test_findArtifact_asm_POM() throws RepositoryException, IOException {
+
+		// prepare
+		String checksum = CHECKSUM_ASM_70_POM;
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
+
+		// assume
+		assumeFalse(cacheFile.exists());
+
+		// test
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
+
+		// assert
+		assertTrue(artifact.isPresent()); // artifact has been found
+		assertEquals("org.ow2.asm", artifact.get().getGroupId());
+		assertEquals("asm", artifact.get().getArtifactId());
+		assertEquals("7.0", artifact.get().getVersion());
+		assertEquals("pom", artifact.get().getType());
+		assertTrue(cacheFile.isFile()); // result has been cached
+		assertEquals("org.ow2.asm:asm:7.0:pom", FileUtils.readFileToString(cacheFile));
+
+	}
+
+	@Test
 	void test_findArtifact_cached() throws RepositoryException, IOException {
 
 		// prepare
@@ -141,10 +166,53 @@ class CachedRepositoryTest {
 	}
 
 	@Test
+	void test_findArtifact_cached_POM() throws RepositoryException, IOException {
+
+		// prepare
+		String checksum = CHECKSUM_UNKNOWN;
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
+		FileUtils.writeStringToFile("org.test:test:1.0:pom", cacheFile);
+
+		// assume
+		assumeTrue(cacheFile.isFile());
+
+		// test
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
+
+		// assert
+		assertTrue(artifact.isPresent()); // artifact has been found (in cache)
+		assertEquals("org.test", artifact.get().getGroupId());
+		assertEquals("test", artifact.get().getArtifactId());
+		assertEquals("1.0", artifact.get().getVersion());
+		assertEquals("pom", artifact.get().getType());
+
+	}
+
+	@Test
 	void test_findArtifact_cached_unknown() throws RepositoryException, IOException {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
+		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
+		FileUtils.touchFile(cacheFile); // cache a negative response
+
+		// assume
+		assumeTrue(cacheFile.isFile());
+		assumeTrue(cacheFile.length() == 0);
+
+		// test
+		Optional<Artifact> artifact = repository.findArtifact(checksum);
+
+		// assert
+		assertFalse(artifact.isPresent()); // artifact has not been found
+
+	}
+
+	@Test
+	void test_findArtifact_cached_unknown_POM() throws RepositoryException, IOException {
+
+		// prepare
+		String checksum = CHECKSUM_ASM_70_POM;
 		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		FileUtils.touchFile(cacheFile); // cache a negative response
 
@@ -257,6 +325,17 @@ class CachedRepositoryTest {
 	}
 
 	@Test
+	void findArtifact_withUnknownCoordinates_POM() throws RepositoryException {
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.unknown", "unknown", "0.99", "pom");
+
+		// assert
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
 	void findArtifact_withKnownCoordinates() throws RepositoryException {
 
 		// test
@@ -270,6 +349,23 @@ class CachedRepositoryTest {
 		assertEquals("asm", artifact.getArtifactId());
 		assertEquals("7.0", artifact.getVersion());
 		assertEquals("jar", artifact.getType());
+
+	}
+
+	@Test
+	void findArtifact_withKnownCoordinates_POM() throws RepositoryException {
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.ow2.asm", "asm", "7.0", "pom");
+
+		// assert
+		assertTrue(result.isPresent());
+
+		Artifact artifact = result.get();
+		assertEquals("org.ow2.asm", artifact.getGroupId());
+		assertEquals("asm", artifact.getArtifactId());
+		assertEquals("7.0", artifact.getVersion());
+		assertEquals("pom", artifact.getType());
 
 	}
 
@@ -298,10 +394,48 @@ class CachedRepositoryTest {
 	}
 
 	@Test
+	void findArtifact_withCachedCoordinates_POM() throws RepositoryException, IOException {
+
+		// prepare
+		File cacheFile = new File(cacheDir, "org/test/test/1.0/test-1.0.pom");
+		FileUtils.writeStringToFile("--content-of-test-1.0.pom--", cacheFile);
+
+		// assume
+		assumeTrue(cacheFile.isFile());
+
+		// test
+		Optional<Artifact> result = repository.findArtifact("org.test", "test", "1.0", "pom");
+
+		// assert
+		assertTrue(result.isPresent());
+
+		Artifact artifact = result.get();
+		assertEquals("org.test", artifact.getGroupId());
+		assertEquals("test", artifact.getArtifactId());
+		assertEquals("1.0", artifact.getVersion());
+		assertEquals("pom", artifact.getType());
+
+	}
+
+	@Test
 	void downloadArtifact_withUnknownCoordinates() throws RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("org.unknown", "unknown", "0.99", "jar");
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertFalse(result.isPresent());
+
+	}
+
+	@Test
+	void downloadArtifact_withUnknownCoordinates_POM() throws RepositoryException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.unknown", "unknown", "0.99", "pom");
 
 		// test
 		Optional<InputStream> result = repository.downloadArtifact(artifact);
@@ -329,6 +463,23 @@ class CachedRepositoryTest {
 	}
 
 	@Test
+	void downloadArtifact_withKnownCoordinates_POM() throws RepositoryException, IOException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.ow2.asm", "asm", "7.0", "pom");
+		parentRepository.addArtifactData(artifact, "--content-of-asm-7.0.pom--");
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(result.isPresent());
+		String data = IOUtils.toString(result.get());
+		assertEquals("--content-of-asm-7.0.pom--", data);
+
+	}
+
+	@Test
 	void downloadArtifact_withCachedCoordinates() throws RepositoryException, IOException {
 
 		// prepare
@@ -343,6 +494,24 @@ class CachedRepositoryTest {
 		assertTrue(result.isPresent());
 		String data = IOUtils.toString(result.get());
 		assertEquals("--content-of-test-1.0.jar--", data);
+
+	}
+
+	@Test
+	void downloadArtifact_withCachedCoordinates_POM() throws RepositoryException, IOException {
+
+		// prepare
+		Artifact artifact = new Artifact("org.test", "test", "1.0", "pom");
+		File cacheFile = new File(cacheDir, "org/test/test/1.0/test-1.0.pom");
+		FileUtils.writeStringToFile("--content-of-test-1.0.pom--", cacheFile);
+
+		// test
+		Optional<InputStream> result = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(result.isPresent());
+		String data = IOUtils.toString(result.get());
+		assertEquals("--content-of-test-1.0.pom--", data);
 
 	}
 
