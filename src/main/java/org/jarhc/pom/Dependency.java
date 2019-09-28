@@ -68,6 +68,16 @@ public class Dependency {
 	}
 
 	@Override
+	public int hashCode() {
+		int result = groupId.hashCode();
+		result = 31 * result + artifactId.hashCode();
+		result = 31 * result + version.hashCode();
+		result = 31 * result + scope.hashCode();
+		result = 31 * result + (optional ? 1 : 0);
+		return result;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append(groupId).append(":");
