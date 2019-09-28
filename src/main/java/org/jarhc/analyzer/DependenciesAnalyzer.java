@@ -96,11 +96,11 @@ public class DependenciesAnalyzer implements Analyzer {
 		try {
 			result = repository.downloadArtifact(artifact);
 			if (!result.isPresent()) {
-				LOGGER.warn("POM file not found: " + artifact);
+				LOGGER.warn("POM file not found: {}", artifact);
 				return Collections.singletonList(ERROR);
 			}
 		} catch (RepositoryException e) {
-			LOGGER.warn("Repository error for POM file: " + artifact, e);
+			LOGGER.warn("Repository error for POM file: {}", artifact, e);
 			return Collections.singletonList(ERROR);
 		}
 
@@ -116,7 +116,7 @@ public class DependenciesAnalyzer implements Analyzer {
 			}
 			return dependencies;
 		} catch (IOException | ModelException e) {
-			LOGGER.warn("Repository error for POM file: " + artifact, e);
+			LOGGER.warn("Repository error for POM file: {}", artifact, e);
 			return Collections.singletonList(ERROR);
 		}
 

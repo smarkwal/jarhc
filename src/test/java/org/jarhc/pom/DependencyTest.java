@@ -18,6 +18,7 @@ package org.jarhc.pom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,56 @@ class DependencyTest {
 		assertTrue(dependency.isOptional());
 
 		assertEquals("javax.servlet:javax.servlet-api:3.1.0 (provided, optional)", dependency.toString());
+
+	}
+
+	@Test
+	void test_equals() {
+
+		Dependency dependency1 = new Dependency("group", "artifact", "version", Scope.COMPILE, false);
+
+		Dependency dependency2 = new Dependency("group", "artifact", "version", Scope.COMPILE, false);
+		assertEquals(dependency1, dependency2);
+
+		dependency2 = new Dependency("group2", "artifact", "version", Scope.COMPILE, false);
+		assertNotEquals(dependency1, dependency2);
+
+		dependency2 = new Dependency("group", "artifact2", "version", Scope.COMPILE, false);
+		assertNotEquals(dependency1, dependency2);
+
+		dependency2 = new Dependency("group", "artifact", "version2", Scope.COMPILE, false);
+		assertNotEquals(dependency1, dependency2);
+
+		dependency2 = new Dependency("group", "artifact", "version", Scope.PROVIDED, false);
+		assertNotEquals(dependency1, dependency2);
+
+		dependency2 = new Dependency("group", "artifact", "version", Scope.COMPILE, true);
+		assertNotEquals(dependency1, dependency2);
+
+	}
+
+	@Test
+	void test_hashCode() {
+
+		Dependency dependency1 = new Dependency("group", "artifact", "version", Scope.COMPILE, false);
+
+		Dependency dependency2 = new Dependency("group", "artifact", "version", Scope.COMPILE, false);
+		assertEquals(dependency1.hashCode(), dependency2.hashCode());
+
+		dependency2 = new Dependency("group2", "artifact", "version", Scope.COMPILE, false);
+		assertNotEquals(dependency1.hashCode(), dependency2.hashCode());
+
+		dependency2 = new Dependency("group", "artifact2", "version", Scope.COMPILE, false);
+		assertNotEquals(dependency1.hashCode(), dependency2.hashCode());
+
+		dependency2 = new Dependency("group", "artifact", "version2", Scope.COMPILE, false);
+		assertNotEquals(dependency1.hashCode(), dependency2.hashCode());
+
+		dependency2 = new Dependency("group", "artifact", "version", Scope.PROVIDED, false);
+		assertNotEquals(dependency1.hashCode(), dependency2.hashCode());
+
+		dependency2 = new Dependency("group", "artifact", "version", Scope.COMPILE, true);
+		assertNotEquals(dependency1.hashCode(), dependency2.hashCode());
 
 	}
 
