@@ -1,0 +1,14 @@
+JAR Health Check Report
+=======================
+
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file             | Maven coordinates                | Direct dependencies | Transitive dependencies
+---------------------+----------------------------------+---------------------+------------------------
+asm-7.0.jar          | org.ow2.asm:asm:7.0:jar          | [todo]              | [todo]
+asm-analysis-7.0.jar | org.ow2.asm:asm-analysis:7.0:jar | [todo]              | [todo]
+asm-commons-7.0.jar  | org.ow2.asm:asm-commons:7.0:jar  | [todo]              | [todo]
+asm-tree-7.0.jar     | org.ow2.asm:asm-tree:7.0:jar     | [todo]              | [todo]
+

@@ -1,0 +1,22 @@
+JAR Health Check Report
+=======================
+
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file                                 | Maven coordinates                                            | Direct dependencies | Transitive dependencies
+-----------------------------------------+--------------------------------------------------------------+---------------------+------------------------
+spring-aop-5.1.3.RELEASE.jar             | org.springframework:spring-aop:5.1.3.RELEASE:jar             | [todo]              | [todo]
+spring-beans-5.1.3.RELEASE.jar           | org.springframework:spring-beans:5.1.3.RELEASE:jar           | [todo]              | [todo]
+spring-context-5.1.3.RELEASE.jar         | org.springframework:spring-context:5.1.3.RELEASE:jar         | [todo]              | [todo]
+spring-context-support-5.1.3.RELEASE.jar | org.springframework:spring-context-support:5.1.3.RELEASE:jar | [todo]              | [todo]
+spring-core-5.1.3.RELEASE.jar            | org.springframework:spring-core:5.1.3.RELEASE:jar            | [todo]              | [todo]
+spring-expression-5.1.3.RELEASE.jar      | org.springframework:spring-expression:5.1.3.RELEASE:jar      | [todo]              | [todo]
+spring-jdbc-5.1.3.RELEASE.jar            | org.springframework:spring-jdbc:5.1.3.RELEASE:jar            | [todo]              | [todo]
+spring-jms-5.1.3.RELEASE.jar             | org.springframework:spring-jms:5.1.3.RELEASE:jar             | [todo]              | [todo]
+spring-messaging-5.1.3.RELEASE.jar       | org.springframework:spring-messaging:5.1.3.RELEASE:jar       | [todo]              | [todo]
+spring-orm-5.1.3.RELEASE.jar             | org.springframework:spring-orm:5.1.3.RELEASE:jar             | [todo]              | [todo]
+spring-tx-5.1.3.RELEASE.jar              | org.springframework:spring-tx:5.1.3.RELEASE:jar              | [todo]              | [todo]
+spring-web-5.1.3.RELEASE.jar             | org.springframework:spring-web:5.1.3.RELEASE:jar             | [todo]              | [todo]
+
