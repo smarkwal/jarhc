@@ -81,6 +81,36 @@ class MavenCentralRepositoryIT {
 	}
 
 	@Test
+	void test_findArtifact_byCoordinates_CommonsIO_POM() throws RepositoryException {
+
+		// test
+		Optional<Artifact> artifact = repository.findArtifact("commons-io", "commons-io", "2.6", "pom");
+
+		// assert
+		assertTrue(artifact.isPresent());
+		assertEquals("commons-io", artifact.get().getGroupId());
+		assertEquals("commons-io", artifact.get().getArtifactId());
+		assertEquals("2.6", artifact.get().getVersion());
+		assertEquals("pom", artifact.get().getType());
+
+	}
+
+	@Test
+	void test_downloadArtifact_CommonsIO_POM() throws RepositoryException, IOException {
+
+		Artifact artifact = new Artifact("commons-io", "commons-io", "2.6", "pom");
+
+		// test
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(stream.isPresent());
+		byte[] data = IOUtils.toByteArray(stream.get());
+		assertEquals(14256, data.length);
+
+	}
+
+	@Test
 	void test_findArtifact_byChecksum_CommonsCodec() throws RepositoryException {
 
 		// test
@@ -212,6 +242,36 @@ class MavenCentralRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(1213592, data.length);
+
+	}
+
+	@Test
+	void test_findArtifact_byCoordinates_TestJettyWebApp_POM() throws RepositoryException {
+
+		// test
+		Optional<Artifact> artifact = repository.findArtifact("org.eclipse.jetty", "test-jetty-webapp", "9.4.20.v20190813", "pom");
+
+		// assert
+		assertTrue(artifact.isPresent());
+		assertEquals("org.eclipse.jetty", artifact.get().getGroupId());
+		assertEquals("test-jetty-webapp", artifact.get().getArtifactId());
+		assertEquals("9.4.20.v20190813", artifact.get().getVersion());
+		assertEquals("pom", artifact.get().getType());
+
+	}
+
+	@Test
+	void test_downloadArtifact_TestJettyWebApp_POM() throws RepositoryException, IOException {
+
+		Artifact artifact = new Artifact("org.eclipse.jetty", "test-jetty-webapp", "9.4.20.v20190813", "pom");
+
+		// test
+		Optional<InputStream> stream = repository.downloadArtifact(artifact);
+
+		// assert
+		assertTrue(stream.isPresent());
+		byte[] data = IOUtils.toByteArray(stream.get());
+		assertEquals(8851, data.length);
 
 	}
 

@@ -57,7 +57,7 @@ public class MavenCentralRepository implements Repository {
 			throw new RepositoryException("Malformed URL for coordinates: " + groupId + ":" + artifactId + ":" + version, e);
 		}
 
-		return findArtifact(url);
+		return findArtifact(url, type);
 	}
 
 	@Override
@@ -71,10 +71,10 @@ public class MavenCentralRepository implements Repository {
 			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
 
-		return findArtifact(url);
+		return findArtifact(url, null);
 	}
 
-	private Optional<Artifact> findArtifact(URL url) throws RepositoryException {
+	private Optional<Artifact> findArtifact(URL url, String type) throws RepositoryException {
 
 		String text = downloadText(url);
 		// TODO: special handling for timeout?
@@ -114,7 +114,9 @@ public class MavenCentralRepository implements Repository {
 		String groupId = doc.getString("g");
 		String artifactId = doc.getString("a");
 		String version = doc.getString("v");
-		String type = doc.getString("p");
+		if (type == null) {
+			type = doc.getString("p");
+		}
 
 		Artifact artifact = new Artifact(groupId, artifactId, version, type);
 		return Optional.of(artifact);
