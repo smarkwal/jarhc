@@ -29,7 +29,6 @@ import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.jarhc.pom.resolver.DependencyResolver;
 import org.jarhc.pom.resolver.PomNotFoundException;
-import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -48,10 +47,10 @@ public class DependenciesAnalyzer implements Analyzer {
 	private final Repository repository;
 	private final DependencyResolver dependencyResolver;
 
-	public DependenciesAnalyzer(Repository repository) {
+	public DependenciesAnalyzer(Repository repository, DependencyResolver dependencyResolver) {
 		if (repository == null) throw new IllegalArgumentException("repository");
 		this.repository = repository;
-		this.dependencyResolver = new RepositoryDependencyResolver(repository);
+		this.dependencyResolver = dependencyResolver;
 	}
 
 	@Override

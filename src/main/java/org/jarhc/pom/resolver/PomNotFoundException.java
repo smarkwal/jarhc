@@ -18,7 +18,7 @@ package org.jarhc.pom.resolver;
 
 public class PomNotFoundException extends ResolverException {
 
-	PomNotFoundException(String message) {
+	public PomNotFoundException(String message) {
 		super(message);
 	}
 

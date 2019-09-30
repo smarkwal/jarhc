@@ -16,6 +16,8 @@
 
 package org.jarhc.pom;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.jarhc.artifacts.Artifact;
 
 public class PomUtils {
@@ -43,6 +45,21 @@ public class PomUtils {
 		pom.append("</dependencies>");
 		pom.append("</project>");
 		return pom.toString();
+	}
+
+	public static List<Dependency> generateDependencies(Artifact artifact, int count) {
+		String groupId = artifact.getGroupId();
+		String artifactId = artifact.getArtifactId();
+		String version = artifact.getVersion();
+
+		List<Dependency> dependencies = new ArrayList<>();
+		for (int i = 1; i <= count; i++) {
+			Scope scope = Scope.values()[i % Scope.values().length];
+			boolean optional = i % 2 > 0;
+			Dependency dependency = new Dependency(groupId, artifactId + "-" + i, version, scope, optional);
+			dependencies.add(dependency);
+		}
+		return dependencies;
 	}
 
 }

@@ -18,15 +18,18 @@ package org.jarhc;
 
 import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.pom.resolver.DependencyResolver;
 
 public class Context {
 
 	private final JavaRuntime javaRuntime;
 	private final Repository repository;
+	private final DependencyResolver dependencyResolver;
 
-	public Context(JavaRuntime javaRuntime, Repository repository) {
+	public Context(JavaRuntime javaRuntime, Repository repository, DependencyResolver dependencyResolver) {
 		this.javaRuntime = javaRuntime;
 		this.repository = repository;
+		this.dependencyResolver = dependencyResolver;
 	}
 
 	public JavaRuntime getJavaRuntime() {
@@ -35,6 +38,10 @@ public class Context {
 
 	public Repository getRepository() {
 		return repository;
+	}
+
+	public DependencyResolver getDependencyResolver() {
+		return dependencyResolver;
 	}
 
 }
