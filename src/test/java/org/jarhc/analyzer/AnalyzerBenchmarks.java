@@ -25,7 +25,6 @@ import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.test.JavaRuntimeMock;
-import org.jarhc.test.RepositoryMock;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -99,7 +98,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_JarFilesAnalyzer() {
-		Analyzer analyzer = new JarFilesAnalyzer(RepositoryMock.createEmptyRepository());
+		Analyzer analyzer = new JarFilesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

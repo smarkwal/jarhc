@@ -196,6 +196,7 @@ public class Application {
 				.withJarFileNameNormalizer(jarFileNameNormalizer)
 				.withParentClassLoader(parentClassLoader)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
+				.withArtifactResolver(repository)
 				.buildClasspathLoader();
 		return loader.load(classpathJarFiles);
 	}
@@ -240,6 +241,7 @@ public class Application {
 				.scanForReferences(false)
 				.withParentClassLoader(javaRuntime)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
+				.withArtifactResolver(repository)
 				.buildClasspathLoader();
 		return loader.load(providedJarFiles);
 	}

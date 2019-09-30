@@ -19,7 +19,7 @@ JAR file: asm-7.0.jar
 	Checksum (SHA-1):
 		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
 	Artifact coordinates:
-		org.ow2.asm:asm:7.0:jar
+		org.ow2.asm:asm:7.0
 
 JAR file: asm-analysis-7.0.jar
 	Size:
@@ -35,7 +35,7 @@ JAR file: asm-analysis-7.0.jar
 	Checksum (SHA-1):
 		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
 	Artifact coordinates:
-		org.ow2.asm:asm-analysis:7.0:jar
+		org.ow2.asm:asm-analysis:7.0
 
 JAR file: asm-commons-7.0.jar
 	Size:
@@ -51,7 +51,7 @@ JAR file: asm-commons-7.0.jar
 	Checksum (SHA-1):
 		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
 	Artifact coordinates:
-		org.ow2.asm:asm-commons:7.0:jar
+		org.ow2.asm:asm-commons:7.0
 
 JAR file: asm-tree-7.0.jar
 	Size:
@@ -67,7 +67,7 @@ JAR file: asm-tree-7.0.jar
 	Checksum (SHA-1):
 		29bc62dcb85573af6e62e5b2d735ef65966c4180
 	Artifact coordinates:
-		org.ow2.asm:asm-tree:7.0:jar
+		org.ow2.asm:asm-tree:7.0
 
 JAR file: Classpath
 	Size:
@@ -141,6 +141,44 @@ JAR file: asm-tree-7.0.jar
 	Used by:
 		asm-analysis-7.0.jar
 		asm-commons-7.0.jar
+
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file: asm-7.0.jar
+	Maven coordinates:
+		org.ow2.asm:asm:7.0
+	Direct dependencies:
+		[none]
+	Transitive dependencies:
+		[todo]
+
+JAR file: asm-analysis-7.0.jar
+	Maven coordinates:
+		org.ow2.asm:asm-analysis:7.0
+	Direct dependencies:
+		org.ow2.asm:asm-tree:7.0
+	Transitive dependencies:
+		[todo]
+
+JAR file: asm-commons-7.0.jar
+	Maven coordinates:
+		org.ow2.asm:asm-commons:7.0
+	Direct dependencies:
+		org.ow2.asm:asm:7.0
+		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm-analysis:7.0
+	Transitive dependencies:
+		[todo]
+
+JAR file: asm-tree-7.0.jar
+	Maven coordinates:
+		org.ow2.asm:asm-tree:7.0
+	Direct dependencies:
+		org.ow2.asm:asm:7.0
+	Transitive dependencies:
+		[todo]
 
 Packages
 --------

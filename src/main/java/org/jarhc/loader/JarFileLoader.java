@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.jar.Attributes;
@@ -30,6 +31,9 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.jarhc.app.JarSource;
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactResolver;
+import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
@@ -51,11 +55,13 @@ class JarFileLoader {
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
+	private final ArtifactResolver artifactResolver;
 
-	JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer) {
+	JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, ArtifactResolver artifactResolver) {
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
+		this.artifactResolver = artifactResolver;
 	}
 
 	/**
@@ -204,6 +210,14 @@ class JarFileLoader {
 		// calculate SHA-1 checksum of JAR file
 		String checksum = DigestUtils.sha1Hex(fileData);
 
+		String coordinates = null;
+		try {
+			Optional<Artifact> artifact = artifactResolver.findArtifact(checksum);
+			coordinates = artifact.map(Artifact::toCoordinates).orElse(null);
+		} catch (RepositoryException e) {
+			LOGGER.warn("Artifact resolution error", e);
+		}
+
 		// normalize JAR file name (optional)
 		if (jarFileNameNormalizer != null) {
 			fileName = jarFileNameNormalizer.getFileName(fileName, checksum);
@@ -216,6 +230,7 @@ class JarFileLoader {
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(fileData.length)
 				.withChecksum(checksum)
+				.withCoordinates(coordinates)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
 				.withClassDefs(classDefs)
