@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.PrintStream;
 import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.ArtifactResolver;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.test.PrintStreamBuffer;
 import org.junit.jupiter.api.AfterEach;
@@ -66,27 +66,27 @@ class JarFileNameNormalizerTest {
 	@Test
 	void test_getArtifactFileName() throws RepositoryException {
 
-		Repository repository = Mockito.mock(Repository.class);
-		Mockito.when(repository.findArtifact("c1")).thenReturn(Optional.empty());
-		Mockito.when(repository.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
-		Mockito.when(repository.findArtifact("c3")).thenThrow(new RepositoryException("test"));
+		ArtifactResolver artifactResolver = Mockito.mock(ArtifactResolver.class);
+		Mockito.when(artifactResolver.findArtifact("c1")).thenReturn(Optional.empty());
+		Mockito.when(artifactResolver.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
+		Mockito.when(artifactResolver.findArtifact("c3")).thenThrow(new RepositoryException("test"));
 
-		String result = JarFileNameNormalizer.getArtifactFileName("c1", repository, false, "aa-12.jar");
+		String result = JarFileNameNormalizer.getArtifactFileName("c1", artifactResolver, false, "aa-12.jar");
 		assertEquals("aa-12.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c1", repository, true, "aa-12.jar");
+		result = JarFileNameNormalizer.getArtifactFileName("c1", artifactResolver, true, "aa-12.jar");
 		assertEquals("aa.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c2", repository, false, "aa-12.jar");
+		result = JarFileNameNormalizer.getArtifactFileName("c2", artifactResolver, false, "aa-12.jar");
 		assertEquals("a-1.2.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c2", repository, true, "aa-12.jar");
+		result = JarFileNameNormalizer.getArtifactFileName("c2", artifactResolver, true, "aa-12.jar");
 		assertEquals("a.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c3", repository, false, "aa-12.jar");
+		result = JarFileNameNormalizer.getArtifactFileName("c3", artifactResolver, false, "aa-12.jar");
 		assertEquals("aa-12.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c3", repository, true, "aa-12.jar");
+		result = JarFileNameNormalizer.getArtifactFileName("c3", artifactResolver, true, "aa-12.jar");
 		assertEquals("aa.jar", result);
 
 	}
