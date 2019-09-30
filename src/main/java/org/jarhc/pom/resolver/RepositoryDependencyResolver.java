@@ -19,6 +19,7 @@ package org.jarhc.pom.resolver;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 
 	private final Repository repository;
 	private final Map<Artifact, List<Dependency>> cache = new ConcurrentHashMap<>();
+	private final List<Dependency> POM_NOT_FOUND = Collections.emptyList();
 
 	public RepositoryDependencyResolver(Repository repository) {
 		this.repository = repository;
@@ -48,6 +50,13 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 		// check cache
 		if (cache.containsKey(artifact)) {
 			List<Dependency> dependencies = cache.get(artifact);
+
+			// check for negative cache result
+			if (dependencies == POM_NOT_FOUND) {
+				String message = String.format("POM file not found: %s", artifact);
+				throw new PomNotFoundException(message);
+			}
+
 			return new ArrayList<>(dependencies);
 		}
 
@@ -62,7 +71,10 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 
 		// if POM file has not been found ...
 		if (!result.isPresent()) {
-			// TODO: cache negative result
+
+			// cache negative result
+			cache.put(artifact, POM_NOT_FOUND);
+
 			String message = String.format("POM file not found: %s", artifact);
 			throw new PomNotFoundException(message);
 		}
