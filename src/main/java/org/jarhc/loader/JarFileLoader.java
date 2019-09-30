@@ -210,6 +210,7 @@ class JarFileLoader {
 		// calculate SHA-1 checksum of JAR file
 		String checksum = DigestUtils.sha1Hex(fileData);
 
+		// try to identify JAR file as Maven artifact
 		String coordinates = null;
 		try {
 			Optional<Artifact> artifact = artifactResolver.findArtifact(checksum);
