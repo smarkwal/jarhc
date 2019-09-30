@@ -28,7 +28,7 @@ public class LoaderBuilder {
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
 	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
-	private ArtifactResolver artifactResolver = (checksum) -> Optional.empty();
+	private ArtifactResolver artifactResolver = checksum -> Optional.empty();
 
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
