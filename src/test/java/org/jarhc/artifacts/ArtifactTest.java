@@ -18,6 +18,9 @@ package org.jarhc.artifacts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -91,6 +94,16 @@ class ArtifactTest {
 	}
 
 	@Test
+	void test_constructor_throwsIllegalArgumentException_ifArgumentIsNull() {
+
+		assertThrows(IllegalArgumentException.class, () -> new Artifact(null, "jarhc", "1.3", "jar"));
+		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", null, "1.3", "jar"));
+		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", "jarhc", null, "jar"));
+		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", "jarhc", "1.3", null));
+
+	}
+
+	@Test
 	void test_toString() {
 
 		// prepare
@@ -129,6 +142,77 @@ class ArtifactTest {
 
 		// asert
 		assertEquals("jarhc-1.4-SNAPSHOT.jar", result);
+
+	}
+
+	@Test
+	void testEquals() {
+
+		// prepare
+		Artifact artifact1 = new Artifact("org.jarhc", "jarhc", "1.3", "jar");
+
+		// test
+		Artifact artifact2 = new Artifact("org.jarhc", "jarhc", "1.3", "jar");
+		assertEquals(artifact1, artifact2);
+		assertEquals(artifact2, artifact1);
+
+		artifact2 = new Artifact("org.jarcheck", "jarhc", "1.3", "jar");
+		assertNotEquals(artifact1, artifact2);
+		assertNotEquals(artifact2, artifact1);
+
+		artifact2 = new Artifact("org.jarhc", "jarcheck", "1.3", "jar");
+		assertNotEquals(artifact1, artifact2);
+		assertNotEquals(artifact2, artifact1);
+
+		artifact2 = new Artifact("org.jarhc", "jarhc", "1.2", "jar");
+		assertNotEquals(artifact1, artifact2);
+		assertNotEquals(artifact2, artifact1);
+
+		artifact2 = new Artifact("org.jarhc", "jarhc", "1.3", "pom");
+		assertNotEquals(artifact1, artifact2);
+		assertNotEquals(artifact2, artifact1);
+
+	}
+
+	@Test
+	void testHashCode() {
+
+		// prepare
+		Artifact artifact1 = new Artifact("org.jarhc", "jarhc", "1.3", "jar");
+
+		// test
+		Artifact artifact2 = new Artifact("org.jarhc", "jarhc", "1.3", "jar");
+		assertEquals(artifact1.hashCode(), artifact2.hashCode());
+
+		artifact2 = new Artifact("org.jarcheck", "jarhc", "1.3", "jar");
+		assertNotEquals(artifact1.hashCode(), artifact2.hashCode());
+
+		artifact2 = new Artifact("org.jarhc", "jarcheck", "1.3", "jar");
+		assertNotEquals(artifact1.hashCode(), artifact2.hashCode());
+
+		artifact2 = new Artifact("org.jarhc", "jarhc", "1.2", "jar");
+		assertNotEquals(artifact1.hashCode(), artifact2.hashCode());
+
+		artifact2 = new Artifact("org.jarhc", "jarhc", "1.3", "pom");
+		assertNotEquals(artifact1.hashCode(), artifact2.hashCode());
+
+	}
+
+	@Test
+	void withType() {
+
+		// prepare
+		Artifact artifact1 = new Artifact("org.jarhc", "jarhc", "1.3", "jar");
+
+		// test
+		Artifact artifact2 = artifact1.withType("pom");
+
+		// assert
+		assertSame(artifact1.getGroupId(), artifact2.getGroupId());
+		assertSame(artifact1.getArtifactId(), artifact2.getArtifactId());
+		assertSame(artifact1.getVersion(), artifact2.getVersion());
+		assertEquals("jar", artifact1.getType());
+		assertEquals("pom", artifact2.getType());
 
 	}
 
