@@ -142,6 +142,30 @@ class RepositoryDependencyResolverTest {
 
 	}
 
+	@Test
+	void getDependencies_cachesNegativeResults() throws RepositoryException {
+
+		// prepare
+		Artifact artifact = new Artifact("group", "cached", "1.0", "jar");
+		when(repository.downloadArtifact(any(Artifact.class))).thenReturn(Optional.empty());
+
+		// test: first call
+		assertThrows(PomNotFoundException.class, () -> resolver.getDependencies(artifact));
+
+		// verify: repository has been called once
+		verify(repository, times(1)).downloadArtifact(any(Artifact.class));
+
+		// reset
+		Mockito.reset(repository);
+
+		// test: second call
+		assertThrows(PomNotFoundException.class, () -> resolver.getDependencies(artifact));
+
+		// verify: repository has not been called anymore
+		verifyZeroInteractions(repository);
+
+	}
+
 	private Optional<InputStream> generatePom(Artifact artifact, int dependencies) {
 		String xml = PomUtils.generatePomXml(artifact, dependencies);
 		ByteArrayInputStream stream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
