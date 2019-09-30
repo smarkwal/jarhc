@@ -89,6 +89,10 @@ public class Artifact {
 		return String.format("%s:%s:%s:%s", groupId, artifactId, version, type);
 	}
 
+	public String toCoordinates() {
+		return String.format("%s:%s:%s", groupId, artifactId, version);
+	}
+
 	public String getPath() {
 		return String.format("%s/%s/%s/%s", groupId.replace('.', '/'), artifactId, version, getFileName());
 	}

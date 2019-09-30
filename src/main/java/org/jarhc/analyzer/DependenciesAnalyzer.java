@@ -18,11 +18,8 @@ package org.jarhc.analyzer;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
-import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
@@ -44,12 +41,10 @@ public class DependenciesAnalyzer implements Analyzer {
 	private static final String UNKNOWN = "[unknown]";
 	private static final String ERROR = "[error]";
 
-	private final Repository repository;
 	private final DependencyResolver dependencyResolver;
 
-	public DependenciesAnalyzer(Repository repository, DependencyResolver dependencyResolver) {
-		if (repository == null) throw new IllegalArgumentException("repository");
-		this.repository = repository;
+	public DependenciesAnalyzer(DependencyResolver dependencyResolver) {
+		if (dependencyResolver == null) throw new IllegalArgumentException("dependencyResolver");
 		this.dependencyResolver = dependencyResolver;
 	}
 
@@ -121,21 +116,11 @@ public class DependenciesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
-
-		String checksum = jarFile.getChecksum();
-		if (checksum == null || checksum.isEmpty()) {
+		String coordinates = jarFile.getCoordinates();
+		if (coordinates == null || coordinates.isEmpty()) {
 			return UNKNOWN;
 		}
-
-		Optional<Artifact> artifact;
-		try {
-			artifact = repository.findArtifact(checksum);
-		} catch (RepositoryException e) {
-			LOGGER.warn("Repository error for JAR file: {}", jarFile.getFileName(), e);
-			return ERROR;
-		}
-
-		return artifact.map(Artifact::toString).orElse(UNKNOWN);
+		return coordinates;
 	}
 
 }

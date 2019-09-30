@@ -25,7 +25,7 @@ import java.util.Optional;
  *
  * @see MavenCentralRepository
  */
-public interface Repository {
+public interface Repository extends ArtifactResolver {
 
 	/**
 	 * Try to find the artifact with the given coordinates.
@@ -38,15 +38,6 @@ public interface Repository {
 	 * @throws RepositoryException if an unexpected exception occurs
 	 */
 	Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException;
-
-	/**
-	 * Try to find the artifact with the SHA-1 checksum.
-	 *
-	 * @param checksum SHA-1 checksum of a JAR file
-	 * @return Artifact information (if found)
-	 * @throws RepositoryException if an unexpected exception occurs
-	 */
-	Optional<Artifact> findArtifact(String checksum) throws RepositoryException;
 
 	/**
 	 * Try to download the artifact file for the given artifact.

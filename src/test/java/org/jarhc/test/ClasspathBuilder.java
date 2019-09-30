@@ -136,9 +136,11 @@ public class ClasspathBuilder {
 	private void closeJarFile() {
 		if (fileName != null) {
 			String checksum = DigestUtils.sha1Hex(fileName + fileSize); // fake checksum based on file name and size
+			String coordinates = "org.jarhc:" + checksum.substring(0, 5) + ":1.0:jar";
 			JarFile jarFile = JarFile.withName(fileName)
 					.withFileSize(fileSize)
 					.withChecksum(checksum)
+					.withCoordinates(coordinates)
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)

@@ -16,6 +16,8 @@
 
 package org.jarhc.loader;
 
+import java.util.Optional;
+import org.jarhc.artifacts.ArtifactResolver;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 
@@ -26,6 +28,7 @@ public class LoaderBuilder {
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
 	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
+	private ArtifactResolver artifactResolver = (checksum) -> Optional.empty();
 
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
@@ -56,6 +59,11 @@ public class LoaderBuilder {
 		return this;
 	}
 
+	public LoaderBuilder withArtifactResolver(ArtifactResolver artifactResolver) {
+		this.artifactResolver = artifactResolver;
+		return this;
+	}
+
 	public ClassDefLoader buildClassDefLoader() {
 		return new ClassDefLoader(classLoader, scanForReferences);
 	}
@@ -67,7 +75,7 @@ public class LoaderBuilder {
 	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
-		return new JarFileLoader(classDefLoader, moduleInfoLoader, jarFileNameNormalizer);
+		return new JarFileLoader(classDefLoader, moduleInfoLoader, jarFileNameNormalizer, artifactResolver);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {

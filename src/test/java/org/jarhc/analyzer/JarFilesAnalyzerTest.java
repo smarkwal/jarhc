@@ -21,13 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import org.jarhc.artifacts.Repository;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
-import org.jarhc.test.RepositoryMock;
 import org.junit.jupiter.api.Test;
 
 class JarFilesAnalyzerTest {
@@ -51,11 +49,8 @@ class JarFilesAnalyzerTest {
 				.addJarFile("d.jar", 1234567) // no class files
 				.build();
 
-		// prepare: fake artifact repository
-		Repository repository = RepositoryMock.createFakeRepository();
-
 		// test
-		JarFilesAnalyzer analyzer = new JarFilesAnalyzer(repository);
+		JarFilesAnalyzer analyzer = new JarFilesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

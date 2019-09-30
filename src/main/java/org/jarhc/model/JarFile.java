@@ -48,6 +48,11 @@ public class JarFile {
 	private final String checksum;
 
 	/**
+	 * Maven coordinates of the JAR file
+	 */
+	private final String coordinates;
+
+	/**
 	 * Releases supported if this is a multi-release JAR file
 	 */
 	private final Set<Integer> releases;
@@ -88,19 +93,21 @@ public class JarFile {
 	 * @param fileName     JAR file name
 	 * @param fileSize     JAR file size in bytes
 	 * @param checksum     JAR file SHA-1 checksum
+	 * @param coordinates  JAR file Maven coordinates
 	 * @param releases     List of releases supported by this JAR file (for multi-release JAR files)
 	 * @param moduleInfo   Module information (for modular JAR files)
 	 * @param classDefs    Class definitions
 	 * @param resourceDefs Resources
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
-	private JarFile(String fileName, long fileSize, String checksum, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
+	private JarFile(String fileName, long fileSize, String checksum, String coordinates, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.checksum = checksum;
+		this.coordinates = coordinates;
 		this.releases = new TreeSet<>(releases);
 		this.moduleInfo = moduleInfo;
 		this.classDefs = new ArrayList<>(classDefs);
@@ -151,6 +158,10 @@ public class JarFile {
 
 	public String getChecksum() {
 		return checksum;
+	}
+
+	public String getCoordinates() {
+		return coordinates;
 	}
 
 	public boolean isMultiRelease() {
@@ -234,6 +245,7 @@ public class JarFile {
 		private String fileName;
 		private long fileSize = -1;
 		private String checksum;
+		private String coordinates;
 		private Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = null;
 		private List<ClassDef> classDefs = new ArrayList<>();
@@ -250,6 +262,11 @@ public class JarFile {
 
 		public Builder withChecksum(String checksum) {
 			this.checksum = checksum;
+			return this;
+		}
+
+		public Builder withCoordinates(String coordinates) {
+			this.coordinates = coordinates;
 			return this;
 		}
 
@@ -284,7 +301,7 @@ public class JarFile {
 		}
 
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, checksum, releases, moduleInfo, classDefs, resourceDefs);
+			return new JarFile(fileName, fileSize, checksum, coordinates, releases, moduleInfo, classDefs, resourceDefs);
 		}
 
 	}

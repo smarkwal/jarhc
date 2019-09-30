@@ -19,31 +19,16 @@ package org.jarhc.analyzer;
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
-import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class JarFilesAnalyzer implements Analyzer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JarFilesAnalyzer.class);
-
 	private static final String UNKNOWN = "[unknown]";
-
-	private final Repository repository;
-
-	public JarFilesAnalyzer(Repository repository) {
-		if (repository == null) throw new IllegalArgumentException("repository");
-		this.repository = repository;
-	}
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -115,21 +100,11 @@ public class JarFilesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
-
-		String checksum = jarFile.getChecksum();
-		if (checksum == null || checksum.isEmpty()) {
+		String coordinates = jarFile.getCoordinates();
+		if (coordinates == null || coordinates.isEmpty()) {
 			return UNKNOWN;
 		}
-
-		Optional<Artifact> artifact;
-		try {
-			artifact = repository.findArtifact(checksum);
-		} catch (RepositoryException e) {
-			LOGGER.warn("Repository error for JAR file: {}", jarFile.getFileName(), e);
-			return "[error]";
-		}
-
-		return artifact.map(Artifact::toString).orElse(UNKNOWN);
+		return coordinates;
 	}
 
 }

@@ -25,9 +25,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
@@ -42,22 +40,15 @@ import org.junit.jupiter.api.Test;
 
 class DependenciesAnalyzerTest {
 
-	private final Repository repository = mock(Repository.class);
 	private final DependencyResolver dependencyResolver = mock(DependencyResolver.class);
 
 	@BeforeEach
-	void setUp() throws RepositoryException, ResolverException {
+	void setUp() throws ResolverException {
 
 		Artifact artifactWithDeps = new Artifact("group:lib-with-deps:1.0:jar");
 		Artifact artifactNoDeps = new Artifact("group:lib-no-deps:1.0:jar");
 		Artifact artifactNoPom = new Artifact("group:lib-no-pom:1.0:jar");
 		Artifact artifactRepoError = new Artifact("group:lib-repo-error:1.0:jar");
-
-		when(repository.findArtifact("checksum-with-deps")).thenReturn(Optional.of(artifactWithDeps));
-		when(repository.findArtifact("checksum-no-deps")).thenReturn(Optional.of(artifactNoDeps));
-		when(repository.findArtifact("checksum-no-pom")).thenReturn(Optional.of(artifactNoPom));
-		when(repository.findArtifact("checksum-repo-error")).thenReturn(Optional.of(artifactRepoError));
-		when(repository.findArtifact("checksum-unknown")).thenReturn(Optional.empty());
 
 		when(dependencyResolver.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 3));
 		when(dependencyResolver.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
@@ -71,14 +62,14 @@ class DependenciesAnalyzerTest {
 
 		// prepare
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-with-deps.jar").withChecksum("checksum-with-deps").build());
-		jarFiles.add(JarFile.withName("lib-no-deps.jar").withChecksum("checksum-no-deps").build());
-		jarFiles.add(JarFile.withName("lib-no-pom.jar").withChecksum("checksum-no-pom").build());
-		jarFiles.add(JarFile.withName("lib-repo-error.jar").withChecksum("checksum-repo-error").build());
-		jarFiles.add(JarFile.withName("lib-unknown.jar").withChecksum("checksum-unknown").build());
+		jarFiles.add(JarFile.withName("lib-with-deps.jar").withCoordinates("group:lib-with-deps:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-no-deps.jar").withCoordinates("group:lib-no-deps:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-no-pom.jar").withCoordinates("group:lib-no-pom:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-repo-error.jar").withCoordinates("group:lib-repo-error:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-unknown.jar").withCoordinates(null).build());
 		Classpath classpath = new Classpath(jarFiles, null, ClassLoaderStrategy.ParentFirst);
 
-		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository, dependencyResolver);
+		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(dependencyResolver);
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);
