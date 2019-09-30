@@ -41,7 +41,7 @@ class JarFileLoaderTest {
 	void test_load(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/JarFileLoaderTest/a.jar";
+		String resource = "/org/jarhc/loader/JarFileLoaderTest/a.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
@@ -70,7 +70,7 @@ class JarFileLoaderTest {
 	void test_load_multi_release(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/JarFileLoaderTest/b.jar";
+		String resource = "/org/jarhc/loader/JarFileLoaderTest/b.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
@@ -100,7 +100,7 @@ class JarFileLoaderTest {
 	void test_load_module(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/JarFileLoaderTest/c.jar";
+		String resource = "/org/jarhc/loader/JarFileLoaderTest/c.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test
@@ -139,7 +139,7 @@ class JarFileLoaderTest {
 	void test_load_jar_in_jar(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		String resource = "/JarFileLoaderTest/x.jar";
+		String resource = "/org/jarhc/loader/JarFileLoaderTest/x.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 
 		// test

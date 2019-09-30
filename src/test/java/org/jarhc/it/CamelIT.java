@@ -19,8 +19,7 @@ package org.jarhc.it;
 class CamelIT extends AbstractIT {
 
 	CamelIT() {
-		super("/CamelIT/", new String[]{
-				"camel-core-2.17.7.jar",
+		super("camel-core-2.17.7.jar",
 				"camel-jdbc-2.17.7.jar",
 				"camel-jms-2.17.7.jar",
 				"camel-jmx-2.17.7.jar",
@@ -29,7 +28,7 @@ class CamelIT extends AbstractIT {
 				"camel-mail-2.17.7.jar",
 				"camel-soap-2.17.7.jar",
 				"camel-spring-2.17.7.jar"
-		});
+		);
 	}
 
 }

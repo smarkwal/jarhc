@@ -35,7 +35,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java11() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java11/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java11/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -47,7 +47,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java10() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java10/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java10/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -59,7 +59,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java9() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java9/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java9/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -71,7 +71,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java8() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java8/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java8/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -83,7 +83,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java7() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java7/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java7/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -95,7 +95,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_java6() throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java6/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java6/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
@@ -107,7 +107,7 @@ class ClassDefLoaderTest {
 	@Test
 	void test_load_file(@TempDir Path tempDir) throws IOException {
 
-		String resource = "/ClassDefLoaderTest/java8/Main.class";
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java8/Main.class";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 		ClassDef classDef = classDefLoader.load(file);
 

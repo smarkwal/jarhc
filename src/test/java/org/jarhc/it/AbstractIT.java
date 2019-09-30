@@ -43,11 +43,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 abstract class AbstractIT {
 
-	private final String baseResourcePath;
 	private final String[] fileNames;
 
-	AbstractIT(String baseResourcePath, String[] fileNames) {
-		this.baseResourcePath = baseResourcePath;
+	AbstractIT(String... fileNames) {
 		this.fileNames = fileNames;
 	}
 
@@ -57,13 +55,13 @@ abstract class AbstractIT {
 		// prepare list of files
 		List<File> files = new ArrayList<>();
 		for (String fileName : fileNames) {
-			String resourcePath = baseResourcePath + fileName;
+			String resourcePath = "/repository/" + fileName;
 			File file = TestUtils.getResourceAsFile(resourcePath, tempDir);
 			files.add(file);
 		}
 
 		// prepare context
-		Context context = ContextMock.createContext(baseResourcePath);
+		Context context = ContextMock.createContext();
 
 		// load classpath
 		ClasspathLoader classpathLoader = LoaderBuilder.create()
@@ -110,7 +108,7 @@ abstract class AbstractIT {
 	}
 
 	private String getReportResourcePath(String analyzerName) {
-		return baseResourcePath + "report-" + analyzerName + ".txt";
+		return "/org/jarhc/it/" + this.getClass().getSimpleName() + "/report-" + analyzerName + ".txt";
 	}
 
 }

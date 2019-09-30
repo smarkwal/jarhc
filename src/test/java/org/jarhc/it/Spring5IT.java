@@ -19,8 +19,7 @@ package org.jarhc.it;
 class Spring5IT extends AbstractIT {
 
 	Spring5IT() {
-		super("/Spring5IT/", new String[]{
-				"spring-aop-5.1.3.RELEASE.jar",
+		super("spring-aop-5.1.3.RELEASE.jar",
 				"spring-beans-5.1.3.RELEASE.jar",
 				"spring-context-5.1.3.RELEASE.jar",
 				"spring-context-support-5.1.3.RELEASE.jar",
@@ -32,7 +31,7 @@ class Spring5IT extends AbstractIT {
 				"spring-orm-5.1.3.RELEASE.jar",
 				"spring-tx-5.1.3.RELEASE.jar",
 				"spring-web-5.1.3.RELEASE.jar"
-		});
+		);
 	}
 
 }

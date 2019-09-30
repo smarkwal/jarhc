@@ -47,8 +47,8 @@ class ClassHierarchyAnalyzerIT {
 	void analyze_compatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/b-1.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerIT/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerIT/b-1.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -69,8 +69,8 @@ class ClassHierarchyAnalyzerIT {
 	void analyze_incompatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/ClassHierarchyAnalyzerIT/b-2.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerIT/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerIT/b-2.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -90,7 +90,7 @@ class ClassHierarchyAnalyzerIT {
 		assertEquals("a.jar", values[0]);
 
 		String value = values[1];
-		String expectedValue = TestUtils.getResourceAsString("/ClassHierarchyAnalyzerIT/result.txt", "UTF-8");
+		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/ClassHierarchyAnalyzerIT/result.txt", "UTF-8");
 
 		// normalize
 		value = TextUtils.toUnixLineSeparators(value);

@@ -88,7 +88,7 @@ class WarFileLoaderTest {
 
 		// prepare
 		WarFileLoader loader = new WarFileLoader(jarFileLoader);
-		File file = TestUtils.getResourceAsFile("/WarFileLoaderTest/test.war", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/loader/WarFileLoaderTest/test.war", tempDir);
 
 		// test
 		List<JarFile> result = loader.load(file);
@@ -118,7 +118,7 @@ class WarFileLoaderTest {
 
 		// prepare
 		WarFileLoader loader = new WarFileLoader(jarFileLoader);
-		File file = TestUtils.getResourceAsFile("/WarFileLoaderTest/test.war", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/loader/WarFileLoaderTest/test.war", tempDir);
 		JarSource jarSource = new FileSource(file);
 
 		// test
@@ -149,7 +149,7 @@ class WarFileLoaderTest {
 
 		// prepare
 		WarFileLoader loader = new WarFileLoader(jarFileLoader);
-		File file = TestUtils.getResourceAsFile("/WarFileLoaderTest/test.war", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/loader/WarFileLoaderTest/test.war", tempDir);
 
 		List<JarFile> result;
 		try (InputStream stream = new FileInputStream(file)) {

@@ -127,7 +127,7 @@ class ClassScannerTest {
 		ClassDefLoader loader = new ClassDefLoader("Classpath", true);
 
 		// test
-		try (InputStream stream = TestUtils.getResourceAsStream("/ClassScannerTest/Main.class")) {
+		try (InputStream stream = TestUtils.getResourceAsStream("/org/jarhc/loader/ClassScannerTest/Main.class")) {
 			return loader.load(stream);
 		}
 

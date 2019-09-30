@@ -19,12 +19,11 @@ package org.jarhc.it;
 class AsmIT extends AbstractIT {
 
 	AsmIT() {
-		super("/AsmIT/", new String[]{
-				"asm-7.0.jar",
+		super("asm-7.0.jar",
 				"asm-analysis-7.0.jar",
 				"asm-commons-7.0.jar",
 				"asm-tree-7.0.jar"
-		});
+		);
 	}
 
 }

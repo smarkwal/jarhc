@@ -34,7 +34,7 @@ class ModuleInfoLoaderTest {
 	@Test
 	void test_load() throws IOException {
 
-		String resource = "/ModuleInfoLoaderTest/module-info.class";
+		String resource = "/org/jarhc/loader/ModuleInfoLoaderTest/module-info.class";
 		ModuleInfo moduleInfo = loadModuleInfo(resource);
 
 		assertNotNull(moduleInfo);

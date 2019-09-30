@@ -48,7 +48,7 @@ class ApplicationIT {
 		application.setDependencyResolver(new RepositoryDependencyResolver(repository));
 
 		Options options = new Options();
-		File file = TestUtils.getResourceAsFile("/ApplicationIT/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationIT/a.jar", tempDir);
 		options.addClasspathJarPath(file.getAbsolutePath());
 
 		// test
@@ -60,11 +60,11 @@ class ApplicationIT {
 		String output = out.getText();
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/ApplicationIT/result.txt", output, "UTF-8");
+			TestUtils.saveResource("/org/jarhc/it/ApplicationIT/result.txt", output, "UTF-8");
 			return;
 		}
 
-		String expectedOutput = TestUtils.getResourceAsString("/ApplicationIT/result.txt", "UTF-8");
+		String expectedOutput = TestUtils.getResourceAsString("/org/jarhc/it/ApplicationIT/result.txt", "UTF-8");
 
 		// normalize output
 		output = TextUtils.toUnixLineSeparators(output);

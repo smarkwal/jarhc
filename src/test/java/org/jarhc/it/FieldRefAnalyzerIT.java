@@ -50,7 +50,7 @@ class FieldRefAnalyzerIT {
 	void test_fieldrefs(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
 
 		List<FieldRef> fieldRefs = classpath.getJarFile("a.jar").getClassDef("a.A").getFieldRefs();
@@ -80,8 +80,8 @@ class FieldRefAnalyzerIT {
 	void test_compatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/b-1.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/b-1.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -102,8 +102,8 @@ class FieldRefAnalyzerIT {
 	void test_incompatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/b-2.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/b-2.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -123,7 +123,7 @@ class FieldRefAnalyzerIT {
 		assertEquals("a.jar", values[0]);
 
 		String value = values[1];
-		String expectedValue = TestUtils.getResourceAsString("/FieldRefAnalyzerIT/result.txt", "UTF-8");
+		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/FieldRefAnalyzerIT/result.txt", "UTF-8");
 
 		// normalize
 		value = TextUtils.toUnixLineSeparators(value);
@@ -136,7 +136,7 @@ class FieldRefAnalyzerIT {
 	void test_reportOwnerClassNotFound_false(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
 
 		// test
@@ -171,7 +171,7 @@ class FieldRefAnalyzerIT {
 		analyzer = new BinaryCompatibilityAnalyzer(true);
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/FieldRefAnalyzerIT/a.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
 
 		// test

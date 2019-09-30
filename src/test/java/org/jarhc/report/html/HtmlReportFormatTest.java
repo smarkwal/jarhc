@@ -62,13 +62,13 @@ class HtmlReportFormatTest {
 		String text = format.format(report);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/HtmlReportFormatTest/result.txt", text, "UTF-8");
+			TestUtils.saveResource("/org/jarhc/report/html/HtmlReportFormatTest/result.txt", text, "UTF-8");
 			return;
 		}
 
 		// normalize
 		text = TextUtils.toUnixLineSeparators(text);
-		String expectedResult = TestUtils.getResourceAsString("/HtmlReportFormatTest/result.txt", "UTF-8");
+		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/report/html/HtmlReportFormatTest/result.txt", "UTF-8");
 		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
 
 		// assert

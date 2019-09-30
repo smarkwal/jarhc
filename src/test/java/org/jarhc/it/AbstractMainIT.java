@@ -66,7 +66,7 @@ abstract class AbstractMainIT {
 
 		String actualReport = FileUtils.readFileToString(reportFile);
 
-		String resource = "/" + this.getClass().getSimpleName() + "/report.txt";
+		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/report.txt";
 		if (TestUtils.createResources()) {
 			TestUtils.saveResource(resource, actualReport, "UTF-8");
 			return;

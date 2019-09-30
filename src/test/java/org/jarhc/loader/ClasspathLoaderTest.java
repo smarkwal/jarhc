@@ -93,7 +93,7 @@ class ClasspathLoaderTest {
 
 		// prepare
 		classpathLoader = LoaderBuilder.create().buildClasspathLoader();
-		String resource = "/ClasspathLoaderTest/a.jar";
+		String resource = "/org/jarhc/loader/ClasspathLoaderTest/a.jar";
 		File file = TestUtils.getResourceAsFile(resource, tempDir);
 		List<File> files = Collections.singletonList(file);
 
