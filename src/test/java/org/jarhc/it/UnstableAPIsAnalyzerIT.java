@@ -47,8 +47,8 @@ class UnstableAPIsAnalyzerIT {
 	void test_analyze(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/UnstableAPIsAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/UnstableAPIsAnalyzerIT/b.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerIT/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerIT/b.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -68,7 +68,7 @@ class UnstableAPIsAnalyzerIT {
 		assertEquals("a.jar", values[0]);
 
 		String result = values[1];
-		String expectedResult = TestUtils.getResourceAsString("/UnstableAPIsAnalyzerIT/result.txt", "UTF-8");
+		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/it/UnstableAPIsAnalyzerIT/result.txt", "UTF-8");
 
 		// normalize
 		result = TextUtils.toUnixLineSeparators(result);

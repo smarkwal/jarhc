@@ -24,9 +24,9 @@ import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 
 public class ContextMock {
 
-	public static Context createContext(String resourceBasePath) {
+	public static Context createContext() {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		Repository repository = RepositoryMock.createRepository(resourceBasePath);
+		Repository repository = RepositoryMock.createRepository();
 		DependencyResolver dependencyResolver = new RepositoryDependencyResolver(repository);
 		return new Context(javaRuntime, repository, dependencyResolver);
 	}

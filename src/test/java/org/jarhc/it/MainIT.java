@@ -98,11 +98,11 @@ class MainIT {
 		String actualReport = FileUtils.readFileToString(reportFile);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/MainIT/report.txt", actualReport, "UTF-8");
+			TestUtils.saveResource("/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
 			return;
 		}
 
-		String expectedReport = TestUtils.getResourceAsString("/MainIT/report.txt", "UTF-8");
+		String expectedReport = TestUtils.getResourceAsString("/org/jarhc/it/MainIT/report.txt", "UTF-8");
 
 		// normalize
 		actualReport = TextUtils.toUnixLineSeparators(actualReport);

@@ -63,7 +63,7 @@ class ListReportFormatTest {
 
 		// normalize
 		text = TextUtils.toUnixLineSeparators(text);
-		String expectedResult = TestUtils.getResourceAsString("/ListReportFormatTest/result.txt", "UTF-8");
+		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/report/list/ListReportFormatTest/result.txt", "UTF-8");
 		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
 
 		// assert

@@ -43,7 +43,7 @@ class CommandLineParserTest {
 	void test_default_options(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{file.getAbsolutePath()});
@@ -89,7 +89,7 @@ class CommandLineParserTest {
 	void test_file_not_jar(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/Main.java", tempDir);
 
 		// test
 		CommandLineException exception = null;
@@ -133,7 +133,7 @@ class CommandLineParserTest {
 	void test_no_files_found(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/Main.java", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/Main.java", tempDir);
 		File directory = file.getParentFile();
 
 		// test
@@ -232,7 +232,7 @@ class CommandLineParserTest {
 	void test_one_jar_file(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"-f", "text", "-o", "report.txt", file.getAbsolutePath()});
@@ -254,7 +254,7 @@ class CommandLineParserTest {
 	void test_one_jar_file_in_directory(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 		File directory = file.getParentFile();
 
 		// test
@@ -277,8 +277,8 @@ class CommandLineParserTest {
 	void test_two_jar_files(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
-		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file1 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{"-o", "report.html", file1.getAbsolutePath(), file2.getAbsolutePath()});
@@ -301,8 +301,8 @@ class CommandLineParserTest {
 	void test_runtime(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
-		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file1 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--runtime", file2.getAbsolutePath()});
@@ -328,8 +328,8 @@ class CommandLineParserTest {
 	void test_provided(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
-		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file1 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--provided", file2.getAbsolutePath()});
@@ -355,9 +355,9 @@ class CommandLineParserTest {
 	void test_provided_runtime(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file1 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
-		File file2 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
-		File file3 = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file1 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
+		File file3 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
 		Options options = parser.parse(new String[]{"--classpath", file1.getAbsolutePath(), "--provided", file2.getAbsolutePath(), "--runtime", file3.getAbsolutePath()});
@@ -384,7 +384,7 @@ class CommandLineParserTest {
 	void test_title(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"-t", "Test Title", file.getAbsolutePath()});
@@ -399,7 +399,7 @@ class CommandLineParserTest {
 	void test_sections(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"-s", "jf,cv,jd", file.getAbsolutePath()});
@@ -417,7 +417,7 @@ class CommandLineParserTest {
 	void test_sections_exclude(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"-s", "-jf,cv,jd", file.getAbsolutePath()});
@@ -435,7 +435,7 @@ class CommandLineParserTest {
 	void test_data(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--data", "/tmp/jarhc", file.getAbsolutePath()});
@@ -449,7 +449,7 @@ class CommandLineParserTest {
 	void test_nodata(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--nodata", file.getAbsolutePath()});
@@ -463,7 +463,7 @@ class CommandLineParserTest {
 	void test_remove_version(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--remove-version", file.getAbsolutePath()});
@@ -477,7 +477,7 @@ class CommandLineParserTest {
 	void test_use_artifac_name(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--use-artifact-name", file.getAbsolutePath()});
@@ -491,7 +491,7 @@ class CommandLineParserTest {
 	void test_skip_empty(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--skip-empty", file.getAbsolutePath()});
@@ -505,7 +505,7 @@ class CommandLineParserTest {
 	void test_debug(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
-		File file = TestUtils.getResourceAsFile("/CommandLineParserTest/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
 		Options options = parser.parse(new String[]{"--debug", file.getAbsolutePath()});

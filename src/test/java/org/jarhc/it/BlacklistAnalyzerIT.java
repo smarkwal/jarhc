@@ -44,7 +44,7 @@ class BlacklistAnalyzerIT {
 	void test_analyze(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile = TestUtils.getResourceAsFile("/BlacklistAnalyzerIT/a.jar", tempDir);
+		File jarFile = TestUtils.getResourceAsFile("/org/jarhc/it/BlacklistAnalyzerIT/a.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile));
 
 		// test

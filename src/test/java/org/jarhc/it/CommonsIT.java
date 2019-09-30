@@ -19,8 +19,7 @@ package org.jarhc.it;
 class CommonsIT extends AbstractIT {
 
 	CommonsIT() {
-		super("/CommonsIT/", new String[]{
-				"commons-beanutils-1.9.2.jar",
+		super("commons-beanutils-1.9.2.jar",
 				"commons-betwixt-0.8.jar",
 				"commons-codec-1.10.jar",
 				"commons-collections-3.2.2.jar",
@@ -37,7 +36,7 @@ class CommonsIT extends AbstractIT {
 				"commons-logging-1.2.jar",
 				"commons-net-3.3.jar",
 				"commons-pool2-2.6.0.jar"
-		});
+		);
 	}
 
 }
