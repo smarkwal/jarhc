@@ -24,6 +24,7 @@ import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
+import org.jarhc.pom.resolver.DependencyResolver;
 
 /**
  * Registry for analyzers.
@@ -71,6 +72,7 @@ public class AnalyzerRegistry {
 		Injector injector = new Injector();
 		injector.addBinding(JavaRuntime.class, context.getJavaRuntime());
 		injector.addBinding(Repository.class, context.getRepository());
+		injector.addBinding(DependencyResolver.class, context.getDependencyResolver());
 
 		// try to create an instance of the analyzer
 		// (inject dependencies)

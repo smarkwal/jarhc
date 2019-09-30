@@ -18,11 +18,11 @@ package org.jarhc.pom.resolver;
 
 public class ResolverException extends Exception {
 
-	ResolverException(String message) {
+	public ResolverException(String message) {
 		super(message);
 	}
 
-	ResolverException(String message, Throwable cause) {
+	public ResolverException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

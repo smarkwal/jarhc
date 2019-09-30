@@ -26,6 +26,7 @@ import org.jarhc.artifacts.CachedRepository;
 import org.jarhc.artifacts.MavenCentralRepository;
 import org.jarhc.artifacts.MavenLocalRepository;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 
 public class Main {
 
@@ -51,6 +52,7 @@ public class Main {
 		// create and run application
 		Application application = new Application();
 		application.setRepository(repository);
+		application.setDependencyResolver(new RepositoryDependencyResolver(repository));
 
 		int exitCode = application.run(options);
 

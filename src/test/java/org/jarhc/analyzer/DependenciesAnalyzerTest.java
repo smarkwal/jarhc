@@ -16,15 +16,13 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.pom.PomUtils.generateDependencies;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +32,9 @@ import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
-import org.jarhc.pom.PomUtils;
+import org.jarhc.pom.resolver.DependencyResolver;
+import org.jarhc.pom.resolver.PomNotFoundException;
+import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,9 +43,10 @@ import org.junit.jupiter.api.Test;
 class DependenciesAnalyzerTest {
 
 	private final Repository repository = mock(Repository.class);
+	private final DependencyResolver dependencyResolver = mock(DependencyResolver.class);
 
 	@BeforeEach
-	void setUp() throws RepositoryException {
+	void setUp() throws RepositoryException, ResolverException {
 
 		Artifact artifactWithDeps = new Artifact("group:lib-with-deps:1.0:jar");
 		Artifact artifactNoDeps = new Artifact("group:lib-no-deps:1.0:jar");
@@ -58,10 +59,10 @@ class DependenciesAnalyzerTest {
 		when(repository.findArtifact("checksum-repo-error")).thenReturn(Optional.of(artifactRepoError));
 		when(repository.findArtifact("checksum-unknown")).thenReturn(Optional.empty());
 
-		when(repository.downloadArtifact(artifactWithDeps.withType("pom"))).thenReturn(generatePom(artifactWithDeps, 3));
-		when(repository.downloadArtifact(artifactNoDeps.withType("pom"))).thenReturn(generatePom(artifactNoDeps, 0));
-		when(repository.downloadArtifact(artifactNoPom.withType("pom"))).thenReturn(Optional.empty());
-		when(repository.downloadArtifact(artifactRepoError.withType("pom"))).thenThrow(new RepositoryException("test"));
+		when(dependencyResolver.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 3));
+		when(dependencyResolver.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
+		when(dependencyResolver.getDependencies(artifactNoPom)).thenThrow(new PomNotFoundException("test"));
+		when(dependencyResolver.getDependencies(artifactRepoError)).thenThrow(new ResolverException("test", new RepositoryException("test")));
 
 	}
 
@@ -77,7 +78,7 @@ class DependenciesAnalyzerTest {
 		jarFiles.add(JarFile.withName("lib-unknown.jar").withChecksum("checksum-unknown").build());
 		Classpath classpath = new Classpath(jarFiles, null, ClassLoaderStrategy.ParentFirst);
 
-		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository);
+		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository, dependencyResolver);
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);
@@ -134,12 +135,6 @@ class DependenciesAnalyzerTest {
 		assertEquals("[unknown]", values[2]);
 		assertEquals("[todo]", values[3]);
 
-	}
-
-	private Optional<InputStream> generatePom(Artifact artifact, int dependencies) {
-		String xml = PomUtils.generatePomXml(artifact, dependencies);
-		ByteArrayInputStream stream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
-		return Optional.of(stream);
 	}
 
 }
