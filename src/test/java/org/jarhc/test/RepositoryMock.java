@@ -17,16 +17,23 @@
 package org.jarhc.test;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.MavenCentralRepository;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.utils.DigestUtils;
 
 /**
  * A repository implementation loading all information and artifacts from
@@ -101,6 +108,41 @@ public class RepositoryMock implements Repository {
 			return Optional.of(stream);
 		}
 		return Optional.empty();
+	}
+
+	/**
+	 * Recreate repository.properties file
+	 */
+	public static void main(String[] args) {
+
+		StringWriter writer = new StringWriter();
+
+		MavenCentralRepository repository = new MavenCentralRepository(Duration.ofSeconds(10));
+
+		File directory = new File("src/test/resources/repository");
+		File[] files = directory.listFiles();
+		assert files != null;
+		Arrays.sort(files, (f1, f2) -> f1.getName().compareToIgnoreCase(f2.getName()));
+		for (File file : files) {
+			String name = file.getName();
+			if (name.endsWith(".jar") || name.endsWith(".pom")) {
+				try (FileInputStream stream = new FileInputStream(file)) {
+					String checksum = DigestUtils.sha1Hex(stream);
+					repository.findArtifact(checksum)
+							.map(Artifact::toString)
+							.ifPresent(coordinates -> writer.write("artifact." + checksum + "=" + coordinates + "\n"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		try {
+			TestUtils.saveResource("/repository/repository.properties", writer.toString(), "UTF-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

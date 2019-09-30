@@ -29,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -113,6 +114,15 @@ public class TestUtils {
 	public static void saveResource(String resource, String text, String encoding) throws IOException {
 		Path path = Paths.get("src/test/resources" + resource);
 		byte[] data = text.getBytes(encoding);
+
+		// check if file content has changed
+		if (Files.exists(path)) {
+			byte[] data2 = Files.readAllBytes(path);
+			if (Arrays.equals(data, data2)) {
+				return;
+			}
+		}
+
 		Files.write(path, data);
 
 		//noinspection ConstantConditions
