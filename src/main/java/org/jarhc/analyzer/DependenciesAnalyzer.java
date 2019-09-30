@@ -16,8 +16,6 @@
 
 package org.jarhc.analyzer;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,10 +26,11 @@ import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
-import org.jarhc.pom.Model;
-import org.jarhc.pom.ModelException;
-import org.jarhc.pom.ModelReader;
 import org.jarhc.pom.Scope;
+import org.jarhc.pom.resolver.DependencyResolver;
+import org.jarhc.pom.resolver.PomNotFoundException;
+import org.jarhc.pom.resolver.RepositoryDependencyResolver;
+import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
@@ -47,10 +46,12 @@ public class DependenciesAnalyzer implements Analyzer {
 	private static final String ERROR = "[error]";
 
 	private final Repository repository;
+	private final DependencyResolver dependencyResolver;
 
 	public DependenciesAnalyzer(Repository repository) {
 		if (repository == null) throw new IllegalArgumentException("repository");
 		this.repository = repository;
+		this.dependencyResolver = new RepositoryDependencyResolver(repository);
 	}
 
 	@Override
@@ -90,33 +91,31 @@ public class DependenciesAnalyzer implements Analyzer {
 		}
 
 		Artifact artifact = new Artifact(coordinates);
-		artifact = artifact.withType("pom");
 
-		Optional<InputStream> result;
 		try {
-			result = repository.downloadArtifact(artifact);
-			if (!result.isPresent()) {
-				LOGGER.warn("POM file not found: {}", artifact);
-				return Collections.singletonList(ERROR);
-			}
-		} catch (RepositoryException e) {
-			LOGGER.warn("Repository error for POM file: {}", artifact, e);
-			return Collections.singletonList(ERROR);
-		}
 
-		try (InputStream inputStream = result.get()) {
-			ModelReader reader = new ModelReader();
-			Model model = reader.read(inputStream);
-			List<String> dependencies = model.getDependencies().stream()
-					.filter(d -> d.getScope() != Scope.TEST)
-					.map(Dependency::toString)
-					.collect(Collectors.toList());
+			// try to find all direct dependencies
+			List<Dependency> dependencies = dependencyResolver.getDependencies(artifact);
+
+			// ignore test dependencies
+			dependencies.removeIf(d -> d.getScope() == Scope.TEST);
+
+			// if there are no direct dependencies ...
 			if (dependencies.isEmpty()) {
+				// show special value "none"
 				return Collections.singletonList(NONE);
 			}
-			return dependencies;
-		} catch (IOException | ModelException e) {
-			LOGGER.warn("Repository error for POM file: {}", artifact, e);
+
+			// return list of dependencies as coordinates
+			return dependencies.stream()
+					.map(Dependency::toString)
+					.collect(Collectors.toList());
+
+		} catch (PomNotFoundException e) {
+			LOGGER.warn(e.getMessage());
+			return Collections.singletonList(ERROR);
+		} catch (ResolverException e) {
+			LOGGER.error("Resolver error for artifact: {}", artifact, e);
 			return Collections.singletonList(ERROR);
 		}
 
