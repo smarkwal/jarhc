@@ -44,32 +44,52 @@ public class ModelReader {
 			XPathFactory xPathFactory = XPathFactory.newInstance();
 			XPath xPath = xPathFactory.newXPath();
 
+			// extract parent coordinates
+			String parentGroupId = xPath.evaluate("project/parent/groupId", document);
+			String parentArtifactId = xPath.evaluate("project/parent/artifactId", document);
+			String parentVersion = xPath.evaluate("project/parent/version", document);
+
 			// extract coordinates
 			String groupId = xPath.evaluate("project/groupId", document);
 			if (groupId.isEmpty()) {
 				// inherit group ID from parent
-				groupId = xPath.evaluate("project/parent/groupId", document);
+				groupId = parentGroupId;
 			}
 			String artifactId = xPath.evaluate("project/artifactId", document);
 			String version = xPath.evaluate("project/version", document);
 			if (version.isEmpty()) {
 				// inherit version from parent
-				version = xPath.evaluate("project/parent/version", document);
+				version = parentVersion;
 			}
+
+			// create model with project and parent coordinates
 			Model model = new Model(groupId, artifactId, version);
+			if (!parentGroupId.isEmpty() || !parentArtifactId.isEmpty()) {
+				model.setParent(parentGroupId, parentArtifactId, parentVersion);
+			}
+
+			// extract properties
+			NodeList propertyNodes = (NodeList) xPath.evaluate("project/properties/*", document, XPathConstants.NODESET);
+			for (int n = 0; n < propertyNodes.getLength(); n++) {
+				Node propertyNode = propertyNodes.item(n);
+
+				String propertyName = propertyNode.getNodeName();
+				String propertyValue = propertyNode.getTextContent();
+				model.setProperty(propertyName, propertyValue);
+			}
 
 			// extract additional project information
 			String name = xPath.evaluate("project/name", document);
 			model.setName(name);
-			String description = xPath.evaluate("project/description", document);
-			model.setDescription(description.trim());
+			String description = xPath.evaluate("project/description", document).trim();
+			model.setDescription(description);
 
 			// extract dependencies
 			NodeList dependencyNodes = (NodeList) xPath.evaluate("project/dependencies/dependency", document, XPathConstants.NODESET);
 			for (int n = 0; n < dependencyNodes.getLength(); n++) {
 				Node dependencyNode = dependencyNodes.item(n);
 
-				Dependency dependency = read(dependencyNode, xPath, version);
+				Dependency dependency = read(dependencyNode, xPath);
 				model.addDependency(dependency);
 			}
 
@@ -81,20 +101,19 @@ public class ModelReader {
 
 	}
 
-	private Dependency read(Node node, XPath xPath, String projectVersion) throws XPathExpressionException {
+	private Dependency read(Node node, XPath xPath) throws XPathExpressionException {
 
 		// extract coordinates
 		String groupId = xPath.evaluate("groupId", node);
 		String artifactId = xPath.evaluate("artifactId", node);
 		String version = xPath.evaluate("version", node);
 
-		// special handling for version expressions
-		if (version.isEmpty()) {
-			// TODO: look for dependency-management information in parent project.
-			//  see https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management
-			version = "?";
-		} else if (version.equals("${project.version}")) {
-			version = projectVersion;
+		// extract type (default: "jar")
+		String type = xPath.evaluate("type", node);
+		if (type.isEmpty()) {
+			type = "jar";
+			// TODO: do something with this type (-> read documentation)
+			//  example: camel-spring-2.17.7 has a dependency of type "test-jar"
 		}
 
 		// extract scope (default: "compile")
@@ -103,6 +122,8 @@ public class ModelReader {
 
 		// extract optional (default: false)
 		boolean optional = xPath.evaluate("optional", node).equals("true");
+
+		// TODO: parse exclusions
 
 		return new Dependency(groupId, artifactId, version, Scope.parse(scope), optional);
 	}

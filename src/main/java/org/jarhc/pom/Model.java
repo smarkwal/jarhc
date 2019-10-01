@@ -17,20 +17,27 @@
 package org.jarhc.pom;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents a project model as declared in a POM file.
  */
 public class Model {
 
-	private final String groupId;
-	private final String artifactId;
-	private final String version;
+	private String groupId;
+	private String artifactId;
+	private String version;
+
+	private String parentGroupId;
+	private String parentArtifactId;
+	private String parentVersion;
 
 	private String name;
 	private String description;
 
+	private final Map<String, String> properties = new LinkedHashMap<>();
 	private final List<Dependency> dependencies = new ArrayList<>();
 
 	Model(String groupId, String artifactId, String version) {
@@ -54,6 +61,32 @@ public class Model {
 		return version;
 	}
 
+	void setVersion(String version) {
+		if (version == null || version.isEmpty()) throw new IllegalArgumentException("version");
+		this.version = version;
+	}
+
+	public String getParentGroupId() {
+		return parentGroupId;
+	}
+
+	public String getParentArtifactId() {
+		return parentArtifactId;
+	}
+
+	public String getParentVersion() {
+		return parentVersion;
+	}
+
+	void setParent(String groupId, String artifactId, String version) {
+		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
+		if (artifactId == null || artifactId.isEmpty()) throw new IllegalArgumentException("artifactId");
+		if (version == null || version.isEmpty()) throw new IllegalArgumentException("version");
+		this.parentGroupId = groupId;
+		this.parentArtifactId = artifactId;
+		this.parentVersion = version;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -68,6 +101,22 @@ public class Model {
 
 	void setDescription(String description) {
 		this.description = description;
+	}
+
+	void setProperty(String name, String value) {
+		properties.put(name, value);
+	}
+
+	public boolean hasProperty(String name) {
+		return properties.containsKey(name);
+	}
+
+	public String getProperty(String name) {
+		return properties.get(name);
+	}
+
+	public List<String> getPropertyNames() {
+		return new ArrayList<>(properties.keySet());
 	}
 
 	void addDependency(Dependency dependency) {

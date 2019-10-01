@@ -29,7 +29,7 @@ commons-configuration-1.9.jar | commons-configuration:commons-configuration:1.9 
                               |                                                 | javax.servlet:servlet-api:2.4 (provided)                         |
                               |                                                 | xml-apis:xml-apis:1.0.b2 (provided)                              |
                               |                                                 | log4j:log4j:1.2.8 (optional)                                     |
-commons-dbcp2-2.5.0.jar       | org.apache.commons:commons-dbcp2:2.5.0          | org.apache.commons:commons-pool2:${commons.pool.version}         | [todo]
+commons-dbcp2-2.5.0.jar       | org.apache.commons:commons-dbcp2:2.5.0          | org.apache.commons:commons-pool2:2.6.0                           | [todo]
                               |                                                 | commons-logging:commons-logging:1.2                              |
                               |                                                 | org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1 (optional) |
 commons-dbutils-1.5.jar       | commons-dbutils:commons-dbutils:1.5             | [none]                                                           | [todo]

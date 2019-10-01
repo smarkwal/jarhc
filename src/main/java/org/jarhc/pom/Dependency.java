@@ -18,11 +18,11 @@ package org.jarhc.pom;
 
 public class Dependency {
 
-	private final String groupId;
-	private final String artifactId;
-	private final String version;
-	private final Scope scope;
-	private final boolean optional;
+	private String groupId;
+	private String artifactId;
+	private String version;
+	private Scope scope;
+	private boolean optional;
 
 	Dependency(String groupId, String artifactId, String version, Scope scope, boolean optional) {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
@@ -45,6 +45,11 @@ public class Dependency {
 
 	public String getVersion() {
 		return version;
+	}
+
+	public void setVersion(String version) {
+		if (version == null) throw new IllegalArgumentException("version");
+		this.version = version;
 	}
 
 	public Scope getScope() {
