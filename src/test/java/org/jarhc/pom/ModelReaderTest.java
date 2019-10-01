@@ -46,9 +46,10 @@ class ModelReaderTest {
 		assertEquals("org.ow2.asm", model.getGroupId());
 		assertEquals("asm", model.getArtifactId());
 		assertEquals("7.1", model.getVersion());
-		assertEquals("org.ow2", model.getParentGroupId());
-		assertEquals("ow2", model.getParentArtifactId());
-		assertEquals("1.5", model.getParentVersion());
+		assertNotNull(model.getParent());
+		assertEquals("org.ow2", model.getParent().getGroupId());
+		assertEquals("ow2", model.getParent().getArtifactId());
+		assertEquals("1.5", model.getParent().getVersion());
 		assertEquals("asm", model.getName());
 		assertEquals("ASM, a very small and fast Java bytecode manipulation framework", model.getDescription());
 
@@ -76,9 +77,10 @@ class ModelReaderTest {
 		assertEquals("org.ow2.asm", model.getGroupId());
 		assertEquals("asm-tree", model.getArtifactId());
 		assertEquals("7.1", model.getVersion());
-		assertEquals("org.ow2", model.getParentGroupId());
-		assertEquals("ow2", model.getParentArtifactId());
-		assertEquals("1.5", model.getParentVersion());
+		assertNotNull(model.getParent());
+		assertEquals("org.ow2", model.getParent().getGroupId());
+		assertEquals("ow2", model.getParent().getArtifactId());
+		assertEquals("1.5", model.getParent().getVersion());
 		assertEquals("asm-tree", model.getName());
 		assertEquals("Tree API of ASM, a very small and fast Java bytecode manipulation framework", model.getDescription());
 
@@ -107,9 +109,10 @@ class ModelReaderTest {
 		assertEquals("commons-io", model.getGroupId());
 		assertEquals("commons-io", model.getArtifactId());
 		assertEquals("2.6", model.getVersion());
-		assertEquals("org.apache.commons", model.getParentGroupId());
-		assertEquals("commons-parent", model.getParentArtifactId());
-		assertEquals("42", model.getParentVersion());
+		assertNotNull(model.getParent());
+		assertEquals("org.apache.commons", model.getParent().getGroupId());
+		assertEquals("commons-parent", model.getParent().getArtifactId());
+		assertEquals("42", model.getParent().getVersion());
 		assertEquals("Apache Commons IO", model.getName());
 		assertEquals("The Apache Commons IO library contains utility classes, stream implementations, file filters,\n\t\tfile comparators, endian transformation classes, and much more.", model.getDescription());
 
@@ -137,9 +140,10 @@ class ModelReaderTest {
 		assertEquals("org.apache.james", model.getGroupId());
 		assertEquals("apache-mime4j-core", model.getArtifactId());
 		assertEquals("0.7.2", model.getVersion());
-		assertEquals("org.apache.james", model.getParentGroupId());
-		assertEquals("apache-mime4j-project", model.getParentArtifactId());
-		assertEquals("0.7.2", model.getParentVersion());
+		assertNotNull(model.getParent());
+		assertEquals("org.apache.james", model.getParent().getGroupId());
+		assertEquals("apache-mime4j-project", model.getParent().getArtifactId());
+		assertEquals("0.7.2", model.getParent().getVersion());
 		assertEquals("Apache JAMES Mime4j (Core)", model.getName());
 		assertEquals("", model.getDescription());
 

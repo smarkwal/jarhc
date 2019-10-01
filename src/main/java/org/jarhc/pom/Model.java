@@ -30,9 +30,7 @@ public class Model {
 	private String artifactId;
 	private String version;
 
-	private String parentGroupId;
-	private String parentArtifactId;
-	private String parentVersion;
+	private Model parent;
 
 	private String name;
 	private String description;
@@ -66,25 +64,24 @@ public class Model {
 		this.version = version;
 	}
 
-	public String getParentGroupId() {
-		return parentGroupId;
+	public boolean hasParent() {
+		return parent != null;
 	}
 
-	public String getParentArtifactId() {
-		return parentArtifactId;
-	}
-
-	public String getParentVersion() {
-		return parentVersion;
+	public Model getParent() {
+		return parent;
 	}
 
 	void setParent(String groupId, String artifactId, String version) {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
 		if (artifactId == null || artifactId.isEmpty()) throw new IllegalArgumentException("artifactId");
 		if (version == null || version.isEmpty()) throw new IllegalArgumentException("version");
-		this.parentGroupId = groupId;
-		this.parentArtifactId = artifactId;
-		this.parentVersion = version;
+		this.parent = new Model(groupId, artifactId, version);
+	}
+
+	public void setParent(Model parent) {
+		if (parent == null) throw new IllegalArgumentException("parent");
+		this.parent = parent;
 	}
 
 	public String getName() {
