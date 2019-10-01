@@ -35,9 +35,10 @@ import org.jarhc.pom.ModelReader;
 
 public class RepositoryDependencyResolver implements DependencyResolver {
 
+	private static final List<Dependency> POM_NOT_FOUND = Collections.emptyList();
+
 	private final Repository repository;
 	private final Map<Artifact, List<Dependency>> cache = new ConcurrentHashMap<>();
-	private final List<Dependency> POM_NOT_FOUND = Collections.emptyList();
 
 	public RepositoryDependencyResolver(Repository repository) {
 		this.repository = repository;

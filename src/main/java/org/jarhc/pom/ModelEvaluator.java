@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 public class ModelEvaluator {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(ModelEvaluator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ModelEvaluator.class);
 
 	public void evaluateModel(Model model) {
 
