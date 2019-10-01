@@ -19,10 +19,12 @@ package org.jarhc.pom;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -44,8 +46,13 @@ class ModelReaderTest {
 		assertEquals("org.ow2.asm", model.getGroupId());
 		assertEquals("asm", model.getArtifactId());
 		assertEquals("7.1", model.getVersion());
+		assertEquals("org.ow2", model.getParentGroupId());
+		assertEquals("ow2", model.getParentArtifactId());
+		assertEquals("1.5", model.getParentVersion());
 		assertEquals("asm", model.getName());
 		assertEquals("ASM, a very small and fast Java bytecode manipulation framework", model.getDescription());
+
+		assertEquals(new ArrayList<>(), model.getPropertyNames());
 
 		List<Dependency> dependencies = model.getDependencies();
 		assertEquals(3, dependencies.size());
@@ -69,8 +76,13 @@ class ModelReaderTest {
 		assertEquals("org.ow2.asm", model.getGroupId());
 		assertEquals("asm-tree", model.getArtifactId());
 		assertEquals("7.1", model.getVersion());
+		assertEquals("org.ow2", model.getParentGroupId());
+		assertEquals("ow2", model.getParentArtifactId());
+		assertEquals("1.5", model.getParentVersion());
 		assertEquals("asm-tree", model.getName());
 		assertEquals("Tree API of ASM, a very small and fast Java bytecode manipulation framework", model.getDescription());
+
+		assertEquals(new ArrayList<>(), model.getPropertyNames());
 
 		List<Dependency> dependencies = model.getDependencies();
 		assertEquals(4, dependencies.size());
@@ -95,8 +107,15 @@ class ModelReaderTest {
 		assertEquals("commons-io", model.getGroupId());
 		assertEquals("commons-io", model.getArtifactId());
 		assertEquals("2.6", model.getVersion());
+		assertEquals("org.apache.commons", model.getParentGroupId());
+		assertEquals("commons-parent", model.getParentArtifactId());
+		assertEquals("42", model.getParentVersion());
 		assertEquals("Apache Commons IO", model.getName());
 		assertEquals("The Apache Commons IO library contains utility classes, stream implementations, file filters,\n\t\tfile comparators, endian transformation classes, and much more.", model.getDescription());
+
+		assertEquals(13, model.getPropertyNames().size());
+		assertTrue(model.hasProperty("maven.compiler.source"));
+		assertEquals("1.7", model.getProperty("maven.compiler.source"));
 
 		List<Dependency> dependencies = model.getDependencies();
 		assertEquals(1, dependencies.size());
@@ -118,13 +137,18 @@ class ModelReaderTest {
 		assertEquals("org.apache.james", model.getGroupId());
 		assertEquals("apache-mime4j-core", model.getArtifactId());
 		assertEquals("0.7.2", model.getVersion());
+		assertEquals("org.apache.james", model.getParentGroupId());
+		assertEquals("apache-mime4j-project", model.getParentArtifactId());
+		assertEquals("0.7.2", model.getParentVersion());
 		assertEquals("Apache JAMES Mime4j (Core)", model.getName());
 		assertEquals("", model.getDescription());
 
+		assertEquals(new ArrayList<>(), model.getPropertyNames());
+
 		List<Dependency> dependencies = model.getDependencies();
 		assertEquals(2, dependencies.size());
-		assertEquals(new Dependency("junit", "junit", "?", Scope.TEST, true), dependencies.get(0));
-		assertEquals(new Dependency("commons-io", "commons-io", "?", Scope.TEST, true), dependencies.get(1));
+		assertEquals(new Dependency("junit", "junit", "", Scope.TEST, true), dependencies.get(0));
+		assertEquals(new Dependency("commons-io", "commons-io", "", Scope.TEST, true), dependencies.get(1));
 
 	}
 

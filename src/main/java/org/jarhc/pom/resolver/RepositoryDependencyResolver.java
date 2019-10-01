@@ -29,6 +29,7 @@ import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Model;
+import org.jarhc.pom.ModelEvaluator;
 import org.jarhc.pom.ModelException;
 import org.jarhc.pom.ModelReader;
 
@@ -88,6 +89,10 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 			String message = String.format("Parser error for POM file: %s", artifact);
 			throw new ResolverException(message, e);
 		}
+
+		// evaluate expressions in model
+		ModelEvaluator evaluator = new ModelEvaluator();
+		evaluator.evaluateModel(model);
 
 		// update cache
 		List<Dependency> dependencies = model.getDependencies();
