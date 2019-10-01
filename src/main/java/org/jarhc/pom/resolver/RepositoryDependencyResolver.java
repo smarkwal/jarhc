@@ -61,6 +61,27 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 			return new ArrayList<>(dependencies);
 		}
 
+		Model model = loadModel(artifact);
+
+		// if model has a parent project ...
+		if (model.hasParent()) {
+			loadParents(model);
+		}
+
+		// evaluate expressions in model
+		ModelEvaluator evaluator = new ModelEvaluator();
+		evaluator.evaluateModel(model);
+
+		// update cache
+		List<Dependency> dependencies = model.getDependencies();
+		cache.put(artifact, dependencies);
+
+		return new ArrayList<>(dependencies);
+
+	}
+
+	private Model loadModel(Artifact artifact) throws ResolverException {
+
 		// try to download POM file
 		Optional<InputStream> result;
 		try {
@@ -89,16 +110,27 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 			String message = String.format("Parser error for POM file: %s", artifact);
 			throw new ResolverException(message, e);
 		}
+		return model;
 
-		// evaluate expressions in model
-		ModelEvaluator evaluator = new ModelEvaluator();
-		evaluator.evaluateModel(model);
+	}
 
-		// update cache
-		List<Dependency> dependencies = model.getDependencies();
-		cache.put(artifact, dependencies);
+	private void loadParents(Model model) throws ResolverException {
 
-		return new ArrayList<>(dependencies);
+		// get parent project coordinates
+		Model parent = model.getParent();
+		String groupId = parent.getGroupId();
+		String artifactId = parent.getArtifactId();
+		String versionId = parent.getVersion();
+		Artifact artifact = new Artifact(groupId, artifactId, versionId, "pom");
+
+		// try to load parent model
+		parent = loadModel(artifact); // TODO: graceful exception handling
+		model.setParent(parent);
+
+		// recursion: load parent of parent
+		if (parent.hasParent()) {
+			loadParents(parent);
+		}
 
 	}
 
