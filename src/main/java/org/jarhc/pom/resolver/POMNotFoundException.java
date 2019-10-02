@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.jarhc.pom;
+package org.jarhc.pom.resolver;
 
-public class ModelException extends Exception {
+public class POMNotFoundException extends ResolverException {
 
-	ModelException(String message, Throwable cause) {
-		super(message, cause);
+	public POMNotFoundException(String message) {
+		super(message);
 	}
 
 }

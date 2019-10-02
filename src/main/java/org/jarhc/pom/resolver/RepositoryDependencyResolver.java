@@ -28,10 +28,10 @@ import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.pom.Dependency;
-import org.jarhc.pom.Model;
-import org.jarhc.pom.ModelEvaluator;
-import org.jarhc.pom.ModelException;
-import org.jarhc.pom.ModelReader;
+import org.jarhc.pom.POM;
+import org.jarhc.pom.POMEvaluator;
+import org.jarhc.pom.POMException;
+import org.jarhc.pom.POMReader;
 
 public class RepositoryDependencyResolver implements DependencyResolver {
 
@@ -56,32 +56,32 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 			// check for negative cache result
 			if (dependencies == POM_NOT_FOUND) {
 				String message = String.format("POM file not found: %s", artifact);
-				throw new PomNotFoundException(message);
+				throw new POMNotFoundException(message);
 			}
 
 			return new ArrayList<>(dependencies);
 		}
 
-		Model model = loadModel(artifact);
+		POM pom = loadPOM(artifact);
 
-		// if model has a parent project ...
-		if (model.hasParent()) {
-			loadParents(model);
+		// if POM has a parent project ...
+		if (pom.hasParent()) {
+			loadParents(pom);
 		}
 
-		// evaluate expressions in model
-		ModelEvaluator evaluator = new ModelEvaluator();
-		evaluator.evaluateModel(model);
+		// evaluate expressions in POM
+		POMEvaluator evaluator = new POMEvaluator();
+		evaluator.evaluatePOM(pom);
 
 		// update cache
-		List<Dependency> dependencies = model.getDependencies();
+		List<Dependency> dependencies = pom.getDependencies();
 		cache.put(artifact, dependencies);
 
 		return new ArrayList<>(dependencies);
 
 	}
 
-	private Model loadModel(Artifact artifact) throws ResolverException {
+	private POM loadPOM(Artifact artifact) throws ResolverException {
 
 		// try to download POM file
 		Optional<InputStream> result;
@@ -99,34 +99,34 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 			cache.put(artifact, POM_NOT_FOUND);
 
 			String message = String.format("POM file not found: %s", artifact);
-			throw new PomNotFoundException(message);
+			throw new POMNotFoundException(message);
 		}
 
 		// parse POM file
-		Model model;
+		POM pom;
 		try (InputStream inputStream = result.get()) {
-			ModelReader reader = new ModelReader();
-			model = reader.read(inputStream);
-		} catch (IOException | ModelException e) {
+			POMReader reader = new POMReader();
+			pom = reader.read(inputStream);
+		} catch (IOException | POMException e) {
 			String message = String.format("Parser error for POM file: %s", artifact);
 			throw new ResolverException(message, e);
 		}
-		return model;
+		return pom;
 
 	}
 
-	private void loadParents(Model model) throws ResolverException {
+	private void loadParents(POM pom) throws ResolverException {
 
 		// get parent project coordinates
-		Model parent = model.getParent();
+		POM parent = pom.getParent();
 		String groupId = parent.getGroupId();
 		String artifactId = parent.getArtifactId();
 		String versionId = parent.getVersion();
 		Artifact artifact = new Artifact(groupId, artifactId, versionId, "pom");
 
-		// try to load parent model
-		parent = loadModel(artifact); // TODO: graceful exception handling
-		model.setParent(parent);
+		// try to load parent POM
+		parent = loadPOM(artifact); // TODO: graceful exception handling
+		pom.setParent(parent);
 
 		// recursion: load parent of parent
 		if (parent.hasParent()) {

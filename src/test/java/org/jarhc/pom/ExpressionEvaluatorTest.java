@@ -29,9 +29,9 @@ class ExpressionEvaluatorTest {
 	void evaluateText() {
 
 		// prepare
-		Model model = new Model("org.jarhc", "jarhc", "1.0");
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
-		model.setProperty("lib.name", "jarhc");
+		POM pom = new POM("org.jarhc", "jarhc", "1.0");
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
+		pom.setProperty("lib.name", "jarhc");
 
 		// test
 		String result = evaluator.evaluateText("${lib.name}-${project.version}.jar");
@@ -45,8 +45,8 @@ class ExpressionEvaluatorTest {
 	void evaluateText_withUnknownProperty() {
 
 		// prepare
-		Model model = new Model("org.jarhc", "jarhc", "1.0");
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
+		POM pom = new POM("org.jarhc", "jarhc", "1.0");
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
 
 		// test
 		String result = evaluator.evaluateText("${lib.name}-${lib.version}.jar");
@@ -60,9 +60,9 @@ class ExpressionEvaluatorTest {
 	void evaluateExpression() {
 
 		// prepare
-		Model model = new Model("org.jarhc", "jarhc", "1.0");
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
-		model.setProperty("skip.benchmarks", "true");
+		POM pom = new POM("org.jarhc", "jarhc", "1.0");
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
+		pom.setProperty("skip.benchmarks", "true");
 
 		// test
 		Optional<String> result = evaluator.evaluateExpression("skip.benchmarks");
@@ -77,8 +77,8 @@ class ExpressionEvaluatorTest {
 	void evaluateExpression_withUnknownProperty() {
 
 		// prepare
-		Model model = new Model("org.jarhc", "jarhc", "1.0");
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
+		POM pom = new POM("org.jarhc", "jarhc", "1.0");
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
 
 		// test
 		Optional<String> result = evaluator.evaluateExpression("unknown.property");
@@ -92,8 +92,8 @@ class ExpressionEvaluatorTest {
 	void evaluateExpression_withProjectVersion() {
 
 		// prepare
-		Model model = new Model("org.jarhc", "jarhc", "1.0");
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
+		POM pom = new POM("org.jarhc", "jarhc", "1.0");
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
 
 		// test
 		Optional<String> result = evaluator.evaluateExpression("project.version");

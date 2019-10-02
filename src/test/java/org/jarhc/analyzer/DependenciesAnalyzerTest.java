@@ -31,7 +31,7 @@ import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.resolver.DependencyResolver;
-import org.jarhc.pom.resolver.PomNotFoundException;
+import org.jarhc.pom.resolver.POMNotFoundException;
 import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -52,7 +52,7 @@ class DependenciesAnalyzerTest {
 
 		when(dependencyResolver.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 3));
 		when(dependencyResolver.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
-		when(dependencyResolver.getDependencies(artifactNoPom)).thenThrow(new PomNotFoundException("test"));
+		when(dependencyResolver.getDependencies(artifactNoPom)).thenThrow(new POMNotFoundException("test"));
 		when(dependencyResolver.getDependencies(artifactRepoError)).thenThrow(new ResolverException("test", new RepositoryException("test")));
 
 	}

@@ -28,9 +28,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ModelReader {
+public class POMReader {
 
-	public Model read(InputStream inputStream) throws ModelException {
+	public POM read(InputStream inputStream) throws POMException {
 
 		try {
 
@@ -62,10 +62,10 @@ public class ModelReader {
 				version = parentVersion;
 			}
 
-			// create model with project and parent coordinates
-			Model model = new Model(groupId, artifactId, version);
+			// create POM with project and parent coordinates
+			POM pom = new POM(groupId, artifactId, version);
 			if (!parentGroupId.isEmpty() || !parentArtifactId.isEmpty()) {
-				model.setParent(parentGroupId, parentArtifactId, parentVersion);
+				pom.setParent(parentGroupId, parentArtifactId, parentVersion);
 			}
 
 			// extract properties
@@ -75,14 +75,14 @@ public class ModelReader {
 
 				String propertyName = propertyNode.getNodeName();
 				String propertyValue = propertyNode.getTextContent();
-				model.setProperty(propertyName, propertyValue);
+				pom.setProperty(propertyName, propertyValue);
 			}
 
 			// extract additional project information
 			String name = xPath.evaluate("project/name", document);
-			model.setName(name);
+			pom.setName(name);
 			String description = xPath.evaluate("project/description", document).trim();
-			model.setDescription(description);
+			pom.setDescription(description);
 
 			// extract dependencies
 			NodeList dependencyNodes = (NodeList) xPath.evaluate("project/dependencies/dependency", document, XPathConstants.NODESET);
@@ -90,13 +90,13 @@ public class ModelReader {
 				Node dependencyNode = dependencyNodes.item(n);
 
 				Dependency dependency = read(dependencyNode, xPath);
-				model.addDependency(dependency);
+				pom.addDependency(dependency);
 			}
 
-			return model;
+			return pom;
 
 		} catch (Exception e) {
-			throw new ModelException("Unexpected error", e);
+			throw new POMException("Unexpected error", e);
 		}
 
 	}
