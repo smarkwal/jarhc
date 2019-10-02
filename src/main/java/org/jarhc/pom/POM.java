@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Represents a project model as declared in a POM file.
@@ -37,6 +38,7 @@ public class POM {
 
 	private final Map<String, String> properties = new LinkedHashMap<>();
 	private final List<Dependency> dependencies = new ArrayList<>();
+	private final List<Dependency> dependencyManagement = new ArrayList<>();
 
 	POM(String groupId, String artifactId, String version) {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
@@ -112,6 +114,23 @@ public class POM {
 		return properties.get(name);
 	}
 
+	/**
+	 * Get a property value from this POM or a parent POM.
+	 *
+	 * @param name Property name
+	 * @return Property value
+	 */
+	public Optional<String> findProperty(String name) {
+		if (properties.containsKey(name)) {
+			String value = properties.get(name);
+			return Optional.of(value);
+		} else if (parent != null) {
+			return parent.findProperty(name);
+		} else {
+			return Optional.empty();
+		}
+	}
+
 	public List<String> getPropertyNames() {
 		return new ArrayList<>(properties.keySet());
 	}
@@ -122,6 +141,29 @@ public class POM {
 
 	public List<Dependency> getDependencies() {
 		return new ArrayList<>(dependencies);
+	}
+
+	void addDependencyManagement(Dependency dependency) {
+		dependencyManagement.add(dependency);
+	}
+
+	public List<Dependency> getDependencyManagement() {
+		return dependencyManagement;
+	}
+
+	public Optional<Dependency> findDependencyManagement(String groupId, String artifactId) {
+
+		for (Dependency dependency : dependencyManagement) {
+			if (dependency.getGroupId().equals(groupId) && dependency.getArtifactId().equals(artifactId)) {
+				return Optional.of(dependency);
+			}
+		}
+
+		if (parent != null) {
+			return parent.findDependencyManagement(groupId, artifactId);
+		}
+
+		return Optional.empty();
 	}
 
 }

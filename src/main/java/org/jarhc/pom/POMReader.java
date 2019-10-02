@@ -84,6 +84,15 @@ public class POMReader {
 			String description = xPath.evaluate("project/description", document).trim();
 			pom.setDescription(description);
 
+			// extract dependency management
+			NodeList dependencyManagementNodes = (NodeList) xPath.evaluate("project/dependencyManagement/dependencies/dependency", document, XPathConstants.NODESET);
+			for (int n = 0; n < dependencyManagementNodes.getLength(); n++) {
+				Node dependencyNode = dependencyManagementNodes.item(n);
+
+				Dependency dependency = read(dependencyNode, xPath);
+				pom.addDependencyManagement(dependency);
+			}
+
 			// extract dependencies
 			NodeList dependencyNodes = (NodeList) xPath.evaluate("project/dependencies/dependency", document, XPathConstants.NODESET);
 			for (int n = 0; n < dependencyNodes.getLength(); n++) {

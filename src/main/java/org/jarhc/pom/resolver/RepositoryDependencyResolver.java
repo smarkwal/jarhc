@@ -24,7 +24,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.POM;
-import org.jarhc.pom.POMEvaluator;
 import org.jarhc.pom.POMException;
 import org.jarhc.pom.POMLoader;
 
@@ -58,10 +57,6 @@ public class RepositoryDependencyResolver implements DependencyResolver {
 		}
 
 		POM pom = pomLoader.load(artifact);
-
-		// evaluate expressions in POM
-		POMEvaluator evaluator = new POMEvaluator();
-		evaluator.evaluatePOM(pom);
 
 		// update cache
 		List<Dependency> dependencies = pom.getDependencies();

@@ -58,10 +58,10 @@ class ExpressionEvaluator {
 	}
 
 	Optional<String> evaluateExpression(String expression) {
-		if (pom.hasProperty(expression)) {
-			String property = pom.getProperty(expression);
-			property = evaluateText(property); // recursive
-			return Optional.of(property);
+		Optional<String> property = pom.findProperty(expression);
+		if (property.isPresent()) {
+			String value = evaluateText(property.get()); // recursive
+			return Optional.of(value);
 		} else if (expression.equals("project.version")) {
 			return Optional.of(pom.getVersion());
 		} else {

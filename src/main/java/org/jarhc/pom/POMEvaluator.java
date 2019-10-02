@@ -17,6 +17,7 @@
 package org.jarhc.pom;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import org.slf4j.Logger;
@@ -28,30 +29,58 @@ public class POMEvaluator {
 
 	public void evaluatePOM(POM pom) {
 
+		// TODO: check if POM has already been evaluated
+
+		// evaluate parent first (if present)
+		if (pom.hasParent()) {
+			POM parent = pom.getParent();
+			evaluatePOM(parent);
+		}
+
 		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
 
 		// evaluate project version
 		evaluate(pom::getVersion, pom::setVersion, evaluator);
 
 		if (containsExpression(pom.getVersion())) {
-			// TODO: look for properties in parent project.
 			LOGGER.warn("Project with version expression: {}:{}:{}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion());
+		}
+
+		// for every dependency management ...
+		for (Dependency dependency : pom.getDependencyManagement()) {
+
+			// evaluate dependency version
+			evaluate(dependency::getVersion, dependency::setVersion, evaluator);
+
+			if (containsExpression(dependency.getVersion())) {
+				LOGGER.warn("Dependency Management with version expression: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
+			}
+
 		}
 
 		// for every dependency ...
 		List<Dependency> dependencies = pom.getDependencies();
 		for (Dependency dependency : dependencies) {
 
-			// evaluate dependency versions
+			// evaluate dependency version
 			evaluate(dependency::getVersion, dependency::setVersion, evaluator);
 
 			if (dependency.getVersion().isEmpty()) {
-				// TODO: look for dependency-management information in parent project.
-				//  see https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management
-				LOGGER.warn("Dependency without version: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
-				dependency.setVersion("?");
-			} else if (containsExpression(dependency.getVersion())) {
-				// TODO: look for properties in parent project.
+
+				// look for dependency-management information in parent projects
+				Optional<Dependency> dependencyManagement = pom.findDependencyManagement(dependency.getGroupId(), dependency.getArtifactId());
+				if (dependencyManagement.isPresent()) {
+					// copy version from dependency management
+					String version = dependencyManagement.get().getVersion();
+					dependency.setVersion(version);
+				} else {
+					LOGGER.warn("Dependency without version: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
+					dependency.setVersion("?");
+				}
+
+			}
+
+			if (containsExpression(dependency.getVersion())) {
 				LOGGER.warn("Dependency with version expression: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
 			}
 
