@@ -106,25 +106,25 @@ class DependenciesAnalyzerTest {
 		assertEquals("lib-no-deps.jar", values[0]);
 		assertEquals("group:lib-no-deps:1.0:jar", values[1]);
 		assertEquals("[none]", values[2]);
-		assertEquals("[todo]", values[3]);
+		assertEquals("[none]", values[3]);
 
 		values = rows.get(2);
 		assertEquals("lib-no-pom.jar", values[0]);
 		assertEquals("group:lib-no-pom:1.0:jar", values[1]);
 		assertEquals("[error]", values[2]);
-		assertEquals("[todo]", values[3]);
+		assertEquals("[unknown]", values[3]);
 
 		values = rows.get(3);
 		assertEquals("lib-repo-error.jar", values[0]);
 		assertEquals("group:lib-repo-error:1.0:jar", values[1]);
 		assertEquals("[error]", values[2]);
-		assertEquals("[todo]", values[3]);
+		assertEquals("[unknown]", values[3]);
 
 		values = rows.get(4);
 		assertEquals("lib-unknown.jar", values[0]);
 		assertEquals("[unknown]", values[1]);
 		assertEquals("[unknown]", values[2]);
-		assertEquals("[todo]", values[3]);
+		assertEquals("[unknown]", values[3]);
 
 	}
 

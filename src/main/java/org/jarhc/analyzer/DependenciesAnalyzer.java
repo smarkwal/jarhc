@@ -16,7 +16,6 @@
 
 package org.jarhc.analyzer;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
@@ -70,19 +69,37 @@ public class DependenciesAnalyzer implements Analyzer {
 			String fileName = jarFile.getFileName();
 			String coordinates = getCoordinates(jarFile);
 
-			List<String> dependencies = getDependencies(coordinates);
+			String directDependenciesInfo = UNKNOWN;
+			String transitiveDependenciesInfo = UNKNOWN;
 
-			table.addRow(fileName, coordinates, StringUtils.joinLines(dependencies), "[todo]");
+			if (Artifact.validateCoordinates(coordinates)) {
+
+				List<Dependency> directDependencies = getDirectDependencies(coordinates);
+				if (directDependencies == null) { // error
+					directDependenciesInfo = ERROR;
+				} else if (directDependencies.isEmpty()) { // no direct dependencies
+					// show special value "none"
+					directDependenciesInfo = NONE;
+					transitiveDependenciesInfo = NONE;
+				} else {
+					List<String> lines = directDependencies.stream()
+							.map(Dependency::toString)
+							.collect(Collectors.toList());
+					directDependenciesInfo = StringUtils.joinLines(lines);
+
+					// TODO: collect transitive dependencies
+					transitiveDependenciesInfo = "[todo]";
+
+				}
+			}
+
+			table.addRow(fileName, coordinates, directDependenciesInfo, transitiveDependenciesInfo);
 		}
 
 		return table;
 	}
 
-	private List<String> getDependencies(String coordinates) {
-
-		if (!Artifact.validateCoordinates(coordinates)) {
-			return Collections.singletonList(UNKNOWN);
-		}
+	private List<Dependency> getDirectDependencies(String coordinates) {
 
 		Artifact artifact = new Artifact(coordinates);
 
@@ -94,23 +111,15 @@ public class DependenciesAnalyzer implements Analyzer {
 			// ignore test dependencies
 			dependencies.removeIf(d -> d.getScope() == Scope.TEST);
 
-			// if there are no direct dependencies ...
-			if (dependencies.isEmpty()) {
-				// show special value "none"
-				return Collections.singletonList(NONE);
-			}
-
-			// return list of dependencies as coordinates
-			return dependencies.stream()
-					.map(Dependency::toString)
-					.collect(Collectors.toList());
+			// return list of dependencies
+			return dependencies;
 
 		} catch (POMNotFoundException e) {
 			LOGGER.warn(e.getMessage());
-			return Collections.singletonList(ERROR);
+			return null;
 		} catch (POMException e) {
 			LOGGER.error("Resolver error for artifact: {}", artifact, e);
-			return Collections.singletonList(ERROR);
+			return null;
 		}
 
 	}
