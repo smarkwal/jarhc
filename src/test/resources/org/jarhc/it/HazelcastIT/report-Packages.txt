@@ -1,0 +1,64 @@
+JAR Health Check Report
+=======================
+
+Packages
+--------
+List of packages per JAR file.
+
+JAR file                    | Count | Packages                                             | Issues
+----------------------------+-------+------------------------------------------------------+-------
+hazelcast-3.11.2.jar        | 306   | com.hazelcast.aggregation (+1 subpackage)            |
+                            |       | com.hazelcast.cache (+11 subpackages)                |
+                            |       | com.hazelcast.cardinality (+4 subpackages)           |
+                            |       | com.hazelcast.client.impl                            |
+                            |       | com.hazelcast.client.impl.client                     |
+                            |       | com.hazelcast.client.impl.operations                 |
+                            |       | com.hazelcast.client.impl.protocol (+34 subpackages) |
+                            |       | com.hazelcast.cluster (+2 subpackages)               |
+                            |       | com.hazelcast.collection.impl (+15 subpackages)      |
+                            |       | com.hazelcast.concurrent.* (11 subpackages)          |
+                            |       | com.hazelcast.config (+4 subpackages)                |
+                            |       | com.hazelcast.console                                |
+                            |       | com.hazelcast.core (+1 subpackage)                   |
+                            |       | com.hazelcast.crdt (+2 subpackages)                  |
+                            |       | com.hazelcast.durableexecutor (+2 subpackages)       |
+                            |       | com.hazelcast.executor.impl (+1 subpackage)          |
+                            |       | com.hazelcast.flakeidgen (+2 subpackages)            |
+                            |       | com.hazelcast.hotrestart                             |
+                            |       | com.hazelcast.instance                               |
+                            |       | com.hazelcast.internal.* (62 subpackages)            |
+                            |       | com.hazelcast.logging                                |
+                            |       | com.hazelcast.map (+32 subpackages)                  |
+                            |       | com.hazelcast.mapreduce (+6 subpackages)             |
+                            |       | com.hazelcast.memory                                 |
+                            |       | com.hazelcast.monitor (+1 subpackage)                |
+                            |       | com.hazelcast.multimap.impl (+2 subpackages)         |
+                            |       | com.hazelcast.nio (+5 subpackages)                   |
+                            |       | com.hazelcast.osgi (+1 subpackage)                   |
+                            |       | com.hazelcast.partition (+2 subpackages)             |
+                            |       | com.hazelcast.projection (+1 subpackage)             |
+                            |       | com.hazelcast.query (+4 subpackages)                 |
+                            |       | com.hazelcast.quorum (+1 subpackage)                 |
+                            |       | com.hazelcast.replicatedmap (+5 subpackages)         |
+                            |       | com.hazelcast.ringbuffer (+3 subpackages)            |
+                            |       | com.hazelcast.scheduledexecutor (+2 subpackages)     |
+                            |       | com.hazelcast.security (+1 subpackage)               |
+                            |       | com.hazelcast.spi (+35 subpackages)                  |
+                            |       | com.hazelcast.topic (+2 subpackages)                 |
+                            |       | com.hazelcast.transaction (+4 subpackages)           |
+                            |       | com.hazelcast.util (+5 subpackages)                  |
+                            |       | com.hazelcast.version                                |
+                            |       | com.hazelcast.wan (+2 subpackages)                   |
+hazelcast-client-3.11.2.jar | 22    | com.hazelcast.client                                 |
+                            |       | com.hazelcast.client.cache.impl (+1 subpackage)      |
+                            |       | com.hazelcast.client.config                          |
+                            |       | com.hazelcast.client.connection (+1 subpackage)      |
+                            |       | com.hazelcast.client.console                         |
+                            |       | com.hazelcast.client.impl.clientside                 |
+                            |       | com.hazelcast.client.impl.querycache (+1 subpackage) |
+                            |       | com.hazelcast.client.impl.statistics                 |
+                            |       | com.hazelcast.client.map.impl (+1 subpackage)        |
+                            |       | com.hazelcast.client.proxy (+2 subpackages)          |
+                            |       | com.hazelcast.client.spi (+4 subpackages)            |
+                            |       | com.hazelcast.client.util                            |
+

@@ -1,0 +1,295 @@
+JAR Health Check Report
+=======================
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+JAR file                    | Issues
+----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------
+hazelcast-3.11.2.jar        | com.hazelcast.config.replacer.EncryptionReplacer
+                            | • static void java.lang.System.exit(int)
+                            |
+                            | com.hazelcast.console.ConsoleApp
+                            | • static void java.lang.System.exit(int)
+                            |
+                            | com.hazelcast.internal.memory.impl.AlignmentAwareMemoryAccessor
+                            | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                            | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
+                            | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
+                            | • boolean sun.misc.Unsafe.getBoolean(java.lang.Object,long)
+                            | • boolean sun.misc.Unsafe.getBooleanVolatile(java.lang.Object,long)
+                            | • byte sun.misc.Unsafe.getByte(java.lang.Object,long)
+                            | • byte sun.misc.Unsafe.getByte(long)
+                            | • byte sun.misc.Unsafe.getByteVolatile(java.lang.Object,long)
+                            | • char sun.misc.Unsafe.getChar(java.lang.Object,long)
+                            | • char sun.misc.Unsafe.getChar(long)
+                            | • char sun.misc.Unsafe.getCharVolatile(java.lang.Object,long)
+                            | • double sun.misc.Unsafe.getDouble(java.lang.Object,long)
+                            | • double sun.misc.Unsafe.getDouble(long)
+                            | • double sun.misc.Unsafe.getDoubleVolatile(java.lang.Object,long)
+                            | • float sun.misc.Unsafe.getFloat(java.lang.Object,long)
+                            | • float sun.misc.Unsafe.getFloat(long)
+                            | • float sun.misc.Unsafe.getFloatVolatile(java.lang.Object,long)
+                            | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                            | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                            | • int sun.misc.Unsafe.getInt(java.lang.Object,long)
+                            | • int sun.misc.Unsafe.getInt(long)
+                            | • int sun.misc.Unsafe.getIntVolatile(java.lang.Object,long)
+                            | • java.lang.Object sun.misc.Unsafe.getObject(java.lang.Object,long)
+                            | • java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.getLong(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.getLong(long)
+                            | • long sun.misc.Unsafe.getLongVolatile(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                            | • short sun.misc.Unsafe.getShort(java.lang.Object,long)
+                            | • short sun.misc.Unsafe.getShort(long)
+                            | • short sun.misc.Unsafe.getShortVolatile(java.lang.Object,long)
+                            | • void sun.misc.Unsafe.copyMemory(java.lang.Object,long,java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.copyMemory(long,long,long)
+                            | • void sun.misc.Unsafe.putBoolean(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putBooleanVolatile(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putByte(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putByte(long,byte)
+                            | • void sun.misc.Unsafe.putByteVolatile(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putChar(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putChar(long,char)
+                            | • void sun.misc.Unsafe.putCharVolatile(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putDouble(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putDouble(long,double)
+                            | • void sun.misc.Unsafe.putDoubleVolatile(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putFloat(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putFloat(long,float)
+                            | • void sun.misc.Unsafe.putFloatVolatile(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putInt(long,int)
+                            | • void sun.misc.Unsafe.putIntVolatile(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putLong(long,long)
+                            | • void sun.misc.Unsafe.putLongVolatile(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putObject(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putOrderedLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putOrderedObject(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putShort(java.lang.Object,long,short)
+                            | • void sun.misc.Unsafe.putShort(long,short)
+                            | • void sun.misc.Unsafe.putShortVolatile(java.lang.Object,long,short)
+                            | • void sun.misc.Unsafe.setMemory(long,long,byte)
+                            |
+                            | com.hazelcast.internal.memory.impl.AlignmentUtil
+                            | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                            |
+                            | com.hazelcast.internal.memory.impl.StandardMemoryAccessor
+                            | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
+                            | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
+                            | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
+                            | • boolean sun.misc.Unsafe.getBoolean(java.lang.Object,long)
+                            | • boolean sun.misc.Unsafe.getBooleanVolatile(java.lang.Object,long)
+                            | • byte sun.misc.Unsafe.getByte(java.lang.Object,long)
+                            | • byte sun.misc.Unsafe.getByte(long)
+                            | • byte sun.misc.Unsafe.getByteVolatile(java.lang.Object,long)
+                            | • char sun.misc.Unsafe.getChar(java.lang.Object,long)
+                            | • char sun.misc.Unsafe.getChar(long)
+                            | • char sun.misc.Unsafe.getCharVolatile(java.lang.Object,long)
+                            | • double sun.misc.Unsafe.getDouble(java.lang.Object,long)
+                            | • double sun.misc.Unsafe.getDouble(long)
+                            | • double sun.misc.Unsafe.getDoubleVolatile(java.lang.Object,long)
+                            | • float sun.misc.Unsafe.getFloat(java.lang.Object,long)
+                            | • float sun.misc.Unsafe.getFloat(long)
+                            | • float sun.misc.Unsafe.getFloatVolatile(java.lang.Object,long)
+                            | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                            | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                            | • int sun.misc.Unsafe.getInt(java.lang.Object,long)
+                            | • int sun.misc.Unsafe.getInt(long)
+                            | • int sun.misc.Unsafe.getIntVolatile(java.lang.Object,long)
+                            | • java.lang.Object sun.misc.Unsafe.getObject(java.lang.Object,long)
+                            | • java.lang.Object sun.misc.Unsafe.getObjectVolatile(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.getLong(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.getLong(long)
+                            | • long sun.misc.Unsafe.getLongVolatile(java.lang.Object,long)
+                            | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                            | • short sun.misc.Unsafe.getShort(java.lang.Object,long)
+                            | • short sun.misc.Unsafe.getShort(long)
+                            | • short sun.misc.Unsafe.getShortVolatile(java.lang.Object,long)
+                            | • void sun.misc.Unsafe.copyMemory(java.lang.Object,long,java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.copyMemory(long,long,long)
+                            | • void sun.misc.Unsafe.putBoolean(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putBooleanVolatile(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putByte(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putByte(long,byte)
+                            | • void sun.misc.Unsafe.putByteVolatile(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putChar(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putChar(long,char)
+                            | • void sun.misc.Unsafe.putCharVolatile(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putDouble(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putDouble(long,double)
+                            | • void sun.misc.Unsafe.putDoubleVolatile(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putFloat(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putFloat(long,float)
+                            | • void sun.misc.Unsafe.putFloatVolatile(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putInt(long,int)
+                            | • void sun.misc.Unsafe.putIntVolatile(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putLong(long,long)
+                            | • void sun.misc.Unsafe.putLongVolatile(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putObject(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putObjectVolatile(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putOrderedInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putOrderedLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putOrderedObject(java.lang.Object,long,java.lang.Object)
+                            | • void sun.misc.Unsafe.putShort(java.lang.Object,long,short)
+                            | • void sun.misc.Unsafe.putShort(long,short)
+                            | • void sun.misc.Unsafe.putShortVolatile(java.lang.Object,long,short)
+                            | • void sun.misc.Unsafe.setMemory(long,long,byte)
+                            |
+                            | com.hazelcast.internal.memory.impl.UnsafeUtil
+                            | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                            | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
+                            | • void sun.misc.Unsafe.copyMemory(java.lang.Object,long,java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putBoolean(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putByte(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putChar(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putDouble(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putFloat(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putShort(java.lang.Object,long,short)
+                            |
+                            | com.hazelcast.internal.serialization.impl.ObjectDataInputStream
+                            | • @Deprecated: public final java.lang.String java.io.DataInputStream.readLine()
+                            |
+                            | com.hazelcast.nio.UnsafeHelper
+                            | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
+                            | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
+                            | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
+                            | • void sun.misc.Unsafe.copyMemory(java.lang.Object,long,java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putBoolean(java.lang.Object,long,boolean)
+                            | • void sun.misc.Unsafe.putByte(java.lang.Object,long,byte)
+                            | • void sun.misc.Unsafe.putChar(java.lang.Object,long,char)
+                            | • void sun.misc.Unsafe.putDouble(java.lang.Object,long,double)
+                            | • void sun.misc.Unsafe.putFloat(java.lang.Object,long,float)
+                            | • void sun.misc.Unsafe.putInt(java.lang.Object,long,int)
+                            | • void sun.misc.Unsafe.putLong(java.lang.Object,long,long)
+                            | • void sun.misc.Unsafe.putShort(java.lang.Object,long,short)
+                            |
+                            | com.hazelcast.util.ICMPHelper
+                            | • static void java.lang.System.load(java.lang.String)
+                            |
+                            | com.hazelcast.util.JVMUtil
+                            | • int sun.misc.Unsafe.addressSize()
+                            |
+                            | com.hazelcast.util.JVMUtil$ReferenceSizeEstimator
+                            | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
+                            |
+                            | lib/linux-x86/libicmp_helper.so
+                            | lib/linux-x86_64/libicmp_helper.so
+hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.NearCachedClientCacheProxy
+                            | • @Deprecated: public static final com.hazelcast.config.NearCacheConfig$LocalUpdatePolicy com.hazelcast.config.NearCacheConfig$LocalUpdatePolicy.CACHE
+                            |
+                            | com.hazelcast.client.config.ClientConfigXmlGenerator
+                            | • @Deprecated: public int com.hazelcast.config.AwsConfig.getConnectionTimeoutSeconds()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getAccessKey()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getHostHeader()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getIamRole()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getRegion()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getSecretKey()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getSecurityGroupName()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getTagKey()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.AwsConfig.getTagValue()
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.GroupConfig.getPassword()
+                            |
+                            | com.hazelcast.client.config.XmlClientConfigBuilder
+                            | • @Deprecated: public com.hazelcast.config.GroupConfig com.hazelcast.config.GroupConfig.setPassword(java.lang.String)
+                            | • @Deprecated: public com.hazelcast.config.NearCacheConfig com.hazelcast.config.NearCacheConfig.setEvictionPolicy(java.lang.String)
+                            | • @Deprecated: public com.hazelcast.config.NearCacheConfig com.hazelcast.config.NearCacheConfig.setMaxSize(int)
+                            |
+                            | com.hazelcast.client.connection.nio.DefaultCredentialsFactory
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.GroupConfig.getPassword()
+                            |
+                            | com.hazelcast.client.console.ClientConsoleApp
+                            | • static void java.lang.System.exit(int)
+                            |
+                            | com.hazelcast.client.impl.clientside.ClientExceptionFactory$47
+                            | • @Deprecated: public class com.hazelcast.mapreduce.RemoteMapReduceException
+                            |
+                            | com.hazelcast.client.impl.clientside.ClientExceptionFactory$59
+                            | • @Deprecated: public class com.hazelcast.mapreduce.TopologyChangedException
+                            |
+                            | com.hazelcast.client.impl.clientside.HazelcastClientInstanceImpl
+                            | • @Deprecated: public interface com.hazelcast.core.IdGenerator
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public java.lang.String com.hazelcast.config.GroupConfig.getPassword()
+                            |
+                            | com.hazelcast.client.impl.clientside.HazelcastClientProxy
+                            | • @Deprecated: public interface com.hazelcast.core.IdGenerator
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            |
+                            | com.hazelcast.client.proxy.ClientIdGeneratorProxy
+                            | • @Deprecated: public interface com.hazelcast.core.IdGenerator
+                            |
+                            | com.hazelcast.client.proxy.ClientMapProxy
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.KeyValueSource
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.aggregation.Supplier
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Job
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.MappingJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducingJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducingSubmittableJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.aggregation.Aggregation
+                            |
+                            | com.hazelcast.client.proxy.ClientMapReduceProxy
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.KeyValueSource
+                            | • @Deprecated: public enum com.hazelcast.mapreduce.TopologyChangedStrategy
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Job
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.KeyPredicate
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.TrackableJob
+                            |
+                            | com.hazelcast.client.proxy.ClientMapReduceProxy$ClientCompletableFuture
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
+                            |
+                            | com.hazelcast.client.proxy.ClientMapReduceProxy$ClientJob
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.KeyValueSource
+                            | • @Deprecated: public enum com.hazelcast.mapreduce.TopologyChangedStrategy
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.KeyPredicate
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducerFactory
+                            |
+                            | com.hazelcast.client.proxy.ClientMapReduceProxy$ClientJob$1
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
+                            |
+                            | com.hazelcast.client.proxy.ClientMapReduceProxy$ClientTrackableJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobPartitionState
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobProcessInformation
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.TrackableJob
+                            |
+                            | com.hazelcast.client.proxy.ClientMultiMapProxy
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.KeyValueSource
+                            | • @Deprecated: public abstract class com.hazelcast.mapreduce.aggregation.Supplier
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Job
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.MappingJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducerFactory
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducingJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.ReducingSubmittableJob
+                            | • @Deprecated: public interface com.hazelcast.mapreduce.aggregation.Aggregation
+
