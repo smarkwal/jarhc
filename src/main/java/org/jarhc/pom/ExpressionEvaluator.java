@@ -27,10 +27,10 @@ class ExpressionEvaluator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExpressionEvaluator.class);
 	private static final Pattern pattern = Pattern.compile("\\$\\{([^}]+)}");
 
-	private final Model model;
+	private final POM pom;
 
-	ExpressionEvaluator(Model model) {
-		this.model = model;
+	ExpressionEvaluator(POM pom) {
+		this.pom = pom;
 	}
 
 	String evaluateText(String text) {
@@ -58,12 +58,12 @@ class ExpressionEvaluator {
 	}
 
 	Optional<String> evaluateExpression(String expression) {
-		if (model.hasProperty(expression)) {
-			String property = model.getProperty(expression);
+		if (pom.hasProperty(expression)) {
+			String property = pom.getProperty(expression);
 			property = evaluateText(property); // recursive
 			return Optional.of(property);
 		} else if (expression.equals("project.version")) {
-			return Optional.of(model.getVersion());
+			return Optional.of(pom.getVersion());
 		} else {
 			return Optional.empty();
 		}

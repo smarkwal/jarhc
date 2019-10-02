@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.jarhc.pom.resolver;
+package org.jarhc.pom;
 
-public class PomNotFoundException extends ResolverException {
+public class POMException extends Exception {
 
-	public PomNotFoundException(String message) {
-		super(message);
+	POMException(String message, Throwable cause) {
+		super(message, cause);
 	}
 
 }

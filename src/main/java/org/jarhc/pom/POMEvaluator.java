@@ -22,24 +22,24 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ModelEvaluator {
+public class POMEvaluator {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ModelEvaluator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(POMEvaluator.class);
 
-	public void evaluateModel(Model model) {
+	public void evaluatePOM(POM pom) {
 
-		ExpressionEvaluator evaluator = new ExpressionEvaluator(model);
+		ExpressionEvaluator evaluator = new ExpressionEvaluator(pom);
 
 		// evaluate project version
-		evaluate(model::getVersion, model::setVersion, evaluator);
+		evaluate(pom::getVersion, pom::setVersion, evaluator);
 
-		if (containsExpression(model.getVersion())) {
+		if (containsExpression(pom.getVersion())) {
 			// TODO: look for properties in parent project.
-			LOGGER.warn("Project with version expression: {}:{}:{}", model.getGroupId(), model.getArtifactId(), model.getVersion());
+			LOGGER.warn("Project with version expression: {}:{}:{}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion());
 		}
 
 		// for every dependency ...
-		List<Dependency> dependencies = model.getDependencies();
+		List<Dependency> dependencies = pom.getDependencies();
 		for (Dependency dependency : dependencies) {
 
 			// evaluate dependency versions
@@ -48,11 +48,11 @@ public class ModelEvaluator {
 			if (dependency.getVersion().isEmpty()) {
 				// TODO: look for dependency-management information in parent project.
 				//  see https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management
-				LOGGER.warn("Dependency without version: {}:{}:{} -> {}", model.getGroupId(), model.getArtifactId(), model.getVersion(), dependency);
+				LOGGER.warn("Dependency without version: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
 				dependency.setVersion("?");
 			} else if (containsExpression(dependency.getVersion())) {
 				// TODO: look for properties in parent project.
-				LOGGER.warn("Dependency with version expression: {}:{}:{} -> {}", model.getGroupId(), model.getArtifactId(), model.getVersion(), dependency);
+				LOGGER.warn("Dependency with version expression: {}:{}:{} -> {}", pom.getGroupId(), pom.getArtifactId(), pom.getVersion(), dependency);
 			}
 
 		}

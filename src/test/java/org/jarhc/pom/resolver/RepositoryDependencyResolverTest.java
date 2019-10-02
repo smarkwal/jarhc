@@ -81,7 +81,7 @@ class RepositoryDependencyResolverTest {
 		when(repository.downloadArtifact(any(Artifact.class))).thenReturn(Optional.empty());
 
 		// test
-		assertThrows(PomNotFoundException.class, () -> resolver.getDependencies(artifact));
+		assertThrows(POMNotFoundException.class, () -> resolver.getDependencies(artifact));
 
 	}
 
@@ -150,7 +150,7 @@ class RepositoryDependencyResolverTest {
 		when(repository.downloadArtifact(any(Artifact.class))).thenReturn(Optional.empty());
 
 		// test: first call
-		assertThrows(PomNotFoundException.class, () -> resolver.getDependencies(artifact));
+		assertThrows(POMNotFoundException.class, () -> resolver.getDependencies(artifact));
 
 		// verify: repository has been called once
 		verify(repository, times(1)).downloadArtifact(any(Artifact.class));
@@ -159,7 +159,7 @@ class RepositoryDependencyResolverTest {
 		Mockito.reset(repository);
 
 		// test: second call
-		assertThrows(PomNotFoundException.class, () -> resolver.getDependencies(artifact));
+		assertThrows(POMNotFoundException.class, () -> resolver.getDependencies(artifact));
 
 		// verify: repository has not been called anymore
 		verifyZeroInteractions(repository);

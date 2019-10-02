@@ -25,7 +25,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.jarhc.pom.resolver.DependencyResolver;
-import org.jarhc.pom.resolver.PomNotFoundException;
+import org.jarhc.pom.resolver.POMNotFoundException;
 import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -105,7 +105,7 @@ public class DependenciesAnalyzer implements Analyzer {
 					.map(Dependency::toString)
 					.collect(Collectors.toList());
 
-		} catch (PomNotFoundException e) {
+		} catch (POMNotFoundException e) {
 			LOGGER.warn(e.getMessage());
 			return Collections.singletonList(ERROR);
 		} catch (ResolverException e) {

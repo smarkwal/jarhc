@@ -24,13 +24,13 @@ import java.util.Map;
 /**
  * Represents a project model as declared in a POM file.
  */
-public class Model {
+public class POM {
 
 	private String groupId;
 	private String artifactId;
 	private String version;
 
-	private Model parent;
+	private POM parent;
 
 	private String name;
 	private String description;
@@ -38,7 +38,7 @@ public class Model {
 	private final Map<String, String> properties = new LinkedHashMap<>();
 	private final List<Dependency> dependencies = new ArrayList<>();
 
-	Model(String groupId, String artifactId, String version) {
+	POM(String groupId, String artifactId, String version) {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
 		if (artifactId == null || artifactId.isEmpty()) throw new IllegalArgumentException("artifactId");
 		if (version == null || version.isEmpty()) throw new IllegalArgumentException("version");
@@ -68,7 +68,7 @@ public class Model {
 		return parent != null;
 	}
 
-	public Model getParent() {
+	public POM getParent() {
 		return parent;
 	}
 
@@ -76,10 +76,10 @@ public class Model {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
 		if (artifactId == null || artifactId.isEmpty()) throw new IllegalArgumentException("artifactId");
 		if (version == null || version.isEmpty()) throw new IllegalArgumentException("version");
-		this.parent = new Model(groupId, artifactId, version);
+		this.parent = new POM(groupId, artifactId, version);
 	}
 
-	public void setParent(Model parent) {
+	public void setParent(POM parent) {
 		if (parent == null) throw new IllegalArgumentException("parent");
 		this.parent = parent;
 	}
