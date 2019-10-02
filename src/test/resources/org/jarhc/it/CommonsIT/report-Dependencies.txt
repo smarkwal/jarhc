@@ -7,14 +7,14 @@ Direct and transitive dependencies as declared in POM file.
 
 JAR file                      | Maven coordinates                               | Direct dependencies                                              | Transitive dependencies
 ------------------------------+-------------------------------------------------+------------------------------------------------------------------+------------------------
-commons-beanutils-1.9.2.jar   | [unknown]                                       | [unknown]                                                        | [todo]
+commons-beanutils-1.9.2.jar   | [unknown]                                       | [unknown]                                                        | [unknown]
 commons-betwixt-0.8.jar       | commons-betwixt:commons-betwixt:0.8             | commons-logging:commons-logging:1.0.4                            | [todo]
                               |                                                 | commons-beanutils:commons-beanutils-core:1.7.0                   |
                               |                                                 | commons-digester:commons-digester:1.7                            |
                               |                                                 | xerces:xerces:2.4.0 (provided, optional)                         |
                               |                                                 | xml-apis:xml-apis:1.0.b2 (provided, optional)                    |
-commons-codec-1.10.jar        | commons-codec:commons-codec:1.10                | [none]                                                           | [todo]
-commons-collections-3.2.2.jar | commons-collections:commons-collections:3.2.2   | [none]                                                           | [todo]
+commons-codec-1.10.jar        | commons-codec:commons-codec:1.10                | [none]                                                           | [none]
+commons-collections-3.2.2.jar | commons-collections:commons-collections:3.2.2   | [none]                                                           | [none]
 commons-compress-1.5.jar      | org.apache.commons:commons-compress:1.5         | org.tukaani:xz:1.2                                               | [todo]
 commons-configuration-1.9.jar | commons-configuration:commons-configuration:1.9 | commons-collections:commons-collections:3.2.1 (optional)         | [todo]
                               |                                                 | commons-lang:commons-lang:2.6                                    |
@@ -32,26 +32,26 @@ commons-configuration-1.9.jar | commons-configuration:commons-configuration:1.9 
 commons-dbcp2-2.5.0.jar       | org.apache.commons:commons-dbcp2:2.5.0          | org.apache.commons:commons-pool2:2.6.0                           | [todo]
                               |                                                 | commons-logging:commons-logging:1.2                              |
                               |                                                 | org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1 (optional) |
-commons-dbutils-1.5.jar       | commons-dbutils:commons-dbutils:1.5             | [none]                                                           | [todo]
+commons-dbutils-1.5.jar       | commons-dbutils:commons-dbutils:1.5             | [none]                                                           | [none]
 commons-digester-2.1.jar      | commons-digester:commons-digester:2.1           | commons-beanutils:commons-beanutils:1.8.3                        | [todo]
                               |                                                 | commons-logging:commons-logging:1.1.1                            |
 commons-email-1.5.jar         | org.apache.commons:commons-email:1.5            | com.sun.mail:javax.mail:1.5.6                                    | [todo]
 commons-fileupload-1.3.3.jar  | commons-fileupload:commons-fileupload:1.3.3     | javax.servlet:servlet-api:2.4 (provided)                         | [todo]
                               |                                                 | portlet-api:portlet-api:1.0 (provided)                           |
                               |                                                 | commons-io:commons-io:2.2                                        |
-commons-io-2.4.jar            | commons-io:commons-io:2.4                       | [none]                                                           | [todo]
+commons-io-2.4.jar            | commons-io:commons-io:2.4                       | [none]                                                           | [none]
 commons-jxpath-1.3.jar        | commons-jxpath:commons-jxpath:1.3               | xerces:xercesImpl:2.4.0 (provided, optional)                     | [todo]
                               |                                                 | javax.servlet:servlet-api:2.4 (provided, optional)               |
                               |                                                 | javax.servlet:jsp-api:2.0 (provided, optional)                   |
                               |                                                 | xml-apis:xml-apis:1.3.04 (provided, optional)                    |
                               |                                                 | jdom:jdom:1.0 (optional)                                         |
                               |                                                 | commons-beanutils:commons-beanutils:1.7.0 (optional)             |
-commons-lang-2.6.jar          | commons-lang:commons-lang:2.6                   | [none]                                                           | [todo]
+commons-lang-2.6.jar          | commons-lang:commons-lang:2.6                   | [none]                                                           | [none]
 commons-logging-1.2.jar       | commons-logging:commons-logging:1.2             | log4j:log4j:1.2.17 (optional)                                    | [todo]
                               |                                                 | logkit:logkit:1.0.1 (optional)                                   |
                               |                                                 | avalon-framework:avalon-framework:4.1.5 (optional)               |
                               |                                                 | javax.servlet:servlet-api:2.3 (provided, optional)               |
-commons-net-3.3.jar           | commons-net:commons-net:3.3                     | [none]                                                           | [todo]
+commons-net-3.3.jar           | commons-net:commons-net:3.3                     | [none]                                                           | [none]
 commons-pool2-2.6.0.jar       | org.apache.commons:commons-pool2:2.6.0          | cglib:cglib:3.2.6 (optional)                                     | [todo]
                               |                                                 | org.ow2.asm:asm-util:6.2 (optional)                              |
 

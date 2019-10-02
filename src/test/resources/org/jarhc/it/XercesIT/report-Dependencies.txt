@@ -9,6 +9,6 @@ JAR file              | Maven coordinates             | Direct dependencies     
 ----------------------+-------------------------------+------------------------------------------+------------------------
 xercesImpl-2.11.0.jar | xerces:xercesImpl:2.11.0      | xml-apis:xml-apis:1.4.01                 | [todo]
                       |                               | xml-resolver:xml-resolver:1.2 (optional) |
-xml-apis-1.4.01.jar   | xml-apis:xml-apis:1.4.01      | [none]                                   | [todo]
-xml-resolver-1.2.jar  | xml-resolver:xml-resolver:1.2 | [none]                                   | [todo]
+xml-apis-1.4.01.jar   | xml-apis:xml-apis:1.4.01      | [none]                                   | [none]
+xml-resolver-1.2.jar  | xml-resolver:xml-resolver:1.2 | [none]                                   | [none]
 
