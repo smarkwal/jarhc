@@ -1,0 +1,12 @@
+JAR Health Check Report
+=======================
+
+JAR Dependencies
+----------------
+Dependencies between JAR files.
+
+JAR file                    | Uses                 | Used by
+----------------------------+----------------------+----------------------------
+hazelcast-3.11.2.jar        | [none]               | hazelcast-client-3.11.2.jar
+hazelcast-client-3.11.2.jar | hazelcast-3.11.2.jar | [none]
+

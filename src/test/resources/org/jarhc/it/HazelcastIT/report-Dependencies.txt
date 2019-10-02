@@ -1,0 +1,24 @@
+JAR Health Check Report
+=======================
+
+Dependencies
+------------
+Direct and transitive dependencies as declared in POM file.
+
+JAR file                    | Maven coordinates                     | Direct dependencies                                             | Transitive dependencies
+----------------------------+---------------------------------------+-----------------------------------------------------------------+------------------------
+hazelcast-3.11.2.jar        | com.hazelcast:hazelcast:3.11.2        | log4j:log4j:1.2.17 (provided, optional)                         | [todo]
+                            |                                       | org.apache.logging.log4j:log4j-api:2.3 (provided, optional)     |
+                            |                                       | org.apache.logging.log4j:log4j-core:2.3 (provided, optional)    |
+                            |                                       | org.slf4j:slf4j-api:1.7.25 (provided, optional)                 |
+                            |                                       | org.osgi:org.osgi.core:4.2.0 (provided, optional)               |
+                            |                                       | org.codehaus.groovy:groovy-all:2.1.8 (provided, optional)       |
+                            |                                       | org.jruby:jruby-complete:1.7.22 (provided, optional)            |
+                            |                                       | javax.cache:cache-api:1.1.0 (provided, optional)                |
+                            |                                       | com.google.code.findbugs:annotations:3.0.0 (provided, optional) |
+hazelcast-client-3.11.2.jar | com.hazelcast:hazelcast-client:3.11.2 | com.hazelcast:hazelcast:${project.parent.version}               | [todo]
+                            |                                       | com.hazelcast:hazelcast-aws:2.0.0 (provided, optional)          |
+                            |                                       | com.hazelcast:hazelcast-client-protocol:1.7.0 (provided)        |
+                            |                                       | org.apache.logging.log4j:log4j-api:2.3 (provided, optional)     |
+                            |                                       | org.apache.logging.log4j:log4j-core:2.3 (provided, optional)    |
+
