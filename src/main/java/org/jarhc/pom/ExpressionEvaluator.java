@@ -64,6 +64,8 @@ class ExpressionEvaluator {
 			return Optional.of(value);
 		} else if (expression.equals("project.version")) {
 			return Optional.of(pom.getVersion());
+		} else if (expression.equals("project.parent.version") && pom.hasParent()) {
+			return Optional.of(pom.getParent().getVersion());
 		} else {
 			return Optional.empty();
 		}

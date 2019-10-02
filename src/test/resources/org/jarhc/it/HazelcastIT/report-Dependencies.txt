@@ -16,7 +16,7 @@ hazelcast-3.11.2.jar        | com.hazelcast:hazelcast:3.11.2        | log4j:log4
                             |                                       | org.jruby:jruby-complete:1.7.22 (provided, optional)            |
                             |                                       | javax.cache:cache-api:1.1.0 (provided, optional)                |
                             |                                       | com.google.code.findbugs:annotations:3.0.0 (provided, optional) |
-hazelcast-client-3.11.2.jar | com.hazelcast:hazelcast-client:3.11.2 | com.hazelcast:hazelcast:${project.parent.version}               | [todo]
+hazelcast-client-3.11.2.jar | com.hazelcast:hazelcast-client:3.11.2 | com.hazelcast:hazelcast:3.11.2                                  | [todo]
                             |                                       | com.hazelcast:hazelcast-aws:2.0.0 (provided, optional)          |
                             |                                       | com.hazelcast:hazelcast-client-protocol:1.7.0 (provided)        |
                             |                                       | org.apache.logging.log4j:log4j-api:2.3 (provided, optional)     |
