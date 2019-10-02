@@ -125,7 +125,7 @@ public class RepositoryMock implements Repository {
 		Arrays.sort(files, (f1, f2) -> f1.getName().compareToIgnoreCase(f2.getName()));
 		for (File file : files) {
 			String name = file.getName();
-			if (name.endsWith(".jar") || name.endsWith(".pom")) {
+			if (name.endsWith(".jar")) {
 				try (FileInputStream stream = new FileInputStream(file)) {
 					String checksum = DigestUtils.sha1Hex(stream);
 					repository.findArtifact(checksum)
