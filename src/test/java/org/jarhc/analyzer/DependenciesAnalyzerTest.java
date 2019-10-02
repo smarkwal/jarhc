@@ -30,9 +30,9 @@ import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.pom.POMException;
 import org.jarhc.pom.resolver.DependencyResolver;
 import org.jarhc.pom.resolver.POMNotFoundException;
-import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +43,7 @@ class DependenciesAnalyzerTest {
 	private final DependencyResolver dependencyResolver = mock(DependencyResolver.class);
 
 	@BeforeEach
-	void setUp() throws ResolverException {
+	void setUp() throws POMException {
 
 		Artifact artifactWithDeps = new Artifact("group:lib-with-deps:1.0:jar");
 		Artifact artifactNoDeps = new Artifact("group:lib-no-deps:1.0:jar");
@@ -53,7 +53,7 @@ class DependenciesAnalyzerTest {
 		when(dependencyResolver.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 3));
 		when(dependencyResolver.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
 		when(dependencyResolver.getDependencies(artifactNoPom)).thenThrow(new POMNotFoundException("test"));
-		when(dependencyResolver.getDependencies(artifactRepoError)).thenThrow(new ResolverException("test", new RepositoryException("test")));
+		when(dependencyResolver.getDependencies(artifactRepoError)).thenThrow(new POMException("test", new RepositoryException("test")));
 
 	}
 

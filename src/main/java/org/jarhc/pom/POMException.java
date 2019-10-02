@@ -18,7 +18,11 @@ package org.jarhc.pom;
 
 public class POMException extends Exception {
 
-	POMException(String message, Throwable cause) {
+	public POMException(String message) {
+		super(message);
+	}
+
+	public POMException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

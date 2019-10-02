@@ -34,6 +34,8 @@ import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.pom.Dependency;
+import org.jarhc.pom.POMException;
+import org.jarhc.pom.POMLoader;
 import org.jarhc.pom.PomUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -41,10 +43,10 @@ import org.mockito.Mockito;
 class RepositoryDependencyResolverTest {
 
 	private final Repository repository = mock(Repository.class);
-	private final RepositoryDependencyResolver resolver = new RepositoryDependencyResolver(repository);
+	private final RepositoryDependencyResolver resolver = new RepositoryDependencyResolver(new POMLoader(repository));
 
 	@Test
-	void getDependencies() throws ResolverException, RepositoryException {
+	void getDependencies() throws POMException, RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("group", "deps", "1.0", "jar");
@@ -59,7 +61,7 @@ class RepositoryDependencyResolverTest {
 	}
 
 	@Test
-	void getDependencies_returnsEmptyList_ifPomContainsNoDependencies() throws ResolverException, RepositoryException {
+	void getDependencies_returnsEmptyList_ifPomContainsNoDependencies() throws POMException, RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("group", "no-deps", "1.0", "jar");
@@ -93,7 +95,7 @@ class RepositoryDependencyResolverTest {
 		when(repository.downloadArtifact(any(Artifact.class))).thenThrow(new RepositoryException("test"));
 
 		// test
-		assertThrows(ResolverException.class, () -> resolver.getDependencies(artifact));
+		assertThrows(POMException.class, () -> resolver.getDependencies(artifact));
 
 	}
 
@@ -108,12 +110,12 @@ class RepositoryDependencyResolverTest {
 		when(repository.downloadArtifact(any(Artifact.class))).thenReturn(stream);
 
 		// test
-		assertThrows(ResolverException.class, () -> resolver.getDependencies(artifact));
+		assertThrows(POMException.class, () -> resolver.getDependencies(artifact));
 
 	}
 
 	@Test
-	void getDependencies_returnsCachedDependencies() throws ResolverException, RepositoryException {
+	void getDependencies_returnsCachedDependencies() throws POMException, RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("group", "cached", "1.0", "jar");

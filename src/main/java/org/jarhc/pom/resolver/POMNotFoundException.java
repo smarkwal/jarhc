@@ -16,7 +16,9 @@
 
 package org.jarhc.pom.resolver;
 
-public class POMNotFoundException extends ResolverException {
+import org.jarhc.pom.POMException;
+
+public class POMNotFoundException extends POMException {
 
 	public POMNotFoundException(String message) {
 		super(message);

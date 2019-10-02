@@ -19,9 +19,10 @@ package org.jarhc.pom.resolver;
 import java.util.List;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.pom.Dependency;
+import org.jarhc.pom.POMException;
 
 public interface DependencyResolver {
 
-	List<Dependency> getDependencies(Artifact artifact) throws ResolverException;
+	List<Dependency> getDependencies(Artifact artifact) throws POMException;
 
 }
