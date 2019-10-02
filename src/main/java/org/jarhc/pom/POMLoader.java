@@ -60,12 +60,15 @@ public class POMLoader {
 			loadParents(pom);
 		}
 
-		return pom;
+		// evaluate expressions in POM (including parent POMs)
+		POMEvaluator evaluator = new POMEvaluator();
+		evaluator.evaluatePOM(pom);
 
+		return pom;
 	}
 
 
-	private POM loadPOM(Artifact artifact) throws POMException, POMNotFoundException {
+	private POM loadPOM(Artifact artifact) throws POMException {
 
 		// try to download POM file
 		Optional<InputStream> result;
@@ -101,7 +104,7 @@ public class POMLoader {
 		return pom;
 	}
 
-	private void loadParents(POM pom) throws POMException, POMNotFoundException {
+	private void loadParents(POM pom) throws POMException {
 
 		// get parent project coordinates
 		POM parent = pom.getParent();
