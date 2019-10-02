@@ -45,7 +45,6 @@ class CachedRepositoryTest {
 
 	private static final String CHECKSUM_UNKNOWN = "1234567890123456789012345678901234567890";
 	private static final String CHECKSUM_ASM_70 = "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912";
-	private static final String CHECKSUM_ASM_70_POM = "c6b547ce67397df979bde680a1d0cdf8ceb63f6a";
 
 	private File cacheDir;
 	private CachedRepository repository;
@@ -119,30 +118,6 @@ class CachedRepositoryTest {
 	}
 
 	@Test
-	void test_findArtifact_asm_POM() throws RepositoryException, IOException {
-
-		// prepare
-		String checksum = CHECKSUM_ASM_70_POM;
-		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
-
-		// assume
-		assumeFalse(cacheFile.exists());
-
-		// test
-		Optional<Artifact> artifact = repository.findArtifact(checksum);
-
-		// assert
-		assertTrue(artifact.isPresent()); // artifact has been found
-		assertEquals("org.ow2.asm", artifact.get().getGroupId());
-		assertEquals("asm", artifact.get().getArtifactId());
-		assertEquals("7.0", artifact.get().getVersion());
-		assertEquals("pom", artifact.get().getType());
-		assertTrue(cacheFile.isFile()); // result has been cached
-		assertEquals("org.ow2.asm:asm:7.0:pom", FileUtils.readFileToString(cacheFile));
-
-	}
-
-	@Test
 	void test_findArtifact_cached() throws RepositoryException, IOException {
 
 		// prepare
@@ -193,26 +168,6 @@ class CachedRepositoryTest {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
-		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
-		FileUtils.touchFile(cacheFile); // cache a negative response
-
-		// assume
-		assumeTrue(cacheFile.isFile());
-		assumeTrue(cacheFile.length() == 0);
-
-		// test
-		Optional<Artifact> artifact = repository.findArtifact(checksum);
-
-		// assert
-		assertFalse(artifact.isPresent()); // artifact has not been found
-
-	}
-
-	@Test
-	void test_findArtifact_cached_unknown_POM() throws RepositoryException, IOException {
-
-		// prepare
-		String checksum = CHECKSUM_ASM_70_POM;
 		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
 		FileUtils.touchFile(cacheFile); // cache a negative response
 
