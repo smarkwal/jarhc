@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
+import org.jarhc.pom.POMLoader;
 import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
@@ -45,7 +46,7 @@ class ApplicationIT {
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
 		RepositoryMock repository = RepositoryMock.createRepository();
 		application.setRepository(repository);
-		application.setDependencyResolver(new RepositoryDependencyResolver(repository));
+		application.setDependencyResolver(new RepositoryDependencyResolver(new POMLoader(repository)));
 
 		Options options = new Options();
 		File file = TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationIT/a.jar", tempDir);

@@ -23,10 +23,10 @@ import org.jarhc.artifacts.Artifact;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
+import org.jarhc.pom.POMException;
 import org.jarhc.pom.Scope;
 import org.jarhc.pom.resolver.DependencyResolver;
 import org.jarhc.pom.resolver.POMNotFoundException;
-import org.jarhc.pom.resolver.ResolverException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
@@ -108,7 +108,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		} catch (POMNotFoundException e) {
 			LOGGER.warn(e.getMessage());
 			return Collections.singletonList(ERROR);
-		} catch (ResolverException e) {
+		} catch (POMException e) {
 			LOGGER.error("Resolver error for artifact: {}", artifact, e);
 			return Collections.singletonList(ERROR);
 		}
