@@ -22,9 +22,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 import org.jarhc.loader.ClassDefLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
+import org.jarhc.model.JarFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +75,11 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	@Override
 	public String getJavaHome() {
 		return systemProperties.getProperty("java.home");
+	}
+
+	@Override
+	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+		return Optional.empty();
 	}
 
 	@Override

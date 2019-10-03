@@ -19,12 +19,15 @@ package org.jarhc.java;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
+import org.jarhc.model.JarFile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -38,6 +41,16 @@ class ClassLoaderTest {
 	@BeforeEach
 	void setUp() {
 		MockitoAnnotations.initMocks(this);
+
+		JarFile jarFile = JarFile.withName("parent.jar").build();
+		when(parentClassLoader.getJarFile(any())).thenAnswer((invocation) -> {
+			Predicate<JarFile> predicate = invocation.getArgument(0);
+			if (predicate.test(jarFile)) {
+				return Optional.of(jarFile);
+			} else {
+				return Optional.empty();
+			}
+		});
 
 		when(parentClassLoader.getClassDef(anyString())).thenAnswer((invocation) -> {
 			String className = invocation.getArgument(0);
@@ -214,10 +227,109 @@ class ClassLoaderTest {
 
 	}
 
+	@Test
+	void getJarFile_parentFirst_parentJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
+
+		// assert
+		assertTrue(jarFile.isPresent());
+		assertEquals("parent.jar", jarFile.get().getFileName());
+
+	}
+
+	@Test
+	void getJarFile_parentFirst_localJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
+
+		// assert
+		assertTrue(jarFile.isPresent());
+		assertEquals("local.jar", jarFile.get().getFileName());
+
+	}
+
+	@Test
+	void getJarFile_parentFirst_unknownJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> false);
+
+		// assert
+		assertFalse(jarFile.isPresent());
+
+	}
+
+	@Test
+	void getJarFile_parentLast_parentJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
+
+		// assert
+		assertTrue(jarFile.isPresent());
+		assertEquals("parent.jar", jarFile.get().getFileName());
+
+	}
+
+	@Test
+	void getJarFile_parentLast_localJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
+
+		// assert
+		assertTrue(jarFile.isPresent());
+		assertEquals("local.jar", jarFile.get().getFileName());
+
+	}
+
+	@Test
+	void getJarFile_parentLast_unknownJar() {
+
+		// prepare
+		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
+
+		// test
+		Optional<JarFile> jarFile = classLoader.getJarFile(f -> false);
+
+		// assert
+		assertFalse(jarFile.isPresent());
+
+	}
+
 	private static class TestClassLoader extends ClassLoader {
+
+		private JarFile jarFile = JarFile.withName("local.jar").build();
 
 		TestClassLoader(ClassLoader parent, ClassLoaderStrategy strategy) {
 			super("Local", parent, strategy);
+		}
+
+		@Override
+		public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+			if (predicate.test(jarFile)) {
+				return Optional.of(jarFile);
+			} else {
+				return Optional.empty();
+			}
 		}
 
 		@Override

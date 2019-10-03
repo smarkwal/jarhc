@@ -3,44 +3,44 @@ JAR Health Check Report
 
 Dependencies
 ------------
-Direct and transitive dependencies as declared in POM file.
+Dependencies as declared in POM file.
 
-JAR file                | Maven coordinates                    | Direct dependencies                                              | Transitive dependencies
-------------------------+--------------------------------------+------------------------------------------------------------------+------------------------
-camel-core-2.17.7.jar   | org.apache.camel:camel-core:2.17.7   | org.apache.camel:spi-annotations:2.17.7 (optional)               | [todo]
-                        |                                      | org.slf4j:slf4j-api:1.7.21                                       |
-                        |                                      | org.osgi:org.osgi.core:4.3.1 (provided, optional)                |
-                        |                                      | org.apache.camel:apt:2.17.7 (provided)                           |
-                        |                                      | com.sun.xml.bind:jaxb-core:2.2.11                                |
-                        |                                      | com.sun.xml.bind:jaxb-impl:2.2.11                                |
-camel-jdbc-2.17.7.jar   | org.apache.camel:camel-jdbc:2.17.7   | org.apache.camel:camel-core:2.17.7                               | [todo]
-camel-jms-2.17.7.jar    | org.apache.camel:camel-jms:2.17.7    | org.apache.camel:camel-core:2.17.7                               | [todo]
-                        |                                      | org.apache.camel:camel-spring:2.17.7                             |
-                        |                                      | org.springframework:spring-jms:4.2.5.RELEASE                     |
-                        |                                      | org.springframework:spring-context:4.2.5.RELEASE                 |
-                        |                                      | org.springframework:spring-tx:4.2.5.RELEASE                      |
-                        |                                      | org.springframework:spring-beans:4.2.5.RELEASE                   |
-                        |                                      | org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1 (provided) |
-                        |                                      | org.apache.commons:commons-pool2:2.4.2 (provided)                |
-camel-jmx-2.17.7.jar    | org.apache.camel:camel-jmx:2.17.7    | org.apache.camel:camel-core:2.17.7                               | [todo]
-camel-jxpath-2.17.7.jar | org.apache.camel:camel-jxpath:2.17.7 | org.apache.camel:camel-core:2.17.7                               | [todo]
-                        |                                      | commons-jxpath:commons-jxpath:1.3                                |
-camel-ldap-2.17.7.jar   | org.apache.camel:camel-ldap:2.17.7   | org.apache.camel:camel-core:2.17.7                               | [todo]
-camel-mail-2.17.7.jar   | org.apache.camel:camel-mail:2.17.7   | org.apache.camel:camel-core:2.17.7                               | [todo]
-                        |                                      | com.sun.mail:javax.mail:1.5.5                                    |
-camel-soap-2.17.7.jar   | org.apache.camel:camel-soap:2.17.7   | org.apache.camel:camel-core:2.17.7                               | [todo]
-                        |                                      | org.apache.camel:camel-jaxb:2.17.7                               |
-                        |                                      | com.sun.xml.bind:jaxb-impl:2.2.11                                |
-camel-spring-2.17.7.jar | org.apache.camel:camel-spring:2.17.7 | org.apache.camel:camel-core:2.17.7                               | [todo]
-                        |                                      | org.apache.camel:camel-core-xml:2.17.7 (provided)                |
-                        |                                      | org.springframework:spring-core:4.2.5.RELEASE                    |
-                        |                                      | org.springframework:spring-aop:4.2.5.RELEASE                     |
-                        |                                      | org.springframework:spring-context:4.2.5.RELEASE                 |
-                        |                                      | org.springframework:spring-beans:4.2.5.RELEASE                   |
-                        |                                      | org.springframework:spring-expression:4.2.5.RELEASE              |
-                        |                                      | org.springframework:spring-tx:4.2.5.RELEASE                      |
-                        |                                      | org.apache.camel:camel-core-osgi:2.17.7 (provided, optional)     |
-                        |                                      | org.osgi:org.osgi.core:4.3.1 (provided, optional)                |
-                        |                                      | org.osgi:org.osgi.compendium:4.3.1 (provided, optional)          |
-                        |                                      | org.springframework.osgi:spring-osgi-core:1.2.1 (optional)       |
+JAR file                | Maven coordinates                    | Direct dependencies                                              | Status
+------------------------+--------------------------------------+------------------------------------------------------------------+------------
+camel-core-2.17.7.jar   | org.apache.camel:camel-core:2.17.7   | org.apache.camel:spi-annotations:2.17.7 (optional)               | Unsatisfied
+                        |                                      | org.slf4j:slf4j-api:1.7.21                                       | Unsatisfied
+                        |                                      | org.osgi:org.osgi.core:4.3.1 (provided, optional)                | Unsatisfied
+                        |                                      | org.apache.camel:apt:2.17.7 (provided)                           | Unsatisfied
+                        |                                      | com.sun.xml.bind:jaxb-core:2.2.11                                | Unsatisfied
+                        |                                      | com.sun.xml.bind:jaxb-impl:2.2.11                                | Unsatisfied
+camel-jdbc-2.17.7.jar   | org.apache.camel:camel-jdbc:2.17.7   | org.apache.camel:camel-core:2.17.7                               | OK
+camel-jms-2.17.7.jar    | org.apache.camel:camel-jms:2.17.7    | org.apache.camel:camel-core:2.17.7                               | OK
+                        |                                      | org.apache.camel:camel-spring:2.17.7                             | OK
+                        |                                      | org.springframework:spring-jms:4.2.5.RELEASE                     | Unsatisfied
+                        |                                      | org.springframework:spring-context:4.2.5.RELEASE                 | Unsatisfied
+                        |                                      | org.springframework:spring-tx:4.2.5.RELEASE                      | Unsatisfied
+                        |                                      | org.springframework:spring-beans:4.2.5.RELEASE                   | Unsatisfied
+                        |                                      | org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1.1 (provided) | Unsatisfied
+                        |                                      | org.apache.commons:commons-pool2:2.4.2 (provided)                | Unsatisfied
+camel-jmx-2.17.7.jar    | org.apache.camel:camel-jmx:2.17.7    | org.apache.camel:camel-core:2.17.7                               | OK
+camel-jxpath-2.17.7.jar | org.apache.camel:camel-jxpath:2.17.7 | org.apache.camel:camel-core:2.17.7                               | OK
+                        |                                      | commons-jxpath:commons-jxpath:1.3                                | Unsatisfied
+camel-ldap-2.17.7.jar   | org.apache.camel:camel-ldap:2.17.7   | org.apache.camel:camel-core:2.17.7                               | OK
+camel-mail-2.17.7.jar   | org.apache.camel:camel-mail:2.17.7   | org.apache.camel:camel-core:2.17.7                               | OK
+                        |                                      | com.sun.mail:javax.mail:1.5.5                                    | Unsatisfied
+camel-soap-2.17.7.jar   | org.apache.camel:camel-soap:2.17.7   | org.apache.camel:camel-core:2.17.7                               | OK
+                        |                                      | org.apache.camel:camel-jaxb:2.17.7                               | Unsatisfied
+                        |                                      | com.sun.xml.bind:jaxb-impl:2.2.11                                | Unsatisfied
+camel-spring-2.17.7.jar | org.apache.camel:camel-spring:2.17.7 | org.apache.camel:camel-core:2.17.7                               | OK
+                        |                                      | org.apache.camel:camel-core-xml:2.17.7 (provided)                | Unsatisfied
+                        |                                      | org.springframework:spring-core:4.2.5.RELEASE                    | Unsatisfied
+                        |                                      | org.springframework:spring-aop:4.2.5.RELEASE                     | Unsatisfied
+                        |                                      | org.springframework:spring-context:4.2.5.RELEASE                 | Unsatisfied
+                        |                                      | org.springframework:spring-beans:4.2.5.RELEASE                   | Unsatisfied
+                        |                                      | org.springframework:spring-expression:4.2.5.RELEASE              | Unsatisfied
+                        |                                      | org.springframework:spring-tx:4.2.5.RELEASE                      | Unsatisfied
+                        |                                      | org.apache.camel:camel-core-osgi:2.17.7 (provided, optional)     | Unsatisfied
+                        |                                      | org.osgi:org.osgi.core:4.3.1 (provided, optional)                | Unsatisfied
+                        |                                      | org.osgi:org.osgi.compendium:4.3.1 (provided, optional)          | Unsatisfied
+                        |                                      | org.springframework.osgi:spring-osgi-core:1.2.1 (optional)       | Unsatisfied
 

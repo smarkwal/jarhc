@@ -37,11 +37,11 @@ a.jar    | [none] | [none]
 
 Dependencies
 ------------
-Direct and transitive dependencies as declared in POM file.
+Dependencies as declared in POM file.
 
-JAR file | Maven coordinates | Direct dependencies | Transitive dependencies
----------+-------------------+---------------------+------------------------
-a.jar    | [unknown]         | [unknown]           | [unknown]
+JAR file | Maven coordinates | Direct dependencies | Status
+---------+-------------------+---------------------+-------
+a.jar    | [unknown]         | [unknown]           |
 
 Packages
 --------
