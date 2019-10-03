@@ -150,7 +150,7 @@ class ClassDefBuilder extends ClassVisitor {
 		classDef.addMethodDef(methodDef);
 
 		if (scanForReferences) {
-			addMethodSignatureRefs(descriptor);
+			addMethodSignatureRefs(descriptor, true);
 			if (exceptions != null) {
 				for (String exceptionClassName : exceptions) {
 					exceptionClassName = toExternalName(exceptionClassName);
@@ -207,9 +207,13 @@ class ClassDefBuilder extends ClassVisitor {
 		// nothing to do
 	}
 
-	private void addMethodSignatureRefs(String descriptor) {
-		String returnType = getReturnType(descriptor);
-		addClassRef(returnType);
+	private void addMethodSignatureRefs(String descriptor, boolean isMethodDef) {
+		if (isMethodDef) {
+			// note: a method definition generates a dependency on the return
+			// type, but a method call does not.
+			String returnType = getReturnType(descriptor);
+			addClassRef(returnType);
+		}
 		List<String> parameterTypes = getParameterTypes(descriptor);
 		for (String parameterType : parameterTypes) {
 			addClassRef(parameterType);
@@ -321,7 +325,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 			String methodOwner = toClassName(owner);
 			addClassRef(methodOwner);
-			addMethodSignatureRefs(descriptor);
+			addMethodSignatureRefs(descriptor, false);
 
 			// create reference to method
 			boolean staticMethod = opcode == Opcodes.INVOKESTATIC;

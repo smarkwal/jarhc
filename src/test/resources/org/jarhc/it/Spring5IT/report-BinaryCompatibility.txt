@@ -11,7 +11,6 @@ spring-aop-5.1.3.RELEASE.jar             | org.springframework.aop.aspectj.Abstr
                                          | • Class not found: org.aspectj.lang.JoinPoint (package not found)
                                          | • Class not found: org.aspectj.lang.JoinPoint$StaticPart (package not found)
                                          | • Class not found: org.aspectj.weaver.tools.JoinPointMatch (package not found)
-                                         | • Class not found: org.aspectj.weaver.tools.PointcutExpression (package not found)
                                          | • Class not found: org.aspectj.weaver.tools.PointcutParameter (package not found)
                                          |
                                          | org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer
@@ -105,11 +104,9 @@ spring-aop-5.1.3.RELEASE.jar             | org.springframework.aop.aspectj.Abstr
                                          | • Class not found: org.aspectj.weaver.ReferenceType (package not found)
                                          | • Class not found: org.aspectj.weaver.ReferenceTypeDelegate (package not found)
                                          | • Class not found: org.aspectj.weaver.ResolvedType (package not found)
-                                         | • Class not found: org.aspectj.weaver.UnresolvedType (package not found)
                                          | • Class not found: org.aspectj.weaver.ast.ITestVisitor (package not found)
                                          | • Class not found: org.aspectj.weaver.ast.Instanceof (package not found)
                                          | • Class not found: org.aspectj.weaver.ast.Test (package not found)
-                                         | • Class not found: org.aspectj.weaver.ast.Var (package not found)
                                          | • Class not found: org.aspectj.weaver.reflect.ReflectionBasedReferenceTypeDelegate (package not found)
                                          | • Class not found: org.aspectj.weaver.reflect.ReflectionVar (package not found)
                                          |
@@ -118,7 +115,6 @@ spring-aop-5.1.3.RELEASE.jar             | org.springframework.aop.aspectj.Abstr
                                          | • Class not found: org.aspectj.weaver.ast.ITestVisitor (package not found)
                                          | • Class not found: org.aspectj.weaver.ast.Instanceof (package not found)
                                          | • Class not found: org.aspectj.weaver.ast.Test (package not found)
-                                         | • Class not found: org.aspectj.weaver.ast.Var (package not found)
                                          | • Class not found: org.aspectj.weaver.reflect.ReflectionVar (package not found)
                                          |
                                          | org.springframework.aop.aspectj.RuntimeTestWalker$TargetInstanceOfResidueTestVisitor
@@ -163,7 +159,6 @@ spring-aop-5.1.3.RELEASE.jar             | org.springframework.aop.aspectj.Abstr
                                          | • Class not found: org.aspectj.lang.annotation.Aspect (package not found)
                                          | • Class not found: org.aspectj.lang.reflect.AjType (package not found)
                                          | • Class not found: org.aspectj.lang.reflect.AjTypeSystem (package not found)
-                                         | • Class not found: org.aspectj.lang.reflect.DeclarePrecedence (package not found)
                                          | • Class not found: org.aspectj.lang.reflect.PerClause (package not found)
                                          | • Class not found: org.aspectj.lang.reflect.PerClauseKind (package not found)
                                          |
@@ -664,7 +659,6 @@ spring-context-5.1.3.RELEASE.jar         | org.springframework.cache.interceptor
                                          | • Class not found: kotlin.jvm.internal.FunctionReference (package not found)
                                          | • Class not found: kotlin.jvm.internal.Intrinsics (package not found)
                                          | • Class not found: kotlin.jvm.internal.Reflection (package not found)
-                                         | • Class not found: kotlin.reflect.KClass (package not found)
                                          | • Class not found: kotlin.reflect.KDeclarationContainer (package not found)
                                          | • Class not found: org.jetbrains.annotations.NotNull (package not found)
                                          | • Field not found: java.lang.Object org.springframework.context.support.BeanDefinitionDsl$environment$beans$1.receiver
@@ -890,14 +884,12 @@ spring-context-5.1.3.RELEASE.jar         | org.springframework.cache.interceptor
                                          | • Class not found: javax.money.Monetary (package not found)
                                          | • Class not found: javax.money.MonetaryAmount (package not found)
                                          | • Class not found: javax.money.MonetaryAmountFactory (package not found)
-                                         | • Class not found: javax.money.NumberValue (package not found)
                                          |
                                          | org.springframework.format.number.money.Jsr354NumberFormatAnnotationFormatterFactory$PatternDecoratingFormatter
                                          | • Class not found: javax.money.CurrencyUnit (package not found)
                                          | • Class not found: javax.money.Monetary (package not found)
                                          | • Class not found: javax.money.MonetaryAmount (package not found)
                                          | • Class not found: javax.money.MonetaryAmountFactory (package not found)
-                                         | • Class not found: javax.money.NumberValue (package not found)
                                          |
                                          | org.springframework.format.number.money.MonetaryAmountFormatter
                                          | • Class not found: javax.money.MonetaryAmount (package not found)
@@ -1120,7 +1112,6 @@ spring-context-5.1.3.RELEASE.jar         | org.springframework.cache.interceptor
                                          |
                                          | org.springframework.validation.beanvalidation.BeanValidationPostProcessor
                                          | • Class not found: javax.validation.ConstraintViolation (package not found)
-                                         | • Class not found: javax.validation.Path (package not found)
                                          | • Class not found: javax.validation.Validation (package not found)
                                          | • Class not found: javax.validation.Validator (package not found)
                                          | • Class not found: javax.validation.ValidatorFactory (package not found)
@@ -1209,7 +1200,6 @@ spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine.Ca
                                          | • Class not found: com.github.benmanes.caffeine.cache.CacheLoader (package not found)
                                          | • Class not found: com.github.benmanes.caffeine.cache.Caffeine (package not found)
                                          | • Class not found: com.github.benmanes.caffeine.cache.CaffeineSpec (package not found)
-                                         | • Class not found: com.github.benmanes.caffeine.cache.LoadingCache (package not found)
                                          |
                                          | org.springframework.cache.ehcache.EhCacheCache
                                          | • Class not found: net.sf.ehcache.Ehcache (package not found)
@@ -1451,7 +1441,6 @@ spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine.Ca
                                          | • Class not found: javax.cache.annotation.CacheInvocationParameter (package not found)
                                          | • Class not found: javax.cache.annotation.CacheKeyGenerator (package not found)
                                          | • Class not found: javax.cache.annotation.CacheKeyInvocationContext (package not found)
-                                         | • Class not found: javax.cache.annotation.GeneratedCacheKey (package not found)
                                          |
                                          | org.springframework.mail.javamail.InternetAddressEditor
                                          | • Class not found: javax.mail.internet.AddressException (package not found)
@@ -1633,11 +1622,9 @@ spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine.Ca
                                          | org.springframework.scheduling.quartz.QuartzJobBean
                                          | • Interface not found: org.quartz.Job
                                          | • Class not found: org.quartz.Job (package not found)
-                                         | • Class not found: org.quartz.JobDataMap (package not found)
                                          | • Class not found: org.quartz.JobExecutionContext (package not found)
                                          | • Class not found: org.quartz.JobExecutionException (package not found)
                                          | • Class not found: org.quartz.Scheduler (package not found)
-                                         | • Class not found: org.quartz.SchedulerContext (package not found)
                                          | • Class not found: org.quartz.SchedulerException (package not found)
                                          |
                                          | org.springframework.scheduling.quartz.ResourceLoaderClassLoadHelper
@@ -1735,7 +1722,6 @@ spring-context-support-5.1.3.RELEASE.jar | org.springframework.cache.caffeine.Ca
                                          | • Class not found: org.quartz.impl.triggers.SimpleTriggerImpl (package not found)
                                          |
                                          | org.springframework.scheduling.quartz.SpringBeanJobFactory
-                                         | • Class not found: org.quartz.JobDataMap (package not found)
                                          | • Class not found: org.quartz.JobDetail (package not found)
                                          | • Class not found: org.quartz.SchedulerContext (package not found)
                                          | • Class not found: org.quartz.spi.OperableTrigger (package not found)
@@ -1917,7 +1903,6 @@ spring-core-5.1.3.RELEASE.jar            | org.springframework.cglib.transform.A
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.reactivestreams.Publisher (package not found)
                                          | • Class not found: reactor.core.publisher.Flux (package not found)
-                                         | • Class not found: reactor.core.publisher.Mono (package not found)
                                          |
                                          | org.springframework.core.codec.ResourceEncoder
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
@@ -2425,7 +2410,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.jms.TemporaryQueue (package not found)
                                          | • Class not found: javax.jms.TemporaryTopic (package not found)
                                          | • Class not found: javax.jms.Topic (package not found)
-                                         | • Class not found: javax.jms.TopicSubscriber (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          |
                                          | org.springframework.jms.connection.CachingConnectionFactory$ConsumerCacheKey
@@ -2464,7 +2448,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.jms.JMSException (package not found)
                                          | • Class not found: javax.jms.QueueConnection (package not found)
                                          | • Class not found: javax.jms.QueueConnectionFactory (package not found)
-                                         | • Class not found: javax.jms.QueueSession (package not found)
                                          | • Class not found: javax.jms.Session (package not found)
                                          |
                                          | org.springframework.jms.connection.ConnectionFactoryUtils$3
@@ -2473,7 +2456,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.jms.Session (package not found)
                                          | • Class not found: javax.jms.TopicConnection (package not found)
                                          | • Class not found: javax.jms.TopicConnectionFactory (package not found)
-                                         | • Class not found: javax.jms.TopicSession (package not found)
                                          |
                                          | org.springframework.jms.connection.ConnectionFactoryUtils$JmsResourceSynchronization
                                          | • Class not found: javax.jms.JMSException (package not found)
@@ -2531,11 +2513,9 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.jms.JMSException (package not found)
                                          | • Class not found: javax.jms.QueueConnection (package not found)
                                          | • Class not found: javax.jms.QueueConnectionFactory (package not found)
-                                         | • Class not found: javax.jms.QueueSession (package not found)
                                          | • Class not found: javax.jms.Session (package not found)
                                          | • Class not found: javax.jms.TopicConnection (package not found)
                                          | • Class not found: javax.jms.TopicConnectionFactory (package not found)
-                                         | • Class not found: javax.jms.TopicSession (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.apache.commons.logging.LogFactory (package not found)
                                          |
@@ -2683,7 +2663,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.jms.Queue (package not found)
                                          | • Class not found: javax.jms.Session (package not found)
                                          | • Class not found: javax.jms.Topic (package not found)
-                                         | • Class not found: javax.jms.TopicSubscriber (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          |
                                          | org.springframework.jms.listener.AbstractPollingMessageListenerContainer
@@ -2806,7 +2785,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: javax.resource.spi.endpoint.MessageEndpointFactory (package not found)
                                          |
                                          | org.springframework.jms.listener.endpoint.StandardJmsActivationSpecFactory
-                                         | • Class not found: javax.jms.Destination (package not found)
                                          | • Class not found: javax.jms.JMSException (package not found)
                                          | • Class not found: javax.jms.Session (package not found)
                                          | • Class not found: javax.resource.spi.ActivationSpec (package not found)
@@ -2884,7 +2862,6 @@ spring-jms-5.1.3.RELEASE.jar             | org.springframework.jms.IllegalStateE
                                          | • Class not found: com.fasterxml.jackson.databind.ObjectWriter (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.type.TypeFactory (package not found)
                                          | • Class not found: javax.jms.BytesMessage (package not found)
-                                         | • Class not found: javax.jms.Destination (package not found)
                                          | • Class not found: javax.jms.JMSException (package not found)
                                          | • Class not found: javax.jms.Message (package not found)
                                          | • Class not found: javax.jms.Session (package not found)
@@ -3109,9 +3086,7 @@ spring-messaging-5.1.3.RELEASE.jar       | org.springframework.messaging.Message
                                          | • Class not found: io.netty.buffer.ByteBuf (package not found)
                                          |
                                          | org.springframework.messaging.tcp.reactor.ReactorNettyTcpClient
-                                         | • Class not found: io.netty.channel.Channel (package not found)
                                          | • Class not found: io.netty.channel.group.ChannelGroup (package not found)
-                                         | • Class not found: io.netty.channel.group.ChannelGroupFuture (package not found)
                                          | • Class not found: io.netty.channel.group.DefaultChannelGroup (package not found)
                                          | • Class not found: io.netty.util.concurrent.EventExecutor (package not found)
                                          | • Class not found: io.netty.util.concurrent.Future (package not found)
@@ -3119,7 +3094,6 @@ spring-messaging-5.1.3.RELEASE.jar       | org.springframework.messaging.Message
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.apache.commons.logging.LogFactory (package not found)
                                          | • Class not found: org.reactivestreams.Publisher (package not found)
-                                         | • Class not found: reactor.core.Disposable (package not found)
                                          | • Class not found: reactor.core.publisher.Flux (package not found)
                                          | • Class not found: reactor.core.publisher.Mono (package not found)
                                          | • Class not found: reactor.core.publisher.MonoProcessor (package not found)
@@ -3135,7 +3109,6 @@ spring-messaging-5.1.3.RELEASE.jar       | org.springframework.messaging.Message
                                          | • Class not found: io.netty.channel.ChannelHandler (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.reactivestreams.Publisher (package not found)
-                                         | • Class not found: reactor.core.Disposable (package not found)
                                          | • Class not found: reactor.core.publisher.DirectProcessor (package not found)
                                          | • Class not found: reactor.core.publisher.Flux (package not found)
                                          | • Class not found: reactor.core.scheduler.Scheduler (package not found)
@@ -3258,7 +3231,6 @@ spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm.hibernate5.Co
                                          | • Class not found: org.hibernate.boot.MetadataSources (package not found)
                                          | • Class not found: org.hibernate.boot.model.naming.ImplicitNamingStrategy (package not found)
                                          | • Class not found: org.hibernate.boot.model.naming.PhysicalNamingStrategy (package not found)
-                                         | • Class not found: org.hibernate.boot.registry.BootstrapServiceRegistry (package not found)
                                          | • Class not found: org.hibernate.boot.registry.BootstrapServiceRegistryBuilder (package not found)
                                          | • Class not found: org.hibernate.cache.spi.RegionFactory (package not found)
                                          | • Class not found: org.hibernate.cfg.Configuration (package not found)
@@ -3306,7 +3278,6 @@ spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm.hibernate5.Co
                                          | • Class not found: org.hibernate.MappingException (package not found)
                                          | • Class not found: org.hibernate.SessionFactory (package not found)
                                          | • Class not found: org.hibernate.boot.MetadataSources (package not found)
-                                         | • Class not found: org.hibernate.boot.registry.BootstrapServiceRegistry (package not found)
                                          | • Class not found: org.hibernate.boot.registry.BootstrapServiceRegistryBuilder (package not found)
                                          | • Class not found: org.hibernate.cache.spi.RegionFactory (package not found)
                                          | • Class not found: org.hibernate.cfg.Configuration (package not found)
@@ -3364,7 +3335,6 @@ spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm.hibernate5.Co
                                          | • Class not found: org.hibernate.exception.JDBCConnectionException (package not found)
                                          | • Class not found: org.hibernate.exception.LockAcquisitionException (package not found)
                                          | • Class not found: org.hibernate.exception.SQLGrammarException (package not found)
-                                         | • Class not found: org.hibernate.service.Service (package not found)
                                          | • Class not found: org.hibernate.service.UnknownServiceException (package not found)
                                          | • Class not found: org.hibernate.service.spi.ServiceRegistryImplementor (package not found)
                                          |
@@ -3411,7 +3381,6 @@ spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm.hibernate5.Co
                                          | • Class not found: org.hibernate.context.spi.CurrentSessionContext (package not found)
                                          | • Class not found: org.hibernate.engine.spi.SessionFactoryImplementor (package not found)
                                          | • Class not found: org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform (package not found)
-                                         | • Class not found: org.hibernate.service.Service (package not found)
                                          | • Class not found: org.hibernate.service.spi.ServiceRegistryImplementor (package not found)
                                          |
                                          | org.springframework.orm.hibernate5.SpringSessionSynchronization
@@ -3467,9 +3436,6 @@ spring-orm-5.1.3.RELEASE.jar             | org.springframework.orm.hibernate5.Co
                                          | • Class not found: javax.persistence.spi.PersistenceUnitInfo (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.apache.commons.logging.LogFactory (package not found)
-                                         |
-                                         | org.springframework.orm.jpa.AbstractEntityManagerFactoryBean$ManagedEntityManagerFactoryInvocationHandler
-                                         | • Class not found: javax.persistence.EntityManagerFactory (package not found)
                                          |
                                          | org.springframework.orm.jpa.DefaultJpaDialect
                                          | • Class not found: javax.persistence.EntityManager (package not found)
@@ -4240,7 +4206,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: org.apache.http.client.methods.HttpTrace (package not found)
                                          | • Class not found: org.apache.http.client.methods.HttpUriRequest (package not found)
                                          | • Class not found: org.apache.http.client.protocol.HttpClientContext (package not found)
-                                         | • Class not found: org.apache.http.impl.client.CloseableHttpClient (package not found)
                                          | • Class not found: org.apache.http.impl.client.HttpClients (package not found)
                                          | • Class not found: org.apache.http.protocol.HttpContext (package not found)
                                          |
@@ -4305,7 +4270,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: io.netty.handler.codec.http.FullHttpResponse (package not found)
                                          |
                                          | org.springframework.http.client.Netty4ClientHttpRequestFactory
-                                         | • Class not found: io.netty.bootstrap.AbstractBootstrap (package not found)
                                          | • Class not found: io.netty.bootstrap.Bootstrap (package not found)
                                          | • Class not found: io.netty.channel.ChannelHandler (package not found)
                                          | • Class not found: io.netty.channel.EventLoopGroup (package not found)
@@ -4327,13 +4291,11 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: io.netty.handler.codec.http.HttpClientCodec (package not found)
                                          | • Class not found: io.netty.handler.codec.http.HttpObjectAggregator (package not found)
                                          | • Class not found: io.netty.handler.ssl.SslContext (package not found)
-                                         | • Class not found: io.netty.handler.ssl.SslHandler (package not found)
                                          | • Class not found: io.netty.handler.timeout.ReadTimeoutHandler (package not found)
                                          |
                                          | org.springframework.http.client.Netty4ClientHttpResponse
                                          | • Class not found: io.netty.buffer.ByteBuf (package not found)
                                          | • Class not found: io.netty.buffer.ByteBufInputStream (package not found)
-                                         | • Class not found: io.netty.channel.ChannelFuture (package not found)
                                          | • Class not found: io.netty.channel.ChannelHandlerContext (package not found)
                                          | • Class not found: io.netty.handler.codec.http.FullHttpResponse (package not found)
                                          | • Class not found: io.netty.handler.codec.http.HttpHeaders (package not found)
@@ -4592,11 +4554,9 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: com.fasterxml.jackson.databind.SerializationFeature (package not found)
                                          |
                                          | org.springframework.http.codec.json.Jackson2SmileDecoder
-                                         | • Class not found: com.fasterxml.jackson.core.JsonFactory (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.ObjectMapper (package not found)
                                          |
                                          | org.springframework.http.codec.json.Jackson2SmileEncoder
-                                         | • Class not found: com.fasterxml.jackson.core.JsonFactory (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.ObjectMapper (package not found)
                                          |
                                          | org.springframework.http.codec.json.Jackson2Tokenizer
@@ -4605,7 +4565,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: com.fasterxml.jackson.core.JsonProcessingException (package not found)
                                          | • Class not found: com.fasterxml.jackson.core.JsonToken (package not found)
                                          | • Class not found: com.fasterxml.jackson.core.async.ByteArrayFeeder (package not found)
-                                         | • Class not found: com.fasterxml.jackson.core.async.NonBlockingInputFeeder (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.util.TokenBuffer (package not found)
                                          | • Class not found: reactor.core.publisher.Flux (package not found)
                                          |
@@ -4672,7 +4631,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: org.synchronoss.cloud.nio.multipart.NioMultipartParser (package not found)
                                          | • Class not found: org.synchronoss.cloud.nio.multipart.NioMultipartParserListener (package not found)
                                          | • Class not found: org.synchronoss.cloud.nio.multipart.PartBodyStreamStorageFactory (package not found)
-                                         | • Class not found: reactor.core.Disposable (package not found)
                                          | • Class not found: reactor.core.publisher.Flux (package not found)
                                          | • Class not found: reactor.core.publisher.FluxSink (package not found)
                                          |
@@ -4688,9 +4646,7 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.codec.protobuf.ProtobufDecoder$MessageDecoderFunction
                                          | • Class not found: com.google.protobuf.CodedInputStream (package not found)
-                                         | • Class not found: com.google.protobuf.ExtensionRegistry (package not found)
                                          | • Class not found: com.google.protobuf.ExtensionRegistryLite (package not found)
-                                         | • Class not found: com.google.protobuf.Message (package not found)
                                          | • Class not found: com.google.protobuf.Message$Builder (package not found)
                                          |
                                          | org.springframework.http.codec.protobuf.ProtobufEncoder
@@ -4729,7 +4685,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.codec.xml.XmlEventDecoder$AaltoDataBufferToXmlEvent
                                          | • Class not found: com.fasterxml.aalto.AsyncByteBufferFeeder (package not found)
-                                         | • Class not found: com.fasterxml.aalto.AsyncInputFeeder (package not found)
                                          | • Class not found: com.fasterxml.aalto.AsyncXMLInputFactory (package not found)
                                          | • Class not found: com.fasterxml.aalto.AsyncXMLStreamReader (package not found)
                                          | • Class not found: com.fasterxml.aalto.evt.EventAllocatorImpl (package not found)
@@ -4745,7 +4700,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: javax.mail.internet.MimeUtility (package not found)
                                          |
                                          | org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter
-                                         | • Class not found: com.fasterxml.jackson.core.JsonFactory (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.ObjectMapper (package not found)
                                          |
                                          | org.springframework.http.converter.feed.AbstractWireFeedHttpMessageConverter
@@ -4919,7 +4873,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: com.google.protobuf.util.JsonFormat$Printer (package not found)
                                          |
                                          | org.springframework.http.converter.smile.MappingJackson2SmileHttpMessageConverter
-                                         | • Class not found: com.fasterxml.jackson.core.JsonFactory (package not found)
                                          | • Class not found: com.fasterxml.jackson.databind.ObjectMapper (package not found)
                                          |
                                          | org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter
@@ -4943,11 +4896,9 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.http.server.ServletServerHttpRequest
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          |
                                          | org.springframework.http.server.ServletServerHttpResponse
-                                         | • Class not found: javax.servlet.ServletOutputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.http.server.ServletServerHttpResponse$ServletResponseHttpHeaders
@@ -5130,7 +5081,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.server.reactive.JettyHttpHandlerAdapter$JettyServerHttpResponse
                                          | • Class not found: javax.servlet.AsyncContext (package not found)
-                                         | • Class not found: javax.servlet.ServletOutputStream (package not found)
                                          | • Class not found: javax.servlet.ServletResponse (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          | • Class not found: org.eclipse.jetty.http.HttpFields (package not found)
@@ -5159,7 +5109,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.server.reactive.ReactorServerHttpRequest
                                          | • Class not found: io.netty.channel.Channel (package not found)
-                                         | • Class not found: io.netty.channel.ChannelHandler (package not found)
                                          | • Class not found: io.netty.channel.ChannelId (package not found)
                                          | • Class not found: io.netty.channel.ChannelPipeline (package not found)
                                          | • Class not found: io.netty.handler.codec.http.HttpHeaderNames (package not found)
@@ -5294,7 +5243,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.server.reactive.TomcatHttpHandlerAdapter$TomcatServerHttpRequest
                                          | • Class not found: javax.servlet.AsyncContext (package not found)
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
                                          | • Class not found: javax.servlet.ServletRequest (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          | • Class not found: org.apache.catalina.connector.CoyoteInputStream (package not found)
@@ -5304,7 +5252,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.server.reactive.TomcatHttpHandlerAdapter$TomcatServerHttpResponse
                                          | • Class not found: javax.servlet.AsyncContext (package not found)
-                                         | • Class not found: javax.servlet.ServletOutputStream (package not found)
                                          | • Class not found: javax.servlet.ServletResponse (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          | • Class not found: org.apache.catalina.connector.CoyoteOutputStream (package not found)
@@ -5326,7 +5273,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.http.server.reactive.UndertowHeadersAdapter$HeaderEntry
                                          | • Class not found: io.undertow.util.HeaderMap (package not found)
-                                         | • Class not found: io.undertow.util.HeaderValues (package not found)
                                          | • Class not found: io.undertow.util.HttpString (package not found)
                                          |
                                          | org.springframework.http.server.reactive.UndertowHttpHandlerAdapter
@@ -5438,8 +5384,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.remoting.caucho.HessianServiceExporter
                                          | • Class not found: javax.servlet.ServletException (package not found)
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
-                                         | • Class not found: javax.servlet.ServletOutputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
@@ -5468,14 +5412,11 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: org.apache.http.conn.socket.PlainConnectionSocketFactory (package not found)
                                          | • Class not found: org.apache.http.conn.ssl.SSLConnectionSocketFactory (package not found)
                                          | • Class not found: org.apache.http.entity.ByteArrayEntity (package not found)
-                                         | • Class not found: org.apache.http.impl.client.CloseableHttpClient (package not found)
                                          | • Class not found: org.apache.http.impl.client.HttpClientBuilder (package not found)
                                          | • Class not found: org.apache.http.impl.conn.PoolingHttpClientConnectionManager (package not found)
                                          |
                                          | org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter
                                          | • Class not found: javax.servlet.ServletException (package not found)
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
-                                         | • Class not found: javax.servlet.ServletOutputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
@@ -5646,11 +5587,9 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.web.context.request.FacesRequestAttributes
                                          | • Class not found: javax.faces.application.Application (package not found)
-                                         | • Class not found: javax.faces.application.ResourceHandler (package not found)
                                          | • Class not found: javax.faces.component.UIViewRoot (package not found)
                                          | • Class not found: javax.faces.context.ExternalContext (package not found)
                                          | • Class not found: javax.faces.context.FacesContext (package not found)
-                                         | • Class not found: javax.faces.context.Flash (package not found)
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          | • Class not found: org.apache.commons.logging.LogFactory (package not found)
                                          |
@@ -5830,11 +5769,9 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          |
                                          | org.springframework.web.context.support.WebApplicationContextUtils$RequestObjectFactory
                                          | • Class not found: javax.servlet.ServletRequest (package not found)
-                                         | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          |
                                          | org.springframework.web.context.support.WebApplicationContextUtils$ResponseObjectFactory
                                          | • Class not found: javax.servlet.ServletResponse (package not found)
-                                         | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.web.context.support.WebApplicationContextUtils$SessionObjectFactory
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
@@ -5937,7 +5874,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.web.filter.FormContentFilter$1
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          |
                                          | org.springframework.web.filter.FormContentFilter$FormContentRequestWrapper
@@ -5957,7 +5893,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.web.filter.ForwardedHeaderFilter$ForwardedHeaderExtractingRequest
-                                         | • Class not found: javax.servlet.ServletRequest (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          | • Method not found: javax.servlet.ServletRequest org.springframework.web.filter.ForwardedHeaderFilter$ForwardedHeaderExtractingRequest.getRequest()
                                          | > org.springframework.web.filter.ForwardedHeaderFilter$ForwardedHeaderExtractingRequest (method not found)
@@ -6013,7 +5948,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: javax.servlet.http.HttpServletResponse (package not found)
                                          |
                                          | org.springframework.web.filter.HttpPutFormContentFilter$1
-                                         | • Class not found: javax.servlet.ServletInputStream (package not found)
                                          | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                                          |
                                          | org.springframework.web.filter.HttpPutFormContentFilter$HttpPutFormContentRequestWrapper
@@ -6419,9 +6353,6 @@ spring-web-5.1.3.RELEASE.jar             | org.springframework.http.HttpLogging
                                          | • Class not found: reactor.core.publisher.Mono (package not found)
                                          |
                                          | org.springframework.web.server.session.InMemoryWebSessionStore
-                                         | • Class not found: reactor.core.publisher.Mono (package not found)
-                                         |
-                                         | org.springframework.web.server.session.InMemoryWebSessionStore$ExpiredSessionChecker
                                          | • Class not found: reactor.core.publisher.Mono (package not found)
                                          |
                                          | org.springframework.web.server.session.InMemoryWebSessionStore$InMemoryWebSession

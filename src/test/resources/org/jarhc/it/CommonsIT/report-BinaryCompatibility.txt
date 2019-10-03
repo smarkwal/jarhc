@@ -190,7 +190,6 @@ commons-email-1.5.jar         | org.apache.commons.mail.DefaultAuthenticator
                               |
                               | org.apache.commons.mail.util.MimeMessageParser
                               | • Class not found: javax.mail.Address (package not found)
-                              | • Class not found: javax.mail.BodyPart (package not found)
                               | • Class not found: javax.mail.Message$RecipientType (package not found)
                               | • Class not found: javax.mail.MessagingException (package not found)
                               | • Class not found: javax.mail.Multipart (package not found)
@@ -230,7 +229,6 @@ commons-fileupload-1.3.3.jar  | org.apache.commons.fileupload.DiskFileUpload
                               | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
                               |
                               | org.apache.commons.fileupload.servlet.ServletRequestContext
-                              | • Class not found: javax.servlet.ServletInputStream (package not found)
                               | • Class not found: javax.servlet.http.HttpServletRequest (package not found)
 commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttributeIterator
                               | • Class not found: org.jdom.Attribute (package not found)
@@ -245,7 +243,6 @@ commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttr
                               | • Class not found: org.jdom.Document (package not found)
                               | • Class not found: org.jdom.Element (package not found)
                               | • Class not found: org.jdom.Namespace (package not found)
-                              | • Class not found: org.jdom.Parent (package not found)
                               |
                               | org.apache.commons.jxpath.ri.model.jdom.JDOMNodeIterator
                               | • Class not found: org.jdom.Document (package not found)
@@ -259,7 +256,6 @@ commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttr
                               | • Class not found: org.jdom.Document (package not found)
                               | • Class not found: org.jdom.Element (package not found)
                               | • Class not found: org.jdom.Namespace (package not found)
-                              | • Class not found: org.jdom.Parent (package not found)
                               | • Class not found: org.jdom.ProcessingInstruction (package not found)
                               | • Class not found: org.jdom.Text (package not found)
                               |
@@ -272,7 +268,6 @@ commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttr
                               | • Class not found: javax.servlet.http.HttpSession (package not found)
                               |
                               | org.apache.commons.jxpath.servlet.HttpSessionHandler
-                              | • Class not found: javax.servlet.ServletContext (package not found)
                               | • Class not found: javax.servlet.http.HttpSession (package not found)
                               |
                               | org.apache.commons.jxpath.servlet.JXPathServletContexts
@@ -301,7 +296,6 @@ commons-jxpath-1.3.jar        | org.apache.commons.jxpath.ri.model.jdom.JDOMAttr
                               | • Class not found: javax.servlet.ServletRequest (package not found)
                               |
                               | org.apache.commons.jxpath.xml.JDOMParser
-                              | • Class not found: org.jdom.Document (package not found)
                               | • Class not found: org.jdom.input.SAXBuilder (package not found)
 commons-logging-1.2.jar       | org.apache.commons.logging.impl.AvalonLogger
                               | • Class not found: org.apache.avalon.framework.logger.Logger (package not found)

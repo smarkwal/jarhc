@@ -348,7 +348,6 @@ camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         | org.apache.camel.converter.stream.CipherPair
                         | • Class not found: javax.crypto.Cipher (package not found)
                         | • Class not found: javax.crypto.KeyGenerator (package not found)
-                        | • Class not found: javax.crypto.SecretKey (package not found)
                         | • Class not found: javax.crypto.spec.IvParameterSpec (package not found)
                         |
                         | org.apache.camel.converter.stream.FileInputStreamCache
@@ -605,7 +604,6 @@ camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         |
                         | org.apache.camel.impl.osgi.Activator$BaseResolver
                         | • Class not found: org.osgi.framework.Bundle (package not found)
-                        | • Class not found: org.osgi.framework.BundleContext (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
                         |
                         | org.apache.camel.impl.osgi.Activator$BaseService
@@ -1483,7 +1481,6 @@ camel-jms-2.17.7.jar    | org.apache.camel.component.jms.DefaultJmsMessageListen
                         | org.apache.camel.component.jms.JmsConsumer
                         | • Class not found: javax.jms.Connection (package not found)
                         | • Class not found: javax.jms.ConnectionFactory (package not found)
-                        | • Class not found: javax.jms.Destination (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
                         | • Class not found: org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
                         | • Class not found: org.springframework.jms.support.JmsUtils (package not found)
@@ -1544,9 +1541,7 @@ camel-jms-2.17.7.jar    | org.apache.camel.component.jms.DefaultJmsMessageListen
                         | • Class not found: javax.jms.Destination (package not found)
                         | • Class not found: javax.jms.JMSException (package not found)
                         | • Class not found: javax.jms.Message (package not found)
-                        | • Class not found: javax.jms.Queue (package not found)
                         | • Class not found: javax.jms.Session (package not found)
-                        | • Class not found: javax.jms.Topic (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
                         | • Class not found: org.slf4j.LoggerFactory (package not found)
                         | • Class not found: org.springframework.jms.core.JmsOperations (package not found)
@@ -1645,7 +1640,6 @@ camel-jms-2.17.7.jar    | org.apache.camel.component.jms.DefaultJmsMessageListen
                         | • Class not found: javax.jms.Message (package not found)
                         | • Class not found: javax.jms.Session (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
-                        | • Class not found: org.springframework.core.task.TaskExecutor (package not found)
                         | • Class not found: org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
                         | • Class not found: org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
                         | • Class not found: org.springframework.jms.support.destination.DestinationResolver (package not found)
@@ -1698,7 +1692,6 @@ camel-jms-2.17.7.jar    | org.apache.camel.component.jms.DefaultJmsMessageListen
                         | • Class not found: javax.jms.Message (package not found)
                         | • Class not found: javax.jms.Session (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
-                        | • Class not found: org.springframework.core.task.TaskExecutor (package not found)
                         | • Class not found: org.springframework.jms.listener.AbstractMessageListenerContainer (package not found)
                         | • Class not found: org.springframework.jms.listener.DefaultMessageListenerContainer (package not found)
                         | • Class not found: org.springframework.jms.support.destination.DestinationResolver (package not found)
@@ -1859,7 +1852,6 @@ camel-mail-2.17.7.jar   | org.apache.camel.component.mail.DefaultAuthenticator
                         |
                         | org.apache.camel.component.mail.MailSorter
                         | • Class not found: com.sun.mail.imap.SortTerm (package not found)
-                        | • Class not found: javax.mail.Address (package not found)
                         | • Class not found: javax.mail.Message (package not found)
                         | • Class not found: javax.mail.Message$RecipientType (package not found)
                         | • Class not found: javax.mail.MessagingException (package not found)

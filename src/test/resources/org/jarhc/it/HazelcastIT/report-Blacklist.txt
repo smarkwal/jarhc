@@ -235,7 +235,6 @@ hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.NearCachedClientCa
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
                             | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Job
-                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
                             | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
                             | • @Deprecated: public interface com.hazelcast.mapreduce.MappingJob
@@ -284,7 +283,6 @@ hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.NearCachedClientCa
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Collator
                             | • @Deprecated: public interface com.hazelcast.mapreduce.CombinerFactory
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Job
-                            | • @Deprecated: public interface com.hazelcast.mapreduce.JobCompletableFuture
                             | • @Deprecated: public interface com.hazelcast.mapreduce.JobTracker
                             | • @Deprecated: public interface com.hazelcast.mapreduce.Mapper
                             | • @Deprecated: public interface com.hazelcast.mapreduce.MappingJob
