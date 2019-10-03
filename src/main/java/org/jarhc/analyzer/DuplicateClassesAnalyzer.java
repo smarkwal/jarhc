@@ -127,8 +127,9 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 	private void buildDuplicateClassesRows(Map<String, List<ClassDef>> duplicateClasses, ReportTable table) {
 
 		// for every duplicate class ...
-		for (String className : duplicateClasses.keySet()) {
-			List<ClassDef> classDefs = duplicateClasses.get(className);
+		for (Map.Entry<String, List<ClassDef>> entry : duplicateClasses.entrySet()) {
+			String className = entry.getKey();
+			List<ClassDef> classDefs = entry.getValue();
 
 			// get JAR file or class loader (sorted by name)
 			String sources = getClassSources(classDefs);
@@ -143,8 +144,9 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 	private void buildDuplicateResourcesRows(Map<String, List<ResourceDef>> duplicateResources, ReportTable table) {
 
 		// for every duplicate resource ...
-		for (String resourcePath : duplicateResources.keySet()) {
-			List<ResourceDef> resourceDefs = duplicateResources.get(resourcePath);
+		for (Map.Entry<String, List<ResourceDef>> entry : duplicateResources.entrySet()) {
+			String resourcePath = entry.getKey();
+			List<ResourceDef> resourceDefs = entry.getValue();
 
 			// get JAR file or class loader (sorted by name)
 			String sources = getResourceSources(resourceDefs);
