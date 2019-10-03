@@ -52,12 +52,14 @@ class JarFileLoader {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarFileLoader.class);
 
+	private final String classLoader;
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
 	private final ArtifactResolver artifactResolver;
 
-	JarFileLoader(ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, ArtifactResolver artifactResolver) {
+	JarFileLoader(String classLoader, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, ArtifactResolver artifactResolver) {
+		this.classLoader = classLoader;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
@@ -232,6 +234,7 @@ class JarFileLoader {
 				.withFileSize(fileData.length)
 				.withChecksum(checksum)
 				.withCoordinates(coordinates)
+				.withClassLoader(classLoader)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
 				.withClassDefs(classDefs)

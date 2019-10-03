@@ -143,14 +143,19 @@ public class DependenciesAnalyzer implements Analyzer {
 				JarFile jarFile = result.get();
 
 				// check if it is an exact match
+				String line = "OK";
 				String coordinates = jarFile.getCoordinates();
 				Artifact artifact = new Artifact(coordinates);
-				if (artifact.equals(dependency.toArtifact())) {
-					lines.add("OK"); // TODO: add scope
-				} else {
-					lines.add("OK (version " + artifact.getVersion() + ")"); // TODO: add scope
+				if (!artifact.equals(dependency.toArtifact())) {
+					line += " (version " + artifact.getVersion() + ")";
 				}
 
+				String classLoader = jarFile.getClassLoader();
+				if (classLoader != null && !classLoader.equals("Classpath")) {
+					line += " [" + classLoader + "]";
+				}
+
+				lines.add(line);
 			} else {
 				lines.add("Unsatisfied");
 			}

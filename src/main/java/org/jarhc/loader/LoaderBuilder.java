@@ -75,7 +75,7 @@ public class LoaderBuilder {
 	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
-		return new JarFileLoader(classDefLoader, moduleInfoLoader, jarFileNameNormalizer, artifactResolver);
+		return new JarFileLoader(classLoader, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, artifactResolver);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {
