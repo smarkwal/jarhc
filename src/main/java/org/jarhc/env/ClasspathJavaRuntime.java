@@ -17,8 +17,10 @@
 package org.jarhc.env;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
+import org.jarhc.model.JarFile;
 
 public class ClasspathJavaRuntime extends JavaRuntime {
 
@@ -49,6 +51,11 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 	@Override
 	public String getJavaHome() {
 		return NONE;
+	}
+
+	@Override
+	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+		return classpath.findJarFile(predicate);
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.utils.MultiMap;
@@ -92,6 +93,11 @@ public class Classpath extends ClassLoader {
 	 */
 	public JarFile getJarFile(String fileName) {
 		return jarFilesMap.get(fileName);
+	}
+
+	@Override
+	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+		return jarFiles.stream().filter(predicate).findFirst();
 	}
 
 	@Override

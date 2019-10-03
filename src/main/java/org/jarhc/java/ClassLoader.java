@@ -20,10 +20,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.FieldRef;
+import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
 
@@ -46,6 +48,45 @@ public abstract class ClassLoader {
 	public ClassLoader getParent() {
 		return parent;
 	}
+
+	/**
+	 * Find a JAR file which satisfies the given predicate.
+	 *
+	 * @param predicate Predicate
+	 * @return JAR file
+	 */
+	public Optional<JarFile> getJarFile(Predicate<JarFile> predicate) {
+
+		// if parent-first class loader strategy ...
+		Optional<JarFile> jarFile;
+		if (strategy == ClassLoaderStrategy.ParentFirst && parent != null) {
+			// try to find JAR file in parent class loader
+			jarFile = parent.getJarFile(predicate);
+			if (jarFile.isPresent()) {
+				return jarFile;
+			}
+		}
+
+		// try to find JAR file in this class loader
+		jarFile = findJarFile(predicate);
+		if (jarFile.isPresent()) {
+			return jarFile;
+		}
+
+		// if parent-last class loader strategy ...
+		if (strategy == ClassLoaderStrategy.ParentLast && parent != null) {
+			// try to find JAR file in parent class loader
+			jarFile = parent.getJarFile(predicate);
+			if (jarFile.isPresent()) {
+				return jarFile;
+			}
+		}
+
+		// JAR file not found
+		return Optional.empty();
+	}
+
+	protected abstract Optional<JarFile> findJarFile(Predicate<JarFile> predicate);
 
 	public boolean containsPackage(String packageName) {
 		if (this.findPackage(packageName)) {

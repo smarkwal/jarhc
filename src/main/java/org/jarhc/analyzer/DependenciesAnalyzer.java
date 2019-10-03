@@ -16,7 +16,11 @@
 
 package org.jarhc.analyzer;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.model.Classpath;
@@ -52,14 +56,14 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Dependencies", "Direct and transitive dependencies as declared in POM file.");
+		ReportSection section = new ReportSection("Dependencies", "Dependencies as declared in POM file.");
 		section.add(table);
 		return section;
 	}
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Maven coordinates", "Direct dependencies", "Transitive dependencies");
+		ReportTable table = new ReportTable("JAR file", "Maven coordinates", "Direct dependencies", "Status");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -69,37 +73,39 @@ public class DependenciesAnalyzer implements Analyzer {
 			String fileName = jarFile.getFileName();
 			String coordinates = getCoordinates(jarFile);
 
-			String directDependenciesInfo = UNKNOWN;
-			String transitiveDependenciesInfo = UNKNOWN;
+			String dependenciesInfo = UNKNOWN;
+			String status = "";
 
 			if (Artifact.validateCoordinates(coordinates)) {
 
-				List<Dependency> directDependencies = getDirectDependencies(coordinates);
-				if (directDependencies == null) { // error
-					directDependenciesInfo = ERROR;
-				} else if (directDependencies.isEmpty()) { // no direct dependencies
+				// get list of direct dependencies
+				List<Dependency> dependencies = getDependencies(coordinates);
+
+				if (dependencies == null) { // error
+					dependenciesInfo = ERROR;
+				} else if (dependencies.isEmpty()) { // no direct dependencies
 					// show special value "none"
-					directDependenciesInfo = NONE;
-					transitiveDependenciesInfo = NONE;
+					dependenciesInfo = NONE;
 				} else {
-					List<String> lines = directDependencies.stream()
+					List<String> lines = dependencies.stream()
 							.map(Dependency::toString)
 							.collect(Collectors.toList());
-					directDependenciesInfo = StringUtils.joinLines(lines);
-
-					// TODO: collect transitive dependencies
-					transitiveDependenciesInfo = "[todo]";
-
+					dependenciesInfo = StringUtils.joinLines(lines);
 				}
+
+				if (dependencies != null) {
+					status = getStatus(dependencies, classpath);
+				}
+
 			}
 
-			table.addRow(fileName, coordinates, directDependenciesInfo, transitiveDependenciesInfo);
+			table.addRow(fileName, coordinates, dependenciesInfo, status);
 		}
 
 		return table;
 	}
 
-	private List<Dependency> getDirectDependencies(String coordinates) {
+	private List<Dependency> getDependencies(String coordinates) {
 
 		Artifact artifact = new Artifact(coordinates);
 
@@ -124,9 +130,65 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	}
 
+	private String getStatus(List<Dependency> dependencies, Classpath classpath) {
+
+		List<String> lines = new ArrayList<>(dependencies.size());
+
+		for (Dependency dependency : dependencies) {
+
+			// search for JAR file with same group ID and artifact ID
+			Predicate<JarFile> predicate = jarFile -> matches(jarFile, dependency);
+			Optional<JarFile> result = classpath.getJarFile(predicate);
+			if (result.isPresent()) {
+				JarFile jarFile = result.get();
+
+				// check if it is an exact match
+				String coordinates = jarFile.getCoordinates();
+				Artifact artifact = new Artifact(coordinates);
+				if (artifact.equals(dependency.toArtifact())) {
+					lines.add("OK"); // TODO: add scope
+				} else {
+					lines.add("OK (version " + artifact.getVersion() + ")"); // TODO: add scope
+				}
+
+			} else {
+				lines.add("Unsatisfied");
+			}
+		}
+
+		return StringUtils.joinLines(lines);
+	}
+
+	private boolean matches(JarFile jarFile, Dependency dependency) {
+
+		String coordinates = jarFile.getCoordinates();
+		if (coordinates == null) {
+			// skip JAR files without coordinates
+			return false;
+		}
+
+		Artifact jarArtifact = new Artifact(coordinates);
+		Artifact dependencyArtifact = dependency.toArtifact();
+
+		// check if group ID matches
+		if (!Objects.equals(jarArtifact.getGroupId(), dependencyArtifact.getGroupId())) {
+			return false;
+		}
+
+		// check if artifact ID matches
+		if (!Objects.equals(jarArtifact.getArtifactId(), dependencyArtifact.getArtifactId())) {
+			return false;
+		}
+
+		// TODO: check if type matches?
+
+		// note: version may be different
+		return true;
+	}
+
 	private String getCoordinates(JarFile jarFile) {
 		String coordinates = jarFile.getCoordinates();
-		if (coordinates == null || coordinates.isEmpty()) {
+		if (coordinates == null) {
 			return UNKNOWN;
 		}
 		return coordinates;

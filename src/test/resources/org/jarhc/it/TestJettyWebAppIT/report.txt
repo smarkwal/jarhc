@@ -53,26 +53,26 @@ websocket-servlet-9.4.20.v20190813.jar  | websocket-api-9.4.20.v20190813.jar | [
 
 Dependencies
 ------------
-Direct and transitive dependencies as declared in POM file.
+Dependencies as declared in POM file.
 
-JAR file                                | Maven coordinates                                              | Direct dependencies                                        | Transitive dependencies
-----------------------------------------+----------------------------------------------------------------+------------------------------------------------------------+------------------------
-jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | [todo]
-jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | [todo]
-                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                |
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           |
-jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty:jetty-io:9.4.20.v20190813                    | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | [todo]
-jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813              | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813      | [todo]
-                                        |                                                                | org.eclipse.jetty:jetty-http:9.4.20.v20190813              |
-                                        |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) |
-                                        |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              |
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           |
-                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                |
-jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-util:9.4.20.v20190813                  | javax.servlet:javax.servlet-api:3.1.0 (provided)           | [todo]
-                                        |                                                                | org.slf4j:slf4j-api:1.7.25 (provided, optional)            |
-websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813     | [none]                                                     | [none]
-websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813 | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813 | [todo]
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0                      |
+JAR file                                | Maven coordinates                                              | Direct dependencies                                        | Status
+----------------------------------------+----------------------------------------------------------------+------------------------------------------------------------+--------------------
+jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK
+jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK
+jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty:jetty-io:9.4.20.v20190813                    | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813              | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813      | OK
+                                        |                                                                | org.eclipse.jetty:jetty-http:9.4.20.v20190813              | OK
+                                        |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) | Unsatisfied
+                                        |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK
+                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-util:9.4.20.v20190813                  | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK
+                                        |                                                                | org.slf4j:slf4j-api:1.7.25 (provided, optional)            | OK (version 1.7.28)
+websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813     | [none]                                                     |
+websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813 | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813 | OK
+                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0                      | OK
 
 Packages
 --------

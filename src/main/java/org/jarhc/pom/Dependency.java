@@ -16,6 +16,8 @@
 
 package org.jarhc.pom;
 
+import org.jarhc.artifacts.Artifact;
+
 public class Dependency {
 
 	private String groupId;
@@ -80,6 +82,10 @@ public class Dependency {
 		result = 31 * result + scope.hashCode();
 		result = 31 * result + (optional ? 1 : 0);
 		return result;
+	}
+
+	public Artifact toArtifact() {
+		return new Artifact(groupId, artifactId, version, "jar");
 	}
 
 	@Override

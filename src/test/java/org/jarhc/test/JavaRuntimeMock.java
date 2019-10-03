@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import org.jarhc.TestUtils;
@@ -103,6 +104,11 @@ public class JavaRuntimeMock extends JavaRuntime {
 	@Override
 	public String getJavaHome() {
 		return "/opt/java/jdk-1.8.0_144";
+	}
+
+	@Override
+	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+		return Optional.empty();
 	}
 
 	@Override
