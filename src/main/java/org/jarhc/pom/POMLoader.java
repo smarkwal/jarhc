@@ -37,7 +37,7 @@ public class POMLoader {
 		this.repository = repository;
 	}
 
-	public POM load(Artifact artifact) throws POMException, POMNotFoundException {
+	public POM load(Artifact artifact) throws POMException {
 
 		artifact = artifact.withType("pom");
 

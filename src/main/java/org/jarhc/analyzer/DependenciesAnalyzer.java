@@ -79,7 +79,14 @@ public class DependenciesAnalyzer implements Analyzer {
 			if (Artifact.validateCoordinates(coordinates)) {
 
 				// get list of direct dependencies
-				List<Dependency> dependencies = getDependencies(coordinates);
+				List<Dependency> dependencies = null;
+				try {
+					dependencies = getDependencies(coordinates);
+				} catch (POMNotFoundException e) {
+					LOGGER.warn("POM not found: {}", e.getMessage());
+				} catch (POMException e) {
+					LOGGER.error("Resolver error for artifact: {}", coordinates, e);
+				}
 
 				if (dependencies == null) { // error
 					dependenciesInfo = ERROR;
@@ -105,29 +112,18 @@ public class DependenciesAnalyzer implements Analyzer {
 		return table;
 	}
 
-	private List<Dependency> getDependencies(String coordinates) {
+	private List<Dependency> getDependencies(String coordinates) throws POMException {
 
 		Artifact artifact = new Artifact(coordinates);
 
-		try {
+		// try to find all direct dependencies
+		List<Dependency> dependencies = dependencyResolver.getDependencies(artifact);
 
-			// try to find all direct dependencies
-			List<Dependency> dependencies = dependencyResolver.getDependencies(artifact);
+		// ignore test dependencies
+		dependencies.removeIf(d -> d.getScope() == Scope.TEST);
 
-			// ignore test dependencies
-			dependencies.removeIf(d -> d.getScope() == Scope.TEST);
-
-			// return list of dependencies
-			return dependencies;
-
-		} catch (POMNotFoundException e) {
-			LOGGER.warn(e.getMessage());
-			return null;
-		} catch (POMException e) {
-			LOGGER.error("Resolver error for artifact: {}", artifact, e);
-			return null;
-		}
-
+		// return list of dependencies
+		return dependencies;
 	}
 
 	private String getStatus(List<Dependency> dependencies, Classpath classpath) {
@@ -143,19 +139,19 @@ public class DependenciesAnalyzer implements Analyzer {
 				JarFile jarFile = result.get();
 
 				// check if it is an exact match
-				String line = "OK";
+				StringBuilder line = new StringBuilder("OK");
 				String coordinates = jarFile.getCoordinates();
 				Artifact artifact = new Artifact(coordinates);
 				if (!artifact.equals(dependency.toArtifact())) {
-					line += " (version " + artifact.getVersion() + ")";
+					line.append(" (version ").append(artifact.getVersion()).append(")");
 				}
 
 				String classLoader = jarFile.getClassLoader();
 				if (classLoader != null && !classLoader.equals("Classpath")) {
-					line += " [" + classLoader + "]";
+					line.append(" [").append(classLoader).append("]");
 				}
 
-				lines.add(line);
+				lines.add(line.toString());
 			} else {
 				lines.add("Unsatisfied");
 			}
