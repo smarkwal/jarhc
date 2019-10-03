@@ -146,12 +146,8 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	}
 
+	@SuppressWarnings("StatementWithEmptyBody")
 	private void validateSuperclass(ClassDef superClass, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
-
-		// TODO: skip checks if superclass is from same JAR file
-		// if (superClass.isFromSameJarFileAs(classDef)) {
-		// 	return;
-		// }
 
 		// check if class is final
 		if (superClass.isFinal()) {
@@ -165,7 +161,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			classIssues.add("Superclass is an interface: " + superClass.getDisplayName());
 		} else if (superClass.isEnum()) {
 			if (classDef.isEnum() && classDef.getClassName().startsWith(superClass.getClassName() + "$")) {
-				// TODO: this check is not needed anymore if classes in same JAR file are skipped
 				// superclass is outer enum class,
 				// current class is inner anonymous class implementing the abstract enum class
 			} else {
@@ -183,12 +178,8 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	}
 
+	@SuppressWarnings("StatementWithEmptyBody")
 	private void validateInterface(ClassDef interfaceClass, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
-
-		// TODO: skip checks if interface is from same JAR file
-		// if (interfaceClass.isFromSameJarFileAs(classDef)) {
-		// 	return;
-		// }
 
 		// check if class is an interface
 		if (interfaceClass.isAnnotation()) {
@@ -304,6 +295,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	 * @param concreteMethod Concrete method
 	 * @return <code>true</code> if concrete method implements abstract method, <code>false</code> otherwise.
 	 */
+	@SuppressWarnings("RedundantIfStatement")
 	private boolean isImplementedBy(MethodDef abstractMethod, MethodDef concreteMethod) {
 		if (abstractMethod.getMethodName().equals(concreteMethod.getMethodName())) {
 			if (abstractMethod.getMethodDescriptor().equals(concreteMethod.getMethodDescriptor())) {
@@ -324,7 +316,8 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			String className = classRef.getClassName();
 
 			// check if class exists
-			boolean exists = classLoader.getClassDef(className).isPresent();
+			Optional<ClassDef> targetClassDef = classLoader.getClassDef(className);
+			boolean exists = targetClassDef.isPresent();
 			if (!exists) {
 
 				String packageName = JavaUtils.getPackageName(className);
@@ -336,7 +329,22 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				}
 
 			} else {
-				// TODO: access check?
+
+				// check access to class
+				boolean access = accessCheck.hasAccess(classDef, targetClassDef.get());
+				if (!access) {
+
+					// check if a similar issue has already been reported (for superclass or interface declaration)
+					String targetClassDisplayName = targetClassDef.get().getDisplayName();
+					boolean similarIssueFound = classIssues.contains("Superclass is not accessible: " + targetClassDisplayName) ||
+							classIssues.contains("Interface is not accessible: " + targetClassDisplayName);
+
+					if (!similarIssueFound) {
+						classIssues.add("Class is not accessible: " + targetClassDisplayName);
+					}
+
+				}
+
 			}
 
 		}
@@ -387,7 +395,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			// TODO: add method ref to error message
 			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
 			return searchResult;
 		}
@@ -414,14 +421,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			searchResult.addErrorMessage("Illegal access from " + className + ": " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
 		}
 
-		// check method return type
-		// TODO
-		/*
-		if (!method.getFieldType().equals(methodRef.getFieldType())) {
-			searchResult.addErrorMessage("Incompatible field type: " + methodRef.getDisplayName() + " -> " + method.getDisplayName());
-		}
-		*/
-
 		// check static/instance
 		if (methodDef.isStatic()) {
 			if (!methodRef.isStaticAccess()) {
@@ -433,7 +432,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
-		// TODO: more checks ...?
 	}
 
 	// -----------------------------------------------------------------------------------------------------
@@ -480,7 +478,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			// TODO: add field ref to error message
 			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
 			return searchResult;
 		}
@@ -530,7 +527,6 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
-		// TODO: more checks ...?
 	}
 
 	// -----------------------------------------------------------------------------------------------------
@@ -571,6 +567,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
+		@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 		boolean isIgnoreResult() {
 			return ignoreResult;
 		}

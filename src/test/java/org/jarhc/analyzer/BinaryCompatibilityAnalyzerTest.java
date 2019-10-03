@@ -66,7 +66,7 @@ class BinaryCompatibilityAnalyzerTest {
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
-		assertEquals("a.A" + System.lineSeparator() + "\u2022 Class not found: c.C (package not found)", values[1]);
+		assertEquals("a.A" + System.lineSeparator() + "\u2022 Class is not accessible: class b.B" + System.lineSeparator() + "\u2022 Class not found: c.C (package not found)", values[1]);
 
 	}
 
