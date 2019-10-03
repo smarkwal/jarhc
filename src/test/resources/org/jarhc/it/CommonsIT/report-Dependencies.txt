@@ -7,7 +7,8 @@ Dependencies as declared in POM file.
 
 JAR file                      | Maven coordinates                               | Direct dependencies                                              | Status
 ------------------------------+-------------------------------------------------+------------------------------------------------------------------+-------------------
-commons-beanutils-1.9.2.jar   | [unknown]                                       | [unknown]                                                        |
+commons-beanutils-1.9.2.jar   | commons-beanutils:commons-beanutils:1.9.2       | commons-logging:commons-logging:1.1.1                            | OK (version 1.2)
+                              |                                                 | commons-collections:commons-collections:3.2.1                    | OK (version 3.2.2)
 commons-betwixt-0.8.jar       | commons-betwixt:commons-betwixt:0.8             | commons-logging:commons-logging:1.0.4                            | OK (version 1.2)
                               |                                                 | commons-beanutils:commons-beanutils-core:1.7.0                   | Unsatisfied
                               |                                                 | commons-digester:commons-digester:1.7                            | OK (version 2.1)
@@ -20,7 +21,7 @@ commons-configuration-1.9.jar | commons-configuration:commons-configuration:1.9 
                               |                                                 | commons-lang:commons-lang:2.6                                    | OK
                               |                                                 | commons-logging:commons-logging:1.1.1                            | OK (version 1.2)
                               |                                                 | commons-digester:commons-digester:1.8.1 (optional)               | OK (version 2.1)
-                              |                                                 | commons-beanutils:commons-beanutils:1.8.3 (optional)             | Unsatisfied
+                              |                                                 | commons-beanutils:commons-beanutils:1.8.3 (optional)             | OK (version 1.9.2)
                               |                                                 | commons-codec:commons-codec:1.6 (optional)                       | OK (version 1.10)
                               |                                                 | org.apache.commons:commons-jexl:2.1.1 (optional)                 | Unsatisfied
                               |                                                 | org.apache.commons:commons-vfs2:2.0 (optional)                   | Unsatisfied
@@ -33,7 +34,7 @@ commons-dbcp2-2.5.0.jar       | org.apache.commons:commons-dbcp2:2.5.0          
                               |                                                 | commons-logging:commons-logging:1.2                              | OK
                               |                                                 | org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1 (optional) | Unsatisfied
 commons-dbutils-1.5.jar       | commons-dbutils:commons-dbutils:1.5             | [none]                                                           |
-commons-digester-2.1.jar      | commons-digester:commons-digester:2.1           | commons-beanutils:commons-beanutils:1.8.3                        | Unsatisfied
+commons-digester-2.1.jar      | commons-digester:commons-digester:2.1           | commons-beanutils:commons-beanutils:1.8.3                        | OK (version 1.9.2)
                               |                                                 | commons-logging:commons-logging:1.1.1                            | OK (version 1.2)
 commons-email-1.5.jar         | org.apache.commons:commons-email:1.5            | com.sun.mail:javax.mail:1.5.6                                    | Unsatisfied
 commons-fileupload-1.3.3.jar  | commons-fileupload:commons-fileupload:1.3.3     | javax.servlet:servlet-api:2.4 (provided)                         | Unsatisfied
@@ -45,7 +46,7 @@ commons-jxpath-1.3.jar        | commons-jxpath:commons-jxpath:1.3               
                               |                                                 | javax.servlet:jsp-api:2.0 (provided, optional)                   | Unsatisfied
                               |                                                 | xml-apis:xml-apis:1.3.04 (provided, optional)                    | Unsatisfied
                               |                                                 | jdom:jdom:1.0 (optional)                                         | Unsatisfied
-                              |                                                 | commons-beanutils:commons-beanutils:1.7.0 (optional)             | Unsatisfied
+                              |                                                 | commons-beanutils:commons-beanutils:1.7.0 (optional)             | OK (version 1.9.2)
 commons-lang-2.6.jar          | commons-lang:commons-lang:2.6                   | [none]                                                           |
 commons-logging-1.2.jar       | commons-logging:commons-logging:1.2             | log4j:log4j:1.2.17 (optional)                                    | Unsatisfied
                               |                                                 | logkit:logkit:1.0.1 (optional)                                   | Unsatisfied

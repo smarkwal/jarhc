@@ -19,23 +19,23 @@ package org.jarhc.it;
 class CommonsIT extends AbstractIT {
 
 	CommonsIT() {
-		super("commons-beanutils-1.9.2.jar",
-				"commons-betwixt-0.8.jar",
-				"commons-codec-1.10.jar",
-				"commons-collections-3.2.2.jar",
-				"commons-compress-1.5.jar",
-				"commons-configuration-1.9.jar",
-				"commons-dbcp2-2.5.0.jar",
-				"commons-dbutils-1.5.jar",
-				"commons-digester-2.1.jar",
-				"commons-email-1.5.jar",
-				"commons-fileupload-1.3.3.jar",
-				"commons-io-2.4.jar",
-				"commons-jxpath-1.3.jar",
-				"commons-lang-2.6.jar",
-				"commons-logging-1.2.jar",
-				"commons-net-3.3.jar",
-				"commons-pool2-2.6.0.jar"
+		super("commons-beanutils:commons-beanutils:1.9.2",
+				"commons-betwixt:commons-betwixt:0.8",
+				"commons-codec:commons-codec:1.10",
+				"commons-collections:commons-collections:3.2.2",
+				"org.apache.commons:commons-compress:1.5",
+				"commons-configuration:commons-configuration:1.9",
+				"org.apache.commons:commons-dbcp2:2.5.0",
+				"commons-dbutils:commons-dbutils:1.5",
+				"commons-digester:commons-digester:2.1",
+				"org.apache.commons:commons-email:1.5",
+				"commons-fileupload:commons-fileupload:1.3.3",
+				"commons-io:commons-io:2.4",
+				"commons-jxpath:commons-jxpath:1.3",
+				"commons-lang:commons-lang:2.6",
+				"commons-logging:commons-logging:1.2",
+				"commons-net:commons-net:3.3",
+				"org.apache.commons:commons-pool2:2.6.0"
 		);
 	}
 

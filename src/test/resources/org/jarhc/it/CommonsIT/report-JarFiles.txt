@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                      | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
 ------------------------------+---------+---------+-----------+---------------+--------+------------------------------------------+------------------------------------------------
-commons-beanutils-1.9.2.jar   | 228 KB  | 137     | 0         | No            | No     | 0c41fee1b50b22ac23ac99388f649b9a634e8346 | [unknown]
+commons-beanutils-1.9.2.jar   | 228 KB  | 137     | 0         | No            | No     | 7a87d845ad3a155297e8f67d9008f4c1e5656b71 | commons-beanutils:commons-beanutils:1.9.2
 commons-betwixt-0.8.jar       | 237 KB  | 166     | 12        | No            | No     | 76410daca8513df5a8d31c577b8c5b6040b22944 | commons-betwixt:commons-betwixt:0.8
 commons-codec-1.10.jar        | 278 KB  | 92      | 128       | No            | No     | 4b95f4897fa13f2cd904aee711aeafc0c5295cd8 | commons-codec:commons-codec:1.10
 commons-collections-3.2.2.jar | 575 KB  | 460     | 0         | No            | No     | 8ad72fe39fa8c91eaaf12aadb21e0c3661fe26d5 | commons-collections:commons-collections:3.2.2

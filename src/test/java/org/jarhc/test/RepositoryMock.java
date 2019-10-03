@@ -69,8 +69,7 @@ public class RepositoryMock implements Repository {
 		if (properties.containsValue(coordinates)) {
 			return Optional.of(artifact);
 		}
-		String fileName = artifact.getFileName();
-		String resourcePath = "/repository/" + fileName;
+		String resourcePath = "/repository/" + artifact.getPath();
 		try (InputStream stream = this.getClass().getResourceAsStream(resourcePath)) {
 			if (stream != null) {
 				return Optional.of(artifact);
@@ -101,8 +100,7 @@ public class RepositoryMock implements Repository {
 			InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
 			return Optional.of(stream);
 		}
-		String fileName = artifact.getFileName();
-		String resourcePath = "/repository/" + fileName;
+		String resourcePath = "/repository/" + artifact.getPath();
 		InputStream stream = this.getClass().getResourceAsStream(resourcePath);
 		if (stream != null) {
 			return Optional.of(stream);

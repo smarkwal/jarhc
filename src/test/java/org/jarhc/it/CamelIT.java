@@ -19,15 +19,15 @@ package org.jarhc.it;
 class CamelIT extends AbstractIT {
 
 	CamelIT() {
-		super("camel-core-2.17.7.jar",
-				"camel-jdbc-2.17.7.jar",
-				"camel-jms-2.17.7.jar",
-				"camel-jmx-2.17.7.jar",
-				"camel-jxpath-2.17.7.jar",
-				"camel-ldap-2.17.7.jar",
-				"camel-mail-2.17.7.jar",
-				"camel-soap-2.17.7.jar",
-				"camel-spring-2.17.7.jar"
+		super("org.apache.camel:camel-core:2.17.7",
+				"org.apache.camel:camel-jdbc:2.17.7",
+				"org.apache.camel:camel-jms:2.17.7",
+				"org.apache.camel:camel-jmx:2.17.7",
+				"org.apache.camel:camel-jxpath:2.17.7",
+				"org.apache.camel:camel-ldap:2.17.7",
+				"org.apache.camel:camel-mail:2.17.7",
+				"org.apache.camel:camel-soap:2.17.7",
+				"org.apache.camel:camel-spring:2.17.7"
 		);
 	}
 

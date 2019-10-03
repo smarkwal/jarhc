@@ -19,9 +19,9 @@ package org.jarhc.it;
 class XercesIT extends AbstractIT {
 
 	XercesIT() {
-		super("xercesImpl-2.11.0.jar",
-				"xml-apis-1.4.01.jar",
-				"xml-resolver-1.2.jar"
+		super("xerces:xercesImpl:2.11.0",
+				"xml-apis:xml-apis:1.4.01",
+				"xml-resolver:xml-resolver:1.2"
 		);
 	}
 

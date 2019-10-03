@@ -29,6 +29,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.artifacts.Artifact;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -43,10 +44,10 @@ import org.junit.jupiter.api.io.TempDir;
 
 abstract class AbstractIT {
 
-	private final String[] fileNames;
+	private final String[] artifacts;
 
-	AbstractIT(String... fileNames) {
-		this.fileNames = fileNames;
+	AbstractIT(String... artifacts) {
+		this.artifacts = artifacts;
 	}
 
 	@TestFactory
@@ -54,8 +55,9 @@ abstract class AbstractIT {
 
 		// prepare list of files
 		List<File> files = new ArrayList<>();
-		for (String fileName : fileNames) {
-			String resourcePath = "/repository/" + fileName;
+		for (String coordinates : artifacts) {
+			Artifact artifact = new Artifact(coordinates);
+			String resourcePath = "/repository/" + artifact.getPath();
 			File file = TestUtils.getResourceAsFile(resourcePath, tempDir);
 			files.add(file);
 		}

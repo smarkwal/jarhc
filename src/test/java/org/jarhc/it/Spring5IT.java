@@ -19,18 +19,18 @@ package org.jarhc.it;
 class Spring5IT extends AbstractIT {
 
 	Spring5IT() {
-		super("spring-aop-5.1.3.RELEASE.jar",
-				"spring-beans-5.1.3.RELEASE.jar",
-				"spring-context-5.1.3.RELEASE.jar",
-				"spring-context-support-5.1.3.RELEASE.jar",
-				"spring-core-5.1.3.RELEASE.jar",
-				"spring-expression-5.1.3.RELEASE.jar",
-				"spring-jdbc-5.1.3.RELEASE.jar",
-				"spring-jms-5.1.3.RELEASE.jar",
-				"spring-messaging-5.1.3.RELEASE.jar",
-				"spring-orm-5.1.3.RELEASE.jar",
-				"spring-tx-5.1.3.RELEASE.jar",
-				"spring-web-5.1.3.RELEASE.jar"
+		super("org.springframework:spring-aop:5.1.3.RELEASE",
+				"org.springframework:spring-beans:5.1.3.RELEASE",
+				"org.springframework:spring-context:5.1.3.RELEASE",
+				"org.springframework:spring-context-support:5.1.3.RELEASE",
+				"org.springframework:spring-core:5.1.3.RELEASE",
+				"org.springframework:spring-expression:5.1.3.RELEASE",
+				"org.springframework:spring-jdbc:5.1.3.RELEASE",
+				"org.springframework:spring-jms:5.1.3.RELEASE",
+				"org.springframework:spring-messaging:5.1.3.RELEASE",
+				"org.springframework:spring-orm:5.1.3.RELEASE",
+				"org.springframework:spring-tx:5.1.3.RELEASE",
+				"org.springframework:spring-web:5.1.3.RELEASE"
 		);
 	}
 
