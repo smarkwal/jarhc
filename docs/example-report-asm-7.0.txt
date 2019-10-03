@@ -43,16 +43,16 @@ asm-tree-7.0.jar     | asm-7.0.jar      | asm-analysis-7.0.jar
 
 Dependencies
 ------------
-Direct and transitive dependencies as declared in POM file.
+Dependencies as declared in POM file.
 
-JAR file             | Maven coordinates            | Direct dependencies          | Transitive dependencies
----------------------+------------------------------+------------------------------+------------------------
-asm-7.0.jar          | org.ow2.asm:asm:7.0          | [none]                       | [todo]
-asm-analysis-7.0.jar | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | [todo]
-asm-commons-7.0.jar  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm:7.0          | [todo]
-                     |                              | org.ow2.asm:asm-tree:7.0     |
-                     |                              | org.ow2.asm:asm-analysis:7.0 |
-asm-tree-7.0.jar     | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | [todo]
+JAR file             | Maven coordinates            | Direct dependencies          | Status
+---------------------+------------------------------+------------------------------+-------
+asm-7.0.jar          | org.ow2.asm:asm:7.0          | [none]                       |
+asm-analysis-7.0.jar | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
+asm-commons-7.0.jar  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm:7.0          | OK
+                     |                              | org.ow2.asm:asm-tree:7.0     | OK
+                     |                              | org.ow2.asm:asm-analysis:7.0 | OK
+asm-tree-7.0.jar     | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
 
 Packages
 --------

@@ -144,23 +144,21 @@ JAR file: asm-tree-7.0.jar
 
 Dependencies
 ------------
-Direct and transitive dependencies as declared in POM file.
+Dependencies as declared in POM file.
 
 JAR file: asm-7.0.jar
 	Maven coordinates:
 		org.ow2.asm:asm:7.0
 	Direct dependencies:
 		[none]
-	Transitive dependencies:
-		[todo]
 
 JAR file: asm-analysis-7.0.jar
 	Maven coordinates:
 		org.ow2.asm:asm-analysis:7.0
 	Direct dependencies:
 		org.ow2.asm:asm-tree:7.0
-	Transitive dependencies:
-		[todo]
+	Status:
+		OK
 
 JAR file: asm-commons-7.0.jar
 	Maven coordinates:
@@ -169,16 +167,18 @@ JAR file: asm-commons-7.0.jar
 		org.ow2.asm:asm:7.0
 		org.ow2.asm:asm-tree:7.0
 		org.ow2.asm:asm-analysis:7.0
-	Transitive dependencies:
-		[todo]
+	Status:
+		OK
+		OK
+		OK
 
 JAR file: asm-tree-7.0.jar
 	Maven coordinates:
 		org.ow2.asm:asm-tree:7.0
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
-	Transitive dependencies:
-		[todo]
+	Status:
+		OK
 
 Packages
 --------
