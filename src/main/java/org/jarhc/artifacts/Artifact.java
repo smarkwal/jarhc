@@ -98,7 +98,14 @@ public class Artifact {
 	}
 
 	public String getFileName() {
-		return String.format("%s-%s.%s", artifactId, version, type);
+		return String.format("%s-%s.%s", artifactId, version, getFileExtension());
+	}
+
+	private String getFileExtension() {
+		if (type.equals("bundle")) {
+			return "jar";
+		}
+		return type;
 	}
 
 	@Override

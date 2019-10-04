@@ -112,8 +112,22 @@ class ArtifactTest {
 		// test
 		String result = artifact.toString();
 
-		// asert
+		// assert
 		assertEquals("org.jarhc:jarhc:1.4-SNAPSHOT:jar", result);
+
+	}
+
+	@Test
+	void toCoordinates() {
+
+		// prepare
+		Artifact artifact = new Artifact("org.jarhc", "jarhc", "1.4-SNAPSHOT", "jar");
+
+		// test
+		String result = artifact.toCoordinates();
+
+		// assert
+		assertEquals("org.jarhc:jarhc:1.4-SNAPSHOT", result);
 
 	}
 
@@ -126,7 +140,7 @@ class ArtifactTest {
 		// test
 		String result = artifact.getPath();
 
-		// asert
+		// assert
 		assertEquals("org/jarhc/jarhc/1.4-SNAPSHOT/jarhc-1.4-SNAPSHOT.jar", result);
 
 	}
@@ -140,8 +154,22 @@ class ArtifactTest {
 		// test
 		String result = artifact.getFileName();
 
-		// asert
+		// assert
 		assertEquals("jarhc-1.4-SNAPSHOT.jar", result);
+
+	}
+
+	@Test
+	void getFileName_forOSGIBundle() {
+
+		// prepare
+		Artifact artifact = new Artifact("org.test", "core-bundle", "2.1.3", "bundle");
+
+		// test
+		String result = artifact.getFileName();
+
+		// assert
+		assertEquals("core-bundle-2.1.3.jar", result);
 
 	}
 
