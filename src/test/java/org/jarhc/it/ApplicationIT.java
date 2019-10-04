@@ -24,11 +24,12 @@ import java.nio.file.Path;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.pom.POMLoader;
 import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
-import org.jarhc.test.RepositoryMock;
+import org.jarhc.test.TestRepository;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -44,7 +45,7 @@ class ApplicationIT {
 		Application application = new Application();
 		application.setOut(out);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
-		RepositoryMock repository = RepositoryMock.createRepository();
+		Repository repository = TestRepository.createRepository();
 		application.setRepository(repository);
 		application.setDependencyResolver(new RepositoryDependencyResolver(new POMLoader(repository)));
 

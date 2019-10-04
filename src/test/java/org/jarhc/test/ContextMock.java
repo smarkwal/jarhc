@@ -27,7 +27,7 @@ public class ContextMock {
 
 	public static Context createContext() {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		Repository repository = RepositoryMock.createRepository();
+		Repository repository = TestRepository.createRepository();
 		DependencyResolver dependencyResolver = new RepositoryDependencyResolver(new POMLoader(repository));
 		return new Context(javaRuntime, repository, dependencyResolver);
 	}

@@ -28,15 +28,12 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileLock;
 import java.nio.file.Path;
 import java.util.Optional;
-import org.jarhc.test.RepositoryMock;
+import org.jarhc.test.TestRepository;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.api.io.TempDir;
@@ -48,7 +45,7 @@ class CachedRepositoryTest {
 
 	private File cacheDir;
 	private CachedRepository repository;
-	private RepositoryMock parentRepository = RepositoryMock.createRepository();
+	private TestRepository parentRepository = TestRepository.createRepository();
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
@@ -205,48 +202,13 @@ class CachedRepositoryTest {
 	}
 
 	@Test
-	@Disabled("Test fails on some platforms")
-	void test_findArtifact_io_exception_read() throws IOException {
-
-		// prepare
-		String checksum = CHECKSUM_UNKNOWN;
-		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
-		FileUtils.writeStringToFile("org.test:test:1.0:jar", cacheFile);
-
-		// assume
-		assumeTrue(cacheFile.isFile());
-
-		// lock the cache file
-		try (RandomAccessFile raf = new RandomAccessFile(cacheFile, "rw")) {
-			try (FileLock lock = raf.getChannel().lock()) {
-
-				// test
-				try {
-					repository.findArtifact(checksum);
-
-					fail("expected exception not thrown");
-				} catch (RepositoryException e) {
-
-					// assert
-					assertEquals("I/O error", e.getMessage());
-					Throwable cause = e.getCause();
-					assertNotNull(cause);
-					assertTrue(cause instanceof IOException);
-
-				}
-
-			}
-		}
-
-	}
-
-	@Test
 	void test_findArtifact_io_exception_write() {
 
 		// prepare
 		String checksum = CHECKSUM_ASM_70;
 		File cacheFile = new File(cacheDir, "sha1/" + checksum + ".txt");
-		cacheFile.mkdirs(); // create a directory at the place of the cache file
+		boolean created = cacheFile.mkdirs(); // create a directory at the place of the cache file
+		assumeTrue(created, "Directory has been created: " + cacheFile.getAbsolutePath());
 
 		// assume
 		assumeTrue(cacheFile.isDirectory());
