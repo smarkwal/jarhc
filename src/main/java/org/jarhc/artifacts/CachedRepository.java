@@ -106,9 +106,6 @@ public class CachedRepository implements Repository {
 
 		try {
 
-			// create parent directories (if needed)
-			file.getParentFile().mkdirs();
-
 			// read coordinates from file
 			String coordinates = FileUtils.readFileToString(file);
 			return new Artifact(coordinates);
