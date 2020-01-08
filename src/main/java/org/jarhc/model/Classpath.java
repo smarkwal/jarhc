@@ -53,6 +53,7 @@ public class Classpath extends ClassLoader {
 	 *
 	 * @param jarFiles          JAR files
 	 * @param parentClassLoader Parent class loader
+	 * @param strategy          Class loader strategy
 	 * @throws IllegalArgumentException If <code>jarFiles</code> is <code>null</code>.
 	 */
 	public Classpath(List<JarFile> jarFiles, ClassLoader parentClassLoader, ClassLoaderStrategy strategy) {
