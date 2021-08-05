@@ -33,7 +33,7 @@ import org.junit.jupiter.api.TestFactory;
 class AnalyzerRegistryTest {
 
 	private final AnalyzerRegistry registry = new AnalyzerRegistry();
-	private final Context context = ContextMock.createContext();
+	private final Context context = ContextMock.createContext(null);
 
 	@Test
 	void test_getCodes() {

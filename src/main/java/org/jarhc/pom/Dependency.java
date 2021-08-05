@@ -20,19 +20,29 @@ import org.jarhc.artifacts.Artifact;
 
 public class Dependency {
 
-	private String groupId;
-	private String artifactId;
+	private final String groupId;
+	private final String artifactId;
 	private String version;
-	private Scope scope;
-	private boolean optional;
+	private final Scope scope;
+	private final boolean optional;
 
-	Dependency(String groupId, String artifactId, String version, Scope scope, boolean optional) {
+	public Dependency(String groupId, String artifactId, String version, Scope scope, boolean optional) {
 		if (groupId == null || groupId.isEmpty()) throw new IllegalArgumentException("groupId");
 		if (artifactId == null || artifactId.isEmpty()) throw new IllegalArgumentException("artifactId");
 		if (version == null) throw new IllegalArgumentException("version");
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 		this.version = version;
+		this.scope = scope;
+		this.optional = optional;
+	}
+
+	public Dependency(String coordinates, Scope scope, boolean optional) {
+		if (coordinates == null || coordinates.isEmpty()) throw new IllegalArgumentException("coordinates");
+		Artifact artifact = new Artifact(coordinates);
+		this.groupId = artifact.getGroupId();
+		this.artifactId = artifact.getArtifactId();
+		this.version = artifact.getVersion();
 		this.scope = scope;
 		this.optional = optional;
 	}

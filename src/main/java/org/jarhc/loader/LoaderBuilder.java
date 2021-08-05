@@ -16,10 +16,15 @@
 
 package org.jarhc.loader;
 
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
-import org.jarhc.artifacts.ArtifactResolver;
+import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
+import org.jarhc.pom.Dependency;
 
 public class LoaderBuilder {
 
@@ -28,7 +33,7 @@ public class LoaderBuilder {
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
 	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
-	private ArtifactResolver artifactResolver = checksum -> Optional.empty();
+	private Repository repository = new NoOpRepository();
 
 	public static LoaderBuilder create() {
 		return new LoaderBuilder();
@@ -59,8 +64,8 @@ public class LoaderBuilder {
 		return this;
 	}
 
-	public LoaderBuilder withArtifactResolver(ArtifactResolver artifactResolver) {
-		this.artifactResolver = artifactResolver;
+	public LoaderBuilder withRepository(Repository repository) {
+		this.repository = repository;
 		return this;
 	}
 
@@ -75,13 +80,32 @@ public class LoaderBuilder {
 	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
-		return new JarFileLoader(classLoader, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, artifactResolver);
+		return new JarFileLoader(classLoader, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
 		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
 		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, strategy);
+	}
+
+	private static class NoOpRepository implements Repository {
+
+		@Override
+		public Optional<Artifact> findArtifact(String checksum) {
+			return Optional.empty();
+		}
+
+		@Override
+		public Optional<InputStream> downloadArtifact(Artifact artifact) {
+			return Optional.empty();
+		}
+
+		@Override
+		public List<Dependency> getDependencies(Artifact artifact) {
+			return Collections.emptyList();
+		}
+
 	}
 
 }

@@ -63,12 +63,12 @@ abstract class AbstractIT {
 		}
 
 		// prepare context
-		Context context = ContextMock.createContext();
+		Context context = ContextMock.createContext(tempDir.toString());
 
 		// load classpath
 		ClasspathLoader classpathLoader = LoaderBuilder.create()
 				.withParentClassLoader(context.getJavaRuntime())
-				.withArtifactResolver(context.getRepository())
+				.withRepository(context.getRepository())
 				.buildClasspathLoader();
 		Classpath classpath = classpathLoader.load(files);
 

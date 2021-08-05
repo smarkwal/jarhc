@@ -73,7 +73,6 @@ public class CommandLineParser {
 		optionParsers.put("--remove-version", (args, options) -> options.setRemoveVersion(true));
 		optionParsers.put("--use-artifact-name", (args, options) -> options.setUseArtifactName(true));
 		optionParsers.put("--data", this::parseData);
-		optionParsers.put("--nodata", (args, options) -> options.setDataPath(null));
 		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
 		optionParsers.put("-h", (args, options) -> printUsage(null, out));
 		optionParsers.put("--help", (args, options) -> printUsage(null, out));

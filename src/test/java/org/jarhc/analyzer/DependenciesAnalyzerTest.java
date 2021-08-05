@@ -26,13 +26,11 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
-import org.jarhc.pom.POMException;
-import org.jarhc.pom.resolver.DependencyResolver;
-import org.jarhc.pom.resolver.POMNotFoundException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,20 +38,20 @@ import org.junit.jupiter.api.Test;
 
 class DependenciesAnalyzerTest {
 
-	private final DependencyResolver dependencyResolver = mock(DependencyResolver.class);
+	private final Repository repository = mock(Repository.class);
 
 	@BeforeEach
-	void setUp() throws POMException {
+	void setUp() throws RepositoryException {
 
 		Artifact artifactWithDeps = new Artifact("group:lib-with-deps:1.0:jar");
 		Artifact artifactNoDeps = new Artifact("group:lib-no-deps:1.0:jar");
 		Artifact artifactNoPom = new Artifact("group:lib-no-pom:1.0:jar");
 		Artifact artifactRepoError = new Artifact("group:lib-repo-error:1.0:jar");
 
-		when(dependencyResolver.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 5));
-		when(dependencyResolver.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
-		when(dependencyResolver.getDependencies(artifactNoPom)).thenThrow(new POMNotFoundException("test"));
-		when(dependencyResolver.getDependencies(artifactRepoError)).thenThrow(new POMException("test", new RepositoryException("test")));
+		when(repository.getDependencies(artifactWithDeps)).thenReturn(generateDependencies(artifactWithDeps, 5));
+		when(repository.getDependencies(artifactNoDeps)).thenReturn(generateDependencies(artifactNoDeps, 0));
+		when(repository.getDependencies(artifactNoPom)).thenThrow(new RepositoryException("test"));
+		when(repository.getDependencies(artifactRepoError)).thenThrow(new RepositoryException("test"));
 
 	}
 
@@ -77,7 +75,7 @@ class DependenciesAnalyzerTest {
 		jarFiles.add(JarFile.withName("lib-unknown.jar").withCoordinates(null).build());
 		Classpath classpath = new Classpath(jarFiles, provided, ClassLoaderStrategy.ParentLast);
 
-		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(dependencyResolver);
+		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository);
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);

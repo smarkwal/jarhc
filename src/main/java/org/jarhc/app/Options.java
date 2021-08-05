@@ -36,7 +36,7 @@ public class Options {
 	private String reportFormat = null;
 	private String reportFile = null; // STDOUT
 
-	private String dataPath = "./.jarhc";
+	private String dataPath = null;
 	private boolean debug = false;
 
 	public List<String> getClasspathJarPaths() {

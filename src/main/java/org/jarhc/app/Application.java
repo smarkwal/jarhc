@@ -37,7 +37,6 @@ import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
-import org.jarhc.pom.resolver.DependencyResolver;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportFormatFactory;
@@ -57,7 +56,6 @@ public class Application {
 	private PrintStream out = System.out;
 	private Repository repository;
 	private Supplier<JavaRuntime> javaRuntimeFactory = DefaultJavaRuntime::new;
-	private DependencyResolver dependencyResolver;
 
 	public void setOut(PrintStream out) {
 		this.out = out;
@@ -69,10 +67,6 @@ public class Application {
 
 	public void setJavaRuntimeFactory(Supplier<JavaRuntime> javaRuntimeFactory) {
 		this.javaRuntimeFactory = javaRuntimeFactory;
-	}
-
-	public void setDependencyResolver(DependencyResolver dependencyResolver) {
-		this.dependencyResolver = dependencyResolver;
 	}
 
 	public int run(Options options) {
@@ -106,7 +100,7 @@ public class Application {
 		out.println("Analyze classpath ...");
 
 		AnalyzerRegistry registry = new AnalyzerRegistry();
-		Context context = new Context(javaRuntime, repository, dependencyResolver);
+		Context context = new Context(javaRuntime, repository);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
@@ -196,7 +190,7 @@ public class Application {
 				.withJarFileNameNormalizer(jarFileNameNormalizer)
 				.withParentClassLoader(parentClassLoader)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
-				.withArtifactResolver(repository)
+				.withRepository(repository)
 				.buildClasspathLoader();
 		return loader.load(classpathJarFiles);
 	}
@@ -241,7 +235,7 @@ public class Application {
 				.scanForReferences(false)
 				.withParentClassLoader(javaRuntime)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
-				.withArtifactResolver(repository)
+				.withRepository(repository)
 				.buildClasspathLoader();
 		return loader.load(providedJarFiles);
 	}

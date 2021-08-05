@@ -22,31 +22,6 @@ import org.jarhc.artifacts.Artifact;
 
 public class PomUtils {
 
-	public static String generatePomXml(Artifact artifact, int dependencies) {
-		StringBuilder pom = new StringBuilder();
-		pom.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		pom.append("<project>");
-		pom.append("<groupId>").append(artifact.getGroupId()).append("</groupId>");
-		pom.append("<artifactId>").append(artifact.getArtifactId()).append("</artifactId>");
-		pom.append("<version>").append(artifact.getVersion()).append("</version>");
-		pom.append("<dependencies>");
-		for (int i = 1; i <= dependencies; i++) {
-			String scope = Scope.values()[i % Scope.values().length].name().toLowerCase();
-			pom.append("<dependency>");
-			pom.append("<groupId>").append(artifact.getGroupId()).append("</groupId>");
-			pom.append("<artifactId>").append(artifact.getArtifactId()).append("-").append(i).append("</artifactId>");
-			pom.append("<version>").append(artifact.getVersion()).append("</version>");
-			pom.append("<scope>").append(scope).append("</scope>");
-			if (i % 2 > 0) {
-				pom.append("<optional>true</optional>");
-			}
-			pom.append("</dependency>");
-		}
-		pom.append("</dependencies>");
-		pom.append("</project>");
-		return pom.toString();
-	}
-
 	public static List<Dependency> generateDependencies(Artifact artifact, int count) {
 		String groupId = artifact.getGroupId();
 		String artifactId = artifact.getArtifactId();

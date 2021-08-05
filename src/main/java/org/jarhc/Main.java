@@ -17,17 +17,12 @@
 package org.jarhc;
 
 import java.io.File;
-import java.time.Duration;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Options;
-import org.jarhc.artifacts.CachedRepository;
-import org.jarhc.artifacts.MavenCentralRepository;
-import org.jarhc.artifacts.MavenLocalRepository;
+import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
-import org.jarhc.pom.POMLoader;
-import org.jarhc.pom.resolver.RepositoryDependencyResolver;
 
 public class Main {
 
@@ -53,7 +48,6 @@ public class Main {
 		// create and run application
 		Application application = new Application();
 		application.setRepository(repository);
-		application.setDependencyResolver(new RepositoryDependencyResolver(new POMLoader(repository)));
 
 		int exitCode = application.run(options);
 
@@ -73,29 +67,31 @@ public class Main {
 
 	private static Repository createRepository(Options options) {
 
-		// resolve artifacts using Maven Central
-		Duration timeout = Duration.ofSeconds(5); // TODO: make this configurable
-		Repository repository = new MavenCentralRepository(timeout);
-
-		// if a local Maven repository is present ...
-		String userHome = System.getProperty("user.home");
-		File directory = new File(userHome, ".m2/repository");
-		if (directory.isDirectory()) {
-			// use local Maven repository
-			repository = new MavenLocalRepository(directory, repository);
-		}
-
 		String dataPath = options.getDataPath();
-		if (dataPath != null) {
+		if (dataPath == null) {
 
-			// use a local disk cache
-			File cacheDir = new File(dataPath, "cache/repository");
-			repository = new CachedRepository(cacheDir, repository);
+			String userHome = System.getProperty("user.home");
+			if (userHome == null) {
+				throw new IllegalArgumentException("User home not defined.");
+			}
 
+			File directory = new File(userHome);
+			if (!directory.isDirectory()) {
+				throw new IllegalArgumentException("User home not found: " + directory.getAbsolutePath());
+			}
+
+			directory = new File(directory, ".jarhc");
+			if (!directory.isDirectory()) {
+				boolean created = directory.mkdirs();
+				if (!created) {
+					throw new IllegalArgumentException("Failed to create directory: " + directory.getAbsolutePath());
+				}
+			}
+
+			dataPath = directory.getAbsolutePath();
 		}
 
-		return repository;
-
+		return new MavenRepository(dataPath);
 	}
 
 }

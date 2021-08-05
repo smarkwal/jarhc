@@ -21,4 +21,6 @@ hazelcast-client-3.11.2.jar | com.hazelcast:hazelcast-client:3.11.2 | com.hazelc
                             |                                       | com.hazelcast:hazelcast-client-protocol:1.7.0 (provided)        | Unsatisfied
                             |                                       | org.apache.logging.log4j:log4j-api:2.3 (provided, optional)     | Unsatisfied
                             |                                       | org.apache.logging.log4j:log4j-core:2.3 (provided, optional)    | Unsatisfied
+                            |                                       | javax.cache:cache-api:1.1.0 (provided, optional)                | Unsatisfied
+                            |                                       | com.google.code.findbugs:annotations:3.0.0 (provided, optional) | Unsatisfied
 

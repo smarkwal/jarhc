@@ -18,7 +18,7 @@ package org.jarhc.loader;
 
 import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.ArtifactResolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,15 +47,15 @@ public interface JarFileNameNormalizer {
 	 * and (depending on <code>removeVersion</code>) the version number is returned.
 	 * If the repository is not able to identify the artifact, the original file name is returned.
 	 *
-	 * @param checksum         JAR file checksum
-	 * @param artifactResolver Artifact resolver used to identify artifact
-	 * @param removeVersion    <code>true</code> to not include the version number in the file name
-	 * @param fileName         Original file name
+	 * @param checksum      JAR file checksum
+	 * @param repository    Artifact resolver used to identify artifact
+	 * @param removeVersion <code>true</code> to not include the version number in the file name
+	 * @param fileName      Original file name
 	 * @return Artifact file name
 	 */
-	static String getArtifactFileName(String checksum, ArtifactResolver artifactResolver, boolean removeVersion, String fileName) {
+	static String getArtifactFileName(String checksum, Repository repository, boolean removeVersion, String fileName) {
 		try {
-			Optional<Artifact> artifact = artifactResolver.findArtifact(checksum);
+			Optional<Artifact> artifact = repository.findArtifact(checksum);
 			if (artifact.isPresent()) {
 				if (removeVersion) {
 					// generate file name without version number

@@ -23,13 +23,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
-import org.jarhc.pom.POMException;
 import org.jarhc.pom.Scope;
-import org.jarhc.pom.resolver.DependencyResolver;
-import org.jarhc.pom.resolver.POMNotFoundException;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
@@ -44,11 +43,11 @@ public class DependenciesAnalyzer implements Analyzer {
 	private static final String UNKNOWN = "[unknown]";
 	private static final String ERROR = "[error]";
 
-	private final DependencyResolver dependencyResolver;
+	private final Repository repository;
 
-	public DependenciesAnalyzer(DependencyResolver dependencyResolver) {
-		if (dependencyResolver == null) throw new IllegalArgumentException("dependencyResolver");
-		this.dependencyResolver = dependencyResolver;
+	public DependenciesAnalyzer(Repository repository) {
+		if (repository == null) throw new IllegalArgumentException("repository");
+		this.repository = repository;
 	}
 
 	@Override
@@ -82,9 +81,7 @@ public class DependenciesAnalyzer implements Analyzer {
 				List<Dependency> dependencies = null;
 				try {
 					dependencies = getDependencies(coordinates);
-				} catch (POMNotFoundException e) {
-					LOGGER.warn("POM not found: {}", e.getMessage());
-				} catch (POMException e) {
+				} catch (RepositoryException e) {
 					LOGGER.error("Resolver error for artifact: {}", coordinates, e);
 				}
 
@@ -112,12 +109,12 @@ public class DependenciesAnalyzer implements Analyzer {
 		return table;
 	}
 
-	private List<Dependency> getDependencies(String coordinates) throws POMException {
+	private List<Dependency> getDependencies(String coordinates) throws RepositoryException {
 
 		Artifact artifact = new Artifact(coordinates);
 
 		// try to find all direct dependencies
-		List<Dependency> dependencies = dependencyResolver.getDependencies(artifact);
+		List<Dependency> dependencies = repository.getDependencies(artifact);
 
 		// ignore test dependencies
 		dependencies.removeIf(d -> d.getScope() == Scope.TEST);

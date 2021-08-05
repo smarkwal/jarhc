@@ -32,7 +32,7 @@ import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import org.jarhc.app.JarSource;
 import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.ArtifactResolver;
+import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
@@ -56,14 +56,14 @@ class JarFileLoader {
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
-	private final ArtifactResolver artifactResolver;
+	private final Repository repository;
 
-	JarFileLoader(String classLoader, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, ArtifactResolver artifactResolver) {
+	JarFileLoader(String classLoader, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
 		this.classLoader = classLoader;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
-		this.artifactResolver = artifactResolver;
+		this.repository = repository;
 	}
 
 	/**
@@ -215,7 +215,7 @@ class JarFileLoader {
 		// try to identify JAR file as Maven artifact
 		String coordinates = null;
 		try {
-			Optional<Artifact> artifact = artifactResolver.findArtifact(checksum);
+			Optional<Artifact> artifact = repository.findArtifact(checksum);
 			coordinates = artifact.map(Artifact::toCoordinates).orElse(null);
 		} catch (RepositoryException e) {
 			LOGGER.warn("Artifact resolution error", e);

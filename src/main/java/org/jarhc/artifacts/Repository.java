@@ -17,27 +17,26 @@
 package org.jarhc.artifacts;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
+import org.jarhc.pom.Dependency;
 
 /**
  * Implementations of this interface are used to find and download
  * artifacts given the artifact coordinates or SHA-1 checksum of a JAR file.
  *
- * @see MavenCentralRepository
+ * @see MavenRepository
  */
-public interface Repository extends ArtifactResolver {
+public interface Repository {
 
 	/**
-	 * Try to find the artifact with the given coordinates.
+	 * Try to find the artifact with the SHA-1 checksum.
 	 *
-	 * @param groupId    Group ID
-	 * @param artifactId Artifact ID
-	 * @param version    Version
-	 * @param type       Type
+	 * @param checksum SHA-1 checksum of a JAR file
 	 * @return Artifact information (if found)
 	 * @throws RepositoryException if an unexpected exception occurs
 	 */
-	Optional<Artifact> findArtifact(String groupId, String artifactId, String version, String type) throws RepositoryException;
+	Optional<Artifact> findArtifact(String checksum) throws RepositoryException;
 
 	/**
 	 * Try to download the artifact file for the given artifact.
@@ -48,22 +47,6 @@ public interface Repository extends ArtifactResolver {
 	 */
 	Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException;
 
-	/**
-	 * Checks if the given checksum is valid:
-	 * <ol>
-	 * <li>checksum must not be <code>null</code>.</li>
-	 * <li>checksum must contain only the digits '0' - '9' and letters 'a' - 'f' (hex numbers).</li>
-	 * </ol>
-	 * <p>
-	 * This method can be used by repository implementations to validate the input value.
-	 *
-	 * @param checksum Checksum
-	 * @throws IllegalArgumentException if the given checksum is not valid.
-	 */
-	default void validateChecksum(String checksum) {
-		if (checksum == null || !checksum.matches("[0-9a-f]+")) {
-			throw new IllegalArgumentException("checksum: " + checksum);
-		}
-	}
+	List<Dependency> getDependencies(Artifact artifact) throws RepositoryException;
 
 }
