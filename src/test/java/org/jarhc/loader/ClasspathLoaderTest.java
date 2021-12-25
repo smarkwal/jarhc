@@ -36,6 +36,7 @@ import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -56,10 +57,12 @@ class ClasspathLoaderTest {
 
 	ClasspathLoader classpathLoader;
 
+	private AutoCloseable mocks;
+
 	@BeforeEach
 	void setUp() throws IOException {
 
-		MockitoAnnotations.initMocks(this);
+		mocks = MockitoAnnotations.openMocks(this);
 
 		// JarFileLoader mock creates a dummy JarFile whenever it is invoked
 		when(jarFileLoader.load(any(JarSource.class)))
@@ -86,6 +89,11 @@ class ClasspathLoaderTest {
 				});
 
 		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast);
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
 	}
 
 	@Test

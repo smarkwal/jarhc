@@ -34,6 +34,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.app.FileSource;
 import org.jarhc.app.JarSource;
 import org.jarhc.model.JarFile;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -46,9 +47,11 @@ class WarFileLoaderTest {
 	@Mock
 	JarFileLoader jarFileLoader;
 
+	private AutoCloseable mocks;
+
 	@BeforeEach
 	void setUp() throws IOException {
-		MockitoAnnotations.initMocks(this);
+		mocks = MockitoAnnotations.openMocks(this);
 
 		// JarFileLoader mock creates a dummy JarFile whenever it is invoked
 		when(jarFileLoader.load(anyString(), any()))
@@ -58,6 +61,11 @@ class WarFileLoaderTest {
 					JarFile jarFile = JarFile.withName(fileName).build();
 					return Collections.singletonList(jarFile);
 				});
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
 	}
 
 	@Test

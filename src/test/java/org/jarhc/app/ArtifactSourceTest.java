@@ -30,6 +30,7 @@ import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.utils.IOUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -42,10 +43,12 @@ class ArtifactSourceTest {
 
 	private ArtifactSource artifactSource;
 
+	private AutoCloseable mocks;
+
 	@BeforeEach
 	void setUp() throws RepositoryException {
 
-		MockitoAnnotations.initMocks(this);
+		mocks = MockitoAnnotations.openMocks(this);
 
 		// setup repository mock
 		when(repository.downloadArtifact(any(Artifact.class))).thenAnswer(
@@ -70,6 +73,11 @@ class ArtifactSourceTest {
 		);
 
 		artifactSource = new ArtifactSource("org.test:test:1.0", repository);
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
 	}
 
 	@Test

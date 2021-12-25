@@ -28,6 +28,7 @@ import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.JarFile;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -38,9 +39,11 @@ class ClassLoaderTest {
 	@Mock
 	ClassLoader parentClassLoader;
 
+	private AutoCloseable mocks;
+
 	@BeforeEach
 	void setUp() {
-		MockitoAnnotations.initMocks(this);
+		mocks = MockitoAnnotations.openMocks(this);
 
 		JarFile jarFile = JarFile.withName("parent.jar").build();
 		when(parentClassLoader.getJarFile(any())).thenAnswer((invocation) -> {
@@ -65,6 +68,11 @@ class ClassLoaderTest {
 
 		when(parentClassLoader.containsPackage("parent")).thenReturn(true);
 
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		mocks.close();
 	}
 
 	@Test
