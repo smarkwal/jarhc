@@ -20,15 +20,15 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                                | Module name                         | Automatic | Requires | Exports
-----------------------------------------+-------------------------------------+-----------+----------+---------------
-jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty.continuation      | Yes       | -        | [all packages]
-jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty.http              | Yes       | -        | [all packages]
-jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty.io                | Yes       | -        | [all packages]
-jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty.servlets          | Yes       | -        | [all packages]
-jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty.util              | Yes       | -        | [all packages]
-websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket.api     | Yes       | -        | [all packages]
-websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket.servlet | Yes       | -        | [all packages]
+JAR file                                | Module name                         | Definition | Automatic | Requires | Exports
+----------------------------------------+-------------------------------------+------------+-----------+----------+---------------
+jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty.continuation      | Manifest   | Yes       | -        | [all packages]
+jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty.http              | Manifest   | Yes       | -        | [all packages]
+jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty.io                | Manifest   | Yes       | -        | [all packages]
+jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty.servlets          | Manifest   | Yes       | -        | [all packages]
+jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty.util              | Manifest   | Yes       | -        | [all packages]
+websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket.api     | Manifest   | Yes       | -        | [all packages]
+websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket.servlet | Manifest   | Yes       | -        | [all packages]
 
 Class Versions
 --------------

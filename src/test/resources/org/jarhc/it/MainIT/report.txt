@@ -14,9 +14,9 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file             | Module name | Automatic | Requires | Exports
----------------------+-------------+-----------+----------+---------------
-slf4j-api-1.7.28.jar | org.slf4j   | Yes       | -        | [all packages]
+JAR file             | Module name | Definition | Automatic | Requires | Exports
+---------------------+-------------+------------+-----------+----------+---------------
+slf4j-api-1.7.28.jar | org.slf4j   | Manifest   | Yes       | -        | [all packages]
 
 Class Versions
 --------------

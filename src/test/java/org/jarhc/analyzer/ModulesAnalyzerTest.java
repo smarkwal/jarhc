@@ -39,7 +39,7 @@ class ModulesAnalyzerTest {
 				.addModuleInfo(ModuleInfo.forModuleName("a").setAutomatic(true))
 				.addJarFile("b.jar")
 				.addModuleInfo(ModuleInfo.forModuleName("b").addExport("b.x").addExport("b.y").addRequire("a").addRequire("java.base"))
-				.addJarFile("c-1.0.1.jar")
+				.addJarFile("C-1.0.1.jar")
 				.addJarFile("d.jar")
 				.build();
 
@@ -57,47 +57,52 @@ class ModulesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(5, columns.length);
+		assertEquals(6, columns.length);
 		assertEquals("JAR file", columns[0]);
 		assertEquals("Module name", columns[1]);
-		assertEquals("Automatic", columns[2]);
-		assertEquals("Requires", columns[3]);
-		assertEquals("Exports", columns[4]);
+		assertEquals("Definition", columns[2]);
+		assertEquals("Automatic", columns[3]);
+		assertEquals("Requires", columns[4]);
+		assertEquals("Exports", columns[5]);
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
 
 		String[] values1 = rows.get(0);
-		assertEquals(5, values1.length);
+		assertEquals(6, values1.length);
 		assertEquals("a-core.jar", values1[0]);
 		assertEquals("a", values1[1]);
-		assertEquals("Yes", values1[2]);
-		assertEquals("-", values1[3]);
-		assertEquals("[all packages]", values1[4]);
+		assertEquals("Manifest", values1[2]);
+		assertEquals("Yes", values1[3]);
+		assertEquals("-", values1[4]);
+		assertEquals("[all packages]", values1[5]);
 
 		String[] values2 = rows.get(1);
-		assertEquals(5, values2.length);
+		assertEquals(6, values2.length);
 		assertEquals("b.jar", values2[0]);
 		assertEquals("b", values2[1]);
-		assertEquals("No", values2[2]);
-		assertEquals("a\njava.base", values2[3]);
-		assertEquals("b.x\nb.y", values2[4]);
+		assertEquals("Module-Info", values2[2]);
+		assertEquals("No", values2[3]);
+		assertEquals("a\njava.base", values2[4]);
+		assertEquals("b.x\nb.y", values2[5]);
 
 		String[] values3 = rows.get(2);
-		assertEquals(5, values3.length);
-		assertEquals("c-1.0.1.jar", values3[0]);
-		assertEquals("c (auto-generated)", values3[1]);
-		assertEquals("Yes", values3[2]);
-		assertEquals("-", values3[3]);
-		assertEquals("[all packages]", values3[4]);
+		assertEquals(6, values3.length);
+		assertEquals("C-1.0.1.jar", values3[0]);
+		assertEquals("c", values3[1]);
+		assertEquals("Auto-generated", values3[2]);
+		assertEquals("Yes", values3[3]);
+		assertEquals("-", values3[4]);
+		assertEquals("[all packages]", values3[5]);
 
 		String[] values4 = rows.get(3);
-		assertEquals(5, values4.length);
+		assertEquals(6, values4.length);
 		assertEquals("d.jar", values4[0]);
-		assertEquals("d (auto-generated)", values4[1]);
-		assertEquals("Yes", values4[2]);
-		assertEquals("-", values4[3]);
-		assertEquals("[all packages]", values4[4]);
+		assertEquals("d", values4[1]);
+		assertEquals("Auto-generated", values4[2]);
+		assertEquals("Yes", values4[3]);
+		assertEquals("-", values4[4]);
+		assertEquals("[all packages]", values4[5]);
 
 	}
 

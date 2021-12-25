@@ -5,23 +5,23 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                      | Module name                            | Automatic | Requires | Exports
-------------------------------+----------------------------------------+-----------+----------+---------------
-commons-beanutils-1.9.2.jar   | commons.beanutils (auto-generated)     | Yes       | -        | [all packages]
-commons-betwixt-0.8.jar       | commons.betwixt (auto-generated)       | Yes       | -        | [all packages]
-commons-codec-1.10.jar        | commons.codec (auto-generated)         | Yes       | -        | [all packages]
-commons-collections-3.2.2.jar | commons.collections (auto-generated)   | Yes       | -        | [all packages]
-commons-compress-1.5.jar      | commons.compress (auto-generated)      | Yes       | -        | [all packages]
-commons-configuration-1.9.jar | commons.configuration (auto-generated) | Yes       | -        | [all packages]
-commons-dbcp2-2.5.0.jar       | commons.dbcp2 (auto-generated)         | Yes       | -        | [all packages]
-commons-dbutils-1.5.jar       | commons.dbutils (auto-generated)       | Yes       | -        | [all packages]
-commons-digester-2.1.jar      | commons.digester (auto-generated)      | Yes       | -        | [all packages]
-commons-email-1.5.jar         | commons.email (auto-generated)         | Yes       | -        | [all packages]
-commons-fileupload-1.3.3.jar  | commons.fileupload (auto-generated)    | Yes       | -        | [all packages]
-commons-io-2.4.jar            | commons.io (auto-generated)            | Yes       | -        | [all packages]
-commons-jxpath-1.3.jar        | commons.jxpath (auto-generated)        | Yes       | -        | [all packages]
-commons-lang-2.6.jar          | commons.lang (auto-generated)          | Yes       | -        | [all packages]
-commons-logging-1.2.jar       | commons.logging (auto-generated)       | Yes       | -        | [all packages]
-commons-net-3.3.jar           | commons.net (auto-generated)           | Yes       | -        | [all packages]
-commons-pool2-2.6.0.jar       | commons.pool2 (auto-generated)         | Yes       | -        | [all packages]
+JAR file                      | Module name           | Definition     | Automatic | Requires | Exports
+------------------------------+-----------------------+----------------+-----------+----------+---------------
+commons-beanutils-1.9.2.jar   | commons.beanutils     | Auto-generated | Yes       | -        | [all packages]
+commons-betwixt-0.8.jar       | commons.betwixt       | Auto-generated | Yes       | -        | [all packages]
+commons-codec-1.10.jar        | commons.codec         | Auto-generated | Yes       | -        | [all packages]
+commons-collections-3.2.2.jar | commons.collections   | Auto-generated | Yes       | -        | [all packages]
+commons-compress-1.5.jar      | commons.compress      | Auto-generated | Yes       | -        | [all packages]
+commons-configuration-1.9.jar | commons.configuration | Auto-generated | Yes       | -        | [all packages]
+commons-dbcp2-2.5.0.jar       | commons.dbcp2         | Auto-generated | Yes       | -        | [all packages]
+commons-dbutils-1.5.jar       | commons.dbutils       | Auto-generated | Yes       | -        | [all packages]
+commons-digester-2.1.jar      | commons.digester      | Auto-generated | Yes       | -        | [all packages]
+commons-email-1.5.jar         | commons.email         | Auto-generated | Yes       | -        | [all packages]
+commons-fileupload-1.3.3.jar  | commons.fileupload    | Auto-generated | Yes       | -        | [all packages]
+commons-io-2.4.jar            | commons.io            | Auto-generated | Yes       | -        | [all packages]
+commons-jxpath-1.3.jar        | commons.jxpath        | Auto-generated | Yes       | -        | [all packages]
+commons-lang-2.6.jar          | commons.lang          | Auto-generated | Yes       | -        | [all packages]
+commons-logging-1.2.jar       | commons.logging       | Auto-generated | Yes       | -        | [all packages]
+commons-net-3.3.jar           | commons.net           | Auto-generated | Yes       | -        | [all packages]
+commons-pool2-2.6.0.jar       | commons.pool2         | Auto-generated | Yes       | -        | [all packages]
 

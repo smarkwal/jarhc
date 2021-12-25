@@ -16,7 +16,9 @@
 
 package org.jarhc.analyzer;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import org.jarhc.loader.JarFileNameNormalizer;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -38,7 +40,7 @@ public class ModulesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Module name", "Automatic", "Requires", "Exports");
+		ReportTable table = new ReportTable("JAR file", "Module name", "Definition", "Automatic", "Requires", "Exports");
 		// TODO: add column with opens and internal packages?
 
 		// TODO: check module dependencies?
@@ -49,11 +51,12 @@ public class ModulesAnalyzer implements Analyzer {
 
 			String fileName = jarFile.getFileName();
 			String moduleName = getModuleName(jarFile);
+			String definitionInfo = getDefinitionInfo(jarFile);
 			String automaticInfo = getAutomaticInfo(jarFile);
 			String requiresInfo = getRequiresInfo(jarFile);
 			String exportsInfo = getExportsInfo(jarFile);
 
-			table.addRow(fileName, moduleName, automaticInfo, requiresInfo, exportsInfo);
+			table.addRow(fileName, moduleName, definitionInfo, automaticInfo, requiresInfo, exportsInfo);
 		}
 
 		return table;
@@ -64,7 +67,7 @@ public class ModulesAnalyzer implements Analyzer {
 			ModuleInfo moduleInfo = jarFile.getModuleInfo();
 			return moduleInfo.getModuleName();
 		} else {
-			return getModuleNameFromFileName(jarFile) + " (auto-generated)";
+			return getModuleNameFromFileName(jarFile);
 		}
 	}
 
@@ -84,7 +87,23 @@ public class ModulesAnalyzer implements Analyzer {
 		// replace all dashes with dots
 		moduleName = moduleName.replace("-", ".");
 
+		// convert to lower-case
+		moduleName = moduleName.toLowerCase(Locale.ROOT);
+
 		return moduleName;
+	}
+
+	private String getDefinitionInfo(JarFile jarFile) {
+		if (jarFile.isModule()) {
+			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+			if (moduleInfo.isAutomatic()) {
+				return "Manifest";
+			} else {
+				return "Module-Info";
+			}
+		} else {
+			return "Auto-generated";
+		}
 	}
 
 	private String getAutomaticInfo(JarFile jarFile) {
@@ -106,7 +125,9 @@ public class ModulesAnalyzer implements Analyzer {
 			if (moduleInfo.isAutomatic()) {
 				return "-";
 			} else {
-				return String.join("\n", moduleInfo.getRequires());
+				List<String> requires = new ArrayList<>(moduleInfo.getRequires());
+				requires.sort(ModulesAnalyzer::compareModuleNames);
+				return String.join("\n", requires);
 			}
 		} else {
 			return "-";
@@ -119,11 +140,34 @@ public class ModulesAnalyzer implements Analyzer {
 			if (moduleInfo.isAutomatic()) {
 				return "[all packages]";
 			} else {
-				return String.join("\n", moduleInfo.getExports());
+				List<String> exports = new ArrayList<>(moduleInfo.getExports());
+				exports.sort(String.CASE_INSENSITIVE_ORDER);
+				return String.join("\n", exports);
 			}
 		} else {
 			return "[all packages]";
 		}
+	}
+
+	/**
+	 * Order modules by group and name:
+	 * 1. Custom modules
+	 * 2. Java modules except java.base
+	 * 3. java.base
+	 * 4. JDK-internal modules
+	 */
+	private static int compareModuleNames(String name1, String name2) {
+		int group1 = getModuleGroup(name1);
+		int group2 = getModuleGroup(name2);
+		if (group1 != group2) return group1 - group2;
+		return name1.compareTo(name2);
+	}
+
+	private static int getModuleGroup(String name) {
+		if (name.startsWith("jdk.")) return 3;
+		if (name.equals("java.base")) return 2;
+		if (name.startsWith("java.")) return 1;
+		return 0;
 	}
 
 }
