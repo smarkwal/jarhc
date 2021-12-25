@@ -33,6 +33,11 @@
 		<project.build.sourceEncoding>ASCII</project.build.sourceEncoding>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<benchmarks>.*</benchmarks>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>smarkwal</sonar.organization>
+		<sonar.projectKey>smarkwal_jarhc</sonar.projectKey>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml,${project.basedir}/target/site/jacoco-it/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 	<dependencies>
@@ -282,6 +287,11 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.1.2184</version>
 			</plugin>
 		</plugins>
 	</build>
