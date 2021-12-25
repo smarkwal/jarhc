@@ -1,0 +1,19 @@
+JAR Health Check Report
+=======================
+
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file                | Module name                   | Automatic | Requires | Exports
+------------------------+-------------------------------+-----------+----------+---------------
+camel-core-2.17.7.jar   | camel.core (auto-generated)   | Yes       | -        | [all packages]
+camel-jdbc-2.17.7.jar   | camel.jdbc (auto-generated)   | Yes       | -        | [all packages]
+camel-jms-2.17.7.jar    | camel.jms (auto-generated)    | Yes       | -        | [all packages]
+camel-jmx-2.17.7.jar    | camel.jmx (auto-generated)    | Yes       | -        | [all packages]
+camel-jxpath-2.17.7.jar | camel.jxpath (auto-generated) | Yes       | -        | [all packages]
+camel-ldap-2.17.7.jar   | camel.ldap (auto-generated)   | Yes       | -        | [all packages]
+camel-mail-2.17.7.jar   | camel.mail (auto-generated)   | Yes       | -        | [all packages]
+camel-soap-2.17.7.jar   | camel.soap (auto-generated)   | Yes       | -        | [all packages]
+camel-spring-2.17.7.jar | camel.spring (auto-generated) | Yes       | -        | [all packages]
+

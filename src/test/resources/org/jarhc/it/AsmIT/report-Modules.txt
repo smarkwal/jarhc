@@ -1,0 +1,20 @@
+JAR Health Check Report
+=======================
+
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file             | Module name                     | Automatic | Requires                        | Exports
+---------------------+---------------------------------+-----------+---------------------------------+--------------------------------
+asm-7.0.jar          | org.objectweb.asm               | No        | java.base                       | org.objectweb.asm
+                     |                                 |           |                                 | org.objectweb.asm.signature
+asm-analysis-7.0.jar | org.objectweb.asm.tree.analysis | No        | org.objectweb.asm.tree          | org.objectweb.asm.tree.analysis
+                     |                                 |           | java.base                       |
+asm-commons-7.0.jar  | org.objectweb.asm.commons       | No        | org.objectweb.asm               | org.objectweb.asm.commons
+                     |                                 |           | org.objectweb.asm.tree          |
+                     |                                 |           | org.objectweb.asm.tree.analysis |
+                     |                                 |           | java.base                       |
+asm-tree-7.0.jar     | org.objectweb.asm.tree          | No        | org.objectweb.asm               | org.objectweb.asm.tree
+                     |                                 |           | java.base                       |
+

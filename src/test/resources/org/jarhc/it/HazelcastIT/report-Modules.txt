@@ -1,0 +1,12 @@
+JAR Health Check Report
+=======================
+
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file                    | Module name          | Automatic | Requires | Exports
+----------------------------+----------------------+-----------+----------+---------------
+hazelcast-3.11.2.jar        | com.hazelcast.core   | Yes       | -        | [all packages]
+hazelcast-client-3.11.2.jar | com.hazelcast.client | Yes       | -        | [all packages]
+

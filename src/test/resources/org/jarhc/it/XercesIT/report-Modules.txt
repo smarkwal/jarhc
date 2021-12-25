@@ -1,0 +1,13 @@
+JAR Health Check Report
+=======================
+
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file              | Module name                   | Automatic | Requires | Exports
+----------------------+-------------------------------+-----------+----------+---------------
+xercesImpl-2.11.0.jar | xercesImpl (auto-generated)   | Yes       | -        | [all packages]
+xml-apis-1.4.01.jar   | xml.apis (auto-generated)     | Yes       | -        | [all packages]
+xml-resolver-1.2.jar  | xml.resolver (auto-generated) | Yes       | -        | [all packages]
+

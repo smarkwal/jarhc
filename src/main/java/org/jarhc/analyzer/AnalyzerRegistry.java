@@ -38,6 +38,7 @@ public class AnalyzerRegistry {
 	 */
 	public AnalyzerRegistry() {
 		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("m", "Modules", ModulesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));

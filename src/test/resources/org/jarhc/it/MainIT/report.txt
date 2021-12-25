@@ -10,6 +10,14 @@ JAR file             | Size    | Classes | Resources | Multi-release | Module   
 slf4j-api-1.7.28.jar | 40.2 KB | 34      | 0         | No            | Yes (org.slf4j) | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28
 Classpath            | 40.2 KB | 34      | 0         | -             | -               | -                                        | -
 
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file             | Module name | Automatic | Requires | Exports
+---------------------+-------------+-----------+----------+---------------
+slf4j-api-1.7.28.jar | org.slf4j   | Yes       | -        | [all packages]
+
 Class Versions
 --------------
 Java class file format information.

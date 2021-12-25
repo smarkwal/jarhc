@@ -16,6 +16,20 @@ websocket-api-9.4.20.v20190813.jar      | 50.0 KB | 46      | 1         | No    
 websocket-servlet-9.4.20.v20190813.jar  | 29.5 KB | 7       | 1         | No            | Yes (org.eclipse.jetty.websocket.servlet) | 6a8be637de4dd2143efdd003d48fdbcfde4390d7 | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813
 Classpath                               | 1.06 MB | 598     | 12        | -             | -                                         | -                                        | -
 
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file                                | Module name                         | Automatic | Requires | Exports
+----------------------------------------+-------------------------------------+-----------+----------+---------------
+jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty.continuation      | Yes       | -        | [all packages]
+jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty.http              | Yes       | -        | [all packages]
+jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty.io                | Yes       | -        | [all packages]
+jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty.servlets          | Yes       | -        | [all packages]
+jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty.util              | Yes       | -        | [all packages]
+websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket.api     | Yes       | -        | [all packages]
+websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket.servlet | Yes       | -        | [all packages]
+
 Class Versions
 --------------
 Java class file format information.
