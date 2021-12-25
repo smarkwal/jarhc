@@ -38,7 +38,7 @@ public interface JarFileNameNormalizer {
 	 * @return File name without version number
 	 */
 	static String getFileNameWithoutVersionNumber(String fileName) {
-		return fileName.replaceAll("-[0-9]+(\\.[0-9]+)*(-SNAPSHOT)?", "");
+		return fileName.replaceAll("-[0-9]+(\\.[0-9]+){0,10}(-SNAPSHOT)?", "");
 	}
 
 	/**
