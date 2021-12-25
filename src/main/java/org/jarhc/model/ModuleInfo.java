@@ -23,8 +23,9 @@ import java.util.List;
 public class ModuleInfo {
 
 	private String moduleName;
-	private List<String> exports = new ArrayList<>();
-	private List<String> requires = new ArrayList<>();
+	private boolean automatic;
+	private final List<String> exports = new ArrayList<>();
+	private final List<String> requires = new ArrayList<>();
 
 	public static ModuleInfo forModuleName(String moduleName) {
 		ModuleInfo moduleInfo = new ModuleInfo();
@@ -38,6 +39,15 @@ public class ModuleInfo {
 
 	public ModuleInfo setModuleName(String moduleName) {
 		this.moduleName = moduleName;
+		return this;
+	}
+
+	public boolean isAutomatic() {
+		return automatic;
+	}
+
+	public ModuleInfo setAutomatic(boolean automatic) {
+		this.automatic = automatic;
 		return this;
 	}
 
@@ -61,7 +71,11 @@ public class ModuleInfo {
 
 	@Override
 	public String toString() {
-		return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
+		if (automatic) {
+			return String.format("ModuleInfo[%s,automatic]", getModuleName());
+		} else {
+			return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
+		}
 	}
 
 }

@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file             | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
----------------------+---------+---------+-----------+---------------+--------+------------------------------------------+---------------------------
-slf4j-api-1.7.28.jar | 40.2 KB | 34      | 0         | No            | No     | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28
-Classpath            | 40.2 KB | 34      | 0         | -             | -      | -                                        | -
+JAR file             | Size    | Classes | Resources | Multi-release | Module          | Checksum (SHA-1)                         | Artifact coordinates
+---------------------+---------+---------+-----------+---------------+-----------------+------------------------------------------+---------------------------
+slf4j-api-1.7.28.jar | 40.2 KB | 34      | 0         | No            | Yes (org.slf4j) | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28
+Classpath            | 40.2 KB | 34      | 0         | -             | -               | -                                        | -
 
 Class Versions
 --------------

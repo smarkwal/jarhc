@@ -123,6 +123,14 @@ class JarFileLoader {
 
 			boolean multiRelease = isMultiRelease(stream);
 
+			// check if module has a manifest attribute "Automatic-Module-Name"
+			String automaticModuleName = getAutomaticModuleName(stream);
+			if (automaticModuleName != null) {
+				// create module info for an automatic module with the given name
+				// (can be overridden if module-info.class is found later)
+				moduleInfo = ModuleInfo.forModuleName(automaticModuleName).setAutomatic(true);
+			}
+
 			// for every entry in the JAR file ...
 			while (true) {
 				JarEntry entry = stream.getNextJarEntry();
@@ -154,6 +162,7 @@ class JarFileLoader {
 
 				// ignore files in META-INF // TODO: why?
 				if (name.startsWith("META-INF/")) {
+					// TODO: support service providers
 					continue;
 				}
 
@@ -250,6 +259,13 @@ class JarFileLoader {
 		Attributes attributes = manifest.getMainAttributes();
 		String value = attributes.getValue("Multi-Release");
 		return value != null && value.equals("true");
+	}
+
+	private String getAutomaticModuleName(JarInputStream stream) {
+		Manifest manifest = stream.getManifest();
+		if (manifest == null) return null;
+		Attributes attributes = manifest.getMainAttributes();
+		return attributes.getValue("Automatic-Module-Name");
 	}
 
 }
