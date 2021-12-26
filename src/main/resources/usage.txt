@@ -18,6 +18,11 @@ Options:
 
    --debug               : Enable verbose output.
 
+   --release  <number>   : Set Java release used when parsing multi-release JAR
+    -r                     files. Minimum is 8 for Java 8.
+                           Example: -r 11
+                           Default: Version of Java runtime used to run JarHC.
+
    --classpath <path>    : Add a JAR file or directory with JAR files
     -cp                    to the classpath of libraries to be analyzed.
                            Adding JAR files like this has the same

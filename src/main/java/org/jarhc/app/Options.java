@@ -19,8 +19,11 @@ package org.jarhc.app;
 import java.util.ArrayList;
 import java.util.List;
 import org.jarhc.java.ClassLoaderStrategy;
+import org.jarhc.utils.JavaUtils;
 
 public class Options {
+
+	private int release = JavaUtils.getJavaVersion();
 
 	private final List<String> classpathJarPaths = new ArrayList<>();
 	private final List<String> providedJarPaths = new ArrayList<>();
@@ -38,6 +41,14 @@ public class Options {
 
 	private String dataPath = null;
 	private boolean debug = false;
+
+	public int getRelease() {
+		return release;
+	}
+
+	public void setRelease(int release) {
+		this.release = release;
+	}
 
 	public List<String> getClasspathJarPaths() {
 		return classpathJarPaths;

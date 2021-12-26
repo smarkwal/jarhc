@@ -56,6 +56,8 @@ public class CommandLineParser {
 		this.out = out;
 		this.err = err;
 
+		optionParsers.put("-r", this::parseRelease);
+		optionParsers.put("--release", this::parseRelease);
 		optionParsers.put("-cp", this::parseClasspath);
 		optionParsers.put("--classpath", this::parseClasspath);
 		optionParsers.put("--provided", this::parseProvided);
@@ -129,6 +131,22 @@ public class CommandLineParser {
 		}
 
 		return options;
+	}
+
+	private void parseRelease(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-14, "Release not specified.");
+
+		String value = args.next();
+		int release;
+		try {
+			release = Integer.parseInt(value);
+		} catch (NumberFormatException e) {
+			throw handleError(-15, "Release '" + value + "' is not valid.");
+		}
+		if (release < 8) {
+			throw handleError(-16, "Release " + release + " is not supported.");
+		}
+		options.setRelease(release);
 	}
 
 	private void parseClasspath(Iterator<String> args, Options options) throws CommandLineException {

@@ -93,7 +93,7 @@ public class Application {
 
 		out.println("Scan JAR files ...");
 
-		JavaRuntime javaRuntime = createJavaRuntime(runtimeJarSources);
+		JavaRuntime javaRuntime = createJavaRuntime(options, runtimeJarSources);
 		ClassLoader parentClassLoader = createClassLoader(options, javaRuntime, providedJarSources);
 		Classpath classpath = createClasspath(options, classpathJarSources, parentClassLoader);
 
@@ -187,6 +187,7 @@ public class Application {
 		// load classpath JAR files
 		JarFileNameNormalizer jarFileNameNormalizer = createJarFileNameNormalizer(options);
 		ClasspathLoader loader = LoaderBuilder.create()
+				.forRelease(options.getRelease())
 				.withJarFileNameNormalizer(jarFileNameNormalizer)
 				.withParentClassLoader(parentClassLoader)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
@@ -207,7 +208,7 @@ public class Application {
 		}
 	}
 
-	private JavaRuntime createJavaRuntime(List<JarSource> runtimeJarFiles) {
+	private JavaRuntime createJavaRuntime(Options options, List<JarSource> runtimeJarFiles) {
 
 		if (runtimeJarFiles.isEmpty()) {
 			// create default Java runtime
@@ -215,7 +216,11 @@ public class Application {
 		}
 
 		// load runtime classpath JAR files
-		ClasspathLoader loader = LoaderBuilder.create().forClassLoader("Runtime").scanForReferences(false).buildClasspathLoader();
+		ClasspathLoader loader = LoaderBuilder.create()
+				.forClassLoader("Runtime")
+				.forRelease(options.getRelease())
+				.scanForReferences(false)
+				.buildClasspathLoader();
 		Classpath runtimeClasspath = loader.load(runtimeJarFiles);
 
 		// create Java runtime based on classpath
@@ -232,6 +237,7 @@ public class Application {
 		// load provided classpath JAR files
 		ClasspathLoader loader = LoaderBuilder.create()
 				.forClassLoader("Provided")
+				.forRelease(options.getRelease())
 				.scanForReferences(false)
 				.withParentClassLoader(javaRuntime)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())

@@ -30,6 +30,7 @@ import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.test.PrintStreamBuffer;
+import org.jarhc.utils.JavaUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -49,6 +50,7 @@ class CommandLineParserTest {
 		Options options = parser.parse(new String[] { file.getAbsolutePath() });
 
 		// assert
+		assertEquals(JavaUtils.getJavaVersion(), options.getRelease());
 		assertFalse(options.getClasspathJarPaths().isEmpty());
 		assertTrue(options.getProvidedJarPaths().isEmpty());
 		assertTrue(options.getRuntimeJarPaths().isEmpty());
@@ -594,6 +596,81 @@ class CommandLineParserTest {
 		} catch (CommandLineException e) {
 			assertEquals("Class loader strategy not specified.", e.getMessage());
 			assertEquals(-12, e.getExitCode());
+		}
+
+	}
+
+	@Test
+	void test_release_Default() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[] { "com.test:test:1.0" });
+
+		// assert
+		assertEquals(JavaUtils.getJavaVersion(), options.getRelease());
+
+	}
+
+	@Test
+	void test_release_8() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[] { "-r", "8", "com.test:test:1.0" });
+
+		// assert
+		assertEquals(8, options.getRelease());
+
+	}
+
+	@Test
+	void test_release_11() throws CommandLineException {
+
+		// test
+		Options options = parser.parse(new String[] { "--release", "11", "com.test:test:1.0" });
+
+		// assert
+		assertEquals(11, options.getRelease());
+
+	}
+
+	@Test
+	void test_release_Invalid() {
+
+		// test
+		try {
+			parser.parse(new String[] { "--release", "latest", "com.test:test:1.0" });
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("Release 'latest' is not valid.", e.getMessage());
+			assertEquals(-15, e.getExitCode());
+		}
+
+	}
+
+	@Test
+	void test_release_Unsupported() {
+
+		// test
+		try {
+			parser.parse(new String[] { "--release", "5", "com.test:test:1.0" });
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("Release 5 is not supported.", e.getMessage());
+			assertEquals(-16, e.getExitCode());
+		}
+
+	}
+
+	@Test
+	void test_release_Incomplete() {
+
+		// test
+		try {
+			parser.parse(new String[] { "com.test:test:1.0", "--release" });
+			fail("CommandLineException not thrown");
+		} catch (CommandLineException e) {
+			assertEquals("Release not specified.", e.getMessage());
+			assertEquals(-14, e.getExitCode());
 		}
 
 	}

@@ -25,10 +25,12 @@ import org.jarhc.artifacts.Repository;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.pom.Dependency;
+import org.jarhc.utils.JavaUtils;
 
 public class LoaderBuilder {
 
 	private String classLoader = "Classpath";
+	private int release = JavaUtils.getJavaVersion();
 	private boolean scanForReferences = true;
 	private JarFileNameNormalizer jarFileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
@@ -41,6 +43,11 @@ public class LoaderBuilder {
 
 	public LoaderBuilder forClassLoader(String classLoader) {
 		this.classLoader = classLoader;
+		return this;
+	}
+
+	public LoaderBuilder forRelease(int release) {
+		this.release = release;
 		return this;
 	}
 
@@ -80,7 +87,7 @@ public class LoaderBuilder {
 	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
-		return new JarFileLoader(classLoader, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository);
+		return new JarFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {

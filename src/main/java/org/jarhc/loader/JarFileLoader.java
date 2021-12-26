@@ -53,13 +53,15 @@ class JarFileLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarFileLoader.class);
 
 	private final String classLoader;
+	private final int release;
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
 	private final Repository repository;
 
-	JarFileLoader(String classLoader, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
+	JarFileLoader(String classLoader, int release, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
 		this.classLoader = classLoader;
+		this.release = release;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;

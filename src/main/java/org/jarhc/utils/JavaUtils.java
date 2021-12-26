@@ -93,4 +93,19 @@ public class JavaUtils {
 		return className.substring(pos + 1);
 	}
 
+	/**
+	 * Get major Java version number.
+	 *
+	 * @return Major Java version number, for example 8, 11, or 17.
+	 */
+	public static int getJavaVersion() {
+		String value = System.getProperty("java.version");
+		String[] digits = value.split("\\.");
+		int version = Integer.parseInt(digits[0]);
+		if (version == 1) { // Java 1.1 - 1.8
+			version = Integer.parseInt(digits[1]);
+		}
+		return version;
+	}
+
 }
