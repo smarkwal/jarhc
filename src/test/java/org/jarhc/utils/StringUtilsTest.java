@@ -18,6 +18,9 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +40,89 @@ class StringUtilsTest {
 		assertEquals("", StringUtils.repeat("", 5));
 		assertEquals("", StringUtils.repeat("X", 0));
 		assertEquals("XXXXX", StringUtils.repeat("X", 5));
+
+	}
+
+	@Test
+	void splitText() {
+
+		// prepare
+		String text = "Java 12 (8), Java 11 (8846), Java 9 (758), Java 8 (17423), Java 7 (6090), Java 6 (2580), Java 5 (5241), Java 1.4 (672), Java 1.3 (2359), Java 1.2 (523), Java 1.1 (13)";
+
+		// test
+		List<String> result = StringUtils.splitText(text, 60);
+
+		// assert
+		List<String> expected = Arrays.asList(
+				"Java 12 (8), Java 11 (8846), Java 9 (758), Java 8 (17423),",
+				"Java 7 (6090), Java 6 (2580), Java 5 (5241), Java 1.4 (672),",
+				"Java 1.3 (2359), Java 1.2 (523), Java 1.1 (13)"
+		);
+		assertEquals(expected, result);
+
+	}
+
+	@Test
+	void splitText_separatorNotFound() {
+
+		// prepare
+		String text = "This is a long sentence without commas.";
+
+		// test
+		List<String> result = StringUtils.splitText(text, 12);
+
+		// assert
+		List<String> expected = Collections.singletonList(text);
+		assertEquals(expected, result);
+
+	}
+
+	@Test
+	void splitText_shortSentence() {
+
+		// prepare
+		String text = "Hello World!";
+
+		// test
+		List<String> result = StringUtils.splitText(text, 60);
+
+		// assert
+		List<String> expected = Collections.singletonList(text);
+		assertEquals(expected, result);
+
+	}
+
+	@Test
+	void splitText_longSentences() {
+
+		// prepare
+		String text = "This is a long sentence, which contains only a few, but very well placed commas.";
+
+		// test
+		List<String> result = StringUtils.splitText(text, 12);
+
+		// assert
+		List<String> expected = Arrays.asList(
+				"This is a long sentence,",
+				"which contains only a few,",
+				"but very well placed commas."
+		);
+		assertEquals(expected, result);
+
+	}
+
+	@Test
+	void splitText_emptyText() {
+
+		// prepare
+		String text = "";
+
+		// test
+		List<String> result = StringUtils.splitText(text, 12);
+
+		// assert
+		List<String> expected = Collections.singletonList("");
+		assertEquals(expected, result);
 
 	}
 

@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.StringUtils.wrapText;
+
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -74,6 +76,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 		// add row with summary
 		String javaVersions = classpathCounter.toString();
+		javaVersions = wrapText(javaVersions, 60);
 		table.addRow("Classpath", javaVersions);
 
 		return table;
@@ -85,7 +88,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 		private final Map<Integer, Integer> map = new TreeMap<>();
 
 		void count(int majorClassVersion) {
-			map.merge(majorClassVersion, 1, (a, b) -> a + b);
+			map.merge(majorClassVersion, 1, Integer::sum);
 		}
 
 		@Override

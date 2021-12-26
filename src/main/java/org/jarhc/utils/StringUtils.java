@@ -16,7 +16,9 @@
 
 package org.jarhc.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -48,6 +50,44 @@ public class StringUtils {
 
 	public static Collector<CharSequence, ?, String> joinLines() {
 		return Collectors.joining(System.lineSeparator());
+	}
+
+	/**
+	 * Split a longer text using commas as separators.
+	 *
+	 * @param text      Text to split.
+	 * @param maxLength Maximum length of a line (best-effort).
+	 * @return List of lines.
+	 */
+	public static List<String> splitText(String text, int maxLength) {
+		List<String> lines = new ArrayList<>();
+
+		while (text.length() > maxLength) {
+			int pos = text.lastIndexOf(',', maxLength);
+			if (pos < 0) {
+				pos = text.indexOf(',');
+				if (pos < 0) {
+					break;
+				}
+			}
+			String line = text.substring(0, pos + 1);
+			lines.add(line.trim());
+			text = text.substring(pos + 1).trim();
+		}
+
+		lines.add(text);
+		return lines;
+	}
+
+	/**
+	 * Wrap a text into multiple lines.
+	 *
+	 * @param text      Text to wrap.
+	 * @param maxLength Maximum length of a line (best-effort).
+	 * @return Wrapped text.
+	 */
+	public static String wrapText(String text, int maxLength) {
+		return joinLines(splitText(text, maxLength));
 	}
 
 }
