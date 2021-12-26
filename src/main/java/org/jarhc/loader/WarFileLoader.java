@@ -29,8 +29,14 @@ import org.jarhc.app.JarSource;
 import org.jarhc.model.JarFile;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
+import org.jarhc.utils.LimitedInputStream;
 
 public class WarFileLoader {
+
+	// limits to prevent Zip Bomb attacks
+	private static final long MAX_TOTAL_SIZE = 1024 * 1024 * 1024L; // 1 GB
+	private static final long MAX_ENTRY_SIZE = 100 * 1024 * 1024L; // 100 MB
+	private static final long MAX_ENTRY_COUNT = 10000;
 
 	private final JarFileLoader jarFileLoader;
 
@@ -56,6 +62,7 @@ public class WarFileLoader {
 	public List<JarFile> load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
+		long totalSize = 0;
 		List<JarFile> jarFiles = new ArrayList<>();
 
 		try (ZipInputStream zip = new ZipInputStream(stream)) {
@@ -71,9 +78,27 @@ public class WarFileLoader {
 				String entryName = entry.getName();
 				if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
 					String fileName = FileUtils.getFilename(entryName);
-					byte[] fileData = IOUtils.toByteArray(zip);
+
+					// limit max JAR file size (prevent Zip Bomb attack)
+					InputStream in = new LimitedInputStream(zip, MAX_ENTRY_SIZE);
+
+					// read content of JAR file
+					byte[] fileData = IOUtils.toByteArray(in);
+
+					// check if max total size has been reached (prevent Zip Bomb attack)
+					totalSize += fileData.length;
+					if (totalSize > MAX_TOTAL_SIZE) {
+						throw new IOException("Maximum total size exceeded.");
+					}
+
 					List<JarFile> files = jarFileLoader.load(fileName, fileData);
 					jarFiles.addAll(files);
+
+					// check if max number of JAR files has been reached (prevent Zip Bomb attack)
+					if (jarFiles.size() > MAX_ENTRY_COUNT) {
+						throw new IOException("Maximum number of entries exceeded.");
+					}
+
 				} else if (entryName.startsWith("WEB-INF/classes/")) {
 					// TODO: add all files (classes and resources) to an artificial JAR file
 					//  String jarFileName = file.getName() + "-classes.jar";
