@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -57,53 +59,14 @@ class ModulesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(6, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Module name", columns[1]);
-		assertEquals("Definition", columns[2]);
-		assertEquals("Automatic", columns[3]);
-		assertEquals("Requires", columns[4]);
-		assertEquals("Exports", columns[5]);
+		assertValuesEquals(columns, "JAR file", "Module name", "Definition", "Automatic", "Requires", "Exports");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-
-		String[] values1 = rows.get(0);
-		assertEquals(6, values1.length);
-		assertEquals("a-core.jar", values1[0]);
-		assertEquals("a", values1[1]);
-		assertEquals("Manifest", values1[2]);
-		assertEquals("Yes", values1[3]);
-		assertEquals("-", values1[4]);
-		assertEquals("[all packages]", values1[5]);
-
-		String[] values2 = rows.get(1);
-		assertEquals(6, values2.length);
-		assertEquals("b.jar", values2[0]);
-		assertEquals("b", values2[1]);
-		assertEquals("Module-Info", values2[2]);
-		assertEquals("No", values2[3]);
-		assertEquals("a\njava.base", values2[4]);
-		assertEquals("b.x\nb.y", values2[5]);
-
-		String[] values3 = rows.get(2);
-		assertEquals(6, values3.length);
-		assertEquals("C-1.0.1.jar", values3[0]);
-		assertEquals("c", values3[1]);
-		assertEquals("Auto-generated", values3[2]);
-		assertEquals("Yes", values3[3]);
-		assertEquals("-", values3[4]);
-		assertEquals("[all packages]", values3[5]);
-
-		String[] values4 = rows.get(3);
-		assertEquals(6, values4.length);
-		assertEquals("d.jar", values4[0]);
-		assertEquals("d", values4[1]);
-		assertEquals("Auto-generated", values4[2]);
-		assertEquals("Yes", values4[3]);
-		assertEquals("-", values4[4]);
-		assertEquals("[all packages]", values4[5]);
-
+		assertValuesEquals(rows.get(0), "a-core.jar", "a", "Manifest", "Yes", "-", "[all packages]");
+		assertValuesEquals(rows.get(1), "b.jar", "b", "Module-Info", "No", joinLines("a", "java.base"), "b.x\nb.y");
+		assertValuesEquals(rows.get(2), "C-1.0.1.jar", "c", "Auto-generated", "Yes", "-", "[all packages]");
+		assertValuesEquals(rows.get(3), "d.jar", "d", "Auto-generated", "Yes", "-", "[all packages]");
 	}
 
 }

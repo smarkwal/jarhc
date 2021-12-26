@@ -32,7 +32,7 @@ import org.jarhc.java.ClassLoaderStrategy;
  */
 public abstract class JavaRuntime extends ClassLoader {
 
-	public JavaRuntime() {
+	protected JavaRuntime() {
 		super("Runtime", null, ClassLoaderStrategy.ParentLast);
 	}
 

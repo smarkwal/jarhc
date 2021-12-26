@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -57,18 +59,11 @@ class BinaryCompatibilityAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Issues", columns[1]);
+		assertValuesEquals(columns, "JAR file", "Issues");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		String[] values = rows.get(0);
-		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
-		assertEquals("a.A" + System.lineSeparator() + "\u2022 Class is not accessible: class b.B" + System.lineSeparator() + "\u2022 Class not found: c.C (package not found)", values[1]);
-
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Class is not accessible: class b.B", "\u2022 Class not found: c.C (package not found)"));
 	}
-
 
 }

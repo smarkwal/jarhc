@@ -31,7 +31,7 @@ public class Injector {
 	/**
 	 * Instance bindings for interfaces and classes.
 	 */
-	private final Map<Class, Object> bindings = new HashMap<>();
+	private final Map<Class<?>, Object> bindings = new HashMap<>();
 
 	public <T> void addBinding(Class<T> cls, T object) {
 		bindings.put(cls, object);
@@ -65,13 +65,13 @@ public class Injector {
 		return Arrays.stream(constructors).filter(this::hasMappings).collect(Collectors.toList());
 	}
 
-	private boolean hasMappings(Constructor constructor) {
-		Class[] parameterTypes = constructor.getParameterTypes();
+	private boolean hasMappings(Constructor<?> constructor) {
+		Class<?>[] parameterTypes = constructor.getParameterTypes();
 		return Arrays.stream(parameterTypes).allMatch(bindings::containsKey);
 	}
 
-	private Object[] prepareParameters(Constructor constructor) {
-		Class[] parameterTypes = constructor.getParameterTypes();
+	private Object[] prepareParameters(Constructor<?> constructor) {
+		Class<?>[] parameterTypes = constructor.getParameterTypes();
 		return Arrays.stream(parameterTypes).map(bindings::get).toArray();
 	}
 

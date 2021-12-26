@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,38 +60,14 @@ class JarDependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Uses", columns[1]);
-		assertEquals("Used by", columns[2]);
+		assertValuesEquals(columns, "JAR file", "Uses", "Used by");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-
-		String[] values1 = rows.get(0);
-		assertEquals(3, values1.length);
-		assertEquals("a.jar", values1[0]);
-		assertEquals(joinLines("b.jar", "c.jar"), values1[1]);
-		assertEquals("[none]", values1[2]);
-
-		String[] values2 = rows.get(1);
-		assertEquals(3, values2.length);
-		assertEquals("b.jar", values2[0]);
-		assertEquals("c.jar", values2[1]);
-		assertEquals("a.jar", values2[2]);
-
-		String[] values3 = rows.get(2);
-		assertEquals(3, values3.length);
-		assertEquals("c.jar", values3[0]);
-		assertEquals("[none]", values3[1]);
-		assertEquals(joinLines("a.jar", "b.jar"), values3[2]);
-
-		String[] values4 = rows.get(3);
-		assertEquals(3, values4.length);
-		assertEquals("d.jar", values4[0]);
-		assertEquals("[none]", values4[1]);
-		assertEquals("[none]", values4[2]);
-
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("b.jar", "c.jar"), "[none]");
+		assertValuesEquals(rows.get(1), "b.jar", "c.jar", "a.jar");
+		assertValuesEquals(rows.get(2), "c.jar", "[none]", joinLines("a.jar", "b.jar"));
+		assertValuesEquals(rows.get(3), "d.jar", "[none]", "[none]");
 	}
 
 }

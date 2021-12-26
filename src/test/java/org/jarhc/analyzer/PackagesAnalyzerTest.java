@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -58,29 +59,12 @@ class PackagesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(4, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Count", columns[1]);
-		assertEquals("Packages", columns[2]);
-		assertEquals("Issues", columns[3]);
+		assertValuesEquals(columns, "JAR file", "Count", "Packages", "Issues");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-
-		String[] values1 = rows.get(0);
-		assertEquals(4, values1.length);
-		assertEquals("a.jar", values1[0]);
-		assertEquals("3", values1[1]);
-		assertEquals("a (+2 subpackages)", values1[2]);
-		assertEquals("", values1[3]);
-
-		String[] values2 = rows.get(1);
-		assertEquals(4, values2.length);
-		assertEquals("b.jar", values2[0]);
-		assertEquals("1", values2[1]);
-		assertEquals("b", values2[2]);
-		assertEquals("", values2[3]);
-
+		assertValuesEquals(rows.get(0), "a.jar", "3", "a (+2 subpackages)", "");
+		assertValuesEquals(rows.get(1), "b.jar", "1", "b", "");
 	}
 
 }

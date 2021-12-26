@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.pom.PomUtils.generateDependencies;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -93,44 +94,16 @@ class DependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) content;
 
 		String[] columns = table.getColumns();
-		assertEquals(4, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Maven coordinates", columns[1]);
-		assertEquals("Direct dependencies", columns[2]);
-		assertEquals("Status", columns[3]);
+		assertValuesEquals(columns, "JAR file", "Maven coordinates", "Direct dependencies", "Status");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
 
-		String[] values = rows.get(0);
-		assertEquals("lib-with-deps.jar", values[0]);
-		assertEquals("group:lib-with-deps:1.0:jar", values[1]);
-		assertEquals("group:lib-with-deps-1:1.0 (provided, optional)\ngroup:lib-with-deps-2:1.0 (runtime)\ngroup:lib-with-deps-4:1.0 (system)\ngroup:lib-with-deps-5:1.0 (import, optional)", values[2]);
-		assertEquals("OK\nOK\nOK (version 1.1)\nUnsatisfied", values[3]);
-
-		values = rows.get(1);
-		assertEquals("lib-no-deps.jar", values[0]);
-		assertEquals("group:lib-no-deps:1.0:jar", values[1]);
-		assertEquals("[none]", values[2]);
-		assertEquals("", values[3]);
-
-		values = rows.get(2);
-		assertEquals("lib-no-pom.jar", values[0]);
-		assertEquals("group:lib-no-pom:1.0:jar", values[1]);
-		assertEquals("[error]", values[2]);
-		assertEquals("", values[3]);
-
-		values = rows.get(3);
-		assertEquals("lib-repo-error.jar", values[0]);
-		assertEquals("group:lib-repo-error:1.0:jar", values[1]);
-		assertEquals("[error]", values[2]);
-		assertEquals("", values[3]);
-
-		values = rows.get(4);
-		assertEquals("lib-unknown.jar", values[0]);
-		assertEquals("[unknown]", values[1]);
-		assertEquals("[unknown]", values[2]);
-		assertEquals("", values[3]);
+		assertValuesEquals(rows.get(0), "lib-with-deps.jar", "group:lib-with-deps:1.0:jar", "group:lib-with-deps-1:1.0 (provided, optional)\ngroup:lib-with-deps-2:1.0 (runtime)\ngroup:lib-with-deps-4:1.0 (system)\ngroup:lib-with-deps-5:1.0 (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
+		assertValuesEquals(rows.get(1), "lib-no-deps.jar", "group:lib-no-deps:1.0:jar", "[none]", "");
+		assertValuesEquals(rows.get(2), "lib-no-pom.jar", "group:lib-no-pom:1.0:jar", "[error]", "");
+		assertValuesEquals(rows.get(3), "lib-repo-error.jar", "group:lib-repo-error:1.0:jar", "[error]", "");
+		assertValuesEquals(rows.get(4), "lib-unknown.jar", "[unknown]", "[unknown]", "");
 
 	}
 

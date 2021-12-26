@@ -16,6 +16,8 @@
 
 package org.jarhc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.BufferedReader;
@@ -127,6 +129,23 @@ public class TestUtils {
 
 		//noinspection ConstantConditions
 		assumeTrue(false, "Test resource generated.");
+	}
+
+	/**
+	 * Assert that the given values are equals to the expected values.
+	 *
+	 * @param actualValues   Actual values
+	 * @param expectedValues Expected values
+	 */
+	public static void assertValuesEquals(String[] actualValues, String... expectedValues) {
+		assertNotNull(actualValues);
+		assertNotNull(expectedValues);
+		assertEquals(expectedValues.length, actualValues.length);
+		for (int i = 0; i < actualValues.length; i++) {
+			String actualValue = actualValues[i];
+			String expectedValue = expectedValues[i];
+			assertEquals(expectedValue, actualValue);
+		}
 	}
 
 }

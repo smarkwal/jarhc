@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -33,7 +34,7 @@ import org.junit.jupiter.api.Test;
 
 class DuplicateClassesAnalyzerTest {
 
-	private DuplicateClassesAnalyzer analyzer = new DuplicateClassesAnalyzer();
+	private final DuplicateClassesAnalyzer analyzer = new DuplicateClassesAnalyzer();
 
 	@Test
 	void test_analyze() {
@@ -65,37 +66,14 @@ class DuplicateClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
-		assertEquals("Class/Resource", columns[0]);
-		assertEquals("Sources", columns[1]);
-		assertEquals("Similarity", columns[2]);
+		assertValuesEquals(columns, "Class/Resource", "Sources", "Similarity");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-		String[] values = rows.get(0);
-		assertEquals(3, values.length);
-		assertEquals("a.A", values[0]);
-		assertEquals(joinLines("a.jar (Classpath)", "a.jar (Provided)"), values[1]);
-		assertEquals("Exact copy", values[2]);
-
-		values = rows.get(1);
-		assertEquals(3, values.length);
-		assertEquals("java.lang.String", values[0]);
-		assertEquals(joinLines("r.jar (Classpath)", "Runtime (rt.jar)"), values[1]);
-		assertEquals("Different API", values[2]);
-
-		values = rows.get(2);
-		assertEquals(3, values.length);
-		assertEquals("z.Z", values[0]);
-		assertEquals(joinLines("x.jar (Classpath)", "y.jar (Classpath)"), values[1]);
-		assertEquals("Exact copy", values[2]);
-
-		values = rows.get(3);
-		assertEquals(3, values.length);
-		assertEquals("z/Z.txt", values[0]);
-		assertEquals(joinLines("x.jar", "y.jar"), values[1]);
-		assertEquals("Different content", values[2]);
-
+		assertValuesEquals(rows.get(0), "a.A", joinLines("a.jar (Classpath)", "a.jar (Provided)"), "Exact copy");
+		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r.jar (Classpath)", "Runtime (rt.jar)"), "Different API");
+		assertValuesEquals(rows.get(2), "z.Z", joinLines("x.jar (Classpath)", "y.jar (Classpath)"), "Exact copy");
+		assertValuesEquals(rows.get(3), "z/Z.txt", joinLines("x.jar", "y.jar"), "Different content");
 	}
 
 	@Test
@@ -121,19 +99,11 @@ class DuplicateClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
-		assertEquals("Class/Resource", columns[0]);
-		assertEquals("Sources", columns[1]);
-		assertEquals("Similarity", columns[2]);
+		assertValuesEquals(columns, "Class/Resource", "Sources", "Similarity");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		String[] values = rows.get(0);
-		assertEquals(3, values.length);
-		assertEquals("a.b.C", values[0]);
-		assertEquals(joinLines("a-1.jar (Classpath)", "a-2.jar (Classpath)"), values[1]);
-		assertEquals("Exact copy", values[2]);
-
+		assertValuesEquals(rows.get(0), "a.b.C", joinLines("a-1.jar (Classpath)", "a-2.jar (Classpath)"), "Exact copy");
 	}
 
 	@Test
@@ -159,19 +129,11 @@ class DuplicateClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
-		assertEquals("Class/Resource", columns[0]);
-		assertEquals("Sources", columns[1]);
-		assertEquals("Similarity", columns[2]);
+		assertValuesEquals(columns, "Class/Resource", "Sources", "Similarity");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		String[] values = rows.get(0);
-		assertEquals(3, values.length);
-		assertEquals("a/b/C", values[0]);
-		assertEquals(joinLines("a-1.jar", "a-2.jar"), values[1]);
-		assertEquals("Exact copy", values[2]);
-
+		assertValuesEquals(rows.get(0), "a/b/C", joinLines("a-1.jar", "a-2.jar"), "Exact copy");
 	}
 
 	@Test
@@ -198,19 +160,11 @@ class DuplicateClassesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(3, columns.length);
-		assertEquals("Class/Resource", columns[0]);
-		assertEquals("Sources", columns[1]);
-		assertEquals("Similarity", columns[2]);
+		assertValuesEquals(columns, "Class/Resource", "Sources", "Similarity");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		String[] values = rows.get(0);
-		assertEquals(3, values.length);
-		assertEquals("java.lang.String", values[0]);
-		assertEquals(joinLines("a.jar (Classpath)", "Runtime (rt.jar)"), values[1]);
-		assertEquals("Different API", values[2]);
-
+		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a.jar (Classpath)", "Runtime (rt.jar)"), "Different API");
 	}
 
 }

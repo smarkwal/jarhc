@@ -35,7 +35,7 @@ public abstract class ClassLoader {
 	private final ClassLoader parent;
 	private final ClassLoaderStrategy strategy;
 
-	public ClassLoader(String name, ClassLoader parent, ClassLoaderStrategy strategy) {
+	protected ClassLoader(String name, ClassLoader parent, ClassLoaderStrategy strategy) {
 		this.name = name;
 		this.parent = parent;
 		this.strategy = strategy;

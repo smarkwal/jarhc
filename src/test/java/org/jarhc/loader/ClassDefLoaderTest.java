@@ -23,85 +23,39 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collection;
 import org.jarhc.TestUtils;
 import org.jarhc.model.ClassDef;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.io.TempDir;
 
 class ClassDefLoaderTest {
 
 	private final ClassDefLoader classDefLoader = LoaderBuilder.create().buildClassDefLoader();
 
-	@Test
-	void test_load_java11() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java11/Main.class";
-		ClassDef classDef = loadClass(resource);
-
-		assertNotNull(classDef);
-		assertEquals("Main", classDef.getClassName());
-		assertEquals(55, classDef.getMajorClassVersion());
-		assertEquals("Java 11", classDef.getJavaVersion());
+	@TestFactory
+	Collection<DynamicTest> test_load_class() {
+		return Arrays.asList(
+				DynamicTest.dynamicTest("Java 11", () -> test_load_class(11, 55)),
+				DynamicTest.dynamicTest("Java 10", () -> test_load_class(10, 54)),
+				DynamicTest.dynamicTest("Java 9", () -> test_load_class(9, 53)),
+				DynamicTest.dynamicTest("Java 8", () -> test_load_class(8, 52)),
+				DynamicTest.dynamicTest("Java 7", () -> test_load_class(7, 51)),
+				DynamicTest.dynamicTest("Java 6", () -> test_load_class(6, 50))
+		);
 	}
 
-	@Test
-	void test_load_java10() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java10/Main.class";
+	private void test_load_class(int javaMajorVersion, int expectedClassVersion) throws IOException {
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java" + javaMajorVersion + "/Main.class";
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
 		assertEquals("Main", classDef.getClassName());
-		assertEquals(54, classDef.getMajorClassVersion());
-		assertEquals("Java 10", classDef.getJavaVersion());
-	}
-
-	@Test
-	void test_load_java9() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java9/Main.class";
-		ClassDef classDef = loadClass(resource);
-
-		assertNotNull(classDef);
-		assertEquals("Main", classDef.getClassName());
-		assertEquals(53, classDef.getMajorClassVersion());
-		assertEquals("Java 9", classDef.getJavaVersion());
-	}
-
-	@Test
-	void test_load_java8() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java8/Main.class";
-		ClassDef classDef = loadClass(resource);
-
-		assertNotNull(classDef);
-		assertEquals("Main", classDef.getClassName());
-		assertEquals(52, classDef.getMajorClassVersion());
-		assertEquals("Java 8", classDef.getJavaVersion());
-	}
-
-	@Test
-	void test_load_java7() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java7/Main.class";
-		ClassDef classDef = loadClass(resource);
-
-		assertNotNull(classDef);
-		assertEquals("Main", classDef.getClassName());
-		assertEquals(51, classDef.getMajorClassVersion());
-		assertEquals("Java 7", classDef.getJavaVersion());
-	}
-
-	@Test
-	void test_load_java6() throws IOException {
-
-		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java6/Main.class";
-		ClassDef classDef = loadClass(resource);
-
-		assertNotNull(classDef);
-		assertEquals("Main", classDef.getClassName());
-		assertEquals(50, classDef.getMajorClassVersion());
-		assertEquals("Java 6", classDef.getJavaVersion());
+		assertEquals(expectedClassVersion, classDef.getMajorClassVersion());
+		assertEquals("Java " + javaMajorVersion, classDef.getJavaVersion());
 	}
 
 	@Test

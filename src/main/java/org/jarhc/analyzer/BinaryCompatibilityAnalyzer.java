@@ -319,36 +319,42 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			Optional<ClassDef> targetClassDef = classLoader.getClassDef(className);
 			boolean exists = targetClassDef.isPresent();
 			if (!exists) {
-
-				String packageName = JavaUtils.getPackageName(className);
-				boolean found = classLoader.containsPackage(packageName);
-				if (!found) {
-					classIssues.add("Class not found: " + className + " (package not found)");
-				} else {
-					classIssues.add("Class not found: " + className + " (package found)");
-				}
-
+				// check if package of class exists (there is at least one class on the classpath)
+				validateClassRefPackage(className, classLoader, classIssues);
 			} else {
-
-				// check access to class
-				boolean access = accessCheck.hasAccess(classDef, targetClassDef.get());
-				if (!access) {
-
-					// check if a similar issue has already been reported (for superclass or interface declaration)
-					String targetClassDisplayName = targetClassDef.get().getDisplayName();
-					boolean similarIssueFound = classIssues.contains("Superclass is not accessible: " + targetClassDisplayName) ||
-							classIssues.contains("Interface is not accessible: " + targetClassDisplayName);
-
-					if (!similarIssueFound) {
-						classIssues.add("Class is not accessible: " + targetClassDisplayName);
-					}
-
-				}
-
+				// check if access to class is allowed
+				validateClassRefAccess(classDef, targetClassDef.get(), accessCheck, classIssues);
 			}
 
 		}
 
+	}
+
+	private void validateClassRefPackage(String className, ClassLoader classLoader, Set<String> classIssues) {
+		String packageName = JavaUtils.getPackageName(className);
+		boolean found = classLoader.containsPackage(packageName);
+		if (!found) {
+			classIssues.add("Class not found: " + className + " (package not found)");
+		} else {
+			classIssues.add("Class not found: " + className + " (package found)");
+		}
+	}
+
+	private void validateClassRefAccess(ClassDef classDef, ClassDef targetClassDef, AccessCheck accessCheck, Set<String> classIssues) {
+
+		// check access to class
+		boolean access = accessCheck.hasAccess(classDef, targetClassDef);
+		if (!access) {
+
+			// check if a similar issue has already been reported (for superclass or interface declaration)
+			String targetClassDisplayName = targetClassDef.getDisplayName();
+			boolean similarIssueFound = classIssues.contains("Superclass is not accessible: " + targetClassDisplayName) ||
+					classIssues.contains("Interface is not accessible: " + targetClassDisplayName);
+
+			if (!similarIssueFound) {
+				classIssues.add("Class is not accessible: " + targetClassDisplayName);
+			}
+		}
 	}
 
 	// -----------------------------------------------------------------------------------------------------

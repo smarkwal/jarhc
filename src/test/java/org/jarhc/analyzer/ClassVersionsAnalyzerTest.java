@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -58,38 +59,15 @@ class ClassVersionsAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertEquals(2, columns.length);
-		assertEquals("JAR file", columns[0]);
-		assertEquals("Java version", columns[1]);
+		assertValuesEquals(columns, "JAR file", "Java version");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
-
-		String[] values1 = rows.get(0);
-		assertEquals(2, values1.length);
-		assertEquals("a.jar", values1[0]);
-		assertEquals("Java 8 (1)", values1[1]);
-
-		String[] values2 = rows.get(1);
-		assertEquals(2, values2.length);
-		assertEquals("b.jar", values2[0]);
-		assertEquals("Java 8 (1), Java 7 (1)", values2[1]);
-
-		String[] values3 = rows.get(2);
-		assertEquals(2, values3.length);
-		assertEquals("c.jar", values3[0]);
-		assertEquals("Java 1.4 (1)", values3[1]);
-
-		String[] values4 = rows.get(3);
-		assertEquals(2, values4.length);
-		assertEquals("d.jar", values4[0]);
-		assertEquals("[no class files]", values4[1]);
-
-		String[] values5 = rows.get(4);
-		assertEquals(2, values5.length);
-		assertEquals("Classpath", values5[0]);
-		assertEquals("Java 8 (2), Java 7 (1), Java 1.4 (1)", values5[1]);
-
+		assertValuesEquals(rows.get(0), "a.jar", "Java 8 (1)");
+		assertValuesEquals(rows.get(1), "b.jar", "Java 8 (1), Java 7 (1)");
+		assertValuesEquals(rows.get(2), "c.jar", "Java 1.4 (1)");
+		assertValuesEquals(rows.get(3), "d.jar", "[no class files]");
+		assertValuesEquals(rows.get(4), "Classpath", "Java 8 (2), Java 7 (1), Java 1.4 (1)");
 	}
 
 }
