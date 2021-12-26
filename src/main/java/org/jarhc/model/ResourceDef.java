@@ -20,6 +20,11 @@ public class ResourceDef {
 
 	private final String path;
 
+	/**
+	 * Version branch in multi-release JAR file.
+	 */
+	private int release;
+
 	private final String checksum;
 
 	/**
@@ -34,6 +39,15 @@ public class ResourceDef {
 
 	public String getPath() {
 		return path;
+	}
+
+	public int getRelease() {
+		return release;
+	}
+
+	public ResourceDef setRelease(int release) {
+		this.release = release;
+		return this;
 	}
 
 	public String getChecksum() {

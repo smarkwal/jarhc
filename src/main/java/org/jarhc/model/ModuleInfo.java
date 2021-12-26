@@ -23,6 +23,12 @@ import java.util.List;
 public class ModuleInfo {
 
 	private String moduleName;
+
+	/**
+	 * Version branch in multi-release JAR file.
+	 */
+	private int release;
+
 	private boolean automatic;
 	private final List<String> exports = new ArrayList<>();
 	private final List<String> requires = new ArrayList<>();
@@ -39,6 +45,15 @@ public class ModuleInfo {
 
 	public ModuleInfo setModuleName(String moduleName) {
 		this.moduleName = moduleName;
+		return this;
+	}
+
+	public int getRelease() {
+		return release;
+	}
+
+	public ModuleInfo setRelease(int release) {
+		this.release = release;
 		return this;
 	}
 

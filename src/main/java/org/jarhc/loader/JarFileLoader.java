@@ -22,7 +22,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -53,15 +55,15 @@ class JarFileLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JarFileLoader.class);
 
 	private final String classLoader;
-	private final int release;
+	private final int maxRelease; // for multi-rlease JAR files
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
 	private final Repository repository;
 
-	JarFileLoader(String classLoader, int release, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
+	JarFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
 		this.classLoader = classLoader;
-		this.release = release;
+		this.maxRelease = maxRelease;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
@@ -117,8 +119,8 @@ class JarFileLoader {
 
 		ModuleInfo moduleInfo = null;
 		Set<Integer> releases = new TreeSet<>();
-		List<ClassDef> classDefs = new ArrayList<>();
-		List<ResourceDef> resourceDefs = new ArrayList<>();
+		Map<String, ClassDef> classDefs = new HashMap<>();
+		Map<String, ResourceDef> resourceDefs = new HashMap<>();
 
 		// open JAR file for reading
 		try (JarInputStream stream = new JarInputStream(new ByteArrayInputStream(fileData), false)) {
@@ -129,8 +131,9 @@ class JarFileLoader {
 			String automaticModuleName = getAutomaticModuleName(stream);
 			if (automaticModuleName != null) {
 				// create module info for an automatic module with the given name
-				// (can be overridden if module-info.class is found later)
 				moduleInfo = ModuleInfo.forModuleName(automaticModuleName).setAutomatic(true);
+				// module info can be overridden if module-info.class is found later
+				moduleInfo.setRelease(-1);
 			}
 
 			// for every entry in the JAR file ...
@@ -145,21 +148,30 @@ class JarFileLoader {
 
 				String name = entry.getName();
 
+				int release = 8;
 				if (multiRelease) {
 					if (name.startsWith("META-INF/versions/")) {
 
 						// extract Java release version from entry path
 						try {
-							String version = name.substring(18, name.indexOf('/', 18));
-							int release = Integer.parseInt(version);
+							int pos = name.indexOf('/', 18);
+							String version = name.substring(18, pos);
+							release = Integer.parseInt(version);
 							releases.add(release);
+
+							// remove "META-INF/versions/<release>/" from entry path
+							name = name.substring(pos + 1);
+
 						} catch (Exception e) {
 							LOGGER.warn("Failed to extract release version: {}", name, e);
 						}
 
-						// TODO: support multi-release JAR files
-						continue;
 					}
+				}
+
+				// ignore entries for newer releases
+				if (release > maxRelease) {
+					continue;
 				}
 
 				// ignore files in META-INF // TODO: why?
@@ -184,12 +196,26 @@ class JarFileLoader {
 				} else if (name.endsWith(".class")) {
 
 					if (name.equals("module-info.class")) {
+
+						// ignore module info if it is for an older release
+						if (moduleInfo != null && release < moduleInfo.getRelease()) {
+							continue;
+						}
+
 						// load module info
 						moduleInfo = moduleInfoLoader.load(data);
+						moduleInfo.setRelease(release);
+					}
+
+					// ignore class definition if it is for an older release
+					ClassDef classDef = classDefs.get(name);
+					if (classDef != null && release < classDef.getRelease()) {
+						continue;
 					}
 
 					// load class file
-					ClassDef classDef = classDefLoader.load(data);
+					classDef = classDefLoader.load(data);
+					classDef.setRelease(release);
 
 					/*
 					Certificate[] certificates = entry.getCertificates();
@@ -204,16 +230,23 @@ class JarFileLoader {
 					// TODO: verify signature
 					*/
 
-					classDefs.add(classDef);
+					classDefs.put(name, classDef);
 
 				} else {
+
+					// ignore resource if it is for an older release
+					ResourceDef resourceDef = resourceDefs.get(name);
+					if (resourceDef != null && release < resourceDef.getRelease()) {
+						continue;
+					}
 
 					// calculate SHA-1 checksum
 					String checksum = DigestUtils.sha1Hex(data);
 
 					// add as resource
-					ResourceDef resourceDef = new ResourceDef(name, checksum);
-					resourceDefs.add(resourceDef);
+					resourceDef = new ResourceDef(name, checksum);
+					resourceDef.setRelease(release);
+					resourceDefs.put(name, resourceDef);
 
 				}
 
@@ -248,8 +281,8 @@ class JarFileLoader {
 				.withClassLoader(classLoader)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
-				.withClassDefs(classDefs)
-				.withResourceDefs(resourceDefs)
+				.withClassDefs(classDefs.values())
+				.withResourceDefs(resourceDefs.values())
 				.build();
 
 		jarFiles.add(jarFile);

@@ -17,6 +17,7 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -307,12 +308,12 @@ public class JarFile {
 			return this;
 		}
 
-		public Builder withClassDefs(List<ClassDef> classDefs) {
+		public Builder withClassDefs(Collection<ClassDef> classDefs) {
 			this.classDefs.addAll(classDefs);
 			return this;
 		}
 
-		public Builder withResourceDefs(List<ResourceDef> resourceDefs) {
+		public Builder withResourceDefs(Collection<ResourceDef> resourceDefs) {
 			this.resourceDefs.addAll(resourceDefs);
 			return this;
 		}

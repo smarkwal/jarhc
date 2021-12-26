@@ -37,6 +37,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	private String className;
 
 	/**
+	 * Version branch in multi-release JAR file.
+	 */
+	private int release;
+
+	/**
 	 * Name of superclass.
 	 */
 	private String superName = "java.lang.Object";
@@ -132,6 +137,15 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		} else {
 			return true;
 		}
+	}
+
+	public int getRelease() {
+		return release;
+	}
+
+	public ClassDef setRelease(int release) {
+		this.release = release;
+		return this;
 	}
 
 	public String getSuperName() {
