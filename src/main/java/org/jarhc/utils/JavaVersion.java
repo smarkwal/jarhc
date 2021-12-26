@@ -44,7 +44,7 @@ public class JavaVersion {
 		}
 	}
 
-	private static int getJavaVersionNumber(int classVersion) {
+	public static int getJavaVersionNumber(int classVersion) {
 		return classVersion - MIN_CLASS_VERSION + 1;
 	}
 

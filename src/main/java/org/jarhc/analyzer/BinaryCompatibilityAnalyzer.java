@@ -38,6 +38,7 @@ import org.jarhc.model.MethodRef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.JavaVersion;
 import org.jarhc.utils.StringUtils;
 
 public class BinaryCompatibilityAnalyzer implements Analyzer {
@@ -83,6 +84,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				Set<String> classIssues = new LinkedHashSet<>();
 
 				// validate class definition
+				validateClassFile(classDef, classIssues);
 				validateClassHierarchy(classDef, classpath, accessCheck, classIssues);
 				validateAbstractMethods(classDef, classpath, classIssues);
 				validateClassRefs(classDef, classpath, accessCheck, classIssues);
@@ -105,6 +107,18 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		return table;
+	}
+
+	private void validateClassFile(ClassDef classDef, Set<String> classIssues) {
+		int release = classDef.getRelease();
+		if (release > 8) { // class has been loaded from META-INF/versions/<release>
+			int majorClassVersion = classDef.getMajorClassVersion();
+			int javaVersion = JavaVersion.getJavaVersionNumber(majorClassVersion);
+			if (javaVersion > release) {
+				String issue = String.format("Compiled for Java %d, but bundled for Java %d.", javaVersion, release);
+				classIssues.add(issue);
+			}
+		}
 	}
 
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
