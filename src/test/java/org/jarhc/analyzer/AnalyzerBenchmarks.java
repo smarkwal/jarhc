@@ -19,7 +19,6 @@ package org.jarhc.analyzer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
@@ -60,7 +59,14 @@ public class AnalyzerBenchmarks {
 		fileNames.add("spring-tx-5.1.3.RELEASE.jar");
 		fileNames.add("spring-web-5.1.3.RELEASE.jar");
 
-		List<File> files = fileNames.stream().map(f -> new File("./src/test/resources/Spring5IT", f)).collect(Collectors.toList());
+		List<File> files = new ArrayList<>();
+		for (String fileName : fileNames) {
+			String artifactId = fileName.substring(0, fileName.lastIndexOf('-'));
+			String version = fileName.substring(fileName.lastIndexOf('-') + 1, fileName.lastIndexOf('.'));
+			String filePath = "./src/test/resources/repository/org/springframework/" + artifactId + "/" + version + "/" + fileName;
+			files.add(new File(filePath));
+		}
+
 		javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
 		this.classpath = classpathLoader.load(files);
