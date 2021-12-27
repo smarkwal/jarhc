@@ -165,6 +165,13 @@
 									</excludes>
 								</filter>
 							</filters>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+									<addHeader>true</addHeader>
+								</transformer>
+							</transformers>
 						</configuration>
 					</execution>
 				</executions>
