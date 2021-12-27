@@ -117,14 +117,17 @@
 		</resources>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.10.0</version>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.1.2</version>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.2</version>
 				<configuration>
@@ -139,6 +142,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.2.1</version>
 				<executions>
@@ -166,10 +170,12 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.22.2</version>
 				<executions>
@@ -219,7 +225,7 @@
 						</goals>
 						<configuration>
 							<includedScopes>compile</includedScopes>
-							<includeTransitiveDependencies>false</includeTransitiveDependencies>
+							<includeTransitiveDependencies>true</includeTransitiveDependencies>
 							<licensesOutputDirectory>${project.build.directory}/classes/licenses</licensesOutputDirectory>
 							<licensesOutputFile>${project.build.directory}/classes/licenses/licenses.xml</licensesOutputFile>
 							<sortByGroupIdAndArtifactId>true</sortByGroupIdAndArtifactId>
@@ -321,10 +327,12 @@
 				</reportSets>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.1.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
+					<quiet>true</quiet>
 				</configuration>
 				<reportSets>
 					<reportSet>
