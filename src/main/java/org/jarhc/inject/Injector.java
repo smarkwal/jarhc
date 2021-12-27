@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A small dependency injector.
@@ -32,6 +34,11 @@ public class Injector {
 	 * Instance bindings for interfaces and classes.
 	 */
 	private final Map<Class<?>, Object> bindings = new HashMap<>();
+
+	public Injector() {
+		// pre-register dummy binding for SLF4J Logger
+		addBinding(Logger.class, null);
+	}
 
 	public <T> void addBinding(Class<T> cls, T object) {
 		bindings.put(cls, object);
@@ -72,7 +79,18 @@ public class Injector {
 
 	private Object[] prepareParameters(Constructor<?> constructor) {
 		Class<?>[] parameterTypes = constructor.getParameterTypes();
-		return Arrays.stream(parameterTypes).map(bindings::get).toArray();
+		return Arrays.stream(parameterTypes).map(cls -> getBinding(cls, constructor)).toArray();
+	}
+
+	private Object getBinding(Class<?> cls, Constructor<?> constructor) {
+
+		// special binding for SLF4J Logger
+		if (cls == Logger.class) {
+			Class<?> declaringClass = constructor.getDeclaringClass();
+			return LoggerFactory.getLogger(declaringClass);
+		}
+
+		return bindings.get(cls);
 	}
 
 }

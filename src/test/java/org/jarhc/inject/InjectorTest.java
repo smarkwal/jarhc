@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.jarhc.utils.ExceptionUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 class InjectorTest {
 
@@ -131,9 +132,11 @@ class InjectorTest {
 
 	public static class TestObject6 {
 		// valid constructor
-		public TestObject6(String text, Integer number) {
+		public TestObject6(String text, Integer number, Logger logger) {
 			assertEquals("Hello", text);
 			assertEquals(Integer.valueOf(42), number);
+			assertNotNull(logger);
+			assertEquals(TestObject6.class.getName(), logger.getName());
 		}
 	}
 
