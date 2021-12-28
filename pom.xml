@@ -217,6 +217,11 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.22.2</version>
 				<configuration>
@@ -361,11 +366,33 @@
 	<reporting>
 		<plugins>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<title>Tests</title>
+					<!-- create aggregated report with unit and integration test results -->
+					<aggregate>true</aggregate>
+					<reportsDirectories>target/surefire-reports,target/failsafe-reports</reportsDirectories>
+					<!-- prevent duplicate report -->
+					<skipFailsafeReport>true</skipFailsafeReport>
+				</configuration>
 				<reportSets>
 					<reportSet>
 						<reports>
+							<report>report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<!-- create separate coverage reports for unit and integration tests -->
 							<report>report</report>
 							<report>report-integration</report>
 						</reports>
@@ -383,7 +410,8 @@
 				<reportSets>
 					<reportSet>
 						<reports>
-							<report>javadoc</report>
+							<!-- create javadoc report only for production code -->
+							<report>javadoc-no-fork</report>
 						</reports>
 					</reportSet>
 				</reportSets>
@@ -395,7 +423,9 @@
 				<reportSets>
 					<reportSet>
 						<reports>
-							<report>jxr</report>
+							<!-- create separate source xrefs for production and test code -->
+							<report>jxr-no-fork</report>
+							<report>test-jxr-no-fork</report>
 						</reports>
 					</reportSet>
 				</reportSets>
@@ -406,11 +436,15 @@
 				<version>6.5.1</version>
 				<configuration>
 					<name>Dependency-Check</name>
+					<!-- include test dependencies in check -->
+					<skipTestScope>false</skipTestScope>
+					<!-- prevent error with .NET Assembly Analyzer -->
+					<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
 				</configuration>
 				<reportSets>
 					<reportSet>
 						<reports>
-							<report>aggregate</report>
+							<report>check</report>
 						</reports>
 					</reportSet>
 				</reportSets>
