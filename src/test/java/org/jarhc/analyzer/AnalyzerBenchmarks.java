@@ -31,6 +31,7 @@ import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.slf4j.helpers.NOPLogger;
 
 @BenchmarkMode(Mode.SingleShotTime)
 @Fork(warmups = 1, value = 10)
@@ -74,7 +75,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_BlacklistAnalyzer() {
-		Analyzer analyzer = new BlacklistAnalyzer();
+		Analyzer analyzer = new BlacklistAnalyzer(NOPLogger.NOP_LOGGER);
 		analyzer.analyze(classpath);
 	}
 

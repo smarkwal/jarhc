@@ -33,21 +33,20 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DependenciesAnalyzer implements Analyzer {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(DependenciesAnalyzer.class);
 
 	private static final String NONE = "[none]";
 	private static final String UNKNOWN = "[unknown]";
 	private static final String ERROR = "[error]";
 
 	private final Repository repository;
+	private final Logger logger;
 
-	public DependenciesAnalyzer(Repository repository) {
+	public DependenciesAnalyzer(Repository repository, Logger logger) {
 		if (repository == null) throw new IllegalArgumentException("repository");
 		this.repository = repository;
+		this.logger = logger;
 	}
 
 	@Override
@@ -82,7 +81,7 @@ public class DependenciesAnalyzer implements Analyzer {
 				try {
 					dependencies = getDependencies(coordinates);
 				} catch (RepositoryException e) {
-					LOGGER.error("Resolver error for artifact: {}", coordinates, e);
+					logger.error("Resolver error for artifact: {}", coordinates, e);
 				}
 
 				if (dependencies == null) { // error

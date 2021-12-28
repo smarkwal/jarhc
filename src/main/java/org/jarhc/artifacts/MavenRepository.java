@@ -53,22 +53,21 @@ import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class MavenRepository implements Repository {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(MavenRepository.class);
 
 	private static final RemoteRepository central = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
 
 	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder();
 
+	private final Logger logger;
 	private final RepositorySystem repoSystem;
 	private final RepositorySystemSession session;
 
-	public MavenRepository(String dataPath) {
-		repoSystem = newRepositorySystem();
-		session = newSession(repoSystem, dataPath);
+	public MavenRepository(String dataPath, Logger logger) {
+		this.logger = logger;
+		this.repoSystem = newRepositorySystem();
+		this.session = newSession(repoSystem, dataPath);
 	}
 
 	@Override
@@ -212,13 +211,13 @@ public class MavenRepository implements Repository {
 		@Override
 		public boolean selectDependency(org.eclipse.aether.graph.Dependency dependency) {
 			if (dependency.getScope().equals("test")) {
-				// LOGGER.debug(depth + ": " + dependency.toString() + " [ignore test]");
+				// logger.debug(depth + ": " + dependency.toString() + " [ignore test]");
 				return false;
 			} else if (depth <= 0) {
-				// LOGGER.debug(depth + ": " + dependency.toString() + " [ignore depth]");
+				// logger.debug(depth + ": " + dependency.toString() + " [ignore depth]");
 				return false;
 			} else {
-				// LOGGER.debug(depth + ": " + dependency.toString() + " [accept]");
+				// logger.debug(depth + ": " + dependency.toString() + " [accept]");
 				return true;
 			}
 		}

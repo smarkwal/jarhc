@@ -28,14 +28,11 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of {@link JavaRuntime} based on the Java runtime used to run JarHC.
  */
 public class DefaultJavaRuntime extends JavaRuntime {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultJavaRuntime.class);
 
 	/**
 	 * Class definition loader used to load Java runtime classes.
@@ -53,8 +50,11 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	 */
 	private final Map<String, Optional<ClassDef>> classDefs = new ConcurrentHashMap<>();
 
-	public DefaultJavaRuntime() {
-		systemProperties = System.getProperties();
+	private final Logger logger;
+
+	public DefaultJavaRuntime(Logger logger) {
+		this.logger = logger;
+		this.systemProperties = System.getProperties();
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class DefaultJavaRuntime extends JavaRuntime {
 			return Optional.of(classDef);
 
 		} catch (IOException e) {
-			LOGGER.warn("Failed to load class from resource: {}", resourceName, e);
+			logger.warn("Failed to load class from resource: {}", resourceName, e);
 
 			// unexpected error -> class not found
 			return Optional.empty();

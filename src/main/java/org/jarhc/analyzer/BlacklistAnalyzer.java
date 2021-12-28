@@ -35,24 +35,23 @@ import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BlacklistAnalyzer implements Analyzer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(BlacklistAnalyzer.class);
-
+	private final Logger logger;
 	private final List<Pattern> codePatterns = new ArrayList<>();
 	private final List<Pattern> annotationPatterns = new ArrayList<>();
 	private final List<Pattern> resourcePatterns = new ArrayList<>();
 
-	public BlacklistAnalyzer() {
+	public BlacklistAnalyzer(Logger logger) {
+		this.logger = logger;
 
 		// load rules from file
 		String resource = "/blacklist-patterns.txt";
 		try {
 			init(resource);
 		} catch (IOException e) {
-			LOGGER.warn("Failed to load blacklist patterns from resource.", e);
+			this.logger.warn("Failed to load blacklist patterns from resource.", e);
 		}
 
 	}

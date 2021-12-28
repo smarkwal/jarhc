@@ -43,6 +43,8 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.Answer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class ClasspathLoaderTest {
 
@@ -56,6 +58,9 @@ class ClasspathLoaderTest {
 	ClassLoader parentClassLoader;
 
 	ClasspathLoader classpathLoader;
+
+	// TODO: assert log messages
+	private final Logger logger = LoggerFactory.getLogger(ClasspathLoader.class);
 
 	private AutoCloseable mocks;
 
@@ -88,7 +93,7 @@ class ClasspathLoaderTest {
 					return Arrays.asList(jarFile1, jarFile2);
 				});
 
-		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast);
+		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast, logger);
 	}
 
 	@AfterEach

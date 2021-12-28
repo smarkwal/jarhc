@@ -31,7 +31,6 @@ import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Loader for a classpath.
@@ -39,18 +38,18 @@ import org.slf4j.LoggerFactory;
  */
 public class ClasspathLoader {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClasspathLoader.class);
-
 	private final JarFileLoader jarFileLoader;
 	private final WarFileLoader warFileLoader;
 	private final ClassLoader parentClassLoader;
 	private final ClassLoaderStrategy strategy;
+	private final Logger logger;
 
-	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader, ClassLoaderStrategy strategy) {
+	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader, ClassLoaderStrategy strategy, Logger logger) {
 		this.jarFileLoader = jarFileLoader;
 		this.warFileLoader = warFileLoader;
 		this.parentClassLoader = parentClassLoader;
 		this.strategy = strategy;
+		this.logger = logger;
 	}
 
 	public Classpath load(Collection<File> files) {
@@ -86,17 +85,17 @@ public class ClasspathLoader {
 				} else if (fileName.endsWith(".war")) {
 					jarFiles = warFileLoader.load(file);
 				} else {
-					LOGGER.warn("Unsupported file extension: {}", file.getName());
+					logger.warn("Unsupported file extension: {}", file.getName());
 					return;
 				}
 			} catch (IOException e) {
-				LOGGER.warn("Unable to parse file: {}", file.getName(), e);
+				logger.warn("Unable to parse file: {}", file.getName(), e);
 				return;
 			}
 
-			if (LOGGER.isDebugEnabled()) {
+			if (logger.isDebugEnabled()) {
 				time = System.nanoTime() - time;
-				LOGGER.debug("{}: {} ms", file.getName(), time / 1000 / 1000);
+				logger.debug("{}: {} ms", file.getName(), time / 1000 / 1000);
 			}
 
 			filesMap.put(file, jarFiles);
@@ -105,9 +104,9 @@ public class ClasspathLoader {
 		// create list of JAR files (same order as list of input files)
 		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
 
-		if (LOGGER.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			totalTime = System.nanoTime() - totalTime;
-			LOGGER.debug("Total: {} ms", totalTime / 1000 / 1000);
+			logger.debug("Total: {} ms", totalTime / 1000 / 1000);
 		}
 
 		return new Classpath(jarFiles, parentClassLoader, strategy);

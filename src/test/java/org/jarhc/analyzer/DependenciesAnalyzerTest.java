@@ -36,6 +36,8 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class DependenciesAnalyzerTest {
 
@@ -76,7 +78,8 @@ class DependenciesAnalyzerTest {
 		jarFiles.add(JarFile.withName("lib-unknown.jar").withCoordinates(null).build());
 		Classpath classpath = new Classpath(jarFiles, provided, ClassLoaderStrategy.ParentLast);
 
-		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository);
+		Logger logger = LoggerFactory.getLogger(DependenciesAnalyzer.class); // TODO: assert log messages
+		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository, logger);
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);

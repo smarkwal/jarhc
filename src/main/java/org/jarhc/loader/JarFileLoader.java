@@ -44,7 +44,6 @@ import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Loader for a JAR file, using a file as source.
@@ -52,22 +51,22 @@ import org.slf4j.LoggerFactory;
  */
 class JarFileLoader {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JarFileLoader.class);
-
 	private final String classLoader;
 	private final int maxRelease; // for multi-rlease JAR files
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
 	private final JarFileNameNormalizer jarFileNameNormalizer;
 	private final Repository repository;
+	private final Logger logger;
 
-	JarFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository) {
+	JarFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, JarFileNameNormalizer jarFileNameNormalizer, Repository repository, Logger logger) {
 		this.classLoader = classLoader;
 		this.maxRelease = maxRelease;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
 		this.jarFileNameNormalizer = jarFileNameNormalizer;
 		this.repository = repository;
+		this.logger = logger;
 	}
 
 	/**
@@ -163,7 +162,7 @@ class JarFileLoader {
 							name = name.substring(pos + 1);
 
 						} catch (Exception e) {
-							LOGGER.warn("Failed to extract release version: {}", name, e);
+							logger.warn("Failed to extract release version: {}", name, e);
 						}
 
 					}
@@ -262,7 +261,7 @@ class JarFileLoader {
 			Optional<Artifact> artifact = repository.findArtifact(checksum);
 			coordinates = artifact.map(Artifact::toCoordinates).orElse(null);
 		} catch (RepositoryException e) {
-			LOGGER.warn("Artifact resolution error", e);
+			logger.warn("Artifact resolution error", e);
 		}
 
 		// normalize JAR file name (optional)

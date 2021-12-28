@@ -26,6 +26,8 @@ import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.pom.Dependency;
 import org.jarhc.utils.JavaUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoaderBuilder {
 
@@ -87,13 +89,15 @@ public class LoaderBuilder {
 	JarFileLoader buildJarFileLoader() {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
-		return new JarFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository);
+		Logger logger = LoggerFactory.getLogger(JarFileLoader.class);
+		return new JarFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository, logger);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
 		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
-		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, strategy);
+		Logger logger = LoggerFactory.getLogger(ClasspathLoader.class);
+		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, strategy, logger);
 	}
 
 	private static class NoOpRepository implements Repository {

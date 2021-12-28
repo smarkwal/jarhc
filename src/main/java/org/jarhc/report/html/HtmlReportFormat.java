@@ -23,6 +23,7 @@ import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
+import org.slf4j.LoggerFactory;
 
 public class HtmlReportFormat implements ReportFormat {
 
@@ -30,7 +31,7 @@ public class HtmlReportFormat implements ReportFormat {
 
 	public HtmlReportFormat() {
 		// TODO: use dependency injection
-		this(new DefaultStyleProvider());
+		this(new DefaultStyleProvider(LoggerFactory.getLogger(DefaultStyleProvider.class)));
 	}
 
 	public HtmlReportFormat(StyleProvider styleProvider) {

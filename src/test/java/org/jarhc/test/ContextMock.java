@@ -19,12 +19,15 @@ package org.jarhc.test;
 import org.jarhc.Context;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.env.JavaRuntime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ContextMock {
 
 	public static Context createContext(String dataPath) {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
-		MavenRepository repository = new MavenRepository(dataPath);
+		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
+		MavenRepository repository = new MavenRepository(dataPath, logger);
 		return new Context(javaRuntime, repository);
 	}
 

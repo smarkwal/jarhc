@@ -27,6 +27,7 @@ import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.slf4j.helpers.NOPLogger;
 
 /**
  * Loads ~ 100 classes from package java.lang using a fresh {@link DefaultJavaRuntime} instance.
@@ -48,7 +49,7 @@ public class DefaultJavaRuntimeBenchmark {
 
 	@Setup
 	public void setUp() {
-		javaRuntime = new DefaultJavaRuntime();
+		javaRuntime = new DefaultJavaRuntime(NOPLogger.NOP_LOGGER);
 	}
 
 	@Benchmark

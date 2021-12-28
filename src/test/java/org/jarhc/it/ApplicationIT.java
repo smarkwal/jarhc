@@ -30,6 +30,8 @@ import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class ApplicationIT {
 
@@ -39,10 +41,14 @@ class ApplicationIT {
 		// prepare
 		PrintStreamBuffer out = new PrintStreamBuffer();
 
-		Application application = new Application();
+		// TODO: assert log messages
+		Logger applicationLogger = LoggerFactory.getLogger(Application.class);
+		Application application = new Application(applicationLogger);
 		application.setOut(out);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
-		MavenRepository repository = new MavenRepository(tempDir.toString());
+		// TODO: assert log messages
+		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
+		MavenRepository repository = new MavenRepository(tempDir.toString(), mavenRepositoryLogger);
 		application.setRepository(repository);
 
 		Options options = new Options();

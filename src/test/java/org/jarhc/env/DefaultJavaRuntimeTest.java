@@ -25,14 +25,19 @@ import java.util.Optional;
 import org.jarhc.Main;
 import org.jarhc.model.ClassDef;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class DefaultJavaRuntimeTest {
+
+	// TODO: assert log messages
+	private final Logger logger = LoggerFactory.getLogger(DefaultJavaRuntime.class);
 
 	@Test
 	void test_getName() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		String result = javaRuntime.getName();
@@ -46,7 +51,7 @@ class DefaultJavaRuntimeTest {
 	void test_getJavaVersion() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		String result = javaRuntime.getJavaVersion();
@@ -60,7 +65,7 @@ class DefaultJavaRuntimeTest {
 	void test_getJavaVendor() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		String result = javaRuntime.getJavaVendor();
@@ -74,7 +79,7 @@ class DefaultJavaRuntimeTest {
 	void test_getJavaHome() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		String result = javaRuntime.getJavaHome();
@@ -88,7 +93,7 @@ class DefaultJavaRuntimeTest {
 	void test_getClassDef_String() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.String");
@@ -103,7 +108,7 @@ class DefaultJavaRuntimeTest {
 	void test_getClassDef_Unknown() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		Optional<ClassDef> result = javaRuntime.getClassDef("u.Unknown");
@@ -117,7 +122,7 @@ class DefaultJavaRuntimeTest {
 	void test_getClassDef_Main() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		Optional<ClassDef> result = javaRuntime.getClassDef(Main.class.getName());
@@ -131,7 +136,7 @@ class DefaultJavaRuntimeTest {
 	void test_getClassDef_Integer_cached() {
 
 		// prepare
-		JavaRuntime javaRuntime = new DefaultJavaRuntime();
+		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
 		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.Integer");

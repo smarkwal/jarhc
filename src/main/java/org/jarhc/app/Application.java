@@ -51,11 +51,18 @@ import org.slf4j.LoggerFactory;
 
 public class Application {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
-
 	private PrintStream out = System.out;
 	private Repository repository;
-	private Supplier<JavaRuntime> javaRuntimeFactory = DefaultJavaRuntime::new;
+	private Supplier<JavaRuntime> javaRuntimeFactory;
+	private final Logger logger;
+
+	public Application(Logger logger) {
+		this.logger = logger;
+		this.javaRuntimeFactory = () -> {
+			Logger defaultJavaRuntimeLogger = LoggerFactory.getLogger(DefaultJavaRuntime.class);
+			return new DefaultJavaRuntime(defaultJavaRuntimeLogger);
+		};
+	}
 
 	public void setOut(PrintStream out) {
 		this.out = out;
@@ -111,7 +118,7 @@ public class Application {
 		for (String section : sections) {
 			AnalyzerDescription description = registry.getDescription(section);
 			if (description == null) {
-				LOGGER.error("Analyzer not found: {}", section);
+				logger.error("Analyzer not found: {}", section);
 				return 3;
 			}
 			Analyzer analyzer = registry.createAnalyzer(section, context);
@@ -123,9 +130,9 @@ public class Application {
 		// run analysis
 		analysis.run(classpath, report);
 
-		if (LOGGER.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;
-			LOGGER.debug("Time: {} ms", time / 1000 / 1000);
+			logger.debug("Time: {} ms", time / 1000 / 1000);
 		}
 
 		out.println("Create report ...");
@@ -153,7 +160,7 @@ public class Application {
 			format.format(report, writer);
 
 		} catch (IOException e) {
-			LOGGER.error("I/O error while writing report.", e);
+			logger.error("I/O error while writing report.", e);
 			return 2; // TODO: exit code?
 		}
 

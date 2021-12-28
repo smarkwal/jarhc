@@ -23,6 +23,8 @@ import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
 
@@ -46,7 +48,8 @@ public class Main {
 		Repository repository = createRepository(options);
 
 		// create and run application
-		Application application = new Application();
+		Logger logger = LoggerFactory.getLogger(Application.class);
+		Application application = new Application(logger);
 		application.setRepository(repository);
 
 		int exitCode = application.run(options);
@@ -91,7 +94,8 @@ public class Main {
 			dataPath = directory.getAbsolutePath();
 		}
 
-		return new MavenRepository(dataPath);
+		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
+		return new MavenRepository(dataPath, logger);
 	}
 
 }
