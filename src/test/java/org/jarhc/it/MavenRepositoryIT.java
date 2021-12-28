@@ -30,17 +30,17 @@ import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
+import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("NewClassNamingConvention")
 class MavenRepositoryIT {
 
-	// TODO: assert log messages
-	private final Logger logger = LoggerFactory.getLogger(MavenRepository.class);
+	private final Logger logger = LoggerBuilder.reject(MavenRepository.class);
 
 	private MavenRepository repository;
 

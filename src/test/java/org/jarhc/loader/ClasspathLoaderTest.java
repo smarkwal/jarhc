@@ -16,6 +16,7 @@
 
 package org.jarhc.loader;
 
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -36,6 +37,7 @@ import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +46,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.Answer;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class ClasspathLoaderTest {
 
@@ -57,10 +58,9 @@ class ClasspathLoaderTest {
 	@Mock
 	ClassLoader parentClassLoader;
 
-	ClasspathLoader classpathLoader;
+	private final Logger logger = LoggerBuilder.collect(ClasspathLoader.class);
 
-	// TODO: assert log messages
-	private final Logger logger = LoggerFactory.getLogger(ClasspathLoader.class);
+	ClasspathLoader classpathLoader;
 
 	private AutoCloseable mocks;
 
@@ -98,6 +98,7 @@ class ClasspathLoaderTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		assertLogger(logger).isEmpty();
 		mocks.close();
 	}
 
@@ -142,6 +143,13 @@ class ClasspathLoaderTest {
 		assertEquals("test-2.jar", jarFiles.get(2).getFileName());
 		assertEquals("asm.jar", jarFiles.get(3).getFileName());
 
+		assertLogger(logger).inAnyOrder()
+				.hasWarn("Unsupported file extension: run.sh")
+				.hasWarn("Unable to parse file: not-found.jar")
+				.hasDebug("slf4j.jar: *")
+				.hasDebug("asm.jar: *")
+				.hasDebug("test.war: *")
+				.hasDebug("Total: *");
 	}
 
 	@Test
@@ -167,6 +175,13 @@ class ClasspathLoaderTest {
 		assertEquals("test-2.jar", jarFiles.get(2).getFileName());
 		assertEquals("asm.jar", jarFiles.get(3).getFileName());
 
+		assertLogger(logger).inAnyOrder()
+				.hasWarn("Unsupported file extension: run.sh")
+				.hasWarn("Unable to parse file: not-found.jar")
+				.hasDebug("slf4j.jar: *")
+				.hasDebug("asm.jar: *")
+				.hasDebug("test.war: *")
+				.hasDebug("Total: *");
 	}
 
 }

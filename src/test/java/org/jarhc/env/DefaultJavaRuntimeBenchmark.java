@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.jarhc.model.ClassDef;
+import org.jarhc.test.log.LoggerBuilder;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -27,7 +28,6 @@ import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
-import org.slf4j.helpers.NOPLogger;
 
 /**
  * Loads ~ 100 classes from package java.lang using a fresh {@link DefaultJavaRuntime} instance.
@@ -49,7 +49,7 @@ public class DefaultJavaRuntimeBenchmark {
 
 	@Setup
 	public void setUp() {
-		javaRuntime = new DefaultJavaRuntime(NOPLogger.NOP_LOGGER);
+		javaRuntime = new DefaultJavaRuntime(LoggerBuilder.noop());
 	}
 
 	@Benchmark

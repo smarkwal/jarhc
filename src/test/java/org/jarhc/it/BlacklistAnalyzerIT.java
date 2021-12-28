@@ -31,17 +31,18 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("NewClassNamingConvention")
 class BlacklistAnalyzerIT {
 
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
-	private final Logger logger = LoggerFactory.getLogger(BlacklistAnalyzer.class); // TODO: assert log messages
-	private BlacklistAnalyzer analyzer = new BlacklistAnalyzer(logger);
+	private final Logger logger = LoggerBuilder.reject(BlacklistAnalyzer.class);
+	private final BlacklistAnalyzer analyzer = new BlacklistAnalyzer(logger);
 
 	@Test
 	void test_analyze(@TempDir Path tempDir) throws IOException {

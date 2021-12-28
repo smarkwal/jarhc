@@ -24,6 +24,7 @@ import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.test.JavaRuntimeMock;
+import org.jarhc.test.log.LoggerBuilder;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -31,7 +32,6 @@ import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
-import org.slf4j.helpers.NOPLogger;
 
 @BenchmarkMode(Mode.SingleShotTime)
 @Fork(warmups = 1, value = 10)
@@ -75,7 +75,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_BlacklistAnalyzer() {
-		Analyzer analyzer = new BlacklistAnalyzer(NOPLogger.NOP_LOGGER);
+		Analyzer analyzer = new BlacklistAnalyzer(LoggerBuilder.noop());
 		analyzer.analyze(classpath);
 	}
 

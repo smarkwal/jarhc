@@ -24,14 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Optional;
 import org.jarhc.Main;
 import org.jarhc.model.ClassDef;
+import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class DefaultJavaRuntimeTest {
 
-	// TODO: assert log messages
-	private final Logger logger = LoggerFactory.getLogger(DefaultJavaRuntime.class);
+	private final Logger logger = LoggerBuilder.reject(DefaultJavaRuntime.class);
 
 	@Test
 	void test_getName() {

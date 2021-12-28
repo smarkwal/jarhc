@@ -16,6 +16,7 @@
 
 package org.jarhc.it;
 
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
@@ -28,11 +29,12 @@ import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
+import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("NewClassNamingConvention")
 class ApplicationIT {
 
 	@Test
@@ -41,13 +43,11 @@ class ApplicationIT {
 		// prepare
 		PrintStreamBuffer out = new PrintStreamBuffer();
 
-		// TODO: assert log messages
-		Logger applicationLogger = LoggerFactory.getLogger(Application.class);
+		Logger applicationLogger = LoggerBuilder.collect(Application.class);
 		Application application = new Application(applicationLogger);
 		application.setOut(out);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
-		// TODO: assert log messages
-		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
+		Logger mavenRepositoryLogger = LoggerBuilder.reject(MavenRepository.class);
 		MavenRepository repository = new MavenRepository(tempDir.toString(), mavenRepositoryLogger);
 		application.setRepository(repository);
 
@@ -75,6 +75,10 @@ class ApplicationIT {
 		expectedOutput = TextUtils.toUnixLineSeparators(expectedOutput);
 
 		assertEquals(expectedOutput, output);
+
+		assertLogger(applicationLogger)
+				.hasDebug("Time: *")
+				.isEmpty();
 
 	}
 

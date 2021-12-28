@@ -18,6 +18,7 @@ package org.jarhc.analyzer;
 
 import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.pom.PomUtils.generateDependencies;
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,10 +35,10 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class DependenciesAnalyzerTest {
 
@@ -78,7 +79,7 @@ class DependenciesAnalyzerTest {
 		jarFiles.add(JarFile.withName("lib-unknown.jar").withCoordinates(null).build());
 		Classpath classpath = new Classpath(jarFiles, provided, ClassLoaderStrategy.ParentLast);
 
-		Logger logger = LoggerFactory.getLogger(DependenciesAnalyzer.class); // TODO: assert log messages
+		Logger logger = LoggerBuilder.collect(DependenciesAnalyzer.class);
 		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository, logger);
 
 		// test
@@ -108,6 +109,10 @@ class DependenciesAnalyzerTest {
 		assertValuesEquals(rows.get(3), "lib-repo-error.jar", "group:lib-repo-error:1.0:jar", "[error]", "");
 		assertValuesEquals(rows.get(4), "lib-unknown.jar", "[unknown]", "[unknown]", "");
 
+		assertLogger(logger)
+				.hasError("Resolver error for artifact: group:lib-no-pom:1.0:jar", new RepositoryException("test"))
+				.hasError("Resolver error for artifact: group:lib-repo-error:1.0:jar", new RepositoryException("test"))
+				.isEmpty();
 	}
 
 }
