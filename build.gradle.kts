@@ -1,5 +1,10 @@
+import com.github.jk1.license.render.CsvReportRenderer
+import com.github.jk1.license.render.InventoryHtmlReportRenderer
+import com.github.jk1.license.render.InventoryMarkdownReportRenderer
+import com.github.jk1.license.render.XmlReportRenderer
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -7,17 +12,26 @@ import java.time.format.DateTimeFormatter
 plugins {
     java
     jacoco
+    id("com.github.jk1.dependency-license-report") version "2.0"
+    id("org.ajoberstar.grgit") version "4.1.1"
+    id("org.owasp.dependencycheck") version "6.5.1"
     `maven-publish`
     idea
 }
 
-// special settings for IntelliJ IDEA
-idea {
-    module {
-        isDownloadJavadoc = true
-        isDownloadSources = true
-    }
-}
+// project settings ------------------------------------------------------------
+
+group = "org.jarhc"
+version = "1.6-SNAPSHOT"
+description = "JarHC - JAR Health Check"
+
+// constants -------------------------------------------------------------------
+
+val mainClassName: String = "org.jarhc.Main"
+val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
+val licenseReportPath: String = "${buildDir}/reports/licenses"
+
+// dependencies ----------------------------------------------------------------
 
 repositories {
     mavenLocal()
@@ -54,16 +68,36 @@ dependencies {
 
 }
 
-group = "org.jarhc"
-version = "1.6-SNAPSHOT"
-description = "JarHC - JAR Health Check"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+// plugin configurations -------------------------------------------------------
 
-var mainClassName: String = "org.jarhc.Main"
-var buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
+// special settings for IntelliJ IDEA
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+}
+
+licenseReport {
+    outputDir = licenseReportPath
+    renderers = arrayOf(
+            InventoryHtmlReportRenderer("licenses.html"),
+            XmlReportRenderer("licenses.xml"),
+            CsvReportRenderer("licenses.csv"),
+            InventoryMarkdownReportRenderer("licenses.md")
+    )
+}
 
 java {
+
+    // set Java version to 1.8
+    // note: targetCompatibility defaults to sourceCompatibility
+    sourceCompatibility = JavaVersion.VERSION_1_8
+
+    // automatically package source code as artifact -sources.jar
     withSourcesJar()
+
+    // automatically package Javadoc as artifact -javadoc.jar
     withJavadocJar()
 }
 
@@ -71,11 +105,29 @@ jacoco {
     toolVersion = "0.8.7"
 }
 
+dependencyCheck {
+    // documentation: https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
+
+    // settings
+    format = Format.ALL
+    skipTestGroups = false
+    outputDirectory = "${buildDir}/reports/dependency-check"
+
+    // path to database directory
+    // TODO: support caching when running in GitHub action
+    data.directory = "${projectDir}/dependency-check"
+
+    // disable .NET Assembly Analyzer (fix for unexpected build exception)
+    analyzers.assemblyEnabled = false
+}
+
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
 }
+
+// tasks -----------------------------------------------------------------------
 
 tasks {
 
@@ -94,7 +146,6 @@ tasks {
         // set Main-Class in MANIFEST.MF
         manifest {
             attributes["Main-Class"] = mainClassName
-            // TODO: add more project properties
         }
 
         // add LICENSE to JAR file
@@ -113,9 +164,51 @@ tasks {
     }
 
     build {
-        dependsOn(jarWithDeps)
+        dependsOn(jarWithDeps, testJar, libsZip, testLibsZip)
     }
 
+}
+
+// create JAR with test classes
+val testJar = task("testJar", type = Jar::class) {
+    group = "build"
+
+    // compile test classes first
+    dependsOn(tasks.testClasses)
+
+    // append classifier "-tests"
+    archiveClassifier.set("tests")
+
+    // include compiled test classes
+    from(sourceSets.test.get().output)
+}
+
+// create ZIP with runtime dependencies
+val libsZip = task("libsZip", type = Zip::class) {
+    group = "build"
+
+    // append classifier "-tests"
+    archiveClassifier.set("libs")
+
+    // create archive in "libs" folder (instead of "distributions")
+    destinationDirectory.set(file("${buildDir}/libs"))
+
+    // include all runtime dependencies
+    from(configurations.runtimeClasspath)
+}
+
+// create ZIP with test dependencies
+val testLibsZip = task("testLibsZip", type = Zip::class) {
+    group = "build"
+
+    // append classifier "-tests"
+    archiveClassifier.set("test-libs")
+
+    // create archive in "libs" folder (instead of "distributions")
+    destinationDirectory.set(file("${buildDir}/libs"))
+
+    // include all test dependencies
+    from(configurations.testRuntimeClasspath)
 }
 
 val integrationTest = task("integrationTest", type = Test::class) {
@@ -125,16 +218,25 @@ val integrationTest = task("integrationTest", type = Test::class) {
     filter {
         includeTestsMatching("*IT")
     }
+
+    // run integration tests after unit tests
+    mustRunAfter(tasks.test)
 }
 
 // common settings for all test tasks
 tasks.withType<Test> {
 
+    // skip tests if property "skip.tests" is set
+    // command line: -Pskip.tests
+    onlyIf { !project.hasProperty("skip.tests") }
+
     // use JUnit 5
     useJUnitPlatform()
 
+    // settings
     maxHeapSize = "1G"
 
+    // test task output
     testLogging {
         events = mutableSetOf(
                 // TestLogEvent.STARTED,
@@ -158,23 +260,26 @@ tasks.withType<Test> {
 val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = JacocoReport::class) {
     group = "verification"
 
+    // make sure that integration tests have been executed
+    dependsOn(integrationTest)
+
     // get JaCoCo data from integration tests
     //executionData.builtBy(integrationTest)
-    executionData.from("build/jacoco/integrationTest.exec")
+    executionData.from("${buildDir}/jacoco/integrationTest.exec")
 
-    classDirectories.from("build/classes/java/main")
-    sourceDirectories.from("src/main/java")
+    // set paths to source and class files
+    sourceDirectories.from("${projectDir}/src/main/java")
+    classDirectories.from("${buildDir}/classes/java/main")
 
+    // configure reports
     reports {
         html.required.set(true)
-        html.outputLocation.dir("build/reports/jacoco/integrationTest/html") // TODO: this does not seem to work
+        html.outputLocation.dir("${buildDir}/reports/jacoco/integrationTest/html") // TODO: this does not seem to work
         xml.required.set(true)
-        xml.outputLocation.set(file("build/reports/jacoco/integrationTest/integrationTest.xml"))
+        xml.outputLocation.set(file("${buildDir}/reports/jacoco/integrationTest/integrationTest.xml"))
         csv.required.set(true)
-        csv.outputLocation.set(file("build/reports/jacoco/integrationTest/integrationTest.csv"))
+        csv.outputLocation.set(file("${buildDir}/reports/jacoco/integrationTest/integrationTest.csv"))
     }
-
-    dependsOn(integrationTest)
 }
 
 // common settings for all JaCoCo report tasks
@@ -189,8 +294,12 @@ tasks.withType<JacocoReport> {
 
 }
 
+// task to build "with-deps" fat/uber JAR file
 val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     group = "build"
+
+    // make sure that license report has been generated
+    dependsOn(tasks.generateLicenseReport)
 
     // append classifier "-with-deps"
     archiveClassifier.set("with-deps")
@@ -198,14 +307,29 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     // set Main-Class in MANIFEST.MF
     manifest {
         attributes["Main-Class"] = mainClassName
-        // TODO: add more project properties
     }
 
-    // include all dependencies
+    // include all files from all runtime dependencies
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 
-    // exclude module-info and signature files
-    exclude("module-info.class", "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
+    // include license report
+    from(licenseReportPath) {
+        into("META-INF/licenses")
+    }
+
+    exclude(
+
+            // exclude module-info files
+            "module-info.class",
+
+            // exclude license files
+            "META-INF/LICENSE", "META-INF/LICENSE.txt",
+            "META-INF/NOTICE", "META-INF/NOTICE.txt",
+            "META-INF/DEPENDENCIES",
+
+            // exclude signature files
+            "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+    )
 
     // exclude duplicates
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE // alternative: WARN
@@ -218,6 +342,20 @@ tasks.withType<JavaCompile> {
     options.encoding = "ASCII"
 }
 
+// helper functions ------------------------------------------------------------
+
+fun getGitBranchName(): String {
+    return grgit.branch.current().name
+}
+
+// TODO ------------------------------------------------------------------------
+
+// Work in progress:
+// TODO: create JaCoCo reports
+
+// Task list:
+// TODO: define task inputs and outputs
+// TODO: configure Gradle cache
 // TODO: include project information
 //  - project URL = http://jarhc.org
 //  - license name = Apache License, Version 2.0
@@ -227,11 +365,15 @@ tasks.withType<JavaCompile> {
 //  - SCM URL = https://github.com/smarkwal/jarhc
 //  - developer name = Stephan Markwalder
 //  - developer email = stephan@markwalder.net
-// TODO: download licenses for dependencies (incl. transitive dependencies) and add them to JAR file
-// TODO: merge NOTICE files
 // TODO: create aggregated test report
-// TODO: create JaCoCo reports
 // TODO: create source Xref reports (JXR)
 // TODO: run dependency-check (incl. transitive dependencies)
 // TODO: run Sonar scan
 // TODO: run JMH benchmarks
+// TODO: create artifact with all reports?
+// TODO: add post-build validation
+//  - with-deps JAR can be launched
+//  - with-deps JAR does not contain Java 9+ classes
+//  - run JarHC on JarHC?
+//  - check for presence of certain files (license, ...)
+// TODO: add task to clean JarHC cache
