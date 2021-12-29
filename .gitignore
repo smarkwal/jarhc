@@ -1,5 +1,7 @@
+/.gradle
 /.idea
 *.iml
+/build
 /target
 /.jarhc
 /report.html
