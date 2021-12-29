@@ -9,6 +9,7 @@
 # build output
 /build
 /target
+/out
 
 # JarHC cache (note: moved to ~/.jarhc)
 /.jarhc
