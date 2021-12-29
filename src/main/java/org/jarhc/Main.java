@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 
+	private static Logger LOGGER;
+
 	public static void main(String[] args) {
 
 		// parse command line
@@ -44,6 +46,9 @@ public class Main {
 		}
 
 		setupLogging(options);
+
+		// create logger AFTER setup of logging
+		LOGGER = LoggerFactory.getLogger(Main.class);
 
 		Repository repository = createRepository(options);
 
@@ -70,32 +75,58 @@ public class Main {
 
 	private static Repository createRepository(Options options) {
 
-		String dataPath = options.getDataPath();
-		if (dataPath == null) {
+		String dataPath = findDataPath(options);
 
-			String userHome = System.getProperty("user.home");
-			if (userHome == null) {
-				throw new IllegalArgumentException("User home not defined.");
+		File directory = new File(dataPath);
+		if (!directory.isDirectory()) {
+			boolean created = directory.mkdirs();
+			if (!created) {
+				throw new IllegalArgumentException("Failed to create directory: " + directory.getAbsolutePath());
 			}
-
-			File directory = new File(userHome);
-			if (!directory.isDirectory()) {
-				throw new IllegalArgumentException("User home not found: " + directory.getAbsolutePath());
-			}
-
-			directory = new File(directory, ".jarhc");
-			if (!directory.isDirectory()) {
-				boolean created = directory.mkdirs();
-				if (!created) {
-					throw new IllegalArgumentException("Failed to create directory: " + directory.getAbsolutePath());
-				}
-			}
-
-			dataPath = directory.getAbsolutePath();
 		}
 
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
 		return new MavenRepository(dataPath, logger);
+	}
+
+	private static String findDataPath(Options options) {
+
+		// priority 1: command line option --data
+		String dataPath = options.getDataPath();
+		if (dataPath != null) {
+			LOGGER.debug("Data directory: " + dataPath + " (command line option)");
+			return dataPath;
+		}
+
+		// priority 2: environment variable $JARHC_DATA
+		dataPath = System.getenv("JARHC_DATA");
+		if (dataPath != null) {
+			LOGGER.debug("Data directory: " + dataPath + " (environment variable)");
+			return dataPath;
+		}
+
+		// priority 3: user home
+		dataPath = getUserHomePath();
+		LOGGER.debug("Data directory: " + dataPath + " (user home)");
+
+		return dataPath;
+	}
+
+	private static String getUserHomePath() {
+
+		String userHome = System.getProperty("user.home");
+		if (userHome == null) {
+			throw new IllegalArgumentException("User home not defined.");
+		}
+
+		File directory = new File(userHome);
+		if (!directory.isDirectory()) {
+			throw new IllegalArgumentException("User home not found: " + directory.getAbsolutePath());
+		}
+
+		directory = new File(directory, ".jarhc");
+
+		return directory.getAbsolutePath();
 	}
 
 }
