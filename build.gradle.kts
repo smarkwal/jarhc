@@ -17,6 +17,7 @@ plugins {
     id("org.ajoberstar.grgit") version "4.1.1"
     id("org.sonarqube") version "3.3"
     id("org.owasp.dependencycheck") version "6.5.1"
+    id("com.dorongold.task-tree") version "2.1.0"
     `maven-publish`
     idea
 }
@@ -35,15 +36,25 @@ if (!JavaVersion.current().isJava11Compatible) {
     throw GradleException(error)
 }
 
+// configuration properties ----------------------------------------------------
+
+// flag to skip unit and integration tests
+// command line option: -Pskip.tests
+val skipTests: Boolean = project.hasProperty("skip.tests")
+
+// select JMH benchmarks
+// to run a single benchmark: -Pbenchmarks=DefaultJavaRuntimeBenchmark
+val benchmarks: String = (project.properties["benchmarks"] ?: ".*") as String
+
 // constants -------------------------------------------------------------------
 
 val mainClassName: String = "org.jarhc.Main"
 val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
 val licenseReportPath: String = "${buildDir}/reports/licenses"
 
-val jacocoTestReportDir: String = "${buildDir}/reports/jacoco/test";
+val jacocoTestReportDir: String = "${buildDir}/reports/jacoco/test"
 val jacocoTestReportXml: String = "${jacocoTestReportDir}/report.xml"
-val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest";
+val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest"
 val jacocoIntegrationTestReportXml: String = "${jacocoIntegrationTestReportDir}/report.xml"
 
 // dependencies ----------------------------------------------------------------
@@ -79,7 +90,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.mockito:mockito-core:4.2.0")
     testImplementation("org.openjdk.jmh:jmh-core:1.34")
-    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+    testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.34")
 
 }
 
@@ -103,10 +114,10 @@ idea {
 licenseReport {
     outputDir = licenseReportPath
     renderers = arrayOf(
-            InventoryHtmlReportRenderer("licenses.html"),
-            XmlReportRenderer("licenses.xml"),
-            CsvReportRenderer("licenses.csv"),
-            InventoryMarkdownReportRenderer("licenses.md")
+        InventoryHtmlReportRenderer("licenses.html"),
+        XmlReportRenderer("licenses.xml"),
+        CsvReportRenderer("licenses.csv"),
+        InventoryMarkdownReportRenderer("licenses.md")
     )
 }
 
@@ -178,8 +189,8 @@ tasks {
         // replace placeholders in resources
         // (see src/main/resources/jarhc.properties)
         expand(
-                "version" to project.version,
-                "timestamp" to buildTimestamp
+            "version" to project.version,
+            "timestamp" to buildTimestamp
         )
     }
 
@@ -223,9 +234,9 @@ tasks {
 
 }
 
-// create JAR with test classes
 val testJar = task("testJar", type = Jar::class) {
     group = "build"
+    description = "Assembles a jar archive containing the test classes."
 
     // compile test classes first
     dependsOn(tasks.testClasses)
@@ -237,9 +248,9 @@ val testJar = task("testJar", type = Jar::class) {
     from(sourceSets.test.get().output)
 }
 
-// create ZIP with runtime dependencies
 val libsZip = task("libsZip", type = Zip::class) {
     group = "build"
+    description = "Assembles a zip archive containing the runtime dependencies."
 
     // append classifier "-tests"
     archiveClassifier.set("libs")
@@ -251,9 +262,9 @@ val libsZip = task("libsZip", type = Zip::class) {
     from(configurations.runtimeClasspath)
 }
 
-// create ZIP with test dependencies
 val testLibsZip = task("testLibsZip", type = Zip::class) {
     group = "build"
+    description = "Assembles a zip archive containing the test dependencies."
 
     // append classifier "-tests"
     archiveClassifier.set("test-libs")
@@ -267,6 +278,7 @@ val testLibsZip = task("testLibsZip", type = Zip::class) {
 
 val integrationTest = task("integrationTest", type = Test::class) {
     group = "verification"
+    description = "Runs the integration test suite."
 
     // include only integration tests
     filter {
@@ -281,8 +293,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
 tasks.withType<Test> {
 
     // skip tests if property "skip.tests" is set
-    // command line: -Pskip.tests
-    onlyIf { !project.hasProperty("skip.tests") }
+    onlyIf { !skipTests }
 
     // use JUnit 5
     useJUnitPlatform()
@@ -293,12 +304,12 @@ tasks.withType<Test> {
     // test task output
     testLogging {
         events = mutableSetOf(
-                // TestLogEvent.STARTED,
-                // TestLogEvent.PASSED,
-                TestLogEvent.FAILED,
-                TestLogEvent.SKIPPED,
-                TestLogEvent.STANDARD_OUT,
-                TestLogEvent.STANDARD_ERROR
+            // TestLogEvent.STARTED,
+            // TestLogEvent.PASSED,
+            TestLogEvent.FAILED,
+            TestLogEvent.SKIPPED,
+            TestLogEvent.STANDARD_OUT,
+            TestLogEvent.STANDARD_ERROR
         )
         showStandardStreams = true
         exceptionFormat = TestExceptionFormat.SHORT
@@ -313,6 +324,7 @@ tasks.withType<Test> {
 
 val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = JacocoReport::class) {
     group = "verification"
+    description = "Generates code coverage report for the integration test task."
 
     // run integration tests first
     // note: this task is skipped if integration tests have not been executed
@@ -337,9 +349,20 @@ val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = Jac
     }
 }
 
-// task to build "with-deps" fat/uber JAR file
+val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {
+    group = "verification"
+    description = "Runs JMH benchmarks."
+
+    // settings
+    // documentation: https://github.com/guozheng/jmh-tutorial/blob/master/README.md
+    classpath = tasks.test.get().classpath
+    mainClass.set("org.openjdk.jmh.Main")
+    args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
+}
+
 val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     group = "build"
+    description = "Assembles a fat/uber jar archive with all runtime dependencies."
 
     // make sure that license report has been generated
     dependsOn(tasks.generateLicenseReport)
@@ -362,16 +385,16 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
 
     exclude(
 
-            // exclude module-info files
-            "module-info.class",
+        // exclude module-info files
+        "module-info.class",
 
-            // exclude license files
-            "META-INF/LICENSE", "META-INF/LICENSE.txt",
-            "META-INF/NOTICE", "META-INF/NOTICE.txt",
-            "META-INF/DEPENDENCIES",
+        // exclude license files
+        "META-INF/LICENSE", "META-INF/LICENSE.txt",
+        "META-INF/NOTICE", "META-INF/NOTICE.txt",
+        "META-INF/DEPENDENCIES",
 
-            // exclude signature files
-            "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+        // exclude signature files
+        "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
     )
 
     // exclude duplicates
@@ -413,7 +436,6 @@ fun getGitBranchName(): String {
 //  - developer email = stephan@markwalder.net
 // TODO: create aggregated test report
 // TODO: create source Xref reports (JXR)
-// TODO: run JMH benchmarks
 // TODO: create artifact with all reports?
 // TODO: add post-build validation
 //  - with-deps JAR can be launched
