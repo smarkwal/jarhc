@@ -10,6 +10,4 @@ More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wi
 
 ## Master branch status
 
-Travis CI: [![Build Status](https://travis-ci.com/smarkwal/jarhc.svg?branch=master)](https://travis-ci.com/smarkwal/jarhc)
-
 SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=smarkwal_jarhc&metric=alert_status)](https://sonarcloud.io/dashboard?id=smarkwal_jarhc)
