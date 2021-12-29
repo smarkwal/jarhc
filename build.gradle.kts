@@ -4,6 +4,7 @@ import com.github.jk1.license.render.InventoryMarkdownReportRenderer
 import com.github.jk1.license.render.XmlReportRenderer
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.time.Instant
 import java.time.ZoneId
@@ -14,6 +15,7 @@ plugins {
     jacoco
     id("com.github.jk1.dependency-license-report") version "2.0"
     id("org.ajoberstar.grgit") version "4.1.1"
+    id("org.sonarqube") version "3.3"
     id("org.owasp.dependencycheck") version "6.5.1"
     `maven-publish`
     idea
@@ -25,11 +27,24 @@ group = "org.jarhc"
 version = "1.6-SNAPSHOT"
 description = "JarHC - JAR Health Check"
 
+// Java version check ----------------------------------------------------------
+
+// NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
+if (!JavaVersion.current().isJava11Compatible) {
+    val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
+    throw GradleException(error)
+}
+
 // constants -------------------------------------------------------------------
 
 val mainClassName: String = "org.jarhc.Main"
 val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
 val licenseReportPath: String = "${buildDir}/reports/licenses"
+
+val jacocoTestReportDir: String = "${buildDir}/reports/jacoco/test";
+val jacocoTestReportXml: String = "${jacocoTestReportDir}/report.xml"
+val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest";
+val jacocoIntegrationTestReportXml: String = "${jacocoIntegrationTestReportDir}/report.xml"
 
 // dependencies ----------------------------------------------------------------
 
@@ -72,6 +87,13 @@ dependencies {
 
 // special settings for IntelliJ IDEA
 idea {
+
+    // NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
+    project {
+        jdkName = "11"
+        languageLevel = IdeaLanguageLevel(JavaVersion.VERSION_1_8)
+    }
+
     module {
         isDownloadJavadoc = true
         isDownloadSources = true
@@ -90,9 +112,10 @@ licenseReport {
 
 java {
 
-    // set Java version to 1.8
-    // note: targetCompatibility defaults to sourceCompatibility
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    // NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 
     // automatically package source code as artifact -sources.jar
     withSourcesJar()
@@ -103,6 +126,25 @@ java {
 
 jacoco {
     toolVersion = "0.8.7"
+}
+
+sonarqube {
+    // documentation: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-gradle/
+
+    properties {
+
+        // connection to SonarCloud
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.organization", "smarkwal")
+        property("sonar.projectKey", "smarkwal_jarhc")
+
+        // Git branch
+        property("sonar.branch.name", getGitBranchName())
+
+        // include test coverage results
+        property("sonar.java.coveragePlugin", "jacoco")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReportXml},${jacocoIntegrationTestReportXml}")
+    }
 }
 
 dependencyCheck {
@@ -161,6 +203,18 @@ tasks {
 
     check {
         dependsOn(integrationTest)
+    }
+
+    jacocoTestReport {
+        // generate HTML, XML and CSV report
+        reports {
+            html.required.set(true)
+            html.outputLocation.set(file("${jacocoTestReportDir}/html"))
+            xml.required.set(true)
+            xml.outputLocation.set(file(jacocoTestReportXml))
+            csv.required.set(true)
+            csv.outputLocation.set(file("${jacocoTestReportDir}/report.csv"))
+        }
     }
 
     build {
@@ -260,38 +314,27 @@ tasks.withType<Test> {
 val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = JacocoReport::class) {
     group = "verification"
 
-    // make sure that integration tests have been executed
-    dependsOn(integrationTest)
+    // run integration tests first
+    // note: this task is skipped if integration tests have not been executed
+    mustRunAfter(integrationTest)
 
     // get JaCoCo data from integration tests
-    //executionData.builtBy(integrationTest)
     executionData.from("${buildDir}/jacoco/integrationTest.exec")
 
     // set paths to source and class files
+    // TODO: get path from source set
     sourceDirectories.from("${projectDir}/src/main/java")
     classDirectories.from("${buildDir}/classes/java/main")
 
     // configure reports
     reports {
         html.required.set(true)
-        html.outputLocation.dir("${buildDir}/reports/jacoco/integrationTest/html") // TODO: this does not seem to work
+        html.outputLocation.set(file("${jacocoIntegrationTestReportDir}/html"))
         xml.required.set(true)
-        xml.outputLocation.set(file("${buildDir}/reports/jacoco/integrationTest/integrationTest.xml"))
+        xml.outputLocation.set(file(jacocoIntegrationTestReportXml))
         csv.required.set(true)
-        csv.outputLocation.set(file("${buildDir}/reports/jacoco/integrationTest/integrationTest.csv"))
+        csv.outputLocation.set(file("${jacocoIntegrationTestReportDir}/report.csv"))
     }
-}
-
-// common settings for all JaCoCo report tasks
-tasks.withType<JacocoReport> {
-
-    // generate HTML, XML and CSV report
-    reports {
-        html.required.set(true)
-        xml.required.set(true)
-        csv.required.set(true)
-    }
-
 }
 
 // task to build "with-deps" fat/uber JAR file
@@ -342,6 +385,11 @@ tasks.withType<JavaCompile> {
     options.encoding = "ASCII"
 }
 
+tasks.sonarqube {
+    // run all tests and generate JaCoCo XML reports
+    dependsOn(tasks.test, integrationTest, tasks.jacocoTestReport, jacocoIntegrationTestReport)
+}
+
 // helper functions ------------------------------------------------------------
 
 fun getGitBranchName(): String {
@@ -350,10 +398,8 @@ fun getGitBranchName(): String {
 
 // TODO ------------------------------------------------------------------------
 
-// Work in progress:
-// TODO: create JaCoCo reports
-
 // Task list:
+// TODO: read Gradle documentation for task definition best practices
 // TODO: define task inputs and outputs
 // TODO: configure Gradle cache
 // TODO: include project information
@@ -367,8 +413,6 @@ fun getGitBranchName(): String {
 //  - developer email = stephan@markwalder.net
 // TODO: create aggregated test report
 // TODO: create source Xref reports (JXR)
-// TODO: run dependency-check (incl. transitive dependencies)
-// TODO: run Sonar scan
 // TODO: run JMH benchmarks
 // TODO: create artifact with all reports?
 // TODO: add post-build validation
