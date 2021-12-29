@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="example-report-asm-7.0.txt" type="Application" factoryName="Application" folderName="Example Reports">
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
+    <module name="jarhc.main" />
+    <option name="PROGRAM_PARAMETERS" value="-t &quot;ASM 7.0&quot; -o docs/example-report-asm-7.0.txt org.ow2.asm:asm:7.0:jar org.ow2.asm:asm-analysis:7.0:jar org.ow2.asm:asm-commons:7.0:jar org.ow2.asm:asm-tree:7.0:jar" />
+    <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
