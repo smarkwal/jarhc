@@ -1,9 +1,25 @@
+
+# Gradle installation
 /.gradle
+
+# IntelliJ project files
 /.idea
 *.iml
+
+# build output
 /build
 /target
+
+# JarHC cache (note: moved to ~/.jarhc)
 /.jarhc
+
+# JarHC reports produced with local testing
+/reports
 /report.html
 /report.txt
+
+# Dependency-Check data directory
+/dependency-check
+
+# files used for local testing
 /test
