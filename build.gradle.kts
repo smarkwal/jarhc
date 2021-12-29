@@ -15,6 +15,7 @@ plugins {
     jacoco
     id("com.github.jk1.dependency-license-report") version "2.0"
     id("org.ajoberstar.grgit") version "4.1.1"
+    id("org.kordamp.gradle.source-xref") version "0.47.0"
     id("org.sonarqube") version "3.3"
     id("org.owasp.dependencycheck") version "6.5.1"
     id("com.dorongold.task-tree") version "2.1.0"
@@ -112,6 +113,8 @@ idea {
 }
 
 licenseReport {
+    // TODO: migrate to org.kordamp.gradle.licensing plugin?
+    //  see https://kordamp.org/kordamp-gradle-plugins/#_org_kordamp_gradle_licensing
     outputDir = licenseReportPath
     renderers = arrayOf(
         InventoryHtmlReportRenderer("licenses.html"),
@@ -174,6 +177,16 @@ dependencyCheck {
     analyzers.assemblyEnabled = false
 }
 
+config {
+    docs {
+        sourceXref {
+            // documentation: https://kordamp.org/kordamp-gradle-plugins/#_org_kordamp_gradle_sourcexref
+            windowTitle = "JarHC $version"
+            docTitle = "JarHC $version"
+        }
+    }
+}
+
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
@@ -228,8 +241,8 @@ tasks {
         }
     }
 
-    build {
-        dependsOn(jarWithDeps, testJar, libsZip, testLibsZip)
+    assemble {
+        dependsOn(jarWithDeps, libsZip, testJar, testLibsZip, "sourceXrefJar")
     }
 
 }
@@ -435,7 +448,6 @@ fun getGitBranchName(): String {
 //  - developer name = Stephan Markwalder
 //  - developer email = stephan@markwalder.net
 // TODO: create aggregated test report
-// TODO: create source Xref reports (JXR)
 // TODO: create artifact with all reports?
 // TODO: add post-build validation
 //  - with-deps JAR can be launched
