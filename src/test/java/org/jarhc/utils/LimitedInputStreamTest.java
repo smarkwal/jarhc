@@ -34,6 +34,24 @@ class LimitedInputStreamTest {
 	private final InputStream in = new ByteArrayInputStream(data);
 
 	@Test
+	void constructor_throwsIllegalArgumentException_forNullStream() {
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> new LimitedInputStream(null, 16),
+				"in == null"
+		);
+	}
+
+	@Test
+	void constructor_throwsIllegalArgumentException_ifMaxLengthIsNegative() {
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> new LimitedInputStream(in, -16),
+				"maxLength: -16 < 0"
+		);
+	}
+
+	@Test
 	void read() throws IOException {
 
 		// prepare: limited to 8 bytes

@@ -53,6 +53,8 @@ public class ClasspathLoader {
 	}
 
 	public Classpath load(Collection<File> files) {
+		if (files == null) throw new IllegalArgumentException("files");
+
 		List<JarSource> sources = files.stream().map(FileSource::new).collect(Collectors.toList());
 		return load(sources);
 	}

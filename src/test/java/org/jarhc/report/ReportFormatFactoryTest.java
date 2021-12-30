@@ -16,18 +16,67 @@
 
 package org.jarhc.report;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 import org.jarhc.inject.Injector;
+import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 class ReportFormatFactoryTest {
 
 	private final Injector injector = new Injector();
+
+	@Test
+	void isSupportedFormat_returnsTrue_forHTML() {
+
+		// test
+		boolean result = ReportFormatFactory.isSupportedFormat("html");
+
+		// assert
+		assertTrue(result);
+
+	}
+
+	@Test
+	void isSupportedFormat_returnsTrue_forText() {
+
+		// test
+		boolean result = ReportFormatFactory.isSupportedFormat("text");
+
+		// assert
+		assertTrue(result);
+
+	}
+
+	@Test
+	void isSupportedFormat_returnsTrue_forList() {
+
+		// test
+		boolean result = ReportFormatFactory.isSupportedFormat("list");
+
+		// assert
+		assertTrue(result);
+
+	}
+
+	@Test
+	void isSupportedFormat_returnsFalse_forPDF() {
+
+		// test
+		boolean result = ReportFormatFactory.isSupportedFormat("pdf");
+
+		// assert
+		assertFalse(result);
+
+	}
 
 	@Test
 	void test_getReportFormat_null() {
@@ -112,6 +161,25 @@ class ReportFormatFactoryTest {
 
 		// assert
 		assertTrue(format instanceof HtmlReportFormat);
+
+	}
+
+	@Test
+	void getReportFormat_throwsRuntimeException_onInjectorException() throws InjectorException {
+
+		// prepare injector
+		Injector injector = Mockito.mock(Injector.class);
+		when(injector.createInstance(any(Class.class))).thenThrow(new InjectorException("test"));
+
+		// prepare
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
+
+		// test
+		assertThrows(
+				RuntimeException.class,
+				() -> factory.getReportFormat("html"),
+				"Unable to create report format: html"
+		);
 
 	}
 

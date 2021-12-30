@@ -48,6 +48,7 @@ public class ClasspathBuilder {
 
 	// ClassDef properties
 	private String className;
+	private int release;
 	private int majorClassVersion;
 	private int minorClassVersion;
 	private List<ClassRef> classRefs;
@@ -93,12 +94,18 @@ public class ClasspathBuilder {
 	}
 
 	public ClasspathBuilder addClassDef(String className) {
-		return addClassDef(className, 52, 0);
+		return addClassDef(className, 8, 52, 0);
 	}
 
 	public ClasspathBuilder addClassDef(String className, int majorClassVersion, int minorClassVersion) {
 		closeClassDef();
-		openClassDef(className, majorClassVersion, minorClassVersion);
+		openClassDef(className, 8, majorClassVersion, minorClassVersion);
+		return this;
+	}
+
+	public ClasspathBuilder addClassDef(String className, int release, int majorClassVersion, int minorClassVersion) {
+		closeClassDef();
+		openClassDef(className, release, majorClassVersion, minorClassVersion);
 		return this;
 	}
 
@@ -151,8 +158,9 @@ public class ClasspathBuilder {
 		}
 	}
 
-	private void openClassDef(String className, int majorClassVersion, int minorClassVersion) {
+	private void openClassDef(String className, int release, int majorClassVersion, int minorClassVersion) {
 		this.className = className;
+		this.release = release;
 		this.majorClassVersion = majorClassVersion;
 		this.minorClassVersion = minorClassVersion;
 		this.classRefs = new ArrayList<>();
@@ -164,6 +172,7 @@ public class ClasspathBuilder {
 			ClassDef classDef = ClassDef.forClassName(className)
 					.setClassFileChecksum(classFileChecksum)
 					.setClassLoader(classLoader)
+					.setRelease(release)
 					.setMajorClassVersion(majorClassVersion)
 					.setMinorClassVersion(minorClassVersion);
 			classRefs.forEach(classDef::addClassRef);

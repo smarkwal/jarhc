@@ -17,6 +17,8 @@
 package org.jarhc.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +38,69 @@ class ModuleInfoTest {
 
 		// assert
 		assertEquals("ModuleInfo[m,exports=[a, b],requires=[java.base, x, y]]", result);
+
+	}
+
+	@Test
+	void test_toString_forAutomaticModule() {
+
+		// prepare
+		ModuleInfo moduleInfo = ModuleInfo
+				.forModuleName("m")
+				.setAutomatic(true);
+
+		// test
+		String result = moduleInfo.toString();
+
+		// assert
+		assertEquals("ModuleInfo[m,automatic]", result);
+
+	}
+
+	@Test
+	void getRelease() {
+
+		// prepare
+		ModuleInfo moduleInfo = ModuleInfo
+				.forModuleName("m")
+				.setRelease(11);
+
+		// test
+		int result = moduleInfo.getRelease();
+
+		// assert
+		assertEquals(11, result);
+
+	}
+
+	@Test
+	void isAutomatic_returnsFalse_forModule() {
+
+		// prepare
+		ModuleInfo moduleInfo = ModuleInfo
+				.forModuleName("m");
+
+		// test
+		boolean result = moduleInfo.isAutomatic();
+
+		// assert
+		assertFalse(result);
+
+	}
+
+	@Test
+	void isAutomatic_returnsTrue_forAutomaticModule() {
+
+		// prepare
+		ModuleInfo moduleInfo = ModuleInfo
+				.forModuleName("m")
+				.setAutomatic(true);
+
+		// test
+		boolean result = moduleInfo.isAutomatic();
+
+		// assert
+		assertTrue(result);
 
 	}
 

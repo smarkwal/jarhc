@@ -50,6 +50,37 @@ class BinaryCompatibilityAnalyzerTest {
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Class is not accessible: class b.B", "\u2022 Class not found: c.C (package not found)"));
+	}
+
+	@Test
+	void test_analyze_withClassFileIssues() {
+
+		// prepare
+		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addClassDef("a.A", 11, 61, 0)
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Compiled for Java 17, but bundled for Java 11."));
+	}
+
+	private ReportTable assertSectionHeader(ReportSection section) {
+
 		assertNotNull(section);
 		assertEquals("Binary Compatibility", section.getTitle());
 		assertEquals("Compatibility issues between JAR files.", section.getDescription());
@@ -61,9 +92,7 @@ class BinaryCompatibilityAnalyzerTest {
 		String[] columns = table.getColumns();
 		assertValuesEquals(columns, "JAR file", "Issues");
 
-		List<String[]> rows = table.getRows();
-		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Class is not accessible: class b.B", "\u2022 Class not found: c.C (package not found)"));
+		return table;
 	}
 
 }

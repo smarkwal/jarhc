@@ -17,6 +17,7 @@
 package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,26 @@ class JavaUtilsTest {
 		assertEquals("String", JavaUtils.getSimpleClassName("java.lang.String"));
 		assertEquals("InputStream", JavaUtils.getSimpleClassName("java.io.InputStream"));
 		assertEquals("E$F", JavaUtils.getSimpleClassName("a.b.c.d.E$F"));
+
+	}
+
+	@Test
+	void getArrayElementType() {
+
+		assertEquals("int", JavaUtils.getArrayElementType("int[]"));
+		assertEquals("java.lang.String", JavaUtils.getArrayElementType("java.lang.String[]"));
+		assertEquals("java.lang.Object", JavaUtils.getArrayElementType("java.lang.Object[][]"));
+
+	}
+
+	@Test
+	void getArrayElementType_throwsIllegalArgumentException_forNonArrayType() {
+
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> JavaUtils.getArrayElementType("byte"),
+				"Not an array type: byte"
+		);
 
 	}
 

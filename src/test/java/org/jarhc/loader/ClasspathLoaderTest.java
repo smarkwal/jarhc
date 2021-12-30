@@ -19,6 +19,7 @@ package org.jarhc.loader;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -182,6 +183,24 @@ class ClasspathLoaderTest {
 				.hasDebug("asm.jar: *")
 				.hasDebug("test.war: *")
 				.hasDebug("Total: *");
+	}
+
+	@Test
+	void load_Files_throwsIllegalArgumentException_ifFilesIsNull() {
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> classpathLoader.load((Collection<File>) null),
+				"files"
+		);
+	}
+
+	@Test
+	void load_JarSources_throwsIllegalArgumentException_ifFilesIsNull() {
+		assertThrows(
+				IllegalArgumentException.class,
+				() -> classpathLoader.load((List<JarSource>) null),
+				"files"
+		);
 	}
 
 }
