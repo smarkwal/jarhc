@@ -8,11 +8,18 @@ on:
     branches:
     - master
   workflow_dispatch:
+    inputs:
+      additionalGradleOptions:
+        description: 'Additional Gradle options'
+        required: false
+        default: ''
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     steps:
 
@@ -31,7 +38,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: build
+        arguments: 'build ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
