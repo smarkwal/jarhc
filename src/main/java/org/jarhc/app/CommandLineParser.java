@@ -39,7 +39,7 @@ import org.jarhc.utils.VersionUtils;
 public class CommandLineParser {
 
 	// TODO: inject dependency
-	private final AnalyzerRegistry registry = new AnalyzerRegistry();
+	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
 
 	private final PrintStream out;
 	private final PrintStream err;

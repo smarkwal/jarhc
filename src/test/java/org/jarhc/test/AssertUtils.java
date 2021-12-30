@@ -24,6 +24,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import org.mockito.MockingDetails;
+import org.mockito.Mockito;
 
 public class AssertUtils {
 
@@ -63,6 +65,16 @@ public class AssertUtils {
 			fail("No-arg constructor not found");
 		}
 
+	}
+
+	/**
+	 * Assert that the given object is a Mockito mock.
+	 *
+	 * @param object Object
+	 */
+	public static void assertMock(Object object) {
+		MockingDetails details = Mockito.mockingDetails(object);
+		assertTrue(details.isMock());
 	}
 
 }
