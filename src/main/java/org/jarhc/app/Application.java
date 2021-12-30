@@ -159,7 +159,7 @@ public class Application {
 		report.setTitle(options.getReportTitle());
 
 		// create report format
-		ReportFormat format = createReportFormat(options);
+		ReportFormat format = createReportFormat(options, injector);
 
 		// create report writer
 		try (ReportWriter writer = createReportWriter(options)) {
@@ -261,9 +261,9 @@ public class Application {
 		return loader.load(providedJarFiles);
 	}
 
-	private ReportFormat createReportFormat(Options options) {
+	private ReportFormat createReportFormat(Options options, Injector injector) {
 		String format = options.getReportFormat();
-		ReportFormatFactory factory = new ReportFormatFactory(); // TODO: inject dependency
+		ReportFormatFactory factory = new ReportFormatFactory(injector); // TODO: inject dependency
 		return factory.getReportFormat(format);
 	}
 
