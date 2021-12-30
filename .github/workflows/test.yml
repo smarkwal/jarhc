@@ -6,7 +6,7 @@ on:
       runSonarQubeScan:
         description: 'Run SonarQube scan'
         type: boolean
-        required: false
+        default: 'true'
 
 jobs:
   test:
@@ -16,5 +16,5 @@ jobs:
       SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
     steps:
-    - run: echo "${{ inputs.runSonarQubeScan }}"
+    - run: echo "Before ${{ inputs.runSonarQubeScan }} After"
   
