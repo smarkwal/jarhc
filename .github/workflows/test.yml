@@ -19,4 +19,4 @@ jobs:
       run: echo "build"
     - name: Run SonarQube scan
       run: echo "sonarqube"
-      if: inputs.runSonarQubeScan
+      if: github.event.inputs.runSonarQubeScan
