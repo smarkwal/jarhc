@@ -37,6 +37,22 @@ if (!JavaVersion.current().isJava11Compatible) {
     throw GradleException(error)
 }
 
+// Preconditions based on which tasks should be executed -----------------------
+
+gradle.taskGraph.whenReady {
+
+    // if sonarqube task should be executed ...
+    if (gradle.taskGraph.hasTask(":sonarqube")) {
+        // environment variable SONAR_TOKEN or property "sonar.login" must be set
+        val tokenFound = project.hasProperty("sonar.login") || System.getenv("SONAR_TOKEN") != null
+        if (!tokenFound) {
+            val error = "SonarQube: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
+            throw GradleException(error)
+        }
+    }
+
+}
+
 // configuration properties ----------------------------------------------------
 
 // flag to skip unit and integration tests
