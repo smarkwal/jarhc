@@ -16,5 +16,5 @@ jobs:
       SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
     steps:
-    - run: echo "build ${{ (inputs.runSonarQubeScan && 'sonarqube') || '' }}"
+    - run: echo "${{ (inputs.runSonarQubeScan }}"
   
