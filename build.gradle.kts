@@ -113,8 +113,6 @@ idea {
 }
 
 licenseReport {
-    // TODO: migrate to org.kordamp.gradle.licensing plugin?
-    //  see https://kordamp.org/kordamp-gradle-plugins/#_org_kordamp_gradle_licensing
     outputDir = licenseReportPath
     renderers = arrayOf(
         InventoryHtmlReportRenderer("licenses.html"),
@@ -170,7 +168,6 @@ dependencyCheck {
     outputDirectory = "${buildDir}/reports/dependency-check"
 
     // path to database directory
-    // TODO: support caching when running in GitHub action
     data.directory = "${projectDir}/dependency-check"
 
     // disable .NET Assembly Analyzer (fix for unexpected build exception)
@@ -329,8 +326,6 @@ tasks.withType<Test> {
         showExceptions = true
         showCauses = true
         showStackTraces = true
-
-        // TODO: print test suite summary
     }
 
 }
@@ -347,9 +342,8 @@ val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = Jac
     executionData.from("${buildDir}/jacoco/integrationTest.exec")
 
     // set paths to source and class files
-    // TODO: get path from source set
-    sourceDirectories.from("${projectDir}/src/main/java")
-    classDirectories.from("${buildDir}/classes/java/main")
+    sourceDirectories.from(sourceSets.main.get().java)  // src/main/java
+    classDirectories.from(sourceSets.main.get().output) // build/classes/java/main
 
     // configure reports
     reports {
@@ -413,7 +407,6 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     // exclude duplicates
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE // alternative: WARN
 
-    // TODO: what is this?
     with(tasks.jar.get() as CopySpec)
 }
 
@@ -431,27 +424,3 @@ tasks.sonarqube {
 fun getGitBranchName(): String {
     return grgit.branch.current().name
 }
-
-// TODO ------------------------------------------------------------------------
-
-// Task list:
-// TODO: read Gradle documentation for task definition best practices
-// TODO: define task inputs and outputs
-// TODO: configure Gradle cache
-// TODO: include project information
-//  - project URL = http://jarhc.org
-//  - license name = Apache License, Version 2.0
-//  - license URL = https://www.apache.org/licenses/LICENSE-2.0
-//  - SCM connection = scm:git:https://github.com/smarkwal/jarhc.git
-//  - SCM developer connection = scm:git:https://github.com/smarkwal/jarhc.git
-//  - SCM URL = https://github.com/smarkwal/jarhc
-//  - developer name = Stephan Markwalder
-//  - developer email = stephan@markwalder.net
-// TODO: create aggregated test report
-// TODO: create artifact with all reports?
-// TODO: add post-build validation
-//  - with-deps JAR can be launched
-//  - with-deps JAR does not contain Java 9+ classes
-//  - run JarHC on JarHC?
-//  - check for presence of certain files (license, ...)
-// TODO: add task to clean JarHC cache
