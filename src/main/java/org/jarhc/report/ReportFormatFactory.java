@@ -16,6 +16,10 @@
 
 package org.jarhc.report;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.jarhc.inject.Injector;
+import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
@@ -25,14 +29,29 @@ import org.jarhc.report.text.TextReportFormat;
  * <p>
  * Supported types are:
  * <ul>
- * <li>"text": Text report</li>
+ * <li>"text": Text report in table format</li>
+ * <li>"list": Text report in list format</li>
  * <li>"html": HTML report</li>
  * </ul>
  */
 public class ReportFormatFactory {
 
+	private static final Map<String, Class<? extends ReportFormat>> reportFormatClasses = new HashMap<>();
+
+	static {
+		reportFormatClasses.put("text", TextReportFormat.class);
+		reportFormatClasses.put("list", ListReportFormat.class);
+		reportFormatClasses.put("html", HtmlReportFormat.class);
+	}
+
+	private final Injector injector;
+
+	public ReportFormatFactory(Injector injector) {
+		this.injector = injector;
+	}
+
 	public static boolean isSupportedFormat(String format) {
-		return format.equals("text") || format.equals("list") || format.equals("html");
+		return reportFormatClasses.containsKey(format);
 	}
 
 	/**
@@ -43,17 +62,21 @@ public class ReportFormatFactory {
 	 */
 	public ReportFormat getReportFormat(String type) {
 		if (type == null) throw new IllegalArgumentException("type");
-		switch (type) {
-			case "text":
-				return new TextReportFormat();
-			case "list":
-				return new ListReportFormat();
-			case "html":
-				return new HtmlReportFormat();
-			default:
-				String message = String.format("Unknown report format: '%s'", type);
-				throw new IllegalArgumentException(message);
+
+		// try to find class for the given report type
+		Class<? extends ReportFormat> reportFormatClass = reportFormatClasses.get(type);
+		if (reportFormatClass == null) {
+			String message = String.format("Unknown report format: '%s'", type);
+			throw new IllegalArgumentException(message);
 		}
+
+		// try to create instance of report format
+		try {
+			return injector.createInstance(reportFormatClass);
+		} catch (InjectorException e) {
+			throw new RuntimeException("Unable to create report format: " + type, e);
+		}
+
 	}
 
 }

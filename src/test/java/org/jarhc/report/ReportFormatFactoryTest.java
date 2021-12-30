@@ -19,6 +19,7 @@ package org.jarhc.report;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.jarhc.inject.Injector;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
@@ -26,11 +27,13 @@ import org.junit.jupiter.api.Test;
 
 class ReportFormatFactoryTest {
 
+	private final Injector injector = new Injector();
+
 	@Test
 	void test_getReportFormat_null() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test and assert
 		assertThrows(
@@ -44,7 +47,7 @@ class ReportFormatFactoryTest {
 	void test_getReportFormat_empty() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test and assert
 		assertThrows(
@@ -59,7 +62,7 @@ class ReportFormatFactoryTest {
 	void test_getReportFormat_unknown() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test and assert
 		assertThrows(
@@ -74,7 +77,7 @@ class ReportFormatFactoryTest {
 	void test_getReportFormat_text() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test
 		ReportFormat format = factory.getReportFormat("text");
@@ -88,7 +91,7 @@ class ReportFormatFactoryTest {
 	void test_getReportFormat_list() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test
 		ReportFormat format = factory.getReportFormat("list");
@@ -102,7 +105,7 @@ class ReportFormatFactoryTest {
 	void test_getReportFormat_html() {
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory();
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
 
 		// test
 		ReportFormat format = factory.getReportFormat("html");
