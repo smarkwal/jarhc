@@ -6,7 +6,6 @@ on:
       runSonarQubeScan:
         description: 'Run SonarQube scan'
         type: boolean
-        default: 'true'
 
 jobs:
   test:
@@ -16,5 +15,8 @@ jobs:
       SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
     steps:
-    - run: echo "build ${{ (github.event.inputs.runSonarQubeScan && 'sonarqube') || '' }} --info"
-  
+    - name: Build with Gradle
+      run: echo "build"
+    - name: Run SonarQube scan
+      run: echo "sonarqube"
+      if: ${{ github.event.inputs.runSonarQubeScan }}
