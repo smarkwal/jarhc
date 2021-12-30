@@ -3,9 +3,10 @@ name: Test workflow
 on:
   workflow_dispatch:
     inputs:
-      runSonarQubeScan:
-        description: 'Run SonarQube scan'
-        type: boolean
+      additionalGradleOptions:
+        description: 'Additional Gradle options'
+        required: false
+        default: ''
 
 jobs:
   test:
@@ -17,11 +18,7 @@ jobs:
     steps:
 
     - name: Print inputs
-      run: echo "runSonarQubeScan = '${{ github.event.inputs.runSonarQubeScan }}'"
+      run: echo "additionalGradleOptions = '${{ github.event.inputs.additionalGradleOptions }}'"
 
     - name: Build with Gradle
-      run: echo "./gradlew build"
-
-    - name: Run SonarQube scan
-      if: github.event.inputs.runSonarQubeScan
-      run: echo "./gradlew sonarqube"
+      run: echo "./gradlew build ${{ github.event.inputs.additionalGradleOptions }}"
