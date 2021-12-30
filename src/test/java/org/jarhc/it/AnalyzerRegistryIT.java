@@ -14,67 +14,44 @@
  * limitations under the License.
  */
 
-package org.jarhc.analyzer;
+package org.jarhc.it;
 
-import static org.jarhc.test.AssertUtils.assertMock;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.jarhc.analyzer.Analyzer;
+import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.app.Options;
+import org.jarhc.artifacts.Repository;
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
-import org.jarhc.inject.InjectorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.mockito.Mockito;
 
-class AnalyzerRegistryTest {
+@SuppressWarnings("NewClassNamingConvention")
+class AnalyzerRegistryIT {
 
 	private AnalyzerRegistry registry;
 
 	@BeforeEach
-	@SuppressWarnings("unchecked")
-	void setUp() throws InjectorException {
+	void setUp() {
 
-		// prepare an injector which will return mock analyzers
-		Injector injector = Mockito.mock(Injector.class);
-		doAnswer(args -> {
-			Class<?> analyzerClass = args.getArgument(0, Class.class);
-			return Mockito.mock(analyzerClass);
-		}).when(injector).createInstance(any(Class.class));
+		// prepare mock context
+		Options options = Mockito.mock(Options.class);
+		JavaRuntime javaRuntime = Mockito.mock(JavaRuntime.class);
+		Repository repository = Mockito.mock(Repository.class);
+
+		// prepare an injector
+		Injector injector = new Injector();
+		injector.addBinding(Options.class, options);
+		injector.addBinding(JavaRuntime.class, javaRuntime);
+		injector.addBinding(Repository.class, repository);
 
 		registry = new AnalyzerRegistry(injector);
-	}
-
-	@Test
-	void test_getCodes() {
-
-		// test
-		List<String> codes = registry.getCodes();
-
-		// assert
-		assertEquals(10, codes.size());
-		assertTrue(codes.contains("jf"));
-
-	}
-
-	@Test
-	void test_getDescription() {
-
-		// test
-		AnalyzerDescription description = registry.getDescription("jf");
-
-		// assert
-		assertNotNull(description);
-		assertEquals("jf", description.getCode());
-
 	}
 
 	@TestFactory
@@ -97,15 +74,6 @@ class AnalyzerRegistryTest {
 
 		// assert
 		assertNotNull(analyzer);
-		assertMock(analyzer);
-
-	}
-
-	@Test
-	void test_createAnalyzer_throwsIllegalArgumentException_forUnknownCode() {
-
-		// test and assert
-		assertThrows(IllegalArgumentException.class, () -> registry.createAnalyzer("ukn"));
 
 	}
 

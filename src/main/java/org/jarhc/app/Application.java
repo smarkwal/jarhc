@@ -22,7 +22,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import org.jarhc.Context;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerDescription;
@@ -32,6 +31,7 @@ import org.jarhc.artifacts.Repository;
 import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.inject.Injector;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.JarFileNameNormalizer;
@@ -106,14 +106,21 @@ public class Application {
 
 		out.println("Analyze classpath ...");
 
-		AnalyzerRegistry registry = new AnalyzerRegistry();
-		Context context = new Context(javaRuntime, repository);
+		// prepare an injector
+		Injector injector = new Injector();
+		injector.addBinding(Options.class, options);
+		injector.addBinding(JavaRuntime.class, javaRuntime);
+		injector.addBinding(Repository.class, repository);
+
+		// get a new analyzer registry/factory
+		AnalyzerRegistry registry = new AnalyzerRegistry(injector);
 
 		List<String> sections = options.getSections();
 		if (sections == null || sections.isEmpty()) {
 			sections = registry.getCodes();
 		}
 
+		// create analyzers based on selected sections
 		List<Analyzer> analyzers = new ArrayList<>(sections.size());
 		for (String section : sections) {
 			AnalyzerDescription description = registry.getDescription(section);
@@ -121,10 +128,11 @@ public class Application {
 				logger.error("Analyzer not found: {}", section);
 				return 3;
 			}
-			Analyzer analyzer = registry.createAnalyzer(section, context);
+			Analyzer analyzer = registry.createAnalyzer(section);
 			analyzers.add(analyzer);
 		}
 
+		// prepare a new analysis
 		Analysis analysis = new Analysis(analyzers.toArray(new Analyzer[0]));
 
 		// run analysis
