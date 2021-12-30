@@ -94,20 +94,20 @@ public class Main {
 		// priority 1: command line option --data
 		String dataPath = options.getDataPath();
 		if (dataPath != null) {
-			LOGGER.debug("Data directory: " + dataPath + " (command line option)");
+			LOGGER.debug("Data directory: {} (command line option)", dataPath);
 			return dataPath;
 		}
 
 		// priority 2: environment variable $JARHC_DATA
 		dataPath = System.getenv("JARHC_DATA");
 		if (dataPath != null) {
-			LOGGER.debug("Data directory: " + dataPath + " (environment variable)");
+			LOGGER.debug("Data directory: {} (environment variable)", dataPath);
 			return dataPath;
 		}
 
 		// priority 3: user home
 		dataPath = getUserHomePath();
-		LOGGER.debug("Data directory: " + dataPath + " (user home)");
+		LOGGER.debug("Data directory: {} (user home)", dataPath);
 
 		return dataPath;
 	}

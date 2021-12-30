@@ -47,7 +47,7 @@ class ApplicationIT {
 		Application application = new Application(applicationLogger);
 		application.setOut(out);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
-		Logger mavenRepositoryLogger = LoggerBuilder.reject(MavenRepository.class);
+		Logger mavenRepositoryLogger = LoggerBuilder.collect(MavenRepository.class);
 		MavenRepository repository = new MavenRepository(tempDir.toString(), mavenRepositoryLogger);
 		application.setRepository(repository);
 
@@ -78,6 +78,10 @@ class ApplicationIT {
 
 		assertLogger(applicationLogger)
 				.hasDebug("Time: *")
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.hasDebug("Find artifact: b2de6f7c6eff51a28729be9c4f6555354f16a1ca")
 				.isEmpty();
 
 	}

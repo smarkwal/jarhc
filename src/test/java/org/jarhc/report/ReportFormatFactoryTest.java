@@ -16,65 +16,46 @@
 
 package org.jarhc.report;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 import org.mockito.Mockito;
 
 class ReportFormatFactoryTest {
 
 	private final Injector injector = new Injector();
 
-	@Test
-	void isSupportedFormat_returnsTrue_forHTML() {
-
-		// test
-		boolean result = ReportFormatFactory.isSupportedFormat("html");
-
-		// assert
-		assertTrue(result);
-
+	@TestFactory
+	Collection<DynamicTest> isSupportedFormat() {
+		List<DynamicTest> tests = new ArrayList<>();
+		tests.add(DynamicTest.dynamicTest("html", () -> isSupportedFormat("html", true)));
+		tests.add(DynamicTest.dynamicTest("text", () -> isSupportedFormat("text", true)));
+		tests.add(DynamicTest.dynamicTest("list", () -> isSupportedFormat("list", true)));
+		tests.add(DynamicTest.dynamicTest("pdf", () -> isSupportedFormat("pdf", false)));
+		return tests;
 	}
 
-	@Test
-	void isSupportedFormat_returnsTrue_forText() {
+	private void isSupportedFormat(String type, boolean expectedResult) {
 
 		// test
-		boolean result = ReportFormatFactory.isSupportedFormat("text");
+		boolean result = ReportFormatFactory.isSupportedFormat(type);
 
 		// assert
-		assertTrue(result);
-
-	}
-
-	@Test
-	void isSupportedFormat_returnsTrue_forList() {
-
-		// test
-		boolean result = ReportFormatFactory.isSupportedFormat("list");
-
-		// assert
-		assertTrue(result);
-
-	}
-
-	@Test
-	void isSupportedFormat_returnsFalse_forPDF() {
-
-		// test
-		boolean result = ReportFormatFactory.isSupportedFormat("pdf");
-
-		// assert
-		assertFalse(result);
+		assertEquals(result, expectedResult);
 
 	}
 
@@ -165,6 +146,7 @@ class ReportFormatFactoryTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	void getReportFormat_throwsRuntimeException_onInjectorException() throws InjectorException {
 
 		// prepare injector

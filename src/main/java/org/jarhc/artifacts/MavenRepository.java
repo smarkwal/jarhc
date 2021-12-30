@@ -72,11 +72,13 @@ public class MavenRepository implements Repository {
 
 	@Override
 	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
+		logger.debug("Find artifact: {}", checksum);
 		return artifactFinder.findArtifact(checksum);
 	}
 
 	@Override
 	public Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException {
+		logger.debug("Download artifact: {}", artifact);
 
 		String groupId = artifact.getGroupId();
 		String artifactId = artifact.getArtifactId();
@@ -113,6 +115,7 @@ public class MavenRepository implements Repository {
 
 	@Override
 	public List<Dependency> getDependencies(Artifact artifact) throws RepositoryException {
+		logger.debug("Get dependencies: {}", artifact);
 
 		String coordinates = artifact.toCoordinates();
 
@@ -194,7 +197,12 @@ public class MavenRepository implements Repository {
 
 		// TODO: optimize filter?
 		//  - select transitive dependencies, except of optional and/or provided dependencies?
-		DependencySelector dependencySelector = new AndDependencySelector(new TransitiveDependencySelector(2), new ScopeDependencySelector("test"), new OptionalDependencySelector(), new ExclusionDependencySelector()); //
+		DependencySelector dependencySelector = new AndDependencySelector(
+				new TransitiveDependencySelector(2),
+				new ScopeDependencySelector("test"),
+				new OptionalDependencySelector(),
+				new ExclusionDependencySelector()
+		);
 		session.setDependencySelector(dependencySelector);
 
 		return session;
@@ -210,14 +218,15 @@ public class MavenRepository implements Repository {
 
 		@Override
 		public boolean selectDependency(org.eclipse.aether.graph.Dependency dependency) {
-			if (dependency.getScope().equals("test")) {
-				// logger.debug(depth + ": " + dependency.toString() + " [ignore test]");
+			String scope = dependency.getScope();
+			if (scope.equals("test")) {
+				// ignore test dependency
 				return false;
 			} else if (depth <= 0) {
-				// logger.debug(depth + ": " + dependency.toString() + " [ignore depth]");
+				// ignore transitive dependency
 				return false;
 			} else {
-				// logger.debug(depth + ": " + dependency.toString() + " [accept]");
+				// accept dependency
 				return true;
 			}
 		}

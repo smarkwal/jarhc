@@ -16,6 +16,7 @@
 
 package org.jarhc.it;
 
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,6 +33,7 @@ import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.utils.IOUtils;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -40,13 +42,18 @@ import org.slf4j.Logger;
 @SuppressWarnings("NewClassNamingConvention")
 class MavenRepositoryIT {
 
-	private final Logger logger = LoggerBuilder.reject(MavenRepository.class);
+	private final Logger logger = LoggerBuilder.collect(MavenRepository.class);
 
 	private MavenRepository repository;
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
 		repository = new MavenRepository(tempDir.toString(), logger);
+	}
+
+	@AfterEach
+	void tearDown() {
+		assertLogger(logger).isEmpty();
 	}
 
 	@Test
@@ -61,6 +68,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(214788, data.length);
+		assertLogger(logger).hasDebug("Download artifact: commons-io:commons-io:2.6:jar");
 
 	}
 
@@ -76,6 +84,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(14256, data.length);
+		assertLogger(logger).hasDebug("Download artifact: commons-io:commons-io:2.6:pom");
 
 	}
 
@@ -91,6 +100,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(335042, data.length);
+		assertLogger(logger).hasDebug("Download artifact: commons-codec:commons-codec:1.11:jar");
 
 	}
 
@@ -106,6 +116,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(113676, data.length);
+		assertLogger(logger).hasDebug("Download artifact: org.ow2.asm:asm:7.0:jar");
 
 	}
 
@@ -121,6 +132,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(1213592, data.length);
+		assertLogger(logger).hasDebug("Download artifact: org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war");
 
 	}
 
@@ -136,6 +148,7 @@ class MavenRepositoryIT {
 		assertTrue(stream.isPresent());
 		byte[] data = IOUtils.toByteArray(stream.get());
 		assertEquals(8851, data.length);
+		assertLogger(logger).hasDebug("Download artifact: org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:pom");
 
 	}
 
@@ -149,6 +162,7 @@ class MavenRepositoryIT {
 
 		// assert
 		assertFalse(stream.isPresent());
+		assertLogger(logger).hasDebug("Download artifact: unknown:unknown:1.0:jar");
 
 	}
 
@@ -166,6 +180,7 @@ class MavenRepositoryIT {
 		assertTrue(dependencies.contains(new Dependency("org.ow2.asm", "asm", "7.0", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("org.ow2.asm", "asm-tree", "7.0", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("org.ow2.asm", "asm-analysis", "7.0", Scope.COMPILE, false)));
+		assertLogger(logger).hasDebug("Get dependencies: org.ow2.asm:asm-commons:7.0:jar");
 	}
 
 	@Test
@@ -181,6 +196,7 @@ class MavenRepositoryIT {
 		assertEquals(2, dependencies.size());
 		assertTrue(dependencies.contains(new Dependency("org.springframework", "spring-beans", "5.3.9", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("org.springframework", "spring-core", "5.3.9", Scope.COMPILE, false)));
+		assertLogger(logger).hasDebug("Get dependencies: org.springframework:spring-web:5.3.9:jar");
 	}
 
 	@Test
@@ -200,6 +216,7 @@ class MavenRepositoryIT {
 		assertTrue(dependencies.contains(new Dependency("org.slf4j", "slf4j-api", "1.7.21", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("org.apache.camel", "apt", "2.17.7", Scope.PROVIDED, false)));
 		assertTrue(dependencies.contains(new Dependency("org.osgi", "org.osgi.core", "4.3.1", Scope.PROVIDED, true)));
+		assertLogger(logger).hasDebug("Get dependencies: org.apache.camel:camel-core:2.17.7:jar");
 	}
 
 	@Test
@@ -217,10 +234,10 @@ class MavenRepositoryIT {
 		//         parent: https://mvnrepository.com/artifact/org.apache.camel/camel/2.17.7
 		assertEquals(4, dependencies.size());
 		assertTrue(dependencies.contains(new Dependency("org.apache.camel:camel-core:2.17.7", Scope.COMPILE, false)));
-		// TODO: Where are these coming from?
 		assertTrue(dependencies.contains(new Dependency("org.apache.camel", "apt", "2.17.7", Scope.PROVIDED, false)));
 		assertTrue(dependencies.contains(new Dependency("com.sun.xml.bind", "jaxb-core", "2.2.11", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("com.sun.xml.bind", "jaxb-impl", "2.2.11", Scope.COMPILE, false)));
+		assertLogger(logger).hasDebug("Get dependencies: org.apache.camel:camel-jdbc:2.17.7:jar");
 	}
 
 	@Test
@@ -242,6 +259,7 @@ class MavenRepositoryIT {
 		assertTrue(dependencies.contains(new Dependency("org.apache.logging.log4j:log4j-core:2.3", Scope.PROVIDED, true)));
 		assertTrue(dependencies.contains(new Dependency("javax.cache:cache-api:1.1.0", Scope.PROVIDED, true)));
 		assertTrue(dependencies.contains(new Dependency("com.google.code.findbugs:annotations:3.0.0", Scope.PROVIDED, true)));
+		assertLogger(logger).hasDebug("Get dependencies: com.hazelcast:hazelcast-client:3.11.2:jar");
 	}
 
 	@Test
@@ -255,6 +273,7 @@ class MavenRepositoryIT {
 
 		// assert
 		assertEquals(0, dependencies.size());
+		assertLogger(logger).hasDebug("Get dependencies: net.markwalder:unknown:1.0:jar");
 	}
 
 }
