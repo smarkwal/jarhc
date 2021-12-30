@@ -1,0 +1,20 @@
+name: Test workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      runSonarQubeScan:
+        description: 'Run SonarQube scan'
+        type: boolean
+        required: false
+
+jobs:
+  test:
+  
+    runs-on: ubuntu-latest
+    env:
+      SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
+ 
+    steps:
+    - run: echo "build ${{ (inputs.runSonarQubeScan && 'sonarqube') || '' }}"
+  
