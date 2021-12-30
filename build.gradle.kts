@@ -69,6 +69,9 @@ val mainClassName: String = "org.jarhc.Main"
 val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
 val licenseReportPath: String = "${buildDir}/reports/licenses"
 
+val testReportPath: String = "${buildDir}/test-results/test"
+val integrationTestReportPath: String = "${buildDir}/test-results/integrationTest"
+
 val jacocoTestReportDir: String = "${buildDir}/reports/jacoco/test"
 val jacocoTestReportXml: String = "${jacocoTestReportDir}/report.xml"
 val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest"
@@ -168,6 +171,9 @@ sonarqube {
 
         // Git branch
         property("sonar.branch.name", getGitBranchName())
+
+        // include test results
+        property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
 
         // include test coverage results
         property("sonar.java.coveragePlugin", "jacoco")
