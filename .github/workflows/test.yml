@@ -15,8 +15,13 @@ jobs:
       SONART_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
     steps:
+
+    - name: Print inputs
+      run: echo "runSonarQubeScan = '${{ github.event.inputs.runSonarQubeScan }}'"
+
     - name: Build with Gradle
-      run: echo "build"
+      run: echo "./gradlew build"
+
     - name: Run SonarQube scan
-      run: echo "sonarqube"
       if: github.event.inputs.runSonarQubeScan
+      run: echo "./gradlew sonarqube"
