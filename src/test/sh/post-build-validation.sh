@@ -50,13 +50,13 @@ while read -r javaHome; do
 
   # run JarHC --help
   actual=$($JARHC --help)
-  # echo "$actual" > help.txt
+  # echo "$actual" > results/help.txt
   expected=$(cat results/help.txt)
   assertEquals "JarHC --help" "$expected" "$actual"
 
   # run JarHC for ASM
   actual=$($JARHC "-s" "-jr" "org.ow2.asm:asm:9.2")
-  # echo "$actual" > asm.txt
+  # echo "$actual" > results/asm.txt
   expected=$(cat results/asm.txt)
   assertEquals "JarHC for ASM" "${expected//VERSION/$version}" "$actual"
 
