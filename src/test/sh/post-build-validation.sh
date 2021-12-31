@@ -1,7 +1,17 @@
 #!/bin/bash
 
+# change to directory with this script
+scriptDir=$(dirname "$0")
+cd "$scriptDir" || exit 1
+
 buildDir="../../../build"
 libsDir="$buildDir/libs"
+
+if [[ ! -d "$libsDir" ]]; then
+  echo "Directory not found: $libsDir"
+  echo "Run a full build with './gradlew clean build' first."
+  exit 1
+fi
 
 # get JarHC version from VERSION file in build dir
 version=$(cat "$buildDir/resources/main/VERSION")
@@ -12,10 +22,14 @@ echo "Test JarHC $version"
 source include/assertions.sh
 
 # for each Java home in java.txt
-# shellcheck disable=SC2002
-cat java.txt | while read -r javaHome; do
+while read -r javaHome; do
 
   printf "====================================================================\n"
+
+  if [[ ! -d "$javaHome" ]]; then
+    error "Java home not found: $javaHome"
+    continue
+  fi
 
   # print information about Java runtime
   info=$("$javaHome/bin/java" -cp app Version)
@@ -26,7 +40,8 @@ cat java.txt | while read -r javaHome; do
   rm -rf ~/.jarhc
 
   # prepare JarHC command
-  JARHC="$javaHome/bin/java -jar $libsDir/jarhc-$version-with-deps.jar"
+  jarFile="$libsDir/jarhc-$version-with-deps.jar"
+  JARHC="$javaHome/bin/java -jar $jarFile"
 
   # run JarHC --version
   actual=$($JARHC --version)
@@ -45,7 +60,7 @@ cat java.txt | while read -r javaHome; do
   expected=$(cat results/asm.txt)
   assertEquals "JarHC for ASM" "${expected//VERSION/$version}" "$actual"
 
-done
+done <java.txt
 
 printf "====================================================================\n"
 

@@ -4,6 +4,7 @@ NONE="\033[0m"
 
 ((passed = 0))
 ((failed = 0))
+((errors = 0))
 
 assertEquals() {
   local message=$1
@@ -19,13 +20,19 @@ assertEquals() {
   fi
 }
 
+error() {
+  local message=$1
+  printf "${RED}ERROR${NONE} - %s\n" "$message"
+  ((errors += 1))
+}
+
 printTestSummary() {
   local total=$((passed + failed))
-  if ((failed == 0)); then
-    printf "${GREEN}PASSED${NONE} - Total: %s, Passed: %s, Failed: %s\n" "$total" "$passed" "$failed"
+  if ((failed + errors == 0)); then
+    printf "${GREEN}PASSED${NONE} - Total: %s, Passed: %s, Failed: %s, Errors: %s\n" "$total" "$passed" "$failed" "$errors"
     exit 0
   else
-    printf "${RED}PASSED${NONE} - Total: %s, Passed: %s, Failed: %s\n" "$total" "$passed" "$failed"
+    printf "${RED}FAILED${NONE} - Total: %s, Passed: %s, Failed: %s, Errors: %s\n" "$total" "$passed" "$failed" "$errors"
     exit 1
   fi
 }
