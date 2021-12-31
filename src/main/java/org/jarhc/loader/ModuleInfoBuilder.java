@@ -29,7 +29,7 @@ class ModuleInfoBuilder extends ClassVisitor {
 	private final ModuleVisitor moduleVisitor = new ModuleInfoVisitor();
 
 	ModuleInfoBuilder() {
-		super(Opcodes.ASM7);
+		super(Opcodes.ASM9);
 	}
 
 	ModuleInfo getModuleInfo() {
@@ -50,7 +50,7 @@ class ModuleInfoBuilder extends ClassVisitor {
 	private class ModuleInfoVisitor extends ModuleVisitor {
 
 		ModuleInfoVisitor() {
-			super(Opcodes.ASM7);
+			super(Opcodes.ASM9);
 		}
 
 		@Override

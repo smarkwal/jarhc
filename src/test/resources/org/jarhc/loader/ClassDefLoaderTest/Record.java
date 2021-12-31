@@ -1,0 +1,1 @@
+public record Record (int id, String name, boolean enabled) {}

@@ -18,6 +18,7 @@ package org.jarhc.loader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,12 @@ class ClassDefLoaderTest {
 	@TestFactory
 	Collection<DynamicTest> test_load_class() {
 		return Arrays.asList(
+				DynamicTest.dynamicTest("Java 17", () -> test_load_class(17, 61)),
+				DynamicTest.dynamicTest("Java 16", () -> test_load_class(16, 60)),
+				DynamicTest.dynamicTest("Java 15", () -> test_load_class(15, 59)),
+				DynamicTest.dynamicTest("Java 14", () -> test_load_class(14, 58)),
+				DynamicTest.dynamicTest("Java 13", () -> test_load_class(13, 57)),
+				DynamicTest.dynamicTest("Java 12", () -> test_load_class(12, 56)),
 				DynamicTest.dynamicTest("Java 11", () -> test_load_class(11, 55)),
 				DynamicTest.dynamicTest("Java 10", () -> test_load_class(10, 54)),
 				DynamicTest.dynamicTest("Java 9", () -> test_load_class(9, 53)),
@@ -56,6 +63,40 @@ class ClassDefLoaderTest {
 		assertEquals("Main", classDef.getClassName());
 		assertEquals(expectedClassVersion, classDef.getMajorClassVersion());
 		assertEquals("Java " + javaMajorVersion, classDef.getJavaVersion());
+	}
+
+	@Test
+	void test_load_record() throws IOException {
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java16/Record.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("Record", classDef.getClassName());
+		assertEquals(60, classDef.getMajorClassVersion());
+		assertEquals("Java 16", classDef.getJavaVersion());
+	}
+
+	@Test
+	void test_load_sealed_class() throws IOException {
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java17/SealedParent.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("SealedParent", classDef.getClassName());
+		assertEquals(61, classDef.getMajorClassVersion());
+		assertEquals("Java 17", classDef.getJavaVersion());
+	}
+
+	@Test
+	void test_load_final_class() throws IOException {
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java17/FinalChild.class";
+		ClassDef classDef = loadClass(resource);
+
+		assertNotNull(classDef);
+		assertEquals("FinalChild", classDef.getClassName());
+		assertTrue(classDef.isFinal());
+		assertEquals(61, classDef.getMajorClassVersion());
+		assertEquals("Java 17", classDef.getJavaVersion());
 	}
 
 	@Test

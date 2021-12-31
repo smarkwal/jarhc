@@ -45,10 +45,16 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.ModuleVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.RecordComponentVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.TypePath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class ClassDefBuilder extends ClassVisitor {
+
+	// TODO: remove if not used anymore
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClassDefBuilder.class);
 
 	private final boolean scanForReferences;
 
@@ -61,7 +67,7 @@ class ClassDefBuilder extends ClassVisitor {
 	private final AnnotationVisitor annotationVisitor = new AnnotationBuilder();
 
 	ClassDefBuilder(boolean scanForReferences) {
-		super(Opcodes.ASM7);
+		super(Opcodes.ASM9);
 		this.scanForReferences = scanForReferences;
 	}
 
@@ -83,6 +89,11 @@ class ClassDefBuilder extends ClassVisitor {
 		classDef.setAccess(access);
 
 		classDef.setClassName(toExternalName(name));
+
+		if ((access & Opcodes.ACC_RECORD) != 0) {
+			// TODO: #74 Support for Java 17
+			LOGGER.warn("Unsupported Java 14 feature: Record '{}'", classDef.getClassName());
+		}
 
 		// TODO: how to use signature?
 
@@ -203,6 +214,20 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	@Override
+	public void visitPermittedSubclass(String permittedSubclass) {
+		// TODO: #74 Support for Java 17
+		LOGGER.warn("Unsupported Java 15 feature: Sealed class '{}': Permitted subclass '{}'", classDef.getClassName(), permittedSubclass);
+	}
+
+	@Override
+	public RecordComponentVisitor visitRecordComponent(String name, String descriptor, String signature) {
+		// TODO: #74 Support for Java 17
+		String type = getFieldType(descriptor);
+		LOGGER.warn("Unsupported Java 14 feature: Record class '{}': Record component '{} {}'", classDef.getClassName(), type, name);
+		return null;
+	}
+
+	@Override
 	public void visitEnd() {
 		// nothing to do
 	}
@@ -255,7 +280,7 @@ class ClassDefBuilder extends ClassVisitor {
 		private final FieldDef fieldDef;
 
 		CustomFieldVisitor(FieldDef fieldDef) {
-			super(Opcodes.ASM7);
+			super(Opcodes.ASM9);
 			this.fieldDef = fieldDef;
 		}
 
@@ -289,7 +314,7 @@ class ClassDefBuilder extends ClassVisitor {
 		private final MethodDef methodDef;
 
 		CustomMethodVisitor(MethodDef methodDef) {
-			super(Opcodes.ASM7);
+			super(Opcodes.ASM9);
 			this.methodDef = methodDef;
 		}
 
@@ -419,7 +444,7 @@ class ClassDefBuilder extends ClassVisitor {
 	private class AnnotationBuilder extends AnnotationVisitor {
 
 		AnnotationBuilder() {
-			super(Opcodes.ASM7);
+			super(Opcodes.ASM9);
 		}
 
 		@Override
