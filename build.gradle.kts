@@ -69,22 +69,75 @@ val mainClassName: String = "org.jarhc.Main"
 val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
 val licenseReportPath: String = "${buildDir}/reports/licenses"
 
+// test results
 val testReportPath: String = "${buildDir}/test-results/test"
+val unitTestReportPath: String = "${buildDir}/test-results/unitTest"
 val integrationTestReportPath: String = "${buildDir}/test-results/integrationTest"
 
-val jacocoTestReportDir: String = "${buildDir}/reports/jacoco/test"
-val jacocoTestReportXml: String = "${jacocoTestReportDir}/report.xml"
-val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest"
-val jacocoIntegrationTestReportXml: String = "${jacocoIntegrationTestReportDir}/report.xml"
+// JaCoCo coverage report
+val jacocoTestReportXml: String = "${buildDir}/reports/jacoco/test/report.xml"
 
 // additional source sets and configurations -----------------------------------
 
 sourceSets {
-    create("releaseTest") {
+
+    create("unitTest") {
+        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
     }
+
+    create("integrationTest") {
+        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+    }
+
+    create("releaseTest") {
+        // independent source set
+    }
+
+}
+
+val unitTestImplementation: Configuration by configurations.getting {
+    extendsFrom(
+        configurations.implementation.get(),
+        configurations.testImplementation.get()
+    )
+}
+
+val unitTestRuntimeOnly: Configuration by configurations.getting {
+    extendsFrom(
+        configurations.runtimeOnly.get(),
+        configurations.testRuntimeOnly.get()
+    )
+}
+
+val unitTestAnnotationProcessor: Configuration by configurations.getting {
+    extendsFrom(
+        configurations.annotationProcessor.get(),
+        configurations.testAnnotationProcessor.get()
+    )
+}
+
+val integrationTestImplementation: Configuration by configurations.getting {
+    extendsFrom(
+        configurations.implementation.get(),
+        configurations.testImplementation.get()
+    )
+}
+
+val integrationTestRuntimeOnly: Configuration by configurations.getting {
+    extendsFrom(
+        configurations.runtimeOnly.get(),
+        configurations.testRuntimeOnly.get()
+    )
 }
 
 val releaseTestImplementation: Configuration by configurations.getting {
+    // independent configuration
+}
+
+val releaseTestRuntimeOnly: Configuration by configurations.getting {
+    // independent configuration
 }
 
 // dependencies ----------------------------------------------------------------
@@ -116,24 +169,29 @@ dependencies {
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
     implementation("org.codehaus.plexus:plexus-utils:3.0.24")
 
-    // test dependencies
+    // test dependencies (available in unit and integration tests)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.mockito:mockito-core:4.2.0")
-    testImplementation("org.openjdk.jmh:jmh-core:1.34")
-    testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+
+    // unit test dependencies
+    // TODO: move JMH benchmarks in a separate source set?
+    unitTestImplementation("org.openjdk.jmh:jmh-core:1.34")
+    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+
+    // integration test dependencies
+    // currently: none
 
     // release test dependencies
     releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
     releaseTestImplementation("org.assertj:assertj-core:3.21.0")
-    // TODO: releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     releaseTestImplementation("org.testcontainers:testcontainers:1.16.2") {
         exclude(group = "junit", module = "junit")
     }
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.2")
-    // TODO: use releaseTestRuntimeOnly
-    releaseTestImplementation("org.slf4j:slf4j-api:1.7.32")
-    releaseTestImplementation("org.slf4j:slf4j-simple:1.7.32")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.32")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.32")
 
 }
 
@@ -196,11 +254,11 @@ sonarqube {
         property("sonar.branch.name", getGitBranchName())
 
         // include test results
-        property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
+        property("sonar.junit.reportPaths", "${testReportPath},${unitTestReportPath},${integrationTestReportPath}")
 
         // include test coverage results
         property("sonar.java.coveragePlugin", "jacoco")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReportXml},${jacocoIntegrationTestReportXml}")
+        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportXml)
     }
 }
 
@@ -261,25 +319,36 @@ tasks {
     }
 
     test {
-        // exclude integration tests
-        filter {
-            excludeTestsMatching("*IT")
-        }
+        // no special configuration
     }
 
     check {
-        dependsOn(integrationTest)
+        dependsOn(unitTest, integrationTest)
     }
 
     jacocoTestReport {
-        // generate HTML, XML and CSV report
+
+        // run all tests first
+        dependsOn(test, unitTest, integrationTest)
+
+        // get JaCoCo data from all test tasks
+        executionData.from(
+            "${buildDir}/jacoco/test.exec",
+            "${buildDir}/jacoco/unitTest.exec",
+            "${buildDir}/jacoco/integrationTest.exec"
+        )
+
         reports {
-            html.required.set(true)
-            html.outputLocation.set(file("${jacocoTestReportDir}/html"))
+
+            // generate XML report (required for SonarQube)
             xml.required.set(true)
             xml.outputLocation.set(file(jacocoTestReportXml))
-            csv.required.set(true)
-            csv.outputLocation.set(file("${jacocoTestReportDir}/report.csv"))
+
+            // generate HTML report
+            html.required.set(true)
+
+            // generate CSV report
+            // csv.required.set(true)
         }
     }
 
@@ -336,14 +405,22 @@ val testJar = task("testJar", type = Jar::class) {
     group = "build"
     description = "Assembles a jar archive containing the test classes."
 
-    // compile test classes first
-    dependsOn(tasks.testClasses)
+    // compile all test classes first
+    dependsOn(
+        tasks.testClasses,
+        tasks["unitTestClasses"],
+        tasks["integrationTestClasses"]
+    )
 
     // append classifier "-tests"
     archiveClassifier.set("tests")
 
-    // include compiled test classes
-    from(sourceSets.test.get().output)
+    // include compiled unit test classes and integration test classes
+    from(
+        sourceSets.test.get().output,
+        sourceSets["unitTest"].output,
+        sourceSets["integrationTest"].output
+    )
 }
 
 val libsZip = task("libsZip", type = Zip::class) {
@@ -370,21 +447,36 @@ val testLibsZip = task("testLibsZip", type = Zip::class) {
     // create archive in "libs" folder (instead of "distributions")
     destinationDirectory.set(file("${buildDir}/libs"))
 
-    // include all test dependencies
-    from(configurations.testRuntimeClasspath)
+    // include all test dependencies and integration test dependencies
+    from(
+        configurations.testRuntimeClasspath,
+        configurations["unitTestRuntimeClasspath"],
+        configurations["integrationTestRuntimeClasspath"]
+    )
+}
+
+val unitTest = task("unitTest", type = Test::class) {
+    group = "verification"
+    description = "Runs the unit test suite."
+
+    // use tests in unitTest source set
+    testClassesDirs = sourceSets["unitTest"].output.classesDirs
+    classpath = sourceSets["unitTest"].runtimeClasspath
+
+    // run unit tests after "core" tests
+    shouldRunAfter(tasks.test)
 }
 
 val integrationTest = task("integrationTest", type = Test::class) {
     group = "verification"
     description = "Runs the integration test suite."
 
-    // include only integration tests
-    filter {
-        includeTestsMatching("*IT")
-    }
+    // use tests in integrationTest source set
+    testClassesDirs = sourceSets["integrationTest"].output.classesDirs
+    classpath = sourceSets["integrationTest"].runtimeClasspath
 
     // run integration tests after unit tests
-    mustRunAfter(tasks.test)
+    shouldRunAfter(unitTest)
 }
 
 val releaseTest = task("releaseTest", type = Test::class) {
@@ -430,39 +522,13 @@ tasks.withType<Test> {
 
 }
 
-val jacocoIntegrationTestReport = task("jacocoIntegrationTestReport", type = JacocoReport::class) {
-    group = "verification"
-    description = "Generates code coverage report for the integration test task."
-
-    // run integration tests first
-    // note: this task is skipped if integration tests have not been executed
-    mustRunAfter(integrationTest)
-
-    // get JaCoCo data from integration tests
-    executionData.from("${buildDir}/jacoco/integrationTest.exec")
-
-    // set paths to source and class files
-    sourceDirectories.from(sourceSets.main.get().java)  // src/main/java
-    classDirectories.from(sourceSets.main.get().output) // build/classes/java/main
-
-    // configure reports
-    reports {
-        html.required.set(true)
-        html.outputLocation.set(file("${jacocoIntegrationTestReportDir}/html"))
-        xml.required.set(true)
-        xml.outputLocation.set(file(jacocoIntegrationTestReportXml))
-        csv.required.set(true)
-        csv.outputLocation.set(file("${jacocoIntegrationTestReportDir}/report.csv"))
-    }
-}
-
 val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {
     group = "verification"
     description = "Runs JMH benchmarks."
 
     // settings
     // documentation: https://github.com/guozheng/jmh-tutorial/blob/master/README.md
-    classpath = tasks.test.get().classpath
+    classpath = unitTest.classpath
     mainClass.set("org.openjdk.jmh.Main")
     args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
 }
@@ -472,8 +538,11 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.sonarqube {
-    // run all tests and generate JaCoCo XML reports
-    dependsOn(tasks.test, integrationTest, tasks.jacocoTestReport, jacocoIntegrationTestReport)
+    // run all tests and generate JaCoCo XML report
+    dependsOn(
+        tasks.test, unitTest, integrationTest,
+        tasks.jacocoTestReport
+    )
 }
 
 // helper functions ------------------------------------------------------------

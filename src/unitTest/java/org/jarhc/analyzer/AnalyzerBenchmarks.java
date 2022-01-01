@@ -64,7 +64,8 @@ public class AnalyzerBenchmarks {
 		for (String fileName : fileNames) {
 			String artifactId = fileName.substring(0, fileName.lastIndexOf('-'));
 			String version = fileName.substring(fileName.lastIndexOf('-') + 1, fileName.lastIndexOf('.'));
-			String filePath = "./src/test/resources/repository/org/springframework/" + artifactId + "/" + version + "/" + fileName;
+			// TODO: use resources instead of file access!
+			String filePath = "./src/integrationTest/resources/repository/org/springframework/" + artifactId + "/" + version + "/" + fileName;
 			files.add(new File(filePath));
 		}
 
