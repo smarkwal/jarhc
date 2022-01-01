@@ -40,8 +40,24 @@ jobs:
       with:
         arguments: 'build ${{ github.event.inputs.additionalGradleOptions }}'
 
-    - name: Upload artifacts
+    - name: Upload reports
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: reports
+        path: build/reports
+        retention-days: 7
+
+    - name: Upload libs
       uses: actions/upload-artifact@v2
       with:
-        name: Artifacts
+        name: libs
         path: build/libs
+        retention-days: 14
+
+    - name: Upload docs
+      uses: actions/upload-artifact@v2
+      with:
+        name: docs
+        path: build/docs
+        retention-days: 7
