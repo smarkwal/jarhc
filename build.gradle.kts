@@ -77,6 +77,16 @@ val jacocoTestReportXml: String = "${jacocoTestReportDir}/report.xml"
 val jacocoIntegrationTestReportDir: String = "${buildDir}/reports/jacoco/integrationTest"
 val jacocoIntegrationTestReportXml: String = "${jacocoIntegrationTestReportDir}/report.xml"
 
+// additional source sets and configurations -----------------------------------
+
+sourceSets {
+    create("releaseTest") {
+    }
+}
+
+val releaseTestImplementation: Configuration by configurations.getting {
+}
+
 // dependencies ----------------------------------------------------------------
 
 repositories {
@@ -111,6 +121,19 @@ dependencies {
     testImplementation("org.mockito:mockito-core:4.2.0")
     testImplementation("org.openjdk.jmh:jmh-core:1.34")
     testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+
+    // release test dependencies
+    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
+    releaseTestImplementation("org.assertj:assertj-core:3.21.0")
+    // TODO: releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    releaseTestImplementation("org.testcontainers:testcontainers:1.16.2") {
+        exclude(group = "junit", module = "junit")
+    }
+    releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.2")
+    // TODO: use releaseTestRuntimeOnly
+    releaseTestImplementation("org.slf4j:slf4j-api:1.7.32")
+    releaseTestImplementation("org.slf4j:slf4j-simple:1.7.32")
 
 }
 
@@ -266,6 +289,49 @@ tasks {
 
 }
 
+val jarWithDeps = task("jar-with-deps", type = Jar::class) {
+    group = "build"
+    description = "Assembles a fat/uber jar archive with all runtime dependencies."
+
+    // make sure that license report has been generated
+    dependsOn(tasks.generateLicenseReport)
+
+    // append classifier "-with-deps"
+    archiveClassifier.set("with-deps")
+
+    // set Main-Class in MANIFEST.MF
+    manifest {
+        attributes["Main-Class"] = mainClassName
+    }
+
+    // include all files from all runtime dependencies
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+
+    // include license report
+    from(licenseReportPath) {
+        into("META-INF/licenses")
+    }
+
+    exclude(
+
+        // exclude module-info files
+        "module-info.class",
+
+        // exclude license files
+        "META-INF/LICENSE", "META-INF/LICENSE.txt",
+        "META-INF/NOTICE", "META-INF/NOTICE.txt",
+        "META-INF/DEPENDENCIES",
+
+        // exclude signature files
+        "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
+    )
+
+    // exclude duplicates
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // alternative: WARN
+
+    with(tasks.jar.get() as CopySpec)
+}
+
 val testJar = task("testJar", type = Jar::class) {
     group = "build"
     description = "Assembles a jar archive containing the test classes."
@@ -319,6 +385,18 @@ val integrationTest = task("integrationTest", type = Test::class) {
 
     // run integration tests after unit tests
     mustRunAfter(tasks.test)
+}
+
+val releaseTest = task("releaseTest", type = Test::class) {
+    group = "verification"
+    description = "Runs the release test suite."
+
+    // use tests in releaseTest source set
+    testClassesDirs = sourceSets["releaseTest"].output.classesDirs
+    classpath = sourceSets["releaseTest"].runtimeClasspath
+
+    // run release tests after fat/uber JAR has been built
+    dependsOn(jarWithDeps)
 }
 
 // common settings for all test tasks
@@ -387,49 +465,6 @@ val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {
     classpath = tasks.test.get().classpath
     mainClass.set("org.openjdk.jmh.Main")
     args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
-}
-
-val jarWithDeps = task("jar-with-deps", type = Jar::class) {
-    group = "build"
-    description = "Assembles a fat/uber jar archive with all runtime dependencies."
-
-    // make sure that license report has been generated
-    dependsOn(tasks.generateLicenseReport)
-
-    // append classifier "-with-deps"
-    archiveClassifier.set("with-deps")
-
-    // set Main-Class in MANIFEST.MF
-    manifest {
-        attributes["Main-Class"] = mainClassName
-    }
-
-    // include all files from all runtime dependencies
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-
-    // include license report
-    from(licenseReportPath) {
-        into("META-INF/licenses")
-    }
-
-    exclude(
-
-        // exclude module-info files
-        "module-info.class",
-
-        // exclude license files
-        "META-INF/LICENSE", "META-INF/LICENSE.txt",
-        "META-INF/NOTICE", "META-INF/NOTICE.txt",
-        "META-INF/DEPENDENCIES",
-
-        // exclude signature files
-        "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
-    )
-
-    // exclude duplicates
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE // alternative: WARN
-
-    with(tasks.jar.get() as CopySpec)
 }
 
 tasks.withType<JavaCompile> {
