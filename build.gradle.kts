@@ -186,9 +186,7 @@ dependencies {
     releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
     releaseTestImplementation("org.assertj:assertj-core:3.21.0")
     releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    releaseTestImplementation("org.testcontainers:testcontainers:1.16.2") {
-        exclude(group = "junit", module = "junit")
-    }
+    releaseTestImplementation("org.testcontainers:testcontainers:1.16.2")
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.2")
     releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.32")
     releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.32")
