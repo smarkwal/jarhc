@@ -16,17 +16,23 @@
 
 package org.jarhc.test;
 
+import java.io.IOException;
+
 /**
  * This exception is thrown by a JarHC test if it detects a problem with test
- * data.
+ * data or a test resource.
  */
-public class TestDataError extends AssertionError {
+public class TestDataException extends RuntimeException {
 
-	public TestDataError(Object message) {
+	public TestDataException(String message) {
 		super(message);
 	}
 
-	public TestDataError(String message, Throwable cause) {
+	public TestDataException(IOException cause) {
+		super("Test data I/O error.", cause);
+	}
+
+	public TestDataException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

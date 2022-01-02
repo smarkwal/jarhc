@@ -23,7 +23,7 @@ import java.util.Properties;
 import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.ArtifactFinder;
-import org.jarhc.test.TestDataError;
+import org.jarhc.test.TestDataException;
 
 /**
  * Mock implementation of an {@link ArtifactFinder} based on checksums and
@@ -47,7 +47,7 @@ public class ArtifactFinderMock implements ArtifactFinder {
 		try (InputStream stream = TestUtils.getResourceAsStream("/checksums.txt")) {
 			properties.load(stream);
 		} catch (IOException e) {
-			throw new TestDataError("Test data I/O error.", e);
+			throw new TestDataException(e);
 		}
 	}
 
@@ -55,7 +55,8 @@ public class ArtifactFinderMock implements ArtifactFinder {
 	public Optional<Artifact> findArtifact(String checksum) {
 		String coordinates = properties.getProperty(checksum);
 		if (coordinates == null) {
-			throw new TestDataError("Checksum not found in test data: " + checksum);
+			String message = String.format("Checksum not found in test data: %s", checksum);
+			throw new TestDataException(message);
 		}
 		if (coordinates.isEmpty()) {
 			return Optional.empty();
