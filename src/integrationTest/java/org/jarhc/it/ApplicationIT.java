@@ -25,7 +25,9 @@ import java.nio.file.Path;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
+import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
+import org.jarhc.it.utils.ArtifactFinderMock;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.TextUtils;
@@ -48,7 +50,8 @@ class ApplicationIT {
 		application.setOut(out);
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
 		Logger mavenRepositoryLogger = LoggerBuilder.collect(MavenRepository.class);
-		MavenRepository repository = new MavenRepository(tempDir.toString(), mavenRepositoryLogger);
+		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
+		MavenRepository repository = new MavenRepository(tempDir.toString(), artifactFinder, mavenRepositoryLogger);
 		application.setRepository(repository);
 
 		Options options = new Options();

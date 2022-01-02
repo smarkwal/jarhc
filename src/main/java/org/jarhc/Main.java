@@ -21,6 +21,8 @@ import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Options;
+import org.jarhc.artifacts.ArtifactFinder;
+import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
 import org.slf4j.Logger;
@@ -85,8 +87,11 @@ public class Main {
 			}
 		}
 
-		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
-		return new MavenRepository(dataPath, logger);
+		Logger mavenArtifactFinderLogger = LoggerFactory.getLogger(MavenArtifactFinder.class);
+		ArtifactFinder artifactFinder = new MavenArtifactFinder(mavenArtifactFinderLogger);
+
+		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
+		return new MavenRepository(dataPath, artifactFinder, mavenRepositoryLogger);
 	}
 
 	private static String findDataPath(Options options) {

@@ -58,13 +58,13 @@ public class MavenRepository implements Repository {
 
 	private static final RemoteRepository central = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
 
-	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder();
-
+	private final ArtifactFinder artifactFinder;
 	private final Logger logger;
 	private final RepositorySystem repoSystem;
 	private final RepositorySystemSession session;
 
-	public MavenRepository(String dataPath, Logger logger) {
+	public MavenRepository(String dataPath, ArtifactFinder artifactFinder, Logger logger) {
+		this.artifactFinder = artifactFinder;
 		this.logger = logger;
 		this.repoSystem = newRepositorySystem();
 		this.session = newSession(repoSystem, dataPath);

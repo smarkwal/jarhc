@@ -29,22 +29,35 @@ import org.jarhc.utils.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
 
-public class MavenArtifactFinder {
+public class MavenArtifactFinder implements ArtifactFinder {
 
 	private static final String SEARCH_URL_FORMAT = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
+
+	private final Logger logger;
 
 	private final Map<String, Artifact> cache = new ConcurrentHashMap<>();
 
 	// TODO: configure timeout
 	private final int timeout = 10 * 1000;
 
+	public MavenArtifactFinder(Logger logger) {
+		this.logger = logger;
+	}
+
 	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 
 		// check cache
 		if (cache.containsKey(checksum)) {
 			Artifact artifact = cache.get(checksum);
+			logger.debug("Artifact found: {} -> {} (cached)", checksum, artifact.toCoordinates());
 			return Optional.of(artifact);
+		}
+
+		long time = 0;
+		if (logger.isDebugEnabled()) {
+			time = System.nanoTime();
 		}
 
 		validateChecksum(checksum);
@@ -78,6 +91,12 @@ public class MavenArtifactFinder {
 
 		int numFound = response.getInt("numFound");
 		if (numFound == 0) {
+			// TODO: cache negative result?
+
+			if (logger.isDebugEnabled()) {
+				time = System.nanoTime() - time;
+				logger.warn("Artifact not found: {} (time: {} ms)", checksum, time / 1000 / 1000);
+			}
 			return Optional.empty(); // artifact not found
 		}
 
@@ -98,6 +117,11 @@ public class MavenArtifactFinder {
 
 		Artifact artifact = new Artifact(groupId, artifactId, version, type);
 		cache.put(checksum, artifact);
+
+		if (logger.isDebugEnabled()) {
+			time = System.nanoTime() - time;
+			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifact.toCoordinates(), time / 1000 / 1000);
+		}
 		return Optional.of(artifact);
 	}
 
@@ -163,7 +187,7 @@ public class MavenArtifactFinder {
 
 	}
 
-	private static JSONObject findBestMatch(JSONArray docs) {
+	private JSONObject findBestMatch(JSONArray docs) {
 
 		JSONObject bestDoc = docs.getJSONObject(0);
 
@@ -173,17 +197,25 @@ public class MavenArtifactFinder {
 			// multiple matches:
 			// prefer shorter artifact coordinates
 
-			int bestLen = bestDoc.getString("id").length();
+			String bestId = bestDoc.getString("id");
+			int bestLen = bestId.length();
+
+			logger.debug("Multiple artifacts found: {}", num);
+			logger.debug("- {} (length = {})", bestId, bestLen);
 
 			for (int i = 1; i < num; i++) {
 				JSONObject doc = docs.getJSONObject(i);
 				String id = doc.getString("id");
 				int len = id.length();
+				logger.debug("- {} (length = {})", id, len);
 				if (len < bestLen) {
 					bestDoc = doc;
+					bestId = id;
 					bestLen = len;
 				}
 			}
+
+			logger.debug("Shortest: {} (length = {})", bestId, bestLen);
 		}
 
 		return bestDoc;

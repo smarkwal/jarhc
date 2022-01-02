@@ -16,6 +16,7 @@
 
 package org.jarhc.it;
 
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,11 +25,20 @@ import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.RepositoryException;
+import org.jarhc.test.log.LoggerBuilder;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
 
 class MavenArtifactFinderIT {
 
-	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder();
+	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);
+	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder(logger);
+
+	@AfterEach
+	void tearDown() {
+		assertLogger(logger).isEmpty();
+	}
 
 	@Test
 	void test_findArtifact_byChecksum_CommonsIO() throws RepositoryException {
@@ -43,6 +53,13 @@ class MavenArtifactFinderIT {
 		assertEquals("2.6", artifact.get().getVersion());
 		assertEquals("jar", artifact.get().getType());
 
+		assertLogger(logger)
+				.hasDebug("Multiple artifacts found: 2")
+				.hasDebug("- org.netbeans.external:org-apache-commons-io:RELEASE113 (length = 54)")
+				.hasDebug("- commons-io:commons-io:2.6 (length = 25)")
+				.hasDebug("Shortest: commons-io:commons-io:2.6 (length = 25)")
+				.hasDebug("Artifact found: 815893df5f31da2ece4040fe0a12fd44b577afaf -> commons-io:commons-io:2.6 (time: *")
+				.isEmpty();
 	}
 
 	@Test
@@ -58,10 +75,13 @@ class MavenArtifactFinderIT {
 		assertEquals("1.11", artifact.get().getVersion());
 		assertEquals("jar", artifact.get().getType());
 
+		assertLogger(logger)
+				.hasDebug("Artifact found: 093ee1760aba62d6896d578bd7d247d0fa52f0e7 -> commons-codec:commons-codec:1.11 (time: *")
+				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_ASM() throws RepositoryException {
+	void test_findArtifact_byChecksum_ASM_withCached() throws RepositoryException {
 
 		// test
 		Optional<Artifact> artifact = artifactFinder.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
@@ -73,6 +93,23 @@ class MavenArtifactFinderIT {
 		assertEquals("7.0", artifact.get().getVersion());
 		assertEquals("jar", artifact.get().getType());
 
+		assertLogger(logger)
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0 (time: *")
+				.isEmpty();
+
+		// test cache
+		artifact = artifactFinder.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+
+		// assert
+		assertTrue(artifact.isPresent());
+		assertEquals("org.ow2.asm", artifact.get().getGroupId());
+		assertEquals("asm", artifact.get().getArtifactId());
+		assertEquals("7.0", artifact.get().getVersion());
+		assertEquals("jar", artifact.get().getType());
+
+		assertLogger(logger)
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0 (cached)")
+				.isEmpty();
 	}
 
 	@Test
@@ -88,6 +125,9 @@ class MavenArtifactFinderIT {
 		assertEquals("9.4.20.v20190813", artifact.get().getVersion());
 		assertEquals("war", artifact.get().getType());
 
+		assertLogger(logger)
+				.hasDebug("Artifact found: 9d920ed18833e7275ba688d88242af4c3711fbea -> org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813 (time: *")
+				.isEmpty();
 	}
 
 	@Test
@@ -99,6 +139,9 @@ class MavenArtifactFinderIT {
 		// assert
 		assertFalse(artifact.isPresent());
 
+		assertLogger(logger)
+				.hasWarn("Artifact not found: 1234567890123456789012345678901234567890 (time: *")
+				.isEmpty();
 	}
 
 }

@@ -30,10 +30,12 @@ import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
+import org.jarhc.it.utils.ArtifactFinderMock;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -72,7 +74,8 @@ abstract class AbstractIT {
 		Options options = new Options();
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
-		MavenRepository repository = new MavenRepository(tempDir.toString(), logger); // TODO: use a 100% local Maven repo
+		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
+		MavenRepository repository = new MavenRepository(tempDir.toString(), artifactFinder, logger); // TODO: use a 100% local Maven repo
 
 		// prepare an injector
 		Injector injector = new Injector();

@@ -48,7 +48,7 @@ class MavenRepositoryIT {
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		repository = new MavenRepository(tempDir.toString(), logger);
+		repository = new MavenRepository(tempDir.toString(), null, logger);
 	}
 
 	@AfterEach
