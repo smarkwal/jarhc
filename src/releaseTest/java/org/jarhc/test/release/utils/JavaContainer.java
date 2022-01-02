@@ -17,6 +17,7 @@
 package org.jarhc.test.release.utils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
@@ -29,7 +30,7 @@ public class JavaContainer<SELF extends JavaContainer<SELF>> extends GenericCont
 	public ExecResult execJava(String... arguments) {
 		String[] command = CommandBuilder.createJavaCommand(arguments);
 		try {
-			return execInContainer(command);
+			return execInContainer(StandardCharsets.UTF_8, command);
 		} catch (IOException e) {
 			throw new AssertionError("Unexpected I/O error.", e);
 		} catch (InterruptedException e) {

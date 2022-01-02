@@ -17,6 +17,7 @@
 package org.jarhc.test.release.utils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class JarHcContainer extends JavaContainer<JarHcContainer> {
 
@@ -27,7 +28,7 @@ public class JarHcContainer extends JavaContainer<JarHcContainer> {
 	public ExecResult execJarHc(String... arguments) {
 		String[] command = CommandBuilder.createJarHcCommand(arguments);
 		try {
-			return execInContainer(command);
+			return execInContainer(StandardCharsets.UTF_8, command);
 		} catch (IOException e) {
 			throw new AssertionError("Unexpected I/O error.", e);
 		} catch (InterruptedException e) {
