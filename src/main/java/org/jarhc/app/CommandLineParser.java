@@ -348,7 +348,7 @@ public class CommandLineParser {
 		List<String> codes = registry.getCodes();
 		for (String code : codes) {
 			AnalyzerDescription description = registry.getDescription(code);
-			out.println(String.format("   %-2s - %s", code, description.getName()));
+			out.printf("   %-2s - %s%n", code, description.getName());
 		}
 
 	}
