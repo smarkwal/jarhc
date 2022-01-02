@@ -204,9 +204,28 @@ idea {
     project {
         jdkName = "11"
         languageLevel = IdeaLanguageLevel(JavaVersion.VERSION_1_8)
+        vcs = "Git"
     }
 
     module {
+        sourceDirs = mutableSetOf(
+            file("src/main/java")
+        )
+        resourceDirs = mutableSetOf(
+            file("src/main/resources")
+        )
+        testSourceDirs = mutableSetOf(
+            file("src/test/java"),
+            file("src/unitTest/java"),
+            file("src/integrationTest/java"),
+            file("src/releaseTest/java")
+        )
+        testResourceDirs = mutableSetOf(
+            file("src/test/resources"),
+            file("src/unitTest/resources"),
+            file("src/integrationTest/resources"),
+            file("src/releaseTest/resources")
+        )
         isDownloadJavadoc = true
         isDownloadSources = true
     }
