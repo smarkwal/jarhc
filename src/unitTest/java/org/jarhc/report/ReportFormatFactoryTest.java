@@ -30,6 +30,7 @@ import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
+import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -81,7 +82,7 @@ class ReportFormatFactoryTest {
 
 		// test and assert
 		assertThrows(
-				IllegalArgumentException.class,
+				JarHcException.class,
 				() -> factory.getReportFormat(""),
 				"Unknown report format: ''."
 		);
@@ -96,7 +97,7 @@ class ReportFormatFactoryTest {
 
 		// test and assert
 		assertThrows(
-				IllegalArgumentException.class,
+				JarHcException.class,
 				() -> factory.getReportFormat("pdf"),
 				"Unknown report format: 'pdf'."
 		);

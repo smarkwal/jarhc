@@ -29,6 +29,7 @@ import java.util.Collection;
 import java.util.List;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
+import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
@@ -102,10 +103,10 @@ class AnalyzerRegistryTest {
 	}
 
 	@Test
-	void test_createAnalyzer_throwsIllegalArgumentException_forUnknownCode() {
+	void test_createAnalyzer_throwsJarHcException_forUnknownCode() {
 
 		// test and assert
-		assertThrows(IllegalArgumentException.class, () -> registry.createAnalyzer("ukn"));
+		assertThrows(JarHcException.class, () -> registry.createAnalyzer("ukn"));
 
 	}
 

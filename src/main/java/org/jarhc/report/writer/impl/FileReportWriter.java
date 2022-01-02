@@ -23,6 +23,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.JarHcException;
 
 /**
  * A report writer writing to a file on the local disk.
@@ -48,7 +49,7 @@ public class FileReportWriter implements ReportWriter {
 			writer.append(text);
 		} catch (IOException e) {
 			// TODO: use a ReportWriterException?
-			throw new RuntimeException(e);
+			throw new JarHcException(e);
 		}
 	}
 

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
+import org.jarhc.utils.JarHcException;
 
 /**
  * Registry for analyzers.
@@ -62,7 +63,7 @@ public class AnalyzerRegistry {
 		// try to find analyzer description
 		AnalyzerDescription description = getDescription(code);
 		if (description == null) {
-			throw new IllegalArgumentException("Analyzer not found: " + code);
+			throw new JarHcException("Analyzer not found: " + code);
 		}
 
 		// get analyzer implementation class
@@ -73,7 +74,7 @@ public class AnalyzerRegistry {
 		try {
 			return injector.createInstance(analyzerClass);
 		} catch (InjectorException e) {
-			throw new RuntimeException("Unable to create analyzer: " + code, e);
+			throw new JarHcException("Unable to create analyzer: " + code, e);
 		}
 
 	}

@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -73,7 +74,7 @@ class FileReportWriterTest {
 
 		// assert
 		assertNotNull(exception);
-		assertSame(exception.getClass(), RuntimeException.class);
+		assertSame(exception.getClass(), JarHcException.class);
 		Throwable cause = exception.getCause();
 		assertNotNull(cause);
 		assertSame(cause.getClass(), FileNotFoundException.class);

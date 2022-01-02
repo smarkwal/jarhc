@@ -23,6 +23,7 @@ import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
+import org.jarhc.utils.JarHcException;
 
 /**
  * Factory for creating a {@link ReportFormat} given the type of report.
@@ -67,14 +68,14 @@ public class ReportFormatFactory {
 		Class<? extends ReportFormat> reportFormatClass = reportFormatClasses.get(type);
 		if (reportFormatClass == null) {
 			String message = String.format("Unknown report format: '%s'", type);
-			throw new IllegalArgumentException(message);
+			throw new JarHcException(message);
 		}
 
 		// try to create instance of report format
 		try {
 			return injector.createInstance(reportFormatClass);
 		} catch (InjectorException e) {
-			throw new RuntimeException("Unable to create report format: " + type, e);
+			throw new JarHcException("Unable to create report format: " + type, e);
 		}
 
 	}

@@ -25,6 +25,7 @@ import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.utils.JarHcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +84,7 @@ public class Main {
 		if (!directory.isDirectory()) {
 			boolean created = directory.mkdirs();
 			if (!created) {
-				throw new IllegalArgumentException("Failed to create directory: " + directory.getAbsolutePath());
+				throw new JarHcException("Failed to create directory: " + directory.getAbsolutePath());
 			}
 		}
 
@@ -121,12 +122,12 @@ public class Main {
 
 		String userHome = System.getProperty("user.home");
 		if (userHome == null) {
-			throw new IllegalArgumentException("User home not defined.");
+			throw new JarHcException("User home not defined.");
 		}
 
 		File directory = new File(userHome);
 		if (!directory.isDirectory()) {
-			throw new IllegalArgumentException("User home not found: " + directory.getAbsolutePath());
+			throw new JarHcException("User home not found: " + directory.getAbsolutePath());
 		}
 
 		directory = new File(directory, ".jarhc");

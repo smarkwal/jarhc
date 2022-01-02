@@ -33,6 +33,7 @@ import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.utils.ArrayUtils;
 import org.jarhc.utils.FileUtils;
+import org.jarhc.utils.JarHcException;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.VersionUtils;
 
@@ -337,7 +338,7 @@ public class CommandLineParser {
 		try {
 			usage = ResourceUtils.getResourceAsString("/usage.txt", "UTF-8");
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new JarHcException(e);
 		}
 
 		// print usage text
