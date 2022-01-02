@@ -16,12 +16,16 @@
 
 package org.jarhc.test;
 
+import static org.jarhc.utils.JavaUtils.getPackageName;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,7 +43,7 @@ import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
-import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.FileUtils;
 
 public class JavaRuntimeMock extends JavaRuntime {
 
@@ -60,6 +64,8 @@ public class JavaRuntimeMock extends JavaRuntime {
 
 	private final Set<String> packageNames = new HashSet<>();
 
+	private final Set<String> excludedClassNames = new HashSet<>();
+
 	/**
 	 * Create a fake Java runtime using the class names loaded from the given resource.
 	 *
@@ -69,18 +75,27 @@ public class JavaRuntimeMock extends JavaRuntime {
 
 		// open test resource for reading
 		try (InputStream is = TestUtils.getResourceAsStream(resource)) {
-			if (is == null) throw new RuntimeException("Resource not found: " + resource);
+			DataInputStream dis = new DataInputStream(new GZIPInputStream(is));
 
 			// read compressed class definitions
-			DataInputStream dis = new DataInputStream(new GZIPInputStream(is));
 			int numClassDefs = dis.readInt();
 			for (int c = 0; c < numClassDefs; c++) {
 				ClassDef classDef = ClassDefUtils.read(dis);
 				String className = classDef.getClassName();
 				classDefs.put(className, classDef);
-				String packageName = JavaUtils.getPackageName(className);
+				String packageName = getPackageName(className);
 				packageNames.add(packageName);
 			}
+
+			// read excluded class names
+			int numExcludedClassNames = dis.readInt();
+			for (int i = 0; i < numExcludedClassNames; i++) {
+				String className = dis.readUTF();
+				excludedClassNames.add(className);
+				String packageName = getPackageName(className);
+				packageNames.add(packageName);
+			}
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -118,6 +133,13 @@ public class JavaRuntimeMock extends JavaRuntime {
 
 	@Override
 	protected Optional<ClassDef> findClassDef(String className) {
+
+		// check if class has been excluded during resource generation
+		if (excludedClassNames.contains(className)) {
+			String message = String.format("Runtime class has been excluded: %s", className);
+			throw new AssertionError(message);
+		}
+
 		ClassDef classDef = classDefs.get(className);
 		return Optional.ofNullable(classDef);
 	}
@@ -142,22 +164,54 @@ public class JavaRuntimeMock extends JavaRuntime {
 		JarFile jarFile = classpath.getJarFiles().get(0);
 		List<ClassDef> classDefs = jarFile.getClassDefs();
 
+		// list of packages which will be added to resource file
+		List<String> includedPackageNames = Arrays.asList(
+				"com.sun.net.httpserver", "com.sun.xml.internal.ws.addressing",
+				"java.applet", "java.awt", "java.beans", "java.io", "java.lang", "java.math", "java.net", "java.nio", "java.rmi", "java.security", "java.sql", "java.text", "java.time", "java.util",
+				"javax.activation", "javax.annotation", "javax.imageio", "javax.jws", "javax.management", "javax.naming", "javax.net", "javax.script", "javax.security.auth", "javax.sql", "javax.transaction", "javax.xml",
+				"org.w3c.dom", "org.xml.sax",
+				"sun.misc"
+		);
+
+		// split into included classes (class defs) and excluded classes (names)
+		List<ClassDef> includedClassDefs = new ArrayList<>();
+		List<String> excludedClassNames = new ArrayList<>();
+		for (ClassDef classDef : classDefs) {
+			String className = classDef.getClassName();
+			boolean include = includedPackageNames.stream().anyMatch(p -> className.startsWith(p + "."));
+			if (include) {
+				includedClassDefs.add(classDef);
+			} else {
+				excludedClassNames.add(className);
+			}
+		}
+
 		// open compressed output stream to test resource file
 		String resourcePath = "./src/test/resources/classes-oracle-jdk-1.8.0_144.dat.gz";
-		try (FileOutputStream fos = new FileOutputStream(new File(resourcePath))) {
+		File resourceFile = new File(resourcePath);
+		try (FileOutputStream fos = new FileOutputStream(resourceFile)) {
 			try (GZIPOutputStream zos = new GZIPOutputStream(fos)) {
 				try (DataOutputStream dos = new DataOutputStream(zos)) {
-
-					// write all class definitions
-					dos.writeInt(classDefs.size());
-					for (ClassDef classDef : classDefs) {
+					// write list of included class definitions
+					dos.writeInt(includedClassDefs.size());
+					for (ClassDef classDef : includedClassDefs) {
 						ClassDefUtils.write(classDef, dos);
 					}
-
+					// write list of excluded class names
+					dos.writeInt(excludedClassNames.size());
+					for (String className : excludedClassNames) {
+						dos.writeUTF(className);
+					}
 				}
 			}
 		}
 
+		System.out.println("Runtime file       : " + rtFile.getAbsolutePath());
+		System.out.println("Total classes found: " + classDefs.size());
+		System.out.println("Included classes   : " + includedClassDefs.size());
+		System.out.println("Excluded classes   : " + excludedClassNames.size());
+		System.out.println("Resource file      : " + resourceFile.getAbsolutePath());
+		System.out.println("Final file size    : " + FileUtils.formatFileSize(resourceFile.length()));
 	}
 
 }
