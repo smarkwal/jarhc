@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
+import org.assertj.core.api.Assertions;
 import org.jarhc.test.release.utils.JarHcContainer;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
@@ -53,6 +54,9 @@ class JarHcTest extends ReleaseTest {
 			tests.add(DynamicTest.dynamicTest("JarHC Help", () -> runInContainer(javaImageName, this::jarhcHelp)));
 			tests.add(DynamicTest.dynamicTest("JarHC for ASM", () -> runInContainer(javaImageName, this::jarhcASM)));
 
+			// TODO: #74 enable after support for Java 17 has been fixed
+			// tests.add(DynamicTest.dynamicTest("JarHC for JarHC", () -> runInContainer(javaImageName, this::jarhcJarHC)));
+
 			// add all tests to a test container for grouping
 			containers.add(DynamicContainer.dynamicContainer(javaImageName, tests));
 		}
@@ -78,23 +82,22 @@ class JarHcTest extends ReleaseTest {
 
 		// assert
 		// TODO: check actual Java version
-		assertThat(result)
-				.hasExitCode(0)
-				.hasNoStdout()
-				.hasStderr(s -> s.contains("Temurin"));
+		Assertions.assertThat(result.getExitCode()).isEqualTo(0);
+		Assertions.assertThat(result.getStdout()).isEmpty();
+		Assertions.assertThat(result.getStderr()).contains("Temurin");
 
 	}
 
 	private void jarhcVersion(JarHcContainer container) {
 
+		// prepare
+		String output = String.format("JarHC - JAR Health Check %s\n", getJarHcVersion());
+
 		// test
 		ExecResult result = container.execJarHc("--version");
 
 		// assert
-		assertThat(result)
-				.hasExitCode(0)
-				.hasNoStderr()
-				.hasStdout("JarHC - JAR Health Check %s\n", getJarHcVersion());
+		assertThat(result).isEqualTo(0, output, "");
 
 	}
 
@@ -107,10 +110,9 @@ class JarHcTest extends ReleaseTest {
 		ExecResult result = container.execJarHc("--help");
 
 		// assert
-		assertThat(result)
-				.hasExitCode(0)
-				.hasNoStderr()
-				.hasStdout(s -> s.startsWith(output));
+		Assertions.assertThat(result.getExitCode()).isEqualTo(0);
+		Assertions.assertThat(result.getStdout()).startsWith(output);
+		Assertions.assertThat(result.getStderr()).isEmpty();
 
 	}
 
@@ -123,10 +125,20 @@ class JarHcTest extends ReleaseTest {
 		ExecResult result = container.execJarHc("-s", "-jr", "org.ow2.asm:asm:9.2");
 
 		// assert
-		assertThat(result)
-				.hasExitCode(0)
-				.hasNoStderr()
-				.hasStdout(output);
+		assertThat(result).isEqualTo(0, output, "");
+
+	}
+
+	private void jarhcJarHC(JarHcContainer container) {
+
+		// prepare
+		String output = readResource("jarhc.txt");
+
+		// test
+		ExecResult result = container.execJarHc("-s", "-jr", "jarhc.jar");
+
+		// assert
+		assertThat(result).isEqualTo(0, output, "");
 
 	}
 

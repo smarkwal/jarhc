@@ -16,14 +16,14 @@
 
 package org.jarhc.test.release.utils;
 
-import java.util.function.Consumer;
+import java.util.Arrays;
+import java.util.List;
 import org.assertj.core.api.AbstractAssert;
-import org.assertj.core.api.AbstractIntegerAssert;
-import org.assertj.core.api.AbstractStringAssert;
-import org.assertj.core.api.Assertions;
+import org.assertj.core.util.diff.Delta;
+import org.assertj.core.util.diff.DiffUtils;
+import org.assertj.core.util.diff.Patch;
 import org.testcontainers.containers.Container.ExecResult;
 
-@SuppressWarnings({ "unused", "UnusedReturnValue" })
 public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResult> {
 
 	ExecResultAssert(ExecResult execResult) {
@@ -34,67 +34,59 @@ public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResul
 		return new ExecResultAssert(actual);
 	}
 
-	// exit code ---------------------------------------------------------------
+	public void isEqualTo(int expectedExitCode, String expectedStdout, String expectedStderr) {
 
-	public ExecResultAssert hasExitCode(int exitCode) {
-		assertExitCode().isEqualTo(exitCode);
-		return this;
+		int actualExitCode = actual.getExitCode();
+		String actualStdout = actual.getStdout();
+		String actualStderr = actual.getStderr();
+
+		// replace signatures
+		expectedStdout = replaceSignatures(expectedStdout);
+		expectedStderr = replaceSignatures(expectedStderr);
+		actualStdout = replaceSignatures(actualStdout);
+		actualStderr = replaceSignatures(actualStderr);
+
+		StringBuilder buffer = new StringBuilder();
+		if (actualExitCode != expectedExitCode) {
+			buffer.append("----------------------------------------------------------------------------------------------------------\n");
+			buffer.append("Exit code:\n");
+			buffer.append("expecting: ").append(expectedExitCode).append("\n");
+			buffer.append("but was  : ").append(actualExitCode).append("\n");
+		}
+		if (!actualStdout.equals(expectedStdout)) {
+			buffer.append("----------------------------------------------------------------------------------------------------------\n");
+			buffer.append("STDOUT:\n");
+			appendDiff(buffer, expectedStdout, actualStdout);
+		}
+		if (!actualStderr.equals(expectedStderr)) {
+			buffer.append("----------------------------------------------------------------------------------------------------------\n");
+			buffer.append("STDERR:\n");
+			appendDiff(buffer, expectedStderr, actualStderr);
+		}
+		if (buffer.length() > 0) {
+			buffer.append("----------------------------------------------------------------------------------------------------------\n");
+			throw new AssertionError("ExecResult mismatch.\n" + buffer);
+		}
 	}
 
-	private AbstractIntegerAssert<?> assertExitCode() {
-		return Assertions.assertThat(actual.getExitCode()).as("exit code");
+	// private helper methods --------------------------------------------------
+
+	private String replaceSignatures(String expectedStdout) {
+		return expectedStdout.replaceAll("\\| [0-9a-f]{40} \\|", "| 0000000000000000000000000000000000000000 |");
 	}
 
-	// STDOUT ------------------------------------------------------------------
-
-	public ExecResultAssert hasNoStdout() {
-		assertStdout().isEmpty();
-		return this;
+	private static void appendDiff(StringBuilder buffer, String expected, String actual) {
+		List<String> lines1 = splitLines(expected);
+		List<String> lines2 = splitLines(actual);
+		Patch<String> patch = DiffUtils.diff(lines1, lines2);
+		for (Delta<String> delta : patch.getDeltas()) {
+			buffer.append(delta).append("\n");
+		}
 	}
 
-	public ExecResultAssert hasStdout(String stdout) {
-		assertStdout().isEqualTo(stdout);
-		return this;
-	}
-
-	public ExecResultAssert hasStdout(String format, Object... args) {
-		assertStdout().isEqualTo(format, args);
-		return this;
-	}
-
-	public ExecResultAssert hasStdout(Consumer<AbstractStringAssert<?>> consumer) {
-		consumer.accept(assertStdout());
-		return this;
-	}
-
-	private AbstractStringAssert<?> assertStdout() {
-		return Assertions.assertThat(actual.getStdout()).as("STDOUT");
-	}
-
-	// STDERR ------------------------------------------------------------------
-
-	public ExecResultAssert hasNoStderr() {
-		assertStderr().isEmpty();
-		return this;
-	}
-
-	public ExecResultAssert hasStderr(String stderr) {
-		assertStderr().isEqualTo(stderr);
-		return this;
-	}
-
-	public ExecResultAssert hasStderr(String format, Object... args) {
-		assertStderr().isEqualTo(format, args);
-		return this;
-	}
-
-	public ExecResultAssert hasStderr(Consumer<AbstractStringAssert<?>> consumer) {
-		consumer.accept(assertStderr());
-		return this;
-	}
-
-	private AbstractStringAssert<?> assertStderr() {
-		return Assertions.assertThat(actual.getStderr()).as("STDERR");
+	private static List<String> splitLines(String text) {
+		String[] lines = text.split("\\r?\\n");
+		return Arrays.asList(lines);
 	}
 
 }
