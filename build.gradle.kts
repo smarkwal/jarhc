@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022 Stephan Markwalder
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import com.github.jk1.license.render.CsvReportRenderer
 import com.github.jk1.license.render.InventoryHtmlReportRenderer
 import com.github.jk1.license.render.InventoryMarkdownReportRenderer
@@ -566,6 +582,27 @@ tasks.withType<Test> {
         showStackTraces = true
     }
 
+}
+
+val jarhcTest = task("jarhcTest", type = Exec::class) {
+    group = "verification"
+    description = "Run JarHC on JarHC."
+
+    // properties
+    isIgnoreExitValue = true
+
+    // command
+    commandLine(
+        "docker", "run",
+        "--rm",
+        "-v", "$buildDir/libs/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar",
+        "-w", "/jarhc",
+        "eclipse-temurin:8-jre",
+        "java", "-jar", "jarhc.jar", "jarhc.jar"
+    )
+
+    // run test after fat/uber JAR has been built
+    dependsOn(jarWithDeps)
 }
 
 val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {
