@@ -3,6 +3,7 @@
 <head>
 <title>ASM 7.0</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="generator" content="JarHC 1.6-SNAPSHOT" />
 <style>
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -25,6 +26,13 @@ th, td {
 	text-align: left;
 	white-space: nowrap;
 }
+
+.generator {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: gray;
+}
 </style>
 </head>
 <body>
@@ -34,6 +42,7 @@ th, td {
 <h3>Table of Contents</h3>
 <ul>
 <li><a href="#JARFiles">JAR Files</a></li>
+<li><a href="#Modules">Modules</a></li>
 <li><a href="#ClassVersions">Class Versions</a></li>
 <li><a href="#JARDependencies">JAR Dependencies</a></li>
 <li><a href="#Dependencies">Dependencies</a></li>
@@ -54,6 +63,18 @@ th, td {
 	<tr><td>asm-commons-7.0.jar</td><td>78.0 KB</td><td>32</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm.commons)</td><td>478006d07b7c561ae3a92ddc1829bca81ae0cdd1</td><td>org.ow2.asm:asm-commons:7.0</td></tr>
 	<tr><td>asm-tree-7.0.jar</td><td>49.2 KB</td><td>37</td><td>0</td><td>No</td><td>Yes (org.objectweb.asm.tree)</td><td>29bc62dcb85573af6e62e5b2d735ef65966c4180</td><td>org.ow2.asm:asm-tree:7.0</td></tr>
 	<tr><td>Classpath</td><td>271 KB</td><td>118</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</section>
+
+<section id="Modules">
+<h2>Modules</h2>
+<p>List of Java Modules found in classpath.</p>
+<table>
+	<tr><th>JAR file</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
+	<tr><td>asm-7.0.jar</td><td>org.objectweb.asm</td><td>Module-Info</td><td>No</td><td>java.base</td><td>org.objectweb.asm<br>org.objectweb.asm.signature</td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>org.objectweb.asm.tree.analysis</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm.tree<br>java.base</td><td>org.objectweb.asm.tree.analysis</td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>org.objectweb.asm.commons</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm<br>org.objectweb.asm.tree<br>org.objectweb.asm.tree.analysis<br>java.base</td><td>org.objectweb.asm.commons</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>org.objectweb.asm.tree</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm<br>java.base</td><td>org.objectweb.asm.tree</td></tr>
 </table>
 </section>
 
@@ -82,22 +103,17 @@ th, td {
 </table>
 </section>
 
-	<section id="Dependencies">
-		<h2>Dependencies</h2>
-		<p>Dependencies as declared in POM file.</p>
-		<table>
-			<tr>
-				<th>JAR file</th>
-				<th>Maven coordinates</th>
-				<th>Direct dependencies</th>
-				<th>Status</th>
-			</tr>
-			<tr><td>asm-7.0.jar</td><td>org.ow2.asm:asm:7.0</td><td>[none]</td><td></td></tr>
-			<tr><td>asm-analysis-7.0.jar</td><td>org.ow2.asm:asm-analysis:7.0</td><td>org.ow2.asm:asm-tree:7.0</td><td>OK</td></tr>
-			<tr><td>asm-commons-7.0.jar</td><td>org.ow2.asm:asm-commons:7.0</td><td>org.ow2.asm:asm:7.0<br>org.ow2.asm:asm-tree:7.0<br>org.ow2.asm:asm-analysis:7.0</td><td>OK<br>OK<br>OK</td></tr>
-			<tr><td>asm-tree-7.0.jar</td><td>org.ow2.asm:asm-tree:7.0</td><td>org.ow2.asm:asm:7.0</td><td>OK</td></tr>
-		</table>
-	</section>
+<section id="Dependencies">
+<h2>Dependencies</h2>
+<p>Dependencies as declared in POM file.</p>
+<table>
+	<tr><th>JAR file</th><th>Maven coordinates</th><th>Direct dependencies</th><th>Status</th></tr>
+	<tr><td>asm-7.0.jar</td><td>org.ow2.asm:asm:7.0</td><td>[none]</td><td></td></tr>
+	<tr><td>asm-analysis-7.0.jar</td><td>org.ow2.asm:asm-analysis:7.0</td><td>org.ow2.asm:asm-tree:7.0</td><td>OK</td></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>org.ow2.asm:asm-commons:7.0</td><td>org.ow2.asm:asm:7.0<br>org.ow2.asm:asm-tree:7.0<br>org.ow2.asm:asm-analysis:7.0</td><td>OK<br>OK<br>OK</td></tr>
+	<tr><td>asm-tree-7.0.jar</td><td>org.ow2.asm:asm-tree:7.0</td><td>org.ow2.asm:asm:7.0</td><td>OK</td></tr>
+</table>
+</section>
 
 <section id="Packages">
 <h2>Packages</h2>
@@ -143,5 +159,6 @@ th, td {
 <p>Java home    : /Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre<br>Java runtime : Java(TM) SE Runtime Environment<br>Java version : 1.8.0_211<br>Java vendor  : Oracle Corporation</p>
 </section>
 
+<div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 1.6-SNAPSHOT</a></div>
 </body>
 </html>

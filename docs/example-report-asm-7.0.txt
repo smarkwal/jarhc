@@ -13,6 +13,23 @@ asm-commons-7.0.jar  | 78.0 KB | 32      | 0         | No            | Yes (org.
 asm-tree-7.0.jar     | 49.2 KB | 37      | 0         | No            | Yes (org.objectweb.asm.tree)          | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
 Classpath            | 271 KB  | 118     | 0         | -             | -                                     | -                                        | -
 
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file             | Module name                     | Definition  | Automatic | Requires                        | Exports
+---------------------+---------------------------------+-------------+-----------+---------------------------------+--------------------------------
+asm-7.0.jar          | org.objectweb.asm               | Module-Info | No        | java.base                       | org.objectweb.asm
+                     |                                 |             |           |                                 | org.objectweb.asm.signature
+asm-analysis-7.0.jar | org.objectweb.asm.tree.analysis | Module-Info | No        | org.objectweb.asm.tree          | org.objectweb.asm.tree.analysis
+                     |                                 |             |           | java.base                       |
+asm-commons-7.0.jar  | org.objectweb.asm.commons       | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.commons
+                     |                                 |             |           | org.objectweb.asm.tree          |
+                     |                                 |             |           | org.objectweb.asm.tree.analysis |
+                     |                                 |             |           | java.base                       |
+asm-tree-7.0.jar     | org.objectweb.asm.tree          | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.tree
+                     |                                 |             |           | java.base                       |
+
 Class Versions
 --------------
 Java class file format information.

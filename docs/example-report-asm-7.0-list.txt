@@ -85,6 +85,64 @@ JAR file: Classpath
 	Artifact coordinates:
 		-
 
+Modules
+-------
+List of Java Modules found in classpath.
+
+JAR file: asm-7.0.jar
+	Module name:
+		org.objectweb.asm
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		java.base
+	Exports:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+
+JAR file: asm-analysis-7.0.jar
+	Module name:
+		org.objectweb.asm.tree.analysis
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm.tree
+		java.base
+	Exports:
+		org.objectweb.asm.tree.analysis
+
+JAR file: asm-commons-7.0.jar
+	Module name:
+		org.objectweb.asm.commons
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		org.objectweb.asm.tree
+		org.objectweb.asm.tree.analysis
+		java.base
+	Exports:
+		org.objectweb.asm.commons
+
+JAR file: asm-tree-7.0.jar
+	Module name:
+		org.objectweb.asm.tree
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		java.base
+	Exports:
+		org.objectweb.asm.tree
+
 Class Versions
 --------------
 Java class file format information.
