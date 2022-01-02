@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # Copyright 2022 Stephan Markwalder
 #
@@ -14,6 +16,14 @@
 # limitations under the License.
 #
 
-# Disabling the startup checks
-# see https://www.testcontainers.org/features/configuration/#disabling-the-startup-checks
-checks.disable=true
+# compile and package b-1.jar
+javac --release 8 -d build/b-1 src/b-1.jar/b/*.java
+jar -c -f b-1.jar -C build/b-1 b
+
+# compile and package b-2.jar
+javac --release 8 -d build/b-2 src/b-2.jar/b/*.java
+jar -c -f b-2.jar -C build/b-2 b
+
+# compile and package a.jar (depending on b-1.jar)
+javac --release 8 -cp b-1.jar -d build/a src/a.jar/a/*.java
+jar -c -f a.jar -C build/a a

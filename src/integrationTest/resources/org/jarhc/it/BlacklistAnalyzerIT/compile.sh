@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # Copyright 2022 Stephan Markwalder
 #
@@ -14,6 +16,7 @@
 # limitations under the License.
 #
 
-# Disabling the startup checks
-# see https://www.testcontainers.org/features/configuration/#disabling-the-startup-checks
-checks.disable=true
+# compile and package a.jar
+javac --release 9 --add-modules jdk.unsupported -d build/a src/a.jar/a/*.java
+copy src/a.jar/a/start.* build/a/a
+jar -c -f a.jar -C build/a a
