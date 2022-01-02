@@ -67,6 +67,8 @@ val benchmarks: String = (project.properties["benchmarks"] ?: ".*") as String
 
 val mainClassName: String = "org.jarhc.Main"
 val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
+
+// license report
 val licenseReportPath: String = "${buildDir}/reports/licenses"
 
 // test results
@@ -151,7 +153,7 @@ repositories {
 
 dependencies {
 
-    // primary dependencies
+    // main dependencies
     implementation("org.ow2.asm:asm:9.2")
     implementation("org.json:json:20211205")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
@@ -451,6 +453,10 @@ val testLibsZip = task("testLibsZip", type = Zip::class) {
         configurations["unitTestRuntimeClasspath"],
         configurations["integrationTestRuntimeClasspath"]
     )
+    exclude(
+        // exclude inherited main runtime dependencies
+        configurations.runtimeClasspath.get().map { it.name }
+    )
 }
 
 val unitTest = task("unitTest", type = Test::class) {
@@ -477,7 +483,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
     testClassesDirs = sourceSets["integrationTest"].output.classesDirs
     classpath = sourceSets["integrationTest"].runtimeClasspath
 
-    // run tests in parallel in the same JVM (experimental feature or JUnit 5)
+    // run tests in parallel in the same JVM (experimental feature of JUnit 5)
     // see https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution
     systemProperty("junit.jupiter.execution.parallel.enabled", "true")
     // run test classes in parallel, but all test methods of a class by the same thread
