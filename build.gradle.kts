@@ -272,6 +272,12 @@ sonarqube {
         // Git branch
         property("sonar.branch.name", getGitBranchName())
 
+        // paths to test sources and test classes
+        // TODO: use code to generate the following paths
+        property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/unitTest/java,${projectDir}/src/integrationTest/java")
+        property("sonar.java.test.binaries", "${buildDir}/classes/java/test,${buildDir}/classes/java/unitTest,${buildDir}/classes/java/integrationTest")
+        // TODO: set sonar.java.test.libraries?
+
         // include test results
         property("sonar.junit.reportPaths", "${testReportPath},${unitTestReportPath},${integrationTestReportPath}")
 
