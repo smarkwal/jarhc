@@ -461,6 +461,10 @@ val unitTest = task("unitTest", type = Test::class) {
     testClassesDirs = sourceSets["unitTest"].output.classesDirs
     classpath = sourceSets["unitTest"].runtimeClasspath
 
+    // run tests in parallel
+    // (currently, unitTest task is fastest with a single JVM and thread)
+    // maxParallelForks = 4
+
     // run unit tests after "core" tests
     shouldRunAfter(tasks.test)
 }
@@ -472,6 +476,16 @@ val integrationTest = task("integrationTest", type = Test::class) {
     // use tests in integrationTest source set
     testClassesDirs = sourceSets["integrationTest"].output.classesDirs
     classpath = sourceSets["integrationTest"].runtimeClasspath
+
+    // run tests in parallel in the same JVM (experimental feature or JUnit 5)
+    // see https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution
+    systemProperty("junit.jupiter.execution.parallel.enabled", "true")
+    // run test classes in parallel, but all test methods of a class by the same thread
+    systemProperty("junit.jupiter.execution.parallel.mode.default", "same_thread")
+    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
+    // run max 4 test classes in parallel (more can result in an OutOfMemoryError)
+    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
+    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", "4")
 
     // run integration tests after unit tests
     shouldRunAfter(unitTest)
