@@ -51,7 +51,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		// check cache
 		if (cache.containsKey(checksum)) {
 			Artifact artifact = cache.get(checksum);
-			logger.debug("Artifact found: {} -> {} (cached)", checksum, artifact.toCoordinates());
+			logger.debug("Artifact found: {} -> {} (cached)", checksum, artifact);
 			return Optional.of(artifact);
 		}
 
@@ -120,7 +120,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;
-			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifact.toCoordinates(), time / 1000 / 1000);
+			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifact, time / 1000 / 1000);
 		}
 		return Optional.of(artifact);
 	}

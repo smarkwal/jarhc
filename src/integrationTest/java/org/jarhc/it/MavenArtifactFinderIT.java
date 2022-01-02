@@ -58,7 +58,7 @@ class MavenArtifactFinderIT {
 				.hasDebug("- org.netbeans.external:org-apache-commons-io:RELEASE113 (length = 54)")
 				.hasDebug("- commons-io:commons-io:2.6 (length = 25)")
 				.hasDebug("Shortest: commons-io:commons-io:2.6 (length = 25)")
-				.hasDebug("Artifact found: 815893df5f31da2ece4040fe0a12fd44b577afaf -> commons-io:commons-io:2.6 (time: *")
+				.hasDebug("Artifact found: 815893df5f31da2ece4040fe0a12fd44b577afaf -> commons-io:commons-io:2.6:jar (time: *")
 				.isEmpty();
 	}
 
@@ -76,7 +76,7 @@ class MavenArtifactFinderIT {
 		assertEquals("jar", artifact.get().getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: 093ee1760aba62d6896d578bd7d247d0fa52f0e7 -> commons-codec:commons-codec:1.11 (time: *")
+				.hasDebug("Artifact found: 093ee1760aba62d6896d578bd7d247d0fa52f0e7 -> commons-codec:commons-codec:1.11:jar (time: *")
 				.isEmpty();
 	}
 
@@ -94,7 +94,7 @@ class MavenArtifactFinderIT {
 		assertEquals("jar", artifact.get().getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0 (time: *")
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0:jar (time: *")
 				.isEmpty();
 
 		// test cache
@@ -108,7 +108,7 @@ class MavenArtifactFinderIT {
 		assertEquals("jar", artifact.get().getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0 (cached)")
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0:jar (cached)")
 				.isEmpty();
 	}
 
@@ -126,7 +126,7 @@ class MavenArtifactFinderIT {
 		assertEquals("war", artifact.get().getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: 9d920ed18833e7275ba688d88242af4c3711fbea -> org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813 (time: *")
+				.hasDebug("Artifact found: 9d920ed18833e7275ba688d88242af4c3711fbea -> org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war (time: *")
 				.isEmpty();
 	}
 
