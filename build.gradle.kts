@@ -515,6 +515,9 @@ tasks.withType<Test> {
     // skip tests if property "skip.tests" is set
     onlyIf { !skipTests }
 
+    // disable up-to-date check -> re-run tests every time
+    outputs.upToDateWhen { false }
+
     // use JUnit 5
     useJUnitPlatform()
 
