@@ -59,3 +59,74 @@ PASSED - JarHC for ASM
 ====================================================================
 PASSED - Total: 9, Passed: 9, Failed: 0, Errors: 0
 ```
+
+## Run JarHC on JarHC
+
+### Preparation
+
+Build JarHC fat/uber JAR with all dependencies:
+
+```shell
+./gradlew clean jar-with-deps
+```
+
+### Execution
+
+Run the following script:
+
+`./jarhc-validation.sh`
+
+Example output:
+
+```
+Test JarHC 1.6-SNAPSHOT
+====================================================================
+Java: 8 | eclipse-temurin:8-jre
+
+JarHC - JAR Health Check 1.6-SNAPSHOT
+=====================================
+
+Load JAR files ...
+Scan JAR files ...
+Analyze classpath ...
+Create report ...
+
+====================================================================
+Java: 11 | eclipse-temurin:11-jre
+
+JarHC - JAR Health Check 1.6-SNAPSHOT
+=====================================
+
+Load JAR files ...
+Scan JAR files ...
+Analyze classpath ...
+Create report ...
+
+====================================================================
+Java: 17 | eclipse-temurin:17-jre
+
+JarHC - JAR Health Check 1.6-SNAPSHOT
+=====================================
+
+Load JAR files ...
+Scan JAR files ...
+Analyze classpath ...
+Create report ...
+
+====================================================================
+```
+
+### Review results
+
+This test will override the files in directory "results":
+
+* `results/jarhc-8.txt`
+* `results/jarhc-11.txt`
+* `results/jarhc-17.txt`
+ 
+Review the changes and decide whether to commit and push them for future runs,
+or revert them.
+
+**Attention:**
+The checksum of the JarHC JAR file will be different after every build. This 
+change can be ignored.
