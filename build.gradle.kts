@@ -169,7 +169,7 @@ dependencies {
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
-    implementation("org.codehaus.plexus:plexus-utils:3.0.24")
+    implementation("org.codehaus.plexus:plexus-utils:3.4.1")
 
     // test dependencies (available in unit and integration tests)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
