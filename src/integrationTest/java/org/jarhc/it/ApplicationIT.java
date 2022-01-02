@@ -64,7 +64,7 @@ class ApplicationIT {
 		String output = out.getText();
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/org/jarhc/it/ApplicationIT/result.txt", output, "UTF-8");
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/ApplicationIT/result.txt", output, "UTF-8");
 			return;
 		}
 

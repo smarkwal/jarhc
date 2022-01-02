@@ -109,12 +109,13 @@ public class TestUtils {
 	 * Note: This method works as expected only if the current working directory
 	 * is set to the root repository directory (where the "src" directory is located).
 	 *
-	 * @param resource Resource path
-	 * @param text     Text to save
-	 * @param encoding File encoding
+	 * @param sourceSet Test source set
+	 * @param resource  Resource path
+	 * @param text      Text to save
+	 * @param encoding  File encoding
 	 */
-	public static void saveResource(String resource, String text, String encoding) throws IOException {
-		Path path = Paths.get("src/test/resources" + resource);
+	public static void saveResource(String sourceSet, String resource, String text, String encoding) throws IOException {
+		Path path = Paths.get("src", sourceSet, "resources", resource);
 		byte[] data = text.getBytes(encoding);
 
 		// check if file content has changed

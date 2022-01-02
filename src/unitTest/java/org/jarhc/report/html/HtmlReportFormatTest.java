@@ -62,7 +62,7 @@ class HtmlReportFormatTest {
 		String text = format.format(report);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/org/jarhc/report/html/HtmlReportFormatTest/result.txt", text, "UTF-8");
+			TestUtils.saveResource("unitTest", "/org/jarhc/report/html/HtmlReportFormatTest/result.txt", text, "UTF-8");
 			return;
 		}
 

@@ -98,7 +98,7 @@ class MainIT {
 		String actualReport = FileUtils.readFileToString(reportFile);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
 			return;
 		}
 

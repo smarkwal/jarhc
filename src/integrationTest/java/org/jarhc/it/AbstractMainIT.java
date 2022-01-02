@@ -68,7 +68,7 @@ abstract class AbstractMainIT {
 
 		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/report.txt";
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource(resource, actualReport, "UTF-8");
+			TestUtils.saveResource("integrationTest", resource, actualReport, "UTF-8");
 			return;
 		}
 

@@ -111,7 +111,7 @@ abstract class AbstractIT {
 		String output = reportFormat.format(report);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource(getReportResourcePath(analyzerName), output, "UTF-8");
+			TestUtils.saveResource("integrationTest", getReportResourcePath(analyzerName), output, "UTF-8");
 			return;
 		}
 
