@@ -136,8 +136,8 @@ public class JavaRuntimeMock extends JavaRuntime {
 
 		// check if class has been excluded during resource generation
 		if (excludedClassNames.contains(className)) {
-			String message = String.format("Runtime class has been excluded: %s", className);
-			throw new AssertionError(message);
+			String message = String.format("Class definition not found in test data: %s", className);
+			throw new TestDataError(message);
 		}
 
 		ClassDef classDef = classDefs.get(className);
