@@ -24,3 +24,6 @@
 
 # files used for local testing
 /test
+
+# macOS files
+.DS_Store
