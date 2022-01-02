@@ -41,6 +41,12 @@ class DefaultStyleProvider implements StyleProvider {
 		} catch (IOException e) {
 			this.logger.warn("Failed to load default style: {}", RESOURCE, e);
 		}
+
+		if (css != null) {
+			// remove multi-line comments (copyright header)
+			css = css.replaceAll("/\\*[\\s\\S]*?\\*/", "").trim();
+		}
+
 		this.style = css;
 	}
 
