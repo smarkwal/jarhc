@@ -16,6 +16,8 @@
 
 package org.jarhc.test;
 
+import org.jarhc.utils.VersionUtils;
+
 public class TextUtils {
 
 	/**
@@ -23,6 +25,10 @@ public class TextUtils {
 	 */
 	public static String toUnixLineSeparators(String text) {
 		return text.replace("\r\n", "\n");
+	}
+
+	public static String replacePlaceholders(String text) {
+		return text.replace("{version}", VersionUtils.getVersion());
 	}
 
 }

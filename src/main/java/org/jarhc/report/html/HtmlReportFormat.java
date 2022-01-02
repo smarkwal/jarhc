@@ -23,6 +23,7 @@ import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.VersionUtils;
 import org.slf4j.LoggerFactory;
 
 public class HtmlReportFormat implements ReportFormat {
@@ -59,6 +60,9 @@ public class HtmlReportFormat implements ReportFormat {
 		// set character set
 		writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
 
+		// set JarHC with version as generator
+		writer.println("<meta name=\"generator\" content=\"JarHC " + VersionUtils.getVersion() + "\" />");
+
 		// include CSS styles
 		String css = styleProvider.getStyle();
 		if (css != null) {
@@ -93,6 +97,9 @@ public class HtmlReportFormat implements ReportFormat {
 			formatSection(section, writer);
 			writer.println();
 		}
+
+		// add "generated with" note
+		writer.println("<div class=\"generator\">Generated with <a href=\"http://jarhc.org\" target=\"_blank\">JarHC " + VersionUtils.getVersion() + "</a></div>");
 
 		writer.println("</body>");
 	}

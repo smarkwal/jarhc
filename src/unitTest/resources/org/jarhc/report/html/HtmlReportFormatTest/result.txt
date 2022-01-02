@@ -3,6 +3,7 @@
 <head>
 <title>Report Title</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="generator" content="JarHC {version}" />
 <style>
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -24,6 +25,13 @@ th, td {
 	vertical-align: top;
 	text-align: left;
 	white-space: nowrap;
+}
+
+.generator {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: gray;
 }
 </style>
 </head>
@@ -67,5 +75,6 @@ th, td {
 </table>
 </section>
 
+<div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC {version}</a></div>
 </body>
 </html>

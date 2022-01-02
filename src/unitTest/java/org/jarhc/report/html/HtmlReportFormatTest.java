@@ -70,6 +70,7 @@ class HtmlReportFormatTest {
 		text = TextUtils.toUnixLineSeparators(text);
 		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/report/html/HtmlReportFormatTest/result.txt", "UTF-8");
 		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
+		expectedResult = TextUtils.replacePlaceholders(expectedResult);
 
 		// assert
 		assertEquals(expectedResult, text);
