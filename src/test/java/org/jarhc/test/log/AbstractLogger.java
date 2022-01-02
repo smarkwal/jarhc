@@ -370,7 +370,7 @@ abstract class AbstractLogger implements Logger {
 	}
 
 	private void log(Level level, Marker marker, String msg, Object... arguments) {
-		FormattingTuple tuple = MessageFormatter.format(msg, arguments);
+		FormattingTuple tuple = MessageFormatter.arrayFormat(msg, arguments);
 		log(level, marker, tuple.getMessage(), tuple.getThrowable());
 	}
 
