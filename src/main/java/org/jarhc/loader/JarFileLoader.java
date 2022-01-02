@@ -256,6 +256,7 @@ class JarFileLoader {
 		String checksum = DigestUtils.sha1Hex(fileData);
 
 		// try to identify JAR file as Maven artifact
+		// TODO: if artifact was given as coordinates, skip this step and re-use the original coordinates instead.
 		String coordinates = null;
 		try {
 			Optional<Artifact> artifact = repository.findArtifact(checksum);

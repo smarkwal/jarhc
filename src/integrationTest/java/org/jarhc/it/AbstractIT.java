@@ -72,7 +72,7 @@ abstract class AbstractIT {
 		Options options = new Options();
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
-		MavenRepository repository = new MavenRepository(tempDir.toString(), logger);
+		MavenRepository repository = new MavenRepository(tempDir.toString(), logger); // TODO: use a 100% local Maven repo
 
 		// prepare an injector
 		Injector injector = new Injector();
