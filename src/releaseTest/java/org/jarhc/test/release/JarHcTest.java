@@ -54,9 +54,7 @@ class JarHcTest extends ReleaseTest {
 			tests.add(DynamicTest.dynamicTest("JarHC Version", () -> runInContainer(javaImageName, this::jarhcVersion)));
 			tests.add(DynamicTest.dynamicTest("JarHC Help", () -> runInContainer(javaImageName, this::jarhcHelp)));
 			tests.add(DynamicTest.dynamicTest("JarHC for ASM", () -> runInContainer(javaImageName, this::jarhcASM)));
-
-			// TODO: #74 enable after support for Java 17 has been fixed
-			// tests.add(DynamicTest.dynamicTest("JarHC for JarHC", () -> runInContainer(javaImageName, this::jarhcJarHC)));
+			tests.add(DynamicTest.dynamicTest("JarHC for JarHC", () -> runInContainer(javaImageName, this::jarhcJarHC)));
 
 			// add all tests to a test container for grouping
 			containers.add(DynamicContainer.dynamicContainer(javaImageName, tests));
@@ -144,6 +142,9 @@ class JarHcTest extends ReleaseTest {
 		// prepare
 		Command command = Command.jarHc("-s", "-jr", "jarhc.jar");
 		String output = readResource("jarhc.txt");
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
 		ExecResult result = container.exec(command);
