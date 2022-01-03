@@ -63,8 +63,8 @@ public class ModulesAnalyzer implements Analyzer {
 	}
 
 	private String getModuleName(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
 			return moduleInfo.getModuleName();
 		} else {
 			return getModuleNameFromFileName(jarFile);
@@ -94,8 +94,8 @@ public class ModulesAnalyzer implements Analyzer {
 	}
 
 	private String getDefinitionInfo(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
 			if (moduleInfo.isAutomatic()) {
 				return "Manifest";
 			} else {
@@ -107,8 +107,8 @@ public class ModulesAnalyzer implements Analyzer {
 	}
 
 	private String getAutomaticInfo(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
 			if (moduleInfo.isAutomatic()) {
 				return "Yes";
 			} else {
@@ -120,8 +120,8 @@ public class ModulesAnalyzer implements Analyzer {
 	}
 
 	private String getRequiresInfo(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
 			if (moduleInfo.isAutomatic()) {
 				return "-";
 			} else {
@@ -135,8 +135,8 @@ public class ModulesAnalyzer implements Analyzer {
 	}
 
 	private String getExportsInfo(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
 			if (moduleInfo.isAutomatic()) {
 				return "[all packages]";
 			} else {

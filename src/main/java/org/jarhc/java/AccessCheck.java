@@ -22,6 +22,7 @@ import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
+import org.jarhc.model.ModuleInfo;
 import org.jarhc.utils.JavaUtils;
 
 /**
@@ -51,6 +52,20 @@ public class AccessCheck {
 		// classes can only be public or package-private
 		if (targetClassDef.isProtected() || targetClassDef.isPrivate()) {
 			throw new IllegalArgumentException("targetClassDef");
+		}
+
+		// check module constraints
+		ModuleInfo sourceModuleInfo = sourceClassDef.getModuleInfo();
+		ModuleInfo targetModuleInfo = targetClassDef.getModuleInfo();
+		if (sourceModuleInfo.isUnnamed() && targetModuleInfo.isUnnamed()) {
+			// both classes in unnamed modules -> continue
+		} else if (sourceModuleInfo.isSame(targetModuleInfo)) {
+			// both classes in same named module -> continue
+		} else {
+			// TODO: #68 check module constraints
+			// named_1 -> named_2
+			// named -> unnamed
+			// unnamed -> named
 		}
 
 		if (targetClassDef.isPublic()) {

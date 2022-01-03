@@ -40,6 +40,13 @@ class ClassDefUtils {
 				interfaceNames.add(stream.readUTF());
 			}
 		}
+		int numPermittedSubclassNames = stream.readInt();
+		List<String> permittedSubclassNames = new ArrayList<>(numPermittedSubclassNames);
+		if (numPermittedSubclassNames > 0) {
+			for (int i = 0; i < numPermittedSubclassNames; i++) {
+				permittedSubclassNames.add(stream.readUTF());
+			}
+		}
 
 		// read meta data
 		int classAccess = stream.readInt();
@@ -56,7 +63,8 @@ class ClassDefUtils {
 				.setMajorClassVersion(majorClassVersion)
 				.setMinorClassVersion(minorClassVersion)
 				.setSuperName(superName)
-				.addInterfaceNames(interfaceNames);
+				.addInterfaceNames(interfaceNames)
+				.addPermittedSubclassNames(permittedSubclassNames);
 		classDef.setAccess(classAccess);
 
 		// read class annotations
@@ -107,6 +115,7 @@ class ClassDefUtils {
 		String className = classDef.getClassName();
 		String superName = classDef.getSuperName();
 		List<String> interfaceNames = classDef.getInterfaceNames();
+		List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
 		List<FieldDef> fieldDefs = classDef.getFieldDefs();
 		List<MethodDef> methodDefs = classDef.getMethodDefs();
 
@@ -121,6 +130,10 @@ class ClassDefUtils {
 		stream.writeInt(interfaceNames.size());
 		for (String interfaceName : interfaceNames) {
 			stream.writeUTF(interfaceName);
+		}
+		stream.writeInt(permittedSubclassNames.size());
+		for (String permittedSubclassName : permittedSubclassNames) {
+			stream.writeUTF(permittedSubclassName);
 		}
 
 		// write meta data

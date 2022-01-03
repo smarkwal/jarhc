@@ -61,8 +61,9 @@ class JarFileLoaderTest {
 		assertNotNull(releases);
 		assertEquals(0, releases.size());
 
-		assertFalse(jarFile.isModule());
-		assertNull(jarFile.getModuleInfo());
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isUnnamed());
 
 	}
 
@@ -91,8 +92,10 @@ class JarFileLoaderTest {
 		assertEquals(1, releases.size());
 		assertTrue(releases.contains(11));
 
-		assertFalse(jarFile.isModule());
-		assertNull(jarFile.getModuleInfo());
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isUnnamed());
+
 
 	}
 
@@ -121,9 +124,9 @@ class JarFileLoaderTest {
 		assertNotNull(releases);
 		assertEquals(0, releases.size());
 
-		assertTrue(jarFile.isModule());
 		ModuleInfo moduleInfo = jarFile.getModuleInfo();
 		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isNamed());
 		assertEquals("c", moduleInfo.getModuleName());
 		List<String> exports = moduleInfo.getExports();
 		assertEquals(1, exports.size());
@@ -158,8 +161,9 @@ class JarFileLoaderTest {
 		Set<Integer> releases = jarFile.getReleases();
 		assertNotNull(releases);
 		assertEquals(0, releases.size());
-		assertFalse(jarFile.isModule());
-		assertNull(jarFile.getModuleInfo());
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isUnnamed());
 
 		jarFile = jarFiles.get(1);
 		assertNotNull(jarFile);
@@ -170,8 +174,9 @@ class JarFileLoaderTest {
 		releases = jarFile.getReleases();
 		assertNotNull(releases);
 		assertEquals(0, releases.size());
-		assertFalse(jarFile.isModule());
-		assertNull(jarFile.getModuleInfo());
+		moduleInfo = jarFile.getModuleInfo();
+		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isUnnamed());
 
 		jarFile = jarFiles.get(2);
 		assertNotNull(jarFile);
@@ -182,8 +187,9 @@ class JarFileLoaderTest {
 		releases = jarFile.getReleases();
 		assertNotNull(releases);
 		assertEquals(1, releases.size());
-		assertFalse(jarFile.isModule());
-		assertNull(jarFile.getModuleInfo());
+		moduleInfo = jarFile.getModuleInfo();
+		assertNotNull(moduleInfo);
+		assertTrue(moduleInfo.isUnnamed());
 
 	}
 

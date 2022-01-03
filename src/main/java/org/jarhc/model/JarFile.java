@@ -110,6 +110,7 @@ public class JarFile {
 	private JarFile(String fileName, long fileSize, String checksum, String coordinates, String classLoader, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
+		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo");
 		if (classDefs == null) throw new IllegalArgumentException("classDefs");
 		this.fileName = fileName;
 		this.fileSize = fileSize;
@@ -184,10 +185,6 @@ public class JarFile {
 		return Collections.unmodifiableSet(releases);
 	}
 
-	public boolean isModule() {
-		return moduleInfo != null;
-	}
-
 	public ModuleInfo getModuleInfo() {
 		return moduleInfo;
 	}
@@ -260,7 +257,7 @@ public class JarFile {
 		private String coordinates;
 		private String classLoader;
 		private Set<Integer> releases = new TreeSet<>();
-		private ModuleInfo moduleInfo = null;
+		private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
 		private List<ClassDef> classDefs = new ArrayList<>();
 		private List<ResourceDef> resourceDefs = new ArrayList<>();
 
@@ -299,6 +296,7 @@ public class JarFile {
 		}
 
 		public Builder withModuleInfo(ModuleInfo moduleInfo) {
+			if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo == null");
 			this.moduleInfo = moduleInfo;
 			return this;
 		}

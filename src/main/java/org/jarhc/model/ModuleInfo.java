@@ -22,6 +22,8 @@ import java.util.List;
 
 public class ModuleInfo {
 
+	public static final ModuleInfo UNNAMED = ModuleInfo.forModuleName("UNNAMED").setRelease(-1);
+
 	private String moduleName;
 
 	/**
@@ -66,6 +68,19 @@ public class ModuleInfo {
 		return this;
 	}
 
+	public boolean isNamed() {
+		return this != UNNAMED;
+	}
+
+	public boolean isUnnamed() {
+		return this == UNNAMED;
+	}
+
+	public boolean isSame(ModuleInfo moduleInfo) {
+		// TODO: compare reference instead of names?
+		return moduleName.equals(moduleInfo.moduleName);
+	}
+
 	public List<String> getExports() {
 		return Collections.unmodifiableList(exports);
 	}
@@ -86,7 +101,9 @@ public class ModuleInfo {
 
 	@Override
 	public String toString() {
-		if (automatic) {
+		if (this == UNNAMED) {
+			return "ModuleInfo[UNNAMED]";
+		} else if (automatic) {
 			return String.format("ModuleInfo[%s,automatic]", getModuleName());
 		} else {
 			return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());

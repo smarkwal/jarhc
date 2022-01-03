@@ -35,6 +35,7 @@ import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
+import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
@@ -158,6 +159,19 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
+		// for every permitted subclass ...
+		List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
+		for (String permittedSubclassName : permittedSubclassNames) {
+			// check if subclass exists
+			Optional<ClassDef> permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
+			if (!permittedSubclassDef.isPresent()) {
+				classIssues.add("Permitted subclass not found: " + permittedSubclassName);
+			} else {
+				ClassDef subclassDef = permittedSubclassDef.get();
+				validatePermittedSubclass(subclassDef, classDef, accessCheck, classIssues);
+			}
+		}
+
 	}
 
 	@SuppressWarnings("StatementWithEmptyBody")
@@ -166,6 +180,17 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// check if class is final
 		if (superClass.isFinal()) {
 			classIssues.add("Superclass is final: " + superClass.getDisplayName());
+		}
+
+		// check if superclass is sealed
+		if (superClass.isSealed()) {
+			// check if class is permitted subclass
+			if (!superClass.getPermittedSubclassNames().contains(classDef.getClassName())) {
+				classIssues.add("Class is not a permitted subclass of sealed superclass: " + superClass.getDisplayName());
+			} else {
+				// check if classes are in same module/package
+				validateSealedClassModuleConstraint(classDef, "Sealed superclass", superClass, classIssues);
+			}
 		}
 
 		// check if class is an annotation, interface, or enum
@@ -192,6 +217,38 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	}
 
+	private void validateSealedClassModuleConstraint(ClassDef classDef, String otherClassType, ClassDef otherClassDef, Set<String> classIssues) {
+
+		// sealed superclass and permitted subclass must be
+		// - in same named module or
+		// - in same package in unnamed module
+		ModuleInfo moduleInfo = classDef.getModuleInfo();
+		ModuleInfo otherModuleInfo = otherClassDef.getModuleInfo();
+		String otherClassName = otherClassDef.getClassName();
+		if (otherModuleInfo.isNamed()) {
+			if (moduleInfo.isNamed()) {
+				// check if both classes are in same module
+				if (!otherModuleInfo.isSame(moduleInfo)) {
+					classIssues.add(otherClassType + " is not in same module: " + otherClassName);
+				}
+			} else {
+				classIssues.add(otherClassType + " is in a named module: " + otherClassName);
+			}
+		} else {
+			if (moduleInfo.isNamed()) {
+				classIssues.add(otherClassType + " is in unnamed module: " + otherClassName);
+			} else {
+				// check if both classes are in same package
+				String otherPackageName = JavaUtils.getPackageName(otherClassName);
+				String packageName = JavaUtils.getPackageName(classDef.getClassName());
+				if (!otherPackageName.equals(packageName)) {
+					classIssues.add(otherClassType + " is not in same package: " + otherClassName);
+				}
+			}
+		}
+
+	}
+
 	@SuppressWarnings("StatementWithEmptyBody")
 	private void validateInterface(ClassDef interfaceClass, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
 
@@ -212,6 +269,19 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, interfaceClass);
 		if (!access) {
 			classIssues.add("Interface is not accessible: " + interfaceClass.getDisplayName());
+		}
+
+	}
+
+	private void validatePermittedSubclass(ClassDef subclassDef, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
+
+		// check if classes are in same module/package
+		validateSealedClassModuleConstraint(classDef, "Permitted subclass", subclassDef, classIssues);
+
+		// check access to permitted subclass class
+		boolean access = accessCheck.hasAccess(classDef, subclassDef);
+		if (!access) {
+			classIssues.add("Permitted subclass is not accessible: " + subclassDef.getDisplayName());
 		}
 
 	}

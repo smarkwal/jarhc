@@ -52,6 +52,12 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	private final List<String> interfaceNames = new ArrayList<>();
 
 	/**
+	 * List of permitted subclasses of this class.
+	 * Used for sealed classes introduced in Java 17.
+	 */
+	private final List<String> permittedSubclassNames = new ArrayList<>();
+
+	/**
 	 * Major class file version.
 	 */
 	private int majorClassVersion = 52;
@@ -171,6 +177,24 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return this;
 	}
 
+	public List<String> getPermittedSubclassNames() {
+		return Collections.unmodifiableList(permittedSubclassNames);
+	}
+
+	public ClassDef addPermittedSubclassNames(List<String> permittedSubclassNames) {
+		permittedSubclassNames.forEach(this::addPermittedSubclassName);
+		return this;
+	}
+
+	public ClassDef addPermittedSubclassName(String permittedSubclassName) {
+		this.permittedSubclassNames.add(permittedSubclassName);
+		return this;
+	}
+
+	public boolean isSealed() {
+		return !permittedSubclassNames.isEmpty();
+	}
+
 	@Override
 	public ClassDef getClassDef() {
 		return this;
@@ -238,12 +262,13 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	 *
 	 * @return API description
 	 */
-	private String getApiDescription() {
+	String getApiDescription() {
 		StringBuilder api = new StringBuilder();
 		api.append(getModifiers()).append(" ").append(className);
 		// add superclass and interfaces
 		api.append("\nextends: ").append(superName);
 		api.append("\nimplements: ").append(interfaceNames);
+		api.append("\npermits: ").append(permittedSubclassNames);
 		// TODO: add annotations for class, fields and methods?
 		// add all fields
 		fieldDefs.stream()
@@ -343,6 +368,13 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		this.jarFile = jarFile;
 	}
 
+	public ModuleInfo getModuleInfo() {
+		if (jarFile == null) {
+			return ModuleInfo.UNNAMED;
+		}
+		return jarFile.getModuleInfo();
+	}
+
 	@Override
 	@SuppressWarnings("Duplicates")
 	public String getModifiers() {
@@ -353,6 +385,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");
 		if (isAbstract() && !isInterface()) parts.add("abstract");
+		if (isSealed()) parts.add("sealed");
 
 		// special flags
 		if (isSynthetic()) parts.add("(synthetic)");
