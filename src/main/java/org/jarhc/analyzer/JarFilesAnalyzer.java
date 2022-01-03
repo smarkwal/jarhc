@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
@@ -92,8 +93,9 @@ public class JarFilesAnalyzer implements Analyzer {
 	}
 
 	private String getModuleInfo(JarFile jarFile) {
-		if (jarFile.isModule()) {
-			return "Yes (" + jarFile.getModuleInfo().getModuleName() + ")";
+		ModuleInfo moduleInfo = jarFile.getModuleInfo();
+		if (moduleInfo.isNamed()) {
+			return "Yes (" + moduleInfo.getModuleName() + ")";
 		} else {
 			return "No";
 		}

@@ -116,7 +116,7 @@ class JarFileLoader {
 
 	private void load(String fileName, byte[] fileData, List<JarFile> jarFiles) throws IOException {
 
-		ModuleInfo moduleInfo = null;
+		ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
 		Set<Integer> releases = new TreeSet<>();
 		Map<String, ClassDef> classDefs = new HashMap<>();
 		Map<String, ResourceDef> resourceDefs = new HashMap<>();
@@ -197,7 +197,7 @@ class JarFileLoader {
 					if (name.equals("module-info.class")) {
 
 						// ignore module info if it is for an older release
-						if (moduleInfo != null && release < moduleInfo.getRelease()) {
+						if (release < moduleInfo.getRelease()) {
 							continue;
 						}
 

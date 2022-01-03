@@ -215,8 +215,12 @@ class ClassDefBuilder extends ClassVisitor {
 
 	@Override
 	public void visitPermittedSubclass(String permittedSubclass) {
-		// TODO: #74 Support for Java 17
-		LOGGER.warn("Unsupported Java 15 feature: Sealed class '{}': Permitted subclass '{}'", classDef.getClassName(), permittedSubclass);
+		String permittedSubclassName = toExternalName(permittedSubclass);
+		classDef.addPermittedSubclassName(permittedSubclassName);
+
+		if (scanForReferences) {
+			addClassRef(permittedSubclassName);
+		}
 	}
 
 	@Override

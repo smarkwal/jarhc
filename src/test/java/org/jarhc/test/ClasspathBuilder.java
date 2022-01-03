@@ -89,6 +89,7 @@ public class ClasspathBuilder {
 	}
 
 	public ClasspathBuilder addModuleInfo(ModuleInfo moduleInfo) {
+		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo == null");
 		this.moduleInfo = moduleInfo;
 		return this;
 	}
@@ -135,7 +136,7 @@ public class ClasspathBuilder {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.releases = new TreeSet<>();
-		this.moduleInfo = null;
+		this.moduleInfo = ModuleInfo.UNNAMED;
 		this.classDefs = new ArrayList<>();
 		this.resourceDefs = new ArrayList<>();
 	}
