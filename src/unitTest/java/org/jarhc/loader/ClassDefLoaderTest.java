@@ -26,8 +26,13 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
+import org.jarhc.model.FieldDef;
+import org.jarhc.model.MethodDef;
+import org.jarhc.model.RecordComponentDef;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -71,9 +76,95 @@ class ClassDefLoaderTest {
 		ClassDef classDef = loadClass(resource);
 
 		assertNotNull(classDef);
+		assertEquals("public record", classDef.getModifiers());
 		assertEquals("Record", classDef.getClassName());
+		assertEquals("java.lang.Record", classDef.getSuperName());
 		assertEquals(60, classDef.getMajorClassVersion());
 		assertEquals("Java 16", classDef.getJavaVersion());
+
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		assertTrue(classRefs.stream().anyMatch(r -> r.getClassName().equals("MyAnnotation")));
+		assertTrue(classRefs.stream().anyMatch(r -> r.getClassName().equals("java.lang.Deprecated")));
+
+		List<RecordComponentDef> recordComponentDefs = classDef.getRecordComponentDefs();
+		assertEquals(3, recordComponentDefs.size());
+
+		RecordComponentDef recordComponentDef = recordComponentDefs.get(0);
+		assertEquals("id", recordComponentDef.getName());
+		assertEquals("int", recordComponentDef.getType());
+		assertEquals(0, recordComponentDef.getAnnotationRefs().size());
+
+		recordComponentDef = recordComponentDefs.get(1);
+		assertEquals("name", recordComponentDef.getName());
+		assertEquals("java.lang.String", recordComponentDef.getType());
+		assertEquals(1, recordComponentDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("MyAnnotation")).count());
+		// Note: @Deprecated annotation is present only on this record component
+		// because it has only @Target({RECORD_COMPONENT}).
+
+		recordComponentDef = recordComponentDefs.get(2);
+		assertEquals("enabled", recordComponentDef.getName());
+		assertEquals("boolean", recordComponentDef.getType());
+		assertEquals(0, recordComponentDef.getAnnotationRefs().size());
+		// Note: @Deprecated annotation is not present on record component
+		// because it does not have @Target({RECORD_COMPONENT}).
+
+		List<FieldDef> fieldDefs = classDef.getFieldDefs();
+		assertEquals(3, fieldDefs.size());
+
+		FieldDef fieldDef = fieldDefs.get(0);
+		assertEquals("id", fieldDef.getFieldName());
+		assertEquals("int", fieldDef.getFieldType());
+		assertEquals("private final", fieldDef.getModifiers());
+		assertEquals(0, fieldDef.getAnnotationRefs().size());
+
+		fieldDef = fieldDefs.get(1);
+		assertEquals("name", fieldDef.getFieldName());
+		assertEquals("java.lang.String", fieldDef.getFieldType());
+		assertEquals("private final", fieldDef.getModifiers());
+		assertEquals(0, fieldDef.getAnnotationRefs().size());
+
+		fieldDef = fieldDefs.get(2);
+		assertEquals("enabled", fieldDef.getFieldName());
+		assertEquals("boolean", fieldDef.getFieldType());
+		assertEquals("private final", fieldDef.getModifiers());
+		assertEquals(1, fieldDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("java.lang.Deprecated")).count());
+
+		List<MethodDef> methodDefs = classDef.getMethodDefs();
+		assertEquals(7, methodDefs.size());
+
+		MethodDef methodDef = classDef.getMethodDef("<init>", "(ILjava/lang/String;Z)V").orElseThrow(AssertionError::new);
+		assertEquals("public", methodDef.getModifiers());
+		assertEquals(0, methodDef.getAnnotationRefs().size());
+
+		methodDef = classDef.getMethodDef("id", "()I").orElseThrow(AssertionError::new);
+		assertEquals("public", methodDef.getModifiers());
+		assertEquals(0, methodDef.getAnnotationRefs().size());
+
+		methodDef = classDef.getMethodDef("name", "()Ljava/lang/String;").orElseThrow(AssertionError::new);
+		assertEquals("public", methodDef.getModifiers());
+		assertEquals(0, methodDef.getAnnotationRefs().size());
+
+		methodDef = classDef.getMethodDef("enabled", "()Z").orElseThrow(AssertionError::new);
+		assertEquals("public", methodDef.getModifiers());
+		assertEquals(1, methodDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("java.lang.Deprecated")).count());
+
+		String expectedApiDescription = "public record Record\n" +
+				"extends: java.lang.Record\n" +
+				"implements: []\n" +
+				"permits: []\n" +
+				"record component: boolean Record.enabled\n" +
+				"record component: int Record.id\n" +
+				"record component: java.lang.String Record.name\n" +
+				"method: public boolean Record.enabled()\n" +
+				"method: public final boolean Record.equals(java.lang.Object)\n" +
+				"method: public final int Record.hashCode()\n" +
+				"method: public final java.lang.String Record.toString()\n" +
+				"method: public int Record.id()\n" +
+				"method: public java.lang.String Record.name()\n" +
+				"method: public void Record.<init>(int,java.lang.String,boolean)";
+
+		String apiDescription = classDef.getApiDescription();
+		assertEquals(expectedApiDescription, apiDescription);
 	}
 
 	@Test

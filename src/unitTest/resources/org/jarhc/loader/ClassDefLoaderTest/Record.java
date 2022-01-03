@@ -1,1 +1,1 @@
-public record Record (int id, String name, boolean enabled) {}
+public record Record (int id, @MyAnnotation String name, @Deprecated boolean enabled) {}

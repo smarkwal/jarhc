@@ -19,6 +19,7 @@ package org.jarhc.loader;
 import static org.jarhc.utils.JavaUtils.getArrayElementType;
 import static org.jarhc.utils.JavaUtils.getFieldType;
 import static org.jarhc.utils.JavaUtils.getParameterTypes;
+import static org.jarhc.utils.JavaUtils.getRecordComponentType;
 import static org.jarhc.utils.JavaUtils.getReturnType;
 import static org.jarhc.utils.JavaUtils.isArrayType;
 import static org.jarhc.utils.JavaUtils.isPrimitiveType;
@@ -37,6 +38,7 @@ import org.jarhc.model.FieldDef;
 import org.jarhc.model.FieldRef;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
+import org.jarhc.model.RecordComponentDef;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassVisitor;
@@ -90,11 +92,6 @@ class ClassDefBuilder extends ClassVisitor {
 
 		classDef.setClassName(toExternalName(name));
 
-		if ((access & Opcodes.ACC_RECORD) != 0) {
-			// TODO: #74 Support for Java 17
-			LOGGER.warn("Unsupported Java 14 feature: Record '{}'", classDef.getClassName());
-		}
-
 		// TODO: how to use signature?
 
 		if (superName == null) {
@@ -132,6 +129,23 @@ class ClassDefBuilder extends ClassVisitor {
 		if (scanForReferences) {
 			addClassRef(toExternalName(name));
 			// TODO: what to do with access ???
+		}
+	}
+
+	@Override
+	public RecordComponentVisitor visitRecordComponent(String name, String descriptor, String signature) {
+		// TODO: what do to with signature ???
+
+		String recordComponentType = getRecordComponentType(descriptor);
+
+		RecordComponentDef recordComponentDef = new RecordComponentDef(name, recordComponentType);
+		classDef.addRecordComponentDef(recordComponentDef);
+
+		if (scanForReferences) {
+			addClassRef(recordComponentType);
+			return new CustomRecordComponentVisitor(recordComponentDef);
+		} else {
+			return null;
 		}
 	}
 
@@ -224,14 +238,6 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	@Override
-	public RecordComponentVisitor visitRecordComponent(String name, String descriptor, String signature) {
-		// TODO: #74 Support for Java 17
-		String type = getFieldType(descriptor);
-		LOGGER.warn("Unsupported Java 14 feature: Record class '{}': Record component '{} {}'", classDef.getClassName(), type, name);
-		return null;
-	}
-
-	@Override
 	public void visitEnd() {
 		// nothing to do
 	}
@@ -275,6 +281,40 @@ class ClassDefBuilder extends ClassVisitor {
 				classRefs.add(new ClassRef(type));
 			}
 		}
+	}
+
+	// -------------------------------------------------------------------------------------------------------
+
+	private class CustomRecordComponentVisitor extends RecordComponentVisitor {
+
+		private final RecordComponentDef recordComponentDef;
+
+		public CustomRecordComponentVisitor(RecordComponentDef recordComponentDef) {
+			super(Opcodes.ASM9);
+			this.recordComponentDef = recordComponentDef;
+		}
+
+		@Override
+		public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+			return addAnnotationRef(descriptor, recordComponentDef);
+		}
+
+		@Override
+		public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
+			return addAnnotationRef(descriptor, null);
+		}
+
+		@Override
+		public void visitAttribute(Attribute attribute) {
+			// TODO: handle attribute ???
+			// System.out.println(String.format("RecordComponentVisitor.visitAttribute(%s)", attribute));
+		}
+
+		@Override
+		public void visitEnd() {
+			// nothing to do
+		}
+
 	}
 
 	// -------------------------------------------------------------------------------------------------------
