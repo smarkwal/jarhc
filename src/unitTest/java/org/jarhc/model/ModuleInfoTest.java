@@ -58,6 +58,20 @@ class ModuleInfoTest {
 	}
 
 	@Test
+	void test_toString_forUnnamedModule() {
+
+		// prepare
+		ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
+
+		// test
+		String result = moduleInfo.toString();
+
+		// assert
+		assertEquals("ModuleInfo[UNNAMED]", result);
+
+	}
+
+	@Test
 	void getRelease() {
 
 		// prepare
