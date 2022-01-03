@@ -135,6 +135,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return this;
 	}
 
+	public ClassDef withAccess(int flags) {
+		setAccess(flags);
+		return this;
+	}
+
 	public boolean isRegularClass() {
 		if (className.equals("module-info")) {
 			return false;

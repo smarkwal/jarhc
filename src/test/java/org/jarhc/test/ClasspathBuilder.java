@@ -110,6 +110,12 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addClassDef(ClassDef classDef) {
+		closeClassDef();
+		classDefs.add(classDef);
+		return this;
+	}
+
 	public ClasspathBuilder addResourceDef(String resourcePath) {
 		String checksum = DigestUtils.sha1Hex(resourcePath); // fake checksum
 		return addResourceDef(resourcePath, checksum);

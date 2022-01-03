@@ -159,16 +159,20 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
-		// for every permitted subclass ...
-		List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
-		for (String permittedSubclassName : permittedSubclassNames) {
-			// check if subclass exists
-			Optional<ClassDef> permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
-			if (!permittedSubclassDef.isPresent()) {
-				classIssues.add("Permitted subclass not found: " + permittedSubclassName);
-			} else {
-				ClassDef subclassDef = permittedSubclassDef.get();
-				validatePermittedSubclass(subclassDef, classDef, accessCheck, classIssues);
+		// if class is sealed ...
+		if (classDef.isSealed()) {
+
+			// for every permitted subclass ...
+			List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
+			for (String permittedSubclassName : permittedSubclassNames) {
+				// check if subclass exists
+				Optional<ClassDef> permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
+				if (!permittedSubclassDef.isPresent()) {
+					classIssues.add("Permitted subclass not found: " + permittedSubclassName);
+				} else {
+					ClassDef subclassDef = permittedSubclassDef.get();
+					validatePermittedSubclass(subclassDef, classDef, accessCheck, classIssues);
+				}
 			}
 		}
 
@@ -224,25 +228,25 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// - in same package in unnamed module
 		ModuleInfo moduleInfo = classDef.getModuleInfo();
 		ModuleInfo otherModuleInfo = otherClassDef.getModuleInfo();
-		String otherClassName = otherClassDef.getClassName();
 		if (otherModuleInfo.isNamed()) {
 			if (moduleInfo.isNamed()) {
 				// check if both classes are in same module
 				if (!otherModuleInfo.isSame(moduleInfo)) {
-					classIssues.add(otherClassType + " is not in same module: " + otherClassName);
+					classIssues.add(otherClassType + " is not in same module: " + otherClassDef.getDisplayName());
 				}
 			} else {
-				classIssues.add(otherClassType + " is in a named module: " + otherClassName);
+				classIssues.add(otherClassType + " is in a named module: " + otherClassDef.getDisplayName());
 			}
 		} else {
 			if (moduleInfo.isNamed()) {
-				classIssues.add(otherClassType + " is in unnamed module: " + otherClassName);
+				classIssues.add(otherClassType + " is in unnamed module: " + otherClassDef.getDisplayName());
 			} else {
 				// check if both classes are in same package
+				String otherClassName = otherClassDef.getClassName();
 				String otherPackageName = JavaUtils.getPackageName(otherClassName);
 				String packageName = JavaUtils.getPackageName(classDef.getClassName());
 				if (!otherPackageName.equals(packageName)) {
-					classIssues.add(otherClassType + " is not in same package: " + otherClassName);
+					classIssues.add(otherClassType + " is not in same package: " + otherClassDef.getDisplayName());
 				}
 			}
 		}
@@ -274,6 +278,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	}
 
 	private void validatePermittedSubclass(ClassDef subclassDef, ClassDef classDef, AccessCheck accessCheck, Set<String> classIssues) {
+
+		String superName = subclassDef.getSuperName();
+		if (!superName.equals(classDef.getClassName())) {
+			classIssues.add("Permitted subclass does not extend sealed class: " + subclassDef.getDisplayName());
+		}
 
 		// check if classes are in same module/package
 		validateSealedClassModuleConstraint(classDef, "Permitted subclass", subclassDef, classIssues);
