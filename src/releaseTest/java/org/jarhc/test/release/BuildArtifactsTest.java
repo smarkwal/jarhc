@@ -18,13 +18,24 @@ package org.jarhc.test.release;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
+import org.testcontainers.shaded.org.apache.commons.lang.StringUtils;
 
 class BuildArtifactsTest extends ReleaseTest {
 
 	@Test
-	void version() {
-		assertEquals("1.6-SNAPSHOT", getJarHcVersion());
+	void version() throws IOException {
+
+		// get expected version from Gradle project file
+		File buildFile = getProjectFile("build.gradle.kts");
+		String buildScript = FileUtils.readFileToString(buildFile, StandardCharsets.UTF_8);
+		String expectedVersion = StringUtils.substringBetween(buildScript, "\nversion = \"", "\"\n");
+
+		assertEquals(expectedVersion, getJarHcVersion());
 	}
 
 }

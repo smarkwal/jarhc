@@ -23,7 +23,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 import org.assertj.core.api.Assertions;
-import org.jarhc.test.release.utils.JarHcContainer;
+import org.jarhc.test.release.utils.Command;
+import org.jarhc.test.release.utils.JavaContainer;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -65,8 +66,8 @@ class JarHcTest extends ReleaseTest {
 		return containers;
 	}
 
-	private void runInContainer(String javaImageName, Consumer<JarHcContainer> consumer) {
-		JarHcContainer container = createJarHcContainer(javaImageName);
+	private void runInContainer(String javaImageName, Consumer<JavaContainer> consumer) {
+		JavaContainer container = createJavaContainer(javaImageName);
 		try {
 			container.start();
 			consumer.accept(container);
@@ -75,10 +76,13 @@ class JarHcTest extends ReleaseTest {
 		}
 	}
 
-	private void javaVersion(JarHcContainer container) {
+	private void javaVersion(JavaContainer container) {
+
+		// prepare
+		Command command = Command.java("-version");
 
 		// test
-		ExecResult result = container.execJava("-version");
+		ExecResult result = container.exec(command);
 
 		// assert
 		// TODO: check actual Java version
@@ -88,26 +92,28 @@ class JarHcTest extends ReleaseTest {
 
 	}
 
-	private void jarhcVersion(JarHcContainer container) {
+	private void jarhcVersion(JavaContainer container) {
 
 		// prepare
+		Command command = Command.jarHc("--version");
 		String output = String.format("JarHC - JAR Health Check %s\n", getJarHcVersion());
 
 		// test
-		ExecResult result = container.execJarHc("--version");
+		ExecResult result = container.exec(command);
 
 		// assert
 		assertThat(result).isEqualTo(0, output, "");
 
 	}
 
-	private void jarhcHelp(JarHcContainer container) {
+	private void jarhcHelp(JavaContainer container) {
 
 		// prepare
+		Command command = Command.jarHc("--help");
 		String output = readProjectFile("src/main/resources/usage.txt");
 
 		// test
-		ExecResult result = container.execJarHc("--help");
+		ExecResult result = container.exec(command);
 
 		// assert
 		Assertions.assertThat(result.getExitCode()).isEqualTo(0);
@@ -116,26 +122,31 @@ class JarHcTest extends ReleaseTest {
 
 	}
 
-	private void jarhcASM(JarHcContainer container) {
+	private void jarhcASM(JavaContainer container) {
 
 		// prepare
+		Command command = Command.jarHc("-s", "-jr", "org.ow2.asm:asm:9.2");
 		String output = readResource("asm.txt");
 
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
 		// test
-		ExecResult result = container.execJarHc("-s", "-jr", "org.ow2.asm:asm:9.2");
+		ExecResult result = container.exec(command);
 
 		// assert
 		assertThat(result).isEqualTo(0, output, "");
 
 	}
 
-	private void jarhcJarHC(JarHcContainer container) {
+	private void jarhcJarHC(JavaContainer container) {
 
 		// prepare
+		Command command = Command.jarHc("-s", "-jr", "jarhc.jar");
 		String output = readResource("jarhc.txt");
 
 		// test
-		ExecResult result = container.execJarHc("-s", "-jr", "jarhc.jar");
+		ExecResult result = container.exec(command);
 
 		// assert
 		assertThat(result).isEqualTo(0, output, "");
