@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.assertj.core.api.Assertions;
-import org.jarhc.test.release.utils.JarHcContainer;
+import org.jarhc.test.release.utils.JavaContainer;
 import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 
@@ -53,7 +53,7 @@ abstract class ReleaseTest {
 	/**
 	 * Get JarHC version.
 	 *
-	 * @return JarHC version, for example "1.6-SNAPSHOT".
+	 * @return JarHC version, for example "1.4" or "1.5-SNAPSHOT".
 	 */
 	String getJarHcVersion() {
 		return jarHcVersion;
@@ -104,10 +104,10 @@ abstract class ReleaseTest {
 		}
 	}
 
-	JarHcContainer createJarHcContainer(String javaImageName) {
+	JavaContainer createJavaContainer(String javaImageName) {
 
 		// create a new container with the given Java image
-		JarHcContainer container = new JarHcContainer(javaImageName);
+		JavaContainer container = new JavaContainer(javaImageName);
 
 		// map JarHC fat/uber JAR file into container
 		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc.jar");

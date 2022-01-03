@@ -462,6 +462,10 @@ val testJar = task("testJar", type = Jar::class) {
         sourceSets["unitTest"].output,
         sourceSets["integrationTest"].output
     )
+
+    // exclude duplicates
+    // (expected conflict: jarhc.properties)
+    duplicatesStrategy = DuplicatesStrategy.WARN
 }
 
 val libsZip = task("libsZip", type = Zip::class) {

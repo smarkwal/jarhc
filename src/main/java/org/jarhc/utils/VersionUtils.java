@@ -43,6 +43,13 @@ public class VersionUtils {
 		} catch (IOException e) {
 			LOGGER.warn("Failed to load version properties from resource.", e);
 		}
+
+		// check if version is overridden
+		// (used in release tests to generate reproducible output)
+		String version = System.getProperty("jarhc.version.override");
+		if (version != null) {
+			properties.setProperty("version", version);
+		}
 	}
 
 	public static String getVersion() {

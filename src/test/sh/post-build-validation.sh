@@ -70,11 +70,14 @@ while read -r javaHome; do
   expected=$(cat results/help.txt)
   assertEquals "JarHC --help" "$expected" "$actual"
 
+  # redefine JarHC command with version override
+  JARHC="$javaHome/bin/java -Djarhc.version.override=0.0.1 -jar $jarFile"
+
   # run JarHC for ASM
   actual=$($JARHC "-s" "-jr" "org.ow2.asm:asm:9.2")
   # echo "$actual" > results/asm.txt
   expected=$(cat results/asm.txt)
-  assertEquals "JarHC for ASM" "${expected//VERSION/$version}" "$actual"
+  assertEquals "JarHC for ASM" "$expected" "$actual"
 
 done <java.txt
 

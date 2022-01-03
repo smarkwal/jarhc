@@ -79,12 +79,12 @@ Run the following script:
 Example output:
 
 ```
-Test JarHC 1.6-SNAPSHOT
+Test JarHC 0.0.1
 ====================================================================
 Java: 8 | eclipse-temurin:8-jre
 
-JarHC - JAR Health Check 1.6-SNAPSHOT
-=====================================
+JarHC - JAR Health Check 0.0.1
+==============================
 
 Load JAR files ...
 Scan JAR files ...
@@ -94,8 +94,8 @@ Create report ...
 ====================================================================
 Java: 11 | eclipse-temurin:11-jre
 
-JarHC - JAR Health Check 1.6-SNAPSHOT
-=====================================
+JarHC - JAR Health Check 0.0.1
+==============================
 
 Load JAR files ...
 Scan JAR files ...
@@ -105,8 +105,8 @@ Create report ...
 ====================================================================
 Java: 17 | eclipse-temurin:17-jre
 
-JarHC - JAR Health Check 1.6-SNAPSHOT
-=====================================
+JarHC - JAR Health Check 0.0.1
+==============================
 
 Load JAR files ...
 Scan JAR files ...

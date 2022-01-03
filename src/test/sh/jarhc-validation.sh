@@ -54,7 +54,7 @@ for javaVersion in 8 11 17; do
   DOCKER="docker run --rm -v $libsDir/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar -v $resultsDir:/jarhc/results -e JARHC_DATA=/jarhc/data -w /jarhc $image"
 
   # prepare JarHC command
-  JARHC="$DOCKER java -jar jarhc.jar"
+  JARHC="$DOCKER java -Djarhc.version.override=0.0.1 -jar jarhc.jar"
 
   # run JarHC on JarHC
   $JARHC jarhc.jar --output "results/jarhc-$javaVersion.txt"
