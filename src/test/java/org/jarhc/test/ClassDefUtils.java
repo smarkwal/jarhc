@@ -45,12 +45,14 @@ class ClassDefUtils {
 		int classAccess = stream.readInt();
 		String classLoader = stream.readUTF();
 		String classFileChecksum = stream.readUTF();
+		int release = stream.readInt();
 		int majorClassVersion = stream.readInt();
 		int minorClassVersion = stream.readInt();
 
 		ClassDef classDef = ClassDef.forClassName(className)
 				.setClassLoader(classLoader)
 				.setClassFileChecksum(classFileChecksum)
+				.setRelease(release)
 				.setMajorClassVersion(majorClassVersion)
 				.setMinorClassVersion(minorClassVersion)
 				.setSuperName(superName)
@@ -125,6 +127,7 @@ class ClassDefUtils {
 		stream.writeInt(classDef.getAccess());
 		stream.writeUTF(classDef.getClassLoader());
 		stream.writeUTF(classDef.getClassFileChecksum());
+		stream.writeInt(classDef.getRelease());
 		stream.writeInt(classDef.getMajorClassVersion());
 		stream.writeInt(classDef.getMinorClassVersion());
 
