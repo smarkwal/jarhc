@@ -54,6 +54,7 @@ class ClassDefTest {
 		classDef.setJarFile(jarFile);
 		classDef.setAccess(Modifier.PUBLIC + Modifier.ABSTRACT);
 
+		classDef.addRecordComponentDef(new RecordComponentDef("enabled", "boolean"));
 		classDef.addFieldDef(new FieldDef(Modifier.PROTECTED + Modifier.FINAL, "id", "java.lang.String"));
 		classDef.addMethodDef(new MethodDef(Modifier.PUBLIC, "getId", "()Ljava/lang/String;"));
 
@@ -120,6 +121,7 @@ class ClassDefTest {
 				"extends: s.t.U\n" +
 				"implements: [i.j.K1, i.j.K2, i.j.K3]\n" +
 				"permits: [p.q.R1, p.q.R2, p.q.R3]\n" +
+				"record component: boolean a.b.C.enabled\n" +
 				"field: protected final java.lang.String a.b.C.id\n" +
 				"method: public java.lang.String a.b.C.getId()";
 
@@ -135,7 +137,7 @@ class ClassDefTest {
 		String checksum = classDef.getApiChecksum();
 
 		// assert
-		assertEquals("b099675aa737f7bd745781681ae77a6cd2c00380", checksum);
+		assertEquals("15d828ab3d18e175481c5f2b9e242cae343b1da8", checksum);
 
 	}
 

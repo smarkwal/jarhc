@@ -209,6 +209,8 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			} else {
 				classIssues.add("Superclass is an enum: " + superClass.getDisplayName());
 			}
+		} else if (superClass.isRecord()) {
+			classIssues.add("Superclass is a record class: " + superClass.getDisplayName());
 		} else {
 			// OK (regular class or abstract class)
 		}

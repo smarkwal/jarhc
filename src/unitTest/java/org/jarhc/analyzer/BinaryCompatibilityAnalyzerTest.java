@@ -33,6 +33,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
+import org.objectweb.asm.Opcodes;
 
 class BinaryCompatibilityAnalyzerTest {
 
@@ -304,6 +305,28 @@ class BinaryCompatibilityAnalyzerTest {
 		assertEquals(2, rows.size());
 		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is in a named module: public class b.B"));
 		assertValuesEquals(rows.get(1), "b.jar", joinLines("b.B", "\u2022 Sealed superclass is in unnamed module: public sealed class a.A"));
+	}
+
+	@Test
+	void test_analyze_superclassIsARecordClass() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addClassDef(ClassDef.forClassName("a.A").withAccess(Opcodes.ACC_RECORD))
+				.addClassDef(ClassDef.forClassName("a.B").setSuperName("a.A"))
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.B", "\u2022 Superclass is a record class: record a.A"));
 	}
 
 	private ReportTable assertSectionHeader(ReportSection section) {

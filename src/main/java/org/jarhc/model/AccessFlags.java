@@ -129,6 +129,10 @@ abstract class AccessFlags {
 		return hasFlag(Opcodes.ACC_ENUM);
 	}
 
+	public final boolean isRecord() {
+		return hasFlag(Opcodes.ACC_RECORD);
+	}
+
 	public final boolean isDeprecated() {
 		return hasFlag(Opcodes.ACC_DEPRECATED);
 	}

@@ -73,6 +73,10 @@ public class JavaUtils {
 		return Type.getType(fieldDescriptor).getClassName();
 	}
 
+	public static String getRecordComponentType(String recordComponentDescriptor) {
+		return Type.getType(recordComponentDescriptor).getClassName();
+	}
+
 	public static String toExternalName(String name) {
 		return name.replace('/', '.');
 	}

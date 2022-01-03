@@ -27,6 +27,7 @@ javac --release 13 -d java13 Main.java
 javac --release 14 -d java14 Main.java
 javac --release 15 -d java15 Main.java
 javac --release 16 -d java16 Main.java
-javac --release 16 -d java16 Record.java
+javac --release 16 -d java16 MyAnnotation.java
+javac --release 16 -cp java16 -d java16 Record.java
 javac --release 17 -d java17 Main.java
 javac --release 17 -d java17 SealedParent.java FinalChild.java

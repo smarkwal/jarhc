@@ -17,7 +17,6 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -76,6 +75,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	 * Class file checksum.
 	 */
 	private String classFileChecksum = null;
+
+	/**
+	 * List of record component definitions.
+	 */
+	private final List<RecordComponentDef> recordComponentDefs = new ArrayList<>();
 
 	/**
 	 * List of field definitions.
@@ -267,14 +271,19 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	 *
 	 * @return API description
 	 */
-	String getApiDescription() {
+	public String getApiDescription() {
 		StringBuilder api = new StringBuilder();
 		api.append(getModifiers()).append(" ").append(className);
 		// add superclass and interfaces
 		api.append("\nextends: ").append(superName);
 		api.append("\nimplements: ").append(interfaceNames);
 		api.append("\npermits: ").append(permittedSubclassNames);
-		// TODO: add annotations for class, fields and methods?
+		// TODO: add annotations for class, recorc components, fields, and methods?
+		// add all record components
+		recordComponentDefs.stream()
+				.map(RecordComponentDef::getDisplayName) // get component description
+				.sorted() // sort components
+				.forEach(f -> api.append("\nrecord component: ").append(f));
 		// add all fields
 		fieldDefs.stream()
 				.filter(f -> !f.isPrivate()) // ignore private fields
@@ -291,6 +300,16 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 				.sorted() // sort methods
 				.forEach(m -> api.append("\nmethod: ").append(m));
 		return api.toString();
+	}
+
+	public List<RecordComponentDef> getRecordComponentDefs() {
+		return Collections.unmodifiableList(recordComponentDefs);
+	}
+
+	public ClassDef addRecordComponentDef(RecordComponentDef recordComponentDef) {
+		this.recordComponentDefs.add(recordComponentDef);
+		recordComponentDef.setClassDef(this);
+		return this;
 	}
 
 	public List<FieldDef> getFieldDefs() {
@@ -310,11 +329,6 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return this;
 	}
 
-	public ClassDef addFieldDefs(Collection<FieldDef> fieldDefs) {
-		fieldDefs.forEach(this::addFieldDef);
-		return this;
-	}
-
 	public List<MethodDef> getMethodDefs() {
 		return Collections.unmodifiableList(methodDefs);
 	}
@@ -330,11 +344,6 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	public ClassDef addMethodDef(MethodDef methodDef) {
 		this.methodDefs.add(methodDef);
 		methodDef.setClassDef(this);
-		return this;
-	}
-
-	public ClassDef addMethodDefs(Collection<MethodDef> methodDefs) {
-		methodDefs.forEach(this::addMethodDef);
 		return this;
 	}
 
@@ -386,7 +395,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		List<String> parts = getDefaultModifiers();
 
 		// modifiers
-		if (isFinal() && !isEnum()) parts.add("final");
+		if (isFinal() && !isEnum() && !isRecord()) parts.add("final");
 		if (isVolatile()) parts.add("volatile");
 		if (isTransient()) parts.add("transient");
 		if (isAbstract() && !isInterface()) parts.add("abstract");
@@ -404,6 +413,8 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 			parts.add("enum");
 		} else if (isInterface()) {
 			parts.add("interface");
+		} else if (isRecord()) {
+			parts.add("record");
 		} else {
 			parts.add("class");
 		}
@@ -418,6 +429,8 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 			return "enum";
 		} else if (isInterface()) {
 			return "interface";
+		} else if (isRecord()) {
+			return "record";
 		} else if (isAbstract()) {
 			return "abstract class";
 		} else {

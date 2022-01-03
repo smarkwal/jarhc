@@ -26,6 +26,7 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.Def;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
+import org.jarhc.model.RecordComponentDef;
 
 class ClassDefUtils {
 
@@ -69,6 +70,19 @@ class ClassDefUtils {
 
 		// read class annotations
 		readAnnotationRefs(stream, classDef);
+
+		// read record component definitions
+		int numRecordComponentDefs = stream.readInt();
+		for (int f = 0; f < numRecordComponentDefs; f++) {
+			String name = stream.readUTF();
+			String type = stream.readUTF();
+			RecordComponentDef recordComponentDef = new RecordComponentDef(name, type);
+
+			// read record component annotations
+			readAnnotationRefs(stream, recordComponentDef);
+
+			classDef.addRecordComponentDef(recordComponentDef);
+		}
 
 		// read field definitions
 		int numFieldDefs = stream.readInt();
@@ -116,6 +130,7 @@ class ClassDefUtils {
 		String superName = classDef.getSuperName();
 		List<String> interfaceNames = classDef.getInterfaceNames();
 		List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
+		List<RecordComponentDef> recordComponentDefs = classDef.getRecordComponentDefs();
 		List<FieldDef> fieldDefs = classDef.getFieldDefs();
 		List<MethodDef> methodDefs = classDef.getMethodDefs();
 
@@ -146,6 +161,16 @@ class ClassDefUtils {
 
 		// write class annotations
 		writeAnnotationRefs(stream, classDef);
+
+		// write record component definitions
+		stream.writeInt(recordComponentDefs.size());
+		for (RecordComponentDef recordComponentDef : recordComponentDefs) {
+			stream.writeUTF(recordComponentDef.getName());
+			stream.writeUTF(recordComponentDef.getType());
+
+			// write field annotations
+			writeAnnotationRefs(stream, recordComponentDef);
+		}
 
 		// write field definitions
 		stream.writeInt(fieldDefs.size());
