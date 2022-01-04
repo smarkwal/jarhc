@@ -25,11 +25,14 @@ import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.JarHcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main {
+
+	private static final String TEMPDIR_PREFIX = "JarHC-Data-TEMP-";
 
 	private static Logger LOGGER;
 
@@ -62,6 +65,9 @@ public class Main {
 
 		int exitCode = application.run(options);
 
+		// perform clean-up operations
+		cleanUp(options);
+
 		if (exitCode != 0) {
 			System.exit(exitCode);
 		}
@@ -79,6 +85,9 @@ public class Main {
 	private static Repository createRepository(Options options) {
 
 		String dataPath = findDataPath(options);
+
+		// write absolute data path back into options
+		options.setDataPath(dataPath);
 
 		File directory = new File(dataPath);
 		if (!directory.isDirectory()) {
@@ -100,6 +109,14 @@ public class Main {
 		// priority 1: command line option --data
 		String dataPath = options.getDataPath();
 		if (dataPath != null) {
+
+			// special handling for data option "TEMP"
+			if (dataPath.equals("TEMP")) {
+				dataPath = FileUtils.createTempDirectory(TEMPDIR_PREFIX);
+				LOGGER.debug("Data directory: {} (temporary)", dataPath);
+				return dataPath;
+			}
+
 			LOGGER.debug("Data directory: {} (command line option)", dataPath);
 			return dataPath;
 		}
@@ -133,6 +150,18 @@ public class Main {
 		directory = new File(directory, ".jarhc");
 
 		return directory.getAbsolutePath();
+	}
+
+	private static void cleanUp(Options options) {
+
+		// if data directory is a temporary directory ...
+		String dataPath = options.getDataPath();
+		if (dataPath.contains(TEMPDIR_PREFIX)) {
+
+			// delete data directory (recursively)
+			File directory = new File(dataPath);
+			FileUtils.delete(directory);
+		}
 	}
 
 }

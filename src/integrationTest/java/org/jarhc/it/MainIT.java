@@ -17,6 +17,7 @@
 package org.jarhc.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -42,8 +43,8 @@ class MainIT {
 	private PrintStream originalSystemOut;
 	private PrintStream originalSystemErr;
 
-	private ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	private PrintStream stream = new PrintStream(buffer);
+	private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+	private final PrintStream stream = new PrintStream(buffer);
 
 	@BeforeEach
 	void setUp() {
@@ -79,7 +80,7 @@ class MainIT {
 		File reportFile = new File(tempDir.toFile(), "report.txt");
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
-		String[] args = new String[]{
+		String[] args = new String[] {
 				"--title", "SLF4J 1.7.28",
 				"--format", "text",
 				"--output", reportFile.getAbsolutePath(),
@@ -102,6 +103,45 @@ class MainIT {
 			return;
 		}
 
+		assertReport(actualReport);
+	}
+
+	@Test
+	void main_withTempDataDir(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File reportFile = new File(tempDir.toFile(), "report.txt");
+
+		String[] args = new String[] {
+				"--title", "SLF4J 1.7.28",
+				"--format", "text",
+				"--output", reportFile.getAbsolutePath(),
+				"--sections", "-jr", // exclude Java Runtime section (depends on platform)
+				"--data", "TEMP",
+				"org.slf4j:slf4j-api:1.7.28"
+		};
+
+		// test
+		Main.main(args);
+
+		// assert
+		assertTrue(reportFile.isFile());
+
+		// make sure that application has not created a directory with name "TEMP"
+		assertFalse(new File("TEMP").exists());
+
+		String actualReport = FileUtils.readFileToString(reportFile);
+
+		if (TestUtils.createResources()) {
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
+			return;
+		}
+
+		assertReport(actualReport);
+	}
+
+	private void assertReport(String actualReport) throws IOException {
+
 		String expectedReport = TestUtils.getResourceAsString("/org/jarhc/it/MainIT/report.txt", "UTF-8");
 
 		// normalize
@@ -109,14 +149,13 @@ class MainIT {
 		expectedReport = TextUtils.toUnixLineSeparators(expectedReport);
 
 		assertEquals(expectedReport, actualReport);
-
 	}
 
 	@Test
 	void main_print_help() throws IOException {
 
 		// prepare
-		String[] args = new String[]{"--help"};
+		String[] args = new String[] { "--help" };
 
 		try {
 
@@ -141,7 +180,7 @@ class MainIT {
 	void main_print_usage() throws IOException {
 
 		// prepare
-		String[] args = new String[]{"--unknown-option"};
+		String[] args = new String[] { "--unknown-option" };
 
 		try {
 

@@ -72,7 +72,7 @@ public class DigestUtils {
 		}
 	}
 
-	private static String hex(byte[] input) {
+	public static String hex(byte[] input) {
 		StringBuilder result = new StringBuilder(input.length * 2);
 		for (byte value : input) {
 			result.append(String.format("%02x", value));
