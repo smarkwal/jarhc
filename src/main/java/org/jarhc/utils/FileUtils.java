@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 
 public class FileUtils {
@@ -158,6 +159,49 @@ public class FileUtils {
 			diff = file1.getName().compareTo(file2.getName());
 		}
 		return diff;
+	}
+
+	/**
+	 * Create a path for a new temporary directory with the given name prefix.
+	 *
+	 * @param prefix Prefix for directory name.
+	 * @return Absolute path to new temporary directory.
+	 */
+	public static String createTempDirectory(String prefix) {
+
+		// get path to Java's temp directory
+		String tmpDir = System.getProperty("java.io.tmpdir");
+		if (tmpDir == null) {
+			throw new JarHcException("Temporary directory not defined.");
+		}
+
+		// create a random directory name
+		byte[] data = new byte[8];
+		SecureRandom random = new SecureRandom();
+		random.nextBytes(data);
+		String name = prefix + DigestUtils.hex(data);
+
+		File directory = new File(tmpDir, name);
+
+		return directory.getAbsolutePath();
+	}
+
+	/**
+	 * Delete the given file or directory (recursively).
+	 *
+	 * @param path File or directory.
+	 */
+	@SuppressWarnings("ResultOfMethodCallIgnored")
+	public static void delete(File path) {
+		if (path.isDirectory()) {
+			File[] files = path.listFiles();
+			if (files != null) {
+				for (File file : files) {
+					delete(file);
+				}
+			}
+		}
+		path.delete();
 	}
 
 }
