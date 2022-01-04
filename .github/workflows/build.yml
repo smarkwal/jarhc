@@ -16,6 +16,7 @@ on:
 
 jobs:
   build:
+    name: Build
 
     runs-on: ubuntu-latest
     env:
@@ -35,10 +36,16 @@ jobs:
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@v1
 
+    - name: Restore SonarQube Cache
+      uses: actions/cache@v2
+      with:
+        path: /home/runner/.sonar/cache
+        key: sonarqube-cache
+
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'build ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: 'build sonarqube ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
