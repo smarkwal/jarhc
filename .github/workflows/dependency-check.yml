@@ -4,6 +4,11 @@ on:
   schedule:
   - cron: '0 17 * * FRI'
   workflow_dispatch:
+    inputs:
+      additionalGradleOptions:
+        description: 'Additional Gradle options'
+        required: false
+        default: ''
 
 jobs:
   dependency-check:
@@ -38,7 +43,7 @@ jobs:
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: dependencyCheckAnalyze
+        arguments: 'dependencyCheckAnalyze ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload report
       uses: actions/upload-artifact@v2
