@@ -9,11 +9,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      security-events: write
+
     steps:
 
     - name: Checkout
       uses: actions/checkout@v2
-    
+
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
@@ -22,7 +26,7 @@ jobs:
 
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@v1
-        
+
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
       with:
@@ -41,4 +45,3 @@ jobs:
       if: github.ref == 'refs/heads/master'
       with:
         sarif_file: build/reports/dependency-check/dependency-check-report.sarif
-        
