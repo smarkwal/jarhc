@@ -1,6 +1,8 @@
 name: Dependency-Check
 
 on:
+  schedule:
+  - cron: '0 17 * * FRI'
   workflow_dispatch:
 
 jobs:
