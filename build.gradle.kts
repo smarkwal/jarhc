@@ -33,7 +33,7 @@ plugins {
     id("org.ajoberstar.grgit") version "4.1.1"
     id("org.kordamp.gradle.source-xref") version "0.47.0"
     id("org.sonarqube") version "3.3"
-    id("org.owasp.dependencycheck") version "6.5.1"
+    id("org.owasp.dependencycheck") version "6.5.2.1"
     id("com.dorongold.task-tree") version "2.1.0"
     `maven-publish`
     idea
