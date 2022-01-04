@@ -2,11 +2,7 @@ name: Build
 
 on:
   push:
-    branches:
-    - master
   pull_request:
-    branches:
-    - master
   workflow_dispatch:
     inputs:
       additionalGradleOptions:
@@ -21,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      PUSH_GRADLE_OPTIONS: ''
 
     steps:
 
@@ -38,14 +35,19 @@ jobs:
 
     - name: Restore SonarQube Cache
       uses: actions/cache@v2
+      if: github.event_name == 'push'
       with:
         path: /home/runner/.sonar/cache
         key: sonarqube-cache
 
+    - name: Set Push Gradle options
+      if: github.event_name == 'push'
+      run: echo "PUSH_GRADLE_OPTIONS=sonarqube" >> $GITHUB_ENV
+
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'build sonarqube ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: 'build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
