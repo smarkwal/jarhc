@@ -44,6 +44,7 @@ import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
 import org.eclipse.aether.spi.connector.transport.TransporterFactory;
 import org.eclipse.aether.transfer.ArtifactNotFoundException;
+import org.eclipse.aether.transport.file.FileTransporterFactory;
 import org.eclipse.aether.transport.http.HttpTransporterFactory;
 import org.eclipse.aether.util.graph.selector.AndDependencySelector;
 import org.eclipse.aether.util.graph.selector.ExclusionDependencySelector;
@@ -56,14 +57,16 @@ import org.slf4j.Logger;
 
 public class MavenRepository implements Repository {
 
-	private static final RemoteRepository central = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
+	public static final String MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2/";
 
 	private final ArtifactFinder artifactFinder;
 	private final Logger logger;
+	private final RemoteRepository central;
 	private final RepositorySystem repoSystem;
 	private final RepositorySystemSession session;
 
-	public MavenRepository(String dataPath, ArtifactFinder artifactFinder, Logger logger) {
+	public MavenRepository(String url, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
+		this.central = new RemoteRepository.Builder("central", "default", url).build();
 		this.artifactFinder = artifactFinder;
 		this.logger = logger;
 		this.repoSystem = newRepositorySystem();
@@ -180,7 +183,7 @@ public class MavenRepository implements Repository {
 	private static RepositorySystem newRepositorySystem() {
 		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
 		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-		//locator.addService(TransporterFactory.class, FileTransporterFactory.class);
+		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
 		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
 		return locator.getService(RepositorySystem.class);
 	}

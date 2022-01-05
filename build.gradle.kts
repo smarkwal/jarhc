@@ -174,6 +174,7 @@ dependencies {
     implementation("org.json:json:20211205")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-connector-basic:1.1.0")
+    implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
     implementation("org.slf4j:slf4j-api:1.7.32")

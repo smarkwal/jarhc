@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+
+    Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
+
+    The contents of this file are subject to the terms of either the GNU
+    General Public License Version 2 only ("GPL") or the Common Development
+    and Distribution License("CDDL") (collectively, the "License").  You
+    may not use this file except in compliance with the License.  You can
+    obtain a copy of the License at
+    https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+    or packager/legal/LICENSE.txt.  See the License for the specific
+    language governing permissions and limitations under the License.
+
+    When distributing the software, include this License Header Notice in each
+    file and include the License file at packager/legal/LICENSE.txt.
+
+    GPL Classpath Exception:
+    Oracle designates this particular file as subject to the "Classpath"
+    exception as provided by Oracle in the GPL Version 2 section of the License
+    file that accompanied this code.
+
+    Modifications:
+    If applicable, add the following below the License Header, with the fields
+    enclosed by brackets [] replaced by your own identifying information:
+    "Portions Copyright [year] [name of copyright owner]"
+
+    Contributor(s):
+    If you wish your version of this file to be governed by only the CDDL or
+    only the GPL Version 2, indicate your decision by adding "[Contributor]
+    elects to include this software in this distribution under the [CDDL or GPL
+    Version 2] license."  If you don't indicate a single choice of license, a
+    recipient has the option to distribute your version of this file under
+    either the CDDL, the GPL Version 2 or to extend the choice of license to
+    its licensees as provided above.  However, if you add GPL Version 2 code
+    and therefore, elected the GPL Version 2 license, then the option applies
+    only if the new code is made subject to such option by the copyright
+    holder.
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.glassfish.main</groupId>
+        <artifactId>glassfish-main-parent</artifactId>
+        <version>4.0-b33</version>
+    </parent>
+    
+    <artifactId>glassfish-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>GlassFish Parent Project</name>
+    <scm>
+        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/4.0-b33</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/4.0-b33</developerConnection>
+      <url>https://github.com/sonatype/jvnet-parent/glassfish-main-parent/glassfish-parent/tags/4.0-b33</url>
+  </scm>
+    <issueManagement>
+        <system>IssueTracker</system>
+        <url>http://java.net/jira/browse/GLASSFISH</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>dev</name>
+            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
+            <post>dev@glassfish.java.net</post>
+            <archive>http://java.net/projects/glassfish/lists/dev/archive</archive>
+        </mailingList>
+        <mailingList>
+            <name>users</name>
+            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
+            <post>users@glassfish.java.net</post>
+            <archive>http://java.net/projects/glassfish/lists/users/archive</archive>
+        </mailingList>
+        <mailingList>
+            <name>issues</name>
+            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
+            <post>issues@glassfish.java.net</post>
+            <archive>http://java.net/projects/glassfish/lists/issues/archive</archive>
+        </mailingList>
+        <mailingList>
+            <name>commits</name>
+            <subscribe>http://java.net/projects/glassfish/lists</subscribe>
+            <post>commits@glassfish.java.net</post>
+            <archive>http://java.net/projects/glassfish/lists/commits/archive</archive>
+        </mailingList>
+    </mailingLists>
+
+    <properties>
+
+    </properties>
+
+
+    <modules>
+        <!-- Don't add any other module here. Instead add them in default profile -->
+        <!-- To avoid JVM crash while using JDK 6, we are not
+             building this module in anonymous profile anymore.
+             See bug #6766662 for more details.
+              <module>build</module>
+        -->
+    </modules>
+    <profiles>
+
+        <profile>
+            <!-- this profile is used during the development -->
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <!-- Every time you change module list, please change
+                     the same under release profiles as well (below) -->
+                <module>javaee-api</module>
+                <module>common</module>
+                <module>ha</module>
+                <module>deployment</module>
+                <module>admin</module>
+                <module>core</module>
+                <module>transaction</module>
+                <module>web</module>
+                <module>ejb</module>
+                <module>resources</module>
+                <module>connectors</module>
+                <module>load-balancer</module> 
+                <module>jms</module>
+                <module>jdbc</module>
+                <module>persistence</module>
+                <module>extras</module>
+                <module>admingui</module>
+                <module>extras/embedded/shell</module>
+                <module>packager</module>
+                <module>distributions</module>
+                <module>paas</module>
+                <module>security</module>
+                <module>registration</module>
+                <module>tests</module>
+                <module>osgi-platforms</module>
+                <module>flashlight</module>
+                <module>grizzly</module>
+                <module>webservices</module>
+                <module>orb</module>
+                <module>appclient</module>
+                <module>verifier/verifier-impl</module>
+                <module>verifier/verifier-impl-l10n</module>
+                <module>verifier/verifier-scripts</module>
+                <module>verifier/verifier-jdk-extension-bundle</module>
+                <module>ant-tasks</module>
+            </modules>
+            <build>
+                <plugins>
+                    <!-- prints ${project.basedir} in build output -->
+                    <plugin>
+                        <groupId>org.glassfish.build</groupId>
+                        <artifactId>maven-glassfishbuild-plugin</artifactId>
+                        <version>${glassfishbuild.version}</version>
+                        <executions>
+                            <execution>
+                                <id>echo</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>echo</goal>
+                                </goals>
+                                <configuration>
+                                    <messages>
+                                        <message>Building in ${project.basedir} </message>
+                                    </messages>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <!-- this profile is used during the development -->
+            <id>IDE</id>
+            <modules>
+                <!-- Every time you change module list, please change
+                     the same under release profiles as well (below) -->
+                <module>javaee-api</module>
+                <module>common</module>
+                <module>ha</module>
+                <module>deployment</module>
+                <module>admin</module>
+                <module>core</module>
+                <module>transaction</module>
+                <module>web</module>
+                <module>ejb</module>
+                <module>resources</module>
+                <module>connectors</module>
+                <module>load-balancer</module> 
+                <module>jdbc</module>
+                <module>paas</module>
+                <module>extras</module>
+                <module>distributions</module>
+                <module>security</module>
+                <module>registration</module>
+                <module>tests</module>
+                <module>osgi-platforms</module>
+                <module>flashlight</module>
+                <module>grizzly</module>
+                <module>webservices</module>
+            </modules>
+        </profile>        
+
+        <profile>
+            <!--
+                RE profile for release purposes.
+            -->
+            <id>release-phase2</id>
+
+            <build>
+                <plugins>
+                    <!-- The installer module requires the dependency of jdk tools.jar -->
+                    <!-- to compile java classes in build.xml.  -->
+                    <plugin>
+                        <groupId>org.jvnet.maven-antrun-extended-plugin</groupId>
+                        <artifactId>maven-antrun-extended-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>sun.jdk</groupId>
+                                <artifactId>tools</artifactId>
+                                <version>1.6</version>
+                                <scope>system</scope>
+                                <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <modules>
+                <module>javaee-api</module>
+                <module>common</module>
+                <module>ha</module>
+                <module>deployment</module>
+                <module>admin</module>
+                <module>core</module>
+                <module>transaction</module>
+                <module>web</module>
+                <module>ejb</module>
+                <module>resources</module>
+                <module>connectors</module>
+                <module>load-balancer</module> 
+                <module>jms</module>
+                <module>jdbc</module>
+                <module>persistence</module>
+                <module>extras</module>
+                <module>admingui</module>
+                <module>extras/embedded/shell</module>
+                <module>packager</module>
+                <module>distributions</module>
+                <module>security</module>
+                <module>registration</module>
+                <module>tests</module>
+                <module>osgi-platforms</module>
+                <module>flashlight</module>
+                <module>grizzly</module>
+                <module>webservices</module>
+                <module>paas</module>
+                <module>orb</module>
+                <module>installer</module>
+                <module>appclient</module>
+                <module>verifier/verifier-impl</module>
+                <module>verifier/verifier-impl-l10n</module>
+                <module>verifier/verifier-scripts</module>
+                <module>verifier/verifier-jdk-extension-bundle</module>
+                <module>extras/embedded/all</module>
+                <module>extras/embedded/web</module>
+                <module>extras/embedded/nucleus</module>
+		<module>ant-tasks</module>
+            </modules>
+       </profile>
+
+       <profile>
+            <!--
+                RE profile for release purposes.
+            -->
+            <id>release-phase-all</id>
+            <modules>
+                <module>javaee-api</module>
+                <module>common</module>
+                <module>ha</module>
+                <module>deployment</module>
+                <module>admin</module>
+                <module>core</module>
+                <module>transaction</module>
+                <module>web</module>
+                <module>ejb</module>
+                <module>resources</module>
+                <module>connectors</module>
+                <module>load-balancer</module> 
+                <module>jms</module>
+                <module>jdbc</module>
+                <module>persistence</module>
+                <module>extras</module>
+                <module>admingui</module>
+                <module>extras/embedded/shell</module>
+                <module>packager</module>
+                <module>paas</module>
+                <module>distributions</module>
+                <module>security</module>
+                <module>registration</module>
+                <module>tests</module>
+                <module>osgi-platforms</module>
+                <module>flashlight</module>
+                <module>grizzly</module>
+                <module>webservices</module>
+                <module>orb</module>
+                <module>installer</module>
+                <module>appclient</module>
+                <module>verifier/verifier-impl</module>
+                <module>verifier/verifier-impl-l10n</module>
+                <module>verifier/verifier-scripts</module>
+                <module>verifier/verifier-jdk-extension-bundle</module>
+                <module>extras/embedded/all</module>
+                <module>extras/embedded/web</module>
+                <module>extras/embedded/nucleus</module>
+                <module>ant-tasks</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>

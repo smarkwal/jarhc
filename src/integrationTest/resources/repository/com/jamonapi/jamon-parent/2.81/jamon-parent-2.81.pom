@@ -1,0 +1,229 @@
+ <project>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>9</version>
+  </parent>
+  
+  <groupId>com.jamonapi</groupId>
+  <artifactId>jamon-parent</artifactId>
+  <packaging>pom</packaging>
+  <name>JAMon Parent</name>
+  <version>2.81</version>
+
+  <modules>
+   <module>jamon</module>
+   <module>jamon_war</module>
+   <module>jamon_osmon</module>
+  </modules>
+
+  <description>The Java Application Monitor (JAMon) is a free, simple, high performance, thread safe, Java API that allows developers to easily monitor production applications.
+  
+    1) It contains the ability to monitor JDBC/SQL, web page requests, ejb's, log4j, interfaces and more.
+    2) It tracks aggregate stats for each sql statement, page request etc. and also lets you look at this information and more via the JAMon war.
+    3) You can also access JAMon statistics via the api
+  </description>
+  <url>http://jamonapi.sourceforge.net/</url>
+  
+  <licenses>
+    <license>
+      <name>JAMon License (BSD)</name>
+      <url>http://jamonapi.sourceforge.net/JAMonLicense.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+
+  <scm>
+    <url>https://sourceforge.net/p/jamonapi/jamonapi/ci/master/tree/</url>
+    <connection>scm:git:git://git.code.sf.net/p/jamonapi/jamonapi</connection>
+  </scm>
+  
+  
+  <developers>
+    <developer>
+      <id>stevesouza</id>
+      <name>Steve Souza</name>
+      <email>admin@jamonapi.com</email>
+    </developer>
+  </developers>
+
+     <properties>
+         <!-- Maven setting -->
+         <maven.compiler.source>1.6</maven.compiler.source>
+         <maven.compiler.target>1.6</maven.compiler.target>        
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <!-- Version settings -->         
+         <assertj.version>1.7.0</assertj.version>
+         <commons.version>3.3.2</commons.version>
+         <hazelcast.version>3.2.5</hazelcast.version>
+         <hsqldb.version>2.3.2</hsqldb.version>
+         <jakarta-oro.version>2.13.1</jakarta-oro.version>
+         <javaee.version>6.0</javaee.version>
+         <jdk.version>1.6</jdk.version>
+         <jetty6.version>6.1.25</jetty6.version>
+         <jetty9.version>9.2.1.v20140609</jetty9.version>
+         <jsp.version>2.0</jsp.version>
+         <junit.version>4.11</junit.version>
+         <log4j.version>1.2.15</log4j.version>
+         <mockito.version>1.9.5</mockito.version>
+         <maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>
+         <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+         <servlet.version>2.4</servlet.version>
+         <spring.aop.version>1.8.0</spring.aop.version>
+         <spring.version>4.0.2.RELEASE</spring.version>
+         <tomcat-catalina.version>6.0.26</tomcat-catalina.version>
+     </properties>
+     <distributionManagement>
+         <snapshotRepository>
+             <id>sonatype-nexus-snapshots</id>
+             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+         </snapshotRepository>
+         <repository>
+             <id>sonatype-nexus-staging</id>
+             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+         </repository>
+     </distributionManagement>
+
+     <dependencies>
+         <dependency>
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <version>${junit.version}</version>
+             <scope>test</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.assertj</groupId>
+             <artifactId>assertj-core</artifactId>
+             <version>${assertj.version}</version>
+             <scope>test</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-all</artifactId>
+             <version>${mockito.version}</version>
+             <scope>test</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.hsqldb</groupId>
+             <artifactId>hsqldb</artifactId>
+             <version>${hsqldb.version}</version>
+             <scope>test</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>log4j</groupId>
+             <artifactId>log4j</artifactId>
+             <version>${log4j.version}</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>com.sun.jdmk</groupId>
+                     <artifactId>jmxtools</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>com.sun.jmx</groupId>
+                     <artifactId>jmxri</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>javax.jms</groupId>
+                     <artifactId>jms</artifactId>
+                 </exclusion>
+             </exclusions>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>javax.servlet</groupId>
+             <artifactId>servlet-api</artifactId>
+             <version>${servlet.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>javax.servlet.jsp</groupId>
+             <artifactId>jsp-api</artifactId>
+             <version>${jsp.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.mortbay.jetty</groupId>
+             <artifactId>jetty</artifactId>
+             <version>${jetty6.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.apache.tomcat</groupId>
+             <artifactId>catalina</artifactId>
+             <version>${tomcat-catalina.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>javax</groupId>
+             <artifactId>javaee-api</artifactId>
+             <version>${javaee.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <!-- spring -->
+
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.aspectj</groupId>
+             <artifactId>aspectjrt</artifactId>
+             <version>${spring.aop.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+         <dependency>
+             <groupId>org.aspectj</groupId>
+             <artifactId>aspectjweaver</artifactId>
+             <version>${spring.aop.version}</version>
+             <scope>provided</scope>
+         </dependency>
+
+     </dependencies>
+
+     <profiles>
+         <!--
+              Profile for releases to sign artifacts
+         -->
+         <profile>
+             <id>release</id>
+             <build>
+                 <plugins>
+
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-gpg-plugin</artifactId>
+                         <version>1.5</version>
+                         <executions>
+                             <execution>
+                                 <id>sign-artifacts</id>
+                                 <phase>verify</phase>
+                                 <goals>
+                                     <goal>sign</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>
+
+                 </plugins>
+             </build>
+         </profile>
+     </profiles>
+
+</project>

@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import org.jarhc.test.TestDataException;
 
 /**
  * Test utility methods.
@@ -126,10 +127,25 @@ public class TestUtils {
 			}
 		}
 
-		Files.write(path, data);
+		// create parent directory (if it does not yet exist)
+		Path directory = path.getParent();
+		if (!Files.exists(directory)) {
+			Files.createDirectories(directory);
+		}
+
+		try {
+			Files.write(path, data);
+		} catch (IOException e) {
+			throw new TestDataException(e);
+		}
 
 		//noinspection ConstantConditions
 		assumeTrue(false, "Test resource generated.");
+	}
+
+	public static String getFileRepositoryURL() {
+		File directory = new File("src/integrationTest/resources/repository");
+		return "file://" + directory.getAbsolutePath();
 	}
 
 	/**
