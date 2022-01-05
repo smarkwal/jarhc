@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Fabric3
+ Copyright (c) 2009 Metaform Systems
+
+Fabric3 is licensed under modified terms of the GNU General
+Public License. See the accompanying license file for details.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.codehaus.fabric3</groupId>
+    <artifactId>parent</artifactId>
+    <version>5</version>
+    <packaging>pom</packaging>
+    <name>Fabric3 Project Parent</name>
+    <description>Parent POM defining project wide settings.</description>
+
+    <prerequisites>
+        <maven>3.0.1</maven>
+    </prerequisites>
+
+    <organization>
+        <name>Fabric3 Project</name>
+        <url>http://fabric3.codehaus.org</url>
+    </organization>
+
+    <inceptionYear>2007</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Fabric3 License</name>
+            <url>http://www.fabric3.org/f3license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.codehaus.org/browse/FABRICTHREE</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <extensions>
+            <!-- WebDAV extension to support deployment to Codehaus repositories -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-1</version>
+            </extension>
+        </extensions>
+    </build>
+
+    <scm>
+        <connection>scm:svn:http://svn.codehaus.org/fabric3/parent-pom/tags/parent-5</connection>
+        <developerConnection>scm:svn:https://svn.codehaus.org/fabric3/parent-pom/tags/parent-5</developerConnection>
+        <url>http://svn.fabric3.codehaus.org/browse/fabric3/parent-pom/tags/parent-5</url>
+    </scm>
+       
+    <distributionManagement>
+        <repository>
+            <id>dav.codehaus.org</id>
+            <name>Fabric3 Release Repository</name>
+            <url>dav:https://dav.codehaus.org/repository/fabric3/</url>
+        </repository>
+        <snapshotRepository>
+            <id>dav.codehaus.org</id>
+            <name>Fabric3 Snapshot Repository</name>
+            <url>dav:https://dav.codehaus.org/snapshots.repository/fabric3/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>repository.codehaus.org</id>
+            <name>Fabric3 Releases</name>
+            <url>http://repository.codehaus.org/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>snapshots.repository.codehaus.org</id>
+            <name>Fabric3 Snapshots</name>
+            <url>http://snapshots.repository.codehaus.org/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.codehaus.org</id>
+            <name>Fabric3 Releases</name>
+            <url>http://repository.codehaus.org/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>snapshots.repository.codehaus.org</id>
+            <name>Fabric3 Snapshots</name>
+            <url>http://snapshots.repository.codehaus.org/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

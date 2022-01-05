@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.beanshell</groupId>
+    <artifactId>bsh</artifactId>
+    <packaging>jar</packaging>
+    <name>BeanShell</name>
+    <version>2.0b5</version>
+    <description>BeanShell is a small, free, embeddable Java source interpreter with object scripting language features,
+        written in Java. BeanShell dynamically executes standard Java syntax and extends it with common scripting
+        conveniences such as loose types, commands, and method closures like those in Perl and JavaScript.
+    </description>
+    <url>http://www.beanshell.org/</url>
+    <licenses>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+            <url>http://www.gnu.org/copyleft/lesser.html</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>http://ikayzo.org/svn/beanshell</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>pat</id>
+            <name>Pat Niemeyer</name>
+        </developer>
+    </developers>
+</project>

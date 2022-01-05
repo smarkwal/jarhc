@@ -16,6 +16,8 @@
 
 package org.jarhc;
 
+import static org.jarhc.artifacts.MavenRepository.MAVEN_CENTRAL_URL;
+
 import java.io.File;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
@@ -101,7 +103,7 @@ public class Main {
 		ArtifactFinder artifactFinder = new MavenArtifactFinder(mavenArtifactFinderLogger);
 
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
-		return new MavenRepository(dataPath, artifactFinder, mavenRepositoryLogger);
+		return new MavenRepository(MAVEN_CENTRAL_URL, dataPath, artifactFinder, mavenRepositoryLogger);
 	}
 
 	private static String findDataPath(Options options) {

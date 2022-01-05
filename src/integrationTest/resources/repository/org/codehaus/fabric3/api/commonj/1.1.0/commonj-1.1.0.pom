@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.codehaus.fabric3.api</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>1.0</version>
+    </parent>
+    <groupId>org.codehaus.fabric3.api</groupId>
+    <artifactId>commonj</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
+    <name>CommonJ API</name>
+    <description>CommonJ API</description>
+
+    <scm>
+        <connection>scm:svn:http://svn.codehaus.org/fabric3/apis/commonj/tags/commonj-1.1.0</connection>
+        <developerConnection>scm:svn:https://svn.codehaus.org/fabric3/apis/commonj/tags/commonj-1.1.0</developerConnection>
+        <url>http://svn.fabric3.codehaus.org/browse/fabric3/apis/commonj/tags/commonj-1.1.0</url>
+    </scm>
+
+</project>

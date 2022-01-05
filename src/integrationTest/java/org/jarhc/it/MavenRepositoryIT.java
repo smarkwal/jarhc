@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.RepositoryException;
@@ -48,7 +49,7 @@ class MavenRepositoryIT {
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		repository = new MavenRepository(tempDir.toString(), null, logger);
+		repository = new MavenRepository(TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
 	}
 
 	@AfterEach

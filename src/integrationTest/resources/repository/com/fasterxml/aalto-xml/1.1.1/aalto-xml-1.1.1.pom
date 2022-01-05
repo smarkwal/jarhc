@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.fasterxml</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>33</version>
+  </parent>
+
+  <artifactId>aalto-xml</artifactId>
+  <version>1.1.1</version>
+  <packaging>bundle</packaging>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <name>aalto-xml</name>
+  <description>Ultra-high performance non-blocking XML processor (Stax/Stax2, SAX/SAX2)
+  </description>
+
+  <scm>
+    <connection>scm:git:git@github.com:FasterXML/aalto-xml.git</connection>
+    <developerConnection>scm:git:git@github.com:FasterXML/aalto-xml.git</developerConnection>
+    <url>http://github.com/FasterXML/aalto-xml</url>
+    <tag>aalto-xml-1.1.1</tag>
+  </scm>
+
+  <properties>
+    <!--
+     | Compilation: require JDK 1.6
+    -->
+    <javac.src.version>1.6</javac.src.version>
+    <javac.target.version>1.6</javac.target.version>
+
+    <!-- And for Java 9, specify Automatic-Module-Name -->
+    <jdk.module.name>com.fasterxml.aalto</jdk.module.name>
+
+    <!--
+     | Configuration properties for the OSGi maven-bundle-plugin
+    -->
+    <osgi.export>${project.groupId}.aalto.*;version=${project.version}</osgi.export>
+    <osgi.import>javax.xml, javax.xml.namespace, javax.xml.parsers,
+javax.xml.stream, javax.xml.stream.util,
+javax.xml.transform, javax.xml.transform.dom, javax.xml.transform.sax, javax.xml.transform.stream,
+org.codehaus.stax2, org.codehaus.stax2.io, org.codehaus.stax2.ri, org.codehaus.stax2.typed,
+org.codehaus.stax2.validation,
+org.codehaus.stax2.ri.dom, org.codehaus.stax2.ri.evt, org.codehaus.stax2.ri.typed,
+org.w3c.dom,
+org.xml.sax, org.xml.sax.ext, org.xml.sax.helpers</osgi.import>
+  </properties>
+
+  <dependencies>
+    <!--
+     | Not much; just APIs we implement
+     | note: we do need Stax2 api (javax.xml.stream); but
+     | it comes with JDK 1.6, which is baseline for Aalto
+    -->
+    <dependency>
+      <groupId>org.codehaus.woodstox</groupId>
+      <artifactId>stax2-api</artifactId>
+      <version>4.1</version>
+    </dependency>
+    <!--
+     | Test dependencies
+    -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- since 1.1, may start test validation; need Woodstox for that -->
+    <dependency>
+      <groupId>com.fasterxml.woodstox</groupId>
+      <artifactId>woodstox-core</artifactId>
+      <version>5.1.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!--  base definitions work for OSGi, but also need to add Automatic-Module-Name -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Automatic-Module-Name>${jdk.module.name}</Automatic-Module-Name>
+          </instructions>
+        </configuration>
+      </plugin>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.13</version>
+        <configuration>
+          <includes>
+            <include>**/Test*.java</include>
+            <include>**/*Test.java</include>
+          </includes>
+          <excludes>
+            <exclude>**/Base*</exclude>
+            <exclude>**/*$*</exclude>
+	        <exclude>failing/*.java</exclude>
+          </excludes>
+          <reportFormat>${surefire.format}</reportFormat>
+          <useFile>${surefire.usefile}</useFile>
+          <forkMode>${surefire.fork.mode}</forkMode>
+          <childDelegation>false</childDelegation>
+          <argLine>${surefire.fork.vmargs}</argLine>
+          <systemProperties>
+            <property>
+              <name>java.awt.headless</name>
+              <value>${java.awt.headless}</value>
+            </property>
+            <property>
+              <name>surefire.fork.vmargs</name>
+              <value>${surefire.fork.vmargs}</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+
+
+    </plugins>
+  </build>
+
+</project>
