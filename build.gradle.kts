@@ -543,6 +543,33 @@ val integrationTest = task("integrationTest", type = Test::class) {
     shouldRunAfter(unitTest)
 }
 
+val prepareReleaseTest = task("prepareReleaseTest", type = Test::class) {
+    group = "verification"
+    description = "Prepares the release test suite."
+
+    // TODO: declare inputs and outputs
+    doLast {
+
+        // write all configuration dependencies into configurations.properties
+        val dependencies = StringBuilder()
+        project.configurations.forEach { conf ->
+            val artifacts = if (conf.isCanBeResolved) {
+                conf.resolvedConfiguration.resolvedArtifacts.map { it.moduleVersion.id }.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
+            } else {
+                conf.dependencies.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
+            }
+            if (artifacts.isNotEmpty()) {
+                dependencies.append(conf.name).append(" = ").append(artifacts).append("\n")
+            }
+        }
+        file("$buildDir/configurations.properties").writeText(dependencies.toString())
+
+    }
+
+    // run release tests after JAR and fat/uber JAR have been built
+    dependsOn(tasks.jar, jarWithDeps)
+}
+
 val releaseTest = task("releaseTest", type = Test::class) {
     group = "verification"
     description = "Runs the release test suite."
@@ -551,8 +578,7 @@ val releaseTest = task("releaseTest", type = Test::class) {
     testClassesDirs = sourceSets["releaseTest"].output.classesDirs
     classpath = sourceSets["releaseTest"].runtimeClasspath
 
-    // run release tests after fat/uber JAR has been built
-    dependsOn(jarWithDeps)
+    dependsOn(prepareReleaseTest)
 }
 
 // common settings for all test tasks

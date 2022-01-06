@@ -17,11 +17,14 @@
 package org.jarhc.test.release;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 import org.assertj.core.api.Assertions;
 import org.jarhc.test.release.utils.JavaContainer;
+import org.jarhc.test.release.utils.JavaImage;
 import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 
@@ -29,7 +32,6 @@ abstract class ReleaseTest {
 
 	private String jarHcVersion;
 	private File projectDir;
-	private File jarFile;
 
 	ReleaseTest() {
 		findProjectFiles();
@@ -45,9 +47,17 @@ abstract class ReleaseTest {
 		jarHcVersion = readProjectFile(versionFilePath);
 		Assertions.assertThat(jarHcVersion).as("JarHC version").matches("^[1-9]\\.[1-9][0-9]*(-SNAPSHOT)?$");
 
-		// check if fat/uber JAR file has been built
-		String jarFilePath = String.format("build/libs/jarhc-%s-with-deps.jar", jarHcVersion);
-		jarFile = getProjectFile(jarFilePath);
+	}
+
+	String getDependencies(String configuration) {
+		File file = getProjectFile("build/configurations.properties");
+		try {
+			Properties properties = new Properties();
+			properties.load(new FileInputStream(file));
+			return properties.getProperty(configuration, "");
+		} catch (IOException e) {
+			throw new IllegalArgumentException(configuration);
+		}
 	}
 
 	/**
@@ -57,6 +67,18 @@ abstract class ReleaseTest {
 	 */
 	String getJarHcVersion() {
 		return jarHcVersion;
+	}
+
+	/**
+	 * Get project directory given its path.
+	 *
+	 * @param path Directory path, relative to project root.
+	 * @return Project directory.
+	 */
+	File getProjectDirectory(String path) {
+		File directory = new File(projectDir, path);
+		Assertions.assertThat(directory).isDirectory();
+		return directory;
 	}
 
 	/**
@@ -86,6 +108,15 @@ abstract class ReleaseTest {
 		}
 	}
 
+	void writeProjectFile(String path, String text) {
+		File file = getProjectFile(path);
+		try {
+			FileUtils.writeStringToFile(file, text, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			throw new AssertionError("Unexpected I/O error.", e);
+		}
+	}
+
 	/**
 	 * Read the text resource from the given path.
 	 *
@@ -104,13 +135,20 @@ abstract class ReleaseTest {
 		}
 	}
 
-	JavaContainer createJavaContainer(String javaImageName) {
+	JavaContainer createJavaContainer(JavaImage javaImage) {
 
 		// create a new container with the given Java image
-		JavaContainer container = new JavaContainer(javaImageName);
+		JavaContainer container = new JavaContainer(javaImage);
+
+		// map JarHC JAR file into container
+		String jarFilePath = String.format("build/libs/jarhc-%s.jar", jarHcVersion);
+		File jarFile = getProjectFile(jarFilePath);
+		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc.jar");
 
 		// map JarHC fat/uber JAR file into container
-		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc.jar");
+		jarFilePath = String.format("build/libs/jarhc-%s-with-deps.jar", jarHcVersion);
+		jarFile = getProjectFile(jarFilePath);
+		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc-with-deps.jar");
 
 		// set path to JarHC data directory
 		container.withEnv("JARHC_DATA", "/jarhc/data");

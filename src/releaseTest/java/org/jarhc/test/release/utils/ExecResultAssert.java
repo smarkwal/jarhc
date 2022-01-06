@@ -41,10 +41,10 @@ public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResul
 		String actualStderr = actual.getStderr();
 
 		// replace signatures
-		expectedStdout = replaceSignatures(expectedStdout);
-		expectedStderr = replaceSignatures(expectedStderr);
-		actualStdout = replaceSignatures(actualStdout);
-		actualStderr = replaceSignatures(actualStderr);
+		expectedStdout = TestUtils.normalizeResult(expectedStdout);
+		expectedStderr = TestUtils.normalizeResult(expectedStderr);
+		actualStdout = TestUtils.normalizeResult(actualStdout);
+		actualStderr = TestUtils.normalizeResult(actualStderr);
 
 		StringBuilder buffer = new StringBuilder();
 		if (actualExitCode != expectedExitCode) {
@@ -70,10 +70,6 @@ public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResul
 	}
 
 	// private helper methods --------------------------------------------------
-
-	private String replaceSignatures(String expectedStdout) {
-		return expectedStdout.replaceAll("\\| [0-9a-f]{40} \\|", "| 0000000000000000000000000000000000000000 |");
-	}
 
 	private static void appendDiff(StringBuilder buffer, String expected, String actual) {
 		List<String> lines1 = splitLines(expected);

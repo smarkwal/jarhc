@@ -1,0 +1,93 @@
+Usage: java -jar JarHC.jar [options] <path> [<path>]*
+
+Arguments:
+
+   <path> : Path to JAR file or directory with JAR files.
+
+   Note:
+   If a path refers to a WAR file instead of a JAR file,
+   JarHC analyzes the JAR files inside the WAR file.
+
+Options:
+
+   --help                : Print this usage information.
+    -h
+
+   --version             : Print version information.
+    -v
+
+   --debug               : Enable verbose output.
+
+   --release  <number>   : Set Java release used when parsing multi-release JAR
+    -r                     files. Minimum is 8 for Java 8.
+                           Example: -r 11
+                           Default: Version of Java runtime used to run JarHC.
+
+   --classpath <path>    : Add a JAR file or directory with JAR files
+    -cp                    to the classpath of libraries to be analyzed.
+                           Adding JAR files like this has the same
+                           effect as passing them as arguments.
+
+   --provided <path>     : Add a JAR file or directory with JAR files
+                           to the classpath of provided libraries.
+
+   --runtime <path>      : Add a JAR file or directory with JAR files
+                           to the classpath of runtime libraries.
+
+   --strategy <strategy> : Class loader strategy ("ParentLast" or "ParentFirst").
+                           Example: --strategy ParentFirst
+                           Default: ParentLast
+
+   --format <type>       : Report format type ("text", "list", or "html").
+    -f                     Example: -f html
+                           Default: text
+
+   --output <file>       : Report file output path.
+    -o                     Example: -o report.html
+                           Default: [none] (print to STDOUT)
+
+   --title <text>        : Report title.
+    -t                     Example: -t "MyApp 1.0"
+                           Default: "JAR Health Check Report"
+
+   --sections <sections> : List of sections to include in the report.
+    -s                     Example: -s "jf,cv,jd"
+                           Default: [none] (include all sections)
+
+                           If the list of sections is prefixed with '-'
+                           the given sections are excluded.
+                           Example: -s "-p,sp"
+
+   --skip-empty          : Exclude empty sections from the report.
+
+   --remove-version      : Remove version number from JAR file names.
+
+   --use-artifact-name   : Create JAR file name from artifact name.
+
+   --data <path>         : Path to local cache directory for artifact
+                           information. If the directory does not exist,
+                           it is automatically created.
+                           The special value "TEMP" can be used to create a
+                           temporary data directory.
+                           If this option is not present, JarHC will check if
+                           environment variable JARHC_DATA is set.
+                           Default: ~/.jarhc
+
+Environment variables:
+
+   JARHC_DATA            : Path to local cache directory for artifact
+                           information. If the directory does not exist,
+                           it is automatically created.
+
+Sections:
+
+   jf - JAR Files
+   m  - Modules
+   cv - Class Versions
+   jd - JAR Dependencies
+   d  - Dependencies
+   p  - Packages
+   dc - Duplicate Classes
+   bc - Binary Compatibility
+   bl - Blacklist
+   jr - Java Runtime

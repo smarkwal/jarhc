@@ -34,7 +34,7 @@ public class Command {
 	public static Command jarHc(String... arguments) {
 		Command builder = new Command();
 		builder.jarHcArguments.add("-jar");
-		builder.jarHcArguments.add("jarhc.jar");
+		builder.jarHcArguments.add("jarhc-with-deps.jar");
 		builder.jarHcArguments.addAll(Arrays.asList(arguments));
 		return builder;
 	}

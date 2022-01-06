@@ -23,8 +23,15 @@ import org.testcontainers.utility.DockerImageName;
 
 public class JavaContainer extends GenericContainer<JavaContainer> {
 
-	public JavaContainer(String javaImageName) {
-		super(DockerImageName.parse(javaImageName));
+	private final JavaImage javaImage;
+
+	public JavaContainer(JavaImage javaImage) {
+		super(DockerImageName.parse(javaImage.getImageName()));
+		this.javaImage = javaImage;
+	}
+
+	public JavaImage getJavaImage() {
+		return javaImage;
 	}
 
 	public ExecResult exec(Command command) {
