@@ -15,8 +15,8 @@ List of JAR files found in classpath.
 
 JAR file  | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
 ----------+---------+---------+-----------+---------------+--------+------------------------------------------+---------------------
-jarhc.jar | 6.59 MB | 4546    | 142       | No            | No     | 47c45a63c801e2e1d82e8d891754fb86a66ca5de | [unknown]
-Classpath | 6.59 MB | 4546    | 142       | -             | -      | -                                        | -
+jarhc.jar | 6.60 MB | 4550    | 142       | No            | No     | c4926fde6172554a0ef178fceeac14db0ffcf40e | [unknown]
+Classpath | 6.60 MB | 4550    | 142       | -             | -      | -                                        | -
 
 Modules
 -------
@@ -32,8 +32,8 @@ Java class file format information.
 
 JAR file  | Java version
 ----------+--------------------------------------------------------------------------------------
-jarhc.jar | Java 8 (2592), Java 7 (278), Java 6 (1070), Java 5 (575), Java 1.3 (9), Java 1.2 (22)
-Classpath | Java 8 (2592), Java 7 (278), Java 6 (1070), Java 5 (575),
+jarhc.jar | Java 8 (2592), Java 7 (278), Java 6 (1070), Java 5 (579), Java 1.3 (9), Java 1.2 (22)
+Classpath | Java 8 (2592), Java 7 (278), Java 6 (1070), Java 5 (579),
           | Java 1.3 (9), Java 1.2 (22)
 
 JAR Dependencies
@@ -58,9 +58,9 @@ List of packages per JAR file.
 
 JAR file  | Count | Packages                          | Issues
 ----------+-------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------
-jarhc.jar | 227   | com.google.* (22 subpackages)     | Fat JAR: com.google.*, javax.*, org.apache.*, org.checkerframework.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+jarhc.jar | 228   | com.google.* (22 subpackages)     | Fat JAR: com.google.*, javax.*, org.apache.*, org.checkerframework.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
           |       | javax.annotation (+2 subpackages) |
-          |       | org.* (202 subpackages)           |
+          |       | org.* (203 subpackages)           |
 
 Duplicate Classes
 -----------------
@@ -262,6 +262,10 @@ jarhc.jar | org.apache.commons.logging.LogFactory$4
           | • Class not found: javax.inject.Inject (package not found)
           | • Class not found: javax.inject.Named (package not found)
           | • Class not found: org.eclipse.sisu.Nullable (package not found)
+          |
+          | org.eclipse.aether.transport.file.FileTransporterFactory
+          | • Class not found: javax.inject.Inject (package not found)
+          | • Class not found: javax.inject.Named (package not found)
           |
           | org.eclipse.aether.transport.http.HttpTransporterFactory
           | • Class not found: javax.inject.Inject (package not found)
