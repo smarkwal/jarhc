@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.eclipse.aether.DefaultRepositorySystemSession;
@@ -65,12 +66,12 @@ public class MavenRepository implements Repository {
 	private final RepositorySystem repoSystem;
 	private final RepositorySystemSession session;
 
-	public MavenRepository(String url, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
+	public MavenRepository(int javaVersion, String url, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
 		this.central = new RemoteRepository.Builder("central", "default", url).build();
 		this.artifactFinder = artifactFinder;
 		this.logger = logger;
 		this.repoSystem = newRepositorySystem();
-		this.session = newSession(repoSystem, dataPath);
+		this.session = newSession(repoSystem, javaVersion, dataPath);
 	}
 
 	@Override
@@ -188,7 +189,7 @@ public class MavenRepository implements Repository {
 		return locator.getService(RepositorySystem.class);
 	}
 
-	private static RepositorySystemSession newSession(RepositorySystem repoSystem, String dataPath) {
+	private static RepositorySystemSession newSession(RepositorySystem repoSystem, int javaVersion, String dataPath) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 
 		if (dataPath != null) {
@@ -207,6 +208,21 @@ public class MavenRepository implements Repository {
 				new ExclusionDependencySelector()
 		);
 		session.setDependencySelector(dependencySelector);
+
+		// clear all system and config properties which are already set
+		Map<String, String> systemProperties = session.getSystemProperties();
+		List<String> propertyNames = new ArrayList<>(systemProperties.keySet());
+		for (String propertyName : propertyNames) {
+			session.setSystemProperty(propertyName, null);
+			session.setConfigProperty(propertyName, null);
+		}
+
+		// set Java version
+		if (javaVersion < 9) { // Java 1.5 - 1.8
+			session.setSystemProperty("java.version", String.format("1.%d.0", javaVersion));
+		} else { // Java 9 and greater
+			session.setSystemProperty("java.version", String.format("%d.0.0", javaVersion));
+		}
 
 		return session;
 	}

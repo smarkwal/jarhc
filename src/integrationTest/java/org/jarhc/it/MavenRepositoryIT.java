@@ -49,7 +49,7 @@ class MavenRepositoryIT {
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		repository = new MavenRepository(TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
+		repository = new MavenRepository(8, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
 	}
 
 	@AfterEach
@@ -221,7 +221,7 @@ class MavenRepositoryIT {
 	}
 
 	@Test
-	void test_getDependencies_CamelJDBC() throws RepositoryException {
+	void test_getDependencies_CamelJDBC_onJava8() throws RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("org.apache.camel:camel-jdbc:2.17.7");
@@ -238,6 +238,28 @@ class MavenRepositoryIT {
 		assertTrue(dependencies.contains(new Dependency("org.apache.camel", "apt", "2.17.7", Scope.PROVIDED, false)));
 		assertTrue(dependencies.contains(new Dependency("com.sun.xml.bind", "jaxb-core", "2.2.11", Scope.COMPILE, false)));
 		assertTrue(dependencies.contains(new Dependency("com.sun.xml.bind", "jaxb-impl", "2.2.11", Scope.COMPILE, false)));
+		assertLogger(logger).hasDebug("Get dependencies: org.apache.camel:camel-jdbc:2.17.7:jar");
+	}
+
+	@Test
+	void test_getDependencies_CamelJDBC_onJava11(@TempDir Path tempDir) throws RepositoryException {
+
+		// create a new repository for Java 11
+		repository = new MavenRepository(11, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
+
+		// prepare
+		Artifact artifact = new Artifact("org.apache.camel:camel-jdbc:2.17.7");
+
+		// test
+		List<Dependency> dependencies = repository.getDependencies(artifact);
+
+		// assert: https://mvnrepository.com/artifact/org.apache.camel/camel-jdbc/2.17.7
+		//         parent: https://mvnrepository.com/artifact/org.apache.camel/components/2.17.7
+		//         parent: https://mvnrepository.com/artifact/org.apache.camel/camel-parent/2.17.7
+		//         parent: https://mvnrepository.com/artifact/org.apache.camel/camel/2.17.7
+		assertEquals(2, dependencies.size());
+		assertTrue(dependencies.contains(new Dependency("org.apache.camel:camel-core:2.17.7", Scope.COMPILE, false)));
+		assertTrue(dependencies.contains(new Dependency("org.apache.camel", "apt", "2.17.7", Scope.PROVIDED, false)));
 		assertLogger(logger).hasDebug("Get dependencies: org.apache.camel:camel-jdbc:2.17.7:jar");
 	}
 

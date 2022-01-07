@@ -102,8 +102,9 @@ public class Main {
 		Logger mavenArtifactFinderLogger = LoggerFactory.getLogger(MavenArtifactFinder.class);
 		ArtifactFinder artifactFinder = new MavenArtifactFinder(mavenArtifactFinderLogger);
 
+		int javaVersion = options.getRelease();
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
-		return new MavenRepository(MAVEN_CENTRAL_URL, dataPath, artifactFinder, mavenRepositoryLogger);
+		return new MavenRepository(javaVersion, MAVEN_CENTRAL_URL, dataPath, artifactFinder, mavenRepositoryLogger);
 	}
 
 	private static String findDataPath(Options options) {
