@@ -211,6 +211,10 @@ hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.NearCachedClientCa
                             | com.hazelcast.client.console.ClientConsoleApp
                             | • static void java.lang.System.exit(int)
                             |
+                            | com.hazelcast.client.impl.clientside.ClientExceptionFactory
+                            | • @Deprecated: public class com.hazelcast.mapreduce.RemoteMapReduceException
+                            | • @Deprecated: public class com.hazelcast.mapreduce.TopologyChangedException
+                            |
                             | com.hazelcast.client.impl.clientside.ClientExceptionFactory$47
                             | • @Deprecated: public class com.hazelcast.mapreduce.RemoteMapReduceException
                             |

@@ -604,6 +604,7 @@ camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         |
                         | org.apache.camel.impl.osgi.Activator$BaseResolver
                         | • Class not found: org.osgi.framework.Bundle (package not found)
+                        | • Class not found: org.osgi.framework.BundleContext (package not found)
                         | • Class not found: org.slf4j.Logger (package not found)
                         |
                         | org.apache.camel.impl.osgi.Activator$BaseService
@@ -2444,6 +2445,7 @@ camel-spring-2.17.7.jar | org.apache.camel.component.event.CamelEvent
                         | • Class not found: org.slf4j.Logger (package not found)
                         | • Class not found: org.slf4j.LoggerFactory (package not found)
                         | • Class not found: org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource (package not found)
+                        | • Class not found: org.springframework.jmx.export.annotation.ManagedResource (package not found)
                         | • Class not found: org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler (package not found)
                         | • Class not found: org.springframework.jmx.export.metadata.JmxAttributeSource (package not found)
                         |

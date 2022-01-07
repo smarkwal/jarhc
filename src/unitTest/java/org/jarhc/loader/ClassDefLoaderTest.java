@@ -168,6 +168,23 @@ class ClassDefLoaderTest {
 	}
 
 	@Test
+	void test_load_class_refs(@TempDir Path tempDir) throws IOException {
+
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java6/ClassRefs.class";
+		File file = TestUtils.getResourceAsFile(resource, tempDir);
+		ClassDef classDef = classDefLoader.load(file);
+
+		assertNotNull(classDef);
+		assertEquals("ClassRefs", classDef.getClassName());
+		assertEquals(50, classDef.getMajorClassVersion());
+		assertEquals("Java 6", classDef.getJavaVersion());
+
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		assertTrue(classRefs.contains(new ClassRef("java.lang.Object")));
+		assertTrue(classRefs.contains(new ClassRef("java.util.ArrayList")));
+	}
+
+	@Test
 	void test_load_sealed_class() throws IOException {
 		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java17/SealedParent.class";
 		ClassDef classDef = loadClass(resource);

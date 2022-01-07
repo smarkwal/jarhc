@@ -15,7 +15,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Multi-release         | Module                                     | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+-----------------------+--------------------------------------------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 186 KB  | 109     | 6         | No                    | No                                         | eb5be39a27944c502502facb7309d1f8e2c2f0af | [unknown]
+jarhc.jar                                                      | 186 KB  | 109     | 6         | No                    | No                                         | 8772c35b58b7010a2ea90ba1d9b4a90214a92f91 | [unknown]
 asm-9.2.jar                                                    | 119 KB  | 37      | 0         | No                    | Yes (org.objectweb.asm)                    | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
 json-20211205.jar                                              | 69.0 KB | 27      | 0         | No                    | Yes (org.json)                             | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | No                    | No                                         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
@@ -143,7 +143,11 @@ Dependencies between JAR files.
 JAR file                                                       | Uses                                 | Used by
 ---------------------------------------------------------------+--------------------------------------+------------------------------------
 jarhc.jar                                                      | aether-api-1.1.0.jar                 | [none]
+                                                               | aether-connector-basic-1.1.0.jar     |
                                                                | aether-impl-1.1.0.jar                |
+                                                               | aether-spi-1.1.0.jar                 |
+                                                               | aether-transport-file-1.1.0.jar      |
+                                                               | aether-transport-http-1.1.0.jar      |
                                                                | aether-util-1.1.0.jar                |
                                                                | asm-9.2.jar                          |
                                                                | json-20211205.jar                    |
@@ -166,12 +170,12 @@ aether-impl-1.1.0.jar                                          | aether-api-1.1.
                                                                | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
                                                                | aether-util-1.1.0.jar                |
                                                                | slf4j-api-1.7.32.jar                 |
-aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | [none]
+aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
-aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | [none]
+aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-spi-1.1.0.jar                 |
-aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | [none]
+aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
                                                                | httpclient-4.5.13.jar                |
@@ -215,6 +219,7 @@ aether-spi-1.1.0.jar                                           | aether-api-1.1.
                                                                |                                      | aether-impl-1.1.0.jar
                                                                |                                      | aether-transport-file-1.1.0.jar
                                                                |                                      | aether-transport-http-1.1.0.jar
+                                                               |                                      | jarhc.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
 aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
                                                                |                                      | aether-impl-1.1.0.jar

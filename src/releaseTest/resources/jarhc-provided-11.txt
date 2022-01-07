@@ -15,7 +15,7 @@ List of JAR files found in classpath.
 
 JAR file  | Size   | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
 ----------+--------+---------+-----------+---------------+--------+------------------------------------------+---------------------
-jarhc.jar | 186 KB | 109     | 6         | No            | No     | 6f038778b363c41f231acf3731820543573b7cc2 | [unknown]
+jarhc.jar | 186 KB | 109     | 6         | No            | No     | 8772c35b58b7010a2ea90ba1d9b4a90214a92f91 | [unknown]
 Classpath | 186 KB | 109     | 6         | -             | -      | -                                        | -
 
 Modules
@@ -92,6 +92,8 @@ jarhc.jar | org.jarhc.artifacts.MavenRepository
           | • Class not found: org.eclipse.aether.resolution.ArtifactRequest (package not found)
           | • Class not found: org.eclipse.aether.resolution.ArtifactResolutionException (package not found)
           | • Class not found: org.eclipse.aether.resolution.ArtifactResult (package not found)
+          | • Class not found: org.eclipse.aether.spi.connector.RepositoryConnectorFactory (package not found)
+          | • Class not found: org.eclipse.aether.spi.connector.transport.TransporterFactory (package not found)
           | • Class not found: org.eclipse.aether.transfer.ArtifactNotFoundException (package not found)
           | • Class not found: org.eclipse.aether.util.graph.selector.AndDependencySelector (package not found)
           | • Class not found: org.eclipse.aether.util.graph.selector.ExclusionDependencySelector (package not found)

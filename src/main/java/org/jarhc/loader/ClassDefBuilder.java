@@ -362,6 +362,10 @@ class ClassDefBuilder extends ClassVisitor {
 			this.methodDef = methodDef;
 		}
 
+		/**
+		 * Visits a field instruction. A field instruction is an instruction
+		 * that loads or stores the value of a field of an object.
+		 */
 		@Override
 		public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
 
@@ -389,6 +393,10 @@ class ClassDefBuilder extends ClassVisitor {
 			fieldRefs.add(fieldRef);
 		}
 
+		/**
+		 * Visits a method instruction. A method instruction is an instruction
+		 * that invokes a method.
+		 */
 		@Override
 		public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
 
@@ -402,6 +410,23 @@ class ClassDefBuilder extends ClassVisitor {
 
 			MethodRef methodRef = new MethodRef(methodOwner, descriptor, name, interfaceMethod, staticMethod);
 			methodRefs.add(methodRef);
+		}
+
+		/**
+		 * Visits a LDC (load constant) instruction.
+		 */
+		@Override
+		public void visitLdcInsn(Object value) {
+			if (value instanceof Type) {
+				// reference to class, like Something.class
+				Type type = (Type) value;
+				String className = type.getClassName();
+				addClassRef(className);
+				// } else if (value instanceof String) {
+				//    // constant string
+				//    TODO: reflection ?
+				// }
+			}
 		}
 
 		@Override

@@ -37,6 +37,7 @@ hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
                             |
                             | com.hazelcast.cache.impl.AbstractCacheProxy
+                            | • Class not found: javax.cache.CacheException (package not found)
                             | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
                             |
                             | com.hazelcast.cache.impl.AbstractCacheProxyBase
@@ -130,6 +131,7 @@ hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             | • Class not found: javax.cache.configuration.OptionalFeature (package not found)
                             |
                             | com.hazelcast.cache.impl.AbstractInternalCacheProxy
+                            | • Class not found: javax.cache.CacheException (package not found)
                             | • Class not found: javax.cache.CacheManager (package not found)
                             | • Class not found: javax.cache.configuration.CacheEntryListenerConfiguration (package not found)
                             | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
@@ -296,6 +298,12 @@ hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             |
                             | com.hazelcast.client.impl.MemberImpl
                             | • Class not found: edu.umd.cs.findbugs.annotations.SuppressFBWarnings (package not found)
+                            |
+                            | com.hazelcast.client.impl.protocol.ClientExceptions
+                            | • Class not found: javax.cache.CacheException (package not found)
+                            | • Class not found: javax.cache.integration.CacheLoaderException (package not found)
+                            | • Class not found: javax.cache.integration.CacheWriterException (package not found)
+                            | • Class not found: javax.cache.processor.EntryProcessorException (package not found)
                             |
                             | com.hazelcast.client.impl.protocol.DefaultMessageTaskFactoryProvider
                             | • Class not found: edu.umd.cs.findbugs.annotations.SuppressFBWarnings (package not found)
@@ -1636,6 +1644,9 @@ hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             |
                             | com.hazelcast.internal.adapter.DataStructureAdapter$DataStructureMethods
                             | • Class not found: edu.umd.cs.findbugs.annotations.SuppressFBWarnings (package not found)
+                            | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
+                            | • Class not found: javax.cache.integration.CompletionListener (package not found)
+                            | • Class not found: javax.cache.processor.EntryProcessor (package not found)
                             |
                             | com.hazelcast.internal.adapter.ICacheDataStructureAdapter
                             | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
@@ -2165,6 +2176,7 @@ hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             | com.hazelcast.util.executor.LoggingScheduledExecutor
                             | • Class not found: edu.umd.cs.findbugs.annotations.SuppressFBWarnings (package not found)
 hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.AbstractClientCacheProxy
+                            | • Class not found: javax.cache.CacheException (package not found)
                             | • Class not found: javax.cache.expiry.ExpiryPolicy (package not found)
                             |
                             | com.hazelcast.client.cache.impl.AbstractClientCacheProxyBase
@@ -2179,6 +2191,7 @@ hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.AbstractClientCach
                             | • Class not found: javax.cache.integration.CompletionListener (package not found)
                             |
                             | com.hazelcast.client.cache.impl.AbstractClientInternalCacheProxy
+                            | • Class not found: javax.cache.CacheException (package not found)
                             | • Class not found: javax.cache.CacheManager (package not found)
                             | • Class not found: javax.cache.configuration.CacheEntryListenerConfiguration (package not found)
                             | • Class not found: javax.cache.event.CacheEntryListener (package not found)
@@ -2211,6 +2224,12 @@ hazelcast-client-3.11.2.jar | com.hazelcast.client.cache.impl.AbstractClientCach
                             |
                             | com.hazelcast.client.console.ClientConsoleApp
                             | • Class not found: edu.umd.cs.findbugs.annotations.SuppressFBWarnings (package not found)
+                            |
+                            | com.hazelcast.client.impl.clientside.ClientExceptionFactory
+                            | • Class not found: javax.cache.CacheException (package not found)
+                            | • Class not found: javax.cache.integration.CacheLoaderException (package not found)
+                            | • Class not found: javax.cache.integration.CacheWriterException (package not found)
+                            | • Class not found: javax.cache.processor.EntryProcessorException (package not found)
                             |
                             | com.hazelcast.client.impl.clientside.ClientExceptionFactory$1
                             | • Class not found: javax.cache.CacheException (package not found)
