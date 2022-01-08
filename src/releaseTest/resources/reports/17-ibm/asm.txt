@@ -1,11 +1,3 @@
-JarHC - JAR Health Check 0.0.1
-==============================
-
-Load JAR files ...
-Scan JAR files ...
-Analyze classpath ...
-Create report ...
-
 JAR Health Check Report
 =======================
 
@@ -80,13 +72,4 @@ Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 JAR file | Issues
 ---------+-------
-
-Java Runtime
-------------
-Information about JRE/JDK runtime.
-
-Java home    : /opt/java/openjdk
-Java runtime : OpenJDK Runtime Environment
-Java version : 11.0.13
-Java vendor  : Eclipse Adoptium
 

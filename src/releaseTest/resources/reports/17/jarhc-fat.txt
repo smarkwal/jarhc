@@ -1,11 +1,3 @@
-JarHC - JAR Health Check 0.0.1
-==============================
-
-Load JAR files ...
-Scan JAR files ...
-Analyze classpath ...
-Create report ...
-
 JAR Health Check Report
 =======================
 
@@ -364,13 +356,4 @@ jarhc-with-deps.jar | com.google.common.cache.Striped64
                     |
                     | org.slf4j.impl.SimpleLoggerConfiguration
                     | • @Deprecated: public final class java.security.AccessController
-
-Java Runtime
-------------
-Information about JRE/JDK runtime.
-
-Java home    : /opt/java/openjdk
-Java runtime : OpenJDK Runtime Environment
-Java version : 17.0.1
-Java vendor  : Eclipse Adoptium
 

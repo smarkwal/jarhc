@@ -17,8 +17,11 @@
 package org.jarhc.test.release;
 
 import static org.jarhc.test.release.utils.ExecResultAssert.assertThat;
-import static org.jarhc.test.release.utils.TestUtils.createResources;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,9 +29,11 @@ import org.assertj.core.api.Assertions;
 import org.jarhc.test.release.utils.Command;
 import org.jarhc.test.release.utils.JavaContainer;
 import org.jarhc.test.release.utils.JavaImage;
+import org.jarhc.test.release.utils.TestUtils;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.io.TempDir;
 import org.testcontainers.containers.Container.ExecResult;
 
 class JarHcTest extends ReleaseTest {
@@ -37,26 +42,56 @@ class JarHcTest extends ReleaseTest {
 			new JavaImage("8", "eclipse-temurin:8-jre"),
 			new JavaImage("11", "eclipse-temurin:11-jre"),
 			new JavaImage("17", "eclipse-temurin:17-jre"),
-			// TODO: IBM images?
+			//new JavaImage("8-ibm", "ibmjava:8-jre"),
+			new JavaImage("8-ibm", "ibm-semeru-runtimes:open-8-jre"),
+			new JavaImage("11-ibm", "ibm-semeru-runtimes:open-11-jre"),
+			new JavaImage("17-ibm", "ibm-semeru-runtimes:open-17-jre")
 	};
 
+	private File resourcesDir;
+	private File outputDir;
+	private File reportsDir;
+	private File dataDir;
+
 	@TestFactory
-	Collection<DynamicContainer> test() {
+	Collection<DynamicContainer> test(@TempDir Path tempDir) {
 
 		List<DynamicContainer> containers = new ArrayList<>();
+
+		// get path to test resources
+		resourcesDir = getProjectDirectory("src/releaseTest/resources");
+
+		// update test resource?
+		if (TestUtils.createResources()) {
+			// let tests directly overwrite resources
+			outputDir = resourcesDir;
+		} else {
+			outputDir = tempDir.toFile();
+		}
+
+		// make sure that reports directory exists
+		reportsDir = new File(outputDir, "reports");
+		createDirectory(reportsDir);
+
+		// make sure that data directory exists
+		// note: all tests will use the same data directory
+		dataDir = new File(tempDir.toFile(), "data");
+		createDirectory(dataDir);
+		System.out.println("Data directory: " + dataDir.getAbsolutePath());
 
 		// for every Java Docker image
 		for (JavaImage javaImage : JAVA_IMAGES) {
 
 			// prepare a collection of tests
 			List<DynamicTest> tests = new ArrayList<>();
-			tests.add(DynamicTest.dynamicTest("Java Version", () -> runInContainer(javaImage, this::javaVersion)));
-			tests.add(DynamicTest.dynamicTest("JarHC Version", () -> runInContainer(javaImage, this::jarhcVersion)));
-			tests.add(DynamicTest.dynamicTest("JarHC Help", () -> runInContainer(javaImage, this::jarhcHelp)));
-			tests.add(DynamicTest.dynamicTest("JarHC for ASM", () -> runInContainer(javaImage, this::jarhcASM)));
-			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (fat)", () -> runInContainer(javaImage, this::jarhcJarHC_fat)));
-			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (artifacts)", () -> runInContainer(javaImage, this::jarhcJarHC_artifacts)));
-			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (provided)", () -> runInContainer(javaImage, this::jarhcJarHC_provided)));
+			tests.add(DynamicTest.dynamicTest("Java Version", () -> runInContainer(javaImage, this::java_version)));
+			tests.add(DynamicTest.dynamicTest("JarHC Version", () -> runInContainer(javaImage, this::jarhc_version)));
+			tests.add(DynamicTest.dynamicTest("JarHC Help", () -> runInContainer(javaImage, this::jarhc_help)));
+			tests.add(DynamicTest.dynamicTest("JarHC Java Runtime", () -> runInContainer(javaImage, this::jarhc_javaRuntime)));
+			tests.add(DynamicTest.dynamicTest("JarHC for ASM", () -> runInContainer(javaImage, this::jarhc_forASM)));
+			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (fat)", () -> runInContainer(javaImage, this::jarhc_forJarHC_fat)));
+			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (artifacts)", () -> runInContainer(javaImage, this::jarhc_forJarHC_artifacts)));
+			tests.add(DynamicTest.dynamicTest("JarHC for JarHC (provided)", () -> runInContainer(javaImage, this::jarhc_forJarHC_provided)));
 
 			// add all tests to a test container for grouping
 			String imageName = javaImage.getImageName();
@@ -73,7 +108,7 @@ class JarHcTest extends ReleaseTest {
 	}
 
 	private void runInContainer(JavaImage javaImage, TestMethod testMethod) {
-		JavaContainer container = createJavaContainer(javaImage);
+		JavaContainer container = createJavaContainer(javaImage, reportsDir, dataDir);
 		try {
 			container.start();
 			testMethod.test(container);
@@ -82,23 +117,30 @@ class JarHcTest extends ReleaseTest {
 		}
 	}
 
-	private void javaVersion(JavaContainer container) {
+	private void java_version(JavaContainer container) {
 
 		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String outputPath = "reports/" + javaVersion + "/java-version.txt";
+		String expectedOutput = readResource(outputPath);
 		Command command = Command.java("-version");
 
 		// test
 		ExecResult result = container.exec(command);
 
+		if (TestUtils.createResources()) {
+			String actualOutput = result.getStderr();
+			if (!actualOutput.equals(expectedOutput)) {
+				writeProjectFile("src/releaseTest/resources/" + outputPath, actualOutput);
+			}
+		}
+
 		// assert
-		// TODO: check actual Java version
-		Assertions.assertThat(result.getExitCode()).isEqualTo(0);
-		Assertions.assertThat(result.getStdout()).isEmpty();
-		Assertions.assertThat(result.getStderr()).contains("Temurin");
+		assertThat(result).isEqualTo(0, "", expectedOutput);
 
 	}
 
-	private void jarhcVersion(JavaContainer container) {
+	private void jarhc_version(JavaContainer container) {
 
 		// prepare
 		Command command = Command.jarHc("--version");
@@ -112,92 +154,150 @@ class JarHcTest extends ReleaseTest {
 
 	}
 
-	private void jarhcHelp(JavaContainer container) {
+	private void jarhc_help(JavaContainer container) {
 
 		// prepare
 		Command command = Command.jarHc("--help");
-
-		// test
-		jarhcTest(container, command, "help.txt");
-
-	}
-
-	private void jarhcASM(JavaContainer container) {
-
-		// prepare
-		Command command = Command.jarHc("org.ow2.asm:asm:9.2");
-
-		// override JarHC version for reproducible test output
-		command.addJavaArguments("-Djarhc.version.override=0.0.1");
-
-		// test
-		jarhcTest(container, command, "asm-{java.version}.txt");
-
-	}
-
-	private void jarhcJarHC_fat(JavaContainer container) {
-
-		// prepare
-		Command command = Command.jarHc("jarhc-with-deps.jar");
-
-		// override JarHC version for reproducible test output
-		command.addJavaArguments("-Djarhc.version.override=0.0.1");
-
-		// test
-		jarhcTest(container, command, "jarhc-fat-{java.version}.txt");
-
-	}
-
-	private void jarhcJarHC_artifacts(JavaContainer container) {
-
-		// prepare
-		String dependencies = getDependencies("runtimeClasspath");
-		Command command = Command.jarHc("jarhc.jar", "--classpath", dependencies);
-
-		// override JarHC version for reproducible test output
-		command.addJavaArguments("-Djarhc.version.override=0.0.1");
-
-		// test
-		jarhcTest(container, command, "jarhc-artifacts-{java.version}.txt");
-
-	}
-
-	private void jarhcJarHC_provided(JavaContainer container) {
-
-		// prepare
-		String dependencies = getDependencies("implementation");
-		Command command = Command.jarHc("jarhc.jar", "--provided", dependencies);
-
-		// override JarHC version for reproducible test output
-		command.addJavaArguments("-Djarhc.version.override=0.0.1");
-
-		// test
-		jarhcTest(container, command, "jarhc-provided-{java.version}.txt");
-
-	}
-
-	private void jarhcTest(JavaContainer container, Command command, String resource) {
-
-		// replace Java version placeholder in resource name (if present)
-		resource = resource.replace("{java.version}", container.getJavaImage().getJavaVersion());
-
-		// prepare
-		String expectedOutput = readResource(resource);
+		String expectedOutput = readResource("help.txt");
 
 		// test
 		ExecResult result = container.exec(command);
 
-		// update test resource?
-		if (createResources()) {
-			String actualOutput = result.getStdout();
-			if (!actualOutput.equals(expectedOutput)) {
-				String resourceFile = String.format("src/releaseTest/resources/%s", resource);
-				writeProjectFile(resourceFile, actualOutput);
-			}
-		}
+		// assert
+		assertThat(result).isEqualTo(0, expectedOutput, "");
+
+	}
+
+	private void jarhc_javaRuntime(JavaContainer container) {
+
+		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String reportPath = "reports/" + javaVersion + "/java-runtime.txt";
+		Command command = Command.jarHc(
+				"-o", reportPath,
+				"-s", "jr", // include only section Java Runtime
+				"jarhc.jar" // TODO: find a tiny artifact to scan
+		);
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
+		// test
+		jarhcTest(container, command, reportPath);
+
+	}
+
+	private void jarhc_forASM(JavaContainer container) {
+
+		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String reportPath = "reports/" + javaVersion + "/asm.txt";
+		Command command = Command.jarHc(
+				"-o", reportPath,
+				"-s", "-jr", // exclude section Java Runtime
+				"org.ow2.asm:asm:9.2"
+		);
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
+		// test
+		jarhcTest(container, command, reportPath);
+
+	}
+
+	private void jarhc_forJarHC_fat(JavaContainer container) {
+
+		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String reportPath = "reports/" + javaVersion + "/jarhc-fat.txt";
+		Command command = Command.jarHc(
+				"-o", reportPath,
+				"-s", "-jr", // exclude section Java Runtime
+				"jarhc-with-deps.jar"
+		);
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
+		// test
+		jarhcTest(container, command, reportPath);
+
+	}
+
+	private void jarhc_forJarHC_artifacts(JavaContainer container) {
+
+		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String reportPath = "reports/" + javaVersion + "/jarhc-artifacts.txt";
+		String dependencies = getDependencies("runtimeClasspath");
+		Command command = Command.jarHc(
+				"-o", reportPath,
+				"-s", "-jr", // exclude section Java Runtime
+				"jarhc.jar",
+				"--classpath", dependencies
+		);
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
+		// test
+		jarhcTest(container, command, reportPath);
+
+	}
+
+	private void jarhc_forJarHC_provided(JavaContainer container) {
+
+		// prepare
+		String javaVersion = container.getJavaImage().getJavaVersion();
+		String reportPath = "reports/" + javaVersion + "/jarhc-provided.txt";
+		String dependencies = getDependencies("implementation");
+		Command command = Command.jarHc(
+				"-o", reportPath,
+				"-s", "-jr", // exclude section Java Runtime
+				"jarhc.jar",
+				"--provided", dependencies
+		);
+
+		// override JarHC version for reproducible test output
+		command.addJavaArguments("-Djarhc.version.override=0.0.1");
+
+		// test
+		jarhcTest(container, command, reportPath);
+
+	}
+
+	private void jarhcTest(JavaContainer container, Command command, String reportPath) {
+
+		// make sure that report directory exists
+		File reportFile = new File(outputDir, reportPath);
+		File reportDir = reportFile.getParentFile();
+		createDirectory(reportDir);
+
+		// prepare
+		String expectedOutput = readResource("stdout.txt");
+
+		// test
+		ExecResult result = container.exec(command);
 
 		// assert
 		assertThat(result).isEqualTo(0, expectedOutput, "");
+
+		// if test resources have not been overwritten ..
+		if (!TestUtils.createResources()) {
+			// compare generated report with expected report
+			File actualReport = new File(outputDir, reportPath);
+			File expectedReport = new File(resourcesDir, reportPath);
+			Assertions.assertThat(actualReport).hasSameTextualContentAs(expectedReport, StandardCharsets.UTF_8);
+		}
+
+	}
+
+	private void createDirectory(File directory) {
+		if (!directory.exists()) {
+			boolean created = directory.mkdirs();
+			assumeTrue(created, "Directory has been created: " + directory.getAbsolutePath());
+		}
 	}
 
 }

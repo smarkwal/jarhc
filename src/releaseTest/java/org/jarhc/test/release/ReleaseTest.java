@@ -135,7 +135,7 @@ abstract class ReleaseTest {
 		}
 	}
 
-	JavaContainer createJavaContainer(JavaImage javaImage) {
+	JavaContainer createJavaContainer(JavaImage javaImage, File reportsDir, File dataDir) {
 
 		// create a new container with the given Java image
 		JavaContainer container = new JavaContainer(javaImage);
@@ -150,7 +150,11 @@ abstract class ReleaseTest {
 		jarFile = getProjectFile(jarFilePath);
 		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc-with-deps.jar");
 
+		// set path to JarHC reports directory
+		container.withFileSystemBind(reportsDir.getAbsolutePath(), "/jarhc/reports");
+
 		// set path to JarHC data directory
+		container.withFileSystemBind(dataDir.getAbsolutePath(), "/jarhc/data");
 		container.withEnv("JARHC_DATA", "/jarhc/data");
 
 		// set working directory so that JAR is easily accessible
