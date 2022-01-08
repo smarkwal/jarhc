@@ -37,6 +37,10 @@ public class MethodDef extends MemberDef {
 		this.parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 	}
 
+	public boolean isConstructor() {
+		return methodName.equals("<init>");
+	}
+
 	public String getMethodName() {
 		return methodName;
 	}

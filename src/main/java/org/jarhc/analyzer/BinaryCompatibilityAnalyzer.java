@@ -27,15 +27,18 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.java.AccessCheck;
 import org.jarhc.java.ClassLoader;
+import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
+import org.jarhc.model.Def;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.RecordComponentDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
@@ -91,6 +94,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				validateClassRefs(classDef, classpath, accessCheck, classIssues);
 				validateMethodRefs(classDef, classpath, accessCheck, classIssues);
 				validateFieldRefs(classDef, classpath, accessCheck, classIssues);
+				validateAnnotationRefs(classDef, classpath, accessCheck, classIssues);
 
 				if (!classIssues.isEmpty()) {
 					String issue = createJarIssue(classDef, classIssues);
@@ -415,7 +419,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			boolean exists = targetClassDef.isPresent();
 			if (!exists) {
 				// check if package of class exists (there is at least one class on the classpath)
-				validateClassRefPackage(className, classLoader, classIssues);
+				validateClassRefPackage("Class", className, classLoader, classIssues);
 			} else {
 				// check if access to class is allowed
 				validateClassRefAccess(classDef, targetClassDef.get(), accessCheck, classIssues);
@@ -425,13 +429,13 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	}
 
-	private void validateClassRefPackage(String className, ClassLoader classLoader, Set<String> classIssues) {
+	private void validateClassRefPackage(String classType, String className, ClassLoader classLoader, Set<String> classIssues) {
 		String packageName = JavaUtils.getPackageName(className);
 		boolean found = classLoader.containsPackage(packageName);
 		if (!found) {
-			classIssues.add("Class not found: " + className + " (package not found)");
+			classIssues.add(classType + " not found: " + className + " (package not found)");
 		} else {
-			classIssues.add("Class not found: " + className + " (package found)");
+			classIssues.add(classType + " not found: " + className + " (package found)");
 		}
 	}
 
@@ -447,7 +451,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 					classIssues.contains("Interface is not accessible: " + targetClassDisplayName);
 
 			if (!similarIssueFound) {
-				classIssues.add("Class is not accessible: " + targetClassDisplayName);
+				if (targetClassDef.isAnnotation()) {
+					classIssues.add("Annotation is not accessible: " + targetClassDisplayName);
+				} else {
+					classIssues.add("Class is not accessible: " + targetClassDisplayName);
+				}
 			}
 		}
 	}
@@ -628,6 +636,65 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 		}
 
+	}
+
+	// -----------------------------------------------------------------------------------------------------
+	// annotations
+
+	private void validateAnnotationRefs(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {
+
+		HashSet<String> annotationIssues = new HashSet<>();
+
+		// validate annotations on class
+		validateAnnotationRefs(classDef, classDef, classpath, accessCheck, annotationIssues);
+
+		// validate annotations on record components
+		for (RecordComponentDef recordComponentDef : classDef.getRecordComponentDefs()) {
+			validateAnnotationRefs(classDef, recordComponentDef, classpath, accessCheck, annotationIssues);
+		}
+
+		// validate annotations on methods
+		for (MethodDef methodDef : classDef.getMethodDefs()) {
+			validateAnnotationRefs(classDef, methodDef, classpath, accessCheck, annotationIssues);
+		}
+
+		// validate annotations on fields
+		for (FieldDef fieldDef : classDef.getFieldDefs()) {
+			validateAnnotationRefs(classDef, fieldDef, classpath, accessCheck, annotationIssues);
+		}
+
+		// sort annotation issues and add them to class issues
+		annotationIssues.stream().sorted().forEach(classIssues::add);
+
+	}
+
+	private void validateAnnotationRefs(ClassDef ownerClassDef, Def def, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {
+
+		// TODO: get valid target types for concrete Def
+
+		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
+		for (AnnotationRef annotationRef : annotationRefs) {
+
+			String annotationName = annotationRef.getClassName();
+
+			// check if annotation exists
+			Optional<ClassDef> annotationDef = classpath.getClassDef(annotationName);
+			boolean exists = annotationDef.isPresent();
+			if (!exists) {
+				// check if package of annotation exists (there is at least one class on the classpath)
+				validateClassRefPackage("Annotation", annotationName, classpath, classIssues);
+			} else {
+				// check if access to class is allowed
+				validateClassRefAccess(ownerClassDef, annotationDef.get(), accessCheck, classIssues);
+				// check if target class is an annotation
+				if (annotationDef.get().isAnnotation()) {
+					// TODO: check if class is valid annotation target
+				} else {
+					classIssues.add("Class is not an annotation: " + annotationDef.get().getDisplayName());
+				}
+			}
+
+		}
 	}
 
 	// -----------------------------------------------------------------------------------------------------

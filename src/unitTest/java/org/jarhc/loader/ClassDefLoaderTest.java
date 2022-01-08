@@ -16,6 +16,7 @@
 
 package org.jarhc.loader;
 
+import static org.jarhc.model.AnnotationRef.Target;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -83,8 +84,7 @@ class ClassDefLoaderTest {
 		assertEquals("Java 16", classDef.getJavaVersion());
 
 		List<ClassRef> classRefs = classDef.getClassRefs();
-		assertTrue(classRefs.stream().anyMatch(r -> r.getClassName().equals("MyAnnotation")));
-		assertTrue(classRefs.stream().anyMatch(r -> r.getClassName().equals("java.lang.Deprecated")));
+		assertEquals(5, classRefs.size());
 
 		List<RecordComponentDef> recordComponentDefs = classDef.getRecordComponentDefs();
 		assertEquals(3, recordComponentDefs.size());
@@ -97,7 +97,7 @@ class ClassDefLoaderTest {
 		recordComponentDef = recordComponentDefs.get(1);
 		assertEquals("name", recordComponentDef.getName());
 		assertEquals("java.lang.String", recordComponentDef.getType());
-		assertEquals(1, recordComponentDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("MyAnnotation")).count());
+		assertTrue(recordComponentDef.hasAnnotationRef("MyAnnotation", Target.RECORD_COMPONENT));
 		// Note: @Deprecated annotation is present only on this record component
 		// because it has only @Target({RECORD_COMPONENT}).
 
@@ -127,14 +127,14 @@ class ClassDefLoaderTest {
 		assertEquals("enabled", fieldDef.getFieldName());
 		assertEquals("boolean", fieldDef.getFieldType());
 		assertEquals("private final", fieldDef.getModifiers());
-		assertEquals(1, fieldDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("java.lang.Deprecated")).count());
+		assertTrue(fieldDef.hasAnnotationRef("java.lang.Deprecated", Target.FIELD));
 
 		List<MethodDef> methodDefs = classDef.getMethodDefs();
 		assertEquals(7, methodDefs.size());
 
 		MethodDef methodDef = classDef.getMethodDef("<init>", "(ILjava/lang/String;Z)V").orElseThrow(AssertionError::new);
 		assertEquals("public", methodDef.getModifiers());
-		assertEquals(0, methodDef.getAnnotationRefs().size());
+		assertTrue(methodDef.hasAnnotationRef("java.lang.Deprecated", Target.PARAMETER));
 
 		methodDef = classDef.getMethodDef("id", "()I").orElseThrow(AssertionError::new);
 		assertEquals("public", methodDef.getModifiers());
@@ -146,7 +146,7 @@ class ClassDefLoaderTest {
 
 		methodDef = classDef.getMethodDef("enabled", "()Z").orElseThrow(AssertionError::new);
 		assertEquals("public", methodDef.getModifiers());
-		assertEquals(1, methodDef.getAnnotationRefs().stream().filter(r -> r.getClassName().equals("java.lang.Deprecated")).count());
+		assertTrue(methodDef.hasAnnotationRef("java.lang.Deprecated", Target.METHOD));
 
 		String expectedApiDescription = "public record Record\n" +
 				"extends: java.lang.Record\n" +
@@ -182,6 +182,58 @@ class ClassDefLoaderTest {
 		List<ClassRef> classRefs = classDef.getClassRefs();
 		assertTrue(classRefs.contains(new ClassRef("java.lang.Object")));
 		assertTrue(classRefs.contains(new ClassRef("java.util.ArrayList")));
+	}
+
+	@Test
+	void test_load_annotation_refs(@TempDir Path tempDir) throws IOException {
+
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java9/AnnotationRefs.class";
+		File file = TestUtils.getResourceAsFile(resource, tempDir);
+		ClassDef classDef = classDefLoader.load(file);
+
+		assertNotNull(classDef);
+		assertEquals("AnnotationRefs", classDef.getClassName());
+		assertEquals(53, classDef.getMajorClassVersion());
+		assertEquals("Java 9", classDef.getJavaVersion());
+
+		assertEquals(2, classDef.getAnnotationRefs().size());
+		assertTrue(classDef.hasAnnotationRef("Annotations$TypeAnnotation", Target.TYPE));
+		assertTrue(classDef.hasAnnotationRef("Annotations$TypeParameterAnnotation", Target.TYPE_PARAMETER));
+
+		MethodDef constructorDef = classDef.getMethodDef("<init>", "(Ljava/lang/Object;)V").orElseThrow(() -> new AssertionError("Constructor not found"));
+		assertEquals(1, constructorDef.getAnnotationRefs().size());
+		assertTrue(constructorDef.hasAnnotationRef("Annotations$ConstructorAnnotation", Target.CONSTRUCTOR));
+
+		MethodDef methodDef = classDef.getMethodDef("method", "(I)V").orElseThrow(() -> new AssertionError("Method not found"));
+		assertEquals(2, methodDef.getAnnotationRefs().size());
+		assertTrue(methodDef.hasAnnotationRef("Annotations$MethodAnnotation", Target.METHOD));
+		assertTrue(methodDef.hasAnnotationRef("Annotations$ParameterAnnotation", Target.PARAMETER));
+
+		FieldDef fieldDef = classDef.getFieldDef("field").orElseThrow(() -> new AssertionError("Field not found"));
+		assertEquals(1, fieldDef.getAnnotationRefs().size());
+		assertTrue(fieldDef.hasAnnotationRef("Annotations$FieldAnnotation", Target.FIELD));
+
+		FieldDef fieldDef2 = classDef.getFieldDef("field2").orElseThrow(() -> new AssertionError("Field 2 not found"));
+		assertEquals(1, fieldDef2.getAnnotationRefs().size());
+		assertTrue(fieldDef2.hasAnnotationRef("Annotations$TypeUseAnnotation", Target.TYPE_PARAMETER));
+
+	}
+
+	@Test
+	void test_load_annotation_refs_2(@TempDir Path tempDir) throws IOException {
+
+		String resource = "/org/jarhc/loader/ClassDefLoaderTest/java9/AnnotationRefs$MyAnnotation.class";
+		File file = TestUtils.getResourceAsFile(resource, tempDir);
+		ClassDef classDef = classDefLoader.load(file);
+
+		assertNotNull(classDef);
+		assertEquals("AnnotationRefs$MyAnnotation", classDef.getClassName());
+		assertEquals(53, classDef.getMajorClassVersion());
+		assertEquals("Java 9", classDef.getJavaVersion());
+
+		assertEquals(1, classDef.getAnnotationRefs().size());
+		assertTrue(classDef.hasAnnotationRef("Annotations$AnnotationTypeAnnotation", Target.ANNOTATION_TYPE));
+
 	}
 
 	@Test

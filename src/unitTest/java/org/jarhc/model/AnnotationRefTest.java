@@ -19,6 +19,7 @@ package org.jarhc.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import org.jarhc.model.AnnotationRef.Target;
 import org.junit.jupiter.api.Test;
 
 class AnnotationRefTest {
@@ -27,10 +28,11 @@ class AnnotationRefTest {
 	void test_AnnotationRef() {
 
 		// test
-		AnnotationRef annotationRef = new AnnotationRef("java.lang.Deprecated");
+		AnnotationRef annotationRef = new AnnotationRef("java.lang.Deprecated", Target.CONSTRUCTOR);
 
 		// assert
 		assertEquals("java.lang.Deprecated", annotationRef.getClassName());
+		assertEquals(Target.CONSTRUCTOR, annotationRef.getTarget());
 
 	}
 
@@ -38,22 +40,26 @@ class AnnotationRefTest {
 	void test_toString() {
 
 		// test
-		AnnotationRef annotationRef = new AnnotationRef("java.lang.Deprecated");
+		AnnotationRef annotationRef = new AnnotationRef("java.lang.Deprecated", Target.FIELD);
 
 		// assert
-		assertEquals("AnnotationRef[java.lang.Deprecated]", annotationRef.toString());
+		assertEquals("AnnotationRef[java.lang.Deprecated,FIELD]", annotationRef.toString());
 
 	}
 
 	@Test
 	void test_equals() {
 
-		AnnotationRef annotationRef1 = new AnnotationRef("java.lang.Deprecated");
-		AnnotationRef annotationRef2 = new AnnotationRef("java.lang.Deprecated");
+		AnnotationRef annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.METHOD);
+		AnnotationRef annotationRef2 = new AnnotationRef("java.lang.Deprecated", Target.METHOD);
 		assertEquals(annotationRef1, annotationRef2);
 
-		annotationRef1 = new AnnotationRef("java.lang.Deprecated");
-		annotationRef2 = new AnnotationRef("org.junit.jupiter.api.Test");
+		annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.METHOD);
+		annotationRef2 = new AnnotationRef("org.junit.jupiter.api.Test", Target.METHOD);
+		assertNotEquals(annotationRef1, annotationRef2);
+
+		annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.METHOD);
+		annotationRef2 = new AnnotationRef("java.lang.Deprecated", Target.TYPE);
 		assertNotEquals(annotationRef1, annotationRef2);
 
 	}
@@ -61,12 +67,16 @@ class AnnotationRefTest {
 	@Test
 	void test_hashCode() {
 
-		AnnotationRef annotationRef1 = new AnnotationRef("java.lang.Deprecated");
-		AnnotationRef annotationRef2 = new AnnotationRef("java.lang.Deprecated");
+		AnnotationRef annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.TYPE);
+		AnnotationRef annotationRef2 = new AnnotationRef("java.lang.Deprecated", Target.TYPE);
 		assertEquals(annotationRef1.hashCode(), annotationRef2.hashCode());
 
-		annotationRef1 = new AnnotationRef("java.lang.Deprecated");
-		annotationRef2 = new AnnotationRef("org.junit.jupiter.api.Test");
+		annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.TYPE);
+		annotationRef2 = new AnnotationRef("org.junit.jupiter.api.Test", Target.TYPE);
+		assertNotEquals(annotationRef1.hashCode(), annotationRef2.hashCode());
+
+		annotationRef1 = new AnnotationRef("java.lang.Deprecated", Target.FIELD);
+		annotationRef2 = new AnnotationRef("java.lang.Deprecated", Target.METHOD);
 		assertNotEquals(annotationRef1.hashCode(), annotationRef2.hashCode());
 
 	}

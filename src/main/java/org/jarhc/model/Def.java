@@ -16,6 +16,8 @@
 
 package org.jarhc.model;
 
+import static org.jarhc.model.AnnotationRef.Target;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +39,10 @@ public abstract class Def extends AccessFlags {
 
 	public List<AnnotationRef> getAnnotationRefs() {
 		return Collections.unmodifiableList(annotationRefs);
+	}
+
+	public boolean hasAnnotationRef(String className, Target target) {
+		return annotationRefs.stream().anyMatch(a -> a.getClassName().equals(className) && a.getTarget() == target);
 	}
 
 	public void addAnnotationRef(AnnotationRef annotationRef) {

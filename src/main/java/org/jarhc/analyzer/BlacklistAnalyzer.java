@@ -162,6 +162,48 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private void validateAnnotations(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
 
+		// check class annotations
+		classDef.getAnnotationRefs()
+				.forEach(
+						annotationRef -> classpath.getClassDef(annotationRef.getClassName())
+								.ifPresent(
+										def -> findUnstableAnnotations(classDef, def, classIssues)
+								)
+				);
+
+		// check record component annotations
+		classDef.getRecordComponentDefs().forEach(
+				recordComponentDef -> recordComponentDef.getAnnotationRefs()
+						.forEach(
+								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						)
+		);
+
+		// check method annotations
+		classDef.getMethodDefs().forEach(
+				methodDef -> methodDef.getAnnotationRefs()
+						.forEach(
+								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						)
+		);
+
+		// check field annotations
+		classDef.getFieldDefs().forEach(
+				fieldDef -> fieldDef.getAnnotationRefs()
+						.forEach(
+								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
+										.ifPresent(
+												def -> findUnstableAnnotations(classDef, def, classIssues)
+										)
+						)
+		);
+
 		// check class references
 		classDef.getClassRefs()
 				.forEach(
