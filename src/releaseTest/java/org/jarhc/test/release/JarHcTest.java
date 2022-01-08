@@ -20,16 +20,19 @@ import static org.jarhc.test.release.utils.ExecResultAssert.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.assertj.core.api.Assertions;
 import org.jarhc.test.release.utils.Command;
 import org.jarhc.test.release.utils.JavaContainer;
 import org.jarhc.test.release.utils.JavaImage;
 import org.jarhc.test.release.utils.TestUtils;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -39,19 +42,28 @@ import org.testcontainers.containers.Container.ExecResult;
 class JarHcTest extends ReleaseTest {
 
 	private static final JavaImage[] JAVA_IMAGES = {
-			new JavaImage("8", "eclipse-temurin:8-jre"),
-			new JavaImage("11", "eclipse-temurin:11-jre"),
-			new JavaImage("17", "eclipse-temurin:17-jre"),
-			//new JavaImage("8-ibm", "ibmjava:8-jre"),
-			new JavaImage("8-ibm", "ibm-semeru-runtimes:open-8-jre"),
-			new JavaImage("11-ibm", "ibm-semeru-runtimes:open-11-jre"),
-			new JavaImage("17-ibm", "ibm-semeru-runtimes:open-17-jre")
+			new JavaImage("amazon", "corretto", "8", "amazoncorretto:8"),
+			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11"),
+			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17"),
+			new JavaImage("eclipse", "temurin", "8", "eclipse-temurin:8-jre"),
+			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11-jre"),
+			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17-jre"),
+			new JavaImage("ibm", "sdk", "8", "ibmjava:8-jre"),
+			new JavaImage("ibm", "semeru", "8", "ibm-semeru-runtimes:open-8-jre"),
+			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11-jre"),
+			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17-jre"),
+			new JavaImage("microsoft", "openjdk", "11", "mcr.microsoft.com/openjdk/jdk:11-ubuntu"),
+			new JavaImage("microsoft", "openjdk", "17", "mcr.microsoft.com/openjdk/jdk:17-ubuntu"),
+			new JavaImage("oracle", "openjdk", "8", "openjdk:8-jre"),
+			new JavaImage("oracle", "openjdk", "11", "openjdk:11-jre"),
+			new JavaImage("oracle", "openjdk", "17", "openjdk:17-jdk")
 	};
 
 	private File resourcesDir;
-	private File outputDir;
-	private File reportsDir;
-	private File dataDir;
+
+	private File tempDir;
+	private File tempReportsDir;
+	private File tempDataDir;
 
 	@TestFactory
 	Collection<DynamicContainer> test(@TempDir Path tempDir) {
@@ -61,23 +73,17 @@ class JarHcTest extends ReleaseTest {
 		// get path to test resources
 		resourcesDir = getProjectDirectory("src/releaseTest/resources");
 
-		// update test resource?
-		if (TestUtils.createResources()) {
-			// let tests directly overwrite resources
-			outputDir = resourcesDir;
-		} else {
-			outputDir = tempDir.toFile();
-		}
+		this.tempDir = tempDir.toFile();
 
 		// make sure that reports directory exists
-		reportsDir = new File(outputDir, "reports");
-		createDirectory(reportsDir);
+		tempReportsDir = new File(this.tempDir, "reports");
+		createDirectory(tempReportsDir);
 
 		// make sure that data directory exists
 		// note: all tests will use the same data directory
-		dataDir = new File(tempDir.toFile(), "data");
-		createDirectory(dataDir);
-		System.out.println("Data directory: " + dataDir.getAbsolutePath());
+		tempDataDir = new File(tempDir.toFile(), "data");
+		createDirectory(tempDataDir);
+		System.out.println("Data directory: " + tempDataDir.getAbsolutePath());
 
 		// for every Java Docker image
 		for (JavaImage javaImage : JAVA_IMAGES) {
@@ -108,7 +114,13 @@ class JarHcTest extends ReleaseTest {
 	}
 
 	private void runInContainer(JavaImage javaImage, TestMethod testMethod) {
-		JavaContainer container = createJavaContainer(javaImage, reportsDir, dataDir);
+
+		// run test only if test resources are available
+		File reportsDir = new File(resourcesDir, "reports");
+		File reportDir = new File(reportsDir, javaImage.getPath());
+		assumeTrue(reportDir.isDirectory(), "Test resources found for " + javaImage.getImageName());
+
+		JavaContainer container = createJavaContainer(javaImage, tempReportsDir, tempDataDir);
 		try {
 			container.start();
 			testMethod.test(container);
@@ -120,8 +132,8 @@ class JarHcTest extends ReleaseTest {
 	private void java_version(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String outputPath = "reports/" + javaVersion + "/java-version.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String outputPath = javaImage.getReportPath("java-version.txt");
 		String expectedOutput = readResource(outputPath);
 		Command command = Command.java("-version");
 
@@ -132,6 +144,7 @@ class JarHcTest extends ReleaseTest {
 			String actualOutput = result.getStderr();
 			if (!actualOutput.equals(expectedOutput)) {
 				writeProjectFile("src/releaseTest/resources/" + outputPath, actualOutput);
+				return;
 			}
 		}
 
@@ -171,8 +184,9 @@ class JarHcTest extends ReleaseTest {
 	private void jarhc_javaRuntime(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String reportPath = "reports/" + javaVersion + "/java-runtime.txt";
+		String resourceName = "java-runtime.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
 		Command command = Command.jarHc(
 				"-o", reportPath,
 				"-s", "jr", // include only section Java Runtime
@@ -183,15 +197,16 @@ class JarHcTest extends ReleaseTest {
 		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
-		jarhcTest(container, command, reportPath);
+		jarhcTest(container, command, resourceName);
 
 	}
 
 	private void jarhc_forASM(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String reportPath = "reports/" + javaVersion + "/asm.txt";
+		String resourceName = "asm.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
 		Command command = Command.jarHc(
 				"-o", reportPath,
 				"-s", "-jr", // exclude section Java Runtime
@@ -202,15 +217,16 @@ class JarHcTest extends ReleaseTest {
 		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
-		jarhcTest(container, command, reportPath);
+		jarhcTest(container, command, resourceName);
 
 	}
 
 	private void jarhc_forJarHC_fat(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String reportPath = "reports/" + javaVersion + "/jarhc-fat.txt";
+		String resourceName = "jarhc-fat.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
 		Command command = Command.jarHc(
 				"-o", reportPath,
 				"-s", "-jr", // exclude section Java Runtime
@@ -221,15 +237,16 @@ class JarHcTest extends ReleaseTest {
 		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
-		jarhcTest(container, command, reportPath);
+		jarhcTest(container, command, resourceName);
 
 	}
 
 	private void jarhc_forJarHC_artifacts(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String reportPath = "reports/" + javaVersion + "/jarhc-artifacts.txt";
+		String resourceName = "jarhc-artifacts.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
 		String dependencies = getDependencies("runtimeClasspath");
 		Command command = Command.jarHc(
 				"-o", reportPath,
@@ -242,15 +259,16 @@ class JarHcTest extends ReleaseTest {
 		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
-		jarhcTest(container, command, reportPath);
+		jarhcTest(container, command, resourceName);
 
 	}
 
 	private void jarhc_forJarHC_provided(JavaContainer container) {
 
 		// prepare
-		String javaVersion = container.getJavaImage().getJavaVersion();
-		String reportPath = "reports/" + javaVersion + "/jarhc-provided.txt";
+		String resourceName = "jarhc-provided.txt";
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
 		String dependencies = getDependencies("implementation");
 		Command command = Command.jarHc(
 				"-o", reportPath,
@@ -263,16 +281,17 @@ class JarHcTest extends ReleaseTest {
 		command.addJavaArguments("-Djarhc.version.override=0.0.1");
 
 		// test
-		jarhcTest(container, command, reportPath);
+		jarhcTest(container, command, resourceName);
 
 	}
 
-	private void jarhcTest(JavaContainer container, Command command, String reportPath) {
+	private void jarhcTest(JavaContainer container, Command command, String resourceName) {
 
-		// make sure that report directory exists
-		File reportFile = new File(outputDir, reportPath);
-		File reportDir = reportFile.getParentFile();
-		createDirectory(reportDir);
+		// assume
+		JavaImage javaImage = container.getJavaImage();
+		String reportPath = javaImage.getReportPath(resourceName);
+		File expectedReport = findExpectedReport(javaImage, resourceName);
+		assumeTrue(expectedReport.isFile(), "Report found in test resources: " + reportPath);
 
 		// prepare
 		String expectedOutput = readResource("stdout.txt");
@@ -283,21 +302,45 @@ class JarHcTest extends ReleaseTest {
 		// assert
 		assertThat(result).isEqualTo(0, expectedOutput, "");
 
-		// if test resources have not been overwritten ..
-		if (!TestUtils.createResources()) {
-			// compare generated report with expected report
-			File actualReport = new File(outputDir, reportPath);
-			File expectedReport = new File(resourcesDir, reportPath);
-			Assertions.assertThat(actualReport).hasSameTextualContentAs(expectedReport, StandardCharsets.UTF_8);
+		File actualReport = new File(tempDir, reportPath);
+
+		// if test resources should be overwritten ..
+		if (TestUtils.createResources()) {
+			try {
+				if (!FileUtils.contentEquals(actualReport, expectedReport)) {
+					FileUtils.copyFile(actualReport, expectedReport);
+					return;
+				}
+			} catch (IOException e) {
+				throw new AssertionError("Unexpected I/O error.", e);
+			}
 		}
+
+		// compare generated report with expected report
+		Assertions.assertThat(actualReport).hasSameTextualContentAs(expectedReport, StandardCharsets.UTF_8);
 
 	}
 
-	private void createDirectory(File directory) {
-		if (!directory.exists()) {
-			boolean created = directory.mkdirs();
-			assumeTrue(created, "Directory has been created: " + directory.getAbsolutePath());
+	@NotNull
+	private File findExpectedReport(JavaImage javaImage, String resourceName) {
+
+		// try to find report in image-specific test resources
+		String reportPath = javaImage.getReportPath(resourceName);
+		File expectedReport = new File(resourcesDir, reportPath);
+		if (expectedReport.isFile()) {
+			return expectedReport;
 		}
+
+		// try to find report in Java version-specific test resources
+		reportPath = String.format("reports/all/%s/%s", javaImage.getVersion(), resourceName);
+		expectedReport = new File(resourcesDir, reportPath);
+		if (expectedReport.isFile()) {
+			return expectedReport;
+		}
+
+		// try to find report in generic test resources
+		reportPath = String.format("reports/all/all/%s", resourceName);
+		return new File(resourcesDir, reportPath);
 	}
 
 }

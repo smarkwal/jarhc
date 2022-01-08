@@ -16,17 +16,19 @@
 
 package org.jarhc.test.release;
 
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.assertj.core.api.Assertions;
 import org.jarhc.test.release.utils.JavaContainer;
 import org.jarhc.test.release.utils.JavaImage;
-import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
-import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 
 abstract class ReleaseTest {
 
@@ -150,6 +152,10 @@ abstract class ReleaseTest {
 		jarFile = getProjectFile(jarFilePath);
 		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc-with-deps.jar");
 
+		// make sure that image-specific report directory exists
+		File reportDir = new File(reportsDir, javaImage.getPath());
+		createDirectory(reportDir);
+
 		// set path to JarHC reports directory
 		container.withFileSystemBind(reportsDir.getAbsolutePath(), "/jarhc/reports");
 
@@ -165,6 +171,13 @@ abstract class ReleaseTest {
 		container.withCommand("sleep", "1h");
 
 		return container;
+	}
+
+	protected void createDirectory(File directory) {
+		if (!directory.exists()) {
+			boolean created = directory.mkdirs();
+			assumeTrue(created, "Directory has been created: " + directory.getAbsolutePath());
+		}
 	}
 
 }

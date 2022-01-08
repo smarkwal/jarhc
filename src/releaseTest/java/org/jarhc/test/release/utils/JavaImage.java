@@ -18,20 +18,40 @@ package org.jarhc.test.release.utils;
 
 public class JavaImage {
 
-	private final String javaVersion;
+	private final String vendor;
+	private final String product;
+	private final String version;
 	private final String imageName;
 
-	public JavaImage(String javaVersion, String imageName) {
+	public JavaImage(String vendor, String product, String version, String imageName) {
+		this.vendor = vendor;
+		this.product = product;
+		this.version = version;
 		this.imageName = imageName;
-		this.javaVersion = javaVersion;
 	}
 
-	public String getJavaVersion() {
-		return javaVersion;
+	public String getVendor() {
+		return vendor;
+	}
+
+	public String getProduct() {
+		return product;
+	}
+
+	public String getVersion() {
+		return version;
 	}
 
 	public String getImageName() {
 		return imageName;
+	}
+
+	public String getPath() {
+		return String.format("%s-%s/%s", vendor, product, version);
+	}
+
+	public String getReportPath(String resourceName) {
+		return String.format("reports/%s-%s/%s/%s", vendor, product, version, resourceName);
 	}
 
 }
