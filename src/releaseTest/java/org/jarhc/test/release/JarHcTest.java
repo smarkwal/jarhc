@@ -303,6 +303,7 @@ class JarHcTest extends ReleaseTest {
 		assertThat(result).isEqualTo(0, expectedOutput, "");
 
 		File actualReport = new File(tempDir, reportPath);
+		TestUtils.normalizeReport(actualReport);
 
 		// if test resources should be overwritten ..
 		if (TestUtils.createResources()) {

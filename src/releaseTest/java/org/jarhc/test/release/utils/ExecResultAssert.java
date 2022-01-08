@@ -40,12 +40,6 @@ public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResul
 		String actualStdout = actual.getStdout();
 		String actualStderr = actual.getStderr();
 
-		// replace signatures
-		expectedStdout = TestUtils.normalizeResult(expectedStdout);
-		expectedStderr = TestUtils.normalizeResult(expectedStderr);
-		actualStdout = TestUtils.normalizeResult(actualStdout);
-		actualStderr = TestUtils.normalizeResult(actualStderr);
-
 		StringBuilder buffer = new StringBuilder();
 		if (actualExitCode != expectedExitCode) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");

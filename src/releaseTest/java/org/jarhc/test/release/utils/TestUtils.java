@@ -16,7 +16,11 @@
 
 package org.jarhc.test.release.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
 
 public class TestUtils {
 
@@ -31,8 +35,25 @@ public class TestUtils {
 		return properties.containsKey("jarhc.test.resources.generate");
 	}
 
-	public static String normalizeResult(String result) {
-		return result.replaceAll("\\| [0-9a-f]{40} \\|", "| 0000000000000000000000000000000000000000 |");
+	public static void normalizeReport(File file) {
+
+		if (file.isFile() && file.canRead()) {
+			try {
+
+				// read content of file
+				String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+
+				// mask checksum of JarHC JAR file
+				content = content.replaceAll("jarhc(.*) \\| [0-9a-f]{40} \\|", "jarhc$1 | **************************************** |");
+
+				// write content back into file
+				FileUtils.writeStringToFile(file, content, StandardCharsets.UTF_8);
+
+			} catch (IOException e) {
+				throw new AssertionError("Unexpected I/O error.", e);
+			}
+		}
+
 	}
 
 }
