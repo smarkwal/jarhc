@@ -15,7 +15,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Multi-release         | Module                                     | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+-----------------------+--------------------------------------------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 186 KB  | 109     | 6         | No                    | No                                         | 8772c35b58b7010a2ea90ba1d9b4a90214a92f91 | [unknown]
+jarhc.jar                                                      | 190 KB  | 110     | 6         | No                    | No                                         | 834f621eb2a32fe9007885b1f86f9c0a41938e87 | [unknown]
 asm-9.2.jar                                                    | 119 KB  | 37      | 0         | No                    | Yes (org.objectweb.asm)                    | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
 json-20211205.jar                                              | 69.0 KB | 27      | 0         | No                    | Yes (org.json)                             | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | No                    | No                                         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
@@ -49,7 +49,7 @@ httpcore-4.4.13.jar                                            | 321 KB  | 253  
 commons-logging-1.2.jar                                        | 60.4 KB | 28      | 0         | No                    | No                                         | 4bfc12adfe4842bf07b657f0369c4cb522955686 | commons-logging:commons-logging:1.2
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | No                    | Yes (org.apache.commons.codec)             | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | No                    | No                                         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.71 MB | 4556    | 148       | -                     | -                                          | -                                        | -
+Classpath                                                      | 6.72 MB | 4557    | 148       | -                     | -                                          | -                                        | -
 
 Modules
 -------
@@ -99,7 +99,7 @@ Java class file format information.
 
 JAR file                                                       | Java version
 ---------------------------------------------------------------+----------------------------------------------------------
-jarhc.jar                                                      | Java 8 (109)
+jarhc.jar                                                      | Java 8 (110)
 asm-9.2.jar                                                    | Java 5 (37)
 json-20211205.jar                                              | Java 6 (27)
 maven-aether-provider-3.3.9.jar                                | Java 7 (26)
@@ -133,126 +133,121 @@ httpcore-4.4.13.jar                                            | Java 6 (253)
 commons-logging-1.2.jar                                        | Java 1.2 (28)
 commons-codec-1.11.jar                                         | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | Java 5 (44)
-Classpath                                                      | Java 8 (2592), Java 7 (278), Java 6 (1070), Java 5 (579),
+Classpath                                                      | Java 8 (2593), Java 7 (278), Java 6 (1070), Java 5 (579),
                                                                | Java 1.3 (9), Java 1.2 (28)
 
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file                                                       | Uses                                 | Used by
----------------------------------------------------------------+--------------------------------------+------------------------------------
-jarhc.jar                                                      | aether-api-1.1.0.jar                 | [none]
-                                                               | aether-connector-basic-1.1.0.jar     |
-                                                               | aether-impl-1.1.0.jar                |
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-transport-file-1.1.0.jar      |
-                                                               | aether-transport-http-1.1.0.jar      |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | asm-9.2.jar                          |
-                                                               | json-20211205.jar                    |
-                                                               | maven-aether-provider-3.3.9.jar      |
-                                                               | slf4j-api-1.7.32.jar                 |
-asm-9.2.jar                                                    | [none]                               | jarhc.jar
-json-20211205.jar                                              | [none]                               | jarhc.jar
-maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-impl-1.1.0.jar                |
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | commons-lang3-3.4.jar                |
-                                                               | guava-31.0.1-jre.jar                 |
-                                                               | maven-model-3.3.9.jar                |
-                                                               | maven-model-builder-3.3.9.jar        |
-                                                               | maven-repository-metadata-3.3.9.jar  |
-                                                               | plexus-component-annotations-1.6.jar |
-                                                               | plexus-utils-3.4.1.jar               |
-aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
-                                                               | aether-util-1.1.0.jar                |
-                                                               | slf4j-api-1.7.32.jar                 |
-aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | httpclient-4.5.13.jar                |
-                                                               | httpcore-4.4.13.jar                  |
-slf4j-simple-1.7.32.jar                                        | slf4j-api-1.7.32.jar                 | slf4j-api-1.7.32.jar
-jcl-over-slf4j-1.6.2.jar                                       | commons-logging-1.2.jar              | commons-logging-1.2.jar
-                                                               | slf4j-api-1.7.32.jar                 | httpclient-4.5.13.jar
-slf4j-api-1.7.32.jar                                           | slf4j-simple-1.7.32.jar              | aether-impl-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | jcl-over-slf4j-1.6.2.jar
-                                                               |                                      | slf4j-simple-1.7.32.jar
-maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | guava-31.0.1-jre.jar                 |
-                                                               | maven-artifact-3.3.9.jar             |
-                                                               | maven-builder-support-3.3.9.jar      |
-                                                               | maven-model-3.3.9.jar                |
-                                                               | plexus-component-annotations-1.6.jar |
-                                                               | plexus-interpolation-1.21.jar        |
-                                                               | plexus-utils-3.4.1.jar               |
-guava-31.0.1-jre.jar                                           | checker-qual-3.12.0.jar              | maven-aether-provider-3.3.9.jar
-                                                               | error_prone_annotations-2.7.1.jar    | maven-model-builder-3.3.9.jar
-                                                               | failureaccess-1.0.1.jar              |
-                                                               | j2objc-annotations-1.3.jar           |
-                                                               | jsr305-3.0.2.jar                     |
-httpclient-4.5.13.jar                                          | commons-codec-1.11.jar               | aether-transport-http-1.1.0.jar
-                                                               | commons-logging-1.2.jar              |
-                                                               | httpcore-4.4.13.jar                  |
-                                                               | jcl-over-slf4j-1.6.2.jar             |
-maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | plexus-utils-3.4.1.jar               | maven-model-builder-3.3.9.jar
-maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.4.1.jar               | maven-aether-provider-3.3.9.jar
-maven-artifact-3.3.9.jar                                       | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-                                                               | plexus-utils-3.4.1.jar               |
-maven-builder-support-3.3.9.jar                                | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-plexus-utils-3.4.1.jar                                         | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-artifact-3.3.9.jar
-                                                               |                                      | maven-model-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-                                                               |                                      | maven-repository-metadata-3.3.9.jar
-aether-spi-1.1.0.jar                                           | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-transport-file-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-aether-api-1.1.0.jar                                           | [none]                               | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-spi-1.1.0.jar
-                                                               |                                      | aether-transport-file-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | aether-util-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-plexus-component-annotations-1.6.jar                           | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-commons-lang3-3.4.jar                                          | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-artifact-3.3.9.jar
-                                                               |                                      | maven-builder-support-3.3.9.jar
-                                                               |                                      | maven-model-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-failureaccess-1.0.1.jar                                        | [none]                               | guava-31.0.1-jre.jar
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | [none]                               | [none]
-jsr305-3.0.2.jar                                               | [none]                               | guava-31.0.1-jre.jar
-checker-qual-3.12.0.jar                                        | [none]                               | guava-31.0.1-jre.jar
-error_prone_annotations-2.7.1.jar                              | [none]                               | guava-31.0.1-jre.jar
-j2objc-annotations-1.3.jar                                     | [none]                               | guava-31.0.1-jre.jar
-httpcore-4.4.13.jar                                            | [none]                               | aether-transport-http-1.1.0.jar
-                                                               |                                      | httpclient-4.5.13.jar
-commons-logging-1.2.jar                                        | jcl-over-slf4j-1.6.2.jar             | httpclient-4.5.13.jar
-                                                               |                                      | jcl-over-slf4j-1.6.2.jar
-commons-codec-1.11.jar                                         | [none]                               | httpclient-4.5.13.jar
-plexus-interpolation-1.21.jar                                  | [none]                               | maven-model-builder-3.3.9.jar
+JAR file                                                       | Uses                                | Used by
+---------------------------------------------------------------+-------------------------------------+------------------------------------
+jarhc.jar                                                      | aether-api-1.1.0.jar                | [none]
+                                                               | aether-connector-basic-1.1.0.jar    |
+                                                               | aether-impl-1.1.0.jar               |
+                                                               | aether-spi-1.1.0.jar                |
+                                                               | aether-transport-file-1.1.0.jar     |
+                                                               | aether-transport-http-1.1.0.jar     |
+                                                               | aether-util-1.1.0.jar               |
+                                                               | asm-9.2.jar                         |
+                                                               | json-20211205.jar                   |
+                                                               | maven-aether-provider-3.3.9.jar     |
+                                                               | slf4j-api-1.7.32.jar                |
+asm-9.2.jar                                                    | [none]                              | jarhc.jar
+json-20211205.jar                                              | [none]                              | jarhc.jar
+maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                | jarhc.jar
+                                                               | aether-impl-1.1.0.jar               |
+                                                               | aether-spi-1.1.0.jar                |
+                                                               | aether-util-1.1.0.jar               |
+                                                               | commons-lang3-3.4.jar               |
+                                                               | guava-31.0.1-jre.jar                |
+                                                               | maven-model-3.3.9.jar               |
+                                                               | maven-model-builder-3.3.9.jar       |
+                                                               | maven-repository-metadata-3.3.9.jar |
+                                                               | plexus-utils-3.4.1.jar              |
+aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                | jarhc.jar
+                                                               | aether-spi-1.1.0.jar                | maven-aether-provider-3.3.9.jar
+                                                               | aether-util-1.1.0.jar               |
+                                                               | slf4j-api-1.7.32.jar                |
+aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                | jarhc.jar
+                                                               | aether-spi-1.1.0.jar                |
+                                                               | aether-util-1.1.0.jar               |
+aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                | jarhc.jar
+                                                               | aether-spi-1.1.0.jar                |
+aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                | jarhc.jar
+                                                               | aether-spi-1.1.0.jar                |
+                                                               | aether-util-1.1.0.jar               |
+                                                               | httpclient-4.5.13.jar               |
+                                                               | httpcore-4.4.13.jar                 |
+slf4j-simple-1.7.32.jar                                        | slf4j-api-1.7.32.jar                | slf4j-api-1.7.32.jar
+jcl-over-slf4j-1.6.2.jar                                       | commons-logging-1.2.jar             | commons-logging-1.2.jar
+                                                               | slf4j-api-1.7.32.jar                | httpclient-4.5.13.jar
+slf4j-api-1.7.32.jar                                           | slf4j-simple-1.7.32.jar             | aether-impl-1.1.0.jar
+                                                               |                                     | jarhc.jar
+                                                               |                                     | jcl-over-slf4j-1.6.2.jar
+                                                               |                                     | slf4j-simple-1.7.32.jar
+maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar               | maven-aether-provider-3.3.9.jar
+                                                               | guava-31.0.1-jre.jar                |
+                                                               | maven-artifact-3.3.9.jar            |
+                                                               | maven-builder-support-3.3.9.jar     |
+                                                               | maven-model-3.3.9.jar               |
+                                                               | plexus-interpolation-1.21.jar       |
+                                                               | plexus-utils-3.4.1.jar              |
+guava-31.0.1-jre.jar                                           | failureaccess-1.0.1.jar             | maven-aether-provider-3.3.9.jar
+                                                               | j2objc-annotations-1.3.jar          | maven-model-builder-3.3.9.jar
+                                                               | jsr305-3.0.2.jar                    |
+httpclient-4.5.13.jar                                          | commons-codec-1.11.jar              | aether-transport-http-1.1.0.jar
+                                                               | commons-logging-1.2.jar             |
+                                                               | httpcore-4.4.13.jar                 |
+                                                               | jcl-over-slf4j-1.6.2.jar            |
+maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar               | maven-aether-provider-3.3.9.jar
+                                                               | plexus-utils-3.4.1.jar              | maven-model-builder-3.3.9.jar
+maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.4.1.jar              | maven-aether-provider-3.3.9.jar
+maven-artifact-3.3.9.jar                                       | commons-lang3-3.4.jar               | maven-model-builder-3.3.9.jar
+                                                               | plexus-utils-3.4.1.jar              |
+maven-builder-support-3.3.9.jar                                | commons-lang3-3.4.jar               | maven-model-builder-3.3.9.jar
+plexus-utils-3.4.1.jar                                         | [none]                              | maven-aether-provider-3.3.9.jar
+                                                               |                                     | maven-artifact-3.3.9.jar
+                                                               |                                     | maven-model-3.3.9.jar
+                                                               |                                     | maven-model-builder-3.3.9.jar
+                                                               |                                     | maven-repository-metadata-3.3.9.jar
+aether-spi-1.1.0.jar                                           | aether-api-1.1.0.jar                | aether-connector-basic-1.1.0.jar
+                                                               |                                     | aether-impl-1.1.0.jar
+                                                               |                                     | aether-transport-file-1.1.0.jar
+                                                               |                                     | aether-transport-http-1.1.0.jar
+                                                               |                                     | jarhc.jar
+                                                               |                                     | maven-aether-provider-3.3.9.jar
+aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                | aether-connector-basic-1.1.0.jar
+                                                               |                                     | aether-impl-1.1.0.jar
+                                                               |                                     | aether-transport-http-1.1.0.jar
+                                                               |                                     | jarhc.jar
+                                                               |                                     | maven-aether-provider-3.3.9.jar
+aether-api-1.1.0.jar                                           | [none]                              | aether-connector-basic-1.1.0.jar
+                                                               |                                     | aether-impl-1.1.0.jar
+                                                               |                                     | aether-spi-1.1.0.jar
+                                                               |                                     | aether-transport-file-1.1.0.jar
+                                                               |                                     | aether-transport-http-1.1.0.jar
+                                                               |                                     | aether-util-1.1.0.jar
+                                                               |                                     | jarhc.jar
+                                                               |                                     | maven-aether-provider-3.3.9.jar
+plexus-component-annotations-1.6.jar                           | [none]                              | [none]
+commons-lang3-3.4.jar                                          | [none]                              | maven-aether-provider-3.3.9.jar
+                                                               |                                     | maven-artifact-3.3.9.jar
+                                                               |                                     | maven-builder-support-3.3.9.jar
+                                                               |                                     | maven-model-3.3.9.jar
+                                                               |                                     | maven-model-builder-3.3.9.jar
+failureaccess-1.0.1.jar                                        | [none]                              | guava-31.0.1-jre.jar
+listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | [none]                              | [none]
+jsr305-3.0.2.jar                                               | [none]                              | guava-31.0.1-jre.jar
+checker-qual-3.12.0.jar                                        | [none]                              | [none]
+error_prone_annotations-2.7.1.jar                              | [none]                              | [none]
+j2objc-annotations-1.3.jar                                     | [none]                              | guava-31.0.1-jre.jar
+httpcore-4.4.13.jar                                            | [none]                              | aether-transport-http-1.1.0.jar
+                                                               |                                     | httpclient-4.5.13.jar
+commons-logging-1.2.jar                                        | jcl-over-slf4j-1.6.2.jar            | httpclient-4.5.13.jar
+                                                               |                                     | jcl-over-slf4j-1.6.2.jar
+commons-codec-1.11.jar                                         | [none]                              | httpclient-4.5.13.jar
+plexus-interpolation-1.21.jar                                  | [none]                              | maven-model-builder-3.3.9.jar
 
 Dependencies
 ------------
@@ -497,27 +492,25 @@ Compatibility issues between JAR files.
 JAR file                         | Issues
 ---------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------
 maven-aether-provider-3.3.9.jar  | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.apache.maven.repository.internal.DefaultVersionRangeResolver
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.apache.maven.repository.internal.DefaultVersionResolver
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.apache.maven.repository.internal.MavenAetherModule
                                  | • Superclass not found: com.google.inject.AbstractModule
                                  | • Class not found: com.google.inject.AbstractModule (package not found)
                                  | • Class not found: com.google.inject.Module (package not found)
-                                 | • Class not found: com.google.inject.Provides (package not found)
                                  | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.name.Names (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
                                  | • Class not found: javax.inject.Singleton (package not found)
                                  | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenAetherModule.bind(java.lang.Class)
                                  | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
@@ -525,16 +518,17 @@ maven-aether-provider-3.3.9.jar  | org.apache.maven.repository.internal.DefaultA
                                  | • Method not found: void org.apache.maven.repository.internal.MavenAetherModule.install(com.google.inject.Module)
                                  | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
                                  | > com.google.inject.AbstractModule (class not found)
+                                 | • Annotation not found: com.google.inject.Provides (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Singleton (package not found)
 aether-impl-1.1.0.jar            | org.eclipse.aether.impl.guice.AetherModule
                                  | • Superclass not found: com.google.inject.AbstractModule
                                  | • Class not found: com.google.inject.AbstractModule (package not found)
                                  | • Class not found: com.google.inject.Module (package not found)
-                                 | • Class not found: com.google.inject.Provides (package not found)
                                  | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
                                  | • Class not found: com.google.inject.name.Names (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
                                  | • Class not found: javax.inject.Singleton (package not found)
                                  | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule.bind(java.lang.Class)
                                  | > org.eclipse.aether.impl.guice.AetherModule (method not found)
@@ -542,118 +536,121 @@ aether-impl-1.1.0.jar            | org.eclipse.aether.impl.guice.AetherModule
                                  | • Method not found: void org.eclipse.aether.impl.guice.AetherModule.install(com.google.inject.Module)
                                  | > org.eclipse.aether.impl.guice.AetherModule (method not found)
                                  | > com.google.inject.AbstractModule (class not found)
+                                 | • Annotation not found: com.google.inject.Provides (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Singleton (package not found)
                                  |
                                  | org.eclipse.aether.impl.guice.AetherModule$Slf4jModule
                                  | • Superclass not found: com.google.inject.AbstractModule
                                  | • Class not found: com.google.inject.AbstractModule (package not found)
-                                 | • Class not found: com.google.inject.Provides (package not found)
                                  | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
-                                 | • Class not found: javax.inject.Singleton (package not found)
                                  | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule$Slf4jModule.bind(java.lang.Class)
                                  | > org.eclipse.aether.impl.guice.AetherModule$Slf4jModule (method not found)
                                  | > com.google.inject.AbstractModule (class not found)
+                                 | • Annotation not found: com.google.inject.Provides (package not found)
+                                 | • Annotation not found: javax.inject.Singleton (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultArtifactResolver
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultChecksumPolicyProvider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultDependencyCollector
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultDeployer
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultFileProcessor
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultInstaller
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultMetadataResolver
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultOfflineController
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultRepositorySystem
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultSyncContextFactory
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultTransporterProvider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultUpdateCheckManager
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.DefaultUpdatePolicyAnalyzer
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.EnhancedLocalRepositoryManagerFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.LoggerFactoryProvider
                                  | • Interface not found: javax.inject.Provider
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
                                  | • Class not found: javax.inject.Provider (package not found)
-                                 | • Class not found: javax.inject.Singleton (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Singleton (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
                                  |
                                  | org.eclipse.aether.internal.impl.slf4j.Slf4jLoggerFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
-                                 | • Class not found: org.eclipse.sisu.Nullable (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: org.eclipse.sisu.Nullable (package not found)
 aether-connector-basic-1.1.0.jar | org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
 aether-transport-file-1.1.0.jar  | org.eclipse.aether.transport.file.FileTransporterFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
 aether-transport-http-1.1.0.jar  | org.eclipse.aether.transport.http.HttpTransporterFactory
-                                 | • Class not found: javax.inject.Inject (package not found)
-                                 | • Class not found: javax.inject.Named (package not found)
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
 commons-logging-1.2.jar          | org.apache.commons.logging.LogFactory
                                  | • Method not found: static void org.apache.commons.logging.LogFactory.cacheFactory(java.lang.ClassLoader,org.apache.commons.logging.LogFactory)
                                  | > org.apache.commons.logging.LogFactory (method not found)

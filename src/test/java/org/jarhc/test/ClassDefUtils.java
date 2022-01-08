@@ -30,6 +30,8 @@ import org.jarhc.model.RecordComponentDef;
 
 class ClassDefUtils {
 
+	static final AnnotationRef.Target[] ANNOTATION_TARGETS = AnnotationRef.Target.values();
+
 	static ClassDef read(DataInputStream stream) throws IOException {
 
 		String className = stream.readUTF();
@@ -119,7 +121,8 @@ class ClassDefUtils {
 		int num = stream.readInt();
 		for (int a = 0; a < num; a++) {
 			String className = stream.readUTF();
-			AnnotationRef annotationRef = new AnnotationRef(className);
+			int target = stream.readInt();
+			AnnotationRef annotationRef = new AnnotationRef(className, ANNOTATION_TARGETS[target]);
 			def.addAnnotationRef(annotationRef);
 		}
 	}
@@ -201,6 +204,7 @@ class ClassDefUtils {
 		stream.writeInt(annotationRefs.size());
 		for (AnnotationRef annotationRef : annotationRefs) {
 			stream.writeUTF(annotationRef.getClassName());
+			stream.writeInt(annotationRef.getTarget().ordinal());
 		}
 	}
 

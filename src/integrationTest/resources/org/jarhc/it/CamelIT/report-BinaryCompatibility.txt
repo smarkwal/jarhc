@@ -77,35 +77,35 @@ camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         | • Class not found: org.slf4j.LoggerFactory (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap
-                        | • Class not found: javax.annotation.concurrent.GuardedBy (package not found)
-                        | • Class not found: javax.annotation.concurrent.ThreadSafe (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.GuardedBy (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.ThreadSafe (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$AddTask
-                        | • Class not found: javax.annotation.concurrent.GuardedBy (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.GuardedBy (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$Node
-                        | • Class not found: javax.annotation.concurrent.GuardedBy (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.GuardedBy (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$RemovalTask
-                        | • Class not found: javax.annotation.concurrent.GuardedBy (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.GuardedBy (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$UpdateTask
-                        | • Class not found: javax.annotation.concurrent.GuardedBy (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.GuardedBy (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap$WeightedValue
-                        | • Class not found: javax.annotation.concurrent.Immutable (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.Immutable (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.EntryWeigher
-                        | • Class not found: javax.annotation.concurrent.ThreadSafe (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.ThreadSafe (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.EvictionListener
-                        | • Class not found: javax.annotation.concurrent.ThreadSafe (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.ThreadSafe (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.LinkedDeque
-                        | • Class not found: javax.annotation.concurrent.NotThreadSafe (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.NotThreadSafe (package not found)
                         |
                         | org.apache.camel.com.googlecode.concurrentlinkedhashmap.Weigher
-                        | • Class not found: javax.annotation.concurrent.ThreadSafe (package not found)
+                        | • Annotation not found: javax.annotation.concurrent.ThreadSafe (package not found)
                         |
                         | org.apache.camel.component.ResourceEndpoint
                         | • Class not found: org.slf4j.Logger (package not found)
