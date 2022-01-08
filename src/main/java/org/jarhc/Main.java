@@ -80,6 +80,7 @@ public class Main {
 		if (options.isDebug()) {
 			// enable debug log output
 			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
+			System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
 		}
 
 	}
