@@ -218,6 +218,15 @@ dependencies {
 
 }
 
+configurations {
+
+    // exclude commons-logging because it is replaced by jcl-over-slf4j
+    // see https://github.com/smarkwal/jarhc/issues/112
+    implementation {
+        exclude(group = "commons-logging", module = "commons-logging")
+    }
+}
+
 // plugin configurations -------------------------------------------------------
 
 // special settings for IntelliJ IDEA

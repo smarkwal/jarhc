@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 JAR file            | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
 --------------------+---------+---------+-----------+---------------+--------+------------------------------------------+---------------------
-jarhc-with-deps.jar | 6.61 MB | 4552    | 142       | No            | No     | **************************************** | [unknown]
-Classpath           | 6.61 MB | 4552    | 142       | -             | -      | -                                        | -
+jarhc-with-deps.jar | 6.57 MB | 4530    | 142       | No            | No     | **************************************** | [unknown]
+Classpath           | 6.57 MB | 4530    | 142       | -             | -      | -                                        | -
 
 Modules
 -------
@@ -23,10 +23,10 @@ Class Versions
 Java class file format information.
 
 JAR file            | Java version
---------------------+--------------------------------------------------------------------------------------
-jarhc-with-deps.jar | Java 8 (2593), Java 7 (278), Java 6 (1070), Java 5 (580), Java 1.3 (9), Java 1.2 (22)
+--------------------+-----------------------------------------------------------------------
+jarhc-with-deps.jar | Java 8 (2593), Java 7 (278), Java 6 (1070), Java 5 (580), Java 1.3 (9)
 Classpath           | Java 8 (2593), Java 7 (278), Java 6 (1070), Java 5 (580),
-                    | Java 1.3 (9), Java 1.2 (22)
+                    | Java 1.3 (9)
 
 JAR Dependencies
 ----------------
@@ -67,40 +67,7 @@ Compatibility issues between JAR files.
 
 JAR file            | Issues
 --------------------+--------------------------------------------------------------------------------------------------------------------------------------------------
-jarhc-with-deps.jar | org.apache.commons.logging.LogFactory$4
-                    | • Method not found: static void org.apache.commons.logging.LogFactory.access$000(java.lang.String)
-                    | > org.apache.commons.logging.LogFactory (method not found)
-                    | > java.lang.Object (method not found)
-                    |
-                    | org.apache.commons.logging.LogFactory$5
-                    | • Method not found: static void org.apache.commons.logging.LogFactory.access$000(java.lang.String)
-                    | > org.apache.commons.logging.LogFactory (method not found)
-                    | > java.lang.Object (method not found)
-                    |
-                    | org.apache.commons.logging.impl.AvalonLogger
-                    | • Class not found: org.apache.avalon.framework.logger.Logger (package not found)
-                    |
-                    | org.apache.commons.logging.impl.Log4JLogger
-                    | • Class not found: org.apache.log4j.Level (package not found)
-                    | • Class not found: org.apache.log4j.Logger (package not found)
-                    | • Class not found: org.apache.log4j.Priority (package not found)
-                    |
-                    | org.apache.commons.logging.impl.LogFactoryImpl
-                    | • Method not found: static void org.apache.commons.logging.impl.LogFactoryImpl.handleThrowable(java.lang.Throwable)
-                    | > org.apache.commons.logging.impl.LogFactoryImpl (method not found)
-                    | > org.apache.commons.logging.LogFactory (method not found)
-                    | > java.lang.Object (method not found)
-                    |
-                    | org.apache.commons.logging.impl.LogKitLogger
-                    | • Class not found: org.apache.log.Hierarchy (package not found)
-                    | • Class not found: org.apache.log.Logger (package not found)
-                    |
-                    | org.apache.commons.logging.impl.ServletContextCleaner
-                    | • Interface not found: javax.servlet.ServletContextListener
-                    | • Class not found: javax.servlet.ServletContextEvent (package not found)
-                    | • Class not found: javax.servlet.ServletContextListener (package not found)
-                    |
-                    | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
+jarhc-with-deps.jar | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
                     | • Annotation not found: javax.inject.Inject (package not found)
                     | • Annotation not found: javax.inject.Named (package not found)
                     |
@@ -326,9 +293,6 @@ jarhc-with-deps.jar | com.google.common.cache.Striped64
                     |
                     | com.google.common.util.concurrent.UncaughtExceptionHandlers$Exiter
                     | • void java.lang.Runtime.exit(int)
-                    |
-                    | org.apache.commons.logging.impl.LogFactoryImpl
-                    | • @Deprecated: public final class java.security.AccessController
                     |
                     | org.apache.commons.logging.impl.SimpleLog
                     | • @Deprecated: public final class java.security.AccessController

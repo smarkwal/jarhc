@@ -39,10 +39,9 @@ checker-qual-3.12.0.jar                                        | 204 KB  | 333  
 error_prone_annotations-2.7.1.jar                              | 14.5 KB | 24      | 0         | No                    | Yes (com.google.errorprone.annotations)    | 458d9042f7aa6fa9a634df902b37f544e15aacac | com.google.errorprone:error_prone_annotations:2.7.1
 j2objc-annotations-1.3.jar                                     | 8.58 KB | 12      | 0         | No                    | No                                         | ba035118bc8bac37d7eff77700720999acd9986d | com.google.j2objc:j2objc-annotations:1.3
 httpcore-4.4.13.jar                                            | 321 KB  | 253     | 1         | No                    | Yes (org.apache.httpcomponents.httpcore)   | 853b96d3afbb7bf8cc303fe27ee96836a10c1834 | org.apache.httpcomponents:httpcore:4.4.13
-commons-logging-1.2.jar                                        | 60.4 KB | 28      | 0         | No                    | No                                         | 4bfc12adfe4842bf07b657f0369c4cb522955686 | commons-logging:commons-logging:1.2
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | No                    | Yes (org.apache.commons.codec)             | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | No                    | No                                         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.72 MB | 4558    | 148       | -                     | -                                          | -                                        | -
+Classpath                                                      | 6.66 MB | 4530    | 148       | -                     | -                                          | -                                        | -
 
 Modules
 -------
@@ -83,7 +82,6 @@ checker-qual-3.12.0.jar                                        | org.checkerfram
 error_prone_annotations-2.7.1.jar                              | com.google.errorprone.annotations                   | Manifest       | Yes       | -         | [all packages]
 j2objc-annotations-1.3.jar                                     | j2objc.annotations                                  | Auto-generated | Yes       | -         | [all packages]
 httpcore-4.4.13.jar                                            | org.apache.httpcomponents.httpcore                  | Manifest       | Yes       | -         | [all packages]
-commons-logging-1.2.jar                                        | commons.logging                                     | Auto-generated | Yes       | -         | [all packages]
 commons-codec-1.11.jar                                         | org.apache.commons.codec                            | Manifest       | Yes       | -         | [all packages]
 plexus-interpolation-1.21.jar                                  | plexus.interpolation                                | Auto-generated | Yes       | -         | [all packages]
 
@@ -125,11 +123,10 @@ checker-qual-3.12.0.jar                                        | Java 8 (333)
 error_prone_annotations-2.7.1.jar                              | Java 7 (24)
 j2objc-annotations-1.3.jar                                     | Java 5 (12)
 httpcore-4.4.13.jar                                            | Java 6 (253)
-commons-logging-1.2.jar                                        | Java 1.2 (28)
 commons-codec-1.11.jar                                         | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | Java 5 (44)
 Classpath                                                      | Java 10 (1), Java 8 (2592), Java 7 (278), Java 6 (1070),
-                                                               | Java 5 (580), Java 1.3 (9), Java 1.2 (28)
+                                                               | Java 5 (580), Java 1.3 (9)
 
 JAR Dependencies
 ----------------
@@ -197,8 +194,7 @@ aether-api-1.1.0.jar                                           | [none]         
                                                                |                                      | maven-aether-provider-3.3.9.jar
 jul-to-slf4j-1.7.32.jar                                        | slf4j-api-1.7.32.jar                 | jarhc.jar
 slf4j-simple-1.7.32.jar                                        | slf4j-api-1.7.32.jar                 | slf4j-api-1.7.32.jar
-jcl-over-slf4j-1.6.2.jar                                       | commons-logging-1.2.jar              | commons-logging-1.2.jar
-                                                               | slf4j-api-1.7.32.jar                 | httpclient-4.5.13.jar
+jcl-over-slf4j-1.6.2.jar                                       | slf4j-api-1.7.32.jar                 | httpclient-4.5.13.jar
 slf4j-api-1.7.32.jar                                           | slf4j-simple-1.7.32.jar              | aether-impl-1.1.0.jar
                                                                |                                      | jarhc.jar
                                                                |                                      | jcl-over-slf4j-1.6.2.jar
@@ -218,7 +214,6 @@ guava-31.0.1-jre.jar                                           | checker-qual-3.
                                                                | j2objc-annotations-1.3.jar           |
                                                                | jsr305-3.0.2.jar                     |
 httpclient-4.5.13.jar                                          | commons-codec-1.11.jar               | aether-transport-http-1.1.0.jar
-                                                               | commons-logging-1.2.jar              |
                                                                | httpcore-4.4.13.jar                  |
                                                                | jcl-over-slf4j-1.6.2.jar             |
 maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
@@ -247,8 +242,6 @@ error_prone_annotations-2.7.1.jar                              | [none]         
 j2objc-annotations-1.3.jar                                     | [none]                               | guava-31.0.1-jre.jar
 httpcore-4.4.13.jar                                            | [none]                               | aether-transport-http-1.1.0.jar
                                                                |                                      | httpclient-4.5.13.jar
-commons-logging-1.2.jar                                        | jcl-over-slf4j-1.6.2.jar             | httpclient-4.5.13.jar
-                                                               |                                      | jcl-over-slf4j-1.6.2.jar
 commons-codec-1.11.jar                                         | [none]                               | httpclient-4.5.13.jar
 plexus-interpolation-1.21.jar                                  | [none]                               | maven-model-builder-3.3.9.jar
 
@@ -315,7 +308,7 @@ guava-31.0.1-jre.jar                                           | com.google.guav
                                                                |                                                                             | com.google.errorprone:error_prone_annotations:2.7.1                         | OK
                                                                |                                                                             | com.google.j2objc:j2objc-annotations:1.3                                    | OK
 httpclient-4.5.13.jar                                          | org.apache.httpcomponents:httpclient:4.5.13                                 | org.apache.httpcomponents:httpcore:4.4.13                                   | OK
-                                                               |                                                                             | commons-logging:commons-logging:1.2                                         | OK
+                                                               |                                                                             | commons-logging:commons-logging:1.2                                         | Unsatisfied
                                                                |                                                                             | commons-codec:commons-codec:1.11                                            | OK
 maven-model-3.3.9.jar                                          | org.apache.maven:maven-model:3.3.9                                          | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
@@ -334,10 +327,6 @@ checker-qual-3.12.0.jar                                        | org.checkerfram
 error_prone_annotations-2.7.1.jar                              | com.google.errorprone:error_prone_annotations:2.7.1                         | [none]                                                                      |
 j2objc-annotations-1.3.jar                                     | com.google.j2objc:j2objc-annotations:1.3                                    | [none]                                                                      |
 httpcore-4.4.13.jar                                            | org.apache.httpcomponents:httpcore:4.4.13                                   | [none]                                                                      |
-commons-logging-1.2.jar                                        | commons-logging:commons-logging:1.2                                         | log4j:log4j:1.2.17 (optional)                                               | Unsatisfied
-                                                               |                                                                             | logkit:logkit:1.0.1 (optional)                                              | Unsatisfied
-                                                               |                                                                             | avalon-framework:avalon-framework:4.1.5 (optional)                          | Unsatisfied
-                                                               |                                                                             | javax.servlet:servlet-api:2.3 (provided, optional)                          | Unsatisfied
 commons-codec-1.11.jar                                         | commons-codec:commons-codec:1.11                                            | [none]                                                                      |
 plexus-interpolation-1.21.jar                                  | org.codehaus.plexus:plexus-interpolation:1.21                               | [none]                                                                      |
 
@@ -369,8 +358,6 @@ asm-9.2.jar                          | 2     | org.objectweb.asm (+1 subpackage)
 checker-qual-3.12.0.jar              | 29    | org.checkerframework.* (29 subpackages)               |
 commons-codec-1.11.jar               | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
-commons-logging-1.2.jar              | 2     | org.apache.commons.logging                            | Split Package: org.apache.commons.logging
-                                     |       | org.apache.commons.logging.impl                       | Split Package: org.apache.commons.logging.impl
 error_prone_annotations-2.7.1.jar    | 2     | com.google.errorprone.annotations (+1 subpackage)     |
 failureaccess-1.0.1.jar              | 1     | com.google.common.util.concurrent.internal            |
 guava-31.0.1-jre.jar                 | 18    | com.google.common.annotations                         |
@@ -418,8 +405,7 @@ httpcore-4.4.13.jar                  | 17    | org.apache.http                  
                                      |       | org.apache.http.util                                  |
 j2objc-annotations-1.3.jar           | 1     | com.google.j2objc.annotations                         |
 jarhc.jar                            | 17    | org.jarhc (+16 subpackages)                           |
-jcl-over-slf4j-1.6.2.jar             | 2     | org.apache.commons.logging                            | Split Package: org.apache.commons.logging
-                                     |       | org.apache.commons.logging.impl                       | Split Package: org.apache.commons.logging.impl
+jcl-over-slf4j-1.6.2.jar             | 2     | org.apache.commons.logging (+1 subpackage)            |
 json-20211205.jar                    | 1     | org.json                                              |
 jsr305-3.0.2.jar                     | 3     | javax.annotation (+2 subpackages)                     |
 jul-to-slf4j-1.7.32.jar              | 1     | org.slf4j.bridge                                      |
@@ -468,34 +454,22 @@ Duplicate Classes
 -----------------
 Duplicate classes, shadowed classes, and duplicate resources.
 
-Class/Resource                                       | Sources                              | Similarity
------------------------------------------------------+--------------------------------------+--------------
-org.apache.commons.logging.Log                       | commons-logging-1.2.jar (Classpath)  | Same API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-org.apache.commons.logging.LogConfigurationException | commons-logging-1.2.jar (Classpath)  | Same API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-org.apache.commons.logging.LogFactory                | commons-logging-1.2.jar (Classpath)  | Different API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-org.apache.commons.logging.impl.NoOpLog              | commons-logging-1.2.jar (Classpath)  | Same API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-org.apache.commons.logging.impl.SimpleLog            | commons-logging-1.2.jar (Classpath)  | Different API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-org.apache.commons.logging.impl.SimpleLog$1          | commons-logging-1.2.jar (Classpath)  | Same API
-                                                     | jcl-over-slf4j-1.6.2.jar (Classpath) |
-about.html                                           | aether-api-1.1.0.jar                 | Exact copy
-                                                     | aether-connector-basic-1.1.0.jar     |
-                                                     | aether-impl-1.1.0.jar                |
-                                                     | aether-spi-1.1.0.jar                 |
-                                                     | aether-transport-file-1.1.0.jar      |
-                                                     | aether-transport-http-1.1.0.jar      |
-                                                     | aether-util-1.1.0.jar                |
+Class/Resource | Sources                          | Similarity
+---------------+----------------------------------+-----------
+about.html     | aether-api-1.1.0.jar             | Exact copy
+               | aether-connector-basic-1.1.0.jar |
+               | aether-impl-1.1.0.jar            |
+               | aether-spi-1.1.0.jar             |
+               | aether-transport-file-1.1.0.jar  |
+               | aether-transport-http-1.1.0.jar  |
+               | aether-util-1.1.0.jar            |
 
 Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
 JAR file                         | Issues
----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------
 maven-aether-provider-3.3.9.jar  | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
@@ -656,103 +630,6 @@ aether-transport-file-1.1.0.jar  | org.eclipse.aether.transport.file.FileTranspo
 aether-transport-http-1.1.0.jar  | org.eclipse.aether.transport.http.HttpTransporterFactory
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
-commons-logging-1.2.jar          | org.apache.commons.logging.LogFactory
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.cacheFactory(java.lang.ClassLoader,org.apache.commons.logging.LogFactory)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.lang.Class org.apache.commons.logging.LogFactory.class$(java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.util.Hashtable org.apache.commons.logging.LogFactory.createFactoryStore()
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static org.apache.commons.logging.LogFactory org.apache.commons.logging.LogFactory.getCachedFactory(java.lang.ClassLoader)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.util.Properties org.apache.commons.logging.LogFactory.getConfigurationFile(java.lang.ClassLoader,java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.lang.ClassLoader org.apache.commons.logging.LogFactory.getContextClassLoaderInternal()
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.util.Properties org.apache.commons.logging.LogFactory.getProperties(java.net.URL)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.io.InputStream org.apache.commons.logging.LogFactory.getResourceAsStream(java.lang.ClassLoader,java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.util.Enumeration org.apache.commons.logging.LogFactory.getResources(java.lang.ClassLoader,java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.lang.String org.apache.commons.logging.LogFactory.getSystemProperty(java.lang.String,java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.handleThrowable(java.lang.Throwable)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static boolean org.apache.commons.logging.LogFactory.implementsLogFactory(java.lang.Class)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.io.PrintStream org.apache.commons.logging.LogFactory.initDiagnostics()
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.logClassLoaderEnvironment(java.lang.Class)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.logDiagnostic(java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.logHierarchy(java.lang.String,java.lang.ClassLoader)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Method not found: static java.lang.String org.apache.commons.logging.LogFactory.trim(java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 | • Field not found: static java.lang.Class org.apache.commons.logging.LogFactory.class$org$apache$commons$logging$LogFactory
-                                 | > org.apache.commons.logging.LogFactory (field not found)
-                                 | > java.lang.Object (field not found)
-                                 | • Field not found: static java.lang.String org.apache.commons.logging.LogFactory.diagnosticPrefix
-                                 | > org.apache.commons.logging.LogFactory (field not found)
-                                 | > java.lang.Object (field not found)
-                                 | • Field not found: static java.io.PrintStream org.apache.commons.logging.LogFactory.diagnosticsStream
-                                 | > org.apache.commons.logging.LogFactory (field not found)
-                                 | > java.lang.Object (field not found)
-                                 | • Field not found: static java.lang.ClassLoader org.apache.commons.logging.LogFactory.thisClassLoader
-                                 | > org.apache.commons.logging.LogFactory (field not found)
-                                 | > java.lang.Object (field not found)
-                                 |
-                                 | org.apache.commons.logging.LogFactory$4
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.access$000(java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 |
-                                 | org.apache.commons.logging.LogFactory$5
-                                 | • Method not found: static void org.apache.commons.logging.LogFactory.access$000(java.lang.String)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 |
-                                 | org.apache.commons.logging.impl.AvalonLogger
-                                 | • Class not found: org.apache.avalon.framework.logger.Logger (package not found)
-                                 |
-                                 | org.apache.commons.logging.impl.Log4JLogger
-                                 | • Class not found: org.apache.log4j.Level (package not found)
-                                 | • Class not found: org.apache.log4j.Logger (package not found)
-                                 | • Class not found: org.apache.log4j.Priority (package not found)
-                                 |
-                                 | org.apache.commons.logging.impl.LogFactoryImpl
-                                 | • Method not found: static void org.apache.commons.logging.impl.LogFactoryImpl.handleThrowable(java.lang.Throwable)
-                                 | > org.apache.commons.logging.impl.LogFactoryImpl (method not found)
-                                 | > org.apache.commons.logging.LogFactory (method not found)
-                                 | > java.lang.Object (method not found)
-                                 |
-                                 | org.apache.commons.logging.impl.LogKitLogger
-                                 | • Class not found: org.apache.log.Hierarchy (package not found)
-                                 | • Class not found: org.apache.log.Logger (package not found)
-                                 |
-                                 | org.apache.commons.logging.impl.ServletContextCleaner
-                                 | • Interface not found: javax.servlet.ServletContextListener
-                                 | • Class not found: javax.servlet.ServletContextEvent (package not found)
-                                 | • Class not found: javax.servlet.ServletContextListener (package not found)
 
 Blacklist
 ---------
@@ -1194,14 +1071,6 @@ plexus-utils-3.4.1.jar          | org.codehaus.plexus.util.cli.Commandline
                                 | org.codehaus.plexus.util.cli.ShutdownHookUtils
                                 | • @Deprecated: public class java.security.AccessControlException
 httpcore-4.4.13.jar             | org.apache.http.impl.pool.BasicConnFactory
-                                | • @Deprecated: public final class java.security.AccessController
-commons-logging-1.2.jar         | org.apache.commons.logging.LogFactory
-                                | • @Deprecated: public final class java.security.AccessController
-                                |
-                                | org.apache.commons.logging.impl.LogFactoryImpl
-                                | • @Deprecated: public final class java.security.AccessController
-                                |
-                                | org.apache.commons.logging.impl.SimpleLog
                                 | • @Deprecated: public final class java.security.AccessController
 plexus-interpolation-1.21.jar   | org.codehaus.plexus.interpolation.object.FieldBasedObjectInterpolator
                                 | • @Deprecated: public final class java.security.AccessController
