@@ -17,6 +17,7 @@ Options:
     -v
 
    --debug               : Enable verbose output.
+   --trace
 
    --release  <number>   : Set Java release used when parsing multi-release JAR
     -r                     files. Minimum is 8 for Java 8.

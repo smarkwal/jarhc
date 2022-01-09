@@ -41,6 +41,7 @@ public class Options {
 
 	private String dataPath = null;
 	private boolean debug = false;
+	private boolean trace = false;
 
 	public int getRelease() {
 		return release;
@@ -164,6 +165,14 @@ public class Options {
 
 	public void setDebug(boolean debug) {
 		this.debug = debug;
+	}
+
+	public boolean isTrace() {
+		return trace;
+	}
+
+	public void setTrace(boolean trace) {
+		this.trace = trace;
 	}
 
 }

@@ -63,6 +63,7 @@ class CommandLineParserTest {
 		assertNull(options.getReportFile());
 		assertNull(options.getDataPath());
 		assertFalse(options.isDebug());
+		assertFalse(options.isTrace());
 
 	}
 
@@ -500,6 +501,20 @@ class CommandLineParserTest {
 
 		// assert
 		assertTrue(options.isDebug());
+
+	}
+
+	@Test
+	void test_trace(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] { "--trace", file.getAbsolutePath() });
+
+		// assert
+		assertTrue(options.isTrace());
 
 	}
 

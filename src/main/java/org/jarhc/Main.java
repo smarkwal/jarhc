@@ -19,6 +19,7 @@ package org.jarhc;
 import static org.jarhc.artifacts.MavenRepository.MAVEN_CENTRAL_URL;
 
 import java.io.File;
+import java.util.logging.Level;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
@@ -31,6 +32,7 @@ import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.JarHcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public class Main {
 
@@ -55,9 +57,6 @@ public class Main {
 
 		setupLogging(options);
 
-		// create logger AFTER setup of logging
-		LOGGER = LoggerFactory.getLogger(Main.class);
-
 		Repository repository = createRepository(options);
 
 		// create and run application
@@ -77,11 +76,43 @@ public class Main {
 
 	private static void setupLogging(Options options) {
 
-		if (options.isDebug()) {
+		if (options.isTrace()) {
+
+			// enable trace log output
+			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace");
+			System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
+
+		} else if (options.isDebug()) {
+
 			// enable debug log output
 			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
 			System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
+
+			// do NOT enable debug output for Apache HttpClient special loggers
+			// 'org.apache.http.headers' and 'org.apache.http.wire'
+			System.setProperty("org.slf4j.simpleLogger.log.org.apache.http.headers", "info");
+			System.setProperty("org.slf4j.simpleLogger.log.org.apache.http.wire", "info");
 		}
+
+		// install bridge from JUL to SFL4J and reset level on root logger
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
+		java.util.logging.Logger.getLogger("").setLevel(Level.FINEST);
+
+		// create logger AFTER setup of logging
+		LOGGER = LoggerFactory.getLogger(Main.class);
+
+		// test logging through SLF4J
+		// LOGGER.info("Test logging: SLF4J INFO");
+		// LOGGER.debug("Test logging: SLF4J DEBUG");
+		// LOGGER.trace("Test logging: SLF4J TRACE");
+
+		// test logging through JUL (java.util.logging)
+		// java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
+		// logger.info("Test logging: JUL INFO");
+		// logger.fine("Test logging: JUL FINE");
+		// logger.finer("Test logging: JUL FINER");
+		// logger.finest("Test logging: JUL FINEST");
 
 	}
 
