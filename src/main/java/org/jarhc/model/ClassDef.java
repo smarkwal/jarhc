@@ -98,6 +98,43 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 
 	/**
 	 * List with references to other classes.
+	 * This includes:
+	 * <p>
+	 * - superclass
+	 * - implemented interfaces
+	 * - permitted subclasses (sealed class)
+	 * - outer class
+	 * - inner classes
+	 * <p>
+	 * - type of declared record component
+	 * <p>
+	 * - type of declared field
+	 * <p>
+	 * - return type of declared method
+	 * - parameter types of declared method
+	 * - exceptions thrown by declared method
+	 * <p>
+	 * - NOT!: annotation on class
+	 * - NOT!: annotation on declared record component
+	 * - NOT!: annotation on declared method
+	 * - NOT!: annotation on declared field
+	 * - nested annotation value of an annotation
+	 * - annotations not linked to a class, method, or field (module and package?)
+	 * <p>
+	 * - owner of accessed field
+	 * - type of accessed field
+	 * <p>
+	 * - owner of invoked method
+	 * - parameter types of invoked method
+	 * - NOT!: return type of invoked method
+	 * <p>
+	 * - class in Load Constant instruction
+	 * - class in Type instruction
+	 * - type of declared local variable
+	 * - exception in catch block
+	 * <p>
+	 * - class used as annotation value
+	 * - enum value of an annotation (???)
 	 */
 	private final List<ClassRef> classRefs = new ArrayList<>();
 
