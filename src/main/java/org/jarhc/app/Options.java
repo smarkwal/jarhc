@@ -31,6 +31,7 @@ public class Options {
 	private ClassLoaderStrategy classLoaderStrategy = ClassLoaderStrategy.ParentLast;
 	private boolean removeVersion = false;
 	private boolean useArtifactName = false;
+	private boolean ignoreMissingAnnotations = false;
 
 	private List<String> sections = null; // all sections
 	private boolean skipEmpty = false;
@@ -97,6 +98,14 @@ public class Options {
 
 	public void setUseArtifactName(boolean useArtifactName) {
 		this.useArtifactName = useArtifactName;
+	}
+
+	public boolean isIgnoreMissingAnnotations() {
+		return ignoreMissingAnnotations;
+	}
+
+	public void setIgnoreMissingAnnotations(boolean ignoreMissingAnnotations) {
+		this.ignoreMissingAnnotations = ignoreMissingAnnotations;
 	}
 
 	public List<String> getSections() {

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import org.jarhc.app.Options;
 import org.jarhc.java.AccessCheck;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.model.AnnotationRef;
@@ -47,13 +48,15 @@ import org.jarhc.utils.StringUtils;
 
 public class BinaryCompatibilityAnalyzer implements Analyzer {
 
+	private final boolean ignoreMissingAnnotations;
 	private final boolean reportOwnerClassNotFound;
 
-	public BinaryCompatibilityAnalyzer() {
-		this(false);
+	public BinaryCompatibilityAnalyzer(Options options) {
+		this(options.isIgnoreMissingAnnotations(), false);
 	}
 
-	public BinaryCompatibilityAnalyzer(boolean reportOwnerClassNotFound) {
+	public BinaryCompatibilityAnalyzer(boolean ignoreMissingAnnotations, boolean reportOwnerClassNotFound) {
+		this.ignoreMissingAnnotations = ignoreMissingAnnotations;
 		this.reportOwnerClassNotFound = reportOwnerClassNotFound;
 	}
 
@@ -681,8 +684,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			Optional<ClassDef> annotationDef = classpath.getClassDef(annotationName);
 			boolean exists = annotationDef.isPresent();
 			if (!exists) {
-				// check if package of annotation exists (there is at least one class on the classpath)
-				validateClassRefPackage("Annotation", annotationName, classpath, classIssues);
+				// check if missing annotations should be reported
+				if (!ignoreMissingAnnotations) {
+					// check if package of annotation exists (there is at least one class on the classpath)
+					validateClassRefPackage("Annotation", annotationName, classpath, classIssues);
+				}
 			} else {
 				// check if access to class is allowed
 				validateClassRefAccess(ownerClassDef, annotationDef.get(), accessCheck, classIssues);

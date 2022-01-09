@@ -65,6 +65,10 @@ Options:
 
    --use-artifact-name   : Create JAR file name from artifact name.
 
+   --ignore-missing-annotations :
+                           Report does not include warnings for unknown
+                           annotations.
+
    --data <path>         : Path to local cache directory for artifact
                            information. If the directory does not exist,
                            it is automatically created.

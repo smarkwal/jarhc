@@ -24,7 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Modifier;
 import java.util.List;
+import org.jarhc.app.Options;
 import org.jarhc.env.JavaRuntime;
+import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.ModuleInfo;
@@ -39,6 +41,8 @@ class BinaryCompatibilityAnalyzerTest {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 
+	private final Options options = new Options();
+
 	@Test
 	void test_analyze() {
 
@@ -51,7 +55,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -72,7 +76,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -94,7 +98,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -116,7 +120,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -139,7 +143,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -160,7 +164,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -181,7 +185,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -203,7 +207,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -226,7 +230,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -248,7 +252,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -271,7 +275,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -295,7 +299,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -318,7 +322,7 @@ class BinaryCompatibilityAnalyzerTest {
 				.build();
 
 		// test
-		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer();
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
@@ -327,6 +331,49 @@ class BinaryCompatibilityAnalyzerTest {
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
 		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.B", "\u2022 Superclass is a record class: record a.A"));
+	}
+
+	@Test
+	void test_analyze_ignoreMissingAnnotations_false() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addClassDef(ClassDef.forClassName("a.A").addAnnotationRef(new AnnotationRef("b.B", AnnotationRef.Target.TYPE)))
+				.build();
+
+		// test
+		options.setIgnoreMissingAnnotations(false);
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Annotation not found: b.B (package not found)"));
+	}
+
+	@Test
+	void test_analyze_ignoreMissingAnnotations_true() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addClassDef(ClassDef.forClassName("a.A").addAnnotationRef(new AnnotationRef("b.B", AnnotationRef.Target.TYPE)))
+				.build();
+
+		// test
+		options.setIgnoreMissingAnnotations(true);
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
 	}
 
 	private ReportTable assertSectionHeader(ReportSection section) {
