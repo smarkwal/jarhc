@@ -77,6 +77,7 @@ public class CommandLineParser {
 		optionParsers.put("--use-artifact-name", (args, options) -> options.setUseArtifactName(true));
 		optionParsers.put("--data", this::parseData);
 		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
+		optionParsers.put("--trace", (args, options) -> options.setTrace(true));
 		optionParsers.put("-h", (args, options) -> printUsage(null, out));
 		optionParsers.put("--help", (args, options) -> printUsage(null, out));
 		optionParsers.put("-v", (args, options) -> printVersion());
