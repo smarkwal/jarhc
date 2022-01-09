@@ -56,6 +56,7 @@ class CommandLineParserTest {
 		assertTrue(options.getRuntimeJarPaths().isEmpty());
 		assertFalse(options.isRemoveVersion());
 		assertFalse(options.isUseArtifactName());
+		assertFalse(options.isIgnoreMissingAnnotations());
 		assertNull(options.getSections());
 		assertFalse(options.isSkipEmpty());
 		assertEquals("JAR Health Check Report", options.getReportTitle());
@@ -515,6 +516,20 @@ class CommandLineParserTest {
 
 		// assert
 		assertTrue(options.isTrace());
+
+	}
+
+	@Test
+	void test_ignoreMissingAnnotations(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] { "--ignore-missing-annotations", file.getAbsolutePath() });
+
+		// assert
+		assertTrue(options.isIgnoreMissingAnnotations());
 
 	}
 

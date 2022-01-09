@@ -19,6 +19,7 @@ package org.jarhc.analyzer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
@@ -90,7 +91,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_BinaryCompatibilityAnalyzer() {
-		Analyzer analyzer = new BinaryCompatibilityAnalyzer();
+		Analyzer analyzer = new BinaryCompatibilityAnalyzer(new Options());
 		analyzer.analyze(classpath);
 	}
 

@@ -44,7 +44,7 @@ class FieldRefAnalyzerIT {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
-	private BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(false);
+	private BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(false, false);
 
 	@Test
 	void test_fieldrefs(@TempDir Path tempDir) throws IOException {
@@ -168,7 +168,7 @@ class FieldRefAnalyzerIT {
 	void test_reportOwnerClassNotFound_true(@TempDir Path tempDir) throws IOException {
 
 		// prepare: analyzer reporting missing owner classes
-		analyzer = new BinaryCompatibilityAnalyzer(true);
+		analyzer = new BinaryCompatibilityAnalyzer(false, true);
 
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerIT/a.jar", tempDir);

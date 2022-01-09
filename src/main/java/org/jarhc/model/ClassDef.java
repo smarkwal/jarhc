@@ -374,6 +374,12 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return this;
 	}
 
+	@Override
+	public ClassDef addAnnotationRef(AnnotationRef annotationRef) {
+		super.addAnnotationRef(annotationRef);
+		return this;
+	}
+
 	public JarFile getJarFile() {
 		return jarFile;
 	}

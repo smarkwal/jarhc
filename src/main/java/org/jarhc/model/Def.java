@@ -45,8 +45,9 @@ public abstract class Def extends AccessFlags {
 		return annotationRefs.stream().anyMatch(a -> a.getClassName().equals(className) && a.getTarget() == target);
 	}
 
-	public void addAnnotationRef(AnnotationRef annotationRef) {
+	public Def addAnnotationRef(AnnotationRef annotationRef) {
 		this.annotationRefs.add(annotationRef);
+		return this;
 	}
 
 	/**
