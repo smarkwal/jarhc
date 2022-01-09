@@ -18,8 +18,10 @@ package org.jarhc.analyzer;
 
 import static org.jarhc.utils.StringUtils.joinLines;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
@@ -86,12 +88,13 @@ public class JarDependenciesAnalyzer implements Analyzer {
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
 
-				// for every class reference ...
-				List<ClassRef> classRefs = classDef.getClassRefs();
-				for (ClassRef classRef : classRefs) {
+				// collect all references to other classes
+				Set<String> classNames = collectUsedClasses(classDef);
+
+				// for every class name ...
+				for (String className : classNames) {
 
 					// get target class definitions
-					String className = classRef.getClassName();
 					Set<ClassDef> targetClassDefs = classpath.getClassDefs(className);
 					if (targetClassDefs == null) {
 						// ignore unknown class
@@ -118,6 +121,35 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		}
 
 		return dependencies;
+	}
+
+	private Set<String> collectUsedClasses(ClassDef classDef) {
+
+		Set<String> classNames = new HashSet<>();
+
+		// add all class references
+		classDef.getClassRefs().stream()
+				.map(ClassRef::getClassName)
+				.forEach(classNames::add);
+
+		// add all class names of annotations on the class
+		classDef.getAnnotationRefs().stream()
+				.map(AnnotationRef::getClassName)
+				.forEach(classNames::add);
+
+		// add all class names of annotations on fields
+		classDef.getFieldDefs().stream()
+				.flatMap(def -> def.getAnnotationRefs().stream())
+				.map(AnnotationRef::getClassName)
+				.forEach(classNames::add);
+
+		// add all class names of annotations on methods
+		classDef.getMethodDefs().stream()
+				.flatMap(def -> def.getAnnotationRefs().stream())
+				.map(AnnotationRef::getClassName)
+				.forEach(classNames::add);
+
+		return classNames;
 	}
 
 }
