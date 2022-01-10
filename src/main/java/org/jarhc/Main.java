@@ -100,17 +100,35 @@ public class Main {
 		// create logger AFTER setup of logging
 		LOGGER = LoggerFactory.getLogger(Main.class);
 
-		// test logging through SLF4J
-		// LOGGER.info("Test logging: SLF4J INFO");
-		// LOGGER.debug("Test logging: SLF4J DEBUG");
-		// LOGGER.trace("Test logging: SLF4J TRACE");
+		boolean loggingTestEnabled = System.getProperties().containsKey("jarhc.logging.test.enabled");
+		if (loggingTestEnabled) {
 
-		// test logging through JUL (java.util.logging)
-		// java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
-		// logger.info("Test logging: JUL INFO");
-		// logger.fine("Test logging: JUL FINE");
-		// logger.finer("Test logging: JUL FINER");
-		// logger.finest("Test logging: JUL FINEST");
+			// test logging through SLF4J
+			LOGGER.error("Test logging: SLF4J ERROR");
+			LOGGER.warn("Test logging: SLF4J WARN");
+			LOGGER.info("Test logging: SLF4J INFO");
+			LOGGER.debug("Test logging: SLF4J DEBUG");
+			LOGGER.trace("Test logging: SLF4J TRACE");
+
+			// test logging through JUL (java.util.logging)
+			java.util.logging.Logger julLogger = java.util.logging.Logger.getLogger(Main.class.getName());
+			julLogger.severe("Test logging: JUL SEVERE");
+			julLogger.warning("Test logging: JUL WARNING");
+			julLogger.info("Test logging: JUL INFO");
+			julLogger.config("Test logging: JUL CONFIG");
+			julLogger.fine("Test logging: JUL FINE");
+			julLogger.finer("Test logging: JUL FINER");
+			julLogger.finest("Test logging: JUL FINEST");
+
+			// test logging through Commons Logging
+			org.apache.commons.logging.Log commonsLogger = org.apache.commons.logging.LogFactory.getLog(Main.class);
+			commonsLogger.fatal("Test logging: Commons Logging FATAL");
+			commonsLogger.error("Test logging: Commons Logging ERROR");
+			commonsLogger.warn("Test logging: Commons Logging WARN");
+			commonsLogger.info("Test logging: Commons Logging INFO");
+			commonsLogger.debug("Test logging: Commons Logging DEBUG");
+			commonsLogger.trace("Test logging: Commons Logging TRACE");
+		}
 
 	}
 
