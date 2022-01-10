@@ -38,8 +38,12 @@ import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.io.TempDir;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class JarHcTest extends ReleaseTest {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReleaseTest.class);
 
 	private static final JavaImage[] JAVA_IMAGES = {
 			new JavaImage("amazon", "corretto", "8", "amazoncorretto:8"),
@@ -66,7 +70,7 @@ class JarHcTest extends ReleaseTest {
 		// note: all runners and tests will use the same data directory
 		File dataDir = new File(tempDir.toFile(), "data");
 		createDirectory(dataDir);
-		System.out.println("Data directory: " + dataDir.getAbsolutePath());
+		LOGGER.info("Data directory: {}", dataDir.getAbsolutePath());
 
 		// add a local test runner first
 		List<AbstractTestRunner> runners = new ArrayList<>();
@@ -76,34 +80,38 @@ class JarHcTest extends ReleaseTest {
 			runners.add(runner);
 		}
 
-		// add a Docker-based test runner for every Java image
+		// get image filter from system property
 		String imageNameFilter = System.getProperty("jarhc.test.docker.filter", "eclipse-temurin");
-		System.out.println("Docker image name filter: " + imageNameFilter);
+		LOGGER.info("Docker image name filter: {}", imageNameFilter);
 
+		// add a Docker-based test runner for every Java image
 		for (JavaImage javaImage : JAVA_IMAGES) {
 			String imageName = javaImage.getImageName();
 
-			if (imageNameFilter.equals("all") || imageName.contains(imageNameFilter) || imageName.matches(imageNameFilter)) {
-				System.out.println("ENABLED ... " + imageName);
-
-				File workDir = new File(tempDir.toFile(), javaImage.getPath());
-				DockerTestRunner runner = new DockerTestRunner(javaImage, workDir, dataDir);
-				runners.add(runner);
-
+			// check if image is accepted by filter
+			if (javaImage.matches(imageNameFilter)) {
+				LOGGER.info("- TEST: {}", imageName);
 			} else {
-				System.out.println("SKIP ...... " + imageName);
+				LOGGER.info("- skip: {}", imageName);
+				continue; // skip this image
 			}
+
+			File workDir = new File(tempDir.toFile(), javaImage.getPath());
+			DockerTestRunner runner = new DockerTestRunner(javaImage, workDir, dataDir);
+			runners.add(runner);
 		}
 
 		List<DynamicContainer> containers = new ArrayList<>();
 
 		File jarFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + ".jar");
 		File jarWithDepsFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
+		File minimalJarFile = getProjectFile("src/releaseTest/resources/minimal.jar");
 
 		for (AbstractTestRunner runner : runners) {
 
 			runner.installFile(jarFile, "jarhc.jar");
 			runner.installFile(jarWithDepsFile, "jarhc-with-deps.jar");
+			runner.installFile(minimalJarFile, "minimal.jar");
 
 			// prepare a collection of tests
 			List<DynamicTest> tests = new ArrayList<>();
@@ -192,7 +200,7 @@ class JarHcTest extends ReleaseTest {
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "jr", // include only section Java Runtime
-				"jarhc.jar" // TODO: find a tiny artifact to scan
+				"minimal.jar"
 		);
 
 		// override JarHC version for reproducible test output

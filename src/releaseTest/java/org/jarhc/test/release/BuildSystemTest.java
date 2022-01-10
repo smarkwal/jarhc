@@ -21,17 +21,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class BuildSystemTest extends ReleaseTest {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(BuildSystemTest.class);
 
 	@Test
 	void dumpSystemProperties() {
 		Properties properties = System.getProperties();
 		List<String> names = new ArrayList<>(properties.stringPropertyNames());
 		names.sort(String.CASE_INSENSITIVE_ORDER);
+		LOGGER.info("Java System Properties:");
 		for (String name : names) {
 			String value = properties.getProperty(name);
-			System.out.println(name + " = " + value);
+			LOGGER.info("{} = {}", name, value);
 		}
 	}
 

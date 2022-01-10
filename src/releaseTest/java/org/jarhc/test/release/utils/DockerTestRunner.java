@@ -19,9 +19,13 @@ package org.jarhc.test.release.utils;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.Container;
 
 public class DockerTestRunner extends AbstractTestRunner {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DockerTestRunner.class);
 
 	protected final JavaImage javaImage;
 
@@ -52,9 +56,19 @@ public class DockerTestRunner extends AbstractTestRunner {
 
 		Container.ExecResult result;
 		try {
+
+			LOGGER.info("Start container: {}", getName());
 			container.start();
+
+			LOGGER.info("Run command: {}", command);
 			result = container.exec(command);
+
+			int exitCode = result.getExitCode();
+			LOGGER.info("Exit code: {}", exitCode);
+
 		} finally {
+
+			LOGGER.info("Stop container: {}", getName());
 			container.stop();
 		}
 
@@ -89,6 +103,14 @@ public class DockerTestRunner extends AbstractTestRunner {
 		// override default container command
 		// (otherwise, a JShell may be started and consume valuable memory)
 		container.withCommand("sleep", "1h");
+
+		// get UID and GID of current user
+		String uid = SysUtils.getUID();
+		String gid = SysUtils.getGID();
+
+		// use same user in container
+		String user = uid + ":" + gid;
+		container.withCreateContainerCmdModifier(cmd -> cmd.withUser(user));
 
 		return container;
 	}

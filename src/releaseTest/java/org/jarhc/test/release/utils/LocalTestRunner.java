@@ -22,8 +22,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LocalTestRunner extends AbstractTestRunner {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DockerTestRunner.class);
 
 	private final String javaVersion;
 	private final String javaHome;
@@ -72,6 +76,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			cmd[0] = javaHome + "/bin/" + cmd[0];
 
 			// start JVM with given command
+			LOGGER.info("Run command: {}", command);
 			Runtime runtime = Runtime.getRuntime();
 			Process process = runtime.exec(cmd, null, workDir);
 
@@ -99,6 +104,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			}
 
 			int exitCode = process.exitValue();
+			LOGGER.info("Exit code: {}", exitCode);
 			String stdOut = new String(stdOutBuffer.toByteArray(), StandardCharsets.UTF_8);
 			String stdErr = new String(stdErrBuffer.toByteArray(), StandardCharsets.UTF_8);
 

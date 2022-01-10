@@ -50,4 +50,10 @@ public class JavaImage {
 		return String.format("%s-%s/%s", vendor, product, version);
 	}
 
+	public boolean matches(String filter) {
+		if (filter.equals("none")) return false;
+		if (filter.equals("all")) return true;
+		return imageName.contains(filter) || imageName.matches(filter);
+	}
+
 }
