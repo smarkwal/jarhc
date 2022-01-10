@@ -24,6 +24,22 @@ import org.apache.commons.io.FileUtils;
 
 public class TestUtils {
 
+	public static String getJavaVersion() {
+		String value = System.getProperty("java.version");
+		String[] parts = value.split("\\.");
+		if (parts[0].equals("1")) {
+			// Java 1.5 - 1.8
+			return parts[1];
+		} else {
+			// Java 9+
+			return parts[0];
+		}
+	}
+
+	public static String getJavaHome() {
+		return System.getProperty("java.home");
+	}
+
 	/**
 	 * Checks if the system property "jarhc.test.resources.generate" is set.
 	 * This property is used as flag to instruct tests to re-generate their test resources.

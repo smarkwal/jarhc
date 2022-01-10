@@ -26,30 +26,34 @@ public class Command {
 	private final List<String> jarHcArguments = new ArrayList<>();
 
 	public static Command java(String... arguments) {
-		Command builder = new Command();
-		builder.javaArguments.addAll(Arrays.asList(arguments));
-		return builder;
+		Command command = new Command();
+		command.javaArguments.addAll(Arrays.asList(arguments));
+		return command;
 	}
 
 	public static Command jarHc(String... arguments) {
-		Command builder = new Command();
-		builder.jarHcArguments.add("-jar");
-		builder.jarHcArguments.add("jarhc-with-deps.jar");
-		builder.jarHcArguments.addAll(Arrays.asList(arguments));
-		return builder;
+		Command command = new Command();
+		command.jarHcArguments.add("-jar");
+		command.jarHcArguments.add("jarhc-with-deps.jar");
+		command.jarHcArguments.addAll(Arrays.asList(arguments));
+		return command;
 	}
 
 	private Command() {
 	}
 
-	public Command addJavaArguments(String... arguments) {
+	@SuppressWarnings("UnusedReturnValue")
+	public void addJavaArguments(String... arguments) {
 		javaArguments.addAll(Arrays.asList(arguments));
-		return this;
 	}
 
-	public Command addJarHcArguments(String... arguments) {
+	@SuppressWarnings("UnusedReturnValue")
+	public void addJarHcArguments(String... arguments) {
 		jarHcArguments.addAll(Arrays.asList(arguments));
-		return this;
+	}
+
+	public boolean isJarHcCommand() {
+		return !jarHcArguments.isEmpty();
 	}
 
 	public String[] build() {
@@ -58,6 +62,11 @@ public class Command {
 		command.addAll(javaArguments);
 		command.addAll(jarHcArguments);
 		return command.toArray(new String[0]);
+	}
+
+	@Override
+	public String toString() {
+		return String.join(" ", build());
 	}
 
 }

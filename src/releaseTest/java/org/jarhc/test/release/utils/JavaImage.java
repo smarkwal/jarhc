@@ -50,8 +50,4 @@ public class JavaImage {
 		return String.format("%s-%s/%s", vendor, product, version);
 	}
 
-	public String getReportPath(String resourceName) {
-		return String.format("reports/%s-%s/%s/%s", vendor, product, version, resourceName);
-	}
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Stephan Markwalder
+ * Copyright 2022 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,48 +18,69 @@ package org.jarhc.test.release.utils;
 
 import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.util.diff.Delta;
 import org.assertj.core.util.diff.DiffUtils;
 import org.assertj.core.util.diff.Patch;
-import org.testcontainers.containers.Container.ExecResult;
+import org.testcontainers.containers.Container;
 
-public class ExecResultAssert extends AbstractAssert<ExecResultAssert, ExecResult> {
+public class TestResult {
 
-	ExecResultAssert(ExecResult execResult) {
-		super(execResult, ExecResultAssert.class);
+	private final int exitCode;
+	private final String stdOut;
+	private final String stdErr;
+
+	TestResult(int exitCode, String stdOut, String stdErr) {
+		this.exitCode = exitCode;
+		this.stdOut = stdOut;
+		this.stdErr = stdErr;
 	}
 
-	public static ExecResultAssert assertThat(ExecResult actual) {
-		return new ExecResultAssert(actual);
+	TestResult(Container.ExecResult result) {
+		this(
+				result.getExitCode(),
+				result.getStdout(),
+				result.getStderr()
+		);
 	}
 
-	public void isEqualTo(int expectedExitCode, String expectedStdout, String expectedStderr) {
+	public int getExitCode() {
+		return exitCode;
+	}
 
-		int actualExitCode = actual.getExitCode();
-		String actualStdout = actual.getStdout();
-		String actualStderr = actual.getStderr();
+	public String getStdOut() {
+		return stdOut;
+	}
+
+	public String getStdErr() {
+		return stdErr;
+	}
+
+	public void assertEquals(int expectedExitCode, String expectedStdOut, String expectedStdErr) {
 
 		StringBuilder buffer = new StringBuilder();
-		if (actualExitCode != expectedExitCode) {
+
+		if (exitCode != expectedExitCode) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			buffer.append("Exit code:\n");
 			buffer.append("expecting: ").append(expectedExitCode).append("\n");
-			buffer.append("but was  : ").append(actualExitCode).append("\n");
+			buffer.append("but was  : ").append(exitCode).append("\n");
 		}
-		if (!actualStdout.equals(expectedStdout)) {
+
+		if (!stdOut.equals(expectedStdOut)) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			buffer.append("STDOUT:\n");
-			appendDiff(buffer, expectedStdout, actualStdout);
+			appendDiff(buffer, expectedStdOut, stdOut);
 		}
-		if (!actualStderr.equals(expectedStderr)) {
+
+		if (!stdErr.equals(expectedStdErr)) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			buffer.append("STDERR:\n");
-			appendDiff(buffer, expectedStderr, actualStderr);
+			appendDiff(buffer, expectedStdErr, stdErr);
 		}
+
 		if (buffer.length() > 0) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
-			throw new AssertionError("ExecResult mismatch.\n" + buffer);
+			throw new AssertionError("Unexpected result.\n" + buffer);
 		}
 	}
 

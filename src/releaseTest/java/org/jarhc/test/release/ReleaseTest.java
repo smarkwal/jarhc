@@ -27,8 +27,6 @@ import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.assertj.core.api.Assertions;
-import org.jarhc.test.release.utils.JavaContainer;
-import org.jarhc.test.release.utils.JavaImage;
 
 abstract class ReleaseTest {
 
@@ -41,8 +39,8 @@ abstract class ReleaseTest {
 
 	private void findProjectFiles() {
 
+		// get current working directory
 		projectDir = new File(".").getAbsoluteFile();
-		// TODO: check if current directory is project dir
 
 		// read JarHC version from VERSION file (if it exists)
 		String versionFilePath = "build/resources/main/VERSION";
@@ -51,14 +49,14 @@ abstract class ReleaseTest {
 
 	}
 
-	String getDependencies(String configuration) {
+	protected String getDependencies(String configuration) {
 		File file = getProjectFile("build/configurations.properties");
 		try {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(file));
 			return properties.getProperty(configuration, "");
 		} catch (IOException e) {
-			throw new IllegalArgumentException(configuration);
+			throw new AssertionError("Unexpected I/O error.", e);
 		}
 	}
 
@@ -67,7 +65,7 @@ abstract class ReleaseTest {
 	 *
 	 * @return JarHC version, for example "1.4" or "1.5-SNAPSHOT".
 	 */
-	String getJarHcVersion() {
+	protected String getJarHcVersion() {
 		return jarHcVersion;
 	}
 
@@ -77,7 +75,7 @@ abstract class ReleaseTest {
 	 * @param path Directory path, relative to project root.
 	 * @return Project directory.
 	 */
-	File getProjectDirectory(String path) {
+	protected File getProjectDirectory(String path) {
 		File directory = new File(projectDir, path);
 		Assertions.assertThat(directory).isDirectory();
 		return directory;
@@ -89,7 +87,7 @@ abstract class ReleaseTest {
 	 * @param path File path, relative to project root.
 	 * @return Project file.
 	 */
-	File getProjectFile(String path) {
+	protected File getProjectFile(String path) {
 		File file = new File(projectDir, path);
 		Assertions.assertThat(file).isFile().canRead();
 		return file;
@@ -101,7 +99,7 @@ abstract class ReleaseTest {
 	 * @param path File path, relative to project root.
 	 * @return Content of text file.
 	 */
-	String readProjectFile(String path) {
+	protected String readProjectFile(String path) {
 		File file = getProjectFile(path);
 		try {
 			return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
@@ -110,7 +108,7 @@ abstract class ReleaseTest {
 		}
 	}
 
-	void writeProjectFile(String path, String text) {
+	protected void writeProjectFile(String path, String text) {
 		File file = getProjectFile(path);
 		try {
 			FileUtils.writeStringToFile(file, text, StandardCharsets.UTF_8);
@@ -125,7 +123,7 @@ abstract class ReleaseTest {
 	 * @param path Resource path, relative to classpath root.
 	 * @return Content of text resource.
 	 */
-	String readResource(String path) {
+	protected String readResource(String path) {
 		try (InputStream stream = this.getClass().getClassLoader().getResourceAsStream(path)) {
 			if (stream == null) {
 				String message = String.format("Resource not found: %s", path);
@@ -135,42 +133,6 @@ abstract class ReleaseTest {
 		} catch (IOException e) {
 			throw new AssertionError("Unexpected I/O error.", e);
 		}
-	}
-
-	JavaContainer createJavaContainer(JavaImage javaImage, File reportsDir, File dataDir) {
-
-		// create a new container with the given Java image
-		JavaContainer container = new JavaContainer(javaImage);
-
-		// map JarHC JAR file into container
-		String jarFilePath = String.format("build/libs/jarhc-%s.jar", jarHcVersion);
-		File jarFile = getProjectFile(jarFilePath);
-		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc.jar");
-
-		// map JarHC fat/uber JAR file into container
-		jarFilePath = String.format("build/libs/jarhc-%s-with-deps.jar", jarHcVersion);
-		jarFile = getProjectFile(jarFilePath);
-		container.withFileSystemBind(jarFile.getAbsolutePath(), "/jarhc/jarhc-with-deps.jar");
-
-		// make sure that image-specific report directory exists
-		File reportDir = new File(reportsDir, javaImage.getPath());
-		createDirectory(reportDir);
-
-		// set path to JarHC reports directory
-		container.withFileSystemBind(reportsDir.getAbsolutePath(), "/jarhc/reports");
-
-		// set path to JarHC data directory
-		container.withFileSystemBind(dataDir.getAbsolutePath(), "/jarhc/data");
-		container.withEnv("JARHC_DATA", "/jarhc/data");
-
-		// set working directory so that JAR is easily accessible
-		container.withWorkingDirectory("/jarhc");
-
-		// override default container command
-		// (otherwise, a JShell may be started and consume valuable memory)
-		container.withCommand("sleep", "1h");
-
-		return container;
 	}
 
 	protected void createDirectory(File directory) {
