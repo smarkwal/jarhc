@@ -558,7 +558,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
     shouldRunAfter(unitTest)
 }
 
-val prepareReleaseTest = task("prepareReleaseTest", type = Test::class) {
+val prepareReleaseTest = task("prepareReleaseTest") {
     group = "verification"
     description = "Prepares the release test suite."
 
@@ -607,6 +607,13 @@ tasks.withType<Test> {
 
     // use JUnit 5
     useJUnitPlatform()
+
+    // pass all 'jarhc.*' Gradle properties as system properties to JUnit JVM
+    properties.forEach {
+        if (it.key.startsWith("jarhc.")) {
+            systemProperty(it.key, it.value.toString())
+        }
+    }
 
     // settings
     maxHeapSize = "1G"
