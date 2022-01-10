@@ -34,10 +34,10 @@ public class LoggerAssertions {
 	private LoggerAssertions(Logger logger) {
 		this.loggerName = logger.getName();
 		if (logger instanceof CollectLogger) {
-			CollectLogger memoryLogger = (CollectLogger) logger;
-			this.events = memoryLogger.getEvents(); // required: direct access to internal list !!!
+			CollectLogger collectLogger = (CollectLogger) logger;
+			this.events = collectLogger.getEvents(); // required: direct access to internal list !!!
 		} else {
-			throw new IllegalArgumentException("Logger is not a MemoryLogger: " + logger);
+			throw new IllegalArgumentException("Logger is not a CollectLogger: " + logger);
 		}
 	}
 

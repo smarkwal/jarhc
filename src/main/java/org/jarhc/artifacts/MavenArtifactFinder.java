@@ -16,6 +16,7 @@
 
 package org.jarhc.artifacts;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -25,7 +26,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
+import org.jarhc.utils.JarHcException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +38,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 	private static final String SEARCH_URL_FORMAT = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
 
+	private final File cacheDir;
 	private final Logger logger;
 
 	private final Map<String, Artifact> cache = new ConcurrentHashMap<>();
@@ -42,25 +46,50 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	// TODO: configure timeout
 	private final int timeout = 10 * 1000;
 
-	public MavenArtifactFinder(Logger logger) {
+	public MavenArtifactFinder(File cacheDir, Logger logger) {
+		this.cacheDir = cacheDir;
 		this.logger = logger;
 	}
 
 	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 
-		// check cache
+		// check memory cache
 		if (cache.containsKey(checksum)) {
 			Artifact artifact = cache.get(checksum);
-			logger.debug("Artifact found: {} -> {} (cached)", checksum, artifact);
+			logger.debug("Artifact found: {} -> {} (memory cache)", checksum, artifact);
 			return Optional.of(artifact);
+		}
+
+		validateChecksum(checksum);
+
+		// check disk cache
+		File cacheFile = new File(cacheDir, checksum + ".txt");
+		if (cacheFile.isFile()) {
+
+			// read coordinates from file
+			String coordinates;
+			try {
+				coordinates = FileUtils.readFileToString(cacheFile);
+			} catch (IOException e) {
+				throw new JarHcException(e);
+			}
+
+			// validate coordinates and return artifact
+			if (Artifact.validateCoordinates(coordinates)) {
+				Artifact artifact = new Artifact(coordinates);
+
+				// update in-memory cache
+				cache.put(checksum, artifact);
+
+				logger.debug("Artifact found: {} -> {} (disk cache)", checksum, artifact);
+				return Optional.of(artifact);
+			}
 		}
 
 		long time = 0;
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime();
 		}
-
-		validateChecksum(checksum);
 
 		URL url;
 		try {
@@ -116,7 +145,16 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		String type = doc.getString("p");
 
 		Artifact artifact = new Artifact(groupId, artifactId, version, type);
+
+		// update memory cache
 		cache.put(checksum, artifact);
+
+		// update disk cache
+		try {
+			FileUtils.writeStringToFile(artifact.toString(), cacheFile);
+		} catch (IOException e) {
+			throw new JarHcException(e);
+		}
 
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;

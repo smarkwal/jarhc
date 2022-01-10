@@ -147,8 +147,9 @@ public class Main {
 			}
 		}
 
+		File cacheDir = new File(dataPath, "checksums");
 		Logger mavenArtifactFinderLogger = LoggerFactory.getLogger(MavenArtifactFinder.class);
-		ArtifactFinder artifactFinder = new MavenArtifactFinder(mavenArtifactFinderLogger);
+		ArtifactFinder artifactFinder = new MavenArtifactFinder(cacheDir, mavenArtifactFinderLogger);
 
 		int javaVersion = options.getRelease();
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
