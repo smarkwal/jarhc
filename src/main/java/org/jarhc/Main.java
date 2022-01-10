@@ -80,13 +80,11 @@ public class Main {
 
 			// enable trace log output
 			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "trace");
-			System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
 
 		} else if (options.isDebug()) {
 
 			// enable debug log output
 			System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "debug");
-			System.setProperty("org.slf4j.simpleLogger.logFile", "System.out");
 
 			// do NOT enable debug output for Apache HttpClient special loggers
 			// 'org.apache.http.headers' and 'org.apache.http.wire'
