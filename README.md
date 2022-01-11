@@ -12,7 +12,7 @@ java -jar jarhc-with-deps.jar [options] <path> [<path>]*
 
 More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wiki).
 
-![JarHC Logo](https://github.com/smarkwal/jarhc/blob/master/src/site/images/jarhc-logo.png?raw=true)
+![JarHC Logo](https://github.com/smarkwal/jarhc/blob/master/docs/jarhc-logo.png?raw=true)
 
 ---
 
