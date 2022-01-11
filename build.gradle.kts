@@ -429,6 +429,10 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     // set Main-Class in MANIFEST.MF
     manifest {
         attributes["Main-Class"] = mainClassName
+
+        // plexus-utils-3.4.1.jar is a multi-release JAR
+        // -> fat/uber JAR is also a multi-release JAR
+        attributes["Multi-Release"] = "true"
     }
 
     // include all files from all runtime dependencies
