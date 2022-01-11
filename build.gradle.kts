@@ -42,7 +42,7 @@ plugins {
 // project settings ------------------------------------------------------------
 
 group = "org.jarhc"
-version = "1.6-SNAPSHOT"
+version = "1.6"
 description = "JarHC - JAR Health Check"
 
 // Java version check ----------------------------------------------------------
