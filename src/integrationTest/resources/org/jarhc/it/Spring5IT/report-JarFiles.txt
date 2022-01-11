@@ -5,19 +5,19 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                                 | Size    | Classes | Resources | Module                       | Checksum (SHA-1)                         | Artifact coordinates
------------------------------------------+---------+---------+-----------+------------------------------+------------------------------------------+---------------------------------------------------------
-spring-aop-5.1.3.RELEASE.jar             | 360 KB  | 265     | 2         | Yes (spring.aop)             | c6b69e5c73e17dd15b5a07d96ecfa2d2e7955705 | org.springframework:spring-aop:5.1.3.RELEASE
-spring-beans-5.1.3.RELEASE.jar           | 656 KB  | 368     | 6         | Yes (spring.beans)           | 9a15a7c84bd12516574bcaf87ffa38c1e65e8a2b | org.springframework:spring-beans:5.1.3.RELEASE
-spring-context-5.1.3.RELEASE.jar         | 1.05 MB | 761     | 11        | Yes (spring.context)         | 158929623ee0166fa930e88c3e2ca86a887088c0 | org.springframework:spring-context:5.1.3.RELEASE
-spring-context-support-5.1.3.RELEASE.jar | 177 KB  | 108     | 1         | Yes (spring.context.support) | 8b99520030ab5f7eef5fa06a04294e6781d706c0 | org.springframework:spring-context-support:5.1.3.RELEASE
-spring-core-5.1.3.RELEASE.jar            | 1.23 MB | 850     | 1         | Yes (spring.core)            | b1e5325d35bfb27e42d57e9295510cad54ed8fdf | org.springframework:spring-core:5.1.3.RELEASE
-spring-expression-5.1.3.RELEASE.jar      | 274 KB  | 144     | 1         | Yes (spring.expression)      | 628a471a077ab80f7fd66a5f5e42e2d67e6a9607 | org.springframework:spring-expression:5.1.3.RELEASE
-spring-jdbc-5.1.3.RELEASE.jar            | 395 KB  | 271     | 3         | Yes (spring.jdbc)            | 4bab0879114befbe41000d2e35dc7b311659b86c | org.springframework:spring-jdbc:5.1.3.RELEASE
-spring-jms-5.1.3.RELEASE.jar             | 254 KB  | 150     | 2         | Yes (spring.jms)             | 3f0ea0c8b898290b49c22eb7556b4d076593a95b | org.springframework:spring-jms:5.1.3.RELEASE
-spring-messaging-5.1.3.RELEASE.jar       | 374 KB  | 223     | 0         | Yes (spring.messaging)       | 160a45bb0e18eb6a6ed1e332d6faf7f81603a3e3 | org.springframework:spring-messaging:5.1.3.RELEASE
-spring-orm-5.1.3.RELEASE.jar             | 195 KB  | 93      | 0         | Yes (spring.orm)             | b18a3b81dd2dc712cbb2aafaa7b581e9faf00506 | org.springframework:spring-orm:5.1.3.RELEASE
-spring-tx-5.1.3.RELEASE.jar              | 250 KB  | 198     | 3         | Yes (spring.tx)              | ddce255764fe4211c1b189a55384037132b5afd2 | org.springframework:spring-tx:5.1.3.RELEASE
-spring-web-5.1.3.RELEASE.jar             | 1.31 MB | 856     | 4         | Yes (spring.web)             | c875df33e6c5ac0df53e727a08d42b316e69918b | org.springframework:spring-web:5.1.3.RELEASE
-Classpath                                | 6.46 MB | 4287    | 34        | -                            | -                                        | -
+JAR file                                 | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+-----------------------------------------+---------+---------+-----------+------------------------------------------+---------------------------------------------------------
+spring-aop-5.1.3.RELEASE.jar             | 360 KB  | 265     | 2         | c6b69e5c73e17dd15b5a07d96ecfa2d2e7955705 | org.springframework:spring-aop:5.1.3.RELEASE
+spring-beans-5.1.3.RELEASE.jar           | 656 KB  | 368     | 6         | 9a15a7c84bd12516574bcaf87ffa38c1e65e8a2b | org.springframework:spring-beans:5.1.3.RELEASE
+spring-context-5.1.3.RELEASE.jar         | 1.05 MB | 761     | 11        | 158929623ee0166fa930e88c3e2ca86a887088c0 | org.springframework:spring-context:5.1.3.RELEASE
+spring-context-support-5.1.3.RELEASE.jar | 177 KB  | 108     | 1         | 8b99520030ab5f7eef5fa06a04294e6781d706c0 | org.springframework:spring-context-support:5.1.3.RELEASE
+spring-core-5.1.3.RELEASE.jar            | 1.23 MB | 850     | 1         | b1e5325d35bfb27e42d57e9295510cad54ed8fdf | org.springframework:spring-core:5.1.3.RELEASE
+spring-expression-5.1.3.RELEASE.jar      | 274 KB  | 144     | 1         | 628a471a077ab80f7fd66a5f5e42e2d67e6a9607 | org.springframework:spring-expression:5.1.3.RELEASE
+spring-jdbc-5.1.3.RELEASE.jar            | 395 KB  | 271     | 3         | 4bab0879114befbe41000d2e35dc7b311659b86c | org.springframework:spring-jdbc:5.1.3.RELEASE
+spring-jms-5.1.3.RELEASE.jar             | 254 KB  | 150     | 2         | 3f0ea0c8b898290b49c22eb7556b4d076593a95b | org.springframework:spring-jms:5.1.3.RELEASE
+spring-messaging-5.1.3.RELEASE.jar       | 374 KB  | 223     | 0         | 160a45bb0e18eb6a6ed1e332d6faf7f81603a3e3 | org.springframework:spring-messaging:5.1.3.RELEASE
+spring-orm-5.1.3.RELEASE.jar             | 195 KB  | 93      | 0         | b18a3b81dd2dc712cbb2aafaa7b581e9faf00506 | org.springframework:spring-orm:5.1.3.RELEASE
+spring-tx-5.1.3.RELEASE.jar              | 250 KB  | 198     | 3         | ddce255764fe4211c1b189a55384037132b5afd2 | org.springframework:spring-tx:5.1.3.RELEASE
+spring-web-5.1.3.RELEASE.jar             | 1.31 MB | 856     | 4         | c875df33e6c5ac0df53e727a08d42b316e69918b | org.springframework:spring-web:5.1.3.RELEASE
+Classpath                                | 6.46 MB | 4287    | 34        | -                                        | -
 

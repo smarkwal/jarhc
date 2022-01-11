@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file            | Size    | Classes | Resources | Module | Checksum (SHA-1)                         | Artifact coordinates
---------------------+---------+---------+-----------+--------+------------------------------------------+---------------------
-jarhc-with-deps.jar | 6.57 MB | 4530    | 143       | No     | **************************************** | [unknown]
-Classpath           | 6.57 MB | 4530    | 143       | -      | -                                        | -
+JAR file            | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+--------------------+---------+---------+-----------+------------------------------------------+---------------------
+jarhc-with-deps.jar | 6.57 MB | 4530    | 143       | **************************************** | [unknown]
+Classpath           | 6.57 MB | 4530    | 143       | -                                        | -
 
 Modules
 -------
