@@ -5,11 +5,11 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file             | Java version
----------------------+-------------
-asm-7.0.jar          | Java 5 (35)
-asm-analysis-7.0.jar | Java 5 (14)
-asm-commons-7.0.jar  | Java 5 (32)
-asm-tree-7.0.jar     | Java 5 (37)
-Classpath            | Java 5 (118)
+JAR file             | Multi-release | Class files by Java version
+---------------------+---------------+----------------------------
+asm-7.0.jar          | No            | Java 5 (35)
+asm-analysis-7.0.jar | No            | Java 5 (14)
+asm-commons-7.0.jar  | No            | Java 5 (32)
+asm-tree-7.0.jar     | No            | Java 5 (37)
+Classpath            | -             | Java 5 (118)
 

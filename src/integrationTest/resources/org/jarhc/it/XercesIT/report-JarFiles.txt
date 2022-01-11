@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file              | Size    | Classes | Resources | Multi-release | Module | Checksum (SHA-1)                         | Artifact coordinates
-----------------------+---------+---------+-----------+---------------+--------+------------------------------------------+------------------------------
-xercesImpl-2.11.0.jar | 1.30 MB | 952     | 23        | No            | No     | 9bb329db1cfc4e22462c9d6b43a8432f5850e92c | xerces:xercesImpl:2.11.0
-xml-apis-1.4.01.jar   | 215 KB  | 346     | 7         | No            | No     | 3789d9fada2d3d458c4ba2de349d48780f381ee3 | xml-apis:xml-apis:1.4.01
-xml-resolver-1.2.jar  | 82.1 KB | 30      | 6         | No            | No     | 3d0f97750b3a03e0971831566067754ba4bfd68c | xml-resolver:xml-resolver:1.2
-Classpath             | 1.59 MB | 1328    | 36        | -             | -      | -                                        | -
+JAR file              | Size    | Classes | Resources | Module | Checksum (SHA-1)                         | Artifact coordinates
+----------------------+---------+---------+-----------+--------+------------------------------------------+------------------------------
+xercesImpl-2.11.0.jar | 1.30 MB | 952     | 23        | No     | 9bb329db1cfc4e22462c9d6b43a8432f5850e92c | xerces:xercesImpl:2.11.0
+xml-apis-1.4.01.jar   | 215 KB  | 346     | 7         | No     | 3789d9fada2d3d458c4ba2de349d48780f381ee3 | xml-apis:xml-apis:1.4.01
+xml-resolver-1.2.jar  | 82.1 KB | 30      | 6         | No     | 3d0f97750b3a03e0971831566067754ba4bfd68c | xml-resolver:xml-resolver:1.2
+Classpath             | 1.59 MB | 1328    | 36        | -      | -                                        | -
 

@@ -5,16 +5,16 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                                | Size    | Classes | Resources | Multi-release | Module                                    | Checksum (SHA-1)                         | Artifact coordinates
-----------------------------------------+---------+---------+-----------+---------------+-------------------------------------------+------------------------------------------+---------------------------------------------------------------
-jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | No            | Yes (org.eclipse.jetty.continuation)      | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
-jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | No            | Yes (org.eclipse.jetty.http)              | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
-jetty-io-9.4.20.v20190813.jar           | 152 KB  | 96      | 1         | No            | Yes (org.eclipse.jetty.io)                | b246c5e350d0aa1b310c07ec362755c34a1cc8cb | org.eclipse.jetty:jetty-io:9.4.20.v20190813
-jetty-servlets-9.4.20.v20190813.jar     | 98.8 KB | 41      | 1         | No            | Yes (org.eclipse.jetty.servlets)          | 0693496adda5acaea4078d92c4a766c8f2d0d5c5 | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813
-jetty-util-9.4.20.v20190813.jar         | 526 KB  | 305     | 3         | No            | Yes (org.eclipse.jetty.util)              | 8ee753d673a124ba2880361871ab13f6863b2d40 | org.eclipse.jetty:jetty-util:9.4.20.v20190813
-websocket-api-9.4.20.v20190813.jar      | 50.0 KB | 46      | 1         | No            | Yes (org.eclipse.jetty.websocket.api)     | 8d608b5dce8e7b3188fde38d908494788e47f55d | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813
-websocket-servlet-9.4.20.v20190813.jar  | 29.5 KB | 7       | 1         | No            | Yes (org.eclipse.jetty.websocket.servlet) | 6a8be637de4dd2143efdd003d48fdbcfde4390d7 | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813
-Classpath                               | 1.06 MB | 598     | 12        | -             | -                                         | -                                        | -
+JAR file                                | Size    | Classes | Resources | Module                                    | Checksum (SHA-1)                         | Artifact coordinates
+----------------------------------------+---------+---------+-----------+-------------------------------------------+------------------------------------------+---------------------------------------------------------------
+jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | Yes (org.eclipse.jetty.continuation)      | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
+jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | Yes (org.eclipse.jetty.http)              | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
+jetty-io-9.4.20.v20190813.jar           | 152 KB  | 96      | 1         | Yes (org.eclipse.jetty.io)                | b246c5e350d0aa1b310c07ec362755c34a1cc8cb | org.eclipse.jetty:jetty-io:9.4.20.v20190813
+jetty-servlets-9.4.20.v20190813.jar     | 98.8 KB | 41      | 1         | Yes (org.eclipse.jetty.servlets)          | 0693496adda5acaea4078d92c4a766c8f2d0d5c5 | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813
+jetty-util-9.4.20.v20190813.jar         | 526 KB  | 305     | 3         | Yes (org.eclipse.jetty.util)              | 8ee753d673a124ba2880361871ab13f6863b2d40 | org.eclipse.jetty:jetty-util:9.4.20.v20190813
+websocket-api-9.4.20.v20190813.jar      | 50.0 KB | 46      | 1         | Yes (org.eclipse.jetty.websocket.api)     | 8d608b5dce8e7b3188fde38d908494788e47f55d | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813
+websocket-servlet-9.4.20.v20190813.jar  | 29.5 KB | 7       | 1         | Yes (org.eclipse.jetty.websocket.servlet) | 6a8be637de4dd2143efdd003d48fdbcfde4390d7 | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813
+Classpath                               | 1.06 MB | 598     | 12        | -                                         | -                                        | -
 
 Modules
 -------
@@ -34,16 +34,16 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file                                | Java version
-----------------------------------------+-------------
-jetty-continuation-9.4.20.v20190813.jar | Java 8 (8)
-jetty-http-9.4.20.v20190813.jar         | Java 8 (95)
-jetty-io-9.4.20.v20190813.jar           | Java 8 (96)
-jetty-servlets-9.4.20.v20190813.jar     | Java 8 (41)
-jetty-util-9.4.20.v20190813.jar         | Java 8 (305)
-websocket-api-9.4.20.v20190813.jar      | Java 8 (46)
-websocket-servlet-9.4.20.v20190813.jar  | Java 8 (7)
-Classpath                               | Java 8 (598)
+JAR file                                | Multi-release | Class files by Java version
+----------------------------------------+---------------+----------------------------
+jetty-continuation-9.4.20.v20190813.jar | No            | Java 8 (8)
+jetty-http-9.4.20.v20190813.jar         | No            | Java 8 (95)
+jetty-io-9.4.20.v20190813.jar           | No            | Java 8 (96)
+jetty-servlets-9.4.20.v20190813.jar     | No            | Java 8 (41)
+jetty-util-9.4.20.v20190813.jar         | No            | Java 8 (305)
+websocket-api-9.4.20.v20190813.jar      | No            | Java 8 (46)
+websocket-servlet-9.4.20.v20190813.jar  | No            | Java 8 (7)
+Classpath                               | -             | Java 8 (598)
 
 JAR Dependencies
 ----------------

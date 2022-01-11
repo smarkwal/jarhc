@@ -40,6 +40,8 @@ class ClassVersionsAnalyzerTest {
 				.addJarFile("b.jar")
 				.addClassDef("b.B1", 51, 0)
 				.addClassDef("b.B2", 52, 0)
+				.addRelease(9)
+				.addRelease(11)
 				.addJarFile("c.jar")
 				.addClassDef("c.C", 48, 0)
 				.addJarFile("d.jar") // no class files
@@ -59,15 +61,15 @@ class ClassVersionsAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Java version");
+		assertValuesEquals(columns, "JAR file", "Multi-release", "Class files by Java version");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", "Java 8 (1)");
-		assertValuesEquals(rows.get(1), "b.jar", "Java 8 (1), Java 7 (1)");
-		assertValuesEquals(rows.get(2), "c.jar", "Java 1.4 (1)");
-		assertValuesEquals(rows.get(3), "d.jar", "[no class files]");
-		assertValuesEquals(rows.get(4), "Classpath", "Java 8 (2), Java 7 (1), Java 1.4 (1)");
+		assertValuesEquals(rows.get(0), "a.jar", "No", "Java 8 (1)");
+		assertValuesEquals(rows.get(1), "b.jar", "Yes (Java 9, Java 11)", "Java 8 (1), Java 7 (1)");
+		assertValuesEquals(rows.get(2), "c.jar", "No", "Java 1.4 (1)");
+		assertValuesEquals(rows.get(3), "d.jar", "No", "[no class files]");
+		assertValuesEquals(rows.get(4), "Classpath", "-", "Java 8 (2), Java 7 (1), Java 1.4 (1)");
 	}
 
 }

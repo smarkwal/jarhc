@@ -19,7 +19,6 @@ package org.jarhc.analyzer;
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
@@ -43,7 +42,7 @@ public class JarFilesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Classes", "Resources", "Multi-release", "Module", "Checksum (SHA-1)", "Artifact coordinates");
+		ReportTable table = new ReportTable("JAR file", "Size", "Classes", "Resources", "Module", "Checksum (SHA-1)", "Artifact coordinates");
 
 		// total values
 		long totalFileSize = 0;
@@ -60,10 +59,9 @@ public class JarFilesAnalyzer implements Analyzer {
 			String checksum = getChecksumInfo(jarFile);
 			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count(); // TODO: make this configurable ?
 			int resourceCount = jarFile.getResourceDefs().size();
-			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 			String moduleInfo = getModuleInfo(jarFile);
 			String coordinates = getCoordinates(jarFile);
-			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), multiReleaseInfo, moduleInfo, checksum, coordinates);
+			table.addRow(fileName, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), moduleInfo, checksum, coordinates);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -72,7 +70,7 @@ public class JarFilesAnalyzer implements Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), String.valueOf(totalResourceCount), "-", "-", "-", "-");
+		table.addRow("Classpath", formatFileSize(totalFileSize), String.valueOf(totalClassCount), String.valueOf(totalResourceCount), "-", "-", "-");
 
 		return table;
 	}
@@ -81,15 +79,6 @@ public class JarFilesAnalyzer implements Analyzer {
 		String checksum = jarFile.getChecksum();
 		if (checksum == null || checksum.isEmpty()) return UNKNOWN;
 		return checksum;
-	}
-
-	private String getMultiReleaseInfo(JarFile jarFile) {
-		if (jarFile.isMultiRelease()) {
-			String releases = jarFile.getReleases().stream().map(r -> "Java " + r).collect(Collectors.joining(", "));
-			return "Yes (" + releases + ")";
-		} else {
-			return "No";
-		}
 	}
 
 	private String getModuleInfo(JarFile jarFile) {

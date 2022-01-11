@@ -43,7 +43,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Java version");
+		ReportTable table = new ReportTable("JAR file", "Multi-release", "Class files by Java version");
 
 		ClassVersionsCounter classpathCounter = new ClassVersionsCounter();
 
@@ -52,6 +52,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 		for (JarFile jarFile : jarFiles) {
 
 			ClassVersionsCounter jarFileCounter = new ClassVersionsCounter();
+			String multiReleaseInfo = getMultiReleaseInfo(jarFile);
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -71,15 +72,24 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 			// add row for JAR file
 			String javaVersions = jarFileCounter.toString();
-			table.addRow(jarFile.getFileName(), javaVersions);
+			table.addRow(jarFile.getFileName(), multiReleaseInfo, wrapText(javaVersions, 60));
 		}
 
 		// add row with summary
 		String javaVersions = classpathCounter.toString();
 		javaVersions = wrapText(javaVersions, 60);
-		table.addRow("Classpath", javaVersions);
+		table.addRow("Classpath", "-", javaVersions);
 
 		return table;
+	}
+
+	private String getMultiReleaseInfo(JarFile jarFile) {
+		if (jarFile.isMultiRelease()) {
+			String releases = jarFile.getReleases().stream().map(r -> "Java " + r).collect(Collectors.joining(", "));
+			return "Yes (" + releases + ")";
+		} else {
+			return "No";
+		}
 	}
 
 	private static class ClassVersionsCounter {

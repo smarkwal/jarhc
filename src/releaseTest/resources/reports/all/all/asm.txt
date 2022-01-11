@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file    | Size   | Classes | Resources | Multi-release | Module                  | Checksum (SHA-1)                         | Artifact coordinates
-------------+--------+---------+-----------+---------------+-------------------------+------------------------------------------+---------------------
-asm-9.2.jar | 119 KB | 37      | 0         | No            | Yes (org.objectweb.asm) | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
-Classpath   | 119 KB | 37      | 0         | -             | -                       | -                                        | -
+JAR file    | Size   | Classes | Resources | Module                  | Checksum (SHA-1)                         | Artifact coordinates
+------------+--------+---------+-----------+-------------------------+------------------------------------------+---------------------
+asm-9.2.jar | 119 KB | 37      | 0         | Yes (org.objectweb.asm) | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
+Classpath   | 119 KB | 37      | 0         | -                       | -                                        | -
 
 Modules
 -------
@@ -23,10 +23,10 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file    | Java version
-------------+-------------
-asm-9.2.jar | Java 5 (37)
-Classpath   | Java 5 (37)
+JAR file    | Multi-release | Class files by Java version
+------------+---------------+----------------------------
+asm-9.2.jar | No            | Java 5 (37)
+Classpath   | -             | Java 5 (37)
 
 JAR Dependencies
 ----------------
