@@ -51,20 +51,6 @@ JAR file  | Count | Packages                    | Issues
 ----------+-------+-----------------------------+-------
 jarhc.jar | 17    | org.jarhc (+16 subpackages) |
 
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource | Sources | Similarity
----------------+---------+-----------
-
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-JAR file | Issues
----------+-------
-
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.

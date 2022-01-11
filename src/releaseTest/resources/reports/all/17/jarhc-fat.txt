@@ -53,13 +53,6 @@ jarhc-with-deps.jar | 229   | com.google.* (22 subpackages)     | Fat JAR: com.g
                     |       | javax.annotation (+2 subpackages) |
                     |       | org.* (204 subpackages)           |
 
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource | Sources | Similarity
----------------+---------+-----------
-
 Binary Compatibility
 --------------------
 Compatibility issues between JAR files.

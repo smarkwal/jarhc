@@ -218,6 +218,7 @@ class JarHcTest extends ReleaseTest {
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
+				"--skip-empty", // exclude empty sections
 				"org.ow2.asm:asm:9.2"
 		);
 
@@ -236,6 +237,7 @@ class JarHcTest extends ReleaseTest {
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
+				"--skip-empty", // exclude empty sections
 				"jarhc-with-deps.jar"
 		);
 
@@ -255,6 +257,7 @@ class JarHcTest extends ReleaseTest {
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
+				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--classpath", dependencies
 		);
@@ -275,6 +278,7 @@ class JarHcTest extends ReleaseTest {
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
+				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--provided", dependencies
 		);
