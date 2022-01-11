@@ -12,10 +12,6 @@ JAR file: asm-7.0.jar
 		35
 	Resources:
 		0
-	Multi-release:
-		No
-	Module:
-		Yes (org.objectweb.asm)
 	Checksum (SHA-1):
 		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
 	Artifact coordinates:
@@ -28,10 +24,6 @@ JAR file: asm-analysis-7.0.jar
 		14
 	Resources:
 		0
-	Multi-release:
-		No
-	Module:
-		Yes (org.objectweb.asm.tree.analysis)
 	Checksum (SHA-1):
 		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
 	Artifact coordinates:
@@ -44,10 +36,6 @@ JAR file: asm-commons-7.0.jar
 		32
 	Resources:
 		0
-	Multi-release:
-		No
-	Module:
-		Yes (org.objectweb.asm.commons)
 	Checksum (SHA-1):
 		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
 	Artifact coordinates:
@@ -60,10 +48,6 @@ JAR file: asm-tree-7.0.jar
 		37
 	Resources:
 		0
-	Multi-release:
-		No
-	Module:
-		Yes (org.objectweb.asm.tree)
 	Checksum (SHA-1):
 		29bc62dcb85573af6e62e5b2d735ef65966c4180
 	Artifact coordinates:
@@ -76,10 +60,6 @@ JAR file: Classpath
 		118
 	Resources:
 		0
-	Multi-release:
-		-
-	Module:
-		-
 	Checksum (SHA-1):
 		-
 	Artifact coordinates:
@@ -148,23 +128,33 @@ Class Versions
 Java class file format information.
 
 JAR file: asm-7.0.jar
-	Java version:
+	Multi-release:
+		No
+	Class files by Java version:
 		Java 5 (35)
 
 JAR file: asm-analysis-7.0.jar
-	Java version:
+	Multi-release:
+		No
+	Class files by Java version:
 		Java 5 (14)
 
 JAR file: asm-commons-7.0.jar
-	Java version:
+	Multi-release:
+		No
+	Class files by Java version:
 		Java 5 (32)
 
 JAR file: asm-tree-7.0.jar
-	Java version:
+	Multi-release:
+		No
+	Class files by Java version:
 		Java 5 (37)
 
 JAR file: Classpath
-	Java version:
+	Multi-release:
+		-
+	Class files by Java version:
 		Java 5 (118)
 
 JAR Dependencies

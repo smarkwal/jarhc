@@ -5,13 +5,13 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file             | Size    | Classes | Resources | Multi-release | Module                                | Checksum (SHA-1)                         | Artifact coordinates
----------------------+---------+---------+-----------+---------------+---------------------------------------+------------------------------------------+-----------------------------
-asm-7.0.jar          | 111 KB  | 35      | 0         | No            | Yes (org.objectweb.asm)               | d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 | org.ow2.asm:asm:7.0
-asm-analysis-7.0.jar | 32.5 KB | 14      | 0         | No            | Yes (org.objectweb.asm.tree.analysis) | 4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f | org.ow2.asm:asm-analysis:7.0
-asm-commons-7.0.jar  | 78.0 KB | 32      | 0         | No            | Yes (org.objectweb.asm.commons)       | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
-asm-tree-7.0.jar     | 49.2 KB | 37      | 0         | No            | Yes (org.objectweb.asm.tree)          | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
-Classpath            | 271 KB  | 118     | 0         | -             | -                                     | -                                        | -
+JAR file             | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+---------------------+---------+---------+-----------+------------------------------------------+-----------------------------
+asm-7.0.jar          | 111 KB  | 35      | 0         | d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 | org.ow2.asm:asm:7.0
+asm-analysis-7.0.jar | 32.5 KB | 14      | 0         | 4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f | org.ow2.asm:asm-analysis:7.0
+asm-commons-7.0.jar  | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
+asm-tree-7.0.jar     | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
+Classpath            | 271 KB  | 118     | 0         | -                                        | -
 
 Modules
 -------
@@ -34,13 +34,13 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file             | Java version
----------------------+-------------
-asm-7.0.jar          | Java 5 (35)
-asm-analysis-7.0.jar | Java 5 (14)
-asm-commons-7.0.jar  | Java 5 (32)
-asm-tree-7.0.jar     | Java 5 (37)
-Classpath            | Java 5 (118)
+JAR file             | Multi-release | Class files by Java version
+---------------------+---------------+----------------------------
+asm-7.0.jar          | No            | Java 5 (35)
+asm-analysis-7.0.jar | No            | Java 5 (14)
+asm-commons-7.0.jar  | No            | Java 5 (32)
+asm-tree-7.0.jar     | No            | Java 5 (37)
+Classpath            | -             | Java 5 (118)
 
 JAR Dependencies
 ----------------
