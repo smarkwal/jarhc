@@ -117,13 +117,21 @@ public class AccessCheck {
 
 		String sourceClassName = sourceClassDef.getClassName();
 		String targetClassName = targetClassDef.getClassName();
-		if (sourceClassName.equals(targetClassName)) {
-			// allow access to member in same class
+
+		// check if source and target class:
+		// - are the same class
+		// - have an outer/inner class relation
+		// - are both inner classes of the same outer class
+		String sourceTopLevelClassName = JavaUtils.getTopLevelClassName(sourceClassName);
+		String targetTopLevelClassName = JavaUtils.getTopLevelClassName(targetClassName);
+		if (sourceTopLevelClassName.equals(targetTopLevelClassName)) {
+			// allow access to member in same class, outer class, or inner class
+			// assumption: outer and inner classes are always compatible
+			// because they  have been compiled together.
 			return true;
 		}
 
 		if (Modifier.isPrivate(memberAccess)) {
-			// TODO: support inner classes???
 			// deny access to private member in other class
 			return false;
 		}

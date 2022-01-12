@@ -51,11 +51,20 @@ public class JavaUtils {
 	}
 
 	public static String getPackageName(String className) {
-		if (className.contains(".")) {
-			int pos = className.lastIndexOf('.');
+		int pos = className.lastIndexOf('.');
+		if (pos >= 0) {
 			return className.substring(0, pos);
 		} else {
 			return ""; // empty package
+		}
+	}
+
+	public static String getTopLevelClassName(String className) {
+		int pos = className.indexOf('$');
+		if (pos >= 0) {
+			return className.substring(0, pos);
+		} else {
+			return className;
 		}
 	}
 
