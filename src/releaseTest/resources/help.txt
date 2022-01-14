@@ -1,12 +1,14 @@
-Usage: java -jar JarHC.jar [options] <path> [<path>]*
+Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*
 
 Arguments:
 
-   <path> : Path to JAR file or directory with JAR files.
+   <artifact> : Path to a JAR file, a WAR file, a JMOD file, or a directory with
+                JAR files, WAR files, and/or JMOD files.
+                Or coordinates of a Maven artifact.
 
    Note:
-   If a path refers to a WAR file instead of a JAR file,
-   JarHC analyzes the JAR files inside the WAR file.
+   If a path refers to a WAR file, JarHC analyzes the JAR files inside the WAR
+   file.
 
 Options:
 
@@ -24,16 +26,16 @@ Options:
                            Example: -r 11
                            Default: Version of Java runtime used to run JarHC.
 
-   --classpath <path>    : Add a JAR file or directory with JAR files
-    -cp                    to the classpath of libraries to be analyzed.
-                           Adding JAR files like this has the same
-                           effect as passing them as arguments.
+   --classpath <path>    : Add a file or directory with files to the classpath
+    -cp                    of libraries to be analyzed.
+                           Adding files like this has the same effect as passing
+                           them as arguments.
 
-   --provided <path>     : Add a JAR file or directory with JAR files
-                           to the classpath of provided libraries.
+   --provided <path>     : Add a file or directory with files to the classpath
+                           of provided libraries.
 
-   --runtime <path>      : Add a JAR file or directory with JAR files
-                           to the classpath of runtime libraries.
+   --runtime <path>      : Add a file or directory with files to the classpath
+                           of runtime libraries.
 
    --strategy <strategy> : Class loader strategy ("ParentLast" or "ParentFirst").
                            Example: --strategy ParentFirst

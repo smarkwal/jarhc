@@ -273,6 +273,8 @@ public class CommandLineParser {
 		String fileName = path.getName().toLowerCase();
 		if (fileName.endsWith(".jar")) {
 			classpath.accept(value);
+		} else if (fileName.endsWith(".jmod")) {
+			classpath.accept(value);
 		} else if (fileName.endsWith(".war")) {
 			classpath.accept(value);
 		} else {

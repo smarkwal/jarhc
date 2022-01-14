@@ -29,7 +29,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class JarFileNameNormalizerTest {
+class FileNameNormalizerTest {
 
 	private PrintStream err;
 
@@ -56,10 +56,12 @@ class JarFileNameNormalizerTest {
 		test_getFileNameWithoutVersionNumber("a-b-c-1.0.jar", "a-b-c.jar");
 		test_getFileNameWithoutVersionNumber("a-b-c-1.0-SNAPSHOT.jar", "a-b-c.jar");
 		test_getFileNameWithoutVersionNumber("a-b-c-1.0-test.jar", "a-b-c-test.jar");
+
+		test_getFileNameWithoutVersionNumber("java.base.jmod", "java.base.jmod");
 	}
 
 	private void test_getFileNameWithoutVersionNumber(String input, String expectedOutput) {
-		String output = JarFileNameNormalizer.getFileNameWithoutVersionNumber(input);
+		String output = FileNameNormalizer.getFileNameWithoutVersionNumber(input);
 		assertEquals(expectedOutput, output, input);
 	}
 
@@ -71,23 +73,26 @@ class JarFileNameNormalizerTest {
 		Mockito.when(repository.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
 		Mockito.when(repository.findArtifact("c3")).thenThrow(new RepositoryException("test"));
 
-		String result = JarFileNameNormalizer.getArtifactFileName("c1", repository, false, "aa-12.jar");
+		String result = FileNameNormalizer.getArtifactFileName("c1", repository, false, "aa-12.jar");
 		assertEquals("aa-12.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c1", repository, true, "aa-12.jar");
+		result = FileNameNormalizer.getArtifactFileName("c1", repository, true, "aa-12.jar");
 		assertEquals("aa.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c2", repository, false, "aa-12.jar");
+		result = FileNameNormalizer.getArtifactFileName("c2", repository, false, "aa-12.jar");
 		assertEquals("a-1.2.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c2", repository, true, "aa-12.jar");
+		result = FileNameNormalizer.getArtifactFileName("c2", repository, true, "aa-12.jar");
 		assertEquals("a.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c3", repository, false, "aa-12.jar");
+		result = FileNameNormalizer.getArtifactFileName("c3", repository, false, "aa-12.jar");
 		assertEquals("aa-12.jar", result);
 
-		result = JarFileNameNormalizer.getArtifactFileName("c3", repository, true, "aa-12.jar");
+		result = FileNameNormalizer.getArtifactFileName("c3", repository, true, "aa-12.jar");
 		assertEquals("aa.jar", result);
+
+		result = FileNameNormalizer.getArtifactFileName("c1", repository, false, "java.base.jmod");
+		assertEquals("java.base.jmod", result);
 
 	}
 }

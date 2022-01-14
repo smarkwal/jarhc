@@ -43,7 +43,7 @@ public class ArtifactSource implements JarSource {
 	}
 
 	@Override
-	public InputStream getData() throws IOException {
+	public InputStream getInputStream() throws IOException {
 		Artifact artifact = new Artifact(coordinates);
 		try {
 			return repository.downloadArtifact(artifact).orElseThrow(() -> new IOException("Artifact not found: " + coordinates));

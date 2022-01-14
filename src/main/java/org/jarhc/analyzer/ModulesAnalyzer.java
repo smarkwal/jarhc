@@ -19,7 +19,7 @@ package org.jarhc.analyzer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import org.jarhc.loader.JarFileNameNormalizer;
+import org.jarhc.loader.FileNameNormalizer;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
@@ -82,7 +82,7 @@ public class ModulesAnalyzer implements Analyzer {
 		}
 
 		// remove version number
-		moduleName = JarFileNameNormalizer.getFileNameWithoutVersionNumber(moduleName);
+		moduleName = FileNameNormalizer.getFileNameWithoutVersionNumber(moduleName);
 
 		// replace all dashes with dots
 		moduleName = moduleName.replace("-", ".");

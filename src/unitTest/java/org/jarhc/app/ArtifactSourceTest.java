@@ -106,7 +106,7 @@ class ArtifactSourceTest {
 	void getData() throws IOException {
 
 		// test
-		InputStream result = artifactSource.getData();
+		InputStream result = artifactSource.getInputStream();
 
 		// assert
 		assertEquals("content-of-test-1.0.jar", IOUtils.toString(result));
@@ -120,7 +120,7 @@ class ArtifactSourceTest {
 		artifactSource = new ArtifactSource("unknown:unknown:0.0.1", repository);
 
 		// test & assert
-		assertThrows(IOException.class, () -> artifactSource.getData());
+		assertThrows(IOException.class, () -> artifactSource.getInputStream());
 
 	}
 
@@ -131,7 +131,7 @@ class ArtifactSourceTest {
 		artifactSource = new ArtifactSource("error:error:0.0.1", repository);
 
 		// test & assert
-		assertThrows(IOException.class, () -> artifactSource.getData());
+		assertThrows(IOException.class, () -> artifactSource.getInputStream());
 
 	}
 

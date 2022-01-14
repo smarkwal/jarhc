@@ -64,7 +64,7 @@ public class DigestUtils {
 		return hex(array);
 	}
 
-	private static MessageDigest getDigest() {
+	public static MessageDigest getDigest() {
 		try {
 			return MessageDigest.getInstance(algorithm);
 		} catch (NoSuchAlgorithmException e) {
