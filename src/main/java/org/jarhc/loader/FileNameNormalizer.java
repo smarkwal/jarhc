@@ -17,17 +17,52 @@
 package org.jarhc.loader;
 
 import java.util.Optional;
+import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public interface FileNameNormalizer {
+public class FileNameNormalizer {
 
-	Logger LOGGER = LoggerFactory.getLogger(FileNameNormalizer.class);
+	private final boolean useArtifactName;
+	private final boolean removeVersion;
+	private final Repository repository;
+	private final Logger logger;
 
-	String getFileName(String fileName, String checksum);
+	public FileNameNormalizer(Options options, Repository repository, Logger logger) {
+		this.useArtifactName = options.isUseArtifactName();
+		this.removeVersion = options.isRemoveVersion();
+		this.repository = repository;
+		this.logger = logger;
+	}
+
+	public String getFileName(String fileName, String checksum) {
+
+		if (useArtifactName) {
+			try {
+				Optional<Artifact> artifact = repository.findArtifact(checksum);
+				if (artifact.isPresent()) {
+					if (removeVersion) {
+						// generate file name without version number
+						return artifact.get().getArtifactId() + ".jar";
+					} else {
+						// generate file name with version number
+						return artifact.get().getArtifactId() + "-" + artifact.get().getVersion() + ".jar";
+					}
+				}
+			} catch (RepositoryException e) {
+				logger.warn("Failed to find artifact in repository.", e);
+			}
+		}
+
+		if (removeVersion) {
+			return getFileNameWithoutVersionNumber(fileName);
+		} else {
+			return fileName;
+		}
+
+	}
 
 	/**
 	 * Removes the version number from the given file name.
@@ -37,42 +72,8 @@ public interface FileNameNormalizer {
 	 * @param fileName Original file name
 	 * @return File name without version number
 	 */
-	static String getFileNameWithoutVersionNumber(String fileName) {
+	public static String getFileNameWithoutVersionNumber(String fileName) {
 		return fileName.replaceAll("-[0-9]+(\\.[0-9]+){0,10}(-SNAPSHOT)?", "");
-	}
-
-	/**
-	 * Get the file name for the given artifact checksum.
-	 * If the repository is able to identify the artifact, a file name based on the artifact ID
-	 * and (depending on <code>removeVersion</code>) the version number is returned.
-	 * If the repository is not able to identify the artifact, the original file name is returned.
-	 *
-	 * @param checksum      JAR file checksum
-	 * @param repository    Artifact resolver used to identify artifact
-	 * @param removeVersion <code>true</code> to not include the version number in the file name
-	 * @param fileName      Original file name
-	 * @return Artifact file name
-	 */
-	static String getArtifactFileName(String checksum, Repository repository, boolean removeVersion, String fileName) {
-		try {
-			Optional<Artifact> artifact = repository.findArtifact(checksum);
-			if (artifact.isPresent()) {
-				if (removeVersion) {
-					// generate file name without version number
-					return artifact.get().getArtifactId() + ".jar";
-				} else {
-					// generate file name with version number
-					return artifact.get().getArtifactId() + "-" + artifact.get().getVersion() + ".jar";
-				}
-			}
-		} catch (RepositoryException e) {
-			LOGGER.warn("Failed to find artifact in repository.", e);
-		}
-		if (removeVersion) {
-			return FileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
-		} else {
-			return fileName;
-		}
 	}
 
 }

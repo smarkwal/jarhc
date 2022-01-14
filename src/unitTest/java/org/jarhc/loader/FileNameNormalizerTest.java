@@ -16,34 +16,36 @@
 
 package org.jarhc.loader;
 
+import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.PrintStream;
 import java.util.Optional;
+import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
-import org.jarhc.test.PrintStreamBuffer;
+import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.slf4j.Logger;
 
 class FileNameNormalizerTest {
 
-	private PrintStream err;
+	private final Repository repository = Mockito.mock(Repository.class);
+	private final Logger logger = LoggerBuilder.collect(FileNameNormalizer.class);
 
 	@BeforeEach
-	void setUp() {
-		// override original STDERR stream
-		err = System.err;
-		System.setErr(new PrintStreamBuffer());
+	void setUp() throws RepositoryException {
+		Mockito.when(repository.findArtifact("c1")).thenReturn(Optional.empty());
+		Mockito.when(repository.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
+		Mockito.when(repository.findArtifact("c3")).thenThrow(new RepositoryException("test"));
 	}
 
 	@AfterEach
 	void tearDown() {
-		// restore original STDERR stream
-		System.setErr(err);
+		assertLogger(logger).isEmpty();
 	}
 
 	@Test
@@ -66,33 +68,53 @@ class FileNameNormalizerTest {
 	}
 
 	@Test
-	void test_getArtifactFileName() throws RepositoryException {
+	void getFileName_keepVersion() {
 
-		Repository repository = Mockito.mock(Repository.class);
-		Mockito.when(repository.findArtifact("c1")).thenReturn(Optional.empty());
-		Mockito.when(repository.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
-		Mockito.when(repository.findArtifact("c3")).thenThrow(new RepositoryException("test"));
+		// prepare
+		Options options = new Options();
+		options.setUseArtifactName(true);
+		options.setRemoveVersion(false);
+		FileNameNormalizer fileNameNormalizer = new FileNameNormalizer(options, repository, logger);
 
-		String result = FileNameNormalizer.getArtifactFileName("c1", repository, false, "aa-12.jar");
+		String result = fileNameNormalizer.getFileName("aa-12.jar", "c1");
 		assertEquals("aa-12.jar", result);
+		assertLogger(logger).isEmpty();
 
-		result = FileNameNormalizer.getArtifactFileName("c1", repository, true, "aa-12.jar");
-		assertEquals("aa.jar", result);
-
-		result = FileNameNormalizer.getArtifactFileName("c2", repository, false, "aa-12.jar");
+		result = fileNameNormalizer.getFileName("aa-12.jar", "c2");
 		assertEquals("a-1.2.jar", result);
+		assertLogger(logger).isEmpty();
 
-		result = FileNameNormalizer.getArtifactFileName("c2", repository, true, "aa-12.jar");
-		assertEquals("a.jar", result);
-
-		result = FileNameNormalizer.getArtifactFileName("c3", repository, false, "aa-12.jar");
+		result = fileNameNormalizer.getFileName("aa-12.jar", "c3");
 		assertEquals("aa-12.jar", result);
+		assertLogger(logger).hasWarn("Failed to find artifact in repository.", new RepositoryException("test"));
 
-		result = FileNameNormalizer.getArtifactFileName("c3", repository, true, "aa-12.jar");
-		assertEquals("aa.jar", result);
-
-		result = FileNameNormalizer.getArtifactFileName("c1", repository, false, "java.base.jmod");
+		result = fileNameNormalizer.getFileName("java.base.jmod", "c1");
 		assertEquals("java.base.jmod", result);
+		assertLogger(logger).isEmpty();
 
 	}
+
+	@Test
+	void getFileName_removeVersion() {
+
+		// prepare
+		Options options = new Options();
+		options.setUseArtifactName(true);
+		options.setRemoveVersion(true);
+		FileNameNormalizer fileNameNormalizer = new FileNameNormalizer(options, repository, logger);
+
+		String result = fileNameNormalizer.getFileName("aa-12.jar", "c1");
+		assertEquals("aa.jar", result);
+		assertLogger(logger).isEmpty();
+
+		result = fileNameNormalizer.getFileName("aa-12.jar", "c2");
+		assertEquals("a.jar", result);
+		assertLogger(logger).isEmpty();
+
+		result = fileNameNormalizer.getFileName("aa-12.jar", "c3");
+		assertEquals("aa.jar", result);
+		assertLogger(logger).hasWarn("Failed to find artifact in repository.", new RepositoryException("test"));
+
+	}
+
 }

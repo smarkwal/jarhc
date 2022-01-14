@@ -212,15 +212,8 @@ public class Application {
 	}
 
 	private FileNameNormalizer createFileNameNormalizer(Options options) {
-		boolean useArtifactName = options.isUseArtifactName();
-		boolean removeVersion = options.isRemoveVersion();
-		if (useArtifactName) {
-			return (fileName, checksum) -> FileNameNormalizer.getArtifactFileName(checksum, repository, removeVersion, fileName);
-		} else if (removeVersion) {
-			return (fileName, checksum) -> FileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
-		} else {
-			return null;
-		}
+		Logger logger = LoggerFactory.getLogger(FileNameNormalizer.class);
+		return new FileNameNormalizer(options, repository, logger);
 	}
 
 	private JavaRuntime createJavaRuntime(Options options, List<JarSource> runtimeJarFiles) {
