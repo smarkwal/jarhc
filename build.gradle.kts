@@ -33,7 +33,7 @@ plugins {
     id("org.ajoberstar.grgit") version "4.1.1"
     id("org.kordamp.gradle.source-xref") version "0.47.0"
     id("org.sonarqube") version "3.3"
-    id("org.owasp.dependencycheck") version "6.5.2.1"
+    id("org.owasp.dependencycheck") version "6.5.3"
     id("com.dorongold.task-tree") version "2.1.0"
     `maven-publish`
     idea
@@ -180,10 +180,10 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("org.slf4j:jul-to-slf4j:1.7.32")
-    implementation("org.slf4j:jcl-over-slf4j:1.7.32")
-    runtimeOnly("org.slf4j:slf4j-simple:1.7.32")
+    implementation("org.slf4j:slf4j-api:1.7.33")
+    implementation("org.slf4j:jul-to-slf4j:1.7.33")
+    implementation("org.slf4j:jcl-over-slf4j:1.7.33")
+    runtimeOnly("org.slf4j:slf4j-simple:1.7.33")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -214,8 +214,8 @@ dependencies {
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.2")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.32")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.32")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.33")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.33")
 
 }
 
