@@ -16,6 +16,7 @@
 
 package org.jarhc.loader;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,20 +24,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import org.jarhc.app.JarSource;
+import org.jarhc.loader.archive.Archive;
+import org.jarhc.loader.archive.ArchiveEntry;
+import org.jarhc.loader.archive.ZipStreamArchive;
 import org.jarhc.model.JarFile;
 import org.jarhc.utils.FileUtils;
-import org.jarhc.utils.IOUtils;
-import org.jarhc.utils.LimitedInputStream;
 
 public class WarFileLoader {
-
-	// limits to prevent Zip Bomb attacks
-	private static final long MAX_TOTAL_SIZE = 1024 * 1024 * 1024L; // 1 GB
-	private static final long MAX_ENTRY_SIZE = 100 * 1024 * 1024L; // 100 MB
-	private static final long MAX_ENTRY_COUNT = 10000;
 
 	private final JarFileLoader jarFileLoader;
 
@@ -44,67 +39,56 @@ public class WarFileLoader {
 		this.jarFileLoader = jarFileLoader;
 	}
 
+	public List<JarFile> load(JarSource source) throws IOException {
+		if (source == null) throw new IllegalArgumentException("source");
+
+		try (InputStream stream = source.getInputStream()) {
+			return load(stream);
+		}
+	}
+
 	public List<JarFile> load(File file) throws IOException {
 		if (file == null) throw new IllegalArgumentException("file");
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
-		try (InputStream stream = new FileInputStream(file)) {
-			return load(stream);
+
+		try (FileInputStream inputStream = new FileInputStream(file)) {
+			return load(inputStream);
 		}
 	}
 
-	public List<JarFile> load(JarSource source) throws IOException {
-		if (source == null) throw new IllegalArgumentException("source");
-		try (InputStream stream = source.getData()) {
-			return load(stream);
+	public List<JarFile> load(InputStream inputStream) throws IOException {
+		if (inputStream == null) throw new IllegalArgumentException("inputStream");
+
+		try (Archive archive = new ZipStreamArchive(inputStream)) {
+			return load(archive);
 		}
 	}
 
-	public List<JarFile> load(InputStream stream) throws IOException {
-		if (stream == null) throw new IllegalArgumentException("stream");
+	private List<JarFile> load(Archive archive) throws IOException {
+		if (archive == null) throw new IllegalArgumentException("archive");
 
-		long totalSize = 0;
 		List<JarFile> jarFiles = new ArrayList<>();
 
-		try (ZipInputStream zip = new ZipInputStream(stream)) {
+		// for every entry in the WAR file ...
+		while (true) {
+			ArchiveEntry entry = archive.getNextEntry();
+			if (entry == null) break;
 
-			// for every entry in the WAR file ...
-			while (true) {
-				ZipEntry entry = zip.getNextEntry();
-				if (entry == null) break;
+			String entryName = entry.getName();
+			if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
+				String fileName = FileUtils.getFilename(entryName);
 
-				// ignore directories
-				if (entry.isDirectory()) continue;
+				byte[] fileData = entry.getData();
 
-				String entryName = entry.getName();
-				if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
-					String fileName = FileUtils.getFilename(entryName);
+				InputStream inputStream = new ByteArrayInputStream(fileData);
+				List<JarFile> files = jarFileLoader.load(fileName, inputStream);
+				jarFiles.addAll(files);
 
-					// limit max JAR file size (prevent Zip Bomb attack)
-					InputStream in = new LimitedInputStream(zip, MAX_ENTRY_SIZE);
-
-					// read content of JAR file
-					byte[] fileData = IOUtils.toByteArray(in);
-
-					// check if max total size has been reached (prevent Zip Bomb attack)
-					totalSize += fileData.length;
-					if (totalSize > MAX_TOTAL_SIZE) {
-						throw new IOException("Maximum total size exceeded.");
-					}
-
-					List<JarFile> files = jarFileLoader.load(fileName, fileData);
-					jarFiles.addAll(files);
-
-					// check if max number of JAR files has been reached (prevent Zip Bomb attack)
-					if (jarFiles.size() > MAX_ENTRY_COUNT) {
-						throw new IOException("Maximum number of entries exceeded.");
-					}
-
-				} else if (entryName.startsWith("WEB-INF/classes/")) {
-					// TODO: add all files (classes and resources) to an artificial JAR file
-					//  String jarFileName = file.getName() + "-classes.jar";
-				}
-
+			} else if (entryName.startsWith("WEB-INF/classes/")) {
+				// TODO: add all files (classes and resources) to an artificial JAR file
+				//  String jarFileName = file.getName() + "-classes.jar";
 			}
+
 		}
 
 		// sort JAR files by name (case-insensitive)

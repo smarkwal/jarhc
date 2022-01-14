@@ -34,7 +34,7 @@ public class LoaderBuilder {
 	private String classLoader = "Classpath";
 	private int release = JavaUtils.getJavaVersion();
 	private boolean scanForReferences = true;
-	private JarFileNameNormalizer jarFileNameNormalizer = null;
+	private FileNameNormalizer fileNameNormalizer = null;
 	private ClassLoader parentClassLoader = null;
 	private ClassLoaderStrategy strategy = ClassLoaderStrategy.ParentLast;
 	private Repository repository = new NoOpRepository();
@@ -58,8 +58,8 @@ public class LoaderBuilder {
 		return this;
 	}
 
-	public LoaderBuilder withJarFileNameNormalizer(JarFileNameNormalizer jarFileNameNormalizer) {
-		this.jarFileNameNormalizer = jarFileNameNormalizer;
+	public LoaderBuilder withFileNameNormalizer(FileNameNormalizer fileNameNormalizer) {
+		this.fileNameNormalizer = fileNameNormalizer;
 		return this;
 	}
 
@@ -90,14 +90,22 @@ public class LoaderBuilder {
 		ClassDefLoader classDefLoader = buildClassDefLoader();
 		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
 		Logger logger = LoggerFactory.getLogger(JarFileLoader.class);
-		return new JarFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, jarFileNameNormalizer, repository, logger);
+		return new JarFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, fileNameNormalizer, repository, logger);
+	}
+
+	JmodFileLoader buildJmodFileLoader() {
+		ClassDefLoader classDefLoader = buildClassDefLoader();
+		ModuleInfoLoader moduleInfoLoader = buildModuleInfoLoader();
+		Logger logger = LoggerFactory.getLogger(JmodFileLoader.class);
+		return new JmodFileLoader(classLoader, release, classDefLoader, moduleInfoLoader, fileNameNormalizer, repository, logger);
 	}
 
 	public ClasspathLoader buildClasspathLoader() {
 		JarFileLoader jarFileLoader = buildJarFileLoader();
+		JmodFileLoader jmodFileLoader = buildJmodFileLoader();
 		WarFileLoader warFileLoader = new WarFileLoader(jarFileLoader);
 		Logger logger = LoggerFactory.getLogger(ClasspathLoader.class);
-		return new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, strategy, logger);
+		return new ClasspathLoader(jarFileLoader, jmodFileLoader, warFileLoader, parentClassLoader, strategy, logger);
 	}
 
 	private static class NoOpRepository implements Repository {

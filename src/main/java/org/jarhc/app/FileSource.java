@@ -29,13 +29,17 @@ public class FileSource implements JarSource {
 		this.file = file;
 	}
 
+	public File getFile() {
+		return file;
+	}
+
 	@Override
 	public String getName() {
 		return file.getName();
 	}
 
 	@Override
-	public InputStream getData() throws IOException {
+	public InputStream getInputStream() throws IOException {
 		return new FileInputStream(file);
 	}
 

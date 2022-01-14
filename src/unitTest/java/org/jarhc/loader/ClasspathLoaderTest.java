@@ -54,6 +54,9 @@ class ClasspathLoaderTest {
 	JarFileLoader jarFileLoader;
 
 	@Mock
+	JmodFileLoader jmodFileLoader;
+
+	@Mock
 	WarFileLoader warFileLoader;
 
 	@Mock
@@ -94,7 +97,7 @@ class ClasspathLoaderTest {
 					return Arrays.asList(jarFile1, jarFile2);
 				});
 
-		classpathLoader = new ClasspathLoader(jarFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast, logger);
+		classpathLoader = new ClasspathLoader(jarFileLoader, jmodFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast, logger);
 	}
 
 	@AfterEach

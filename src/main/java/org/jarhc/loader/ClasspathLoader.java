@@ -39,13 +39,15 @@ import org.slf4j.Logger;
 public class ClasspathLoader {
 
 	private final JarFileLoader jarFileLoader;
+	private final JmodFileLoader jmodFileLoader;
 	private final WarFileLoader warFileLoader;
 	private final ClassLoader parentClassLoader;
 	private final ClassLoaderStrategy strategy;
 	private final Logger logger;
 
-	ClasspathLoader(JarFileLoader jarFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader, ClassLoaderStrategy strategy, Logger logger) {
+	ClasspathLoader(JarFileLoader jarFileLoader, JmodFileLoader jmodFileLoader, WarFileLoader warFileLoader, ClassLoader parentClassLoader, ClassLoaderStrategy strategy, Logger logger) {
 		this.jarFileLoader = jarFileLoader;
+		this.jmodFileLoader = jmodFileLoader;
 		this.warFileLoader = warFileLoader;
 		this.parentClassLoader = parentClassLoader;
 		this.strategy = strategy;
@@ -62,49 +64,51 @@ public class ClasspathLoader {
 	/**
 	 * Create a classpath with the given JAR files.
 	 *
-	 * @param files List of JAR files.
+	 * @param sources List of JAR files.
 	 * @return Classpath
 	 * @throws IllegalArgumentException If <code>files</code> is <code>null</code>.
 	 */
-	public Classpath load(List<JarSource> files) {
-		if (files == null) throw new IllegalArgumentException("files");
+	public Classpath load(List<JarSource> sources) {
+		if (sources == null) throw new IllegalArgumentException("files");
 
 		long totalTime = System.nanoTime();
 
 		// temporary map to remember input file -> JAR file relation
 		Map<JarSource, List<JarFile>> filesMap = new ConcurrentHashMap<>();
 
-		// load all JAR files in parallel
-		files.parallelStream().forEach(file -> {
+		// load all files in parallel
+		sources.parallelStream().forEach(source -> {
 
 			long time = System.nanoTime();
 
 			List<JarFile> jarFiles;
 			try {
-				String fileName = file.getName().toLowerCase();
+				String fileName = source.getName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
-					jarFiles = jarFileLoader.load(file);
+					jarFiles = jarFileLoader.load(source);
+				} else if (fileName.endsWith(".jmod")) {
+					jarFiles = jmodFileLoader.load(source);
 				} else if (fileName.endsWith(".war")) {
-					jarFiles = warFileLoader.load(file);
+					jarFiles = warFileLoader.load(source);
 				} else {
-					logger.warn("Unsupported file extension: {}", file.getName());
+					logger.warn("Unsupported file extension: {}", source.getName());
 					return;
 				}
 			} catch (IOException e) {
-				logger.warn("Unable to parse file: {}", file.getName(), e);
+				logger.warn("Unable to parse file: {}", source.getName(), e);
 				return;
 			}
 
 			if (logger.isDebugEnabled()) {
 				time = System.nanoTime() - time;
-				logger.debug("{}: {} ms", file.getName(), time / 1000 / 1000);
+				logger.debug("{}: {} ms", source.getName(), time / 1000 / 1000);
 			}
 
-			filesMap.put(file, jarFiles);
+			filesMap.put(source, jarFiles);
 		});
 
 		// create list of JAR files (same order as list of input files)
-		List<JarFile> jarFiles = files.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
+		List<JarFile> jarFiles = sources.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
 
 		if (logger.isDebugEnabled()) {
 			totalTime = System.nanoTime() - totalTime;

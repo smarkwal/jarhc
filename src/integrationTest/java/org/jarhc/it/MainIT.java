@@ -172,7 +172,7 @@ class MainIT {
 		stream.flush();
 
 		String output = buffer.toString("UTF-8");
-		assertTrue(output.startsWith("Usage: java -jar JarHC.jar [options] <path> [<path>]*"));
+		assertTrue(output.startsWith("Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*"));
 
 	}
 

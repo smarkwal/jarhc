@@ -53,7 +53,8 @@ public class LimitedInputStream extends FilterInputStream {
 	private void countBytes(int bytes) throws IOException {
 		length += bytes;
 		if (length > maxLength) {
-			throw new IOException("Maximum length of stream exceeded.");
+			String message = "Maximum length of stream exceeded: " + maxLength;
+			throw new IOException(message);
 		}
 	}
 

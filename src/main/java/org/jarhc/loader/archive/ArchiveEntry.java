@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Stephan Markwalder
+ * Copyright 2022 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.jarhc.app;
+package org.jarhc.loader.archive;
 
 import java.io.IOException;
-import java.io.InputStream;
 
-public interface JarSource {
+public interface ArchiveEntry {
 
 	String getName();
 
-	InputStream getInputStream() throws IOException;
+	byte[] getData() throws IOException;
 
 }

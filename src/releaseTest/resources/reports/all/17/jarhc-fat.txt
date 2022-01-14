@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 JAR file            | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 --------------------+---------+---------+-----------+------------------------------------------+---------------------
-jarhc-with-deps.jar | 6.57 MB | 4530    | 143       | **************************************** | [unknown]
-Classpath           | 6.57 MB | 4530    | 143       | -                                        | -
+jarhc-with-deps.jar | 6.58 MB | 4541    | 143       | **************************************** | [unknown]
+Classpath           | 6.58 MB | 4541    | 143       | -                                        | -
 
 Modules
 -------
@@ -24,9 +24,9 @@ Java class file format information.
 
 JAR file            | Multi-release         | Class files by Java version
 --------------------+-----------------------+---------------------------------------------------------
-jarhc-with-deps.jar | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (2592), Java 7 (278), Java 6 (1070),
+jarhc-with-deps.jar | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (2603), Java 7 (278), Java 6 (1070),
                     |                       | Java 5 (589)
-Classpath           | -                     | Java 10 (1), Java 8 (2592), Java 7 (278), Java 6 (1070),
+Classpath           | -                     | Java 10 (1), Java 8 (2603), Java 7 (278), Java 6 (1070),
                     |                       | Java 5 (589)
 
 JAR Dependencies
@@ -51,9 +51,9 @@ List of packages per JAR file.
 
 JAR file            | Count | Packages                          | Issues
 --------------------+-------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------
-jarhc-with-deps.jar | 229   | com.google.* (22 subpackages)     | Fat JAR: com.google.*, javax.*, org.apache.*, org.checkerframework.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+jarhc-with-deps.jar | 230   | com.google.* (22 subpackages)     | Fat JAR: com.google.*, javax.*, org.apache.*, org.checkerframework.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
                     |       | javax.annotation (+2 subpackages) |
-                    |       | org.* (204 subpackages)           |
+                    |       | org.* (205 subpackages)           |
 
 Binary Compatibility
 --------------------

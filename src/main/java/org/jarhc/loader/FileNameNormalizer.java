@@ -23,9 +23,9 @@ import org.jarhc.artifacts.RepositoryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public interface JarFileNameNormalizer {
+public interface FileNameNormalizer {
 
-	Logger LOGGER = LoggerFactory.getLogger(JarFileNameNormalizer.class);
+	Logger LOGGER = LoggerFactory.getLogger(FileNameNormalizer.class);
 
 	String getFileName(String fileName, String checksum);
 
@@ -69,7 +69,7 @@ public interface JarFileNameNormalizer {
 			LOGGER.warn("Failed to find artifact in repository.", e);
 		}
 		if (removeVersion) {
-			return JarFileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
+			return FileNameNormalizer.getFileNameWithoutVersionNumber(fileName);
 		} else {
 			return fileName;
 		}
