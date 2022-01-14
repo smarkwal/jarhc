@@ -43,7 +43,7 @@ jobs:
         key: sonarqube-cache
 
     - name: Set Push Gradle options
-      if: github.event_name == 'push'
+      if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       run: echo "PUSH_GRADLE_OPTIONS=sonarqube" >> $GITHUB_ENV
 
     - name: Build with Gradle
