@@ -37,7 +37,7 @@ jobs:
 
     - name: Restore SonarQube Cache
       uses: actions/cache@v2
-      if: github.event_name == 'push'
+      if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
         key: sonarqube-cache
