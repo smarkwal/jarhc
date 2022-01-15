@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.jarhc.app.Options;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
@@ -37,6 +38,12 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 
 public class DuplicateClassesAnalyzer implements Analyzer {
+
+	private final boolean ignoreExactCopy;
+
+	public DuplicateClassesAnalyzer(Options options) {
+		this.ignoreExactCopy = options.isIgnoreExactCopy();
+	}
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -142,6 +149,10 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 			// calculates the level of similarity between the class definitions
 			String similarity = getClassSimilarity(classDefs);
 
+			if (ignoreExactCopy && similarity.equals("Exact copy")) {
+				continue;
+			}
+
 			table.addRow(className, sources, similarity);
 		}
 	}
@@ -158,6 +169,10 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 
 			// calculates the level of similarity between the resources
 			String similarity = getResourceSimilarity(resourceDefs);
+
+			if (ignoreExactCopy && similarity.equals("Exact copy")) {
+				continue;
+			}
 
 			table.addRow(resourcePath, sources, similarity);
 		}

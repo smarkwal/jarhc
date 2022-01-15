@@ -71,6 +71,9 @@ Options:
                            Report does not include warnings for unknown
                            annotations.
 
+   ----ignore-exact-copy : Duplicate Classes section does not list classes and
+                           resources which are identical.
+
    --data <path>         : Path to local cache directory for artifact
                            information. If the directory does not exist,
                            it is automatically created.

@@ -97,7 +97,7 @@ public class AnalyzerBenchmarks {
 
 	@Benchmark
 	public void test_DuplicatesAnalyzer() {
-		Analyzer analyzer = new DuplicateClassesAnalyzer();
+		Analyzer analyzer = new DuplicateClassesAnalyzer(new Options());
 		analyzer.analyze(classpath);
 	}
 

@@ -57,6 +57,7 @@ class CommandLineParserTest {
 		assertFalse(options.isRemoveVersion());
 		assertFalse(options.isUseArtifactName());
 		assertFalse(options.isIgnoreMissingAnnotations());
+		assertFalse(options.isIgnoreExactCopy());
 		assertNull(options.getSections());
 		assertFalse(options.isSkipEmpty());
 		assertEquals("JAR Health Check Report", options.getReportTitle());
@@ -530,6 +531,20 @@ class CommandLineParserTest {
 
 		// assert
 		assertTrue(options.isIgnoreMissingAnnotations());
+
+	}
+
+	@Test
+	void test_ignoreExactCopy(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] { "--ignore-exact-copy", file.getAbsolutePath() });
+
+		// assert
+		assertTrue(options.isIgnoreExactCopy());
 
 	}
 

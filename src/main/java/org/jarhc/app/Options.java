@@ -32,6 +32,7 @@ public class Options {
 	private boolean removeVersion = false;
 	private boolean useArtifactName = false;
 	private boolean ignoreMissingAnnotations = false;
+	private boolean ignoreExactCopy = false;
 
 	private List<String> sections = null; // all sections
 	private boolean skipEmpty = false;
@@ -106,6 +107,14 @@ public class Options {
 
 	public void setIgnoreMissingAnnotations(boolean ignoreMissingAnnotations) {
 		this.ignoreMissingAnnotations = ignoreMissingAnnotations;
+	}
+
+	public boolean isIgnoreExactCopy() {
+		return ignoreExactCopy;
+	}
+
+	public void setIgnoreExactCopy(boolean ignoreExactCopy) {
+		this.ignoreExactCopy = ignoreExactCopy;
 	}
 
 	public List<String> getSections() {

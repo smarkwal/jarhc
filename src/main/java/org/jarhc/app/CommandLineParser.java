@@ -76,6 +76,7 @@ public class CommandLineParser {
 		optionParsers.put("--remove-version", (args, options) -> options.setRemoveVersion(true));
 		optionParsers.put("--use-artifact-name", (args, options) -> options.setUseArtifactName(true));
 		optionParsers.put("--ignore-missing-annotations", (args, options) -> options.setIgnoreMissingAnnotations(true));
+		optionParsers.put("--ignore-exact-copy", (args, options) -> options.setIgnoreExactCopy(true));
 		optionParsers.put("--data", this::parseData);
 		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
 		optionParsers.put("--trace", (args, options) -> options.setTrace(true));

@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.jarhc.Main;
+import org.jarhc.app.Options;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
@@ -34,7 +35,8 @@ import org.junit.jupiter.api.Test;
 
 class DuplicateClassesAnalyzerTest {
 
-	private final DuplicateClassesAnalyzer analyzer = new DuplicateClassesAnalyzer();
+	private final Options options = new Options();
+	private final DuplicateClassesAnalyzer analyzer = new DuplicateClassesAnalyzer(options);
 
 	@Test
 	void test_analyze() {
