@@ -513,15 +513,62 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// find target method definition
 		Optional<MethodDef> methodDef = classLoader.getMethodDef(methodRef, searchResult);
+
+		// if method has not been found ...
 		if (!methodDef.isPresent()) {
-			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
-			return searchResult;
+
+			// special handling for methods of class MethodHandle or VarHandle
+			if (targetClassName.equals("java.lang.invoke.MethodHandle") || targetClassName.equals("java.lang.invoke.VarHandle")) {
+				// "rewrite" the descriptor of the method
+				MethodRef handleRef = getHandleRef(methodRef);
+				// try to find the method again
+				methodDef = classLoader.getMethodDef(handleRef, searchResult);
+			}
+
+			if (!methodDef.isPresent()) {
+				searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
+				return searchResult;
+			}
 		}
 
 		// check compatibility between method reference and method definition
 		validateMethodDef(classDef, methodRef, methodDef.get(), accessCheck, searchResult);
 
 		return searchResult;
+	}
+
+	/**
+	 * "Rewrite" method reference for MethodHandle and VarHandle objects.
+	 *
+	 * @param methodRef Method reference
+	 * @return Method reference
+	 */
+	private MethodRef getHandleRef(MethodRef methodRef) {
+		String methodOwner = methodRef.getMethodOwner();
+		String methodName = methodRef.getMethodName();
+		if (methodOwner.equals("java.lang.invoke.MethodHandle")) {
+			String methodDescriptor = "([Ljava/lang/Object;)Ljava/lang/Object;";
+			return new MethodRef(methodOwner, methodDescriptor, methodName, methodRef.isInterfaceMethod(), methodRef.isStaticAccess());
+		} else {
+			String methodDescriptor;
+			if (methodName.equals("set")
+					|| methodName.equals("setOpaque")
+					|| methodName.equals("setRelease")
+					|| methodName.equals("setVolatile")
+			) {
+				methodDescriptor = "([Ljava/lang/Object;)V";
+			} else if (methodName.equals("compareAndSet")
+					|| methodName.equals("weakCompareAndSet")
+					|| methodName.equals("weakCompareAndSetPlain")
+					|| methodName.equals("weakCompareAndSetAcquire")
+					|| methodName.equals("weakCompareAndSetRelease")
+			) {
+				methodDescriptor = "([Ljava/lang/Object;)Z";
+			} else {
+				methodDescriptor = "([Ljava/lang/Object;)Ljava/lang/Object;";
+			}
+			return new MethodRef(methodOwner, methodDescriptor, methodName, methodRef.isInterfaceMethod(), methodRef.isStaticAccess());
+		}
 	}
 
 	private void validateMethodDef(ClassDef classDef, MethodRef methodRef, MethodDef methodDef, AccessCheck accessCheck, MethodSearchResult searchResult) {

@@ -29,6 +29,7 @@ import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
+import org.jarhc.model.MethodRef;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -366,6 +367,26 @@ class BinaryCompatibilityAnalyzerTest {
 
 		// test
 		options.setIgnoreMissingAnnotations(true);
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+	}
+
+	@Test
+	void test_analyze_methodHandle() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addClassDef(ClassDef.forClassName("a.A").addMethodRef(new MethodRef("java.lang.invoke.MethodHandle", "(Ljava/lang/Object;)Ljava/lang/Object;", "invoke", false, false)))
+				.build();
+
+		// test
 		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
 		ReportSection section = analyzer.analyze(classpath);
 

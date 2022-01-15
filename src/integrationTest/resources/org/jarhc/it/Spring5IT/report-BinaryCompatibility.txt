@@ -2117,19 +2117,6 @@ spring-core-5.1.3.RELEASE.jar            | org.springframework.cglib.transform.A
                                          | • Annotation not found: javax.annotation.Nonnull (package found)
                                          | • Annotation not found: javax.annotation.meta.TypeQualifierNickname (package not found)
                                          |
-                                         | org.springframework.objenesis.instantiator.util.DefineClassHelper$Java11
-                                         | • Method not found: java.lang.invoke.MethodHandles$Lookup java.lang.invoke.MethodHandle.invokeExact(java.lang.Class,java.lang.invoke.MethodHandles$Lookup)
-                                         | > java.lang.invoke.MethodHandle (method not found)
-                                         | > java.lang.Object (method not found)
-                                         | • Method not found: java.lang.Class java.lang.invoke.MethodHandle.invokeExact(java.lang.invoke.MethodHandles$Lookup,byte[])
-                                         | > java.lang.invoke.MethodHandle (method not found)
-                                         | > java.lang.Object (method not found)
-                                         |
-                                         | org.springframework.objenesis.instantiator.util.DefineClassHelper$Java8
-                                         | • Method not found: java.lang.Class java.lang.invoke.MethodHandle.invokeExact(java.lang.String,byte[],int,int,java.lang.ClassLoader,java.security.ProtectionDomain)
-                                         | > java.lang.invoke.MethodHandle (method not found)
-                                         | > java.lang.Object (method not found)
-                                         |
                                          | org.springframework.util.CommonsLogWriter
                                          | • Class not found: org.apache.commons.logging.Log (package not found)
                                          |

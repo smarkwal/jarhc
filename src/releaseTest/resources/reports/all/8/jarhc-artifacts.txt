@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 204 KB  | 121     | 7         | **************************************** | [unknown]
+jarhc.jar                                                      | 205 KB  | 121     | 7         | **************************************** | [unknown]
 asm-9.2.jar                                                    | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
 json-20211205.jar                                              | 69.0 KB | 27      | 0         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9

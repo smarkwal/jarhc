@@ -120,29 +120,8 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file                        | Issues
---------------------------------+---------------------------------------------------------------------------------------------------------------
-jetty-util-9.4.20.v20190813.jar | org.eclipse.jetty.util.ModuleLocation
-                                | • Method not found: java.lang.Object java.lang.invoke.MethodHandle.invoke(java.lang.Class)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
-                                | • Method not found: java.lang.Object java.lang.invoke.MethodHandle.invoke(java.lang.Object)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
-                                | • Method not found: java.lang.String java.lang.invoke.MethodHandle.invoke(java.lang.Object)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
-                                | • Method not found: java.util.Optional java.lang.invoke.MethodHandle.invoke(java.lang.Object)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
-                                | • Method not found: java.util.Optional java.lang.invoke.MethodHandle.invoke(java.lang.Object,java.lang.String)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
-                                |
-                                | org.eclipse.jetty.util.TypeUtil
-                                | • Method not found: java.net.URI java.lang.invoke.MethodHandle.invoke(java.lang.Class)
-                                | > java.lang.invoke.MethodHandle (method not found)
-                                | > java.lang.Object (method not found)
+JAR file | Issues
+---------+-------
 
 Blacklist
 ---------
