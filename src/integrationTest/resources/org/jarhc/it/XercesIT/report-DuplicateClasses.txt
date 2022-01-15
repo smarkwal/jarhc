@@ -6,15 +6,15 @@ Duplicate Classes
 Duplicate classes, shadowed classes, and duplicate resources.
 
 Class/Resource                                           | Sources                           | Similarity
----------------------------------------------------------+-----------------------------------+--------------
+---------------------------------------------------------+-----------------------------------+----------------------
 javax.xml.XMLConstants                                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (16/19 = 84% similar)
 javax.xml.datatype.DatatypeConfigurationException        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (8/11 = 72% similar)
 javax.xml.datatype.DatatypeConstants                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.datatype.DatatypeConstants$1                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/4 = 75% similar)
 javax.xml.datatype.DatatypeConstants$Field               | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.datatype.DatatypeFactory                       | Runtime                           | Same API
@@ -22,19 +22,19 @@ javax.xml.datatype.DatatypeFactory                       | Runtime              
 javax.xml.datatype.Duration                              | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.datatype.FactoryFinder                         | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (4/9 = 44% similar)
 javax.xml.datatype.SecuritySupport                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/10 = 30% similar)
 javax.xml.datatype.SecuritySupport$1                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.datatype.SecuritySupport$2                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.datatype.SecuritySupport$3                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.datatype.SecuritySupport$4                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.datatype.SecuritySupport$5                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.datatype.XMLGregorianCalendar                  | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.namespace.NamespaceContext                     | Runtime                           | Same API
@@ -42,15 +42,15 @@ javax.xml.namespace.NamespaceContext                     | Runtime              
 javax.xml.namespace.QName                                | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.namespace.QName$1                              | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.parsers.DocumentBuilder                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.parsers.DocumentBuilderFactory                 | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.parsers.FactoryConfigurationError              | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (10/11 = 90% similar)
 javax.xml.parsers.FactoryFinder                          | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (4/10 = 40% similar)
 javax.xml.parsers.ParserConfigurationException           | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.parsers.SAXParser                              | Runtime                           | Same API
@@ -58,49 +58,49 @@ javax.xml.parsers.SAXParser                              | Runtime              
 javax.xml.parsers.SAXParserFactory                       | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.parsers.SecuritySupport                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/10 = 30% similar)
 javax.xml.parsers.SecuritySupport$1                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.parsers.SecuritySupport$2                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.parsers.SecuritySupport$3                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.parsers.SecuritySupport$4                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.parsers.SecuritySupport$5                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.EventFilter                             | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.FactoryConfigurationError               | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (11/13 = 84% similar)
 javax.xml.stream.FactoryFinder                           | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (4/10 = 40% similar)
 javax.xml.stream.Location                                | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.SecuritySupport                         | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/10 = 30% similar)
 javax.xml.stream.SecuritySupport$1                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.SecuritySupport$2                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.SecuritySupport$3                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.SecuritySupport$4                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.SecuritySupport$5                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.stream.StreamFilter                            | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.XMLEventFactory                         | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (33/37 = 89% similar)
 javax.xml.stream.XMLEventReader                          | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.XMLEventWriter                          | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.XMLInputFactory                         | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (40/43 = 93% similar)
 javax.xml.stream.XMLOutputFactory                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (19/22 = 86% similar)
 javax.xml.stream.XMLReporter                             | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.stream.XMLResolver                             | Runtime                           | Same API
@@ -152,23 +152,23 @@ javax.xml.stream.util.XMLEventConsumer                   | Runtime              
 javax.xml.transform.ErrorListener                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.FactoryFinder                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (4/9 = 44% similar)
 javax.xml.transform.OutputKeys                           | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.Result                               | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.SecuritySupport                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/10 = 30% similar)
 javax.xml.transform.SecuritySupport$1                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.transform.SecuritySupport$2                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.transform.SecuritySupport$3                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.transform.SecuritySupport$4                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.transform.SecuritySupport$5                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.transform.Source                               | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.SourceLocator                        | Runtime                           | Same API
@@ -184,7 +184,7 @@ javax.xml.transform.TransformerException                 | Runtime              
 javax.xml.transform.TransformerFactory                   | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.TransformerFactoryConfigurationError | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (10/11 = 90% similar)
 javax.xml.transform.URIResolver                          | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.transform.dom.DOMLocator                       | Runtime                           | Same API
@@ -214,77 +214,77 @@ javax.xml.transform.stream.StreamSource                  | Runtime              
 javax.xml.validation.Schema                              | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.validation.SchemaFactory                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (20/22 = 90% similar)
 javax.xml.validation.SchemaFactoryFinder                 | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (7/8 = 87% similar)
 javax.xml.validation.SchemaFactoryFinder$1               | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (2/6 = 33% similar)
 javax.xml.validation.SchemaFactoryFinder$2               | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/8 = 37% similar)
 javax.xml.validation.SchemaFactoryLoader                 | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.validation.SecuritySupport                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/13 = 23% similar)
 javax.xml.validation.SecuritySupport$1                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$2                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$3                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$4                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$5                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$6                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$7                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.SecuritySupport$8                   | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.validation.TypeInfoProvider                    | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.validation.Validator                           | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.validation.ValidatorHandler                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (16/27 = 59% similar)
 javax.xml.xpath.SecuritySupport                          | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/13 = 23% similar)
 javax.xml.xpath.SecuritySupport$1                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$2                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$3                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$4                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$5                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$6                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$7                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.SecuritySupport$8                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 javax.xml.xpath.XPath                                    | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathConstants                           | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathException                           | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (10/11 = 90% similar)
 javax.xml.xpath.XPathExpression                          | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathExpressionException                 | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathFactory                             | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (14/17 = 82% similar)
 javax.xml.xpath.XPathFactoryConfigurationException       | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathFactoryFinder                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (7/8 = 87% similar)
 javax.xml.xpath.XPathFactoryFinder$1                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (2/6 = 33% similar)
 javax.xml.xpath.XPathFactoryFinder$2                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/8 = 37% similar)
 javax.xml.xpath.XPathFunction                            | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 javax.xml.xpath.XPathFunctionException                   | Runtime                           | Same API
@@ -354,11 +354,11 @@ org.w3c.dom.bootstrap.DOMImplementationRegistry          | Runtime              
 org.w3c.dom.bootstrap.DOMImplementationRegistry$1        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.bootstrap.DOMImplementationRegistry$2        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.w3c.dom.bootstrap.DOMImplementationRegistry$3        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.w3c.dom.bootstrap.DOMImplementationRegistry$4        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.w3c.dom.css.CSS2Properties                           | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.css.CSSCharsetRule                           | Runtime                           | Same API
@@ -446,7 +446,7 @@ org.w3c.dom.html.HTMLDirectoryElement                    | Runtime              
 org.w3c.dom.html.HTMLDivElement                          | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLDocument                            | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (23/24 = 95% similar)
 org.w3c.dom.html.HTMLElement                             | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLFieldSetElement                     | Runtime                           | Same API
@@ -456,7 +456,7 @@ org.w3c.dom.html.HTMLFontElement                         | Runtime              
 org.w3c.dom.html.HTMLFormElement                         | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLFrameElement                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (20/21 = 95% similar)
 org.w3c.dom.html.HTMLFrameSetElement                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLHRElement                           | Runtime                           | Same API
@@ -468,7 +468,7 @@ org.w3c.dom.html.HTMLHeadingElement                      | Runtime              
 org.w3c.dom.html.HTMLHtmlElement                         | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLIFrameElement                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (24/25 = 96% similar)
 org.w3c.dom.html.HTMLImageElement                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLInputElement                        | Runtime                           | Same API
@@ -494,11 +494,11 @@ org.w3c.dom.html.HTMLModElement                          | Runtime              
 org.w3c.dom.html.HTMLOListElement                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLObjectElement                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (39/40 = 97% similar)
 org.w3c.dom.html.HTMLOptGroupElement                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLOptionElement                       | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (15/17 = 88% similar)
 org.w3c.dom.html.HTMLParagraphElement                    | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLParamElement                        | Runtime                           | Same API
@@ -516,13 +516,13 @@ org.w3c.dom.html.HTMLStyleElement                        | Runtime              
 org.w3c.dom.html.HTMLTableCaptionElement                 | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLTableCellElement                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (33/34 = 97% similar)
 org.w3c.dom.html.HTMLTableColElement                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLTableElement                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLTableRowElement                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (19/22 = 86% similar)
 org.w3c.dom.html.HTMLTableSectionElement                 | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.w3c.dom.html.HTMLTextAreaElement                     | Runtime                           | Same API
@@ -616,13 +616,13 @@ org.xml.sax.Locator                                      | Runtime              
 org.xml.sax.Parser                                       | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.SAXException                                 | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (12/13 = 92% similar)
 org.xml.sax.SAXNotRecognizedException                    | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.SAXNotSupportedException                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.SAXParseException                            | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (13/14 = 92% similar)
 org.xml.sax.XMLFilter                                    | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.XMLReader                                    | Runtime                           | Same API
@@ -654,25 +654,25 @@ org.xml.sax.helpers.LocatorImpl                          | Runtime              
 org.xml.sax.helpers.NamespaceSupport                     | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.helpers.NamespaceSupport$Context             | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (14/18 = 77% similar)
 org.xml.sax.helpers.NewInstance                          | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (6/7 = 85% similar)
 org.xml.sax.helpers.ParserAdapter                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (34/35 = 97% similar)
 org.xml.sax.helpers.ParserAdapter$AttributeListAdapter   | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.helpers.ParserFactory                        | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (6/7 = 85% similar)
 org.xml.sax.helpers.SecuritySupport                      | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (3/10 = 30% similar)
 org.xml.sax.helpers.SecuritySupport$1                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.xml.sax.helpers.SecuritySupport$2                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.xml.sax.helpers.SecuritySupport$3                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.xml.sax.helpers.SecuritySupport$4                    | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (5/6 = 83% similar)
 org.xml.sax.helpers.XMLFilterImpl                        | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.helpers.XMLReaderAdapter                     | Runtime                           | Same API
@@ -680,5 +680,5 @@ org.xml.sax.helpers.XMLReaderAdapter                     | Runtime              
 org.xml.sax.helpers.XMLReaderAdapter$AttributesAdapter   | Runtime                           | Same API
                                                          | xml-apis-1.4.01.jar (Classpath)   |
 org.xml.sax.helpers.XMLReaderFactory                     | Runtime                           | Different API
-                                                         | xml-apis-1.4.01.jar (Classpath)   |
+                                                         | xml-apis-1.4.01.jar (Classpath)   | (6/7 = 85% similar)
 

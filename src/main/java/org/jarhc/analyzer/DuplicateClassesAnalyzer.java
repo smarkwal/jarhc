@@ -16,12 +16,17 @@
 
 package org.jarhc.analyzer;
 
+import static java.lang.Math.min;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
@@ -210,7 +215,22 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 			return "Same API";
 		}
 
-		return "Different API";
+		StringBuilder result = new StringBuilder("Different API");
+		List<String[]> apis = classDefs.stream().map(def -> def.getApiDescription().split("\n")).collect(Collectors.toList());
+		for (int i = 1; i < apis.size(); i++) {
+			String[] apis1 = apis.get(0);
+			String[] apis2 = apis.get(i);
+			long diff = calculateApiDiff(apis1, apis2);
+			int total = Math.max(apis1.length, apis2.length);
+
+			BigDecimal similarity = BigDecimal.valueOf(100).subtract(
+					BigDecimal.valueOf(100 * diff).divide(BigDecimal.valueOf(total), RoundingMode.CEILING)
+			);
+
+			result.append("\n(").append(total - diff).append("/").append(total).append(" = ").append(similarity).append("% similar)");
+		}
+
+		return result.toString();
 	}
 
 	/**
@@ -241,6 +261,38 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 		} else {
 			return "Different content";
 		}
+	}
+
+	public static int calculateApiDiff(String[] api1, String[] api2) {
+
+		int len1 = api1.length;
+		int len2 = api2.length;
+		int[] line1 = new int[len2 + 1];
+		int[] line2 = new int[len2 + 1];
+
+		for (int i = 0; i <= len2; i++) {
+			line1[i] = i;
+		}
+
+		for (int i = 0; i < len1; i++) {
+			line2[0] = i + 1;
+
+			for (int j = 0; j < len2; j++) {
+				int del = line1[j + 1] + 1;
+				int ins = line2[j] + 1;
+				boolean eq = api1[i].equals(api2[j]);
+				int sub = eq ? line1[j] : line1[j] + 1;
+				int min = min(min(del, ins), sub);
+				line2[j + 1] = min;
+			}
+
+			// swap line 1 and line 2
+			int[] tmp = line2;
+			line2 = line1;
+			line1 = tmp;
+		}
+
+		return line1[len2];
 	}
 
 }

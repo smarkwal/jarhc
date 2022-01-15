@@ -71,7 +71,7 @@ class DuplicateClassesAnalyzerTest {
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
 		assertValuesEquals(rows.get(0), "a.A", joinLines("a.jar (Classpath)", "a.jar (Provided)"), "Exact copy");
-		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r.jar (Classpath)", "Runtime"), "Different API");
+		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r.jar (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
 		assertValuesEquals(rows.get(2), "z.Z", joinLines("x.jar (Classpath)", "y.jar (Classpath)"), "Exact copy");
 		assertValuesEquals(rows.get(3), "z/Z.txt", joinLines("x.jar", "y.jar"), "Different content");
 	}
@@ -164,7 +164,59 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a.jar (Classpath)", "Runtime"), "Different API");
+		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a.jar (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
 	}
 
+	@Test
+	void calculateApiDiff() {
+
+		int result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[0],
+				new String[0]
+		);
+		assertEquals(0, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line1" },
+				new String[0]
+		);
+		assertEquals(1, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[0],
+				new String[] { "line1" }
+		);
+		assertEquals(1, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line1" },
+				new String[] { "line1" }
+		);
+		assertEquals(0, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line1", "line2", "line3" },
+				new String[] { "line1", "line2", "line3" }
+		);
+		assertEquals(0, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line1", "line2", "line3" },
+				new String[] { "line2" }
+		);
+		assertEquals(2, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line2" },
+				new String[] { "line1", "line2", "line3" }
+		);
+		assertEquals(2, result);
+
+		result = DuplicateClassesAnalyzer.calculateApiDiff(
+				new String[] { "line1", "line2", "line3" },
+				new String[] { "line4", "line5", "line6" }
+		);
+		assertEquals(3, result);
+
+	}
 }
