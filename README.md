@@ -6,8 +6,8 @@ Its main purpose is to analyze a set of JAR files (\*.jar) and check whether the
 
 It is a standalone Java application run from the command line:
 
-```shell
-java -jar jarhc-with-deps.jar [options] <path> [<path>]*
+```
+java -jar jarhc-with-deps.jar [options] <artifact> [<artifact>]*
 ```
 
 More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wiki).
