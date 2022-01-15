@@ -16,9 +16,9 @@
 
 package org.jarhc.it;
 
-class CommonsIT extends AbstractIT {
+class CommonsTest extends AbstractTest {
 
-	CommonsIT() {
+	CommonsTest() {
 		super("commons-beanutils:commons-beanutils:1.9.2",
 				"commons-betwixt:commons-betwixt:0.8",
 				"commons-codec:commons-codec:1.10",

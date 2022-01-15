@@ -41,7 +41,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
 @SuppressWarnings("NewClassNamingConvention")
-class MavenRepositoryIT {
+class MavenRepositoryTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenRepository.class);
 

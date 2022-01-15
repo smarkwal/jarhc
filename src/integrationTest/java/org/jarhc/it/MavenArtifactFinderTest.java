@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
-class MavenArtifactFinderIT {
+class MavenArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);
 	private File cacheDir;

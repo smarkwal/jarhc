@@ -16,9 +16,9 @@
 
 package org.jarhc.it;
 
-class Spring5IT extends AbstractIT {
+class Spring5Test extends AbstractTest {
 
-	Spring5IT() {
+	Spring5Test() {
 		super("org.springframework:spring-aop:5.1.3.RELEASE",
 				"org.springframework:spring-beans:5.1.3.RELEASE",
 				"org.springframework:spring-context:5.1.3.RELEASE",

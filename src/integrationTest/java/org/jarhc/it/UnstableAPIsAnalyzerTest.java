@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2019 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,25 +22,27 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.BlacklistAnalyzer;
+import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.test.JavaRuntimeMock;
+import org.jarhc.test.TextUtils;
 import org.jarhc.test.log.LoggerBuilder;
-import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
-@SuppressWarnings("NewClassNamingConvention")
-class BlacklistAnalyzerIT {
+class UnstableAPIsAnalyzerTest {
 
-	private final ClasspathLoader classpathLoader = LoaderBuilder.create().buildClasspathLoader();
+	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
+	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
 	private final Logger logger = LoggerBuilder.reject(BlacklistAnalyzer.class);
 	private final BlacklistAnalyzer analyzer = new BlacklistAnalyzer(logger);
 
@@ -48,8 +50,9 @@ class BlacklistAnalyzerIT {
 	void test_analyze(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile = TestUtils.getResourceAsFile("/org/jarhc/it/BlacklistAnalyzerIT/a.jar", tempDir);
-		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile));
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerTest/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerTest/b.jar", tempDir);
+		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);
@@ -67,33 +70,14 @@ class BlacklistAnalyzerIT {
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
 
-		String expectedMessage = StringUtils.joinLines(
-				"a.Runtime",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String)",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[])",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[])",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[])",
-				"\u2022 java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)",
-				"\u2022 void java.lang.Runtime.exit(int)",
-				"\u2022 void java.lang.Runtime.halt(int)",
-				"\u2022 void java.lang.Runtime.load(java.lang.String)",
-				"\u2022 void java.lang.Runtime.loadLibrary(java.lang.String)",
-				"",
-				"a.System",
-				"\u2022 static void java.lang.System.exit(int)",
-				"\u2022 static void java.lang.System.load(java.lang.String)",
-				"\u2022 static void java.lang.System.loadLibrary(java.lang.String)",
-				"",
-				"a.Unsafe",
-				"\u2022 int sun.misc.Unsafe.addressSize()",
-				"\u2022 static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()",
-				"",
-				"a/start.bat",
-				"a/start.sh"
-		);
-		assertEquals(expectedMessage, values[1]);
+		String result = values[1];
+		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/it/UnstableAPIsAnalyzerTest/result.txt", "UTF-8");
 
+		// normalize
+		result = TextUtils.toUnixLineSeparators(result);
+		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
+
+		assertEquals(expectedResult, result);
 	}
 
 }

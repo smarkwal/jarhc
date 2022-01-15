@@ -29,11 +29,11 @@ import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-abstract class AbstractMainIT {
+abstract class AbstractMainTest {
 
-	private String[] extraArgs;
+	private final String[] extraArgs;
 
-	AbstractMainIT(String... extraArgs) {
+	AbstractMainTest(String... extraArgs) {
 		this.extraArgs = extraArgs;
 	}
 
@@ -44,7 +44,7 @@ abstract class AbstractMainIT {
 		File reportFile = new File(tempDir.toFile(), "report.txt");
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
-		String[] commonArgs = new String[]{
+		String[] commonArgs = new String[] {
 				"--title", this.getClass().getSimpleName(),
 				"--format", "text",
 				"--output", reportFile.getAbsolutePath(),

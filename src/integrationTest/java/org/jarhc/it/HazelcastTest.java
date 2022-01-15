@@ -16,9 +16,9 @@
 
 package org.jarhc.it;
 
-class HazelcastIT extends AbstractIT {
+class HazelcastTest extends AbstractTest {
 
-	HazelcastIT() {
+	HazelcastTest() {
 		super("com.hazelcast:hazelcast:3.11.2",
 				"com.hazelcast:hazelcast-client:3.11.2");
 	}

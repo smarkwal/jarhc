@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Stephan Markwalder
+ * Copyright 2018 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,13 @@
 
 package org.jarhc.it;
 
-class TestJettyWebAppIT extends AbstractMainIT {
+class AsmTest extends AbstractTest {
 
-	TestJettyWebAppIT() {
-		super(
-				"--classpath", "org.eclipse.jetty:test-jetty-webapp:war:9.4.20.v20190813",
-				"--provided", "javax.servlet:javax.servlet-api:jar:3.1.0",
-				"--provided", "org.slf4j:slf4j-api:jar:1.7.28",
-				"--provided", "org.eclipse.jetty:jetty-server:jar:9.4.20.v20190813"
+	AsmTest() {
+		super("org.ow2.asm:asm:7.0",
+				"org.ow2.asm:asm-analysis:7.0",
+				"org.ow2.asm:asm-commons:7.0",
+				"org.ow2.asm:asm-tree:7.0"
 		);
 	}
 

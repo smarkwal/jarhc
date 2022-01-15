@@ -37,7 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-class MainIT {
+class MainTest {
 
 	private SecurityManager originalSecurityManager;
 	private PrintStream originalSystemOut;
@@ -99,7 +99,7 @@ class MainIT {
 		String actualReport = FileUtils.readFileToString(reportFile);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainTest/report.txt", actualReport, "UTF-8");
 			return;
 		}
 
@@ -133,7 +133,7 @@ class MainIT {
 		String actualReport = FileUtils.readFileToString(reportFile);
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainIT/report.txt", actualReport, "UTF-8");
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/MainTest/report.txt", actualReport, "UTF-8");
 			return;
 		}
 
@@ -142,7 +142,7 @@ class MainIT {
 
 	private void assertReport(String actualReport) throws IOException {
 
-		String expectedReport = TestUtils.getResourceAsString("/org/jarhc/it/MainIT/report.txt", "UTF-8");
+		String expectedReport = TestUtils.getResourceAsString("/org/jarhc/it/MainTest/report.txt", "UTF-8");
 
 		// normalize
 		actualReport = TextUtils.toUnixLineSeparators(actualReport);

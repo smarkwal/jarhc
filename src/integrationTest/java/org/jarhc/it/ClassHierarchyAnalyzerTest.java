@@ -25,7 +25,8 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import org.jarhc.TestUtils;
-import org.jarhc.analyzer.BlacklistAnalyzer;
+import org.jarhc.analyzer.BinaryCompatibilityAnalyzer;
+import org.jarhc.app.Options;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
@@ -34,25 +35,43 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.TextUtils;
-import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.slf4j.Logger;
 
-@SuppressWarnings("NewClassNamingConvention")
-class UnstableAPIsAnalyzerIT {
+class ClassHierarchyAnalyzerTest {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();
-	private final Logger logger = LoggerBuilder.reject(BlacklistAnalyzer.class);
-	private final BlacklistAnalyzer analyzer = new BlacklistAnalyzer(logger);
+	private final BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(new Options());
 
 	@Test
-	void test_analyze(@TempDir Path tempDir) throws IOException {
+	void analyze_compatible(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerIT/a.jar", tempDir);
-		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/UnstableAPIsAnalyzerIT/b.jar", tempDir);
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/b-1.jar", tempDir);
+		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		List<Object> content = section.getContent();
+		assertEquals(1, content.size());
+		Object object = content.get(0);
+		assertTrue(object instanceof ReportTable);
+		ReportTable table = (ReportTable) object;
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+
+	}
+
+	@Test
+	void analyze_incompatible(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/a.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/b-2.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
 
 		// test
@@ -71,14 +90,15 @@ class UnstableAPIsAnalyzerIT {
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
 
-		String result = values[1];
-		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/it/UnstableAPIsAnalyzerIT/result.txt", "UTF-8");
+		String value = values[1];
+		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/ClassHierarchyAnalyzerTest/result.txt", "UTF-8");
 
 		// normalize
-		result = TextUtils.toUnixLineSeparators(result);
-		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
+		value = TextUtils.toUnixLineSeparators(value);
+		expectedValue = TextUtils.toUnixLineSeparators(expectedValue);
 
-		assertEquals(expectedResult, result);
+		assertEquals(expectedValue, value);
+
 	}
 
 }

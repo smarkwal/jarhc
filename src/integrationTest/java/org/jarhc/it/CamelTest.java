@@ -16,9 +16,9 @@
 
 package org.jarhc.it;
 
-class CamelIT extends AbstractIT {
+class CamelTest extends AbstractTest {
 
-	CamelIT() {
+	CamelTest() {
 		super("org.apache.camel:camel-core:2.17.7",
 				"org.apache.camel:camel-jdbc:2.17.7",
 				"org.apache.camel:camel-jms:2.17.7",

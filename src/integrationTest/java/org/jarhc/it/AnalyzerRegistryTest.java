@@ -32,8 +32,7 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.mockito.Mockito;
 
-@SuppressWarnings("NewClassNamingConvention")
-class AnalyzerRegistryIT {
+class AnalyzerRegistryTest {
 
 	private AnalyzerRegistry registry;
 

@@ -36,8 +36,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
-@SuppressWarnings("NewClassNamingConvention")
-class ApplicationIT {
+class ApplicationTest {
 
 	@Test
 	void test(@TempDir Path tempDir) throws IOException {
@@ -55,7 +54,7 @@ class ApplicationIT {
 		application.setRepository(repository);
 
 		Options options = new Options();
-		File file = TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationIT/a.jar", tempDir);
+		File file = TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationTest/a.jar", tempDir);
 		options.addClasspathJarPath(file.getAbsolutePath());
 
 		// test
@@ -67,11 +66,11 @@ class ApplicationIT {
 		String output = out.getText();
 
 		if (TestUtils.createResources()) {
-			TestUtils.saveResource("integrationTest", "/org/jarhc/it/ApplicationIT/result.txt", output, "UTF-8");
+			TestUtils.saveResource("integrationTest", "/org/jarhc/it/ApplicationTest/result.txt", output, "UTF-8");
 			return;
 		}
 
-		String expectedOutput = TestUtils.getResourceAsString("/org/jarhc/it/ApplicationIT/result.txt", "UTF-8");
+		String expectedOutput = TestUtils.getResourceAsString("/org/jarhc/it/ApplicationTest/result.txt", "UTF-8");
 
 		// normalize output
 		output = TextUtils.toUnixLineSeparators(output);

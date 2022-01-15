@@ -50,11 +50,11 @@ import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract class AbstractIT {
+abstract class AbstractTest {
 
 	private final String[] artifacts;
 
-	AbstractIT(String... artifacts) {
+	AbstractTest(String... artifacts) {
 		this.artifacts = artifacts;
 	}
 
