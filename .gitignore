@@ -22,8 +22,11 @@
 # Dependency-Check data directory
 /dependency-check
 
-# files used for local testing
+# user-specific files
 /gradle.user.properties
+*.gpg
+
+# files used for local testing
 /test
 
 # macOS files
