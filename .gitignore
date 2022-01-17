@@ -23,6 +23,7 @@
 /dependency-check
 
 # files used for local testing
+/gradle.user.properties
 /test
 
 # macOS files

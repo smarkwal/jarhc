@@ -25,6 +25,7 @@ import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 plugins {
     java
@@ -60,6 +61,17 @@ plugins {
 
 group = "org.jarhc"
 description = "JarHC - JAR Health Check"
+
+// load user-specific properties -----------------------------------------------
+
+val userPropertiesFile = file("${projectDir}/gradle.user.properties");
+if (userPropertiesFile.exists()) {
+    val userProperties = Properties()
+    userProperties.load(userPropertiesFile.inputStream())
+    userProperties.forEach {
+        project.ext.set(it.key.toString(), it.value)
+    }
+}
 
 // Java version check ----------------------------------------------------------
 
