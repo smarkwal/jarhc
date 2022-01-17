@@ -19,10 +19,9 @@ package org.jarhc.test.release;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Properties;
 import org.junit.jupiter.api.Test;
 
 class BuildArtifactsTest extends ReleaseTest {
@@ -30,10 +29,11 @@ class BuildArtifactsTest extends ReleaseTest {
 	@Test
 	void version() throws IOException {
 
-		// get expected version from Gradle project file
-		File buildFile = getProjectFile("build.gradle.kts");
-		String buildScript = FileUtils.readFileToString(buildFile, StandardCharsets.UTF_8);
-		String expectedVersion = StringUtils.substringBetween(buildScript, "\nversion = \"", "\"\n");
+		// get expected version from Gradle properties file
+		File propertiesFile = getProjectFile("gradle.properties");
+		Properties properties = new Properties();
+		properties.load(new FileReader(propertiesFile));
+		String expectedVersion = properties.getProperty("version");
 
 		assertEquals(expectedVersion, getJarHcVersion());
 	}
