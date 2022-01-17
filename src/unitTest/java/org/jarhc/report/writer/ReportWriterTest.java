@@ -102,7 +102,7 @@ class ReportWriterTest {
 
 	private static class TestReportWriter implements ReportWriter {
 
-		private StringBuffer buffer = new StringBuffer();
+		private StringBuilder buffer = new StringBuilder();
 
 		@Override
 		public void print(String text) {

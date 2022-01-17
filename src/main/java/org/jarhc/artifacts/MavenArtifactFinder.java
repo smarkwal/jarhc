@@ -51,6 +51,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		this.logger = logger;
 	}
 
+	@Override
 	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 
 		// check memory cache

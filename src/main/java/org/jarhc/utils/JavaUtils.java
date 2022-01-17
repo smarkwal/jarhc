@@ -113,6 +113,9 @@ public class JavaUtils {
 	 */
 	public static int getJavaVersion() {
 		String value = System.getProperty("java.version");
+		if (value == null) {
+			throw new JarHcException("System property 'java.version' not found.");
+		}
 		String[] digits = value.split("\\.");
 		int version = Integer.parseInt(digits[0]);
 		if (version == 1) { // Java 1.1 - 1.8

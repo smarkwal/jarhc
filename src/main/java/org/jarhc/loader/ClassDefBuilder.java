@@ -51,13 +51,8 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.RecordComponentVisitor;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.TypePath;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class ClassDefBuilder extends ClassVisitor {
-
-	// TODO: remove if not used anymore
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClassDefBuilder.class);
 
 	private final boolean scanForReferences;
 

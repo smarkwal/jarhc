@@ -272,63 +272,6 @@ class ClassDefLoaderTest {
 		assertEquals("Java 8", classDef.getJavaVersion());
 	}
 
-	// TODO: test loading of field and method definitions
-	// TODO: test loading of class, field, and method references
-
-	/*
-	@Test
-	void test_getFieldDefs() throws IOException {
-
-		// test
-		ClassScanner scanner = scanTestClass();
-
-		// assert
-		List<FieldDef> fieldDefs = scanner.getFieldDefs();
-
-		FieldDef nameField = fieldDefs.stream().filter(f -> f.getFieldName().equals("name")).findFirst().orElse(null);
-		assertNotNull(nameField);
-		assertEquals("public java.lang.String name", nameField.getDisplayName());
-
-		FieldDef numberField = fieldDefs.stream().filter(f -> f.getFieldName().equals("number")).findFirst().orElse(null);
-		assertNotNull(numberField);
-		assertEquals("public int number", numberField.getDisplayName());
-
-		FieldDef dataField = fieldDefs.stream().filter(f -> f.getFieldName().equals("data")).findFirst().orElse(null);
-		assertNotNull(dataField);
-		assertEquals("public byte[] data", dataField.getDisplayName());
-
-		assertEquals(3, fieldDefs.size());
-	}
-
-	@Test
-	void test_getMethodDefs() throws IOException {
-
-		// test
-		ClassScanner scanner = scanTestClass();
-
-		// assert
-		List<MethodDef> methodDefs = scanner.getMethodDefs();
-
-		MethodDef mainMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("main")).findFirst().orElse(null);
-		assertNotNull(mainMethod);
-		assertEquals("public static void main(java.lang.String[])", mainMethod.getDisplayName());
-
-		MethodDef testMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("test")).findFirst().orElse(null);
-		assertNotNull(testMethod);
-		assertEquals("public void test()", testMethod.getDisplayName());
-
-		MethodDef createListMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("createList")).findFirst().orElse(null);
-		assertNotNull(createListMethod);
-		assertEquals("public static java.util.List createList()", createListMethod.getDisplayName());
-
-		MethodDef initMethod = methodDefs.stream().filter(m -> m.getMethodName().equals("<init>")).findFirst().orElse(null);
-		assertNotNull(initMethod);
-		assertEquals("public void <init>()", initMethod.getDisplayName());
-
-		assertEquals(4, methodDefs.size());
-	}
-	*/
-
 	private ClassDef loadClass(String resource) throws IOException {
 		try (InputStream stream = TestUtils.getResourceAsStream(resource)) {
 			return classDefLoader.load(stream);

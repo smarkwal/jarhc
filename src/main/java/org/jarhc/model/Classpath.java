@@ -117,6 +117,7 @@ public class Classpath extends ClassLoader {
 		return classDefsMap.getValues(className);
 	}
 
+	@Override
 	protected Optional<ClassDef> findClassDef(String className) {
 		Set<ClassDef> set = getClassDefs(className);
 		if (set == null || set.isEmpty()) {
