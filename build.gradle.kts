@@ -28,15 +28,32 @@ import java.time.format.DateTimeFormatter
 
 plugins {
     java
-    jacoco
-    id("com.github.jk1.dependency-license-report") version "2.0"
-    id("org.ajoberstar.grgit") version "4.1.1"
-    id("org.kordamp.gradle.source-xref") version "0.47.0"
-    id("org.sonarqube") version "3.3"
-    id("org.owasp.dependencycheck") version "6.5.3"
-    id("com.dorongold.task-tree") version "2.1.0"
-    `maven-publish`
     idea
+    jacoco
+    signing
+    `maven-publish`
+
+    // create report with all open-source licenses
+    id("com.github.jk1.dependency-license-report") version "2.0"
+
+    // create source-xref artifact
+    id("org.kordamp.gradle.source-xref") version "0.47.0"
+
+    // run SonarQube analysis
+    id("org.sonarqube") version "3.3"
+
+    // run OWASP Dependency-Check analysis
+    id("org.owasp.dependencycheck") version "6.5.3"
+
+    // publish to Sonatype OSSRH and release to Maven Central
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+
+    // get current Git branch name
+    id("org.ajoberstar.grgit") version "4.1.1"
+
+    // provide utility task "taskTree" for analysis of task dependencies
+    id("com.dorongold.task-tree") version "2.1.0"
+
 }
 
 // project settings ------------------------------------------------------------
@@ -346,9 +363,52 @@ config {
 }
 
 publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
+    publications {
+        create<MavenPublication>("maven") {
+
+            from(components["java"])
+
+            pom {
+
+                name.set("JarHC - JAR Health Check")
+                description.set("JarHC is a static analysis tool to help you find your way through \"JAR hell\" or \"classpath hell\".")
+                url.set("http://jarhc.org")
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("smarkwal")
+                        name.set("Stephan Markwalder")
+                        email.set("stephan@markwalder.net")
+                        url.set("https://github.com/smarkwal")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/smarkwal/jarhc.git")
+                    developerConnection.set("scm:git:ssh://github.com/smarkwal/jarhc.git")
+                    url.set("https://github.com/smarkwal/jarhc")
+                }
+
+            }
+        }
     }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
+signing {
+    sign(publishing.publications["maven"])
 }
 
 // tasks -----------------------------------------------------------------------
@@ -684,6 +744,11 @@ tasks.sonarqube {
         tasks.test, unitTest, integrationTest,
         tasks.jacocoTestReport
     )
+}
+
+// disable generation of Gradle module metadata file
+tasks.withType<GenerateModuleMetadata> {
+    enabled = false
 }
 
 // helper functions ------------------------------------------------------------
