@@ -27,12 +27,25 @@ import org.jarhc.loader.ClassDefLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.ModuleInfo;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of {@link JavaRuntime} based on the Java runtime used to run JarHC.
  */
 public class DefaultJavaRuntime extends JavaRuntime {
+
+	/**
+	 * Use the parent class loader of the system class loader.
+	 * (bootstrap class loader or extension class loader)
+	 */
+	private final ClassLoader classLoader = ClassLoader.getSystemClassLoader().getParent();
+
+	/**
+	 * Helper class to load module information from Java runtime.
+	 */
+	private final ModuleSystemRuntime moduleSystemRuntime = new ModuleSystemRuntime(classLoader, LoggerFactory.getLogger(ModuleSystemRuntime.class));
 
 	/**
 	 * Class definition loader used to load Java runtime classes.
@@ -108,10 +121,6 @@ public class DefaultJavaRuntime extends JavaRuntime {
 
 	private Optional<ClassDef> createClassDef(String className) {
 
-		// use the parent class loader of the system class loader
-		// (bootstrap class loader or extension class loader)
-		ClassLoader classLoader = ClassLoader.getSystemClassLoader().getParent();
-
 		// construct the resource name of the Java class file
 		String resourceName = className.replace('.', '/') + ".class";
 
@@ -123,6 +132,13 @@ public class DefaultJavaRuntime extends JavaRuntime {
 			}
 
 			ClassDef classDef = loader.load(stream);
+
+			// try to find module of class
+			ModuleInfo moduleInfo = moduleSystemRuntime.findModuleInfo(className);
+			if (moduleInfo != null) {
+				classDef.setModuleInfo(moduleInfo);
+			}
+
 			return Optional.of(classDef);
 
 		} catch (IOException e) {

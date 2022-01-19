@@ -154,6 +154,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	private JarFile jarFile;
 
 	/**
+	 * Module info.
+	 */
+	private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
+
+	/**
 	 * Create a class definition for the given class name.
 	 *
 	 * @param className Class name
@@ -421,15 +426,16 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return jarFile;
 	}
 
-	void setJarFile(JarFile jarFile) {
+	public void setJarFile(JarFile jarFile) {
 		this.jarFile = jarFile;
 	}
 
 	public ModuleInfo getModuleInfo() {
-		if (jarFile == null) {
-			return ModuleInfo.UNNAMED;
-		}
-		return jarFile.getModuleInfo();
+		return moduleInfo;
+	}
+
+	public void setModuleInfo(ModuleInfo moduleInfo) {
+		this.moduleInfo = moduleInfo;
 	}
 
 	@Override

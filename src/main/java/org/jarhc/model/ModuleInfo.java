@@ -17,8 +17,13 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ModuleInfo {
 
@@ -32,8 +37,10 @@ public class ModuleInfo {
 	private int release;
 
 	private boolean automatic;
-	private final List<String> exports = new ArrayList<>();
+	private final List<String> packages = new ArrayList<>();
 	private final List<String> requires = new ArrayList<>();
+	private final Map<String, Set<String>> exports = new HashMap<>();
+	private final Map<String, Set<String>> opens = new HashMap<>();
 
 	public static ModuleInfo forModuleName(String moduleName) {
 		ModuleInfo moduleInfo = new ModuleInfo();
@@ -81,12 +88,12 @@ public class ModuleInfo {
 		return moduleName.equals(moduleInfo.moduleName);
 	}
 
-	public List<String> getExports() {
-		return Collections.unmodifiableList(exports);
+	public List<String> getPackages() {
+		return Collections.unmodifiableList(packages);
 	}
 
-	public ModuleInfo addExport(String export) {
-		this.exports.add(export);
+	public ModuleInfo addPackage(String packageName) {
+		this.packages.add(packageName);
 		return this;
 	}
 
@@ -94,8 +101,36 @@ public class ModuleInfo {
 		return Collections.unmodifiableList(requires);
 	}
 
-	public ModuleInfo addRequire(String require) {
-		this.requires.add(require);
+	public ModuleInfo addRequires(String moduleName) {
+		this.requires.add(moduleName);
+		return this;
+	}
+
+	public List<String> getExports() {
+		List<String> packageNames = new ArrayList<>(exports.keySet());
+		return Collections.unmodifiableList(packageNames);
+	}
+
+	public boolean isExported(String packageName, String moduleName) {
+		return mapContainsEntry(exports, packageName, moduleName);
+	}
+
+	public ModuleInfo addExports(String packageName, String... moduleNames) {
+		this.exports.put(packageName, toSet(moduleNames));
+		return this;
+	}
+
+	public List<String> getOpens() {
+		List<String> packageNames = new ArrayList<>(opens.keySet());
+		return Collections.unmodifiableList(packageNames);
+	}
+
+	public boolean isOpen(String packageName, String moduleName) {
+		return mapContainsEntry(opens, packageName, moduleName);
+	}
+
+	public ModuleInfo addOpens(String packageName, String... moduleNames) {
+		this.opens.put(packageName, toSet(moduleNames));
 		return this;
 	}
 
@@ -106,7 +141,32 @@ public class ModuleInfo {
 		} else if (automatic) {
 			return String.format("ModuleInfo[%s,automatic]", getModuleName());
 		} else {
-			return String.format("ModuleInfo[%s,exports=%s,requires=%s]", getModuleName(), getExports(), getRequires());
+			return String.format("ModuleInfo[%s,requires=%s,exports=%s,opens=%s]", getModuleName(), getRequires(), getExports(), getOpens());
+		}
+	}
+
+	private static Set<String> toSet(String[] values) {
+		if (values == null || values.length == 0) {
+			return null;
+		}
+		return Arrays.stream(values).collect(Collectors.toSet());
+	}
+
+	private static boolean mapContainsEntry(Map<String, Set<String>> map, String key, String value) {
+		if (key == null) throw new IllegalArgumentException("key");
+		if (value == null) throw new IllegalArgumentException("value");
+		if (map.containsKey(key)) {
+			Set<String> values = map.get(key);
+			if (values == null) {
+				return true;
+			} else {
+				if (value.equals("UNNAMED")) {
+					value = "ALL-UNNAMED";
+				}
+				return values.contains(value);
+			}
+		} else {
+			return false;
 		}
 	}
 

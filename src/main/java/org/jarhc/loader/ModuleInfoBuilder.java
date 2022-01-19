@@ -61,31 +61,28 @@ class ModuleInfoBuilder extends ClassVisitor {
 
 		@Override
 		public void visitPackage(String packageName) {
-			// System.out.println("visitPackage: " + packaze);
-			// TODO: ???
+			packageName = JavaUtils.toExternalName(packageName);
+			moduleInfo.addPackage(packageName);
 		}
 
 		@Override
 		public void visitRequire(String moduleName, int access, String version) {
-			// System.out.println("visitRequire: " + moduleName + ", " + access + ", " + version);
 			// TODO: add access and version ???
-
-			moduleInfo.addRequire(moduleName);
+			moduleInfo.addRequires(moduleName);
 		}
 
 		@Override
 		public void visitExport(String packageName, int access, String... modules) {
-			// System.out.println("visitExport: " + packageName + ", " + access + ", " + modules);
-			// TODO: add access and modules ???
-
+			// TODO: add access ???
 			packageName = JavaUtils.toExternalName(packageName);
-			moduleInfo.addExport(packageName);
+			moduleInfo.addExports(packageName, modules);
 		}
 
 		@Override
 		public void visitOpen(String packageName, int access, String... modules) {
-			// System.out.println("visitOpen: " + packageName + ", " + access + ", " + modules);
-			// TODO: ???
+			// TODO: add access ???
+			packageName = JavaUtils.toExternalName(packageName);
+			moduleInfo.addOpens(packageName, modules);
 		}
 
 		@Override

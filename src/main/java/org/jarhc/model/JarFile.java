@@ -131,6 +131,9 @@ public class JarFile {
 			// set reference to this JAR file in class definition
 			classDef.setJarFile(this);
 
+			// set reference to module info in class definition
+			classDef.setModuleInfo(moduleInfo);
+
 			// add class definition to fast lookup map
 			String className = classDef.getClassName();
 			classDefsMap.put(className, classDef);

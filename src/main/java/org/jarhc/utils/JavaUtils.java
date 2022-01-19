@@ -16,6 +16,7 @@
 
 package org.jarhc.utils;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -122,6 +123,11 @@ public class JavaUtils {
 			version = Integer.parseInt(digits[1]);
 		}
 		return version;
+	}
+
+	public static File getJavaModuleFile(String moduleName) {
+		String javaHome = System.getProperty("java.home");
+		return new File(javaHome, "jmods/" + moduleName + ".jmod");
 	}
 
 }

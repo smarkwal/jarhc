@@ -30,14 +30,16 @@ class ModuleInfoTest {
 		// prepare
 		ModuleInfo moduleInfo = ModuleInfo
 				.forModuleName("m")
-				.addExport("a").addExport("b")
-				.addRequire("java.base").addRequire("x").addRequire("y");
+				.addPackage("m")
+				.addRequires("java.base").addRequires("x").addRequires("y")
+				.addExports("a").addExports("b", "s", "t")
+				.addOpens("c").addOpens("d", "u", "v");
 
 		// test
 		String result = moduleInfo.toString();
 
 		// assert
-		assertEquals("ModuleInfo[m,exports=[a, b],requires=[java.base, x, y]]", result);
+		assertEquals("ModuleInfo[m,requires=[java.base, x, y],exports=[a, b],opens=[c, d]]", result);
 
 	}
 

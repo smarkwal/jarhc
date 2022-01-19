@@ -40,7 +40,7 @@ class ModulesAnalyzerTest {
 				.addJarFile("a-core.jar")
 				.addModuleInfo(ModuleInfo.forModuleName("a").setAutomatic(true))
 				.addJarFile("b.jar")
-				.addModuleInfo(ModuleInfo.forModuleName("b").addExport("b.x").addExport("b.y").addRequire("a").addRequire("java.base"))
+				.addModuleInfo(ModuleInfo.forModuleName("b").addExports("b.x").addExports("b.y").addRequires("a").addRequires("java.base"))
 				.addJarFile("C-1.0.1.jar")
 				.addJarFile("d.jar")
 				.build();

@@ -38,8 +38,6 @@ class ClassDefTest {
 	@BeforeEach
 	void setUp() {
 
-		doReturn(ModuleInfo.UNNAMED).when(jarFile).getModuleInfo();
-
 		classDef = ClassDef.forClassName("a.b.C")
 				.setClassLoader("Provided")
 				.setRelease(11)
@@ -52,6 +50,7 @@ class ClassDefTest {
 				.addPermittedSubclassName("p.q.R1")
 				.addPermittedSubclassNames(Arrays.asList("p.q.R2", "p.q.R3"));
 		classDef.setJarFile(jarFile);
+		classDef.setModuleInfo(ModuleInfo.UNNAMED);
 		classDef.setAccess(Modifier.PUBLIC + Modifier.ABSTRACT);
 
 		classDef.addRecordComponentDef(new RecordComponentDef("enabled", "boolean"));
