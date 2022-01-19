@@ -222,10 +222,6 @@ abstract class AbstractFileLoader {
 			fileName = fileNameNormalizer.getFileName(fileName, checksum);
 		}
 
-		// append JAR file name to class loader name
-		// String jarFileName = fileName;
-		// classDefs.forEach(classDef -> classDef.setClassLoader(classDef.getClassLoader() + " (" + jarFileName + ")"));
-
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(archive.getFileSize())
 				.withChecksum(checksum)

@@ -200,20 +200,17 @@ class ClassDefBuilder extends ClassVisitor {
 
 	@Override
 	public void visitNestHost(String nestHost) {
-		// TODO: handle nests ???
-		// System.out.println(String.format("ClassVisitor.visitNestHost(%s)", nestHost));
+		// TODO: handle nest hosts ???
 	}
 
 	@Override
 	public void visitNestMember(String nestMember) {
-		// TODO: handle nests ???
-		// System.out.println(String.format("ClassVisitor.visitNestMember(%s)", nestMember));
+		// TODO: handle nest members ???
 	}
 
 	@Override
 	public void visitAttribute(Attribute attribute) {
-		// TODO: handle attribute ???
-		// System.out.println(String.format("ClassVisitor.visitAttribute(%s)", attribute));
+		// TODO: handle attributes ???
 	}
 
 	@Override
@@ -303,8 +300,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		@Override
 		public void visitAttribute(Attribute attribute) {
-			// TODO: handle attribute ???
-			// System.out.println(String.format("RecordComponentVisitor.visitAttribute(%s)", attribute));
+			// TODO: handle attributes ???
 		}
 
 		@Override
@@ -337,8 +333,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		@Override
 		public void visitAttribute(Attribute attribute) {
-			// TODO: handle attribute ???
-			// System.out.println(String.format("FieldVisitor.visitAttribute(%s)", attribute));
+			// TODO: handle attributes ???
 		}
 
 		@Override

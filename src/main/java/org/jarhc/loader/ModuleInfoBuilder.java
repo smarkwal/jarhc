@@ -38,7 +38,6 @@ class ModuleInfoBuilder extends ClassVisitor {
 
 	@Override
 	public ModuleVisitor visitModule(String name, int access, String version) {
-		// System.out.println("visitModule: " + name + ", " + access + ", " + version);
 		// TODO: add access and version ???
 
 		String moduleName = JavaUtils.toExternalName(name);
@@ -55,7 +54,6 @@ class ModuleInfoBuilder extends ClassVisitor {
 
 		@Override
 		public void visitMainClass(String mainClass) {
-			// System.out.println("visitMainClass: " + mainClass);
 			// TODO: ???
 		}
 
@@ -87,14 +85,12 @@ class ModuleInfoBuilder extends ClassVisitor {
 
 		@Override
 		public void visitUse(String service) {
-			// System.out.println("visitUse: " + service);
-			// TODO: ???
+			// TODO: add service ???
 		}
 
 		@Override
 		public void visitProvide(String service, String... providers) {
-			// System.out.println("visitProvide: " + service + ", " + providers);
-			// TODO: ???
+			// TODO: add service and providers ???
 		}
 
 		@Override

@@ -40,7 +40,7 @@ import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-public class BinaryCompatibilityAnalyzerTest {
+class BinaryCompatibilityAnalyzerTest {
 
 	private final DefaultJavaRuntime javaRuntime = new DefaultJavaRuntime(LoggerBuilder.noop());
 	private final ClasspathLoader classpathLoader = LoaderBuilder.create().withParentClassLoader(javaRuntime).buildClasspathLoader();

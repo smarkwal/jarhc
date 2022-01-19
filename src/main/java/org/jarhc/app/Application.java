@@ -212,8 +212,8 @@ public class Application {
 	}
 
 	private FileNameNormalizer createFileNameNormalizer(Options options) {
-		Logger logger = LoggerFactory.getLogger(FileNameNormalizer.class);
-		return new FileNameNormalizer(options, repository, logger);
+		Logger fileNameNormalizerLogger = LoggerFactory.getLogger(FileNameNormalizer.class);
+		return new FileNameNormalizer(options, repository, fileNameNormalizerLogger);
 	}
 
 	private JavaRuntime createJavaRuntime(Options options, List<JarSource> runtimeJarFiles) {

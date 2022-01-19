@@ -55,14 +55,4 @@ class DefaultStyleProvider implements StyleProvider {
 		return style;
 	}
 
-	/*
-	private static String minify(String css) {
-		css = css.replaceAll("[\r\n]+", "");
-		css = css.replaceAll("\\s+", " ");
-		css = css.replaceAll("([{:;]) ", "$1");
-		css = css.replaceAll("}", "}" + System.lineSeparator());
-		return css;
-	}
-	*/
-
 }

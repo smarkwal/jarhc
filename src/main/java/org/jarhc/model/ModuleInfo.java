@@ -145,6 +145,7 @@ public class ModuleInfo {
 		}
 	}
 
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	private static Set<String> toSet(String[] values) {
 		if (values == null || values.length == 0) {
 			return null;

@@ -25,6 +25,7 @@ import org.jarhc.utils.JarHcException;
 import org.jarhc.utils.JavaUtils;
 import org.slf4j.Logger;
 
+@SuppressWarnings("java:S1181") // Throwable and Error should not be caught
 class ModuleSystemRuntime {
 
 	private final ClassLoader classLoader;

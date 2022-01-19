@@ -28,7 +28,7 @@ import org.jarhc.utils.JavaUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
-public class ModuleSystemRuntimeTest {
+class ModuleSystemRuntimeTest {
 
 	private final ClassLoader classLoader = ClassLoader.getSystemClassLoader().getParent();
 	private final Logger logger = LoggerBuilder.collect(ModuleSystemRuntime.class);

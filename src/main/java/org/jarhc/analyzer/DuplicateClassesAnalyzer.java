@@ -39,6 +39,11 @@ import org.jarhc.utils.StringUtils;
 
 public class DuplicateClassesAnalyzer implements Analyzer {
 
+	private static final String EXACT_COPY = "Exact copy";
+	private static final String SAME_API = "Same API";
+	private static final String DIFFERENT_API = "Different API";
+	private static final String DIFFERENT_CONTENT = "Different content";
+
 	private final boolean ignoreExactCopy;
 
 	public DuplicateClassesAnalyzer(Options options) {
@@ -149,7 +154,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 			// calculates the level of similarity between the class definitions
 			String similarity = getClassSimilarity(classDefs);
 
-			if (ignoreExactCopy && similarity.equals("Exact copy")) {
+			if (ignoreExactCopy && similarity.equals(EXACT_COPY)) {
 				continue;
 			}
 
@@ -170,7 +175,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 			// calculates the level of similarity between the resources
 			String similarity = getResourceSimilarity(resourceDefs);
 
-			if (ignoreExactCopy && similarity.equals("Exact copy")) {
+			if (ignoreExactCopy && similarity.equals(EXACT_COPY)) {
 				continue;
 			}
 
@@ -221,16 +226,16 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 		// compare class file checksums
 		if (sameChecksum(classDefs, ClassDef::getClassFileChecksum)) {
 			// all classes are absolute identical (byte-by-byte)
-			return "Exact copy";
+			return EXACT_COPY;
 		}
 
 		// compare API checksums
 		if (sameChecksum(classDefs, ClassDef::getApiChecksum)) {
 			// all classes have the same API (non-private elements)
-			return "Same API";
+			return SAME_API;
 		}
 
-		StringBuilder result = new StringBuilder("Different API");
+		StringBuilder result = new StringBuilder(DIFFERENT_API);
 		List<String[]> apis = classDefs.stream().map(def -> def.getApiDescription().split("\n")).collect(Collectors.toList());
 		for (int i = 1; i < apis.size(); i++) {
 			String[] apis1 = apis.get(0);
@@ -272,9 +277,9 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 	private static String getResourceSimilarity(Collection<ResourceDef> resourceDefs) {
 		boolean sameContent = resourceDefs.stream().map(ResourceDef::getChecksum).distinct().limit(2).count() < 2;
 		if (sameContent) {
-			return "Exact copy";
+			return EXACT_COPY;
 		} else {
-			return "Different content";
+			return DIFFERENT_CONTENT;
 		}
 	}
 
