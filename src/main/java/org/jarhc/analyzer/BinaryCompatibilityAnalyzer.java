@@ -461,6 +461,23 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				}
 			}
 		}
+
+		// if target class is in a different named non-automatic module
+		ModuleInfo moduleInfo = classDef.getModuleInfo();
+		ModuleInfo targetModuleInfo = targetClassDef.getModuleInfo();
+		if (targetModuleInfo.isNamed() && !targetModuleInfo.isAutomatic() && !targetModuleInfo.isSame(moduleInfo)) {
+
+			// check if package of target class is exported to module of source class
+			String moduleName = moduleInfo.getModuleName();
+			String targetClassName = targetClassDef.getClassName();
+			String targetPackageName = JavaUtils.getPackageName(targetClassName);
+			if (!targetModuleInfo.isExported(targetPackageName, moduleName)) {
+				String targetClassDisplayName = targetClassDef.getDisplayName();
+				classIssues.add("Class is not exported by module " + targetModuleInfo.getModuleName() + ": " + targetClassDisplayName);
+			}
+
+		}
+
 	}
 
 	// -----------------------------------------------------------------------------------------------------

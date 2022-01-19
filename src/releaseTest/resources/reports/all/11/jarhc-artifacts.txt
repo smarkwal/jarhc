@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 206 KB  | 121     | 7         | **************************************** | [unknown]
+jarhc.jar                                                      | 210 KB  | 122     | 7         | **************************************** | [unknown]
 asm-9.2.jar                                                    | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
 json-20211205.jar                                              | 69.0 KB | 27      | 0         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
@@ -41,7 +41,7 @@ j2objc-annotations-1.3.jar                                     | 8.58 KB | 12   
 httpcore-4.4.13.jar                                            | 321 KB  | 253     | 1         | 853b96d3afbb7bf8cc303fe27ee96836a10c1834 | org.apache.httpcomponents:httpcore:4.4.13
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.68 MB | 4541    | 149       | -                                        | -
+Classpath                                                      | 6.68 MB | 4542    | 149       | -                                        | -
 
 Modules
 -------
@@ -91,7 +91,7 @@ Java class file format information.
 
 JAR file                                                       | Multi-release         | Class files by Java version
 ---------------------------------------------------------------+-----------------------+---------------------------------------------------------
-jarhc.jar                                                      | No                    | Java 8 (121)
+jarhc.jar                                                      | No                    | Java 8 (122)
 asm-9.2.jar                                                    | No                    | Java 5 (37)
 json-20211205.jar                                              | No                    | Java 6 (27)
 maven-aether-provider-3.3.9.jar                                | No                    | Java 7 (26)
@@ -125,7 +125,7 @@ j2objc-annotations-1.3.jar                                     | No             
 httpcore-4.4.13.jar                                            | No                    | Java 6 (253)
 commons-codec-1.11.jar                                         | No                    | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | No                    | Java 5 (44)
-Classpath                                                      | -                     | Java 10 (1), Java 8 (2603), Java 7 (278), Java 6 (1070),
+Classpath                                                      | -                     | Java 10 (1), Java 8 (2604), Java 7 (278), Java 6 (1070),
                                                                |                       | Java 5 (589)
 
 JAR Dependencies
