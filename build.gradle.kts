@@ -239,7 +239,7 @@ dependencies {
     releaseTestImplementation("org.assertj:assertj-core:3.22.0")
     releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     releaseTestImplementation("org.testcontainers:testcontainers:1.16.2")
-    releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.2")
+    releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.3")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
     releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.33")
