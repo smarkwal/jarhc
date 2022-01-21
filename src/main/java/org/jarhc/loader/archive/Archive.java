@@ -27,7 +27,7 @@ public abstract class Archive implements Closeable {
 	// limits to prevent Zip Bomb attacks
 	static final long MAX_TOTAL_SIZE = 1024 * 1024 * 1024L; // 1 GB
 	static final long MAX_ENTRY_SIZE = 100 * 1024 * 1024L; // 100 MB
-	static final long MAX_ENTRY_COUNT = 20000;
+	static final long MAX_ENTRY_COUNT = 25000;
 
 	private int entriesCount = 0;
 	private long totalSize = 0;
