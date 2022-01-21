@@ -75,7 +75,6 @@ if (userPropertiesFile.exists()) {
 
 // Java version check ----------------------------------------------------------
 
-// NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
 if (!JavaVersion.current().isJava11Compatible) {
     val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
     throw GradleException(error)
@@ -261,10 +260,9 @@ configurations {
 // special settings for IntelliJ IDEA
 idea {
 
-    // NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
     project {
         jdkName = "11"
-        languageLevel = IdeaLanguageLevel(JavaVersion.VERSION_1_8)
+        languageLevel = IdeaLanguageLevel(JavaVersion.VERSION_11)
         vcs = "Git"
     }
 
@@ -304,9 +302,8 @@ licenseReport {
 
 java {
 
-    // NOTE: Gradle build must run on Java 11, but code must be compiled for Java 8
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 
     // automatically package source code as artifact -sources.jar

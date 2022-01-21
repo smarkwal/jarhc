@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Integration tests (Java 11)" type="JUnit" factoryName="JUnit">
+  <configuration default="false" name="Integration tests" type="JUnit" factoryName="JUnit">
     <module name="jarhc.integrationTest" />
     <selectedOptions>
       <option name="environmentVariables" visible="false" />
@@ -10,8 +10,6 @@
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-    <option name="ALTERNATIVE_JRE_PATH" value="11" />
     <option name="PACKAGE_NAME" value="org.jarhc" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />

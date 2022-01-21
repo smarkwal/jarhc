@@ -16,16 +16,13 @@
 
 package org.jarhc.env;
 
-import java.lang.reflect.Method;
+import java.lang.module.ModuleDescriptor;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import org.jarhc.model.ModuleInfo;
-import org.jarhc.utils.JarHcException;
-import org.jarhc.utils.JavaUtils;
 import org.slf4j.Logger;
 
-@SuppressWarnings("java:S1181") // Throwable and Error should not be caught
 class ModuleSystemRuntime {
 
 	private final ClassLoader classLoader;
@@ -36,123 +33,70 @@ class ModuleSystemRuntime {
 	 */
 	private final Map<String, ModuleInfo> moduleInfos = new ConcurrentHashMap<>();
 
-	private final int javaVersion = JavaUtils.getJavaVersion();
-
-	private Method classGetModuleMethod;
-	private Method moduleGetNameMethod;
-	private Method moduleGetPackagesMethod;
-	private Method moduleGetDescriptorMethod;
-	private Method descriptorRequiresMethod;
-	private Method requiresNameMethod;
-	private Method descriptorExportsMethod;
-	private Method exportsSourceMethod;
-	private Method exportsTargetsMethod;
-	private Method descriptorOpensMethod;
-	private Method opensSourceMethod;
-	private Method opensTargetsMethod;
-
 	ModuleSystemRuntime(ClassLoader classLoader, Logger logger) {
 		this.classLoader = classLoader;
 		this.logger = logger;
-
-		if (javaVersion >= 9) {
-			try {
-				Class<?> moduleClass = Class.forName("java.lang.Module");
-				Class<?> descriptorClass = Class.forName("java.lang.module.ModuleDescriptor");
-				Class<?> requiresClass = Class.forName("java.lang.module.ModuleDescriptor$Requires");
-				Class<?> exportsClass = Class.forName("java.lang.module.ModuleDescriptor$Exports");
-				Class<?> opensClass = Class.forName("java.lang.module.ModuleDescriptor$Opens");
-
-				classGetModuleMethod = Class.class.getDeclaredMethod("getModule");
-				moduleGetNameMethod = moduleClass.getDeclaredMethod("getName");
-				moduleGetPackagesMethod = moduleClass.getDeclaredMethod("getPackages");
-				moduleGetDescriptorMethod = moduleClass.getDeclaredMethod("getDescriptor");
-				descriptorRequiresMethod = descriptorClass.getDeclaredMethod("requires");
-				requiresNameMethod = requiresClass.getDeclaredMethod("name");
-				descriptorExportsMethod = descriptorClass.getDeclaredMethod("exports");
-				exportsSourceMethod = exportsClass.getDeclaredMethod("source");
-				exportsTargetsMethod = exportsClass.getDeclaredMethod("targets");
-				descriptorOpensMethod = descriptorClass.getDeclaredMethod("opens");
-				opensSourceMethod = opensClass.getDeclaredMethod("source");
-				opensTargetsMethod = opensClass.getDeclaredMethod("targets");
-			} catch (Throwable t) {
-				throw new JarHcException("Unexpected problem with Java Runtime.", t);
-			}
-		}
 	}
 
-	ModuleInfo findModuleInfo(String className) {
+	@SuppressWarnings("java:S1181") // Throwable and Error should not be caught
+	public ModuleInfo findModuleInfo(String className) {
 
-		if (javaVersion < 9) {
-			return ModuleInfo.UNNAMED;
-		}
-
+		// try to load class
+		Class<?> cls;
 		try {
-
-			// try to load class
-			Class<?> cls = classLoader.loadClass(className);
-
-			// get module
-			Object module = classGetModuleMethod.invoke(cls);
-
-			// get module name
-			String moduleName = (String) moduleGetNameMethod.invoke(module);
-
-			synchronized (moduleInfos) {
-
-				// check if module has already been loaded
-				ModuleInfo moduleInfo = moduleInfos.get(moduleName);
-				if (moduleInfo != null) {
-					return moduleInfo;
-				}
-
-				moduleInfo = new ModuleInfo();
-				moduleInfo.setModuleName(moduleName);
-
-				// get module descriptor
-				Object descriptor = moduleGetDescriptorMethod.invoke(module);
-
-				// get list of packages
-				@SuppressWarnings("unchecked")
-				Set<String> packages = (Set<String>) moduleGetPackagesMethod.invoke(module);
-				for (String packageName : packages) {
-					moduleInfo.addPackage(packageName);
-				}
-
-				// load list of required modules
-				Set<?> requires = (Set<?>) descriptorRequiresMethod.invoke(descriptor);
-				for (Object require : requires) {
-					String name = (String) requiresNameMethod.invoke(require);
-					moduleInfo.addRequires(name);
-				}
-
-				// load list of exports packages
-				Set<?> exports = (Set<?>) descriptorExportsMethod.invoke(descriptor);
-				for (Object export : exports) {
-					String source = (String) exportsSourceMethod.invoke(export);
-					Set<String> targets = (Set<String>) exportsTargetsMethod.invoke(export);
-					moduleInfo.addExports(source, targets.toArray(new String[0]));
-				}
-
-				// load list of opens packages
-				Set<?> opens = (Set<?>) descriptorOpensMethod.invoke(descriptor);
-				for (Object open : opens) {
-					String source = (String) opensSourceMethod.invoke(open);
-					Set<String> targets = (Set<String>) opensTargetsMethod.invoke(open);
-					moduleInfo.addOpens(source, targets.toArray(new String[0]));
-				}
-
-				logger.trace("Module information loaded: {}", moduleInfo);
-
-				// add module info to cache
-				moduleInfos.put(moduleName, moduleInfo);
-
-				return moduleInfo;
-			}
-
+			cls = classLoader.loadClass(className);
 		} catch (Throwable t) {
 			logger.warn("Unable to load module information for class: {}", className, t);
 			return ModuleInfo.UNNAMED;
+		}
+
+		// get module
+		Module module = cls.getModule();
+
+		// get module name
+		String moduleName = module.getName();
+
+		synchronized (moduleInfos) {
+
+			// check if module has already been loaded
+			ModuleInfo moduleInfo = moduleInfos.get(moduleName);
+			if (moduleInfo != null) {
+				return moduleInfo;
+			}
+
+			moduleInfo = new ModuleInfo();
+			moduleInfo.setModuleName(moduleName);
+
+			// get module descriptor
+			ModuleDescriptor descriptor = module.getDescriptor();
+
+			// get list of packages
+			Set<String> packages = module.getPackages();
+			for (String packageName : packages) {
+				moduleInfo.addPackage(packageName);
+			}
+
+			// load list of required modules
+			for (ModuleDescriptor.Requires requires : descriptor.requires()) {
+				moduleInfo.addRequires(requires.name());
+			}
+
+			// load list of exports packages
+			for (ModuleDescriptor.Exports exports : descriptor.exports()) {
+				moduleInfo.addExports(exports.source(), exports.targets().toArray(new String[0]));
+			}
+
+			// load list of opens packages
+			for (ModuleDescriptor.Opens opens : descriptor.opens()) {
+				moduleInfo.addOpens(opens.source(), opens.targets().toArray(new String[0]));
+			}
+
+			logger.trace("Module information loaded: {}", moduleInfo);
+
+			// add module info to cache
+			moduleInfos.put(moduleName, moduleInfo);
+
+			return moduleInfo;
 		}
 
 	}

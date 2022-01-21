@@ -30,16 +30,9 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.utils.JavaUtils;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ModuleInfoBuilderTest {
-
-	@BeforeAll
-	static void beforeAll() {
-		int javaVersion = JavaUtils.getJavaVersion();
-		assumeTrue(javaVersion >= 11, "Test is relevant only on Java 11+.");
-	}
 
 	@Test
 	void test_java_base_jmod() {
