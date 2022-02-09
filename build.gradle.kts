@@ -207,7 +207,7 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:slf4j-api:1.7.35")
+    implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.slf4j:jul-to-slf4j:1.7.36")
     implementation("org.slf4j:jcl-over-slf4j:1.7.36")
     runtimeOnly("org.slf4j:slf4j-simple:1.7.36")
@@ -241,7 +241,7 @@ dependencies {
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.16.3")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.33")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.36")
     releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.36")
 
 }
