@@ -210,7 +210,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.35")
     implementation("org.slf4j:jul-to-slf4j:1.7.36")
     implementation("org.slf4j:jcl-over-slf4j:1.7.35")
-    runtimeOnly("org.slf4j:slf4j-simple:1.7.35")
+    runtimeOnly("org.slf4j:slf4j-simple:1.7.36")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -242,7 +242,7 @@ dependencies {
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
     releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.33")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.33")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.36")
 
 }
 
