@@ -50,7 +50,7 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 
     // get current Git branch name
-    id("org.ajoberstar.grgit") version "4.1.1"
+    id("org.ajoberstar.grgit") version "5.0.0"
 
     // provide utility task "taskTree" for analysis of task dependencies
     id("com.dorongold.task-tree") version "2.1.0"
