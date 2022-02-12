@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ASM 7.0</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="generator" content="JarHC 1.7" />
+<style>
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 20px;
+	font-size: 0.8rem;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color: lightgray;
+}
+
+th, td {
+	border: 1px solid gray;
+	padding: 0.3rem;
+	vertical-align: top;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.generator {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: gray;
+}
+</style>
+</head>
+<body>
+
+<h1>ASM 7.0</h1>
+
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#JARFiles">JAR Files</a></li>
+<li><a href="#Modules">Modules</a></li>
+<li><a href="#ClassVersions">Class Versions</a></li>
+<li><a href="#JARDependencies">JAR Dependencies</a></li>
+<li><a href="#Dependencies">Dependencies</a></li>
+<li><a href="#Packages">Packages</a></li>
+<li><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li><a href="#BinaryCompatibility">Binary Compatibility</a></li>
+<li><a href="#Blacklist">Blacklist</a></li>
+<li><a href="#JavaRuntime">Java Runtime</a></li>
+</ul>
+
+<section id="JARFiles">
+<h2>JAR Files</h2>
+<p>List of JAR files found in classpath.</p>
+<table>
+	<tr><th>JAR file</th><th>Size</th><th>Classes</th><th>Resources</th><th>Checksum (SHA-1)</th><th>Artifact coordinates</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>78.0 KB</td><td>32</td><td>0</td><td>478006d07b7c561ae3a92ddc1829bca81ae0cdd1</td><td>org.ow2.asm:asm-commons:7.0</td></tr>
+	<tr><td>Classpath</td><td>78.0 KB</td><td>32</td><td>0</td><td>-</td><td>-</td></tr>
+</table>
+</section>
+
+<section id="Modules">
+<h2>Modules</h2>
+<p>List of Java Modules found in classpath.</p>
+<table>
+	<tr><th>JAR file</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>org.objectweb.asm.commons</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm<br>org.objectweb.asm.tree<br>org.objectweb.asm.tree.analysis<br>java.base</td><td>org.objectweb.asm.commons</td></tr>
+</table>
+</section>
+
+<section id="ClassVersions">
+<h2>Class Versions</h2>
+<p>Java class file format information.</p>
+<table>
+	<tr><th>JAR file</th><th>Multi-release</th><th>Class files by Java version</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>No</td><td>Java 5 (32)</td></tr>
+	<tr><td>Classpath</td><td>-</td><td>Java 5 (32)</td></tr>
+</table>
+</section>
+
+<section id="JARDependencies">
+<h2>JAR Dependencies</h2>
+<p>Dependencies between JAR files.</p>
+<table>
+	<tr><th>JAR file</th><th>Uses</th><th>Used by</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>[none]</td><td>[none]</td></tr>
+</table>
+</section>
+
+<section id="Dependencies">
+<h2>Dependencies</h2>
+<p>Dependencies as declared in POM file.</p>
+<table>
+	<tr><th>JAR file</th><th>Maven coordinates</th><th>Direct dependencies</th><th>Status</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>org.ow2.asm:asm-commons:7.0</td><td>org.ow2.asm:asm:7.0<br>org.ow2.asm:asm-tree:7.0<br>org.ow2.asm:asm-analysis:7.0</td><td>OK [Provided]<br>OK [Provided]<br>OK [Provided]</td></tr>
+</table>
+</section>
+
+<section id="Packages">
+<h2>Packages</h2>
+<p>List of packages per JAR file.</p>
+<table>
+	<tr><th>JAR file</th><th>Count</th><th>Packages</th><th>Issues</th></tr>
+	<tr><td>asm-commons-7.0.jar</td><td>1</td><td>org.objectweb.asm.commons</td><td></td></tr>
+</table>
+</section>
+
+<section id="DuplicateClasses">
+<h2>Duplicate Classes</h2>
+<p>Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table>
+	<tr><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
+</table>
+</section>
+
+<section id="BinaryCompatibility">
+<h2>Binary Compatibility</h2>
+<p>Compatibility issues between JAR files.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+</table>
+</section>
+
+<section id="Blacklist">
+<h2>Blacklist</h2>
+<p>Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table>
+	<tr><th>JAR file</th><th>Issues</th></tr>
+</table>
+</section>
+
+<section id="JavaRuntime">
+<h2>Java Runtime</h2>
+<p>Information about JRE/JDK runtime.</p>
+<p>Java home    : /Users/markwalder/Library/Java/JavaVirtualMachines/temurin-11.0.13/Contents/Home<br>Java runtime : OpenJDK Runtime Environment<br>Java version : 11.0.13<br>Java vendor  : Eclipse Adoptium</p>
+</section>
+
+<div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 1.7</a></div>
+</body>
+</html>
