@@ -64,7 +64,7 @@ description = "JarHC - JAR Health Check"
 
 // load user-specific properties -----------------------------------------------
 
-val userPropertiesFile = file("${projectDir}/gradle.user.properties");
+val userPropertiesFile = file("${projectDir}/gradle.user.properties")
 if (userPropertiesFile.exists()) {
     val userProperties = Properties()
     userProperties.load(userPropertiesFile.inputStream())
