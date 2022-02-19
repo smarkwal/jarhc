@@ -41,10 +41,6 @@ Options:
                            Example: --strategy ParentFirst
                            Default: ParentLast
 
-   --format <type>       : Report format type ("text", "list", or "html").
-    -f                     Example: -f html
-                           Default: text
-
    --output <file>       : Report file output path.
     -o                     Example: -o report.html
                            Default: [none] (print to STDOUT)

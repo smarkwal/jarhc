@@ -18,6 +18,7 @@ package org.jarhc.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class OptionsTest {
@@ -27,32 +28,19 @@ class OptionsTest {
 	@Test
 	void test_getReportFormat() {
 
-		String result = options.getReportFormat();
-		assertEquals("text", result);
+		List<String> result = options.getReportFiles();
+		assertEquals(0, result.size());
 
-		options.setReportFile("report.html");
-		result = options.getReportFormat();
-		assertEquals("html", result);
+		options.addReportFile("report.html");
+		result = options.getReportFiles();
+		assertEquals(1, result.size());
+		assertEquals("report.html", result.get(0));
 
-		options.setReportFile("report.txt");
-		result = options.getReportFormat();
-		assertEquals("text", result);
-
-		options.setReportFile("report.out");
-		result = options.getReportFormat();
-		assertEquals("text", result);
-
-		options.setReportFormat("html");
-		result = options.getReportFormat();
-		assertEquals("html", result);
-
-		options.setReportFormat("text");
-		result = options.getReportFormat();
-		assertEquals("text", result);
-
-		options.setReportFormat("csv");
-		result = options.getReportFormat();
-		assertEquals("csv", result);
+		options.addReportFile("report.txt");
+		result = options.getReportFiles();
+		assertEquals(2, result.size());
+		assertEquals("report.html", result.get(0));
+		assertEquals("report.txt", result.get(1));
 
 	}
 

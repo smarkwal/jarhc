@@ -2,7 +2,7 @@
   <configuration default="false" name="Main: ASM 7.0 (artifacts)" type="Application" factoryName="Application" folderName="App">
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.main" />
-    <option name="PROGRAM_PARAMETERS" value="org.ow2.asm:asm:7.0:jar org.ow2.asm:asm-analysis:7.0:jar org.ow2.asm:asm-commons:7.0:jar org.ow2.asm:asm-tree:7.0:jar -t &quot;ASM 7.0&quot; -o report.html" />
+    <option name="PROGRAM_PARAMETERS" value="org.ow2.asm:asm:7.0:jar org.ow2.asm:asm-analysis:7.0:jar org.ow2.asm:asm-commons:7.0:jar org.ow2.asm:asm-tree:7.0:jar -t &quot;ASM 7.0&quot; -o report.html -o report.txt" />
     <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G" />
     <method v="2">
       <option name="Make" enabled="true" />

@@ -38,8 +38,7 @@ public class Options {
 	private boolean skipEmpty = false;
 
 	private String reportTitle = "JAR Health Check Report";
-	private String reportFormat = null;
-	private String reportFile = null; // STDOUT
+	private final List<String> reportFiles = new ArrayList<>();
 
 	private String dataPath = null;
 	private boolean debug = false;
@@ -141,32 +140,12 @@ public class Options {
 		this.reportTitle = reportTitle;
 	}
 
-	public String getReportFormat() {
-		if (reportFormat != null) {
-			return reportFormat;
-		}
-		if (reportFile != null) {
-			// guess report format from filename extension
-			if (reportFile.endsWith(".html")) {
-				return "html";
-			} else if (reportFile.endsWith(".txt")) {
-				return "text";
-			}
-		}
-		// use default report format
-		return "text";
+	public void addReportFile(String reportFile) {
+		this.reportFiles.add(reportFile);
 	}
 
-	public void setReportFormat(String reportFormat) {
-		this.reportFormat = reportFormat;
-	}
-
-	public String getReportFile() {
-		return reportFile;
-	}
-
-	public void setReportFile(String reportFile) {
-		this.reportFile = reportFile;
+	public List<String> getReportFiles() {
+		return reportFiles;
 	}
 
 	public String getDataPath() {

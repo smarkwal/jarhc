@@ -64,8 +64,6 @@ public class CommandLineParser {
 		optionParsers.put("--provided", this::parseProvided);
 		optionParsers.put("--runtime", this::parseRuntime);
 		optionParsers.put("--strategy", this::parseStrategy);
-		optionParsers.put("-f", this::parseFormat);
-		optionParsers.put("--format", this::parseFormat);
 		optionParsers.put("-o", this::parseOutput);
 		optionParsers.put("--output", this::parseOutput);
 		optionParsers.put("-t", this::parseTitle);
@@ -94,8 +92,6 @@ public class CommandLineParser {
 		options.setUseArtifactName(false);
 
 		options.setReportTitle("JAR Health Check Report");
-		options.setReportFormat(null);
-		options.setReportFile(null);
 
 		boolean classpathFound = ArrayUtils.containsAny(args, "-cp", "--classpath");
 
@@ -187,22 +183,11 @@ public class CommandLineParser {
 		}
 	}
 
-	private void parseFormat(Iterator<String> args, Options options) throws CommandLineException {
-		if (!args.hasNext()) throw handleError(-5, "Report format not specified.");
-
-		String value = args.next();
-		if (!ReportFormatFactory.isSupportedFormat(value)) {
-			String errorMessage = String.format("Unknown report format: '%s'.", value);
-			throw handleError(-6, errorMessage);
-		}
-		options.setReportFormat(value);
-	}
-
 	private void parseOutput(Iterator<String> args, Options options) throws CommandLineException {
 		if (!args.hasNext()) throw handleError(-7, "Report file not specified.");
 
 		String value = args.next();
-		options.setReportFile(value);
+		options.addReportFile(value);
 	}
 
 	private void parseTitle(Iterator<String> args, Options options) throws CommandLineException {

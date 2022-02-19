@@ -158,18 +158,28 @@ public class Application {
 		// set report title
 		report.setTitle(options.getReportTitle());
 
-		// create report format
-		ReportFormat format = createReportFormat(options, injector);
+		// get report files (default to STDOUT)
+		List<String> reportFiles = options.getReportFiles();
+		if (reportFiles.isEmpty()) {
+			reportFiles.add("STDOUT");
+		}
 
-		// create report writer
-		try (ReportWriter writer = createReportWriter(options)) {
+		// for every report file ...
+		for (String reportFile : reportFiles) {
 
-			// print report
-			format.format(report, writer);
+			// create report format
+			ReportFormat format = createReportFormat(reportFile, injector);
 
-		} catch (IOException e) {
-			logger.error("I/O error while writing report.", e);
-			return 2; // TODO: exit code?
+			// create report writer
+			try (ReportWriter writer = createReportWriter(reportFile)) {
+
+				// print report
+				format.format(report, writer);
+
+			} catch (IOException e) {
+				logger.error("I/O error while writing report.", e);
+				return 2; // TODO: exit code?
+			}
 		}
 
 		return 0;
@@ -254,16 +264,25 @@ public class Application {
 		return loader.load(providedJarFiles);
 	}
 
-	private ReportFormat createReportFormat(Options options, Injector injector) {
-		String format = options.getReportFormat();
+	private ReportFormat createReportFormat(String reportFile, Injector injector) {
+		String format = getReportFormat(reportFile);
 		ReportFormatFactory factory = new ReportFormatFactory(injector); // TODO: inject dependency
 		return factory.getReportFormat(format);
 	}
 
+	private String getReportFormat(String reportFile) {
+		if (reportFile.endsWith(".html")) {
+			return "html";
+		} else if (reportFile.endsWith("-list.txt")) {
+			return "list";
+		} else {
+			return "text";
+		}
+	}
+
 	// TODO: move into a factory class and inject as dependency?
-	private ReportWriter createReportWriter(Options options) {
-		String path = options.getReportFile();
-		if (path == null) {
+	private ReportWriter createReportWriter(String path) {
+		if (path.equals("STDOUT")) {
 			return new StreamReportWriter(this.out);
 		} else {
 			File file = new File(path);

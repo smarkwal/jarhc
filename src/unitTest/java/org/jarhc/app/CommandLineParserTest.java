@@ -26,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.java.ClassLoaderStrategy;
@@ -61,8 +63,7 @@ class CommandLineParserTest {
 		assertNull(options.getSections());
 		assertFalse(options.isSkipEmpty());
 		assertEquals("JAR Health Check Report", options.getReportTitle());
-		assertEquals("text", options.getReportFormat());
-		assertNull(options.getReportFile());
+		assertEquals(Collections.emptyList(), options.getReportFiles());
 		assertNull(options.getDataPath());
 		assertFalse(options.isDebug());
 		assertFalse(options.isTrace());
@@ -158,44 +159,6 @@ class CommandLineParserTest {
 	}
 
 	@Test
-	void test_no_report_format() {
-
-		// test
-		CommandLineException exception = null;
-		try {
-			parser.parse(new String[] { "-f" });
-		} catch (CommandLineException e) {
-			exception = e;
-		}
-
-		// assert
-		assertNotNull(exception);
-		assertEquals(-5, exception.getExitCode());
-		assertEquals("Report format not specified.", exception.getMessage());
-		assertTrue(err.getText().startsWith("Report format not specified."));
-
-	}
-
-	@Test
-	void test_unknown_report_format() {
-
-		// test
-		CommandLineException exception = null;
-		try {
-			parser.parse(new String[] { "-f", "pdf" });
-		} catch (CommandLineException e) {
-			exception = e;
-		}
-
-		// assert
-		assertNotNull(exception);
-		assertEquals(-6, exception.getExitCode());
-		assertEquals("Unknown report format: 'pdf'.", exception.getMessage());
-		assertTrue(err.getText().startsWith("Unknown report format: 'pdf'."));
-
-	}
-
-	@Test
 	void test_no_report_file() {
 
 		// test
@@ -240,7 +203,7 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[] { "-f", "text", "-o", "report.txt", file.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "-o", "report.txt", file.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -250,8 +213,7 @@ class CommandLineParserTest {
 		assertEquals(1, paths.size());
 		assertEquals(file.getAbsolutePath(), paths.get(0));
 
-		assertEquals("text", options.getReportFormat());
-		assertEquals("report.txt", options.getReportFile());
+		assertEquals(Collections.singletonList("report.txt"), options.getReportFiles());
 
 	}
 
@@ -263,7 +225,7 @@ class CommandLineParserTest {
 		File directory = file.getParentFile();
 
 		// test
-		Options options = parser.parse(new String[] { "-f", "html", directory.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "-o", "report.html", directory.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -273,8 +235,7 @@ class CommandLineParserTest {
 		assertEquals(1, paths.size());
 		assertEquals(directory.getAbsolutePath(), paths.get(0));
 
-		assertEquals("html", options.getReportFormat());
-		assertNull(options.getReportFile());
+		assertEquals(Collections.singletonList("report.html"), options.getReportFiles());
 
 	}
 
@@ -286,7 +247,7 @@ class CommandLineParserTest {
 		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
-		Options options = parser.parse(new String[] { "-o", "report.html", file1.getAbsolutePath(), file2.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "-o", "report.html", "-o", "report.txt", file1.getAbsolutePath(), file2.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -297,8 +258,7 @@ class CommandLineParserTest {
 		assertEquals(file1.getAbsolutePath(), paths.get(0));
 		assertEquals(file2.getAbsolutePath(), paths.get(1));
 
-		assertEquals("html", options.getReportFormat());
-		assertEquals("report.html", options.getReportFile());
+		assertEquals(Arrays.asList("report.html", "report.txt"), options.getReportFiles());
 
 	}
 
