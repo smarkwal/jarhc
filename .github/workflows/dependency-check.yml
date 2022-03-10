@@ -38,7 +38,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: dependency-check
-        key: dependency-check-data
+        key: dependency-check-7.0.0-data
 
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
