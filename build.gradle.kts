@@ -358,6 +358,9 @@ dependencyCheck {
 
     // disable .NET Assembly Analyzer (fix for unexpected build exception)
     analyzers.assemblyEnabled = false
+
+    // suppressed findings
+    suppressionFile = "${projectDir}/suppression.xml"
 }
 
 config {
