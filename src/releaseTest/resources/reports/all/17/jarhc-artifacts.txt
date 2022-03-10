@@ -23,7 +23,7 @@ jcl-over-slf4j-1.7.36.jar                                      | 16.2 KB | 9    
 slf4j-simple-1.7.36.jar                                        | 15.0 KB | 10      | 0         | a41f9cfe6faafb2eb83a1c7dd2d0dfd844e2a936 | org.slf4j:slf4j-simple:1.7.36
 slf4j-api-1.7.36.jar                                           | 40.2 KB | 34      | 0         | 6c62681a2f655b49963a5983b8b0950a6120ae14 | org.slf4j:slf4j-api:1.7.36
 maven-model-builder-3.3.9.jar                                  | 173 KB  | 121     | 1         | e2055f9adb9f3c9a93e6b36fffe79781a785de2d | org.apache.maven:maven-model-builder:3.3.9
-guava-31.0.1-jre.jar                                           | 2.84 MB | 2045    | 0         | 119ea2b2bc205b138974d351777b20f02b92704b | com.google.guava:guava:31.0.1-jre
+guava-31.1-jre.jar                                             | 2.82 MB | 2008    | 0         | 60458f877d055d0c9114d9e1a2efb737b4bc282c | com.google.guava:guava:31.1-jre
 httpclient-4.5.13.jar                                          | 762 KB  | 470     | 2         | e5f6cae5ca7ecaac1ec2827a9e2d65ae2869cada | org.apache.httpcomponents:httpclient:4.5.13
 maven-model-3.3.9.jar                                          | 160 KB  | 54      | 0         | 6efde8cbcb4de4c47f7e9c2a3ab2806022b5c70f | org.apache.maven:maven-model:3.3.9
 maven-repository-metadata-3.3.9.jar                            | 26.6 KB | 9       | 0         | 6850232b35e504057d67bde11efddebf6271e1ce | org.apache.maven:maven-repository-metadata:3.3.9
@@ -36,12 +36,12 @@ failureaccess-1.0.1.jar                                        | 4.51 KB | 2    
 listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | 2.15 KB | 0       | 0         | b421526c5f297295adef1c886e5246c39d4ac629 | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
 jsr305-3.0.2.jar                                               | 19.5 KB | 35      | 0         | 25ea2e8b0c338a877313bd4672d3fe056ea78f0d | com.google.code.findbugs:jsr305:3.0.2
 checker-qual-3.12.0.jar                                        | 204 KB  | 333     | 0         | d5692f0526415fcc6de94bb5bfbd3afd9dd3b3e5 | org.checkerframework:checker-qual:3.12.0
-error_prone_annotations-2.7.1.jar                              | 14.5 KB | 24      | 0         | 458d9042f7aa6fa9a634df902b37f544e15aacac | com.google.errorprone:error_prone_annotations:2.7.1
+error_prone_annotations-2.11.0.jar                             | 15.6 KB | 26      | 0         | c5a0ace696d3f8b1c1d8cc036d8c03cc0cbe6b69 | com.google.errorprone:error_prone_annotations:2.11.0
 j2objc-annotations-1.3.jar                                     | 8.58 KB | 12      | 0         | ba035118bc8bac37d7eff77700720999acd9986d | com.google.j2objc:j2objc-annotations:1.3
 httpcore-4.4.13.jar                                            | 321 KB  | 253     | 1         | 853b96d3afbb7bf8cc303fe27ee96836a10c1834 | org.apache.httpcomponents:httpcore:4.4.13
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.68 MB | 4538    | 149       | -                                        | -
+Classpath                                                      | 6.67 MB | 4503    | 149       | -                                        | -
 
 Modules
 -------
@@ -66,7 +66,7 @@ jcl-over-slf4j-1.7.36.jar                                      | org.apache.comm
 slf4j-simple-1.7.36.jar                                        | org.slf4j.simple                                    | Manifest       | Yes       | -         | [all packages]
 slf4j-api-1.7.36.jar                                           | org.slf4j                                           | Manifest       | Yes       | -         | [all packages]
 maven-model-builder-3.3.9.jar                                  | maven.model.builder                                 | Auto-generated | Yes       | -         | [all packages]
-guava-31.0.1-jre.jar                                           | com.google.common                                   | Manifest       | Yes       | -         | [all packages]
+guava-31.1-jre.jar                                             | com.google.common                                   | Manifest       | Yes       | -         | [all packages]
 httpclient-4.5.13.jar                                          | org.apache.httpcomponents.httpclient                | Manifest       | Yes       | -         | [all packages]
 maven-model-3.3.9.jar                                          | maven.model                                         | Auto-generated | Yes       | -         | [all packages]
 maven-repository-metadata-3.3.9.jar                            | maven.repository.metadata                           | Auto-generated | Yes       | -         | [all packages]
@@ -79,7 +79,7 @@ failureaccess-1.0.1.jar                                        | failureaccess  
 listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | listenablefuture.empty.to.avoid.conflict.with.guava | Auto-generated | Yes       | -         | [all packages]
 jsr305-3.0.2.jar                                               | jsr305                                              | Auto-generated | Yes       | -         | [all packages]
 checker-qual-3.12.0.jar                                        | org.checkerframework.checker.qual                   | Manifest       | Yes       | -         | [all packages]
-error_prone_annotations-2.7.1.jar                              | com.google.errorprone.annotations                   | Manifest       | Yes       | -         | [all packages]
+error_prone_annotations-2.11.0.jar                             | com.google.errorprone.annotations                   | Manifest       | Yes       | -         | [all packages]
 j2objc-annotations-1.3.jar                                     | j2objc.annotations                                  | Auto-generated | Yes       | -         | [all packages]
 httpcore-4.4.13.jar                                            | org.apache.httpcomponents.httpcore                  | Manifest       | Yes       | -         | [all packages]
 commons-codec-1.11.jar                                         | org.apache.commons.codec                            | Manifest       | Yes       | -         | [all packages]
@@ -107,7 +107,7 @@ jcl-over-slf4j-1.7.36.jar                                      | No             
 slf4j-simple-1.7.36.jar                                        | No                    | Java 5 (10)
 slf4j-api-1.7.36.jar                                           | No                    | Java 5 (34)
 maven-model-builder-3.3.9.jar                                  | No                    | Java 7 (121)
-guava-31.0.1-jre.jar                                           | No                    | Java 8 (2045)
+guava-31.1-jre.jar                                             | No                    | Java 8 (2008)
 httpclient-4.5.13.jar                                          | No                    | Java 6 (470)
 maven-model-3.3.9.jar                                          | No                    | Java 7 (54)
 maven-repository-metadata-3.3.9.jar                            | No                    | Java 7 (9)
@@ -120,12 +120,12 @@ failureaccess-1.0.1.jar                                        | No             
 listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | No                    | [no class files]
 jsr305-3.0.2.jar                                               | No                    | Java 5 (35)
 checker-qual-3.12.0.jar                                        | No                    | Java 8 (333)
-error_prone_annotations-2.7.1.jar                              | No                    | Java 7 (24)
+error_prone_annotations-2.11.0.jar                             | No                    | Java 7 (26)
 j2objc-annotations-1.3.jar                                     | No                    | Java 5 (12)
 httpcore-4.4.13.jar                                            | No                    | Java 6 (253)
 commons-codec-1.11.jar                                         | No                    | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | No                    | Java 5 (44)
-Classpath                                                      | -                     | Java 11 (118), Java 10 (1), Java 8 (2482), Java 7 (278),
+Classpath                                                      | -                     | Java 11 (118), Java 10 (1), Java 8 (2445), Java 7 (280),
                                                                |                       | Java 6 (1070), Java 5 (589)
 
 JAR Dependencies
@@ -154,7 +154,7 @@ maven-aether-provider-3.3.9.jar                                | aether-api-1.1.
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
                                                                | commons-lang3-3.4.jar                |
-                                                               | guava-31.0.1-jre.jar                 |
+                                                               | guava-31.1-jre.jar                   |
                                                                | maven-model-3.3.9.jar                |
                                                                | maven-model-builder-3.3.9.jar        |
                                                                | maven-repository-metadata-3.3.9.jar  |
@@ -203,15 +203,15 @@ slf4j-api-1.7.36.jar                                           | slf4j-simple-1.
                                                                |                                      | jul-to-slf4j-1.7.36.jar
                                                                |                                      | slf4j-simple-1.7.36.jar
 maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | guava-31.0.1-jre.jar                 |
+                                                               | guava-31.1-jre.jar                   |
                                                                | maven-artifact-3.3.9.jar             |
                                                                | maven-builder-support-3.3.9.jar      |
                                                                | maven-model-3.3.9.jar                |
                                                                | plexus-component-annotations-1.6.jar |
                                                                | plexus-interpolation-1.21.jar        |
                                                                | plexus-utils-3.4.1.jar               |
-guava-31.0.1-jre.jar                                           | checker-qual-3.12.0.jar              | maven-aether-provider-3.3.9.jar
-                                                               | error_prone_annotations-2.7.1.jar    | maven-model-builder-3.3.9.jar
+guava-31.1-jre.jar                                             | checker-qual-3.12.0.jar              | maven-aether-provider-3.3.9.jar
+                                                               | error_prone_annotations-2.11.0.jar   | maven-model-builder-3.3.9.jar
                                                                | failureaccess-1.0.1.jar              |
                                                                | j2objc-annotations-1.3.jar           |
                                                                | jsr305-3.0.2.jar                     |
@@ -236,12 +236,12 @@ commons-lang3-3.4.jar                                          | [none]         
                                                                |                                      | maven-builder-support-3.3.9.jar
                                                                |                                      | maven-model-3.3.9.jar
                                                                |                                      | maven-model-builder-3.3.9.jar
-failureaccess-1.0.1.jar                                        | [none]                               | guava-31.0.1-jre.jar
+failureaccess-1.0.1.jar                                        | [none]                               | guava-31.1-jre.jar
 listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | [none]                               | [none]
-jsr305-3.0.2.jar                                               | [none]                               | guava-31.0.1-jre.jar
-checker-qual-3.12.0.jar                                        | [none]                               | guava-31.0.1-jre.jar
-error_prone_annotations-2.7.1.jar                              | [none]                               | guava-31.0.1-jre.jar
-j2objc-annotations-1.3.jar                                     | [none]                               | guava-31.0.1-jre.jar
+jsr305-3.0.2.jar                                               | [none]                               | guava-31.1-jre.jar
+checker-qual-3.12.0.jar                                        | [none]                               | guava-31.1-jre.jar
+error_prone_annotations-2.11.0.jar                             | [none]                               | guava-31.1-jre.jar
+j2objc-annotations-1.3.jar                                     | [none]                               | guava-31.1-jre.jar
 httpcore-4.4.13.jar                                            | [none]                               | aether-transport-http-1.1.0.jar
                                                                |                                      | httpclient-4.5.13.jar
 commons-codec-1.11.jar                                         | [none]                               | httpclient-4.5.13.jar
@@ -252,7 +252,7 @@ Dependencies
 Dependencies as declared in POM file.
 
 JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
----------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+------------------------
+---------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+----------------------
 jarhc.jar                                                      | [unknown]                                                                   | [unknown]                                                                   |
 asm-9.2.jar                                                    | org.ow2.asm:asm:9.2                                                         | [none]                                                                      |
 json-20211205.jar                                              | org.json:json:20211205                                                      | [none]                                                                      |
@@ -301,13 +301,13 @@ maven-model-builder-3.3.9.jar                                  | org.apache.mave
                                                                |                                                                             | org.apache.maven:maven-model:3.3.9                                          | OK
                                                                |                                                                             | org.apache.maven:maven-artifact:3.3.9                                       | OK
                                                                |                                                                             | org.apache.maven:maven-builder-support:3.3.9                                | OK
-                                                               |                                                                             | com.google.guava:guava:18.0                                                 | OK (version 31.0.1-jre)
+                                                               |                                                                             | com.google.guava:guava:18.0                                                 | OK (version 31.1-jre)
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-guava-31.0.1-jre.jar                                           | com.google.guava:guava:31.0.1-jre                                           | com.google.guava:failureaccess:1.0.1                                        | OK
+guava-31.1-jre.jar                                             | com.google.guava:guava:31.1-jre                                             | com.google.guava:failureaccess:1.0.1                                        | OK
                                                                |                                                                             | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | OK
                                                                |                                                                             | com.google.code.findbugs:jsr305:3.0.2                                       | OK
                                                                |                                                                             | org.checkerframework:checker-qual:3.12.0                                    | OK
-                                                               |                                                                             | com.google.errorprone:error_prone_annotations:2.7.1                         | OK
+                                                               |                                                                             | com.google.errorprone:error_prone_annotations:2.11.0                        | OK
                                                                |                                                                             | com.google.j2objc:j2objc-annotations:1.3                                    | OK
 httpclient-4.5.13.jar                                          | org.apache.httpcomponents:httpclient:4.5.13                                 | org.apache.httpcomponents:httpcore:4.4.13                                   | OK
                                                                |                                                                             | commons-logging:commons-logging:1.2                                         | Unsatisfied
@@ -326,7 +326,7 @@ failureaccess-1.0.1.jar                                        | com.google.guav
 listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | [none]                                                                      |
 jsr305-3.0.2.jar                                               | com.google.code.findbugs:jsr305:3.0.2                                       | [none]                                                                      |
 checker-qual-3.12.0.jar                                        | org.checkerframework:checker-qual:3.12.0                                    | [none]                                                                      |
-error_prone_annotations-2.7.1.jar                              | com.google.errorprone:error_prone_annotations:2.7.1                         | [none]                                                                      |
+error_prone_annotations-2.11.0.jar                             | com.google.errorprone:error_prone_annotations:2.11.0                        | [none]                                                                      |
 j2objc-annotations-1.3.jar                                     | com.google.j2objc:j2objc-annotations:1.3                                    | [none]                                                                      |
 httpcore-4.4.13.jar                                            | org.apache.httpcomponents:httpcore:4.4.13                                   | [none]                                                                      |
 commons-codec-1.11.jar                                         | commons-codec:commons-codec:1.11                                            | [none]                                                                      |
@@ -360,9 +360,9 @@ asm-9.2.jar                          | 2     | org.objectweb.asm (+1 subpackage)
 checker-qual-3.12.0.jar              | 29    | org.checkerframework.* (29 subpackages)               |
 commons-codec-1.11.jar               | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
-error_prone_annotations-2.7.1.jar    | 2     | com.google.errorprone.annotations (+1 subpackage)     |
+error_prone_annotations-2.11.0.jar   | 2     | com.google.errorprone.annotations (+1 subpackage)     |
 failureaccess-1.0.1.jar              | 1     | com.google.common.util.concurrent.internal            |
-guava-31.0.1-jre.jar                 | 18    | com.google.common.annotations                         |
+guava-31.1-jre.jar                   | 18    | com.google.common.annotations                         |
                                      |       | com.google.common.base (+1 subpackage)                |
                                      |       | com.google.common.cache                               |
                                      |       | com.google.common.collect                             |
@@ -706,7 +706,7 @@ maven-model-builder-3.3.9.jar   | org.apache.maven.model.interpolation.StringSea
                                 |
                                 | org.apache.maven.model.validation.DefaultModelValidator
                                 | • @Deprecated: public static java.lang.String org.codehaus.plexus.util.StringUtils.defaultString(java.lang.Object,java.lang.String)
-guava-31.0.1-jre.jar            | com.google.common.cache.Striped64
+guava-31.1-jre.jar              | com.google.common.cache.Striped64
                                 | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
                                 | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
@@ -755,6 +755,7 @@ guava-31.0.1-jre.jar            | com.google.common.cache.Striped64
                                 | com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
                                 | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
+                                | • java.lang.Object sun.misc.Unsafe.getAndSetObject(java.lang.Object,long,java.lang.Object)
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
                                 | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
                                 | • void sun.misc.Unsafe.putObject(java.lang.Object,long,java.lang.Object)
