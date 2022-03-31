@@ -227,7 +227,7 @@ dependencies {
     // unit test dependencies
     // TODO: move JMH benchmarks in a separate source set?
     unitTestImplementation("org.openjdk.jmh:jmh-core:1.35")
-    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.34")
+    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.35")
 
     // integration test dependencies
     // currently: none
