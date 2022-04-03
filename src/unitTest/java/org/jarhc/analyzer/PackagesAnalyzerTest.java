@@ -67,4 +67,32 @@ class PackagesAnalyzerTest {
 		assertValuesEquals(rows.get(1), "b.jar", "1", "b", "");
 	}
 
+	@Test
+	void test_getParentPackageLength() {
+
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("", ""));
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a", ""));
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("", "a"));
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a", "x"));
+		assertEquals(1, PackagesAnalyzer.getParentPackageLength("a", "a"));
+
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a.b.c", ""));
+		assertEquals(1, PackagesAnalyzer.getParentPackageLength("a.b.c", "a"));
+		assertEquals(2, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.b"));
+		assertEquals(3, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.b.c"));
+
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a.b.c", "x.y.z"));
+		assertEquals(1, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.y.z"));
+		assertEquals(2, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.b.z"));
+
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a.b.c", "abc"));
+		assertEquals(1, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.bc"));
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a.b.c", "ab.c"));
+
+		assertEquals(0, PackagesAnalyzer.getParentPackageLength("a", "ax"));
+		assertEquals(1, PackagesAnalyzer.getParentPackageLength("a.b", "a.bx"));
+		assertEquals(2, PackagesAnalyzer.getParentPackageLength("a.b.c", "a.b.cx"));
+
+	}
+
 }

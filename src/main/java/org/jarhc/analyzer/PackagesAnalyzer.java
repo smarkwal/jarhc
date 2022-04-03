@@ -198,18 +198,53 @@ public class PackagesAnalyzer implements Analyzer {
 		return getParentPackage(firstPackageName, minLength);
 	}
 
-	private static int getParentPackageLength(String packageName1, String packageName2) {
-		String[] parts1 = packageName1.split("\\.");
-		String[] parts2 = packageName2.split("\\.");
-		int length = Math.min(parts1.length, parts2.length);
-		for (int i = 0; i < length; i++) {
-			String part1 = parts1[i];
-			String part2 = parts2[i];
-			if (!part1.equals(part2)) {
-				return i;
+	/**
+	 * Get number of parent packages in common between two package names.
+	 *
+	 * @param packageName1 First package name.
+	 * @param packageName2 Second package name.
+	 * @return Number of common parent packages.
+	 */
+	static int getParentPackageLength(String packageName1, String packageName2) {
+
+		int length1 = packageName1.length();
+		int length2 = packageName2.length();
+
+		int minLength = Math.min(length1, length2);
+		if (minLength == 0) return 0; // at least one of the package names is empty
+
+		int parts = 0; // number of package parts already matched
+		for (int i = 0; i < minLength; i++) {
+			char char1 = packageName1.charAt(i);
+			char char2 = packageName2.charAt(i);
+			if (char1 != char2) {
+				return parts;
+			} else if (char1 == '.') {
+				parts++; // matched package part found
 			}
 		}
-		return length;
+
+		if (length1 == length2) {
+			// example: a.b.c vs a.b.c
+			return parts + 1;
+		} else if (length1 > length2) {
+			if (packageName1.charAt(minLength) == '.') {
+				// example: a.b.c vs a.b
+				return parts + 1;
+			} else {
+				// example: a.bx vs a.b
+				return parts;
+			}
+		} else { // length2 > length1
+			if (packageName2.charAt(minLength) == '.') {
+				// example: a.b vs a.b.c
+				return parts + 1;
+			} else {
+				// example: a.b vs a.bx
+				return parts;
+			}
+		}
+
 	}
 
 	private static String getParentPackage(String packageName, int length) {
