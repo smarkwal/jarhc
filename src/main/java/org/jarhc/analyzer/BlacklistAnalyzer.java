@@ -19,6 +19,7 @@ package org.jarhc.analyzer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -39,6 +40,7 @@ import org.slf4j.Logger;
 public class BlacklistAnalyzer implements Analyzer {
 
 	private final Logger logger;
+	private final Set<String> codeLines = new HashSet<>();
 	private final List<Pattern> codePatterns = new ArrayList<>();
 	private final List<Pattern> annotationPatterns = new ArrayList<>();
 	private final List<Pattern> resourcePatterns = new ArrayList<>();
@@ -73,9 +75,11 @@ public class BlacklistAnalyzer implements Analyzer {
 				String path = line.substring(9);
 				Pattern pattern = createPattern(path, true);
 				resourcePatterns.add(pattern);
-			} else {
+			} else if (line.contains("*")) {
 				Pattern pattern = createPattern(line, false);
 				codePatterns.add(pattern);
+			} else {
+				codeLines.add(line);
 			}
 
 		}
@@ -142,13 +146,17 @@ public class BlacklistAnalyzer implements Analyzer {
 
 		// match every descriptor against all call patterns
 		for (String descriptor : descriptors) {
-			for (Pattern pattern : codePatterns) {
-				if (pattern.matcher(descriptor).matches()) {
-					classIssues.add(descriptor);
+			if (codeLines.contains(descriptor)) {
+				classIssues.add(descriptor);
+			} else {
+				for (Pattern pattern : codePatterns) {
+					if (pattern.matcher(descriptor).matches()) {
+						classIssues.add(descriptor);
+						break;
+					}
 				}
 			}
 		}
-
 	}
 
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
@@ -313,7 +321,7 @@ public class BlacklistAnalyzer implements Analyzer {
 		}
 
 		int flags = caseInsensitive ? Pattern.CASE_INSENSITIVE : 0;
-		return Pattern.compile("^" + regex.toString() + "$", flags);
+		return Pattern.compile("^" + regex + "$", flags);
 	}
 
 }
