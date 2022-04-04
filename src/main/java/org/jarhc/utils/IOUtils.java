@@ -24,6 +24,14 @@ import java.nio.charset.StandardCharsets;
 
 public class IOUtils {
 
+	private static final int INITIAL_BUFFER_SIZE = 256 * 1024;
+	private static final int MAX_BUFFER_SIZE = 4 * 1024 * 1024;
+
+	/**
+	 * Thread-local cached stream. Same thread always uses same buffer for performance reasons.
+	 */
+	private static final ThreadLocal<ByteArrayOutputStream> cachedStream = ThreadLocal.withInitial(() -> new ByteArrayOutputStream(INITIAL_BUFFER_SIZE));
+
 	private IOUtils() {
 		throw new IllegalStateException("utility class");
 	}
@@ -31,7 +39,11 @@ public class IOUtils {
 	public static byte[] toByteArray(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 		ByteArrayOutputStream result = toByteArrayOutputStream(stream);
-		return result.toByteArray();
+		byte[] bytes = result.toByteArray();
+		if (result.size() > MAX_BUFFER_SIZE) {
+			cachedStream.remove();
+		}
+		return bytes;
 	}
 
 	public static String toString(InputStream stream) throws IOException {
@@ -41,7 +53,8 @@ public class IOUtils {
 	}
 
 	private static ByteArrayOutputStream toByteArrayOutputStream(InputStream stream) throws IOException {
-		ByteArrayOutputStream result = new ByteArrayOutputStream(1024);
+		ByteArrayOutputStream result = cachedStream.get();
+		result.reset();
 		copy(stream, result);
 		return result;
 	}
