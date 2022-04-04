@@ -109,7 +109,7 @@ class DependenciesAnalyzerTest {
 		assertValuesEquals(rows.get(3), "lib-repo-error.jar", "group:lib-repo-error:1.0:jar", "[error]", "");
 		assertValuesEquals(rows.get(4), "lib-unknown.jar", "[unknown]", "[unknown]", "");
 
-		assertLogger(logger)
+		assertLogger(logger).inAnyOrder()
 				.hasError("Resolver error for artifact: group:lib-no-pom:1.0:jar", new RepositoryException("test"))
 				.hasError("Resolver error for artifact: group:lib-repo-error:1.0:jar", new RepositoryException("test"))
 				.isEmpty();

@@ -65,47 +65,51 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
-		for (JarFile jarFile : jarFiles) {
-
-			// add a row with file name, size and class count
-			String fileName = jarFile.getFileName();
-			String coordinates = getCoordinates(jarFile);
-
-			String dependenciesInfo = UNKNOWN;
-			String status = "";
-
-			if (Artifact.validateCoordinates(coordinates)) {
-
-				// get list of direct dependencies
-				List<Dependency> dependencies = null;
-				try {
-					dependencies = getDependencies(coordinates);
-				} catch (RepositoryException e) {
-					logger.error("Resolver error for artifact: {}", coordinates, e);
-				}
-
-				if (dependencies == null) { // error
-					dependenciesInfo = ERROR;
-				} else if (dependencies.isEmpty()) { // no direct dependencies
-					// show special value "none"
-					dependenciesInfo = NONE;
-				} else {
-					List<String> lines = dependencies.stream()
-							.map(Dependency::toString)
-							.collect(Collectors.toList());
-					dependenciesInfo = StringUtils.joinLines(lines);
-				}
-
-				if (dependencies != null) {
-					status = getStatus(dependencies, classpath);
-				}
-
-			}
-
-			table.addRow(fileName, coordinates, dependenciesInfo, status);
-		}
+		jarFiles.parallelStream()
+				.map(jarFile -> buildRow(jarFile, classpath))
+				.forEachOrdered(table::addRow);
 
 		return table;
+	}
+
+	private String[] buildRow(JarFile jarFile, Classpath classpath) {
+
+		// add a row with file name, size and class count
+		String fileName = jarFile.getFileName();
+		String coordinates = getCoordinates(jarFile);
+
+		String dependenciesInfo = UNKNOWN;
+		String status = "";
+
+		if (Artifact.validateCoordinates(coordinates)) {
+
+			// get list of direct dependencies
+			List<Dependency> dependencies = null;
+			try {
+				dependencies = getDependencies(coordinates);
+			} catch (RepositoryException e) {
+				logger.error("Resolver error for artifact: {}", coordinates, e);
+			}
+
+			if (dependencies == null) { // error
+				dependenciesInfo = ERROR;
+			} else if (dependencies.isEmpty()) { // no direct dependencies
+				// show special value "none"
+				dependenciesInfo = NONE;
+			} else {
+				List<String> lines = dependencies.stream()
+						.map(Dependency::toString)
+						.collect(Collectors.toList());
+				dependenciesInfo = StringUtils.joinLines(lines);
+			}
+
+			if (dependencies != null) {
+				status = getStatus(dependencies, classpath);
+			}
+
+		}
+
+		return new String[] { fileName, coordinates, dependenciesInfo, status };
 	}
 
 	private List<Dependency> getDependencies(String coordinates) throws RepositoryException {
