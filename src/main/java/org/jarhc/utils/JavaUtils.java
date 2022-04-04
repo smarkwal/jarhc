@@ -18,9 +18,7 @@ package org.jarhc.utils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.objectweb.asm.Type;
 
 public class JavaUtils {
