@@ -17,11 +17,10 @@
 package org.jarhc.utils;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.objectweb.asm.Type;
 
 public class JavaUtils {
@@ -76,7 +75,12 @@ public class JavaUtils {
 
 	public static List<String> getParameterTypes(String methodDescriptor) {
 		Type methodType = Type.getType(methodDescriptor);
-		return Arrays.stream(methodType.getArgumentTypes()).map(Type::getClassName).collect(Collectors.toList());
+		Type[] argumentTypes = methodType.getArgumentTypes();
+		List<String> parameterTypes = new ArrayList<>(argumentTypes.length);
+		for (Type argumentType : argumentTypes) {
+			parameterTypes.add(argumentType.getClassName());
+		}
+		return parameterTypes;
 	}
 
 	public static String getFieldType(String fieldDescriptor) {
