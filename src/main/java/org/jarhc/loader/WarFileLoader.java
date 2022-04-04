@@ -24,10 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Future;
 import org.jarhc.app.JarSource;
 import org.jarhc.loader.archive.Archive;
 import org.jarhc.loader.archive.ArchiveEntry;
@@ -71,11 +72,13 @@ public class WarFileLoader {
 	private List<JarFile> load(Archive archive) throws IOException {
 		if (archive == null) throw new IllegalArgumentException("archive");
 
-		// thread-safe list of nested JAR files
-		final List<JarFile> jarFiles = new CopyOnWriteArrayList<>();
+		// list of nested JAR files
+		List<JarFile> jarFiles = new ArrayList<>();
 
 		// prepare an executor for parallel loading of nested JAR files
-		ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+		int threads = Runtime.getRuntime().availableProcessors();
+		ExecutorService executorService = Executors.newFixedThreadPool(threads);
+		List<Future<List<JarFile>>> results = new ArrayList<>();
 
 		// for every entry in the WAR file ...
 		while (true) {
@@ -89,8 +92,9 @@ public class WarFileLoader {
 				byte[] fileData = entry.getData();
 
 				// create task to load nested JAR files
-				Runnable task = () -> loadNestedJarFiles(fileName, fileData, jarFiles);
-				executorService.submit(task);
+				Callable<List<JarFile>> task = () -> loadNestedJarFiles(fileName, fileData);
+				Future<List<JarFile>> future = executorService.submit(task);
+				results.add(future);
 
 			} else if (entryName.startsWith("WEB-INF/classes/")) {
 				// TODO: add all files (classes and resources) to an artificial JAR file
@@ -99,32 +103,28 @@ public class WarFileLoader {
 
 		}
 
-		// wait for all tasks to finish
-		executorService.shutdown();
-		try {
-			if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
-				executorService.shutdownNow();
+		// collect all task results
+		for (Future<List<JarFile>> future : results) {
+			try {
+				List<JarFile> result = future.get();
+				jarFiles.addAll(result);
+			} catch (InterruptedException | ExecutionException e) {
+				throw new IOException(e);
 			}
-		} catch (InterruptedException e) {
-			executorService.shutdownNow();
 		}
+
+		// stop executor (there should be no tasks left)
+		executorService.shutdownNow();
 
 		// sort JAR files by name (case-insensitive)
-		List<JarFile> result = new ArrayList<>(jarFiles);
-		result.sort((f1, f2) -> f1.getFileName().compareToIgnoreCase(f2.getFileName()));
+		jarFiles.sort((f1, f2) -> f1.getFileName().compareToIgnoreCase(f2.getFileName()));
 
-		return result;
+		return jarFiles;
 	}
 
-	private void loadNestedJarFiles(String fileName, byte[] fileData, List<JarFile> jarFiles) {
-		try {
-			InputStream inputStream = new ByteArrayInputStream(fileData);
-			List<JarFile> files = jarFileLoader.load(fileName, inputStream);
-			jarFiles.addAll(files);
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+	private List<JarFile> loadNestedJarFiles(String fileName, byte[] fileData) throws IOException {
+		InputStream inputStream = new ByteArrayInputStream(fileData);
+		return jarFileLoader.load(fileName, inputStream);
 	}
 
 }
