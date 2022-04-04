@@ -19,41 +19,40 @@ package org.jarhc.analyzer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
+import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.Def;
+import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.MethodRef;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.ResourceUtils;
+import org.jarhc.utils.StringPattern;
 import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
 
 public class BlacklistAnalyzer implements Analyzer {
 
-	private final Logger logger;
-	private final Set<String> codeLines = new HashSet<>();
-	private final List<Pattern> codePatterns = new ArrayList<>();
-	private final List<Pattern> annotationPatterns = new ArrayList<>();
-	private final List<Pattern> resourcePatterns = new ArrayList<>();
+	private final List<StringPattern> codePatterns = new ArrayList<>();
+	private final List<StringPattern> annotationPatterns = new ArrayList<>();
+	private final List<StringPattern> resourcePatterns = new ArrayList<>();
 
 	public BlacklistAnalyzer(Logger logger) {
-		this.logger = logger;
 
 		// load rules from file
 		String resource = "/blacklist-patterns.txt";
 		try {
 			init(resource);
 		} catch (IOException e) {
-			this.logger.warn("Failed to load blacklist patterns from resource.", e);
+			logger.warn("Failed to load blacklist patterns from resource.", e);
 		}
 
 	}
@@ -69,17 +68,15 @@ public class BlacklistAnalyzer implements Analyzer {
 
 			if (line.startsWith("@")) {
 				String annotation = line.substring(1);
-				Pattern pattern = createPattern(annotation, false);
+				StringPattern pattern = new StringPattern(annotation, false);
 				annotationPatterns.add(pattern);
 			} else if (line.startsWith("resource:")) {
 				String path = line.substring(9);
-				Pattern pattern = createPattern(path, true);
+				StringPattern pattern = new StringPattern(path, true);
 				resourcePatterns.add(pattern);
-			} else if (line.contains("*")) {
-				Pattern pattern = createPattern(line, false);
-				codePatterns.add(pattern);
 			} else {
-				codeLines.add(line);
+				StringPattern pattern = new StringPattern(line, false);
+				codePatterns.add(pattern);
 			}
 
 		}
@@ -138,22 +135,22 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private void validateClassDef(ClassDef classDef, Set<String> classIssues) {
 
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		List<FieldRef> fieldRefs = classDef.getFieldRefs();
+		List<MethodRef> methodRefs = classDef.getMethodRefs();
+
 		// collect all class, field and method descriptors
-		List<String> descriptors = new ArrayList<>();
-		classDef.getClassRefs().forEach(classRef -> descriptors.add(classRef.getDisplayName()));
-		classDef.getFieldRefs().forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
-		classDef.getMethodRefs().forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
+		List<String> descriptors = new ArrayList<>(classRefs.size() + fieldRefs.size() + methodRefs.size());
+		classRefs.forEach(classRef -> descriptors.add(classRef.getDisplayName()));
+		fieldRefs.forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
+		methodRefs.forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
 
 		// match every descriptor against all call patterns
 		for (String descriptor : descriptors) {
-			if (codeLines.contains(descriptor)) {
-				classIssues.add(descriptor);
-			} else {
-				for (Pattern pattern : codePatterns) {
-					if (pattern.matcher(descriptor).matches()) {
-						classIssues.add(descriptor);
-						break;
-					}
+			for (StringPattern pattern : codePatterns) {
+				if (pattern.matches(descriptor)) {
+					classIssues.add(descriptor);
+					break;
 				}
 			}
 		}
@@ -266,8 +263,8 @@ public class BlacklistAnalyzer implements Analyzer {
 	}
 
 	private boolean isUnstableAnnotation(String annotationClassName) {
-		for (Pattern pattern : annotationPatterns) {
-			if (pattern.matcher(annotationClassName).matches()) {
+		for (StringPattern pattern : annotationPatterns) {
+			if (pattern.matches(annotationClassName)) {
 				return true;
 			}
 		}
@@ -291,37 +288,14 @@ public class BlacklistAnalyzer implements Analyzer {
 			String name = resourceDef.getPath();
 
 			// check if resource matches any pattern ...
-			for (Pattern pattern : resourcePatterns) {
-				if (pattern.matcher(name).matches()) {
+			for (StringPattern pattern : resourcePatterns) {
+				if (pattern.matches(name)) {
 					jarIssues.add(name);
 					break;
 				}
 			}
 		}
 
-	}
-
-	private static Pattern createPattern(String pattern, boolean caseInsensitive) {
-
-		StringBuilder regex = new StringBuilder(pattern.length() + 10);
-
-		int end = 0;
-		while (true) {
-			int pos = pattern.indexOf('*', end);
-			if (pos < 0) {
-				regex.append(Pattern.quote(pattern.substring(end)));
-				break;
-			} else {
-				if (pos > end) {
-					regex.append(Pattern.quote(pattern.substring(end, pos)));
-				}
-				regex.append(".*");
-				end = pos + 1;
-			}
-		}
-
-		int flags = caseInsensitive ? Pattern.CASE_INSENSITIVE : 0;
-		return Pattern.compile("^" + regex + "$", flags);
 	}
 
 }
