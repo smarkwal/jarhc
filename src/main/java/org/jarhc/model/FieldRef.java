@@ -60,11 +60,17 @@ public class FieldRef implements Ref, Comparable<FieldRef> {
 
 	@Override
 	public String getDisplayName() {
+		int length = (staticAccess ? 7 : 0) + fieldType.length() + fieldOwner.length() + fieldName.length() + 2;
+		StringBuilder result = new StringBuilder(length);
 		if (staticAccess) {
-			return String.format("static %s %s.%s", fieldType, fieldOwner, fieldName);
-		} else {
-			return String.format("%s %s.%s", fieldType, fieldOwner, fieldName);
+			result.append("static ");
 		}
+		result.append(fieldType);
+		result.append(" ");
+		result.append(fieldOwner);
+		result.append(".");
+		result.append(fieldName);
+		return result.toString();
 	}
 
 	@Override

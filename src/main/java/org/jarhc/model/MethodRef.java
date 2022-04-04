@@ -64,11 +64,31 @@ public class MethodRef implements Ref, Comparable<MethodRef> {
 
 	@Override
 	public String getDisplayName() {
-		if (staticAccess) {
-			return String.format("static %s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
-		} else {
-			return String.format("%s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
+		int length = (staticAccess ? 7 : 0) + returnType.length() + methodOwner.length() + methodName.length() + 4;
+		for (String parameterType : parameterTypes) {
+			length += parameterType.length() + 1;
 		}
+		StringBuilder result = new StringBuilder(length);
+		if (staticAccess) {
+			result.append("static ");
+		}
+		result.append(returnType);
+		result.append(" ");
+		result.append(methodOwner);
+		result.append(".");
+		result.append(methodName);
+		result.append("(");
+		boolean first = true;
+		for (String parameterType : parameterTypes) {
+			if (first) {
+				first = false;
+			} else {
+				result.append(",");
+			}
+			result.append(parameterType);
+		}
+		result.append(")");
+		return result.toString();
 	}
 
 	@Override
