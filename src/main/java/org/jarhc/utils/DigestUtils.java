@@ -75,7 +75,8 @@ public class DigestUtils {
 	public static String hex(byte[] input) {
 		StringBuilder result = new StringBuilder(input.length * 2);
 		for (byte value : input) {
-			result.append(String.format("%02x", value));
+			result.append(Character.forDigit((value >> 4) & 0xF, 16));
+			result.append(Character.forDigit((value & 0xF), 16));
 		}
 		return result.toString();
 	}
