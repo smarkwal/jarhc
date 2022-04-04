@@ -29,21 +29,26 @@ public class JavaUtils {
 		throw new IllegalStateException("utility class");
 	}
 
-	private static final Set<String> primitiveTypes = new HashSet<>();
-
-	static {
-		primitiveTypes.add("byte");
-		primitiveTypes.add("short");
-		primitiveTypes.add("int");
-		primitiveTypes.add("long");
-		primitiveTypes.add("float");
-		primitiveTypes.add("double");
-		primitiveTypes.add("char");
-		primitiveTypes.add("boolean");
-	}
-
 	public static boolean isPrimitiveType(String type) {
-		return primitiveTypes.contains(type);
+		char firstChar = type.charAt(0);
+		switch (firstChar) {
+			case 'b':
+				return "boolean".equals(type) || "byte".equals(type);
+			case 'c':
+				return "char".equals(type);
+			case 'd':
+				return "double".equals(type);
+			case 'f':
+				return "float".equals(type);
+			case 'i':
+				return "int".equals(type);
+			case 'l':
+				return "long".equals(type);
+			case 's':
+				return "short".equals(type);
+			default:
+				return false;
+		}
 	}
 
 	public static boolean isVoidType(String type) {
