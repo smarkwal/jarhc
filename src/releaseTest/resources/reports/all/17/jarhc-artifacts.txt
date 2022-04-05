@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 209 KB  | 118     | 7         | **************************************** | [unknown]
-asm-9.2.jar                                                    | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
+jarhc.jar                                                      | 214 KB  | 124     | 7         | **************************************** | [unknown]
+asm-9.3.jar                                                    | 119 KB  | 37      | 0         | 8e6300ef51c1d801a7ed62d07cd221aca3a90640 | org.ow2.asm:asm:9.3
 json-20220320.jar                                              | 69.3 KB | 27      | 0         | 06df2c050972619466f6dcef7654ef9bcc01dfd0 | org.json:json:20220320
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
 aether-impl-1.1.0.jar                                          | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
@@ -41,7 +41,7 @@ j2objc-annotations-1.3.jar                                     | 8.58 KB | 12   
 httpcore-4.4.13.jar                                            | 321 KB  | 253     | 1         | 853b96d3afbb7bf8cc303fe27ee96836a10c1834 | org.apache.httpcomponents:httpcore:4.4.13
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.67 MB | 4503    | 149       | -                                        | -
+Classpath                                                      | 6.67 MB | 4509    | 149       | -                                        | -
 
 Modules
 -------
@@ -50,7 +50,7 @@ List of Java Modules found in classpath.
 JAR file                                                       | Module name                                         | Definition     | Automatic | Requires  | Exports
 ---------------------------------------------------------------+-----------------------------------------------------+----------------+-----------+-----------+----------------------------
 jarhc.jar                                                      | jarhc                                               | Auto-generated | Yes       | -         | [all packages]
-asm-9.2.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base | org.objectweb.asm
+asm-9.3.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base | org.objectweb.asm
                                                                |                                                     |                |           |           | org.objectweb.asm.signature
 json-20220320.jar                                              | org.json                                            | Manifest       | Yes       | -         | [all packages]
 maven-aether-provider-3.3.9.jar                                | maven.aether.provider                               | Auto-generated | Yes       | -         | [all packages]
@@ -91,8 +91,8 @@ Java class file format information.
 
 JAR file                                                       | Multi-release         | Class files by Java version
 ---------------------------------------------------------------+-----------------------+---------------------------------------------------------
-jarhc.jar                                                      | No                    | Java 11 (118)
-asm-9.2.jar                                                    | No                    | Java 5 (37)
+jarhc.jar                                                      | No                    | Java 11 (124)
+asm-9.3.jar                                                    | No                    | Java 5 (37)
 json-20220320.jar                                              | No                    | Java 6 (27)
 maven-aether-provider-3.3.9.jar                                | No                    | Java 7 (26)
 aether-impl-1.1.0.jar                                          | No                    | Java 5 (96)
@@ -125,7 +125,7 @@ j2objc-annotations-1.3.jar                                     | No             
 httpcore-4.4.13.jar                                            | No                    | Java 6 (253)
 commons-codec-1.11.jar                                         | No                    | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | No                    | Java 5 (44)
-Classpath                                                      | -                     | Java 11 (118), Java 10 (1), Java 8 (2445), Java 7 (280),
+Classpath                                                      | -                     | Java 11 (124), Java 10 (1), Java 8 (2445), Java 7 (280),
                                                                |                       | Java 6 (1070), Java 5 (589)
 
 JAR Dependencies
@@ -141,13 +141,13 @@ jarhc.jar                                                      | aether-api-1.1.
                                                                | aether-transport-file-1.1.0.jar      |
                                                                | aether-transport-http-1.1.0.jar      |
                                                                | aether-util-1.1.0.jar                |
-                                                               | asm-9.2.jar                          |
+                                                               | asm-9.3.jar                          |
                                                                | jcl-over-slf4j-1.7.36.jar            |
                                                                | json-20220320.jar                    |
                                                                | jul-to-slf4j-1.7.36.jar              |
                                                                | maven-aether-provider-3.3.9.jar      |
                                                                | slf4j-api-1.7.36.jar                 |
-asm-9.2.jar                                                    | [none]                               | jarhc.jar
+asm-9.3.jar                                                    | [none]                               | jarhc.jar
 json-20220320.jar                                              | [none]                               | jarhc.jar
 maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-impl-1.1.0.jar                |
@@ -254,7 +254,7 @@ Dependencies as declared in POM file.
 JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
 ---------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+----------------------
 jarhc.jar                                                      | [unknown]                                                                   | [unknown]                                                                   |
-asm-9.2.jar                                                    | org.ow2.asm:asm:9.2                                                         | [none]                                                                      |
+asm-9.3.jar                                                    | org.ow2.asm:asm:9.3                                                         | [none]                                                                      |
 json-20220320.jar                                              | org.json:json:20220320                                                      | [none]                                                                      |
 maven-aether-provider-3.3.9.jar                                | org.apache.maven:maven-aether-provider:3.3.9                                | org.apache.maven:maven-model:3.3.9                                          | OK
                                                                |                                                                             | org.apache.maven:maven-model-builder:3.3.9                                  | OK
@@ -356,7 +356,7 @@ aether-spi-1.1.0.jar                 | 8     | org.eclipse.aether.spi.* (8 subpa
 aether-transport-file-1.1.0.jar      | 1     | org.eclipse.aether.transport.file                     |
 aether-transport-http-1.1.0.jar      | 1     | org.eclipse.aether.transport.http                     |
 aether-util-1.1.0.jar                | 13    | org.eclipse.aether.util (+12 subpackages)             |
-asm-9.2.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
+asm-9.3.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
 checker-qual-3.12.0.jar              | 29    | org.checkerframework.* (29 subpackages)               |
 commons-codec-1.11.jar               | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
