@@ -97,6 +97,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	private final List<MethodDef> methodDefs = new ArrayList<>();
 
 	/**
+	 * Fast lookup map for method definition given the method name and descriptor.
+	 */
+	private final Map<String, Map<String, MethodDef>> methodDefsMap = new HashMap<>();
+
+	/**
 	 * List with references to other classes.
 	 * This includes:
 	 * <p>
@@ -320,7 +325,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		api.append("\nextends: ").append(superName);
 		api.append("\nimplements: ").append(interfaceNames);
 		api.append("\npermits: ").append(permittedSubclassNames);
-		// TODO: add annotations for class, recorc components, fields, and methods?
+		// TODO: add annotations for class, record components, fields, and methods?
 		// add all record components
 		recordComponentDefs.stream()
 				.map(RecordComponentDef::getDisplayName) // get component description
@@ -359,7 +364,6 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public Optional<FieldDef> getFieldDef(String fieldName) {
-		// TODO: what if there is more than one field with the same name?
 		FieldDef fieldDef = fieldDefsMap.get(fieldName);
 		return Optional.ofNullable(fieldDef);
 	}
@@ -376,16 +380,24 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public Optional<MethodDef> getMethodDef(String methodName, String methodDescriptor) {
-		// TODO: use methodDefsMap for fast look-up
-		return methodDefs.stream()
-				.filter(m -> m.getMethodName().equals(methodName))
-				.filter(m -> m.getMethodDescriptor().equals(methodDescriptor))
-				.findFirst();
+		Map<String, MethodDef> map = methodDefsMap.get(methodName);
+		if (map == null) {
+			return Optional.empty();
+		}
+		MethodDef methodDef = map.get(methodDescriptor);
+		return Optional.ofNullable(methodDef);
 	}
 
 	public ClassDef addMethodDef(MethodDef methodDef) {
 		this.methodDefs.add(methodDef);
 		methodDef.setClassDef(this);
+
+		// add method def to fast lookup map
+		String methodName = methodDef.getMethodName();
+		String methodDescriptor = methodDef.getMethodDescriptor();
+		Map<String, MethodDef> map = this.methodDefsMap.computeIfAbsent(methodName, name -> new HashMap<>(2));
+		map.put(methodDescriptor, methodDef);
+
 		return this;
 	}
 
