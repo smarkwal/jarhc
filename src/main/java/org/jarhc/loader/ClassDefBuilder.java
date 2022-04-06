@@ -40,6 +40,7 @@ import org.jarhc.model.FieldRef;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
 import org.jarhc.model.RecordComponentDef;
+import org.jarhc.utils.JavaUtils;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassVisitor;
@@ -253,7 +254,7 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	private AnnotationVisitor addAnnotationRef(String descriptor, Def def, Target target) {
-		String annotationType = Type.getType(descriptor).getClassName();
+		String annotationType = JavaUtils.getClassName(descriptor);
 
 		if (def != null) {
 			// add annotation to class, method or field definition
@@ -439,7 +440,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		@Override
 		public void visitLocalVariable(String name, String descriptor, String signature, Label start, Label end, int index) {
-			String variableType = Type.getType(descriptor).getClassName();
+			String variableType = JavaUtils.getClassName(descriptor);
 			addClassRef(variableType);
 		}
 
@@ -497,7 +498,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 		private String toClassName(String type) {
 			if (type.charAt(0) == '[') {
-				type = Type.getType(type).getClassName();
+				type = JavaUtils.getClassName(type);
 			} else {
 				type = toExternalName(type);
 			}
@@ -536,7 +537,7 @@ class ClassDefBuilder extends ClassVisitor {
 		@Override
 		public void visitEnum(String name, String descriptor, String value) {
 			if (scanForReferences) {
-				String enumType = Type.getType(descriptor).getClassName();
+				String enumType = JavaUtils.getClassName(descriptor);
 				addClassRef(enumType);
 				// TODO: add a reference to the enum value
 			}

@@ -19,9 +19,14 @@ package org.jarhc.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Type;
 
 public class JavaUtils {
+
+	private static final ConcurrentHashMap<String, String> classNamesCache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, List<String>> parameterTypesCache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, String> externalNamesCache = new ConcurrentHashMap<>();
 
 	private JavaUtils() {
 		throw new IllegalStateException("utility class");
@@ -71,31 +76,43 @@ public class JavaUtils {
 		}
 	}
 
+	public static String getClassName(String descriptor) {
+		return classNamesCache.computeIfAbsent(descriptor, d -> Type.getType(d).getClassName());
+	}
+
 	public static String getReturnType(String methodDescriptor) {
-		Type methodType = Type.getType(methodDescriptor);
-		return methodType.getReturnType().getClassName();
+
+		int pos = methodDescriptor.indexOf(')');
+		String descriptor = methodDescriptor.substring(pos + 1);
+
+		return getClassName(descriptor);
 	}
 
 	public static List<String> getParameterTypes(String methodDescriptor) {
-		Type methodType = Type.getType(methodDescriptor);
-		Type[] argumentTypes = methodType.getArgumentTypes();
-		List<String> parameterTypes = new ArrayList<>(argumentTypes.length);
-		for (Type argumentType : argumentTypes) {
-			parameterTypes.add(argumentType.getClassName());
-		}
-		return parameterTypes;
+
+		int pos = methodDescriptor.indexOf(')');
+		String descriptor = methodDescriptor.substring(1, pos);
+
+		return parameterTypesCache.computeIfAbsent(descriptor, d -> {
+			Type[] argumentTypes = Type.getArgumentTypes(methodDescriptor);
+			List<String> parameterTypes = new ArrayList<>(argumentTypes.length);
+			for (Type argumentType : argumentTypes) {
+				parameterTypes.add(argumentType.getClassName());
+			}
+			return parameterTypes;
+		});
 	}
 
 	public static String getFieldType(String fieldDescriptor) {
-		return Type.getType(fieldDescriptor).getClassName();
+		return getClassName(fieldDescriptor);
 	}
 
 	public static String getRecordComponentType(String recordComponentDescriptor) {
-		return Type.getType(recordComponentDescriptor).getClassName();
+		return getClassName(recordComponentDescriptor);
 	}
 
 	public static String toExternalName(String name) {
-		return name.replace('/', '.');
+		return externalNamesCache.computeIfAbsent(name, n -> n.replace('/', '.'));
 	}
 
 	public static boolean isArrayType(String type) {
