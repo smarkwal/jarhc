@@ -59,7 +59,7 @@ class ClassDefBuilder extends ClassVisitor {
 
 	private final ClassDef classDef = new ClassDef("java.lang.Object");
 
-	private final Set<ClassRef> classRefs = new TreeSet<>();
+	private final Set<String> classRefs = new TreeSet<>();
 	private final Set<FieldRef> fieldRefs = new TreeSet<>();
 	private final Set<MethodRef> methodRefs = new TreeSet<>();
 
@@ -71,7 +71,7 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	public ClassDef getClassDef() {
-		classRefs.forEach(classDef::addClassRef);
+		classRefs.forEach(type -> classDef.addClassRef(ClassRef.forClassName(type)));
 		fieldRefs.forEach(classDef::addFieldRef);
 		methodRefs.forEach(classDef::addMethodRef);
 		return classDef;
@@ -273,7 +273,7 @@ class ClassDefBuilder extends ClassVisitor {
 				type = getArrayElementType(type);
 			}
 			if (!isPrimitiveType(type)) {
-				classRefs.add(new ClassRef(type));
+				classRefs.add(type);
 			}
 		}
 	}

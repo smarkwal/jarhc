@@ -17,10 +17,17 @@
 package org.jarhc.model;
 
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClassRef implements Ref, Comparable<ClassRef> {
 
+	private static final ConcurrentHashMap<String, ClassRef> classRefsCache = new ConcurrentHashMap<>();
+
 	private final String className;
+
+	public static ClassRef forClassName(String className) {
+		return classRefsCache.computeIfAbsent(className, ClassRef::new);
+	}
 
 	public ClassRef(String className) {
 		this.className = className;
