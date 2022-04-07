@@ -16,10 +16,10 @@
 
 package org.jarhc.utils;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.List;
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
 
@@ -79,11 +79,11 @@ class JavaUtilsTest {
 	@Test
 	void getParameterTypes() {
 
-		assertEquals(List.of(), JavaUtils.getParameterTypes("()V"));
-		assertEquals(List.of("int"), JavaUtils.getParameterTypes("(I)V"));
-		assertEquals(List.of("int", "boolean"), JavaUtils.getParameterTypes("(IZ)V"));
-		assertEquals(List.of("long[]", "byte[][]", "double[][][]"), JavaUtils.getParameterTypes("([J[[B[[[D)V"));
-		assertEquals(List.of("java.lang.String", "java.util.List", "java.io.File[]"), JavaUtils.getParameterTypes("(Ljava/lang/String;Ljava/util/List;[Ljava/io/File;)V"));
+		assertArrayEquals(new String[0], JavaUtils.getParameterTypes("()V"));
+		assertArrayEquals(new String[] { "int" }, JavaUtils.getParameterTypes("(I)V"));
+		assertArrayEquals(new String[] { "int", "boolean" }, JavaUtils.getParameterTypes("(IZ)V"));
+		assertArrayEquals(new String[] { "long[]", "byte[][]", "double[][][]" }, JavaUtils.getParameterTypes("([J[[B[[[D)V"));
+		assertArrayEquals(new String[] { "java.lang.String", "java.util.List", "java.io.File[]" }, JavaUtils.getParameterTypes("(Ljava/lang/String;Ljava/util/List;[Ljava/io/File;)V"));
 
 	}
 

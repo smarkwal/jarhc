@@ -17,15 +17,13 @@
 package org.jarhc.utils;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class JavaUtils {
 
 	private static final ConcurrentHashMap<String, String> classNamesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> returnTypesCache = new ConcurrentHashMap<>();
-	private static final ConcurrentHashMap<String, List<String>> parameterTypesCache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, String[]> parameterTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> externalNamesCache = new ConcurrentHashMap<>();
 
 	private JavaUtils() {
@@ -95,7 +93,7 @@ public class JavaUtils {
 		});
 	}
 
-	public static List<String> getParameterTypes(String methodDescriptor) {
+	public static String[] getParameterTypes(String methodDescriptor) {
 		return parameterTypesCache.computeIfAbsent(methodDescriptor, d -> {
 
 			int parameterCount = 0;
@@ -111,8 +109,9 @@ public class JavaUtils {
 				parameterCount++;
 			}
 
-			List<String> parameterTypes = new ArrayList<>(parameterCount); // TODO: use a String[] instead of a list?
+			String[] parameterTypes = new String[parameterCount];
 			pos = 1;
+			int index = 0;
 			while (d.charAt(pos) != ')') {
 				int start = pos;
 				while (d.charAt(pos) == '[') {
@@ -123,7 +122,7 @@ public class JavaUtils {
 				}
 				pos++;
 				String parameterType = toTypeName(d, start, pos);
-				parameterTypes.add(parameterType);
+				parameterTypes[index++] = parameterType;
 			}
 			return parameterTypes;
 		});

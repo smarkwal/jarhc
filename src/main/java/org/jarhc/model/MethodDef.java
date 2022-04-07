@@ -24,7 +24,7 @@ public class MethodDef extends MemberDef {
 	private final String methodName;
 	private final String methodDescriptor;
 	private final String returnType;
-	private final List<String> parameterTypes;
+	private final String[] parameterTypes;
 	// TODO: exceptions?
 
 	public MethodDef(int access, String methodName, String methodDescriptor) {
@@ -53,7 +53,7 @@ public class MethodDef extends MemberDef {
 		return returnType;
 	}
 
-	public List<String> getParameterTypes() {
+	public String[] getParameterTypes() {
 		return parameterTypes;
 	}
 

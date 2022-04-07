@@ -16,7 +16,6 @@
 
 package org.jarhc.model;
 
-import java.util.List;
 import java.util.Objects;
 import org.jarhc.utils.JavaUtils;
 
@@ -26,7 +25,7 @@ public class MethodRef implements Ref, Comparable<MethodRef> {
 	private final String methodDescriptor;
 	private final String methodName;
 	private final String returnType;
-	private final List<String> parameterTypes;
+	private final String[] parameterTypes;
 	private final boolean interfaceMethod;
 	private final boolean staticAccess;
 

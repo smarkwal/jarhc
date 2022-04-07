@@ -27,7 +27,6 @@ import static org.jarhc.utils.JavaUtils.isPrimitiveType;
 import static org.jarhc.utils.JavaUtils.isVoidType;
 import static org.jarhc.utils.JavaUtils.toExternalName;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -247,7 +246,7 @@ class ClassDefBuilder extends ClassVisitor {
 			String returnType = getReturnType(descriptor);
 			addClassRef(returnType);
 		}
-		List<String> parameterTypes = getParameterTypes(descriptor);
+		String[] parameterTypes = getParameterTypes(descriptor);
 		for (String parameterType : parameterTypes) {
 			addClassRef(parameterType);
 		}
