@@ -511,7 +511,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("> " + targetClassName + " (owner class not found)");
+				searchResult.addSearchInfo("> ", targetClassName, " (owner class not found)");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -641,7 +641,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("> " + targetClassName + " (owner class not found)");
+				searchResult.addSearchInfo("> ", targetClassName, " (owner class not found)");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -778,20 +778,29 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		void addErrorMessage(String message) {
 			if (errorMessages == null) {
-				errorMessages = new StringBuilder();
+				errorMessages = new StringBuilder(message);
 			} else {
 				errorMessages.append(System.lineSeparator());
+				errorMessages.append(message);
 			}
-			errorMessages.append(message);
 		}
 
-		void addSearchInfo(String info) {
+		void addSearchInfo(String... infos) {
 			if (searchInfos == null) {
-				searchInfos = new StringBuilder();
+				int length = 0;
+				for (String info : infos) {
+					length += info.length();
+				}
+				searchInfos = new StringBuilder(length);
+				for (String info : infos) {
+					searchInfos.append(info);
+				}
 			} else {
 				searchInfos.append(System.lineSeparator());
+				for (String info : infos) {
+					searchInfos.append(info);
+				}
 			}
-			searchInfos.append(info);
 		}
 
 		String getResult() {
@@ -816,7 +825,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void classNotFound(String className) {
-			addSearchInfo("> " + className + " (class not found)");
+			addSearchInfo("> ", className, " (class not found)");
 		}
 
 	}
@@ -825,12 +834,12 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void memberNotFound(String className) {
-			addSearchInfo("> " + className + " (field not found)");
+			addSearchInfo("> ", className, " (field not found)");
 		}
 
 		@Override
 		public void memberFound(String className) {
-			addSearchInfo("> " + className + " (field found)");
+			addSearchInfo("> ", className, " (field found)");
 		}
 
 	}
@@ -839,12 +848,12 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void memberNotFound(String className) {
-			addSearchInfo("> " + className + " (method not found)");
+			addSearchInfo("> ", className, " (method not found)");
 		}
 
 		@Override
 		public void memberFound(String className) {
-			addSearchInfo("> " + className + " (method found)");
+			addSearchInfo("> ", className, " (method found)");
 		}
 
 	}
