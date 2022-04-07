@@ -17,7 +17,6 @@
 package org.jarhc.report;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,7 +52,7 @@ public class ReportSection {
 	}
 
 	public List<Object> getContent() {
-		return Collections.unmodifiableList(content);
+		return content;
 	}
 
 	public boolean isEmpty() {

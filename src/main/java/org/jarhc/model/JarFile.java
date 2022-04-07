@@ -18,7 +18,6 @@ package org.jarhc.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -185,7 +184,7 @@ public class JarFile {
 	}
 
 	public Set<Integer> getReleases() {
-		return Collections.unmodifiableSet(releases);
+		return releases;
 	}
 
 	public ModuleInfo getModuleInfo() {
@@ -204,12 +203,12 @@ public class JarFile {
 	}
 
 	/**
-	 * Returns an unmodifiable list of class definitions.
+	 * Returns a list of class definitions.
 	 *
 	 * @return Class definitions
 	 */
 	public List<ClassDef> getClassDefs() {
-		return Collections.unmodifiableList(classDefs);
+		return classDefs;
 	}
 
 	/**
@@ -224,12 +223,12 @@ public class JarFile {
 	}
 
 	/**
-	 * Returns an unmodifiable list of resources.
+	 * Returns a list of resources.
 	 *
 	 * @return Resources
 	 */
 	public List<ResourceDef> getResourceDefs() {
-		return Collections.unmodifiableList(resourceDefs);
+		return resourceDefs;
 	}
 
 	/**

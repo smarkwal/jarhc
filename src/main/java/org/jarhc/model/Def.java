@@ -19,7 +19,6 @@ package org.jarhc.model;
 import static org.jarhc.model.AnnotationRef.Target;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class Def extends AccessFlags {
@@ -38,7 +37,7 @@ public abstract class Def extends AccessFlags {
 	public abstract String getDisplayName();
 
 	public List<AnnotationRef> getAnnotationRefs() {
-		return Collections.unmodifiableList(annotationRefs);
+		return annotationRefs;
 	}
 
 	public boolean hasAnnotationRef(String className, Target target) {

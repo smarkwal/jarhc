@@ -17,7 +17,6 @@
 package org.jarhc.report;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ReportTable {
@@ -39,7 +38,7 @@ public class ReportTable {
 	}
 
 	public List<String[]> getRows() {
-		return Collections.unmodifiableList(rows);
+		return rows;
 	}
 
 }

@@ -17,7 +17,6 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -220,7 +219,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<String> getInterfaceNames() {
-		return Collections.unmodifiableList(interfaceNames);
+		return interfaceNames;
 	}
 
 	public ClassDef addInterfaceNames(List<String> interfaceNames) {
@@ -234,7 +233,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<String> getPermittedSubclassNames() {
-		return Collections.unmodifiableList(permittedSubclassNames);
+		return permittedSubclassNames;
 	}
 
 	public ClassDef addPermittedSubclassNames(List<String> permittedSubclassNames) {
@@ -350,7 +349,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<RecordComponentDef> getRecordComponentDefs() {
-		return Collections.unmodifiableList(recordComponentDefs);
+		return recordComponentDefs;
 	}
 
 	public ClassDef addRecordComponentDef(RecordComponentDef recordComponentDef) {
@@ -360,7 +359,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<FieldDef> getFieldDefs() {
-		return Collections.unmodifiableList(fieldDefs);
+		return fieldDefs;
 	}
 
 	public Optional<FieldDef> getFieldDef(String fieldName) {
@@ -376,7 +375,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<MethodDef> getMethodDefs() {
-		return Collections.unmodifiableList(methodDefs);
+		return methodDefs;
 	}
 
 	public Optional<MethodDef> getMethodDef(String methodName, String methodDescriptor) {
@@ -402,7 +401,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<ClassRef> getClassRefs() {
-		return Collections.unmodifiableList(classRefs);
+		return classRefs;
 	}
 
 	public ClassDef addClassRef(ClassRef classRef) {
@@ -411,7 +410,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<FieldRef> getFieldRefs() {
-		return Collections.unmodifiableList(fieldRefs);
+		return fieldRefs;
 	}
 
 	public ClassDef addFieldRef(FieldRef fieldRef) {
@@ -420,7 +419,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	public List<MethodRef> getMethodRefs() {
-		return Collections.unmodifiableList(methodRefs);
+		return methodRefs;
 	}
 
 	public ClassDef addMethodRef(MethodRef methodRef) {

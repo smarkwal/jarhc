@@ -17,7 +17,6 @@
 package org.jarhc.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,12 +76,12 @@ public class Classpath extends ClassLoader {
 	}
 
 	/**
-	 * Returns an unmodifiable list of JAR files.
+	 * Returns a list of JAR files.
 	 *
 	 * @return JAR files
 	 */
 	public List<JarFile> getJarFiles() {
-		return Collections.unmodifiableList(jarFiles);
+		return jarFiles;
 	}
 
 	/**

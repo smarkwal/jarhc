@@ -18,7 +18,6 @@ package org.jarhc.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +88,7 @@ public class ModuleInfo {
 	}
 
 	public List<String> getPackages() {
-		return Collections.unmodifiableList(packages);
+		return packages;
 	}
 
 	public ModuleInfo addPackage(String packageName) {
@@ -98,7 +97,7 @@ public class ModuleInfo {
 	}
 
 	public List<String> getRequires() {
-		return Collections.unmodifiableList(requires);
+		return requires;
 	}
 
 	public ModuleInfo addRequires(String moduleName) {
@@ -107,8 +106,7 @@ public class ModuleInfo {
 	}
 
 	public List<String> getExports() {
-		List<String> packageNames = new ArrayList<>(exports.keySet());
-		return Collections.unmodifiableList(packageNames);
+		return new ArrayList<>(exports.keySet());
 	}
 
 	public boolean isExported(String packageName, String moduleName) {
@@ -121,8 +119,7 @@ public class ModuleInfo {
 	}
 
 	public List<String> getOpens() {
-		List<String> packageNames = new ArrayList<>(opens.keySet());
-		return Collections.unmodifiableList(packageNames);
+		return new ArrayList<>(opens.keySet());
 	}
 
 	public boolean isOpen(String packageName, String moduleName) {
