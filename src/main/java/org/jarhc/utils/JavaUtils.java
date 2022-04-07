@@ -24,6 +24,7 @@ public class JavaUtils {
 	private static final ConcurrentHashMap<String, String> classNamesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> returnTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String[]> parameterTypesCache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, String> arrayElementTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> externalNamesCache = new ConcurrentHashMap<>();
 
 	private JavaUtils() {
@@ -217,9 +218,11 @@ public class JavaUtils {
 	}
 
 	public static String getArrayElementType(String type) {
-		int pos = type.indexOf('[');
-		if (pos < 0) throw new IllegalArgumentException("Not an array type: " + type);
-		return type.substring(0, pos);
+		return arrayElementTypesCache.computeIfAbsent(type, t -> {
+			int pos = t.indexOf('[');
+			if (pos < 0) throw new IllegalArgumentException("Not an array type: " + t);
+			return t.substring(0, pos);
+		});
 	}
 
 	public static String getSimpleClassName(String className) {
