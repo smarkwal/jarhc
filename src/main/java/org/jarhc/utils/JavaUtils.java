@@ -20,11 +20,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import org.objectweb.asm.Type;
 
 public class JavaUtils {
 
 	private static final ConcurrentHashMap<String, String> classNamesCache = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, String> returnTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, List<String>> parameterTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> externalNamesCache = new ConcurrentHashMap<>();
 
@@ -77,27 +77,53 @@ public class JavaUtils {
 	}
 
 	public static String getClassName(String descriptor) {
-		return classNamesCache.computeIfAbsent(descriptor, d -> Type.getType(d).getClassName());
+		return classNamesCache.computeIfAbsent(descriptor, d -> {
+
+			int start = 0;
+			int end = d.length();
+			return toTypeName(d, start, end);
+		});
 	}
 
 	public static String getReturnType(String methodDescriptor) {
+		return returnTypesCache.computeIfAbsent(methodDescriptor, d -> {
 
-		int pos = methodDescriptor.indexOf(')');
-		String descriptor = methodDescriptor.substring(pos + 1);
-
-		return getClassName(descriptor);
+			int pos = d.indexOf(')');
+			int start = pos + 1;
+			int end = d.length();
+			return toTypeName(d, start, end);
+		});
 	}
 
 	public static List<String> getParameterTypes(String methodDescriptor) {
+		return parameterTypesCache.computeIfAbsent(methodDescriptor, d -> {
 
-		int pos = methodDescriptor.indexOf(')');
-		String descriptor = methodDescriptor.substring(1, pos);
+			int parameterCount = 0;
+			int pos = 1;
+			while (d.charAt(pos) != ')') {
+				while (d.charAt(pos) == '[') {
+					pos++;
+				}
+				if (d.charAt(pos) == 'L') {
+					pos = d.indexOf(';', pos);
+				}
+				pos++;
+				parameterCount++;
+			}
 
-		return parameterTypesCache.computeIfAbsent(descriptor, d -> {
-			Type[] argumentTypes = Type.getArgumentTypes(methodDescriptor);
-			List<String> parameterTypes = new ArrayList<>(argumentTypes.length);
-			for (Type argumentType : argumentTypes) {
-				parameterTypes.add(argumentType.getClassName());
+			List<String> parameterTypes = new ArrayList<>(parameterCount); // TODO: use a String[] instead of a list?
+			pos = 1;
+			while (d.charAt(pos) != ')') {
+				int start = pos;
+				while (d.charAt(pos) == '[') {
+					pos++;
+				}
+				if (d.charAt(pos) == 'L') {
+					pos = d.indexOf(';', pos);
+				}
+				pos++;
+				String parameterType = toTypeName(d, start, pos);
+				parameterTypes.add(parameterType);
 			}
 			return parameterTypes;
 		});
@@ -109,6 +135,78 @@ public class JavaUtils {
 
 	public static String getRecordComponentType(String recordComponentDescriptor) {
 		return getClassName(recordComponentDescriptor);
+	}
+
+	private static String toTypeName(String descriptor, int start, int end) {
+
+		StringBuilder typeName;
+
+		int pos = start;
+		while (descriptor.charAt(pos) == '[') {
+			pos++;
+		}
+		int arrayDimensions = pos - start;
+
+		char type = descriptor.charAt(pos);
+		if (type == 'L') {
+			pos++;
+
+			int length = end - start;
+			typeName = new StringBuilder(length + arrayDimensions);
+			while (pos < end) {
+				char chr = descriptor.charAt(pos);
+				if (chr == ';') {
+					break;
+				} else if (chr == '/') {
+					typeName.append('.');
+				} else {
+					typeName.append(chr);
+				}
+				pos++;
+			}
+
+		} else {
+
+			String primitiveTypeName = toPrimitiveTypeName(type);
+			if (arrayDimensions == 0) {
+				return primitiveTypeName;
+			}
+
+			typeName = new StringBuilder(primitiveTypeName.length() + arrayDimensions * 2);
+			typeName.append(primitiveTypeName);
+
+		}
+
+		//noinspection StringRepeatCanBeUsed (performance)
+		for (int i = 0; i < arrayDimensions; i++) {
+			typeName.append("[]");
+		}
+
+		return typeName.toString();
+	}
+
+	private static String toPrimitiveTypeName(char type) {
+		if (type == 'V') {
+			return "void";
+		} else if (type == 'Z') {
+			return "boolean";
+		} else if (type == 'B') {
+			return "byte";
+		} else if (type == 'C') {
+			return "char";
+		} else if (type == 'S') {
+			return "short";
+		} else if (type == 'I') {
+			return "int";
+		} else if (type == 'J') {
+			return "long";
+		} else if (type == 'F') {
+			return "float";
+		} else if (type == 'D') {
+			return "double";
+		} else {
+			throw new IllegalArgumentException("unknown type: " + type);
+		}
 	}
 
 	public static String toExternalName(String name) {
