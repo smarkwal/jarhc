@@ -23,18 +23,12 @@ public class MethodDef extends MemberDef {
 
 	private final String methodName;
 	private final String methodDescriptor;
-	private final String returnType;
-	private final String[] parameterTypes;
 	// TODO: exceptions?
 
 	public MethodDef(int access, String methodName, String methodDescriptor) {
 		super(access);
 		this.methodName = methodName;
 		this.methodDescriptor = methodDescriptor;
-
-		// create return type and parameter types from descriptor
-		this.returnType = JavaUtils.getReturnType(methodDescriptor);
-		this.parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 	}
 
 	public boolean isConstructor() {
@@ -47,14 +41,6 @@ public class MethodDef extends MemberDef {
 
 	public String getMethodDescriptor() {
 		return methodDescriptor;
-	}
-
-	public String getReturnType() {
-		return returnType;
-	}
-
-	public String[] getParameterTypes() {
-		return parameterTypes;
 	}
 
 	@Override
@@ -82,6 +68,9 @@ public class MethodDef extends MemberDef {
 	public String getDisplayName() {
 		String modifiers = getModifiers();
 		String methodOwner = classDef.getClassName();
+		// TODO: improve performance
+		String returnType = JavaUtils.getReturnType(methodDescriptor);
+		String[] parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 		if (modifiers.isEmpty()) {
 			return String.format("%s %s.%s(%s)", returnType, methodOwner, methodName, String.join(",", parameterTypes));
 		} else {

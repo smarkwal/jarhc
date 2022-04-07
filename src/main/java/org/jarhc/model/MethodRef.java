@@ -24,8 +24,6 @@ public class MethodRef implements Ref, Comparable<MethodRef> {
 	private final String methodOwner;
 	private final String methodDescriptor;
 	private final String methodName;
-	private final String returnType;
-	private final String[] parameterTypes;
 	private final boolean interfaceMethod;
 	private final boolean staticAccess;
 
@@ -35,10 +33,6 @@ public class MethodRef implements Ref, Comparable<MethodRef> {
 		this.methodName = methodName;
 		this.interfaceMethod = interfaceMethod;
 		this.staticAccess = staticAccess;
-
-		// create return type and parameter types from descriptor
-		this.returnType = JavaUtils.getReturnType(methodDescriptor);
-		this.parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 	}
 
 	public String getMethodOwner() {
@@ -63,6 +57,9 @@ public class MethodRef implements Ref, Comparable<MethodRef> {
 
 	@Override
 	public String getDisplayName() {
+		// TODO: improve performance
+		String returnType = JavaUtils.getReturnType(methodDescriptor);
+		String[] parameterTypes = JavaUtils.getParameterTypes(methodDescriptor);
 		int length = (staticAccess ? 7 : 0) + returnType.length() + methodOwner.length() + methodName.length() + 4;
 		for (String parameterType : parameterTypes) {
 			length += parameterType.length() + 1;
