@@ -176,7 +176,9 @@ public abstract class ClassLoader {
 		// try to find field in interfaces first
 		// (see: https://docs.oracle.com/javase/specs/jvms/se11/html/jvms-5.html#jvms-5.4.3.2)
 		List<String> interfaceNames = classDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			// TODO: use class loader of class definition
 			fieldDef = findFieldDef(interfaceName, fieldName, classLoader, callback, scannedClasses);
 			if (fieldDef != null) {
@@ -239,7 +241,9 @@ public abstract class ClassLoader {
 
 		// try to find method in interfaces
 		List<String> interfaceNames = classDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			// TODO: use class loader of class definition
 			methodDef = findMethodDef(interfaceName, methodName, methodDescriptor, classLoader, callback, scannedClasses);
 			if (methodDef != null) {
