@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
-import java.util.Set;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -98,7 +97,7 @@ class ClasspathTest {
 				.build();
 
 		// test
-		Set<ClassDef> result = classpath.getClassDefs("a.A");
+		List<ClassDef> result = classpath.getClassDefs("a.A");
 
 		// assert
 		assertNotNull(result);

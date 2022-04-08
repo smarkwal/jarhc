@@ -95,7 +95,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 				for (String className : classNames) {
 
 					// get target class definitions
-					Set<ClassDef> targetClassDefs = classpath.getClassDefs(className);
+					List<ClassDef> targetClassDefs = classpath.getClassDefs(className);
 					if (targetClassDefs == null) {
 						// ignore unknown class
 						continue;

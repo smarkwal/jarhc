@@ -20,11 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
-import org.jarhc.utils.MultiMap;
 
 /**
  * Represents a set of JAR files found on a Java classpath.
@@ -44,7 +42,7 @@ public class Classpath extends ClassLoader {
 	/**
 	 * Fast lookup map for class definitions given the class name.
 	 */
-	private final MultiMap<String, ClassDef> classDefsMap = new MultiMap<>(false);
+	private final Map<String, List<ClassDef>> classDefsMap = new HashMap<>();
 
 	/**
 	 * Create a new classpath with the given JAR files.
@@ -69,7 +67,8 @@ public class Classpath extends ClassLoader {
 			jarFile.getClassDefs().forEach(classDef -> {
 
 				// add class definition to fast lookup map
-				classDefsMap.add(classDef.getClassName(), classDef);
+				List<ClassDef> classDefs = classDefsMap.computeIfAbsent(classDef.getClassName(), className -> new ArrayList<>(1));
+				classDefs.add(classDef);
 			});
 		});
 	}
@@ -111,17 +110,18 @@ public class Classpath extends ClassLoader {
 	 * @param className Class name
 	 * @return Class definitions, or <code>null</code>
 	 */
-	public Set<ClassDef> getClassDefs(String className) {
-		return classDefsMap.getValues(className);
+	public List<ClassDef> getClassDefs(String className) {
+		return classDefsMap.get(className);
 	}
 
 	@Override
 	protected ClassDef findClassDef(String className) {
-		Set<ClassDef> set = getClassDefs(className);
-		if (set == null || set.isEmpty()) {
+		List<ClassDef> classDefs = classDefsMap.get(className);
+		if (classDefs == null) {
 			return null;
 		}
-		return set.iterator().next(); // TODO: avoid calling iterator.next()
+		// return first class
+		return classDefs.get(0);
 	}
 
 	@Override
