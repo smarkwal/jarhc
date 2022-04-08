@@ -30,6 +30,11 @@ import org.jarhc.model.MethodRef;
 
 public abstract class ClassLoader {
 
+	/**
+	 * The same thread always reuses the same HashSet instance.
+	 */
+	private static final ThreadLocal<HashSet<String>> HashSetPool = ThreadLocal.withInitial(HashSet::new);
+
 	private final String name;
 	private final ClassLoader parent;
 	private final ClassLoaderStrategy strategy;
@@ -144,7 +149,13 @@ public abstract class ClassLoader {
 	public FieldDef getFieldDef(FieldRef fieldRef, Callback callback) {
 		String fieldOwner = fieldRef.getFieldOwner();
 		String fieldName = fieldRef.getFieldName();
-		return findFieldDef(fieldOwner, fieldName, this, callback, new HashSet<>());
+
+		HashSet<String> scannedClasses = HashSetPool.get();
+		try {
+			return findFieldDef(fieldOwner, fieldName, this, callback, scannedClasses);
+		} finally {
+			scannedClasses.clear();
+		}
 	}
 
 	private FieldDef findFieldDef(String className, String fieldName, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
@@ -208,7 +219,13 @@ public abstract class ClassLoader {
 		String methodOwner = methodRef.getMethodOwner();
 		String methodName = methodRef.getMethodName();
 		String methodDescriptor = methodRef.getMethodDescriptor();
-		return findMethodDef(methodOwner, methodName, methodDescriptor, this, callback, new HashSet<>());
+
+		HashSet<String> scannedClasses = HashSetPool.get();
+		try {
+			return findMethodDef(methodOwner, methodName, methodDescriptor, this, callback, scannedClasses);
+		} finally {
+			scannedClasses.clear();
+		}
 	}
 
 	private MethodDef findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
