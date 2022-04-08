@@ -148,8 +148,12 @@ public class BlacklistAnalyzer implements Analyzer {
 		methodRefs.forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
 
 		// match every descriptor against all call patterns
-		for (String descriptor : descriptors) {
-			for (StringPattern pattern : codePatterns) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < descriptors.size(); i++) {
+			String descriptor = descriptors.get(i);
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < codePatterns.size(); j++) {
+				StringPattern pattern = codePatterns.get(j);
 				if (pattern.matches(descriptor)) {
 					classIssues.add(descriptor);
 					break;
@@ -266,7 +270,9 @@ public class BlacklistAnalyzer implements Analyzer {
 
 		// for every annotation ...
 		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
-		for (AnnotationRef annotationRef : annotationRefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < annotationRefs.size(); i++) {
+			AnnotationRef annotationRef = annotationRefs.get(i);
 			String annotationClassName = annotationRef.getClassName();
 
 			// check if annotation is a marker for an unstable API
@@ -279,7 +285,9 @@ public class BlacklistAnalyzer implements Analyzer {
 	}
 
 	private boolean isUnstableAnnotation(String annotationClassName) {
-		for (StringPattern pattern : annotationPatterns) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < annotationPatterns.size(); i++) {
+			StringPattern pattern = annotationPatterns.get(i);
 			if (pattern.matches(annotationClassName)) {
 				return true;
 			}
@@ -300,11 +308,15 @@ public class BlacklistAnalyzer implements Analyzer {
 
 		// for every resource ...
 		List<ResourceDef> resourceDefs = jarFile.getResourceDefs();
-		for (ResourceDef resourceDef : resourceDefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < resourceDefs.size(); i++) {
+			ResourceDef resourceDef = resourceDefs.get(i);
 			String name = resourceDef.getPath();
 
 			// check if resource matches any pattern ...
-			for (StringPattern pattern : resourcePatterns) {
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < resourcePatterns.size(); j++) {
+				StringPattern pattern = resourcePatterns.get(j);
 				if (pattern.matches(name)) {
 					jarIssues.add(name);
 					break;
