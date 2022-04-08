@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import org.jarhc.java.ClassLoader;
@@ -96,8 +95,8 @@ public class Classpath extends ClassLoader {
 	}
 
 	@Override
-	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
-		return jarFiles.stream().filter(predicate).findFirst();
+	public JarFile findJarFile(Predicate<JarFile> predicate) {
+		return jarFiles.stream().filter(predicate).findFirst().orElse(null);
 	}
 
 	@Override
@@ -117,13 +116,12 @@ public class Classpath extends ClassLoader {
 	}
 
 	@Override
-	protected Optional<ClassDef> findClassDef(String className) {
+	protected ClassDef findClassDef(String className) {
 		Set<ClassDef> set = getClassDefs(className);
 		if (set == null || set.isEmpty()) {
-			return Optional.empty();
+			return null;
 		}
-		ClassDef classDef = set.iterator().next();
-		return Optional.of(classDef);
+		return set.iterator().next(); // TODO: avoid calling iterator.next()
 	}
 
 	@Override

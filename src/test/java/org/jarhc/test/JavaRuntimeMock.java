@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.zip.GZIPInputStream;
@@ -122,8 +121,8 @@ public class JavaRuntimeMock extends JavaRuntime {
 	}
 
 	@Override
-	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
-		return Optional.empty();
+	public JarFile findJarFile(Predicate<JarFile> predicate) {
+		return null;
 	}
 
 	@Override
@@ -132,7 +131,7 @@ public class JavaRuntimeMock extends JavaRuntime {
 	}
 
 	@Override
-	protected Optional<ClassDef> findClassDef(String className) {
+	protected ClassDef findClassDef(String className) {
 
 		// check if class has been excluded during resource generation
 		if (excludedClassNames.contains(className)) {
@@ -140,8 +139,7 @@ public class JavaRuntimeMock extends JavaRuntime {
 			throw new TestDataException(message);
 		}
 
-		ClassDef classDef = classDefs.get(className);
-		return Optional.ofNullable(classDef);
+		return classDefs.get(className);
 	}
 
 	/**

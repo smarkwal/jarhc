@@ -19,7 +19,6 @@ package org.jarhc.env;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -59,9 +58,14 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	private final Properties systemProperties;
 
 	/**
-	 * Cache for class definitions. May contain "negative results" in the form of empty Optionals.
+	 * Cache for class definitions. May contain "negative results" in the form of null values.
 	 */
-	private final Map<String, Optional<ClassDef>> classDefs = new ConcurrentHashMap<>();
+	private final Map<String, ClassDef> classDefs = new ConcurrentHashMap<>();
+
+	/**
+	 * Negative cache value if class has not been found.
+	 */
+	private static final ClassDef CLASS_NOT_FOUND = new ClassDef(null);
 
 	private final Logger logger;
 
@@ -91,8 +95,8 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
-	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
-		return Optional.empty();
+	public JarFile findJarFile(Predicate<JarFile> predicate) {
+		return null;
 	}
 
 	@Override
@@ -102,24 +106,33 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
-	protected Optional<ClassDef> findClassDef(String className) {
+	protected ClassDef findClassDef(String className) {
 
 		// check cache
-		Optional<ClassDef> classDef = classDefs.getOrDefault(className, Optional.empty());
-		if (classDef.isPresent()) {
-			return classDef;
+		ClassDef classDef = classDefs.get(className);
+		if (classDef != null) {
+			if (classDef == CLASS_NOT_FOUND) {
+				return null;
+			} else {
+				return classDef;
+			}
 		}
 
 		// create class definition
 		classDef = createClassDef(className);
 
-		// update cache
-		classDefs.put(className, classDef);
+		if (classDef == null) {
+			// cache negative result
+			classDefs.put(className, CLASS_NOT_FOUND);
+		} else {
+			// update cache
+			classDefs.put(className, classDef);
+		}
 
 		return classDef;
 	}
 
-	private Optional<ClassDef> createClassDef(String className) {
+	private ClassDef createClassDef(String className) {
 
 		// construct the resource name of the Java class file
 		String resourceName = className.replace('.', '/') + ".class";
@@ -128,7 +141,7 @@ public class DefaultJavaRuntime extends JavaRuntime {
 
 			if (stream == null) {
 				// .class resource not found -> class not found
-				return Optional.empty();
+				return null;
 			}
 
 			ClassDef classDef = loader.load(stream);
@@ -139,13 +152,13 @@ public class DefaultJavaRuntime extends JavaRuntime {
 				classDef.setModuleInfo(moduleInfo);
 			}
 
-			return Optional.of(classDef);
+			return classDef;
 
 		} catch (IOException e) {
 			logger.warn("Failed to load class from resource: {}", resourceName, e);
 
 			// unexpected error -> class not found
-			return Optional.empty();
+			return null;
 		}
 
 	}

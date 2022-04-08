@@ -16,7 +16,6 @@
 
 package org.jarhc.env;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
@@ -54,7 +53,7 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
-	public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+	public JarFile findJarFile(Predicate<JarFile> predicate) {
 		return classpath.findJarFile(predicate);
 	}
 
@@ -64,7 +63,7 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 	}
 
 	@Override
-	protected Optional<ClassDef> findClassDef(String className) {
+	protected ClassDef findClassDef(String className) {
 		return classpath.getClassDef(className);
 	}
 

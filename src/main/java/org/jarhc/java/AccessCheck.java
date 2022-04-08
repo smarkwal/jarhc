@@ -18,7 +18,6 @@ package org.jarhc.java;
 
 import java.lang.reflect.Modifier;
 import java.util.List;
-import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
 import org.jarhc.model.MethodDef;
@@ -180,14 +179,14 @@ public class AccessCheck {
 	private boolean isSubclass(String sourceClassName, String targetClassName) {
 
 		// try to find source class
-		Optional<ClassDef> classDef = classLoader.getClassDef(sourceClassName);
-		if (!classDef.isPresent()) {
+		ClassDef classDef = classLoader.getClassDef(sourceClassName);
+		if (classDef == null) {
 			// TODO: handle class not found
 			return false;
 		}
 
 		// check if source class is a subclass of target class
-		return isSubclass(classDef.get(), targetClassName);
+		return isSubclass(classDef, targetClassName);
 	}
 
 	private boolean inSamePackage(String sourceClassName, String targetClassName) {

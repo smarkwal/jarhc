@@ -27,8 +27,10 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.Def;
+import org.jarhc.model.FieldDef;
 import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.report.ReportSection;
@@ -170,20 +172,24 @@ public class BlacklistAnalyzer implements Analyzer {
 		// check class annotations
 		classDef.getAnnotationRefs()
 				.forEach(
-						annotationRef -> classpath.getClassDef(annotationRef.getClassName())
-								.ifPresent(
-										def -> findUnstableAnnotations(classDef, def, classIssues)
-								)
+						annotationRef -> {
+							ClassDef def = classpath.getClassDef(annotationRef.getClassName());
+							if (def != null) {
+								findUnstableAnnotations(classDef, def, classIssues);
+							}
+						}
 				);
 
 		// check record component annotations
 		classDef.getRecordComponentDefs().forEach(
 				recordComponentDef -> recordComponentDef.getAnnotationRefs()
 						.forEach(
-								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
-										.ifPresent(
-												def -> findUnstableAnnotations(classDef, def, classIssues)
-										)
+								annotationRef -> {
+									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
+									if (def != null) {
+										findUnstableAnnotations(classDef, def, classIssues);
+									}
+								}
 						)
 		);
 
@@ -191,10 +197,12 @@ public class BlacklistAnalyzer implements Analyzer {
 		classDef.getMethodDefs().forEach(
 				methodDef -> methodDef.getAnnotationRefs()
 						.forEach(
-								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
-										.ifPresent(
-												def -> findUnstableAnnotations(classDef, def, classIssues)
-										)
+								annotationRef -> {
+									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
+									if (def != null) {
+										findUnstableAnnotations(classDef, def, classIssues);
+									}
+								}
 						)
 		);
 
@@ -202,38 +210,46 @@ public class BlacklistAnalyzer implements Analyzer {
 		classDef.getFieldDefs().forEach(
 				fieldDef -> fieldDef.getAnnotationRefs()
 						.forEach(
-								annotationRef -> classpath.getClassDef(annotationRef.getClassName())
-										.ifPresent(
-												def -> findUnstableAnnotations(classDef, def, classIssues)
-										)
+								annotationRef -> {
+									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
+									if (def != null) {
+										findUnstableAnnotations(classDef, def, classIssues);
+									}
+								}
 						)
 		);
 
 		// check class references
 		classDef.getClassRefs()
 				.forEach(
-						classRef -> classpath.getClassDef(classRef)
-								.ifPresent(
-										def -> findUnstableAnnotations(classDef, def, classIssues)
-								)
+						classRef -> {
+							ClassDef def = classpath.getClassDef(classRef);
+							if (def != null) {
+								findUnstableAnnotations(classDef, def, classIssues);
+							}
+						}
 				);
 
 		// check field references
 		classDef.getFieldRefs()
 				.forEach(
-						fieldRef -> classpath.getFieldDef(fieldRef)
-								.ifPresent(
-										def -> findUnstableAnnotations(classDef, def, classIssues)
-								)
+						fieldRef -> {
+							FieldDef def = classpath.getFieldDef(fieldRef);
+							if (def != null) {
+								findUnstableAnnotations(classDef, def, classIssues);
+							}
+						}
 				);
 
 		// check method references
 		classDef.getMethodRefs()
 				.forEach(
-						methodRef -> classpath.getMethodDef(methodRef)
-								.ifPresent(
-										def -> findUnstableAnnotations(classDef, def, classIssues)
-								)
+						methodRef -> {
+							MethodDef def = classpath.getMethodDef(methodRef);
+							if (def != null) {
+								findUnstableAnnotations(classDef, def, classIssues);
+							}
+						}
 				);
 
 		// TODO: report usage of deprecated/unstable annotation fields

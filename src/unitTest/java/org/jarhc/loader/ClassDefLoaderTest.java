@@ -132,19 +132,31 @@ class ClassDefLoaderTest {
 		List<MethodDef> methodDefs = classDef.getMethodDefs();
 		assertEquals(7, methodDefs.size());
 
-		MethodDef methodDef = classDef.getMethodDef("<init>", "(ILjava/lang/String;Z)V").orElseThrow(AssertionError::new);
+		MethodDef methodDef = classDef.getMethodDef("<init>", "(ILjava/lang/String;Z)V");
+		if (methodDef == null) {
+			throw new AssertionError();
+		}
 		assertEquals("public", methodDef.getModifiers());
 		assertTrue(methodDef.hasAnnotationRef("java.lang.Deprecated", Target.PARAMETER));
 
-		methodDef = classDef.getMethodDef("id", "()I").orElseThrow(AssertionError::new);
+		methodDef = classDef.getMethodDef("id", "()I");
+		if (methodDef == null) {
+			throw new AssertionError();
+		}
 		assertEquals("public", methodDef.getModifiers());
 		assertEquals(0, methodDef.getAnnotationRefs().size());
 
-		methodDef = classDef.getMethodDef("name", "()Ljava/lang/String;").orElseThrow(AssertionError::new);
+		methodDef = classDef.getMethodDef("name", "()Ljava/lang/String;");
+		if (methodDef == null) {
+			throw new AssertionError();
+		}
 		assertEquals("public", methodDef.getModifiers());
 		assertEquals(0, methodDef.getAnnotationRefs().size());
 
-		methodDef = classDef.getMethodDef("enabled", "()Z").orElseThrow(AssertionError::new);
+		methodDef = classDef.getMethodDef("enabled", "()Z");
+		if (methodDef == null) {
+			throw new AssertionError();
+		}
 		assertEquals("public", methodDef.getModifiers());
 		assertTrue(methodDef.hasAnnotationRef("java.lang.Deprecated", Target.METHOD));
 
@@ -200,20 +212,32 @@ class ClassDefLoaderTest {
 		assertTrue(classDef.hasAnnotationRef("Annotations$TypeAnnotation", Target.TYPE));
 		assertTrue(classDef.hasAnnotationRef("Annotations$TypeParameterAnnotation", Target.TYPE_PARAMETER));
 
-		MethodDef constructorDef = classDef.getMethodDef("<init>", "(Ljava/lang/Object;)V").orElseThrow(() -> new AssertionError("Constructor not found"));
+		MethodDef constructorDef = classDef.getMethodDef("<init>", "(Ljava/lang/Object;)V");
+		if (constructorDef == null) {
+			throw new AssertionError("Constructor not found");
+		}
 		assertEquals(1, constructorDef.getAnnotationRefs().size());
 		assertTrue(constructorDef.hasAnnotationRef("Annotations$ConstructorAnnotation", Target.CONSTRUCTOR));
 
-		MethodDef methodDef = classDef.getMethodDef("method", "(I)V").orElseThrow(() -> new AssertionError("Method not found"));
+		MethodDef methodDef = classDef.getMethodDef("method", "(I)V");
+		if (methodDef == null) {
+			throw new AssertionError("Method not found");
+		}
 		assertEquals(2, methodDef.getAnnotationRefs().size());
 		assertTrue(methodDef.hasAnnotationRef("Annotations$MethodAnnotation", Target.METHOD));
 		assertTrue(methodDef.hasAnnotationRef("Annotations$ParameterAnnotation", Target.PARAMETER));
 
-		FieldDef fieldDef = classDef.getFieldDef("field").orElseThrow(() -> new AssertionError("Field not found"));
+		FieldDef fieldDef = classDef.getFieldDef("field");
+		if (fieldDef == null) {
+			throw new AssertionError("Field not found");
+		}
 		assertEquals(1, fieldDef.getAnnotationRefs().size());
 		assertTrue(fieldDef.hasAnnotationRef("Annotations$FieldAnnotation", Target.FIELD));
 
-		FieldDef fieldDef2 = classDef.getFieldDef("field2").orElseThrow(() -> new AssertionError("Field 2 not found"));
+		FieldDef fieldDef2 = classDef.getFieldDef("field2");
+		if (fieldDef2 == null) {
+			throw new AssertionError("Field 2 not found");
+		}
 		assertEquals(1, fieldDef2.getAnnotationRefs().size());
 		assertTrue(fieldDef2.hasAnnotationRef("Annotations$TypeUseAnnotation", Target.TYPE_PARAMETER));
 

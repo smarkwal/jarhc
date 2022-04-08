@@ -136,7 +136,10 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 			List<ClassDef> classDefs = entry.getValue();
 
 			// check if class shadows provided class or JRE class
-			parentClassLoader.getClassDef(className).ifPresent(classDefs::add);
+			ClassDef classDef = parentClassLoader.getClassDef(className);
+			if (classDef != null) {
+				classDefs.add(classDef);
+			}
 		}
 
 	}

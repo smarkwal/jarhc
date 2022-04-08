@@ -17,11 +17,10 @@
 package org.jarhc.env;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Optional;
 import org.jarhc.Main;
 import org.jarhc.model.ClassDef;
 import org.jarhc.test.log.LoggerBuilder;
@@ -95,11 +94,11 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
-		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.String");
+		ClassDef result = javaRuntime.getClassDef("java.lang.String");
 
 		// assert
-		assertTrue(result.isPresent());
-		assertEquals("java.lang.String", result.get().getClassName());
+		assertNotNull(result);
+		assertEquals("java.lang.String", result.getClassName());
 
 	}
 
@@ -110,10 +109,10 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
-		Optional<ClassDef> result = javaRuntime.getClassDef("u.Unknown");
+		ClassDef result = javaRuntime.getClassDef("u.Unknown");
 
 		// assert
-		assertFalse(result.isPresent());
+		assertNull(result);
 
 	}
 
@@ -124,10 +123,10 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
-		Optional<ClassDef> result = javaRuntime.getClassDef(Main.class.getName());
+		ClassDef result = javaRuntime.getClassDef(Main.class.getName());
 
 		// assert
-		assertFalse(result.isPresent());
+		assertNull(result);
 
 	}
 
@@ -138,19 +137,19 @@ class DefaultJavaRuntimeTest {
 		JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
 
 		// test
-		Optional<ClassDef> result = javaRuntime.getClassDef("java.lang.Integer");
+		ClassDef result = javaRuntime.getClassDef("java.lang.Integer");
 
 		// assert
-		assertTrue(result.isPresent());
-		assertEquals("java.lang.Integer", result.get().getClassName());
+		assertNotNull(result);
+		assertEquals("java.lang.Integer", result.getClassName());
 
 		// test 2: fetch again
-		Optional<ClassDef> result2 = javaRuntime.getClassDef("java.lang.Integer");
+		ClassDef result2 = javaRuntime.getClassDef("java.lang.Integer");
 
 		// assert
-		assertTrue(result2.isPresent());
-		assertEquals("java.lang.Integer", result2.get().getClassName());
-		assertSame(result2.get(), result.get());
+		assertNotNull(result2);
+		assertEquals("java.lang.Integer", result2.getClassName());
+		assertSame(result2, result);
 
 	}
 

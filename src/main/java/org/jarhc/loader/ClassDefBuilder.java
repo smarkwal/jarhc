@@ -27,7 +27,6 @@ import static org.jarhc.utils.JavaUtils.isPrimitiveType;
 import static org.jarhc.utils.JavaUtils.isVoidType;
 import static org.jarhc.utils.JavaUtils.toExternalName;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.model.AnnotationRef;
@@ -371,8 +370,8 @@ class ClassDefBuilder extends ClassVisitor {
 			if (writeAccess) {
 				if (classDef.getClassName().equals(fieldOwner)) {
 					// check if field is present in current class and is final
-					Optional<FieldDef> fieldDef = classDef.getFieldDef(name); // TODO: is it guaranteed that FieldDefs already exist???
-					if (fieldDef.isPresent() && fieldDef.get().isFinal()) {
+					FieldDef fieldDef = classDef.getFieldDef(name); // TODO: is it guaranteed that FieldDefs already exist???
+					if (fieldDef != null && fieldDef.isFinal()) {
 						return;
 					}
 				}

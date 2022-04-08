@@ -18,12 +18,13 @@ package org.jarhc.java;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
@@ -49,9 +50,9 @@ class ClassLoaderTest {
 		when(parentClassLoader.getJarFile(any())).thenAnswer((invocation) -> {
 			Predicate<JarFile> predicate = invocation.getArgument(0);
 			if (predicate.test(jarFile)) {
-				return Optional.of(jarFile);
+				return jarFile;
 			} else {
-				return Optional.empty();
+				return null;
 			}
 		});
 
@@ -60,9 +61,9 @@ class ClassLoaderTest {
 			if (className.startsWith("parent.")) {
 				ClassDef classDef = new ClassDef(className);
 				classDef.setClassLoader("Parent");
-				return Optional.of(classDef);
+				return classDef;
 			} else {
-				return Optional.empty();
+				return null;
 			}
 		});
 
@@ -139,11 +140,11 @@ class ClassLoaderTest {
 		ClassRef classRef = new ClassRef("local.Local");
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef(classRef);
+		ClassDef classDef = classLoader.getClassDef(classRef);
 
 		// assert
-		assertTrue(classDef.isPresent());
-		assertEquals("local.Local", classDef.get().getClassName());
+		assertNotNull(classDef);
+		assertEquals("local.Local", classDef.getClassName());
 
 	}
 
@@ -154,11 +155,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("parent.Parent");
+		ClassDef classDef = classLoader.getClassDef("parent.Parent");
 
 		// assert
-		assertTrue(classDef.isPresent());
-		assertEquals("Parent", classDef.get().getClassLoader());
+		assertNotNull(classDef);
+		assertEquals("Parent", classDef.getClassLoader());
 
 	}
 
@@ -169,11 +170,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("local.Local");
+		ClassDef classDef = classLoader.getClassDef("local.Local");
 
 		// assert
-		assertTrue(classDef.isPresent());
-		assertEquals("Local", classDef.get().getClassLoader());
+		assertNotNull(classDef);
+		assertEquals("Local", classDef.getClassLoader());
 
 	}
 
@@ -184,10 +185,10 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("unknown.Unknown");
+		ClassDef classDef = classLoader.getClassDef("unknown.Unknown");
 
 		// assert
-		assertFalse(classDef.isPresent());
+		assertNull(classDef);
 
 	}
 
@@ -198,11 +199,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("parent.Parent");
+		ClassDef classDef = classLoader.getClassDef("parent.Parent");
 
 		// assert
-		assertTrue(classDef.isPresent());
-		assertEquals("Parent", classDef.get().getClassLoader());
+		assertNotNull(classDef);
+		assertEquals("Parent", classDef.getClassLoader());
 
 	}
 
@@ -213,11 +214,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("local.Local");
+		ClassDef classDef = classLoader.getClassDef("local.Local");
 
 		// assert
-		assertTrue(classDef.isPresent());
-		assertEquals("Local", classDef.get().getClassLoader());
+		assertNotNull(classDef);
+		assertEquals("Local", classDef.getClassLoader());
 
 	}
 
@@ -228,10 +229,10 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<ClassDef> classDef = classLoader.getClassDef("unknown.Unknown");
+		ClassDef classDef = classLoader.getClassDef("unknown.Unknown");
 
 		// assert
-		assertFalse(classDef.isPresent());
+		assertNull(classDef);
 
 	}
 
@@ -242,11 +243,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
+		JarFile jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
 
 		// assert
-		assertTrue(jarFile.isPresent());
-		assertEquals("parent.jar", jarFile.get().getFileName());
+		assertNotNull(jarFile);
+		assertEquals("parent.jar", jarFile.getFileName());
 
 	}
 
@@ -257,11 +258,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
+		JarFile jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
 
 		// assert
-		assertTrue(jarFile.isPresent());
-		assertEquals("local.jar", jarFile.get().getFileName());
+		assertNotNull(jarFile);
+		assertEquals("local.jar", jarFile.getFileName());
 
 	}
 
@@ -272,10 +273,10 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentFirst);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> false);
+		JarFile jarFile = classLoader.getJarFile(f -> false);
 
 		// assert
-		assertFalse(jarFile.isPresent());
+		assertNull(jarFile);
 
 	}
 
@@ -286,11 +287,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
+		JarFile jarFile = classLoader.getJarFile(f -> f.getFileName().contains("parent"));
 
 		// assert
-		assertTrue(jarFile.isPresent());
-		assertEquals("parent.jar", jarFile.get().getFileName());
+		assertNotNull(jarFile);
+		assertEquals("parent.jar", jarFile.getFileName());
 
 	}
 
@@ -301,11 +302,11 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
+		JarFile jarFile = classLoader.getJarFile(f -> f.getFileName().contains("local"));
 
 		// assert
-		assertTrue(jarFile.isPresent());
-		assertEquals("local.jar", jarFile.get().getFileName());
+		assertNotNull(jarFile);
+		assertEquals("local.jar", jarFile.getFileName());
 
 	}
 
@@ -316,27 +317,27 @@ class ClassLoaderTest {
 		ClassLoader classLoader = new TestClassLoader(parentClassLoader, ClassLoaderStrategy.ParentLast);
 
 		// test
-		Optional<JarFile> jarFile = classLoader.getJarFile(f -> false);
+		JarFile jarFile = classLoader.getJarFile(f -> false);
 
 		// assert
-		assertFalse(jarFile.isPresent());
+		assertNull(jarFile);
 
 	}
 
 	private static class TestClassLoader extends ClassLoader {
 
-		private JarFile jarFile = JarFile.withName("local.jar").build();
+		private final JarFile jarFile = JarFile.withName("local.jar").build();
 
 		TestClassLoader(ClassLoader parent, ClassLoaderStrategy strategy) {
 			super("Local", parent, strategy);
 		}
 
 		@Override
-		public Optional<JarFile> findJarFile(Predicate<JarFile> predicate) {
+		public JarFile findJarFile(Predicate<JarFile> predicate) {
 			if (predicate.test(jarFile)) {
-				return Optional.of(jarFile);
+				return jarFile;
 			} else {
-				return Optional.empty();
+				return null;
 			}
 		}
 
@@ -346,13 +347,13 @@ class ClassLoaderTest {
 		}
 
 		@Override
-		protected Optional<ClassDef> findClassDef(String className) {
+		protected ClassDef findClassDef(String className) {
 			if (className.startsWith("local.")) {
 				ClassDef classDef = new ClassDef(className);
 				classDef.setClassLoader("Local");
-				return Optional.of(classDef);
+				return classDef;
 			} else {
-				return Optional.empty();
+				return null;
 			}
 		}
 

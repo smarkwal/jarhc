@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.JavaVersion;
 
@@ -362,9 +361,8 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return fieldDefs;
 	}
 
-	public Optional<FieldDef> getFieldDef(String fieldName) {
-		FieldDef fieldDef = fieldDefsMap.get(fieldName);
-		return Optional.ofNullable(fieldDef);
+	public FieldDef getFieldDef(String fieldName) {
+		return fieldDefsMap.get(fieldName);
 	}
 
 	public ClassDef addFieldDef(FieldDef fieldDef) {
@@ -378,13 +376,12 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 		return methodDefs;
 	}
 
-	public Optional<MethodDef> getMethodDef(String methodName, String methodDescriptor) {
+	public MethodDef getMethodDef(String methodName, String methodDescriptor) {
 		Map<String, MethodDef> map = methodDefsMap.get(methodName);
 		if (map == null) {
-			return Optional.empty();
+			return null;
 		}
-		MethodDef methodDef = map.get(methodDescriptor);
-		return Optional.ofNullable(methodDef);
+		return map.get(methodDescriptor);
 	}
 
 	public ClassDef addMethodDef(MethodDef methodDef) {

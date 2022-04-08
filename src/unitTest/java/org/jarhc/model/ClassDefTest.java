@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.doReturn;
 
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -91,11 +90,11 @@ class ClassDefTest {
 		assertEquals(1025, classDef.getAccess());
 
 		assertEquals(1, classDef.getFieldDefs().size());
-		assertTrue(classDef.getFieldDef("id").isPresent());
-		assertEquals("id", classDef.getFieldDef("id").get().getFieldName());
+		assertNotNull(classDef.getFieldDef("id"));
+		assertEquals("id", classDef.getFieldDef("id").getFieldName());
 		assertEquals(1, classDef.getMethodDefs().size());
-		assertTrue(classDef.getMethodDef("getId", "()Ljava/lang/String;").isPresent());
-		assertEquals("getId", classDef.getMethodDef("getId", "()Ljava/lang/String;").get().getMethodName());
+		assertNotNull(classDef.getMethodDef("getId", "()Ljava/lang/String;"));
+		assertEquals("getId", classDef.getMethodDef("getId", "()Ljava/lang/String;").getMethodName());
 
 		assertEquals(1, classDef.getClassRefs().size());
 		assertEquals("x.y.Z", classDef.getClassRefs().get(0).getClassName());

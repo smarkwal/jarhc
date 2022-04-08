@@ -19,7 +19,6 @@ package org.jarhc.analyzer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
@@ -134,9 +133,8 @@ public class DependenciesAnalyzer implements Analyzer {
 
 			// search for JAR file with same group ID and artifact ID
 			Predicate<JarFile> predicate = jarFile -> matches(jarFile, dependency);
-			Optional<JarFile> result = classpath.getJarFile(predicate);
-			if (result.isPresent()) {
-				JarFile jarFile = result.get();
+			JarFile jarFile = classpath.getJarFile(predicate);
+			if (jarFile != null) {
 
 				// check if it is an exact match
 				StringBuilder line = new StringBuilder("OK");

@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.app.Options;
@@ -144,12 +143,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		String superName = classDef.getSuperName();
 		if (superName != null) {
 			// check if superclass exists
-			Optional<ClassDef> superClassDef = classpath.getClassDef(superName);
-			if (!superClassDef.isPresent()) {
+			ClassDef superClassDef = classpath.getClassDef(superName);
+			if (superClassDef == null) {
 				classIssues.add("Superclass not found: " + superName);
 			} else {
-				ClassDef superClass = superClassDef.get();
-				validateSuperclass(superClass, classDef, accessCheck, classIssues);
+				validateSuperclass(superClassDef, classDef, accessCheck, classIssues);
 			}
 		}
 
@@ -157,12 +155,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		List<String> interfaceNames = classDef.getInterfaceNames();
 		for (String interfaceName : interfaceNames) {
 			// check if interface exists
-			Optional<ClassDef> interfaceClassDef = classpath.getClassDef(interfaceName);
-			if (!interfaceClassDef.isPresent()) {
+			ClassDef interfaceClassDef = classpath.getClassDef(interfaceName);
+			if (interfaceClassDef == null) {
 				classIssues.add("Interface not found: " + interfaceName);
 			} else {
-				ClassDef interfaceDef = interfaceClassDef.get();
-				validateInterface(interfaceDef, classDef, accessCheck, classIssues);
+				validateInterface(interfaceClassDef, classDef, accessCheck, classIssues);
 			}
 		}
 
@@ -173,12 +170,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
 			for (String permittedSubclassName : permittedSubclassNames) {
 				// check if subclass exists
-				Optional<ClassDef> permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
-				if (!permittedSubclassDef.isPresent()) {
+				ClassDef permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
+				if (permittedSubclassDef == null) {
 					classIssues.add("Permitted subclass not found: " + permittedSubclassName);
 				} else {
-					ClassDef subclassDef = permittedSubclassDef.get();
-					validatePermittedSubclass(subclassDef, classDef, accessCheck, classIssues);
+					validatePermittedSubclass(permittedSubclassDef, classDef, accessCheck, classIssues);
 				}
 			}
 		}
@@ -359,15 +355,19 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// collect methods from superclass
 		String superName = classDef.getSuperName();
 		if (superName != null) {
-			Optional<ClassDef> superClass = classpath.getClassDef(superName);
-			superClass.ifPresent(def -> collectMethodDefs(def, classpath, concreteMethods, abstractMethods, visitedClasses));
+			ClassDef superClass = classpath.getClassDef(superName);
+			if (superClass != null) {
+				collectMethodDefs(superClass, classpath, concreteMethods, abstractMethods, visitedClasses);
+			}
 		}
 
 		// collect methods from interfaces
 		List<String> interfaceNames = classDef.getInterfaceNames();
 		for (String interfaceName : interfaceNames) {
-			Optional<ClassDef> interfaceDef = classpath.getClassDef(interfaceName);
-			interfaceDef.ifPresent(def -> collectMethodDefs(def, classpath, concreteMethods, abstractMethods, visitedClasses));
+			ClassDef interfaceDef = classpath.getClassDef(interfaceName);
+			if (interfaceDef != null) {
+				collectMethodDefs(interfaceDef, classpath, concreteMethods, abstractMethods, visitedClasses);
+			}
 		}
 
 		// categorize methods in class definition
@@ -418,14 +418,13 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			String className = classRef.getClassName();
 
 			// check if class exists
-			Optional<ClassDef> targetClassDef = classLoader.getClassDef(className);
-			boolean exists = targetClassDef.isPresent();
-			if (!exists) {
+			ClassDef targetClassDef = classLoader.getClassDef(className);
+			if (targetClassDef == null) {
 				// check if package of class exists (there is at least one class on the classpath)
 				validateClassRefPackage("Class", className, classLoader, classIssues);
 			} else {
 				// check if access to class is allowed
-				validateClassRefAccess(classDef, targetClassDef.get(), accessCheck, classIssues);
+				validateClassRefAccess(classDef, targetClassDef, accessCheck, classIssues);
 			}
 
 		}
@@ -506,7 +505,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// try to find owner class
 		String targetClassName = methodRef.getMethodOwner();
-		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName).orElse(null);
+		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName);
 		if (ownerClassDef == null) {
 			// owner class not found
 			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
@@ -529,10 +528,10 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		// find target method definition
-		Optional<MethodDef> methodDef = classLoader.getMethodDef(methodRef, searchResult);
+		MethodDef methodDef = classLoader.getMethodDef(methodRef, searchResult);
 
 		// if method has not been found ...
-		if (!methodDef.isPresent()) {
+		if (methodDef == null) {
 
 			// special handling for methods of class MethodHandle or VarHandle
 			if (targetClassName.equals("java.lang.invoke.MethodHandle") || targetClassName.equals("java.lang.invoke.VarHandle")) {
@@ -542,14 +541,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				methodDef = classLoader.getMethodDef(handleRef, searchResult);
 			}
 
-			if (!methodDef.isPresent()) {
+			if (methodDef == null) {
 				searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
 				return searchResult;
 			}
 		}
 
 		// check compatibility between method reference and method definition
-		validateMethodDef(classDef, methodRef, methodDef.get(), accessCheck, searchResult);
+		validateMethodDef(classDef, methodRef, methodDef, accessCheck, searchResult);
 
 		return searchResult;
 	}
@@ -636,7 +635,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// try to find owner class
 		String targetClassName = fieldRef.getFieldOwner();
-		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName).orElse(null);
+		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName);
 		if (ownerClassDef == null) {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
@@ -659,14 +658,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		// find target field definition
-		Optional<FieldDef> fieldDef = classLoader.getFieldDef(fieldRef, searchResult);
-		if (!fieldDef.isPresent()) {
+		FieldDef fieldDef = classLoader.getFieldDef(fieldRef, searchResult);
+		if (fieldDef == null) {
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			return searchResult;
 		}
 
 		// check compatibility between field reference and field definition
-		validateFieldDef(classDef, fieldRef, fieldDef.get(), accessCheck, searchResult);
+		validateFieldDef(classDef, fieldRef, fieldDef, accessCheck, searchResult);
 
 		return searchResult;
 	}
@@ -745,9 +744,8 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			String annotationName = annotationRef.getClassName();
 
 			// check if annotation exists
-			Optional<ClassDef> annotationDef = classpath.getClassDef(annotationName);
-			boolean exists = annotationDef.isPresent();
-			if (!exists) {
+			ClassDef annotationDef = classpath.getClassDef(annotationName);
+			if (annotationDef == null) {
 				// check if missing annotations should be reported
 				if (!ignoreMissingAnnotations) {
 					// check if package of annotation exists (there is at least one class on the classpath)
@@ -755,12 +753,12 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				}
 			} else {
 				// check if access to class is allowed
-				validateClassRefAccess(ownerClassDef, annotationDef.get(), accessCheck, classIssues);
+				validateClassRefAccess(ownerClassDef, annotationDef, accessCheck, classIssues);
 				// check if target class is an annotation
-				if (annotationDef.get().isAnnotation()) {
+				if (annotationDef.isAnnotation()) {
 					// TODO: check if class is valid annotation target
 				} else {
-					classIssues.add("Class is not an annotation: " + annotationDef.get().getDisplayName());
+					classIssues.add("Class is not an annotation: " + annotationDef.getDisplayName());
 				}
 			}
 

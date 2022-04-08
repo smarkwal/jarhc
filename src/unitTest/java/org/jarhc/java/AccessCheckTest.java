@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-import java.util.Optional;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.FieldDef;
@@ -297,14 +296,20 @@ class AccessCheckTest {
 	}
 
 	private ClassDef getClassDef(String className) {
-		Optional<ClassDef> classDef = javaRuntime.getClassDef(className);
-		return classDef.orElseThrow(() -> new IllegalArgumentException("Class not found: " + className));
+		ClassDef classDef = javaRuntime.getClassDef(className);
+		if (classDef == null) {
+			throw new IllegalArgumentException("Class not found: " + className);
+		}
+		return classDef;
 	}
 
 	private FieldDef getFieldDef(String className, String fieldName) {
 		ClassDef classDef = getClassDef(className);
-		Optional<FieldDef> fieldDef = classDef.getFieldDef(fieldName);
-		return fieldDef.orElseThrow(() -> new IllegalArgumentException("Field not found: " + className + "." + fieldName));
+		FieldDef fieldDef = classDef.getFieldDef(fieldName);
+		if (fieldDef == null) {
+			throw new IllegalArgumentException("Field not found: " + className + "." + fieldName);
+		}
+		return fieldDef;
 	}
 
 }

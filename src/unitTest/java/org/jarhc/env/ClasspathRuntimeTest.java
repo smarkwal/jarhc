@@ -17,11 +17,9 @@
 package org.jarhc.env;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,8 +33,8 @@ class ClasspathRuntimeTest {
 	@BeforeEach
 	void setUp() {
 		Classpath classpath = Mockito.mock(Classpath.class);
-		Mockito.when(classpath.getClassDef("u.Unknown")).thenReturn(Optional.empty());
-		Mockito.when(classpath.getClassDef("java.lang.String")).thenReturn(Optional.of(ClassDef.forClassName("java.lang.String").setClassLoader("Runtime")));
+		Mockito.when(classpath.getClassDef("u.Unknown")).thenReturn(null);
+		Mockito.when(classpath.getClassDef("java.lang.String")).thenReturn(ClassDef.forClassName("java.lang.String").setClassLoader("Runtime"));
 		runtime = new ClasspathJavaRuntime(classpath);
 	}
 
@@ -75,22 +73,19 @@ class ClasspathRuntimeTest {
 	@Test
 	void test_getClassDef_Unknown() {
 		// test
-		Optional<ClassDef> result = runtime.getClassDef("u.Unknown");
+		ClassDef result = runtime.getClassDef("u.Unknown");
 		// assert
-		assertNotNull(result);
-		assertFalse(result.isPresent());
+		assertNull(result);
 	}
 
 	@Test
 	void test_getClassDef_String() {
 		// test
-		Optional<ClassDef> result = runtime.getClassDef("java.lang.String");
+		ClassDef result = runtime.getClassDef("java.lang.String");
 		// assert
 		assertNotNull(result);
-		assertTrue(result.isPresent());
-		ClassDef classDef = result.get();
-		assertEquals("java.lang.String", classDef.getClassName());
-		assertEquals("Runtime", classDef.getClassLoader());
+		assertEquals("java.lang.String", result.getClassName());
+		assertEquals("Runtime", result.getClassLoader());
 	}
 
 }

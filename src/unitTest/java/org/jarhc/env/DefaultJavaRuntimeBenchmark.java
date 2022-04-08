@@ -18,7 +18,6 @@ package org.jarhc.env;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.jarhc.model.ClassDef;
 import org.jarhc.test.log.LoggerBuilder;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -55,8 +54,10 @@ public class DefaultJavaRuntimeBenchmark {
 	@Benchmark
 	public void getClassDef() {
 		for (String className : classNames) {
-			Optional<ClassDef> classDef = javaRuntime.getClassDef(className);
-			classDef.orElseThrow(() -> new AssertionError("Class not found: " + className));
+			ClassDef classDef = javaRuntime.getClassDef(className);
+			if (classDef == null) {
+				throw new AssertionError("Class not found: " + className);
+			}
 		}
 	}
 
