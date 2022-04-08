@@ -27,6 +27,8 @@ public class JavaUtils {
 	private static final ConcurrentHashMap<String, String> arrayElementTypesCache = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, String> externalNamesCache = new ConcurrentHashMap<>();
 
+	private static final String[] NO_PARAMETERS = new String[0];
+
 	private JavaUtils() {
 		throw new IllegalStateException("utility class");
 	}
@@ -108,6 +110,10 @@ public class JavaUtils {
 				}
 				pos++;
 				parameterCount++;
+			}
+
+			if (parameterCount == 0) {
+				return NO_PARAMETERS;
 			}
 
 			String[] parameterTypes = new String[parameterCount];
