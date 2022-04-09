@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 
 public class Pool<T> {
 
-	private final Deque<T> pool = new ArrayDeque<T>();
+	private final Deque<T> cache = new ArrayDeque<>();
 	private final Supplier<T> factory;
 	private final Consumer<T> onReturn;
 
@@ -33,19 +33,19 @@ public class Pool<T> {
 	}
 
 	public T doBorrow() {
-		synchronized (pool) {
-			if (pool.isEmpty()) {
+		synchronized (cache) {
+			if (cache.isEmpty()) {
 				return factory.get();
 			} else {
-				return pool.removeLast();
+				return cache.removeLast();
 			}
 		}
 	}
 
 	public void doReturn(T obj) {
 		onReturn.accept(obj);
-		synchronized (pool) {
-			pool.add(obj);
+		synchronized (cache) {
+			cache.add(obj);
 		}
 	}
 

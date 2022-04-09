@@ -77,62 +77,71 @@ public class JavaUtils {
 		}
 	}
 
-	public static String getClassName(String descriptor) {
-		return classNamesCache.computeIfAbsent(descriptor, d -> {
+	public static String getClassName(String typeDescriptor) {
+		return classNamesCache.computeIfAbsent(typeDescriptor, JavaUtils::getClassName_Internal);
+	}
 
-			int start = 0;
-			int end = d.length();
-			return toTypeName(d, start, end);
-		});
+	private static String getClassName_Internal(String typeDescriptor) {
+		int start = 0;
+		int end = typeDescriptor.length();
+		return toTypeName(typeDescriptor, start, end);
 	}
 
 	public static String getReturnType(String methodDescriptor) {
-		return returnTypesCache.computeIfAbsent(methodDescriptor, d -> {
+		return returnTypesCache.computeIfAbsent(methodDescriptor, JavaUtils::getReturnType_Internal);
+	}
 
-			int pos = d.indexOf(')');
-			int start = pos + 1;
-			int end = d.length();
-			return toTypeName(d, start, end);
-		});
+	private static String getReturnType_Internal(String methodDescriptor) {
+		int pos = methodDescriptor.indexOf(')');
+		int start = pos + 1;
+		int end = methodDescriptor.length();
+		return toTypeName(methodDescriptor, start, end);
 	}
 
 	public static String[] getParameterTypes(String methodDescriptor) {
-		return parameterTypesCache.computeIfAbsent(methodDescriptor, d -> {
+		return parameterTypesCache.computeIfAbsent(methodDescriptor, JavaUtils::getParameterTypes_Internal);
+	}
 
-			int parameterCount = 0;
-			int pos = 1;
-			while (d.charAt(pos) != ')') {
-				while (d.charAt(pos) == '[') {
-					pos++;
-				}
-				if (d.charAt(pos) == 'L') {
-					pos = d.indexOf(';', pos);
-				}
+	private static String[] getParameterTypes_Internal(String methodDescriptor) {
+
+		int parameterCount = getParameterCount(methodDescriptor);
+		if (parameterCount == 0) {
+			return NO_PARAMETERS;
+		}
+
+		String[] parameterTypes = new String[parameterCount];
+		int pos = 1;
+		int index = 0;
+		while (methodDescriptor.charAt(pos) != ')') {
+			int start = pos;
+			while (methodDescriptor.charAt(pos) == '[') {
 				pos++;
-				parameterCount++;
 			}
-
-			if (parameterCount == 0) {
-				return NO_PARAMETERS;
+			if (methodDescriptor.charAt(pos) == 'L') {
+				pos = methodDescriptor.indexOf(';', pos);
 			}
+			pos++;
+			String parameterType = toTypeName(methodDescriptor, start, pos);
+			parameterTypes[index++] = parameterType;
+		}
 
-			String[] parameterTypes = new String[parameterCount];
-			pos = 1;
-			int index = 0;
-			while (d.charAt(pos) != ')') {
-				int start = pos;
-				while (d.charAt(pos) == '[') {
-					pos++;
-				}
-				if (d.charAt(pos) == 'L') {
-					pos = d.indexOf(';', pos);
-				}
+		return parameterTypes;
+	}
+
+	private static int getParameterCount(String methodDescriptor) {
+		int parameterCount = 0;
+		int pos = 1;
+		while (methodDescriptor.charAt(pos) != ')') {
+			while (methodDescriptor.charAt(pos) == '[') {
 				pos++;
-				String parameterType = toTypeName(d, start, pos);
-				parameterTypes[index++] = parameterType;
 			}
-			return parameterTypes;
-		});
+			if (methodDescriptor.charAt(pos) == 'L') {
+				pos = methodDescriptor.indexOf(';', pos);
+			}
+			pos++;
+			parameterCount++;
+		}
+		return parameterCount;
 	}
 
 	public static String getFieldType(String fieldDescriptor) {
@@ -224,11 +233,13 @@ public class JavaUtils {
 	}
 
 	public static String getArrayElementType(String type) {
-		return arrayElementTypesCache.computeIfAbsent(type, t -> {
-			int pos = t.indexOf('[');
-			if (pos < 0) throw new IllegalArgumentException("Not an array type: " + t);
-			return t.substring(0, pos);
-		});
+		return arrayElementTypesCache.computeIfAbsent(type, JavaUtils::getArrayElementType_Internal);
+	}
+
+	private static String getArrayElementType_Internal(String type) {
+		int pos = type.indexOf('[');
+		if (pos < 0) throw new IllegalArgumentException("Not an array type: " + type);
+		return type.substring(0, pos);
 	}
 
 	public static String getSimpleClassName(String className) {
