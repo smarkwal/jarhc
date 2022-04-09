@@ -27,13 +27,14 @@ import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
+import org.jarhc.utils.Pool;
 
 public abstract class ClassLoader {
 
 	/**
-	 * The same thread always reuses the same HashSet instance.
+	 * Pool of HashSet instances.
 	 */
-	private static final ThreadLocal<HashSet<String>> HashSetPool = ThreadLocal.withInitial(HashSet::new);
+	private static final Pool<HashSet<String>> hashSetPool = new Pool<>(HashSet::new, HashSet::clear);
 
 	private final String name;
 	private final ClassLoader parent;
@@ -150,11 +151,11 @@ public abstract class ClassLoader {
 		String fieldOwner = fieldRef.getFieldOwner();
 		String fieldName = fieldRef.getFieldName();
 
-		HashSet<String> scannedClasses = HashSetPool.get();
+		HashSet<String> scannedClasses = hashSetPool.doBorrow();
 		try {
 			return findFieldDef(fieldOwner, fieldName, this, callback, scannedClasses);
 		} finally {
-			scannedClasses.clear();
+			hashSetPool.doReturn(scannedClasses);
 		}
 	}
 
@@ -220,11 +221,11 @@ public abstract class ClassLoader {
 		String methodName = methodRef.getMethodName();
 		String methodDescriptor = methodRef.getMethodDescriptor();
 
-		HashSet<String> scannedClasses = HashSetPool.get();
+		HashSet<String> scannedClasses = hashSetPool.doBorrow();
 		try {
 			return findMethodDef(methodOwner, methodName, methodDescriptor, this, callback, scannedClasses);
 		} finally {
-			scannedClasses.clear();
+			hashSetPool.doReturn(scannedClasses);
 		}
 	}
 
