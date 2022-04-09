@@ -16,9 +16,8 @@
 
 package org.jarhc.java;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
@@ -32,9 +31,9 @@ import org.jarhc.utils.Pool;
 public abstract class ClassLoader {
 
 	/**
-	 * Pool of HashSet instances.
+	 * Pool of ArrayList instances.
 	 */
-	private static final Pool<HashSet<String>> hashSetPool = new Pool<>(HashSet::new, HashSet::clear);
+	private static final Pool<ArrayList<String>> ARRAY_LIST_POOL = new Pool<>(() -> new ArrayList<>(8), ArrayList::clear);
 
 	private final String name;
 	private final ClassLoader parent;
@@ -81,10 +80,7 @@ public abstract class ClassLoader {
 		// if parent-last class loader strategy ...
 		if (strategy == ClassLoaderStrategy.ParentLast && parent != null) {
 			// try to find JAR file in parent class loader
-			jarFile = parent.getJarFile(predicate);
-			if (jarFile != null) {
-				return jarFile;
-			}
+			return parent.getJarFile(predicate);
 		}
 
 		// JAR file not found
@@ -131,10 +127,7 @@ public abstract class ClassLoader {
 		// if parent-last class loader strategy ...
 		if (strategy == ClassLoaderStrategy.ParentLast && parent != null) {
 			// try to find class in parent class loader
-			classDef = parent.getClassDef(className);
-			if (classDef != null) {
-				return classDef;
-			}
+			return parent.getClassDef(className);
 		}
 
 		// class not found
@@ -151,21 +144,22 @@ public abstract class ClassLoader {
 		String fieldOwner = fieldRef.getFieldOwner();
 		String fieldName = fieldRef.getFieldName();
 
-		HashSet<String> scannedClasses = hashSetPool.doBorrow();
+		ArrayList<String> scannedClasses = ARRAY_LIST_POOL.doBorrow();
 		try {
 			return findFieldDef(fieldOwner, fieldName, this, callback, scannedClasses);
 		} finally {
-			hashSetPool.doReturn(scannedClasses);
+			ARRAY_LIST_POOL.doReturn(scannedClasses);
 		}
 	}
 
-	private FieldDef findFieldDef(String className, String fieldName, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
+	private FieldDef findFieldDef(String className, String fieldName, ClassLoader classLoader, Callback callback, ArrayList<String> scannedClasses) {
 
 		// if class has already been scanned ...
-		if (!scannedClasses.add(className)) {
+		if (scannedClasses.contains(className)) {
 			// field not found
 			return null;
 		}
+		scannedClasses.add(className);
 
 		// try to find class
 		ClassDef classDef = getClassDef(className);
@@ -202,10 +196,7 @@ public abstract class ClassLoader {
 		String superName = classDef.getSuperName();
 		if (superName != null) {
 			// TODO: use class loader of class definition
-			fieldDef = findFieldDef(superName, fieldName, classLoader, callback, scannedClasses);
-			if (fieldDef != null) {
-				return fieldDef;
-			}
+			return findFieldDef(superName, fieldName, classLoader, callback, scannedClasses);
 		}
 
 		// field not found in class, superclass, or interfaces
@@ -221,21 +212,22 @@ public abstract class ClassLoader {
 		String methodName = methodRef.getMethodName();
 		String methodDescriptor = methodRef.getMethodDescriptor();
 
-		HashSet<String> scannedClasses = hashSetPool.doBorrow();
+		ArrayList<String> scannedClasses = ARRAY_LIST_POOL.doBorrow();
 		try {
 			return findMethodDef(methodOwner, methodName, methodDescriptor, this, callback, scannedClasses);
 		} finally {
-			hashSetPool.doReturn(scannedClasses);
+			ARRAY_LIST_POOL.doReturn(scannedClasses);
 		}
 	}
 
-	private MethodDef findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader, Callback callback, Set<String> scannedClasses) {
+	private MethodDef findMethodDef(String className, String methodName, String methodDescriptor, ClassLoader classLoader, Callback callback, ArrayList<String> scannedClasses) {
 
 		// if class has already been scanned ...
-		if (!scannedClasses.add(className)) {
+		if (scannedClasses.contains(className)) {
 			// method not found
 			return null;
 		}
+		scannedClasses.add(className);
 
 		// try to find class
 		ClassDef classDef = getClassDef(className);
@@ -273,10 +265,7 @@ public abstract class ClassLoader {
 		String superName = classDef.getSuperName();
 		if (superName != null) {
 			// TODO: use class loader of class definition
-			methodDef = findMethodDef(superName, methodName, methodDescriptor, classLoader, callback, scannedClasses);
-			if (methodDef != null) {
-				return methodDef;
-			}
+			return findMethodDef(superName, methodName, methodDescriptor, classLoader, callback, scannedClasses);
 		}
 
 		// method not found in class, superclass, or interfaces
