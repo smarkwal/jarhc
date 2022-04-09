@@ -35,6 +35,7 @@ import org.jarhc.model.FieldRef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
+import org.jarhc.model.RecordComponentDef;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
@@ -126,22 +127,24 @@ public class BlacklistAnalyzer implements Analyzer {
 		return table;
 	}
 
-	private void validateClassDefs(JarFile jarFile, Classpath classpath, Set<String> jarIssues) {
+	private void validateClassDefs(JarFile jarFile, final Classpath classpath, final Set<String> jarIssues) {
 
 		List<ClassDef> classDefs = jarFile.getClassDefs();
-		classDefs.parallelStream().forEach(classDef -> {
+		classDefs.parallelStream().forEach(classDef -> validateClassDef(classDef, classpath, jarIssues));
 
-			Set<String> classIssues = new TreeSet<>();
+	}
 
-			validateClassDef(classDef, classIssues);
-			validateAnnotations(classDef, classpath, classIssues);
+	private void validateClassDef(ClassDef classDef, Classpath classpath, Set<String> jarIssues) {
 
-			if (!classIssues.isEmpty()) {
-				String issue = createJarIssue(classDef, classIssues);
-				jarIssues.add(issue);
-			}
+		Set<String> classIssues = new TreeSet<>();
 
-		});
+		validateClassDef(classDef, classIssues);
+		validateAnnotations(classDef, classpath, classIssues);
+
+		if (!classIssues.isEmpty()) {
+			String issue = createJarIssue(classDef, classIssues);
+			jarIssues.add(issue);
+		}
 
 	}
 
@@ -209,91 +212,81 @@ public class BlacklistAnalyzer implements Analyzer {
 	private void validateAnnotations(ClassDef classDef, Classpath classpath, Set<String> classIssues) {
 
 		// check class annotations
-		classDef.getAnnotationRefs()
-				.forEach(
-						annotationRef -> {
-							ClassDef def = classpath.getClassDef(annotationRef.getClassName());
-							if (def != null) {
-								findUnstableAnnotations(classDef, def, classIssues);
-							}
-						}
-				);
+		findUnstableAnnotations(classDef, classDef, classpath, classIssues);
 
 		// check record component annotations
-		classDef.getRecordComponentDefs().forEach(
-				recordComponentDef -> recordComponentDef.getAnnotationRefs()
-						.forEach(
-								annotationRef -> {
-									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
-									if (def != null) {
-										findUnstableAnnotations(classDef, def, classIssues);
-									}
-								}
-						)
-		);
+		List<RecordComponentDef> recordComponentDefs = classDef.getRecordComponentDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < recordComponentDefs.size(); i++) {
+			Def recordComponentDef = recordComponentDefs.get(i);
+			findUnstableAnnotations(classDef, recordComponentDef, classpath, classIssues);
+		}
 
 		// check method annotations
-		classDef.getMethodDefs().forEach(
-				methodDef -> methodDef.getAnnotationRefs()
-						.forEach(
-								annotationRef -> {
-									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
-									if (def != null) {
-										findUnstableAnnotations(classDef, def, classIssues);
-									}
-								}
-						)
-		);
+		List<MethodDef> methodDefs = classDef.getMethodDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodDefs.size(); i++) {
+			Def methodDef = methodDefs.get(i);
+			findUnstableAnnotations(classDef, methodDef, classpath, classIssues);
+		}
 
 		// check field annotations
-		classDef.getFieldDefs().forEach(
-				fieldDef -> fieldDef.getAnnotationRefs()
-						.forEach(
-								annotationRef -> {
-									ClassDef def = classpath.getClassDef(annotationRef.getClassName());
-									if (def != null) {
-										findUnstableAnnotations(classDef, def, classIssues);
-									}
-								}
-						)
-		);
+		List<FieldDef> fieldDefs = classDef.getFieldDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldDefs.size(); i++) {
+			Def fieldDef = fieldDefs.get(i);
+			findUnstableAnnotations(classDef, fieldDef, classpath, classIssues);
+		}
 
 		// check class references
-		classDef.getClassRefs()
-				.forEach(
-						classRef -> {
-							ClassDef def = classpath.getClassDef(classRef);
-							if (def != null) {
-								findUnstableAnnotations(classDef, def, classIssues);
-							}
-						}
-				);
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < classRefs.size(); i++) {
+			ClassRef classRef = classRefs.get(i);
+			ClassDef def = classpath.getClassDef(classRef);
+			if (def != null) {
+				findUnstableAnnotations(classDef, def, classIssues);
+			}
+		}
 
 		// check field references
-		classDef.getFieldRefs()
-				.forEach(
-						fieldRef -> {
-							FieldDef def = classpath.getFieldDef(fieldRef);
-							if (def != null) {
-								findUnstableAnnotations(classDef, def, classIssues);
-							}
-						}
-				);
+		List<FieldRef> fieldRefs = classDef.getFieldRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldRefs.size(); i++) {
+			FieldRef fieldRef = fieldRefs.get(i);
+			FieldDef def = classpath.getFieldDef(fieldRef);
+			if (def != null) {
+				findUnstableAnnotations(classDef, def, classIssues);
+			}
+		}
 
 		// check method references
-		classDef.getMethodRefs()
-				.forEach(
-						methodRef -> {
-							MethodDef def = classpath.getMethodDef(methodRef);
-							if (def != null) {
-								findUnstableAnnotations(classDef, def, classIssues);
-							}
-						}
-				);
+		List<MethodRef> methodRefs = classDef.getMethodRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodRefs.size(); i++) {
+			MethodRef methodRef = methodRefs.get(i);
+			MethodDef def = classpath.getMethodDef(methodRef);
+			if (def != null) {
+				findUnstableAnnotations(classDef, def, classIssues);
+			}
+		}
 
 		// TODO: report usage of deprecated/unstable annotation fields
 		// TODO: report overriding of deprecated/unstable methods
 		// TODO: report implementation of deprecated/unstable methods
+	}
+
+	private void findUnstableAnnotations(ClassDef classDef, Def memberDef, Classpath classpath, Set<String> classIssues) {
+
+		List<AnnotationRef> annotationRefs = memberDef.getAnnotationRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < annotationRefs.size(); i++) {
+			AnnotationRef annotationRef = annotationRefs.get(i);
+			ClassDef def = classpath.getClassDef(annotationRef.getClassName());
+			if (def != null) {
+				findUnstableAnnotations(classDef, def, classIssues);
+			}
+		}
 	}
 
 	private void findUnstableAnnotations(ClassDef classDef, Def def, Set<String> classIssues) {
