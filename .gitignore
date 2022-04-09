@@ -18,6 +18,12 @@
 /reports
 /report.html
 /report.txt
+/report-*
+
+# Profiler shapshots and heap dumps
+*.jps
+*.hprof
+*.jfr
 
 # Dependency-Check data directory
 /dependency-check
