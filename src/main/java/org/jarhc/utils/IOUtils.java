@@ -16,56 +16,56 @@
 
 package org.jarhc.utils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 
 public class IOUtils {
 
 	private static final int INITIAL_BUFFER_SIZE = 256 * 1024;
 	private static final int MAX_BUFFER_SIZE = 4 * 1024 * 1024;
 
-	/**
-	 * Thread-local cached stream. Same thread always uses same buffer for performance reasons.
-	 */
-	private static final ThreadLocal<ByteArrayOutputStream> cachedStream = ThreadLocal.withInitial(() -> new ByteArrayOutputStream(INITIAL_BUFFER_SIZE));
+	private static final Pool<ByteStream> BYTE_STREAM_POOL = new Pool<>(() -> new ByteStream(INITIAL_BUFFER_SIZE), ByteStream::reset);
+	private static final Pool<byte[]> BYTE_ARRAY_POOL = new Pool<>(() -> new byte[4096]);
 
 	private IOUtils() {
 		throw new IllegalStateException("utility class");
 	}
 
+	public static ByteBuffer toByteBuffer(InputStream stream) throws IOException {
+		if (stream == null) throw new IllegalArgumentException("stream");
+		ByteStream out = toByteStream(stream);
+		return new ByteBuffer(out);
+	}
+
+	static void returnToPool(ByteStream stream) {
+		if (stream.getBuf().length <= IOUtils.MAX_BUFFER_SIZE) {
+			BYTE_STREAM_POOL.doReturn(stream);
+		}
+	}
+
 	public static byte[] toByteArray(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
-		ByteArrayOutputStream result = toByteArrayOutputStream(stream);
-		byte[] bytes = result.toByteArray();
-		if (result.size() > MAX_BUFFER_SIZE) {
-			cachedStream.remove();
-		}
+		ByteStream out = toByteStream(stream);
+		byte[] bytes = out.toByteArray();
+		returnToPool(out);
 		return bytes;
 	}
 
-	public static String toString(InputStream stream) throws IOException {
-		if (stream == null) throw new IllegalArgumentException("stream");
-		ByteArrayOutputStream result = toByteArrayOutputStream(stream);
-		return result.toString(StandardCharsets.UTF_8.name());
-	}
-
-	private static ByteArrayOutputStream toByteArrayOutputStream(InputStream stream) throws IOException {
-		ByteArrayOutputStream result = cachedStream.get();
-		result.reset();
-		copy(stream, result);
-		return result;
+	private static ByteStream toByteStream(InputStream stream) throws IOException {
+		ByteStream out = BYTE_STREAM_POOL.doBorrow();
+		copy(stream, out);
+		return out;
 	}
 
 	protected static void copy(InputStream in, OutputStream out) throws IOException {
-		byte[] buffer = new byte[1024];
+		byte[] buffer = BYTE_ARRAY_POOL.doBorrow();
 		while (true) {
 			int len = in.read(buffer);
 			if (len < 0) break;
 			out.write(buffer, 0, len);
 		}
+		BYTE_ARRAY_POOL.doReturn(buffer);
 	}
 
 }

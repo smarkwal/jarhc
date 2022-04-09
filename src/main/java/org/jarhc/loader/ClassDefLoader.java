@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import org.jarhc.model.ClassDef;
+import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.IOUtils;
 import org.objectweb.asm.ClassReader;
@@ -86,8 +87,10 @@ public class ClassDefLoader {
 	public ClassDef load(InputStream stream) throws IOException {
 		if (stream == null) throw new IllegalArgumentException("stream");
 
-		byte[] data = IOUtils.toByteArray(stream);
-		return load(data);
+		ByteBuffer data = IOUtils.toByteBuffer(stream);
+		ClassDef classDef = load(data.getBytes(), 0, data.getLength());
+		data.release(); // return buffer to pool
+		return classDef;
 	}
 
 	/**
@@ -98,14 +101,27 @@ public class ClassDefLoader {
 	 * @throws IllegalArgumentException If <code>data</code> is <code>null</code>.
 	 */
 	public ClassDef load(byte[] data) {
+		return load(data, 0, data.length);
+	}
+
+	/**
+	 * Load a class definition from the given data.
+	 *
+	 * @param data   Class data
+	 * @param offset Offset of class data
+	 * @param length Length of class data
+	 * @return Class definition
+	 * @throws IllegalArgumentException If <code>data</code> is <code>null</code>.
+	 */
+	public ClassDef load(byte[] data, int offset, int length) {
 		if (data == null) throw new IllegalArgumentException("data");
 
 		// calculate SHA-1 checksum
-		String classFileChecksum = DigestUtils.sha1Hex(data);
+		String classFileChecksum = DigestUtils.sha1Hex(data, offset, length);
 
 		ClassDefBuilder classDefBuilder = new ClassDefBuilder(scanForReferences);
 
-		ClassReader classReader = new ClassReader(data);
+		ClassReader classReader = new ClassReader(data, offset, length);
 		classReader.accept(classDefBuilder, 0);
 
 		ClassDef classDef = classDefBuilder.getClassDef();

@@ -27,6 +27,10 @@ public class Pool<T> {
 	private final Supplier<T> factory;
 	private final Consumer<T> onReturn;
 
+	public Pool(Supplier<T> factory) {
+		this(factory, null);
+	}
+
 	public Pool(Supplier<T> factory, Consumer<T> onReturn) {
 		this.factory = factory;
 		this.onReturn = onReturn;
@@ -43,7 +47,9 @@ public class Pool<T> {
 	}
 
 	public void doReturn(T obj) {
-		onReturn.accept(obj);
+		if (onReturn != null) {
+			onReturn.accept(obj);
+		}
 		synchronized (cache) {
 			cache.add(obj);
 		}

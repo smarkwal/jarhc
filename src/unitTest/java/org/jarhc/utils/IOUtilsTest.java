@@ -45,17 +45,17 @@ class IOUtilsTest {
 	}
 
 	@Test
-	void test_toString() throws IOException {
+	void test_toByteBuffer() throws IOException {
 
 		// prepare
 		ByteArrayInputStream stream = new ByteArrayInputStream("Hello World".getBytes());
 
 		// test
-		String result = IOUtils.toString(stream);
+		ByteBuffer result = IOUtils.toByteBuffer(stream);
 
 		// assert
-		assertEquals("Hello World", result);
-
+		assertEquals(11, result.getLength());
+		assertEquals("Hello World", new String(result.getBytes(), 0, result.getLength()));
 	}
 
 }

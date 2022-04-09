@@ -109,7 +109,8 @@ class ArtifactSourceTest {
 		InputStream result = artifactSource.getInputStream();
 
 		// assert
-		assertEquals("content-of-test-1.0.jar", IOUtils.toString(result));
+		String text = new String(IOUtils.toByteArray(result), StandardCharsets.UTF_8);
+		assertEquals("content-of-test-1.0.jar", text);
 
 	}
 

@@ -39,9 +39,14 @@ public class DigestUtils {
 	}
 
 	public static String sha1Hex(byte[] input) {
+		return sha1Hex(input, 0, input.length);
+	}
+
+	public static String sha1Hex(byte[] input, int offset, int length) {
 		if (input == null) throw new IllegalArgumentException("input");
 		MessageDigest digest = getDigest();
-		byte[] array = digest.digest(input);
+		digest.update(input, offset, length);
+		byte[] array = digest.digest();
 		return hex(array);
 	}
 
