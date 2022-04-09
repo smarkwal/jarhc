@@ -18,10 +18,13 @@ package org.jarhc.analyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
@@ -43,7 +46,9 @@ import org.slf4j.Logger;
 
 public class BlacklistAnalyzer implements Analyzer {
 
-	private final List<StringPattern> codePatterns = new ArrayList<>();
+	private final List<ClassPattern> classPatterns = new ArrayList<>();
+	private final List<MethodPattern> methodPatterns = new ArrayList<>();
+	private final List<FieldPattern> fieldPatterns = new ArrayList<>();
 	private final List<StringPattern> annotationPatterns = new ArrayList<>();
 	private final List<StringPattern> resourcePatterns = new ArrayList<>();
 
@@ -76,11 +81,16 @@ public class BlacklistAnalyzer implements Analyzer {
 				String path = line.substring(9);
 				StringPattern pattern = new StringPattern(path, true);
 				resourcePatterns.add(pattern);
+			} else if (line.contains("(")) {
+				MethodPattern pattern = new MethodPattern(line);
+				methodPatterns.add(pattern);
+			} else if (line.contains(" ")) {
+				FieldPattern pattern = new FieldPattern(line);
+				fieldPatterns.add(pattern);
 			} else {
-				StringPattern pattern = new StringPattern(line, false);
-				codePatterns.add(pattern);
+				ClassPattern pattern = new ClassPattern(line);
+				classPatterns.add(pattern);
 			}
-
 		}
 	}
 
@@ -137,29 +147,54 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private void validateClassDef(ClassDef classDef, Set<String> classIssues) {
 
-		List<ClassRef> classRefs = classDef.getClassRefs();
-		List<FieldRef> fieldRefs = classDef.getFieldRefs();
-		List<MethodRef> methodRefs = classDef.getMethodRefs();
-
-		// collect all class, field and method descriptors
-		List<String> descriptors = new ArrayList<>(classRefs.size() + fieldRefs.size() + methodRefs.size());
-		classRefs.forEach(classRef -> descriptors.add(classRef.getDisplayName()));
-		fieldRefs.forEach(fieldRef -> descriptors.add(fieldRef.getDisplayName()));
-		methodRefs.forEach(methodRef -> descriptors.add(methodRef.getDisplayName()));
-
-		// match every descriptor against all call patterns
-		//noinspection ForLoopReplaceableByForEach (performance)
-		for (int i = 0; i < descriptors.size(); i++) {
-			String descriptor = descriptors.get(i);
+		if (!classPatterns.isEmpty()) {
+			List<ClassRef> classRefs = classDef.getClassRefs();
 			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int j = 0; j < codePatterns.size(); j++) {
-				StringPattern pattern = codePatterns.get(j);
-				if (pattern.matches(descriptor)) {
-					classIssues.add(descriptor);
-					break;
+			for (int i = 0; i < classRefs.size(); i++) {
+				ClassRef classRef = classRefs.get(i);
+				//noinspection ForLoopReplaceableByForEach (performance)
+				for (int j = 0; j < classPatterns.size(); j++) {
+					ClassPattern pattern = classPatterns.get(j);
+					if (pattern.matches(classRef)) {
+						classIssues.add(classRef.getDisplayName());
+						break;
+					}
 				}
 			}
 		}
+
+		if (!fieldPatterns.isEmpty()) {
+			List<FieldRef> fieldRefs = classDef.getFieldRefs();
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int i = 0; i < fieldRefs.size(); i++) {
+				FieldRef fieldRef = fieldRefs.get(i);
+				//noinspection ForLoopReplaceableByForEach (performance)
+				for (int j = 0; j < fieldPatterns.size(); j++) {
+					FieldPattern pattern = fieldPatterns.get(j);
+					if (pattern.matches(fieldRef)) {
+						classIssues.add(fieldRef.getDisplayName());
+						break;
+					}
+				}
+			}
+		}
+
+		if (!methodPatterns.isEmpty()) {
+			List<MethodRef> methodRefs = classDef.getMethodRefs();
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int i = 0; i < methodRefs.size(); i++) {
+				MethodRef methodRef = methodRefs.get(i);
+				//noinspection ForLoopReplaceableByForEach (performance)
+				for (int j = 0; j < methodPatterns.size(); j++) {
+					MethodPattern pattern = methodPatterns.get(j);
+					if (pattern.matches(methodRef)) {
+						classIssues.add(methodRef.getDisplayName());
+						break;
+					}
+				}
+			}
+		}
+
 	}
 
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
@@ -324,6 +359,122 @@ public class BlacklistAnalyzer implements Analyzer {
 			}
 		}
 
+	}
+
+	private static class ClassPattern {
+
+		private final String className;
+
+		public ClassPattern(String pattern) {
+			this.className = pattern;
+		}
+
+		public boolean matches(ClassRef classRef) {
+			// TODO: support wildcard only for short class name
+			return className.equals(classRef.getClassName());
+		}
+
+	}
+
+	private static class FieldPattern {
+
+		private final String fieldOwner;
+		private final String fieldName;
+		private final String fieldType;
+
+		public FieldPattern(String pattern) {
+			int pos1 = pattern.indexOf(' ');
+			int pos2 = pattern.lastIndexOf('.');
+
+			this.fieldType = checkForWildcard(pattern.substring(0, pos1));
+			this.fieldOwner = checkForWildcard(pattern.substring(pos1 + 1, pos2));
+			this.fieldName = checkForWildcard(pattern.substring(pos2 + 1));
+		}
+
+		public boolean matches(FieldRef fieldRef) {
+			return (fieldOwner == null || fieldOwner.equals(fieldRef.getFieldOwner()))
+					&& (fieldName == null || fieldName.equals(fieldRef.getFieldName()))
+					&& (fieldType == null || fieldType.equals(fieldRef.getFieldType()));
+		}
+	}
+
+	private static class MethodPattern {
+
+		private final String methodOwner;
+		private final String methodName;
+		private final Pattern methodDescriptor;
+
+		public MethodPattern(String pattern) {
+			int pos1 = pattern.indexOf(' ');
+			int pos3 = pattern.indexOf('(', pos1 + 1);
+			int pos4 = pattern.indexOf(')', pos3 + 1);
+			int pos2 = pattern.lastIndexOf('.', pos3);
+
+			this.methodOwner = checkForWildcard(pattern.substring(pos1 + 1, pos2));
+			this.methodName = checkForWildcard(pattern.substring(pos2 + 1, pos3));
+
+			String returnType = pattern.substring(0, pos1);
+			String[] parameterTypes = pattern.substring(pos3 + 1, pos4).split(",");
+			String descriptor = "(" + Arrays.stream(parameterTypes).map(BlacklistAnalyzer::toInternalType).collect(Collectors.joining()) + ")" + toInternalType(returnType);
+			if (descriptor.equals("(*)*")) {
+				this.methodDescriptor = null;
+			} else {
+				// convert to regular expression
+				descriptor = "^" + Arrays.stream(descriptor.split("\\*")).map(Pattern::quote).collect(Collectors.joining("(.*)")) + "$";
+				this.methodDescriptor = Pattern.compile(descriptor);
+			}
+		}
+
+		public boolean matches(MethodRef methodRef) {
+			return (methodOwner == null || methodOwner.equals(methodRef.getMethodOwner()))
+					&& (methodName == null || methodName.equals(methodRef.getMethodName()))
+					&& (methodDescriptor == null || methodDescriptor.matcher(methodRef.getMethodDescriptor()).matches());
+		}
+
+	}
+
+	private static String toInternalType(String type) {
+
+		if (type.equals("*")) {
+			return "*";
+		}
+
+		String prefix = "";
+		while (type.endsWith("[]")) {
+			type = type.substring(0, type.length() - 2);
+			prefix += "[";
+		}
+
+		switch (type) {
+			case "void":
+				return prefix + "V";
+			case "int":
+				return prefix + "I";
+			case "long":
+				return prefix + "J";
+			case "boolean":
+				return prefix + "Z";
+			case "double":
+				return prefix + "D";
+			case "byte":
+				return prefix + "B";
+			case "char":
+				return prefix + "C";
+			case "float":
+				return prefix + "F";
+			case "short":
+				return prefix + "S";
+			default:
+				return prefix + "L" + type.replace('.', '/') + ";";
+		}
+
+	}
+
+	private static String checkForWildcard(String value) {
+		if (value.equals("*")) {
+			return null;
+		}
+		return value;
 	}
 
 }
