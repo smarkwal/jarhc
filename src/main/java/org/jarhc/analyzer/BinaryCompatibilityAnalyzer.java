@@ -51,6 +51,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	// object pools
 	private final Pool<List<MethodDef>> ARRAY_LIST_POOL = new Pool<>(ArrayList::new, List::clear);
 	private final Pool<Set<String>> HASH_SET_POOL = new Pool<>(HashSet::new, Set::clear);
+	private final Pool<List<String>> STRING_LIST_POOL = new Pool<>(ArrayList::new, List::clear);
 	private final Pool<Set<String>> LINKED_HASH_SET_POOL = new Pool<>(LinkedHashSet::new, Set::clear);
 	private final Pool<FieldSearchResult> FIELD_SEARCH_RESULT_POOL = new Pool<>(FieldSearchResult::new, FieldSearchResult::reset);
 	private final Pool<MethodSearchResult> METHOD_SEARCH_RESULT_POOL = new Pool<>(MethodSearchResult::new, MethodSearchResult::reset);
@@ -329,7 +330,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// collect all concrete and abstract methods
 		List<MethodDef> concreteMethods = ARRAY_LIST_POOL.doBorrow();
 		List<MethodDef> abstractMethods = ARRAY_LIST_POOL.doBorrow();
-		Set<String> visitedClasses = HASH_SET_POOL.doBorrow();
+		List<String> visitedClasses = STRING_LIST_POOL.doBorrow();
 		collectMethodDefs(classDef, classpath, concreteMethods, abstractMethods, visitedClasses);
 
 		// for every abstract method ...
@@ -356,7 +357,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// return all collections to pools
 		ARRAY_LIST_POOL.doReturn(concreteMethods);
 		ARRAY_LIST_POOL.doReturn(abstractMethods);
-		HASH_SET_POOL.doReturn(visitedClasses);
+		STRING_LIST_POOL.doReturn(visitedClasses);
 	}
 
 	/**
@@ -368,13 +369,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	 * @param abstractMethods Abstract methods
 	 * @param visitedClasses  Already visited classes
 	 */
-	private void collectMethodDefs(ClassDef classDef, Classpath classpath, List<MethodDef> concreteMethods, List<MethodDef> abstractMethods, Set<String> visitedClasses) {
+	private void collectMethodDefs(ClassDef classDef, Classpath classpath, List<MethodDef> concreteMethods, List<MethodDef> abstractMethods, List<String> visitedClasses) {
 
 		// do not visit the same class twice
 		String className = classDef.getClassName();
-		if (!visitedClasses.add(className)) {
+		if (visitedClasses.contains(className)) {
 			return;
 		}
+		visitedClasses.add(className);
 
 		// collect methods from superclass
 		String superName = classDef.getSuperName();
