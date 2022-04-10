@@ -25,7 +25,9 @@ import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
+import org.jarhc.model.FieldDef;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.MethodDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.MultiMap;
@@ -84,72 +86,96 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		for (JarFile jarFile : jarFiles) {
 			String jarFileName = jarFile.getFileName();
 
+			// collect all references to other classes
+			Set<String> classNames = new HashSet<>();
+
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
+				collectUsedClasses(classDef, classNames);
+			}
 
-				// collect all references to other classes
-				Set<String> classNames = collectUsedClasses(classDef);
+			// for every class name ...
+			for (String className : classNames) {
 
-				// for every class name ...
-				for (String className : classNames) {
+				// get target class definitions
+				List<ClassDef> targetClassDefs = classpath.getClassDefs(className);
+				if (targetClassDefs == null) {
+					// ignore unknown class
+					continue;
+				}
 
-					// get target class definitions
-					List<ClassDef> targetClassDefs = classpath.getClassDefs(className);
-					if (targetClassDefs == null) {
-						// ignore unknown class
+				// for every class definition ...
+				//noinspection ForLoopReplaceableByForEach (performance)
+				for (int i = 0; i < targetClassDefs.size(); i++) {
+					ClassDef targetClassDef = targetClassDefs.get(i);
+
+					// get JAR file
+					JarFile targetJarFile = targetClassDef.getJarFile();
+					if (targetJarFile == jarFile) {
+						// ignore references to classes in same JAR file
 						continue;
 					}
 
-					// for every class definition ...
-					targetClassDefs.forEach(targetClassDef -> {
-
-						// get JAR file
-						JarFile targetJarFile = targetClassDef.getJarFile();
-						if (targetJarFile == jarFile) {
-							// ignore references to classes in same JAR file
-							return;
-						}
-
-						// add dependency
-						String targetFileName = targetJarFile.getFileName();
-						dependencies.add(jarFileName, targetFileName);
-					});
-
+					// add dependency
+					String targetFileName = targetJarFile.getFileName();
+					dependencies.add(jarFileName, targetFileName);
 				}
+
 			}
 		}
 
 		return dependencies;
 	}
 
-	private Set<String> collectUsedClasses(ClassDef classDef) {
-
-		Set<String> classNames = new HashSet<>();
+	private void collectUsedClasses(ClassDef classDef, Set<String> classNames) {
 
 		// add all class references
-		classDef.getClassRefs().stream()
-				.map(ClassRef::getClassName)
-				.forEach(classNames::add);
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < classRefs.size(); i++) {
+			ClassRef classRef = classRefs.get(i);
+			String className = classRef.getClassName();
+			classNames.add(className);
+		}
 
 		// add all class names of annotations on the class
-		classDef.getAnnotationRefs().stream()
-				.map(AnnotationRef::getClassName)
-				.forEach(classNames::add);
+		List<AnnotationRef> annotationRefs = classDef.getAnnotationRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < annotationRefs.size(); i++) {
+			AnnotationRef annotationRef = annotationRefs.get(i);
+			String className = annotationRef.getClassName();
+			classNames.add(className);
+		}
 
 		// add all class names of annotations on fields
-		classDef.getFieldDefs().stream()
-				.flatMap(def -> def.getAnnotationRefs().stream())
-				.map(AnnotationRef::getClassName)
-				.forEach(classNames::add);
+		List<FieldDef> fieldDefs = classDef.getFieldDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldDefs.size(); i++) {
+			FieldDef fieldDef = fieldDefs.get(i);
+			List<AnnotationRef> refs = fieldDef.getAnnotationRefs();
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < refs.size(); j++) {
+				AnnotationRef annotationRef = refs.get(j);
+				String className = annotationRef.getClassName();
+				classNames.add(className);
+			}
+		}
 
 		// add all class names of annotations on methods
-		classDef.getMethodDefs().stream()
-				.flatMap(def -> def.getAnnotationRefs().stream())
-				.map(AnnotationRef::getClassName)
-				.forEach(classNames::add);
+		List<MethodDef> methodDefs = classDef.getMethodDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodDefs.size(); i++) {
+			MethodDef methodDef = methodDefs.get(i);
+			List<AnnotationRef> refs = methodDef.getAnnotationRefs();
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < refs.size(); j++) {
+				AnnotationRef annotationRef = refs.get(j);
+				String className = annotationRef.getClassName();
+				classNames.add(className);
+			}
+		}
 
-		return classNames;
 	}
 
 }
