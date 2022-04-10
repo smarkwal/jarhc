@@ -46,6 +46,36 @@ class JavaUtilsTest {
 	}
 
 	@Test
+	void getParentPackageName() {
+
+		assertEquals("", JavaUtils.getParentPackageName("", 0));
+		assertEquals("", JavaUtils.getParentPackageName("", 1));
+		assertEquals("", JavaUtils.getParentPackageName("", 2));
+		assertEquals("", JavaUtils.getParentPackageName("", 3));
+
+		assertEquals("", JavaUtils.getParentPackageName("com", 0));
+		assertEquals("com", JavaUtils.getParentPackageName("com", 1));
+		assertEquals("com", JavaUtils.getParentPackageName("com", 2));
+		assertEquals("com", JavaUtils.getParentPackageName("com", 3));
+		
+		assertEquals("", JavaUtils.getParentPackageName("java.lang", 0));
+		assertEquals("java", JavaUtils.getParentPackageName("java.lang", 1));
+		assertEquals("java.lang", JavaUtils.getParentPackageName("java.lang", 2));
+		assertEquals("java.lang", JavaUtils.getParentPackageName("java.lang", 3));
+		assertEquals("java.lang", JavaUtils.getParentPackageName("java.lang", 4));
+
+		assertEquals("", JavaUtils.getParentPackageName("a.b.c.d.e.f", 0));
+		assertEquals("a", JavaUtils.getParentPackageName("a.b.c.d.e.f", 1));
+		assertEquals("a.b", JavaUtils.getParentPackageName("a.b.c.d.e.f", 2));
+		assertEquals("a.b.c", JavaUtils.getParentPackageName("a.b.c.d.e.f", 3));
+		assertEquals("a.b.c.d", JavaUtils.getParentPackageName("a.b.c.d.e.f", 4));
+		assertEquals("a.b.c.d.e", JavaUtils.getParentPackageName("a.b.c.d.e.f", 5));
+		assertEquals("a.b.c.d.e.f", JavaUtils.getParentPackageName("a.b.c.d.e.f", 6));
+		assertEquals("a.b.c.d.e.f", JavaUtils.getParentPackageName("a.b.c.d.e.f", 7));
+
+	}
+
+	@Test
 	void inSamePackage() {
 
 		assertTrue(JavaUtils.inSamePackage("Main", "Main"));

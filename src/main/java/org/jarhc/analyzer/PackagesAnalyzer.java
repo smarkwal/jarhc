@@ -17,7 +17,6 @@
 package org.jarhc.analyzer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,7 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
 
@@ -117,9 +117,9 @@ public class PackagesAnalyzer implements Analyzer {
 	private List<String> getRootPackageNames(Set<String> packageNames) {
 		return packageNames.stream().map(packageName -> {
 			if (packageName.startsWith("org.") || packageName.startsWith("com.") || packageName.startsWith("net.")) {
-				return getParentPackage(packageName, 2);
+				return JavaUtils.getParentPackageName(packageName, 2);
 			} else {
-				return getParentPackage(packageName, 1);
+				return JavaUtils.getParentPackageName(packageName, 1);
 			}
 		}).distinct().sorted().collect(Collectors.toList());
 	}
@@ -151,7 +151,7 @@ public class PackagesAnalyzer implements Analyzer {
 
 		String parentPackage = packageName;
 		if (maxLength < getPackageLength(packageName) - 1) {
-			parentPackage = getParentPackage(packageName, maxLength + 1);
+			parentPackage = JavaUtils.getParentPackageName(packageName, maxLength + 1);
 		}
 		return parentPackage;
 	}
@@ -193,7 +193,7 @@ public class PackagesAnalyzer implements Analyzer {
 			int length = getParentPackageLength(firstPackageName, packageName);
 			if (length < minLength) minLength = length;
 		}
-		return getParentPackage(firstPackageName, minLength);
+		return JavaUtils.getParentPackageName(firstPackageName, minLength);
 	}
 
 	/**
@@ -243,11 +243,6 @@ public class PackagesAnalyzer implements Analyzer {
 			}
 		}
 
-	}
-
-	private static String getParentPackage(String packageName, int length) {
-		String[] parts = packageName.split("\\.", length + 1);
-		return Arrays.stream(parts).limit(length).collect(Collectors.joining("."));
 	}
 
 }

@@ -68,6 +68,20 @@ public class JavaUtils {
 		}
 	}
 
+	public static String getParentPackageName(String packageName, int length) {
+		if (length == 0) {
+			return "";
+		}
+		int pos = 0;
+		while (length-- > 0) {
+			pos = packageName.indexOf('.', pos + 1);
+			if (pos < 0) {
+				return packageName;
+			}
+		}
+		return packageName.substring(0, pos);
+	}
+
 	public static boolean inSamePackage(String sourceClassName, String targetClassName) {
 		int pos1 = sourceClassName.lastIndexOf('.');
 		int pos2 = targetClassName.lastIndexOf('.');
