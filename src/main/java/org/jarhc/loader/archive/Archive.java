@@ -19,6 +19,7 @@ package org.jarhc.loader.archive;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.IOUtils;
 import org.jarhc.utils.LimitedInputStream;
 
@@ -46,7 +47,7 @@ public abstract class Archive implements Closeable {
 
 	public abstract ArchiveEntry getNextEntry() throws IOException;
 
-	protected byte[] loadData(InputStream inputStream) throws IOException {
+	protected ByteBuffer loadData(InputStream inputStream) throws IOException {
 
 		// check if max number of files has been reached (prevent Zip Bomb attack)
 		entriesCount++;
@@ -58,11 +59,12 @@ public abstract class Archive implements Closeable {
 		// limit max file size (prevent Zip Bomb attack)
 		InputStream in = new LimitedInputStream(inputStream, MAX_ENTRY_SIZE);
 
-		byte[] data = IOUtils.toByteArray(in);
+		ByteBuffer data = IOUtils.toByteBuffer(in);
 
 		// check if max total size has been reached (prevent Zip Bomb attack)
-		totalSize += data.length;
+		totalSize += data.getLength();
 		if (totalSize > MAX_TOTAL_SIZE) {
+			data.release();
 			String message = "Maximum total size exceeded: " + MAX_TOTAL_SIZE;
 			throw new IOException(message);
 		}

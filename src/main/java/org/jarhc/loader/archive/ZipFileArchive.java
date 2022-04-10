@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.FileUtils;
 
 public class ZipFileArchive extends Archive {
@@ -82,7 +83,7 @@ public class ZipFileArchive extends Archive {
 		}
 
 		@Override
-		public byte[] getData() throws IOException {
+		public ByteBuffer getData() throws IOException {
 			try (InputStream stream = zipFile.getInputStream(zipEntry)) {
 				return loadData(stream);
 			}

@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.jarhc.utils.ByteBuffer;
 
 public class ZipStreamArchive extends Archive {
 
@@ -78,7 +79,7 @@ public class ZipStreamArchive extends Archive {
 		}
 
 		@Override
-		public byte[] getData() throws IOException {
+		public ByteBuffer getData() throws IOException {
 			return loadData(zipInputStream);
 		}
 

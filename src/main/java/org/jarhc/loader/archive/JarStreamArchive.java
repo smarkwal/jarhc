@@ -22,6 +22,7 @@ import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
+import org.jarhc.utils.ByteBuffer;
 
 public class JarStreamArchive extends Archive {
 
@@ -32,7 +33,7 @@ public class JarStreamArchive extends Archive {
 
 	public JarStreamArchive(InputStream inputStream) throws IOException {
 		this.checksumInputStream = new ChecksumInputStream(inputStream);
-		this.jarInputStream = new JarInputStream(checksumInputStream);
+		this.jarInputStream = new JarInputStream(checksumInputStream, false);
 
 		Manifest manifest = jarInputStream.getManifest();
 		if (manifest != null) {
@@ -106,7 +107,7 @@ public class JarStreamArchive extends Archive {
 		}
 
 		@Override
-		public byte[] getData() throws IOException {
+		public ByteBuffer getData() throws IOException {
 			return loadData(jarInputStream);
 		}
 

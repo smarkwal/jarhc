@@ -35,6 +35,7 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.model.ResourceDef;
+import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.DigestUtils;
 import org.slf4j.Logger;
 
@@ -129,45 +130,47 @@ abstract class AbstractFileLoader {
 			}
 
 			// read file data
-			byte[] data;
+			ByteBuffer data;
 			try {
 				data = entry.getData();
 			} catch (IOException e) {
 				throw new IOException(String.format("Unable to parse entry: %s", name), e);
 			}
 
-			if (name.endsWith(".jar")) {
+			try {
 
-				// load nested JAR file
-				InputStream inputStream = new ByteArrayInputStream(data);
-				String jarFileName = fileName + "!/" + name;
-				try (JarStreamArchive jarStreamArchive = new JarStreamArchive(inputStream)) {
-					load(jarFileName, jarStreamArchive, jarFiles);
-				}
+				if (name.endsWith(".jar")) {
 
-			} else if (name.endsWith(".class")) {
+					// load nested JAR file
+					InputStream inputStream = new ByteArrayInputStream(data.getBytes(), 0, data.getLength());
+					String jarFileName = fileName + "!/" + name;
+					try (JarStreamArchive jarStreamArchive = new JarStreamArchive(inputStream)) {
+						load(jarFileName, jarStreamArchive, jarFiles);
+					}
 
-				if (name.equals("module-info.class")) {
+				} else if (name.endsWith(".class")) {
 
-					// ignore module info if it is for an older release
-					if (release < moduleInfo.getRelease()) {
+					if (name.equals("module-info.class")) {
+
+						// ignore module info if it is for an older release
+						if (release < moduleInfo.getRelease()) {
+							continue;
+						}
+
+						// load module info
+						moduleInfo = moduleInfoLoader.load(data.getBytes(), 0, data.getLength());
+						moduleInfo.setRelease(release);
+					}
+
+					// ignore class definition if it is for an older release
+					ClassDef classDef = classDefs.get(name);
+					if (classDef != null && release < classDef.getRelease()) {
 						continue;
 					}
 
-					// load module info
-					moduleInfo = moduleInfoLoader.load(data);
-					moduleInfo.setRelease(release);
-				}
-
-				// ignore class definition if it is for an older release
-				ClassDef classDef = classDefs.get(name);
-				if (classDef != null && release < classDef.getRelease()) {
-					continue;
-				}
-
-				// load class file
-				classDef = classDefLoader.load(data);
-				classDef.setRelease(release);
+					// load class file
+					classDef = classDefLoader.load(data.getBytes(), 0, data.getLength());
+					classDef.setRelease(release);
 
 					/*
 					Certificate[] certificates = entry.getCertificates();
@@ -182,24 +185,28 @@ abstract class AbstractFileLoader {
 					// TODO: verify signature
 					*/
 
-				classDefs.put(name, classDef);
+					classDefs.put(name, classDef);
 
-			} else {
+				} else {
 
-				// ignore resource if it is for an older release
-				ResourceDef resourceDef = resourceDefs.get(name);
-				if (resourceDef != null && release < resourceDef.getRelease()) {
-					continue;
+					// ignore resource if it is for an older release
+					ResourceDef resourceDef = resourceDefs.get(name);
+					if (resourceDef != null && release < resourceDef.getRelease()) {
+						continue;
+					}
+
+					// calculate SHA-1 checksum
+					String checksum = DigestUtils.sha1Hex(data.getBytes(), 0, data.getLength());
+
+					// add as resource
+					resourceDef = new ResourceDef(name, checksum);
+					resourceDef.setRelease(release);
+					resourceDefs.put(name, resourceDef);
+
 				}
 
-				// calculate SHA-1 checksum
-				String checksum = DigestUtils.sha1Hex(data);
-
-				// add as resource
-				resourceDef = new ResourceDef(name, checksum);
-				resourceDef.setRelease(release);
-				resourceDefs.put(name, resourceDef);
-
+			} finally {
+				data.release();
 			}
 
 		}

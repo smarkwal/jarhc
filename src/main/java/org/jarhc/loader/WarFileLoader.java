@@ -34,6 +34,7 @@ import org.jarhc.loader.archive.Archive;
 import org.jarhc.loader.archive.ArchiveEntry;
 import org.jarhc.loader.archive.ZipStreamArchive;
 import org.jarhc.model.JarFile;
+import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.FileUtils;
 
 public class WarFileLoader {
@@ -89,7 +90,7 @@ public class WarFileLoader {
 			if (entryName.startsWith("WEB-INF/lib/") && entryName.endsWith(".jar")) {
 				String fileName = FileUtils.getFilename(entryName);
 
-				byte[] fileData = entry.getData();
+				ByteBuffer fileData = entry.getData();
 
 				// create task to load nested JAR files
 				Callable<List<JarFile>> task = () -> loadNestedJarFiles(fileName, fileData);
@@ -122,9 +123,13 @@ public class WarFileLoader {
 		return jarFiles;
 	}
 
-	private List<JarFile> loadNestedJarFiles(String fileName, byte[] fileData) throws IOException {
-		InputStream inputStream = new ByteArrayInputStream(fileData);
-		return jarFileLoader.load(fileName, inputStream);
+	private List<JarFile> loadNestedJarFiles(String fileName, ByteBuffer fileData) throws IOException {
+		try {
+			InputStream inputStream = new ByteArrayInputStream(fileData.getBytes(), 0, fileData.getLength());
+			return jarFileLoader.load(fileName, inputStream);
+		} finally {
+			fileData.release();
+		}
 	}
 
 }

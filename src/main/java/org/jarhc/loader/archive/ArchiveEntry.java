@@ -17,11 +17,12 @@
 package org.jarhc.loader.archive;
 
 import java.io.IOException;
+import org.jarhc.utils.ByteBuffer;
 
 public interface ArchiveEntry {
 
 	String getName();
 
-	byte[] getData() throws IOException;
+	ByteBuffer getData() throws IOException;
 
 }

@@ -25,11 +25,15 @@ public class ModuleInfoLoader {
 	}
 
 	public ModuleInfo load(byte[] data) {
+		return load(data, 0, data.length);
+	}
+
+	public ModuleInfo load(byte[] data, int offset, int length) {
 		if (data == null) throw new IllegalArgumentException("data");
 
 		ModuleInfoBuilder classVisitor = new ModuleInfoBuilder();
 
-		ClassReader classReader = new ClassReader(data);
+		ClassReader classReader = new ClassReader(data, offset, length);
 		classReader.accept(classVisitor, 0);
 
 		// create module definition

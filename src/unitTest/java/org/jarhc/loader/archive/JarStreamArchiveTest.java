@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.jarhc.utils.ByteBuffer;
 import org.junit.jupiter.api.Test;
 
 class JarStreamArchiveTest {
@@ -38,8 +39,8 @@ class JarStreamArchiveTest {
 			while (true) {
 				ArchiveEntry entry = archive.getNextEntry();
 				if (entry == null) break;
-				byte[] data = entry.getData();
-				files.add(entry.getName() + " : " + data.length);
+				ByteBuffer data = entry.getData();
+				files.add(entry.getName() + " : " + data.getLength());
 			}
 
 			assertEquals("b2de6f7c6eff51a28729be9c4f6555354f16a1ca", archive.getFileChecksum());
