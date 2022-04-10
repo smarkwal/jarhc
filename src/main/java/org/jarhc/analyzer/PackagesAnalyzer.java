@@ -85,7 +85,7 @@ public class PackagesAnalyzer implements Analyzer {
 		return table;
 	}
 
-	private List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile) {
+	private static List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile) {
 		List<String> issues = new ArrayList<>();
 
 		// check if any package is found in more than one JAR file
@@ -114,17 +114,29 @@ public class PackagesAnalyzer implements Analyzer {
 		return issues;
 	}
 
-	private List<String> getRootPackageNames(Set<String> packageNames) {
-		return packageNames.stream().map(packageName -> {
-			if (packageName.startsWith("org.") || packageName.startsWith("com.") || packageName.startsWith("net.")) {
-				return JavaUtils.getParentPackageName(packageName, 2);
-			} else {
-				return JavaUtils.getParentPackageName(packageName, 1);
+	private static List<String> getRootPackageNames(Set<String> packageNames) {
+		List<String> rootPackageNames = new ArrayList<>(4);
+		for (String packageName : packageNames) {
+			String rootPackageName = getRootPackageName(packageName);
+			if (!rootPackageNames.contains(rootPackageName)) {
+				rootPackageNames.add(rootPackageName);
 			}
-		}).distinct().sorted().collect(Collectors.toList());
+		}
+		if (rootPackageNames.size() > 1) {
+			rootPackageNames.sort(null);
+		}
+		return rootPackageNames;
 	}
 
-	private List<String> getPackageGroups(Set<String> packageNames, MultiMap<String, String> map, String fileName) {
+	private static String getRootPackageName(String packageName) {
+		int parts = 1;
+		if (packageName.startsWith("org.") || packageName.startsWith("com.") || packageName.startsWith("net.")) {
+			parts = 2;
+		}
+		return JavaUtils.getParentPackageName(packageName, parts);
+	}
+
+	private static List<String> getPackageGroups(Set<String> packageNames, MultiMap<String, String> map, String fileName) {
 
 		// map from unique package prefix to group of packages
 		Map<String, List<String>> packageGroups = new LinkedHashMap<>();
