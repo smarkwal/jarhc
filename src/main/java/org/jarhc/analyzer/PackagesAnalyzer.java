@@ -17,10 +17,10 @@
 package org.jarhc.analyzer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
@@ -28,9 +28,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
-import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
-
 
 public class PackagesAnalyzer implements Analyzer {
 
@@ -47,13 +45,35 @@ public class PackagesAnalyzer implements Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 
 		// map from JAR file name to package names
-		MultiMap<String, String> map = new MultiMap<>();
+		Map<String, List<String>> jarFileToPackages = buildJarFileToPackagesMap(classpath);
+
+		// map from package name to JAR file names
+		Map<String, List<String>> packageToJarFiles = invert(jarFileToPackages);
+
+		ReportTable table = new ReportTable("JAR file", "Count", "Packages", "Issues");
+
+		// for every JAR file ...
+		List<String> jarFileNames = new ArrayList<>(jarFileToPackages.keySet());
+		jarFileNames.sort(null);
+		for (String jarFileName : jarFileNames) {
+			List<String> packageNames = jarFileToPackages.get(jarFileName);
+			List<String> packageGroups = getPackageGroups(packageNames, jarFileToPackages, jarFileName, jarFileNames);
+			List<String> issues = findIssues(packageNames, packageToJarFiles);
+			table.addRow(jarFileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
+		}
+
+		return table;
+	}
+
+	private static Map<String, List<String>> buildJarFileToPackagesMap(Classpath classpath) {
+
+		Map<String, List<String>> jarFileToPackages = new HashMap<>();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			String fileName = jarFile.getFileName();
+			String jarFileName = jarFile.getFileName();
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -65,32 +85,44 @@ public class PackagesAnalyzer implements Analyzer {
 
 				// remember JAR files for package name
 				String packageName = classDef.getPackageName();
-				map.add(fileName, packageName);
+
+				List<String> packageNames = jarFileToPackages.computeIfAbsent(jarFileName, k -> new ArrayList<>(8));
+				if (!packageNames.contains(packageName)) {
+					packageNames.add(packageName);
+				}
 			}
 		}
 
-		// map from package name to JAR file names
-		MultiMap<String, String> packageToJarFile = map.invert();
-
-		ReportTable table = new ReportTable("JAR file", "Count", "Packages", "Issues");
-
-		// for every JAR file ...
-		for (String fileName : map.getKeys()) {
-			Set<String> packageNames = map.getValues(fileName);
-			List<String> packageGroups = getPackageGroups(packageNames, map, fileName);
-			List<String> issues = findIssues(packageNames, packageToJarFile);
-			table.addRow(fileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
-		}
-
-		return table;
+		return jarFileToPackages;
 	}
 
-	private static List<String> findIssues(Set<String> packageNames, MultiMap<String, String> packageToJarFile) {
+	/**
+	 * Invert the given multi-value map.
+	 *
+	 * @param map Map to invert
+	 * @return Inverted map
+	 */
+	private static Map<String, List<String>> invert(Map<String, List<String>> map) {
+		Map<String, List<String>> result = new HashMap<>(map.size());
+		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+			String key = entry.getKey();
+			List<String> values = entry.getValue();
+			for (String value : values) {
+				List<String> list = result.computeIfAbsent(value, k -> new ArrayList<>(2));
+				if (!list.contains(key)) {
+					list.add(key);
+				}
+			}
+		}
+		return result;
+	}
+
+	private static List<String> findIssues(List<String> packageNames, Map<String, List<String>> packageToJarFile) {
 		List<String> issues = new ArrayList<>();
 
 		// check if any package is found in more than one JAR file
 		for (String packageName : packageNames) {
-			Set<String> jarFileNames = packageToJarFile.getValues(packageName);
+			List<String> jarFileNames = packageToJarFile.get(packageName);
 			if (jarFileNames.size() > 1) {
 				issues.add("Split Package: " + packageName);
 			}
@@ -114,7 +146,7 @@ public class PackagesAnalyzer implements Analyzer {
 		return issues;
 	}
 
-	private static List<String> getRootPackageNames(Set<String> packageNames) {
+	private static List<String> getRootPackageNames(List<String> packageNames) {
 		List<String> rootPackageNames = new ArrayList<>(4);
 		for (String packageName : packageNames) {
 			String rootPackageName = getRootPackageName(packageName);
@@ -136,28 +168,44 @@ public class PackagesAnalyzer implements Analyzer {
 		return JavaUtils.getParentPackageName(packageName, parts);
 	}
 
-	private static List<String> getPackageGroups(Set<String> packageNames, MultiMap<String, String> map, String fileName) {
+	private static List<String> getPackageGroups(List<String> packageNames, Map<String, List<String>> jarFileToPackages, String jarFileName, List<String> jarFileNames) {
 
 		// map from unique package prefix to group of packages
 		Map<String, List<String>> packageGroups = new LinkedHashMap<>();
 
 		for (String packageName : packageNames) {
-			String uniqueParentPackage = getUniqueParentPackage(packageName, map, fileName);
-			List<String> packageGroup = packageGroups.computeIfAbsent(uniqueParentPackage, k -> new ArrayList<>());
+			String uniqueParentPackage = getUniqueParentPackage(packageName, jarFileToPackages, jarFileName, jarFileNames);
+			List<String> packageGroup = packageGroups.computeIfAbsent(uniqueParentPackage, k -> new ArrayList<>(4));
 			packageGroup.add(packageName);
 		}
 
 		return packageGroups.values().stream().map(PackagesAnalyzer::getPackageGroupDescription).collect(Collectors.toList());
 	}
 
-	private static String getUniqueParentPackage(String packageName, MultiMap<String, String> map, String fileName) {
+	private static String getUniqueParentPackage(String packageName, Map<String, List<String>> jarFileToPackages, String jarFileName, List<String> jarFileNames) {
 
+		// calculate maximum common package prefix with packages in other JAR files
 		int maxLength = 0;
-		for (String fileName2 : map.getKeys()) {
-			if (fileName.equals(fileName2)) continue;
-			for (String packageName2 : map.getValues(fileName2)) {
-				int length = getParentPackageLength(packageName, packageName2);
-				if (length > maxLength) maxLength = length;
+
+		// for all other JAR files ...
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < jarFileNames.size(); i++) {
+			String otherFileName = jarFileNames.get(i);
+			if (otherFileName.equals(jarFileName)) {
+				// ignore current JAR file
+				continue;
+			}
+
+			// for all packages in other JAR file ...
+			List<String> otherPackageNames = jarFileToPackages.get(otherFileName);
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < otherPackageNames.size(); j++) {
+				String otherPackageName = otherPackageNames.get(j);
+
+				int length = getParentPackageLength(packageName, otherPackageName);
+				if (length > maxLength) {
+					maxLength = length;
+				}
 			}
 		}
 
