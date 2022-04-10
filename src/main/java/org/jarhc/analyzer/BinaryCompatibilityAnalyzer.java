@@ -43,9 +43,17 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.JavaVersion;
+import org.jarhc.utils.Pool;
 import org.jarhc.utils.StringUtils;
 
 public class BinaryCompatibilityAnalyzer implements Analyzer {
+
+	// object pools
+	private final Pool<List<MethodDef>> ARRAY_LIST_POOL = new Pool<>(ArrayList::new, List::clear);
+	private final Pool<Set<String>> HASH_SET_POOL = new Pool<>(HashSet::new, Set::clear);
+	private final Pool<Set<String>> LINKED_HASH_SET_POOL = new Pool<>(LinkedHashSet::new, Set::clear);
+	private final Pool<FieldSearchResult> FIELD_SEARCH_RESULT_POOL = new Pool<>(FieldSearchResult::new, FieldSearchResult::reset);
+	private final Pool<MethodSearchResult> METHOD_SEARCH_RESULT_POOL = new Pool<>(MethodSearchResult::new, MethodSearchResult::reset);
 
 	private final boolean ignoreMissingAnnotations;
 	private final boolean reportOwnerClassNotFound;
@@ -84,28 +92,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
-			classDefs.parallelStream().forEach(classDef -> {
-
-				// issues found in class definition (in order or appearance)
-				Set<String> classIssues = new LinkedHashSet<>();
-
-				// validate class definition
-				validateClassFile(classDef, classIssues);
-				validateClassHierarchy(classDef, classpath, accessCheck, classIssues);
-				validateAbstractMethods(classDef, classpath, classIssues);
-				validateClassRefs(classDef, classpath, accessCheck, classIssues);
-				validateMethodRefs(classDef, classpath, accessCheck, classIssues);
-				validateFieldRefs(classDef, classpath, accessCheck, classIssues);
-				validateAnnotationRefs(classDef, classpath, accessCheck, classIssues);
-
-				if (!classIssues.isEmpty()) {
-					String issue = createJarIssue(classDef, classIssues);
-					synchronized (jarIssues) {
-						jarIssues.add(issue);
-					}
-				}
-
-			});
+			classDefs.parallelStream().forEach(classDef -> collectClassIssues(classDef, classpath, accessCheck, jarIssues));
 
 			if (!jarIssues.isEmpty()) {
 				String lines = joinLines(jarIssues).trim();
@@ -114,6 +101,30 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		return table;
+	}
+
+	private void collectClassIssues(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> jarIssues) {
+
+		// issues found in class definition (in order of appearance)
+		Set<String> classIssues = LINKED_HASH_SET_POOL.doBorrow();
+
+		// validate class definition
+		validateClassFile(classDef, classIssues);
+		validateClassHierarchy(classDef, classpath, accessCheck, classIssues);
+		validateAbstractMethods(classDef, classpath, classIssues);
+		validateClassRefs(classDef, classpath, accessCheck, classIssues);
+		validateMethodRefs(classDef, classpath, accessCheck, classIssues);
+		validateFieldRefs(classDef, classpath, accessCheck, classIssues);
+		validateAnnotationRefs(classDef, classpath, accessCheck, classIssues);
+
+		if (!classIssues.isEmpty()) {
+			String issue = createJarIssue(classDef, classIssues);
+			synchronized (jarIssues) {
+				jarIssues.add(issue);
+			}
+		}
+
+		LINKED_HASH_SET_POOL.doReturn(classIssues);
 	}
 
 	private void validateClassFile(ClassDef classDef, Set<String> classIssues) {
@@ -153,7 +164,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// for every interface ...
 		List<String> interfaceNames = classDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			// check if interface exists
 			ClassDef interfaceClassDef = classpath.getClassDef(interfaceName);
 			if (interfaceClassDef == null) {
@@ -168,7 +181,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 			// for every permitted subclass ...
 			List<String> permittedSubclassNames = classDef.getPermittedSubclassNames();
-			for (String permittedSubclassName : permittedSubclassNames) {
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int i = 0; i < permittedSubclassNames.size(); i++) {
+				String permittedSubclassName = permittedSubclassNames.get(i);
 				// check if subclass exists
 				ClassDef permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
 				if (permittedSubclassDef == null) {
@@ -313,26 +328,34 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// class must implement all abstract methods declared in superclasses and interfaces
 
 		// collect all concrete and abstract methods
-		List<MethodDef> concreteMethods = new ArrayList<>();
-		List<MethodDef> abstractMethods = new ArrayList<>();
-		Set<String> visitedClasses = new HashSet<>();
+		List<MethodDef> concreteMethods = ARRAY_LIST_POOL.doBorrow();
+		List<MethodDef> abstractMethods = ARRAY_LIST_POOL.doBorrow();
+		Set<String> visitedClasses = HASH_SET_POOL.doBorrow();
 		collectMethodDefs(classDef, classpath, concreteMethods, abstractMethods, visitedClasses);
 
 		// if there is at least one abstract method ...
 		if (!abstractMethods.isEmpty()) {
 
 			// discard all abstract methods for which there is a concrete implementation
-			for (MethodDef concreteMethod : concreteMethods) {
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int i = 0; i < concreteMethods.size(); i++) {
+				MethodDef concreteMethod = concreteMethods.get(i);
 				abstractMethods.removeIf(abstractMethod -> isImplementedBy(abstractMethod, concreteMethod));
 			}
 
 			// report all remaining (unimplemented) abstract methods
-			for (MethodDef methodDef : abstractMethods) {
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int i = 0; i < abstractMethods.size(); i++) {
+				MethodDef methodDef = abstractMethods.get(i);
 				classIssues.add("Abstract method not implemented: " + methodDef.getDisplayName());
 			}
 
 		}
 
+		// return all collections to pools
+		ARRAY_LIST_POOL.doReturn(concreteMethods);
+		ARRAY_LIST_POOL.doReturn(abstractMethods);
+		HASH_SET_POOL.doReturn(visitedClasses);
 	}
 
 	/**
@@ -363,7 +386,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// collect methods from interfaces
 		List<String> interfaceNames = classDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			ClassDef interfaceDef = classpath.getClassDef(interfaceName);
 			if (interfaceDef != null) {
 				collectMethodDefs(interfaceDef, classpath, concreteMethods, abstractMethods, visitedClasses);
@@ -372,7 +397,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// categorize methods in class definition
 		List<MethodDef> methodDefs = classDef.getMethodDefs();
-		for (MethodDef methodDef : methodDefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodDefs.size(); i++) {
+			MethodDef methodDef = methodDefs.get(i);
 
 			// ignore static and private methods
 			if (methodDef.isStatic() || methodDef.isPrivate()) {
@@ -414,7 +441,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// for every class reference ...
 		List<ClassRef> classRefs = classDef.getClassRefs();
-		for (ClassRef classRef : classRefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < classRefs.size(); i++) {
+			ClassRef classRef = classRefs.get(i);
 			String className = classRef.getClassName();
 
 			// check if class exists
@@ -486,7 +515,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// for every method reference ...
 		List<MethodRef> methodRefs = classDef.getMethodRefs();
-		for (MethodRef methodRef : methodRefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodRefs.size(); i++) {
+			MethodRef methodRef = methodRefs.get(i);
 
 			// validate field reference
 			MethodSearchResult result = validateMethodRef(classDef, methodRef, accessCheck, classpath);
@@ -496,12 +527,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 					classIssues.add(text);
 				}
 			}
+
+			METHOD_SEARCH_RESULT_POOL.doReturn(result);
 		}
 	}
 
 	private MethodSearchResult validateMethodRef(ClassDef classDef, MethodRef methodRef, AccessCheck accessCheck, ClassLoader classLoader) {
 
-		MethodSearchResult searchResult = new MethodSearchResult();
+		MethodSearchResult searchResult = METHOD_SEARCH_RESULT_POOL.doBorrow();
 
 		// try to find owner class
 		String targetClassName = methodRef.getMethodOwner();
@@ -510,7 +543,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("> ", targetClassName, " (owner class not found)");
+				searchResult.addSearchInfo(targetClassName, "owner class not found");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -616,7 +649,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// for every field reference ...
 		List<FieldRef> fieldRefs = classDef.getFieldRefs();
-		for (FieldRef fieldRef : fieldRefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldRefs.size(); i++) {
+			FieldRef fieldRef = fieldRefs.get(i);
 
 			// validate field reference
 			FieldSearchResult result = validateFieldRef(classDef, fieldRef, accessCheck, classpath);
@@ -626,12 +661,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 					classIssues.add(text);
 				}
 			}
+
+			FIELD_SEARCH_RESULT_POOL.doReturn(result);
 		}
 	}
 
 	private FieldSearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, AccessCheck accessCheck, ClassLoader classLoader) {
 
-		FieldSearchResult searchResult = new FieldSearchResult();
+		FieldSearchResult searchResult = FIELD_SEARCH_RESULT_POOL.doBorrow();
 
 		// try to find owner class
 		String targetClassName = fieldRef.getFieldOwner();
@@ -640,7 +677,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// owner class not found
 			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
 			if (reportOwnerClassNotFound) {
-				searchResult.addSearchInfo("> ", targetClassName, " (owner class not found)");
+				searchResult.addSearchInfo(targetClassName, "owner class not found");
 			} else {
 				// ignore result if owner class is not found
 				// (already reported in missing classes)
@@ -709,29 +746,39 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private void validateAnnotationRefs(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {
 
-		HashSet<String> annotationIssues = new HashSet<>();
+		Set<String> annotationIssues = HASH_SET_POOL.doBorrow();
 
 		// validate annotations on class
 		validateAnnotationRefs(classDef, classDef, classpath, accessCheck, annotationIssues);
 
 		// validate annotations on record components
-		for (RecordComponentDef recordComponentDef : classDef.getRecordComponentDefs()) {
+		List<RecordComponentDef> recordComponentDefs = classDef.getRecordComponentDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < recordComponentDefs.size(); i++) {
+			RecordComponentDef recordComponentDef = recordComponentDefs.get(i);
 			validateAnnotationRefs(classDef, recordComponentDef, classpath, accessCheck, annotationIssues);
 		}
 
 		// validate annotations on methods
-		for (MethodDef methodDef : classDef.getMethodDefs()) {
+		List<MethodDef> methodDefs = classDef.getMethodDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodDefs.size(); i++) {
+			MethodDef methodDef = methodDefs.get(i);
 			validateAnnotationRefs(classDef, methodDef, classpath, accessCheck, annotationIssues);
 		}
 
 		// validate annotations on fields
-		for (FieldDef fieldDef : classDef.getFieldDefs()) {
+		List<FieldDef> fieldDefs = classDef.getFieldDefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldDefs.size(); i++) {
+			FieldDef fieldDef = fieldDefs.get(i);
 			validateAnnotationRefs(classDef, fieldDef, classpath, accessCheck, annotationIssues);
 		}
 
 		// sort annotation issues and add them to class issues
 		annotationIssues.stream().sorted().forEach(classIssues::add);
 
+		HASH_SET_POOL.doReturn(annotationIssues);
 	}
 
 	private void validateAnnotationRefs(ClassDef ownerClassDef, Def def, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {
@@ -739,7 +786,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// TODO: get valid target types for concrete Def
 
 		List<AnnotationRef> annotationRefs = def.getAnnotationRefs();
-		for (AnnotationRef annotationRef : annotationRefs) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < annotationRefs.size(); i++) {
+			AnnotationRef annotationRef = annotationRefs.get(i);
 
 			String annotationName = annotationRef.getClassName();
 
@@ -770,42 +819,29 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private abstract static class MemberSearchResult implements ClassLoader.Callback {
 
-		private StringBuilder errorMessages;
-		private StringBuilder searchInfos;
+		private final StringBuilder errorMessages = new StringBuilder();
+		private final StringBuilder searchInfos = new StringBuilder();
 		private boolean ignoreResult = false;
 
 		void addErrorMessage(String message) {
-			if (errorMessages == null) {
-				errorMessages = new StringBuilder(message);
-			} else {
+			if (errorMessages.length() > 0) {
 				errorMessages.append(System.lineSeparator());
-				errorMessages.append(message);
 			}
+			errorMessages.append(message);
 		}
 
-		void addSearchInfo(String... infos) {
-			if (searchInfos == null) {
-				int length = 0;
-				for (String info : infos) {
-					length += info.length();
-				}
-				searchInfos = new StringBuilder(length);
-				for (String info : infos) {
-					searchInfos.append(info);
-				}
-			} else {
+		void addSearchInfo(String className, String message) {
+			if (searchInfos.length() > 0) {
 				searchInfos.append(System.lineSeparator());
-				for (String info : infos) {
-					searchInfos.append(info);
-				}
 			}
+			searchInfos.append("> ").append(className).append(" (").append(message).append(")");
 		}
 
 		String getResult() {
-			if (errorMessages == null) {
+			if (errorMessages.length() == 0) {
 				return null;
 			} else {
-				if (searchInfos != null) {
+				if (searchInfos.length() > 0) {
 					errorMessages.append(System.lineSeparator()).append(searchInfos);
 				}
 				return errorMessages.toString();
@@ -823,7 +859,16 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void classNotFound(String className) {
-			addSearchInfo("> ", className, " (class not found)");
+			addSearchInfo(className, "class not found");
+		}
+
+		/**
+		 * Reset state of this search result object so it can be reused.
+		 */
+		public void reset() {
+			errorMessages.setLength(0);
+			searchInfos.setLength(0);
+			ignoreResult = false;
 		}
 
 	}
@@ -832,12 +877,12 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void memberNotFound(String className) {
-			addSearchInfo("> ", className, " (field not found)");
+			addSearchInfo(className, "field not found");
 		}
 
 		@Override
 		public void memberFound(String className) {
-			addSearchInfo("> ", className, " (field found)");
+			addSearchInfo(className, "field found");
 		}
 
 	}
@@ -846,12 +891,12 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		@Override
 		public void memberNotFound(String className) {
-			addSearchInfo("> ", className, " (method not found)");
+			addSearchInfo(className, "method not found");
 		}
 
 		@Override
 		public void memberFound(String className) {
-			addSearchInfo("> ", className, " (method found)");
+			addSearchInfo(className, "method found");
 		}
 
 	}

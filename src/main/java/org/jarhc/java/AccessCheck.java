@@ -159,7 +159,9 @@ public class AccessCheck {
 		if (targetClassName.equals(superName)) return true;
 
 		List<String> interfaceNames = sourceClassDef.getInterfaceNames();
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			if (targetClassName.equals(interfaceName)) return true;
 		}
 
@@ -168,7 +170,9 @@ public class AccessCheck {
 			if (isSubclass(superName, targetClassName)) return true;
 		}
 
-		for (String interfaceName : interfaceNames) {
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < interfaceNames.size(); i++) {
+			String interfaceName = interfaceNames.get(i);
 			// try to find interface class
 			if (isSubclass(interfaceName, targetClassName)) return true;
 		}
