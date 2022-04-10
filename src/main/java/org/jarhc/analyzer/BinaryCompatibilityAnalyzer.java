@@ -773,8 +773,11 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			validateAnnotationRefs(classDef, fieldDef, classpath, accessCheck, annotationIssues);
 		}
 
-		// sort annotation issues and add them to class issues
-		annotationIssues.stream().sorted().forEach(classIssues::add);
+		// if any annotation issues have been found ...
+		if (!annotationIssues.isEmpty()) {
+			// sort annotation issues and add them to class issues
+			annotationIssues.stream().sorted().forEach(classIssues::add);
+		}
 
 		HASH_SET_POOL.doReturn(annotationIssues);
 	}
