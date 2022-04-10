@@ -332,23 +332,25 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		Set<String> visitedClasses = HASH_SET_POOL.doBorrow();
 		collectMethodDefs(classDef, classpath, concreteMethods, abstractMethods, visitedClasses);
 
-		// if there is at least one abstract method ...
-		if (!abstractMethods.isEmpty()) {
+		// for every abstract method ...
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < abstractMethods.size(); i++) {
+			MethodDef abstractMethod = abstractMethods.get(i);
 
-			// discard all abstract methods for which there is a concrete implementation
+			// check if abstract method is implemented
+			boolean implemented = false;
 			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int i = 0; i < concreteMethods.size(); i++) {
-				MethodDef concreteMethod = concreteMethods.get(i);
-				abstractMethods.removeIf(abstractMethod -> isImplementedBy(abstractMethod, concreteMethod));
+			for (int j = 0; j < concreteMethods.size(); j++) {
+				MethodDef concreteMethod = concreteMethods.get(j);
+				if (isImplementedBy(abstractMethod, concreteMethod)) {
+					implemented = true;
+					break;
+				}
 			}
 
-			// report all remaining (unimplemented) abstract methods
-			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int i = 0; i < abstractMethods.size(); i++) {
-				MethodDef methodDef = abstractMethods.get(i);
-				classIssues.add("Abstract method not implemented: " + methodDef.getDisplayName());
+			if (!implemented) {
+				classIssues.add("Abstract method not implemented: " + abstractMethod.getDisplayName());
 			}
-
 		}
 
 		// return all collections to pools
