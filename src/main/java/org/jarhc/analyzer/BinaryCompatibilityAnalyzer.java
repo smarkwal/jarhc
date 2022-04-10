@@ -262,10 +262,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				classIssues.add(otherClassType + " is in unnamed module: " + otherClassDef.getDisplayName());
 			} else {
 				// check if both classes are in same package
+				String className = classDef.getClassName();
 				String otherClassName = otherClassDef.getClassName();
-				String otherPackageName = JavaUtils.getPackageName(otherClassName);
-				String packageName = JavaUtils.getPackageName(classDef.getClassName());
-				if (!otherPackageName.equals(packageName)) {
+				if (!JavaUtils.inSamePackage(otherClassName, className)) {
 					classIssues.add(otherClassType + " is not in same package: " + otherClassDef.getDisplayName());
 				}
 			}
@@ -497,8 +496,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 			// check if package of target class is exported to module of source class
 			String moduleName = moduleInfo.getModuleName();
-			String targetClassName = targetClassDef.getClassName();
-			String targetPackageName = JavaUtils.getPackageName(targetClassName);
+			String targetPackageName = targetClassDef.getPackageName();
 			if (!targetModuleInfo.isExported(targetPackageName, moduleName)) {
 				String targetClassDisplayName = targetClassDef.getDisplayName();
 				classIssues.add("Class is not exported by module " + targetModuleInfo.getModuleName() + ": " + targetClassDisplayName);

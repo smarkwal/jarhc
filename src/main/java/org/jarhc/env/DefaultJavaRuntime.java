@@ -65,7 +65,7 @@ public class DefaultJavaRuntime extends JavaRuntime {
 	/**
 	 * Negative cache value if class has not been found.
 	 */
-	private static final ClassDef CLASS_NOT_FOUND = new ClassDef(null);
+	private static final ClassDef CLASS_NOT_FOUND = new ClassDef("ClassNotFound");
 
 	private final Logger logger;
 

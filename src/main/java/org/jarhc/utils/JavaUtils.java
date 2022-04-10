@@ -68,6 +68,18 @@ public class JavaUtils {
 		}
 	}
 
+	public static boolean inSamePackage(String sourceClassName, String targetClassName) {
+		int pos1 = sourceClassName.lastIndexOf('.');
+		int pos2 = targetClassName.lastIndexOf('.');
+		if (pos1 != pos2) return false;
+		for (int i = 0; i < pos1; i++) {
+			char chr1 = sourceClassName.charAt(i);
+			char chr2 = targetClassName.charAt(i);
+			if (chr1 != chr2) return false;
+		}
+		return true;
+	}
+
 	public static String getTopLevelClassName(String className) {
 		int pos = className.indexOf('$');
 		if (pos >= 0) {
@@ -75,6 +87,20 @@ public class JavaUtils {
 		} else {
 			return className;
 		}
+	}
+
+	public static boolean inSameTopLevelClass(String sourceClassName, String targetClassName) {
+		int pos1 = sourceClassName.indexOf('$');
+		int pos2 = targetClassName.indexOf('$');
+		if (pos1 < 0) pos1 = sourceClassName.length();
+		if (pos2 < 0) pos2 = targetClassName.length();
+		if (pos1 != pos2) return false;
+		for (int i = 0; i < pos1; i++) {
+			char chr1 = sourceClassName.charAt(i);
+			char chr2 = targetClassName.charAt(i);
+			if (chr1 != chr2) return false;
+		}
+		return true;
 	}
 
 	public static String getClassName(String typeDescriptor) {

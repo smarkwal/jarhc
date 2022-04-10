@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import org.jarhc.utils.JavaUtils;
 
 /**
  * Represents the content of a JAR file.
@@ -138,7 +137,7 @@ public class JarFile {
 			classDefsMap.put(className, classDef);
 
 			// add package name to package list
-			String packageName = JavaUtils.getPackageName(className);
+			String packageName = classDef.getPackageName();
 			packageNames.add(packageName);
 
 		});

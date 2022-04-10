@@ -28,7 +28,6 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
-import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.MultiMap;
 import org.jarhc.utils.StringUtils;
 
@@ -60,13 +59,12 @@ public class PackagesAnalyzer implements Analyzer {
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			for (ClassDef classDef : classDefs) {
 
+				// ignore module-info classes
 				String className = classDef.getClassName();
 				if (className.equals("module-info")) continue;
 
-				// get package name from class name
-				String packageName = JavaUtils.getPackageName(className);
-
 				// remember JAR files for package name
+				String packageName = classDef.getPackageName();
 				map.add(fileName, packageName);
 			}
 		}

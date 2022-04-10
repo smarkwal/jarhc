@@ -80,7 +80,7 @@ public class AccessCheck {
 		}
 
 		// allow access to package-private class in same package
-		return inSamePackage(sourceClassName, targetClassName);
+		return JavaUtils.inSamePackage(sourceClassName, targetClassName);
 	}
 
 	/**
@@ -121,9 +121,7 @@ public class AccessCheck {
 		// - are the same class
 		// - have an outer/inner class relation
 		// - are both inner classes of the same outer class
-		String sourceTopLevelClassName = JavaUtils.getTopLevelClassName(sourceClassName);
-		String targetTopLevelClassName = JavaUtils.getTopLevelClassName(targetClassName);
-		if (sourceTopLevelClassName.equals(targetTopLevelClassName)) {
+		if (JavaUtils.inSameTopLevelClass(sourceClassName, targetClassName)) {
 			// allow access to member in same class, outer class, or inner class
 			// assumption: outer and inner classes are always compatible
 			// because they  have been compiled together.
@@ -136,7 +134,7 @@ public class AccessCheck {
 		}
 
 		// check is source class is in same package as target class
-		boolean inSamePackage = inSamePackage(sourceClassName, targetClassName);
+		boolean inSamePackage = JavaUtils.inSamePackage(sourceClassName, targetClassName);
 		if (inSamePackage) {
 			// allow access to protected or package-private member in same package
 			return true;
@@ -191,12 +189,6 @@ public class AccessCheck {
 
 		// check if source class is a subclass of target class
 		return isSubclass(classDef, targetClassName);
-	}
-
-	private boolean inSamePackage(String sourceClassName, String targetClassName) {
-		String sourcePackage = JavaUtils.getPackageName(sourceClassName);
-		String targetPackage = JavaUtils.getPackageName(targetClassName);
-		return sourcePackage.equals(targetPackage);
 	}
 
 }

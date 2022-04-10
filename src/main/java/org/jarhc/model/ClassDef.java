@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.jarhc.utils.DigestUtils;
+import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.JavaVersion;
 
 /**
@@ -32,6 +33,11 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	 * Class name.
 	 */
 	private String className;
+
+	/**
+	 * Package name.
+	 */
+	private String packageName;
 
 	/**
 	 * Version branch in multi-release JAR file.
@@ -169,6 +175,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	public ClassDef(String className) {
 		super(0);
 		this.className = className;
+		this.packageName = JavaUtils.getPackageName(className);
 	}
 
 	public static ClassDef forClassName(String className) {
@@ -181,7 +188,12 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 
 	public ClassDef setClassName(String className) {
 		this.className = className;
+		this.packageName = JavaUtils.getPackageName(className);
 		return this;
+	}
+
+	public String getPackageName() {
+		return packageName;
 	}
 
 	public ClassDef withAccess(int flags) {

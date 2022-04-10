@@ -18,7 +18,9 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
@@ -40,6 +42,37 @@ class JavaUtilsTest {
 		assertEquals("java.lang", JavaUtils.getPackageName("java.lang.String"));
 		assertEquals("java.io", JavaUtils.getPackageName("java.io.InputStream"));
 		assertEquals("a.b.c.d", JavaUtils.getPackageName("a.b.c.d.E$F"));
+
+	}
+
+	@Test
+	void inSamePackage() {
+
+		assertTrue(JavaUtils.inSamePackage("Main", "Main"));
+		assertTrue(JavaUtils.inSamePackage("java.lang.String", "java.lang.Integer"));
+		assertTrue(JavaUtils.inSamePackage("org.jarhc.utils.JavaUtils", "org.jarhc.utils.FileUtils"));
+
+		assertFalse(JavaUtils.inSamePackage("Main", "java.lang.String"));
+		assertFalse(JavaUtils.inSamePackage("java.lang.String", "java.io.File"));
+		assertFalse(JavaUtils.inSamePackage("a.b.C", "a.b.c.D"));
+
+	}
+
+	@Test
+	void inSameTopLevelClass() {
+
+		assertTrue(JavaUtils.inSameTopLevelClass("Main", "Main"));
+		assertTrue(JavaUtils.inSameTopLevelClass("java.lang.String", "java.lang.String"));
+		assertTrue(JavaUtils.inSameTopLevelClass("a.b.C", "a.b.C$D"));
+		assertTrue(JavaUtils.inSameTopLevelClass("a.b.C", "a.b.C$D$E"));
+		assertTrue(JavaUtils.inSameTopLevelClass("a.b.C$D", "a.b.C$E"));
+		assertTrue(JavaUtils.inSameTopLevelClass("a.b.C$D$E", "a.b.C$D$F"));
+		assertTrue(JavaUtils.inSameTopLevelClass("a.b.C$D$E", "a.b.C$F$G"));
+
+		assertFalse(JavaUtils.inSameTopLevelClass("Main", "java.lang.String"));
+		assertFalse(JavaUtils.inSameTopLevelClass("java.lang.String", "java.io.File"));
+		assertFalse(JavaUtils.inSameTopLevelClass("a.b.C", "a.b.C2"));
+		assertFalse(JavaUtils.inSameTopLevelClass("a.b.C$X", "a.b.D$X"));
 
 	}
 

@@ -82,7 +82,7 @@ public class JavaRuntimeMock extends JavaRuntime {
 				ClassDef classDef = ClassDefUtils.read(dis);
 				String className = classDef.getClassName();
 				classDefs.put(className, classDef);
-				String packageName = getPackageName(className);
+				String packageName = classDef.getPackageName();
 				packageNames.add(packageName);
 			}
 
