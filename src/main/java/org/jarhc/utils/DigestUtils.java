@@ -24,18 +24,28 @@ import java.security.NoSuchAlgorithmException;
 
 public class DigestUtils {
 
-	private static String algorithm = "SHA-1";
+	private static final String ALGORITHM = "SHA-1";
 
-	public static String getAlgorithm() {
-		return algorithm;
-	}
+	private static final Pool<MessageDigest> MESSAGE_DIGEST_POOL = new Pool<>(DigestUtils::createMessageDigest, MessageDigest::reset);
 
-	public static void setAlgorithm(String algorithm) {
-		DigestUtils.algorithm = algorithm;
+	private static MessageDigest createMessageDigest() {
+		try {
+			return MessageDigest.getInstance(ALGORITHM);
+		} catch (NoSuchAlgorithmException e) {
+			throw new JarHcException("Algorithm not found: " + ALGORITHM, e);
+		}
 	}
 
 	private DigestUtils() {
 		throw new IllegalStateException("utility class");
+	}
+
+	public static MessageDigest getDigest() {
+		return MESSAGE_DIGEST_POOL.doBorrow();
+	}
+
+	public static void returnDigest(MessageDigest digest) {
+		MESSAGE_DIGEST_POOL.doReturn(digest);
 	}
 
 	public static String sha1Hex(byte[] input) {
@@ -47,6 +57,7 @@ public class DigestUtils {
 		MessageDigest digest = getDigest();
 		digest.update(input, offset, length);
 		byte[] array = digest.digest();
+		returnDigest(digest);
 		return hex(array);
 	}
 
@@ -66,15 +77,8 @@ public class DigestUtils {
 			digest.update(buffer, 0, len);
 		}
 		byte[] array = digest.digest();
+		returnDigest(digest);
 		return hex(array);
-	}
-
-	public static MessageDigest getDigest() {
-		try {
-			return MessageDigest.getInstance(algorithm);
-		} catch (NoSuchAlgorithmException e) {
-			throw new JarHcException("Algorithm not found: " + algorithm, e);
-		}
 	}
 
 	public static String hex(byte[] input) {

@@ -75,24 +75,4 @@ class DigestUtilsTest {
 
 	}
 
-	@Test
-	void test_sha1Hex_unknownAlgorithm() {
-
-		// remember original SHA-1 algorithm
-		String originalAlgorithm = DigestUtils.getAlgorithm();
-		try {
-
-			// prepare: override SHA-1 algorithm
-			DigestUtils.setAlgorithm("Unknown");
-
-			// test & assert
-			assertThrows(RuntimeException.class, () -> DigestUtils.sha1Hex("test"));
-
-		} finally {
-			// remember original SHA-1 algorithm
-			DigestUtils.setAlgorithm(originalAlgorithm);
-		}
-
-	}
-
 }

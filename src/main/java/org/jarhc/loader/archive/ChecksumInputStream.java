@@ -31,6 +31,7 @@ class ChecksumInputStream extends FilterInputStream {
 	private final MessageDigest digest = DigestUtils.getDigest();
 
 	private long size = 0;
+	private String checksum;
 
 	ChecksumInputStream(InputStream inputStream) {
 		super(inputStream);
@@ -43,8 +44,7 @@ class ChecksumInputStream extends FilterInputStream {
 
 	String getChecksum() throws IOException {
 		readRemaining();
-		byte[] bytes = this.digest.digest();
-		return DigestUtils.hex(bytes);
+		return checksum;
 	}
 
 	@Override
@@ -77,10 +77,15 @@ class ChecksumInputStream extends FilterInputStream {
 	 * Read all remaining bytes before so that checksum and size are accurate.
 	 */
 	private void readRemaining() throws IOException {
-		byte[] buffer = new byte[1024];
-		while (true) {
-			int bytes = read(buffer, 0, buffer.length);
-			if (bytes < 0) break;
+		if (checksum == null) {
+			byte[] buffer = new byte[1024];
+			while (true) {
+				int bytes = read(buffer, 0, buffer.length);
+				if (bytes < 0) break;
+			}
+			byte[] bytes = digest.digest();
+			DigestUtils.returnDigest(digest);
+			checksum = DigestUtils.hex(bytes);
 		}
 	}
 
