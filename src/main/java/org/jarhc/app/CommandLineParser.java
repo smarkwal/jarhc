@@ -30,7 +30,6 @@ import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.java.ClassLoaderStrategy;
-import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.utils.ArrayUtils;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.JarHcException;
