@@ -19,6 +19,7 @@ package org.jarhc.analyzer;
 import static org.jarhc.utils.StringUtils.joinLines;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -49,12 +50,12 @@ import org.jarhc.utils.StringUtils;
 public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	// object pools
-	private final Pool<List<MethodDef>> ARRAY_LIST_POOL = new Pool<>(ArrayList::new, List::clear);
-	private final Pool<Set<String>> HASH_SET_POOL = new Pool<>(HashSet::new, Set::clear);
-	private final Pool<List<String>> STRING_LIST_POOL = new Pool<>(ArrayList::new, List::clear);
-	private final Pool<Set<String>> LINKED_HASH_SET_POOL = new Pool<>(LinkedHashSet::new, Set::clear);
-	private final Pool<FieldSearchResult> FIELD_SEARCH_RESULT_POOL = new Pool<>(FieldSearchResult::new, FieldSearchResult::reset);
-	private final Pool<MethodSearchResult> METHOD_SEARCH_RESULT_POOL = new Pool<>(MethodSearchResult::new, MethodSearchResult::reset);
+	private final Pool<List<MethodDef>> arrayListPool = new Pool<>(ArrayList::new, List::clear);
+	private final Pool<Set<String>> hashSetPool = new Pool<>(HashSet::new, Set::clear);
+	private final Pool<List<String>> stringListPool = new Pool<>(ArrayList::new, List::clear);
+	private final Pool<Set<String>> linkedHashSetPool = new Pool<>(LinkedHashSet::new, Set::clear);
+	private final Pool<FieldSearchResult> fieldSearchResultPool = new Pool<>(FieldSearchResult::new, FieldSearchResult::reset);
+	private final Pool<MethodSearchResult> methodSearchResultPool = new Pool<>(MethodSearchResult::new, MethodSearchResult::reset);
 
 	private final boolean ignoreMissingAnnotations;
 	private final boolean reportOwnerClassNotFound;
@@ -89,7 +90,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		for (JarFile jarFile : jarFiles) {
 
 			// issues found in JAR file (sorted by class name)
-			final Set<String> jarIssues = new TreeSet<>();
+			final Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -107,7 +108,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	private void collectClassIssues(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> jarIssues) {
 
 		// issues found in class definition (in order of appearance)
-		Set<String> classIssues = LINKED_HASH_SET_POOL.doBorrow();
+		Set<String> classIssues = linkedHashSetPool.doBorrow();
 
 		// validate class definition
 		validateClassFile(classDef, classIssues);
@@ -120,12 +121,10 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		if (!classIssues.isEmpty()) {
 			String issue = createJarIssue(classDef, classIssues);
-			synchronized (jarIssues) {
-				jarIssues.add(issue);
-			}
+			jarIssues.add(issue);
 		}
 
-		LINKED_HASH_SET_POOL.doReturn(classIssues);
+		linkedHashSetPool.doReturn(classIssues);
 	}
 
 	private void validateClassFile(ClassDef classDef, Set<String> classIssues) {
@@ -328,9 +327,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// class must implement all abstract methods declared in superclasses and interfaces
 
 		// collect all concrete and abstract methods
-		List<MethodDef> concreteMethods = ARRAY_LIST_POOL.doBorrow();
-		List<MethodDef> abstractMethods = ARRAY_LIST_POOL.doBorrow();
-		List<String> visitedClasses = STRING_LIST_POOL.doBorrow();
+		List<MethodDef> concreteMethods = arrayListPool.doBorrow();
+		List<MethodDef> abstractMethods = arrayListPool.doBorrow();
+		List<String> visitedClasses = stringListPool.doBorrow();
 		collectMethodDefs(classDef, classpath, concreteMethods, abstractMethods, visitedClasses);
 
 		// for every abstract method ...
@@ -355,9 +354,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		// return all collections to pools
-		ARRAY_LIST_POOL.doReturn(concreteMethods);
-		ARRAY_LIST_POOL.doReturn(abstractMethods);
-		STRING_LIST_POOL.doReturn(visitedClasses);
+		arrayListPool.doReturn(concreteMethods);
+		arrayListPool.doReturn(abstractMethods);
+		stringListPool.doReturn(visitedClasses);
 	}
 
 	/**
@@ -530,13 +529,13 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				}
 			}
 
-			METHOD_SEARCH_RESULT_POOL.doReturn(result);
+			methodSearchResultPool.doReturn(result);
 		}
 	}
 
 	private MethodSearchResult validateMethodRef(ClassDef classDef, MethodRef methodRef, AccessCheck accessCheck, ClassLoader classLoader) {
 
-		MethodSearchResult searchResult = METHOD_SEARCH_RESULT_POOL.doBorrow();
+		MethodSearchResult searchResult = methodSearchResultPool.doBorrow();
 
 		// try to find owner class
 		String targetClassName = methodRef.getMethodOwner();
@@ -664,13 +663,13 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				}
 			}
 
-			FIELD_SEARCH_RESULT_POOL.doReturn(result);
+			fieldSearchResultPool.doReturn(result);
 		}
 	}
 
 	private FieldSearchResult validateFieldRef(ClassDef classDef, FieldRef fieldRef, AccessCheck accessCheck, ClassLoader classLoader) {
 
-		FieldSearchResult searchResult = FIELD_SEARCH_RESULT_POOL.doBorrow();
+		FieldSearchResult searchResult = fieldSearchResultPool.doBorrow();
 
 		// try to find owner class
 		String targetClassName = fieldRef.getFieldOwner();
@@ -748,7 +747,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private void validateAnnotationRefs(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {
 
-		Set<String> annotationIssues = HASH_SET_POOL.doBorrow();
+		Set<String> annotationIssues = hashSetPool.doBorrow();
 
 		// validate annotations on class
 		validateAnnotationRefs(classDef, classDef, classpath, accessCheck, annotationIssues);
@@ -783,7 +782,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			annotationIssues.stream().sorted().forEach(classIssues::add);
 		}
 
-		HASH_SET_POOL.doReturn(annotationIssues);
+		hashSetPool.doReturn(annotationIssues);
 	}
 
 	private void validateAnnotationRefs(ClassDef ownerClassDef, Def def, Classpath classpath, AccessCheck accessCheck, Set<String> classIssues) {

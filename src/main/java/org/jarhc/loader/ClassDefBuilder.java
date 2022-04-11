@@ -54,9 +54,9 @@ import org.objectweb.asm.TypePath;
 
 class ClassDefBuilder extends ClassVisitor {
 
-	private final static Pool<Set<String>> classRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
-	private final static Pool<Set<FieldRef>> fieldRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
-	private final static Pool<Set<MethodRef>> methodRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+	private static final Pool<Set<String>> classRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+	private static final Pool<Set<FieldRef>> fieldRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+	private static final Pool<Set<MethodRef>> methodRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
 
 	private final boolean scanForReferences;
 

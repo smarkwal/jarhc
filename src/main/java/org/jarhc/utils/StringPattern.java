@@ -31,7 +31,7 @@ public class StringPattern {
 			pattern = pattern.toLowerCase();
 		}
 
-		List<Test> tests = new ArrayList<>();
+		List<Test> list = new ArrayList<>();
 
 		if (pattern.contains("*")) {
 
@@ -39,7 +39,7 @@ public class StringPattern {
 
 			int start = 0;
 			if (!pattern.startsWith("*")) {
-				tests.add(new StartsWith(parts[0]));
+				list.add(new StartsWith(parts[0]));
 				start = 1;
 			}
 
@@ -51,21 +51,21 @@ public class StringPattern {
 			for (int i = start; i < end; i++) {
 				String part = parts[i];
 				if (part.length() > 0) {
-					tests.add(new Contains(part));
+					list.add(new Contains(part));
 				}
 			}
 
 			if (!pattern.endsWith("*")) {
-				tests.add(new EndsWith(parts[parts.length - 1]));
+				list.add(new EndsWith(parts[parts.length - 1]));
 			}
 
 		} else {
 
-			tests.add(new Equals(pattern));
+			list.add(new Equals(pattern));
 
 		}
 
-		this.tests = tests.toArray(new Test[0]);
+		this.tests = list.toArray(new Test[0]);
 	}
 
 	public boolean matches(String text) {
@@ -80,11 +80,11 @@ public class StringPattern {
 		return true;
 	}
 
-	static abstract class Test {
+	abstract static class Test {
 
 		protected final String pattern;
 
-		public Test(String pattern) {
+		protected Test(String pattern) {
 			this.pattern = pattern;
 		}
 

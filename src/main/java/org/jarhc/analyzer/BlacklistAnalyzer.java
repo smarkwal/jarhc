@@ -151,49 +151,68 @@ public class BlacklistAnalyzer implements Analyzer {
 	private void validateClassDef(ClassDef classDef, Set<String> classIssues) {
 
 		if (!classPatterns.isEmpty()) {
-			List<ClassRef> classRefs = classDef.getClassRefs();
-			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int i = 0; i < classRefs.size(); i++) {
-				ClassRef classRef = classRefs.get(i);
-				//noinspection ForLoopReplaceableByForEach (performance)
-				for (int j = 0; j < classPatterns.size(); j++) {
-					ClassPattern pattern = classPatterns.get(j);
-					if (pattern.matches(classRef)) {
-						classIssues.add(classRef.getDisplayName());
-						break;
-					}
-				}
-			}
+			validateClassRefs(classDef, classIssues);
 		}
-
 		if (!fieldPatterns.isEmpty()) {
-			List<FieldRef> fieldRefs = classDef.getFieldRefs();
+			validateFieldRefs(classDef, classIssues);
+		}
+		if (!methodPatterns.isEmpty()) {
+			validateMethodRefs(classDef, classIssues);
+		}
+
+	}
+
+	private void validateClassRefs(ClassDef classDef, Set<String> classIssues) {
+
+		List<ClassRef> classRefs = classDef.getClassRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < classRefs.size(); i++) {
+			ClassRef classRef = classRefs.get(i);
+
 			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int i = 0; i < fieldRefs.size(); i++) {
-				FieldRef fieldRef = fieldRefs.get(i);
-				//noinspection ForLoopReplaceableByForEach (performance)
-				for (int j = 0; j < fieldPatterns.size(); j++) {
-					FieldPattern pattern = fieldPatterns.get(j);
-					if (pattern.matches(fieldRef)) {
-						classIssues.add(fieldRef.getDisplayName());
-						break;
-					}
+			for (int j = 0; j < classPatterns.size(); j++) {
+				ClassPattern pattern = classPatterns.get(j);
+				if (pattern.matches(classRef)) {
+					classIssues.add(classRef.getDisplayName());
+					break;
 				}
 			}
 		}
 
-		if (!methodPatterns.isEmpty()) {
-			List<MethodRef> methodRefs = classDef.getMethodRefs();
+	}
+
+	private void validateFieldRefs(ClassDef classDef, Set<String> classIssues) {
+
+		List<FieldRef> fieldRefs = classDef.getFieldRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < fieldRefs.size(); i++) {
+			FieldRef fieldRef = fieldRefs.get(i);
+
 			//noinspection ForLoopReplaceableByForEach (performance)
-			for (int i = 0; i < methodRefs.size(); i++) {
-				MethodRef methodRef = methodRefs.get(i);
-				//noinspection ForLoopReplaceableByForEach (performance)
-				for (int j = 0; j < methodPatterns.size(); j++) {
-					MethodPattern pattern = methodPatterns.get(j);
-					if (pattern.matches(methodRef)) {
-						classIssues.add(methodRef.getDisplayName());
-						break;
-					}
+			for (int j = 0; j < fieldPatterns.size(); j++) {
+				FieldPattern pattern = fieldPatterns.get(j);
+				if (pattern.matches(fieldRef)) {
+					classIssues.add(fieldRef.getDisplayName());
+					break;
+				}
+			}
+		}
+
+	}
+
+	private void validateMethodRefs(ClassDef classDef, Set<String> classIssues) {
+
+		List<MethodRef> methodRefs = classDef.getMethodRefs();
+		//noinspection ForLoopReplaceableByForEach (performance)
+		for (int i = 0; i < methodRefs.size(); i++) {
+			MethodRef methodRef = methodRefs.get(i);
+
+			//noinspection ForLoopReplaceableByForEach (performance)
+			for (int j = 0; j < methodPatterns.size(); j++) {
+				MethodPattern pattern = methodPatterns.get(j);
+				if (pattern.matches(methodRef)) {
+					classIssues.add(methodRef.getDisplayName());
+					break;
 				}
 			}
 		}
@@ -432,11 +451,12 @@ public class BlacklistAnalyzer implements Analyzer {
 			return "*";
 		}
 
-		String prefix = "";
+		int arrayDimensions = 0;
 		while (type.endsWith("[]")) {
 			type = type.substring(0, type.length() - 2);
-			prefix += "[";
+			arrayDimensions++;
 		}
+		String prefix = "[".repeat(arrayDimensions);
 
 		switch (type) {
 			case "void":
