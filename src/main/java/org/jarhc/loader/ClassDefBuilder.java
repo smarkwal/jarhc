@@ -77,9 +77,22 @@ class ClassDefBuilder extends ClassVisitor {
 	}
 
 	public ClassDef getClassDef() {
-		classRefs.forEach(type -> classDef.addClassRef(ClassRef.forClassName(type)));
-		fieldRefs.forEach(classDef::addFieldRef);
-		methodRefs.forEach(classDef::addMethodRef);
+		if (!classRefs.isEmpty()) {
+			for (String className : classRefs) {
+				ClassRef classRef = ClassRef.forClassName(className);
+				classDef.addClassRef(classRef);
+			}
+		}
+		if (!fieldRefs.isEmpty()) {
+			for (FieldRef fieldRef : fieldRefs) {
+				classDef.addFieldRef(fieldRef);
+			}
+		}
+		if (!methodRefs.isEmpty()) {
+			for (MethodRef methodRef : methodRefs) {
+				classDef.addMethodRef(methodRef);
+			}
+		}
 
 		// release sets to pools
 		classRefsSetPool.doReturn(classRefs);
