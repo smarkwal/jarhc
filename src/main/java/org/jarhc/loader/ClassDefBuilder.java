@@ -39,6 +39,7 @@ import org.jarhc.model.MethodDef;
 import org.jarhc.model.MethodRef;
 import org.jarhc.model.RecordComponentDef;
 import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.Pool;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassVisitor;
@@ -53,14 +54,21 @@ import org.objectweb.asm.TypePath;
 
 class ClassDefBuilder extends ClassVisitor {
 
+	private final static Pool<Set<String>> classRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+	private final static Pool<Set<FieldRef>> fieldRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+	private final static Pool<Set<MethodRef>> methodRefsSetPool = new Pool<>(TreeSet::new, Set::clear);
+
 	private final boolean scanForReferences;
 
 	private final ClassDef classDef = new ClassDef("java.lang.Object");
 
-	private final Set<String> classRefs = new TreeSet<>();
-	private final Set<FieldRef> fieldRefs = new TreeSet<>();
-	private final Set<MethodRef> methodRefs = new TreeSet<>();
+	private final Set<String> classRefs = classRefsSetPool.doBorrow();
+	private final Set<FieldRef> fieldRefs = fieldRefsSetPool.doBorrow();
+	private final Set<MethodRef> methodRefs = methodRefsSetPool.doBorrow();
 
+	private final CustomRecordComponentVisitor recordComponentVisitor = new CustomRecordComponentVisitor();
+	private final CustomMethodVisitor methodVisitor = new CustomMethodVisitor();
+	private final CustomFieldVisitor fieldVisitor = new CustomFieldVisitor();
 	private final AnnotationVisitor annotationVisitor = new AnnotationBuilder();
 
 	ClassDefBuilder(boolean scanForReferences) {
@@ -72,6 +80,12 @@ class ClassDefBuilder extends ClassVisitor {
 		classRefs.forEach(type -> classDef.addClassRef(ClassRef.forClassName(type)));
 		fieldRefs.forEach(classDef::addFieldRef);
 		methodRefs.forEach(classDef::addMethodRef);
+
+		// release sets to pools
+		classRefsSetPool.doReturn(classRefs);
+		fieldRefsSetPool.doReturn(fieldRefs);
+		methodRefsSetPool.doReturn(methodRefs);
+
 		return classDef;
 	}
 
@@ -138,7 +152,8 @@ class ClassDefBuilder extends ClassVisitor {
 
 		if (scanForReferences) {
 			addClassRef(recordComponentType);
-			return new CustomRecordComponentVisitor(recordComponentDef);
+			recordComponentVisitor.setRecordComponentDef(recordComponentDef);
+			return recordComponentVisitor;
 		} else {
 			return null;
 		}
@@ -155,7 +170,8 @@ class ClassDefBuilder extends ClassVisitor {
 
 		if (scanForReferences) {
 			addClassRef(fieldType);
-			return new CustomFieldVisitor(fieldDef);
+			fieldVisitor.setFieldDef(fieldDef);
+			return fieldVisitor;
 		} else {
 			return null;
 		}
@@ -177,7 +193,8 @@ class ClassDefBuilder extends ClassVisitor {
 					addClassRef(exceptionClassName);
 				}
 			}
-			return new CustomMethodVisitor(methodDef);
+			methodVisitor.setMethodDef(methodDef);
+			return methodVisitor;
 		} else {
 			return null;
 		}
@@ -280,10 +297,13 @@ class ClassDefBuilder extends ClassVisitor {
 
 	private class CustomRecordComponentVisitor extends RecordComponentVisitor {
 
-		private final RecordComponentDef recordComponentDef;
+		private RecordComponentDef recordComponentDef;
 
-		public CustomRecordComponentVisitor(RecordComponentDef recordComponentDef) {
+		public CustomRecordComponentVisitor() {
 			super(Opcodes.ASM9);
+		}
+
+		public void setRecordComponentDef(RecordComponentDef recordComponentDef) {
 			this.recordComponentDef = recordComponentDef;
 		}
 
@@ -306,17 +326,19 @@ class ClassDefBuilder extends ClassVisitor {
 		public void visitEnd() {
 			// nothing to do
 		}
-
 	}
 
 	// -------------------------------------------------------------------------------------------------------
 
 	private class CustomFieldVisitor extends FieldVisitor {
 
-		private final FieldDef fieldDef;
+		private FieldDef fieldDef;
 
-		CustomFieldVisitor(FieldDef fieldDef) {
+		CustomFieldVisitor() {
 			super(Opcodes.ASM9);
+		}
+
+		public void setFieldDef(FieldDef fieldDef) {
 			this.fieldDef = fieldDef;
 		}
 
@@ -346,10 +368,13 @@ class ClassDefBuilder extends ClassVisitor {
 
 	private class CustomMethodVisitor extends MethodVisitor {
 
-		private final MethodDef methodDef;
+		private MethodDef methodDef;
 
-		CustomMethodVisitor(MethodDef methodDef) {
+		CustomMethodVisitor() {
 			super(Opcodes.ASM9);
+		}
+
+		public void setMethodDef(MethodDef methodDef) {
 			this.methodDef = methodDef;
 		}
 
