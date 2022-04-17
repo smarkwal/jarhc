@@ -93,6 +93,10 @@ public class Artifact {
 		return String.format("%s:%s:%s", groupId, artifactId, version);
 	}
 
+	public String toPackageUrl() {
+		return String.format("pgk:maven/%s/%s@%s", groupId, artifactId, version); // TODO: how to handle type?
+	}
+
 	public String getPath() {
 		return String.format("%s/%s/%s/%s", groupId.replace('.', '/'), artifactId, version, getFileName());
 	}
