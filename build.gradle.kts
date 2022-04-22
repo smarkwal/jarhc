@@ -222,7 +222,7 @@ dependencies {
 
     // test dependencies (available in unit and integration tests)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    testImplementation("org.mockito:mockito-core:4.4.0")
+    testImplementation("org.mockito:mockito-core:4.5.1")
 
     // unit test dependencies
     // TODO: move JMH benchmarks in a separate source set?
