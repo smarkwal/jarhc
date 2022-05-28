@@ -29,7 +29,7 @@ maven-model-3.3.9.jar                                          | 160 KB  | 54   
 maven-repository-metadata-3.3.9.jar                            | 26.6 KB | 9       | 0         | 6850232b35e504057d67bde11efddebf6271e1ce | org.apache.maven:maven-repository-metadata:3.3.9
 maven-artifact-3.3.9.jar                                       | 53.7 KB | 32      | 0         | 0f43afa184555fbc6e36b3334b17246c39b30f6e | org.apache.maven:maven-artifact:3.3.9
 maven-builder-support-3.3.9.jar                                | 14.5 KB | 10      | 0         | a96f29da7623c0e1db9824f628548fe8181f6dd0 | org.apache.maven:maven-builder-support:3.3.9
-plexus-utils-3.4.1.jar                                         | 258 KB  | 105     | 3         | 4de9992988c534efd668bfcca0480ebe13e0c0eb | org.codehaus.plexus:plexus-utils:3.4.1
+plexus-utils-3.4.2.jar                                         | 261 KB  | 107     | 3         | 82445e007f9009ac5ba6ae5d6b6898c4ce54dcf6 | org.codehaus.plexus:plexus-utils:3.4.2
 plexus-component-annotations-1.6.jar                           | 4.17 KB | 3       | 0         | 1a34a4e12b5fded8c548a568f463dfee21500927 | org.codehaus.plexus:plexus-component-annotations:1.6
 commons-lang3-3.4.jar                                          | 424 KB  | 224     | 0         | 5fe28b9518e58819180a43a850fbc0dd24b7c050 | org.apache.commons:commons-lang3:3.4
 failureaccess-1.0.1.jar                                        | 4.51 KB | 2       | 0         | 1dcf1de382a0bf95a3d8b0849546c88bac1292c9 | com.google.guava:failureaccess:1.0.1
@@ -41,7 +41,7 @@ j2objc-annotations-1.3.jar                                     | 8.58 KB | 12   
 httpcore-4.4.13.jar                                            | 321 KB  | 253     | 1         | 853b96d3afbb7bf8cc303fe27ee96836a10c1834 | org.apache.httpcomponents:httpcore:4.4.13
 commons-codec-1.11.jar                                         | 327 KB  | 96      | 128       | 3acb4705652e16236558f0f4f2192cc33c3bd189 | commons-codec:commons-codec:1.11
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.68 MB | 4515    | 149       | -                                        | -
+Classpath                                                      | 6.68 MB | 4517    | 149       | -                                        | -
 
 Modules
 -------
@@ -72,7 +72,7 @@ maven-model-3.3.9.jar                                          | maven.model    
 maven-repository-metadata-3.3.9.jar                            | maven.repository.metadata                           | Auto-generated | Yes       | -         | [all packages]
 maven-artifact-3.3.9.jar                                       | maven.artifact                                      | Auto-generated | Yes       | -         | [all packages]
 maven-builder-support-3.3.9.jar                                | maven.builder.support                               | Auto-generated | Yes       | -         | [all packages]
-plexus-utils-3.4.1.jar                                         | plexus.utils                                        | Auto-generated | Yes       | -         | [all packages]
+plexus-utils-3.4.2.jar                                         | plexus.utils                                        | Auto-generated | Yes       | -         | [all packages]
 plexus-component-annotations-1.6.jar                           | plexus.component.annotations                        | Auto-generated | Yes       | -         | [all packages]
 commons-lang3-3.4.jar                                          | commons.lang3                                       | Auto-generated | Yes       | -         | [all packages]
 failureaccess-1.0.1.jar                                        | failureaccess                                       | Auto-generated | Yes       | -         | [all packages]
@@ -113,7 +113,7 @@ maven-model-3.3.9.jar                                          | No             
 maven-repository-metadata-3.3.9.jar                            | No                    | Java 7 (9)
 maven-artifact-3.3.9.jar                                       | No                    | Java 7 (32)
 maven-builder-support-3.3.9.jar                                | No                    | Java 7 (10)
-plexus-utils-3.4.1.jar                                         | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (104)
+plexus-utils-3.4.2.jar                                         | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (106)
 plexus-component-annotations-1.6.jar                           | No                    | Java 5 (3)
 commons-lang3-3.4.jar                                          | No                    | Java 6 (224)
 failureaccess-1.0.1.jar                                        | No                    | Java 7 (2)
@@ -125,7 +125,7 @@ j2objc-annotations-1.3.jar                                     | No             
 httpcore-4.4.13.jar                                            | No                    | Java 6 (253)
 commons-codec-1.11.jar                                         | No                    | Java 6 (96)
 plexus-interpolation-1.21.jar                                  | No                    | Java 5 (44)
-Classpath                                                      | -                     | Java 11 (130), Java 10 (1), Java 8 (2445), Java 7 (280),
+Classpath                                                      | -                     | Java 11 (130), Java 10 (1), Java 8 (2447), Java 7 (280),
                                                                |                       | Java 6 (1070), Java 5 (589)
 
 JAR Dependencies
@@ -159,7 +159,7 @@ maven-aether-provider-3.3.9.jar                                | aether-api-1.1.
                                                                | maven-model-builder-3.3.9.jar        |
                                                                | maven-repository-metadata-3.3.9.jar  |
                                                                | plexus-component-annotations-1.6.jar |
-                                                               | plexus-utils-3.4.1.jar               |
+                                                               | plexus-utils-3.4.2.jar               |
 aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
                                                                | aether-util-1.1.0.jar                |
@@ -209,7 +209,7 @@ maven-model-builder-3.3.9.jar                                  | commons-lang3-3
                                                                | maven-model-3.3.9.jar                |
                                                                | plexus-component-annotations-1.6.jar |
                                                                | plexus-interpolation-1.21.jar        |
-                                                               | plexus-utils-3.4.1.jar               |
+                                                               | plexus-utils-3.4.2.jar               |
 guava-31.1-jre.jar                                             | checker-qual-3.12.0.jar              | maven-aether-provider-3.3.9.jar
                                                                | error_prone_annotations-2.11.0.jar   | maven-model-builder-3.3.9.jar
                                                                | failureaccess-1.0.1.jar              |
@@ -219,12 +219,12 @@ httpclient-4.5.13.jar                                          | commons-codec-1
                                                                | httpcore-4.4.13.jar                  |
                                                                | jcl-over-slf4j-1.7.36.jar            |
 maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | plexus-utils-3.4.1.jar               | maven-model-builder-3.3.9.jar
-maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.4.1.jar               | maven-aether-provider-3.3.9.jar
+                                                               | plexus-utils-3.4.2.jar               | maven-model-builder-3.3.9.jar
+maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.4.2.jar               | maven-aether-provider-3.3.9.jar
 maven-artifact-3.3.9.jar                                       | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-                                                               | plexus-utils-3.4.1.jar               |
+                                                               | plexus-utils-3.4.2.jar               |
 maven-builder-support-3.3.9.jar                                | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-plexus-utils-3.4.1.jar                                         | [none]                               | maven-aether-provider-3.3.9.jar
+plexus-utils-3.4.2.jar                                         | [none]                               | maven-aether-provider-3.3.9.jar
                                                                |                                      | maven-artifact-3.3.9.jar
                                                                |                                      | maven-model-3.3.9.jar
                                                                |                                      | maven-model-builder-3.3.9.jar
@@ -264,7 +264,7 @@ maven-aether-provider-3.3.9.jar                                | org.apache.mave
                                                                |                                                                             | org.eclipse.aether:aether-util:1.0.2.v20150114                              | OK (version 1.1.0)
                                                                |                                                                             | org.eclipse.aether:aether-impl:1.0.2.v20150114                              | OK (version 1.1.0)
                                                                |                                                                             | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
-                                                               |                                                                             | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
+                                                               |                                                                             | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
                                                                |                                                                             | com.google.inject:guice:4.0 (optional)                                      | Unsatisfied
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
 aether-impl-1.1.0.jar                                          | org.eclipse.aether:aether-impl:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
@@ -295,7 +295,7 @@ jul-to-slf4j-1.7.36.jar                                        | org.slf4j:jul-t
 jcl-over-slf4j-1.7.36.jar                                      | org.slf4j:jcl-over-slf4j:1.7.36                                             | org.slf4j:slf4j-api:1.7.36                                                  | OK
 slf4j-simple-1.7.36.jar                                        | org.slf4j:slf4j-simple:1.7.36                                               | org.slf4j:slf4j-api:1.7.36                                                  | OK
 slf4j-api-1.7.36.jar                                           | org.slf4j:slf4j-api:1.7.36                                                  | [none]                                                                      |
-maven-model-builder-3.3.9.jar                                  | org.apache.maven:maven-model-builder:3.3.9                                  | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
+maven-model-builder-3.3.9.jar                                  | org.apache.maven:maven-model-builder:3.3.9                                  | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
                                                                |                                                                             | org.codehaus.plexus:plexus-interpolation:1.21                               | OK
                                                                |                                                                             | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
                                                                |                                                                             | org.apache.maven:maven-model:3.3.9                                          | OK
@@ -312,14 +312,14 @@ guava-31.1-jre.jar                                             | com.google.guav
 httpclient-4.5.13.jar                                          | org.apache.httpcomponents:httpclient:4.5.13                                 | org.apache.httpcomponents:httpcore:4.4.13                                   | OK
                                                                |                                                                             | commons-logging:commons-logging:1.2                                         | Unsatisfied
                                                                |                                                                             | commons-codec:commons-codec:1.11                                            | OK
-maven-model-3.3.9.jar                                          | org.apache.maven:maven-model:3.3.9                                          | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
+maven-model-3.3.9.jar                                          | org.apache.maven:maven-model:3.3.9                                          | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-repository-metadata-3.3.9.jar                            | org.apache.maven:maven-repository-metadata:3.3.9                            | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
-maven-artifact-3.3.9.jar                                       | org.apache.maven:maven-artifact:3.3.9                                       | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
+maven-repository-metadata-3.3.9.jar                            | org.apache.maven:maven-repository-metadata:3.3.9                            | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
+maven-artifact-3.3.9.jar                                       | org.apache.maven:maven-artifact:3.3.9                                       | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-builder-support-3.3.9.jar                                | org.apache.maven:maven-builder-support:3.3.9                                | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.1)
+maven-builder-support-3.3.9.jar                                | org.apache.maven:maven-builder-support:3.3.9                                | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.4.2)
                                                                |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-plexus-utils-3.4.1.jar                                         | org.codehaus.plexus:plexus-utils:3.4.1                                      | [none]                                                                      |
+plexus-utils-3.4.2.jar                                         | org.codehaus.plexus:plexus-utils:3.4.2                                      | [none]                                                                      |
 plexus-component-annotations-1.6.jar                           | org.codehaus.plexus:plexus-component-annotations:1.6                        | [none]                                                                      |
 commons-lang3-3.4.jar                                          | org.apache.commons:commons-lang3:3.4                                        | [none]                                                                      |
 failureaccess-1.0.1.jar                                        | com.google.guava:failureaccess:1.0.1                                        | [none]                                                                      |
@@ -445,7 +445,7 @@ maven-repository-metadata-3.3.9.jar  | 2     | org.apache.maven.artifact.reposit
                                      |       | org.apache.maven.artifact.repository.metadata.io.xpp3 |
 plexus-component-annotations-1.6.jar | 1     | org.codehaus.plexus.component.annotations             |
 plexus-interpolation-1.21.jar        | 6     | org.codehaus.plexus.interpolation (+5 subpackages)    |
-plexus-utils-3.4.1.jar               | 9     | org.codehaus.plexus.util (+8 subpackages)             |
+plexus-utils-3.4.2.jar               | 9     | org.codehaus.plexus.util (+8 subpackages)             |
 slf4j-api-1.7.36.jar                 | 4     | org.slf4j                                             |
                                      |       | org.slf4j.event                                       |
                                      |       | org.slf4j.helpers                                     |
@@ -1068,7 +1068,7 @@ httpclient-4.5.13.jar           | org.apache.http.auth.AuthSchemeFactory
                                 |
                                 | org.apache.http.impl.execchain.RequestEntityProxy
                                 | • @Deprecated: public abstract void org.apache.http.HttpEntity.consumeContent()
-plexus-utils-3.4.1.jar          | org.codehaus.plexus.util.cli.Commandline
+plexus-utils-3.4.2.jar          | org.codehaus.plexus.util.cli.Commandline
                                 | • java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)
                                 |
                                 | org.codehaus.plexus.util.cli.ShutdownHookUtils

@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 JAR file            | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 --------------------+---------+---------+-----------+------------------------------------------+---------------------
-jarhc-with-deps.jar | 6.59 MB | 4515    | 143       | **************************************** | [unknown]
-Classpath           | 6.59 MB | 4515    | 143       | -                                        | -
+jarhc-with-deps.jar | 6.59 MB | 4517    | 143       | **************************************** | [unknown]
+Classpath           | 6.59 MB | 4517    | 143       | -                                        | -
 
 Modules
 -------
@@ -24,9 +24,9 @@ Java class file format information.
 
 JAR file            | Multi-release         | Class files by Java version
 --------------------+-----------------------+---------------------------------------------------------
-jarhc-with-deps.jar | Yes (Java 9, Java 10) | Java 11 (130), Java 10 (1), Java 8 (2445), Java 7 (280),
+jarhc-with-deps.jar | Yes (Java 9, Java 10) | Java 11 (130), Java 10 (1), Java 8 (2447), Java 7 (280),
                     |                       | Java 6 (1070), Java 5 (589)
-Classpath           | -                     | Java 11 (130), Java 10 (1), Java 8 (2445), Java 7 (280),
+Classpath           | -                     | Java 11 (130), Java 10 (1), Java 8 (2447), Java 7 (280),
                     |                       | Java 6 (1070), Java 5 (589)
 
 JAR Dependencies
