@@ -44,7 +44,7 @@ plugins {
     id("org.sonarqube") version "3.3"
 
     // run OWASP Dependency-Check analysis
-    id("org.owasp.dependencycheck") version "7.1.0.1"
+    id("org.owasp.dependencycheck") version "7.1.1"
 
     // publish to Sonatype OSSRH and release to Maven Central
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
