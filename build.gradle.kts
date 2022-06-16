@@ -41,7 +41,7 @@ plugins {
     id("org.kordamp.gradle.source-xref") version "0.47.0"
 
     // run SonarQube analysis
-    id("org.sonarqube") version "3.3"
+    id("org.sonarqube") version "3.4.0.2513"
 
     // run OWASP Dependency-Check analysis
     id("org.owasp.dependencycheck") version "7.1.1"
