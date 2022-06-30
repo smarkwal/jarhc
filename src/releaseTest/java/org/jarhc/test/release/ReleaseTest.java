@@ -45,7 +45,7 @@ abstract class ReleaseTest {
 		// read JarHC version from VERSION file (if it exists)
 		String versionFilePath = "build/resources/main/VERSION";
 		jarHcVersion = readProjectFile(versionFilePath);
-		Assertions.assertThat(jarHcVersion).as("JarHC version").matches("^[1-9]\\.[0-9]+(-SNAPSHOT)?$");
+		Assertions.assertThat(jarHcVersion).as("JarHC version").matches("^\\d+\\.\\d+\\.\\d+(-SNAPSHOT)?$");
 
 	}
 
