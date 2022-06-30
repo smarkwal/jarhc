@@ -19,12 +19,10 @@ package org.jarhc.env;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.util.Collections;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.test.log.LoggerBuilder;
-import org.jarhc.utils.JavaUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
@@ -35,22 +33,7 @@ class ModuleSystemRuntimeTest {
 	private final ModuleSystemRuntime runtime = new ModuleSystemRuntime(classLoader, logger);
 
 	@Test
-	void findModuleInfo_javaLangString_onJava8() {
-		assumeTrue(JavaUtils.getJavaVersion() == 8, "Test is relevant only on Java 8.");
-
-		// test
-		ModuleInfo result = runtime.findModuleInfo("java.lang.String");
-
-		// assert
-		assertNotNull(result);
-		assertTrue(result.isUnnamed());
-		assertEquals("UNNAMED", result.getModuleName());
-
-	}
-
-	@Test
-	void findModuleInfo_javaLangString_onJava11() {
-		assumeTrue(JavaUtils.getJavaVersion() >= 11, "Test is relevant only on Java 11+.");
+	void findModuleInfo_javaLangString() {
 
 		// test
 		ModuleInfo result = runtime.findModuleInfo("java.lang.String");
@@ -67,8 +50,7 @@ class ModuleSystemRuntimeTest {
 	}
 
 	@Test
-	void findModuleInfo_sunMiscUnsafe_onJava11() {
-		assumeTrue(JavaUtils.getJavaVersion() >= 11, "Test is relevant only on Java 11+.");
+	void findModuleInfo_sunMiscUnsafe() {
 
 		// test
 		ModuleInfo result = runtime.findModuleInfo("sun.misc.Unsafe");

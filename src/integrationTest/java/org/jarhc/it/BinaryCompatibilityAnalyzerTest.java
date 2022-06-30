@@ -49,7 +49,7 @@ class BinaryCompatibilityAnalyzerTest {
 	@Test
 	void analyze_jdkInternalClass(@TempDir Path tempDir) throws IOException {
 		int javaVersion = JavaUtils.getJavaVersion();
-		assumeTrue(javaVersion == 8 || javaVersion == 11 || javaVersion == 17, "Test is only designed for Java 8, 11, and 17.");
+		assumeTrue(javaVersion == 11 || javaVersion == 17, "Test is only designed for Java 11 and 17.");
 
 		// prepare
 		File jarFile = TestUtils.getResourceAsFile("/org/jarhc/it/BinaryCompatibilityAnalyzerTest/a.jar", tempDir);
