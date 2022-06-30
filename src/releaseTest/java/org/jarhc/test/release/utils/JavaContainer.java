@@ -19,12 +19,14 @@ package org.jarhc.test.release.utils;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.images.PullPolicy;
 import org.testcontainers.utility.DockerImageName;
 
 public class JavaContainer extends GenericContainer<JavaContainer> {
 
 	public JavaContainer(JavaImage javaImage) {
 		super(DockerImageName.parse(javaImage.getImageName()));
+		this.withImagePullPolicy(PullPolicy.alwaysPull());
 	}
 
 	public ExecResult exec(Command command) {
