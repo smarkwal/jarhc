@@ -19,3 +19,15 @@
 # compile and package a.jar
 javac --add-exports=java.base/jdk.internal.util=ALL-UNNAMED --add-exports=java.base/sun.text=ALL-UNNAMED -d build/a src/a.jar/a/*.java
 jar -c -f a.jar -C build/a a
+
+# compile and package b1.jar
+javac -d build/b1 src/b1.jar/b/*.java
+jar -c -f b1.jar -C build/b1 b
+
+# compile and package b2.jar
+javac -d build/b2 src/b2.jar/b/*.java
+jar -c -f b2.jar -C build/b2 b
+
+# compile and package c.jar
+javac -cp b1.jar -d build/c src/c.jar/c/*.java
+jar -c -f c.jar -C build/c c

@@ -37,6 +37,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.StringUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -71,13 +72,70 @@ class BinaryCompatibilityAnalyzerTest {
 		assertEquals(2, values.length);
 		assertEquals("a.jar", values[0]);
 
-		if (javaVersion == 8) {
-			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class not found: jdk.internal.util.ArraysSupport (package not found)"), values[1]);
-		} else if (javaVersion == 11) {
+		if (javaVersion == 11) {
 			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class is not exported by module java.base: public class jdk.internal.util.ArraysSupport", "\u2022 Class is not exported by module java.base: public final class sun.text.IntHashtable"), values[1]);
 		} else {
 			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class is not exported by module java.base: public final class sun.text.IntHashtable"), values[1]);
 		}
+
+	}
+
+	/**
+	 * Test for issue #124.
+	 */
+	@Test
+	@Disabled("Test for issue #124.")
+	void analyze_inaccessibleInterface_asMethodParameterType(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/BinaryCompatibilityAnalyzerTest/b1.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/BinaryCompatibilityAnalyzerTest/c.jar", tempDir);
+		Classpath classpath = classpathLoader.load(List.of(jarFile1, jarFile2));
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		List<Object> content = section.getContent();
+		assertEquals(1, content.size());
+		Object object = content.get(0);
+		assertTrue(object instanceof ReportTable);
+		ReportTable table = (ReportTable) object;
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+
+	}
+
+	/**
+	 * Exception in thread "main" java.lang.IncompatibleClassChangeError: Class b.BImplementation does not implement the requested interface b.BInterface
+	 * at b.BUtils.test(BUtils.java:6)
+	 * at c.C.main(C.java:9)
+	 */
+	@Test
+	@Disabled("Such an incompatibility can only be detected through byte code and data flow analysis. See issue #181.")
+	void analyze_incompatibleClassChangeError_classDoesNotImplementInterface(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/BinaryCompatibilityAnalyzerTest/b2.jar", tempDir);
+		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/BinaryCompatibilityAnalyzerTest/c.jar", tempDir);
+		Classpath classpath = classpathLoader.load(List.of(jarFile1, jarFile2));
+
+		// test
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		List<Object> content = section.getContent();
+		assertEquals(1, content.size());
+		Object object = content.get(0);
+		assertTrue(object instanceof ReportTable);
+		ReportTable table = (ReportTable) object;
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+
+		String[] values = rows.get(0);
+		assertEquals(2, values.length);
+		assertEquals("c.jar", values[0]);
+		assertEquals(StringUtils.joinLines("c.C", "\u2022 Class b.BImplementation does not implement the requested interface b.BInterface."), values[1]);
 
 	}
 
