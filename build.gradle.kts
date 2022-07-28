@@ -233,7 +233,7 @@ dependencies {
     // currently: none
 
     // release test dependencies
-    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
     releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.9.0")
     releaseTestImplementation("org.assertj:assertj-core:3.23.1")
     releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
