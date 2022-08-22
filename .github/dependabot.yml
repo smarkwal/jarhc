@@ -8,5 +8,8 @@ updates:
     schedule:
       interval: "daily"
     target-branch: "develop"
-    assignees:
-      - "smarkwal"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "develop"
