@@ -16,7 +16,9 @@
 
 package org.jarhc.test.log;
 
+import java.util.List;
 import org.slf4j.Marker;
+import org.slf4j.event.KeyValuePair;
 import org.slf4j.event.Level;
 import org.slf4j.event.LoggingEvent;
 
@@ -48,11 +50,6 @@ class LogEvent implements LoggingEvent {
 	}
 
 	@Override
-	public Marker getMarker() {
-		return marker;
-	}
-
-	@Override
 	public String getLoggerName() {
 		return loggerName;
 	}
@@ -68,8 +65,27 @@ class LogEvent implements LoggingEvent {
 	}
 
 	@Override
+	public List<Object> getArguments() {
+		if (argumentArray == null) {
+			return null;
+		} else {
+			return List.of(argumentArray);
+		}
+	}
+
+	@Override
 	public Object[] getArgumentArray() {
 		return argumentArray;
+	}
+
+	@Override
+	public List<Marker> getMarkers() {
+		return List.of(marker);
+	}
+
+	@Override
+	public List<KeyValuePair> getKeyValuePairs() {
+		return null;
 	}
 
 	@Override
