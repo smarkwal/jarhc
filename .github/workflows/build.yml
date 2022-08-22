@@ -36,7 +36,7 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Restore SonarQube Cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
