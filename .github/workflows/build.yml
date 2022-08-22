@@ -52,7 +52,7 @@ jobs:
         arguments: 'build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: reports
@@ -60,14 +60,14 @@ jobs:
         retention-days: 7
 
     - name: Upload libs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: libs
         path: build/libs
         retention-days: 14
 
     - name: Upload docs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: docs
         path: build/docs
