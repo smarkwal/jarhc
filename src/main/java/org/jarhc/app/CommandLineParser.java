@@ -29,7 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -424,11 +424,11 @@ public class CommandLineParser {
 		return arguments;
 	}
 
-	List<String> replaceEnvironmentVariables(List<String> arguments, Function<String, String> environment) {
+	List<String> replaceEnvironmentVariables(List<String> arguments, UnaryOperator<String> environment) {
 		return arguments.stream().map(argument -> replaceEnvironmentVariables(argument, environment)).collect(Collectors.toList());
 	}
 
-	String replaceEnvironmentVariables(String argument, Function<String, String> environment) {
+	String replaceEnvironmentVariables(String argument, UnaryOperator<String> environment) {
 
 		StringBuilder result = new StringBuilder();
 		Matcher matcher = ENV_VAR_PATTERN.matcher(argument);
