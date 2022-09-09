@@ -241,8 +241,8 @@ dependencies {
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.3")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:1.7.36")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:1.7.36")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.0")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.0")
 
 }
 
