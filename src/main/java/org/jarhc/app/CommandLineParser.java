@@ -16,9 +16,12 @@
 
 package org.jarhc.app;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,6 +29,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
@@ -37,6 +44,8 @@ import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.VersionUtils;
 
 public class CommandLineParser {
+
+	private static final Pattern ENV_VAR_PATTERN = Pattern.compile("\\$\\{([^}]+)}");
 
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
@@ -81,6 +90,7 @@ public class CommandLineParser {
 		optionParsers.put("--help", (args, options) -> printUsage(null, out));
 		optionParsers.put("-v", (args, options) -> printVersion());
 		optionParsers.put("--version", (args, options) -> printVersion());
+		optionParsers.put("--options", this::loadOptions);
 	}
 
 	public Options parse(String[] args) throws CommandLineException {
@@ -92,25 +102,10 @@ public class CommandLineParser {
 
 		options.setReportTitle("JAR Health Check Report");
 
-		boolean classpathFound = ArrayUtils.containsAny(args, "-cp", "--classpath");
+		parseOptions(Arrays.asList(args), options);
 
-		Iterator<String> iterator = Arrays.asList(args).iterator();
-		while (iterator.hasNext()) {
-			String arg = iterator.next();
-			if (optionParsers.containsKey(arg)) {
-				OptionParser parser = optionParsers.get(arg);
-				parser.parse(iterator, options);
-			} else if (arg.startsWith("-")) {
-				String errorMessage = String.format("Unknown option: '%s'.", arg);
-				throw handleError(-100, errorMessage);
-			} else {
-				addSources(arg, options::addClasspathJarPath);
-				classpathFound = true;
-			}
-		}
-
-		// if path argument is missing ...
-		if (!classpathFound) {
+		// if artifact argument is missing ...
+		if (options.getClasspathJarPaths().isEmpty()) {
 
 			// if help or version information has been printed ...
 			if (ArrayUtils.containsAny(args, "-h", "--help", "-v", "--version")) {
@@ -118,7 +113,7 @@ public class CommandLineParser {
 				throw new CommandLineException(0, "OK");
 			}
 
-			String errorMessage = "Argument <path> is missing.";
+			String errorMessage = "Argument <artifact> is missing.";
 			throw handleError(-1, errorMessage);
 		}
 
@@ -130,6 +125,34 @@ public class CommandLineParser {
 		}
 
 		return options;
+	}
+
+	private void parseOptions(List<String> args, Options options) throws CommandLineException {
+
+		// for every argument ...
+		Iterator<String> iterator = args.iterator();
+		while (iterator.hasNext()) {
+			String arg = iterator.next();
+
+			// check if argument is a known option
+			if (optionParsers.containsKey(arg)) {
+
+				OptionParser parser = optionParsers.get(arg);
+				parser.parse(iterator, options);
+
+			} else if (arg.startsWith("-")) {
+
+				String errorMessage = String.format("Unknown option: '%s'.", arg);
+				throw handleError(-100, errorMessage);
+
+			} else {
+
+				// argument is not an option, so it must be an artifact
+				addSources(arg, options::addClasspathJarPath);
+
+			}
+		}
+
 	}
 
 	private void parseRelease(Iterator<String> args, Options options) throws CommandLineException {
@@ -344,6 +367,82 @@ public class CommandLineParser {
 
 	private void printVersion() {
 		out.println("JarHC - JAR Health Check " + VersionUtils.getVersion());
+	}
+
+	void loadOptions(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-17, "Options path not specified.");
+
+		String path = args.next();
+		File file = new File(path);
+		if (!file.isFile()) {
+			String errorMessage = String.format("Options file not found: %s", file.getAbsolutePath());
+			throw handleError(-18, errorMessage);
+		}
+
+		// load arguments from file
+		List<String> arguments = loadArguments(file);
+
+		// replace environment variables in arguments
+		arguments = replaceEnvironmentVariables(arguments, System::getenv);
+
+		parseOptions(arguments, options);
+
+	}
+
+	List<String> loadArguments(File file) throws CommandLineException {
+
+		// list of arguments read from options file
+		List<String> arguments = new ArrayList<>();
+
+		// read options file line by line
+		try (BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
+
+			while (true) {
+				String line = reader.readLine();
+				if (line == null) break; // end of file
+
+				// ignore empty lines and comments
+				line = line.trim();
+				if (line.isEmpty() || line.startsWith("#")) continue;
+
+				if (line.startsWith("-") && line.contains(" ")) {
+					// split line into two arguments
+					int pos = line.indexOf(' ');
+					arguments.add(line.substring(0, pos));
+					arguments.add(line.substring(pos + 1));
+				} else {
+					arguments.add(line);
+				}
+
+			}
+
+		} catch (IOException e) {
+			String errorMessage = String.format("I/O error for options file: %s", e.getMessage());
+			throw handleError(-19, errorMessage);
+		}
+
+		return arguments;
+	}
+
+	List<String> replaceEnvironmentVariables(List<String> arguments, Function<String, String> environment) {
+		return arguments.stream().map(argument -> replaceEnvironmentVariables(argument, environment)).collect(Collectors.toList());
+	}
+
+	String replaceEnvironmentVariables(String argument, Function<String, String> environment) {
+
+		StringBuilder result = new StringBuilder();
+		Matcher matcher = ENV_VAR_PATTERN.matcher(argument);
+		while (matcher.find()) {
+			String name = matcher.group(1);
+			String value = environment.apply(name);
+			if (value == null) {
+				value = "";
+			}
+			matcher.appendReplacement(result, value);
+		}
+		matcher.appendTail(result);
+
+		return result.toString();
 	}
 
 }

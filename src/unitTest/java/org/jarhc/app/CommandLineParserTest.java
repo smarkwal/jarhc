@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -28,13 +29,16 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.jarhc.TestUtils;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.utils.JavaUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 
 class CommandLineParserTest {
 
@@ -86,8 +90,8 @@ class CommandLineParserTest {
 		// assert
 		assertNotNull(exception);
 		assertEquals(-1, exception.getExitCode());
-		assertEquals("Argument <path> is missing.", exception.getMessage());
-		assertTrue(err.getText().startsWith("Argument <path> is missing."));
+		assertEquals("Argument <artifact> is missing.", exception.getMessage());
+		assertTrue(err.getText().startsWith("Argument <artifact> is missing."));
 
 	}
 
@@ -677,6 +681,93 @@ class CommandLineParserTest {
 			assertEquals("Release not specified.", e.getMessage());
 			assertEquals(-14, e.getExitCode());
 		}
+
+	}
+
+	@Test
+	void loadOptions(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/options.txt", tempDir);
+		Iterator<String> args = List.of(file.getAbsolutePath()).iterator();
+		Options options = new Options();
+
+		// test
+		parser.loadOptions(args, options);
+
+		// assert
+		assertEquals(11, options.getRelease());
+		assertEquals("My App 1.0", options.getReportTitle());
+		assertEquals(List.of("report.html"), options.getReportFiles());
+		assertTrue(options.isSkipEmpty());
+
+	}
+
+	@Test
+	void loadOptions_pathNotSpecified() {
+
+		// prepare
+		Iterator<String> args = Mockito.mock(Iterator.class);
+		Options options = new Options();
+
+		// test & assert
+		CommandLineException exception = assertThrows(CommandLineException.class, () -> parser.loadOptions(args, options));
+		assertEquals("Options path not specified.", exception.getMessage());
+
+	}
+
+	@Test
+	void loadOptions_fileNotFound(@TempDir Path tempDir) {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "options.txt");
+		Iterator<String> args = List.of(file.getAbsolutePath()).iterator();
+		Options options = new Options();
+
+		// test
+		CommandLineException exception = assertThrows(CommandLineException.class, () -> parser.loadOptions(args, options));
+		assertTrue(exception.getMessage().startsWith("Options file not found: "));
+		assertTrue(exception.getMessage().endsWith("/options.txt"));
+
+	}
+
+	@Test
+	void loadArguments(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/options.txt", tempDir);
+
+		// test
+		List<String> arguments = parser.loadArguments(file);
+
+		// assert
+		List<String> expected = List.of(
+				"--release", "11",
+				"--title", "My App 1.0",
+				"--output", "report.html",
+				"--skip-empty"
+		);
+		assertEquals(expected, arguments);
+
+	}
+
+	@Test
+	void replaceEnvironmentVariables() {
+
+		// prepare
+		List<String> arguments = List.of("--runtime", "${JAVA_HOME}/jre/lib", "'${A}' '${B}' '${C}' '${D}'");
+		Map<String, String> environment = Map.of(
+				"JAVA_HOME", "/opt/java",
+				"A", "a",
+				"B", "b",
+				"C", ""
+		);
+
+		// test
+		arguments = parser.replaceEnvironmentVariables(arguments, environment::get);
+
+		// assert
+		assertEquals(List.of("--runtime", "/opt/java/jre/lib", "'a' 'b' '' ''"), arguments);
 
 	}
 

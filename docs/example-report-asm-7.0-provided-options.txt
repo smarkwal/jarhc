@@ -1,0 +1,6 @@
+org.ow2.asm:asm-commons:7.0:jar
+--provided org.ow2.asm:asm:7.0:jar
+--provided org.ow2.asm:asm-analysis:7.0:jar
+--provided org.ow2.asm:asm-tree:7.0:jar
+--title ASM 7.0
+--output docs/example-report-asm-7.0-provided.html

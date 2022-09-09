@@ -1,0 +1,8 @@
+org.ow2.asm:asm:7.0:jar
+org.ow2.asm:asm-analysis:7.0:jar
+org.ow2.asm:asm-commons:7.0:jar
+org.ow2.asm:asm-tree:7.0:jar
+-t ASM 7.0
+-o docs/example-report-asm-7.0.txt
+-o docs/example-report-asm-7.0.html
+-o docs/example-report-asm-7.0-list.txt

@@ -79,6 +79,10 @@ Options:
                            environment variable JARHC_DATA is set.
                            Default: ~/.jarhc
 
+   --options <path>        Load additional options from a file. The file must
+                           contain one option per line. Empty lines and lines
+                           starting with '#' are ignored.
+
 Environment variables:
 
    JARHC_DATA            : Path to local cache directory for artifact
