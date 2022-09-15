@@ -208,7 +208,7 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
     implementation("org.slf4j:slf4j-api:2.0.1")
-    implementation("org.slf4j:jul-to-slf4j:2.0.0")
+    implementation("org.slf4j:jul-to-slf4j:2.0.1")
     implementation("org.slf4j:jcl-over-slf4j:2.0.0")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.1")
 
