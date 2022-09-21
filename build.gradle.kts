@@ -221,7 +221,7 @@ dependencies {
     implementation("org.codehaus.plexus:plexus-utils:3.4.2")
 
     // test dependencies (available in unit and integration tests)
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     testImplementation("org.mockito:mockito-core:4.8.0")
 
     // unit test dependencies
