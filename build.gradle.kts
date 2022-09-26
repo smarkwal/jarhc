@@ -210,7 +210,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.2")
     implementation("org.slf4j:jul-to-slf4j:2.0.2")
     implementation("org.slf4j:jcl-over-slf4j:2.0.2")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.1")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.2")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -233,16 +233,16 @@ dependencies {
     // currently: none
 
     // release test dependencies
-    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
     releaseTestImplementation("org.assertj:assertj-core:3.23.1")
-    releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+    releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
     releaseTestImplementation("org.testcontainers:testcontainers:1.17.3")
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.3")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.1")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.1")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.2")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.2")
 
 }
 
