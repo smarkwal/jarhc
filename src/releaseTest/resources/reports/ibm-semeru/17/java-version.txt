@@ -1,6 +1,6 @@
-openjdk version "17.0.4.1" 2022-08-12
-IBM Semeru Runtime Open Edition 17.0.4.1 (build 17.0.4.1+1)
-Eclipse OpenJ9 VM 17.0.4.1 (build openj9-0.33.1, JRE 17 Linux amd64-64-Bit Compressed References 20220812_266 (JIT enabled, AOT enabled)
-OpenJ9   - 1d9d16830
-OMR      - b58aa2708
-JCL      - 1f4d354e654 based on jdk-17.0.4.1+1)
+openjdk version "17.0.5" 2022-10-18
+IBM Semeru Runtime Open Edition 17.0.5.0 (build 17.0.5+8)
+Eclipse OpenJ9 VM 17.0.5.0 (build openj9-0.35.0, JRE 17 Linux amd64-64-Bit Compressed References 20221018_325 (JIT enabled, AOT enabled)
+OpenJ9   - e04a7f6c1
+OMR      - 85a21674f
+JCL      - 32d2c409a33 based on jdk-17.0.5+8)
