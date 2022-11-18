@@ -210,7 +210,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.2")
     implementation("org.slf4j:jul-to-slf4j:2.0.2")
     implementation("org.slf4j:jcl-over-slf4j:2.0.2")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.2")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.4")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
