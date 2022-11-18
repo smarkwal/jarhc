@@ -41,10 +41,10 @@ plugins {
     id("org.kordamp.gradle.source-xref") version "0.47.0"
 
     // run SonarQube analysis
-    id("org.sonarqube") version "3.4.0.2513"
+    id("org.sonarqube") version "3.5.0.2730"
 
     // run OWASP Dependency-Check analysis
-    id("org.owasp.dependencycheck") version "7.2.1"
+    id("org.owasp.dependencycheck") version "7.3.2"
 
     // publish to Sonatype OSSRH and release to Maven Central
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
@@ -197,7 +197,7 @@ repositories {
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.3")
+    implementation("org.ow2.asm:asm:9.4")
     implementation("org.json:json:20220924")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")
@@ -207,10 +207,10 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:slf4j-api:2.0.2")
-    implementation("org.slf4j:jul-to-slf4j:2.0.2")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.2")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.2")
+    implementation("org.slf4j:slf4j-api:2.0.4")
+    implementation("org.slf4j:jul-to-slf4j:2.0.4")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.4")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.4")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -218,16 +218,16 @@ dependencies {
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.13")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
-    implementation("org.codehaus.plexus:plexus-utils:3.4.2")
+    implementation("org.codehaus.plexus:plexus-utils:3.5.0")
 
     // test dependencies (available in unit and integration tests)
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    testImplementation("org.mockito:mockito-core:4.8.0")
+    testImplementation("org.mockito:mockito-core:4.9.0")
 
     // unit test dependencies
     // TODO: move JMH benchmarks in a separate source set?
-    unitTestImplementation("org.openjdk.jmh:jmh-core:1.35")
-    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.35")
+    unitTestImplementation("org.openjdk.jmh:jmh-core:1.36")
+    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.36")
 
     // integration test dependencies
     // currently: none
@@ -237,12 +237,12 @@ dependencies {
     releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
     releaseTestImplementation("org.assertj:assertj-core:3.23.1")
     releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    releaseTestImplementation("org.testcontainers:testcontainers:1.17.3")
-    releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.3")
+    releaseTestImplementation("org.testcontainers:testcontainers:1.17.6")
+    releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.6")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.2")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.2")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.4")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.4")
 
 }
 
