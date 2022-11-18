@@ -209,7 +209,7 @@ dependencies {
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
     implementation("org.slf4j:slf4j-api:2.0.2")
     implementation("org.slf4j:jul-to-slf4j:2.0.2")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.2")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.4")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.2")
 
     // fix vulnerabilities in transitive dependencies
