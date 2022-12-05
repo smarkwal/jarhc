@@ -216,7 +216,7 @@ dependencies {
     // fix CVE-2018-10237 and CVE-2020-8908
     implementation("com.google.guava:guava:31.1-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
+    implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
     implementation("org.codehaus.plexus:plexus-utils:3.5.0")
 
