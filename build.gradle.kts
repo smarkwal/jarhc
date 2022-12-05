@@ -38,7 +38,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.1"
 
     // create source-xref artifact
-    id("org.kordamp.gradle.source-xref") version "0.47.0"
+    id("org.kordamp.gradle.source-xref") version "0.48.0"
 
     // run SonarQube analysis
     id("org.sonarqube") version "3.5.0.2730"
