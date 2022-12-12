@@ -311,6 +311,10 @@ jarhc-with-deps.jar | com.google.common.cache.Striped64
                     | org.jarhc.Main
                     | • static void java.lang.System.exit(int)
                     |
+                    | org.slf4j.LoggerFactory
+                    | • @Deprecated: public class java.lang.SecurityManager
+                    | • @Deprecated: public final class java.security.AccessController
+                    |
                     | org.slf4j.helpers.Util$ClassContextSecurityManager
                     | • @Deprecated: public class java.lang.SecurityManager
                     |
