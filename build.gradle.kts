@@ -224,6 +224,8 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
     implementation("org.codehaus.plexus:plexus-utils:3.5.0")
+    // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
+    implementation("commons-codec:commons-codec:1.15")
 
     // test dependencies (available in unit and integration tests)
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
