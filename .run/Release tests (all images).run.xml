@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Release tests (all images)" type="JUnit" factoryName="JUnit">
-    <module name="jarhc.releaseTest" />
+    <module name="jarhc.jarhc-core.releaseTest" />
     <selectedOptions>
       <option name="environmentVariables" visible="false" />
     </selectedOptions>
@@ -10,7 +10,7 @@
     <option name="TEST_OBJECT" value="package" />
     <option name="VM_PARAMETERS" value="-enableassertions -Djarhc.test.docker.filter=all" />
     <option name="PARAMETERS" value="" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jarhc-core" />
     <option name="TEST_SEARCH_SCOPE">
       <value defaultName="moduleWithDependencies" />
     </option>
