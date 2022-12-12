@@ -278,13 +278,13 @@ idea {
         resourceDirs = mutableSetOf(
             file("src/main/resources")
         )
-        testSourceDirs = mutableSetOf(
+        testSources.from(
             file("src/test/java"),
             file("src/unitTest/java"),
             file("src/integrationTest/java"),
             file("src/releaseTest/java")
         )
-        testResourceDirs = mutableSetOf(
+        testResources.from(
             file("src/test/resources"),
             file("src/unitTest/resources"),
             file("src/integrationTest/resources"),
