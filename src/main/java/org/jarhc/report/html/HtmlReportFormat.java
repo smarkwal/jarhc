@@ -58,10 +58,10 @@ public class HtmlReportFormat implements ReportFormat {
 		}
 
 		// set character set
-		writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
+		writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 
 		// set JarHC with version as generator
-		writer.println("<meta name=\"generator\" content=\"JarHC " + VersionUtils.getVersion() + "\" />");
+		writer.println("<meta name=\"generator\" content=\"JarHC " + VersionUtils.getVersion() + "\">");
 
 		// include CSS styles
 		String css = styleProvider.getStyle();
