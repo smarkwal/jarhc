@@ -38,13 +38,14 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.1"
 
     // create source-xref artifact
-    id("org.kordamp.gradle.source-xref") version "0.47.0"
+    id("org.kordamp.gradle.source-xref") version "0.48.0"
 
     // run SonarQube analysis
     id("org.sonarqube") version "3.5.0.2730"
 
     // run OWASP Dependency-Check analysis
-    id("org.owasp.dependencycheck") version "7.3.2"
+    // note: set same version in .github/workflows/dependency-check.yml
+    id("org.owasp.dependencycheck") version "7.4.1"
 
     // publish to Sonatype OSSRH and release to Maven Central
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
