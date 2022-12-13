@@ -32,6 +32,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: '--no-daemon releaseTest ${{ github.event.inputs.additionalGradleOptions }}'
+        cache-read-only: false
 
     - name: Upload report
       uses: actions/upload-artifact@v3
