@@ -43,7 +43,7 @@ jobs:
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: '--no-daemon --info dependencyCheckAggregate ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon dependencyCheckAggregate ${{ github.event.inputs.additionalGradleOptions }}'
         cache-read-only: false
 
     - name: Upload report
