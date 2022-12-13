@@ -6,12 +6,18 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "friday"
+      time: "17:00"
+      timezone: "Europe/Zurich"
     target-branch: "develop"
     open-pull-requests-limit: 100
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "friday"
+      time: "17:00"
+      timezone: "Europe/Zurich"
     target-branch: "develop"
     open-pull-requests-limit: 100
