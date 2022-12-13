@@ -20,7 +20,6 @@ import com.github.jk1.license.render.InventoryMarkdownReportRenderer
 import com.github.jk1.license.render.XmlReportRenderer
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -37,10 +36,6 @@ plugins {
 
     // run SonarQube analysis
     id("org.sonarqube") version "3.5.0.2730"
-
-    // run OWASP Dependency-Check analysis
-    // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "7.4.1"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.0.0"
@@ -323,24 +318,6 @@ sonarqube {
         property("sonar.java.coveragePlugin", "jacoco")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportXml)
     }
-}
-
-dependencyCheck {
-    // documentation: https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
-
-    // settings
-    format = Format.ALL
-    skipTestGroups = false
-    outputDirectory = "${buildDir}/reports/dependency-check"
-
-    // path to database directory
-    data.directory = "${projectDir}/dependency-check"
-
-    // disable .NET Assembly Analyzer (fix for unexpected build exception)
-    analyzers.assemblyEnabled = false
-
-    // suppressed findings
-    suppressionFile = "${projectDir}/suppression.xml"
 }
 
 publishing {

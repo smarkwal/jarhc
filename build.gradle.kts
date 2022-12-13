@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 
 plugins {
 
@@ -28,6 +29,10 @@ plugins {
 
     // create source-xref artifact
     id("org.kordamp.gradle.source-xref") version "0.48.0"
+
+    // run OWASP Dependency-Check analysis
+    // note: set same version in .github/workflows/dependency-check.yml
+    id("org.owasp.dependencycheck") version "7.4.1"
 
 }
 
@@ -46,6 +51,24 @@ nexusPublishing {
     repositories {
         sonatype()
     }
+}
+
+dependencyCheck {
+    // documentation: https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
+
+    // settings
+    format = Format.ALL
+    skipTestGroups = false
+    outputDirectory = "${buildDir}/reports/dependency-check"
+
+    // path to database directory
+    data.directory = "${rootDir}/dependency-check"
+
+    // disable .NET Assembly Analyzer (fix for unexpected build exception)
+    analyzers.assemblyEnabled = false
+
+    // suppressed findings
+    suppressionFile = "${projectDir}/suppression.xml"
 }
 
 subprojects {
