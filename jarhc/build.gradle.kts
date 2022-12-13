@@ -218,10 +218,10 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:slf4j-api:2.0.5")
-    implementation("org.slf4j:jul-to-slf4j:2.0.5")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.5")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.5")
+    implementation("org.slf4j:slf4j-api:2.0.6")
+    implementation("org.slf4j:jul-to-slf4j:2.0.6")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.6")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.6")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -254,8 +254,8 @@ dependencies {
     releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.6")
     releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
     releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.5")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.5")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.6")
+    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.6")
 
 }
 
