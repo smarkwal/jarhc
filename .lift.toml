@@ -18,7 +18,7 @@
 # see https://help.sonatype.com/lift/configuring-lift
 
 build = "gradlew"
-jdkVersion = 11
+jdkVersion = "11"
 
 ignoreRules = ["EqualsGetClass", "JavaLangClash"]
 
