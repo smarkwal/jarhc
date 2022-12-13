@@ -3,6 +3,7 @@
 
 version: 2
 updates:
+
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
@@ -12,6 +13,7 @@ updates:
       timezone: "Europe/Zurich"
     target-branch: "develop"
     open-pull-requests-limit: 100
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
