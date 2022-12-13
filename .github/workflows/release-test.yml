@@ -28,11 +28,10 @@ jobs:
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@v1
 
-
     - name: Run Release Test
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'releaseTest ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon releaseTest ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload report
       uses: actions/upload-artifact@v3
