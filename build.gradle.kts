@@ -26,6 +26,9 @@ plugins {
     // https://github.com/ben-manes/gradle-versions-plugin
     id("com.github.ben-manes.versions") version "0.44.0"
 
+    // create source-xref artifact
+    id("org.kordamp.gradle.source-xref") version "0.48.0"
+
 }
 
 // special settings for IntelliJ IDEA
