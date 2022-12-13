@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="example-report-asm-commons-7.0" type="Application" factoryName="Application" folderName="Example Reports">
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
-    <module name="jarhc.jarhc-core.main" />
+    <module name="jarhc.jarhc.main" />
     <option name="PROGRAM_PARAMETERS" value="--options docs/example-report-asm-commons-7.0-options.txt" />
     <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G" />
     <method v="2">

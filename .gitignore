@@ -8,7 +8,7 @@
 
 # build output
 /build/
-/jarhc-core/build/
+/jarhc/build/
 
 # JarHC cache (note: moved to ~/.jarhc)
 /.jarhc

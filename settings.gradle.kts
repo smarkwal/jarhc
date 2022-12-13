@@ -16,4 +16,4 @@
 
 rootProject.name = "jarhc"
 
-include("jarhc-core")
+include("jarhc")

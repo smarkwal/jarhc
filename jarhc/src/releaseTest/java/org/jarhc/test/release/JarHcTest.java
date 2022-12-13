@@ -98,8 +98,8 @@ class JarHcTest extends ReleaseTest {
 
 		List<DynamicContainer> containers = new ArrayList<>();
 
-		File jarFile = getProjectFile("build/libs/jarhc-core-" + getJarHcVersion() + ".jar");
-		File jarWithDepsFile = getProjectFile("build/libs/jarhc-core-" + getJarHcVersion() + "-with-deps.jar");
+		File jarFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + ".jar");
+		File jarWithDepsFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
 		File minimalJarFile = getProjectFile("src/releaseTest/resources/minimal.jar");
 
 		for (AbstractTestRunner runner : runners) {
