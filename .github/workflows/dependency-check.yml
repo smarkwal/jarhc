@@ -43,7 +43,7 @@ jobs:
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'dependencyCheckAnalyze ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon dependencyCheckAnalyze ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload report
       uses: actions/upload-artifact@v3

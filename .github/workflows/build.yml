@@ -49,26 +49,26 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: reports
-        path: build/reports
+        path: jarhc/build/reports
         retention-days: 7
 
     - name: Upload libs
       uses: actions/upload-artifact@v3
       with:
         name: libs
-        path: build/libs
+        path: jarhc/build/libs
         retention-days: 14
 
     - name: Upload docs
       uses: actions/upload-artifact@v3
       with:
         name: docs
-        path: build/docs
+        path: jarhc/build/docs
         retention-days: 7

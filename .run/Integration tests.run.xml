@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Integration tests" type="JUnit" factoryName="JUnit">
-    <module name="jarhc.integrationTest" />
+    <module name="jarhc.jarhc.integrationTest" />
     <selectedOptions>
       <option name="environmentVariables" visible="false" />
     </selectedOptions>
@@ -16,7 +16,7 @@
     <option name="TEST_OBJECT" value="package" />
     <option name="VM_PARAMETERS" value="-enableassertions" />
     <option name="PARAMETERS" value="" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jarhc" />
     <option name="TEST_SEARCH_SCOPE">
       <value defaultName="moduleWithDependencies" />
     </option>
