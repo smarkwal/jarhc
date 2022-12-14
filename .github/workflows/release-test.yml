@@ -39,5 +39,5 @@ jobs:
       if: ${{ always() }}
       with:
         name: reports
-        path: jarhc-release-test/build/reports/tests/test
+        path: jarhc-release-tests/build/reports/tests/test
         retention-days: 7
