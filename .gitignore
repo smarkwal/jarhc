@@ -7,8 +7,7 @@
 *.iml
 
 # build output
-/build/
-/jarhc/build/
+build/
 
 # JarHC cache (note: moved to ~/.jarhc)
 /.jarhc

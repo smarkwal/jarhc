@@ -30,7 +30,7 @@ class BuildArtifactsTest extends ReleaseTest {
 	void version() throws IOException {
 
 		// get expected version from Gradle properties file
-		File propertiesFile = getProjectFile("gradle.properties");
+		File propertiesFile = getProjectFile("../gradle.properties"); // TODO: find a better solution than a relative path
 		Properties properties = new Properties();
 		properties.load(new FileReader(propertiesFile));
 		String expectedVersion = properties.getProperty("version");

@@ -31,7 +31,7 @@ jobs:
     - name: Run Release Test
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: '--no-daemon releaseTest ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon :jarhc-release-test:test ${{ github.event.inputs.additionalGradleOptions }}'
         cache-read-only: false
 
     - name: Upload report
@@ -39,5 +39,5 @@ jobs:
       if: ${{ always() }}
       with:
         name: reports
-        path: build/reports/tests/releaseTest
+        path: jarhc-release-tests/build/reports/tests/test
         retention-days: 7

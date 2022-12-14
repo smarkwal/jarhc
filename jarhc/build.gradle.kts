@@ -89,13 +89,11 @@ idea {
             file("src/test/java"),
             file("src/unitTest/java"),
             file("src/integrationTest/java"),
-            file("src/releaseTest/java")
         )
         testResources.from(
             file("src/test/resources"),
             file("src/unitTest/resources"),
             file("src/integrationTest/resources"),
-            file("src/releaseTest/resources")
         )
         isDownloadJavadoc = true
         isDownloadSources = true
@@ -142,10 +140,6 @@ sourceSets {
         runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
     }
 
-    create("releaseTest") {
-        // independent source set
-    }
-
 }
 
 val unitTestImplementation: Configuration by configurations.getting {
@@ -183,18 +177,9 @@ val integrationTestRuntimeOnly: Configuration by configurations.getting {
     )
 }
 
-val releaseTestImplementation: Configuration by configurations.getting {
-    // independent configuration
-}
-
-val releaseTestRuntimeOnly: Configuration by configurations.getting {
-    // independent configuration
-}
-
 // dependencies ----------------------------------------------------------------
 
 repositories {
-    mavenLocal()
     maven {
         url = uri("https://repo.maven.apache.org/maven2/")
     }
@@ -239,18 +224,6 @@ dependencies {
 
     // integration test dependencies
     // currently: none
-
-    // release test dependencies
-    releaseTestImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    releaseTestImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
-    releaseTestImplementation("org.assertj:assertj-core:3.23.1")
-    releaseTestRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    releaseTestImplementation("org.testcontainers:testcontainers:1.17.6")
-    releaseTestImplementation("org.testcontainers:junit-jupiter:1.17.6")
-    releaseTestImplementation("org.apache.commons:commons-lang3:3.12.0")
-    releaseTestImplementation("commons-io:commons-io:2.11.0")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-api:2.0.6")
-    releaseTestRuntimeOnly("org.slf4j:slf4j-simple:2.0.6")
 
 }
 
@@ -575,44 +548,6 @@ val integrationTest = task("integrationTest", type = Test::class) {
     shouldRunAfter(unitTest)
 }
 
-val prepareReleaseTest = task("prepareReleaseTest") {
-    group = "verification"
-    description = "Prepares the release test suite."
-
-    // TODO: declare inputs and outputs
-    doLast {
-
-        // write all configuration dependencies into configurations.properties
-        val dependencies = StringBuilder()
-        project.configurations.forEach { conf ->
-            val artifacts = if (conf.isCanBeResolved) {
-                conf.resolvedConfiguration.resolvedArtifacts.map { it.moduleVersion.id }.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
-            } else {
-                conf.dependencies.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
-            }
-            if (artifacts.isNotEmpty()) {
-                dependencies.append(conf.name).append(" = ").append(artifacts).append("\n")
-            }
-        }
-        file("$buildDir/configurations.properties").writeText(dependencies.toString())
-
-    }
-
-    // run release tests after JAR and fat/uber JAR have been built
-    dependsOn(tasks.jar, jarWithDeps)
-}
-
-val releaseTest = task("releaseTest", type = Test::class) {
-    group = "verification"
-    description = "Runs the release test suite."
-
-    // use tests in releaseTest source set
-    testClassesDirs = sourceSets["releaseTest"].output.classesDirs
-    classpath = sourceSets["releaseTest"].runtimeClasspath
-
-    dependsOn(prepareReleaseTest)
-}
-
 // common settings for all test tasks
 tasks.withType<Test> {
 
@@ -652,27 +587,6 @@ tasks.withType<Test> {
         showStackTraces = true
     }
 
-}
-
-val jarhcTest = task("jarhcTest", type = Exec::class) {
-    group = "verification"
-    description = "Run JarHC on JarHC."
-
-    // properties
-    isIgnoreExitValue = true
-
-    // command
-    commandLine(
-        "docker", "run",
-        "--rm",
-        "-v", "$buildDir/libs/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar",
-        "-w", "/jarhc",
-        "eclipse-temurin:8-jre",
-        "java", "-jar", "jarhc.jar", "jarhc.jar"
-    )
-
-    // run test after fat/uber JAR has been built
-    dependsOn(jarWithDeps)
 }
 
 val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {

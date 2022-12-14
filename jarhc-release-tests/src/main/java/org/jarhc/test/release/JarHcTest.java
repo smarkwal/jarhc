@@ -98,9 +98,10 @@ class JarHcTest extends ReleaseTest {
 
 		List<DynamicContainer> containers = new ArrayList<>();
 
-		File jarFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + ".jar");
-		File jarWithDepsFile = getProjectFile("build/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
-		File minimalJarFile = getProjectFile("src/releaseTest/resources/minimal.jar");
+		// TODO: find a better solution than relative paths
+		File jarFile = getProjectFile("../jarhc/build/libs/jarhc-" + getJarHcVersion() + ".jar");
+		File jarWithDepsFile = getProjectFile("../jarhc/build/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
+		File minimalJarFile = getProjectFile("src/main/resources/minimal.jar");
 
 		for (AbstractTestRunner runner : runners) {
 
@@ -149,7 +150,7 @@ class JarHcTest extends ReleaseTest {
 		if (TestUtils.createResources()) {
 			String actualOutput = result.getStdErr();
 			if (!actualOutput.equals(expectedOutput)) {
-				writeProjectFile("src/releaseTest/resources/" + resourcePath, actualOutput);
+				writeProjectFile("src/main/resources/" + resourcePath, actualOutput);
 				return;
 			}
 		}
@@ -289,7 +290,7 @@ class JarHcTest extends ReleaseTest {
 
 		// assume
 		String resourcePath = runner.findResourcePath(resourceName);
-		File resourcesDir = getProjectDirectory("src/releaseTest/resources");
+		File resourcesDir = getProjectDirectory("src/main/resources");
 		File resourceFile = new File(resourcesDir, resourcePath);
 		assumeTrue(resourceFile.isFile(), "Report found in test resources: " + resourcePath);
 
