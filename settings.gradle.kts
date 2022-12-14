@@ -17,3 +17,4 @@
 rootProject.name = "jarhc"
 
 include("jarhc")
+include("jarhc-release-tests")
