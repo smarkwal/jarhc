@@ -433,7 +433,7 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     exclude(
 
         // exclude module-info files
-        "module-info.class",
+        "**/module-info.class",
 
         // exclude license files
         "META-INF/LICENSE", "META-INF/LICENSE.txt",
