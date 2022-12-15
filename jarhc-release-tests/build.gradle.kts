@@ -173,10 +173,13 @@ tasks {
         commandLine(
             "docker", "run",
             "--rm",
-            "-v", "$buildDir/libs/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar", // TODO: fix path
+            "-v", "$rootDir/jarhc/build/libs/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar",
+            "-v", "$rootDir:/src",
             "-w", "/jarhc",
-            "eclipse-temurin:8-jre",
-            "java", "-jar", "jarhc.jar", "jarhc.jar"
+            "eclipse-temurin:11-jre",
+            "java", "-jar", "jarhc.jar", "jarhc.jar",
+            "--output", "/src/report.html",
+            "--ignore-missing-annotations"
         )
 
         // run test after fat/uber JAR has been built
