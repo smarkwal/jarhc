@@ -356,7 +356,7 @@ tasks {
         manifest {
             attributes["Main-Class"] = mainClassName
             // TODO: generate a module-info.class instead?
-            attributes["Automatic-Module-Name"] = "jarhc"
+            attributes["Automatic-Module-Name"] = "org.jarhc"
         }
 
         // add LICENSE to JAR file
