@@ -355,6 +355,8 @@ tasks {
         // set Main-Class in MANIFEST.MF
         manifest {
             attributes["Main-Class"] = mainClassName
+            // TODO: generate a module-info.class instead?
+            attributes["Automatic-Module-Name"] = "jarhc"
         }
 
         // add LICENSE to JAR file
