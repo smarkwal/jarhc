@@ -14,9 +14,9 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file  | Module name | Definition     | Automatic | Requires | Exports
-----------+-------------+----------------+-----------+----------+---------------
-jarhc.jar | jarhc       | Auto-generated | Yes       | -        | [all packages]
+JAR file  | Module name | Definition | Automatic | Requires | Exports
+----------+-------------+------------+-----------+----------+---------------
+jarhc.jar | org.jarhc   | Manifest   | Yes       | -        | [all packages]
 
 Class Versions
 --------------

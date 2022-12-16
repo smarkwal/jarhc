@@ -14,10 +14,9 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file            | Module name                | Definition  | Automatic | Requires  | Exports
---------------------+----------------------------+-------------+-----------+-----------+---------------------------
-jarhc-with-deps.jar | org.apache.commons.logging | Module-Info | No        | org.slf4j | org.apache.commons.logging
-                    |                            |             |           | java.base |
+JAR file            | Module name     | Definition     | Automatic | Requires | Exports
+--------------------+-----------------+----------------+-----------+----------+---------------
+jarhc-with-deps.jar | jarhc.with.deps | Auto-generated | Yes       | -        | [all packages]
 
 Class Versions
 --------------

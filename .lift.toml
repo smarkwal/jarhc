@@ -25,7 +25,7 @@ ignoreRules = ["EqualsGetClass", "JavaLangClash"]
 ignoreFiles = """
 jarhc/build/
 jarhc/src/test/
-jarhc/src/unitTest/
 jarhc/src/integrationTest/
+jarhc-benchmarks/
 jarhc-release-test/
 """

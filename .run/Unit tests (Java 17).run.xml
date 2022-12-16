@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Unit tests (Java 17)" type="JUnit" factoryName="JUnit">
-    <module name="jarhc.jarhc.unitTest" />
+    <module name="jarhc.jarhc.test" />
     <selectedOptions>
       <option name="environmentVariables" visible="false" />
     </selectedOptions>

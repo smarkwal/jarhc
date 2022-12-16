@@ -32,7 +32,7 @@ class JarStreamArchiveTest {
 	@Test
 	void test() throws IOException {
 
-		File file = new File("src/unitTest/resources/org/jarhc/loader/archive/a.jar");
+		File file = new File("src/test/resources/org/jarhc/loader/archive/a.jar");
 		try (Archive archive = new JarStreamArchive(new FileInputStream(file))) {
 
 			List<String> files = new ArrayList<>();

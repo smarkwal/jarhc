@@ -20,7 +20,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.jarhc.app.Options;
-import org.jarhc.artifacts.Artifact;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
@@ -64,11 +63,8 @@ public class AnalyzerBenchmarks {
 
 		List<File> files = new ArrayList<>();
 		for (String fileName : fileNames) {
-			String artifactId = fileName.substring(0, fileName.lastIndexOf('-'));
-			String version = fileName.substring(fileName.lastIndexOf('-') + 1, fileName.lastIndexOf('.'));
-			Artifact artifact = new Artifact("org.springframework", artifactId, version, "jar");
 			// TODO: use resources instead of file access!
-			String filePath = "./src/integrationTest/resources/repository/" + artifact.getPath();
+			String filePath = "./src/main/resources/repository/" + fileName;
 			files.add(new File(filePath));
 		}
 

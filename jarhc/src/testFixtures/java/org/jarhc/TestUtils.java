@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Stephan Markwalder
+ * Copyright 2022 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import org.jarhc.test.TestDataException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 
 /**
  * Test utility methods.
@@ -140,7 +142,7 @@ public class TestUtils {
 		}
 
 		//noinspection ConstantConditions
-		assumeTrue(false, "Test resource generated.");
+		Assumptions.assumeTrue(false, "Test resource generated.");
 	}
 
 	public static String getFileRepositoryURL() {
@@ -155,13 +157,13 @@ public class TestUtils {
 	 * @param expectedValues Expected values
 	 */
 	public static void assertValuesEquals(String[] actualValues, String... expectedValues) {
-		assertNotNull(actualValues);
-		assertNotNull(expectedValues);
-		assertEquals(expectedValues.length, actualValues.length);
+		Assertions.assertNotNull(actualValues);
+		Assertions.assertNotNull(expectedValues);
+		Assertions.assertEquals(expectedValues.length, actualValues.length);
 		for (int i = 0; i < actualValues.length; i++) {
 			String actualValue = actualValues[i];
 			String expectedValue = expectedValues[i];
-			assertEquals(expectedValue, actualValue);
+			Assertions.assertEquals(expectedValue, actualValue);
 		}
 	}
 
