@@ -46,16 +46,14 @@ class JarHcTest extends ReleaseTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReleaseTest.class);
 
 	private static final JavaImage[] JAVA_IMAGES = {
-			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11"),
-			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17"),
-			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11-jre"),
-			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17-jre"),
-			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11-jre"),
-			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17-jre"),
+			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11.0.17"),
+			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17.0.5"),
+			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11.0.17_8-jre"),
+			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17.0.5_8-jre"),
+			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11.0.17_8-jre"),
+			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17.0.5_8-jre"),
 			new JavaImage("microsoft", "openjdk", "11", "mcr.microsoft.com/openjdk/jdk:11-ubuntu"),
 			new JavaImage("microsoft", "openjdk", "17", "mcr.microsoft.com/openjdk/jdk:17-ubuntu"),
-			new JavaImage("oracle", "openjdk", "11", "openjdk:11-jre"),
-			new JavaImage("oracle", "openjdk", "17", "openjdk:17-jdk")
 	};
 
 	@TestFactory
