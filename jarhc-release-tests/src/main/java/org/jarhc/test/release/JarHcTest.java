@@ -34,6 +34,8 @@ import org.jarhc.test.release.utils.JavaImage;
 import org.jarhc.test.release.utils.LocalTestRunner;
 import org.jarhc.test.release.utils.TestResult;
 import org.jarhc.test.release.utils.TestUtils;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -56,19 +58,57 @@ class JarHcTest extends ReleaseTest {
 			new JavaImage("microsoft", "openjdk", "17", "mcr.microsoft.com/openjdk/jdk:17-ubuntu"),
 	};
 
+	private static File tempDir;
+
+	@BeforeAll
+	static void beforeAll(@TempDir Path path) {
+		tempDir = path.toFile();
+	}
+
+	@AfterAll
+	static void afterAll() {
+
+		// workaround for AccessDeniedException in @TempDir
+		// when Testcontainers has not released all resources yet
+		LOGGER.info("Delete temporary directory: {}", tempDir);
+		int retries = 10;
+		for (int n = 1; n <= retries; n++) {
+			try {
+				FileUtils.deleteDirectory(tempDir);
+				// no IO exception -> success
+				LOGGER.info("Temporary directory has been deleted.");
+				return;
+			} catch (IOException e) {
+				if (n == retries) {
+					LOGGER.error("Failed to delete temporary directory after {} retries.", retries, e);
+					return;
+				}
+				// wait before retry, increasing delay by 1 second each time
+				LOGGER.warn("Failed to delete temporary directory. Waiting {} {} before retry...", n, n == 1 ? "second" : "seconds");
+				try {
+					Thread.sleep(n * 1000L);
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+					return;
+				}
+			}
+		}
+
+	}
+
 	@TestFactory
-	Collection<DynamicContainer> test(@TempDir Path tempDir) {
+	Collection<DynamicContainer> test() {
 
 		// make sure that data directory exists
 		// note: all runners and tests will use the same data directory
-		File dataDir = new File(tempDir.toFile(), "data");
+		File dataDir = new File(tempDir, "data");
 		createDirectory(dataDir);
 		LOGGER.info("Data directory: {}", dataDir.getAbsolutePath());
 
 		// add a local test runner first
 		List<AbstractTestRunner> runners = new ArrayList<>();
 		{
-			File workDir = new File(tempDir.toFile(), "local");
+			File workDir = new File(tempDir, "local");
 			LocalTestRunner runner = new LocalTestRunner(workDir, dataDir);
 			runners.add(runner);
 		}
@@ -89,7 +129,7 @@ class JarHcTest extends ReleaseTest {
 				continue; // skip this image
 			}
 
-			File workDir = new File(tempDir.toFile(), javaImage.getPath());
+			File workDir = new File(tempDir, javaImage.getPath());
 			DockerTestRunner runner = new DockerTestRunner(javaImage, workDir, dataDir);
 			runners.add(runner);
 		}
