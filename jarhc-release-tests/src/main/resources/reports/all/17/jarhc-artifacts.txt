@@ -8,20 +8,20 @@ List of JAR files found in classpath.
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
 jarhc.jar                                                      | 225 KB  | 130     | 7         | **************************************** | [unknown]
+jul-to-slf4j-2.0.6.jar                                         | 4.74 KB | 1       | 0         | c4d348977a83a0bfcf42fd6fd1fee6e7904f1a0c | org.slf4j:jul-to-slf4j:2.0.6
+aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
+jcl-over-slf4j-2.0.6.jar                                       | 17.0 KB | 8       | 0         | 839ff57e112f2e28ef372e96d135696a6896b9ad | org.slf4j:jcl-over-slf4j:2.0.6
+slf4j-simple-2.0.6.jar                                         | 14.9 KB | 7       | 0         | 78c57967fe87a823697fe6cf0f5b394b0aa18337 | org.slf4j:slf4j-simple:2.0.6
+slf4j-api-2.0.6.jar                                            | 61.1 KB | 51      | 0         | 88c40d8b4f33326f19a7d3c0aaf2c7e8721d4953 | org.slf4j:slf4j-api:2.0.6
 asm-9.4.jar                                                    | 120 KB  | 37      | 0         | b4e0e2d2e023aa317b7cfcfc916377ea348e07d1 | org.ow2.asm:asm:9.4
 json-20220924.jar                                              | 68.7 KB | 27      | 0         | 5aa95e7688f76c664af205c5937620f02688dfbc | org.json:json:20220924
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
 aether-impl-1.1.0.jar                                          | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
 aether-connector-basic-1.1.0.jar                               | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
 aether-transport-file-1.1.0.jar                                | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
-aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
 aether-util-1.1.0.jar                                          | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
 aether-spi-1.1.0.jar                                           | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
 aether-api-1.1.0.jar                                           | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
-jul-to-slf4j-2.0.6.jar                                         | 4.74 KB | 1       | 0         | c4d348977a83a0bfcf42fd6fd1fee6e7904f1a0c | org.slf4j:jul-to-slf4j:2.0.6
-jcl-over-slf4j-2.0.6.jar                                       | 17.0 KB | 8       | 0         | 839ff57e112f2e28ef372e96d135696a6896b9ad | org.slf4j:jcl-over-slf4j:2.0.6
-slf4j-simple-2.0.6.jar                                         | 14.9 KB | 7       | 0         | 78c57967fe87a823697fe6cf0f5b394b0aa18337 | org.slf4j:slf4j-simple:2.0.6
-slf4j-api-2.0.6.jar                                            | 61.1 KB | 51      | 0         | 88c40d8b4f33326f19a7d3c0aaf2c7e8721d4953 | org.slf4j:slf4j-api:2.0.6
 maven-model-builder-3.3.9.jar                                  | 173 KB  | 121     | 1         | e2055f9adb9f3c9a93e6b36fffe79781a785de2d | org.apache.maven:maven-model-builder:3.3.9
 guava-31.1-jre.jar                                             | 2.82 MB | 2008    | 0         | 60458f877d055d0c9114d9e1a2efb737b4bc282c | com.google.guava:guava:31.1-jre
 httpclient-4.5.14.jar                                          | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
@@ -49,19 +49,9 @@ List of Java Modules found in classpath.
 
 JAR file                                                       | Module name                                         | Definition     | Automatic | Requires  | Exports
 ---------------------------------------------------------------+-----------------------------------------------------+----------------+-----------+-----------+----------------------------
-jarhc.jar                                                      | jarhc                                               | Auto-generated | Yes       | -         | [all packages]
-asm-9.4.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base | org.objectweb.asm
-                                                               |                                                     |                |           |           | org.objectweb.asm.signature
-json-20220924.jar                                              | org.json                                            | Manifest       | Yes       | -         | [all packages]
-maven-aether-provider-3.3.9.jar                                | maven.aether.provider                               | Auto-generated | Yes       | -         | [all packages]
-aether-impl-1.1.0.jar                                          | aether.impl                                         | Auto-generated | Yes       | -         | [all packages]
-aether-connector-basic-1.1.0.jar                               | aether.connector.basic                              | Auto-generated | Yes       | -         | [all packages]
-aether-transport-file-1.1.0.jar                                | aether.transport.file                               | Auto-generated | Yes       | -         | [all packages]
-aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -         | [all packages]
-aether-util-1.1.0.jar                                          | aether.util                                         | Auto-generated | Yes       | -         | [all packages]
-aether-spi-1.1.0.jar                                           | aether.spi                                          | Auto-generated | Yes       | -         | [all packages]
-aether-api-1.1.0.jar                                           | aether.api                                          | Auto-generated | Yes       | -         | [all packages]
+jarhc.jar                                                      | org.jarhc                                           | Manifest       | Yes       | -         | [all packages]
 jul-to-slf4j-2.0.6.jar                                         | jul.to.slf4j                                        | Manifest       | Yes       | -         | [all packages]
+aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -         | [all packages]
 jcl-over-slf4j-2.0.6.jar                                       | org.apache.commons.logging                          | Module-Info    | No        | org.slf4j | org.apache.commons.logging
                                                                |                                                     |                |           | java.base |
 slf4j-simple-2.0.6.jar                                         | org.slf4j.simple                                    | Module-Info    | No        | org.slf4j |
@@ -70,6 +60,16 @@ slf4j-api-2.0.6.jar                                            | org.slf4j      
                                                                |                                                     |                |           |           | org.slf4j.event
                                                                |                                                     |                |           |           | org.slf4j.helpers
                                                                |                                                     |                |           |           | org.slf4j.spi
+asm-9.4.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base | org.objectweb.asm
+                                                               |                                                     |                |           |           | org.objectweb.asm.signature
+json-20220924.jar                                              | org.json                                            | Manifest       | Yes       | -         | [all packages]
+maven-aether-provider-3.3.9.jar                                | maven.aether.provider                               | Auto-generated | Yes       | -         | [all packages]
+aether-impl-1.1.0.jar                                          | aether.impl                                         | Auto-generated | Yes       | -         | [all packages]
+aether-connector-basic-1.1.0.jar                               | aether.connector.basic                              | Auto-generated | Yes       | -         | [all packages]
+aether-transport-file-1.1.0.jar                                | aether.transport.file                               | Auto-generated | Yes       | -         | [all packages]
+aether-util-1.1.0.jar                                          | aether.util                                         | Auto-generated | Yes       | -         | [all packages]
+aether-spi-1.1.0.jar                                           | aether.spi                                          | Auto-generated | Yes       | -         | [all packages]
+aether-api-1.1.0.jar                                           | aether.api                                          | Auto-generated | Yes       | -         | [all packages]
 maven-model-builder-3.3.9.jar                                  | maven.model.builder                                 | Auto-generated | Yes       | -         | [all packages]
 guava-31.1-jre.jar                                             | com.google.common                                   | Manifest       | Yes       | -         | [all packages]
 httpclient-4.5.14.jar                                          | org.apache.httpcomponents.httpclient                | Manifest       | Yes       | -         | [all packages]
@@ -97,20 +97,20 @@ Java class file format information.
 JAR file                                                       | Multi-release         | Class files by Java version
 ---------------------------------------------------------------+-----------------------+---------------------------------------------------------
 jarhc.jar                                                      | No                    | Java 11 (130)
+jul-to-slf4j-2.0.6.jar                                         | No                    | Java 8 (1)
+aether-transport-http-1.1.0.jar                                | No                    | Java 5 (20)
+jcl-over-slf4j-2.0.6.jar                                       | Yes (Java 9)          | Java 8 (8)
+slf4j-simple-2.0.6.jar                                         | Yes (Java 9)          | Java 8 (7)
+slf4j-api-2.0.6.jar                                            | Yes (Java 9)          | Java 8 (51)
 asm-9.4.jar                                                    | No                    | Java 5 (37)
 json-20220924.jar                                              | No                    | Java 6 (27)
 maven-aether-provider-3.3.9.jar                                | No                    | Java 7 (26)
 aether-impl-1.1.0.jar                                          | No                    | Java 5 (96)
 aether-connector-basic-1.1.0.jar                               | No                    | Java 5 (19)
 aether-transport-file-1.1.0.jar                                | No                    | Java 5 (4)
-aether-transport-http-1.1.0.jar                                | No                    | Java 5 (20)
 aether-util-1.1.0.jar                                          | No                    | Java 5 (103)
 aether-spi-1.1.0.jar                                           | No                    | Java 5 (34)
 aether-api-1.1.0.jar                                           | No                    | Java 5 (128)
-jul-to-slf4j-2.0.6.jar                                         | No                    | Java 8 (1)
-jcl-over-slf4j-2.0.6.jar                                       | Yes (Java 9)          | Java 8 (8)
-slf4j-simple-2.0.6.jar                                         | Yes (Java 9)          | Java 8 (7)
-slf4j-api-2.0.6.jar                                            | Yes (Java 9)          | Java 8 (51)
 maven-model-builder-3.3.9.jar                                  | No                    | Java 7 (121)
 guava-31.1-jre.jar                                             | No                    | Java 8 (2008)
 httpclient-4.5.14.jar                                          | No                    | Java 6 (470)
@@ -152,6 +152,20 @@ jarhc.jar                                                      | aether-api-1.1.
                                                                | jul-to-slf4j-2.0.6.jar               |
                                                                | maven-aether-provider-3.3.9.jar      |
                                                                | slf4j-api-2.0.6.jar                  |
+jul-to-slf4j-2.0.6.jar                                         | slf4j-api-2.0.6.jar                  | jarhc.jar
+aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
+                                                               | aether-spi-1.1.0.jar                 |
+                                                               | aether-util-1.1.0.jar                |
+                                                               | httpclient-4.5.14.jar                |
+                                                               | httpcore-4.4.16.jar                  |
+jcl-over-slf4j-2.0.6.jar                                       | slf4j-api-2.0.6.jar                  | httpclient-4.5.14.jar
+                                                               |                                      | jarhc.jar
+slf4j-simple-2.0.6.jar                                         | slf4j-api-2.0.6.jar                  | [none]
+slf4j-api-2.0.6.jar                                            | [none]                               | aether-impl-1.1.0.jar
+                                                               |                                      | jarhc.jar
+                                                               |                                      | jcl-over-slf4j-2.0.6.jar
+                                                               |                                      | jul-to-slf4j-2.0.6.jar
+                                                               |                                      | slf4j-simple-2.0.6.jar
 asm-9.4.jar                                                    | [none]                               | jarhc.jar
 json-20220924.jar                                              | [none]                               | jarhc.jar
 maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
@@ -174,11 +188,6 @@ aether-connector-basic-1.1.0.jar                               | aether-api-1.1.
                                                                | aether-util-1.1.0.jar                |
 aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
                                                                | aether-spi-1.1.0.jar                 |
-aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | httpclient-4.5.14.jar                |
-                                                               | httpcore-4.4.16.jar                  |
 aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
                                                                |                                      | aether-impl-1.1.0.jar
                                                                |                                      | aether-transport-http-1.1.0.jar
@@ -198,15 +207,6 @@ aether-api-1.1.0.jar                                           | [none]         
                                                                |                                      | aether-util-1.1.0.jar
                                                                |                                      | jarhc.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
-jul-to-slf4j-2.0.6.jar                                         | slf4j-api-2.0.6.jar                  | jarhc.jar
-jcl-over-slf4j-2.0.6.jar                                       | slf4j-api-2.0.6.jar                  | httpclient-4.5.14.jar
-                                                               |                                      | jarhc.jar
-slf4j-simple-2.0.6.jar                                         | slf4j-api-2.0.6.jar                  | [none]
-slf4j-api-2.0.6.jar                                            | [none]                               | aether-impl-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | jcl-over-slf4j-2.0.6.jar
-                                                               |                                      | jul-to-slf4j-2.0.6.jar
-                                                               |                                      | slf4j-simple-2.0.6.jar
 maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
                                                                | guava-31.1-jre.jar                   |
                                                                | maven-artifact-3.3.9.jar             |
@@ -259,6 +259,16 @@ Dependencies as declared in POM file.
 JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
 ---------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+----------------------
 jarhc.jar                                                      | [unknown]                                                                   | [unknown]                                                                   |
+jul-to-slf4j-2.0.6.jar                                         | org.slf4j:jul-to-slf4j:2.0.6                                                | org.slf4j:slf4j-api:2.0.6                                                   | OK
+aether-transport-http-1.1.0.jar                                | org.eclipse.aether:aether-transport-http:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                                                               |                                                                             | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.14)
+                                                               |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.6)
+                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+jcl-over-slf4j-2.0.6.jar                                       | org.slf4j:jcl-over-slf4j:2.0.6                                              | org.slf4j:slf4j-api:2.0.6                                                   | OK
+slf4j-simple-2.0.6.jar                                         | org.slf4j:slf4j-simple:2.0.6                                                | org.slf4j:slf4j-api:2.0.6                                                   | OK
+slf4j-api-2.0.6.jar                                            | org.slf4j:slf4j-api:2.0.6                                                   | [none]                                                                      |
 asm-9.4.jar                                                    | org.ow2.asm:asm:9.4                                                         | [none]                                                                      |
 json-20220924.jar                                              | org.json:json:20220924                                                      | [none]                                                                      |
 maven-aether-provider-3.3.9.jar                                | org.apache.maven:maven-aether-provider:3.3.9                                | org.apache.maven:maven-model:3.3.9                                          | OK
@@ -287,19 +297,9 @@ aether-transport-file-1.1.0.jar                                | org.eclipse.aet
                                                                |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
                                                                |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-transport-http-1.1.0.jar                                | org.eclipse.aether:aether-transport-http:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                                                               |                                                                             | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.14)
-                                                               |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.6)
-                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
 aether-util-1.1.0.jar                                          | org.eclipse.aether:aether-util:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
 aether-spi-1.1.0.jar                                           | org.eclipse.aether:aether-spi:1.1.0                                         | org.eclipse.aether:aether-api:1.1.0                                         | OK
 aether-api-1.1.0.jar                                           | org.eclipse.aether:aether-api:1.1.0                                         | [none]                                                                      |
-jul-to-slf4j-2.0.6.jar                                         | org.slf4j:jul-to-slf4j:2.0.6                                                | org.slf4j:slf4j-api:2.0.6                                                   | OK
-jcl-over-slf4j-2.0.6.jar                                       | org.slf4j:jcl-over-slf4j:2.0.6                                              | org.slf4j:slf4j-api:2.0.6                                                   | OK
-slf4j-simple-2.0.6.jar                                         | org.slf4j:slf4j-simple:2.0.6                                                | org.slf4j:slf4j-api:2.0.6                                                   | OK
-slf4j-api-2.0.6.jar                                            | org.slf4j:slf4j-api:2.0.6                                                   | [none]                                                                      |
 maven-model-builder-3.3.9.jar                                  | org.apache.maven:maven-model-builder:3.3.9                                  | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.0)
                                                                |                                                                             | org.codehaus.plexus:plexus-interpolation:1.21                               | OK
                                                                |                                                                             | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
@@ -477,6 +477,9 @@ Compatibility issues between JAR files.
 
 JAR file                         | Issues
 ---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------
+aether-transport-http-1.1.0.jar  | org.eclipse.aether.transport.http.HttpTransporterFactory
+                                 | • Annotation not found: javax.inject.Inject (package not found)
+                                 | • Annotation not found: javax.inject.Named (package not found)
 maven-aether-provider-3.3.9.jar  | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
@@ -634,9 +637,6 @@ aether-connector-basic-1.1.0.jar | org.eclipse.aether.connector.basic.BasicRepos
 aether-transport-file-1.1.0.jar  | org.eclipse.aether.transport.file.FileTransporterFactory
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
-aether-transport-http-1.1.0.jar  | org.eclipse.aether.transport.http.HttpTransporterFactory
-                                 | • Annotation not found: javax.inject.Inject (package not found)
-                                 | • Annotation not found: javax.inject.Named (package not found)
 
 Blacklist
 ---------
@@ -646,24 +646,6 @@ JAR file                        | Issues
 --------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 jarhc.jar                       | org.jarhc.Main
                                 | • static void java.lang.System.exit(int)
-maven-aether-provider-3.3.9.jar | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
-                                | • @Deprecated: public interface org.apache.maven.model.building.ModelSource
-                                |
-                                | org.apache.maven.repository.internal.DefaultModelResolver
-                                | • @Deprecated: public interface org.apache.maven.model.building.ModelSource
-                                |
-                                | org.apache.maven.repository.internal.DefaultVersionRangeResolver
-                                | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
-                                |
-                                | org.apache.maven.repository.internal.DefaultVersionResolver
-                                | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
-                                | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
-                                |
-                                | org.apache.maven.repository.internal.DefaultVersionResolver$Key
-                                | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
-                                |
-                                | org.apache.maven.repository.internal.MavenAetherModule
-                                | • @Deprecated: public final class org.eclipse.aether.impl.AetherModule
 aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 | • @Deprecated: public class org.apache.http.conn.scheme.PlainSocketFactory
                                 | • @Deprecated: public class org.apache.http.impl.conn.PoolingClientConnectionManager
@@ -702,6 +684,24 @@ slf4j-api-2.0.6.jar             | org.slf4j.LoggerFactory
                                 |
                                 | org.slf4j.helpers.Util$ClassContextSecurityManager
                                 | • @Deprecated: public class java.lang.SecurityManager
+maven-aether-provider-3.3.9.jar | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
+                                | • @Deprecated: public interface org.apache.maven.model.building.ModelSource
+                                |
+                                | org.apache.maven.repository.internal.DefaultModelResolver
+                                | • @Deprecated: public interface org.apache.maven.model.building.ModelSource
+                                |
+                                | org.apache.maven.repository.internal.DefaultVersionRangeResolver
+                                | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
+                                |
+                                | org.apache.maven.repository.internal.DefaultVersionResolver
+                                | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
+                                | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
+                                |
+                                | org.apache.maven.repository.internal.DefaultVersionResolver$Key
+                                | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
+                                |
+                                | org.apache.maven.repository.internal.MavenAetherModule
+                                | • @Deprecated: public final class org.eclipse.aether.impl.AetherModule
 maven-model-builder-3.3.9.jar   | org.apache.maven.model.interpolation.StringSearchModelInterpolator
                                 | • @Deprecated: public final class java.security.AccessController
                                 |

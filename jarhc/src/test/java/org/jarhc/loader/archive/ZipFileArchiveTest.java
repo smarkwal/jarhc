@@ -19,7 +19,6 @@ package org.jarhc.loader.archive;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,13 +26,13 @@ import java.util.List;
 import org.jarhc.utils.ByteBuffer;
 import org.junit.jupiter.api.Test;
 
-class ZipStreamArchiveTest {
+class ZipFileArchiveTest {
 
 	@Test
 	void test() throws IOException {
 
-		File file = new File("src/unitTest/resources/org/jarhc/loader/archive/a.jar");
-		try (Archive archive = new ZipStreamArchive(new FileInputStream(file))) {
+		File file = new File("src/test/resources/org/jarhc/loader/archive/a.jar");
+		try (Archive archive = new ZipFileArchive(file)) {
 
 			List<String> files = new ArrayList<>();
 			while (true) {

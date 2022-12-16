@@ -76,11 +76,19 @@ subprojects {
     apply(plugin = "idea")
     apply(plugin = "com.github.ben-manes.versions")
 
-    // Java version check ----------------------------------------------------------
+    // Java version check ------------------------------------------------------
 
     if (!JavaVersion.current().isJava11Compatible) {
         val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
         throw GradleException(error)
+    }
+
+    // dependencies ------------------------------------------------------------
+
+    repositories {
+        maven {
+            url = uri("https://repo.maven.apache.org/maven2/")
+        }
     }
 
 }

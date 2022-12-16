@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Stephan Markwalder
+ * Copyright 2022 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import org.junit.jupiter.api.Assertions;
 import org.mockito.MockingDetails;
 import org.mockito.Mockito;
 
@@ -36,7 +37,7 @@ public class AssertUtils {
 		for (Method method : methods) {
 			int modifiers = method.getModifiers();
 			if (Modifier.isPublic(modifiers)) {
-				assertTrue(Modifier.isStatic(modifiers), "Public method is not static: " + method.toString());
+				Assertions.assertTrue(Modifier.isStatic(modifiers), "Public method is not static: " + method.toString());
 			}
 		}
 
@@ -44,7 +45,7 @@ public class AssertUtils {
 		try {
 			Constructor<?> constructor = clazz.getDeclaredConstructor();
 			int modifiers = constructor.getModifiers();
-			assertTrue(Modifier.isPrivate(modifiers), "No-arg constructor is not private: " + constructor);
+			Assertions.assertTrue(Modifier.isPrivate(modifiers), "No-arg constructor is not private: " + constructor);
 
 			// constructor must throw IllegalStateException
 			constructor.setAccessible(true);
@@ -53,16 +54,16 @@ public class AssertUtils {
 			} catch (InvocationTargetException e) {
 				Throwable cause = e.getCause();
 				if (cause instanceof IllegalStateException) {
-					assertEquals("utility class", cause.getMessage());
+					Assertions.assertEquals("utility class", cause.getMessage());
 				} else {
-					fail(e);
+					Assertions.fail(e);
 				}
 			} catch (InstantiationException | IllegalAccessException e) {
-				fail(e);
+				Assertions.fail(e);
 			}
 
 		} catch (NoSuchMethodException e) {
-			fail("No-arg constructor not found");
+			Assertions.fail("No-arg constructor not found");
 		}
 
 	}
@@ -74,7 +75,7 @@ public class AssertUtils {
 	 */
 	public static void assertMock(Object object) {
 		MockingDetails details = Mockito.mockingDetails(object);
-		assertTrue(details.isMock());
+		Assertions.assertTrue(details.isMock());
 	}
 
 }

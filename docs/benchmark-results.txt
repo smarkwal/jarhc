@@ -1,11 +1,11 @@
 Benchmark                                                         Mode  Cnt  Score    Error  Units
-o.j.analyzer.AnalyzerBenchmarks.test_BinaryCompatibilityAnalyzer    ss   10  0.218    0.019   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer              ss   10  0.665    0.164   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_ClassVersionsAnalyzer          ss   10  0.015    0.003   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_DuplicatesAnalyzer             ss   10  0.017    0.001   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarDependenciesAnalyzer        ss   10  0.039    0.002   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer               ss   10  0.012    0.002   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer            ss   10  0.001    0.001   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer               ss   10  0.125    0.012   s/op
-o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                     ss   10  0.113    0.004   s/op
-o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime               ss   10  1.700    0.053   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_BinaryCompatibilityAnalyzer    ss   10  0.217 ±  0.028   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer              ss   10  0.184 ±  0.039   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_ClassVersionsAnalyzer          ss   10  0.031 ±  0.003   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_DuplicatesAnalyzer             ss   10  0.018 ±  0.004   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JarDependenciesAnalyzer        ss   10  0.018 ±  0.004   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer               ss   10  0.030 ±  0.004   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer            ss   10  0.001 ±  0.001   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer               ss   10  0.053 ±  0.014   s/op
+o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                     ss   10  0.073 ±  0.004   s/op
+o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime               ss   10  0.522 ±  0.077   s/op

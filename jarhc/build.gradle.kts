@@ -26,7 +26,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 plugins {
-    java
+    `java-library`
+    `java-test-fixtures`
     jacoco
     signing
     `maven-publish`
@@ -86,13 +87,13 @@ idea {
             file("src/main/resources")
         )
         testSources.from(
+            file("src/testFixtures/java"),
             file("src/test/java"),
-            file("src/unitTest/java"),
             file("src/integrationTest/java"),
         )
         testResources.from(
+            file("src/testFixtures/resources"),
             file("src/test/resources"),
-            file("src/unitTest/resources"),
             file("src/integrationTest/resources"),
         )
         isDownloadJavadoc = true
@@ -106,10 +107,6 @@ idea {
 // command line option: -Pskip.tests
 val skipTests: Boolean = project.hasProperty("skip.tests")
 
-// select JMH benchmarks
-// to run a single benchmark: -Pbenchmarks=DefaultJavaRuntimeBenchmark
-val benchmarks: String = (project.properties["benchmarks"] ?: ".*") as String
-
 // constants -------------------------------------------------------------------
 
 val mainClassName: String = "org.jarhc.Main"
@@ -120,7 +117,6 @@ val licenseReportPath: String = "${buildDir}/reports/licenses"
 
 // test results
 val testReportPath: String = "${buildDir}/test-results/test"
-val unitTestReportPath: String = "${buildDir}/test-results/unitTest"
 val integrationTestReportPath: String = "${buildDir}/test-results/integrationTest"
 
 // JaCoCo coverage report
@@ -130,60 +126,28 @@ val jacocoTestReportXml: String = "${buildDir}/reports/jacoco/test/report.xml"
 
 sourceSets {
 
-    create("unitTest") {
-        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-    }
-
     create("integrationTest") {
-        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        compileClasspath += sourceSets.main.get().output + sourceSets.testFixtures.get().output
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.testFixtures.get().output
     }
 
-}
-
-val unitTestImplementation: Configuration by configurations.getting {
-    extendsFrom(
-        configurations.implementation.get(),
-        configurations.testImplementation.get()
-    )
-}
-
-val unitTestRuntimeOnly: Configuration by configurations.getting {
-    extendsFrom(
-        configurations.runtimeOnly.get(),
-        configurations.testRuntimeOnly.get()
-    )
-}
-
-val unitTestAnnotationProcessor: Configuration by configurations.getting {
-    extendsFrom(
-        configurations.annotationProcessor.get(),
-        configurations.testAnnotationProcessor.get()
-    )
 }
 
 val integrationTestImplementation: Configuration by configurations.getting {
     extendsFrom(
         configurations.implementation.get(),
-        configurations.testImplementation.get()
+        configurations.testFixturesImplementation.get()
     )
 }
 
 val integrationTestRuntimeOnly: Configuration by configurations.getting {
     extendsFrom(
         configurations.runtimeOnly.get(),
-        configurations.testRuntimeOnly.get()
+        configurations.testFixturesRuntimeOnly.get()
     )
 }
 
 // dependencies ----------------------------------------------------------------
-
-repositories {
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
-}
 
 dependencies {
 
@@ -198,7 +162,7 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:slf4j-api:2.0.6")
+    api("org.slf4j:slf4j-api:2.0.6")
     implementation("org.slf4j:jul-to-slf4j:2.0.6")
     implementation("org.slf4j:jcl-over-slf4j:2.0.6")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.6")
@@ -214,16 +178,8 @@ dependencies {
     implementation("commons-codec:commons-codec:1.15")
 
     // test dependencies (available in unit and integration tests)
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    testImplementation("org.mockito:mockito-core:4.10.0")
-
-    // unit test dependencies
-    // TODO: move JMH benchmarks in a separate source set?
-    unitTestImplementation("org.openjdk.jmh:jmh-core:1.36")
-    unitTestAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.36")
-
-    // integration test dependencies
-    // currently: none
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.1")
+    testFixturesApi("org.mockito:mockito-core:4.10.0")
 
 }
 
@@ -280,12 +236,12 @@ sonarqube {
 
         // paths to test sources and test classes
         // TODO: use code to generate the following paths
-        property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/unitTest/java,${projectDir}/src/integrationTest/java")
-        property("sonar.java.test.binaries", "${buildDir}/classes/java/test,${buildDir}/classes/java/unitTest,${buildDir}/classes/java/integrationTest")
+        property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/integrationTest/java")
+        property("sonar.java.test.binaries", "${buildDir}/classes/java/test,${buildDir}/classes/java/integrationTest")
         // TODO: set sonar.java.test.libraries?
 
         // include test results
-        property("sonar.junit.reportPaths", "${testReportPath},${unitTestReportPath},${integrationTestReportPath}")
+        property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
 
         // include test coverage results
         property("sonar.java.coveragePlugin", "jacoco")
@@ -368,18 +324,17 @@ tasks {
     }
 
     check {
-        dependsOn(unitTest, integrationTest)
+        dependsOn(test, integrationTest)
     }
 
     jacocoTestReport {
 
         // run all tests first
-        dependsOn(test, unitTest, integrationTest)
+        dependsOn(test, integrationTest)
 
         // get JaCoCo data from all test tasks
         executionData.from(
             "${buildDir}/jacoco/test.exec",
-            "${buildDir}/jacoco/unitTest.exec",
             "${buildDir}/jacoco/integrationTest.exec"
         )
 
@@ -457,7 +412,7 @@ val testJar = task("testJar", type = Jar::class) {
     // compile all test classes first
     dependsOn(
         tasks.testClasses,
-        tasks["unitTestClasses"],
+        tasks.testFixturesClasses,
         tasks["integrationTestClasses"]
     )
 
@@ -467,7 +422,6 @@ val testJar = task("testJar", type = Jar::class) {
     // include compiled unit test classes and integration test classes
     from(
         sourceSets.test.get().output,
-        sourceSets["unitTest"].output,
         sourceSets["integrationTest"].output
     )
 
@@ -503,29 +457,12 @@ val testLibsZip = task("testLibsZip", type = Zip::class) {
     // include all test dependencies and integration test dependencies
     from(
         configurations.testRuntimeClasspath,
-        configurations["unitTestRuntimeClasspath"],
         configurations["integrationTestRuntimeClasspath"]
     )
-    exclude(
-        // exclude inherited main runtime dependencies
-        configurations.runtimeClasspath.get().map { it.name }
-    )
-}
-
-val unitTest = task("unitTest", type = Test::class) {
-    group = "verification"
-    description = "Runs the unit test suite."
-
-    // use tests in unitTest source set
-    testClassesDirs = sourceSets["unitTest"].output.classesDirs
-    classpath = sourceSets["unitTest"].runtimeClasspath
-
-    // run tests in parallel
-    // (currently, unitTest task is fastest with a single JVM and thread)
-    // maxParallelForks = 4
-
-    // run unit tests after "core" tests
-    shouldRunAfter(tasks.test)
+    // exclude JarHC main artifact and test fixtures
+    exclude("jarhc-*.jar")
+    // exclude inherited main runtime dependencies
+    exclude(configurations.runtimeClasspath.get().map { it.name })
 }
 
 val integrationTest = task("integrationTest", type = Test::class) {
@@ -547,7 +484,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
     systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", "4")
 
     // run integration tests after unit tests
-    shouldRunAfter(unitTest)
+    shouldRunAfter(tasks.test)
 }
 
 // common settings for all test tasks
@@ -591,17 +528,6 @@ tasks.withType<Test> {
 
 }
 
-val runBenchmarks = task("runBenchmarks", type = JavaExec::class) {
-    group = "verification"
-    description = "Runs JMH benchmarks."
-
-    // settings
-    // documentation: https://github.com/guozheng/jmh-tutorial/blob/master/README.md
-    classpath = unitTest.classpath
-    mainClass.set("org.openjdk.jmh.Main")
-    args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
-}
-
 tasks.withType<JavaCompile> {
     options.encoding = "ASCII"
 }
@@ -609,7 +535,7 @@ tasks.withType<JavaCompile> {
 tasks.sonarqube {
     // run all tests and generate JaCoCo XML report
     dependsOn(
-        tasks.test, unitTest, integrationTest,
+        tasks.test, integrationTest,
         tasks.jacocoTestReport
     )
 }

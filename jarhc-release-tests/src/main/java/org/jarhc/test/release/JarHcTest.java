@@ -270,7 +270,7 @@ class JarHcTest extends ReleaseTest {
 		// prepare
 		String resourceName = "jarhc-provided.txt";
 		String outputPath = runner.getOutputPath(resourceName);
-		String dependencies = getDependencies("implementation");
+		String dependencies = getDependencies("implementation") + "," + getDependencies("api");
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
