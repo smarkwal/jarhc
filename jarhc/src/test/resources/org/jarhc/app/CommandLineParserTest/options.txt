@@ -1,0 +1,8 @@
+
+# analysis
+--release 11
+
+# report
+--title My App 1.0
+--output report.html
+--skip-empty

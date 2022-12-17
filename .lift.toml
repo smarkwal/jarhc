@@ -15,16 +15,17 @@
 #
 
 # configuration of Sonatype Lift
-# see https://help.sonatype.com/lift/configuration-reference
+# see https://help.sonatype.com/lift/configuring-lift
 
-jdkVersion = 11
+build = "gradlew"
+jdkVersion = "11"
 
 ignoreRules = ["EqualsGetClass", "JavaLangClash"]
 
 ignoreFiles = """
-build/
-src/test/
-src/unitTest/
-src/integrationTest/
-src/releaseTest/
+jarhc/build/
+jarhc/src/test/
+jarhc/src/integrationTest/
+jarhc-benchmarks/
+jarhc-release-test/
 """

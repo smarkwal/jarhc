@@ -38,12 +38,13 @@ jobs:
       uses: actions/cache@v3
       with:
         path: dependency-check
-        key: dependency-check-7.2.0-data
+        key: dependency-check-7.4.1-data
 
     - name: Run Dependency-Check Analysis
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'dependencyCheckAnalyze ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon dependencyCheckAggregate ${{ github.event.inputs.additionalGradleOptions }}'
+        cache-read-only: false
 
     - name: Upload report
       uses: actions/upload-artifact@v3

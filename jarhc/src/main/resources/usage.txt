@@ -1,0 +1,92 @@
+Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*
+
+Arguments:
+
+   <artifact> : Path to a JAR file, a WAR file, a JMOD file, or a directory with
+                JAR files, WAR files, and/or JMOD files.
+                Or coordinates of a Maven artifact.
+
+   Note:
+   If a path refers to a WAR file, JarHC analyzes the JAR files inside the WAR
+   file.
+
+Options:
+
+   --help                : Print this usage information.
+    -h
+
+   --version             : Print version information.
+    -v
+
+   --debug               : Enable verbose output.
+   --trace
+
+   --release  <number>   : Set Java release used when parsing multi-release JAR
+    -r                     files. Minimum is 8 for Java 8.
+                           Example: -r 11
+                           Default: Version of Java runtime used to run JarHC.
+
+   --classpath <path>    : Add a file or directory with files to the classpath
+    -cp                    of libraries to be analyzed.
+                           Adding files like this has the same effect as passing
+                           them as arguments.
+
+   --provided <path>     : Add a file or directory with files to the classpath
+                           of provided libraries.
+
+   --runtime <path>      : Add a file or directory with files to the classpath
+                           of runtime libraries.
+
+   --strategy <strategy> : Class loader strategy ("ParentLast" or "ParentFirst").
+                           Example: --strategy ParentFirst
+                           Default: ParentLast
+
+   --output <file>       : Report file output path.
+    -o                     Example: -o report.html
+                           Default: [none] (print to STDOUT)
+
+   --title <text>        : Report title.
+    -t                     Example: -t "MyApp 1.0"
+                           Default: "JAR Health Check Report"
+
+   --sections <sections> : List of sections to include in the report.
+    -s                     Example: -s "jf,cv,jd"
+                           Default: [none] (include all sections)
+
+                           If the list of sections is prefixed with '-'
+                           the given sections are excluded.
+                           Example: -s "-p,sp"
+
+   --skip-empty          : Exclude empty sections from the report.
+
+   --remove-version      : Remove version number from JAR file names.
+
+   --use-artifact-name   : Create JAR file name from artifact name.
+
+   --ignore-missing-annotations :
+                           Report does not include warnings for unknown
+                           annotations.
+
+   ----ignore-exact-copy : Duplicate Classes section does not list classes and
+                           resources which are identical.
+
+   --data <path>         : Path to local cache directory for artifact
+                           information. If the directory does not exist,
+                           it is automatically created.
+                           The special value "TEMP" can be used to create a
+                           temporary data directory.
+                           If this option is not present, JarHC will check if
+                           environment variable JARHC_DATA is set.
+                           Default: ~/.jarhc
+
+   --options <path>        Load additional options from a file. The file must
+                           contain one option per line. Empty lines and lines
+                           starting with '#' are ignored.
+
+Environment variables:
+
+   JARHC_DATA            : Path to local cache directory for artifact
+                           information. If the directory does not exist,
+                           it is automatically created.
+
+Sections:

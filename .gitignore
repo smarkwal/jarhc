@@ -7,9 +7,7 @@
 *.iml
 
 # build output
-/build
-/target
-/out
+build/
 
 # JarHC cache (note: moved to ~/.jarhc)
 /.jarhc
@@ -29,7 +27,7 @@
 /dependency-check
 
 # user-specific files
-/gradle.user.properties
+gradle.user.properties
 *.gpg
 
 # files used for local testing

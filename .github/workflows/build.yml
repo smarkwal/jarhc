@@ -35,40 +35,41 @@ jobs:
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@v1
 
-    - name: Restore SonarQube Cache
+    - name: Restore Sonar Cache
       uses: actions/cache@v3
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
-        key: sonarqube-cache
+        key: sonar-cache
 
     - name: Set Push Gradle options
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
-      run: echo "PUSH_GRADLE_OPTIONS=sonarqube" >> $GITHUB_ENV
+      run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
-        arguments: 'build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
+        arguments: '--no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
+        cache-read-only: false
 
     - name: Upload reports
       uses: actions/upload-artifact@v3
       if: ${{ always() }}
       with:
         name: reports
-        path: build/reports
+        path: jarhc/build/reports
         retention-days: 7
 
     - name: Upload libs
       uses: actions/upload-artifact@v3
       with:
         name: libs
-        path: build/libs
+        path: jarhc/build/libs
         retention-days: 14
 
     - name: Upload docs
       uses: actions/upload-artifact@v3
       with:
         name: docs
-        path: build/docs
+        path: jarhc/build/docs
         retention-days: 7
