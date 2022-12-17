@@ -27,9 +27,6 @@ plugins {
     // https://github.com/ben-manes/gradle-versions-plugin
     id("com.github.ben-manes.versions") version "0.44.0"
 
-    // create source-xref artifact
-    id("org.kordamp.gradle.source-xref") version "0.48.0"
-
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
     id("org.owasp.dependencycheck") version "7.4.1"

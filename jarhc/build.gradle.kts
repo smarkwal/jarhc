@@ -353,7 +353,7 @@ tasks {
     }
 
     assemble {
-        dependsOn(jarWithDeps, libsZip, testJar, testLibsZip, "sourceXrefJar")
+        dependsOn(jarWithDeps)
     }
 
 }
@@ -403,66 +403,6 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE // alternative: WARN
 
     with(tasks.jar.get() as CopySpec)
-}
-
-val testJar = task("testJar", type = Jar::class) {
-    group = "build"
-    description = "Assembles a jar archive containing the test classes."
-
-    // compile all test classes first
-    dependsOn(
-        tasks.testClasses,
-        tasks.testFixturesClasses,
-        tasks["integrationTestClasses"]
-    )
-
-    // append classifier "-tests"
-    archiveClassifier.set("tests")
-
-    // include compiled unit test classes and integration test classes
-    from(
-        sourceSets.test.get().output,
-        sourceSets["integrationTest"].output
-    )
-
-    // exclude duplicates
-    // (expected conflict: jarhc.properties)
-    duplicatesStrategy = DuplicatesStrategy.WARN
-}
-
-val libsZip = task("libsZip", type = Zip::class) {
-    group = "build"
-    description = "Assembles a zip archive containing the runtime dependencies."
-
-    // append classifier "-tests"
-    archiveClassifier.set("libs")
-
-    // create archive in "libs" folder (instead of "distributions")
-    destinationDirectory.set(file("${buildDir}/libs"))
-
-    // include all runtime dependencies
-    from(configurations.runtimeClasspath)
-}
-
-val testLibsZip = task("testLibsZip", type = Zip::class) {
-    group = "build"
-    description = "Assembles a zip archive containing the test dependencies."
-
-    // append classifier "-tests"
-    archiveClassifier.set("test-libs")
-
-    // create archive in "libs" folder (instead of "distributions")
-    destinationDirectory.set(file("${buildDir}/libs"))
-
-    // include all test dependencies and integration test dependencies
-    from(
-        configurations.testRuntimeClasspath,
-        configurations["integrationTestRuntimeClasspath"]
-    )
-    // exclude JarHC main artifact and test fixtures
-    exclude("jarhc-*.jar")
-    // exclude inherited main runtime dependencies
-    exclude(configurations.runtimeClasspath.get().map { it.name })
 }
 
 val integrationTest = task("integrationTest", type = Test::class) {
