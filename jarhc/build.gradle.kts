@@ -35,7 +35,7 @@ plugins {
     // create report with all open-source licenses
     id("com.github.jk1.dependency-license-report") version "2.1"
 
-    // run SonarQube analysis
+    // run Sonar analysis
     id("org.sonarqube") version "3.5.0.2730"
 
     // get current Git branch name
@@ -65,12 +65,12 @@ if (userPropertiesFile.exists()) {
 
 gradle.taskGraph.whenReady {
 
-    // if sonarqube task should be executed ...
-    if (gradle.taskGraph.hasTask(":sonarqube")) {
+    // if sonar task should be executed ...
+    if (gradle.taskGraph.hasTask(":sonar")) {
         // environment variable SONAR_TOKEN or property "sonar.login" must be set
         val tokenFound = project.hasProperty("sonar.login") || System.getenv("SONAR_TOKEN") != null
         if (!tokenFound) {
-            val error = "SonarQube: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
+            val error = "Sonar: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
             throw GradleException(error)
         }
     }
@@ -227,8 +227,8 @@ jacoco {
     toolVersion = "0.8.7"
 }
 
-sonarqube {
-    // documentation: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-gradle/
+sonar {
+    // documentation: https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-gradle/
 
     properties {
 
@@ -346,7 +346,7 @@ tasks {
 
         reports {
 
-            // generate XML report (required for SonarQube)
+            // generate XML report (required for Sonar)
             xml.required.set(true)
             xml.outputLocation.set(file(jacocoTestReportXml))
 
@@ -484,7 +484,7 @@ tasks.withType<JavaCompile> {
     options.encoding = "ASCII"
 }
 
-tasks.sonarqube {
+tasks.sonar {
     // run all tests and generate JaCoCo XML report
     dependsOn(
         tasks.test, integrationTest,
