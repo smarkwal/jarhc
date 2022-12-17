@@ -287,7 +287,7 @@ class JarHcTest extends ReleaseTest {
 		// prepare
 		String resourceName = "jarhc-artifacts.txt";
 		String outputPath = runner.getOutputPath(resourceName);
-		String dependencies = getDependencies("runtimeClasspath");
+		String dependencies = getDependencies("runtimeClasspath"); // direct + transitive dependencies
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
@@ -308,7 +308,7 @@ class JarHcTest extends ReleaseTest {
 		// prepare
 		String resourceName = "jarhc-provided.txt";
 		String outputPath = runner.getOutputPath(resourceName);
-		String dependencies = getDependencies("implementation") + "," + getDependencies("api");
+		String dependencies = getDependencies("implementation", "api"); // only direct dependencies
 		Command command = Command.jarHc(
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime

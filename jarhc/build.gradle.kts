@@ -133,6 +133,16 @@ sourceSets {
 
 }
 
+configurations {
+
+    // exclude commons-logging because it is replaced by jcl-over-slf4j
+    // see https://github.com/smarkwal/jarhc/issues/112
+    implementation {
+        exclude(group = "commons-logging", module = "commons-logging")
+    }
+
+}
+
 val integrationTestImplementation: Configuration by configurations.getting {
     extendsFrom(
         configurations.implementation.get(),
@@ -146,6 +156,8 @@ val integrationTestRuntimeOnly: Configuration by configurations.getting {
         configurations.testFixturesRuntimeOnly.get()
     )
 }
+
+val includeInJarWithDeps: Configuration by configurations.creating
 
 // dependencies ----------------------------------------------------------------
 
@@ -163,9 +175,8 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
     api("org.slf4j:slf4j-api:2.0.6")
-    implementation("org.slf4j:jul-to-slf4j:2.0.6")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.6")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.6")
+    api("org.slf4j:jul-to-slf4j:2.0.6")
+    api("org.slf4j:jcl-over-slf4j:2.0.6")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -177,19 +188,14 @@ dependencies {
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
     implementation("commons-codec:commons-codec:1.15")
 
+    // additional libraries to be added to jar-with-deps
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.6")
+
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.1")
     testFixturesApi("org.mockito:mockito-core:4.10.0")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.6")
 
-}
-
-configurations {
-
-    // exclude commons-logging because it is replaced by jcl-over-slf4j
-    // see https://github.com/smarkwal/jarhc/issues/112
-    implementation {
-        exclude(group = "commons-logging", module = "commons-logging")
-    }
 }
 
 // plugin configurations -------------------------------------------------------
@@ -379,6 +385,12 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
 
     // include all files from all runtime dependencies
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+
+    // add all additional libraries
+    from(includeInJarWithDeps.map { if (it.isDirectory) it else zipTree(it) })
+
+    // add additional resources for jar-with-deps
+    from("src/app/resources")
 
     // include license report
     from(licenseReportPath) {

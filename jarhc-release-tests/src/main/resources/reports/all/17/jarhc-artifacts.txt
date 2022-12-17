@@ -7,11 +7,10 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 225 KB  | 130     | 7         | **************************************** | [unknown]
+jarhc.jar                                                      | 225 KB  | 130     | 6         | **************************************** | [unknown]
 jul-to-slf4j-2.0.6.jar                                         | 4.74 KB | 1       | 0         | c4d348977a83a0bfcf42fd6fd1fee6e7904f1a0c | org.slf4j:jul-to-slf4j:2.0.6
 aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
 jcl-over-slf4j-2.0.6.jar                                       | 17.0 KB | 8       | 0         | 839ff57e112f2e28ef372e96d135696a6896b9ad | org.slf4j:jcl-over-slf4j:2.0.6
-slf4j-simple-2.0.6.jar                                         | 14.9 KB | 7       | 0         | 78c57967fe87a823697fe6cf0f5b394b0aa18337 | org.slf4j:slf4j-simple:2.0.6
 slf4j-api-2.0.6.jar                                            | 61.1 KB | 51      | 0         | 88c40d8b4f33326f19a7d3c0aaf2c7e8721d4953 | org.slf4j:slf4j-api:2.0.6
 asm-9.4.jar                                                    | 120 KB  | 37      | 0         | b4e0e2d2e023aa317b7cfcfc916377ea348e07d1 | org.ow2.asm:asm:9.4
 json-20220924.jar                                              | 68.7 KB | 27      | 0         | 5aa95e7688f76c664af205c5937620f02688dfbc | org.json:json:20220924
@@ -41,7 +40,7 @@ error_prone_annotations-2.11.0.jar                             | 15.6 KB | 26   
 j2objc-annotations-1.3.jar                                     | 8.58 KB | 12      | 0         | ba035118bc8bac37d7eff77700720999acd9986d | com.google.j2objc:j2objc-annotations:1.3
 httpcore-4.4.16.jar                                            | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.73 MB | 4540    | 149       | -                                        | -
+Classpath                                                      | 6.71 MB | 4533    | 148       | -                                        | -
 
 Modules
 -------
@@ -53,8 +52,6 @@ jarhc.jar                                                      | org.jarhc      
 jul-to-slf4j-2.0.6.jar                                         | jul.to.slf4j                                        | Manifest       | Yes       | -         | [all packages]
 aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -         | [all packages]
 jcl-over-slf4j-2.0.6.jar                                       | org.apache.commons.logging                          | Module-Info    | No        | org.slf4j | org.apache.commons.logging
-                                                               |                                                     |                |           | java.base |
-slf4j-simple-2.0.6.jar                                         | org.slf4j.simple                                    | Module-Info    | No        | org.slf4j |
                                                                |                                                     |                |           | java.base |
 slf4j-api-2.0.6.jar                                            | org.slf4j                                           | Module-Info    | No        | java.base | org.slf4j
                                                                |                                                     |                |           |           | org.slf4j.event
@@ -100,7 +97,6 @@ jarhc.jar                                                      | No             
 jul-to-slf4j-2.0.6.jar                                         | No                    | Java 8 (1)
 aether-transport-http-1.1.0.jar                                | No                    | Java 5 (20)
 jcl-over-slf4j-2.0.6.jar                                       | Yes (Java 9)          | Java 8 (8)
-slf4j-simple-2.0.6.jar                                         | Yes (Java 9)          | Java 8 (7)
 slf4j-api-2.0.6.jar                                            | Yes (Java 9)          | Java 8 (51)
 asm-9.4.jar                                                    | No                    | Java 5 (37)
 json-20220924.jar                                              | No                    | Java 6 (27)
@@ -130,7 +126,7 @@ error_prone_annotations-2.11.0.jar                             | No             
 j2objc-annotations-1.3.jar                                     | No                    | Java 5 (12)
 httpcore-4.4.16.jar                                            | No                    | Java 6 (253)
 plexus-interpolation-1.21.jar                                  | No                    | Java 5 (44)
-Classpath                                                      | -                     | Java 11 (130), Java 10 (1), Java 8 (2514), Java 7 (386),
+Classpath                                                      | -                     | Java 11 (130), Java 10 (1), Java 8 (2507), Java 7 (386),
                                                                |                       | Java 6 (974), Java 5 (535)
 
 JAR Dependencies
@@ -160,12 +156,10 @@ aether-transport-http-1.1.0.jar                                | aether-api-1.1.
                                                                | httpcore-4.4.16.jar                  |
 jcl-over-slf4j-2.0.6.jar                                       | slf4j-api-2.0.6.jar                  | httpclient-4.5.14.jar
                                                                |                                      | jarhc.jar
-slf4j-simple-2.0.6.jar                                         | slf4j-api-2.0.6.jar                  | [none]
 slf4j-api-2.0.6.jar                                            | [none]                               | aether-impl-1.1.0.jar
                                                                |                                      | jarhc.jar
                                                                |                                      | jcl-over-slf4j-2.0.6.jar
                                                                |                                      | jul-to-slf4j-2.0.6.jar
-                                                               |                                      | slf4j-simple-2.0.6.jar
 asm-9.4.jar                                                    | [none]                               | jarhc.jar
 json-20220924.jar                                              | [none]                               | jarhc.jar
 maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
@@ -267,7 +261,6 @@ aether-transport-http-1.1.0.jar                                | org.eclipse.aet
                                                                |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.6)
                                                                |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
 jcl-over-slf4j-2.0.6.jar                                       | org.slf4j:jcl-over-slf4j:2.0.6                                              | org.slf4j:slf4j-api:2.0.6                                                   | OK
-slf4j-simple-2.0.6.jar                                         | org.slf4j:slf4j-simple:2.0.6                                                | org.slf4j:slf4j-api:2.0.6                                                   | OK
 slf4j-api-2.0.6.jar                                            | org.slf4j:slf4j-api:2.0.6                                                   | [none]                                                                      |
 asm-9.4.jar                                                    | org.ow2.asm:asm:9.4                                                         | [none]                                                                      |
 json-20220924.jar                                              | org.json:json:20220924                                                      | [none]                                                                      |
@@ -455,7 +448,6 @@ slf4j-api-2.0.6.jar                  | 4     | org.slf4j                        
                                      |       | org.slf4j.event                                       |
                                      |       | org.slf4j.helpers                                     |
                                      |       | org.slf4j.spi                                         |
-slf4j-simple-2.0.6.jar               | 1     | org.slf4j.simple                                      |
 
 Duplicate Classes
 -----------------
@@ -675,8 +667,6 @@ aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 | org.eclipse.aether.transport.http.X509HostnameVerifierAdapter
                                 | • @Deprecated: public interface org.apache.http.conn.ssl.X509HostnameVerifier
 jcl-over-slf4j-2.0.6.jar        | org.apache.commons.logging.impl.SimpleLog
-                                | • @Deprecated: public final class java.security.AccessController
-slf4j-simple-2.0.6.jar          | org.slf4j.simple.SimpleLoggerConfiguration
                                 | • @Deprecated: public final class java.security.AccessController
 slf4j-api-2.0.6.jar             | org.slf4j.LoggerFactory
                                 | • @Deprecated: public class java.lang.SecurityManager

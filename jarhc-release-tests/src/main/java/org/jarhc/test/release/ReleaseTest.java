@@ -23,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -49,12 +51,20 @@ abstract class ReleaseTest {
 
 	}
 
-	protected String getDependencies(String configuration) {
+	protected String getDependencies(String... configurations) {
 		File file = getProjectFile("build/configurations.properties");
 		try {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(file));
-			return properties.getProperty(configuration, "");
+			LinkedHashSet<String> dependencies = new LinkedHashSet<>();
+			for (String configuration : configurations) {
+				String value = properties.getProperty(configuration);
+				if (value == null) {
+					throw new IllegalArgumentException("Configuration not found: " + configuration);
+				}
+				dependencies.addAll(List.of(value.split(",")));
+			}
+			return String.join(",", dependencies);
 		} catch (IOException e) {
 			throw new AssertionError("Unexpected I/O error.", e);
 		}
