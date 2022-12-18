@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import java.util.*
-
 plugins {
     java
 }
@@ -23,17 +21,6 @@ plugins {
 // project settings ------------------------------------------------------------
 
 description = "JarHC Benchmarks"
-
-// load user-specific properties -----------------------------------------------
-
-val userPropertiesFile = file("${projectDir}/gradle.user.properties")
-if (userPropertiesFile.exists()) {
-    val userProperties = Properties()
-    userProperties.load(userPropertiesFile.inputStream())
-    userProperties.forEach {
-        project.ext.set(it.key.toString(), it.value)
-    }
-}
 
 // special settings for IntelliJ IDEA
 idea {

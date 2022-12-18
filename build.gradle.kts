@@ -15,6 +15,7 @@
  */
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 import org.owasp.dependencycheck.reporting.ReportGenerator.Format
+import java.util.*
 
 plugins {
 
@@ -30,6 +31,45 @@ plugins {
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
     id("org.owasp.dependencycheck") version "7.4.1"
+
+    // provide utility task "taskTree" for analysis of task dependencies
+    id("com.dorongold.task-tree") version "2.1.0"
+
+}
+
+allprojects {
+
+    // load user-specific properties -------------------------------------------
+    val userPropertiesFile = file("${rootDir}/gradle.user.properties")
+    if (userPropertiesFile.exists()) {
+        val userProperties = Properties()
+        userProperties.load(userPropertiesFile.inputStream())
+        userProperties.forEach {
+            project.ext.set(it.key.toString(), it.value)
+        }
+    }
+
+}
+
+subprojects {
+
+    apply(plugin = "idea")
+    apply(plugin = "com.github.ben-manes.versions")
+
+    // Java version check ------------------------------------------------------
+
+    if (!JavaVersion.current().isJava11Compatible) {
+        val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
+        throw GradleException(error)
+    }
+
+    // dependencies ------------------------------------------------------------
+
+    repositories {
+        maven {
+            url = uri("https://repo.maven.apache.org/maven2/")
+        }
+    }
 
 }
 
@@ -66,26 +106,4 @@ dependencyCheck {
 
     // suppressed findings
     suppressionFile = "${projectDir}/suppression.xml"
-}
-
-subprojects {
-
-    apply(plugin = "idea")
-    apply(plugin = "com.github.ben-manes.versions")
-
-    // Java version check ------------------------------------------------------
-
-    if (!JavaVersion.current().isJava11Compatible) {
-        val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
-        throw GradleException(error)
-    }
-
-    // dependencies ------------------------------------------------------------
-
-    repositories {
-        maven {
-            url = uri("https://repo.maven.apache.org/maven2/")
-        }
-    }
-
 }

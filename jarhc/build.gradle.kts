@@ -23,7 +23,6 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 plugins {
     `java-library`
@@ -41,41 +40,11 @@ plugins {
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.0.0"
 
-    // provide utility task "taskTree" for analysis of task dependencies
-    id("com.dorongold.task-tree") version "2.1.0"
-
 }
 
 // project settings ------------------------------------------------------------
 
 description = "JarHC Core"
-
-// load user-specific properties -----------------------------------------------
-
-val userPropertiesFile = file("${projectDir}/gradle.user.properties")
-if (userPropertiesFile.exists()) {
-    val userProperties = Properties()
-    userProperties.load(userPropertiesFile.inputStream())
-    userProperties.forEach {
-        project.ext.set(it.key.toString(), it.value)
-    }
-}
-
-// Preconditions based on which tasks should be executed -----------------------
-
-gradle.taskGraph.whenReady {
-
-    // if sonar task should be executed ...
-    if (gradle.taskGraph.hasTask(":sonar")) {
-        // environment variable SONAR_TOKEN or property "sonar.login" must be set
-        val tokenFound = project.hasProperty("sonar.login") || System.getenv("SONAR_TOKEN") != null
-        if (!tokenFound) {
-            val error = "Sonar: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
-            throw GradleException(error)
-        }
-    }
-
-}
 
 // special settings for IntelliJ IDEA
 idea {
@@ -99,6 +68,22 @@ idea {
         isDownloadJavadoc = true
         isDownloadSources = true
     }
+}
+
+// Preconditions based on which tasks should be executed -----------------------
+
+gradle.taskGraph.whenReady {
+
+    // if sonar task should be executed ...
+    if (gradle.taskGraph.hasTask(":sonar")) {
+        // environment variable SONAR_TOKEN or property "sonar.login" must be set
+        val tokenFound = project.hasProperty("sonar.login") || System.getenv("SONAR_TOKEN") != null
+        if (!tokenFound) {
+            val error = "Sonar: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
+            throw GradleException(error)
+        }
+    }
+
 }
 
 // configuration properties ----------------------------------------------------
@@ -198,6 +183,11 @@ dependencies {
 
 }
 
+/// do not add test-fixtures dependencies to POM file
+val javaComponent = components["java"] as AdhocComponentWithVariants
+javaComponent.withVariantsFromConfiguration(configurations["testFixturesApiElements"]) { skip() }
+javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeElements"]) { skip() }
+
 // plugin configurations -------------------------------------------------------
 
 licenseReport {
@@ -241,10 +231,8 @@ sonar {
         property("sonar.branch.name", getGitBranchName())
 
         // paths to test sources and test classes
-        // TODO: use code to generate the following paths
         property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/integrationTest/java")
         property("sonar.java.test.binaries", "${buildDir}/classes/java/test,${buildDir}/classes/java/integrationTest")
-        // TODO: set sonar.java.test.libraries?
 
         // include test results
         property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
@@ -317,7 +305,6 @@ tasks {
         // set Main-Class in MANIFEST.MF
         manifest {
             attributes["Main-Class"] = mainClassName
-            // TODO: generate a module-info.class instead?
             attributes["Automatic-Module-Name"] = "org.jarhc"
         }
 

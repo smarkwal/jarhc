@@ -16,7 +16,6 @@
 
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import java.util.*
 
 plugins {
     java
@@ -25,17 +24,6 @@ plugins {
 // project settings ------------------------------------------------------------
 
 description = "JarHC Release Tests"
-
-// load user-specific properties -----------------------------------------------
-
-val userPropertiesFile = file("${projectDir}/gradle.user.properties")
-if (userPropertiesFile.exists()) {
-    val userProperties = Properties()
-    userProperties.load(userPropertiesFile.inputStream())
-    userProperties.forEach {
-        project.ext.set(it.key.toString(), it.value)
-    }
-}
 
 // special settings for IntelliJ IDEA
 idea {
