@@ -23,9 +23,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashSet;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
+import java.util.TreeSet;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.assertj.core.api.Assertions;
@@ -56,7 +58,7 @@ abstract class ReleaseTest {
 		try {
 			Properties properties = new Properties();
 			properties.load(new FileInputStream(file));
-			LinkedHashSet<String> dependencies = new LinkedHashSet<>();
+			Set<String> dependencies = new TreeSet<>(DEPENDENCY_COMPARATOR);
 			for (String configuration : configurations) {
 				String value = properties.getProperty(configuration);
 				if (value == null) {
@@ -151,5 +153,26 @@ abstract class ReleaseTest {
 			assumeTrue(created, "Directory has been created: " + directory.getAbsolutePath());
 		}
 	}
+
+	private static final Comparator<String> DEPENDENCY_COMPARATOR = new Comparator<>() {
+
+		@Override
+		public int compare(String dependency1, String dependency2) {
+			String artifactId1 = getArtifactId(dependency1);
+			String artifactId2 = getArtifactId(dependency2);
+			int diff = artifactId1.compareToIgnoreCase(artifactId2);
+			if (diff == 0) {
+				diff = dependency1.compareTo(dependency2);
+			}
+			return diff;
+		}
+
+		private String getArtifactId(String dependency) {
+			int index = dependency.indexOf(':');
+			if (index == -1) return dependency;
+			return dependency.substring(index + 1);
+		}
+
+	};
 
 }
