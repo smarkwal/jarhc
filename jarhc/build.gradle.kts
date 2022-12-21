@@ -40,6 +40,9 @@ plugins {
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.0.0"
 
+    // JarHC Gradle plugin
+    id("org.jarhc") version "1.0.1"
+
 }
 
 // project settings ------------------------------------------------------------
@@ -345,20 +348,20 @@ tasks {
         }
     }
 
-    register("dumpDependencies") {
-        doLast {
-            val dependencies = arrayListOf<String>()
-            val configuration = project.configurations.getByName("runtimeClasspath")
-            configuration.resolvedConfiguration.resolvedArtifacts.forEach { artifact ->
-                dependencies.add(artifact.moduleVersion.id.toString())
-            }
-            dependencies.sort()
-            file("dependencies.txt").writeText(dependencies.joinToString("\n"))
-        }
+    jarhcReport {
+        dependsOn(jar)
+        classpath.setFrom(
+            jar.get().archiveFile,
+            configurations.runtimeClasspath
+        )
+        reportFiles.setFrom(
+            file("${rootDir}/docs/jarhc-report.html"),
+            file("${rootDir}/docs/jarhc-report.txt")
+        )
     }
 
     build {
-        dependsOn("dumpDependencies")
+        dependsOn(jarhcReport)
     }
 
     assemble {
