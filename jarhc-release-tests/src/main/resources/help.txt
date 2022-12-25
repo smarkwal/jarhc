@@ -59,6 +59,8 @@ Options:
 
    --skip-empty          : Exclude empty sections from the report.
 
+   --sort-rows           : Sort rows in tables by first column.
+
    --remove-version      : Remove version number from JAR file names.
 
    --use-artifact-name   : Create JAR file name from artifact name.

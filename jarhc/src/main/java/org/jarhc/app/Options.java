@@ -36,6 +36,7 @@ public class Options {
 
 	private List<String> sections = null; // all sections
 	private boolean skipEmpty = false;
+	private boolean sortRows = false;
 
 	private String reportTitle = "JAR Health Check Report";
 	private final List<String> reportFiles = new ArrayList<>();
@@ -130,6 +131,14 @@ public class Options {
 
 	public void setSkipEmpty(boolean skipEmpty) {
 		this.skipEmpty = skipEmpty;
+	}
+
+	public boolean isSortRows() {
+		return sortRows;
+	}
+
+	public void setSortRows(boolean sortRows) {
+		this.sortRows = sortRows;
 	}
 
 	public String getReportTitle() {

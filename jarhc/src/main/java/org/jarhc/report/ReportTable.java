@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ReportTable {
 
-	private String[] columns;
-	private List<String[]> rows = new ArrayList<>();
+	private final String[] columns;
+	private final List<String[]> rows = new ArrayList<>();
 
 	public ReportTable(String... columns) {
 		this.columns = columns;
@@ -39,6 +39,29 @@ public class ReportTable {
 
 	public List<String[]> getRows() {
 		return rows;
+	}
+
+	public void sortRows() {
+		rows.sort(ReportTable::compareRows);
+	}
+
+	private static int compareRows(String[] row1, String[] row2) {
+
+		// get values from first column
+		String value1 = row1[0];
+		String value2 = row2[0];
+
+		// special handling for "Classpath" row:
+		// row should always be at the bottom
+		if (value1.equals("Classpath")) return 1;
+		if (value2.equals("Classpath")) return -1;
+
+		// first compare case-insensitive, then case-sensitive
+		int diff = value1.compareToIgnoreCase(value2);
+		if (diff == 0) {
+			diff = value1.compareTo(value2);
+		}
+		return diff;
 	}
 
 }

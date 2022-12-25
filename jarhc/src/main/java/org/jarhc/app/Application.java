@@ -41,6 +41,7 @@ import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.report.ReportSection;
+import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.report.writer.impl.FileReportWriter;
 import org.jarhc.report.writer.impl.StreamReportWriter;
@@ -151,6 +152,18 @@ public class Application {
 			for (ReportSection section : report.getSections()) {
 				if (section.isEmpty()) {
 					report.removeSection(section);
+				}
+			}
+		}
+
+		if (options.isSortRows()) {
+			// sort rows in all tables
+			for (ReportSection section : report.getSections()) {
+				for (Object content : section.getContent()) {
+					if (content instanceof ReportTable) {
+						ReportTable table = (ReportTable) content;
+						table.sortRows();
+					}
 				}
 			}
 		}
