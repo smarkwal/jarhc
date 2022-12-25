@@ -4,7 +4,7 @@ JarHC is a static analysis tool to help you find your way through "JAR hell" or 
 
 Its main purpose is to analyze a set of JAR files (\*.jar) and check whether they are compatible on a binary level, and whether they contain any "unpleasant surprises" for you.
 
-It is a standalone Java application run from the command line:
+It is available as [Gradle plugin](https://github.com/smarkwal/jarhc-gradle-plugin), or as standalone Java application run from the command line:
 
 ```
 java -jar jarhc-with-deps.jar [options] <artifact> [<artifact>]*
