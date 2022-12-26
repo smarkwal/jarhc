@@ -189,6 +189,32 @@ class ClasspathLoaderTest {
 	}
 
 	@Test
+	void load_JarSources_withDuplicates() {
+
+		// prepare
+		List<JarSource> jarSources = Arrays.asList(
+				new FileSource(new File("slf4j.jar")),
+				new FileSource(new File("asm.jar")),
+				new FileSource(new File("slf4j.jar"))
+		);
+
+		// test
+		Classpath result = classpathLoader.load(jarSources);
+
+		// assert
+		List<JarFile> jarFiles = result.getJarFiles();
+		assertEquals(2, jarFiles.size());
+		assertEquals("slf4j.jar", jarFiles.get(0).getFileName());
+		assertEquals("asm.jar", jarFiles.get(1).getFileName());
+
+		assertLogger(logger).inAnyOrder()
+				.hasWarn("Duplicate file ignored: slf4j.jar")
+				.hasDebug("slf4j.jar: *")
+				.hasDebug("asm.jar: *")
+				.hasDebug("Total: *");
+	}
+
+	@Test
 	void load_Files_throwsIllegalArgumentException_ifFilesIsNull() {
 		assertThrows(
 				IllegalArgumentException.class,

@@ -17,6 +17,7 @@
 package org.jarhc.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -134,6 +135,40 @@ class ArtifactSourceTest {
 		// test & assert
 		assertThrows(IOException.class, () -> artifactSource.getInputStream());
 
+	}
+
+	@Test
+	void testEquals() {
+
+		// prepare
+		ArtifactSource source1 = new ArtifactSource("company:product:1.0", repository);
+		ArtifactSource source2 = new ArtifactSource("company:product:1.0", repository);
+		ArtifactSource source3 = new ArtifactSource("company:product:2.0", repository);
+
+		// test & assert
+		assertEquals(source1, source1);
+		assertEquals(source1, source2);
+		assertNotEquals(source1, source3);
+		assertEquals(source2, source1);
+		assertEquals(source2, source2);
+		assertNotEquals(source2, source3);
+		assertNotEquals(source3, source1);
+		assertNotEquals(source3, source2);
+		assertEquals(source3, source3);
+	}
+
+	@Test
+	void testHashCode() {
+
+		// prepare
+		ArtifactSource source1 = new ArtifactSource("company:product:1.0", repository);
+		ArtifactSource source2 = new ArtifactSource("company:product:1.0", repository);
+		ArtifactSource source3 = new ArtifactSource("company:product:2.0", repository);
+
+		// test & assert
+		assertEquals(source1.hashCode(), source2.hashCode());
+		assertNotEquals(source1.hashCode(), source3.hashCode());
+		assertNotEquals(source2.hashCode(), source3.hashCode());
 	}
 
 }
