@@ -49,7 +49,7 @@ class MavenRepositoryTest {
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		repository = new MavenRepository(8, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
+		repository = new MavenRepository(11, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
 	}
 
 	@AfterEach
@@ -221,7 +221,10 @@ class MavenRepositoryTest {
 	}
 
 	@Test
-	void test_getDependencies_CamelJDBC_onJava8() throws RepositoryException {
+	void test_getDependencies_CamelJDBC_onJava8(@TempDir Path tempDir) throws RepositoryException {
+
+		// create a new repository for Java 11
+		repository = new MavenRepository(8, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
 
 		// prepare
 		Artifact artifact = new Artifact("org.apache.camel:camel-jdbc:2.17.7");
@@ -242,10 +245,7 @@ class MavenRepositoryTest {
 	}
 
 	@Test
-	void test_getDependencies_CamelJDBC_onJava11(@TempDir Path tempDir) throws RepositoryException {
-
-		// create a new repository for Java 11
-		repository = new MavenRepository(11, TestUtils.getFileRepositoryURL(), tempDir.toString(), null, logger);
+	void test_getDependencies_CamelJDBC_onJava11() throws RepositoryException {
 
 		// prepare
 		Artifact artifact = new Artifact("org.apache.camel:camel-jdbc:2.17.7");

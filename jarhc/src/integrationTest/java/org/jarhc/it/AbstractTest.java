@@ -75,7 +75,7 @@ abstract class AbstractTest {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
-		MavenRepository repository = new MavenRepository(8, TestUtils.getFileRepositoryURL(), tempDir.toString(), artifactFinder, logger);
+		MavenRepository repository = new MavenRepository(11, TestUtils.getFileRepositoryURL(), tempDir.toString(), artifactFinder, logger);
 
 		// prepare an injector
 		Injector injector = new Injector();
