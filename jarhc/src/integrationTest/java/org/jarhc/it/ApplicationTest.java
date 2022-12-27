@@ -134,6 +134,7 @@ class ApplicationTest {
 				.isEmpty();
 
 		assertLogger(mavenRepositoryLogger)
+				.inAnyOrder()
 				.hasDebug("Download artifact: org.ow2.asm:asm:7.0:jar")
 				.hasDebug("Find artifact: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912")
 				.hasDebug("Download artifact: org.ow2.asm:asm-commons:7.0:jar")
