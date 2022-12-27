@@ -30,18 +30,22 @@ class ReportTableTest {
 		ReportTable table = new ReportTable("JSP file", "Issue");
 		table.addRow("unknown.jar", "JSP file is unknown");
 		table.addRow("empty.jar", "JSP file is empty");
+		table.addRow("Classpath", "5 issues");
+		table.addRow("Empty.jar", "JSP file is also empty");
 		table.addRow("Invalid.jar", "JSP file is invalid");
-		table.addRow("Classpath", "3 issues");
+		table.addRow("invalid.jar", "JSP file is also invalid");
 
 		// test
 		table.sortRows();
 
 		// assert
 		List<String[]> rows = table.getRows();
-		assertEquals("empty.jar", rows.get(0)[0]);
-		assertEquals("Invalid.jar", rows.get(1)[0]);
-		assertEquals("unknown.jar", rows.get(2)[0]);
-		assertEquals("Classpath", rows.get(3)[0]);
+		assertEquals("Empty.jar", rows.get(0)[0]);
+		assertEquals("empty.jar", rows.get(1)[0]);
+		assertEquals("Invalid.jar", rows.get(2)[0]);
+		assertEquals("invalid.jar", rows.get(3)[0]);
+		assertEquals("unknown.jar", rows.get(4)[0]);
+		assertEquals("Classpath", rows.get(5)[0]);
 	}
 
 }
