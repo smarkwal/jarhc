@@ -43,8 +43,6 @@ idea {
 
 dependencies {
 
-    // implementation(project(":jarhc"))
-
     implementation("org.junit.jupiter:junit-jupiter:5.9.1")
     implementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
     implementation("org.assertj:assertj-core:3.23.1")
@@ -75,7 +73,7 @@ tasks {
         description = "Prepares the release test suite."
 
         // run release tests after JAR and fat/uber JAR have been built
-        dependsOn(":jarhc:jar", ":jarhc:jar-with-deps")
+        dependsOn(":jarhc:jar", ":jarhc:jar-with-deps", ":jarhc:generatePomFileForMavenPublication")
 
         doLast {
 

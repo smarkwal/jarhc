@@ -19,8 +19,13 @@ package org.jarhc.test.release.utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
+import org.assertj.core.util.diff.Delta;
+import org.assertj.core.util.diff.DiffUtils;
+import org.assertj.core.util.diff.Patch;
 
 public class TestUtils {
 
@@ -70,6 +75,26 @@ public class TestUtils {
 			}
 		}
 
+	}
+
+	public static String getDiff(String expected, String actual) {
+		StringBuilder diff = new StringBuilder();
+		appendDiff(diff, expected, actual);
+		return diff.toString();
+	}
+
+	public static void appendDiff(StringBuilder buffer, String expected, String actual) {
+		List<String> lines1 = splitLines(expected);
+		List<String> lines2 = splitLines(actual);
+		Patch<String> patch = DiffUtils.diff(lines1, lines2);
+		for (Delta<String> delta : patch.getDeltas()) {
+			buffer.append(delta).append("\n");
+		}
+	}
+
+	private static List<String> splitLines(String text) {
+		String[] lines = text.split("\\r?\\n");
+		return Arrays.asList(lines);
 	}
 
 }

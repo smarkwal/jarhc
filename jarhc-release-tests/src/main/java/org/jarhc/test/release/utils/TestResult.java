@@ -16,11 +16,6 @@
 
 package org.jarhc.test.release.utils;
 
-import java.util.Arrays;
-import java.util.List;
-import org.assertj.core.util.diff.Delta;
-import org.assertj.core.util.diff.DiffUtils;
-import org.assertj.core.util.diff.Patch;
 import org.testcontainers.containers.Container;
 
 public class TestResult {
@@ -69,35 +64,19 @@ public class TestResult {
 		if (!stdOut.equals(expectedStdOut)) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			buffer.append("STDOUT:\n");
-			appendDiff(buffer, expectedStdOut, stdOut);
+			TestUtils.appendDiff(buffer, expectedStdOut, stdOut);
 		}
 
 		if (!stdErr.equals(expectedStdErr)) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			buffer.append("STDERR:\n");
-			appendDiff(buffer, expectedStdErr, stdErr);
+			TestUtils.appendDiff(buffer, expectedStdErr, stdErr);
 		}
 
 		if (buffer.length() > 0) {
 			buffer.append("----------------------------------------------------------------------------------------------------------\n");
 			throw new AssertionError("Unexpected result.\n" + buffer);
 		}
-	}
-
-	// private helper methods --------------------------------------------------
-
-	private static void appendDiff(StringBuilder buffer, String expected, String actual) {
-		List<String> lines1 = splitLines(expected);
-		List<String> lines2 = splitLines(actual);
-		Patch<String> patch = DiffUtils.diff(lines1, lines2);
-		for (Delta<String> delta : patch.getDeltas()) {
-			buffer.append(delta).append("\n");
-		}
-	}
-
-	private static List<String> splitLines(String text) {
-		String[] lines = text.split("\\r?\\n");
-		return Arrays.asList(lines);
 	}
 
 }

@@ -21,10 +21,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import org.jarhc.test.release.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 
 class BuildArtifactsTest extends ReleaseTest {
+
+	// TODO: find a better solution than relative paths
+	private static final String JARHC_BUILD = "../jarhc/build";
 
 	@Test
 	void version() throws IOException {
@@ -36,6 +45,97 @@ class BuildArtifactsTest extends ReleaseTest {
 		String expectedVersion = properties.getProperty("version");
 
 		assertEquals(expectedVersion, getJarHcVersion());
+	}
+
+	@Test
+	void jar() throws IOException {
+		File jarFile = getProjectFile(JARHC_BUILD + "/libs/jarhc-" + getJarHcVersion() + ".jar");
+		testJar(jarFile, "jar-toc.txt");
+	}
+
+	@Test
+	void jarWithDeps() throws IOException {
+		File jarFile = getProjectFile(JARHC_BUILD + "/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
+		testJar(jarFile, "jar-with-deps-toc.txt");
+	}
+
+	private void testJar(File jarFile, String resourceName) throws IOException {
+
+		String actualToC = buildJarToC(jarFile);
+		String expectedToC = readResource(resourceName);
+
+		if (!actualToC.equals(expectedToC)) {
+			if (TestUtils.createResources()) {
+				writeProjectFile("src/main/resources/" + resourceName, actualToC);
+				return;
+			}
+			String diff = TestUtils.getDiff(expectedToC, actualToC);
+			throw new AssertionError("Unexpected content in JAR file.\n" + diff);
+		}
+	}
+
+	@Test
+	void pom() {
+
+		String actualPom = readProjectFile(JARHC_BUILD + "/publications/maven/pom-default.xml");
+		String expectedPom = readResource("pom.xml");
+
+		if (!actualPom.equals(expectedPom)) {
+			if (TestUtils.createResources()) {
+				writeProjectFile("src/main/resources/pom.xml", actualPom);
+				return;
+			}
+			String diff = TestUtils.getDiff(expectedPom, actualPom);
+			throw new AssertionError("Unexpected content in POM file.\n" + diff);
+		}
+	}
+
+	// private helper methods --------------------------------------------------
+
+	private String buildJarToC(File file) throws IOException {
+
+		List<String> toc = new ArrayList<>();
+
+		try (ZipFile zipFile = new ZipFile(file)) {
+
+			Enumeration<? extends ZipEntry> entries = zipFile.entries();
+			while (entries.hasMoreElements()) {
+				ZipEntry entry = entries.nextElement();
+				if (entry.isDirectory()) continue; // ignore directories
+
+				String name = entry.getName();
+				long size = entry.getSize();
+				long crc = entry.getCrc();
+				toc.add(String.format("%s | size=%d | crc=%d", name, size, crc));
+			}
+
+		}
+
+		toc.sort(BuildArtifactsTest::compareToCLines);
+		return String.join("\n", toc);
+	}
+
+	private static int compareToCLines(String line1, String line2) {
+		int group1 = getToCLineGroup(line1);
+		int group2 = getToCLineGroup(line2);
+		if (group1 != group2) return group1 - group2;
+		int diff = line1.compareToIgnoreCase(line2);
+		if (diff == 0) {
+			diff = line1.compareTo(line2);
+		}
+		return diff;
+	}
+
+	private static int getToCLineGroup(String line) {
+		if (line.contains(".class")) {
+			return 4;
+		} else if (line.startsWith("META-INF/")) {
+			return 3;
+		} else if (line.contains("/")) {
+			return 2;
+		} else {
+			return 1;
+		}
 	}
 
 }
