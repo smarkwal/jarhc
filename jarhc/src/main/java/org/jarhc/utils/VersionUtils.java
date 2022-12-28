@@ -56,8 +56,4 @@ public class VersionUtils {
 		return properties.getProperty("version");
 	}
 
-	public static String getDate() {
-		return properties.getProperty("date");
-	}
-
 }

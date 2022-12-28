@@ -18,7 +18,6 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import org.jarhc.test.AssertUtils;
@@ -41,19 +40,6 @@ class VersionUtilsTest {
 		assertNotNull(version);
 		assumeFalse(version.equals("${version}"), () -> "jarhc.properties not filtered.");
 		assertEquals("0.0.1", version);
-
-	}
-
-	@Test
-	void test_getDate() {
-
-		// test
-		String date = VersionUtils.getDate();
-
-		// assert
-		assertNotNull(date);
-		assumeFalse(date.equals("${timestamp}"), () -> "jarhc.properties not filtered.");
-		assertTrue(date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z"));
 
 	}
 

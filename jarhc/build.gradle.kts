@@ -20,9 +20,6 @@ import com.github.jk1.license.render.InventoryMarkdownReportRenderer
 import com.github.jk1.license.render.XmlReportRenderer
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 plugins {
     `java-library`
@@ -98,7 +95,6 @@ val skipTests: Boolean = project.hasProperty("skip.tests")
 // constants -------------------------------------------------------------------
 
 val mainClassName: String = "org.jarhc.Main"
-val buildTimestamp: String = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssX").withZone(ZoneId.of("UTC")).format(Instant.now())
 
 // license report
 val licenseReportPath: String = "${buildDir}/reports/licenses"
@@ -298,8 +294,7 @@ tasks {
         // replace placeholders in resources
         // (see src/main/resources/jarhc.properties)
         expand(
-            "version" to project.version,
-            "timestamp" to buildTimestamp
+            "version" to project.version
         )
     }
 

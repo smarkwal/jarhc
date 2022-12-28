@@ -1,7 +1,7 @@
 about.html | size=1440 | crc=1620826148
 blacklist-patterns.txt | size=1234 | crc=3899595672
 html-report-style.css | size=972 | crc=1385211984
-jarhc.properties | size=635 | crc=465543932
+jarhc.properties | size=609 | crc=2971302690
 LICENSE | size=11323 | crc=398435797
 simplelogger.properties | size=1045 | crc=237288634
 usage.txt | size=3748 | crc=2838701225
@@ -151,8 +151,8 @@ META-INF/licenses/httpclient-4.5.14.jar/META-INF/NOTICE | size=174 | crc=3281050
 META-INF/licenses/httpcore-4.4.16.jar/META-INF/LICENSE | size=11358 | crc=2263004340
 META-INF/licenses/httpcore-4.4.16.jar/META-INF/NOTICE | size=172 | crc=2906556078
 META-INF/licenses/licenses.csv | size=4891 | crc=120819474
-META-INF/licenses/licenses.html | size=26994 | crc=3427562534
-META-INF/licenses/licenses.md | size=15522 | crc=1331938769
+META-INF/licenses/licenses.html | size=26994 | crc=3607614547
+META-INF/licenses/licenses.md | size=15522 | crc=3478098546
 META-INF/licenses/licenses.xml | size=6938 | crc=3329453146
 META-INF/licenses/maven-aether-provider-3.3.9.jar/META-INF/LICENSE | size=11358 | crc=2263004340
 META-INF/licenses/maven-aether-provider-3.3.9.jar/META-INF/NOTICE | size=178 | crc=3959735361
@@ -4668,7 +4668,7 @@ org/jarhc/utils/StringPattern$StartsWith.class | size=684 | crc=1816164540
 org/jarhc/utils/StringPattern$Test.class | size=536 | crc=2351361285
 org/jarhc/utils/StringPattern.class | size=2224 | crc=2974994818
 org/jarhc/utils/StringUtils.class | size=2755 | crc=3845416827
-org/jarhc/utils/VersionUtils.class | size=1993 | crc=2496706794
+org/jarhc/utils/VersionUtils.class | size=1926 | crc=2436154272
 org/json/CDL.class | size=4274 | crc=2053504970
 org/json/Cookie.class | size=3849 | crc=465494769
 org/json/CookieList.class | size=2025 | crc=2834284025
