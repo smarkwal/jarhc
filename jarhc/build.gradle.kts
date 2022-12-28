@@ -59,7 +59,7 @@ idea {
             file("src/main/resources")
         )
         testSources.from(
-            file("src/testFixtures/java"),
+            //file("src/testFixtures/java"), // TODO: mark as test sources causes "Symbol not found" in integration tests
             file("src/test/java"),
             file("src/integrationTest/java"),
         )
