@@ -58,18 +58,15 @@ jobs:
       with:
         name: reports
         path: jarhc/build/reports
-        retention-days: 7
 
     - name: Upload libs
       uses: actions/upload-artifact@v3
       with:
         name: libs
         path: jarhc/build/libs
-        retention-days: 14
 
     - name: Upload docs
       uses: actions/upload-artifact@v3
       with:
         name: docs
         path: jarhc/build/docs
-        retention-days: 7

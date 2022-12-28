@@ -52,7 +52,6 @@ jobs:
       with:
         name: reports
         path: build/reports/dependency-check
-        retention-days: 7
 
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v2
