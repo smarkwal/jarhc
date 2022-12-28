@@ -15,9 +15,6 @@
  */
 
 import com.github.jk1.license.render.CsvReportRenderer
-import com.github.jk1.license.render.InventoryHtmlReportRenderer
-import com.github.jk1.license.render.InventoryMarkdownReportRenderer
-import com.github.jk1.license.render.XmlReportRenderer
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
@@ -192,10 +189,7 @@ javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeE
 licenseReport {
     outputDir = licenseReportPath
     renderers = arrayOf(
-        InventoryHtmlReportRenderer("licenses.html"),
-        XmlReportRenderer("licenses.xml"),
-        CsvReportRenderer("licenses.csv"),
-        InventoryMarkdownReportRenderer("licenses.md")
+        CsvReportRenderer("licenses.csv")
     )
 }
 
