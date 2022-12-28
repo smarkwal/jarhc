@@ -107,3 +107,13 @@ dependencyCheck {
     // suppressed findings
     suppressionFile = "${projectDir}/suppression.xml"
 }
+
+tasks {
+    register("clean") {
+        group = "build"
+        doLast {
+            // delete build directory in root project
+            delete(buildDir)
+        }
+    }
+}
