@@ -30,10 +30,7 @@ plugins {
 
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "7.4.3"
-
-    // provide utility task "taskTree" for analysis of task dependencies
-    id("com.dorongold.task-tree") version "2.1.0"
+    id("org.owasp.dependencycheck") version "7.4.4"
 
 }
 
