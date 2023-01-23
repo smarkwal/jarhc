@@ -30,7 +30,7 @@ plugins {
 
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "7.4.4"
+    id("org.owasp.dependencycheck") version "8.0.1"
 
 }
 
@@ -100,6 +100,9 @@ dependencyCheck {
 
     // disable .NET Assembly Analyzer (fix for unexpected build exception)
     analyzers.assemblyEnabled = false
+
+    // exclude test resources from analysis
+    scanSet = listOf()
 
     // suppressed findings
     suppressionFile = "${projectDir}/suppression.xml"
