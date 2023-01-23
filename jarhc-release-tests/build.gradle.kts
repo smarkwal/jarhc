@@ -43,10 +43,10 @@ idea {
 
 dependencies {
 
-    implementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    implementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
-    implementation("org.assertj:assertj-core:3.24.1")
-    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+    implementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    implementation("org.junit.jupiter:junit-jupiter-params:5.9.2")
+    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    implementation("org.assertj:assertj-core:3.24.2")
     implementation("org.testcontainers:testcontainers:1.17.6")
     implementation("org.testcontainers:junit-jupiter:1.17.6")
     implementation("org.apache.commons:commons-lang3:3.12.0")
