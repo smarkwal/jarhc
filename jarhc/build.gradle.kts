@@ -174,7 +174,7 @@ dependencies {
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.2")
-    testFixturesApi("org.mockito:mockito-core:5.0.0")
+    testFixturesApi("org.mockito:mockito-core:5.1.1")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.6")
 
 }
