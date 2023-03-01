@@ -146,7 +146,7 @@ dependencies {
 
     // main dependencies
     implementation("org.ow2.asm:asm:9.4")
-    implementation("org.json:json:20220924")
+    implementation("org.json:json:20230227")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")
     implementation("org.eclipse.aether:aether-util:1.1.0")
