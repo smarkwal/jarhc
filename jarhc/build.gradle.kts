@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.1"
 
     // run Sonar analysis
-    id("org.sonarqube") version "3.5.0.2730"
+    id("org.sonarqube") version "4.0.0.2929"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.0.0"
