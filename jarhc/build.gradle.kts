@@ -157,7 +157,7 @@ dependencies {
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
     implementation("org.slf4j:jul-to-slf4j:2.0.6")
     implementation("org.slf4j:jcl-over-slf4j:2.0.6")
-    api("org.slf4j:slf4j-api:2.0.6")
+    api("org.slf4j:slf4j-api:2.0.7")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
