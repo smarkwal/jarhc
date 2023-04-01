@@ -170,12 +170,12 @@ dependencies {
     implementation("commons-codec:commons-codec:1.15")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.6")
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.7")
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.2")
     testFixturesApi("org.mockito:mockito-core:5.1.1")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.6")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.7")
 
 }
 
