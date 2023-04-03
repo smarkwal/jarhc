@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.1"
 
     // run Sonar analysis
-    id("org.sonarqube") version "3.5.0.2730"
+    id("org.sonarqube") version "4.0.0.2929"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.0.0"
@@ -145,8 +145,8 @@ val includeInJarWithDeps: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.4")
-    implementation("org.json:json:20220924")
+    implementation("org.ow2.asm:asm:9.5")
+    implementation("org.json:json:20230227")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")
     implementation("org.eclipse.aether:aether-util:1.1.0")
@@ -155,9 +155,9 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:jul-to-slf4j:2.0.6")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.6")
-    api("org.slf4j:slf4j-api:2.0.6")
+    implementation("org.slf4j:jul-to-slf4j:2.0.7")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.7")
+    api("org.slf4j:slf4j-api:2.0.7")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -165,17 +165,17 @@ dependencies {
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
-    implementation("org.codehaus.plexus:plexus-utils:3.5.0")
+    implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
     implementation("commons-codec:commons-codec:1.15")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.6")
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.7")
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.2")
-    testFixturesApi("org.mockito:mockito-core:5.1.1")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.6")
+    testFixturesApi("org.mockito:mockito-core:5.2.0")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.7")
 
 }
 

@@ -22,15 +22,15 @@ plugins {
     idea
 
     // publish to Sonatype OSSRH and release to Maven Central
-    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
-    id("com.github.ben-manes.versions") version "0.45.0"
+    id("com.github.ben-manes.versions") version "0.46.0"
 
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "8.0.2"
+    id("org.owasp.dependencycheck") version "8.2.1"
 
 }
 
@@ -91,7 +91,7 @@ dependencyCheck {
     // documentation: https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 
     // settings
-    format = Format.ALL
+    format = Format.ALL.toString()
     skipTestGroups = false
     outputDirectory = "${buildDir}/reports/dependency-check"
 
