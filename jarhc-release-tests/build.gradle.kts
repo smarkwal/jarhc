@@ -50,7 +50,7 @@ dependencies {
     implementation("org.testcontainers:testcontainers:1.18.1")
     implementation("org.testcontainers:junit-jupiter:1.18.1")
     implementation("org.apache.commons:commons-lang3:3.12.0")
-    implementation("commons-io:commons-io:2.11.0")
+    implementation("commons-io:commons-io:2.12.0")
     runtimeOnly("org.slf4j:slf4j-api:2.0.7")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.7")
 
