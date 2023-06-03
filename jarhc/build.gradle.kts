@@ -166,7 +166,7 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
     // note: version 4.0.0 fails with NullPointerException
-    implementation("org.codehaus.plexus:plexus-utils:3.5.1")
+    implementation("org.codehaus.plexus:plexus-utils:4.0.0")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
     implementation("commons-codec:commons-codec:1.15")
 
