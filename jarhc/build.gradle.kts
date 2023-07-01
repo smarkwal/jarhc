@@ -26,7 +26,7 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "2.4"
+    id("com.github.jk1.dependency-license-report") version "2.5"
 
     // run Sonar analysis
     id("org.sonarqube") version "4.2.0.3129"
