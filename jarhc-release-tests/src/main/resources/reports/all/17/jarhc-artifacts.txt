@@ -5,330 +5,319 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
----------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 225 KB  | 130     | 6         | **************************************** | [unknown]
-aether-api-1.1.0.jar                                           | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
-aether-connector-basic-1.1.0.jar                               | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
-aether-impl-1.1.0.jar                                          | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
-aether-spi-1.1.0.jar                                           | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
-aether-transport-file-1.1.0.jar                                | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
-aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
-aether-util-1.1.0.jar                                          | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
-asm-9.5.jar                                                    | 119 KB  | 37      | 0         | dc6ea1875f4d64fbc85e1691c95b96a3d8569c90 | org.ow2.asm:asm:9.5
-checker-qual-3.33.0.jar                                        | 219 KB  | 358     | 0         | de2b60b62da487644fc11f734e73c8b0b431238f | org.checkerframework:checker-qual:3.33.0
-commons-codec-1.15.jar                                         | 346 KB  | 106     | 128       | 49d94806b6e3dc933dacbd8acb0fdbab8ebd1e5d | commons-codec:commons-codec:1.15
-commons-lang3-3.4.jar                                          | 424 KB  | 224     | 0         | 5fe28b9518e58819180a43a850fbc0dd24b7c050 | org.apache.commons:commons-lang3:3.4
-error_prone_annotations-2.18.0.jar                             | 15.6 KB | 26      | 0         | 89b684257096f548fa39a7df9fdaa409d4d4df91 | com.google.errorprone:error_prone_annotations:2.18.0
-failureaccess-1.0.1.jar                                        | 4.51 KB | 2       | 0         | 1dcf1de382a0bf95a3d8b0849546c88bac1292c9 | com.google.guava:failureaccess:1.0.1
-guava-32.0.0-jre.jar                                           | 2.89 MB | 1997    | 0         | 25d6662e20fc04c7b38f8ca3ab5d2f4a19272f80 | com.google.guava:guava:32.0.0-jre
-httpclient-4.5.14.jar                                          | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
-httpcore-4.4.16.jar                                            | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
-j2objc-annotations-2.8.jar                                     | 9.08 KB | 13      | 0         | c85270e307e7b822f1086b93689124b89768e273 | com.google.j2objc:j2objc-annotations:2.8
-jcl-over-slf4j-2.0.7.jar                                       | 20.6 KB | 8       | 0         | f127fe5ee53404a8b3697cdd032dd1dd6a29dd77 | org.slf4j:jcl-over-slf4j:2.0.7
-json-20230227.jar                                              | 70.9 KB | 28      | 0         | 7a0d4aca76513d8ce81f9b044ce8126b84809ad8 | org.json:json:20230227
-jsr305-3.0.2.jar                                               | 19.5 KB | 35      | 0         | 25ea2e8b0c338a877313bd4672d3fe056ea78f0d | com.google.code.findbugs:jsr305:3.0.2
-jul-to-slf4j-2.0.7.jar                                         | 5.52 KB | 1       | 0         | a48f44aeaa8a5ddc347007298a28173ac1fbbd8b | org.slf4j:jul-to-slf4j:2.0.7
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | 2.15 KB | 0       | 0         | b421526c5f297295adef1c886e5246c39d4ac629 | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
-maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
-maven-artifact-3.3.9.jar                                       | 53.7 KB | 32      | 0         | 0f43afa184555fbc6e36b3334b17246c39b30f6e | org.apache.maven:maven-artifact:3.3.9
-maven-builder-support-3.3.9.jar                                | 14.5 KB | 10      | 0         | a96f29da7623c0e1db9824f628548fe8181f6dd0 | org.apache.maven:maven-builder-support:3.3.9
-maven-model-builder-3.3.9.jar                                  | 173 KB  | 121     | 1         | e2055f9adb9f3c9a93e6b36fffe79781a785de2d | org.apache.maven:maven-model-builder:3.3.9
-maven-model-3.3.9.jar                                          | 160 KB  | 54      | 0         | 6efde8cbcb4de4c47f7e9c2a3ab2806022b5c70f | org.apache.maven:maven-model:3.3.9
-maven-repository-metadata-3.3.9.jar                            | 26.6 KB | 9       | 0         | 6850232b35e504057d67bde11efddebf6271e1ce | org.apache.maven:maven-repository-metadata:3.3.9
-plexus-component-annotations-1.6.jar                           | 4.17 KB | 3       | 0         | 1a34a4e12b5fded8c548a568f463dfee21500927 | org.codehaus.plexus:plexus-component-annotations:1.6
-plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-plexus-utils-3.5.1.jar                                         | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
-slf4j-api-2.0.7.jar                                            | 62.1 KB | 51      | 0         | 41eb7184ea9d556f23e18b5cb99cad1f8581fc00 | org.slf4j:slf4j-api:2.0.7
-Classpath                                                      | 6.81 MB | 4550    | 148       | -                                        | -
+JAR file                             | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+-------------------------------------+---------+---------+-----------+------------------------------------------+-----------------------------------------------------
+jarhc.jar                            | 225 KB  | 130     | 6         | **************************************** | [unknown]
+aether-api-1.1.0.jar                 | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
+aether-connector-basic-1.1.0.jar     | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
+aether-impl-1.1.0.jar                | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
+aether-spi-1.1.0.jar                 | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
+aether-transport-file-1.1.0.jar      | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
+aether-transport-http-1.1.0.jar      | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
+aether-util-1.1.0.jar                | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
+asm-9.5.jar                          | 119 KB  | 37      | 0         | dc6ea1875f4d64fbc85e1691c95b96a3d8569c90 | org.ow2.asm:asm:9.5
+checker-qual-3.33.0.jar              | 219 KB  | 358     | 0         | de2b60b62da487644fc11f734e73c8b0b431238f | org.checkerframework:checker-qual:3.33.0
+commons-codec-1.16.0.jar             | 352 KB  | 102     | 128       | 4e3eb3d79888d76b54e28b350915b5dc3919c9de | commons-codec:commons-codec:1.16.0
+commons-lang3-3.4.jar                | 424 KB  | 224     | 0         | 5fe28b9518e58819180a43a850fbc0dd24b7c050 | org.apache.commons:commons-lang3:3.4
+error_prone_annotations-2.18.0.jar   | 15.6 KB | 26      | 0         | 89b684257096f548fa39a7df9fdaa409d4d4df91 | com.google.errorprone:error_prone_annotations:2.18.0
+failureaccess-1.0.1.jar              | 4.51 KB | 2       | 0         | 1dcf1de382a0bf95a3d8b0849546c88bac1292c9 | com.google.guava:failureaccess:1.0.1
+guava-32.1.1-jre.jar                 | 2.90 MB | 2005    | 0         | ad575652d84153075dd41ec6177ccb15251262b2 | com.google.guava:guava:32.1.1-jre
+httpclient-4.5.14.jar                | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
+httpcore-4.4.16.jar                  | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
+jcl-over-slf4j-2.0.7.jar             | 20.6 KB | 8       | 0         | f127fe5ee53404a8b3697cdd032dd1dd6a29dd77 | org.slf4j:jcl-over-slf4j:2.0.7
+json-20230618.jar                    | 71.7 KB | 29      | 0         | 1ae16df7d556d02713e241086f878399e99260d6 | org.json:json:20230618
+jsr305-3.0.2.jar                     | 19.5 KB | 35      | 0         | 25ea2e8b0c338a877313bd4672d3fe056ea78f0d | com.google.code.findbugs:jsr305:3.0.2
+jul-to-slf4j-2.0.7.jar               | 5.52 KB | 1       | 0         | a48f44aeaa8a5ddc347007298a28173ac1fbbd8b | org.slf4j:jul-to-slf4j:2.0.7
+maven-aether-provider-3.3.9.jar      | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
+maven-artifact-3.3.9.jar             | 53.7 KB | 32      | 0         | 0f43afa184555fbc6e36b3334b17246c39b30f6e | org.apache.maven:maven-artifact:3.3.9
+maven-builder-support-3.3.9.jar      | 14.5 KB | 10      | 0         | a96f29da7623c0e1db9824f628548fe8181f6dd0 | org.apache.maven:maven-builder-support:3.3.9
+maven-model-builder-3.3.9.jar        | 173 KB  | 121     | 1         | e2055f9adb9f3c9a93e6b36fffe79781a785de2d | org.apache.maven:maven-model-builder:3.3.9
+maven-model-3.3.9.jar                | 160 KB  | 54      | 0         | 6efde8cbcb4de4c47f7e9c2a3ab2806022b5c70f | org.apache.maven:maven-model:3.3.9
+maven-repository-metadata-3.3.9.jar  | 26.6 KB | 9       | 0         | 6850232b35e504057d67bde11efddebf6271e1ce | org.apache.maven:maven-repository-metadata:3.3.9
+plexus-component-annotations-1.6.jar | 4.17 KB | 3       | 0         | 1a34a4e12b5fded8c548a568f463dfee21500927 | org.codehaus.plexus:plexus-component-annotations:1.6
+plexus-interpolation-1.21.jar        | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
+plexus-utils-3.5.1.jar               | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
+slf4j-api-2.0.7.jar                  | 62.1 KB | 51      | 0         | 41eb7184ea9d556f23e18b5cb99cad1f8581fc00 | org.slf4j:slf4j-api:2.0.7
+Classpath                            | 6.81 MB | 4542    | 148       | -                                        | -
 
 Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                                                       | Module name                                         | Definition     | Automatic | Requires  | Exports
----------------------------------------------------------------+-----------------------------------------------------+----------------+-----------+-----------+----------------------------
-jarhc.jar                                                      | org.jarhc                                           | Manifest       | Yes       | -         | [all packages]
-aether-api-1.1.0.jar                                           | aether.api                                          | Auto-generated | Yes       | -         | [all packages]
-aether-connector-basic-1.1.0.jar                               | aether.connector.basic                              | Auto-generated | Yes       | -         | [all packages]
-aether-impl-1.1.0.jar                                          | aether.impl                                         | Auto-generated | Yes       | -         | [all packages]
-aether-spi-1.1.0.jar                                           | aether.spi                                          | Auto-generated | Yes       | -         | [all packages]
-aether-transport-file-1.1.0.jar                                | aether.transport.file                               | Auto-generated | Yes       | -         | [all packages]
-aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -         | [all packages]
-aether-util-1.1.0.jar                                          | aether.util                                         | Auto-generated | Yes       | -         | [all packages]
-asm-9.5.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base | org.objectweb.asm
-                                                               |                                                     |                |           |           | org.objectweb.asm.signature
-checker-qual-3.33.0.jar                                        | org.checkerframework.checker.qual                   | Manifest       | Yes       | -         | [all packages]
-commons-codec-1.15.jar                                         | org.apache.commons.codec                            | Manifest       | Yes       | -         | [all packages]
-commons-lang3-3.4.jar                                          | commons.lang3                                       | Auto-generated | Yes       | -         | [all packages]
-error_prone_annotations-2.18.0.jar                             | com.google.errorprone.annotations                   | Manifest       | Yes       | -         | [all packages]
-failureaccess-1.0.1.jar                                        | failureaccess                                       | Auto-generated | Yes       | -         | [all packages]
-guava-32.0.0-jre.jar                                           | com.google.common                                   | Manifest       | Yes       | -         | [all packages]
-httpclient-4.5.14.jar                                          | org.apache.httpcomponents.httpclient                | Manifest       | Yes       | -         | [all packages]
-httpcore-4.4.16.jar                                            | org.apache.httpcomponents.httpcore                  | Manifest       | Yes       | -         | [all packages]
-j2objc-annotations-2.8.jar                                     | j2objc.annotations                                  | Auto-generated | Yes       | -         | [all packages]
-jcl-over-slf4j-2.0.7.jar                                       | org.apache.commons.logging                          | Module-Info    | No        | org.slf4j | org.apache.commons.logging
-                                                               |                                                     |                |           | java.base |
-json-20230227.jar                                              | org.json                                            | Manifest       | Yes       | -         | [all packages]
-jsr305-3.0.2.jar                                               | jsr305                                              | Auto-generated | Yes       | -         | [all packages]
-jul-to-slf4j-2.0.7.jar                                         | jul.to.slf4j                                        | Manifest       | Yes       | -         | [all packages]
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | listenablefuture.empty.to.avoid.conflict.with.guava | Auto-generated | Yes       | -         | [all packages]
-maven-aether-provider-3.3.9.jar                                | maven.aether.provider                               | Auto-generated | Yes       | -         | [all packages]
-maven-artifact-3.3.9.jar                                       | maven.artifact                                      | Auto-generated | Yes       | -         | [all packages]
-maven-builder-support-3.3.9.jar                                | maven.builder.support                               | Auto-generated | Yes       | -         | [all packages]
-maven-model-builder-3.3.9.jar                                  | maven.model.builder                                 | Auto-generated | Yes       | -         | [all packages]
-maven-model-3.3.9.jar                                          | maven.model                                         | Auto-generated | Yes       | -         | [all packages]
-maven-repository-metadata-3.3.9.jar                            | maven.repository.metadata                           | Auto-generated | Yes       | -         | [all packages]
-plexus-component-annotations-1.6.jar                           | plexus.component.annotations                        | Auto-generated | Yes       | -         | [all packages]
-plexus-interpolation-1.21.jar                                  | plexus.interpolation                                | Auto-generated | Yes       | -         | [all packages]
-plexus-utils-3.5.1.jar                                         | plexus.utils                                        | Auto-generated | Yes       | -         | [all packages]
-slf4j-api-2.0.7.jar                                            | org.slf4j                                           | Module-Info    | No        | java.base | org.slf4j
-                                                               |                                                     |                |           |           | org.slf4j.event
-                                                               |                                                     |                |           |           | org.slf4j.helpers
-                                                               |                                                     |                |           |           | org.slf4j.spi
+JAR file                             | Module name                          | Definition     | Automatic | Requires  | Exports
+-------------------------------------+--------------------------------------+----------------+-----------+-----------+----------------------------
+jarhc.jar                            | org.jarhc                            | Manifest       | Yes       | -         | [all packages]
+aether-api-1.1.0.jar                 | aether.api                           | Auto-generated | Yes       | -         | [all packages]
+aether-connector-basic-1.1.0.jar     | aether.connector.basic               | Auto-generated | Yes       | -         | [all packages]
+aether-impl-1.1.0.jar                | aether.impl                          | Auto-generated | Yes       | -         | [all packages]
+aether-spi-1.1.0.jar                 | aether.spi                           | Auto-generated | Yes       | -         | [all packages]
+aether-transport-file-1.1.0.jar      | aether.transport.file                | Auto-generated | Yes       | -         | [all packages]
+aether-transport-http-1.1.0.jar      | aether.transport.http                | Auto-generated | Yes       | -         | [all packages]
+aether-util-1.1.0.jar                | aether.util                          | Auto-generated | Yes       | -         | [all packages]
+asm-9.5.jar                          | org.objectweb.asm                    | Module-Info    | No        | java.base | org.objectweb.asm
+                                     |                                      |                |           |           | org.objectweb.asm.signature
+checker-qual-3.33.0.jar              | org.checkerframework.checker.qual    | Manifest       | Yes       | -         | [all packages]
+commons-codec-1.16.0.jar             | org.apache.commons.codec             | Manifest       | Yes       | -         | [all packages]
+commons-lang3-3.4.jar                | commons.lang3                        | Auto-generated | Yes       | -         | [all packages]
+error_prone_annotations-2.18.0.jar   | com.google.errorprone.annotations    | Manifest       | Yes       | -         | [all packages]
+failureaccess-1.0.1.jar              | failureaccess                        | Auto-generated | Yes       | -         | [all packages]
+guava-32.1.1-jre.jar                 | com.google.common                    | Manifest       | Yes       | -         | [all packages]
+httpclient-4.5.14.jar                | org.apache.httpcomponents.httpclient | Manifest       | Yes       | -         | [all packages]
+httpcore-4.4.16.jar                  | org.apache.httpcomponents.httpcore   | Manifest       | Yes       | -         | [all packages]
+jcl-over-slf4j-2.0.7.jar             | org.apache.commons.logging           | Module-Info    | No        | org.slf4j | org.apache.commons.logging
+                                     |                                      |                |           | java.base |
+json-20230618.jar                    | org.json                             | Manifest       | Yes       | -         | [all packages]
+jsr305-3.0.2.jar                     | jsr305                               | Auto-generated | Yes       | -         | [all packages]
+jul-to-slf4j-2.0.7.jar               | jul.to.slf4j                         | Manifest       | Yes       | -         | [all packages]
+maven-aether-provider-3.3.9.jar      | maven.aether.provider                | Auto-generated | Yes       | -         | [all packages]
+maven-artifact-3.3.9.jar             | maven.artifact                       | Auto-generated | Yes       | -         | [all packages]
+maven-builder-support-3.3.9.jar      | maven.builder.support                | Auto-generated | Yes       | -         | [all packages]
+maven-model-builder-3.3.9.jar        | maven.model.builder                  | Auto-generated | Yes       | -         | [all packages]
+maven-model-3.3.9.jar                | maven.model                          | Auto-generated | Yes       | -         | [all packages]
+maven-repository-metadata-3.3.9.jar  | maven.repository.metadata            | Auto-generated | Yes       | -         | [all packages]
+plexus-component-annotations-1.6.jar | plexus.component.annotations         | Auto-generated | Yes       | -         | [all packages]
+plexus-interpolation-1.21.jar        | plexus.interpolation                 | Auto-generated | Yes       | -         | [all packages]
+plexus-utils-3.5.1.jar               | plexus.utils                         | Auto-generated | Yes       | -         | [all packages]
+slf4j-api-2.0.7.jar                  | org.slf4j                            | Module-Info    | No        | java.base | org.slf4j
+                                     |                                      |                |           |           | org.slf4j.event
+                                     |                                      |                |           |           | org.slf4j.helpers
+                                     |                                      |                |           |           | org.slf4j.spi
 
 Class Versions
 --------------
 Java class file format information.
 
-JAR file                                                       | Multi-release                  | Class files by Java version
----------------------------------------------------------------+--------------------------------+---------------------------------------------------------
-jarhc.jar                                                      | No                             | Java 11 (130)
-aether-api-1.1.0.jar                                           | No                             | Java 5 (128)
-aether-connector-basic-1.1.0.jar                               | No                             | Java 5 (19)
-aether-impl-1.1.0.jar                                          | No                             | Java 5 (96)
-aether-spi-1.1.0.jar                                           | No                             | Java 5 (34)
-aether-transport-file-1.1.0.jar                                | No                             | Java 5 (4)
-aether-transport-http-1.1.0.jar                                | No                             | Java 5 (20)
-aether-util-1.1.0.jar                                          | No                             | Java 5 (103)
-asm-9.5.jar                                                    | No                             | Java 5 (37)
-checker-qual-3.33.0.jar                                        | No                             | Java 8 (358)
-commons-codec-1.15.jar                                         | No                             | Java 7 (106)
-commons-lang3-3.4.jar                                          | No                             | Java 6 (224)
-error_prone_annotations-2.18.0.jar                             | No                             | Java 8 (26)
-failureaccess-1.0.1.jar                                        | No                             | Java 7 (2)
-guava-32.0.0-jre.jar                                           | No                             | Java 8 (1997)
-httpclient-4.5.14.jar                                          | No                             | Java 6 (470)
-httpcore-4.4.16.jar                                            | No                             | Java 6 (253)
-j2objc-annotations-2.8.jar                                     | No                             | Java 7 (13)
-jcl-over-slf4j-2.0.7.jar                                       | Yes (Java 9)                   | Java 8 (8)
-json-20230227.jar                                              | No                             | Java 6 (28)
-jsr305-3.0.2.jar                                               | No                             | Java 5 (35)
-jul-to-slf4j-2.0.7.jar                                         | No                             | Java 8 (1)
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | No                             | [no class files]
-maven-aether-provider-3.3.9.jar                                | No                             | Java 7 (26)
-maven-artifact-3.3.9.jar                                       | No                             | Java 7 (32)
-maven-builder-support-3.3.9.jar                                | No                             | Java 7 (10)
-maven-model-builder-3.3.9.jar                                  | No                             | Java 7 (121)
-maven-model-3.3.9.jar                                          | No                             | Java 7 (54)
-maven-repository-metadata-3.3.9.jar                            | No                             | Java 7 (9)
-plexus-component-annotations-1.6.jar                           | No                             | Java 5 (3)
-plexus-interpolation-1.21.jar                                  | No                             | Java 5 (44)
-plexus-utils-3.5.1.jar                                         | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
-slf4j-api-2.0.7.jar                                            | Yes (Java 9)                   | Java 8 (51)
-Classpath                                                      | -                              | Java 11 (131), Java 10 (1), Java 8 (2547), Java 7 (373),
-                                                               |                                | Java 6 (975), Java 5 (523)
+JAR file                             | Multi-release                  | Class files by Java version
+-------------------------------------+--------------------------------+---------------------------------------------------------
+jarhc.jar                            | No                             | Java 11 (130)
+aether-api-1.1.0.jar                 | No                             | Java 5 (128)
+aether-connector-basic-1.1.0.jar     | No                             | Java 5 (19)
+aether-impl-1.1.0.jar                | No                             | Java 5 (96)
+aether-spi-1.1.0.jar                 | No                             | Java 5 (34)
+aether-transport-file-1.1.0.jar      | No                             | Java 5 (4)
+aether-transport-http-1.1.0.jar      | No                             | Java 5 (20)
+aether-util-1.1.0.jar                | No                             | Java 5 (103)
+asm-9.5.jar                          | No                             | Java 5 (37)
+checker-qual-3.33.0.jar              | No                             | Java 8 (358)
+commons-codec-1.16.0.jar             | No                             | Java 8 (102)
+commons-lang3-3.4.jar                | No                             | Java 6 (224)
+error_prone_annotations-2.18.0.jar   | No                             | Java 8 (26)
+failureaccess-1.0.1.jar              | No                             | Java 7 (2)
+guava-32.1.1-jre.jar                 | No                             | Java 8 (2005)
+httpclient-4.5.14.jar                | No                             | Java 6 (470)
+httpcore-4.4.16.jar                  | No                             | Java 6 (253)
+jcl-over-slf4j-2.0.7.jar             | Yes (Java 9)                   | Java 8 (8)
+json-20230618.jar                    | No                             | Java 6 (29)
+jsr305-3.0.2.jar                     | No                             | Java 5 (35)
+jul-to-slf4j-2.0.7.jar               | No                             | Java 8 (1)
+maven-aether-provider-3.3.9.jar      | No                             | Java 7 (26)
+maven-artifact-3.3.9.jar             | No                             | Java 7 (32)
+maven-builder-support-3.3.9.jar      | No                             | Java 7 (10)
+maven-model-builder-3.3.9.jar        | No                             | Java 7 (121)
+maven-model-3.3.9.jar                | No                             | Java 7 (54)
+maven-repository-metadata-3.3.9.jar  | No                             | Java 7 (9)
+plexus-component-annotations-1.6.jar | No                             | Java 5 (3)
+plexus-interpolation-1.21.jar        | No                             | Java 5 (44)
+plexus-utils-3.5.1.jar               | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
+slf4j-api-2.0.7.jar                  | Yes (Java 9)                   | Java 8 (51)
+Classpath                            | -                              | Java 11 (131), Java 10 (1), Java 8 (2657), Java 7 (254),
+                                     |                                | Java 6 (976), Java 5 (523)
 
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file                                                       | Uses                                 | Used by
----------------------------------------------------------------+--------------------------------------+------------------------------------
-jarhc.jar                                                      | aether-api-1.1.0.jar                 | [none]
-                                                               | aether-connector-basic-1.1.0.jar     |
-                                                               | aether-impl-1.1.0.jar                |
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-transport-file-1.1.0.jar      |
-                                                               | aether-transport-http-1.1.0.jar      |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | asm-9.5.jar                          |
-                                                               | jcl-over-slf4j-2.0.7.jar             |
-                                                               | json-20230227.jar                    |
-                                                               | jul-to-slf4j-2.0.7.jar               |
-                                                               | maven-aether-provider-3.3.9.jar      |
-                                                               | slf4j-api-2.0.7.jar                  |
-aether-api-1.1.0.jar                                           | [none]                               | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-spi-1.1.0.jar
-                                                               |                                      | aether-transport-file-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | aether-util-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
-                                                               | aether-util-1.1.0.jar                |
-                                                               | slf4j-api-2.0.7.jar                  |
-aether-spi-1.1.0.jar                                           | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-transport-file-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | httpclient-4.5.14.jar                |
-                                                               | httpcore-4.4.16.jar                  |
-aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
-                                                               |                                      | aether-impl-1.1.0.jar
-                                                               |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | maven-aether-provider-3.3.9.jar
-asm-9.5.jar                                                    | [none]                               | jarhc.jar
-checker-qual-3.33.0.jar                                        | [none]                               | guava-32.0.0-jre.jar
-commons-codec-1.15.jar                                         | [none]                               | httpclient-4.5.14.jar
-commons-lang3-3.4.jar                                          | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-artifact-3.3.9.jar
-                                                               |                                      | maven-builder-support-3.3.9.jar
-                                                               |                                      | maven-model-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-error_prone_annotations-2.18.0.jar                             | [none]                               | guava-32.0.0-jre.jar
-failureaccess-1.0.1.jar                                        | [none]                               | guava-32.0.0-jre.jar
-guava-32.0.0-jre.jar                                           | checker-qual-3.33.0.jar              | maven-aether-provider-3.3.9.jar
-                                                               | error_prone_annotations-2.18.0.jar   | maven-model-builder-3.3.9.jar
-                                                               | failureaccess-1.0.1.jar              |
-                                                               | j2objc-annotations-2.8.jar           |
-                                                               | jsr305-3.0.2.jar                     |
-httpclient-4.5.14.jar                                          | commons-codec-1.15.jar               | aether-transport-http-1.1.0.jar
-                                                               | httpcore-4.4.16.jar                  |
-                                                               | jcl-over-slf4j-2.0.7.jar             |
-httpcore-4.4.16.jar                                            | [none]                               | aether-transport-http-1.1.0.jar
-                                                               |                                      | httpclient-4.5.14.jar
-j2objc-annotations-2.8.jar                                     | [none]                               | guava-32.0.0-jre.jar
-jcl-over-slf4j-2.0.7.jar                                       | slf4j-api-2.0.7.jar                  | httpclient-4.5.14.jar
-                                                               |                                      | jarhc.jar
-json-20230227.jar                                              | [none]                               | jarhc.jar
-jsr305-3.0.2.jar                                               | [none]                               | guava-32.0.0-jre.jar
-jul-to-slf4j-2.0.7.jar                                         | slf4j-api-2.0.7.jar                  | jarhc.jar
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | [none]                               | [none]
-maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc.jar
-                                                               | aether-impl-1.1.0.jar                |
-                                                               | aether-spi-1.1.0.jar                 |
-                                                               | aether-util-1.1.0.jar                |
-                                                               | commons-lang3-3.4.jar                |
-                                                               | guava-32.0.0-jre.jar                 |
-                                                               | maven-model-3.3.9.jar                |
-                                                               | maven-model-builder-3.3.9.jar        |
-                                                               | maven-repository-metadata-3.3.9.jar  |
-                                                               | plexus-component-annotations-1.6.jar |
-                                                               | plexus-utils-3.5.1.jar               |
-maven-artifact-3.3.9.jar                                       | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-                                                               | plexus-utils-3.5.1.jar               |
-maven-builder-support-3.3.9.jar                                | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
-maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | guava-32.0.0-jre.jar                 |
-                                                               | maven-artifact-3.3.9.jar             |
-                                                               | maven-builder-support-3.3.9.jar      |
-                                                               | maven-model-3.3.9.jar                |
-                                                               | plexus-component-annotations-1.6.jar |
-                                                               | plexus-interpolation-1.21.jar        |
-                                                               | plexus-utils-3.5.1.jar               |
-maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
-                                                               | plexus-utils-3.5.1.jar               | maven-model-builder-3.3.9.jar
-maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.5.1.jar               | maven-aether-provider-3.3.9.jar
-plexus-component-annotations-1.6.jar                           | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-plexus-interpolation-1.21.jar                                  | [none]                               | maven-model-builder-3.3.9.jar
-plexus-utils-3.5.1.jar                                         | [none]                               | maven-aether-provider-3.3.9.jar
-                                                               |                                      | maven-artifact-3.3.9.jar
-                                                               |                                      | maven-model-3.3.9.jar
-                                                               |                                      | maven-model-builder-3.3.9.jar
-                                                               |                                      | maven-repository-metadata-3.3.9.jar
-slf4j-api-2.0.7.jar                                            | [none]                               | aether-impl-1.1.0.jar
-                                                               |                                      | jarhc.jar
-                                                               |                                      | jcl-over-slf4j-2.0.7.jar
-                                                               |                                      | jul-to-slf4j-2.0.7.jar
+JAR file                             | Uses                                 | Used by
+-------------------------------------+--------------------------------------+------------------------------------
+jarhc.jar                            | aether-api-1.1.0.jar                 | [none]
+                                     | aether-connector-basic-1.1.0.jar     |
+                                     | aether-impl-1.1.0.jar                |
+                                     | aether-spi-1.1.0.jar                 |
+                                     | aether-transport-file-1.1.0.jar      |
+                                     | aether-transport-http-1.1.0.jar      |
+                                     | aether-util-1.1.0.jar                |
+                                     | asm-9.5.jar                          |
+                                     | jcl-over-slf4j-2.0.7.jar             |
+                                     | json-20230618.jar                    |
+                                     | jul-to-slf4j-2.0.7.jar               |
+                                     | maven-aether-provider-3.3.9.jar      |
+                                     | slf4j-api-2.0.7.jar                  |
+aether-api-1.1.0.jar                 | [none]                               | aether-connector-basic-1.1.0.jar
+                                     |                                      | aether-impl-1.1.0.jar
+                                     |                                      | aether-spi-1.1.0.jar
+                                     |                                      | aether-transport-file-1.1.0.jar
+                                     |                                      | aether-transport-http-1.1.0.jar
+                                     |                                      | aether-util-1.1.0.jar
+                                     |                                      | jarhc.jar
+                                     |                                      | maven-aether-provider-3.3.9.jar
+aether-connector-basic-1.1.0.jar     | aether-api-1.1.0.jar                 | jarhc.jar
+                                     | aether-spi-1.1.0.jar                 |
+                                     | aether-util-1.1.0.jar                |
+aether-impl-1.1.0.jar                | aether-api-1.1.0.jar                 | jarhc.jar
+                                     | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
+                                     | aether-util-1.1.0.jar                |
+                                     | slf4j-api-2.0.7.jar                  |
+aether-spi-1.1.0.jar                 | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
+                                     |                                      | aether-impl-1.1.0.jar
+                                     |                                      | aether-transport-file-1.1.0.jar
+                                     |                                      | aether-transport-http-1.1.0.jar
+                                     |                                      | jarhc.jar
+                                     |                                      | maven-aether-provider-3.3.9.jar
+aether-transport-file-1.1.0.jar      | aether-api-1.1.0.jar                 | jarhc.jar
+                                     | aether-spi-1.1.0.jar                 |
+aether-transport-http-1.1.0.jar      | aether-api-1.1.0.jar                 | jarhc.jar
+                                     | aether-spi-1.1.0.jar                 |
+                                     | aether-util-1.1.0.jar                |
+                                     | httpclient-4.5.14.jar                |
+                                     | httpcore-4.4.16.jar                  |
+aether-util-1.1.0.jar                | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
+                                     |                                      | aether-impl-1.1.0.jar
+                                     |                                      | aether-transport-http-1.1.0.jar
+                                     |                                      | jarhc.jar
+                                     |                                      | maven-aether-provider-3.3.9.jar
+asm-9.5.jar                          | [none]                               | jarhc.jar
+checker-qual-3.33.0.jar              | [none]                               | guava-32.1.1-jre.jar
+commons-codec-1.16.0.jar             | [none]                               | httpclient-4.5.14.jar
+commons-lang3-3.4.jar                | [none]                               | maven-aether-provider-3.3.9.jar
+                                     |                                      | maven-artifact-3.3.9.jar
+                                     |                                      | maven-builder-support-3.3.9.jar
+                                     |                                      | maven-model-3.3.9.jar
+                                     |                                      | maven-model-builder-3.3.9.jar
+error_prone_annotations-2.18.0.jar   | [none]                               | guava-32.1.1-jre.jar
+failureaccess-1.0.1.jar              | [none]                               | guava-32.1.1-jre.jar
+guava-32.1.1-jre.jar                 | checker-qual-3.33.0.jar              | maven-aether-provider-3.3.9.jar
+                                     | error_prone_annotations-2.18.0.jar   | maven-model-builder-3.3.9.jar
+                                     | failureaccess-1.0.1.jar              |
+                                     | jsr305-3.0.2.jar                     |
+httpclient-4.5.14.jar                | commons-codec-1.16.0.jar             | aether-transport-http-1.1.0.jar
+                                     | httpcore-4.4.16.jar                  |
+                                     | jcl-over-slf4j-2.0.7.jar             |
+httpcore-4.4.16.jar                  | [none]                               | aether-transport-http-1.1.0.jar
+                                     |                                      | httpclient-4.5.14.jar
+jcl-over-slf4j-2.0.7.jar             | slf4j-api-2.0.7.jar                  | httpclient-4.5.14.jar
+                                     |                                      | jarhc.jar
+json-20230618.jar                    | [none]                               | jarhc.jar
+jsr305-3.0.2.jar                     | [none]                               | guava-32.1.1-jre.jar
+jul-to-slf4j-2.0.7.jar               | slf4j-api-2.0.7.jar                  | jarhc.jar
+maven-aether-provider-3.3.9.jar      | aether-api-1.1.0.jar                 | jarhc.jar
+                                     | aether-impl-1.1.0.jar                |
+                                     | aether-spi-1.1.0.jar                 |
+                                     | aether-util-1.1.0.jar                |
+                                     | commons-lang3-3.4.jar                |
+                                     | guava-32.1.1-jre.jar                 |
+                                     | maven-model-3.3.9.jar                |
+                                     | maven-model-builder-3.3.9.jar        |
+                                     | maven-repository-metadata-3.3.9.jar  |
+                                     | plexus-component-annotations-1.6.jar |
+                                     | plexus-utils-3.5.1.jar               |
+maven-artifact-3.3.9.jar             | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
+                                     | plexus-utils-3.5.1.jar               |
+maven-builder-support-3.3.9.jar      | commons-lang3-3.4.jar                | maven-model-builder-3.3.9.jar
+maven-model-builder-3.3.9.jar        | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
+                                     | guava-32.1.1-jre.jar                 |
+                                     | maven-artifact-3.3.9.jar             |
+                                     | maven-builder-support-3.3.9.jar      |
+                                     | maven-model-3.3.9.jar                |
+                                     | plexus-component-annotations-1.6.jar |
+                                     | plexus-interpolation-1.21.jar        |
+                                     | plexus-utils-3.5.1.jar               |
+maven-model-3.3.9.jar                | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
+                                     | plexus-utils-3.5.1.jar               | maven-model-builder-3.3.9.jar
+maven-repository-metadata-3.3.9.jar  | plexus-utils-3.5.1.jar               | maven-aether-provider-3.3.9.jar
+plexus-component-annotations-1.6.jar | [none]                               | maven-aether-provider-3.3.9.jar
+                                     |                                      | maven-model-builder-3.3.9.jar
+plexus-interpolation-1.21.jar        | [none]                               | maven-model-builder-3.3.9.jar
+plexus-utils-3.5.1.jar               | [none]                               | maven-aether-provider-3.3.9.jar
+                                     |                                      | maven-artifact-3.3.9.jar
+                                     |                                      | maven-model-3.3.9.jar
+                                     |                                      | maven-model-builder-3.3.9.jar
+                                     |                                      | maven-repository-metadata-3.3.9.jar
+slf4j-api-2.0.7.jar                  | [none]                               | aether-impl-1.1.0.jar
+                                     |                                      | jarhc.jar
+                                     |                                      | jcl-over-slf4j-2.0.7.jar
+                                     |                                      | jul-to-slf4j-2.0.7.jar
 
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
----------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+------------------------
-jarhc.jar                                                      | [unknown]                                                                   | [unknown]                                                                   |
-aether-api-1.1.0.jar                                           | org.eclipse.aether:aether-api:1.1.0                                         | [none]                                                                      |
-aether-connector-basic-1.1.0.jar                               | org.eclipse.aether:aether-connector-basic:1.1.0                             | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-impl-1.1.0.jar                                          | org.eclipse.aether:aether-impl:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-                                                               |                                                                             | org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1 (provided, optional)         | Unsatisfied
-                                                               |                                                                             | org.sonatype.sisu:sisu-guice:3.1.6 (provided, optional)                     | Unsatisfied
-                                                               |                                                                             | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 2.0.7)
-aether-spi-1.1.0.jar                                           | org.eclipse.aether:aether-spi:1.1.0                                         | org.eclipse.aether:aether-api:1.1.0                                         | OK
-aether-transport-file-1.1.0.jar                                | org.eclipse.aether:aether-transport-file:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-transport-http-1.1.0.jar                                | org.eclipse.aether:aether-transport-http:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                                                               |                                                                             | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.14)
-                                                               |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.7)
-                                                               |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-util-1.1.0.jar                                          | org.eclipse.aether:aether-util:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
-asm-9.5.jar                                                    | org.ow2.asm:asm:9.5                                                         | [none]                                                                      |
-checker-qual-3.33.0.jar                                        | org.checkerframework:checker-qual:3.33.0                                    | [none]                                                                      |
-commons-codec-1.15.jar                                         | commons-codec:commons-codec:1.15                                            | [none]                                                                      |
-commons-lang3-3.4.jar                                          | org.apache.commons:commons-lang3:3.4                                        | [none]                                                                      |
-error_prone_annotations-2.18.0.jar                             | com.google.errorprone:error_prone_annotations:2.18.0                        | [none]                                                                      |
-failureaccess-1.0.1.jar                                        | com.google.guava:failureaccess:1.0.1                                        | [none]                                                                      |
-guava-32.0.0-jre.jar                                           | com.google.guava:guava:32.0.0-jre                                           | com.google.guava:failureaccess:1.0.1                                        | OK
-                                                               |                                                                             | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | OK
-                                                               |                                                                             | com.google.code.findbugs:jsr305:3.0.2                                       | OK
-                                                               |                                                                             | org.checkerframework:checker-qual:3.33.0                                    | OK
-                                                               |                                                                             | com.google.errorprone:error_prone_annotations:2.18.0                        | OK
-                                                               |                                                                             | com.google.j2objc:j2objc-annotations:2.8                                    | OK
-httpclient-4.5.14.jar                                          | org.apache.httpcomponents:httpclient:4.5.14                                 | org.apache.httpcomponents:httpcore:4.4.16                                   | OK
-                                                               |                                                                             | commons-logging:commons-logging:1.2                                         | Unsatisfied
-                                                               |                                                                             | commons-codec:commons-codec:1.11                                            | OK (version 1.15)
-httpcore-4.4.16.jar                                            | org.apache.httpcomponents:httpcore:4.4.16                                   | [none]                                                                      |
-j2objc-annotations-2.8.jar                                     | com.google.j2objc:j2objc-annotations:2.8                                    | [none]                                                                      |
-jcl-over-slf4j-2.0.7.jar                                       | org.slf4j:jcl-over-slf4j:2.0.7                                              | org.slf4j:slf4j-api:2.0.7                                                   | OK
-json-20230227.jar                                              | org.json:json:20230227                                                      | [none]                                                                      |
-jsr305-3.0.2.jar                                               | com.google.code.findbugs:jsr305:3.0.2                                       | [none]                                                                      |
-jul-to-slf4j-2.0.7.jar                                         | org.slf4j:jul-to-slf4j:2.0.7                                                | org.slf4j:slf4j-api:2.0.7                                                   | OK
-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | [none]                                                                      |
-maven-aether-provider-3.3.9.jar                                | org.apache.maven:maven-aether-provider:3.3.9                                | org.apache.maven:maven-model:3.3.9                                          | OK
-                                                               |                                                                             | org.apache.maven:maven-model-builder:3.3.9                                  | OK
-                                                               |                                                                             | org.apache.maven:maven-repository-metadata:3.3.9                            | OK
-                                                               |                                                                             | org.eclipse.aether:aether-api:1.0.2.v20150114                               | OK (version 1.1.0)
-                                                               |                                                                             | org.eclipse.aether:aether-spi:1.0.2.v20150114                               | OK (version 1.1.0)
-                                                               |                                                                             | org.eclipse.aether:aether-util:1.0.2.v20150114                              | OK (version 1.1.0)
-                                                               |                                                                             | org.eclipse.aether:aether-impl:1.0.2.v20150114                              | OK (version 1.1.0)
-                                                               |                                                                             | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
-                                                               |                                                                             | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-                                                               |                                                                             | com.google.inject:guice:4.0 (optional)                                      | Unsatisfied
-                                                               |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-artifact-3.3.9.jar                                       | org.apache.maven:maven-artifact:3.3.9                                       | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-                                                               |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-builder-support-3.3.9.jar                                | org.apache.maven:maven-builder-support:3.3.9                                | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-                                                               |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-model-builder-3.3.9.jar                                  | org.apache.maven:maven-model-builder:3.3.9                                  | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-                                                               |                                                                             | org.codehaus.plexus:plexus-interpolation:1.21                               | OK
-                                                               |                                                                             | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
-                                                               |                                                                             | org.apache.maven:maven-model:3.3.9                                          | OK
-                                                               |                                                                             | org.apache.maven:maven-artifact:3.3.9                                       | OK
-                                                               |                                                                             | org.apache.maven:maven-builder-support:3.3.9                                | OK
-                                                               |                                                                             | com.google.guava:guava:18.0                                                 | OK (version 32.0.0-jre)
-                                                               |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-model-3.3.9.jar                                          | org.apache.maven:maven-model:3.3.9                                          | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-                                                               |                                                                             | org.apache.commons:commons-lang3:3.4                                        | OK
-maven-repository-metadata-3.3.9.jar                            | org.apache.maven:maven-repository-metadata:3.3.9                            | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
-plexus-component-annotations-1.6.jar                           | org.codehaus.plexus:plexus-component-annotations:1.6                        | [none]                                                                      |
-plexus-interpolation-1.21.jar                                  | org.codehaus.plexus:plexus-interpolation:1.21                               | [none]                                                                      |
-plexus-utils-3.5.1.jar                                         | org.codehaus.plexus:plexus-utils:3.5.1                                      | [none]                                                                      |
-slf4j-api-2.0.7.jar                                            | org.slf4j:slf4j-api:2.0.7                                                   | [none]                                                                      |
+JAR file                             | Maven coordinates                                    | Direct dependencies                                                         | Status
+-------------------------------------+------------------------------------------------------+-----------------------------------------------------------------------------+------------------------
+jarhc.jar                            | [unknown]                                            | [unknown]                                                                   |
+aether-api-1.1.0.jar                 | org.eclipse.aether:aether-api:1.1.0                  | [none]                                                                      |
+aether-connector-basic-1.1.0.jar     | org.eclipse.aether:aether-connector-basic:1.1.0      | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                                     |                                                      | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+aether-impl-1.1.0.jar                | org.eclipse.aether:aether-impl:1.1.0                 | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                                     |                                                      | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+                                     |                                                      | org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1 (provided, optional)         | Unsatisfied
+                                     |                                                      | org.sonatype.sisu:sisu-guice:3.1.6 (provided, optional)                     | Unsatisfied
+                                     |                                                      | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 2.0.7)
+aether-spi-1.1.0.jar                 | org.eclipse.aether:aether-spi:1.1.0                  | org.eclipse.aether:aether-api:1.1.0                                         | OK
+aether-transport-file-1.1.0.jar      | org.eclipse.aether:aether-transport-file:1.1.0       | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                                     |                                                      | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+aether-transport-http-1.1.0.jar      | org.eclipse.aether:aether-transport-http:1.1.0       | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                                     |                                                      | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                                     |                                                      | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.14)
+                                     |                                                      | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.7)
+                                     |                                                      | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+aether-util-1.1.0.jar                | org.eclipse.aether:aether-util:1.1.0                 | org.eclipse.aether:aether-api:1.1.0                                         | OK
+asm-9.5.jar                          | org.ow2.asm:asm:9.5                                  | [none]                                                                      |
+checker-qual-3.33.0.jar              | org.checkerframework:checker-qual:3.33.0             | [none]                                                                      |
+commons-codec-1.16.0.jar             | commons-codec:commons-codec:1.16.0                   | [none]                                                                      |
+commons-lang3-3.4.jar                | org.apache.commons:commons-lang3:3.4                 | [none]                                                                      |
+error_prone_annotations-2.18.0.jar   | com.google.errorprone:error_prone_annotations:2.18.0 | [none]                                                                      |
+failureaccess-1.0.1.jar              | com.google.guava:failureaccess:1.0.1                 | [none]                                                                      |
+guava-32.1.1-jre.jar                 | com.google.guava:guava:32.1.1-jre                    | com.google.guava:failureaccess:1.0.1                                        | OK
+                                     |                                                      | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | Unsatisfied
+                                     |                                                      | com.google.code.findbugs:jsr305:3.0.2                                       | OK
+                                     |                                                      | org.checkerframework:checker-qual:3.33.0                                    | OK
+                                     |                                                      | com.google.errorprone:error_prone_annotations:2.18.0                        | OK
+                                     |                                                      | com.google.j2objc:j2objc-annotations:2.8                                    | Unsatisfied
+httpclient-4.5.14.jar                | org.apache.httpcomponents:httpclient:4.5.14          | org.apache.httpcomponents:httpcore:4.4.16                                   | OK
+                                     |                                                      | commons-logging:commons-logging:1.2                                         | Unsatisfied
+                                     |                                                      | commons-codec:commons-codec:1.11                                            | OK (version 1.16.0)
+httpcore-4.4.16.jar                  | org.apache.httpcomponents:httpcore:4.4.16            | [none]                                                                      |
+jcl-over-slf4j-2.0.7.jar             | org.slf4j:jcl-over-slf4j:2.0.7                       | org.slf4j:slf4j-api:2.0.7                                                   | OK
+json-20230618.jar                    | org.json:json:20230618                               | [none]                                                                      |
+jsr305-3.0.2.jar                     | com.google.code.findbugs:jsr305:3.0.2                | [none]                                                                      |
+jul-to-slf4j-2.0.7.jar               | org.slf4j:jul-to-slf4j:2.0.7                         | org.slf4j:slf4j-api:2.0.7                                                   | OK
+maven-aether-provider-3.3.9.jar      | org.apache.maven:maven-aether-provider:3.3.9         | org.apache.maven:maven-model:3.3.9                                          | OK
+                                     |                                                      | org.apache.maven:maven-model-builder:3.3.9                                  | OK
+                                     |                                                      | org.apache.maven:maven-repository-metadata:3.3.9                            | OK
+                                     |                                                      | org.eclipse.aether:aether-api:1.0.2.v20150114                               | OK (version 1.1.0)
+                                     |                                                      | org.eclipse.aether:aether-spi:1.0.2.v20150114                               | OK (version 1.1.0)
+                                     |                                                      | org.eclipse.aether:aether-util:1.0.2.v20150114                              | OK (version 1.1.0)
+                                     |                                                      | org.eclipse.aether:aether-impl:1.0.2.v20150114                              | OK (version 1.1.0)
+                                     |                                                      | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
+                                     |                                                      | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+                                     |                                                      | com.google.inject:guice:4.0 (optional)                                      | Unsatisfied
+                                     |                                                      | org.apache.commons:commons-lang3:3.4                                        | OK
+maven-artifact-3.3.9.jar             | org.apache.maven:maven-artifact:3.3.9                | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+                                     |                                                      | org.apache.commons:commons-lang3:3.4                                        | OK
+maven-builder-support-3.3.9.jar      | org.apache.maven:maven-builder-support:3.3.9         | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+                                     |                                                      | org.apache.commons:commons-lang3:3.4                                        | OK
+maven-model-builder-3.3.9.jar        | org.apache.maven:maven-model-builder:3.3.9           | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+                                     |                                                      | org.codehaus.plexus:plexus-interpolation:1.21                               | OK
+                                     |                                                      | org.codehaus.plexus:plexus-component-annotations:1.6                        | OK
+                                     |                                                      | org.apache.maven:maven-model:3.3.9                                          | OK
+                                     |                                                      | org.apache.maven:maven-artifact:3.3.9                                       | OK
+                                     |                                                      | org.apache.maven:maven-builder-support:3.3.9                                | OK
+                                     |                                                      | com.google.guava:guava:18.0                                                 | OK (version 32.1.1-jre)
+                                     |                                                      | org.apache.commons:commons-lang3:3.4                                        | OK
+maven-model-3.3.9.jar                | org.apache.maven:maven-model:3.3.9                   | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+                                     |                                                      | org.apache.commons:commons-lang3:3.4                                        | OK
+maven-repository-metadata-3.3.9.jar  | org.apache.maven:maven-repository-metadata:3.3.9     | org.codehaus.plexus:plexus-utils:3.0.22                                     | OK (version 3.5.1)
+plexus-component-annotations-1.6.jar | org.codehaus.plexus:plexus-component-annotations:1.6 | [none]                                                                      |
+plexus-interpolation-1.21.jar        | org.codehaus.plexus:plexus-interpolation:1.21        | [none]                                                                      |
+plexus-utils-3.5.1.jar               | org.codehaus.plexus:plexus-utils:3.5.1               | [none]                                                                      |
+slf4j-api-2.0.7.jar                  | org.slf4j:slf4j-api:2.0.7                            | [none]                                                                      |
 
 Packages
 --------
@@ -356,11 +345,11 @@ aether-transport-http-1.1.0.jar      | 1     | org.eclipse.aether.transport.http
 aether-util-1.1.0.jar                | 13    | org.eclipse.aether.util (+12 subpackages)             |
 asm-9.5.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
 checker-qual-3.33.0.jar              | 30    | org.checkerframework.* (30 subpackages)               |
-commons-codec-1.15.jar               | 7     | org.apache.commons.codec (+6 subpackages)             |
+commons-codec-1.16.0.jar             | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
 error_prone_annotations-2.18.0.jar   | 2     | com.google.errorprone.annotations (+1 subpackage)     |
 failureaccess-1.0.1.jar              | 1     | com.google.common.util.concurrent.internal            |
-guava-32.0.0-jre.jar                 | 18    | com.google.common.annotations                         |
+guava-32.1.1-jre.jar                 | 18    | com.google.common.annotations                         |
                                      |       | com.google.common.base (+1 subpackage)                |
                                      |       | com.google.common.cache                               |
                                      |       | com.google.common.collect                             |
@@ -403,10 +392,9 @@ httpcore-4.4.16.jar                  | 17    | org.apache.http                  
                                      |       | org.apache.http.protocol                              |
                                      |       | org.apache.http.ssl                                   |
                                      |       | org.apache.http.util                                  |
-j2objc-annotations-2.8.jar           | 1     | com.google.j2objc.annotations                         |
 jarhc.jar                            | 18    | org.jarhc (+17 subpackages)                           |
 jcl-over-slf4j-2.0.7.jar             | 2     | org.apache.commons.logging (+1 subpackage)            |
-json-20230227.jar                    | 1     | org.json                                              |
+json-20230618.jar                    | 1     | org.json                                              |
 jsr305-3.0.2.jar                     | 3     | javax.annotation (+2 subpackages)                     |
 jul-to-slf4j-2.0.7.jar               | 1     | org.slf4j.bridge                                      |
 maven-aether-provider-3.3.9.jar      | 1     | org.apache.maven.repository.internal                  |
@@ -599,6 +587,154 @@ aether-transport-file-1.1.0.jar  | org.eclipse.aether.transport.file.FileTranspo
 aether-transport-http-1.1.0.jar  | org.eclipse.aether.transport.http.HttpTransporterFactory
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
+guava-32.1.1-jre.jar             | com.google.common.base.Converter
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$AccessQueue$1
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$Segment
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$StrongAccessEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$StrongAccessWriteEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$StrongWriteEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$WeakAccessEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$WeakAccessWriteEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$WeakWriteEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.cache.LocalCache$WriteQueue$1
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.AbstractBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.CollectSpliterators$FlatMapSpliterator
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.FilteredMultimapValues
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.HashBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.HashBiMap$BiEntry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableListMultimap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableMultimap$EntryCollection
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableMultimap$Values
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableSet$CachingAsList
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableSetMultimap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.ImmutableSetMultimap$EntrySet
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.JdkBackedImmutableBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.MapMakerInternalMap$Segment
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.MapMakerInternalMap$WeakValueReferenceImpl
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.Maps$FilteredEntryBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.Maps$KeySet
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.Maps$UnmodifiableBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.Maps$Values
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.MinMaxPriorityQueue$Heap
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.Multimaps$AsMap
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.Multimaps$Keys
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.RegularImmutableBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.SingletonImmutableBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.collect.SortedMultisets$ElementSet
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.collect.Synchronized$SynchronizedBiMap
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.eventbus.Subscriber
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.eventbus.SubscriberRegistry
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.AbstractFuture
+                                 | • Class not found: com.google.j2objc.annotations.ReflectionSupport$Level (package not found)
+                                 | • Annotation not found: com.google.j2objc.annotations.ReflectionSupport (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.AggregateFutureState
+                                 | • Class not found: com.google.j2objc.annotations.ReflectionSupport$Level (package not found)
+                                 | • Annotation not found: com.google.j2objc.annotations.ReflectionSupport (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.AtomicDouble
+                                 | • Class not found: com.google.j2objc.annotations.ReflectionSupport$Level (package not found)
+                                 | • Annotation not found: com.google.j2objc.annotations.ReflectionSupport (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.ClosingFuture$DeferredCloser
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.CycleDetectingLockFactory$CycleDetectingReentrantReadLock
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.CycleDetectingLockFactory$CycleDetectingReentrantWriteLock
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.InterruptibleTask
+                                 | • Class not found: com.google.j2objc.annotations.ReflectionSupport$Level (package not found)
+                                 | • Annotation not found: com.google.j2objc.annotations.ReflectionSupport (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.Monitor$Guard
+                                 | • Annotation not found: com.google.j2objc.annotations.Weak (package not found)
+                                 |
+                                 | com.google.common.util.concurrent.SequentialExecutor
+                                 | • Annotation not found: com.google.j2objc.annotations.RetainedWith (package not found)
 maven-aether-provider-3.3.9.jar  | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
                                  | • Annotation not found: javax.inject.Inject (package not found)
                                  | • Annotation not found: javax.inject.Named (package not found)
@@ -666,7 +802,7 @@ aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 |
                                 | org.eclipse.aether.transport.http.X509HostnameVerifierAdapter
                                 | • @Deprecated: public interface org.apache.http.conn.ssl.X509HostnameVerifier
-guava-32.0.0-jre.jar            | com.google.common.cache.Striped64
+guava-32.1.1-jre.jar            | com.google.common.cache.Striped64
                                 | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
                                 | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)

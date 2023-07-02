@@ -26,11 +26,11 @@ plugins {
 
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
-    id("com.github.ben-manes.versions") version "0.46.0"
+    id("com.github.ben-manes.versions") version "0.47.0"
 
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "8.2.1"
+    id("org.owasp.dependencycheck") version "8.3.1"
 
 }
 
