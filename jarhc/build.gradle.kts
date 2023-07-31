@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.5"
 
     // run Sonar analysis
-    id("org.sonarqube") version "4.2.1.3168"
+    id("org.sonarqube") version "4.3.0.3225"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.2.0"
@@ -174,7 +174,7 @@ dependencies {
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.7")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.9.3")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.0")
     testFixturesApi("org.mockito:mockito-core:5.4.0")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.7")
 
