@@ -82,7 +82,7 @@ idea {
 }
 
 nexusPublishing {
-    repositories {
+    this.repositories {
         sonatype()
     }
 }
