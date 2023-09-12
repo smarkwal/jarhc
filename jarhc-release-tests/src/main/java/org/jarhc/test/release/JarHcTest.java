@@ -48,12 +48,12 @@ class JarHcTest extends ReleaseTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReleaseTest.class);
 
 	private static final JavaImage[] JAVA_IMAGES = {
-			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11.0.19"),
-			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17.0.7"),
-			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11.0.19_7-jre"),
-			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17.0.7_7-jre"),
-			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11.0.19_7-jre"),
-			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17.0.7_7-jre"),
+			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11.0.20"),
+			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17.0.8"),
+			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11.0.20.1_1-jre"),
+			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17.0.8.1_1-jre"),
+			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11.0.20_8-jre"),
+			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17.0.8_7-jre"),
 			new JavaImage("microsoft", "openjdk", "11", "mcr.microsoft.com/openjdk/jdk:11-ubuntu"),
 			new JavaImage("microsoft", "openjdk", "17", "mcr.microsoft.com/openjdk/jdk:17-ubuntu"),
 	};

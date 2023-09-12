@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.5"
 
     // run Sonar analysis
-    id("org.sonarqube") version "4.3.0.3225"
+    id("org.sonarqube") version "4.3.1.3277"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.2.0"
@@ -155,13 +155,13 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:jul-to-slf4j:2.0.7")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.7")
-    api("org.slf4j:slf4j-api:2.0.7")
+    implementation("org.slf4j:jul-to-slf4j:2.0.9")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.9")
+    api("org.slf4j:slf4j-api:2.0.9")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:32.1.1-jre")
+    implementation("com.google.guava:guava:32.1.2-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
@@ -171,12 +171,12 @@ dependencies {
     implementation("commons-codec:commons-codec:1.16.0")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.7")
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.9")
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.0")
-    testFixturesApi("org.mockito:mockito-core:5.4.0")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.7")
+    testFixturesApi("org.mockito:mockito-core:5.5.0")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.9")
 
 }
 
