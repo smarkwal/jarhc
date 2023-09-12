@@ -94,14 +94,14 @@ val skipTests: Boolean = project.hasProperty("skip.tests")
 val mainClassName: String = "org.jarhc.Main"
 
 // license report
-val licenseReportPath: String = "${buildDir}/reports/licenses"
+val licenseReportPath: String = "${layout.buildDirectory.get()}/reports/licenses"
 
 // test results
-val testReportPath: String = "${buildDir}/test-results/test"
-val integrationTestReportPath: String = "${buildDir}/test-results/integrationTest"
+val testReportPath: String = "${layout.buildDirectory.get()}/test-results/test"
+val integrationTestReportPath: String = "${layout.buildDirectory.get()}/test-results/integrationTest"
 
 // JaCoCo coverage report
-val jacocoTestReportXml: String = "${buildDir}/reports/jacoco/test/report.xml"
+val jacocoTestReportXml: String = "${layout.buildDirectory.get()}/reports/jacoco/test/report.xml"
 
 // additional source sets and configurations -----------------------------------
 
@@ -226,7 +226,7 @@ sonar {
 
         // paths to test sources and test classes
         property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/integrationTest/java")
-        property("sonar.java.test.binaries", "${buildDir}/classes/java/test,${buildDir}/classes/java/integrationTest")
+        property("sonar.java.test.binaries", "${layout.buildDirectory.get()}/classes/java/test,${layout.buildDirectory.get()}/classes/java/integrationTest")
 
         // include test results
         property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
@@ -320,8 +320,8 @@ tasks {
 
         // get JaCoCo data from all test tasks
         executionData.from(
-            "${buildDir}/jacoco/test.exec",
-            "${buildDir}/jacoco/integrationTest.exec"
+            "${layout.buildDirectory.get()}/jacoco/test.exec",
+            "${layout.buildDirectory.get()}/jacoco/integrationTest.exec"
         )
 
         reports {

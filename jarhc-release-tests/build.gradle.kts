@@ -89,13 +89,13 @@ tasks {
                     dependencies.append(conf.name).append(" = ").append(artifacts).append("\n")
                 }
             }
-            buildDir.mkdir() // make sure the build directory exists
-            file("$buildDir/configurations.properties").writeText(dependencies.toString())
+            layout.buildDirectory.asFile.get().mkdir() // make sure the build directory exists
+            file("${layout.buildDirectory.get()}/configurations.properties").writeText(dependencies.toString())
 
             // copy VERSION file from main JarHC project
             copy {
                 from(file("$rootDir/jarhc/build/resources/main/VERSION"))
-                into(file("$buildDir"))
+                into(file("${layout.buildDirectory.get()}"))
             }
 
         }

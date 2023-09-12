@@ -93,7 +93,7 @@ dependencyCheck {
     // settings
     format = Format.ALL.toString()
     skipTestGroups = false
-    outputDirectory = "${buildDir}/reports/dependency-check"
+    outputDirectory = "${layout.buildDirectory.get()}/reports/dependency-check"
 
     // path to database directory
     data.directory = "${rootDir}/dependency-check"
@@ -113,7 +113,7 @@ tasks {
         group = "build"
         doLast {
             // delete build directory in root project
-            delete(buildDir)
+            delete(layout.buildDirectory.get())
         }
     }
 }
