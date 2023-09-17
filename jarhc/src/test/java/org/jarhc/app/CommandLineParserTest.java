@@ -38,7 +38,6 @@ import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.utils.JavaUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.mockito.Mockito;
 
 class CommandLineParserTest {
 
@@ -722,7 +721,7 @@ class CommandLineParserTest {
 	void loadOptions_pathNotSpecified() {
 
 		// prepare
-		Iterator<String> args = Mockito.mock(Iterator.class);
+		Iterator<String> args = Collections.emptyIterator();
 		Options options = new Options();
 
 		// test & assert
