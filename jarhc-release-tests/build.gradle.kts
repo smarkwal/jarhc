@@ -43,9 +43,9 @@ idea {
 
 dependencies {
 
-    implementation("org.junit.jupiter:junit-jupiter:5.10.0")
-    implementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
-    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    implementation(platform("org.junit:junit-bom:5.10.0"))
+    implementation("org.junit.jupiter:junit-jupiter")
+    runtimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.assertj:assertj-core:3.24.2")
     implementation("org.testcontainers:testcontainers:1.19.0")
     implementation("org.testcontainers:junit-jupiter:1.19.0")
