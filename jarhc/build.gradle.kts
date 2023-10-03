@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.5"
 
     // run Sonar analysis
-    id("org.sonarqube") version "4.3.1.3277"
+    id("org.sonarqube") version "4.4.0.3356"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.2.0"
@@ -145,7 +145,7 @@ val includeInJarWithDeps: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.5")
+    implementation("org.ow2.asm:asm:9.6")
     implementation("org.json:json:20230618")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")

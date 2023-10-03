@@ -15,7 +15,7 @@ aether-spi-1.1.0.jar                                           | 30.0 KB | 34   
 aether-transport-file-1.1.0.jar                                | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
 aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
 aether-util-1.1.0.jar                                          | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
-asm-9.5.jar                                                    | 119 KB  | 37      | 0         | dc6ea1875f4d64fbc85e1691c95b96a3d8569c90 | org.ow2.asm:asm:9.5
+asm-9.6.jar                                                    | 121 KB  | 38      | 0         | aa205cf0a06dbd8e04ece91c0b37c3f5d567546a | org.ow2.asm:asm:9.6
 checker-qual-3.33.0.jar                                        | 219 KB  | 358     | 0         | de2b60b62da487644fc11f734e73c8b0b431238f | org.checkerframework:checker-qual:3.33.0
 commons-codec-1.16.0.jar                                       | 352 KB  | 102     | 128       | 4e3eb3d79888d76b54e28b350915b5dc3919c9de | commons-codec:commons-codec:1.16.0
 commons-lang3-3.4.jar                                          | 424 KB  | 224     | 0         | 5fe28b9518e58819180a43a850fbc0dd24b7c050 | org.apache.commons:commons-lang3:3.4
@@ -39,7 +39,7 @@ plexus-component-annotations-1.6.jar                           | 4.17 KB | 3    
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
 plexus-utils-3.5.1.jar                                         | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
 slf4j-api-2.0.9.jar                                            | 63.1 KB | 51      | 0         | 7cf2726fdcfbc8610f9a71fb3ed639871f315340 | org.slf4j:slf4j-api:2.0.9
-Classpath                                                      | 6.81 MB | 4542    | 148       | -                                        | -
+Classpath                                                      | 6.82 MB | 4543    | 148       | -                                        | -
 
 Modules
 -------
@@ -55,7 +55,7 @@ aether-spi-1.1.0.jar                                           | aether.spi     
 aether-transport-file-1.1.0.jar                                | aether.transport.file                               | Auto-generated | Yes       | -            | [all packages]
 aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -            | [all packages]
 aether-util-1.1.0.jar                                          | aether.util                                         | Auto-generated | Yes       | -            | [all packages]
-asm-9.5.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base    | org.objectweb.asm
+asm-9.6.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base    | org.objectweb.asm
                                                                |                                                     |                |           |              | org.objectweb.asm.signature
 checker-qual-3.33.0.jar                                        | org.checkerframework.checker.qual                   | Manifest       | Yes       | -            | [all packages]
 commons-codec-1.16.0.jar                                       | org.apache.commons.codec                            | Manifest       | Yes       | -            | [all packages]
@@ -101,7 +101,7 @@ aether-spi-1.1.0.jar                                           | No             
 aether-transport-file-1.1.0.jar                                | No                             | Java 5 (4)
 aether-transport-http-1.1.0.jar                                | No                             | Java 5 (20)
 aether-util-1.1.0.jar                                          | No                             | Java 5 (103)
-asm-9.5.jar                                                    | No                             | Java 5 (37)
+asm-9.6.jar                                                    | No                             | Java 5 (38)
 checker-qual-3.33.0.jar                                        | No                             | Java 8 (358)
 commons-codec-1.16.0.jar                                       | No                             | Java 8 (102)
 commons-lang3-3.4.jar                                          | No                             | Java 6 (224)
@@ -126,7 +126,7 @@ plexus-interpolation-1.21.jar                                  | No             
 plexus-utils-3.5.1.jar                                         | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
 slf4j-api-2.0.9.jar                                            | Yes (Java 9)                   | Java 8 (51)
 Classpath                                                      | -                              | Java 11 (131), Java 10 (1), Java 8 (2657), Java 7 (254),
-                                                               |                                | Java 6 (976), Java 5 (523)
+                                                               |                                | Java 6 (976), Java 5 (524)
 
 JAR Dependencies
 ----------------
@@ -141,7 +141,7 @@ jarhc.jar                                                      | aether-api-1.1.
                                                                | aether-transport-file-1.1.0.jar      |
                                                                | aether-transport-http-1.1.0.jar      |
                                                                | aether-util-1.1.0.jar                |
-                                                               | asm-9.5.jar                          |
+                                                               | asm-9.6.jar                          |
                                                                | jcl-over-slf4j-2.0.9.jar             |
                                                                | json-20230618.jar                    |
                                                                | jul-to-slf4j-2.0.9.jar               |
@@ -180,7 +180,7 @@ aether-util-1.1.0.jar                                          | aether-api-1.1.
                                                                |                                      | aether-transport-http-1.1.0.jar
                                                                |                                      | jarhc.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
-asm-9.5.jar                                                    | [none]                               | jarhc.jar
+asm-9.6.jar                                                    | [none]                               | jarhc.jar
 checker-qual-3.33.0.jar                                        | [none]                               | guava-32.1.2-jre.jar
 commons-codec-1.16.0.jar                                       | [none]                               | httpclient-4.5.14.jar
 commons-lang3-3.4.jar                                          | [none]                               | maven-aether-provider-3.3.9.jar
@@ -274,7 +274,7 @@ aether-transport-http-1.1.0.jar                                | org.eclipse.aet
                                                                |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.9)
                                                                |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
 aether-util-1.1.0.jar                                          | org.eclipse.aether:aether-util:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
-asm-9.5.jar                                                    | org.ow2.asm:asm:9.5                                                         | [none]                                                                      |
+asm-9.6.jar                                                    | org.ow2.asm:asm:9.6                                                         | [none]                                                                      |
 checker-qual-3.33.0.jar                                        | org.checkerframework:checker-qual:3.33.0                                    | [none]                                                                      |
 commons-codec-1.16.0.jar                                       | commons-codec:commons-codec:1.16.0                                          | [none]                                                                      |
 commons-lang3-3.4.jar                                          | org.apache.commons:commons-lang3:3.4                                        | [none]                                                                      |
@@ -350,7 +350,7 @@ aether-spi-1.1.0.jar                 | 8     | org.eclipse.aether.spi.* (8 subpa
 aether-transport-file-1.1.0.jar      | 1     | org.eclipse.aether.transport.file                     |
 aether-transport-http-1.1.0.jar      | 1     | org.eclipse.aether.transport.http                     |
 aether-util-1.1.0.jar                | 13    | org.eclipse.aether.util (+12 subpackages)             |
-asm-9.5.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
+asm-9.6.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
 checker-qual-3.33.0.jar              | 30    | org.checkerframework.* (30 subpackages)               |
 commons-codec-1.16.0.jar             | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
