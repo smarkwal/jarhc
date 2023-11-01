@@ -32,7 +32,7 @@ plugins {
     id("org.sonarqube") version "4.4.0.3356"
 
     // get current Git branch name
-    id("org.ajoberstar.grgit") version "5.2.0"
+    id("org.ajoberstar.grgit") version "5.2.1"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.0.1"
