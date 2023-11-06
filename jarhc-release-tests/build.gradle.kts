@@ -43,7 +43,7 @@ idea {
 
 dependencies {
 
-    implementation(platform("org.junit:junit-bom:5.10.0"))
+    implementation(platform("org.junit:junit-bom:5.10.1"))
     implementation("org.junit.jupiter:junit-jupiter")
     runtimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.assertj:assertj-core:3.24.2")
