@@ -30,7 +30,7 @@ plugins {
 
     // run OWASP Dependency-Check analysis
     // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "8.4.2"
+    id("org.owasp.dependencycheck") version "9.0.2"
 
 }
 
