@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
-import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.util.*
 
 plugins {
@@ -27,10 +26,6 @@ plugins {
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
     id("com.github.ben-manes.versions") version "0.50.0"
-
-    // run OWASP Dependency-Check analysis
-    // note: set same version in .github/workflows/dependency-check.yml
-    id("org.owasp.dependencycheck") version "8.4.2"
 
 }
 
@@ -85,27 +80,6 @@ nexusPublishing {
     this.repositories {
         sonatype()
     }
-}
-
-dependencyCheck {
-    // documentation: https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
-
-    // settings
-    format = Format.ALL.toString()
-    skipTestGroups = false
-    outputDirectory = "${layout.buildDirectory.get()}/reports/dependency-check"
-
-    // path to database directory
-    data.directory = "${rootDir}/dependency-check"
-
-    // disable .NET Assembly Analyzer (fix for unexpected build exception)
-    analyzers.assemblyEnabled = false
-
-    // exclude test resources from analysis
-    scanSet = listOf()
-
-    // suppressed findings
-    suppressionFile = "${projectDir}/suppression.xml"
 }
 
 tasks {

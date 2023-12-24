@@ -23,9 +23,6 @@ build/
 *.hprof
 *.jfr
 
-# Dependency-Check data directory
-/dependency-check
-
 # user-specific files
 gradle.user.properties
 *.gpg
