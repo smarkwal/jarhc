@@ -63,6 +63,14 @@ subprojects {
         }
     }
 
+    tasks {
+        dependencyUpdates {
+            rejectVersionIf {
+                isUnstableVersion(candidate)
+            }
+        }
+    }
+
 }
 
 // special settings for IntelliJ IDEA
@@ -83,6 +91,7 @@ nexusPublishing {
 }
 
 tasks {
+
     register("clean") {
         group = "build"
         doLast {
@@ -90,4 +99,17 @@ tasks {
             delete(layout.buildDirectory.get())
         }
     }
+
+    dependencyUpdates {
+        rejectVersionIf {
+            isUnstableVersion(candidate)
+        }
+    }
+
+}
+
+fun isUnstableVersion(candidate: ModuleComponentIdentifier): Boolean {
+    return candidate.version.contains("-M") // ignore milestone version
+            || candidate.version.contains("-rc") // ignore release candidate versions
+            || candidate.version.contains("-alpha") // ignore alpha versions
 }
