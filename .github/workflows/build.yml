@@ -33,10 +33,10 @@ jobs:
         java-version: '11'
 
     - name: Validate Gradle wrapper
-      uses: gradle/wrapper-validation-action@v1
+      uses: gradle/wrapper-validation-action@v2
 
     - name: Restore Sonar Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
@@ -47,26 +47,26 @@ jobs:
       run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@v2
+      uses: gradle/gradle-build-action@v3
       with:
         arguments: '--no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
         cache-read-only: false
 
     - name: Upload reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: reports
         path: jarhc/build/reports
 
     - name: Upload libs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: libs
         path: jarhc/build/libs
 
     - name: Upload docs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: docs
         path: jarhc/build/docs

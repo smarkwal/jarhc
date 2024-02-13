@@ -28,10 +28,10 @@ jobs:
         java-version: '11'
 
     - name: Validate Gradle wrapper
-      uses: gradle/wrapper-validation-action@v1
+      uses: gradle/wrapper-validation-action@v2
 
     - name: Run Benchmarks
-      uses: gradle/gradle-build-action@v2
+      uses: gradle/gradle-build-action@v3
       with:
         arguments: '--no-daemon :jarhc-benchmarks:runBenchmarks ${{ github.event.inputs.additionalGradleOptions }}'
         cache-read-only: false
