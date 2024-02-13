@@ -146,7 +146,7 @@ dependencies {
 
     // main dependencies
     implementation("org.ow2.asm:asm:9.6")
-    implementation("org.json:json:20231013")
+    implementation("org.json:json:20240205")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")
     implementation("org.eclipse.aether:aether-util:1.1.0")
@@ -155,9 +155,9 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:jul-to-slf4j:2.0.9")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.9")
-    api("org.slf4j:slf4j-api:2.0.9")
+    implementation("org.slf4j:jul-to-slf4j:2.0.12")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.12")
+    api("org.slf4j:slf4j-api:2.0.12")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -168,16 +168,16 @@ dependencies {
     // note: version 4.0.0 fails with NullPointerException
     implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
-    implementation("commons-codec:commons-codec:1.16.0")
+    implementation("commons-codec:commons-codec:1.16.1")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.9")
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.12")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.1")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.2")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.mockito:mockito-core:5.8.0")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.9")
+    testFixturesApi("org.mockito:mockito-core:5.10.0")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.12")
 
 }
 
