@@ -815,7 +815,13 @@ aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 |
                                 | org.eclipse.aether.transport.http.X509HostnameVerifierAdapter
                                 | • @Deprecated: public interface org.apache.http.conn.ssl.X509HostnameVerifier
-guava-33.0.0-jre.jar            | com.google.common.cache.Striped64
+aether-util-1.1.0.jar           | org.eclipse.aether.util.concurrency.RunnableErrorForwarder
+                                | • @Deprecated: public class java.lang.ThreadDeath
+guava-33.0.0-jre.jar            | com.google.common.base.Throwables
+                                | • @Deprecated: public class java.lang.ThreadDeath
+                                |
+                                | com.google.common.cache.Striped64
+                                | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
                                 | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
@@ -826,6 +832,7 @@ guava-33.0.0-jre.jar            | com.google.common.cache.Striped64
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
                                 |
                                 | com.google.common.hash.LittleEndianByteArray$UnsafeByteArray
+                                | • @Deprecated: public final class java.security.AccessController
                                 | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
                                 | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
                                 | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
@@ -839,6 +846,7 @@ guava-33.0.0-jre.jar            | com.google.common.cache.Striped64
                                 | • void sun.misc.Unsafe.putLong(java.lang.Object,long,long)
                                 |
                                 | com.google.common.hash.Striped64
+                                | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
                                 | • boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
@@ -849,12 +857,17 @@ guava-33.0.0-jre.jar            | com.google.common.cache.Striped64
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
                                 |
                                 | com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$UnsafeComparator
+                                | • @Deprecated: public final class java.security.AccessController
                                 | • int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)
                                 | • int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)
                                 | • long sun.misc.Unsafe.getLong(java.lang.Object,long)
                                 | • static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()
                                 |
+                                | com.google.common.reflect.Types$TypeVariableInvocationHandler
+                                | • @Deprecated: public class java.security.AccessControlException
+                                |
                                 | com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+                                | • @Deprecated: public final class java.security.AccessController
                                 | • boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)
                                 | • java.lang.Object sun.misc.Unsafe.getAndSetObject(java.lang.Object,long,java.lang.Object)
                                 | • long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)
@@ -1169,6 +1182,10 @@ httpclient-4.5.14.jar           | org.apache.http.auth.AuthSchemeFactory
                                 |
                                 | org.apache.http.impl.execchain.RequestEntityProxy
                                 | • @Deprecated: public abstract void org.apache.http.HttpEntity.consumeContent()
+httpcore-4.4.16.jar             | org.apache.http.impl.pool.BasicConnFactory
+                                | • @Deprecated: public final class java.security.AccessController
+jcl-over-slf4j-2.0.12.jar       | org.apache.commons.logging.impl.SimpleLog
+                                | • @Deprecated: public final class java.security.AccessController
 maven-aether-provider-3.3.9.jar | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
                                 | • @Deprecated: public interface org.apache.maven.model.building.ModelSource
                                 |
@@ -1187,7 +1204,10 @@ maven-aether-provider-3.3.9.jar | org.apache.maven.repository.internal.DefaultAr
                                 |
                                 | org.apache.maven.repository.internal.MavenAetherModule
                                 | • @Deprecated: public final class org.eclipse.aether.impl.AetherModule
-maven-model-builder-3.3.9.jar   | org.apache.maven.model.io.DefaultModelReader
+maven-model-builder-3.3.9.jar   | org.apache.maven.model.interpolation.StringSearchModelInterpolator
+                                | • @Deprecated: public final class java.security.AccessController
+                                |
+                                | org.apache.maven.model.io.DefaultModelReader
                                 | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
                                 | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.Reader)
                                 |
@@ -1197,6 +1217,17 @@ maven-model-builder-3.3.9.jar   | org.apache.maven.model.io.DefaultModelReader
                                 |
                                 | org.apache.maven.model.validation.DefaultModelValidator
                                 | • @Deprecated: public static java.lang.String org.codehaus.plexus.util.StringUtils.defaultString(java.lang.Object,java.lang.String)
+plexus-interpolation-1.21.jar   | org.codehaus.plexus.interpolation.object.FieldBasedObjectInterpolator
+                                | • @Deprecated: public final class java.security.AccessController
 plexus-utils-3.5.1.jar          | org.codehaus.plexus.util.cli.Commandline
                                 | • java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)
+                                |
+                                | org.codehaus.plexus.util.cli.ShutdownHookUtils
+                                | • @Deprecated: public class java.security.AccessControlException
+slf4j-api-2.0.12.jar            | org.slf4j.LoggerFactory
+                                | • @Deprecated: public class java.lang.SecurityManager
+                                | • @Deprecated: public final class java.security.AccessController
+                                |
+                                | org.slf4j.helpers.Util$ClassContextSecurityManager
+                                | • @Deprecated: public class java.lang.SecurityManager
 
