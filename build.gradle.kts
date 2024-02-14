@@ -50,8 +50,8 @@ subprojects {
 
     // Java version check ------------------------------------------------------
 
-    if (!JavaVersion.current().isJava11Compatible) {
-        val error = "Build requires Java 11 and does not run on Java ${JavaVersion.current().majorVersion}."
+    if (!JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
+        val error = "Build requires Java 17 and does not run on Java ${JavaVersion.current().majorVersion}."
         throw GradleException(error)
     }
 
@@ -77,7 +77,7 @@ subprojects {
 idea {
 
     project {
-        jdkName = "11"
+        jdkName = "17"
         languageLevel = IdeaLanguageLevel(JavaVersion.VERSION_11)
         vcs = "Git"
     }
