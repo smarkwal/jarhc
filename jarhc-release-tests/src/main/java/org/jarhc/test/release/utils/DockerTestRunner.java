@@ -21,6 +21,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.Container;
 
 public class DockerTestRunner extends AbstractTestRunner {
@@ -83,16 +84,16 @@ public class DockerTestRunner extends AbstractTestRunner {
 		JavaContainer container = new JavaContainer(javaImage);
 
 		// map JarHC work directory into container
-		container.withFileSystemBind(workDir.getAbsolutePath(), "/jarhc");
+		container.withFileSystemBind(workDir.getAbsolutePath(), "/jarhc", BindMode.READ_WRITE);
 
 		// map installed files into container
 		for (String path : files.keySet()) {
 			File file = files.get(path);
-			container.withFileSystemBind(file.getAbsolutePath(), "/jarhc/" + path);
+			container.withFileSystemBind(file.getAbsolutePath(), "/jarhc/" + path, BindMode.READ_WRITE);
 		}
 
 		// map JarHC data directory into container
-		container.withFileSystemBind(dataDir.getAbsolutePath(), "/jarhc/data");
+		container.withFileSystemBind(dataDir.getAbsolutePath(), "/jarhc/data", BindMode.READ_WRITE);
 
 		// set path to JarHC data directory
 		container.withEnv("JARHC_DATA", "/jarhc/data");
@@ -104,13 +105,11 @@ public class DockerTestRunner extends AbstractTestRunner {
 		// (otherwise, a JShell may be started and consume valuable memory)
 		container.withCommand("sleep", "1h");
 
-		// get UID and GID of current user
-		String uid = SysUtils.getUID();
-		String gid = SysUtils.getGID();
-
-		// use same user in container
-		String user = uid + ":" + gid;
-		container.withCreateContainerCmdModifier(cmd -> cmd.withUser(user));
+		String user = getUser();
+		if (user != null) {
+			LOGGER.info("Run as user: {}", user);
+			container.withCreateContainerCmdModifier(cmd -> cmd.withUser(user));
+		}
 
 		return container;
 	}
@@ -130,6 +129,40 @@ public class DockerTestRunner extends AbstractTestRunner {
 		} catch (IOException e) {
 			throw new AssertionError("Unexpected I/O error.", e);
 		}
+	}
+
+	private static String getUser() {
+
+		String user = System.getProperty("jarhc.test.docker.user", "same");
+
+		if (user.equals("none")) {
+
+			// use default user in container
+			return null;
+
+		} else if (user.equals("same")) {
+
+			// get UID and GID of current user
+			String uid = SysUtils.getUID();
+			String gid = SysUtils.getGID();
+
+			// use same user in container
+			return uid + ":" + gid;
+
+		} else if (user.equals("root")) {
+
+			// use root user in container
+			return "0:0";
+
+		} else if (user.matches("[0-9]+:[0-9]+")) {
+
+			// use specified user in container
+			return user;
+
+		} else {
+			throw new IllegalArgumentException("Invalid user: '" + user + "'");
+		}
+
 	}
 
 }

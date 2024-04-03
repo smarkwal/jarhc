@@ -49,7 +49,7 @@ public class FileReportWriter implements ReportWriter {
 			writer.append(text);
 		} catch (IOException e) {
 			// TODO: use a ReportWriterException?
-			throw new JarHcException(e);
+			throw new JarHcException("I/O error for file '" + file.getAbsolutePath() + "'", e);
 		}
 	}
 

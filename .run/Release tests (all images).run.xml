@@ -4,7 +4,7 @@
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$/jarhc-release-tests" />
       <option name="externalSystemIdString" value="GRADLE" />
-      <option name="scriptParameters" value="-Pjarhc.test.docker.filter=all" />
+      <option name="scriptParameters" value="-Pjarhc.test.docker.user=root -Pjarhc.test.docker.filter=all" />
       <option name="taskDescriptions">
         <list />
       </option>
