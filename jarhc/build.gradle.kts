@@ -73,10 +73,10 @@ gradle.taskGraph.whenReady {
 
     // if sonar task should be executed ...
     if (gradle.taskGraph.hasTask(":sonar")) {
-        // environment variable SONAR_TOKEN or property "sonar.login" must be set
-        val tokenFound = project.hasProperty("sonar.login") || System.getenv("SONAR_TOKEN") != null
+        // environment variable SONAR_TOKEN or system property "sonar.token" must be set
+        val tokenFound = System.getProperties().containsKey("sonar.token") || System.getenv("SONAR_TOKEN") != null
         if (!tokenFound) {
-            val error = "Sonar: Token not found.\nPlease set property 'sonar.login' or environment variable 'SONAR_TOKEN'."
+            val error = "Sonar: Token not found.\nPlease set system property 'sonar.token' or environment variable 'SONAR_TOKEN'."
             throw GradleException(error)
         }
     }
