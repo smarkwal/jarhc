@@ -37,7 +37,7 @@
     <dependency>
       <groupId>org.ow2.asm</groupId>
       <artifactId>asm</artifactId>
-      <version>9.6</version>
+      <version>9.7</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -49,7 +49,7 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20240205</version>
+      <version>20240303</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -181,7 +181,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.0.0-jre</version>
+      <version>33.1.0-jre</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>

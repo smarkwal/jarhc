@@ -26,13 +26,13 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "2.5"
+    id("com.github.jk1.dependency-license-report") version "2.6"
 
     // run Sonar analysis
-    id("org.sonarqube") version "4.4.1.3373"
+    id("org.sonarqube") version "5.0.0.4638"
 
     // get current Git branch name
-    id("org.ajoberstar.grgit") version "5.2.1"
+    id("org.ajoberstar.grgit") version "5.2.2"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.0.1"
@@ -145,8 +145,8 @@ val includeInJarWithDeps: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.6")
-    implementation("org.json:json:20240205")
+    implementation("org.ow2.asm:asm:9.7")
+    implementation("org.json:json:20240303")
     implementation("org.eclipse.aether:aether-impl:1.1.0")
     implementation("org.eclipse.aether:aether-api:1.1.0")
     implementation("org.eclipse.aether:aether-util:1.1.0")
@@ -161,7 +161,7 @@ dependencies {
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:33.0.0-jre")
+    implementation("com.google.guava:guava:33.1.0-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
@@ -176,7 +176,7 @@ dependencies {
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.2")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.mockito:mockito-core:5.10.0")
+    testFixturesApi("org.mockito:mockito-core:5.11.0")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.12")
 
 }
