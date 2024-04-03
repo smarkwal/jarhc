@@ -8,9 +8,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-      day: "friday"
-      time: "17:00"
-      timezone: "Europe/Zurich"
     target-branch: "master"
     open-pull-requests-limit: 100
 
@@ -18,8 +15,5 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-      day: "friday"
-      time: "17:00"
-      timezone: "Europe/Zurich"
     target-branch: "master"
     open-pull-requests-limit: 100
