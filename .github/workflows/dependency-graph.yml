@@ -1,0 +1,39 @@
+name: Dependency Graph
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      dependencyGraphAction:
+        type: choice
+        description: 'Dependency graph action'
+        required: false
+        default: 'generate-and-submit'
+        options:
+          - generate-and-submit
+          - generate-and-upload
+
+permissions:
+  contents: write
+
+jobs:
+  dependency-graph:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Generate dependency graph
+      uses: gradle/actions/dependency-submission@v3
+      with:
+        dependency-graph: ${{ github.event.inputs.dependencyGraphAction }}
