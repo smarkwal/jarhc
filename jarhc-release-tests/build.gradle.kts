@@ -54,6 +54,10 @@ dependencies {
     runtimeOnly("org.slf4j:slf4j-api:2.0.13")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.13")
 
+    // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
+    // (dependency of Testcontainers 1.19.7)
+    implementation("org.apache.commons:commons-compress:1.26.1")
+
 }
 
 // plugin configurations -------------------------------------------------------
