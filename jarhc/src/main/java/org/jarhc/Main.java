@@ -19,6 +19,7 @@ package org.jarhc;
 import static org.jarhc.artifacts.MavenRepository.MAVEN_CENTRAL_URL;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
@@ -144,6 +145,15 @@ public class Main {
 			boolean created = directory.mkdirs();
 			if (!created) {
 				throw new JarHcException("Failed to create directory: " + directory.getAbsolutePath());
+			}
+		}
+
+		File cacheDirTagFile = new File(directory, "CACHEDIR.TAG");
+		if (!cacheDirTagFile.isFile()) {
+			try {
+				FileUtils.writeStringToFile("Signature: 8a477f597d28d172789f06886806bc55\n# This file is a cache directory tag created by JarHC.", cacheDirTagFile);
+			} catch (IOException e) {
+				LOGGER.warn("Failed to create CACHEDIR.TAG file.", e);
 			}
 		}
 
