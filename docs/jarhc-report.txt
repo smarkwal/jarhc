@@ -7,11 +7,11 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc-2.2.0-SNAPSHOT.jar                                       | 225 KB  | 130     | 6         | 0a7457d4e5450cc5200818c66b5875db0eb573c1 | [unknown]
-jul-to-slf4j-2.0.12.jar                                        | 6.20 KB | 1       | 0         | eb5f48f782b41cc881b0bf1fb4d88ae2ff6d5b93 | org.slf4j:jul-to-slf4j:2.0.12
+jarhc-2.2.0-SNAPSHOT.jar                                       | 226 KB  | 130     | 6         | d1dcc8a693a3f400ebc8441b5d061aa226a6ff1e | [unknown]
+jul-to-slf4j-2.0.13.jar                                        | 6.20 KB | 1       | 0         | a3bcd9d9dd50c71ce69f06b1fd05e40fdeff6ba5 | org.slf4j:jul-to-slf4j:2.0.13
 aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
-jcl-over-slf4j-2.0.12.jar                                      | 18.0 KB | 8       | 0         | 4462ddec70c0126e580dd0a637cb105a3c7a99ab | org.slf4j:jcl-over-slf4j:2.0.12
-slf4j-api-2.0.12.jar                                           | 66.5 KB | 54      | 0         | 48f109a2a6d8f446c794f3e3fa0d86df0cdfa312 | org.slf4j:slf4j-api:2.0.12
+jcl-over-slf4j-2.0.13.jar                                      | 18.0 KB | 8       | 0         | d062d6e35605aabee0c727a950e29d39ac0a262e | org.slf4j:jcl-over-slf4j:2.0.13
+slf4j-api-2.0.13.jar                                           | 67.0 KB | 54      | 0         | 80229737f704b121a318bba5d5deacbcf395bc77 | org.slf4j:slf4j-api:2.0.13
 asm-9.7.jar                                                    | 122 KB  | 38      | 0         | 073d7b3086e14beb604ced229c302feff6449723 | org.ow2.asm:asm:9.7
 json-20240303.jar                                              | 76.5 KB | 30      | 0         | 0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a | org.json:json:20240303
 maven-aether-provider-3.3.9.jar                                | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
@@ -48,13 +48,13 @@ List of Java Modules found in classpath.
 JAR file                                                       | Module name                                         | Definition     | Automatic | Requires      | Exports
 ---------------------------------------------------------------+-----------------------------------------------------+----------------+-----------+---------------+---------------------------------------------
 jarhc-2.2.0-SNAPSHOT.jar                                       | org.jarhc                                           | Manifest       | Yes       | -             | [all packages]
-jul-to-slf4j-2.0.12.jar                                        | jul.to.slf4j                                        | Module-Info    | No        | org.slf4j     | org.slf4j.bridge
+jul-to-slf4j-2.0.13.jar                                        | jul.to.slf4j                                        | Module-Info    | No        | org.slf4j     | org.slf4j.bridge
                                                                |                                                     |                |           | java.logging  |
                                                                |                                                     |                |           | java.base     |
 aether-transport-http-1.1.0.jar                                | aether.transport.http                               | Auto-generated | Yes       | -             | [all packages]
-jcl-over-slf4j-2.0.12.jar                                      | org.apache.commons.logging                          | Module-Info    | No        | org.slf4j     | org.apache.commons.logging
+jcl-over-slf4j-2.0.13.jar                                      | org.apache.commons.logging                          | Module-Info    | No        | org.slf4j     | org.apache.commons.logging
                                                                |                                                     |                |           | java.base     |
-slf4j-api-2.0.12.jar                                           | org.slf4j                                           | Module-Info    | No        | java.base     | org.slf4j
+slf4j-api-2.0.13.jar                                           | org.slf4j                                           | Module-Info    | No        | java.base     | org.slf4j
                                                                |                                                     |                |           |               | org.slf4j.event
                                                                |                                                     |                |           |               | org.slf4j.helpers
                                                                |                                                     |                |           |               | org.slf4j.spi
@@ -101,10 +101,10 @@ Java class file format information.
 JAR file                                                       | Multi-release                  | Class files by Java version
 ---------------------------------------------------------------+--------------------------------+---------------------------------------------------------
 jarhc-2.2.0-SNAPSHOT.jar                                       | No                             | Java 11 (130)
-jul-to-slf4j-2.0.12.jar                                        | Yes (Java 9)                   | Java 8 (1)
+jul-to-slf4j-2.0.13.jar                                        | Yes (Java 9)                   | Java 8 (1)
 aether-transport-http-1.1.0.jar                                | No                             | Java 5 (20)
-jcl-over-slf4j-2.0.12.jar                                      | Yes (Java 9)                   | Java 8 (8)
-slf4j-api-2.0.12.jar                                           | Yes (Java 9)                   | Java 8 (54)
+jcl-over-slf4j-2.0.13.jar                                      | Yes (Java 9)                   | Java 8 (8)
+slf4j-api-2.0.13.jar                                           | Yes (Java 9)                   | Java 8 (54)
 asm-9.7.jar                                                    | No                             | Java 5 (38)
 json-20240303.jar                                              | Yes (Java 9)                   | Java 8 (30)
 maven-aether-provider-3.3.9.jar                                | No                             | Java 7 (26)
@@ -149,23 +149,23 @@ jarhc-2.2.0-SNAPSHOT.jar                                       | aether-api-1.1.
                                                                | aether-transport-http-1.1.0.jar      |
                                                                | aether-util-1.1.0.jar                |
                                                                | asm-9.7.jar                          |
-                                                               | jcl-over-slf4j-2.0.12.jar            |
+                                                               | jcl-over-slf4j-2.0.13.jar            |
                                                                | json-20240303.jar                    |
-                                                               | jul-to-slf4j-2.0.12.jar              |
+                                                               | jul-to-slf4j-2.0.13.jar              |
                                                                | maven-aether-provider-3.3.9.jar      |
-                                                               | slf4j-api-2.0.12.jar                 |
-jul-to-slf4j-2.0.12.jar                                        | slf4j-api-2.0.12.jar                 | jarhc-2.2.0-SNAPSHOT.jar
+                                                               | slf4j-api-2.0.13.jar                 |
+jul-to-slf4j-2.0.13.jar                                        | slf4j-api-2.0.13.jar                 | jarhc-2.2.0-SNAPSHOT.jar
 aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.0-SNAPSHOT.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
                                                                | httpclient-4.5.14.jar                |
                                                                | httpcore-4.4.16.jar                  |
-jcl-over-slf4j-2.0.12.jar                                      | slf4j-api-2.0.12.jar                 | httpclient-4.5.14.jar
+jcl-over-slf4j-2.0.13.jar                                      | slf4j-api-2.0.13.jar                 | httpclient-4.5.14.jar
                                                                |                                      | jarhc-2.2.0-SNAPSHOT.jar
-slf4j-api-2.0.12.jar                                           | [none]                               | aether-impl-1.1.0.jar
+slf4j-api-2.0.13.jar                                           | [none]                               | aether-impl-1.1.0.jar
                                                                |                                      | jarhc-2.2.0-SNAPSHOT.jar
-                                                               |                                      | jcl-over-slf4j-2.0.12.jar
-                                                               |                                      | jul-to-slf4j-2.0.12.jar
+                                                               |                                      | jcl-over-slf4j-2.0.13.jar
+                                                               |                                      | jul-to-slf4j-2.0.13.jar
 asm-9.7.jar                                                    | [none]                               | jarhc-2.2.0-SNAPSHOT.jar
 json-20240303.jar                                              | [none]                               | jarhc-2.2.0-SNAPSHOT.jar
 maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.0-SNAPSHOT.jar
@@ -182,7 +182,7 @@ maven-aether-provider-3.3.9.jar                                | aether-api-1.1.
 aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc-2.2.0-SNAPSHOT.jar
                                                                | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
                                                                | aether-util-1.1.0.jar                |
-                                                               | slf4j-api-2.0.12.jar                 |
+                                                               | slf4j-api-2.0.13.jar                 |
 aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc-2.2.0-SNAPSHOT.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
@@ -221,7 +221,7 @@ guava-33.1.0-jre.jar                                           | checker-qual-3.
                                                                | jsr305-3.0.2.jar                     |
 httpclient-4.5.14.jar                                          | commons-codec-1.16.1.jar             | aether-transport-http-1.1.0.jar
                                                                | httpcore-4.4.16.jar                  |
-                                                               | jcl-over-slf4j-2.0.12.jar            |
+                                                               | jcl-over-slf4j-2.0.13.jar            |
 maven-model-3.3.9.jar                                          | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
                                                                | plexus-utils-3.5.1.jar               | maven-model-builder-3.3.9.jar
 maven-repository-metadata-3.3.9.jar                            | plexus-utils-3.5.1.jar               | maven-aether-provider-3.3.9.jar
@@ -257,15 +257,15 @@ Dependencies as declared in POM file.
 JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
 ---------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+------------------------
 jarhc-2.2.0-SNAPSHOT.jar                                       | [unknown]                                                                   | [unknown]                                                                   |
-jul-to-slf4j-2.0.12.jar                                        | org.slf4j:jul-to-slf4j:2.0.12                                               | org.slf4j:slf4j-api:2.0.12                                                  | OK
+jul-to-slf4j-2.0.13.jar                                        | org.slf4j:jul-to-slf4j:2.0.13                                               | org.slf4j:slf4j-api:2.0.13                                                  | OK
 aether-transport-http-1.1.0.jar                                | org.eclipse.aether:aether-transport-http:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
                                                                |                                                                             | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.14)
-                                                               |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.12)
+                                                               |                                                                             | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 2.0.13)
                                                                |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-jcl-over-slf4j-2.0.12.jar                                      | org.slf4j:jcl-over-slf4j:2.0.12                                             | org.slf4j:slf4j-api:2.0.12                                                  | OK
-slf4j-api-2.0.12.jar                                           | org.slf4j:slf4j-api:2.0.12                                                  | [none]                                                                      |
+jcl-over-slf4j-2.0.13.jar                                      | org.slf4j:jcl-over-slf4j:2.0.13                                             | org.slf4j:slf4j-api:2.0.13                                                  | OK
+slf4j-api-2.0.13.jar                                           | org.slf4j:slf4j-api:2.0.13                                                  | [none]                                                                      |
 asm-9.7.jar                                                    | org.ow2.asm:asm:9.7                                                         | [none]                                                                      |
 json-20240303.jar                                              | org.json:json:20240303                                                      | [none]                                                                      |
 maven-aether-provider-3.3.9.jar                                | org.apache.maven:maven-aether-provider:3.3.9                                | org.apache.maven:maven-model:3.3.9                                          | OK
@@ -285,7 +285,7 @@ aether-impl-1.1.0.jar                                          | org.eclipse.aet
                                                                |                                                                             | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
                                                                |                                                                             | org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1 (provided, optional)         | Unsatisfied
                                                                |                                                                             | org.sonatype.sisu:sisu-guice:3.1.6 (provided, optional)                     | Unsatisfied
-                                                               |                                                                             | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 2.0.12)
+                                                               |                                                                             | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 2.0.13)
 aether-connector-basic-1.1.0.jar                               | org.eclipse.aether:aether-connector-basic:1.1.0                             | org.eclipse.aether:aether-api:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-util:1.1.0                                        | OK
@@ -407,10 +407,10 @@ httpcore-4.4.16.jar                  | 17    | org.apache.http                  
                                      |       | org.apache.http.ssl                                   |
                                      |       | org.apache.http.util                                  |
 jarhc-2.2.0-SNAPSHOT.jar             | 18    | org.jarhc (+17 subpackages)                           |
-jcl-over-slf4j-2.0.12.jar            | 2     | org.apache.commons.logging (+1 subpackage)            |
+jcl-over-slf4j-2.0.13.jar            | 2     | org.apache.commons.logging (+1 subpackage)            |
 json-20240303.jar                    | 1     | org.json                                              |
 jsr305-3.0.2.jar                     | 3     | javax.annotation (+2 subpackages)                     |
-jul-to-slf4j-2.0.12.jar              | 1     | org.slf4j.bridge                                      |
+jul-to-slf4j-2.0.13.jar              | 1     | org.slf4j.bridge                                      |
 maven-aether-provider-3.3.9.jar      | 1     | org.apache.maven.repository.internal                  |
 maven-artifact-3.3.9.jar             | 11    | org.apache.maven.artifact                             | Split Package: org.apache.maven.artifact.repository.metadata
                                      |       | org.apache.maven.artifact.handler                     |
@@ -446,7 +446,7 @@ maven-repository-metadata-3.3.9.jar  | 2     | org.apache.maven.artifact.reposit
 plexus-component-annotations-1.6.jar | 1     | org.codehaus.plexus.component.annotations             |
 plexus-interpolation-1.21.jar        | 6     | org.codehaus.plexus.interpolation (+5 subpackages)    |
 plexus-utils-3.5.1.jar               | 9     | org.codehaus.plexus.util (+8 subpackages)             |
-slf4j-api-2.0.12.jar                 | 4     | org.slf4j                                             |
+slf4j-api-2.0.13.jar                 | 4     | org.slf4j                                             |
                                      |       | org.slf4j.event                                       |
                                      |       | org.slf4j.helpers                                     |
                                      |       | org.slf4j.spi                                         |
@@ -816,9 +816,9 @@ aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 |
                                 | org.eclipse.aether.transport.http.X509HostnameVerifierAdapter
                                 | • @Deprecated: public interface org.apache.http.conn.ssl.X509HostnameVerifier
-jcl-over-slf4j-2.0.12.jar       | org.apache.commons.logging.impl.SimpleLog
+jcl-over-slf4j-2.0.13.jar       | org.apache.commons.logging.impl.SimpleLog
                                 | • @Deprecated: public final class java.security.AccessController
-slf4j-api-2.0.12.jar            | org.slf4j.LoggerFactory
+slf4j-api-2.0.13.jar            | org.slf4j.LoggerFactory
                                 | • @Deprecated: public class java.lang.SecurityManager
                                 | • @Deprecated: public final class java.security.AccessController
                                 |

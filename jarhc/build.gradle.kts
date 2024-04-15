@@ -26,7 +26,7 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "2.6"
+    id("com.github.jk1.dependency-license-report") version "2.7"
 
     // run Sonar analysis
     id("org.sonarqube") version "5.0.0.4638"
@@ -155,9 +155,9 @@ dependencies {
     implementation("org.eclipse.aether:aether-transport-file:1.1.0")
     implementation("org.eclipse.aether:aether-transport-http:1.1.0")
     implementation("org.apache.maven:maven-aether-provider:3.3.9")
-    implementation("org.slf4j:jul-to-slf4j:2.0.12")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.12")
-    api("org.slf4j:slf4j-api:2.0.12")
+    implementation("org.slf4j:jul-to-slf4j:2.0.13")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.13")
+    api("org.slf4j:slf4j-api:2.0.13")
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
@@ -165,19 +165,19 @@ dependencies {
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
-    // note: version 4.0.0 fails with NullPointerException
+    // note: version 4.0.x fails with NullPointerException
     implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
     implementation("commons-codec:commons-codec:1.16.1")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.12")
+    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.13")
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.2")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testFixturesApi("org.mockito:mockito-core:5.11.0")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.12")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.13")
 
 }
 
