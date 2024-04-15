@@ -7,7 +7,7 @@ on:
       dependencyGraphAction:
         type: choice
         description: 'Dependency graph action'
-        required: false
+        required: true
         default: 'generate-and-submit'
         options:
           - generate-and-submit
@@ -36,4 +36,4 @@ jobs:
     - name: Generate dependency graph
       uses: gradle/actions/dependency-submission@v3
       with:
-        dependency-graph: ${{ github.event.inputs.dependencyGraphAction }}
+        dependency-graph: ${{ github.event.inputs.dependencyGraphAction || 'generate-and-submit' }}
