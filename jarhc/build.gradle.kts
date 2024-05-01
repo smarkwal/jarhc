@@ -35,7 +35,7 @@ plugins {
     id("org.ajoberstar.grgit") version "5.2.2"
 
     // JarHC Gradle plugin
-    id("org.jarhc") version "1.0.1"
+    id("org.jarhc") version "1.1.0"
 
 }
 
