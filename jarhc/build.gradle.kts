@@ -168,7 +168,7 @@ dependencies {
     // note: version 4.0.x fails with NullPointerException
     implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
-    implementation("commons-codec:commons-codec:1.16.1")
+    implementation("commons-codec:commons-codec:1.17.0")
 
     // additional libraries to be added to jar-with-deps
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.13")
