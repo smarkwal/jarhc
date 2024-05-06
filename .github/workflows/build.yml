@@ -48,11 +48,13 @@ jobs:
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@v3
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: '--no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
         cache-read-only: false
+
+    - name: Build with Gradle
+      run: './gradlew --no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@v4
