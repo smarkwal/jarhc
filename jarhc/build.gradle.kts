@@ -35,7 +35,7 @@ plugins {
     id("org.ajoberstar.grgit") version "5.2.2"
 
     // JarHC Gradle plugin
-    id("org.jarhc") version "1.0.1"
+    id("org.jarhc") version "1.1.0"
 
 }
 
@@ -161,14 +161,14 @@ dependencies {
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:33.1.0-jre")
+    implementation("com.google.guava:guava:33.2.0-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
     // note: version 4.0.x fails with NullPointerException
     implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
-    implementation("commons-codec:commons-codec:1.16.1")
+    implementation("commons-codec:commons-codec:1.17.0")
 
     // additional libraries to be added to jar-with-deps
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.13")
