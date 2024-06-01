@@ -56,7 +56,7 @@ dependencies {
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
     // (dependency of Testcontainers 1.19.7)
-    implementation("org.apache.commons:commons-compress:1.26.1")
+    implementation("org.apache.commons:commons-compress:1.26.2")
 
 }
 
