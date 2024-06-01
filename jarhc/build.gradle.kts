@@ -161,7 +161,7 @@ dependencies {
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:33.2.0-jre")
+    implementation("com.google.guava:guava:33.2.1-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
