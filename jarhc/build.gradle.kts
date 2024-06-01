@@ -176,7 +176,7 @@ dependencies {
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.2")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.mockito:mockito-core:5.11.0")
+    testFixturesApi("org.mockito:mockito-core:5.12.0")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.13")
 
 }
