@@ -46,7 +46,7 @@ dependencies {
     implementation(platform("org.junit:junit-bom:5.10.2"))
     implementation("org.junit.jupiter:junit-jupiter")
     runtimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("org.assertj:assertj-core:3.25.3")
+    implementation("org.assertj:assertj-core:3.26.0")
     implementation("org.testcontainers:testcontainers:1.19.7")
     implementation("org.testcontainers:junit-jupiter:1.19.7")
     implementation("org.apache.commons:commons-lang3:3.14.0")
