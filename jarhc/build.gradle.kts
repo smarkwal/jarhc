@@ -26,7 +26,7 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "2.7"
+    id("com.github.jk1.dependency-license-report") version "2.8"
 
     // run Sonar analysis
     id("org.sonarqube") version "5.0.0.4638"
@@ -161,7 +161,7 @@ dependencies {
 
     // fix vulnerabilities in transitive dependencies
     // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:33.2.0-jre")
+    implementation("com.google.guava:guava:33.2.1-jre")
     // fix CVE-2015-5262 and CVE-2020-13956
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
     // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
@@ -174,9 +174,9 @@ dependencies {
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.13")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.2")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.10.3")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.mockito:mockito-core:5.11.0")
+    testFixturesApi("org.mockito:mockito-core:5.12.0")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.13")
 
 }
