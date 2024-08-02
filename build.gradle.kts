@@ -110,6 +110,7 @@ tasks {
     }
 
     dependencyUpdates {
+        gradleReleaseChannel = "current"
         rejectVersionIf {
             isUnstableVersion(candidate)
         }
