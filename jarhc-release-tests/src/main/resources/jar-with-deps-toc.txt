@@ -149,8 +149,8 @@ META-INF/licenses/aether-transport-file-1.1.0.jar/about.html | size=1440 | crc=1
 META-INF/licenses/aether-transport-http-1.1.0.jar/about.html | size=1440 | crc=1620826148
 META-INF/licenses/aether-util-1.1.0.jar/about.html | size=1440 | crc=1620826148
 META-INF/licenses/checker-qual-3.42.0.jar/META-INF/LICENSE.txt | size=1126 | crc=1249381289
-META-INF/licenses/commons-codec-1.17.0.jar/META-INF/LICENSE.txt | size=11358 | crc=2263004340
-META-INF/licenses/commons-codec-1.17.0.jar/META-INF/NOTICE.txt | size=175 | crc=315330833
+META-INF/licenses/commons-codec-1.17.1.jar/META-INF/LICENSE.txt | size=11358 | crc=2263004340
+META-INF/licenses/commons-codec-1.17.1.jar/META-INF/NOTICE.txt | size=175 | crc=315330833
 META-INF/licenses/commons-lang3-3.4.jar/META-INF/LICENSE.txt | size=11358 | crc=2263004340
 META-INF/licenses/commons-lang3-3.4.jar/META-INF/NOTICE.txt | size=301 | crc=251550615
 META-INF/licenses/guava-33.2.1-jre.jar/META-INF/LICENSE | size=11358 | crc=2263004340
@@ -160,7 +160,7 @@ META-INF/licenses/httpcore-4.4.16.jar/META-INF/LICENSE | size=11358 | crc=226300
 META-INF/licenses/httpcore-4.4.16.jar/META-INF/NOTICE | size=172 | crc=2906556078
 META-INF/licenses/jcl-over-slf4j-2.0.13.jar/META-INF/LICENSE.txt | size=1178 | crc=1232761363
 META-INF/licenses/jul-to-slf4j-2.0.13.jar/META-INF/LICENSE.txt | size=1178 | crc=1232761363
-META-INF/licenses/licenses.csv | size=4758 | crc=2837492671
+META-INF/licenses/licenses.csv | size=4758 | crc=2018430297
 META-INF/licenses/maven-aether-provider-3.3.9.jar/META-INF/LICENSE | size=11358 | crc=2263004340
 META-INF/licenses/maven-aether-provider-3.3.9.jar/META-INF/NOTICE | size=178 | crc=3959735361
 META-INF/licenses/maven-artifact-3.3.9.jar/META-INF/LICENSE | size=11358 | crc=2263004340
@@ -187,8 +187,8 @@ META-INF/maven/com.google.guava/guava/pom.properties | size=61 | crc=2712339220
 META-INF/maven/com.google.guava/guava/pom.xml | size=9087 | crc=3602881428
 META-INF/maven/com.google.guava/listenablefuture/pom.properties | size=134 | crc=3665043067
 META-INF/maven/com.google.guava/listenablefuture/pom.xml | size=2278 | crc=3299059833
-META-INF/maven/commons-codec/commons-codec/pom.properties | size=62 | crc=3121404452
-META-INF/maven/commons-codec/commons-codec/pom.xml | size=17870 | crc=1334554124
+META-INF/maven/commons-codec/commons-codec/pom.properties | size=62 | crc=2736253797
+META-INF/maven/commons-codec/commons-codec/pom.xml | size=17776 | crc=682331204
 META-INF/maven/org.apache.commons/commons-lang3/pom.properties | size=115 | crc=1361888706
 META-INF/maven/org.apache.commons/commons-lang3/pom.xml | size=22183 | crc=3063995755
 META-INF/maven/org.apache.httpcomponents/httpclient/pom.properties | size=102 | crc=142987104
@@ -2345,7 +2345,7 @@ org/apache/commons/codec/binary/Base32InputStream.class | size=1304 | crc=398972
 org/apache/commons/codec/binary/Base32OutputStream.class | size=1315 | crc=3535771741
 org/apache/commons/codec/binary/Base64$1.class | size=230 | crc=3066474466
 org/apache/commons/codec/binary/Base64$Builder.class | size=1602 | crc=3782967400
-org/apache/commons/codec/binary/Base64.class | size=12210 | crc=1768976840
+org/apache/commons/codec/binary/Base64.class | size=12210 | crc=2454851499
 org/apache/commons/codec/binary/Base64InputStream.class | size=1253 | crc=32376740
 org/apache/commons/codec/binary/Base64OutputStream.class | size=1264 | crc=3232504410
 org/apache/commons/codec/binary/BaseNCodec$AbstractBuilder.class | size=3095 | crc=1407767674
@@ -2377,7 +2377,7 @@ org/apache/commons/codec/digest/Crypt.class | size=1486 | crc=3298813541
 org/apache/commons/codec/digest/DigestUtils.class | size=14557 | crc=1197231815
 org/apache/commons/codec/digest/HmacAlgorithms.class | size=1796 | crc=3327521103
 org/apache/commons/codec/digest/HmacUtils.class | size=9515 | crc=1410216185
-org/apache/commons/codec/digest/Md5Crypt.class | size=4634 | crc=847684510
+org/apache/commons/codec/digest/Md5Crypt.class | size=4941 | crc=2473685647
 org/apache/commons/codec/digest/MessageDigestAlgorithms.class | size=1069 | crc=2516348305
 org/apache/commons/codec/digest/MurmurHash2.class | size=2790 | crc=38374094
 org/apache/commons/codec/digest/MurmurHash3$IncrementalHash32.class | size=1127 | crc=751424049
@@ -2430,7 +2430,7 @@ org/apache/commons/codec/language/DaitchMokotoffSoundex.class | size=10822 | crc
 org/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult.class | size=2548 | crc=704595530
 org/apache/commons/codec/language/DoubleMetaphone.class | size=15530 | crc=1836903879
 org/apache/commons/codec/language/MatchRatingApproachEncoder.class | size=5994 | crc=4020076960
-org/apache/commons/codec/language/Metaphone.class | size=5369 | crc=152119203
+org/apache/commons/codec/language/Metaphone.class | size=5341 | crc=655243456
 org/apache/commons/codec/language/Nysiis.class | size=4391 | crc=942852686
 org/apache/commons/codec/language/package-info.class | size=139 | crc=4273008527
 org/apache/commons/codec/language/RefinedSoundex.class | size=2698 | crc=1905036085

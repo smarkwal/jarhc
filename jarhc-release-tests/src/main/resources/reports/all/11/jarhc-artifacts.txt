@@ -17,7 +17,7 @@ aether-transport-http-1.1.0.jar                                | 35.8 KB | 20   
 aether-util-1.1.0.jar                                          | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
 asm-9.7.jar                                                    | 122 KB  | 38      | 0         | 073d7b3086e14beb604ced229c302feff6449723 | org.ow2.asm:asm:9.7
 checker-qual-3.42.0.jar                                        | 225 KB  | 369     | 0         | 638ec33f363a94d41a4f03c3e7d3dcfba64e402d | org.checkerframework:checker-qual:3.42.0
-commons-codec-1.17.0.jar                                       | 364 KB  | 107     | 128       | 0dbe8eef6e14460e73da07f7b11bf994d6626355 | commons-codec:commons-codec:1.17.0
+commons-codec-1.17.1.jar                                       | 364 KB  | 107     | 128       | 973638b7149d333563584137ebf13a691bb60579 | commons-codec:commons-codec:1.17.1
 commons-lang3-3.4.jar                                          | 424 KB  | 224     | 0         | 5fe28b9518e58819180a43a850fbc0dd24b7c050 | org.apache.commons:commons-lang3:3.4
 error_prone_annotations-2.26.1.jar                             | 18.9 KB | 27      | 0         | c1fde57694bdc14e8618899aaa6e857d9465d7de | com.google.errorprone:error_prone_annotations:2.26.1
 failureaccess-1.0.2.jar                                        | 4.63 KB | 2       | 0         | c4a06a64e650562f30b7bf9aaec1bfed43aca12b | com.google.guava:failureaccess:1.0.2
@@ -58,7 +58,7 @@ aether-util-1.1.0.jar                                          | aether.util    
 asm-9.7.jar                                                    | org.objectweb.asm                                   | Module-Info    | No        | java.base     | org.objectweb.asm
                                                                |                                                     |                |           |               | org.objectweb.asm.signature
 checker-qual-3.42.0.jar                                        | org.checkerframework.checker.qual                   | Manifest       | Yes       | -             | [all packages]
-commons-codec-1.17.0.jar                                       | org.apache.commons.codec                            | Module-Info    | No        | java.base     | org.apache.commons.codec
+commons-codec-1.17.1.jar                                       | org.apache.commons.codec                            | Module-Info    | No        | java.base     | org.apache.commons.codec
                                                                |                                                     |                |           |               | org.apache.commons.codec.binary
                                                                |                                                     |                |           |               | org.apache.commons.codec.cli
                                                                |                                                     |                |           |               | org.apache.commons.codec.digest
@@ -110,7 +110,7 @@ aether-transport-http-1.1.0.jar                                | No             
 aether-util-1.1.0.jar                                          | No                             | Java 5 (103)
 asm-9.7.jar                                                    | No                             | Java 5 (38)
 checker-qual-3.42.0.jar                                        | No                             | Java 8 (369)
-commons-codec-1.17.0.jar                                       | Yes (Java 9)                   | Java 8 (107)
+commons-codec-1.17.1.jar                                       | Yes (Java 9)                   | Java 8 (107)
 commons-lang3-3.4.jar                                          | No                             | Java 6 (224)
 error_prone_annotations-2.26.1.jar                             | Yes (Java 9)                   | Java 8 (27)
 failureaccess-1.0.2.jar                                        | No                             | Java 7 (2)
@@ -189,7 +189,7 @@ aether-util-1.1.0.jar                                          | aether-api-1.1.
                                                                |                                      | maven-aether-provider-3.3.9.jar
 asm-9.7.jar                                                    | [none]                               | jarhc.jar
 checker-qual-3.42.0.jar                                        | [none]                               | guava-33.2.1-jre.jar
-commons-codec-1.17.0.jar                                       | [none]                               | httpclient-4.5.14.jar
+commons-codec-1.17.1.jar                                       | [none]                               | httpclient-4.5.14.jar
 commons-lang3-3.4.jar                                          | [none]                               | maven-aether-provider-3.3.9.jar
                                                                |                                      | maven-artifact-3.3.9.jar
                                                                |                                      | maven-builder-support-3.3.9.jar
@@ -201,7 +201,7 @@ guava-33.2.1-jre.jar                                           | checker-qual-3.
                                                                | error_prone_annotations-2.26.1.jar   | maven-model-builder-3.3.9.jar
                                                                | failureaccess-1.0.2.jar              |
                                                                | jsr305-3.0.2.jar                     |
-httpclient-4.5.14.jar                                          | commons-codec-1.17.0.jar             | aether-transport-http-1.1.0.jar
+httpclient-4.5.14.jar                                          | commons-codec-1.17.1.jar             | aether-transport-http-1.1.0.jar
                                                                | httpcore-4.4.16.jar                  |
                                                                | jcl-over-slf4j-2.0.13.jar            |
 httpcore-4.4.16.jar                                            | [none]                               | aether-transport-http-1.1.0.jar
@@ -283,7 +283,7 @@ aether-transport-http-1.1.0.jar                                | org.eclipse.aet
 aether-util-1.1.0.jar                                          | org.eclipse.aether:aether-util:1.1.0                                        | org.eclipse.aether:aether-api:1.1.0                                         | OK
 asm-9.7.jar                                                    | org.ow2.asm:asm:9.7                                                         | [none]                                                                      |
 checker-qual-3.42.0.jar                                        | org.checkerframework:checker-qual:3.42.0                                    | [none]                                                                      |
-commons-codec-1.17.0.jar                                       | commons-codec:commons-codec:1.17.0                                          | [none]                                                                      |
+commons-codec-1.17.1.jar                                       | commons-codec:commons-codec:1.17.1                                          | [none]                                                                      |
 commons-lang3-3.4.jar                                          | org.apache.commons:commons-lang3:3.4                                        | [none]                                                                      |
 error_prone_annotations-2.26.1.jar                             | com.google.errorprone:error_prone_annotations:2.26.1                        | [none]                                                                      |
 failureaccess-1.0.2.jar                                        | com.google.guava:failureaccess:1.0.2                                        | [none]                                                                      |
@@ -295,7 +295,7 @@ guava-33.2.1-jre.jar                                           | com.google.guav
                                                                |                                                                             | com.google.j2objc:j2objc-annotations:3.0.0                                  | Unsatisfied
 httpclient-4.5.14.jar                                          | org.apache.httpcomponents:httpclient:4.5.14                                 | org.apache.httpcomponents:httpcore:4.4.16                                   | OK
                                                                |                                                                             | commons-logging:commons-logging:1.2                                         | Unsatisfied
-                                                               |                                                                             | commons-codec:commons-codec:1.11                                            | OK (version 1.17.0)
+                                                               |                                                                             | commons-codec:commons-codec:1.11                                            | OK (version 1.17.1)
 httpcore-4.4.16.jar                                            | org.apache.httpcomponents:httpcore:4.4.16                                   | [none]                                                                      |
 jcl-over-slf4j-2.0.13.jar                                      | org.slf4j:jcl-over-slf4j:2.0.13                                             | org.slf4j:slf4j-api:2.0.13                                                  | OK
 json-20240303.jar                                              | org.json:json:20240303                                                      | [none]                                                                      |
@@ -359,7 +359,7 @@ aether-transport-http-1.1.0.jar      | 1     | org.eclipse.aether.transport.http
 aether-util-1.1.0.jar                | 13    | org.eclipse.aether.util (+12 subpackages)             |
 asm-9.7.jar                          | 2     | org.objectweb.asm (+1 subpackage)                     |
 checker-qual-3.42.0.jar              | 30    | org.checkerframework.* (30 subpackages)               |
-commons-codec-1.17.0.jar             | 7     | org.apache.commons.codec (+6 subpackages)             |
+commons-codec-1.17.1.jar             | 7     | org.apache.commons.codec (+6 subpackages)             |
 commons-lang3-3.4.jar                | 12    | org.apache.commons.lang3 (+11 subpackages)            |
 error_prone_annotations-2.26.1.jar   | 2     | com.google.errorprone.annotations (+1 subpackage)     |
 failureaccess-1.0.2.jar              | 1     | com.google.common.util.concurrent.internal            |

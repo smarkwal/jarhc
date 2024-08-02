@@ -1,6 +1,6 @@
-openjdk version "21.0.2" 2024-01-16 LTS
-IBM Semeru Runtime Open Edition 21.0.2.0 (build 21.0.2+13-LTS)
-Eclipse OpenJ9 VM 21.0.2.0 (build openj9-0.43.0, JRE 21 Linux amd64-64-Bit Compressed References 20240116_94 (JIT enabled, AOT enabled)
-OpenJ9   - 2c3d78b48
-OMR      - ea8124dbc
-JCL      - 78c4500a434 based on jdk-21.0.2+13)
+openjdk version "21.0.3" 2024-04-16 LTS
+IBM Semeru Runtime Open Edition 21.0.3.0 (build 21.0.3+9-LTS)
+Eclipse OpenJ9 VM 21.0.3.0 (build openj9-0.44.0, JRE 21 Linux amd64-64-Bit Compressed References 20240416_177 (JIT enabled, AOT enabled)
+OpenJ9   - b0699311c7
+OMR      - 254af5a04
+JCL      - ac8f341bc20 based on jdk-21.0.3+9)
