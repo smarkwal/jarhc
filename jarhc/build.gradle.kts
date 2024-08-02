@@ -29,7 +29,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.8"
 
     // run Sonar analysis
-    id("org.sonarqube") version "5.0.0.4638"
+    id("org.sonarqube") version "5.1.0.4882"
 
     // get current Git branch name
     id("org.ajoberstar.grgit") version "5.2.2"
@@ -168,7 +168,7 @@ dependencies {
     // note: version 4.0.x fails with NullPointerException
     implementation("org.codehaus.plexus:plexus-utils:3.5.1")
     // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
-    implementation("commons-codec:commons-codec:1.17.0")
+    implementation("commons-codec:commons-codec:1.17.1")
 
     // additional libraries to be added to jar-with-deps
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.13")
