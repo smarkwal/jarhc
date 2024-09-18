@@ -43,20 +43,20 @@ idea {
 
 dependencies {
 
-    implementation(platform("org.junit:junit-bom:5.10.3"))
+    implementation(platform("org.junit:junit-bom:5.11.0"))
     implementation("org.junit.jupiter:junit-jupiter")
     runtimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.assertj:assertj-core:3.26.3")
     implementation("org.testcontainers:testcontainers:1.20.1")
     implementation("org.testcontainers:junit-jupiter:1.20.1")
-    implementation("org.apache.commons:commons-lang3:3.15.0")
+    implementation("org.apache.commons:commons-lang3:3.17.0")
     implementation("commons-io:commons-io:2.16.1")
-    runtimeOnly("org.slf4j:slf4j-api:2.0.13")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.13")
+    runtimeOnly("org.slf4j:slf4j-api:2.0.16")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.16")
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
     // (dependency of Testcontainers 1.20.1)
-    implementation("org.apache.commons:commons-compress:1.26.2")
+    implementation("org.apache.commons:commons-compress:1.27.1")
 
 }
 
