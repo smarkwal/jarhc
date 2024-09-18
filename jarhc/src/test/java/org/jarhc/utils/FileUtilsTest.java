@@ -253,7 +253,7 @@ class FileUtilsTest {
 	}
 
 	@Test
-	void createTempDirectory() throws IOException {
+	void createTempDirectory() {
 
 		// test
 		String tempDir = FileUtils.createTempDirectory("test-");
@@ -290,6 +290,9 @@ class FileUtilsTest {
 
 		// test
 		FileUtils.delete(file);
+
+		// assert
+		assertFalse(file.exists());
 
 	}
 
