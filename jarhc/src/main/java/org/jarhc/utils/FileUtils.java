@@ -27,8 +27,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileUtils {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileUtils.class);
 
 	private FileUtils() {
 		throw new IllegalStateException("utility class");
@@ -205,14 +209,15 @@ public class FileUtils {
 
 			// log error message
 			if (path.isDirectory()) {
-				System.err.println("Unable to delete directory: " + path.getAbsolutePath());
+				LOGGER.warn("Unable to delete directory: {}, Reason: {}", path.getAbsolutePath(), e.toString());
 			} else {
-				System.err.println("Unable to delete file: " + path.getAbsolutePath());
+				LOGGER.warn("Unable to delete file: {}, Reason: {}", path.getAbsolutePath(), e.toString());
 			}
-			System.err.println("Reason: " + e.getMessage());
 
-			// try to delete file after JVM exits
-			path.deleteOnExit();
+			if (path.exists()) {
+				// try to delete file after JVM exits
+				path.deleteOnExit();
+			}
 		}
 	}
 

@@ -282,4 +282,15 @@ class FileUtilsTest {
 
 	}
 
+	@Test
+	void delete_nonExistingFile(@TempDir Path tempDir) {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+
+		// test
+		FileUtils.delete(file);
+
+	}
+
 }
