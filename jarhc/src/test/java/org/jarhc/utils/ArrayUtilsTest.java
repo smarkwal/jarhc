@@ -30,8 +30,11 @@ class ArrayUtilsTest {
 	}
 
 	@Test
+	@SuppressWarnings("ConstantValue")
 	void containsAny() {
 
+		assertFalse(ArrayUtils.containsAny(null));
+		assertFalse(ArrayUtils.containsAny(null, "test"));
 		assertFalse(ArrayUtils.containsAny(new Object[]{}));
 		assertFalse(ArrayUtils.containsAny(new Object[]{}, "test"));
 		assertFalse(ArrayUtils.containsAny(new Object[]{}, "test1", "test2"));

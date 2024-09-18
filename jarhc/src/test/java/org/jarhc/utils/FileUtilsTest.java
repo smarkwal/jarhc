@@ -18,12 +18,16 @@ package org.jarhc.utils;
 
 import static org.jarhc.utils.FileUtils.formatFileSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
@@ -212,6 +216,69 @@ class FileUtilsTest {
 
 		assertEquals("report.html", FileUtils.getFilename("report.html"));
 		assertEquals("slf4j-1.2.27.jar", FileUtils.getFilename("WEB-INF/lib/slf4j-1.2.27.jar"));
+
+	}
+
+	@Test
+	void writeStringToFile(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+		String text = "Hello World! - " + System.currentTimeMillis();
+
+		// test
+		FileUtils.writeStringToFile(text, file);
+
+		// assert
+		String result = FileUtils.readFileToString(file);
+		assertEquals(text, result);
+
+	}
+
+	@Test
+	void writeStreamToFile(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		File file = new File(tempDir.toFile(), "test.txt");
+		String text = "Hello World! - " + System.currentTimeMillis();
+		ByteArrayInputStream stream = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+
+		// test
+		FileUtils.writeStreamToFile(stream, file);
+
+		// assert
+		String result = FileUtils.readFileToString(file);
+		assertEquals(text, result);
+
+	}
+
+	@Test
+	void createTempDirectory() throws IOException {
+
+		// test
+		String tempDir = FileUtils.createTempDirectory("test-");
+
+		// assert
+		File path = new File(tempDir);
+		assertTrue(path.isAbsolute());
+		assertTrue(path.getName().startsWith("test-"));
+		assertFalse(path.exists()); // directory has not (yet) been created!
+
+	}
+
+	@Test
+	void delete(@TempDir Path tempDir) throws IOException {
+
+		// prepare
+		Path dir = Files.createDirectories(tempDir.resolve("repository/cache/org/jarhc"));
+		Path file = Files.createFile(dir.resolve("test.txt"));
+
+		// test
+		FileUtils.delete(dir.toFile());
+
+		// assert
+		assertFalse(Files.exists(file));
+		assertFalse(Files.exists(dir));
 
 	}
 
