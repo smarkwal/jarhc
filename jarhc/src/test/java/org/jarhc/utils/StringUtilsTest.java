@@ -18,7 +18,6 @@ package org.jarhc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.jarhc.test.AssertUtils;
@@ -53,7 +52,7 @@ class StringUtilsTest {
 		List<String> result = StringUtils.splitText(text, 60);
 
 		// assert
-		List<String> expected = Arrays.asList(
+		List<String> expected = List.of(
 				"Java 12 (8), Java 11 (8846), Java 9 (758), Java 8 (17423),",
 				"Java 7 (6090), Java 6 (2580), Java 5 (5241), Java 1.4 (672),",
 				"Java 1.3 (2359), Java 1.2 (523), Java 1.1 (13)"
@@ -102,7 +101,7 @@ class StringUtilsTest {
 		List<String> result = StringUtils.splitText(text, 12);
 
 		// assert
-		List<String> expected = Arrays.asList(
+		List<String> expected = List.of(
 				"This is a long sentence,",
 				"which contains only a few,",
 				"but very well placed commas."

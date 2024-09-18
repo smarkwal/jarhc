@@ -17,7 +17,7 @@
 package org.jarhc.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
@@ -63,7 +63,7 @@ class BinaryCompatibilityAnalyzerTest {
 		List<Object> content = section.getContent();
 		assertEquals(1, content.size());
 		Object object = content.get(0);
-		assertTrue(object instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, object);
 		ReportTable table = (ReportTable) object;
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
@@ -99,7 +99,7 @@ class BinaryCompatibilityAnalyzerTest {
 		List<Object> content = section.getContent();
 		assertEquals(1, content.size());
 		Object object = content.get(0);
-		assertTrue(object instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, object);
 		ReportTable table = (ReportTable) object;
 		List<String[]> rows = table.getRows();
 		assertEquals(0, rows.size());
@@ -127,7 +127,7 @@ class BinaryCompatibilityAnalyzerTest {
 		List<Object> content = section.getContent();
 		assertEquals(1, content.size());
 		Object object = content.get(0);
-		assertTrue(object instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, object);
 		ReportTable table = (ReportTable) object;
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());

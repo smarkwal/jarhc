@@ -52,6 +52,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	}
 
 	@Override
+	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
 
 		// check memory cache
@@ -135,7 +136,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		}
 
 		JSONArray docs = response.getJSONArray("docs");
-		if (docs.length() == 0) {
+		if (docs.isEmpty()) {
 			throw new RepositoryException("JSON array 'docs' is empty: " + text);
 		}
 
@@ -185,7 +186,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	private String downloadText(URL url) throws RepositoryException {
 		try {
 			Optional<byte[]> data = downloadFile(url);
-			if (!data.isPresent()) throw new RepositoryException("URL not found: " + url);
+			if (data.isEmpty()) throw new RepositoryException("URL not found: " + url);
 			return new String(data.get(), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);

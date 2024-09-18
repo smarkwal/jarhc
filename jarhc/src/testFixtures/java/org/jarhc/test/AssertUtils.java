@@ -16,10 +16,6 @@
 
 package org.jarhc.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -37,7 +33,7 @@ public class AssertUtils {
 		for (Method method : methods) {
 			int modifiers = method.getModifiers();
 			if (Modifier.isPublic(modifiers)) {
-				Assertions.assertTrue(Modifier.isStatic(modifiers), "Public method is not static: " + method.toString());
+				Assertions.assertTrue(Modifier.isStatic(modifiers), "Public method is not static: " + method);
 			}
 		}
 

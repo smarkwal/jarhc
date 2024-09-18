@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 class OptionsTest {
 
-	private Options options = new Options();
+	private final Options options = new Options();
 
 	@Test
 	void test_getReportFormat() {

@@ -285,7 +285,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	/**
-	 * Get a human readable Java version string based on the class version.
+	 * Get a human-readable Java version string based on the class version.
 	 *
 	 * @return Java version string (examples: "Java 1.4", "Java 8")
 	 * @see JavaVersion#fromClassVersion(int)

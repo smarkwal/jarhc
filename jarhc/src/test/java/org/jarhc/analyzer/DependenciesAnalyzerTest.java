@@ -20,8 +20,8 @@ import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.pom.PomUtils.generateDependencies;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -94,7 +94,7 @@ class DependenciesAnalyzerTest {
 		List<Object> contents = section.getContent();
 		assertEquals(1, contents.size());
 		Object content = contents.get(0);
-		assertTrue(content instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, content);
 		ReportTable table = (ReportTable) content;
 
 		String[] columns = table.getColumns();

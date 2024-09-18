@@ -19,8 +19,8 @@ package org.jarhc.analyzer;
 import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.jarhc.Main;
@@ -63,7 +63,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals("Duplicate Classes", section.getTitle());
 		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
@@ -96,7 +96,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals("Duplicate Classes", section.getTitle());
 		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
@@ -126,7 +126,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals("Duplicate Classes", section.getTitle());
 		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
@@ -157,7 +157,7 @@ class DuplicateClassesAnalyzerTest {
 		assertEquals("Duplicate Classes", section.getTitle());
 		assertEquals("Duplicate classes, shadowed classes, and duplicate resources.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 

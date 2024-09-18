@@ -17,8 +17,8 @@
 package org.jarhc.report;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -114,7 +114,7 @@ class ReportFormatFactoryTest {
 		ReportFormat format = factory.getReportFormat("text");
 
 		// assert
-		assertTrue(format instanceof TextReportFormat);
+		assertInstanceOf(TextReportFormat.class, format);
 
 	}
 
@@ -128,7 +128,7 @@ class ReportFormatFactoryTest {
 		ReportFormat format = factory.getReportFormat("list");
 
 		// assert
-		assertTrue(format instanceof ListReportFormat);
+		assertInstanceOf(ListReportFormat.class, format);
 
 	}
 
@@ -142,7 +142,7 @@ class ReportFormatFactoryTest {
 		ReportFormat format = factory.getReportFormat("html");
 
 		// assert
-		assertTrue(format instanceof HtmlReportFormat);
+		assertInstanceOf(HtmlReportFormat.class, format);
 
 	}
 
@@ -151,11 +151,11 @@ class ReportFormatFactoryTest {
 	void getReportFormat_throwsRuntimeException_onInjectorException() throws InjectorException {
 
 		// prepare injector
-		Injector injector = Mockito.mock(Injector.class);
-		when(injector.createInstance(any(Class.class))).thenThrow(new InjectorException("test"));
+		Injector injectorMock = Mockito.mock(Injector.class);
+		when(injectorMock.createInstance(any(Class.class))).thenThrow(new InjectorException("test"));
 
 		// prepare
-		ReportFormatFactory factory = new ReportFormatFactory(injector);
+		ReportFormatFactory factory = new ReportFormatFactory(injectorMock);
 
 		// test
 		assertThrows(

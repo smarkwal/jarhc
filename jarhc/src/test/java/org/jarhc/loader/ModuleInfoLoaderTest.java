@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
+import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.utils.IOUtils;
@@ -39,8 +39,8 @@ class ModuleInfoLoaderTest {
 
 		assertNotNull(moduleInfo);
 		assertEquals("c", moduleInfo.getModuleName());
-		assertEquals(Arrays.asList("c"), moduleInfo.getExports());
-		assertEquals(Arrays.asList("java.base", "java.xml"), moduleInfo.getRequires());
+		assertEquals(List.of("c"), moduleInfo.getExports());
+		assertEquals(List.of("java.base", "java.xml"), moduleInfo.getRequires());
 	}
 
 	private ModuleInfo loadModuleInfo(String resource) throws IOException {

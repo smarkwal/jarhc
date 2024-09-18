@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
@@ -169,7 +170,7 @@ class MainTest {
 		// flush output to buffer
 		stream.flush();
 
-		String output = buffer.toString("UTF-8");
+		String output = buffer.toString(StandardCharsets.UTF_8);
 		assertTrue(output.startsWith("Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*"));
 
 	}
@@ -194,7 +195,7 @@ class MainTest {
 		// flush output to buffer
 		stream.flush();
 
-		String output = buffer.toString("UTF-8");
+		String output = buffer.toString(StandardCharsets.UTF_8);
 		assertTrue(output.startsWith("Unknown option: '--unknown-option'."));
 
 	}

@@ -52,7 +52,7 @@ class ArtifactSourceTest {
 
 		// setup repository mock
 		when(repository.downloadArtifact(any(Artifact.class))).thenAnswer(
-				(invocation) -> {
+				invocation -> {
 					Artifact artifact = invocation.getArgument(0);
 
 					// simulate "artifact not found"

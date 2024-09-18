@@ -137,7 +137,7 @@ abstract class AccessFlags {
 		return hasFlag(Opcodes.ACC_DEPRECATED);
 	}
 
-	private final boolean hasFlag(int flag) {
+	private boolean hasFlag(int flag) {
 		return (flags & flag) != 0;
 	}
 

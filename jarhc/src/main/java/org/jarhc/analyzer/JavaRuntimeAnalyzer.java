@@ -31,12 +31,10 @@ public class JavaRuntimeAnalyzer implements Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		StringBuilder output = new StringBuilder();
-		output.append("Java home    : ").append(javaRuntime.getJavaHome()).append(System.lineSeparator());
-		output.append("Java runtime : ").append(javaRuntime.getName()).append(System.lineSeparator());
-		output.append("Java version : ").append(javaRuntime.getJavaVersion()).append(System.lineSeparator());
-		output.append("Java vendor  : ").append(javaRuntime.getJavaVendor());
-		String text = output.toString();
+		String text = "Java home    : " + javaRuntime.getJavaHome() + System.lineSeparator() +
+				"Java runtime : " + javaRuntime.getName() + System.lineSeparator() +
+				"Java version : " + javaRuntime.getJavaVersion() + System.lineSeparator() +
+				"Java vendor  : " + javaRuntime.getJavaVendor();
 
 		ReportSection section = new ReportSection("Java Runtime", "Information about JRE/JDK runtime.");
 		section.add(text);

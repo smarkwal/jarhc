@@ -17,9 +17,9 @@
 package org.jarhc.inject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.jarhc.utils.ExceptionUtils;
@@ -56,6 +56,7 @@ class InjectorTest {
 	public static class TestObject2 {
 		// no-arg constructor
 		public TestObject2() {
+			// empty
 		}
 	}
 
@@ -86,7 +87,7 @@ class InjectorTest {
 			assertEquals("Error creating instance of class: org.jarhc.inject.InjectorTest$TestObject4", e.getMessage());
 			Throwable cause = ExceptionUtils.getRootCause(e);
 			assertNotNull(cause);
-			assertTrue(cause instanceof NullPointerException);
+			assertInstanceOf(NullPointerException.class, cause);
 			assertEquals("broken", cause.getMessage());
 		}
 	}
@@ -115,10 +116,12 @@ class InjectorTest {
 	public static class TestObject5 {
 		// constructor 1
 		public TestObject5(String text) {
+			// empty
 		}
 
 		// constructor 2
 		public TestObject5(Integer number) {
+			// empty
 		}
 	}
 

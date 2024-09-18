@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -45,9 +45,9 @@ class ClassDefTest {
 				.setClassFileChecksum("1234567890123456789012345678901234567890")
 				.setSuperName("s.t.U")
 				.addInterfaceName("i.j.K1")
-				.addInterfaceNames(Arrays.asList("i.j.K2", "i.j.K3"))
+				.addInterfaceNames(List.of("i.j.K2", "i.j.K3"))
 				.addPermittedSubclassName("p.q.R1")
-				.addPermittedSubclassNames(Arrays.asList("p.q.R2", "p.q.R3"));
+				.addPermittedSubclassNames(List.of("p.q.R2", "p.q.R3"));
 		classDef.setJarFile(jarFile);
 		classDef.setModuleInfo(ModuleInfo.UNNAMED);
 		classDef.setAccess(Modifier.PUBLIC + Modifier.ABSTRACT);
@@ -84,8 +84,8 @@ class ClassDefTest {
 		assertEquals(1, classDef.getMinorClassVersion());
 		assertEquals("1234567890123456789012345678901234567890", classDef.getClassFileChecksum());
 		assertEquals("s.t.U", classDef.getSuperName());
-		assertEquals(Arrays.asList("i.j.K1", "i.j.K2", "i.j.K3"), classDef.getInterfaceNames());
-		assertEquals(Arrays.asList("p.q.R1", "p.q.R2", "p.q.R3"), classDef.getPermittedSubclassNames());
+		assertEquals(List.of("i.j.K1", "i.j.K2", "i.j.K3"), classDef.getInterfaceNames());
+		assertEquals(List.of("p.q.R1", "p.q.R2", "p.q.R3"), classDef.getPermittedSubclassNames());
 		assertSame(jarFile, classDef.getJarFile());
 		assertEquals(1025, classDef.getAccess());
 
@@ -143,7 +143,7 @@ class ClassDefTest {
 	void permittedSubclasses() {
 
 		// prepare
-		ClassDef classDef = new ClassDef("a.b.C");
+		classDef = new ClassDef("a.b.C");
 
 		// assert
 		assertFalse(classDef.isSealed());
@@ -152,7 +152,7 @@ class ClassDefTest {
 		assertEquals("class", classDef.getModifiers());
 
 		// add permitted subclasses
-		classDef.addPermittedSubclassNames(Arrays.asList("x.y.Z1", "x.y.Z2"));
+		classDef.addPermittedSubclassNames(List.of("x.y.Z1", "x.y.Z2"));
 		classDef.addPermittedSubclassName("x.y.Z3");
 
 		// assert
@@ -160,7 +160,7 @@ class ClassDefTest {
 		assertNotNull(classDef.getPermittedSubclassNames());
 		assertEquals(3, classDef.getPermittedSubclassNames().size());
 		assertEquals("sealed class", classDef.getModifiers());
-		assertEquals(Arrays.asList("x.y.Z1", "x.y.Z2", "x.y.Z3"), classDef.getPermittedSubclassNames());
+		assertEquals(List.of("x.y.Z1", "x.y.Z2", "x.y.Z3"), classDef.getPermittedSubclassNames());
 
 	}
 

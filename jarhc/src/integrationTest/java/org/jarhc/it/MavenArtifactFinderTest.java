@@ -186,7 +186,7 @@ class MavenArtifactFinderTest {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_invalidChecksum() throws RepositoryException {
+	void test_findArtifact_byChecksum_invalidChecksum() {
 
 		// test
 		assertThrows(

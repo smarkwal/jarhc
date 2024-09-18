@@ -28,7 +28,7 @@ public class JavaVersion {
 	public static final int MIN_CLASS_VERSION = 45;
 
 	/**
-	 * Get a human readable Java version string for the given class version.
+	 * Get a human-readable Java version string for the given class version.
 	 *
 	 * @param classVersion Class version
 	 * @return Java version string

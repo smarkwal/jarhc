@@ -114,6 +114,7 @@ public class TextReportFormat implements ReportFormat {
 		return maxLength;
 	}
 
+	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 	private static void formatTableRow(ReportWriter writer, String[] values, int[] widths) {
 
 		String[][] cells = new String[values.length][];

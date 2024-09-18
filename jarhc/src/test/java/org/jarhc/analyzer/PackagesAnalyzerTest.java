@@ -18,8 +18,8 @@ package org.jarhc.analyzer;
 
 import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.jarhc.model.Classpath;
@@ -54,7 +54,7 @@ class PackagesAnalyzerTest {
 		assertEquals("Packages", section.getTitle());
 		assertEquals("List of packages per JAR file.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 

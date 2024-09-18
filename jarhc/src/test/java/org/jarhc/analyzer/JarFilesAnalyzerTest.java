@@ -18,12 +18,11 @@ package org.jarhc.analyzer;
 
 import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.jarhc.model.Classpath;
-import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
@@ -58,7 +57,7 @@ class JarFilesAnalyzerTest {
 		assertEquals("JAR Files", section.getTitle());
 		assertEquals("List of JAR files found in classpath.", section.getDescription());
 		assertEquals(1, section.getContent().size());
-		assertTrue(section.getContent().get(0) instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 
 		ReportTable table = (ReportTable) section.getContent().get(0);
 

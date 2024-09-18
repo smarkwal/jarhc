@@ -17,12 +17,11 @@
 package org.jarhc.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.analyzer.BinaryCompatibilityAnalyzer;
@@ -50,7 +49,7 @@ class ClassHierarchyAnalyzerTest {
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/a.jar", tempDir);
 		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/b-1.jar", tempDir);
-		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
+		Classpath classpath = classpathLoader.load(List.of(jarFile1, jarFile2));
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);
@@ -59,7 +58,7 @@ class ClassHierarchyAnalyzerTest {
 		List<Object> content = section.getContent();
 		assertEquals(1, content.size());
 		Object object = content.get(0);
-		assertTrue(object instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, object);
 		ReportTable table = (ReportTable) object;
 		List<String[]> rows = table.getRows();
 		assertEquals(0, rows.size());
@@ -72,7 +71,7 @@ class ClassHierarchyAnalyzerTest {
 		// prepare
 		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/a.jar", tempDir);
 		File jarFile2 = TestUtils.getResourceAsFile("/org/jarhc/it/ClassHierarchyAnalyzerTest/b-2.jar", tempDir);
-		Classpath classpath = classpathLoader.load(Arrays.asList(jarFile1, jarFile2));
+		Classpath classpath = classpathLoader.load(List.of(jarFile1, jarFile2));
 
 		// test
 		ReportSection section = analyzer.analyze(classpath);
@@ -81,7 +80,7 @@ class ClassHierarchyAnalyzerTest {
 		List<Object> content = section.getContent();
 		assertEquals(1, content.size());
 		Object object = content.get(0);
-		assertTrue(object instanceof ReportTable);
+		assertInstanceOf(ReportTable.class, object);
 		ReportTable table = (ReportTable) object;
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());

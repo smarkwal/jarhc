@@ -348,7 +348,7 @@ class JarHcTest extends ReleaseTest {
 		File outputFile = runner.getOutputFile(resourceName);
 		TestUtils.normalizeReport(outputFile);
 
-		// if test resources should be overwritten ..
+		// if test resources should be overwritten ...
 		if (TestUtils.createResources()) {
 			try {
 				if (!FileUtils.contentEquals(outputFile, resourceFile)) {

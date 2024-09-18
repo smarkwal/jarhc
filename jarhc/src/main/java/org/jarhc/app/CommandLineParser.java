@@ -390,6 +390,7 @@ public class CommandLineParser {
 
 	}
 
+	@SuppressWarnings("java:S135") // Loops should not contain more than a single "break" or "continue" statement
 	List<String> loadArguments(File file) throws CommandLineException {
 
 		// list of arguments read from options file

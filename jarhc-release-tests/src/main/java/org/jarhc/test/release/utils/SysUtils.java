@@ -57,7 +57,7 @@ public final class SysUtils {
 			String username = getUsername();
 			String output = runSysCommand(new String[] { "id", "-u", username });
 			if (!output.matches("[0-9]+")) {
-				LOGGER.warn("Unexpected UID: " + output);
+				LOGGER.warn("Unexpected UID: {}", output);
 				output = ROOT;
 			}
 			UID = output;
@@ -75,7 +75,7 @@ public final class SysUtils {
 			String username = getUsername();
 			String output = runSysCommand(new String[] { "id", "-g", username });
 			if (!output.matches("[0-9]+")) {
-				LOGGER.warn("Unexpected GID: " + output);
+				LOGGER.warn("Unexpected GID: {}", output);
 				output = ROOT;
 			}
 			GID = output;

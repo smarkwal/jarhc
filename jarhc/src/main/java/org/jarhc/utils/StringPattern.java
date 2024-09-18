@@ -50,7 +50,7 @@ public class StringPattern {
 
 			for (int i = start; i < end; i++) {
 				String part = parts[i];
-				if (part.length() > 0) {
+				if (!part.isEmpty()) {
 					list.add(new Contains(part));
 				}
 			}

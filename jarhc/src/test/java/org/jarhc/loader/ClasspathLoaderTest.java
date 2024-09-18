@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -94,7 +93,7 @@ class ClasspathLoaderTest {
 					String fileName = jarSource.getName();
 					JarFile jarFile1 = JarFile.withName(fileName.replaceAll(".war", "-1.jar")).build();
 					JarFile jarFile2 = JarFile.withName(fileName.replaceAll(".war", "-2.jar")).build();
-					return Arrays.asList(jarFile1, jarFile2);
+					return List.of(jarFile1, jarFile2);
 				});
 
 		classpathLoader = new ClasspathLoader(jarFileLoader, jmodFileLoader, warFileLoader, parentClassLoader, ClassLoaderStrategy.ParentLast, logger);
@@ -128,7 +127,7 @@ class ClasspathLoaderTest {
 	void load_Files() {
 
 		// prepare
-		Collection<File> files = Arrays.asList(
+		Collection<File> files = List.of(
 				new File("slf4j.jar"),
 				new File("test.war"),
 				new File("not-found.jar"),
@@ -160,7 +159,7 @@ class ClasspathLoaderTest {
 	void load_JarSources() {
 
 		// prepare
-		List<JarSource> jarSources = Arrays.asList(
+		List<JarSource> jarSources = List.of(
 				new FileSource(new File("slf4j.jar")),
 				new FileSource(new File("test.war")),
 				new FileSource(new File("not-found.jar")),

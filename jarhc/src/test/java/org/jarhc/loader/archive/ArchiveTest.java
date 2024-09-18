@@ -41,9 +41,9 @@ class ArchiveTest {
 			}
 		};
 
-		// read N times without expecting a problem
-		long N = MAX_TOTAL_SIZE / data.length;
-		for (int i = 0; i < N; i++) {
+		// read n times without expecting a problem
+		long n = MAX_TOTAL_SIZE / data.length;
+		for (int i = 0; i < n; i++) {
 			archive.getNextEntry();
 		}
 
@@ -123,6 +123,7 @@ class ArchiveTest {
 
 		@Override
 		public void close() {
+			// empty
 		}
 
 	}

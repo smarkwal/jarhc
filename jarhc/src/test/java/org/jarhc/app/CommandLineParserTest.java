@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -262,7 +261,7 @@ class CommandLineParserTest {
 		assertEquals(file1.getAbsolutePath(), paths.get(0));
 		assertEquals(file2.getAbsolutePath(), paths.get(1));
 
-		assertEquals(Arrays.asList("report.html", "report.txt"), options.getReportFiles());
+		assertEquals(List.of("report.html", "report.txt"), options.getReportFiles());
 
 	}
 

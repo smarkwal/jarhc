@@ -32,7 +32,7 @@ public class ArrayUtils {
 	 * @return <code>true</code> if at least one value is found in array, <code>false</code> otherwise.
 	 */
 	public static boolean containsAny(Object[] array, Object... values) {
-		if (array == null || array.length == 0) return false;
+		if (array == null) return false;
 		for (Object element : array) {
 			for (Object value : values) {
 				if (Objects.equals(element, value)) return true;

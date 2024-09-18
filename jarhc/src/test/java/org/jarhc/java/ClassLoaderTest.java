@@ -47,7 +47,7 @@ class ClassLoaderTest {
 		mocks = MockitoAnnotations.openMocks(this);
 
 		JarFile jarFile = JarFile.withName("parent.jar").build();
-		when(parentClassLoader.getJarFile(any())).thenAnswer((invocation) -> {
+		when(parentClassLoader.getJarFile(any())).thenAnswer(invocation -> {
 			Predicate<JarFile> predicate = invocation.getArgument(0);
 			if (predicate.test(jarFile)) {
 				return jarFile;
@@ -56,7 +56,7 @@ class ClassLoaderTest {
 			}
 		});
 
-		when(parentClassLoader.getClassDef(anyString())).thenAnswer((invocation) -> {
+		when(parentClassLoader.getClassDef(anyString())).thenAnswer(invocation -> {
 			String className = invocation.getArgument(0);
 			if (className.startsWith("parent.")) {
 				ClassDef classDef = new ClassDef(className);

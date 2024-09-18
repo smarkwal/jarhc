@@ -105,6 +105,7 @@ public class JarFile {
 	 * @param resourceDefs Resources
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
+	@SuppressWarnings("java:S107") // Methods should not have too many parameters
 	private JarFile(String fileName, long fileSize, String checksum, String coordinates, String classLoader, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
@@ -252,15 +253,15 @@ public class JarFile {
 
 	public static class Builder {
 
-		private String fileName;
+		private final String fileName;
 		private long fileSize = -1;
 		private String checksum;
 		private String coordinates;
 		private String classLoader;
-		private Set<Integer> releases = new TreeSet<>();
+		private final Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
-		private List<ClassDef> classDefs = new ArrayList<>();
-		private List<ResourceDef> resourceDefs = new ArrayList<>();
+		private final List<ClassDef> classDefs = new ArrayList<>();
+		private final List<ResourceDef> resourceDefs = new ArrayList<>();
 
 		private Builder(String fileName) {
 			this.fileName = fileName;

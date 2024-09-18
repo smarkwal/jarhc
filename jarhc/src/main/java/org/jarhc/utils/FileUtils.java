@@ -185,7 +185,6 @@ public class FileUtils {
 	 *
 	 * @param path File or directory.
 	 */
-	@SuppressWarnings("ResultOfMethodCallIgnored")
 	public static void delete(File path) {
 		if (path.isDirectory()) {
 			File[] files = path.listFiles();
@@ -195,7 +194,10 @@ public class FileUtils {
 				}
 			}
 		}
-		path.delete();
+		boolean deleted = path.delete();
+		if (!deleted) {
+			path.deleteOnExit();
+		}
 	}
 
 }

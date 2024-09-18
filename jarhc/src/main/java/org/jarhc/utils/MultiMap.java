@@ -22,7 +22,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class MultiMap<K extends Comparable, V extends Comparable> {
+public class MultiMap<K extends Comparable<?>, V extends Comparable<?>> {
 
 	private final Map<K, Set<V>> map = new TreeMap<>();
 
@@ -37,7 +37,7 @@ public class MultiMap<K extends Comparable, V extends Comparable> {
 	}
 
 	public void add(K key, V value) {
-		Set<V> set = map.computeIfAbsent(key, k -> sorted ? new TreeSet<V>() : new LinkedHashSet<V>());
+		Set<V> set = map.computeIfAbsent(key, k -> sorted ? new TreeSet<>() : new LinkedHashSet<>());
 		set.add(value);
 	}
 

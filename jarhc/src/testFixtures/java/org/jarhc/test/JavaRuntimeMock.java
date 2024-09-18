@@ -25,7 +25,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -163,7 +162,7 @@ public class JavaRuntimeMock extends JavaRuntime {
 		List<ClassDef> classDefs = jarFile.getClassDefs();
 
 		// list of packages which will be added to resource file
-		List<String> includedPackageNames = Arrays.asList(
+		List<String> includedPackageNames = List.of(
 				"com.sun.net.httpserver", "com.sun.xml.internal.ws.addressing",
 				"java.applet", "java.awt", "java.beans", "java.io", "java.lang", "java.math", "java.net", "java.nio", "java.rmi", "java.security", "java.sql", "java.text", "java.time", "java.util",
 				"javax.activation", "javax.annotation", "javax.imageio", "javax.jws", "javax.management", "javax.naming", "javax.net", "javax.script", "javax.security.auth", "javax.sql", "javax.transaction", "javax.xml",

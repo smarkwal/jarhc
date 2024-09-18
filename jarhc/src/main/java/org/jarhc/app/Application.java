@@ -77,6 +77,7 @@ public class Application {
 		this.javaRuntimeFactory = javaRuntimeFactory;
 	}
 
+	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 	public int run(Options options) {
 
 		String version = VersionUtils.getVersion();

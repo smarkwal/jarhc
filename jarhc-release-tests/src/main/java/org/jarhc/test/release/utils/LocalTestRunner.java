@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 public class LocalTestRunner extends AbstractTestRunner {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DockerTestRunner.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalTestRunner.class);
 
 	private final String javaVersion;
 	private final String javaHome;
@@ -105,8 +105,8 @@ public class LocalTestRunner extends AbstractTestRunner {
 
 			int exitCode = process.exitValue();
 			LOGGER.info("Exit code: {}", exitCode);
-			String stdOut = new String(stdOutBuffer.toByteArray(), StandardCharsets.UTF_8);
-			String stdErr = new String(stdErrBuffer.toByteArray(), StandardCharsets.UTF_8);
+			String stdOut = stdOutBuffer.toString(StandardCharsets.UTF_8);
+			String stdErr = stdErrBuffer.toString(StandardCharsets.UTF_8);
 
 			return new TestResult(exitCode, stdOut, stdErr);
 

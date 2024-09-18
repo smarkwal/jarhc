@@ -22,7 +22,7 @@ package org.jarhc.report.html;
  * <p>
  * Default implementation: {@link DefaultStyleProvider}
  */
-interface StyleProvider {
+public interface StyleProvider {
 
 	/**
 	 * Get the CSS source code to be included in HTML report.
