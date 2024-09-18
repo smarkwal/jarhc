@@ -37,6 +37,7 @@ import org.slf4j.Logger;
 public class MavenArtifactFinder implements ArtifactFinder {
 
 	private static final String SEARCH_URL_FORMAT = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
+	private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
 
 	private final File cacheDir;
 	private final Logger logger;
@@ -201,6 +202,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 			// prepare connection
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
+			connection.setRequestProperty("User-Agent", USER_AGENT);
 			connection.setConnectTimeout(timeout);
 			connection.setReadTimeout(timeout);
 			connection.setDoOutput(false);
