@@ -519,6 +519,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	}
 
 	@Override
+	@SuppressWarnings("java:S1210") // "equals(Object obj)" should be overridden along with the "compareTo(T obj)" method
 	public int compareTo(ClassDef classDef) {
 		int diff = this.getClassName().compareTo(classDef.getClassName());
 		if (diff != 0) return diff;

@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 
@@ -186,7 +187,9 @@ public class FileUtils {
 	 * @param path File or directory.
 	 */
 	public static void delete(File path) {
+
 		if (path.isDirectory()) {
+			// delete directory content (recursively)
 			File[] files = path.listFiles();
 			if (files != null) {
 				for (File file : files) {
@@ -194,8 +197,21 @@ public class FileUtils {
 				}
 			}
 		}
-		boolean deleted = path.delete();
-		if (!deleted) {
+
+		// try to delete file or directory
+		try {
+			Files.delete(path.toPath());
+		} catch (IOException e) {
+
+			// log error message
+			if (path.isDirectory()) {
+				System.err.println("Unable to delete directory: " + path.getAbsolutePath());
+			} else {
+				System.err.println("Unable to delete file: " + path.getAbsolutePath());
+			}
+			System.err.println("Reason: " + e.getMessage());
+
+			// try to delete file after JVM exits
 			path.deleteOnExit();
 		}
 	}

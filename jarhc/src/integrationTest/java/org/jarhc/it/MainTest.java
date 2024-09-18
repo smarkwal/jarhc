@@ -75,7 +75,7 @@ class MainTest {
 	}
 
 	@Test
-	void main(@TempDir Path tempDir) throws IOException {
+	void main_withDataDir(@TempDir Path tempDir) throws IOException {
 
 		// prepare
 		File reportFile = new File(tempDir.toFile(), "report.txt");
@@ -151,7 +151,7 @@ class MainTest {
 	}
 
 	@Test
-	void main_print_help() throws IOException {
+	void main_print_help() {
 
 		// prepare
 		String[] args = new String[] { "--help" };
@@ -176,7 +176,7 @@ class MainTest {
 	}
 
 	@Test
-	void main_print_usage() throws IOException {
+	void main_print_usage() {
 
 		// prepare
 		String[] args = new String[] { "--unknown-option" };

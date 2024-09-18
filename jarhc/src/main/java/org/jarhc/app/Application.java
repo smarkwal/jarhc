@@ -77,7 +77,7 @@ public class Application {
 		this.javaRuntimeFactory = javaRuntimeFactory;
 	}
 
-	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
+	@SuppressWarnings({ "java:S3776", "java:S6541" }) // Cognitive Complexity of methods should not be too high // Methods should not perform too many tasks (aka Brain method)
 	public int run(Options options) {
 
 		String version = VersionUtils.getVersion();
