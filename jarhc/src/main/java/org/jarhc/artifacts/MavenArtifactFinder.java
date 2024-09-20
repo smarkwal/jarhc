@@ -38,6 +38,13 @@ import org.slf4j.Logger;
 
 public class MavenArtifactFinder implements ArtifactFinder {
 
+	// Example request URLs:
+	// https://search.maven.org/solrsearch/select?q=1:%22d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912%22&rows=20&wt=json (org.ow2.asm:asm:7.0)
+	// https://search.maven.org/solrsearch/select?q=1:%22815893df5f31da2ece4040fe0a12fd44b577afaf%22&rows=20&wt=json (commons-io:commons-io:2.6)
+	// https://search.maven.org/solrsearch/select?q=1:%22093ee1760aba62d6896d578bd7d247d0fa52f0e7%22&rows=20&wt=json (commons-codec:commons-codec:1.11)
+	// https://search.maven.org/solrsearch/select?q=1:%229d920ed18833e7275ba688d88242af4c3711fbea%22&rows=20&wt=json (org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813)
+	// https://search.maven.org/solrsearch/select?q=1:%221234567890123456789012345678901234567890%22&rows=20&wt=json (not found)
+
 	private static final String SEARCH_URL = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
 	private static final int SEARCH_TIMEOUT = 65;
 	private static final String SEARCH_USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
@@ -286,6 +293,8 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 		/**
 		 * Read settings from Java System Properties.
+		 *
+		 * @return Settings loaded from Java System Properties.
 		 */
 		public static Settings fromSystemProperties() {
 			Properties systemProperties = System.getProperties();
@@ -294,6 +303,9 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 		/**
 		 * Read settings from Java properties.
+		 *
+		 * @param properties Java properties
+		 * @return Settings loaded Java properties.
 		 */
 		public static Settings fromProperties(Properties properties) {
 
