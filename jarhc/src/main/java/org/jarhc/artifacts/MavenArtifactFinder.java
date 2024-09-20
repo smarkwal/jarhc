@@ -23,8 +23,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
@@ -36,20 +38,24 @@ import org.slf4j.Logger;
 
 public class MavenArtifactFinder implements ArtifactFinder {
 
-	private static final String SEARCH_URL_FORMAT = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
-	private static final String USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
+	private static final String SEARCH_URL = "https://search.maven.org/solrsearch/select?q=1:%%22%s%%22&rows=20&wt=json";
+	private static final int SEARCH_TIMEOUT = 65;
+	private static final String SEARCH_USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
 
 	private final File cacheDir;
 	private final Logger logger;
+	private final Settings settings;
 
 	private final Map<String, Artifact> cache = new ConcurrentHashMap<>();
 
-	// TODO: configure timeout
-	private final int timeout = 10 * 1000;
-
 	public MavenArtifactFinder(File cacheDir, Logger logger) {
+		this(cacheDir, logger, Settings.fromSystemProperties());
+	}
+
+	MavenArtifactFinder(File cacheDir, Logger logger, Settings settings) {
 		this.cacheDir = cacheDir;
 		this.logger = logger;
+		this.settings = settings;
 	}
 
 	@Override
@@ -96,7 +102,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 		URL url;
 		try {
-			url = new URL(String.format(SEARCH_URL_FORMAT, checksum));
+			url = new URL(String.format(settings.getUrl(), checksum));
 		} catch (MalformedURLException e) {
 			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
@@ -199,10 +205,16 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		HttpURLConnection connection = null;
 		try {
 
+			// get connection settings
+			int timeout = settings.getTimeout() * 1000;
+			Map<String, String> headers = settings.getHeaders();
+
 			// prepare connection
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
-			connection.setRequestProperty("User-Agent", USER_AGENT);
+			for (Map.Entry<String, String> header : headers.entrySet()) {
+				connection.setRequestProperty(header.getKey(), header.getValue());
+			}
 			connection.setConnectTimeout(timeout);
 			connection.setReadTimeout(timeout);
 			connection.setDoOutput(false);
@@ -261,6 +273,66 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		}
 
 		return bestDoc;
+	}
+
+	/**
+	 * Settings for Maven Search API.
+	 */
+	public static class Settings {
+
+		private final String url;
+		private final int timeout;
+		private final Map<String, String> headers;
+
+		/**
+		 * Read settings from Java System Properties.
+		 */
+		public static Settings fromSystemProperties() {
+			Properties systemProperties = System.getProperties();
+			return fromProperties(systemProperties);
+		}
+
+		/**
+		 * Read settings from Java properties.
+		 */
+		public static Settings fromProperties(Properties properties) {
+
+			// read settings from properties (using default values if property is not set)
+			String url = properties.getProperty("jarhc.search.url", SEARCH_URL);
+			int timeout = Integer.parseInt(properties.getProperty("jarhc.search.timeout", String.valueOf(SEARCH_TIMEOUT)));
+			Map<String, String> headers = new HashMap<>();
+			headers.put("User-Agent", properties.getProperty("jarhc.search.headers.User-Agent", SEARCH_USER_AGENT));
+
+			// read additional HTTP headers from properties
+			for (String propertyName : properties.stringPropertyNames()) {
+				if (propertyName.startsWith("jarhc.search.headers.")) {
+					String headerName = propertyName.substring("jarhc.search.headers.".length());
+					String headerValue = properties.getProperty(propertyName);
+					headers.put(headerName, headerValue);
+				}
+			}
+
+			return new Settings(url, timeout, headers);
+		}
+
+		public Settings(String url, int timeout, Map<String, String> headers) {
+			this.url = url;
+			this.timeout = timeout;
+			this.headers = headers;
+		}
+
+		public String getUrl() {
+			return url;
+		}
+
+		public int getTimeout() {
+			return timeout;
+		}
+
+		public Map<String, String> getHeaders() {
+			return headers;
+		}
+
 	}
 
 }
