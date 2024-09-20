@@ -1,4 +1,4 @@
-JarHC Report for jarhc 2.2.1
+JarHC Report for jarhc 2.2.2
 ============================
 
 JAR Files
@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc-2.2.1.jar                                                | 226 KB  | 130     | 6         | 65b8b5d052612600cade92ddec8988b6ad31540a | [unknown]
+jarhc-2.2.2.jar                                                | 228 KB  | 131     | 6         | 3a0dcc5de1777a94b4f5f1830f0fdca3aa640e21 | [unknown]
 jul-to-slf4j-2.0.16.jar                                        | 6.20 KB | 1       | 0         | 6d57da3e961daac65bcca0dd3def6cd11e48a24a | org.slf4j:jul-to-slf4j:2.0.16
 aether-transport-http-1.1.0.jar                                | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
 jcl-over-slf4j-2.0.16.jar                                      | 18.0 KB | 8       | 0         | 9d08badad22f1ac07deac9188ade596472a2bfd9 | org.slf4j:jcl-over-slf4j:2.0.16
@@ -39,7 +39,7 @@ checker-qual-3.43.0.jar                                        | 226 KB  | 369  
 error_prone_annotations-2.28.0.jar                             | 18.9 KB | 27      | 0         | 59fc00087ce372de42e394d2c789295dff2d19f0 | com.google.errorprone:error_prone_annotations:2.28.0
 httpcore-4.4.16.jar                                            | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
-Classpath                                                      | 6.89 MB | 4561    | 148       | -                                        | -
+Classpath                                                      | 6.89 MB | 4562    | 148       | -                                        | -
 
 Modules
 -------
@@ -47,7 +47,7 @@ List of Java Modules found in classpath.
 
 JAR file                                                       | Module name                                         | Definition     | Automatic | Requires      | Exports
 ---------------------------------------------------------------+-----------------------------------------------------+----------------+-----------+---------------+---------------------------------------------------
-jarhc-2.2.1.jar                                                | org.jarhc                                           | Manifest       | Yes       | -             | [all packages]
+jarhc-2.2.2.jar                                                | org.jarhc                                           | Manifest       | Yes       | -             | [all packages]
 jul-to-slf4j-2.0.16.jar                                        | jul.to.slf4j                                        | Module-Info    | No        | org.slf4j     | org.slf4j.bridge
                                                                |                                                     |                |           | java.logging  |
                                                                |                                                     |                |           | java.base     |
@@ -129,7 +129,7 @@ Java class file format information.
 
 JAR file                                                       | Multi-release                  | Class files by Java version
 ---------------------------------------------------------------+--------------------------------+---------------------------------------------------------
-jarhc-2.2.1.jar                                                | No                             | Java 11 (130)
+jarhc-2.2.2.jar                                                | No                             | Java 11 (131)
 jul-to-slf4j-2.0.16.jar                                        | Yes (Java 9)                   | Java 8 (1)
 aether-transport-http-1.1.0.jar                                | No                             | Java 5 (20)
 jcl-over-slf4j-2.0.16.jar                                      | Yes (Java 9)                   | Java 8 (8)
@@ -161,7 +161,7 @@ checker-qual-3.43.0.jar                                        | No             
 error_prone_annotations-2.28.0.jar                             | Yes (Java 9)                   | Java 8 (27)
 httpcore-4.4.16.jar                                            | No                             | Java 6 (253)
 plexus-interpolation-1.21.jar                                  | No                             | Java 5 (44)
-Classpath                                                      | -                              | Java 11 (131), Java 10 (1), Java 8 (2704), Java 7 (254),
+Classpath                                                      | -                              | Java 11 (132), Java 10 (1), Java 8 (2704), Java 7 (254),
                                                                |                                | Java 6 (947), Java 5 (524)
 
 JAR Dependencies
@@ -170,7 +170,7 @@ Dependencies between JAR files.
 
 JAR file                                                       | Uses                                 | Used by
 ---------------------------------------------------------------+--------------------------------------+------------------------------------
-jarhc-2.2.1.jar                                                | aether-api-1.1.0.jar                 | [none]
+jarhc-2.2.2.jar                                                | aether-api-1.1.0.jar                 | [none]
                                                                | aether-connector-basic-1.1.0.jar     |
                                                                | aether-impl-1.1.0.jar                |
                                                                | aether-spi-1.1.0.jar                 |
@@ -183,21 +183,21 @@ jarhc-2.2.1.jar                                                | aether-api-1.1.
                                                                | jul-to-slf4j-2.0.16.jar              |
                                                                | maven-aether-provider-3.3.9.jar      |
                                                                | slf4j-api-2.0.16.jar                 |
-jul-to-slf4j-2.0.16.jar                                        | slf4j-api-2.0.16.jar                 | jarhc-2.2.1.jar
-aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.1.jar
+jul-to-slf4j-2.0.16.jar                                        | slf4j-api-2.0.16.jar                 | jarhc-2.2.2.jar
+aether-transport-http-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.2.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
                                                                | httpclient-4.5.14.jar                |
                                                                | httpcore-4.4.16.jar                  |
 jcl-over-slf4j-2.0.16.jar                                      | slf4j-api-2.0.16.jar                 | httpclient-4.5.14.jar
-                                                               |                                      | jarhc-2.2.1.jar
+                                                               |                                      | jarhc-2.2.2.jar
 slf4j-api-2.0.16.jar                                           | [none]                               | aether-impl-1.1.0.jar
-                                                               |                                      | jarhc-2.2.1.jar
+                                                               |                                      | jarhc-2.2.2.jar
                                                                |                                      | jcl-over-slf4j-2.0.16.jar
                                                                |                                      | jul-to-slf4j-2.0.16.jar
-asm-9.7.jar                                                    | [none]                               | jarhc-2.2.1.jar
-json-20240303.jar                                              | [none]                               | jarhc-2.2.1.jar
-maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.1.jar
+asm-9.7.jar                                                    | [none]                               | jarhc-2.2.2.jar
+json-20240303.jar                                              | [none]                               | jarhc-2.2.2.jar
+maven-aether-provider-3.3.9.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.2.jar
                                                                | aether-impl-1.1.0.jar                |
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
@@ -208,25 +208,25 @@ maven-aether-provider-3.3.9.jar                                | aether-api-1.1.
                                                                | maven-repository-metadata-3.3.9.jar  |
                                                                | plexus-component-annotations-1.6.jar |
                                                                | plexus-utils-3.5.1.jar               |
-aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc-2.2.1.jar
+aether-impl-1.1.0.jar                                          | aether-api-1.1.0.jar                 | jarhc-2.2.2.jar
                                                                | aether-spi-1.1.0.jar                 | maven-aether-provider-3.3.9.jar
                                                                | aether-util-1.1.0.jar                |
                                                                | slf4j-api-2.0.16.jar                 |
-aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc-2.2.1.jar
+aether-connector-basic-1.1.0.jar                               | aether-api-1.1.0.jar                 | jarhc-2.2.2.jar
                                                                | aether-spi-1.1.0.jar                 |
                                                                | aether-util-1.1.0.jar                |
-aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.1.jar
+aether-transport-file-1.1.0.jar                                | aether-api-1.1.0.jar                 | jarhc-2.2.2.jar
                                                                | aether-spi-1.1.0.jar                 |
 aether-util-1.1.0.jar                                          | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
                                                                |                                      | aether-impl-1.1.0.jar
                                                                |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc-2.2.1.jar
+                                                               |                                      | jarhc-2.2.2.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
 aether-spi-1.1.0.jar                                           | aether-api-1.1.0.jar                 | aether-connector-basic-1.1.0.jar
                                                                |                                      | aether-impl-1.1.0.jar
                                                                |                                      | aether-transport-file-1.1.0.jar
                                                                |                                      | aether-transport-http-1.1.0.jar
-                                                               |                                      | jarhc-2.2.1.jar
+                                                               |                                      | jarhc-2.2.2.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
 aether-api-1.1.0.jar                                           | [none]                               | aether-connector-basic-1.1.0.jar
                                                                |                                      | aether-impl-1.1.0.jar
@@ -234,7 +234,7 @@ aether-api-1.1.0.jar                                           | [none]         
                                                                |                                      | aether-transport-file-1.1.0.jar
                                                                |                                      | aether-transport-http-1.1.0.jar
                                                                |                                      | aether-util-1.1.0.jar
-                                                               |                                      | jarhc-2.2.1.jar
+                                                               |                                      | jarhc-2.2.2.jar
                                                                |                                      | maven-aether-provider-3.3.9.jar
 maven-model-builder-3.3.9.jar                                  | commons-lang3-3.4.jar                | maven-aether-provider-3.3.9.jar
                                                                | guava-33.3.0-jre.jar                 |
@@ -285,7 +285,7 @@ Dependencies as declared in POM file.
 
 JAR file                                                       | Maven coordinates                                                           | Direct dependencies                                                         | Status
 ---------------------------------------------------------------+-----------------------------------------------------------------------------+-----------------------------------------------------------------------------+------------------------
-jarhc-2.2.1.jar                                                | [unknown]                                                                   | [unknown]                                                                   |
+jarhc-2.2.2.jar                                                | [unknown]                                                                   | [unknown]                                                                   |
 jul-to-slf4j-2.0.16.jar                                        | org.slf4j:jul-to-slf4j:2.0.16                                               | org.slf4j:slf4j-api:2.0.16                                                  | OK
 aether-transport-http-1.1.0.jar                                | org.eclipse.aether:aether-transport-http:1.1.0                              | org.eclipse.aether:aether-api:1.1.0                                         | OK
                                                                |                                                                             | org.eclipse.aether:aether-spi:1.1.0                                         | OK
@@ -435,7 +435,7 @@ httpcore-4.4.16.jar                  | 17    | org.apache.http                  
                                      |       | org.apache.http.protocol                              |
                                      |       | org.apache.http.ssl                                   |
                                      |       | org.apache.http.util                                  |
-jarhc-2.2.1.jar                      | 18    | org.jarhc (+17 subpackages)                           |
+jarhc-2.2.2.jar                      | 18    | org.jarhc (+17 subpackages)                           |
 jcl-over-slf4j-2.0.16.jar            | 2     | org.apache.commons.logging (+1 subpackage)            |
 json-20240303.jar                    | 1     | org.json                                              |
 jsr305-3.0.2.jar                     | 3     | javax.annotation (+2 subpackages)                     |
@@ -815,7 +815,7 @@ Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 JAR file                        | Issues
 --------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-jarhc-2.2.1.jar                 | org.jarhc.Main
+jarhc-2.2.2.jar                 | org.jarhc.Main
                                 | • static void java.lang.System.exit(int)
 aether-transport-http-1.1.0.jar | org.eclipse.aether.transport.http.GlobalState
                                 | • @Deprecated: public class org.apache.http.conn.scheme.PlainSocketFactory
