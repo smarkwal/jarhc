@@ -80,6 +80,7 @@ public class JarFilesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
+		// TODO: return "[timeout]" if Maven Search API request timed out
 		String coordinates = jarFile.getCoordinates();
 		if (coordinates == null || coordinates.isEmpty()) {
 			return UNKNOWN;

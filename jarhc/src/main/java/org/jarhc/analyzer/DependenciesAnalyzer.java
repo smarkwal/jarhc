@@ -186,6 +186,7 @@ public class DependenciesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
+		// TODO: return "[timeout]" if Maven Search API request timed out
 		String coordinates = jarFile.getCoordinates();
 		if (coordinates == null) {
 			return UNKNOWN;
