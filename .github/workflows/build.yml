@@ -33,9 +33,6 @@ jobs:
           11
           17
 
-    - name: Validate Gradle wrapper
-      uses: gradle/actions/wrapper-validation@v3
-
     - name: Restore Sonar Cache
       uses: actions/cache@v4
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
@@ -48,7 +45,7 @@ jobs:
       run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      uses: gradle/actions/setup-gradle@v4
       with:
         cache-read-only: false
 

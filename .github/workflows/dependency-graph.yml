@@ -34,6 +34,6 @@ jobs:
         java-version: '17'
 
     - name: Generate dependency graph
-      uses: gradle/actions/dependency-submission@v3
+      uses: gradle/actions/dependency-submission@v4
       with:
         dependency-graph: ${{ github.event.inputs.dependencyGraphAction || 'generate-and-submit' }}
