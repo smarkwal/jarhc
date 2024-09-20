@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 226 KB  | 130     | 6         | **************************************** | [unknown]
+jarhc.jar                                                      | 228 KB  | 131     | 6         | **************************************** | [unknown]
 aether-api-1.1.0.jar                                           | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
 aether-connector-basic-1.1.0.jar                               | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
 aether-impl-1.1.0.jar                                          | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
@@ -39,7 +39,7 @@ plexus-component-annotations-1.6.jar                           | 4.17 KB | 3    
 plexus-interpolation-1.21.jar                                  | 61.0 KB | 44      | 0         | f92de59d295f16868001644acc21720f3ec9eb15 | org.codehaus.plexus:plexus-interpolation:1.21
 plexus-utils-3.5.1.jar                                         | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
 slf4j-api-2.0.16.jar                                           | 67.8 KB | 55      | 0         | 0172931663a09a1fa515567af5fbef00897d3c04 | org.slf4j:slf4j-api:2.0.16
-Classpath                                                      | 6.89 MB | 4561    | 148       | -                                        | -
+Classpath                                                      | 6.89 MB | 4562    | 148       | -                                        | -
 
 Modules
 -------
@@ -129,7 +129,7 @@ Java class file format information.
 
 JAR file                                                       | Multi-release                  | Class files by Java version
 ---------------------------------------------------------------+--------------------------------+---------------------------------------------------------
-jarhc.jar                                                      | No                             | Java 11 (130)
+jarhc.jar                                                      | No                             | Java 11 (131)
 aether-api-1.1.0.jar                                           | No                             | Java 5 (128)
 aether-connector-basic-1.1.0.jar                               | No                             | Java 5 (19)
 aether-impl-1.1.0.jar                                          | No                             | Java 5 (96)
@@ -161,7 +161,7 @@ plexus-component-annotations-1.6.jar                           | No             
 plexus-interpolation-1.21.jar                                  | No                             | Java 5 (44)
 plexus-utils-3.5.1.jar                                         | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
 slf4j-api-2.0.16.jar                                           | Yes (Java 9)                   | Java 8 (55)
-Classpath                                                      | -                              | Java 11 (131), Java 10 (1), Java 8 (2704), Java 7 (254),
+Classpath                                                      | -                              | Java 11 (132), Java 10 (1), Java 8 (2704), Java 7 (254),
                                                                |                                | Java 6 (947), Java 5 (524)
 
 JAR Dependencies

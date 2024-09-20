@@ -19,10 +19,10 @@ org/jarhc/analyzer/BlacklistAnalyzer$MethodPattern.class | size=3500 | crc=36271
 org/jarhc/analyzer/BlacklistAnalyzer.class | size=15991 | crc=2213778714
 org/jarhc/analyzer/ClassVersionsAnalyzer$ClassVersionsCounter.class | size=3987 | crc=3697001664
 org/jarhc/analyzer/ClassVersionsAnalyzer.class | size=4647 | crc=4282816197
-org/jarhc/analyzer/DependenciesAnalyzer.class | size=8380 | crc=2097466897
+org/jarhc/analyzer/DependenciesAnalyzer.class | size=8380 | crc=144834471
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13375 | crc=2852671951
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6111 | crc=3982369926
-org/jarhc/analyzer/JarFilesAnalyzer.class | size=3869 | crc=985724297
+org/jarhc/analyzer/JarFilesAnalyzer.class | size=3869 | crc=3612425498
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1840 | crc=1334068663
 org/jarhc/analyzer/ModulesAnalyzer.class | size=5525 | crc=193518948
 org/jarhc/analyzer/PackagesAnalyzer.class | size=11509 | crc=1386798096
@@ -36,7 +36,8 @@ org/jarhc/app/JarSource.class | size=253 | crc=2144761520
 org/jarhc/app/Options.class | size=4787 | crc=2857749524
 org/jarhc/artifacts/Artifact.class | size=3403 | crc=1495505896
 org/jarhc/artifacts/ArtifactFinder.class | size=358 | crc=1212322596
-org/jarhc/artifacts/MavenArtifactFinder.class | size=8856 | crc=3135928040
+org/jarhc/artifacts/MavenArtifactFinder$Settings.class | size=3004 | crc=372681484
+org/jarhc/artifacts/MavenArtifactFinder.class | size=9992 | crc=1835976981
 org/jarhc/artifacts/MavenRepository$TransitiveDependencySelector.class | size=1362 | crc=1902718747
 org/jarhc/artifacts/MavenRepository.class | size=12273 | crc=522375696
 org/jarhc/artifacts/Repository.class | size=702 | crc=810738722
