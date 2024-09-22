@@ -1,0 +1,40 @@
+{
+  "response": {
+    "docs": [{
+      "p": "jar",
+      "a": "websocket-servlet",
+      "v": "9.4.20.v20190813",
+      "g": "org.eclipse.jetty.websocket",
+      "id": "org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813",
+      "ec": [
+        "-sources.jar",
+        "-javadoc.jar",
+        ".jar",
+        ".pom"
+      ],
+      "timestamp": 1565732848000,
+      "tags": [
+        "project",
+        "jetty",
+        "eclipse"
+      ]
+    }],
+    "numFound": 1,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 2,
+    "params": {
+      "q": "1:\"6a8be637de4dd2143efdd003d48fdbcfde4390d7\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}

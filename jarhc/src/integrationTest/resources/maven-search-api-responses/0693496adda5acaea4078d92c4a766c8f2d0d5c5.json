@@ -1,0 +1,42 @@
+{
+  "response": {
+    "docs": [{
+      "p": "jar",
+      "a": "jetty-servlets",
+      "v": "9.4.20.v20190813",
+      "g": "org.eclipse.jetty",
+      "id": "org.eclipse.jetty:jetty-servlets:9.4.20.v20190813",
+      "ec": [
+        "-javadoc.jar",
+        "-sources.jar",
+        "-config.jar",
+        ".jar",
+        ".pom"
+      ],
+      "timestamp": 1565732393000,
+      "tags": [
+        "servlets",
+        "utility",
+        "from",
+        "jetty"
+      ]
+    }],
+    "numFound": 1,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 1,
+    "params": {
+      "q": "1:\"0693496adda5acaea4078d92c4a766c8f2d0d5c5\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "response": {
+    "docs": [{
+      "p": "jar",
+      "a": "asm",
+      "v": "7.0",
+      "g": "org.ow2.asm",
+      "id": "org.ow2.asm:asm:7.0",
+      "ec": [
+        "-javadoc.jar",
+        "-sources.jar",
+        ".jar",
+        ".pom"
+      ],
+      "timestamp": 1540647750000,
+      "tags": [
+        "bytecode",
+        "java",
+        "fast",
+        "small",
+        "framework",
+        "manipulation",
+        "very"
+      ]
+    }],
+    "numFound": 1,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 1,
+    "params": {
+      "q": "1:\"d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}

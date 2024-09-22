@@ -1,0 +1,81 @@
+{
+  "response": {
+    "docs": [
+      {
+        "p": "jar",
+        "a": "org-apache-commons-io",
+        "v": "RELEASE113",
+        "g": "org.netbeans.external",
+        "id": "org.netbeans.external:org-apache-commons-io:RELEASE113",
+        "ec": [
+          "-sources.jar",
+          ".jar",
+          ".nbm",
+          ".pom"
+        ],
+        "timestamp": 1582302675000,
+        "tags": [
+          "integrated",
+          "platform",
+          "application",
+          "environment",
+          "development",
+          "apache",
+          "tooling",
+          "netbeans",
+          "framework"
+        ]
+      },
+      {
+        "p": "jar",
+        "a": "commons-io",
+        "v": "2.6",
+        "g": "commons-io",
+        "id": "commons-io:commons-io:2.6",
+        "ec": [
+          "-sources.jar",
+          "-javadoc.jar",
+          "-test-sources.jar",
+          "-tests.jar",
+          ".jar",
+          ".pom"
+        ],
+        "timestamp": 1508061652000,
+        "tags": [
+          "classes",
+          "stream",
+          "comparators",
+          "implementations",
+          "apache",
+          "contains",
+          "much",
+          "transformation",
+          "more",
+          "utility",
+          "endian",
+          "file",
+          "commons",
+          "library",
+          "filters"
+        ]
+      }
+    ],
+    "numFound": 2,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 1,
+    "params": {
+      "q": "1:\"815893df5f31da2ece4040fe0a12fd44b577afaf\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}

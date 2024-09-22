@@ -29,15 +29,18 @@ import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.RepositoryException;
+import org.jarhc.it.utils.MavenSearchApiMockServer;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.test.log.LoggerUtils;
 import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
+@ExtendWith(MavenSearchApiMockServer.class)
 class MavenArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);

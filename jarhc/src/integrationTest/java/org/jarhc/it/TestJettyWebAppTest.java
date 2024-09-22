@@ -16,6 +16,10 @@
 
 package org.jarhc.it;
 
+import org.jarhc.it.utils.MavenSearchApiMockServer;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(MavenSearchApiMockServer.class)
 class TestJettyWebAppTest extends AbstractMainTest {
 
 	TestJettyWebAppTest() {

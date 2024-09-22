@@ -1,0 +1,41 @@
+{
+  "response": {
+    "docs": [{
+      "p": "jar",
+      "a": "javax.servlet-api",
+      "v": "3.1.0",
+      "g": "javax.servlet",
+      "id": "javax.servlet:javax.servlet-api:3.1.0",
+      "ec": [
+        "-javadoc.jar",
+        "-sources.jar",
+        ".jar",
+        ".pom"
+      ],
+      "timestamp": 1366933959000,
+      "tags": [
+        "technology",
+        "collaboration",
+        "source",
+        "java"
+      ]
+    }],
+    "numFound": 1,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 1,
+    "params": {
+      "q": "1:\"3cd63d075497751784b2fa84be59432f4905bf7c\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}

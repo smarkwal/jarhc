@@ -1,0 +1,35 @@
+{
+  "response": {
+    "docs": [{
+      "p": "war",
+      "a": "test-jetty-webapp",
+      "v": "9.4.20.v20190813",
+      "g": "org.eclipse.jetty",
+      "id": "org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813",
+      "ec": [
+        "-config.jar",
+        "-webbundle.jar",
+        ".war",
+        ".pom"
+      ],
+      "timestamp": 1565735169000
+    }],
+    "numFound": 1,
+    "start": 0
+  },
+  "responseHeader": {
+    "QTime": 1,
+    "params": {
+      "q": "1:\"9d920ed18833e7275ba688d88242af4c3711fbea\"",
+      "core": "",
+      "indent": "off",
+      "fl": "id,g,a,v,p,ec,timestamp,tags",
+      "start": "",
+      "sort": "score desc,timestamp desc,g asc,a asc,v desc",
+      "rows": "20",
+      "wt": "json",
+      "version": "2.2"
+    },
+    "status": 0
+  }
+}
