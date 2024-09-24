@@ -138,10 +138,13 @@ public class DependenciesAnalyzer implements Analyzer {
 
 				// check if it is an exact match
 				StringBuilder line = new StringBuilder("OK");
-				String coordinates = jarFile.getCoordinates();
-				Artifact artifact = new Artifact(coordinates);
-				if (!artifact.equals(dependency.toArtifact())) {
-					line.append(" (version ").append(artifact.getVersion()).append(")");
+				Artifact artifact = jarFile.getArtifacts().get(0);
+				if (artifact.getGroupId().equals(dependency.getGroupId()) && artifact.getArtifactId().equals(dependency.getArtifactId())) {
+					if (!artifact.getVersion().equals(dependency.getVersion())) {
+						line.append(" (version ").append(artifact.getVersion()).append(")");
+					}
+				} else {
+					line.append(" (").append(artifact.toCoordinates()).append(")");
 				}
 
 				String classLoader = jarFile.getClassLoader();
@@ -160,38 +163,42 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private boolean matches(JarFile jarFile, Dependency dependency) {
 
-		String coordinates = jarFile.getCoordinates();
-		if (coordinates == null) {
+		List<Artifact> artifacts = jarFile.getArtifacts();
+		if (artifacts == null || artifacts.isEmpty()) {
 			// skip JAR files without coordinates
 			return false;
 		}
 
-		Artifact jarArtifact = new Artifact(coordinates);
-		Artifact dependencyArtifact = dependency.toArtifact();
+		for (Artifact artifact : artifacts) {
 
-		// check if group ID matches
-		if (!Objects.equals(jarArtifact.getGroupId(), dependencyArtifact.getGroupId())) {
-			return false;
+			// check if group ID matches
+			if (!Objects.equals(artifact.getGroupId(), dependency.getGroupId())) {
+				continue;
+			}
+
+			// check if artifact ID matches
+			if (!Objects.equals(artifact.getArtifactId(), dependency.getArtifactId())) {
+				continue;
+			}
+
+			// TODO: check if type matches?
+
+			// note: version may be different
+			return true;
 		}
 
-		// check if artifact ID matches
-		if (!Objects.equals(jarArtifact.getArtifactId(), dependencyArtifact.getArtifactId())) {
-			return false;
-		}
-
-		// TODO: check if type matches?
-
-		// note: version may be different
-		return true;
+		return false;
 	}
 
 	private String getCoordinates(JarFile jarFile) {
-		// TODO: return "[timeout]" if Maven Search API request timed out
-		String coordinates = jarFile.getCoordinates();
-		if (coordinates == null) {
+		List<Artifact> artifacts = jarFile.getArtifacts();
+		if (artifacts == null) {
+			return ERROR; // most likely a response timeout
+		} else if (artifacts.isEmpty()) {
 			return UNKNOWN;
 		}
-		return coordinates;
+		// return only coordinates of "primary" artifact
+		return artifacts.get(0).toCoordinates();
 	}
 
 }

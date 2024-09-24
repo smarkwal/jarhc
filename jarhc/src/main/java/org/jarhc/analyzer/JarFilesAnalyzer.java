@@ -19,15 +19,18 @@ package org.jarhc.analyzer;
 import static org.jarhc.utils.FileUtils.formatFileSize;
 
 import java.util.List;
+import org.jarhc.artifacts.Artifact;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.StringUtils;
 
 public class JarFilesAnalyzer implements Analyzer {
 
 	private static final String UNKNOWN = "[unknown]";
+	private static final String ERROR = "[error]";
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -80,12 +83,14 @@ public class JarFilesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
-		// TODO: return "[timeout]" if Maven Search API request timed out
-		String coordinates = jarFile.getCoordinates();
-		if (coordinates == null || coordinates.isEmpty()) {
+		List<Artifact> artifacts = jarFile.getArtifacts();
+		if (artifacts == null) {
+			return ERROR; // most likely a response timeout
+		} else if (artifacts.isEmpty()) {
 			return UNKNOWN;
 		}
-		return coordinates;
+		// return coordinates of all artifacts
+		return artifacts.stream().map(Artifact::toCoordinates).collect(StringUtils.joinLines());
 	}
 
 }

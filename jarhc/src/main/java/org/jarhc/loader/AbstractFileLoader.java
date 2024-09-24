@@ -215,18 +215,15 @@ abstract class AbstractFileLoader {
 		String checksum = archive.getFileChecksum();
 
 		// try to identify JAR file as Maven artifact
-		// TODO: if artifact was given as coordinates, skip this step and re-use the original coordinates instead.
-		String coordinates = null;
+		List<Artifact> artifacts = null;
 		try {
-			List<Artifact> artifacts = repository.findArtifacts(checksum);
-			// TODO: remember all artifact coordinates for this JAR file
-			if (!artifacts.isEmpty()) {
-				Artifact artifact = artifacts.get(0);
-				coordinates = artifact.toCoordinates();
-			}
+			artifacts = repository.findArtifacts(checksum);
 		} catch (RepositoryException e) {
 			logger.warn("Artifact resolution error", e);
 		}
+
+		// TODO: if artifact was given as coordinates, make sure these coordinates are included in the list of artifacts
+		// TODO: check if JAR file contains POM information
 
 		// normalize file name (optional)
 		if (fileNameNormalizer != null) {
@@ -236,7 +233,7 @@ abstract class AbstractFileLoader {
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(archive.getFileSize())
 				.withChecksum(checksum)
-				.withCoordinates(coordinates)
+				.withArtifacts(artifacts)
 				.withClassLoader(classLoader)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)

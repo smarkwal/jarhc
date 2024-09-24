@@ -64,19 +64,19 @@ class DependenciesAnalyzerTest {
 
 		// prepare: provided
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-with-deps-1.jar").withCoordinates("group:lib-with-deps-1:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-with-deps-2.jar").withCoordinates("group:lib-with-deps-2:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-with-deps-3.jar").withCoordinates("group:lib-with-deps-3:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-with-deps-4.jar").withCoordinates("group:lib-with-deps-4:1.1:jar").build());
+		jarFiles.add(JarFile.withName("lib-with-deps-1.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-1:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-with-deps-2.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-2:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-with-deps-3.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-3:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-with-deps-4.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-4:1.1:jar"))).build());
 		Classpath provided = new Classpath(jarFiles, null, ClassLoaderStrategy.ParentLast);
 
 		// prepare: classpath
 		jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-with-deps.jar").withCoordinates("group:lib-with-deps:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-no-deps.jar").withCoordinates("group:lib-no-deps:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-no-pom.jar").withCoordinates("group:lib-no-pom:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-repo-error.jar").withCoordinates("group:lib-repo-error:1.0:jar").build());
-		jarFiles.add(JarFile.withName("lib-unknown.jar").withCoordinates(null).build());
+		jarFiles.add(JarFile.withName("lib-with-deps.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-no-deps.jar").withArtifacts(List.of(new Artifact("group:lib-no-deps:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-no-pom.jar").withArtifacts(List.of(new Artifact("group:lib-no-pom:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-repo-error.jar").withArtifacts(List.of(new Artifact("group:lib-repo-error:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-unknown.jar").withArtifacts(List.of()).build());
 		Classpath classpath = new Classpath(jarFiles, provided, ClassLoaderStrategy.ParentLast);
 
 		Logger logger = LoggerBuilder.collect(DependenciesAnalyzer.class);
@@ -103,15 +103,15 @@ class DependenciesAnalyzerTest {
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
 
-		assertValuesEquals(rows.get(0), "lib-with-deps.jar", "group:lib-with-deps:1.0:jar", "group:lib-with-deps-1:1.0 (provided, optional)\ngroup:lib-with-deps-2:1.0 (runtime)\ngroup:lib-with-deps-4:1.0 (system)\ngroup:lib-with-deps-5:1.0 (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
-		assertValuesEquals(rows.get(1), "lib-no-deps.jar", "group:lib-no-deps:1.0:jar", "[none]", "");
-		assertValuesEquals(rows.get(2), "lib-no-pom.jar", "group:lib-no-pom:1.0:jar", "[error]", "");
-		assertValuesEquals(rows.get(3), "lib-repo-error.jar", "group:lib-repo-error:1.0:jar", "[error]", "");
+		assertValuesEquals(rows.get(0), "lib-with-deps.jar", "group:lib-with-deps:1.0", "group:lib-with-deps-1:1.0 (provided, optional)\ngroup:lib-with-deps-2:1.0 (runtime)\ngroup:lib-with-deps-4:1.0 (system)\ngroup:lib-with-deps-5:1.0 (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
+		assertValuesEquals(rows.get(1), "lib-no-deps.jar", "group:lib-no-deps:1.0", "[none]", "");
+		assertValuesEquals(rows.get(2), "lib-no-pom.jar", "group:lib-no-pom:1.0", "[error]", "");
+		assertValuesEquals(rows.get(3), "lib-repo-error.jar", "group:lib-repo-error:1.0", "[error]", "");
 		assertValuesEquals(rows.get(4), "lib-unknown.jar", "[unknown]", "[unknown]", "");
 
 		assertLogger(logger).inAnyOrder()
-				.hasError("Resolver error for artifact: group:lib-no-pom:1.0:jar", new RepositoryException("test"))
-				.hasError("Resolver error for artifact: group:lib-repo-error:1.0:jar", new RepositoryException("test"))
+				.hasError("Resolver error for artifact: group:lib-no-pom:1.0", new RepositoryException("test"))
+				.hasError("Resolver error for artifact: group:lib-repo-error:1.0", new RepositoryException("test"))
 				.isEmpty();
 	}
 

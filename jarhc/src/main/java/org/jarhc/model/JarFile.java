@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import org.jarhc.artifacts.Artifact;
 
 /**
  * Represents the content of a JAR file.
@@ -49,7 +50,7 @@ public class JarFile {
 	/**
 	 * Maven coordinates of the JAR file
 	 */
-	private final String coordinates;
+	private final List<Artifact> artifacts;
 
 	/**
 	 * Name of the class loader used to load this JAR file.
@@ -97,7 +98,7 @@ public class JarFile {
 	 * @param fileName     JAR file name
 	 * @param fileSize     JAR file size in bytes
 	 * @param checksum     JAR file SHA-1 checksum
-	 * @param coordinates  JAR file Maven coordinates
+	 * @param artifacts    List of Maven coordinates
 	 * @param classLoader  Class loader name
 	 * @param releases     List of releases supported by this JAR file (for multi-release JAR files)
 	 * @param moduleInfo   Module information (for modular JAR files)
@@ -106,7 +107,7 @@ public class JarFile {
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
 	@SuppressWarnings("java:S107") // Methods should not have too many parameters
-	private JarFile(String fileName, long fileSize, String checksum, String coordinates, String classLoader, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
+	private JarFile(String fileName, long fileSize, String checksum, List<Artifact> artifacts, String classLoader, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo");
@@ -114,7 +115,7 @@ public class JarFile {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.checksum = checksum;
-		this.coordinates = coordinates;
+		this.artifacts = artifacts;
 		this.classLoader = classLoader;
 		this.releases = new TreeSet<>(releases);
 		this.moduleInfo = moduleInfo;
@@ -171,8 +172,8 @@ public class JarFile {
 		return checksum;
 	}
 
-	public String getCoordinates() {
-		return coordinates;
+	public List<Artifact> getArtifacts() {
+		return artifacts;
 	}
 
 	public String getClassLoader() {
@@ -256,7 +257,7 @@ public class JarFile {
 		private final String fileName;
 		private long fileSize = -1;
 		private String checksum;
-		private String coordinates;
+		private List<Artifact> artifacts;
 		private String classLoader;
 		private final Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
@@ -277,8 +278,8 @@ public class JarFile {
 			return this;
 		}
 
-		public Builder withCoordinates(String coordinates) {
-			this.coordinates = coordinates;
+		public Builder withArtifacts(List<Artifact> artifacts) {
+			this.artifacts = artifacts;
 			return this;
 		}
 
@@ -319,7 +320,7 @@ public class JarFile {
 		}
 
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, checksum, coordinates, classLoader, releases, moduleInfo, classDefs, resourceDefs);
+			return new JarFile(fileName, fileSize, checksum, artifacts, classLoader, releases, moduleInfo, classDefs, resourceDefs);
 		}
 
 	}

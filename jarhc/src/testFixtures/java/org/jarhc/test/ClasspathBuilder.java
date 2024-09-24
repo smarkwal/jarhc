@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import org.jarhc.artifacts.Artifact;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.model.ClassDef;
@@ -154,7 +155,7 @@ public class ClasspathBuilder {
 			JarFile jarFile = JarFile.withName(fileName)
 					.withFileSize(fileSize)
 					.withChecksum(checksum)
-					.withCoordinates(coordinates)
+					.withArtifacts(List.of(new Artifact(coordinates)))
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)
