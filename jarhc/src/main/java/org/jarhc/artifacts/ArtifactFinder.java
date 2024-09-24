@@ -16,10 +16,20 @@
 
 package org.jarhc.artifacts;
 
-import java.util.Optional;
+import java.util.List;
 
+/**
+ * Implementations of this interface are used to identify artifacts based on a SHA-1 checksum.
+ */
 public interface ArtifactFinder {
 
-	Optional<Artifact> findArtifact(String checksum) throws RepositoryException;
+	/**
+	 * Find artifacts with the given SHA-1 checksum.
+	 *
+	 * @param checksum SHA-1 checksum
+	 * @return List of artifacts (may be empty)
+	 * @throws RepositoryException If an unexpected exception occurs
+	 */
+	List<Artifact> findArtifacts(String checksum) throws RepositoryException;
 
 }

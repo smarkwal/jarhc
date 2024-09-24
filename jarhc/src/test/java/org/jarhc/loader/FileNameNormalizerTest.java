@@ -19,7 +19,7 @@ package org.jarhc.loader;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Optional;
+import java.util.List;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
@@ -38,9 +38,9 @@ class FileNameNormalizerTest {
 
 	@BeforeEach
 	void setUp() throws RepositoryException {
-		Mockito.when(repository.findArtifact("c1")).thenReturn(Optional.empty());
-		Mockito.when(repository.findArtifact("c2")).thenReturn(Optional.of(new Artifact("g", "a", "1.2", "jar")));
-		Mockito.when(repository.findArtifact("c3")).thenThrow(new RepositoryException("test"));
+		Mockito.when(repository.findArtifacts("c1")).thenReturn(List.of());
+		Mockito.when(repository.findArtifacts("c2")).thenReturn(List.of(new Artifact("g", "a", "1.2", "jar")));
+		Mockito.when(repository.findArtifacts("c3")).thenThrow(new RepositoryException("test"));
 	}
 
 	@AfterEach

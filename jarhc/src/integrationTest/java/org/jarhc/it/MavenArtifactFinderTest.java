@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
+import java.util.List;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.RepositoryException;
@@ -59,126 +59,132 @@ class MavenArtifactFinderTest {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_CommonsIO() throws RepositoryException, IOException {
+	void test_findArtifacts_byChecksum_CommonsIO() throws RepositoryException, IOException {
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("815893df5f31da2ece4040fe0a12fd44b577afaf");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("815893df5f31da2ece4040fe0a12fd44b577afaf");
 
 		// assert
-		assertTrue(artifact.isPresent());
-		assertEquals("commons-io", artifact.get().getGroupId());
-		assertEquals("commons-io", artifact.get().getArtifactId());
-		assertEquals("2.6", artifact.get().getVersion());
-		assertEquals("jar", artifact.get().getType());
+		assertEquals(2, artifacts.size());
+		Artifact artifact = artifacts.get(0);
+		assertEquals("commons-io", artifact.getGroupId());
+		assertEquals("commons-io", artifact.getArtifactId());
+		assertEquals("2.6", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
+		artifact = artifacts.get(1);
+		assertEquals("org.netbeans.external", artifact.getGroupId());
+		assertEquals("org-apache-commons-io", artifact.getArtifactId());
+		assertEquals("RELEASE113", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
 
 		File cacheFile = new File(cacheDir, "815893df5f31da2ece4040fe0a12fd44b577afaf.txt");
 		assertTrue(cacheFile.isFile());
-		assertEquals("commons-io:commons-io:2.6:jar", FileUtils.readFileToString(cacheFile));
+		assertEquals("commons-io:commons-io:2.6:jar\norg.netbeans.external:org-apache-commons-io:RELEASE113:jar", FileUtils.readFileToString(cacheFile));
 
 		assertLogger(logger)
-				.hasDebug("Multiple artifacts found: 2")
-				.hasDebug("- org.netbeans.external:org-apache-commons-io:RELEASE113 (length = 54)")
-				.hasDebug("- commons-io:commons-io:2.6 (length = 25)")
-				.hasDebug("Shortest: commons-io:commons-io:2.6 (length = 25)")
-				.hasDebug("Artifact found: 815893df5f31da2ece4040fe0a12fd44b577afaf -> commons-io:commons-io:2.6:jar (time: *")
+				.hasDebug("Artifact found: 815893df5f31da2ece4040fe0a12fd44b577afaf -> [commons-io:commons-io:2.6:jar, org.netbeans.external:org-apache-commons-io:RELEASE113:jar] (time: *")
 				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_CommonsCodec() throws RepositoryException, IOException {
+	void test_findArtifacts_byChecksum_CommonsCodec() throws RepositoryException, IOException {
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("093ee1760aba62d6896d578bd7d247d0fa52f0e7");
 
 		// assert
-		assertTrue(artifact.isPresent());
-		assertEquals("commons-codec", artifact.get().getGroupId());
-		assertEquals("commons-codec", artifact.get().getArtifactId());
-		assertEquals("1.11", artifact.get().getVersion());
-		assertEquals("jar", artifact.get().getType());
+		assertEquals(1, artifacts.size());
+		Artifact artifact = artifacts.get(0);
+		assertEquals("commons-codec", artifact.getGroupId());
+		assertEquals("commons-codec", artifact.getArtifactId());
+		assertEquals("1.11", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
 
 		File cacheFile = new File(cacheDir, "093ee1760aba62d6896d578bd7d247d0fa52f0e7.txt");
 		assertTrue(cacheFile.isFile());
 		assertEquals("commons-codec:commons-codec:1.11:jar", FileUtils.readFileToString(cacheFile));
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: 093ee1760aba62d6896d578bd7d247d0fa52f0e7 -> commons-codec:commons-codec:1.11:jar (time: *")
+				.hasDebug("Artifact found: 093ee1760aba62d6896d578bd7d247d0fa52f0e7 -> [commons-codec:commons-codec:1.11:jar] (time: *")
 				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_ASM_withMemoryCache() throws RepositoryException {
+	void test_findArtifacts_byChecksum_ASM_withMemoryCache() throws RepositoryException {
 
 		// prepare: find artifact to have it stored in memory cache
-		artifactFinder.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+		artifactFinder.findArtifacts("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
 		LoggerUtils.clear(logger);
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
 
 		// assert
-		assertTrue(artifact.isPresent());
-		assertEquals("org.ow2.asm", artifact.get().getGroupId());
-		assertEquals("asm", artifact.get().getArtifactId());
-		assertEquals("7.0", artifact.get().getVersion());
-		assertEquals("jar", artifact.get().getType());
+		assertEquals(1, artifacts.size());
+		Artifact artifact = artifacts.get(0);
+		assertEquals("org.ow2.asm", artifact.getGroupId());
+		assertEquals("asm", artifact.getArtifactId());
+		assertEquals("7.0", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0:jar (memory cache)")
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> [org.ow2.asm:asm:7.0:jar] (memory cache)")
 				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_ASM_withDiskCache() throws RepositoryException, IOException {
+	void test_findArtifacts_byChecksum_ASM_withDiskCache() throws RepositoryException, IOException {
 
 		// prepare: create checksum file in disk cache
 		FileUtils.writeStringToFile("org.ow2.asm:asm:7.0:jar", new File(cacheDir, "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912.txt"));
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912");
 
 		// assert
-		assertTrue(artifact.isPresent());
-		assertEquals("org.ow2.asm", artifact.get().getGroupId());
-		assertEquals("asm", artifact.get().getArtifactId());
-		assertEquals("7.0", artifact.get().getVersion());
-		assertEquals("jar", artifact.get().getType());
+		assertEquals(1, artifacts.size());
+		Artifact artifact = artifacts.get(0);
+		assertEquals("org.ow2.asm", artifact.getGroupId());
+		assertEquals("asm", artifact.getArtifactId());
+		assertEquals("7.0", artifact.getVersion());
+		assertEquals("jar", artifact.getType());
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> org.ow2.asm:asm:7.0:jar (disk cache)")
+				.hasDebug("Artifact found: d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912 -> [org.ow2.asm:asm:7.0:jar] (disk cache)")
 				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_TestJettyWebApp() throws RepositoryException, IOException {
+	void test_findArtifacts_byChecksum_TestJettyWebApp() throws RepositoryException, IOException {
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("9d920ed18833e7275ba688d88242af4c3711fbea");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("9d920ed18833e7275ba688d88242af4c3711fbea");
 
 		// assert
-		assertTrue(artifact.isPresent());
-		assertEquals("org.eclipse.jetty", artifact.get().getGroupId());
-		assertEquals("test-jetty-webapp", artifact.get().getArtifactId());
-		assertEquals("9.4.20.v20190813", artifact.get().getVersion());
-		assertEquals("war", artifact.get().getType());
+		assertEquals(1, artifacts.size());
+		Artifact artifact = artifacts.get(0);
+		assertEquals("org.eclipse.jetty", artifact.getGroupId());
+		assertEquals("test-jetty-webapp", artifact.getArtifactId());
+		assertEquals("9.4.20.v20190813", artifact.getVersion());
+		assertEquals("war", artifact.getType());
 
 		File cacheFile = new File(cacheDir, "9d920ed18833e7275ba688d88242af4c3711fbea.txt");
 		assertTrue(cacheFile.isFile());
 		assertEquals("org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war", FileUtils.readFileToString(cacheFile));
 
 		assertLogger(logger)
-				.hasDebug("Artifact found: 9d920ed18833e7275ba688d88242af4c3711fbea -> org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war (time: *")
+				.hasDebug("Artifact found: 9d920ed18833e7275ba688d88242af4c3711fbea -> [org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war] (time: *")
 				.isEmpty();
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_notFound() throws RepositoryException {
+	void test_findArtifacts_byChecksum_notFound() throws RepositoryException {
 
 		// test
-		Optional<Artifact> artifact = artifactFinder.findArtifact("1234567890123456789012345678901234567890");
+		List<Artifact> artifacts = artifactFinder.findArtifacts("1234567890123456789012345678901234567890");
 
 		// assert
-		assertFalse(artifact.isPresent());
+		assertEquals(0, artifacts.size());
 
 		File cacheFile = new File(cacheDir, "1234567890123456789012345678901234567890.txt");
 		assertFalse(cacheFile.isFile());
@@ -189,12 +195,12 @@ class MavenArtifactFinderTest {
 	}
 
 	@Test
-	void test_findArtifact_byChecksum_invalidChecksum() {
+	void test_findArtifacts_byChecksum_invalidChecksum() {
 
 		// test
 		assertThrows(
 				IllegalArgumentException.class,
-				() -> artifactFinder.findArtifact("this is NOT a checksum!"),
+				() -> artifactFinder.findArtifacts("this is NOT a checksum!"),
 				"checksum: this is NOT a checksum!"
 		);
 

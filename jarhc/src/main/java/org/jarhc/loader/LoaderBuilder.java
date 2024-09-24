@@ -111,8 +111,8 @@ public class LoaderBuilder {
 	private static class NoOpRepository implements Repository {
 
 		@Override
-		public Optional<Artifact> findArtifact(String checksum) {
-			return Optional.empty();
+		public List<Artifact> findArtifacts(String checksum) {
+			return List.of();
 		}
 
 		@Override

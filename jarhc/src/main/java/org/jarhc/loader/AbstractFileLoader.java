@@ -22,7 +22,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.artifacts.Artifact;
@@ -219,8 +218,12 @@ abstract class AbstractFileLoader {
 		// TODO: if artifact was given as coordinates, skip this step and re-use the original coordinates instead.
 		String coordinates = null;
 		try {
-			Optional<Artifact> artifact = repository.findArtifact(checksum);
-			coordinates = artifact.map(Artifact::toCoordinates).orElse(null);
+			List<Artifact> artifacts = repository.findArtifacts(checksum);
+			// TODO: remember all artifact coordinates for this JAR file
+			if (!artifacts.isEmpty()) {
+				Artifact artifact = artifacts.get(0);
+				coordinates = artifact.toCoordinates();
+			}
 		} catch (RepositoryException e) {
 			logger.warn("Artifact resolution error", e);
 		}

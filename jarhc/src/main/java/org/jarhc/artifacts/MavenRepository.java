@@ -75,9 +75,9 @@ public class MavenRepository implements Repository {
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
+	public List<Artifact> findArtifacts(String checksum) throws RepositoryException {
 		logger.debug("Find artifact: {}", checksum);
-		return artifactFinder.findArtifact(checksum);
+		return artifactFinder.findArtifacts(checksum);
 	}
 
 	@Override

@@ -18,8 +18,10 @@ package org.jarhc.it.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.ArtifactFinder;
@@ -52,17 +54,17 @@ public class ArtifactFinderMock implements ArtifactFinder {
 	}
 
 	@Override
-	public Optional<Artifact> findArtifact(String checksum) {
-		String coordinates = properties.getProperty(checksum);
-		if (coordinates == null) {
+	public List<Artifact> findArtifacts(String checksum) {
+		String value = properties.getProperty(checksum);
+		if (value == null) {
 			String message = String.format("Checksum not found in test data: %s", checksum);
 			throw new TestDataException(message);
 		}
-		if (coordinates.isEmpty()) {
-			return Optional.empty();
+		if (value.isEmpty()) {
+			return List.of();
 		}
-		Artifact artifact = new Artifact(coordinates);
-		return Optional.of(artifact);
+		String[] values = value.split(",");
+		return Stream.of(values).map(Artifact::new).collect(Collectors.toList());
 	}
 
 }

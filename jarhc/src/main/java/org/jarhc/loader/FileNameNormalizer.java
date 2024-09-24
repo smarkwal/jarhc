@@ -16,7 +16,7 @@
 
 package org.jarhc.loader;
 
-import java.util.Optional;
+import java.util.List;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
@@ -41,14 +41,15 @@ public class FileNameNormalizer {
 
 		if (useArtifactName) {
 			try {
-				Optional<Artifact> artifact = repository.findArtifact(checksum);
-				if (artifact.isPresent()) {
+				List<Artifact> artifacts = repository.findArtifacts(checksum);
+				if (!artifacts.isEmpty()) {
+					Artifact artifact = artifacts.get(0);
 					if (removeVersion) {
 						// generate file name without version number
-						return artifact.get().getArtifactId() + ".jar";
+						return artifact.getArtifactId() + ".jar";
 					} else {
 						// generate file name with version number
-						return artifact.get().getArtifactId() + "-" + artifact.get().getVersion() + ".jar";
+						return artifact.getArtifactId() + "-" + artifact.getVersion() + ".jar";
 					}
 				}
 			} catch (RepositoryException e) {

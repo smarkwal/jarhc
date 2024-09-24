@@ -23,11 +23,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
 import org.jarhc.utils.JarHcException;
@@ -36,6 +39,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 
+/**
+ * Implementation of {@link ArtifactFinder} that uses the Maven Search API
+ * on <a href="https://search.maven.org">search.maven.org</a>to find artifacts.
+ * It uses a disk-based and memory-based cache to store results locally.
+ */
 public class MavenArtifactFinder implements ArtifactFinder {
 
 	// Example request URLs:
@@ -53,7 +61,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	private final Logger logger;
 	private final Settings settings;
 
-	private final Map<String, Artifact> cache = new ConcurrentHashMap<>();
+	private final Map<String, List<Artifact>> cache = new ConcurrentHashMap<>();
 
 	public MavenArtifactFinder(File cacheDir, Logger logger) {
 		this(cacheDir, logger, Settings.fromSystemProperties());
@@ -67,13 +75,13 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 	@Override
 	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
-	public Optional<Artifact> findArtifact(String checksum) throws RepositoryException {
+	public List<Artifact> findArtifacts(String checksum) throws RepositoryException {
 
 		// check memory cache
 		if (cache.containsKey(checksum)) {
-			Artifact artifact = cache.get(checksum);
-			logger.debug("Artifact found: {} -> {} (memory cache)", checksum, artifact);
-			return Optional.of(artifact);
+			List<Artifact> artifacts = new ArrayList<>(cache.get(checksum)); // decouple
+			logger.debug("Artifact found: {} -> {} (memory cache)", checksum, artifacts);
+			return artifacts;
 		}
 
 		validateChecksum(checksum);
@@ -83,23 +91,13 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		if (cacheFile.isFile()) {
 
 			// read coordinates from file
-			String coordinates;
-			try {
-				coordinates = FileUtils.readFileToString(cacheFile);
-			} catch (IOException e) {
-				throw new JarHcException(e);
-			}
+			List<Artifact> artifacts = readArtifactsFromFile(cacheFile);
 
-			// validate coordinates and return artifact
-			if (Artifact.validateCoordinates(coordinates)) {
-				Artifact artifact = new Artifact(coordinates);
+			// update in-memory cache
+			cache.put(checksum, new ArrayList<>(artifacts)); // decouple
 
-				// update in-memory cache
-				cache.put(checksum, artifact);
-
-				logger.debug("Artifact found: {} -> {} (disk cache)", checksum, artifact);
-				return Optional.of(artifact);
-			}
+			logger.debug("Artifact found: {} -> {} (disk cache)", checksum, artifacts);
+			return artifacts;
 		}
 
 		long time = 0;
@@ -142,7 +140,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 				time = System.nanoTime() - time;
 				logger.warn("Artifact not found: {} (time: {} ms)", checksum, time / 1000 / 1000);
 			}
-			return Optional.empty(); // artifact not found
+			return List.of(); // artifact not found
 		}
 
 		if (!response.has("docs")) {
@@ -154,29 +152,20 @@ public class MavenArtifactFinder implements ArtifactFinder {
 			throw new RepositoryException("JSON array 'docs' is empty: " + text);
 		}
 
-		JSONObject doc = findBestMatch(docs);
-		String groupId = doc.getString("g");
-		String artifactId = doc.getString("a");
-		String version = doc.getString("v");
-		String type = doc.getString("p");
-
-		Artifact artifact = new Artifact(groupId, artifactId, version, type);
+		// parse JSON code and create of list of artifacts (ordered by relevance)
+		List<Artifact> artifacts = parseArtifacts(docs);
 
 		// update memory cache
-		cache.put(checksum, artifact);
+		cache.put(checksum, new ArrayList<>(artifacts)); // decouple
 
 		// update disk cache
-		try {
-			FileUtils.writeStringToFile(artifact.toString(), cacheFile);
-		} catch (IOException e) {
-			throw new JarHcException(e);
-		}
+		writeArtifactsToFile(artifacts, cacheFile);
 
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;
-			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifact, time / 1000 / 1000);
+			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifacts, time / 1000 / 1000);
 		}
-		return Optional.of(artifact);
+		return artifacts;
 	}
 
 	/**
@@ -248,38 +237,66 @@ public class MavenArtifactFinder implements ArtifactFinder {
 
 	}
 
-	private JSONObject findBestMatch(JSONArray docs) {
+	private static List<Artifact> readArtifactsFromFile(File cacheFile) {
 
-		JSONObject bestDoc = docs.getJSONObject(0);
-
-		int num = docs.length();
-		if (num > 1) {
-
-			// multiple matches:
-			// prefer shorter artifact coordinates
-
-			String bestId = bestDoc.getString("id");
-			int bestLen = bestId.length();
-
-			logger.debug("Multiple artifacts found: {}", num);
-			logger.debug("- {} (length = {})", bestId, bestLen);
-
-			for (int i = 1; i < num; i++) {
-				JSONObject doc = docs.getJSONObject(i);
-				String id = doc.getString("id");
-				int len = id.length();
-				logger.debug("- {} (length = {})", id, len);
-				if (len < bestLen) {
-					bestDoc = doc;
-					bestId = id;
-					bestLen = len;
-				}
-			}
-
-			logger.debug("Shortest: {} (length = {})", bestId, bestLen);
+		// read coordinates from file
+		String[] lines;
+		try {
+			lines = FileUtils.readFileToString(cacheFile).split("\n");
+		} catch (IOException e) {
+			throw new JarHcException(e);
 		}
 
-		return bestDoc;
+		List<Artifact> artifacts = new ArrayList<>();
+		for (String coordinates : lines) {
+			// validate coordinates and create artifact
+			if (Artifact.validateCoordinates(coordinates)) {
+				Artifact artifact = new Artifact(coordinates);
+				artifacts.add(artifact);
+			} else {
+				throw new JarHcException("Invalid artifact coordinates: " + coordinates);
+			}
+		}
+
+		return artifacts;
+	}
+
+	private static void writeArtifactsToFile(List<Artifact> artifacts, File cacheFile) {
+		String lines = artifacts.stream().map(Artifact::toString).collect(Collectors.joining("\n"));
+		try {
+			FileUtils.writeStringToFile(lines, cacheFile);
+		} catch (IOException e) {
+			throw new JarHcException(e);
+		}
+	}
+
+	private List<Artifact> parseArtifacts(JSONArray docs) {
+
+		// prepare list of artifacts
+		ArrayList<Artifact> artifacts = new ArrayList<>();
+
+		for (int i = 0; i < docs.length(); i++) {
+			JSONObject doc = docs.getJSONObject(i);
+
+			String groupId = doc.getString("g");
+			String artifactId = doc.getString("a");
+			String version = doc.getString("v");
+			String type = doc.getString("p");
+
+			Artifact artifact = new Artifact(groupId, artifactId, version, type);
+			artifacts.add(artifact);
+		}
+
+		// multiple matches:
+		// prefer shorter artifact coordinates
+		// TODO: order by timestamp (oldest first)?
+		artifacts.sort((a1, a2) -> {
+			int len1 = a1.getGroupId().length() + a1.getArtifactId().length() + a1.getVersion().length();
+			int len2 = a2.getGroupId().length() + a2.getArtifactId().length() + a2.getVersion().length();
+			return Integer.compare(len1, len2);
+		});
+
+		return artifacts;
 	}
 
 	/**

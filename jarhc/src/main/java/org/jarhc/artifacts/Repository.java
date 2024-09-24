@@ -36,7 +36,7 @@ public interface Repository {
 	 * @return Artifact information (if found)
 	 * @throws RepositoryException if an unexpected exception occurs
 	 */
-	Optional<Artifact> findArtifact(String checksum) throws RepositoryException;
+	List<Artifact> findArtifacts(String checksum) throws RepositoryException;
 
 	/**
 	 * Try to download the artifact file for the given artifact.
