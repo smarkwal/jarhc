@@ -48,13 +48,14 @@ public class TestUtils {
 
 	public static String getResourceAsString(String resource, String encoding) throws IOException {
 		if (resource == null) throw new IllegalArgumentException("resource");
-		InputStream stream = getResourceAsStream(resource);
 		ByteArrayOutputStream result = new ByteArrayOutputStream();
-		byte[] buffer = new byte[1024];
-		while (true) {
-			int len = stream.read(buffer);
-			if (len < 0) break;
-			result.write(buffer, 0, len);
+		try (InputStream stream = getResourceAsStream(resource)) {
+			byte[] buffer = new byte[1024];
+			while (true) {
+				int len = stream.read(buffer);
+				if (len < 0) break;
+				result.write(buffer, 0, len);
+			}
 		}
 		return result.toString(encoding);
 	}
