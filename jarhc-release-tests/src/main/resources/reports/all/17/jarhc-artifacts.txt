@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 JAR file                                                       | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------------
-jarhc.jar                                                      | 228 KB  | 131     | 6         | **************************************** | [unknown]
+jarhc.jar                                                      | 229 KB  | 131     | 6         | **************************************** | [unknown]
 aether-api-1.1.0.jar                                           | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
 aether-connector-basic-1.1.0.jar                               | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
 aether-impl-1.1.0.jar                                          | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
