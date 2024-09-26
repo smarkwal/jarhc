@@ -5,9 +5,9 @@ Class Versions
 --------------
 Java class file format information.
 
-Artifact                    | Multi-release | Class files by Java version
-----------------------------+---------------+----------------------------
-hazelcast-3.11.2.jar        | No            | Java 6 (7131)
-hazelcast-client-3.11.2.jar | No            | Java 6 (455)
-Classpath                   | -             | Java 6 (7586)
+Artifact         | Multi-release | Class files by Java version
+-----------------+---------------+----------------------------
+hazelcast        | No            | Java 6 (7131)
+hazelcast-client | No            | Java 6 (455)
+Classpath        | -             | Java 6 (7586)
 

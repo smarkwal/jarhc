@@ -119,7 +119,7 @@ class FieldRefAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String value = values[1];
 		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/FieldRefAnalyzerTest/result.txt", "UTF-8");
@@ -152,7 +152,7 @@ class FieldRefAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
 				"a.A",
@@ -187,7 +187,7 @@ class FieldRefAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
 				"a.A",

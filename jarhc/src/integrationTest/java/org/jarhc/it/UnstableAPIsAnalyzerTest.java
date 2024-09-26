@@ -67,7 +67,7 @@ class UnstableAPIsAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String result = values[1];
 		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/it/UnstableAPIsAnalyzerTest/result.txt", "UTF-8");

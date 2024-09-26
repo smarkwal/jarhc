@@ -45,35 +45,35 @@ public class PackagesAnalyzer implements Analyzer {
 	private ReportTable buildTable(Classpath classpath) {
 
 		// map from JAR file name to package names
-		Map<String, List<String>> jarFileToPackages = buildJarFileToPackagesMap(classpath);
+		Map<String, List<String>> artifactNameToPackages = buildArtifactNameToPackagesMap(classpath);
 
 		// map from package name to JAR file names
-		Map<String, List<String>> packageToJarFiles = invert(jarFileToPackages);
+		Map<String, List<String>> packageToArtifactNames = invert(artifactNameToPackages);
 
 		ReportTable table = new ReportTable("Artifact", "Count", "Packages", "Issues");
 
 		// for every JAR file ...
-		List<String> jarFileNames = new ArrayList<>(jarFileToPackages.keySet());
-		jarFileNames.sort(null);
-		for (String jarFileName : jarFileNames) {
-			List<String> packageNames = jarFileToPackages.get(jarFileName);
-			List<String> packageGroups = getPackageGroups(packageNames, jarFileToPackages, jarFileName, jarFileNames);
-			List<String> issues = findIssues(packageNames, packageToJarFiles);
-			table.addRow(jarFileName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
+		List<String> artifactNames = new ArrayList<>(artifactNameToPackages.keySet());
+		artifactNames.sort(null);
+		for (String artifactName : artifactNames) {
+			List<String> packageNames = artifactNameToPackages.get(artifactName);
+			List<String> packageGroups = getPackageGroups(packageNames, artifactNameToPackages, artifactName, artifactNames);
+			List<String> issues = findIssues(packageNames, packageToArtifactNames);
+			table.addRow(artifactName, String.valueOf(packageNames.size()), StringUtils.joinLines(packageGroups), StringUtils.joinLines(issues));
 		}
 
 		return table;
 	}
 
-	private static Map<String, List<String>> buildJarFileToPackagesMap(Classpath classpath) {
+	private static Map<String, List<String>> buildArtifactNameToPackagesMap(Classpath classpath) {
 
-		Map<String, List<String>> jarFileToPackages = new HashMap<>();
+		Map<String, List<String>> artifactNameToPackages = new HashMap<>();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			String jarFileName = jarFile.getFileName();
+			String artifactName = jarFile.getArtifactName();
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
@@ -86,14 +86,14 @@ public class PackagesAnalyzer implements Analyzer {
 				// remember JAR files for package name
 				String packageName = classDef.getPackageName();
 
-				List<String> packageNames = jarFileToPackages.computeIfAbsent(jarFileName, k -> new ArrayList<>(8));
+				List<String> packageNames = artifactNameToPackages.computeIfAbsent(artifactName, k -> new ArrayList<>(8));
 				if (!packageNames.contains(packageName)) {
 					packageNames.add(packageName);
 				}
 			}
 		}
 
-		return jarFileToPackages;
+		return artifactNameToPackages;
 	}
 
 	/**

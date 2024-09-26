@@ -73,7 +73,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private String[] buildRow(JarFile jarFile, Classpath classpath) {
 
-		String fileName = jarFile.getFileName();
+		String artifactName = jarFile.getArtifactName();
 		String coordinates = getCoordinates(jarFile);
 
 		String dependenciesInfo = UNKNOWN;
@@ -107,7 +107,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		}
 
-		return new String[] { fileName, coordinates, dependenciesInfo, status };
+		return new String[] { artifactName, coordinates, dependenciesInfo, status };
 	}
 
 	private List<Dependency> getDependencies(String coordinates) throws RepositoryException {

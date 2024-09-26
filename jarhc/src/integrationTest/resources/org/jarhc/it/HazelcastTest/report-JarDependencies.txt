@@ -5,8 +5,8 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-Artifact                    | Uses                 | Used by
-----------------------------+----------------------+----------------------------
-hazelcast-3.11.2.jar        | [none]               | hazelcast-client-3.11.2.jar
-hazelcast-client-3.11.2.jar | hazelcast-3.11.2.jar | [none]
+Artifact         | Uses      | Used by
+-----------------+-----------+-----------------
+hazelcast        | [none]    | hazelcast-client
+hazelcast-client | hazelcast | [none]
 

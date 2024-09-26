@@ -5,15 +5,15 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-Artifact                | Module name  | Definition     | Automatic | Requires | Exports
-------------------------+--------------+----------------+-----------+----------+---------------
-camel-core-2.17.7.jar   | camel.core   | Auto-generated | Yes       | -        | [all packages]
-camel-jdbc-2.17.7.jar   | camel.jdbc   | Auto-generated | Yes       | -        | [all packages]
-camel-jms-2.17.7.jar    | camel.jms    | Auto-generated | Yes       | -        | [all packages]
-camel-jmx-2.17.7.jar    | camel.jmx    | Auto-generated | Yes       | -        | [all packages]
-camel-jxpath-2.17.7.jar | camel.jxpath | Auto-generated | Yes       | -        | [all packages]
-camel-ldap-2.17.7.jar   | camel.ldap   | Auto-generated | Yes       | -        | [all packages]
-camel-mail-2.17.7.jar   | camel.mail   | Auto-generated | Yes       | -        | [all packages]
-camel-soap-2.17.7.jar   | camel.soap   | Auto-generated | Yes       | -        | [all packages]
-camel-spring-2.17.7.jar | camel.spring | Auto-generated | Yes       | -        | [all packages]
+Artifact     | Module name  | Definition     | Automatic | Requires | Exports
+-------------+--------------+----------------+-----------+----------+---------------
+camel-core   | camel.core   | Auto-generated | Yes       | -        | [all packages]
+camel-jdbc   | camel.jdbc   | Auto-generated | Yes       | -        | [all packages]
+camel-jms    | camel.jms    | Auto-generated | Yes       | -        | [all packages]
+camel-jmx    | camel.jmx    | Auto-generated | Yes       | -        | [all packages]
+camel-jxpath | camel.jxpath | Auto-generated | Yes       | -        | [all packages]
+camel-ldap   | camel.ldap   | Auto-generated | Yes       | -        | [all packages]
+camel-mail   | camel.mail   | Auto-generated | Yes       | -        | [all packages]
+camel-soap   | camel.soap   | Auto-generated | Yes       | -        | [all packages]
+camel-spring | camel.spring | Auto-generated | Yes       | -        | [all packages]
 

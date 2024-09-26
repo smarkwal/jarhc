@@ -49,14 +49,14 @@ public class ModulesAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			String fileName = jarFile.getFileName();
+			String artifactName = jarFile.getArtifactName();
 			String moduleName = getModuleName(jarFile);
 			String definitionInfo = getDefinitionInfo(jarFile);
 			String automaticInfo = getAutomaticInfo(jarFile);
 			String requiresInfo = getRequiresInfo(jarFile);
 			String exportsInfo = getExportsInfo(jarFile);
 
-			table.addRow(fileName, moduleName, definitionInfo, automaticInfo, requiresInfo, exportsInfo);
+			table.addRow(artifactName, moduleName, definitionInfo, automaticInfo, requiresInfo, exportsInfo);
 		}
 
 		return table;

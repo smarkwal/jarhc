@@ -64,7 +64,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Class is not accessible: class b.B", "\u2022 Class not found: c.C (package not found)"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Class is not accessible: class b.B", "\u2022 Class not found: c.C (package not found)"));
 	}
 
 	@Test
@@ -85,7 +85,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Compiled for Java 17, but bundled for Java 11."));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Compiled for Java 17, but bundled for Java 11."));
 	}
 
 	@Test
@@ -129,8 +129,8 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is not in same module: public class b.B"));
-		assertValuesEquals(rows.get(1), "b.jar", joinLines("b.B", "\u2022 Sealed superclass is not in same module: public sealed class a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass is not in same module: public class b.B"));
+		assertValuesEquals(rows.get(1), "b", joinLines("b.B", "\u2022 Sealed superclass is not in same module: public sealed class a.A"));
 	}
 
 	@Test
@@ -173,7 +173,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is not in same package: public class b.B", "", "b.B", "\u2022 Sealed superclass is not in same package: public sealed class a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass is not in same package: public class b.B", "", "b.B", "\u2022 Sealed superclass is not in same package: public sealed class a.A"));
 	}
 
 	@Test
@@ -194,7 +194,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass not found: a.B"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass not found: a.B"));
 	}
 
 	@Test
@@ -216,7 +216,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass does not extend sealed class: class a.B"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass does not extend sealed class: class a.B"));
 	}
 
 	@Test
@@ -239,7 +239,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.C", "\u2022 Class is not a permitted subclass of sealed superclass: sealed class a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.C", "\u2022 Class is not a permitted subclass of sealed superclass: sealed class a.A"));
 	}
 
 	@Test
@@ -261,7 +261,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is not accessible: class b.B"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass is not accessible: class b.B"));
 	}
 
 	@Test
@@ -284,8 +284,8 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is in unnamed module: public class b.B"));
-		assertValuesEquals(rows.get(1), "b.jar", joinLines("b.B", "\u2022 Sealed superclass is in a named module: public sealed class a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass is in unnamed module: public class b.B"));
+		assertValuesEquals(rows.get(1), "b", joinLines("b.B", "\u2022 Sealed superclass is in a named module: public sealed class a.A"));
 	}
 
 	@Test
@@ -308,8 +308,8 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Permitted subclass is in a named module: public class b.B"));
-		assertValuesEquals(rows.get(1), "b.jar", joinLines("b.B", "\u2022 Sealed superclass is in unnamed module: public sealed class a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Permitted subclass is in a named module: public class b.B"));
+		assertValuesEquals(rows.get(1), "b", joinLines("b.B", "\u2022 Sealed superclass is in unnamed module: public sealed class a.A"));
 	}
 
 	@Test
@@ -331,7 +331,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.B", "\u2022 Superclass is a record class: record a.A"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.B", "\u2022 Superclass is a record class: record a.A"));
 	}
 
 	@Test
@@ -353,7 +353,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("a.A", "\u2022 Annotation not found: b.B (package not found)"));
+		assertValuesEquals(rows.get(0), "a", joinLines("a.A", "\u2022 Annotation not found: b.B (package not found)"));
 	}
 
 	@Test

@@ -72,10 +72,10 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-		assertValuesEquals(rows.get(0), "a.A", joinLines("a.jar (Classpath)", "a.jar (Provided)"), "Exact copy");
-		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r.jar (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
-		assertValuesEquals(rows.get(2), "z.Z", joinLines("x.jar (Classpath)", "y.jar (Classpath)"), "Exact copy");
-		assertValuesEquals(rows.get(3), "z/Z.txt", joinLines("x.jar", "y.jar"), "Different content");
+		assertValuesEquals(rows.get(0), "a.A", joinLines("a (Classpath)", "a (Provided)"), "Exact copy");
+		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
+		assertValuesEquals(rows.get(2), "z.Z", joinLines("x (Classpath)", "y (Classpath)"), "Exact copy");
+		assertValuesEquals(rows.get(3), "z/Z.txt", joinLines("x", "y"), "Different content");
 	}
 
 	@Test
@@ -83,9 +83,9 @@ class DuplicateClassesAnalyzerTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create(null)
-				.addJarFile("a-1.jar").addClassDef("a.b.C").addClassDef("a.b.X")
-				.addJarFile("a-2.jar").addClassDef("a.b.C").addClassDef("a.b.Y")
-				.addJarFile("b.jar").addClassDef("x.y.C")
+				.addJarFile("a.jar").addClassDef("a.b.C").addClassDef("a.b.X")
+				.addJarFile("b.jar").addClassDef("a.b.C").addClassDef("a.b.Y")
+				.addJarFile("c.jar").addClassDef("x.y.C")
 				.build();
 
 		// test
@@ -105,7 +105,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.b.C", joinLines("a-1.jar (Classpath)", "a-2.jar (Classpath)"), "Exact copy");
+		assertValuesEquals(rows.get(0), "a.b.C", joinLines("a (Classpath)", "b (Classpath)"), "Exact copy");
 	}
 
 	@Test
@@ -113,9 +113,9 @@ class DuplicateClassesAnalyzerTest {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create(null)
-				.addJarFile("a-1.jar").addResourceDef("a/b/C").addResourceDef("a/b/X")
-				.addJarFile("a-2.jar").addResourceDef("a/b/C").addResourceDef("a/b/Y")
-				.addJarFile("b.jar").addResourceDef("x/y/C")
+				.addJarFile("a.jar").addResourceDef("a/b/C").addResourceDef("a/b/X")
+				.addJarFile("b.jar").addResourceDef("a/b/C").addResourceDef("a/b/Y")
+				.addJarFile("c.jar").addResourceDef("x/y/C")
 				.build();
 
 		// test
@@ -135,7 +135,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a/b/C", joinLines("a-1.jar", "a-2.jar"), "Exact copy");
+		assertValuesEquals(rows.get(0), "a/b/C", joinLines("a", "b"), "Exact copy");
 	}
 
 	@Test
@@ -166,7 +166,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a.jar (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
+		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
 	}
 
 	@Test

@@ -37,7 +37,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		MultiMap<String, String> dependencies = calculateJarFileDependencies(classpath);
+		MultiMap<String, String> dependencies = calculateArtifactDependencies(classpath);
 
 		ReportTable table = buildTable(classpath, dependencies);
 
@@ -55,36 +55,36 @@ public class JarDependenciesAnalyzer implements Analyzer {
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String jarFileName = jarFile.getFileName();
-			Set<String> targetFileNames = dependencies.getValues(jarFileName);
-			Set<String> sourceFileNames = inverted.getValues(jarFileName);
+			String artifactName = jarFile.getArtifactName();
+			Set<String> targetArtifactNames = dependencies.getValues(artifactName);
+			Set<String> sourceArtifactNames = inverted.getValues(artifactName);
 			String uses;
-			if (targetFileNames == null) {
+			if (targetArtifactNames == null) {
 				uses = "[none]";
 			} else {
-				uses = joinLines(targetFileNames);
+				uses = joinLines(targetArtifactNames);
 			}
 			String usedBy;
-			if (sourceFileNames == null) {
+			if (sourceArtifactNames == null) {
 				usedBy = "[none]";
 			} else {
-				usedBy = joinLines(sourceFileNames);
+				usedBy = joinLines(sourceArtifactNames);
 			}
-			table.addRow(jarFileName, uses, usedBy);
+			table.addRow(artifactName, uses, usedBy);
 		}
 
 		return table;
 	}
 
-	private MultiMap<String, String> calculateJarFileDependencies(Classpath classpath) {
+	private MultiMap<String, String> calculateArtifactDependencies(Classpath classpath) {
 
-		// map from source JAR file name to target JAR file names
+		// map from source artifact name to target artifact names
 		MultiMap<String, String> dependencies = new MultiMap<>();
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String jarFileName = jarFile.getFileName();
+			String artifactName = jarFile.getArtifactName();
 
 			// collect all references to other classes
 			Set<String> classNames = new HashSet<>();
@@ -118,8 +118,8 @@ public class JarDependenciesAnalyzer implements Analyzer {
 					}
 
 					// add dependency
-					String targetFileName = targetJarFile.getFileName();
-					dependencies.add(jarFileName, targetFileName);
+					String targetArtifactName = targetJarFile.getArtifactName();
+					dependencies.add(artifactName, targetArtifactName);
 				}
 
 			}

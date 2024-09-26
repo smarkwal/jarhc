@@ -64,10 +64,10 @@ class JarDependenciesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", joinLines("b.jar", "c.jar"), "[none]");
-		assertValuesEquals(rows.get(1), "b.jar", "c.jar", "a.jar");
-		assertValuesEquals(rows.get(2), "c.jar", "[none]", joinLines("a.jar", "b.jar"));
-		assertValuesEquals(rows.get(3), "d.jar", "[none]", "[none]");
+		assertValuesEquals(rows.get(0), "a", joinLines("b", "c"), "[none]");
+		assertValuesEquals(rows.get(1), "b", "c", "a");
+		assertValuesEquals(rows.get(2), "c", "[none]", joinLines("a", "b"));
+		assertValuesEquals(rows.get(3), "d", "[none]", "[none]");
 	}
 
 }

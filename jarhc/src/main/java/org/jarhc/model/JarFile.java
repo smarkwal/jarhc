@@ -25,12 +25,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jarhc.artifacts.Artifact;
 
 /**
  * Represents the content of a JAR file.
  */
 public class JarFile {
+
+	// TODO: support additional version patterns?
+	private static final Pattern VERSION_PATTERN = Pattern.compile("-([0-9]+(\\.[0-9]+){0,10}(-SNAPSHOT)?)");
+
+	/**
+	 * Artifact name (from Maven coordinates or file name)
+	 */
+	private final String artifactName;
+
+	/**
+	 * Artifact version (from Maven coordinates or file name)
+	 */
+	private final String artifactVersion;
 
 	/**
 	 * JAR file name
@@ -51,7 +66,7 @@ public class JarFile {
 	 * Maven coordinates for the JAR file specified as argument on the command line.
 	 * Is {@code null} if the JAR file was not loaded from a Maven repository.
 	 */
-	private final String coordinates;
+	private final String coordinates; // TODO: change type to Artifact
 
 	/**
 	 * Maven coordinates of the JAR file as found by Maven Search API.
@@ -166,6 +181,60 @@ public class JarFile {
 
 		});
 
+		// get artifact name and version from coordinates or file name
+		Artifact artifact = findArtifact(coordinates, fileName, artifacts);
+		this.artifactName = artifact.getArtifactId();
+		this.artifactVersion = artifact.getVersion();
+	}
+
+	private static Artifact findArtifact(String coordinates, String fileName, List<Artifact> artifacts) {
+
+		if (coordinates != null) {
+			return new Artifact(coordinates);
+		}
+
+		// remove path from file name (only for nested JAR files)
+		int pos = fileName.lastIndexOf('/');
+		if (pos >= 0) {
+			fileName = fileName.substring(pos + 1);
+		}
+
+		// try to find an artifact with a matching file name
+		if (artifacts != null) {
+			for (Artifact artifact : artifacts) {
+				if (artifact.getFileName().equals(fileName)) {
+					return artifact;
+				}
+			}
+		}
+
+		// try to get artifact name and version from file name
+
+		// remove file extension
+		if (fileName.endsWith(".jar")) {
+			fileName = fileName.substring(0, fileName.length() - 4);
+		} else if (fileName.endsWith(".jmod")) {
+			fileName = fileName.substring(0, fileName.length() - 5);
+		}
+
+		// search for version number in file name
+		Matcher matcher = VERSION_PATTERN.matcher(fileName);
+		if (matcher.find()) {
+			String version = matcher.group(1);
+			String artifactId = matcher.replaceFirst("");
+			return new Artifact("", artifactId, version, "");
+		}
+
+		// fallback: use file name as artifact name (version is unknown)
+		return new Artifact("", fileName, "", "");
+	}
+
+	public String getArtifactName() {
+		return artifactName;
+	}
+
+	public String getArtifactVersion() {
+		return artifactVersion;
 	}
 
 	public String getFileName() {

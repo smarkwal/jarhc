@@ -70,7 +70,7 @@ class BinaryCompatibilityAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		if (javaVersion == 11) {
 			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class is not exported by module java.base: public class jdk.internal.util.ArraysSupport", "\u2022 Class is not exported by module java.base: public final class sun.text.IntHashtable"), values[1]);

@@ -5,11 +5,11 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-Artifact              | Uses                 | Used by
-----------------------+----------------------+----------------------
-xercesImpl-2.11.0.jar | xml-apis-1.4.01.jar  | [none]
-                      | xml-resolver-1.2.jar |
-xml-apis-1.4.01.jar   | [none]               | xercesImpl-2.11.0.jar
-                      |                      | xml-resolver-1.2.jar
-xml-resolver-1.2.jar  | xml-apis-1.4.01.jar  | xercesImpl-2.11.0.jar
+Artifact     | Uses         | Used by
+-------------+--------------+-------------
+xercesImpl   | xml-apis     | [none]
+             | xml-resolver |
+xml-apis     | [none]       | xercesImpl
+             |              | xml-resolver
+xml-resolver | xml-apis     | xercesImpl
 

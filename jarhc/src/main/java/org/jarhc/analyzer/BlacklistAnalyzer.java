@@ -119,7 +119,7 @@ public class BlacklistAnalyzer implements Analyzer {
 
 			if (!jarIssues.isEmpty()) {
 				String lines = StringUtils.joinLines(jarIssues).trim();
-				table.addRow(jarFile.getFileName(), lines);
+				table.addRow(jarFile.getArtifactName(), lines);
 			}
 
 		}

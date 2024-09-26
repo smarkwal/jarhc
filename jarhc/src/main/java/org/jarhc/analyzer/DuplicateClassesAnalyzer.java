@@ -204,7 +204,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 		JarFile jarFile = classDef.getJarFile();
 		String classLoader = classDef.getClassLoader();
 		if (jarFile != null) {
-			return jarFile.getFileName() + " (" + classLoader + ")";
+			return jarFile.getArtifactName() + " (" + classLoader + ")";
 		} else {
 			return classLoader;
 		}
@@ -213,7 +213,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 	private String getResourceSources(List<ResourceDef> resourceDefs) {
 		return resourceDefs.stream()
 				.map(ResourceDef::getJarFile) // get JAR file
-				.map(JarFile::getFileName) // get JAR file name
+				.map(JarFile::getArtifactName) // get artifact name
 				.sorted(String.CASE_INSENSITIVE_ORDER) // sort case-insensitive
 				.collect(StringUtils.joinLines());
 	}

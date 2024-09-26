@@ -87,7 +87,7 @@ class ClassHierarchyAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String value = values[1];
 		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/ClassHierarchyAnalyzerTest/result.txt", "UTF-8");

@@ -13,63 +13,63 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact            | Version | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
---------------------+---------+-----------------------------+---------+---------+-----------+------------------------------------------+----------------------------
-asm-commons-7.0.jar | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
-asm-tree-7.0.jar    | 7.0     | org.ow2.asm:asm-tree:7.0    | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
-Classpath           | -       | -                           | 127 KB  | 69      | 0         | -                                        | -
+Artifact    | Version | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
+------------+---------+-----------------------------+---------+---------+-----------+------------------------------------------+----------------------------
+asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
+asm-tree    | 7.0     | org.ow2.asm:asm-tree:7.0    | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
+Classpath   | -       | -                           | 127 KB  | 69      | 0         | -                                        | -
 
 Modules
 -------
 List of Java Modules found in classpath.
 
-Artifact            | Module name               | Definition  | Automatic | Requires                        | Exports
---------------------+---------------------------+-------------+-----------+---------------------------------+--------------------------
-asm-commons-7.0.jar | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.commons
-                    |                           |             |           | org.objectweb.asm.tree          |
-                    |                           |             |           | org.objectweb.asm.tree.analysis |
-                    |                           |             |           | java.base                       |
-asm-tree-7.0.jar    | org.objectweb.asm.tree    | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.tree
-                    |                           |             |           | java.base                       |
+Artifact    | Module name               | Definition  | Automatic | Requires                        | Exports
+------------+---------------------------+-------------+-----------+---------------------------------+--------------------------
+asm-commons | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.commons
+            |                           |             |           | org.objectweb.asm.tree          |
+            |                           |             |           | org.objectweb.asm.tree.analysis |
+            |                           |             |           | java.base                       |
+asm-tree    | org.objectweb.asm.tree    | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.tree
+            |                           |             |           | java.base                       |
 
 Class Versions
 --------------
 Java class file format information.
 
-Artifact            | Multi-release | Class files by Java version
---------------------+---------------+----------------------------
-asm-commons-7.0.jar | No            | Java 5 (32)
-asm-tree-7.0.jar    | No            | Java 5 (37)
-Classpath           | -             | Java 5 (69)
+Artifact    | Multi-release | Class files by Java version
+------------+---------------+----------------------------
+asm-commons | No            | Java 5 (32)
+asm-tree    | No            | Java 5 (37)
+Classpath   | -             | Java 5 (69)
 
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-Artifact            | Uses             | Used by
---------------------+------------------+--------------------
-asm-commons-7.0.jar | asm-tree-7.0.jar | [none]
-asm-tree-7.0.jar    | [none]           | asm-commons-7.0.jar
+Artifact    | Uses     | Used by
+------------+----------+------------
+asm-commons | asm-tree | [none]
+asm-tree    | [none]   | asm-commons
 
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact            | Maven coordinates           | Direct dependencies          | Status
---------------------+-----------------------------+------------------------------+--------------
-asm-commons-7.0.jar | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm:7.0          | OK [Provided]
-                    |                             | org.ow2.asm:asm-tree:7.0     | OK
-                    |                             | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-asm-tree-7.0.jar    | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
+Artifact    | Maven coordinates           | Direct dependencies          | Status
+------------+-----------------------------+------------------------------+--------------
+asm-commons | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm:7.0          | OK [Provided]
+            |                             | org.ow2.asm:asm-tree:7.0     | OK
+            |                             | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
+asm-tree    | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
 
 Packages
 --------
 List of packages per JAR file.
 
-Artifact            | Count | Packages                  | Issues
---------------------+-------+---------------------------+-------
-asm-commons-7.0.jar | 1     | org.objectweb.asm.commons |
-asm-tree-7.0.jar    | 1     | org.objectweb.asm.tree    |
+Artifact    | Count | Packages                  | Issues
+------------+-------+---------------------------+-------
+asm-commons | 1     | org.objectweb.asm.commons |
+asm-tree    | 1     | org.objectweb.asm.tree    |
 
 Java Runtime
 ------------

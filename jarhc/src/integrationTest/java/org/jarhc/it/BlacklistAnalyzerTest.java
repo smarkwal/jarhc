@@ -64,7 +64,7 @@ class BlacklistAnalyzerTest {
 
 		String[] values = rows.get(0);
 		assertEquals(2, values.length);
-		assertEquals("a.jar", values[0]);
+		assertEquals("a", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
 				"a.Runtime",

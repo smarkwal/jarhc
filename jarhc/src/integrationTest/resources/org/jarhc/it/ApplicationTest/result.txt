@@ -15,7 +15,7 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source | Size  | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 ----------+-----------+--------+-------+---------+-----------+------------------------------------------+------------
-a.jar     | [unknown] | a.jar  | 678 B | 1       | 0         | b2de6f7c6eff51a28729be9c4f6555354f16a1ca | [unknown]
+a         | [unknown] | a.jar  | 678 B | 1       | 0         | b2de6f7c6eff51a28729be9c4f6555354f16a1ca | [unknown]
 Classpath | -         | -      | 678 B | 1       | 0         | -                                        | -
 
 Modules
@@ -24,7 +24,7 @@ List of Java Modules found in classpath.
 
 Artifact | Module name | Definition     | Automatic | Requires | Exports
 ---------+-------------+----------------+-----------+----------+---------------
-a.jar    | a           | Auto-generated | Yes       | -        | [all packages]
+a        | a           | Auto-generated | Yes       | -        | [all packages]
 
 Class Versions
 --------------
@@ -32,7 +32,7 @@ Java class file format information.
 
 Artifact  | Multi-release | Class files by Java version
 ----------+---------------+----------------------------
-a.jar     | No            | Java 8 (1)
+a         | No            | Java 8 (1)
 Classpath | -             | Java 8 (1)
 
 JAR Dependencies
@@ -41,7 +41,7 @@ Dependencies between JAR files.
 
 Artifact | Uses   | Used by
 ---------+--------+--------
-a.jar    | [none] | [none]
+a        | [none] | [none]
 
 Dependencies
 ------------
@@ -49,7 +49,7 @@ Dependencies as declared in POM file.
 
 Artifact | Maven coordinates | Direct dependencies | Status
 ---------+-------------------+---------------------+-------
-a.jar    | [unknown]         | [unknown]           |
+a        | [unknown]         | [unknown]           |
 
 Packages
 --------
@@ -57,7 +57,7 @@ List of packages per JAR file.
 
 Artifact | Count | Packages | Issues
 ---------+-------+----------+-------
-a.jar    | 1     | a        |
+a        | 1     | a        |
 
 Duplicate Classes
 -----------------

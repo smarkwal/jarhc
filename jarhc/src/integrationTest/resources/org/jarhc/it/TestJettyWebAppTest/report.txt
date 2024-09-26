@@ -5,116 +5,116 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact                                | Version   | Source                                  | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------------------------------------+-----------+-----------------------------------------+---------+---------+-----------+------------------------------------------+---------------------------------------------------------------
-jetty-continuation-9.4.20.v20190813.jar | [unknown] | jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
-jetty-http-9.4.20.v20190813.jar         | [unknown] | jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
-jetty-io-9.4.20.v20190813.jar           | [unknown] | jetty-io-9.4.20.v20190813.jar           | 152 KB  | 96      | 1         | b246c5e350d0aa1b310c07ec362755c34a1cc8cb | org.eclipse.jetty:jetty-io:9.4.20.v20190813
-jetty-servlets-9.4.20.v20190813.jar     | [unknown] | jetty-servlets-9.4.20.v20190813.jar     | 98.8 KB | 41      | 1         | 0693496adda5acaea4078d92c4a766c8f2d0d5c5 | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813
-jetty-util-9.4.20.v20190813.jar         | [unknown] | jetty-util-9.4.20.v20190813.jar         | 526 KB  | 305     | 3         | 8ee753d673a124ba2880361871ab13f6863b2d40 | org.eclipse.jetty:jetty-util:9.4.20.v20190813
-websocket-api-9.4.20.v20190813.jar      | [unknown] | websocket-api-9.4.20.v20190813.jar      | 50.0 KB | 46      | 1         | 8d608b5dce8e7b3188fde38d908494788e47f55d | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813
-websocket-servlet-9.4.20.v20190813.jar  | [unknown] | websocket-servlet-9.4.20.v20190813.jar  | 29.5 KB | 7       | 1         | 6a8be637de4dd2143efdd003d48fdbcfde4390d7 | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813
-Classpath                               | -         | -                                       | 1.06 MB | 598     | 12        | -                                        | -
+Artifact           | Version          | Source                                  | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
+-------------------+------------------+-----------------------------------------+---------+---------+-----------+------------------------------------------+---------------------------------------------------------------
+jetty-continuation | 9.4.20.v20190813 | jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
+jetty-http         | 9.4.20.v20190813 | jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
+jetty-io           | 9.4.20.v20190813 | jetty-io-9.4.20.v20190813.jar           | 152 KB  | 96      | 1         | b246c5e350d0aa1b310c07ec362755c34a1cc8cb | org.eclipse.jetty:jetty-io:9.4.20.v20190813
+jetty-servlets     | 9.4.20.v20190813 | jetty-servlets-9.4.20.v20190813.jar     | 98.8 KB | 41      | 1         | 0693496adda5acaea4078d92c4a766c8f2d0d5c5 | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813
+jetty-util         | 9.4.20.v20190813 | jetty-util-9.4.20.v20190813.jar         | 526 KB  | 305     | 3         | 8ee753d673a124ba2880361871ab13f6863b2d40 | org.eclipse.jetty:jetty-util:9.4.20.v20190813
+websocket-api      | 9.4.20.v20190813 | websocket-api-9.4.20.v20190813.jar      | 50.0 KB | 46      | 1         | 8d608b5dce8e7b3188fde38d908494788e47f55d | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813
+websocket-servlet  | 9.4.20.v20190813 | websocket-servlet-9.4.20.v20190813.jar  | 29.5 KB | 7       | 1         | 6a8be637de4dd2143efdd003d48fdbcfde4390d7 | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813
+Classpath          | -                | -                                       | 1.06 MB | 598     | 12        | -                                        | -
 
 Modules
 -------
 List of Java Modules found in classpath.
 
-Artifact                                | Module name                         | Definition | Automatic | Requires | Exports
-----------------------------------------+-------------------------------------+------------+-----------+----------+---------------
-jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty.continuation      | Manifest   | Yes       | -        | [all packages]
-jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty.http              | Manifest   | Yes       | -        | [all packages]
-jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty.io                | Manifest   | Yes       | -        | [all packages]
-jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty.servlets          | Manifest   | Yes       | -        | [all packages]
-jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty.util              | Manifest   | Yes       | -        | [all packages]
-websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket.api     | Manifest   | Yes       | -        | [all packages]
-websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket.servlet | Manifest   | Yes       | -        | [all packages]
+Artifact           | Module name                         | Definition | Automatic | Requires | Exports
+-------------------+-------------------------------------+------------+-----------+----------+---------------
+jetty-continuation | org.eclipse.jetty.continuation      | Manifest   | Yes       | -        | [all packages]
+jetty-http         | org.eclipse.jetty.http              | Manifest   | Yes       | -        | [all packages]
+jetty-io           | org.eclipse.jetty.io                | Manifest   | Yes       | -        | [all packages]
+jetty-servlets     | org.eclipse.jetty.servlets          | Manifest   | Yes       | -        | [all packages]
+jetty-util         | org.eclipse.jetty.util              | Manifest   | Yes       | -        | [all packages]
+websocket-api      | org.eclipse.jetty.websocket.api     | Manifest   | Yes       | -        | [all packages]
+websocket-servlet  | org.eclipse.jetty.websocket.servlet | Manifest   | Yes       | -        | [all packages]
 
 Class Versions
 --------------
 Java class file format information.
 
-Artifact                                | Multi-release | Class files by Java version
-----------------------------------------+---------------+----------------------------
-jetty-continuation-9.4.20.v20190813.jar | No            | Java 8 (8)
-jetty-http-9.4.20.v20190813.jar         | No            | Java 8 (95)
-jetty-io-9.4.20.v20190813.jar           | No            | Java 8 (96)
-jetty-servlets-9.4.20.v20190813.jar     | No            | Java 8 (41)
-jetty-util-9.4.20.v20190813.jar         | No            | Java 8 (305)
-websocket-api-9.4.20.v20190813.jar      | No            | Java 8 (46)
-websocket-servlet-9.4.20.v20190813.jar  | No            | Java 8 (7)
-Classpath                               | -             | Java 8 (598)
+Artifact           | Multi-release | Class files by Java version
+-------------------+---------------+----------------------------
+jetty-continuation | No            | Java 8 (8)
+jetty-http         | No            | Java 8 (95)
+jetty-io           | No            | Java 8 (96)
+jetty-servlets     | No            | Java 8 (41)
+jetty-util         | No            | Java 8 (305)
+websocket-api      | No            | Java 8 (46)
+websocket-servlet  | No            | Java 8 (7)
+Classpath          | -             | Java 8 (598)
 
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-Artifact                                | Uses                               | Used by
-----------------------------------------+------------------------------------+---------------------------------------
-jetty-continuation-9.4.20.v20190813.jar | [none]                             | [none]
-jetty-http-9.4.20.v20190813.jar         | jetty-io-9.4.20.v20190813.jar      | jetty-servlets-9.4.20.v20190813.jar
-                                        | jetty-util-9.4.20.v20190813.jar    |
-jetty-io-9.4.20.v20190813.jar           | jetty-util-9.4.20.v20190813.jar    | jetty-http-9.4.20.v20190813.jar
-                                        |                                    | jetty-servlets-9.4.20.v20190813.jar
-jetty-servlets-9.4.20.v20190813.jar     | jetty-http-9.4.20.v20190813.jar    | [none]
-                                        | jetty-io-9.4.20.v20190813.jar      |
-                                        | jetty-util-9.4.20.v20190813.jar    |
-jetty-util-9.4.20.v20190813.jar         | [none]                             | jetty-http-9.4.20.v20190813.jar
-                                        |                                    | jetty-io-9.4.20.v20190813.jar
-                                        |                                    | jetty-servlets-9.4.20.v20190813.jar
-websocket-api-9.4.20.v20190813.jar      | [none]                             | websocket-servlet-9.4.20.v20190813.jar
-websocket-servlet-9.4.20.v20190813.jar  | websocket-api-9.4.20.v20190813.jar | [none]
+Artifact           | Uses          | Used by
+-------------------+---------------+------------------
+jetty-continuation | [none]        | [none]
+jetty-http         | jetty-io      | jetty-servlets
+                   | jetty-util    |
+jetty-io           | jetty-util    | jetty-http
+                   |               | jetty-servlets
+jetty-servlets     | jetty-http    | [none]
+                   | jetty-io      |
+                   | jetty-util    |
+jetty-util         | [none]        | jetty-http
+                   |               | jetty-io
+                   |               | jetty-servlets
+websocket-api      | [none]        | websocket-servlet
+websocket-servlet  | websocket-api | [none]
 
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact                                | Maven coordinates                                              | Direct dependencies                                        | Status
-----------------------------------------+----------------------------------------------------------------+------------------------------------------------------------+-------------------------------
-jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
-jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
-                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
-jetty-io-9.4.20.v20190813.jar           | org.eclipse.jetty:jetty-io:9.4.20.v20190813                    | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
-jetty-servlets-9.4.20.v20190813.jar     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813              | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813      | OK
-                                        |                                                                | org.eclipse.jetty:jetty-http:9.4.20.v20190813              | OK
-                                        |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) | Unsatisfied
-                                        |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
-                                        |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
-jetty-util-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-util:9.4.20.v20190813                  | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
-                                        |                                                                | org.slf4j:slf4j-api:1.7.25 (provided, optional)            | OK (version 1.7.28) [Provided]
-websocket-api-9.4.20.v20190813.jar      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813     | [none]                                                     |
-websocket-servlet-9.4.20.v20190813.jar  | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813 | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813 | OK
-                                        |                                                                | javax.servlet:javax.servlet-api:3.1.0                      | OK [Provided]
+Artifact           | Maven coordinates                                              | Direct dependencies                                        | Status
+-------------------+----------------------------------------------------------------+------------------------------------------------------------+-------------------------------
+jetty-continuation | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
+jetty-http         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+                   |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+                   |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
+jetty-io           | org.eclipse.jetty:jetty-io:9.4.20.v20190813                    | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+jetty-servlets     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813              | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813      | OK
+                   |                                                                | org.eclipse.jetty:jetty-http:9.4.20.v20190813              | OK
+                   |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) | Unsatisfied
+                   |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+                   |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
+                   |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+jetty-util         | org.eclipse.jetty:jetty-util:9.4.20.v20190813                  | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
+                   |                                                                | org.slf4j:slf4j-api:1.7.25 (provided, optional)            | OK (version 1.7.28) [Provided]
+websocket-api      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813     | [none]                                                     |
+websocket-servlet  | org.eclipse.jetty.websocket:websocket-servlet:9.4.20.v20190813 | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813 | OK
+                   |                                                                | javax.servlet:javax.servlet-api:3.1.0                      | OK [Provided]
 
 Packages
 --------
 List of packages per JAR file.
 
-Artifact                                | Count | Packages                                         | Issues
-----------------------------------------+-------+--------------------------------------------------+-------
-jetty-continuation-9.4.20.v20190813.jar | 1     | org.eclipse.jetty.continuation                   |
-jetty-http-9.4.20.v20190813.jar         | 2     | org.eclipse.jetty.http (+1 subpackage)           |
-jetty-io-9.4.20.v20190813.jar           | 2     | org.eclipse.jetty.io (+1 subpackage)             |
-jetty-servlets-9.4.20.v20190813.jar     | 1     | org.eclipse.jetty.servlets                       |
-jetty-util-9.4.20.v20190813.jar         | 12    | org.eclipse.jetty.util (+11 subpackages)         |
-websocket-api-9.4.20.v20190813.jar      | 4     | org.eclipse.jetty.websocket.api (+3 subpackages) |
-websocket-servlet-9.4.20.v20190813.jar  | 1     | org.eclipse.jetty.websocket.servlet              |
+Artifact           | Count | Packages                                         | Issues
+-------------------+-------+--------------------------------------------------+-------
+jetty-continuation | 1     | org.eclipse.jetty.continuation                   |
+jetty-http         | 2     | org.eclipse.jetty.http (+1 subpackage)           |
+jetty-io           | 2     | org.eclipse.jetty.io (+1 subpackage)             |
+jetty-servlets     | 1     | org.eclipse.jetty.servlets                       |
+jetty-util         | 12    | org.eclipse.jetty.util (+11 subpackages)         |
+websocket-api      | 4     | org.eclipse.jetty.websocket.api (+3 subpackages) |
+websocket-servlet  | 1     | org.eclipse.jetty.websocket.servlet              |
 
 Duplicate Classes
 -----------------
 Duplicate classes, shadowed classes, and duplicate resources.
 
-Class/Resource | Sources                                 | Similarity
----------------+-----------------------------------------+-----------
-about.html     | jetty-continuation-9.4.20.v20190813.jar | Exact copy
-               | jetty-http-9.4.20.v20190813.jar         |
-               | jetty-io-9.4.20.v20190813.jar           |
-               | jetty-servlets-9.4.20.v20190813.jar     |
-               | jetty-util-9.4.20.v20190813.jar         |
-               | websocket-api-9.4.20.v20190813.jar      |
-               | websocket-servlet-9.4.20.v20190813.jar  |
+Class/Resource | Sources            | Similarity
+---------------+--------------------+-----------
+about.html     | jetty-continuation | Exact copy
+               | jetty-http         |
+               | jetty-io           |
+               | jetty-servlets     |
+               | jetty-util         |
+               | websocket-api      |
+               | websocket-servlet  |
 
 Binary Compatibility
 --------------------
@@ -127,16 +127,16 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-Artifact                            | Issues
-------------------------------------+---------------------------------------------------------------------------------------------
-jetty-servlets-9.4.20.v20190813.jar | org.eclipse.jetty.servlets.CGI
-                                    | • java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)
-                                    |
-                                    | org.eclipse.jetty.servlets.MultiPartFilter
-                                    | • @Deprecated: public class org.eclipse.jetty.util.MultiPartInputStreamParser
-jetty-util-9.4.20.v20190813.jar     | org.eclipse.jetty.util.security.Password
-                                    | • static void java.lang.System.exit(int)
-                                    |
-                                    | org.eclipse.jetty.util.security.UnixCrypt
-                                    | • static void java.lang.System.exit(int)
+Artifact       | Issues
+---------------+---------------------------------------------------------------------------------------------
+jetty-servlets | org.eclipse.jetty.servlets.CGI
+               | • java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)
+               |
+               | org.eclipse.jetty.servlets.MultiPartFilter
+               | • @Deprecated: public class org.eclipse.jetty.util.MultiPartInputStreamParser
+jetty-util     | org.eclipse.jetty.util.security.Password
+               | • static void java.lang.System.exit(int)
+               |
+               | org.eclipse.jetty.util.security.UnixCrypt
+               | • static void java.lang.System.exit(int)
 
