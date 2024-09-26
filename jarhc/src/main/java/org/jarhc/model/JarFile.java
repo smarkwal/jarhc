@@ -35,7 +35,7 @@ import org.jarhc.artifacts.Artifact;
 public class JarFile {
 
 	// TODO: support additional version patterns?
-	private static final Pattern VERSION_PATTERN = Pattern.compile("-([0-9]+(\\.[0-9]+){0,10}(-SNAPSHOT)?)");
+	private static final Pattern VERSION_PATTERN = Pattern.compile("-([0-9]+(\\.[0-9]+){0,10}(-[1-9])?(-SNAPSHOT)?)");
 
 	/**
 	 * Artifact name (from Maven coordinates or file name)
