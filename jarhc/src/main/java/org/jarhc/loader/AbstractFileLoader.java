@@ -63,7 +63,7 @@ abstract class AbstractFileLoader {
 	}
 
 	@SuppressWarnings({ "java:S135", "java:S3776", "java:S6541" }) // Loops should not contain more than a single "break" or "continue" statement // Cognitive Complexity of methods should not be too high // Methods should not perform too many tasks (aka Brain method)
-	protected void load(String fileName, Archive archive, List<JarFile> jarFiles) throws IOException {
+	protected void load(String fileName, String coordinates, Archive archive, List<JarFile> jarFiles) throws IOException {
 
 		ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
 		Set<Integer> releases = new TreeSet<>();
@@ -145,7 +145,7 @@ abstract class AbstractFileLoader {
 					InputStream inputStream = new ByteArrayInputStream(data.getBytes(), 0, data.getLength());
 					String jarFileName = fileName + "!/" + name;
 					try (JarStreamArchive jarStreamArchive = new JarStreamArchive(inputStream)) {
-						load(jarFileName, jarStreamArchive, jarFiles);
+						load(jarFileName, null, jarStreamArchive, jarFiles);
 					}
 
 				} else if (name.endsWith(".class")) {
@@ -233,6 +233,7 @@ abstract class AbstractFileLoader {
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(archive.getFileSize())
 				.withChecksum(checksum)
+				.withCoordinates(coordinates)
 				.withArtifacts(artifacts)
 				.withClassLoader(classLoader)
 				.withReleases(releases)

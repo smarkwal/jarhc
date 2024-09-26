@@ -23,6 +23,8 @@ public interface JarSource {
 
 	String getName();
 
+	String getCoordinates();
+
 	InputStream getInputStream() throws IOException;
 
 }

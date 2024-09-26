@@ -43,7 +43,7 @@ class JarFileLoader extends AbstractFileLoader {
 		if (source == null) throw new IllegalArgumentException("source");
 
 		try (InputStream inputStream = source.getInputStream()) {
-			return load(source.getName(), inputStream);
+			return load(source.getName(), source.getCoordinates(), inputStream);
 		}
 	}
 
@@ -63,17 +63,17 @@ class JarFileLoader extends AbstractFileLoader {
 		if (!file.isFile()) throw new FileNotFoundException(file.getAbsolutePath());
 
 		try (InputStream inputStream = new FileInputStream(file)) {
-			return load(file.getName(), inputStream);
+			return load(file.getName(), null, inputStream);
 		}
 	}
 
-	List<JarFile> load(String fileName, InputStream inputStream) throws IOException {
+	List<JarFile> load(String fileName, String coordinates, InputStream inputStream) throws IOException {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (inputStream == null) throw new IllegalArgumentException("inputStream");
 
 		List<JarFile> jarFiles = new ArrayList<>();
 		try (JarStreamArchive archive = new JarStreamArchive(inputStream)) {
-			load(fileName, archive, jarFiles);
+			load(fileName, coordinates, archive, jarFiles);
 		}
 
 		// sort JAR files by name

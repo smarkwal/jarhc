@@ -39,6 +39,11 @@ public class FileSource implements JarSource {
 	}
 
 	@Override
+	public String getCoordinates() {
+		return null; // unknown
+	}
+
+	@Override
 	public InputStream getInputStream() throws IOException {
 		return new FileInputStream(file);
 	}

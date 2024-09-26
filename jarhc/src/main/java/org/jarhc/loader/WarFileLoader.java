@@ -126,7 +126,7 @@ public class WarFileLoader {
 	private List<JarFile> loadNestedJarFiles(String fileName, ByteBuffer fileData) throws IOException {
 		try {
 			InputStream inputStream = new ByteArrayInputStream(fileData.getBytes(), 0, fileData.getLength());
-			return jarFileLoader.load(fileName, inputStream);
+			return jarFileLoader.load(fileName, null, inputStream);
 		} finally {
 			fileData.release();
 		}

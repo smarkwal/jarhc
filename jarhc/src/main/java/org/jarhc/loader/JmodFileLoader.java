@@ -53,7 +53,7 @@ class JmodFileLoader extends AbstractFileLoader {
 
 		List<JarFile> jarFiles = new ArrayList<>();
 		try (Archive archive = new ZipFileArchive(file)) {
-			load(file.getName(), archive, jarFiles);
+			load(file.getName(), null, archive, jarFiles);
 		}
 		return jarFiles;
 	}

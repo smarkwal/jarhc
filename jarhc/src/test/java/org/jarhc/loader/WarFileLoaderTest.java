@@ -54,7 +54,7 @@ class WarFileLoaderTest {
 		mocks = MockitoAnnotations.openMocks(this);
 
 		// JarFileLoader mock creates a dummy JarFile whenever it is invoked
-		when(jarFileLoader.load(anyString(), any()))
+		when(jarFileLoader.load(anyString(), any(), any()))
 				.thenAnswer((Answer<List<JarFile>>) invocation ->
 				{
 					String fileName = invocation.getArgument(0);
