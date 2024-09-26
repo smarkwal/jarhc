@@ -13,7 +13,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact            | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact            | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 --------------------+-----------------------------+---------+---------+-----------+------------------------------------------+----------------------------
 asm-commons-7.0.jar | org.ow2.asm:asm-commons:7.0 | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
 asm-tree-7.0.jar    | org.ow2.asm:asm-tree:7.0    | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0

@@ -5,7 +5,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact                                | Source                                  | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact                                | Source                                  | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 ----------------------------------------+-----------------------------------------+---------+---------+-----------+------------------------------------------+---------------------------------------------------------------
 jetty-continuation-9.4.20.v20190813.jar | jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
 jetty-http-9.4.20.v20190813.jar         | jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
