@@ -222,7 +222,15 @@ abstract class AbstractFileLoader {
 			logger.warn("Artifact resolution error", e);
 		}
 
-		// TODO: if artifact was given as coordinates, make sure these coordinates are included in the list of artifacts
+		// prefer artifact coordinates given as command line argument
+		if (coordinates != null && artifacts != null) {
+			Artifact artifact = new Artifact(coordinates);
+			if (artifacts.indexOf(artifact) != 0) {
+				artifacts.remove(artifact);
+				artifacts.add(0, artifact);
+			}
+		}
+
 		// TODO: check if JAR file contains POM information
 
 		// normalize file name (optional)

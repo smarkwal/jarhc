@@ -73,7 +73,6 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private String[] buildRow(JarFile jarFile, Classpath classpath) {
 
-		// add a row with file name, size and class count
 		String fileName = jarFile.getFileName();
 		String coordinates = getCoordinates(jarFile);
 
@@ -191,6 +190,13 @@ public class DependenciesAnalyzer implements Analyzer {
 	}
 
 	private String getCoordinates(JarFile jarFile) {
+
+		// prefer artifact coordinates given as command line argument
+		String coordinates = jarFile.getCoordinates();
+		if (coordinates != null) {
+			return coordinates;
+		}
+
 		List<Artifact> artifacts = jarFile.getArtifacts();
 		if (artifacts == null) {
 			return ERROR; // most likely a response timeout
