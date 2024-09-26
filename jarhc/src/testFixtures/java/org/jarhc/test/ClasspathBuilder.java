@@ -42,6 +42,7 @@ public class ClasspathBuilder {
 	// JarFile properties
 	private String fileName;
 	private long fileSize;
+	private String coordinates;
 	private Set<Integer> releases;
 	private ModuleInfo moduleInfo;
 	private List<ClassDef> classDefs;
@@ -73,13 +74,13 @@ public class ClasspathBuilder {
 	}
 
 	public ClasspathBuilder addJarFile(String fileName) {
-		return addJarFile(fileName, 1024);
+		return addJarFile(fileName, null, 1024);
 	}
 
-	public ClasspathBuilder addJarFile(String fileName, long fileSize) {
+	public ClasspathBuilder addJarFile(String fileName, String coordinates, long fileSize) {
 		closeClassDef();
 		closeJarFile();
-		openJarFile(fileName, fileSize);
+		openJarFile(fileName, coordinates, fileSize);
 		return this;
 	}
 
@@ -139,9 +140,10 @@ public class ClasspathBuilder {
 		return new Classpath(jarFiles, parentClassLoader, strategy);
 	}
 
-	private void openJarFile(String fileName, long fileSize) {
+	private void openJarFile(String fileName, String coordinates, long fileSize) {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
+		this.coordinates = coordinates;
 		this.releases = new TreeSet<>();
 		this.moduleInfo = ModuleInfo.UNNAMED;
 		this.classDefs = new ArrayList<>();
@@ -151,11 +153,11 @@ public class ClasspathBuilder {
 	private void closeJarFile() {
 		if (fileName != null) {
 			String checksum = DigestUtils.sha1Hex(fileName + fileSize); // fake checksum based on file name and size
-			String coordinates = "org.jarhc:" + checksum.substring(0, 5) + ":1.0:jar";
 			JarFile jarFile = JarFile.withName(fileName)
 					.withFileSize(fileSize)
 					.withChecksum(checksum)
-					.withArtifacts(List.of(new Artifact(coordinates)))
+					.withCoordinates(coordinates)
+					.withArtifacts(coordinates != null ? List.of(new Artifact(coordinates)) : List.of())
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)
