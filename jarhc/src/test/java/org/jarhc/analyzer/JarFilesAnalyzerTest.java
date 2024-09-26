@@ -62,15 +62,15 @@ class JarFilesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "Artifact", "Source", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Coordinates");
+		assertValuesEquals(columns, "Artifact", "Version", "Source", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Coordinates");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
-		assertValuesEquals(rows.get(0), "a.jar", "org.jarhc:a:1.0", "128 B", "1", "1", "0a4c26b96ef92cceb7c2c7c0e19c808baeb8d696", "org.jarhc:a:1.0");
-		assertValuesEquals(rows.get(1), "b.jar", "org.jarhc:b:2.0", "4.00 KB", "2", "0", "1271677b4f55e181e4c8192f0edf87bb3ff9fde5", "org.jarhc:b:2.0");
-		assertValuesEquals(rows.get(2), "c.jar", "c.jar", "23.4 KB", "1", "0", "fa2798370b42e2616cb0d374b2ae4be836439077", "[unknown]");
-		assertValuesEquals(rows.get(3), "d.jar", "d.jar", "1.18 MB", "0", "0", "458dea9210ea076f4c422be47390a9f2c0fcb0f8", "[unknown]");
-		assertValuesEquals(rows.get(4), "Classpath", "-", "1.20 MB", "4", "1", "-", "-");
+		assertValuesEquals(rows.get(0), "a.jar", "1.0", "org.jarhc:a:1.0", "128 B", "1", "1", "0a4c26b96ef92cceb7c2c7c0e19c808baeb8d696", "org.jarhc:a:1.0");
+		assertValuesEquals(rows.get(1), "b.jar", "2.0", "org.jarhc:b:2.0", "4.00 KB", "2", "0", "1271677b4f55e181e4c8192f0edf87bb3ff9fde5", "org.jarhc:b:2.0");
+		assertValuesEquals(rows.get(2), "c.jar", "[unknown]", "c.jar", "23.4 KB", "1", "0", "fa2798370b42e2616cb0d374b2ae4be836439077", "[unknown]");
+		assertValuesEquals(rows.get(3), "d.jar", "[unknown]", "d.jar", "1.18 MB", "0", "0", "458dea9210ea076f4c422be47390a9f2c0fcb0f8", "[unknown]");
+		assertValuesEquals(rows.get(4), "Classpath", "-", "-", "1.20 MB", "4", "1", "-", "-");
 	}
 
 }

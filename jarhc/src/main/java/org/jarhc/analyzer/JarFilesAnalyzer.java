@@ -44,7 +44,7 @@ public class JarFilesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("Artifact", "Source", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Coordinates");
+		ReportTable table = new ReportTable("Artifact", "Version", "Source", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Coordinates");
 
 		// total values
 		long totalFileSize = 0;
@@ -57,13 +57,14 @@ public class JarFilesAnalyzer implements Analyzer {
 
 			// add a row with file name, size and class count
 			String fileName = jarFile.getFileName();
+			String version = getVersion(jarFile);
 			String source = getSource(jarFile);
 			long fileSize = jarFile.getFileSize();
 			String checksum = getChecksumInfo(jarFile);
 			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count(); // TODO: make this configurable ?
 			int resourceCount = jarFile.getResourceDefs().size();
 			String coordinates = getCoordinates(jarFile);
-			table.addRow(fileName, source, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), checksum, coordinates);
+			table.addRow(fileName, version, source, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), checksum, coordinates);
 
 			// update total values
 			totalFileSize += fileSize;
@@ -72,9 +73,18 @@ public class JarFilesAnalyzer implements Analyzer {
 		}
 
 		// add a row with total values
-		table.addRow("Classpath", "-", formatFileSize(totalFileSize), String.valueOf(totalClassCount), String.valueOf(totalResourceCount), "-", "-");
+		table.addRow("Classpath", "-", "-", formatFileSize(totalFileSize), String.valueOf(totalClassCount), String.valueOf(totalResourceCount), "-", "-");
 
 		return table;
+	}
+
+	private String getVersion(JarFile jarFile) {
+		String coordinates = jarFile.getCoordinates();
+		if (coordinates == null) {
+			return UNKNOWN;
+		}
+		Artifact artifact = new Artifact(coordinates);
+		return artifact.getVersion();
 	}
 
 	private static String getSource(JarFile jarFile) {

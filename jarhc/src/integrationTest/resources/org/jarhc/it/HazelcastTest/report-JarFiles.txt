@@ -5,9 +5,9 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact                    | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------------------------+-----------------------------+---------+---------+-----------+------------------------------------------+--------------------------------------
-hazelcast-3.11.2.jar        | hazelcast-3.11.2.jar        | 9.54 MB | 7131    | 19        | 59167f8dfb3d633959c0b0d5e79f27b31e7c5f7e | com.hazelcast:hazelcast:3.11.2
-hazelcast-client-3.11.2.jar | hazelcast-client-3.11.2.jar | 816 KB  | 455     | 14        | e1e628042a5371153a20c659eb59622b47e175bc | com.hazelcast:hazelcast-client:3.11.2
-Classpath                   | -                           | 10.3 MB | 7586    | 33        | -                                        | -
+Artifact                    | Version   | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
+----------------------------+-----------+-----------------------------+---------+---------+-----------+------------------------------------------+--------------------------------------
+hazelcast-3.11.2.jar        | [unknown] | hazelcast-3.11.2.jar        | 9.54 MB | 7131    | 19        | 59167f8dfb3d633959c0b0d5e79f27b31e7c5f7e | com.hazelcast:hazelcast:3.11.2
+hazelcast-client-3.11.2.jar | [unknown] | hazelcast-client-3.11.2.jar | 816 KB  | 455     | 14        | e1e628042a5371153a20c659eb59622b47e175bc | com.hazelcast:hazelcast-client:3.11.2
+Classpath                   | -         | -                           | 10.3 MB | 7586    | 33        | -                                        | -
 
