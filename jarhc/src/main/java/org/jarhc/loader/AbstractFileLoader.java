@@ -222,12 +222,26 @@ abstract class AbstractFileLoader {
 			logger.warn("Artifact resolution error", e);
 		}
 
-		// prefer artifact coordinates given as command line argument
-		if (coordinates != null && artifacts != null) {
-			Artifact artifact = new Artifact(coordinates);
-			if (artifacts.indexOf(artifact) != 0) {
-				artifacts.remove(artifact);
-				artifacts.add(0, artifact);
+		if (artifacts != null) {
+
+			// reorder artifacts:
+			// priority 1: prefer artifact given as command line argument
+			// priority 2: prefer artifact with same JAR file name
+
+			Artifact bestArtifact = null;
+			if (coordinates != null) {
+				bestArtifact = new Artifact(coordinates);
+			} else {
+				for (Artifact artifact : artifacts) {
+					if (artifact.getFileName().equals(fileName)) {
+						bestArtifact = artifact;
+						break;
+					}
+				}
+			}
+			if (bestArtifact != null && artifacts.indexOf(bestArtifact) > 0) {
+				artifacts.remove(bestArtifact);
+				artifacts.add(0, bestArtifact);
 			}
 		}
 
