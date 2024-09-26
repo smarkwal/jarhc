@@ -50,7 +50,7 @@ public class PackagesAnalyzer implements Analyzer {
 		// map from package name to JAR file names
 		Map<String, List<String>> packageToJarFiles = invert(jarFileToPackages);
 
-		ReportTable table = new ReportTable("JAR file", "Count", "Packages", "Issues");
+		ReportTable table = new ReportTable("Artifact", "Count", "Packages", "Issues");
 
 		// for every JAR file ...
 		List<String> jarFileNames = new ArrayList<>(jarFileToPackages.keySet());

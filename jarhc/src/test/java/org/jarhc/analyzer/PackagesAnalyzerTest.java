@@ -59,7 +59,7 @@ class PackagesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Count", "Packages", "Issues");
+		assertValuesEquals(columns, "Artifact", "Count", "Packages", "Issues");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());

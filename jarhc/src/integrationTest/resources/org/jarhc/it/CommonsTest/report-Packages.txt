@@ -5,7 +5,7 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file                      | Count | Packages                                          | Issues
+Artifact                      | Count | Packages                                          | Issues
 ------------------------------+-------+---------------------------------------------------+-------
 commons-beanutils-1.9.2.jar   | 5     | org.apache.commons.beanutils (+4 subpackages)     |
 commons-betwixt-0.8.jar       | 13    | org.apache.commons.betwixt (+12 subpackages)      |

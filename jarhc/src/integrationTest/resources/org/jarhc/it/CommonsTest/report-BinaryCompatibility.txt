@@ -5,7 +5,7 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file                      | Issues
+Artifact                      | Issues
 ------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------
 commons-codec-1.10.jar        | org.apache.commons.codec.digest.HmacUtils
                               | • Class not found: javax.crypto.Mac (package not found)

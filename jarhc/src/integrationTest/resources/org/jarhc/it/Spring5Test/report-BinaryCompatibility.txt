@@ -5,7 +5,7 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file                                 | Issues
+Artifact                                 | Issues
 -----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 spring-aop-5.1.3.RELEASE.jar             | org.springframework.aop.aspectj.AbstractAspectJAdvice
                                          | • Class not found: org.aspectj.lang.JoinPoint (package not found)

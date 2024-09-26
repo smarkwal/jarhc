@@ -13,7 +13,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file  | Size  | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact  | Size  | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ----------+-------+---------+-----------+------------------------------------------+---------------------
 a.jar     | 678 B | 1       | 0         | b2de6f7c6eff51a28729be9c4f6555354f16a1ca | [unknown]
 Classpath | 678 B | 1       | 0         | -                                        | -
@@ -22,7 +22,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file | Module name | Definition     | Automatic | Requires | Exports
+Artifact | Module name | Definition     | Automatic | Requires | Exports
 ---------+-------------+----------------+-----------+----------+---------------
 a.jar    | a           | Auto-generated | Yes       | -        | [all packages]
 
@@ -30,7 +30,7 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file  | Multi-release | Class files by Java version
+Artifact  | Multi-release | Class files by Java version
 ----------+---------------+----------------------------
 a.jar     | No            | Java 8 (1)
 Classpath | -             | Java 8 (1)
@@ -39,7 +39,7 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file | Uses   | Used by
+Artifact | Uses   | Used by
 ---------+--------+--------
 a.jar    | [none] | [none]
 
@@ -47,7 +47,7 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file | Maven coordinates | Direct dependencies | Status
+Artifact | Maven coordinates | Direct dependencies | Status
 ---------+-------------------+---------------------+-------
 a.jar    | [unknown]         | [unknown]           |
 
@@ -55,7 +55,7 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file | Count | Packages | Issues
+Artifact | Count | Packages | Issues
 ---------+-------+----------+-------
 a.jar    | 1     | a        |
 
@@ -70,14 +70,14 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file | Issues
+Artifact | Issues
 ---------+-------
 
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file | Issues
+Artifact | Issues
 ---------+-------
 
 Java Runtime

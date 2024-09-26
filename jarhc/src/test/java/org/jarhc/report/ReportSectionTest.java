@@ -41,7 +41,7 @@ class ReportSectionTest {
 	void add_ReportTable() {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
-		ReportTable table = new ReportTable("JAR file", "File size");
+		ReportTable table = new ReportTable("Artifact", "File size");
 		// test
 		section.add(table);
 		// assert
@@ -84,10 +84,10 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		section.add("File sizes.");
-		ReportTable table1 = new ReportTable("JAR file", "File size");
+		ReportTable table1 = new ReportTable("Artifact", "File size");
 		section.add(table1);
 		section.add("Java classes.");
-		ReportTable table2 = new ReportTable("JAR file", "Java classes");
+		ReportTable table2 = new ReportTable("Artifact", "Java classes");
 		section.add(table2);
 		// test
 		List<Object> content = section.getContent();
@@ -125,7 +125,7 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		section.add("Lorem ipsum.");
-		section.add(new ReportTable("JAR file", "File size"));
+		section.add(new ReportTable("Artifact", "File size"));
 		// test
 		boolean result = section.isEmpty();
 		// assert
@@ -137,7 +137,7 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		section.add("Lorem ipsum.");
-		ReportTable table = new ReportTable("JAR file", "File size");
+		ReportTable table = new ReportTable("Artifact", "File size");
 		section.add(table);
 		table.addRow("a.jar", "12 KB");
 		// test

@@ -5,7 +5,7 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file                | Multi-release | Class files by Java version
+Artifact                | Multi-release | Class files by Java version
 ------------------------+---------------+----------------------------
 camel-core-2.17.7.jar   | No            | Java 7 (2001), Java 6 (78)
 camel-jdbc-2.17.7.jar   | No            | Java 7 (18)

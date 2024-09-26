@@ -51,7 +51,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		// calculate "used by" dependencies
 		MultiMap<String, String> inverted = dependencies.invert();
 
-		ReportTable table = new ReportTable("JAR file", "Uses", "Used by");
+		ReportTable table = new ReportTable("Artifact", "Uses", "Used by");
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {

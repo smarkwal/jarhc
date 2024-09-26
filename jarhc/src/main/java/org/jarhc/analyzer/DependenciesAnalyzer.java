@@ -60,7 +60,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Maven coordinates", "Direct dependencies", "Status");
+		ReportTable table = new ReportTable("Artifact", "Maven coordinates", "Direct dependencies", "Status");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();

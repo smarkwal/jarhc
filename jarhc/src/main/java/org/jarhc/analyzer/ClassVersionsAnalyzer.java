@@ -43,7 +43,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Multi-release", "Class files by Java version");
+		ReportTable table = new ReportTable("Artifact", "Multi-release", "Class files by Java version");
 
 		ClassVersionsCounter classpathCounter = new ClassVersionsCounter();
 

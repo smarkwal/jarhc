@@ -408,7 +408,7 @@ class BinaryCompatibilityAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Issues");
+		assertValuesEquals(columns, "Artifact", "Issues");
 
 		return table;
 	}

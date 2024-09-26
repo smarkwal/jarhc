@@ -5,7 +5,7 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file                | Issues
+Artifact                | Issues
 ------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 camel-core-2.17.7.jar   | org.apache.camel.builder.AdviceWithTasks
                         | • Class not found: org.slf4j.Logger (package not found)

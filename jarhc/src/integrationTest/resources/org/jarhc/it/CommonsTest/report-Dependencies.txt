@@ -5,7 +5,7 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file                      | Maven coordinates                               | Direct dependencies                                              | Status
+Artifact                      | Maven coordinates                               | Direct dependencies                                              | Status
 ------------------------------+-------------------------------------------------+------------------------------------------------------------------+-------------------
 commons-beanutils-1.9.2.jar   | commons-beanutils:commons-beanutils:1.9.2       | commons-logging:commons-logging:1.1.1                            | OK (version 1.2)
                               |                                                 | commons-collections:commons-collections:3.2.1                    | OK (version 3.2.2)

@@ -98,7 +98,7 @@ class DependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) content;
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Maven coordinates", "Direct dependencies", "Status");
+		assertValuesEquals(columns, "Artifact", "Maven coordinates", "Direct dependencies", "Status");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());

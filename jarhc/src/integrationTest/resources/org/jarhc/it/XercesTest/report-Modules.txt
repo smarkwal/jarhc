@@ -5,7 +5,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file              | Module name  | Definition     | Automatic | Requires | Exports
+Artifact              | Module name  | Definition     | Automatic | Requires | Exports
 ----------------------+--------------+----------------+-----------+----------+---------------
 xercesImpl-2.11.0.jar | xercesimpl   | Auto-generated | Yes       | -        | [all packages]
 xml-apis-1.4.01.jar   | xml.apis     | Auto-generated | Yes       | -        | [all packages]

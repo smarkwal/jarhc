@@ -5,7 +5,7 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file                    | Issues
+Artifact                    | Issues
 ----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------
 hazelcast-3.11.2.jar        | com.hazelcast.cache.BackupAwareEntryProcessor
                             | • Interface not found: javax.cache.processor.EntryProcessor

@@ -62,7 +62,7 @@ class JarFilesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Artifact coordinates");
+		assertValuesEquals(columns, "Artifact", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Artifact coordinates");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());

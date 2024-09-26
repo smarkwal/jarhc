@@ -44,7 +44,7 @@ public class JarFilesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Artifact coordinates");
+		ReportTable table = new ReportTable("Artifact", "Size", "Classes", "Resources", "Checksum (SHA-1)", "Artifact coordinates");
 
 		// total values
 		long totalFileSize = 0;

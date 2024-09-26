@@ -60,7 +60,7 @@ class JarDependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Uses", "Used by");
+		assertValuesEquals(columns, "Artifact", "Uses", "Used by");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());

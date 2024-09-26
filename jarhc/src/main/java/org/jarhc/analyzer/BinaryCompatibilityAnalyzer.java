@@ -81,7 +81,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Issues");
+		ReportTable table = new ReportTable("Artifact", "Issues");
 
 		AccessCheck accessCheck = new AccessCheck(classpath);
 

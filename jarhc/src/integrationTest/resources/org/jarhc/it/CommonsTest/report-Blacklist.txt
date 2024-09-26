@@ -5,7 +5,7 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file                | Issues
+Artifact                | Issues
 ------------------------+-------------------------------------------------------------------------------------------------------------
 commons-dbcp2-2.5.0.jar | org.apache.commons.dbcp2.DelegatingCallableStatement
                         | • @Deprecated: public abstract java.math.BigDecimal java.sql.CallableStatement.getBigDecimal(int,int)

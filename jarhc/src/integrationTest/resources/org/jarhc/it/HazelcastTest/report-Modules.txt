@@ -5,7 +5,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                    | Module name          | Definition | Automatic | Requires | Exports
+Artifact                    | Module name          | Definition | Automatic | Requires | Exports
 ----------------------------+----------------------+------------+-----------+----------+---------------
 hazelcast-3.11.2.jar        | com.hazelcast.core   | Manifest   | Yes       | -        | [all packages]
 hazelcast-client-3.11.2.jar | com.hazelcast.client | Manifest   | Yes       | -        | [all packages]

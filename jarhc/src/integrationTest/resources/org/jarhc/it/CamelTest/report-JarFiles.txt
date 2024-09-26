@@ -5,7 +5,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact                | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ------------------------+---------+---------+-----------+------------------------------------------+-------------------------------------
 camel-core-2.17.7.jar   | 3.33 MB | 2079    | 243       | 7775395fbb7c2f2f2ee4ea2a1f72f54a7ab650c9 | org.apache.camel:camel-core:2.17.7
 camel-jdbc-2.17.7.jar   | 43.0 KB | 18      | 2         | 2fe2562dc5a60b0912962435d5bf9dd938182dda | org.apache.camel:camel-jdbc:2.17.7

@@ -5,7 +5,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ------------------------------+---------+---------+-----------+------------------------------------------+------------------------------------------------
 commons-beanutils-1.9.2.jar   | 228 KB  | 137     | 0         | 7a87d845ad3a155297e8f67d9008f4c1e5656b71 | commons-beanutils:commons-beanutils:1.9.2
 commons-betwixt-0.8.jar       | 237 KB  | 166     | 12        | 76410daca8513df5a8d31c577b8c5b6040b22944 | commons-betwixt:commons-betwixt:0.8

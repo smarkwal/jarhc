@@ -59,7 +59,7 @@ class ModulesAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Module name", "Definition", "Automatic", "Requires", "Exports");
+		assertValuesEquals(columns, "Artifact", "Module name", "Definition", "Automatic", "Requires", "Exports");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());

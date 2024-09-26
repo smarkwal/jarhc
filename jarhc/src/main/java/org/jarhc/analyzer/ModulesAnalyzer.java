@@ -40,7 +40,7 @@ public class ModulesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Module name", "Definition", "Automatic", "Requires", "Exports");
+		ReportTable table = new ReportTable("Artifact", "Module name", "Definition", "Automatic", "Requires", "Exports");
 		// TODO: add column with opens and internal packages?
 
 		// TODO: check module dependencies?

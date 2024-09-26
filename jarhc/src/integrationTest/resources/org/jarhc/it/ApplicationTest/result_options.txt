@@ -13,7 +13,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file            | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact            | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 --------------------+---------+---------+-----------+------------------------------------------+----------------------------
 asm-commons-7.0.jar | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
 asm-tree-7.0.jar    | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
@@ -23,7 +23,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file            | Module name               | Definition  | Automatic | Requires                        | Exports
+Artifact            | Module name               | Definition  | Automatic | Requires                        | Exports
 --------------------+---------------------------+-------------+-----------+---------------------------------+--------------------------
 asm-commons-7.0.jar | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.commons
                     |                           |             |           | org.objectweb.asm.tree          |
@@ -36,7 +36,7 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file            | Multi-release | Class files by Java version
+Artifact            | Multi-release | Class files by Java version
 --------------------+---------------+----------------------------
 asm-commons-7.0.jar | No            | Java 5 (32)
 asm-tree-7.0.jar    | No            | Java 5 (37)
@@ -46,7 +46,7 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file            | Uses             | Used by
+Artifact            | Uses             | Used by
 --------------------+------------------+--------------------
 asm-commons-7.0.jar | asm-tree-7.0.jar | [none]
 asm-tree-7.0.jar    | [none]           | asm-commons-7.0.jar
@@ -55,7 +55,7 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file            | Maven coordinates           | Direct dependencies          | Status
+Artifact            | Maven coordinates           | Direct dependencies          | Status
 --------------------+-----------------------------+------------------------------+--------------
 asm-commons-7.0.jar | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm:7.0          | OK [Provided]
                     |                             | org.ow2.asm:asm-tree:7.0     | OK
@@ -66,7 +66,7 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file            | Count | Packages                  | Issues
+Artifact            | Count | Packages                  | Issues
 --------------------+-------+---------------------------+-------
 asm-commons-7.0.jar | 1     | org.objectweb.asm.commons |
 asm-tree-7.0.jar    | 1     | org.objectweb.asm.tree    |

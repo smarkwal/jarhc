@@ -5,7 +5,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file                                | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact                                | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ----------------------------------------+---------+---------+-----------+------------------------------------------+---------------------------------------------------------------
 jetty-continuation-9.4.20.v20190813.jar | 24.9 KB | 8       | 1         | e024388db5ace49c7459e68b5c0e542ef55fd49b | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813
 jetty-http-9.4.20.v20190813.jar         | 203 KB  | 95      | 4         | edda2fd904a881114aba79e2f881c6f4004e8148 | org.eclipse.jetty:jetty-http:9.4.20.v20190813
@@ -20,7 +20,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                                | Module name                         | Definition | Automatic | Requires | Exports
+Artifact                                | Module name                         | Definition | Automatic | Requires | Exports
 ----------------------------------------+-------------------------------------+------------+-----------+----------+---------------
 jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty.continuation      | Manifest   | Yes       | -        | [all packages]
 jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty.http              | Manifest   | Yes       | -        | [all packages]
@@ -34,7 +34,7 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file                                | Multi-release | Class files by Java version
+Artifact                                | Multi-release | Class files by Java version
 ----------------------------------------+---------------+----------------------------
 jetty-continuation-9.4.20.v20190813.jar | No            | Java 8 (8)
 jetty-http-9.4.20.v20190813.jar         | No            | Java 8 (95)
@@ -49,7 +49,7 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file                                | Uses                               | Used by
+Artifact                                | Uses                               | Used by
 ----------------------------------------+------------------------------------+---------------------------------------
 jetty-continuation-9.4.20.v20190813.jar | [none]                             | [none]
 jetty-http-9.4.20.v20190813.jar         | jetty-io-9.4.20.v20190813.jar      | jetty-servlets-9.4.20.v20190813.jar
@@ -69,7 +69,7 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file                                | Maven coordinates                                              | Direct dependencies                                        | Status
+Artifact                                | Maven coordinates                                              | Direct dependencies                                        | Status
 ----------------------------------------+----------------------------------------------------------------+------------------------------------------------------------+-------------------------------
 jetty-continuation-9.4.20.v20190813.jar | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
 jetty-http-9.4.20.v20190813.jar         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
@@ -92,7 +92,7 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file                                | Count | Packages                                         | Issues
+Artifact                                | Count | Packages                                         | Issues
 ----------------------------------------+-------+--------------------------------------------------+-------
 jetty-continuation-9.4.20.v20190813.jar | 1     | org.eclipse.jetty.continuation                   |
 jetty-http-9.4.20.v20190813.jar         | 2     | org.eclipse.jetty.http (+1 subpackage)           |
@@ -120,14 +120,14 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file | Issues
+Artifact | Issues
 ---------+-------
 
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file                            | Issues
+Artifact                            | Issues
 ------------------------------------+---------------------------------------------------------------------------------------------
 jetty-servlets-9.4.20.v20190813.jar | org.eclipse.jetty.servlets.CGI
                                     | • java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)

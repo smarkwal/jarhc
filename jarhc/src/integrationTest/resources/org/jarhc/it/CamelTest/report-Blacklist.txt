@@ -5,7 +5,7 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file                | Issues
+Artifact                | Issues
 ------------------------+---------------------------------------------------------------------------------------------------------------
 camel-core-2.17.7.jar   | org.apache.camel.com.googlecode.concurrentlinkedhashmap.ConcurrentHashMapV8
                         | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)

@@ -107,7 +107,7 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("JAR file", "Issues");
+		ReportTable table = new ReportTable("Artifact", "Issues");
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {

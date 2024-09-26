@@ -5,7 +5,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file                      | Module name           | Definition     | Automatic | Requires | Exports
+Artifact                      | Module name           | Definition     | Automatic | Requires | Exports
 ------------------------------+-----------------------+----------------+-----------+----------+---------------
 commons-beanutils-1.9.2.jar   | commons.beanutils     | Auto-generated | Yes       | -        | [all packages]
 commons-betwixt-0.8.jar       | commons.betwixt       | Auto-generated | Yes       | -        | [all packages]

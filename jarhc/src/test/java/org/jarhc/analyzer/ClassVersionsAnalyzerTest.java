@@ -61,7 +61,7 @@ class ClassVersionsAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "JAR file", "Multi-release", "Class files by Java version");
+		assertValuesEquals(columns, "Artifact", "Multi-release", "Class files by Java version");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());

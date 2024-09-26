@@ -5,7 +5,7 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file             | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
+Artifact             | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ---------------------+---------+---------+-----------+------------------------------------------+-------------------------------------------
 slf4j-api-1.7.28.jar | 40.2 KB | 34      | 0         | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28
                      |         |         |           |                                          | org.netbeans.external:slf4j-api:RELEASE113
@@ -15,7 +15,7 @@ Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file             | Module name | Definition | Automatic | Requires | Exports
+Artifact             | Module name | Definition | Automatic | Requires | Exports
 ---------------------+-------------+------------+-----------+----------+---------------
 slf4j-api-1.7.28.jar | org.slf4j   | Manifest   | Yes       | -        | [all packages]
 
@@ -23,7 +23,7 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file             | Multi-release | Class files by Java version
+Artifact             | Multi-release | Class files by Java version
 ---------------------+---------------+----------------------------
 slf4j-api-1.7.28.jar | No            | Java 5 (34)
 Classpath            | -             | Java 5 (34)
@@ -32,7 +32,7 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file             | Uses   | Used by
+Artifact             | Uses   | Used by
 ---------------------+--------+--------
 slf4j-api-1.7.28.jar | [none] | [none]
 
@@ -40,7 +40,7 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file             | Maven coordinates          | Direct dependencies | Status
+Artifact             | Maven coordinates          | Direct dependencies | Status
 ---------------------+----------------------------+---------------------+-------
 slf4j-api-1.7.28.jar | org.slf4j:slf4j-api:1.7.28 | [none]              |
 
@@ -48,7 +48,7 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file             | Count | Packages                   | Issues
+Artifact             | Count | Packages                   | Issues
 ---------------------+-------+----------------------------+-------
 slf4j-api-1.7.28.jar | 4     | org.slf4j (+3 subpackages) |
 
@@ -63,7 +63,7 @@ Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-JAR file             | Issues
+Artifact             | Issues
 ---------------------+-------------------------------------------------------------------------
 slf4j-api-1.7.28.jar | org.slf4j.LoggerFactory
                      | • Class not found: org.slf4j.impl.StaticLoggerBinder (package not found)
@@ -78,6 +78,6 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file | Issues
+Artifact | Issues
 ---------+-------
 

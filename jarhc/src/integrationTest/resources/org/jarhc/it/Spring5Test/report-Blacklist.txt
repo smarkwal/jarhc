@@ -5,7 +5,7 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file                         | Issues
+Artifact                         | Issues
 ---------------------------------+--------------------------------------------------------------------------------------------------------------------
 spring-beans-5.1.3.RELEASE.jar   | org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader
                                  | • @Deprecated: public abstract boolean org.springframework.core.env.Environment.acceptsProfiles(java.lang.String[])
