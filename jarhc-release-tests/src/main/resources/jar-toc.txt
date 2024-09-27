@@ -38,8 +38,8 @@ org/jarhc/artifacts/Artifact.class | size=3403 | crc=1495505896
 org/jarhc/artifacts/ArtifactFinder.class | size=351 | crc=1381731833
 org/jarhc/artifacts/MavenArtifactFinder$Settings.class | size=3004 | crc=2767647163
 org/jarhc/artifacts/MavenArtifactFinder.class | size=12050 | crc=2326117662
-org/jarhc/artifacts/MavenRepository$TransitiveDependencySelector.class | size=1362 | crc=1902718747
-org/jarhc/artifacts/MavenRepository.class | size=12227 | crc=1452090763
+org/jarhc/artifacts/MavenRepository$TransitiveDependencySelector.class | size=1362 | crc=2194161330
+org/jarhc/artifacts/MavenRepository.class | size=11890 | crc=1438304755
 org/jarhc/artifacts/Repository.class | size=695 | crc=3488938442
 org/jarhc/artifacts/RepositoryException.class | size=563 | crc=2689614731
 org/jarhc/env/ClasspathJavaRuntime.class | size=1642 | crc=1284871351
@@ -53,7 +53,7 @@ org/jarhc/java/ClassLoader$Callback.class | size=315 | crc=2487640519
 org/jarhc/java/ClassLoader$NoOpCallback.class | size=872 | crc=1160428244
 org/jarhc/java/ClassLoader.class | size=7810 | crc=3924775790
 org/jarhc/java/ClassLoaderStrategy.class | size=1042 | crc=189508992
-org/jarhc/loader/AbstractFileLoader.class | size=9062 | crc=1066044440
+org/jarhc/loader/AbstractFileLoader.class | size=9459 | crc=4242287345
 org/jarhc/loader/archive/Archive.class | size=1759 | crc=2942638871
 org/jarhc/loader/archive/ArchiveEntry.class | size=270 | crc=104578764
 org/jarhc/loader/archive/ChecksumInputStream.class | size=1865 | crc=3336983826
