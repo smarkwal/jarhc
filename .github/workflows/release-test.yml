@@ -29,11 +29,8 @@ jobs:
           11
           17
 
-    - name: Validate Gradle wrapper
-      uses: gradle/actions/wrapper-validation@v3
-
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+      uses: gradle/actions/setup-gradle@v4
       with:
         cache-read-only: false
 
