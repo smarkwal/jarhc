@@ -174,7 +174,7 @@ dependencies {
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.16")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.0")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.1")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testFixturesApi("org.mockito:mockito-core:5.13.0")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.16")

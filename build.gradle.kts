@@ -33,8 +33,8 @@ buildscript {
     dependencies {
         // fix CVE-2023-3635 in Okio < 3.4.0
         // (indirect dependency of Gradle Versions Plugin 0.51.0)
-        classpath("com.squareup.okio:okio:3.9.0")
-        classpath("com.squareup.okio:okio-jvm:3.9.0")
+        classpath("com.squareup.okio:okio:3.9.1")
+        classpath("com.squareup.okio:okio-jvm:3.9.1")
     }
 }
 
