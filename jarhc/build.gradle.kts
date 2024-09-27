@@ -406,6 +406,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
     testClassesDirs = sourceSets["integrationTest"].output.classesDirs
     classpath = sourceSets["integrationTest"].runtimeClasspath
 
+    /* DISABLED: @ExtendWith(MavenSearchApiMockServer.class) is not compatible with parallel execution
     // run tests in parallel in the same JVM (experimental feature of JUnit 5)
     // see https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution
     systemProperty("junit.jupiter.execution.parallel.enabled", "true")
@@ -415,6 +416,7 @@ val integrationTest = task("integrationTest", type = Test::class) {
     // run max 4 test classes in parallel (more can result in an OutOfMemoryError)
     systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
     systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", "4")
+    */
 
     // run integration tests after unit tests
     shouldRunAfter(tasks.test)
