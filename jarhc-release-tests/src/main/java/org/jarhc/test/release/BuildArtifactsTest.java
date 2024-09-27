@@ -54,9 +54,9 @@ class BuildArtifactsTest extends ReleaseTest {
 	}
 
 	@Test
-	void jarWithDeps() throws IOException {
-		File jarFile = getProjectFile(JARHC_BUILD + "/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
-		testJar(jarFile, "jar-with-deps-toc.txt");
+	void jarApp() throws IOException {
+		File jarFile = getProjectFile(JARHC_BUILD + "/libs/jarhc-" + getJarHcVersion() + "-app.jar");
+		testJar(jarFile, "jar-app-toc.txt");
 	}
 
 	private void testJar(File jarFile, String resourceName) throws IOException {

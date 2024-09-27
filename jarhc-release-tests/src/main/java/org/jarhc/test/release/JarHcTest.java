@@ -142,13 +142,13 @@ class JarHcTest extends ReleaseTest {
 
 		// TODO: find a better solution than relative paths
 		File jarFile = getProjectFile("../jarhc/build/libs/jarhc-" + getJarHcVersion() + ".jar");
-		File jarWithDepsFile = getProjectFile("../jarhc/build/libs/jarhc-" + getJarHcVersion() + "-with-deps.jar");
+		File jarAppFile = getProjectFile("../jarhc/build/libs/jarhc-" + getJarHcVersion() + "-app.jar");
 		File minimalJarFile = getProjectFile("src/main/resources/minimal.jar");
 
 		for (AbstractTestRunner runner : runners) {
 
 			runner.installFile(jarFile, "jarhc.jar");
-			runner.installFile(jarWithDepsFile, "jarhc-with-deps.jar");
+			runner.installFile(jarAppFile, "jarhc-app.jar");
 			runner.installFile(minimalJarFile, "minimal.jar");
 
 			// prepare a collection of tests
@@ -276,7 +276,7 @@ class JarHcTest extends ReleaseTest {
 				"-o", outputPath,
 				"-s", "-jr", // exclude section Java Runtime
 				"--skip-empty", // exclude empty sections
-				"jarhc-with-deps.jar"
+				"jarhc-app.jar"
 		);
 
 		// override JarHC version for reproducible test output

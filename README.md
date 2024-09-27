@@ -7,7 +7,7 @@ Its main purpose is to analyze a set of JAR files (\*.jar) and check whether the
 It is available as [Gradle plugin](https://github.com/smarkwal/jarhc-gradle-plugin), or as standalone Java application run from the command line:
 
 ```
-java -jar jarhc-with-deps.jar [options] <artifact> [<artifact>]*
+java -jar jarhc-app.jar [options] <artifact> [<artifact>]*
 ```
 
 More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wiki).

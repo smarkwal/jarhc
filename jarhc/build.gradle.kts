@@ -138,7 +138,7 @@ val integrationTestRuntimeOnly: Configuration by configurations.getting {
     )
 }
 
-val includeInJarWithDeps: Configuration by configurations.creating
+val includeInJarApp: Configuration by configurations.creating
 
 // dependencies ----------------------------------------------------------------
 
@@ -153,7 +153,7 @@ dependencies {
     api("org.slf4j:slf4j-api:2.0.16")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.16")
+    includeInJarApp("org.slf4j:slf4j-simple:2.0.16")
 
     // test dependencies (available in unit and integration tests)
     testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.1")
@@ -340,20 +340,20 @@ tasks {
     }
 
     assemble {
-        dependsOn(jarWithDeps)
+        dependsOn(jarApp)
     }
 
 }
 
-val jarWithDeps = task("jar-with-deps", type = Jar::class) {
+val jarApp = task("jar-app", type = Jar::class) {
     group = "build"
     description = "Assembles a fat/uber jar archive with all runtime dependencies."
 
     // make sure that license report has been generated
     dependsOn(tasks.generateLicenseReport)
 
-    // append classifier "-with-deps"
-    archiveClassifier.set("with-deps")
+    // append classifier "-app"
+    archiveClassifier.set("app")
 
     // set Main-Class in MANIFEST.MF
     manifest {
@@ -368,7 +368,7 @@ val jarWithDeps = task("jar-with-deps", type = Jar::class) {
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 
     // add all additional libraries
-    from(includeInJarWithDeps.map { if (it.isDirectory) it else zipTree(it) })
+    from(includeInJarApp.map { if (it.isDirectory) it else zipTree(it) })
 
     // add additional resources for jar-with-deps
     from("src/app/resources")

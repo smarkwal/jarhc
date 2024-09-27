@@ -5,584 +5,584 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact        | Version   | Source              | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------------+-----------+---------------------+---------+---------+-----------+------------------------------------------+------------
-jarhc-with-deps | [unknown] | jarhc-with-deps.jar | 3.63 MB | 2096    | 142       | **************************************** | [unknown]
-Classpath       | -         | -                   | 3.63 MB | 2096    | 142       | -                                        | -
+Artifact  | Version   | Source        | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
+----------+-----------+---------------+---------+---------+-----------+------------------------------------------+------------
+jarhc-app | [unknown] | jarhc-app.jar | 3.63 MB | 2096    | 142       | **************************************** | [unknown]
+Classpath | -         | -             | 3.63 MB | 2096    | 142       | -                                        | -
 
 Modules
 -------
 List of Java Modules found in classpath.
 
-Artifact        | Module name     | Definition     | Automatic | Requires | Exports
-----------------+-----------------+----------------+-----------+----------+---------------
-jarhc-with-deps | jarhc.with.deps | Auto-generated | Yes       | -        | [all packages]
+Artifact  | Module name | Definition     | Automatic | Requires | Exports
+----------+-------------+----------------+-----------+----------+---------------
+jarhc-app | jarhc.app   | Auto-generated | Yes       | -        | [all packages]
 
 Class Versions
 --------------
 Java class file format information.
 
-Artifact        | Multi-release                  | Class files by Java version
-----------------+--------------------------------+---------------------------------------------------------
-jarhc-with-deps | Yes (Java 9, Java 10, Java 11) | Java 11 (132), Java 10 (1), Java 8 (1202), Java 6 (723),
-                |                                | Java 5 (38)
-Classpath       | -                              | Java 11 (132), Java 10 (1), Java 8 (1202), Java 6 (723),
-                |                                | Java 5 (38)
+Artifact  | Multi-release                  | Class files by Java version
+----------+--------------------------------+---------------------------------------------------------
+jarhc-app | Yes (Java 9, Java 10, Java 11) | Java 11 (132), Java 10 (1), Java 8 (1202), Java 6 (723),
+          |                                | Java 5 (38)
+Classpath | -                              | Java 11 (132), Java 10 (1), Java 8 (1202), Java 6 (723),
+          |                                | Java 5 (38)
 
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-Artifact        | Uses   | Used by
-----------------+--------+--------
-jarhc-with-deps | [none] | [none]
+Artifact  | Uses   | Used by
+----------+--------+--------
+jarhc-app | [none] | [none]
 
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact        | Maven coordinates | Direct dependencies | Status
-----------------+-------------------+---------------------+-------
-jarhc-with-deps | [unknown]         | [unknown]           |
+Artifact  | Maven coordinates | Direct dependencies | Status
+----------+-------------------+---------------------+-------
+jarhc-app | [unknown]         | [unknown]           |
 
 Packages
 --------
 List of packages per JAR file.
 
-Artifact        | Count | Packages                | Issues
-----------------+-------+-------------------------+------------------------------------------------------------------------------------------------------
-jarhc-with-deps | 184   | org.* (184 subpackages) | Fat JAR: org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+Artifact  | Count | Packages                | Issues
+----------+-------+-------------------------+------------------------------------------------------------------------------------------------------
+jarhc-app | 184   | org.* (184 subpackages) | Fat JAR: org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
 
 Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
 
-Artifact        | Issues
-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------
-jarhc-with-deps | org.apache.maven.model.building.DefaultModelBuilder
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                | • Annotation not found: org.eclipse.sisu.Nullable (package not found)
-                |
-                | org.apache.maven.model.building.DefaultModelProcessor
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                | • Annotation not found: org.eclipse.sisu.Typed (package not found)
-                |
-                | org.apache.maven.model.composition.DefaultDependencyManagementImporter
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.inheritance.DefaultInheritanceAssembler
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator
-                | • Annotation not found: javax.inject.Inject (package not found)
-                |
-                | org.apache.maven.model.interpolation.DefaultModelVersionProcessor
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.interpolation.StringVisitorModelInterpolator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.io.DefaultModelReader
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.io.DefaultModelWriter
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.locator.DefaultModelLocator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.management.DefaultDependencyManagementInjector
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.management.DefaultPluginManagementInjector
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.normalization.DefaultModelNormalizer
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.path.DefaultModelPathTranslator
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.path.DefaultModelUrlNormalizer
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.path.DefaultPathTranslator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.path.DefaultUrlNormalizer
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.path.ProfileActivationFilePathInterpolator
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.plugin.DefaultPluginConfigurationExpander
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.plugin.DefaultReportConfigurationExpander
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.plugin.DefaultReportingConverter
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.DefaultProfileInjector
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.DefaultProfileSelector
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.activation.FileProfileActivator
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.activation.JdkVersionProfileActivator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.activation.OperatingSystemProfileActivator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.profile.activation.PropertyProfileActivator
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.superpom.DefaultSuperPomProvider
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.model.validation.DefaultModelValidator
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.DefaultModelCacheFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.DefaultVersionRangeResolver
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.DefaultVersionResolver
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.MavenResolverModule
-                | • Superclass not found: com.google.inject.AbstractModule
-                | • Class not found: com.google.inject.AbstractModule (package not found)
-                | • Class not found: com.google.inject.Module (package not found)
-                | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.name.Names (package not found)
-                | • Class not found: javax.inject.Singleton (package not found)
-                | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenResolverModule.bind(java.lang.Class)
-                | > org.apache.maven.repository.internal.MavenResolverModule (method not found)
-                | > com.google.inject.AbstractModule (class not found)
-                | • Method not found: void org.apache.maven.repository.internal.MavenResolverModule.install(com.google.inject.Module)
-                | > org.apache.maven.repository.internal.MavenResolverModule (method not found)
-                | > com.google.inject.AbstractModule (class not found)
-                | • Annotation not found: com.google.inject.Provides (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.PluginsMetadataGeneratorFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.SnapshotMetadataGeneratorFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.apache.maven.repository.internal.VersionsMetadataGeneratorFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                |
-                | org.eclipse.aether.impl.guice.AetherModule
-                | • Superclass not found: com.google.inject.AbstractModule
-                | • Class not found: com.google.inject.AbstractModule (package not found)
-                | • Class not found: com.google.inject.Module (package not found)
-                | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
-                | • Class not found: com.google.inject.name.Names (package not found)
-                | • Class not found: javax.inject.Singleton (package not found)
-                | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule.bind(java.lang.Class)
-                | > org.eclipse.aether.impl.guice.AetherModule (method not found)
-                | > com.google.inject.AbstractModule (class not found)
-                | • Method not found: void org.eclipse.aether.impl.guice.AetherModule.install(com.google.inject.Module)
-                | > org.eclipse.aether.impl.guice.AetherModule (method not found)
-                | > com.google.inject.AbstractModule (class not found)
-                | • Annotation not found: com.google.inject.Provides (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.impl.guice.AetherModule$Slf4jModule
-                | • Superclass not found: com.google.inject.AbstractModule
-                | • Class not found: com.google.inject.AbstractModule (package not found)
-                | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
-                | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule$Slf4jModule.bind(java.lang.Class)
-                | > org.eclipse.aether.impl.guice.AetherModule$Slf4jModule (method not found)
-                | > com.google.inject.AbstractModule (class not found)
-                | • Annotation not found: com.google.inject.Provides (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultArtifactResolver
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultChecksumPolicyProvider
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultDeployer
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultFileProcessor
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultInstaller
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultLocalPathComposer
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultLocalPathPrefixComposerFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultMetadataResolver
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultOfflineController
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRepositorySystem
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultRepositorySystemLifecycle
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultTrackingFileManager
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultTransporterProvider
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultUpdateCheckManager
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.DefaultUpdatePolicyAnalyzer
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.EnhancedLocalRepositoryManagerFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.LoggerFactoryProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.DefaultChecksumAlgorithmFactorySelector
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.Md5ChecksumAlgorithmFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.Sha1ChecksumAlgorithmFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.Sha256ChecksumAlgorithmFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.Sha512ChecksumAlgorithmFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.checksum.TrustedToProvidedChecksumsSourceAdapter
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.collect.bf.BfDependencyCollector
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.collect.df.DfDependencyCollector
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.filter.DefaultRemoteRepositoryFilterManager
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.filter.GroupIdRemoteRepositoryFilterSource
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.filter.PrefixesRemoteRepositoryFilterSource
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.resolution.TrustedChecksumsArtifactResolverPostProcessor
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.slf4j.Slf4jLoggerFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                | • Annotation not found: org.eclipse.sisu.Nullable (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.DefaultSyncContextFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.legacy.DefaultSyncContextFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.DiscriminatingNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.FileGAVNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.FileHashingGAVNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.FileStaticNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.GAVNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.internal.impl.synccontext.named.providers.StaticNameMapperProvider
-                | • Interface not found: javax.inject.Provider
-                | • Class not found: javax.inject.Provider (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.named.providers.FileLockNamedLockFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.named.providers.LocalReadWriteLockNamedLockFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.named.providers.LocalSemaphoreNamedLockFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.named.providers.NoopNamedLockFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.transport.file.FileTransporterFactory
-                | • Annotation not found: javax.inject.Named (package not found)
-                |
-                | org.eclipse.aether.transport.http.HttpTransporterFactory
-                | • Annotation not found: javax.inject.Inject (package not found)
-                | • Annotation not found: javax.inject.Named (package not found)
-                |
-                | org.eclipse.aether.transport.http.Nexus2ChecksumExtractor
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
-                |
-                | org.eclipse.aether.transport.http.XChecksumChecksumExtractor
-                | • Annotation not found: javax.inject.Named (package not found)
-                | • Annotation not found: javax.inject.Singleton (package not found)
+Artifact  | Issues
+----------+----------------------------------------------------------------------------------------------------------------------------------------------------
+jarhc-app | org.apache.maven.model.building.DefaultModelBuilder
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          | • Annotation not found: org.eclipse.sisu.Nullable (package not found)
+          |
+          | org.apache.maven.model.building.DefaultModelProcessor
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          | • Annotation not found: org.eclipse.sisu.Typed (package not found)
+          |
+          | org.apache.maven.model.composition.DefaultDependencyManagementImporter
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.inheritance.DefaultInheritanceAssembler
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.interpolation.AbstractStringBasedModelInterpolator
+          | • Annotation not found: javax.inject.Inject (package not found)
+          |
+          | org.apache.maven.model.interpolation.DefaultModelVersionProcessor
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.interpolation.StringVisitorModelInterpolator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.io.DefaultModelReader
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.io.DefaultModelWriter
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.locator.DefaultModelLocator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.management.DefaultDependencyManagementInjector
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.management.DefaultPluginManagementInjector
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.normalization.DefaultModelNormalizer
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.path.DefaultModelPathTranslator
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.path.DefaultModelUrlNormalizer
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.path.DefaultPathTranslator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.path.DefaultUrlNormalizer
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.path.ProfileActivationFilePathInterpolator
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.plugin.DefaultPluginConfigurationExpander
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.plugin.DefaultReportConfigurationExpander
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.plugin.DefaultReportingConverter
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.DefaultProfileInjector
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.DefaultProfileSelector
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.activation.FileProfileActivator
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.activation.JdkVersionProfileActivator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.activation.OperatingSystemProfileActivator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.profile.activation.PropertyProfileActivator
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.superpom.DefaultSuperPomProvider
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.model.validation.DefaultModelValidator
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.DefaultModelCacheFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.DefaultVersionRangeResolver
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.DefaultVersionResolver
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.MavenResolverModule
+          | • Superclass not found: com.google.inject.AbstractModule
+          | • Class not found: com.google.inject.AbstractModule (package not found)
+          | • Class not found: com.google.inject.Module (package not found)
+          | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.name.Names (package not found)
+          | • Class not found: javax.inject.Singleton (package not found)
+          | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenResolverModule.bind(java.lang.Class)
+          | > org.apache.maven.repository.internal.MavenResolverModule (method not found)
+          | > com.google.inject.AbstractModule (class not found)
+          | • Method not found: void org.apache.maven.repository.internal.MavenResolverModule.install(com.google.inject.Module)
+          | > org.apache.maven.repository.internal.MavenResolverModule (method not found)
+          | > com.google.inject.AbstractModule (class not found)
+          | • Annotation not found: com.google.inject.Provides (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.PluginsMetadataGeneratorFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.SnapshotMetadataGeneratorFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.apache.maven.repository.internal.VersionsMetadataGeneratorFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          |
+          | org.eclipse.aether.impl.guice.AetherModule
+          | • Superclass not found: com.google.inject.AbstractModule
+          | • Class not found: com.google.inject.AbstractModule (package not found)
+          | • Class not found: com.google.inject.Module (package not found)
+          | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
+          | • Class not found: com.google.inject.name.Names (package not found)
+          | • Class not found: javax.inject.Singleton (package not found)
+          | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule.bind(java.lang.Class)
+          | > org.eclipse.aether.impl.guice.AetherModule (method not found)
+          | > com.google.inject.AbstractModule (class not found)
+          | • Method not found: void org.eclipse.aether.impl.guice.AetherModule.install(com.google.inject.Module)
+          | > org.eclipse.aether.impl.guice.AetherModule (method not found)
+          | > com.google.inject.AbstractModule (class not found)
+          | • Annotation not found: com.google.inject.Provides (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.impl.guice.AetherModule$Slf4jModule
+          | • Superclass not found: com.google.inject.AbstractModule
+          | • Class not found: com.google.inject.AbstractModule (package not found)
+          | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
+          | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule$Slf4jModule.bind(java.lang.Class)
+          | > org.eclipse.aether.impl.guice.AetherModule$Slf4jModule (method not found)
+          | > com.google.inject.AbstractModule (class not found)
+          | • Annotation not found: com.google.inject.Provides (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultArtifactResolver
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultChecksumPolicyProvider
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultDeployer
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultFileProcessor
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultInstaller
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultLocalPathComposer
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultLocalPathPrefixComposerFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultLocalRepositoryProvider
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultMetadataResolver
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultOfflineController
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRemoteRepositoryManager
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRepositoryEventDispatcher
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRepositoryLayoutProvider
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRepositorySystem
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultRepositorySystemLifecycle
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultTrackingFileManager
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultTransporterProvider
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultUpdateCheckManager
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.DefaultUpdatePolicyAnalyzer
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.EnhancedLocalRepositoryManagerFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.LoggerFactoryProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.Maven2RepositoryLayoutFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.SimpleLocalRepositoryManagerFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.DefaultChecksumAlgorithmFactorySelector
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.Md5ChecksumAlgorithmFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.Sha1ChecksumAlgorithmFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.Sha256ChecksumAlgorithmFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.Sha512ChecksumAlgorithmFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.SparseDirectoryTrustedChecksumsSource
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.SummaryFileTrustedChecksumsSource
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.checksum.TrustedToProvidedChecksumsSourceAdapter
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.collect.DefaultDependencyCollector
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.collect.bf.BfDependencyCollector
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.collect.df.DfDependencyCollector
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.filter.DefaultRemoteRepositoryFilterManager
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.filter.GroupIdRemoteRepositoryFilterSource
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.filter.PrefixesRemoteRepositoryFilterSource
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.resolution.TrustedChecksumsArtifactResolverPostProcessor
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.slf4j.Slf4jLoggerFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          | • Annotation not found: org.eclipse.sisu.Nullable (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.DefaultSyncContextFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.legacy.DefaultSyncContextFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.NamedLockFactoryAdapterFactoryImpl
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.DiscriminatingNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.FileGAVNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.FileHashingGAVNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.FileStaticNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.GAVNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.StaticNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.named.providers.FileLockNamedLockFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.named.providers.LocalReadWriteLockNamedLockFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.named.providers.LocalSemaphoreNamedLockFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.named.providers.NoopNamedLockFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.transport.file.FileTransporterFactory
+          | • Annotation not found: javax.inject.Named (package not found)
+          |
+          | org.eclipse.aether.transport.http.HttpTransporterFactory
+          | • Annotation not found: javax.inject.Inject (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          |
+          | org.eclipse.aether.transport.http.Nexus2ChecksumExtractor
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.transport.http.XChecksumChecksumExtractor
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
 
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-Artifact        | Issues
-----------------+-----------------------------------------------------------------------------------------------
-jarhc-with-deps | org.apache.commons.logging.impl.SimpleLog
-                | • @Deprecated: public final class java.security.AccessController
-                |
-                | org.apache.http.impl.pool.BasicConnFactory
-                | • @Deprecated: public final class java.security.AccessController
-                |
-                | org.apache.maven.model.interpolation.StringSearchModelInterpolator
-                | • @Deprecated: public final class java.security.AccessController
-                |
-                | org.codehaus.plexus.interpolation.object.FieldBasedObjectInterpolator
-                | • @Deprecated: public final class java.security.AccessController
-                |
-                | org.codehaus.plexus.util.cli.Commandline
-                | • java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)
-                |
-                | org.codehaus.plexus.util.cli.ShutdownHookUtils
-                | • @Deprecated: public class java.security.AccessControlException
-                |
-                | org.eclipse.aether.util.concurrency.RunnableErrorForwarder
-                | • @Deprecated: public class java.lang.ThreadDeath
-                |
-                | org.jarhc.Main
-                | • static void java.lang.System.exit(int)
-                |
-                | org.slf4j.LoggerFactory
-                | • @Deprecated: public class java.lang.SecurityManager
-                | • @Deprecated: public final class java.security.AccessController
-                |
-                | org.slf4j.helpers.Util$ClassContextSecurityManager
-                | • @Deprecated: public class java.lang.SecurityManager
-                |
-                | org.slf4j.simple.SimpleLoggerConfiguration
-                | • @Deprecated: public final class java.security.AccessController
+Artifact  | Issues
+----------+-----------------------------------------------------------------------------------------------
+jarhc-app | org.apache.commons.logging.impl.SimpleLog
+          | • @Deprecated: public final class java.security.AccessController
+          |
+          | org.apache.http.impl.pool.BasicConnFactory
+          | • @Deprecated: public final class java.security.AccessController
+          |
+          | org.apache.maven.model.interpolation.StringSearchModelInterpolator
+          | • @Deprecated: public final class java.security.AccessController
+          |
+          | org.codehaus.plexus.interpolation.object.FieldBasedObjectInterpolator
+          | • @Deprecated: public final class java.security.AccessController
+          |
+          | org.codehaus.plexus.util.cli.Commandline
+          | • java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)
+          |
+          | org.codehaus.plexus.util.cli.ShutdownHookUtils
+          | • @Deprecated: public class java.security.AccessControlException
+          |
+          | org.eclipse.aether.util.concurrency.RunnableErrorForwarder
+          | • @Deprecated: public class java.lang.ThreadDeath
+          |
+          | org.jarhc.Main
+          | • static void java.lang.System.exit(int)
+          |
+          | org.slf4j.LoggerFactory
+          | • @Deprecated: public class java.lang.SecurityManager
+          | • @Deprecated: public final class java.security.AccessController
+          |
+          | org.slf4j.helpers.Util$ClassContextSecurityManager
+          | • @Deprecated: public class java.lang.SecurityManager
+          |
+          | org.slf4j.simple.SimpleLoggerConfiguration
+          | • @Deprecated: public final class java.security.AccessController
 

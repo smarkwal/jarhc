@@ -77,7 +77,7 @@ tasks {
         description = "Prepares the release test suite."
 
         // run release tests after JAR and fat/uber JAR have been built
-        dependsOn(":jarhc:jar", ":jarhc:jar-with-deps", ":jarhc:generatePomFileForMavenPublication")
+        dependsOn(":jarhc:jar", ":jarhc:jar-app", ":jarhc:generatePomFileForMavenPublication")
 
         doLast {
 
@@ -157,7 +157,7 @@ tasks {
         commandLine(
             "docker", "run",
             "--rm",
-            "-v", "$rootDir/jarhc/build/libs/jarhc-$version-with-deps.jar:/jarhc/jarhc.jar",
+            "-v", "$rootDir/jarhc/build/libs/jarhc-$version-app.jar:/jarhc/jarhc.jar",
             "-v", "$rootDir:/src",
             "-w", "/jarhc",
             "eclipse-temurin:11-jre",
@@ -167,7 +167,7 @@ tasks {
         )
 
         // run test after fat/uber JAR has been built
-        dependsOn(":jarhc:jar-with-deps")
+        dependsOn(":jarhc:jar-app")
     }
 
 }
