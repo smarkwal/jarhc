@@ -51,46 +51,6 @@ Artifact | Count | Packages                    | Issues
 ---------+-------+-----------------------------+-------
 jarhc    | 18    | org.jarhc (+17 subpackages) |
 
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-Artifact | Issues
----------+----------------------------------------------------------------------------------------------------------
-jarhc    | org.jarhc.artifacts.MavenRepository
-         | • Class not found: org.apache.maven.repository.internal.MavenRepositorySystemUtils (package not found)
-         | • Class not found: org.eclipse.aether.DefaultRepositorySystemSession (package not found)
-         | • Class not found: org.eclipse.aether.RepositorySystem (package not found)
-         | • Class not found: org.eclipse.aether.RepositorySystemSession (package not found)
-         | • Class not found: org.eclipse.aether.artifact.Artifact (package not found)
-         | • Class not found: org.eclipse.aether.artifact.DefaultArtifact (package not found)
-         | • Class not found: org.eclipse.aether.collection.CollectRequest (package not found)
-         | • Class not found: org.eclipse.aether.collection.CollectResult (package not found)
-         | • Class not found: org.eclipse.aether.collection.DependencyCollectionException (package not found)
-         | • Class not found: org.eclipse.aether.collection.DependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.graph.Dependency (package not found)
-         | • Class not found: org.eclipse.aether.graph.DependencyNode (package not found)
-         | • Class not found: org.eclipse.aether.graph.DependencyVisitor (package not found)
-         | • Class not found: org.eclipse.aether.repository.LocalRepository (package not found)
-         | • Class not found: org.eclipse.aether.repository.LocalRepositoryManager (package not found)
-         | • Class not found: org.eclipse.aether.repository.RemoteRepository (package not found)
-         | • Class not found: org.eclipse.aether.repository.RemoteRepository$Builder (package not found)
-         | • Class not found: org.eclipse.aether.resolution.ArtifactRequest (package not found)
-         | • Class not found: org.eclipse.aether.resolution.ArtifactResolutionException (package not found)
-         | • Class not found: org.eclipse.aether.resolution.ArtifactResult (package not found)
-         | • Class not found: org.eclipse.aether.transfer.ArtifactNotFoundException (package not found)
-         | • Class not found: org.eclipse.aether.util.graph.selector.AndDependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.util.graph.selector.ExclusionDependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.util.graph.selector.OptionalDependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.util.graph.selector.ScopeDependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator (package not found)
-         |
-         | org.jarhc.artifacts.MavenRepository$TransitiveDependencySelector
-         | • Interface not found: org.eclipse.aether.collection.DependencySelector
-         | • Class not found: org.eclipse.aether.collection.DependencyCollectionContext (package not found)
-         | • Class not found: org.eclipse.aether.collection.DependencySelector (package not found)
-         | • Class not found: org.eclipse.aether.graph.Dependency (package not found)
-
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
