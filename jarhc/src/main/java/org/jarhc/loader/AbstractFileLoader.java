@@ -19,6 +19,7 @@ package org.jarhc.loader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import org.jarhc.model.ModuleInfo;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.DigestUtils;
+import org.jarhc.utils.ExceptionUtils;
 import org.slf4j.Logger;
 
 /**
@@ -219,7 +221,12 @@ abstract class AbstractFileLoader {
 		try {
 			artifacts = repository.findArtifacts(checksum);
 		} catch (RepositoryException e) {
-			logger.warn("Artifact resolution error", e);
+			String source = coordinates != null ? coordinates : fileName;
+			if (ExceptionUtils.getRootCause(e) instanceof SocketTimeoutException) {
+				logger.warn("Maven Search API: Timeout for artifact '{}' with checksum '{}'", source, checksum);
+			} else {
+				logger.warn("Maven Search API: Error for artifact '{}' with checksum '{}'", source, checksum, e);
+			}
 		}
 
 		if (artifacts != null) {
