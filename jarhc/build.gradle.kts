@@ -331,6 +331,8 @@ tasks {
             file("${rootDir}/docs/jarhc-report.html"),
             file("${rootDir}/docs/jarhc-report.txt")
         )
+        sortRows.set(true)
+        ignoreMissingAnnotations.set(true)
     }
 
     build {
