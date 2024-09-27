@@ -147,28 +147,10 @@ dependencies {
     // main dependencies
     implementation("org.ow2.asm:asm:9.7")
     implementation("org.json:json:20240303")
-    implementation("org.eclipse.aether:aether-impl:1.1.0")
-    implementation("org.eclipse.aether:aether-api:1.1.0")
-    implementation("org.eclipse.aether:aether-util:1.1.0")
-    implementation("org.eclipse.aether:aether-spi:1.1.0")
-    implementation("org.eclipse.aether:aether-connector-basic:1.1.0")
-    implementation("org.eclipse.aether:aether-transport-file:1.1.0")
-    implementation("org.eclipse.aether:aether-transport-http:1.1.0")
-    implementation("org.apache.maven:maven-aether-provider:3.3.9")
+    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
     implementation("org.slf4j:jul-to-slf4j:2.0.16")
     implementation("org.slf4j:jcl-over-slf4j:2.0.16")
     api("org.slf4j:slf4j-api:2.0.16")
-
-    // fix vulnerabilities in transitive dependencies
-    // fix CVE-2018-10237 and CVE-2020-8908
-    implementation("com.google.guava:guava:33.3.0-jre")
-    // fix CVE-2015-5262 and CVE-2020-13956
-    implementation("org.apache.httpcomponents:httpclient:4.5.14")
-    // fix https://github.com/codehaus-plexus/plexus-utils/issues/3
-    // note: version 4.0.x fails with NullPointerException
-    implementation("org.codehaus.plexus:plexus-utils:3.5.1")
-    // fix https://devhub.checkmarx.com/cve-details/Cxeb68d52e-5509/
-    implementation("commons-codec:commons-codec:1.17.1")
 
     // additional libraries to be added to jar-with-deps
     includeInJarWithDeps("org.slf4j:slf4j-simple:2.0.16")

@@ -199,6 +199,9 @@ public class MavenRepository implements Repository {
 			session.setLocalRepositoryManager(localRepoManager);
 		}
 
+		// do not ignore missing or invalid artifact descriptors
+		// session.setArtifactDescriptorPolicy(new SimpleArtifactDescriptorPolicy(false, false));
+
 		// TODO: optimize filter?
 		//  - select transitive dependencies, except of optional and/or provided dependencies?
 		DependencySelector dependencySelector = new AndDependencySelector(
@@ -223,6 +226,12 @@ public class MavenRepository implements Repository {
 		} else { // Java 9 and greater
 			session.setSystemProperty("java.version", String.format("%d.0.0", javaVersion));
 		}
+
+		// set OS information (used by Maven to activate profiles)
+		// TODO: make this configurable?
+		session.setSystemProperty("os.name", System.getProperty("os.name", "Linux"));
+		session.setSystemProperty("os.arch", System.getProperty("os.arch", "amd64"));
+		session.setSystemProperty("os.version", System.getProperty("os.version", "6.11"));
 
 		return session;
 	}
