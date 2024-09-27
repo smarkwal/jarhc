@@ -33,20 +33,15 @@ import org.eclipse.aether.collection.CollectRequest;
 import org.eclipse.aether.collection.DependencyCollectionContext;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.collection.DependencySelector;
-import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.graph.DependencyNode;
-import org.eclipse.aether.impl.DefaultServiceLocator;
 import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.repository.LocalRepositoryManager;
 import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
-import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
-import org.eclipse.aether.spi.connector.transport.TransporterFactory;
+import org.eclipse.aether.supplier.RepositorySystemSupplier;
 import org.eclipse.aether.transfer.ArtifactNotFoundException;
-import org.eclipse.aether.transport.file.FileTransporterFactory;
-import org.eclipse.aether.transport.http.HttpTransporterFactory;
 import org.eclipse.aether.util.graph.selector.AndDependencySelector;
 import org.eclipse.aether.util.graph.selector.ExclusionDependencySelector;
 import org.eclipse.aether.util.graph.selector.OptionalDependencySelector;
@@ -182,11 +177,8 @@ public class MavenRepository implements Repository {
 	}
 
 	private static RepositorySystem newRepositorySystem() {
-		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
-		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
-		return locator.getService(RepositorySystem.class);
+		RepositorySystemSupplier repositorySystemSupplier = new RepositorySystemSupplier();
+		return repositorySystemSupplier.get();
 	}
 
 	private static RepositorySystemSession newSession(RepositorySystem repoSystem, int javaVersion, String dataPath) {
