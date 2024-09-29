@@ -58,7 +58,7 @@ th, td {
 <table>
 	<tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
 	<tr><td>Short</td><td>Medium Medium</td><td>Long Long Long Long Long Long Long</td></tr>
-	<tr><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3</td></tr>
+	<tr><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="c5cea3acec23a2c37e3eb84d1f3830afb6d34f4f">commons-io:commons-io:2.8.0</a></td></tr>
 </table>
 </section>
 

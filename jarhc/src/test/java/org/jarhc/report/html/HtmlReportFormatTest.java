@@ -43,7 +43,7 @@ class HtmlReportFormatTest {
 		ReportSection section2 = new ReportSection("Section 2", joinLines("Description 2, Line 1", "Description 2, Line 2"));
 		ReportTable table2 = new ReportTable("Column 1", "Column 2", "Column 3");
 		table2.addRow("Short", "Medium Medium", "Long Long Long Long Long Long Long");
-		table2.addRow("Line 1", joinLines("Line 1", "Longer Line 2"), joinLines("Line 1", "Longer Line 2", "Extra Long Line 3"));
+		table2.addRow("Line 1", joinLines("Line 1", "Longer Line 2"), joinLines("Line 1", "Longer Line 2", "Extra Long Line 3", "commons-io:commons-io:2.8.0"));
 		section2.add(table2);
 		report.addSection(section2);
 

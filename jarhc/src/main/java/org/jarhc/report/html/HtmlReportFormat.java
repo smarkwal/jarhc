@@ -23,10 +23,14 @@ import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.DigestUtils;
 import org.jarhc.utils.VersionUtils;
 import org.slf4j.LoggerFactory;
 
 public class HtmlReportFormat implements ReportFormat {
+
+	private static final Pattern ARTIFACT_PATTERN = Pattern.compile("([a-zA-Z0-9\\-.]+):([a-zA-Z0-9\\-.]+):([a-zA-Z0-9\\-.]+)");
+	private static final String ARTIFACT_URL = "https://central.sonatype.com/artifact/%s/%s/%s"; // alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
 
 	private final StyleProvider styleProvider;
 
@@ -164,10 +168,28 @@ public class HtmlReportFormat implements ReportFormat {
 			if (header) {
 				writer.print("<th>%s</th>", escape(value));
 			} else {
-				writer.print("<td>%s</td>", escape(value));
+				writer.print("<td>%s</td>", addArtifactLinks(escape(value)));
 			}
 		}
 		writer.println("</tr>");
+	}
+
+	/**
+	 * Replace artifact coordinates with links to artifact website.
+	 *
+	 * @param value Report row value
+	 * @return Report row value with artifact coordinates replaced by links
+	 */
+	private static String addArtifactLinks(String value) {
+		return ARTIFACT_PATTERN.matcher(value).replaceAll(matchResult -> {
+			String coordinates = matchResult.group();
+			String groupId = matchResult.group(1);
+			String artifactId = matchResult.group(2);
+			String version = matchResult.group(3);
+			String url = String.format(ARTIFACT_URL, groupId, artifactId, version);
+			String target = DigestUtils.sha1Hex(coordinates);
+			return String.format("<a href=\"%s\" target=\"%s\">%s</a>", url, target, coordinates);
+		});
 	}
 
 	private static String escape(String text) {
