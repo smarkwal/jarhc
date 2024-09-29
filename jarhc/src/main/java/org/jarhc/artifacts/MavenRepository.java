@@ -47,13 +47,12 @@ import org.eclipse.aether.util.graph.selector.ExclusionDependencySelector;
 import org.eclipse.aether.util.graph.selector.OptionalDependencySelector;
 import org.eclipse.aether.util.graph.selector.ScopeDependencySelector;
 import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
+import org.eclipse.aether.util.repository.AuthenticationBuilder;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.slf4j.Logger;
 
 public class MavenRepository implements Repository {
-
-	public static final String MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2/";
 
 	private final ArtifactFinder artifactFinder;
 	private final Logger logger;
@@ -61,8 +60,26 @@ public class MavenRepository implements Repository {
 	private final RepositorySystem repoSystem;
 	private final RepositorySystemSession session;
 
-	public MavenRepository(int javaVersion, String url, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
-		this.central = new RemoteRepository.Builder("central", "default", url).build();
+	public MavenRepository(int javaVersion, Settings settings, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
+
+		String repositoryUrl = settings.getRepositoryUrl();
+		RemoteRepository.Builder repoBuilder = new RemoteRepository.Builder("central", "default", repositoryUrl);
+
+		// add authentication (if username or password is set)
+		String repositoryUsername = settings.getRepositoryUsername();
+		String repositoryPassword = settings.getRepositoryPassword();
+		if (repositoryUsername != null || repositoryPassword != null) {
+			AuthenticationBuilder authBuilder = new AuthenticationBuilder();
+			if (repositoryUsername != null) {
+				authBuilder.addUsername(repositoryUsername);
+			}
+			if (repositoryPassword != null) {
+				authBuilder.addPassword(repositoryPassword);
+			}
+			repoBuilder.setAuthentication(authBuilder.build());
+		}
+
+		this.central = repoBuilder.build();
 		this.artifactFinder = artifactFinder;
 		this.logger = logger;
 		this.repoSystem = newRepositorySystem();
@@ -255,6 +272,34 @@ public class MavenRepository implements Repository {
 		public DependencySelector deriveChildSelector(DependencyCollectionContext context) {
 			return new TransitiveDependencySelector(depth - 1);
 		}
+
+	}
+
+	/**
+	 * Settings for Maven repository.
+	 */
+	public interface Settings {
+
+		/**
+		 * Get the URL of the Maven repository.
+		 *
+		 * @return URL of Maven repository.
+		 */
+		String getRepositoryUrl();
+
+		/**
+		 * Get the username for the Maven repository.
+		 *
+		 * @return Username for Maven repository (may be null).
+		 */
+		String getRepositoryUsername();
+
+		/**
+		 * Get the password for the Maven repository.
+		 *
+		 * @return Password for Maven repository (may be null).
+		 */
+		String getRepositoryPassword();
 
 	}
 

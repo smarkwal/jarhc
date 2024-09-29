@@ -58,6 +58,9 @@ class CommandLineParserTest {
 		assertFalse(options.getClasspathJarPaths().isEmpty());
 		assertTrue(options.getProvidedJarPaths().isEmpty());
 		assertTrue(options.getRuntimeJarPaths().isEmpty());
+		assertEquals("https://repo1.maven.org/maven2/", options.getRepositoryUrl());
+		assertNull(options.getRepositoryUsername());
+		assertNull(options.getRepositoryPassword());
 		assertFalse(options.isRemoveVersion());
 		assertFalse(options.isUseArtifactName());
 		assertFalse(options.isIgnoreMissingAnnotations());
@@ -349,6 +352,30 @@ class CommandLineParserTest {
 	}
 
 	@Test
+	void test_repository(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] {
+				"--repository-url", "https://repo.example.com/maven/",
+				"--repository-username", "john.smith",
+				"--repository-password", "my-secret",
+				file.getAbsolutePath()
+		});
+
+		// assert
+		String url = options.getRepositoryUrl();
+		assertEquals("https://repo.example.com/maven/", url);
+		String username = options.getRepositoryUsername();
+		assertEquals("john.smith", username);
+		String password = options.getRepositoryPassword();
+		assertEquals("my-secret", password);
+
+	}
+
+	@Test
 	void test_title(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
@@ -428,7 +455,7 @@ class CommandLineParserTest {
 	}
 
 	@Test
-	void test_use_artifac_name(@TempDir Path tempDir) throws IOException, CommandLineException {
+	void test_use_artifact_name(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);

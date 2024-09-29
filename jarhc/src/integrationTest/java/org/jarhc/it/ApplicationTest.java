@@ -54,7 +54,7 @@ class ApplicationTest {
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
 
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
-		MavenRepository repository = new MavenRepository(11, TestUtils.getFileRepositoryURL(), tempDir.toString(), artifactFinder, mavenRepositoryLogger);
+		MavenRepository repository = new MavenRepository(11, TestUtils.getFileRepositorySettings(), tempDir.toString(), artifactFinder, mavenRepositoryLogger);
 		application.setRepository(repository);
 	}
 

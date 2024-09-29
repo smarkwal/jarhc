@@ -18,10 +18,13 @@ package org.jarhc.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.utils.JavaUtils;
 
-public class Options {
+public class Options implements MavenRepository.Settings {
+
+	public static final String MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2/";
 
 	private int release = JavaUtils.getJavaVersion();
 
@@ -33,6 +36,10 @@ public class Options {
 	private boolean useArtifactName = false;
 	private boolean ignoreMissingAnnotations = false;
 	private boolean ignoreExactCopy = false;
+
+	private String repositoryUrl = MAVEN_CENTRAL_URL;
+	private String repositoryUsername = null;
+	private String repositoryPassword = null;
 
 	private List<String> sections = null; // all sections
 	private boolean skipEmpty = false;
@@ -115,6 +122,30 @@ public class Options {
 
 	public void setIgnoreExactCopy(boolean ignoreExactCopy) {
 		this.ignoreExactCopy = ignoreExactCopy;
+	}
+
+	public String getRepositoryUrl() {
+		return repositoryUrl;
+	}
+
+	public void setRepositoryUrl(String repositoryUrl) {
+		this.repositoryUrl = repositoryUrl;
+	}
+
+	public String getRepositoryUsername() {
+		return repositoryUsername;
+	}
+
+	public void setRepositoryUsername(String repositoryUsername) {
+		this.repositoryUsername = repositoryUsername;
+	}
+
+	public String getRepositoryPassword() {
+		return repositoryPassword;
+	}
+
+	public void setRepositoryPassword(String repositoryPassword) {
+		this.repositoryPassword = repositoryPassword;
 	}
 
 	public List<String> getSections() {

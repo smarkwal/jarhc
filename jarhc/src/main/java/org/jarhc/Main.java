@@ -16,8 +16,6 @@
 
 package org.jarhc;
 
-import static org.jarhc.artifacts.MavenRepository.MAVEN_CENTRAL_URL;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -163,7 +161,7 @@ public class Main {
 
 		int javaVersion = options.getRelease();
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
-		return new MavenRepository(javaVersion, MAVEN_CENTRAL_URL, dataPath, artifactFinder, mavenRepositoryLogger);
+		return new MavenRepository(javaVersion, options, dataPath, artifactFinder, mavenRepositoryLogger);
 	}
 
 	private static String findDataPath(Options options) {

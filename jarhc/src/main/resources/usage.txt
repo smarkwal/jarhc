@@ -41,6 +41,18 @@ Options:
                            Example: --strategy ParentFirst
                            Default: ParentLast
 
+   --repository-url <url> : URL of the Maven repository.
+						   Example: --repository-url https://repo1.maven.org/maven2/
+						   Default: https://repo1.maven.org/maven2/
+
+   --repository.username <username> :
+                           Username for the Maven repository.
+                           Default: [none] (anonymous access)
+
+   --repository.password <password> :
+                           Password for the Maven repository.
+                           Default: [none] (anonymous access)
+
    --output <file>       : Report file output path.
     -o                     Example: -o report.html
                            Default: [none] (print to STDOUT)

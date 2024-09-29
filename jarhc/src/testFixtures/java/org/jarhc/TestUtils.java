@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.test.TestDataException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
@@ -145,6 +146,25 @@ public class TestUtils {
 	public static String getFileRepositoryURL() {
 		File directory = new File("src/integrationTest/resources/repository");
 		return "file://" + directory.getAbsolutePath();
+	}
+
+	public static MavenRepository.Settings getFileRepositorySettings() {
+		return new MavenRepository.Settings() {
+			@Override
+			public String getRepositoryUrl() {
+				return getFileRepositoryURL();
+			}
+
+			@Override
+			public String getRepositoryUsername() {
+				return null;
+			}
+
+			@Override
+			public String getRepositoryPassword() {
+				return null;
+			}
+		};
 	}
 
 	/**

@@ -84,6 +84,9 @@ public class CommandLineParser {
 		optionParsers.put("--use-artifact-name", (args, options) -> options.setUseArtifactName(true));
 		optionParsers.put("--ignore-missing-annotations", (args, options) -> options.setIgnoreMissingAnnotations(true));
 		optionParsers.put("--ignore-exact-copy", (args, options) -> options.setIgnoreExactCopy(true));
+		optionParsers.put("--repository-url", this::parseRepositoryUrl);
+		optionParsers.put("--repository-username", this::parseRepositoryUsername);
+		optionParsers.put("--repository-password", this::parseRepositoryPassword);
 		optionParsers.put("--data", this::parseData);
 		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
 		optionParsers.put("--trace", (args, options) -> options.setTrace(true));
@@ -242,6 +245,27 @@ public class CommandLineParser {
 			}
 			options.setSections(sections);
 		}
+	}
+
+	private void parseRepositoryUrl(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-20, "Repository URL not specified.");
+
+		String value = args.next();
+		options.setRepositoryUrl(value);
+	}
+
+	private void parseRepositoryUsername(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-21, "Repository username not specified.");
+
+		String value = args.next();
+		options.setRepositoryUsername(value);
+	}
+
+	private void parseRepositoryPassword(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-22, "Repository password not specified.");
+
+		String value = args.next();
+		options.setRepositoryPassword(value);
 	}
 
 	private void parseData(Iterator<String> args, Options options) throws CommandLineException {
