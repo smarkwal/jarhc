@@ -5,7 +5,11 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-JAR file: asm-7.0.jar
+Artifact: asm
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm:7.0
 	Size:
 		111 KB
 	Classes:
@@ -14,10 +18,14 @@ JAR file: asm-7.0.jar
 		0
 	Checksum (SHA-1):
 		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
-	Artifact coordinates:
+	Coordinates:
 		org.ow2.asm:asm:7.0
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-analysis:7.0
 	Size:
 		32.5 KB
 	Classes:
@@ -26,10 +34,14 @@ JAR file: asm-analysis-7.0.jar
 		0
 	Checksum (SHA-1):
 		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
-	Artifact coordinates:
+	Coordinates:
 		org.ow2.asm:asm-analysis:7.0
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-commons:7.0
 	Size:
 		78.0 KB
 	Classes:
@@ -38,10 +50,14 @@ JAR file: asm-commons-7.0.jar
 		0
 	Checksum (SHA-1):
 		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
-	Artifact coordinates:
+	Coordinates:
 		org.ow2.asm:asm-commons:7.0
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-tree:7.0
 	Size:
 		49.2 KB
 	Classes:
@@ -50,10 +66,14 @@ JAR file: asm-tree-7.0.jar
 		0
 	Checksum (SHA-1):
 		29bc62dcb85573af6e62e5b2d735ef65966c4180
-	Artifact coordinates:
+	Coordinates:
 		org.ow2.asm:asm-tree:7.0
 
-JAR file: Classpath
+Artifact: Classpath
+	Version:
+		-
+	Source:
+		-
 	Size:
 		271 KB
 	Classes:
@@ -62,14 +82,14 @@ JAR file: Classpath
 		0
 	Checksum (SHA-1):
 		-
-	Artifact coordinates:
+	Coordinates:
 		-
 
 Modules
 -------
 List of Java Modules found in classpath.
 
-JAR file: asm-7.0.jar
+Artifact: asm
 	Module name:
 		org.objectweb.asm
 	Definition:
@@ -82,7 +102,7 @@ JAR file: asm-7.0.jar
 		org.objectweb.asm
 		org.objectweb.asm.signature
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
 	Module name:
 		org.objectweb.asm.tree.analysis
 	Definition:
@@ -95,7 +115,7 @@ JAR file: asm-analysis-7.0.jar
 	Exports:
 		org.objectweb.asm.tree.analysis
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Module name:
 		org.objectweb.asm.commons
 	Definition:
@@ -110,7 +130,7 @@ JAR file: asm-commons-7.0.jar
 	Exports:
 		org.objectweb.asm.commons
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Module name:
 		org.objectweb.asm.tree
 	Definition:
@@ -127,31 +147,31 @@ Class Versions
 --------------
 Java class file format information.
 
-JAR file: asm-7.0.jar
+Artifact: asm
 	Multi-release:
 		No
 	Class files by Java version:
 		Java 5 (35)
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
 	Multi-release:
 		No
 	Class files by Java version:
 		Java 5 (14)
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Multi-release:
 		No
 	Class files by Java version:
 		Java 5 (32)
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Multi-release:
 		No
 	Class files by Java version:
 		Java 5 (37)
 
-JAR file: Classpath
+Artifact: Classpath
 	Multi-release:
 		-
 	Class files by Java version:
@@ -161,56 +181,56 @@ JAR Dependencies
 ----------------
 Dependencies between JAR files.
 
-JAR file: asm-7.0.jar
+Artifact: asm
 	Uses:
 		[none]
 	Used by:
-		asm-analysis-7.0.jar
-		asm-commons-7.0.jar
-		asm-tree-7.0.jar
+		asm-analysis
+		asm-commons
+		asm-tree
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
 	Uses:
-		asm-7.0.jar
-		asm-tree-7.0.jar
+		asm
+		asm-tree
 	Used by:
 		[none]
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Uses:
-		asm-7.0.jar
-		asm-tree-7.0.jar
+		asm
+		asm-tree
 	Used by:
 		[none]
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Uses:
-		asm-7.0.jar
+		asm
 	Used by:
-		asm-analysis-7.0.jar
-		asm-commons-7.0.jar
+		asm-analysis
+		asm-commons
 
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-JAR file: asm-7.0.jar
+Artifact: asm
 	Maven coordinates:
-		org.ow2.asm:asm:7.0
+		org.ow2.asm:asm:7.0:jar
 	Direct dependencies:
 		[none]
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
 	Maven coordinates:
-		org.ow2.asm:asm-analysis:7.0
+		org.ow2.asm:asm-analysis:7.0:jar
 	Direct dependencies:
 		org.ow2.asm:asm-tree:7.0
 	Status:
 		OK
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Maven coordinates:
-		org.ow2.asm:asm-commons:7.0
+		org.ow2.asm:asm-commons:7.0:jar
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
 		org.ow2.asm:asm-tree:7.0
@@ -220,9 +240,9 @@ JAR file: asm-commons-7.0.jar
 		OK
 		OK
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Maven coordinates:
-		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm-tree:7.0:jar
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
 	Status:
@@ -232,26 +252,26 @@ Packages
 --------
 List of packages per JAR file.
 
-JAR file: asm-7.0.jar
+Artifact: asm
 	Count:
 		2
 	Packages:
 		org.objectweb.asm
 		org.objectweb.asm.signature
 
-JAR file: asm-analysis-7.0.jar
+Artifact: asm-analysis
 	Count:
 		1
 	Packages:
 		org.objectweb.asm.tree.analysis
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Count:
 		1
 	Packages:
 		org.objectweb.asm.commons
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Count:
 		1
 	Packages:
@@ -271,7 +291,7 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-JAR file: asm-commons-7.0.jar
+Artifact: asm-commons
 	Issues:
 		org.objectweb.asm.commons.AdviceAdapter
 		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
@@ -291,7 +311,7 @@ JAR file: asm-commons-7.0.jar
 		org.objectweb.asm.commons.RemappingMethodAdapter
 		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 
-JAR file: asm-tree-7.0.jar
+Artifact: asm-tree
 	Issues:
 		org.objectweb.asm.tree.MethodNode
 		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
