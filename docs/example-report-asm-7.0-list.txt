@@ -85,8 +85,43 @@ Artifact: Classpath
 	Coordinates:
 		-
 
-Modules
--------
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact: asm
+	General:
+		Manifest-Version: 1.0
+	Implementation:
+		ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-analysis
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm.tree;transitive=true
+	Implementation:
+		Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-commons
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true
+	Implementation:
+		Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-tree
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true
+	Implementation:
+		Tree API of ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+JPMS Modules
+------------
 List of Java Modules found in classpath.
 
 Artifact: asm
@@ -142,6 +177,81 @@ Artifact: asm-tree
 		java.base
 	Exports:
 		org.objectweb.asm.tree
+
+OSGI Bundles
+------------
+Information about OSGI Bundles.
+
+Artifact: asm
+	Name:
+		org.objectweb.asm
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Export Package:
+		org.objectweb.asm;version="7.0"
+		org.objectweb.asm.signature;version="7.0"
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-analysis
+	Name:
+		org.objectweb.asm.tree.analysis
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm;version="[7.0
+		8)"
+		org.objectweb.asm.tree;version="[7.0
+		8)"
+	Export Package:
+		org.objectweb.asm.tree.analysis;version="7.0";uses:="org.objectweb.asm
+		org.objectweb.asm.tree"
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-commons
+	Name:
+		org.objectweb.asm.commons
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm;version="[7.0
+		8)"
+		org.objectweb.asm.signature;version="[7.0
+		8)"
+		org.objectweb.asm.tree;version="[7.0
+		8)"
+	Export Package:
+		org.objectweb.asm.commons;version="7.0";uses:="org.objectweb.asm
+		org.objectweb.asm.signature
+		org.objectweb.asm.tree"
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-tree
+	Name:
+		org.objectweb.asm.tree
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm;version="[7.0
+		8)"
+	Export Package:
+		org.objectweb.asm.tree;version="7.0";uses:="org.objectweb.asm"
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
 
 Class Versions
 --------------

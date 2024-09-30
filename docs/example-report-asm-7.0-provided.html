@@ -42,7 +42,9 @@ th, td {
 <h3>Table of Contents</h3>
 <ul>
 <li><a href="#JARFiles">JAR Files</a></li>
-<li><a href="#Modules">Modules</a></li>
+<li><a href="#JARManifests">JAR Manifests</a></li>
+<li><a href="#JPMSModules">JPMS Modules</a></li>
+<li><a href="#OSGIBundles">OSGI Bundles</a></li>
 <li><a href="#ClassVersions">Class Versions</a></li>
 <li><a href="#JARDependencies">JAR Dependencies</a></li>
 <li><a href="#Dependencies">Dependencies</a></li>
@@ -63,12 +65,30 @@ th, td {
 </table>
 </section>
 
-<section id="Modules">
-<h2>Modules</h2>
+<section id="JARManifests">
+<h2>JAR Manifests</h2>
+<p>Information found in META-INF/MANIFEST.MF.</p>
+<table>
+	<tr><th>Artifact</th><th>General</th><th>Runtime</th><th>Implementation</th><th>Specification</th><th>Signature</th></tr>
+	<tr><td>asm-commons</td><td>Manifest-Version: 1.0<br>Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: 7.0</td><td></td><td></td></tr>
+</table>
+</section>
+
+<section id="JPMSModules">
+<h2>JPMS Modules</h2>
 <p>List of Java Modules found in classpath.</p>
 <table>
 	<tr><th>Artifact</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
 	<tr><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm<br>org.objectweb.asm.tree<br>org.objectweb.asm.tree.analysis<br>java.base</td><td>org.objectweb.asm.commons</td></tr>
+</table>
+</section>
+
+<section id="OSGIBundles">
+<h2>OSGI Bundles</h2>
+<p>Information about OSGI Bundles.</p>
+<table>
+	<tr><th>Artifact</th><th>Name</th><th>Version</th><th>Description</th><th>Import Package</th><th>Export Package</th><th>Capabilities</th><th>Others</th></tr>
+	<tr><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quote;[7.0<br>8)&quote;<br>org.objectweb.asm.signature;version=&quote;[7.0<br>8)&quote;<br>org.objectweb.asm.tree;version=&quote;[7.0<br>8)&quote;</td><td>org.objectweb.asm.commons;version=&quote;7.0&quote;;uses:=&quote;org.objectweb.asm<br>org.objectweb.asm.signature<br>org.objectweb.asm.tree&quote;</td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
 </table>
 </section>
 
