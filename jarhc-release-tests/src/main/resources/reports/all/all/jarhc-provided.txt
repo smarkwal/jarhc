@@ -7,11 +7,20 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 ----------+-----------+-----------+--------+---------+-----------+------------------------------------------+------------
-jarhc     | [unknown] | jarhc.jar | 233 KB | 132     | 6         | **************************************** | [unknown]
-Classpath | -         | -         | 233 KB | 132     | 6         | -                                        | -
+jarhc     | [unknown] | jarhc.jar | 244 KB | 135     | 6         | **************************************** | [unknown]
+Classpath | -         | -         | 244 KB | 135     | 6         | -                                        | -
 
-Modules
--------
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact | General                          | Runtime                    | Implementation | Specification | Signature
+---------+----------------------------------+----------------------------+----------------+---------------+----------
+jarhc    | Manifest-Version: 1.0            | Main Class: org.jarhc.Main |                |               |
+         | Automatic-Module-Name: org.jarhc |                            |                |               |
+
+JPMS Modules
+------------
 List of Java Modules found in classpath.
 
 Artifact | Module name | Definition | Automatic | Requires | Exports
@@ -24,8 +33,8 @@ Java class file format information.
 
 Artifact  | Multi-release | Class files by Java version
 ----------+---------------+----------------------------
-jarhc     | No            | Java 11 (132)
-Classpath | -             | Java 11 (132)
+jarhc     | No            | Java 11 (135)
+Classpath | -             | Java 11 (135)
 
 JAR Dependencies
 ----------------
