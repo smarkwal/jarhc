@@ -19,6 +19,7 @@ package org.jarhc.loader.archive;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.IOUtils;
 import org.jarhc.utils.LimitedInputStream;
@@ -42,6 +43,10 @@ public abstract class Archive implements Closeable {
 	}
 
 	public String getAutomaticModuleName() {
+		return null;
+	}
+
+	public Map<String, String> getManifestAttributes() {
 		return null;
 	}
 

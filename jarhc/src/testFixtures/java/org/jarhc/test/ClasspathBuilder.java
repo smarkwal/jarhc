@@ -17,7 +17,9 @@
 package org.jarhc.test;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.artifacts.Artifact;
@@ -43,6 +45,7 @@ public class ClasspathBuilder {
 	private String fileName;
 	private long fileSize;
 	private String coordinates;
+	private Map<String, String> manifestAttributes;
 	private Set<Integer> releases;
 	private ModuleInfo moduleInfo;
 	private List<ClassDef> classDefs;
@@ -96,6 +99,14 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addManifestAttribute(String name, String value) {
+		if (manifestAttributes == null) {
+			manifestAttributes = new LinkedHashMap<>();
+		}
+		manifestAttributes.put(name, value);
+		return this;
+	}
+
 	public ClasspathBuilder addClassDef(String className) {
 		return addClassDef(className, 8, 52, 0);
 	}
@@ -144,6 +155,7 @@ public class ClasspathBuilder {
 		this.fileName = fileName;
 		this.fileSize = fileSize;
 		this.coordinates = coordinates;
+		this.manifestAttributes = null;
 		this.releases = new TreeSet<>();
 		this.moduleInfo = ModuleInfo.UNNAMED;
 		this.classDefs = new ArrayList<>();
@@ -158,6 +170,7 @@ public class ClasspathBuilder {
 					.withChecksum(checksum)
 					.withCoordinates(coordinates)
 					.withArtifacts(coordinates != null ? List.of(new Artifact(coordinates)) : List.of())
+					.withManifestAttributes(manifestAttributes)
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
 					.withClassDefs(classDefs)

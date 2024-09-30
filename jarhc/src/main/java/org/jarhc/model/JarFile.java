@@ -79,6 +79,11 @@ public class JarFile {
 	private final String classLoader;
 
 	/**
+	 * Manifest attributes found in META-INF/MANIFEST.MF.
+	 */
+	private final Map<String, String> manifestAttributes;
+
+	/**
 	 * Releases supported if this is a multi-release JAR file
 	 */
 	private final Set<Integer> releases;
@@ -116,20 +121,21 @@ public class JarFile {
 	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
 	 *
-	 * @param fileName     JAR file name
-	 * @param fileSize     JAR file size in bytes
-	 * @param checksum     JAR file SHA-1 checksum
-	 * @param coordinates  Maven coordinates given on command line
-	 * @param artifacts    List of Maven coordinates found by Maven Search API
-	 * @param classLoader  Class loader name
-	 * @param releases     List of releases supported by this JAR file (for multi-release JAR files)
-	 * @param moduleInfo   Module information (for modular JAR files)
-	 * @param classDefs    Class definitions
-	 * @param resourceDefs Resources
+	 * @param fileName           JAR file name
+	 * @param fileSize           JAR file size in bytes
+	 * @param checksum           JAR file SHA-1 checksum
+	 * @param coordinates        Maven coordinates given on command line
+	 * @param artifacts          List of Maven coordinates found by Maven Search API
+	 * @param classLoader        Class loader name
+	 * @param manifestAttributes Manifest attributes
+	 * @param releases           List of releases supported by this JAR file (for multi-release JAR files)
+	 * @param moduleInfo         Module information (for modular JAR files)
+	 * @param classDefs          Class definitions
+	 * @param resourceDefs       Resources
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
 	@SuppressWarnings("java:S107") // Methods should not have too many parameters
-	private JarFile(String fileName, long fileSize, String checksum, String coordinates, List<Artifact> artifacts, String classLoader, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
+	private JarFile(String fileName, long fileSize, String checksum, String coordinates, List<Artifact> artifacts, String classLoader, Map<String, String> manifestAttributes, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo");
@@ -140,6 +146,7 @@ public class JarFile {
 		this.coordinates = coordinates;
 		this.artifacts = artifacts;
 		this.classLoader = classLoader;
+		this.manifestAttributes = manifestAttributes;
 		this.releases = new TreeSet<>(releases);
 		this.moduleInfo = moduleInfo;
 		this.classDefs = new ArrayList<>(classDefs);
@@ -261,6 +268,10 @@ public class JarFile {
 		return classLoader;
 	}
 
+	public Map<String, String> getManifestAttributes() {
+		return manifestAttributes;
+	}
+
 	public boolean isMultiRelease() {
 		return !releases.isEmpty();
 	}
@@ -341,6 +352,7 @@ public class JarFile {
 		private String coordinates;
 		private List<Artifact> artifacts;
 		private String classLoader;
+		private Map<String, String> manifestAttributes;
 		private final Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
 		private final List<ClassDef> classDefs = new ArrayList<>();
@@ -372,6 +384,11 @@ public class JarFile {
 
 		public Builder withClassLoader(String classLoader) {
 			this.classLoader = classLoader;
+			return this;
+		}
+
+		public Builder withManifestAttributes(Map<String, String> manifestAttributes) {
+			this.manifestAttributes = manifestAttributes;
 			return this;
 		}
 
@@ -407,7 +424,7 @@ public class JarFile {
 		}
 
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, checksum, coordinates, artifacts, classLoader, releases, moduleInfo, classDefs, resourceDefs);
+			return new JarFile(fileName, fileSize, checksum, coordinates, artifacts, classLoader, manifestAttributes, releases, moduleInfo, classDefs, resourceDefs);
 		}
 
 	}

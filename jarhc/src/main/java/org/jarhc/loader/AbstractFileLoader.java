@@ -84,6 +84,9 @@ abstract class AbstractFileLoader {
 			moduleInfo.setRelease(-1);
 		}
 
+		// get manifest attributes
+		Map<String, String> manifestAttributes = archive.getManifestAttributes();
+
 		// for every entry in the JAR or JMOD file ...
 		while (true) {
 			ArchiveEntry entry = archive.getNextEntry();
@@ -265,6 +268,7 @@ abstract class AbstractFileLoader {
 				.withCoordinates(coordinates)
 				.withArtifacts(artifacts)
 				.withClassLoader(classLoader)
+				.withManifestAttributes(manifestAttributes)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
 				.withClassDefs(classDefs.values())

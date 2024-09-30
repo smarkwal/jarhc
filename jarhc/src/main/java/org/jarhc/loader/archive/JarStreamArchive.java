@@ -18,6 +18,8 @@ package org.jarhc.loader.archive;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -30,6 +32,7 @@ public class JarStreamArchive extends Archive {
 	private final JarInputStream jarInputStream;
 	private final boolean multiRelease;
 	private final String automaticModuleName;
+	private final Map<String, String> manifestAttributes;
 
 	public JarStreamArchive(InputStream inputStream) throws IOException {
 		this.checksumInputStream = new ChecksumInputStream(inputStream);
@@ -41,9 +44,23 @@ public class JarStreamArchive extends Archive {
 			String value = attributes.getValue("Multi-Release");
 			this.multiRelease = value != null && value.equals("true");
 			this.automaticModuleName = attributes.getValue("Automatic-Module-Name");
+
+			this.manifestAttributes = new LinkedHashMap<>();
+			for (Object key : attributes.keySet()) {
+				String attributeName = key.toString();
+				if (attributeName.equals("Multi-Release") || attributeName.equals("Automatic-Module-Name")) {
+					continue;
+				}
+				String attributeValue = attributes.getValue(attributeName);
+				manifestAttributes.put(attributeName, attributeValue);
+			}
+
+			// TODO: store information about OSGI Bundle in separate class OsgiBundleInfo
+
 		} else {
 			this.multiRelease = false;
 			this.automaticModuleName = null;
+			this.manifestAttributes = null;
 		}
 
 	}
@@ -66,6 +83,11 @@ public class JarStreamArchive extends Archive {
 	@Override
 	public String getAutomaticModuleName() {
 		return automaticModuleName;
+	}
+
+	@Override
+	public Map<String, String> getManifestAttributes() {
+		return manifestAttributes;
 	}
 
 	@Override
