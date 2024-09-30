@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class HtmlReportFormat implements ReportFormat {
 
-	private static final Pattern ARTIFACT_PATTERN = Pattern.compile("([a-zA-Z0-9\\-.]+):([a-zA-Z0-9\\-.]+):([a-zA-Z0-9\\-.]+)");
+	private static final Pattern ARTIFACT_PATTERN = Pattern.compile("([a-zA-Z][a-zA-Z0-9_\\-.]*):([a-zA-Z][a-zA-Z0-9_\\-.]*):([0-9][a-zA-Z0-9_\\-.]*)");
 	private static final String ARTIFACT_URL = "https://central.sonatype.com/artifact/%s/%s/%s"; // alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
 
 	private final StyleProvider styleProvider;
