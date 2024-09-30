@@ -41,7 +41,7 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jm", "JAR Manifests", JarManifestsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("m", "JPMS Modules", JpmsModulesAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("ob", "OSGI Bundles", OsgiBundlesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("ob", "OSGi Bundles", OSGiBundlesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));

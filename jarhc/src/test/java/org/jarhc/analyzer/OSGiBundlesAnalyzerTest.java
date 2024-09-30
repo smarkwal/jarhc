@@ -64,8 +64,8 @@ class OsgiBundlesAnalyzerTest {
 
 		// assert
 		assertNotNull(section);
-		assertEquals("OSGI Bundles", section.getTitle());
-		assertEquals("Information about OSGI Bundles.", section.getDescription());
+		assertEquals("OSGi Bundles", section.getTitle());
+		assertEquals("Information about OSGi Bundles.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 

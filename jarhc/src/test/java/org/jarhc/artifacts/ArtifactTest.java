@@ -160,7 +160,7 @@ class ArtifactTest {
 	}
 
 	@Test
-	void getFileName_forOSGIBundle() {
+	void getFileName_forOSGiBundle() {
 
 		// prepare
 		Artifact artifact = new Artifact("org.test", "core-bundle", "2.1.3", "bundle");

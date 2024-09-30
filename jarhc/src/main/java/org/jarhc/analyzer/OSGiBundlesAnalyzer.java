@@ -92,7 +92,7 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("OSGI Bundles", "Information about OSGI Bundles.");
+		ReportSection section = new ReportSection("OSGi Bundles", "Information about OSGi Bundles.");
 		section.add(table);
 		return section;
 	}
@@ -131,7 +131,6 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 
 		return table;
 	}
-
 
 	private String getName(JarFile jarFile) {
 		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
@@ -217,7 +216,6 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 		}
 		return StringUtils.joinLines(lines);
 	}
-
 
 	private String getCapabilities(JarFile jarFile) {
 		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();

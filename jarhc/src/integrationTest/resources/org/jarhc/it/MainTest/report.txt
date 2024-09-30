@@ -33,9 +33,9 @@ Artifact  | Module name | Definition | Automatic | Requires | Exports
 ----------+-------------+------------+-----------+----------+---------------
 slf4j-api | org.slf4j   | Manifest   | Yes       | -        | [all packages]
 
-OSGI Bundles
+OSGi Bundles
 ------------
-Information about OSGI Bundles.
+Information about OSGi Bundles.
 
 Artifact  | Name        | Version | Description       | Import Package               | Export Package                    | Capabilities | Others
 ----------+-------------+---------+-------------------+------------------------------+-----------------------------------+--------------+-----------------------------------------
