@@ -30,6 +30,10 @@ public class JarManifestsAnalyzer implements Analyzer {
 
 	private static final Set<String> knownAttributeNames = Set.of(
 
+			// Runtime
+			"Main-Class",
+			"Class-Path",
+
 			// Implementation
 			"Implementation-Title",
 			"Implementation-Version",
@@ -42,11 +46,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 			// Specification
 			"Specification-Title",
 			"Specification-Version",
-			"Specification-Vendor",
-
-			// Runtime
-			"Main-Class",
-			"Class-Path"
+			"Specification-Vendor"
 	);
 
 	@Override
@@ -61,7 +61,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("Artifact", "Implementation", "Specification", "Signature", "Runtime", "Others");
+		ReportTable table = new ReportTable("Artifact", "General", "Runtime", "Implementation", "Specification", "Signature");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -74,16 +74,43 @@ public class JarManifestsAnalyzer implements Analyzer {
 			}
 
 			String artifactName = jarFile.getArtifactName();
+			String general = getGeneral(jarFile);
+			String runtime = getRuntime(jarFile);
 			String implementation = getImplementation(jarFile);
 			String specification = getSpecification(jarFile);
 			String signature = getSignature(jarFile);
-			String runtime = getRuntime(jarFile);
-			String others = getOthers(jarFile);
 
-			table.addRow(artifactName, implementation, specification, signature, runtime, others);
+			table.addRow(artifactName, general, runtime, implementation, specification, signature);
 		}
 
 		return table;
+	}
+
+	private String getGeneral(JarFile jarFile) {
+		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
+		List<String> lines = new ArrayList<>();
+		for (String attributeName : manifestAttributes.keySet()) {
+			if (knownAttributeNames.contains(attributeName)) continue;
+			if (OsgiBundlesAnalyzer.MANIFEST_ATTRIBUTES.contains(attributeName)) continue;
+			String attributeValue = manifestAttributes.get(attributeName);
+			lines.add(attributeName + ": " + attributeValue);
+		}
+		return StringUtils.joinLines(lines);
+	}
+
+	private String getRuntime(JarFile jarFile) {
+		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
+		String mainClass = manifestAttributes.get("Main-Class");
+		String classPath = manifestAttributes.get("Class-Path");
+
+		List<String> lines = new ArrayList<>();
+		if (mainClass != null) {
+			lines.add("Main Class: " + mainClass); // TODO: validate Main-Class entry
+		}
+		if (classPath != null) {
+			lines.add("Class Path: " + classPath); // TODO: validate Class-Path entry
+		}
+		return StringUtils.joinLines(lines);
 	}
 
 	private String getImplementation(JarFile jarFile) {
@@ -143,33 +170,6 @@ public class JarManifestsAnalyzer implements Analyzer {
 	private String getSignature(JarFile jarFile) {
 		// TODO: implement
 		return "";
-	}
-
-	private String getRuntime(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String mainClass = manifestAttributes.get("Main-Class");
-		String classPath = manifestAttributes.get("Class-Path");
-
-		List<String> lines = new ArrayList<>();
-		if (mainClass != null) {
-			lines.add("Main Class: " + mainClass); // TODO: validate Main-Class entry
-		}
-		if (classPath != null) {
-			lines.add("Class Path: " + classPath); // TODO: validate Class-Path entry
-		}
-		return StringUtils.joinLines(lines);
-	}
-
-	private String getOthers(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		List<String> lines = new ArrayList<>();
-		for (String attributeName : manifestAttributes.keySet()) {
-			if (knownAttributeNames.contains(attributeName)) continue;
-			if (OsgiBundlesAnalyzer.MANIFEST_ATTRIBUTES.contains(attributeName)) continue;
-			String attributeValue = manifestAttributes.get(attributeName);
-			lines.add(attributeName + ": " + attributeValue);
-		}
-		return StringUtils.joinLines(lines);
 	}
 
 }

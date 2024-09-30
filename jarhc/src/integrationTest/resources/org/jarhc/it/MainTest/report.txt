@@ -15,15 +15,15 @@ JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF.
 
-Artifact  | Implementation  | Specification | Signature | Runtime | Others
-----------+-----------------+---------------+-----------+---------+----------------------------------
-slf4j-api | slf4j-api       |               |           |         | Manifest-Version: 1.0
-          | Version: 1.7.28 |               |           |         | Archiver-Version: Plexus Archiver
-          |                 |               |           |         | Created-By: Apache Maven
-          |                 |               |           |         | Built-By: ceki
-          |                 |               |           |         | Build-Jdk: 1.8.0_121
-          |                 |               |           |         | X-Compile-Source-JDK: 1.5
-          |                 |               |           |         | X-Compile-Target-JDK: 1.5
+Artifact  | General                           | Runtime | Implementation  | Specification | Signature
+----------+-----------------------------------+---------+-----------------+---------------+----------
+slf4j-api | Manifest-Version: 1.0             |         | slf4j-api       |               |
+          | Archiver-Version: Plexus Archiver |         | Version: 1.7.28 |               |
+          | Created-By: Apache Maven          |         |                 |               |
+          | Built-By: ceki                    |         |                 |               |
+          | Build-Jdk: 1.8.0_121              |         |                 |               |
+          | X-Compile-Source-JDK: 1.5         |         |                 |               |
+          | X-Compile-Target-JDK: 1.5         |         |                 |               |
 
 JPMS Modules
 ------------

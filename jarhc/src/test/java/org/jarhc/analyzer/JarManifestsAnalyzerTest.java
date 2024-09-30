@@ -72,18 +72,18 @@ class JarManifestsAnalyzerTest {
 		ReportTable table = (ReportTable) section.getContent().get(0);
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "Artifact", "Implementation", "Specification", "Signature", "Runtime", "Others");
+		assertValuesEquals(columns, "Artifact", "General", "Runtime", "Implementation", "Specification", "Signature");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-		assertValuesEquals(rows.get(0), "a", "", "", "", "", "Manifest-Version: 1.0");
+		assertValuesEquals(rows.get(0), "a", "Manifest-Version: 1.0", "", "", "", "");
 		assertValuesEquals(rows.get(1),
 				"b",
+				joinLines("Manifest-Version: 1.0", "Created-By: Apache Maven Bundle Plugin 5.1.8", "Build-Jdk-Spec: 1.8", "Build-Jdk: 1.8.0_202", "X-Custom: Hello World"),
+				joinLines("Main Class: b.Main", "Class Path: a.jar"),
 				joinLines("B Impl", "Version: 1.2.3", "Build: 1.2.3-b271", "Build ID: b271", "Vendor: B Corp", "Vendor ID: b-corp", "URL: https://b-corp.example.com"),
 				joinLines("B Spec", "Version: 1.0.0", "Vendor: C Corp R&D"),
-				"",
-				joinLines("Main Class: b.Main", "Class Path: a.jar"),
-				joinLines("Manifest-Version: 1.0", "Created-By: Apache Maven Bundle Plugin 5.1.8", "Build-Jdk-Spec: 1.8", "Build-Jdk: 1.8.0_202", "X-Custom: Hello World")
+				""
 		);
 	}
 

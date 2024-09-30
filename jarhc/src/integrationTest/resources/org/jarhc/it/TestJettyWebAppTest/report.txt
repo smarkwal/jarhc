@@ -20,71 +20,71 @@ JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF.
 
-Artifact           | Implementation                | Specification | Signature | Runtime | Others
--------------------+-------------------------------+---------------+-----------+---------+--------------------------------------------------
-jetty-continuation | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565732367682
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-jetty-http         | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565731765193
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-jetty-io           | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565731748643
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-jetty-servlets     | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565732386824
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-jetty-util         | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565731699860
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-websocket-api      | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565732798462
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
-websocket-servlet  | Version: 9.4.20.v20190813     |               |           |         | Manifest-Version: 1.0
-                   | Vendor: Eclipse Jetty Project |               |           |         | Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Build-Jdk-Spec: 11
-                   |                               |               |           |         | url: http://www.eclipse.org/jetty
-                   |                               |               |           |         | Bnd-LastModified: 1565732844424
-                   |                               |               |           |         | Build-Jdk: 11.0.4
-                   |                               |               |           |         | Built-By: joakim
-                   |                               |               |           |         | Originally-Created-By: Apache Maven Bundle Plugin
-                   |                               |               |           |         | Tool: Bnd-3.5.0.201709291849
+Artifact           | General                                           | Runtime | Implementation                | Specification | Signature
+-------------------+---------------------------------------------------+---------+-------------------------------+---------------+----------
+jetty-continuation | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565732367682                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+jetty-http         | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565731765193                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+jetty-io           | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565731748643                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+jetty-servlets     | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565732386824                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+jetty-util         | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565731699860                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+websocket-api      | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565732798462                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
+websocket-servlet  | Manifest-Version: 1.0                             |         | Version: 9.4.20.v20190813     |               |
+                   | Created-By: Apache Maven Bundle Plugin            |         | Vendor: Eclipse Jetty Project |               |
+                   | Build-Jdk-Spec: 11                                |         |                               |               |
+                   | url: http://www.eclipse.org/jetty                 |         |                               |               |
+                   | Bnd-LastModified: 1565732844424                   |         |                               |               |
+                   | Build-Jdk: 11.0.4                                 |         |                               |               |
+                   | Built-By: joakim                                  |         |                               |               |
+                   | Originally-Created-By: Apache Maven Bundle Plugin |         |                               |               |
+                   | Tool: Bnd-3.5.0.201709291849                      |         |                               |               |
 
 JPMS Modules
 ------------

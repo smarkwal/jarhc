@@ -5,14 +5,14 @@ JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF.
 
-Artifact     | Implementation                                                                                  | Specification | Signature | Runtime | Others
--------------+-------------------------------------------------------------------------------------------------+---------------+-----------+---------+------------------------------------------------------------------------------------------------------------------------------------------
-asm          | ASM, a very small and fast Java bytecode manipulation framework                                 |               |           |         | Manifest-Version: 1.0
-             | Version: 7.0                                                                                    |               |           |         |
-asm-analysis | Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework     |               |           |         | Manifest-Version: 1.0
-             | Version: 7.0                                                                                    |               |           |         | Module-Requires: org.objectweb.asm.tree;transitive=true
-asm-commons  | Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework |               |           |         | Manifest-Version: 1.0
-             | Version: 7.0                                                                                    |               |           |         | Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true
-asm-tree     | Tree API of ASM, a very small and fast Java bytecode manipulation framework                     |               |           |         | Manifest-Version: 1.0
-             | Version: 7.0                                                                                    |               |           |         | Module-Requires: org.objectweb.asm;transitive=true
+Artifact     | General                                                                                                                                   | Runtime | Implementation                                                                                  | Specification | Signature
+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------------------------------+---------------+----------
+asm          | Manifest-Version: 1.0                                                                                                                     |         | ASM, a very small and fast Java bytecode manipulation framework                                 |               |
+             |                                                                                                                                           |         | Version: 7.0                                                                                    |               |
+asm-analysis | Manifest-Version: 1.0                                                                                                                     |         | Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework     |               |
+             | Module-Requires: org.objectweb.asm.tree;transitive=true                                                                                   |         | Version: 7.0                                                                                    |               |
+asm-commons  | Manifest-Version: 1.0                                                                                                                     |         | Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework |               |
+             | Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true |         | Version: 7.0                                                                                    |               |
+asm-tree     | Manifest-Version: 1.0                                                                                                                     |         | Tree API of ASM, a very small and fast Java bytecode manipulation framework                     |               |
+             | Module-Requires: org.objectweb.asm;transitive=true                                                                                        |         | Version: 7.0                                                                                    |               |
 

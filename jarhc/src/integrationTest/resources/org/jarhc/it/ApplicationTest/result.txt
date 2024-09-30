@@ -22,10 +22,10 @@ JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF.
 
-Artifact | Implementation | Specification | Signature | Runtime | Others
----------+----------------+---------------+-----------+---------+-----------------------------------
-a        |                |               |           |         | Manifest-Version: 1.0
-         |                |               |           |         | Created-By: 9 (Oracle Corporation)
+Artifact | General                            | Runtime | Implementation | Specification | Signature
+---------+------------------------------------+---------+----------------+---------------+----------
+a        | Manifest-Version: 1.0              |         |                |               |
+         | Created-By: 9 (Oracle Corporation) |         |                |               |
 
 JPMS Modules
 ------------
