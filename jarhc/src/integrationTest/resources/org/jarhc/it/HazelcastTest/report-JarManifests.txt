@@ -11,6 +11,7 @@ hazelcast        | Manifest-Version: 1.0                             | Main Clas
                  | Archiver-Version: Plexus Archiver                 |                                                   | Version: 3.11.2          | Version: 3.11.2         |
                  | Built-By: ubuntu                                  |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
                  | Bnd-LastModified: 1550306249136                   |                                                   | Vendor ID: com.hazelcast |                         |
+                 | Automatic-Module-Name: com.hazelcast.core         |                                                   |                          |                         |
                  | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
                  | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |
@@ -19,6 +20,7 @@ hazelcast-client | Manifest-Version: 1.0                             |          
                  | Archiver-Version: Plexus Archiver                 |                                                   | Version: 3.11.2          | Version: 3.11.2         |
                  | Built-By: ubuntu                                  |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
                  | Bnd-LastModified: 1550306325023                   |                                                   | Vendor ID: com.hazelcast |                         |
+                 | Automatic-Module-Name: com.hazelcast.client       |                                                   |                          |                         |
                  | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
                  | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |

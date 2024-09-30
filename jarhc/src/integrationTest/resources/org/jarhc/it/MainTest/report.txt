@@ -24,6 +24,7 @@ slf4j-api | Manifest-Version: 1.0             |         | slf4j-api       |     
           | Build-Jdk: 1.8.0_121              |         |                 |               |
           | X-Compile-Source-JDK: 1.5         |         |                 |               |
           | X-Compile-Target-JDK: 1.5         |         |                 |               |
+          | Automatic-Module-Name: org.slf4j  |         |                 |               |
 
 JPMS Modules
 ------------

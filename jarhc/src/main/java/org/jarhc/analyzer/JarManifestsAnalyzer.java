@@ -22,13 +22,14 @@ import java.util.Map;
 import java.util.Set;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 
 public class JarManifestsAnalyzer implements Analyzer {
 
-	private static final Set<String> knownAttributeNames = Set.of(
+	private static final Set<String> SPECIAL_ATTRIBUTE_NAMES = Set.of(
 
 			// Runtime
 			"Main-Class",
@@ -90,8 +91,8 @@ public class JarManifestsAnalyzer implements Analyzer {
 		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
 		List<String> lines = new ArrayList<>();
 		for (String attributeName : manifestAttributes.keySet()) {
-			if (knownAttributeNames.contains(attributeName)) continue;
-			if (OsgiBundlesAnalyzer.MANIFEST_ATTRIBUTES.contains(attributeName)) continue;
+			if (SPECIAL_ATTRIBUTE_NAMES.contains(attributeName)) continue;
+			if (OSGiBundleInfo.isBundleHeader(attributeName)) continue;
 			String attributeValue = manifestAttributes.get(attributeName);
 			lines.add(attributeName + ": " + attributeValue);
 		}

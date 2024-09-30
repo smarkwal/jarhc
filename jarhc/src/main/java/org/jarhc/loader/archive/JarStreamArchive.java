@@ -24,6 +24,7 @@ import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.utils.ByteBuffer;
 
 public class JarStreamArchive extends Archive {
@@ -33,34 +34,49 @@ public class JarStreamArchive extends Archive {
 	private final boolean multiRelease;
 	private final String automaticModuleName;
 	private final Map<String, String> manifestAttributes;
+	private final OSGiBundleInfo osgiBundleInfo;
 
 	public JarStreamArchive(InputStream inputStream) throws IOException {
 		this.checksumInputStream = new ChecksumInputStream(inputStream);
 		this.jarInputStream = new JarInputStream(checksumInputStream, false);
 
+		// if JAR file contains a manifest ...
 		Manifest manifest = jarInputStream.getManifest();
 		if (manifest != null) {
+
+			// get manifest attributes
 			Attributes attributes = manifest.getMainAttributes();
+
+			// check Multi-Release and Automatic-Module-Name attributes
 			String value = attributes.getValue("Multi-Release");
 			this.multiRelease = value != null && value.equals("true");
 			this.automaticModuleName = attributes.getValue("Automatic-Module-Name");
 
+			// read other manifest attributes and separate OSGi Bundle headers
 			this.manifestAttributes = new LinkedHashMap<>();
+			Map<String, String> osgiBundleHeaders = new LinkedHashMap<>();
 			for (Object key : attributes.keySet()) {
 				String attributeName = key.toString();
-				if (attributeName.equals("Multi-Release") || attributeName.equals("Automatic-Module-Name")) {
-					continue;
-				}
 				String attributeValue = attributes.getValue(attributeName);
-				manifestAttributes.put(attributeName, attributeValue);
+				if (OSGiBundleInfo.isBundleHeader(attributeName)) {
+					osgiBundleHeaders.put(attributeName, attributeValue);
+				} else {
+					manifestAttributes.put(attributeName, attributeValue);
+				}
 			}
 
-			// TODO: store information about OSGI Bundle in separate class OsgiBundleInfo
+			// create OSGi Bundle info
+			if (!osgiBundleHeaders.isEmpty()) {
+				this.osgiBundleInfo = new OSGiBundleInfo(osgiBundleHeaders);
+			} else {
+				this.osgiBundleInfo = null;
+			}
 
 		} else {
 			this.multiRelease = false;
 			this.automaticModuleName = null;
 			this.manifestAttributes = null;
+			this.osgiBundleInfo = null;
 		}
 
 	}
@@ -88,6 +104,11 @@ public class JarStreamArchive extends Archive {
 	@Override
 	public Map<String, String> getManifestAttributes() {
 		return manifestAttributes;
+	}
+
+	@Override
+	public OSGiBundleInfo getOSGiBundleInfo() {
+		return osgiBundleInfo;
 	}
 
 	@Override

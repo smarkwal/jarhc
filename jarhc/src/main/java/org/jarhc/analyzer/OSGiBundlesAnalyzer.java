@@ -18,74 +18,14 @@ package org.jarhc.analyzer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
 
-public class OsgiBundlesAnalyzer implements Analyzer {
-
-	// list of OSGI Bundle manifest attributes:
-	// https://docs.osgi.org/reference/bundle-headers.html
-	// https://docs.osgi.org/specification/osgi.core/8.0.0/framework.module.html#i2654895
-
-	public static final Set<String> MANIFEST_ATTRIBUTES = Set.of(
-			// Name
-			"Bundle-Name",
-			"Bundle-SymbolicName",
-
-			// Version
-			"Bundle-Version",
-
-			// Description
-			"Bundle-Description",
-			"Bundle-Vendor",
-			"Bundle-License",
-			"Bundle-DocURL",
-
-			// Import Package
-			"Import-Package",
-			"DynamicImport-Package",
-
-			// Export Package
-			"Export-Package",
-
-			// Capabilities
-			"Require-Capability",
-			"Provide-Capability",
-
-			// Others
-			// TODO: re-distribute these attributes to more specific columns
-			"Bundle-ActivationPolicy",
-			"Bundle-Activator",
-			"Bundle-Category",
-			"Bundle-Classpath",
-			"Bundle-ContactAddress",
-			"Bundle-Copyright",
-			"Bundle-Icon",
-			"Bundle-Localization",
-			"Bundle-ManifestVersion",
-			"Bundle-NativeCode",
-			"Bundle-RequiredExecutionEnvironment",
-			"Bundle-UpdateLocation",
-			"Export-Service",
-			"Fragment-Host",
-			"Ignore-Package",
-			"Import-Bundle",
-			"Import-Library",
-			"Import-Service",
-			"Include-Resource",
-			"Module-Scope",
-			"Module-Type",
-			"Private-Package",
-			"Require-Bundle",
-			"Web-ContextPath",
-			"Web-DispatcherServletUrlPatterns",
-			"Web-FilterMappings"
-	);
+public class OSGiBundlesAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -105,15 +45,9 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			// ignore JAR files without manifest
-			Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-			if (manifestAttributes == null) {
-				continue;
-			}
-
-			// ignore JAR files without OSGI Bundle information
-			String bundleName = manifestAttributes.get("Bundle-Name");
-			if (bundleName == null) {
+			// ignore JAR files without OSGi Bundle information
+			OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+			if (bundleInfo == null) {
 				continue;
 			}
 
@@ -133,9 +67,9 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getName(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String name = manifestAttributes.get("Bundle-Name");
-		String symbolicName = manifestAttributes.get("Bundle-SymbolicName");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String name = bundleInfo.getBundleName();
+		String symbolicName = bundleInfo.getBundleSymbolicName();
 
 		if (name != null && symbolicName != null) {
 			if (name.equals(symbolicName)) {
@@ -153,16 +87,16 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getVersion(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		return manifestAttributes.get("Bundle-Version");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		return bundleInfo.getBundleVersion();
 	}
 
 	private String getDescription(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String description = manifestAttributes.get("Bundle-Description");
-		String vendor = manifestAttributes.get("Bundle-Vendor");
-		String license = manifestAttributes.get("Bundle-License");
-		String docUrl = manifestAttributes.get("Bundle-DocURL");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String description = bundleInfo.getBundleDescription();
+		String vendor = bundleInfo.getBundleVendor();
+		String license = bundleInfo.getBundleLicense();
+		String docUrl = bundleInfo.getBundleDocURL();
 
 		List<String> lines = new ArrayList<>();
 		if (description != null) {
@@ -182,9 +116,9 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getImportPackage(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String importPackage = manifestAttributes.get("Import-Package");
-		String dynamicImportPackage = manifestAttributes.get("DynamicImport-Package");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String importPackage = bundleInfo.getImportPackage();
+		String dynamicImportPackage = bundleInfo.getDynamicImportPackage();
 
 		List<String> lines = new ArrayList<>();
 		if (importPackage != null) {
@@ -206,8 +140,8 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getExportPackage(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String exportPackage = manifestAttributes.get("Export-Package");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String exportPackage = bundleInfo.getExportPackage();
 
 		List<String> lines = new ArrayList<>();
 		if (exportPackage != null) {
@@ -218,9 +152,9 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getCapabilities(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String requireCapability = manifestAttributes.get("Require-Capability");
-		String provideCapability = manifestAttributes.get("Provide-Capability");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String requireCapability = bundleInfo.getRequireCapability();
+		String provideCapability = bundleInfo.getProvideCapability();
 
 		List<String> lines = new ArrayList<>();
 		if (requireCapability != null) {
@@ -233,13 +167,13 @@ public class OsgiBundlesAnalyzer implements Analyzer {
 	}
 
 	private String getOthers(JarFile jarFile) {
-		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
-		String bundleActivator = manifestAttributes.get("Bundle-Activator");
-		String bundleActivationPolicy = manifestAttributes.get("Bundle-ActivationPolicy");
-		String bundleManifestVersion = manifestAttributes.get("Bundle-ManifestVersion");
-		String privatePackage = manifestAttributes.get("Private-Package");
-		String includeResource = manifestAttributes.get("Include-Resource");
-		String requiredExecutionEnvironment = manifestAttributes.get("Bundle-RequiredExecutionEnvironment");
+		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
+		String bundleActivator = bundleInfo.getBundleActivator();
+		String bundleActivationPolicy = bundleInfo.getBundleActivationPolicy();
+		String bundleManifestVersion = bundleInfo.getBundleManifestVersion();
+		String privatePackage = bundleInfo.getPrivatePackage();
+		String includeResource = bundleInfo.getIncludeResource();
+		String requiredExecutionEnvironment = bundleInfo.getBundleRequiredExecutionEnvironment();
 
 		List<String> lines = new ArrayList<>();
 		if (bundleActivator != null) {

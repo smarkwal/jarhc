@@ -30,6 +30,7 @@ import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.utils.DigestUtils;
 
@@ -48,6 +49,7 @@ public class ClasspathBuilder {
 	private Map<String, String> manifestAttributes;
 	private Set<Integer> releases;
 	private ModuleInfo moduleInfo;
+	private OSGiBundleInfo osGiBundleInfo;
 	private List<ClassDef> classDefs;
 	private List<ResourceDef> resourceDefs;
 
@@ -96,6 +98,11 @@ public class ClasspathBuilder {
 	public ClasspathBuilder addModuleInfo(ModuleInfo moduleInfo) {
 		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo == null");
 		this.moduleInfo = moduleInfo;
+		return this;
+	}
+
+	public ClasspathBuilder addOSGiBundleInfo(OSGiBundleInfo osGiBundleInfo) {
+		this.osGiBundleInfo = osGiBundleInfo;
 		return this;
 	}
 
@@ -158,6 +165,7 @@ public class ClasspathBuilder {
 		this.manifestAttributes = null;
 		this.releases = new TreeSet<>();
 		this.moduleInfo = ModuleInfo.UNNAMED;
+		this.osGiBundleInfo = null;
 		this.classDefs = new ArrayList<>();
 		this.resourceDefs = new ArrayList<>();
 	}
@@ -173,6 +181,7 @@ public class ClasspathBuilder {
 					.withManifestAttributes(manifestAttributes)
 					.withReleases(releases)
 					.withModuleInfo(moduleInfo)
+					.withOSGiBundleInfo(osGiBundleInfo)
 					.withClassDefs(classDefs)
 					.withResourceDefs(resourceDefs)
 					.build();

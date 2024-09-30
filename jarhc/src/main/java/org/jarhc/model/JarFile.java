@@ -94,6 +94,11 @@ public class JarFile {
 	private final ModuleInfo moduleInfo;
 
 	/**
+	 * OSGi bundle information
+	 */
+	private final OSGiBundleInfo osgiBundleInfo;
+
+	/**
 	 * List of class definitions for classes found in the JAR file.
 	 */
 	private final List<ClassDef> classDefs;
@@ -130,12 +135,13 @@ public class JarFile {
 	 * @param manifestAttributes Manifest attributes
 	 * @param releases           List of releases supported by this JAR file (for multi-release JAR files)
 	 * @param moduleInfo         Module information (for modular JAR files)
+	 * @param osgiBundleInfo     OSGi Bundle information
 	 * @param classDefs          Class definitions
 	 * @param resourceDefs       Resources
 	 * @throws IllegalArgumentException If <code>fileName</code> or <code>classDefs</code> is <code>null</code>.
 	 */
 	@SuppressWarnings("java:S107") // Methods should not have too many parameters
-	private JarFile(String fileName, long fileSize, String checksum, String coordinates, List<Artifact> artifacts, String classLoader, Map<String, String> manifestAttributes, Set<Integer> releases, ModuleInfo moduleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
+	private JarFile(String fileName, long fileSize, String checksum, String coordinates, List<Artifact> artifacts, String classLoader, Map<String, String> manifestAttributes, Set<Integer> releases, ModuleInfo moduleInfo, OSGiBundleInfo osgiBundleInfo, List<ClassDef> classDefs, List<ResourceDef> resourceDefs) {
 		if (fileName == null) throw new IllegalArgumentException("fileName");
 		if (releases == null) throw new IllegalArgumentException("releases");
 		if (moduleInfo == null) throw new IllegalArgumentException("moduleInfo");
@@ -149,6 +155,7 @@ public class JarFile {
 		this.manifestAttributes = manifestAttributes;
 		this.releases = new TreeSet<>(releases);
 		this.moduleInfo = moduleInfo;
+		this.osgiBundleInfo = osgiBundleInfo;
 		this.classDefs = new ArrayList<>(classDefs);
 		this.resourceDefs = new ArrayList<>(resourceDefs);
 
@@ -284,6 +291,10 @@ public class JarFile {
 		return moduleInfo;
 	}
 
+	public OSGiBundleInfo getOSGiBundleInfo() {
+		return osgiBundleInfo;
+	}
+
 	/**
 	 * Check if this JAR file contains Java classes from the given package.
 	 *
@@ -355,6 +366,7 @@ public class JarFile {
 		private Map<String, String> manifestAttributes;
 		private final Set<Integer> releases = new TreeSet<>();
 		private ModuleInfo moduleInfo = ModuleInfo.UNNAMED;
+		private OSGiBundleInfo osgiBundleInfo;
 		private final List<ClassDef> classDefs = new ArrayList<>();
 		private final List<ResourceDef> resourceDefs = new ArrayList<>();
 
@@ -408,6 +420,11 @@ public class JarFile {
 			return this;
 		}
 
+		public Builder withOSGiBundleInfo(OSGiBundleInfo osgiBundleInfo) {
+			this.osgiBundleInfo = osgiBundleInfo;
+			return this;
+		}
+
 		public Builder withClassDef(ClassDef classDef) {
 			this.classDefs.add(classDef);
 			return this;
@@ -424,7 +441,7 @@ public class JarFile {
 		}
 
 		public JarFile build() {
-			return new JarFile(fileName, fileSize, checksum, coordinates, artifacts, classLoader, manifestAttributes, releases, moduleInfo, classDefs, resourceDefs);
+			return new JarFile(fileName, fileSize, checksum, coordinates, artifacts, classLoader, manifestAttributes, releases, moduleInfo, osgiBundleInfo, classDefs, resourceDefs);
 		}
 
 	}

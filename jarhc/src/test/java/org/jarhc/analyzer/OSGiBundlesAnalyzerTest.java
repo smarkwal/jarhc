@@ -22,44 +22,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.jarhc.model.Classpath;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
 
-class OsgiBundlesAnalyzerTest {
+class OSGiBundlesAnalyzerTest {
 
 	@Test
 	void test_analyze() {
 
 		// prepare
+		Map<String, String> bundleHeaders = new LinkedHashMap<>();
+		bundleHeaders.put("Bundle-Name", "bundle-name-b");
+		bundleHeaders.put("Bundle-SymbolicName", "bundle-symbolic-name-b");
+		bundleHeaders.put("Bundle-Version", "1.2.3");
+		bundleHeaders.put("Bundle-Description", "bundle-description-b");
+		bundleHeaders.put("Bundle-Vendor", "bundle-vendor-b");
+		bundleHeaders.put("Bundle-License", "bundle-license-b");
+		bundleHeaders.put("Bundle-DocURL", "bundle-doc-url-b");
+		bundleHeaders.put("Import-Package", "a,java.base");
+		bundleHeaders.put("DynamicImport-Package", "dynamic-package");
+		bundleHeaders.put("Export-Package", "b.x,b.y");
+		bundleHeaders.put("Require-Capability", "capability-1");
+		bundleHeaders.put("Provide-Capability", "capability-2");
+		bundleHeaders.put("Bundle-Activator", "bundle-activator");
+		bundleHeaders.put("Bundle-ActivationPolicy", "lazy");
+		bundleHeaders.put("Private-Package", "b.p,b.q");
+		bundleHeaders.put("Include-Resource", "resource-b1,resource-b-2");
+		bundleHeaders.put("Bundle-RequiredExecutionEnvironment", "JRE-1.8");
+		bundleHeaders.put("Bundle-ManifestVersion", "2");
 		Classpath classpath = ClasspathBuilder.create(null)
 				.addJarFile("a.jar")
 				.addJarFile("b.jar")
-				.addManifestAttribute("Bundle-Name", "bundle-name-b")
-				.addManifestAttribute("Bundle-SymbolicName", "bundle-symbolic-name-b")
-				.addManifestAttribute("Bundle-Version", "1.2.3")
-				.addManifestAttribute("Bundle-Description", "bundle-description-b")
-				.addManifestAttribute("Bundle-Vendor", "bundle-vendor-b")
-				.addManifestAttribute("Bundle-License", "bundle-license-b")
-				.addManifestAttribute("Bundle-DocURL", "bundle-doc-url-b")
-				.addManifestAttribute("Import-Package", "a,java.base")
-				.addManifestAttribute("DynamicImport-Package", "dynamic-package")
-				.addManifestAttribute("Export-Package", "b.x,b.y")
-				.addManifestAttribute("Require-Capability", "capability-1")
-				.addManifestAttribute("Provide-Capability", "capability-2")
-				.addManifestAttribute("Bundle-Activator", "bundle-activator")
-				.addManifestAttribute("Bundle-ActivationPolicy", "lazy")
-				.addManifestAttribute("Private-Package", "b.p,b.q")
-				.addManifestAttribute("Include-Resource", "resource-b1,resource-b-2")
-				.addManifestAttribute("Bundle-RequiredExecutionEnvironment", "JRE-1.8")
-				.addManifestAttribute("Bundle-ManifestVersion", "2")
+				.addOSGiBundleInfo(new OSGiBundleInfo(bundleHeaders))
 				.build();
 
 		// test
-		OsgiBundlesAnalyzer analyzer = new OsgiBundlesAnalyzer();
+		OSGiBundlesAnalyzer analyzer = new OSGiBundlesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert

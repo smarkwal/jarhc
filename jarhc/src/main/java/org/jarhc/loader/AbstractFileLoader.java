@@ -34,6 +34,7 @@ import org.jarhc.loader.archive.JarStreamArchive;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
+import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.model.ResourceDef;
 import org.jarhc.utils.ByteBuffer;
 import org.jarhc.utils.DigestUtils;
@@ -86,6 +87,9 @@ abstract class AbstractFileLoader {
 
 		// get manifest attributes
 		Map<String, String> manifestAttributes = archive.getManifestAttributes();
+
+		// get OSGi Bundle information
+		OSGiBundleInfo osgiBundleInfo = archive.getOSGiBundleInfo();
 
 		// for every entry in the JAR or JMOD file ...
 		while (true) {
@@ -271,6 +275,7 @@ abstract class AbstractFileLoader {
 				.withManifestAttributes(manifestAttributes)
 				.withReleases(releases)
 				.withModuleInfo(moduleInfo)
+				.withOSGiBundleInfo(osgiBundleInfo)
 				.withClassDefs(classDefs.values())
 				.withResourceDefs(resourceDefs.values())
 				.build();
