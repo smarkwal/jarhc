@@ -1,0 +1,34 @@
+JAR Health Check Report
+=======================
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact               | Implementation         | Specification | Signature | Runtime | Others
+-----------------------+------------------------+---------------+-----------+---------+-------------------------------------------
+spring-aop             | spring-aop             |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-beans           | spring-beans           |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-context         | spring-context         |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-context-support | spring-context-support |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-core            | spring-core            |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-expression      | spring-expression      |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-jdbc            | spring-jdbc            |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-jms             | spring-jms             |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-messaging       | spring-messaging       |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-orm             | spring-orm             |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-tx              | spring-tx              |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+spring-web             | spring-web             |               |           |         | Manifest-Version: 1.0
+                       | Version: 5.1.3.RELEASE |               |           |         | Created-By: 1.8.0_144 (Oracle Corporation)
+

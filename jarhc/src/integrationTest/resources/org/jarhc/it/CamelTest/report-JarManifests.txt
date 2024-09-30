@@ -1,0 +1,73 @@
+JAR Health Check Report
+=======================
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact     | Implementation                         | Specification                          | Signature | Runtime | Others
+-------------+----------------------------------------+----------------------------------------+-----------+---------+---------------------------------------
+camel-core   | Camel :: Core                          | Camel :: Core                          |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        | Version: 2.17.7                        |           |         | Bnd-LastModified: 1494745061832
+             | Vendor: The Apache Software Foundation | Vendor: The Apache Software Foundation |           |         | Build-Jdk: 1.7.0_75
+             | Vendor ID: org.apache.camel            |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-core=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-jdbc   | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494748950524
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-jdbc=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-jms    | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494746246725
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-jms=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-jmx    | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494749100362
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-jmx=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-jxpath | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494745759121
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-jxpath=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-ldap   | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494749453866
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-ldap=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-mail   | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494749684903
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-mail=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-soap   | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494751202688
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-soap=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+camel-spring | Apache Camel                           |                                        |           |         | Manifest-Version: 1.0
+             | Version: 2.17.7                        |                                        |           |         | Bnd-LastModified: 1494745342599
+             |                                        |                                        |           |         | Build-Jdk: 1.7.0_75
+             |                                        |                                        |           |         | Built-By: vagrant
+             |                                        |                                        |           |         | Created-By: Apache Maven Bundle Plugin
+             |                                        |                                        |           |         | Karaf-Info: Camel;camel-spring=2.17.7
+             |                                        |                                        |           |         | Tool: Bnd-1.50.0
+

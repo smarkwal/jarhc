@@ -1,0 +1,24 @@
+JAR Health Check Report
+=======================
+
+OSGI Bundles
+------------
+Information about OSGI Bundles.
+
+Artifact     | Name                            | Version | Description                 | Import Package                            | Export Package                                                         | Capabilities | Others
+-------------+---------------------------------+---------+-----------------------------+-------------------------------------------+------------------------------------------------------------------------+--------------+-----------------------------------------
+asm          | org.objectweb.asm               | 7.0.0   | Doc URL: http://asm.ow2.org |                                           | org.objectweb.asm;version="7.0"                                        |              | Manifest Version: 2
+             |                                 |         |                             |                                           | org.objectweb.asm.signature;version="7.0"                              |              | Required Execution Environment: J2SE-1.5
+asm-analysis | org.objectweb.asm.tree.analysis | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0           | org.objectweb.asm.tree.analysis;version="7.0";uses:="org.objectweb.asm |              | Manifest Version: 2
+             |                                 |         |                             | 8)"                                       | org.objectweb.asm.tree"                                                |              | Required Execution Environment: J2SE-1.5
+             |                                 |         |                             | org.objectweb.asm.tree;version="[7.0      |                                                                        |              |
+             |                                 |         |                             | 8)"                                       |                                                                        |              |
+asm-commons  | org.objectweb.asm.commons       | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0           | org.objectweb.asm.commons;version="7.0";uses:="org.objectweb.asm       |              | Manifest Version: 2
+             |                                 |         |                             | 8)"                                       | org.objectweb.asm.signature                                            |              | Required Execution Environment: J2SE-1.5
+             |                                 |         |                             | org.objectweb.asm.signature;version="[7.0 | org.objectweb.asm.tree"                                                |              |
+             |                                 |         |                             | 8)"                                       |                                                                        |              |
+             |                                 |         |                             | org.objectweb.asm.tree;version="[7.0      |                                                                        |              |
+             |                                 |         |                             | 8)"                                       |                                                                        |              |
+asm-tree     | org.objectweb.asm.tree          | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0           | org.objectweb.asm.tree;version="7.0";uses:="org.objectweb.asm"         |              | Manifest Version: 2
+             |                                 |         |                             | 8)"                                       |                                                                        |              | Required Execution Environment: J2SE-1.5
+

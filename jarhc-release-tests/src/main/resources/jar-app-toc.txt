@@ -2129,7 +2129,7 @@ org/eclipse/aether/version/VersionScheme.class | size=522 | crc=2202234929
 org/jarhc/analyzer/Analysis.class | size=2895 | crc=3164599121
 org/jarhc/analyzer/Analyzer.class | size=198 | crc=378538728
 org/jarhc/analyzer/AnalyzerDescription.class | size=1108 | crc=1926440217
-org/jarhc/analyzer/AnalyzerRegistry.class | size=4884 | crc=1168700356
+org/jarhc/analyzer/AnalyzerRegistry.class | size=5089 | crc=868170287
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$FieldSearchResult.class | size=930 | crc=1511570915
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$MemberSearchResult.class | size=2060 | crc=2030665962
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$MethodSearchResult.class | size=935 | crc=2763156684
@@ -2144,8 +2144,10 @@ org/jarhc/analyzer/DependenciesAnalyzer.class | size=8618 | crc=701929250
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13379 | crc=1858037799
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6129 | crc=1010706684
 org/jarhc/analyzer/JarFilesAnalyzer.class | size=5059 | crc=1956150710
+org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6001 | crc=3601098392
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1840 | crc=1334068663
-org/jarhc/analyzer/ModulesAnalyzer.class | size=5557 | crc=4283053505
+org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5574 | crc=2498617022
+org/jarhc/analyzer/OsgiBundlesAnalyzer.class | size=8840 | crc=4119561770
 org/jarhc/analyzer/PackagesAnalyzer.class | size=11584 | crc=2760748433
 org/jarhc/app/Application.class | size=13239 | crc=1387380830
 org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
@@ -2175,12 +2177,12 @@ org/jarhc/java/ClassLoader$Callback.class | size=315 | crc=2487640519
 org/jarhc/java/ClassLoader$NoOpCallback.class | size=872 | crc=1160428244
 org/jarhc/java/ClassLoader.class | size=7810 | crc=3924775790
 org/jarhc/java/ClassLoaderStrategy.class | size=1042 | crc=189508992
-org/jarhc/loader/AbstractFileLoader.class | size=9459 | crc=4242287345
-org/jarhc/loader/archive/Archive.class | size=1759 | crc=2942638871
+org/jarhc/loader/AbstractFileLoader.class | size=9741 | crc=2918106572
+org/jarhc/loader/archive/Archive.class | size=1939 | crc=1531691371
 org/jarhc/loader/archive/ArchiveEntry.class | size=270 | crc=104578764
 org/jarhc/loader/archive/ChecksumInputStream.class | size=1865 | crc=3336983826
-org/jarhc/loader/archive/JarStreamArchive$JarArchiveEntry.class | size=1177 | crc=2120302687
-org/jarhc/loader/archive/JarStreamArchive.class | size=2664 | crc=2723181109
+org/jarhc/loader/archive/JarStreamArchive$JarArchiveEntry.class | size=1177 | crc=825093168
+org/jarhc/loader/archive/JarStreamArchive.class | size=3583 | crc=208631204
 org/jarhc/loader/archive/ZipFileArchive$ZipArchiveEntry.class | size=1591 | crc=228538971
 org/jarhc/loader/archive/ZipFileArchive.class | size=1825 | crc=4189731070
 org/jarhc/loader/archive/ZipStreamArchive$ZipArchiveEntry.class | size=1177 | crc=2115024636
@@ -2211,8 +2213,8 @@ org/jarhc/model/ClassRef.class | size=2925 | crc=1057606280
 org/jarhc/model/Def.class | size=2328 | crc=1684482924
 org/jarhc/model/FieldDef.class | size=1965 | crc=582699458
 org/jarhc/model/FieldRef.class | size=3057 | crc=569440848
-org/jarhc/model/JarFile$Builder.class | size=4032 | crc=2007138871
-org/jarhc/model/JarFile.class | size=8843 | crc=3618305117
+org/jarhc/model/JarFile$Builder.class | size=4444 | crc=216581360
+org/jarhc/model/JarFile.class | size=9218 | crc=1239901641
 org/jarhc/model/MemberDef.class | size=601 | crc=3680358327
 org/jarhc/model/MethodDef.class | size=2654 | crc=1190895107
 org/jarhc/model/MethodRef.class | size=3593 | crc=4104838845
@@ -2223,7 +2225,7 @@ org/jarhc/model/ResourceDef.class | size=1135 | crc=4169474302
 org/jarhc/pom/Dependency.class | size=3207 | crc=3070612390
 org/jarhc/pom/Scope.class | size=1303 | crc=2969203394
 org/jarhc/report/html/DefaultStyleProvider.class | size=1255 | crc=3575769662
-org/jarhc/report/html/HtmlReportFormat.class | size=7817 | crc=3648291066
+org/jarhc/report/html/HtmlReportFormat.class | size=7841 | crc=1816789026
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
 org/jarhc/report/list/ListReportFormat.class | size=2464 | crc=2163679850
 org/jarhc/report/Report.class | size=1294 | crc=2508431441

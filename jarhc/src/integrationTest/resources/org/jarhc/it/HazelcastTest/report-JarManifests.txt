@@ -1,0 +1,26 @@
+JAR Health Check Report
+=======================
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact         | Implementation           | Specification           | Signature | Runtime                                           | Others
+-----------------+--------------------------+-------------------------+-----------+---------------------------------------------------+--------------------------------------------------
+hazelcast        | hazelcast                | hazelcast               |           | Main Class: com.hazelcast.core.server.StartServer | Manifest-Version: 1.0
+                 | Version: 3.11.2          | Version: 3.11.2         |           |                                                   | Archiver-Version: Plexus Archiver
+                 | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |           |                                                   | Built-By: ubuntu
+                 | Vendor ID: com.hazelcast |                         |           |                                                   | Bnd-LastModified: 1550306249136
+                 |                          |                         |           |                                                   | Tool: Bnd-1.50.0
+                 |                          |                         |           |                                                   | Originally-Created-By: Apache Maven Bundle Plugin
+                 |                          |                         |           |                                                   | Created-By: Apache Maven Bundle Plugin
+                 |                          |                         |           |                                                   | Build-Jdk: 1.8.0_162
+hazelcast-client | hazelcast-client         | hazelcast-client        |           |                                                   | Manifest-Version: 1.0
+                 | Version: 3.11.2          | Version: 3.11.2         |           |                                                   | Archiver-Version: Plexus Archiver
+                 | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |           |                                                   | Built-By: ubuntu
+                 | Vendor ID: com.hazelcast |                         |           |                                                   | Bnd-LastModified: 1550306325023
+                 |                          |                         |           |                                                   | Tool: Bnd-1.50.0
+                 |                          |                         |           |                                                   | Originally-Created-By: Apache Maven Bundle Plugin
+                 |                          |                         |           |                                                   | Created-By: Apache Maven Bundle Plugin
+                 |                          |                         |           |                                                   | Build-Jdk: 1.8.0_162
+

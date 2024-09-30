@@ -11,13 +11,38 @@ slf4j-api | 1.7.28  | org.slf4j:slf4j-api:1.7.28 | 40.2 KB | 34      | 0        
           |         |                            |         |         |           |                                          | org.netbeans.external:slf4j-api:RELEASE113
 Classpath | -       | -                          | 40.2 KB | 34      | 0         | -                                        | -
 
-Modules
--------
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF.
+
+Artifact  | Implementation  | Specification | Signature | Runtime | Others
+----------+-----------------+---------------+-----------+---------+----------------------------------
+slf4j-api | slf4j-api       |               |           |         | Manifest-Version: 1.0
+          | Version: 1.7.28 |               |           |         | Archiver-Version: Plexus Archiver
+          |                 |               |           |         | Created-By: Apache Maven
+          |                 |               |           |         | Built-By: ceki
+          |                 |               |           |         | Build-Jdk: 1.8.0_121
+          |                 |               |           |         | X-Compile-Source-JDK: 1.5
+          |                 |               |           |         | X-Compile-Target-JDK: 1.5
+
+JPMS Modules
+------------
 List of Java Modules found in classpath.
 
 Artifact  | Module name | Definition | Automatic | Requires | Exports
 ----------+-------------+------------+-----------+----------+---------------
 slf4j-api | org.slf4j   | Manifest   | Yes       | -        | [all packages]
+
+OSGI Bundles
+------------
+Information about OSGI Bundles.
+
+Artifact  | Name        | Version | Description       | Import Package               | Export Package                    | Capabilities | Others
+----------+-------------+---------+-------------------+------------------------------+-----------------------------------+--------------+-----------------------------------------
+slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1.6.0 | org.slf4j;version=1.7.28          |              | Manifest Version: 2
+          | [slf4j.api] |         | Vendor: SLF4J.ORG |                              |  org.slf4j.spi;version=1.7.28     |              | Required Execution Environment: J2SE-1.5
+          |             |         |                   |                              |  org.slf4j.helpers;version=1.7.28 |              |
+          |             |         |                   |                              |  org.slf4j.event;version=1.7.28   |              |
 
 Class Versions
 --------------

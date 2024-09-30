@@ -106,7 +106,9 @@ Environment variables:
 Sections:
 
    jf - JAR Files
-   m  - Modules
+   jm - JAR Manifests
+   m  - JPMS Modules
+   ob - OSGI Bundles
    cv - Class Versions
    jd - JAR Dependencies
    d  - Dependencies
