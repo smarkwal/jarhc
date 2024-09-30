@@ -30,7 +30,7 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.test.ClasspathBuilder;
 import org.junit.jupiter.api.Test;
 
-class ModulesAnalyzerTest {
+class JpmsModulesAnalyzerTest {
 
 	@Test
 	void test_analyze() {
@@ -46,12 +46,12 @@ class ModulesAnalyzerTest {
 				.build();
 
 		// test
-		ModulesAnalyzer analyzer = new ModulesAnalyzer();
+		JpmsModulesAnalyzer analyzer = new JpmsModulesAnalyzer();
 		ReportSection section = analyzer.analyze(classpath);
 
 		// assert
 		assertNotNull(section);
-		assertEquals("Modules", section.getTitle());
+		assertEquals("JPMS Modules", section.getTitle());
 		assertEquals("List of Java Modules found in classpath.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertInstanceOf(ReportTable.class, section.getContent().get(0));

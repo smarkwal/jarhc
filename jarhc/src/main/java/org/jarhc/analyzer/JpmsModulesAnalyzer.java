@@ -26,14 +26,14 @@ import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 
-public class ModulesAnalyzer implements Analyzer {
+public class JpmsModulesAnalyzer implements Analyzer {
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Modules", "List of Java Modules found in classpath.");
+		ReportSection section = new ReportSection("JPMS Modules", "List of Java Modules found in classpath.");
 		section.add(table);
 		return section;
 	}
@@ -126,7 +126,7 @@ public class ModulesAnalyzer implements Analyzer {
 				return "-";
 			} else {
 				List<String> requires = new ArrayList<>(moduleInfo.getRequires());
-				requires.sort(ModulesAnalyzer::compareModuleNames);
+				requires.sort(JpmsModulesAnalyzer::compareModuleNames);
 				return String.join("\n", requires);
 			}
 		} else {
