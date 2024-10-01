@@ -18,7 +18,7 @@ org/jarhc/analyzer/BlacklistAnalyzer$FieldPattern.class | size=1376 | crc=258402
 org/jarhc/analyzer/BlacklistAnalyzer$MethodPattern.class | size=3500 | crc=362716827
 org/jarhc/analyzer/BlacklistAnalyzer.class | size=15995 | crc=3480846447
 org/jarhc/analyzer/ClassVersionsAnalyzer$ClassVersionsCounter.class | size=3987 | crc=3697001664
-org/jarhc/analyzer/ClassVersionsAnalyzer.class | size=4651 | crc=1055405739
+org/jarhc/analyzer/ClassVersionsAnalyzer.class | size=4651 | crc=704508433
 org/jarhc/analyzer/DependenciesAnalyzer.class | size=8618 | crc=701929250
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13379 | crc=1858037799
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6129 | crc=1010706684
@@ -26,7 +26,7 @@ org/jarhc/analyzer/JarFilesAnalyzer.class | size=5059 | crc=1956150710
 org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6014 | crc=891154171
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1840 | crc=1334068663
 org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5574 | crc=2498617022
-org/jarhc/analyzer/OSGiBundlesAnalyzer.class | size=7735 | crc=3941640056
+org/jarhc/analyzer/OSGiBundlesAnalyzer.class | size=7545 | crc=226976515
 org/jarhc/analyzer/PackagesAnalyzer.class | size=11584 | crc=2760748433
 org/jarhc/app/Application.class | size=13239 | crc=1387380830
 org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
@@ -98,7 +98,7 @@ org/jarhc/model/MemberDef.class | size=601 | crc=3680358327
 org/jarhc/model/MethodDef.class | size=2654 | crc=1190895107
 org/jarhc/model/MethodRef.class | size=3593 | crc=4104838845
 org/jarhc/model/ModuleInfo.class | size=5165 | crc=3410250729
-org/jarhc/model/OSGiBundleInfo.class | size=7486 | crc=4206276344
+org/jarhc/model/OSGiBundleInfo.class | size=8114 | crc=3967537436
 org/jarhc/model/RecordComponentDef.class | size=1228 | crc=3119940870
 org/jarhc/model/Ref.class | size=151 | crc=2546580372
 org/jarhc/model/ResourceDef.class | size=1135 | crc=4169474302
@@ -138,5 +138,5 @@ org/jarhc/utils/StringPattern$Equals.class | size=692 | crc=3275996126
 org/jarhc/utils/StringPattern$StartsWith.class | size=684 | crc=1816164540
 org/jarhc/utils/StringPattern$Test.class | size=536 | crc=2351361285
 org/jarhc/utils/StringPattern.class | size=2225 | crc=2120766193
-org/jarhc/utils/StringUtils.class | size=2755 | crc=3845416827
+org/jarhc/utils/StringUtils.class | size=4862 | crc=667893451
 org/jarhc/utils/VersionUtils.class | size=1926 | crc=2436154272

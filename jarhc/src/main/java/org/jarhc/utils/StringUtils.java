@@ -59,13 +59,56 @@ public class StringUtils {
 	 * @param maxLength Maximum length of a line (best-effort).
 	 * @return List of lines.
 	 */
-	public static List<String> splitText(String text, int maxLength) {
+	public static List<String> splitList(String text, int maxLength) {
 		List<String> lines = new ArrayList<>();
 
 		while (text.length() > maxLength) {
 			int pos = text.lastIndexOf(',', maxLength);
 			if (pos < 0) {
 				pos = text.indexOf(',');
+				if (pos < 0) {
+					break;
+				}
+			}
+			String line = text.substring(0, pos + 1);
+			lines.add(line.trim());
+			text = text.substring(pos + 1).trim();
+		}
+
+		lines.add(text);
+		return lines;
+	}
+
+	/**
+	 * Wrap a comma-separated list into multiple lines.
+	 *
+	 * @param text      Text to wrap.
+	 * @param maxLength Maximum length of a line (best-effort).
+	 * @return Wrapped text.
+	 */
+	public static String wrapList(String text, int maxLength) {
+		return joinLines(splitList(text, maxLength));
+	}
+
+	/**
+	 * Split a longer text using spaces as separators,
+	 * but keep lines shorter than the maximum length.
+	 *
+	 * @param text      Text to split.
+	 * @param maxLength Maximum length of a line (best-effort).
+	 * @return List of lines.
+	 */
+	public static List<String> splitText(String text, int maxLength) {
+		List<String> lines = new ArrayList<>();
+
+		while (text.length() > maxLength) {
+			int pos1 = text.lastIndexOf(' ', maxLength);
+			int pos2 = text.lastIndexOf('\n', maxLength);
+			int pos = Math.max(pos1, pos2);
+			if (pos < 0) {
+				pos1 = text.indexOf(' ');
+				pos2 = text.indexOf('\n');
+				pos = Math.min(pos1, pos2) >= 0 ? Math.min(pos1, pos2) : Math.max(pos1, pos2);
 				if (pos < 0) {
 					break;
 				}
@@ -88,6 +131,10 @@ public class StringUtils {
 	 */
 	public static String wrapText(String text, int maxLength) {
 		return joinLines(splitText(text, maxLength));
+	}
+
+	public static List<String> prefixLines(List<String> lines, String prefix) {
+		return lines.stream().map(line -> prefix + " " + line).collect(Collectors.toList());
 	}
 
 }

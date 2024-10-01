@@ -45,9 +45,9 @@ asm-commons  | org.objectweb.asm.commons       | Module-Info | No        | org.o
 asm-tree     | org.objectweb.asm.tree          | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.tree
              |                                 |             |           | java.base                       |
 
-OSGI Bundles
+OSGi Bundles
 ------------
-Information about OSGI Bundles.
+Information about OSGi Bundles.
 
 Artifact     | Name                            | Version | Description                 | Import Package                            | Export Package                                                         | Capabilities | Others
 -------------+---------------------------------+---------+-----------------------------+-------------------------------------------+------------------------------------------------------------------------+--------------+-----------------------------------------

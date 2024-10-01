@@ -88,8 +88,8 @@ class OSGiBundlesAnalyzerTest {
 				joinLines("bundle-description-b", "Vendor: bundle-vendor-b", "License: bundle-license-b", "Doc URL: bundle-doc-url-b"),
 				joinLines("a", "java.base", "", "Dynamic:", "dynamic-package"),
 				joinLines("b.x", "b.y"),
-				joinLines("Required: capability-1", "Provided: capability-2"),
-				joinLines("Activator: bundle-activator", "Activation Policy: lazy", "Manifest Version: 2", "Private Package: b.p,b.q", "Include Resource: resource-b1,resource-b-2", "Required Execution Environment: JRE-1.8")
+				joinLines("Required:", "capability-1", "Provided:", "capability-2"),
+				joinLines("Activator: bundle-activator", "Activation Policy: lazy", "Manifest Version: 2", "Private Package:", "b.p", "b.q", "Include Resource:", "resource-b1", "resource-b-2", "Required Execution Environment: JRE-1.8")
 		);
 	}
 

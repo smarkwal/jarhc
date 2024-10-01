@@ -16,7 +16,7 @@
 
 package org.jarhc.analyzer;
 
-import static org.jarhc.utils.StringUtils.wrapText;
+import static org.jarhc.utils.StringUtils.wrapList;
 
 import java.util.List;
 import java.util.Map;
@@ -72,12 +72,12 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 			// add row for JAR file
 			String javaVersions = jarFileCounter.toString();
-			table.addRow(jarFile.getArtifactName(), multiReleaseInfo, wrapText(javaVersions, 60));
+			table.addRow(jarFile.getArtifactName(), multiReleaseInfo, wrapList(javaVersions, 60));
 		}
 
 		// add row with summary
 		String javaVersions = classpathCounter.toString();
-		javaVersions = wrapText(javaVersions, 60);
+		javaVersions = wrapList(javaVersions, 60);
 		table.addRow("Classpath", "-", javaVersions);
 
 		return table;

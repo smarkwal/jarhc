@@ -43,13 +43,13 @@ class StringUtilsTest {
 	}
 
 	@Test
-	void splitText() {
+	void splitList() {
 
 		// prepare
 		String text = "Java 12 (8), Java 11 (8846), Java 9 (758), Java 8 (17423), Java 7 (6090), Java 6 (2580), Java 5 (5241), Java 1.4 (672), Java 1.3 (2359), Java 1.2 (523), Java 1.1 (13)";
 
 		// test
-		List<String> result = StringUtils.splitText(text, 60);
+		List<String> result = StringUtils.splitList(text, 60);
 
 		// assert
 		List<String> expected = List.of(
@@ -62,13 +62,13 @@ class StringUtilsTest {
 	}
 
 	@Test
-	void splitText_separatorNotFound() {
+	void splitList_separatorNotFound() {
 
 		// prepare
 		String text = "This is a long sentence without commas.";
 
 		// test
-		List<String> result = StringUtils.splitText(text, 12);
+		List<String> result = StringUtils.splitList(text, 12);
 
 		// assert
 		List<String> expected = Collections.singletonList(text);
@@ -77,13 +77,13 @@ class StringUtilsTest {
 	}
 
 	@Test
-	void splitText_shortSentence() {
+	void splitList_shortSentence() {
 
 		// prepare
 		String text = "Hello World!";
 
 		// test
-		List<String> result = StringUtils.splitText(text, 60);
+		List<String> result = StringUtils.splitList(text, 60);
 
 		// assert
 		List<String> expected = Collections.singletonList(text);
@@ -92,13 +92,13 @@ class StringUtilsTest {
 	}
 
 	@Test
-	void splitText_longSentences() {
+	void splitList_longSentences() {
 
 		// prepare
 		String text = "This is a long sentence, which contains only a few, but very well placed commas.";
 
 		// test
-		List<String> result = StringUtils.splitText(text, 12);
+		List<String> result = StringUtils.splitList(text, 12);
 
 		// assert
 		List<String> expected = List.of(
@@ -111,13 +111,13 @@ class StringUtilsTest {
 	}
 
 	@Test
-	void splitText_emptyText() {
+	void splitList_emptyList() {
 
 		// prepare
 		String text = "";
 
 		// test
-		List<String> result = StringUtils.splitText(text, 12);
+		List<String> result = StringUtils.splitList(text, 12);
 
 		// assert
 		List<String> expected = Collections.singletonList("");

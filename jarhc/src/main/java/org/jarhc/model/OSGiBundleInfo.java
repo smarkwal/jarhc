@@ -16,6 +16,7 @@
 
 package org.jarhc.model;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -94,13 +95,13 @@ public class OSGiBundleInfo {
 	private String bundleLicense;
 	private String bundleDocURL;
 
-	private String importPackage;
-	private String dynamicImportPackage;
+	private List<String> importPackage;
+	private List<String> dynamicImportPackage;
 
-	private String exportPackage;
+	private List<String> exportPackage;
 
-	private String requireCapability;
-	private String provideCapability;
+	private List<String> requireCapability;
+	private List<String> provideCapability;
 
 	private String bundleActivationPolicy;
 	private String bundleActivator;
@@ -120,10 +121,10 @@ public class OSGiBundleInfo {
 	private String importBundle;
 	private String importLibrary;
 	private String importService;
-	private String includeResource;
+	private List<String> includeResource;
 	private String moduleScope;
 	private String moduleType;
-	private String privatePackage;
+	private List<String> privatePackage;
 	private String requireBundle;
 	private String webContextPath;
 	private String webDispatcherServletUrlPatterns;
@@ -134,7 +135,6 @@ public class OSGiBundleInfo {
 			return;
 		}
 
-		// TODO: parse attributes like "Import-Package" and "Export-Package" into structured data
 		this.bundleName = manifestAttributes.get("Bundle-Name");
 		this.bundleSymbolicName = manifestAttributes.get("Bundle-SymbolicName");
 		this.bundleVersion = manifestAttributes.get("Bundle-Version");
@@ -142,11 +142,11 @@ public class OSGiBundleInfo {
 		this.bundleVendor = manifestAttributes.get("Bundle-Vendor");
 		this.bundleLicense = manifestAttributes.get("Bundle-License");
 		this.bundleDocURL = manifestAttributes.get("Bundle-DocURL");
-		this.importPackage = manifestAttributes.get("Import-Package");
-		this.dynamicImportPackage = manifestAttributes.get("DynamicImport-Package");
-		this.exportPackage = manifestAttributes.get("Export-Package");
-		this.requireCapability = manifestAttributes.get("Require-Capability");
-		this.provideCapability = manifestAttributes.get("Provide-Capability");
+		this.importPackage = splitList(manifestAttributes.get("Import-Package"));
+		this.dynamicImportPackage = splitList(manifestAttributes.get("DynamicImport-Package"));
+		this.exportPackage = splitList(manifestAttributes.get("Export-Package"));
+		this.requireCapability = splitList(manifestAttributes.get("Require-Capability"));
+		this.provideCapability = splitList(manifestAttributes.get("Provide-Capability"));
 		this.bundleActivationPolicy = manifestAttributes.get("Bundle-ActivationPolicy");
 		this.bundleActivator = manifestAttributes.get("Bundle-Activator");
 		this.bundleCategory = manifestAttributes.get("Bundle-Category");
@@ -165,10 +165,10 @@ public class OSGiBundleInfo {
 		this.importBundle = manifestAttributes.get("Import-Bundle");
 		this.importLibrary = manifestAttributes.get("Import-Library");
 		this.importService = manifestAttributes.get("Import-Service");
-		this.includeResource = manifestAttributes.get("Include-Resource");
+		this.includeResource = splitList(manifestAttributes.get("Include-Resource"));
 		this.moduleScope = manifestAttributes.get("Module-Scope");
 		this.moduleType = manifestAttributes.get("Module-Type");
-		this.privatePackage = manifestAttributes.get("Private-Package");
+		this.privatePackage = splitList(manifestAttributes.get("Private-Package"));
 		this.requireBundle = manifestAttributes.get("Require-Bundle");
 		this.webContextPath = manifestAttributes.get("Web-ContextPath");
 		this.webDispatcherServletUrlPatterns = manifestAttributes.get("Web-DispatcherServletUrlPatterns");
@@ -203,23 +203,23 @@ public class OSGiBundleInfo {
 		return bundleDocURL;
 	}
 
-	public String getImportPackage() {
+	public List<String> getImportPackage() {
 		return importPackage;
 	}
 
-	public String getDynamicImportPackage() {
+	public List<String> getDynamicImportPackage() {
 		return dynamicImportPackage;
 	}
 
-	public String getExportPackage() {
+	public List<String> getExportPackage() {
 		return exportPackage;
 	}
 
-	public String getRequireCapability() {
+	public List<String> getRequireCapability() {
 		return requireCapability;
 	}
 
-	public String getProvideCapability() {
+	public List<String> getProvideCapability() {
 		return provideCapability;
 	}
 
@@ -295,7 +295,7 @@ public class OSGiBundleInfo {
 		return importService;
 	}
 
-	public String getIncludeResource() {
+	public List<String> getIncludeResource() {
 		return includeResource;
 	}
 
@@ -307,7 +307,7 @@ public class OSGiBundleInfo {
 		return moduleType;
 	}
 
-	public String getPrivatePackage() {
+	public List<String> getPrivatePackage() {
 		return privatePackage;
 	}
 
@@ -325,6 +325,14 @@ public class OSGiBundleInfo {
 
 	public String getWebFilterMappings() {
 		return webFilterMappings;
+	}
+
+	private List<String> splitList(String value) {
+		if (value == null) return null;
+		// TODO: support escaping
+		//  example: org.apache.log4j;version="e;[1.2.15,2.0.0)"e;;resolution:=optional
+		// TODO: what does "e; mean?
+		return List.of(value.split(","));
 	}
 
 }

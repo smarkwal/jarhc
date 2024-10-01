@@ -111,58 +111,55 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 		if (docUrl != null) {
 			lines.add("Doc URL: " + docUrl);
 		}
-		wrapLines(lines, 100); // TODO: wrap description by spaces instead of commas
+		wrapText(lines);
 		return StringUtils.joinLines(lines);
 	}
 
 	private String getImportPackage(JarFile jarFile) {
 		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
-		String importPackage = bundleInfo.getImportPackage();
-		String dynamicImportPackage = bundleInfo.getDynamicImportPackage();
+		List<String> importPackage = bundleInfo.getImportPackage();
+		List<String> dynamicImportPackage = bundleInfo.getDynamicImportPackage();
 
 		List<String> lines = new ArrayList<>();
 		if (importPackage != null) {
-			// TODO: improve splitting to support version ranges:
-			//  example: org.apache.log4j;version="e;[1.2.15,2.0.0)"e;;resolution:=optional
-			// TODO: what does "e; mean?
-			String[] packages = importPackage.split(",");
-			lines.addAll(List.of(packages));
+			lines.addAll(importPackage);
 		}
 		if (dynamicImportPackage != null) {
 			if (importPackage != null) {
 				lines.add("");
 			}
 			lines.add("Dynamic:");
-			String[] packages = dynamicImportPackage.split(",");
-			lines.addAll(List.of(packages));
+			lines.addAll(dynamicImportPackage);
 		}
 		return StringUtils.joinLines(lines);
 	}
 
 	private String getExportPackage(JarFile jarFile) {
 		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
-		String exportPackage = bundleInfo.getExportPackage();
+		List<String> exportPackage = bundleInfo.getExportPackage();
 
 		List<String> lines = new ArrayList<>();
 		if (exportPackage != null) {
-			String[] packages = exportPackage.split(",");
-			lines.addAll(List.of(packages));
+			lines.addAll(exportPackage);
 		}
 		return StringUtils.joinLines(lines);
 	}
 
 	private String getCapabilities(JarFile jarFile) {
 		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
-		String requireCapability = bundleInfo.getRequireCapability();
-		String provideCapability = bundleInfo.getProvideCapability();
+		List<String> requireCapability = bundleInfo.getRequireCapability();
+		List<String> provideCapability = bundleInfo.getProvideCapability();
 
 		List<String> lines = new ArrayList<>();
 		if (requireCapability != null) {
-			lines.add("Required: " + requireCapability);
+			lines.add("Required:");
+			lines.addAll(requireCapability);
 		}
 		if (provideCapability != null) {
-			lines.add("Provided: " + provideCapability);
+			lines.add("Provided:");
+			lines.addAll(provideCapability);
 		}
+		wrapText(lines);
 		return StringUtils.joinLines(lines);
 	}
 
@@ -171,8 +168,8 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 		String bundleActivator = bundleInfo.getBundleActivator();
 		String bundleActivationPolicy = bundleInfo.getBundleActivationPolicy();
 		String bundleManifestVersion = bundleInfo.getBundleManifestVersion();
-		String privatePackage = bundleInfo.getPrivatePackage();
-		String includeResource = bundleInfo.getIncludeResource();
+		List<String> privatePackage = bundleInfo.getPrivatePackage();
+		List<String> includeResource = bundleInfo.getIncludeResource();
 		String requiredExecutionEnvironment = bundleInfo.getBundleRequiredExecutionEnvironment();
 
 		List<String> lines = new ArrayList<>();
@@ -186,20 +183,26 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 			lines.add("Manifest Version: " + bundleManifestVersion);
 		}
 		if (privatePackage != null) {
-			lines.add("Private Package: " + privatePackage);
+			lines.add("Private Package:");
+			lines.addAll(privatePackage);
 		}
 		if (includeResource != null) {
-			lines.add("Include Resource: " + includeResource);
+			lines.add("Include Resource:");
+			lines.addAll(includeResource);
 		}
 		if (requiredExecutionEnvironment != null) {
 			lines.add("Required Execution Environment: " + requiredExecutionEnvironment);
 		}
-		wrapLines(lines, 100);
+		wrapText(lines);
 		return StringUtils.joinLines(lines);
 	}
 
-	private static void wrapLines(List<String> lines, int maxLength) {
-		lines.replaceAll(s -> StringUtils.wrapText(s, maxLength));
+	private static String wrapText(String text) {
+		return StringUtils.wrapText(text, 60);
+	}
+
+	private static void wrapText(List<String> lines) {
+		lines.replaceAll(s -> wrapText(s));
 	}
 
 }
