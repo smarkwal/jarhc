@@ -106,10 +106,10 @@ public class JarManifestsAnalyzer implements Analyzer {
 
 		List<String> lines = new ArrayList<>();
 		if (mainClass != null) {
-			lines.add("Main Class: " + mainClass); // TODO: validate Main-Class entry
+			lines.add("Main Class: " + mainClass);
 		}
 		if (classPath != null) {
-			lines.add("Class Path: " + classPath); // TODO: validate Class-Path entry
+			lines.add("Class Path: " + classPath);
 		}
 		return StringUtils.joinLines(lines);
 	}

@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jarhc.app.Options;
@@ -47,6 +48,7 @@ import org.jarhc.utils.JavaVersion;
 import org.jarhc.utils.Pool;
 import org.jarhc.utils.StringUtils;
 
+@SuppressWarnings("UnnecessaryUnicodeEscape")
 public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	// object pools
@@ -92,6 +94,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// issues found in JAR file (sorted by class name)
 			final Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
 
+			// validate attributes in META-INF/MANIFEST.MF
+			collectManifestIssues(jarFile, classpath, jarIssues);
+
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();
 			classDefs.parallelStream().forEach(classDef -> collectClassIssues(classDef, classpath, accessCheck, jarIssues));
@@ -103,6 +108,76 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 
 		return table;
+	}
+
+	private void collectManifestIssues(JarFile jarFile, Classpath classpath, Set<String> jarIssues) {
+
+		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
+		if (manifestAttributes == null) return;
+
+		// validate Main-Class attribute (if present)
+		String mainClass = manifestAttributes.get("Main-Class");
+		if (mainClass != null) {
+
+			Set<String> issues = linkedHashSetPool.doBorrow();
+
+			// check if main class exists
+			ClassDef classDef = jarFile.getClassDef(mainClass);
+			if (classDef == null) {
+				issues.add("Class not found: " + mainClass);
+			} else {
+
+				// check if main method exists
+				MethodDef mainMethodDef = classDef.getMethodDef("main", "([Ljava/lang/String;)V");
+				if (mainMethodDef == null) {
+					issues.add("Main method not found: public static void main(String[])");
+				} else {
+
+					// check if main method is public and static
+					if (!mainMethodDef.isPublic()) {
+						issues.add("Main method is not public: " + mainMethodDef.getDisplayName());
+					}
+					if (!mainMethodDef.isStatic()) {
+						issues.add("Main method is not static: " + mainMethodDef.getDisplayName());
+					}
+				}
+			}
+
+			if (!issues.isEmpty()) {
+				String issue = createParentIssue("Main-Class: " + mainClass, issues);
+				jarIssues.add(issue);
+			}
+
+		}
+
+		// validate Class-Path attribute (if present)
+		String classPath = manifestAttributes.get("Class-Path");
+		if (classPath != null) {
+
+			Set<String> issues = linkedHashSetPool.doBorrow();
+
+			// for every class path element ...
+			String[] classPathElements = classPath.split(" ");
+			for (String classPathElement : classPathElements) {
+
+				// if class path element is a JAR file ...
+				if (classPathElement.endsWith(".jar")) {
+					JarFile classPathJarFile = classpath.getJarFile(classPathElement);
+					if (classPathJarFile == null) {
+						issues.add("JAR file not found: " + classPathElement);
+					}
+				} else { // class path element is a directory path
+					issues.add("Element is not a JAR file: " + classPathElement);
+				}
+			}
+
+			if (!issues.isEmpty()) {
+				String issue = createParentIssue("Class-Path: " + classPath, issues);
+				jarIssues.add(issue);
+			}
+
+		}
+
 	}
 
 	private void collectClassIssues(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> jarIssues) {
@@ -120,7 +195,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		validateAnnotationRefs(classDef, classpath, accessCheck, classIssues);
 
 		if (!classIssues.isEmpty()) {
-			String issue = createJarIssue(classDef, classIssues);
+			String issue = createParentIssue(classDef.getClassName(), classIssues);
 			jarIssues.add(issue);
 		}
 
@@ -139,10 +214,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		}
 	}
 
-	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
-		String className = classDef.getClassName();
-		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
-		return className + System.lineSeparator() + lines + System.lineSeparator();
+	private String createParentIssue(String parentName, Set<String> issues) {
+		String lines = issues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		return parentName + System.lineSeparator() + lines + System.lineSeparator();
 	}
 
 	// -----------------------------------------------------------------------------------------------------

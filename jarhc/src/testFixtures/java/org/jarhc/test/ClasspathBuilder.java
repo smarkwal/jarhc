@@ -29,6 +29,7 @@ import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.model.MethodDef;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.model.ResourceDef;
@@ -59,6 +60,7 @@ public class ClasspathBuilder {
 	private int majorClassVersion;
 	private int minorClassVersion;
 	private List<ClassRef> classRefs;
+	private List<MethodDef> methodDefs;
 
 	private ClasspathBuilder(String classLoader, ClassLoader parentClassLoader) {
 		this.parentClassLoader = parentClassLoader;
@@ -152,6 +154,12 @@ public class ClasspathBuilder {
 		return this;
 	}
 
+	public ClasspathBuilder addMethodDef(int access, String methodName, String methodDescriptor) {
+		if (methodDefs == null) throw new IllegalStateException();
+		methodDefs.add(new MethodDef(access, methodName, methodDescriptor));
+		return this;
+	}
+
 	public Classpath build() {
 		closeClassDef();
 		closeJarFile();
@@ -196,6 +204,7 @@ public class ClasspathBuilder {
 		this.majorClassVersion = majorClassVersion;
 		this.minorClassVersion = minorClassVersion;
 		this.classRefs = new ArrayList<>();
+		this.methodDefs = new ArrayList<>();
 	}
 
 	private void closeClassDef() {
@@ -208,9 +217,11 @@ public class ClasspathBuilder {
 					.setMajorClassVersion(majorClassVersion)
 					.setMinorClassVersion(minorClassVersion);
 			classRefs.forEach(classDef::addClassRef);
+			methodDefs.forEach(classDef::addMethodDef);
 			classDefs.add(classDef);
 			className = null;
 			classRefs = null;
+			methodDefs = null;
 		}
 	}
 

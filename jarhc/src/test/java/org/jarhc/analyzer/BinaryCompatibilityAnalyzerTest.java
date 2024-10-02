@@ -38,6 +38,7 @@ import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.Test;
 import org.objectweb.asm.Opcodes;
 
+@SuppressWarnings("UnnecessaryUnicodeEscape")
 class BinaryCompatibilityAnalyzerTest {
 
 	private final JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
@@ -395,6 +396,240 @@ class BinaryCompatibilityAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(0, rows.size());
+	}
+
+	@Test
+	void test_analyze_mainClass() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.addClassDef("a.Main")
+				.addMethodDef(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+	}
+
+	@Test
+	void test_analyze_mainClassNotFound() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Main-Class: a.Main",
+						"\u2022 Class not found: a.Main"
+				)
+		);
+	}
+
+	@Test
+	void test_analyze_mainMethodNotFound() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.addClassDef("a.Main")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Main-Class: a.Main",
+						"\u2022 Main method not found: public static void main(String[])"
+				)
+		);
+	}
+
+	@Test
+	void test_analyze_mainMethodNotPublicStatic() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.addClassDef("a.Main")
+				.addMethodDef(0, "main", "([Ljava/lang/String;)V")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Main-Class: a.Main",
+						"\u2022 Main method is not public: void a.Main.main(java.lang.String[])",
+						"\u2022 Main method is not static: void a.Main.main(java.lang.String[])"
+				)
+		);
+	}
+
+	@Test
+	void test_analyze_mainMethodNotPublic() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.addClassDef("a.Main")
+				.addMethodDef(Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Main-Class: a.Main",
+						"\u2022 Main method is not public: static void a.Main.main(java.lang.String[])"
+				)
+		);
+	}
+
+	@Test
+	void test_analyze_mainMethodNotStatic() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Main-Class", "a.Main")
+				.addClassDef("a.Main")
+				.addMethodDef(Opcodes.ACC_PUBLIC, "main", "([Ljava/lang/String;)V")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Main-Class: a.Main",
+						"\u2022 Main method is not static: public void a.Main.main(java.lang.String[])"
+				)
+		);
+	}
+
+	@Test
+	void test_analyze_classPath() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Clas-Path", "b.jar c.jar")
+				.addJarFile("b.jar")
+				.addManifestAttribute("Class-Path", "c.jar")
+				.addJarFile("c.jar")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(0, rows.size());
+	}
+
+	@Test
+	void test_analyze_classPathElementNotFound() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Class-Path", "b.jar")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Class-Path: b.jar",
+						"\u2022 JAR file not found: b.jar"
+				));
+	}
+
+	@Test
+	void test_analyze_classPathElementIsNotJarFile() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(javaRuntime)
+				.addJarFile("a.jar")
+				.addManifestAttribute("Class-Path", "bin/classes")
+				.build();
+
+		// test
+		BinaryCompatibilityAnalyzer analyzer = new BinaryCompatibilityAnalyzer(options);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		ReportTable table = assertSectionHeader(section);
+
+		List<String[]> rows = table.getRows();
+		assertEquals(1, rows.size());
+		assertValuesEquals(rows.get(0), "a",
+				joinLines(
+						"Class-Path: bin/classes",
+						"\u2022 Element is not a JAR file: bin/classes"
+				)
+		);
 	}
 
 	private ReportTable assertSectionHeader(ReportSection section) {
