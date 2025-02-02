@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -28,6 +30,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.StringUtils;
 
 public class PackagesAnalyzer implements Analyzer {
@@ -124,7 +127,7 @@ public class PackagesAnalyzer implements Analyzer {
 		for (String packageName : packageNames) {
 			List<String> jarFileNames = packageToJarFile.get(packageName);
 			if (jarFileNames.size() > 1) {
-				issues.add("Split Package: " + packageName);
+				issues.add("Split Package: " + code(packageName));
 			}
 		}
 
@@ -139,6 +142,7 @@ public class PackagesAnalyzer implements Analyzer {
 							return packageName + ".*";
 						}
 					})
+					.map(Markdown::code)
 					.collect(Collectors.joining(", "));
 			issues.add("Fat JAR: " + roots);
 		}
@@ -228,7 +232,7 @@ public class PackagesAnalyzer implements Analyzer {
 	private static String getPackageGroupDescription(List<String> packageNames) {
 
 		if (packageNames.size() == 1) {
-			return packageNames.get(0);
+			return code(packageNames.get(0));
 		}
 
 		String parentPackage = getParentPackage(packageNames);
@@ -236,13 +240,13 @@ public class PackagesAnalyzer implements Analyzer {
 		if (packageNames.contains(parentPackage)) {
 			int subPackages = packageNames.size() - 1;
 			if (subPackages == 1) {
-				return parentPackage + " (+1 subpackage)";
+				return code(parentPackage) + " (+1 subpackage)";
 			} else {
-				return parentPackage + " (+" + subPackages + " subpackages)";
+				return code(parentPackage) + " (+" + subPackages + " subpackages)";
 			}
 		} else {
 			int subPackages = packageNames.size();
-			return parentPackage + ".* (" + subPackages + " subpackages)";
+			return code(parentPackage + ".*") + " (" + subPackages + " subpackages)";
 		}
 	}
 

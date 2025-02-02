@@ -23,6 +23,7 @@ import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.StringUtils;
 
 public class TextReportFormat implements ReportFormat {
@@ -70,7 +71,7 @@ public class TextReportFormat implements ReportFormat {
 				formatTable(table, writer);
 			} else {
 				String text = String.valueOf(content);
-				writer.println(text);
+				writer.println(Markdown.toText(text));
 			}
 		}
 
@@ -106,6 +107,7 @@ public class TextReportFormat implements ReportFormat {
 	private static int getColumnWidth(String text) {
 		if (text == null || text.isEmpty()) return 0;
 		int maxLength = 0;
+		text = Markdown.toText(text);
 		String[] lines = text.split("\\r?\\n");
 		for (String line : lines) {
 			int width = line.length();
@@ -131,6 +133,7 @@ public class TextReportFormat implements ReportFormat {
 			for (int i = 0; i < cells.length; i++) {
 				String[] cell = cells[i];
 				String value = h < cell.length ? cell[h] : "";
+				value = Markdown.toText(value);
 				if (i > 0) {
 					if (i < cells.length - 1 || !value.isEmpty()) {
 						writer.print(" | ");

@@ -17,6 +17,7 @@
 package org.jarhc.analyzer;
 
 import static java.lang.Math.min;
+import static org.jarhc.utils.Markdown.code;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -161,7 +162,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 				continue;
 			}
 
-			table.addRow(className, sources, similarity);
+			table.addRow(code(className), sources, similarity);
 		}
 	}
 
@@ -182,7 +183,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 				continue;
 			}
 
-			table.addRow(resourcePath, sources, similarity);
+			table.addRow(code(resourcePath), sources, similarity);
 		}
 
 	}

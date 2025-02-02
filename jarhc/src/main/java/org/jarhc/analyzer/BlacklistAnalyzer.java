@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,7 +114,7 @@ public class BlacklistAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
+			Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>(TextComparator.INSTANCE));
 
 			validateClassDefs(jarFile, classpath, jarIssues);
 			validateResources(jarFile, jarIssues);
@@ -136,7 +138,7 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private void validateClassDef(ClassDef classDef, Classpath classpath, Set<String> jarIssues) {
 
-		Set<String> classIssues = new TreeSet<>();
+		Set<String> classIssues = new TreeSet<>(TextComparator.INSTANCE);
 
 		validateClassDef(classDef, classIssues);
 		validateAnnotations(classDef, classpath, classIssues);
@@ -173,7 +175,7 @@ public class BlacklistAnalyzer implements Analyzer {
 			for (int j = 0; j < classPatterns.size(); j++) {
 				ClassPattern pattern = classPatterns.get(j);
 				if (pattern.matches(classRef)) {
-					classIssues.add(classRef.getDisplayName());
+					classIssues.add(code(classRef.getDisplayName()));
 					break;
 				}
 			}
@@ -192,7 +194,7 @@ public class BlacklistAnalyzer implements Analyzer {
 			for (int j = 0; j < fieldPatterns.size(); j++) {
 				FieldPattern pattern = fieldPatterns.get(j);
 				if (pattern.matches(fieldRef)) {
-					classIssues.add(fieldRef.getDisplayName());
+					classIssues.add(code(fieldRef.getDisplayName()));
 					break;
 				}
 			}
@@ -211,7 +213,7 @@ public class BlacklistAnalyzer implements Analyzer {
 			for (int j = 0; j < methodPatterns.size(); j++) {
 				MethodPattern pattern = methodPatterns.get(j);
 				if (pattern.matches(methodRef)) {
-					classIssues.add(methodRef.getDisplayName());
+					classIssues.add(code(methodRef.getDisplayName()));
 					break;
 				}
 			}
@@ -222,7 +224,7 @@ public class BlacklistAnalyzer implements Analyzer {
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
 		String className = classDef.getClassName();
 		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
-		return className + System.lineSeparator() + lines + System.lineSeparator();
+		return code(className) + System.lineSeparator() + lines + System.lineSeparator();
 	}
 
 	// --------------------------------------------------------------------------------------------------
@@ -345,7 +347,7 @@ public class BlacklistAnalyzer implements Analyzer {
 	private String createClassIssue(String annotationClassName, Def def) {
 		String annotation = "@" + JavaUtils.getSimpleClassName(annotationClassName);
 		String displayName = def.getDisplayName().replace(" @Deprecated ", " ");
-		return annotation + ": " + displayName;
+		return annotation + ": " + code(displayName);
 	}
 
 	// --------------------------------------------------------------------------------------------------
@@ -365,7 +367,7 @@ public class BlacklistAnalyzer implements Analyzer {
 			for (int j = 0; j < resourcePatterns.size(); j++) {
 				StringPattern pattern = resourcePatterns.get(j);
 				if (pattern.matches(name)) {
-					jarIssues.add(name);
+					jarIssues.add(code(name));
 					break;
 				}
 			}

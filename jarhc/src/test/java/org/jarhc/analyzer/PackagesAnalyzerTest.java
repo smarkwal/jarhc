@@ -63,8 +63,8 @@ class PackagesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(2, rows.size());
-		assertValuesEquals(rows.get(0), "a", "3", "a (+2 subpackages)", "");
-		assertValuesEquals(rows.get(1), "b", "1", "b", "");
+		assertValuesEquals(rows.get(0), "a", "3", "`a` (+2 subpackages)", "");
+		assertValuesEquals(rows.get(1), "b", "1", "`b`", "");
 	}
 
 	@Test

@@ -155,9 +155,9 @@ class FieldRefAnalyzerTest {
 		assertEquals("a", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
-				"a.A",
-				"\u2022 Class not found: b.B (package not found)",
-				"\u2022 Class not found: b.E (package not found)"
+				"`a.A`",
+				"\u2022 Class not found: `b.B` (package not found)",
+				"\u2022 Class not found: `b.E` (package not found)"
 		);
 		assertEquals(expectedMessage, values[1]);
 
@@ -190,35 +190,35 @@ class FieldRefAnalyzerTest {
 		assertEquals("a", values[0]);
 
 		String expectedMessage = StringUtils.joinLines(
-				"a.A",
-				"\u2022 Class not found: b.B (package not found)",
-				"\u2022 Class not found: b.E (package not found)",
-				"\u2022 Method not found: void b.B.<init>()",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int[] b.B.arrayField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.existingField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.intField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: static java.lang.Object b.B.interfaceObjectField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.nonFinalField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.nonStaticField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.nonStaticSuperField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.publicField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: static int b.B.staticField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: static int b.B.staticSuperField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: int b.B.superField",
-				"> b.B (owner class not found)",
-				"\u2022 Field not found: static b.E b.E.E3",
-				"> b.E (owner class not found)"
+				"`a.A`",
+				"\u2022 Class not found: `b.B` (package not found)",
+				"\u2022 Class not found: `b.E` (package not found)",
+				"\u2022 Method not found: `void b.B.<init>()`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int[] b.B.arrayField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.existingField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.intField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `static java.lang.Object b.B.interfaceObjectField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.nonFinalField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.nonStaticField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.nonStaticSuperField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.publicField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `static int b.B.staticField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `static int b.B.staticSuperField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `int b.B.superField`",
+				"> `b.B` (owner class not found)",
+				"\u2022 Field not found: `static b.E b.E.E3`",
+				"> `b.E` (owner class not found)"
 		);
 		assertEquals(expectedMessage, values[1]);
 	}

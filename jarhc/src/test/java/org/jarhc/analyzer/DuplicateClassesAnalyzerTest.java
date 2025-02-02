@@ -72,10 +72,10 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-		assertValuesEquals(rows.get(0), "a.A", joinLines("a (Classpath)", "a (Provided)"), "Exact copy");
-		assertValuesEquals(rows.get(1), "java.lang.String", joinLines("r (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
-		assertValuesEquals(rows.get(2), "z.Z", joinLines("x (Classpath)", "y (Classpath)"), "Exact copy");
-		assertValuesEquals(rows.get(3), "z/Z.txt", joinLines("x", "y"), "Different content");
+		assertValuesEquals(rows.get(0), "`a.A`", joinLines("a (Classpath)", "a (Provided)"), "Exact copy");
+		assertValuesEquals(rows.get(1), "`java.lang.String`", joinLines("r (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
+		assertValuesEquals(rows.get(2), "`z.Z`", joinLines("x (Classpath)", "y (Classpath)"), "Exact copy");
+		assertValuesEquals(rows.get(3), "`z/Z.txt`", joinLines("x", "y"), "Different content");
 	}
 
 	@Test
@@ -105,7 +105,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a.b.C", joinLines("a (Classpath)", "b (Classpath)"), "Exact copy");
+		assertValuesEquals(rows.get(0), "`a.b.C`", joinLines("a (Classpath)", "b (Classpath)"), "Exact copy");
 	}
 
 	@Test
@@ -135,7 +135,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "a/b/C", joinLines("a", "b"), "Exact copy");
+		assertValuesEquals(rows.get(0), "`a/b/C`", joinLines("a", "b"), "Exact copy");
 	}
 
 	@Test
@@ -166,7 +166,7 @@ class DuplicateClassesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(1, rows.size());
-		assertValuesEquals(rows.get(0), "java.lang.String", joinLines("a (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
+		assertValuesEquals(rows.get(0), "`java.lang.String`", joinLines("a (Classpath)", "Runtime"), "Different API\n(2/94 = 2% similar)");
 	}
 
 	@Test

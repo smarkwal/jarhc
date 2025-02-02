@@ -73,9 +73,9 @@ class BinaryCompatibilityAnalyzerTest {
 		assertEquals("a", values[0]);
 
 		if (javaVersion == 11) {
-			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class is not exported by module java.base: public class jdk.internal.util.ArraysSupport", "\u2022 Class is not exported by module java.base: public final class sun.text.IntHashtable"), values[1]);
+			assertEquals(StringUtils.joinLines("`a.A`", "\u2022 Class is not exported by module `java.base`: `public class jdk.internal.util.ArraysSupport`", "\u2022 Class is not exported by module `java.base`: `public final class sun.text.IntHashtable`"), values[1]);
 		} else {
-			assertEquals(StringUtils.joinLines("a.A", "\u2022 Class is not exported by module java.base: public final class sun.text.IntHashtable"), values[1]);
+			assertEquals(StringUtils.joinLines("`a.A`", "\u2022 Class is not exported by module `java.base`: `public final class sun.text.IntHashtable`"), values[1]);
 		}
 
 	}

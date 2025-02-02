@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +27,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.Markdown;
 
 public class JpmsModulesAnalyzer implements Analyzer {
 
@@ -56,7 +59,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 			String requiresInfo = getRequiresInfo(jarFile);
 			String exportsInfo = getExportsInfo(jarFile);
 
-			table.addRow(artifactName, moduleName, definitionInfo, automaticInfo, requiresInfo, exportsInfo);
+			table.addRow(artifactName, code(moduleName), definitionInfo, automaticInfo, requiresInfo, exportsInfo);
 		}
 
 		return table;
@@ -127,6 +130,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 			} else {
 				List<String> requires = new ArrayList<>(moduleInfo.getRequires());
 				requires.sort(JpmsModulesAnalyzer::compareModuleNames);
+				requires.replaceAll(Markdown::code);
 				return String.join("\n", requires);
 			}
 		} else {
@@ -142,6 +146,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 			} else {
 				List<String> exports = new ArrayList<>(moduleInfo.getExports());
 				exports.sort(String.CASE_INSENSITIVE_ORDER);
+				exports.replaceAll(Markdown::code);
 				return String.join("\n", exports);
 			}
 		} else {

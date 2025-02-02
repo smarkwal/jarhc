@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Stephan Markwalder
+ * Copyright 2025 Stephan Markwalder
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,37 +14,26 @@
  * limitations under the License.
  */
 
-body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	margin: 20px;
-	font-size: 0.8rem;
-	line-height: 1.2rem;
-}
+package org.jarhc.analyzer;
 
-table {
-	border-collapse: collapse;
-}
+import java.util.Comparator;
+import org.jarhc.utils.Markdown;
 
-th {
-	background-color: lightgray;
-}
+/**
+ * Comparator for text values, ignoring Markdown formatting.
+ */
+public final class TextComparator implements Comparator<String> {
 
-th, td {
-	border: 1px solid gray;
-	padding: 0.3rem;
-	vertical-align: top;
-	text-align: left;
-	white-space: nowrap;
-}
+	public static final TextComparator INSTANCE = new TextComparator();
 
-.generator {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: gray;
-}
+	private TextComparator() {
+	}
 
-code {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #333399;
+	@Override
+	public int compare(String value1, String value2) {
+		String text1 = Markdown.toText(value1);
+		String text2 = Markdown.toText(value2);
+		return text1.compareTo(text2);
+	}
+
 }

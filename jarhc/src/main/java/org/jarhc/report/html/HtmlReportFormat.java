@@ -24,6 +24,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.utils.DigestUtils;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.VersionUtils;
 import org.slf4j.LoggerFactory;
 
@@ -143,7 +144,7 @@ public class HtmlReportFormat implements ReportFormat {
 				ReportTable table = (ReportTable) content;
 				formatTable(table, writer);
 			} else {
-				writer.println("<p>%s</p>", escape(content.toString()));
+				writer.println("<p>%s</p>", Markdown.toHtml(escape(content.toString())));
 			}
 		}
 
@@ -168,7 +169,7 @@ public class HtmlReportFormat implements ReportFormat {
 			if (header) {
 				writer.print("<th>%s</th>", escape(value));
 			} else {
-				writer.print("<td>%s</td>", addArtifactLinks(escape(value)));
+				writer.print("<td>%s</td>", Markdown.toHtml(addArtifactLinks(escape(value))));
 			}
 		}
 		writer.println("</tr>");

@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +96,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 			if (SPECIAL_ATTRIBUTE_NAMES.contains(attributeName)) continue;
 			if (OSGiBundleInfo.isBundleHeader(attributeName)) continue;
 			String attributeValue = manifestAttributes.get(attributeName);
-			lines.add(attributeName + ": " + attributeValue);
+			lines.add(attributeName + ": " + code(attributeValue));
 		}
 		return StringUtils.joinLines(lines);
 	}
@@ -106,10 +108,10 @@ public class JarManifestsAnalyzer implements Analyzer {
 
 		List<String> lines = new ArrayList<>();
 		if (mainClass != null) {
-			lines.add("Main Class: " + mainClass);
+			lines.add("Main Class: " + code(mainClass));
 		}
 		if (classPath != null) {
-			lines.add("Class Path: " + classPath);
+			lines.add("Class Path: " + code(classPath));
 		}
 		return StringUtils.joinLines(lines);
 	}
@@ -129,22 +131,22 @@ public class JarManifestsAnalyzer implements Analyzer {
 			lines.add(title);
 		}
 		if (version != null) {
-			lines.add("Version: " + version);
+			lines.add("Version: " + code(version));
 		}
 		if (build != null) {
-			lines.add("Build: " + build);
+			lines.add("Build: " + code(build));
 		}
 		if (buildId != null) {
-			lines.add("Build ID: " + buildId);
+			lines.add("Build ID: " + code(buildId));
 		}
 		if (vendor != null) {
-			lines.add("Vendor: " + vendor);
+			lines.add("Vendor: " + code(vendor));
 		}
 		if (vendorId != null) {
-			lines.add("Vendor ID: " + vendorId);
+			lines.add("Vendor ID: " + code(vendorId));
 		}
 		if (url != null) {
-			lines.add("URL: " + url);
+			lines.add("URL: " + code(url));
 		}
 		return StringUtils.joinLines(lines);
 	}
@@ -160,10 +162,10 @@ public class JarManifestsAnalyzer implements Analyzer {
 			lines.add(title);
 		}
 		if (version != null) {
-			lines.add("Version: " + version);
+			lines.add("Version: " + code(version));
 		}
 		if (vendor != null) {
-			lines.add("Vendor: " + vendor);
+			lines.add("Vendor: " + code(vendor));
 		}
 		return StringUtils.joinLines(lines);
 	}

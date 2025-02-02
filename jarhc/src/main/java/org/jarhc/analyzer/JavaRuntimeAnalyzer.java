@@ -16,6 +16,8 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
+
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
@@ -31,10 +33,10 @@ public class JavaRuntimeAnalyzer implements Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		String text = "Java home    : " + javaRuntime.getJavaHome() + System.lineSeparator() +
-				"Java runtime : " + javaRuntime.getName() + System.lineSeparator() +
-				"Java version : " + javaRuntime.getJavaVersion() + System.lineSeparator() +
-				"Java vendor  : " + javaRuntime.getJavaVendor();
+		String text = "Java home    : " + code(javaRuntime.getJavaHome()) + System.lineSeparator() +
+				"Java runtime : " + code(javaRuntime.getName()) + System.lineSeparator() +
+				"Java version : " + code(javaRuntime.getJavaVersion()) + System.lineSeparator() +
+				"Java vendor  : " + code(javaRuntime.getJavaVendor());
 
 		ReportSection section = new ReportSection("Java Runtime", "Information about JRE/JDK runtime.");
 		section.add(text);

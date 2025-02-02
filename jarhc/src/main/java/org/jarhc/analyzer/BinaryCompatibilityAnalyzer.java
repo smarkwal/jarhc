@@ -16,6 +16,7 @@
 
 package org.jarhc.analyzer;
 
+import static org.jarhc.utils.Markdown.code;
 import static org.jarhc.utils.StringUtils.joinLines;
 
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		for (JarFile jarFile : jarFiles) {
 
 			// issues found in JAR file (sorted by class name)
-			final Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>());
+			final Set<String> jarIssues = Collections.synchronizedSet(new TreeSet<>(TextComparator.INSTANCE));
 
 			// validate attributes in META-INF/MANIFEST.MF
 			collectManifestIssues(jarFile, classpath, jarIssues);
@@ -124,27 +125,27 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// check if main class exists
 			ClassDef classDef = jarFile.getClassDef(mainClass);
 			if (classDef == null) {
-				issues.add("Class not found: " + mainClass);
+				issues.add("Class not found: " + code(mainClass));
 			} else {
 
 				// check if main method exists
 				MethodDef mainMethodDef = classDef.getMethodDef("main", "([Ljava/lang/String;)V");
 				if (mainMethodDef == null) {
-					issues.add("Main method not found: public static void main(String[])");
+					issues.add("Main method not found: " + code("public static void main(String[])"));
 				} else {
 
 					// check if main method is public and static
 					if (!mainMethodDef.isPublic()) {
-						issues.add("Main method is not public: " + mainMethodDef.getDisplayName());
+						issues.add("Main method is not public: " + code(mainMethodDef.getDisplayName()));
 					}
 					if (!mainMethodDef.isStatic()) {
-						issues.add("Main method is not static: " + mainMethodDef.getDisplayName());
+						issues.add("Main method is not static: " + code(mainMethodDef.getDisplayName()));
 					}
 				}
 			}
 
 			if (!issues.isEmpty()) {
-				String issue = createParentIssue("Main-Class: " + mainClass, issues);
+				String issue = createParentIssue("Main-Class: " + code(mainClass), issues);
 				jarIssues.add(issue);
 			}
 
@@ -164,15 +165,15 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				if (classPathElement.endsWith(".jar")) {
 					JarFile classPathJarFile = classpath.getJarFile(classPathElement);
 					if (classPathJarFile == null) {
-						issues.add("JAR file not found: " + classPathElement);
+						issues.add("JAR file not found: " + code(classPathElement));
 					}
 				} else { // class path element is a directory path
-					issues.add("Element is not a JAR file: " + classPathElement);
+					issues.add("Element is not a JAR file: " + code(classPathElement));
 				}
 			}
 
 			if (!issues.isEmpty()) {
-				String issue = createParentIssue("Class-Path: " + classPath, issues);
+				String issue = createParentIssue("Class-Path: " + code(classPath), issues);
 				jarIssues.add(issue);
 			}
 
@@ -195,7 +196,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		validateAnnotationRefs(classDef, classpath, accessCheck, classIssues);
 
 		if (!classIssues.isEmpty()) {
-			String issue = createParentIssue(classDef.getClassName(), classIssues);
+			String issue = createParentIssue("" + code(classDef.getClassName()), classIssues);
 			jarIssues.add(issue);
 		}
 
@@ -230,7 +231,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// check if superclass exists
 			ClassDef superClassDef = classpath.getClassDef(superName);
 			if (superClassDef == null) {
-				classIssues.add("Superclass not found: " + superName);
+				classIssues.add("Superclass not found: " + code(superName));
 			} else {
 				validateSuperclass(superClassDef, classDef, accessCheck, classIssues);
 			}
@@ -244,7 +245,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			// check if interface exists
 			ClassDef interfaceClassDef = classpath.getClassDef(interfaceName);
 			if (interfaceClassDef == null) {
-				classIssues.add("Interface not found: " + interfaceName);
+				classIssues.add("Interface not found: " + code(interfaceName));
 			} else {
 				validateInterface(interfaceClassDef, classDef, accessCheck, classIssues);
 			}
@@ -261,7 +262,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				// check if subclass exists
 				ClassDef permittedSubclassDef = classpath.getClassDef(permittedSubclassName);
 				if (permittedSubclassDef == null) {
-					classIssues.add("Permitted subclass not found: " + permittedSubclassName);
+					classIssues.add("Permitted subclass not found: " + code(permittedSubclassName));
 				} else {
 					validatePermittedSubclass(permittedSubclassDef, classDef, accessCheck, classIssues);
 				}
@@ -275,14 +276,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// check if class is final
 		if (superClass.isFinal()) {
-			classIssues.add("Superclass is final: " + superClass.getDisplayName());
+			classIssues.add("Superclass is final: " + code(superClass.getDisplayName()));
 		}
 
 		// check if superclass is sealed
 		if (superClass.isSealed()) {
 			// check if class is permitted subclass
 			if (!superClass.getPermittedSubclassNames().contains(classDef.getClassName())) {
-				classIssues.add("Class is not a permitted subclass of sealed superclass: " + superClass.getDisplayName());
+				classIssues.add("Class is not a permitted subclass of sealed superclass: " + code(superClass.getDisplayName()));
 			} else {
 				// check if classes are in same module/package
 				validateSealedClassModuleConstraint(classDef, "Sealed superclass", superClass, classIssues);
@@ -291,18 +292,18 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		// check if class is an annotation, interface, or enum
 		if (superClass.isAnnotation()) {
-			classIssues.add("Superclass is an annotation: " + superClass.getDisplayName());
+			classIssues.add("Superclass is an annotation: " + code(superClass.getDisplayName()));
 		} else if (superClass.isInterface()) {
-			classIssues.add("Superclass is an interface: " + superClass.getDisplayName());
+			classIssues.add("Superclass is an interface: " + code(superClass.getDisplayName()));
 		} else if (superClass.isEnum()) {
 			if (classDef.isEnum() && classDef.getClassName().startsWith(superClass.getClassName() + "$")) {
 				// superclass is outer enum class,
 				// current class is inner anonymous class implementing the abstract enum class
 			} else {
-				classIssues.add("Superclass is an enum: " + superClass.getDisplayName());
+				classIssues.add("Superclass is an enum: " + code(superClass.getDisplayName()));
 			}
 		} else if (superClass.isRecord()) {
-			classIssues.add("Superclass is a record class: " + superClass.getDisplayName());
+			classIssues.add("Superclass is a record class: " + code(superClass.getDisplayName()));
 		} else {
 			// OK (regular class or abstract class)
 		}
@@ -310,7 +311,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// check access to superclass
 		boolean access = accessCheck.hasAccess(classDef, superClass);
 		if (!access) {
-			classIssues.add("Superclass is not accessible: " + superClass.getDisplayName());
+			classIssues.add("Superclass is not accessible: " + code(superClass.getDisplayName()));
 		}
 
 	}
@@ -326,20 +327,20 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			if (moduleInfo.isNamed()) {
 				// check if both classes are in same module
 				if (!otherModuleInfo.isSame(moduleInfo)) {
-					classIssues.add(otherClassType + " is not in same module: " + otherClassDef.getDisplayName());
+					classIssues.add(otherClassType + " is not in same module: " + code(otherClassDef.getDisplayName()));
 				}
 			} else {
-				classIssues.add(otherClassType + " is in a named module: " + otherClassDef.getDisplayName());
+				classIssues.add(otherClassType + " is in a named module: " + code(otherClassDef.getDisplayName()));
 			}
 		} else {
 			if (moduleInfo.isNamed()) {
-				classIssues.add(otherClassType + " is in unnamed module: " + otherClassDef.getDisplayName());
+				classIssues.add(otherClassType + " is in unnamed module: " + code(otherClassDef.getDisplayName()));
 			} else {
 				// check if both classes are in same package
 				String className = classDef.getClassName();
 				String otherClassName = otherClassDef.getClassName();
 				if (!JavaUtils.inSamePackage(otherClassName, className)) {
-					classIssues.add(otherClassType + " is not in same package: " + otherClassDef.getDisplayName());
+					classIssues.add(otherClassType + " is not in same package: " + code(otherClassDef.getDisplayName()));
 				}
 			}
 		}
@@ -355,17 +356,17 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		} else if (interfaceClass.isInterface()) {
 			// OK (regular interface)
 		} else if (interfaceClass.isEnum()) {
-			classIssues.add("Interface is an enum: " + interfaceClass.getDisplayName());
+			classIssues.add("Interface is an enum: " + code(interfaceClass.getDisplayName()));
 		} else if (interfaceClass.isAbstract()) {
-			classIssues.add("Interface is an abstract class: " + interfaceClass.getDisplayName());
+			classIssues.add("Interface is an abstract class: " + code(interfaceClass.getDisplayName()));
 		} else {
-			classIssues.add("Interface is a class: " + interfaceClass.getDisplayName());
+			classIssues.add("Interface is a class: " + code(interfaceClass.getDisplayName()));
 		}
 
 		// check access to interface class
 		boolean access = accessCheck.hasAccess(classDef, interfaceClass);
 		if (!access) {
-			classIssues.add("Interface is not accessible: " + interfaceClass.getDisplayName());
+			classIssues.add("Interface is not accessible: " + code(interfaceClass.getDisplayName()));
 		}
 
 	}
@@ -374,7 +375,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		String superName = subclassDef.getSuperName();
 		if (!superName.equals(classDef.getClassName())) {
-			classIssues.add("Permitted subclass does not extend sealed class: " + subclassDef.getDisplayName());
+			classIssues.add("Permitted subclass does not extend sealed class: " + code(subclassDef.getDisplayName()));
 		}
 
 		// check if classes are in same module/package
@@ -383,7 +384,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// check access to permitted subclass class
 		boolean access = accessCheck.hasAccess(classDef, subclassDef);
 		if (!access) {
-			classIssues.add("Permitted subclass is not accessible: " + subclassDef.getDisplayName());
+			classIssues.add("Permitted subclass is not accessible: " + code(subclassDef.getDisplayName()));
 		}
 
 	}
@@ -423,7 +424,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 
 			if (!implemented) {
-				classIssues.add("Abstract method not implemented: " + abstractMethod.getDisplayName());
+				classIssues.add("Abstract method not implemented: " + code(abstractMethod.getDisplayName()));
 			}
 		}
 
@@ -540,9 +541,9 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		String packageName = JavaUtils.getPackageName(className);
 		boolean found = classLoader.containsPackage(packageName);
 		if (!found) {
-			classIssues.add(classType + " not found: " + className + " (package not found)");
+			classIssues.add(classType + " not found: " + code(className) + " (package not found)");
 		} else {
-			classIssues.add(classType + " not found: " + className + " (package found)");
+			classIssues.add(classType + " not found: " + code(className) + " (package found)");
 		}
 	}
 
@@ -554,14 +555,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 			// check if a similar issue has already been reported (for superclass or interface declaration)
 			String targetClassDisplayName = targetClassDef.getDisplayName();
-			boolean similarIssueFound = classIssues.contains("Superclass is not accessible: " + targetClassDisplayName) ||
-					classIssues.contains("Interface is not accessible: " + targetClassDisplayName);
+			boolean similarIssueFound = classIssues.contains("Superclass is not accessible: " + code(targetClassDisplayName)) ||
+					classIssues.contains("Interface is not accessible: " + code(targetClassDisplayName));
 
 			if (!similarIssueFound) {
 				if (targetClassDef.isAnnotation()) {
-					classIssues.add("Annotation is not accessible: " + targetClassDisplayName);
+					classIssues.add("Annotation is not accessible: " + code(targetClassDisplayName));
 				} else {
-					classIssues.add("Class is not accessible: " + targetClassDisplayName);
+					classIssues.add("Class is not accessible: " + code(targetClassDisplayName));
 				}
 			}
 		}
@@ -576,7 +577,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			String targetPackageName = targetClassDef.getPackageName();
 			if (!targetModuleInfo.isExported(targetPackageName, moduleName)) {
 				String targetClassDisplayName = targetClassDef.getDisplayName();
-				classIssues.add("Class is not exported by module " + targetModuleInfo.getModuleName() + ": " + targetClassDisplayName);
+				classIssues.add("Class is not exported by module " + code(targetModuleInfo.getModuleName()) + ": " + code(targetClassDisplayName));
 			}
 
 		}
@@ -616,7 +617,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName);
 		if (ownerClassDef == null) {
 			// owner class not found
-			searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
+			searchResult.addErrorMessage("Method not found: " + code(methodRef.getDisplayName()));
 			if (reportOwnerClassNotFound) {
 				searchResult.addSearchInfo(targetClassName, "owner class not found");
 			} else {
@@ -631,7 +632,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
+			searchResult.addErrorMessage("Illegal access from " + code(className) + " to class: " + code(targetClassName));
 			return searchResult;
 		}
 
@@ -650,7 +651,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			}
 
 			if (methodDef == null) {
-				searchResult.addErrorMessage("Method not found: " + methodRef.getDisplayName());
+				searchResult.addErrorMessage("Method not found: " + code(methodRef.getDisplayName()));
 				return searchResult;
 			}
 		}
@@ -701,17 +702,17 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, methodDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + ": " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + code(className) + ": " + code(methodRef.getDisplayName()) + " -> " + code(methodDef.getDisplayName()));
 		}
 
 		// check static/instance
 		if (methodDef.isStatic()) {
 			if (!methodRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Instance access to static method: " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
+				searchResult.addErrorMessage("Instance access to static method: " + code(methodRef.getDisplayName()) + " -> " + code(methodDef.getDisplayName()));
 			}
 		} else {
 			if (methodRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Static access to instance method: " + methodRef.getDisplayName() + " -> " + methodDef.getDisplayName());
+				searchResult.addErrorMessage("Static access to instance method: " + code(methodRef.getDisplayName()) + " -> " + code(methodDef.getDisplayName()));
 			}
 		}
 
@@ -750,7 +751,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		ClassDef ownerClassDef = classLoader.getClassDef(targetClassName);
 		if (ownerClassDef == null) {
 			// owner class not found
-			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
+			searchResult.addErrorMessage("Field not found: " + code(fieldRef.getDisplayName()));
 			if (reportOwnerClassNotFound) {
 				searchResult.addSearchInfo(targetClassName, "owner class not found");
 			} else {
@@ -765,14 +766,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, ownerClassDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + " to class: " + targetClassName);
+			searchResult.addErrorMessage("Illegal access from " + code(className) + " to class: " + code(targetClassName));
 			return searchResult;
 		}
 
 		// find target field definition
 		FieldDef fieldDef = classLoader.getFieldDef(fieldRef, searchResult);
 		if (fieldDef == null) {
-			searchResult.addErrorMessage("Field not found: " + fieldRef.getDisplayName());
+			searchResult.addErrorMessage("Field not found: " + code(fieldRef.getDisplayName()));
 			return searchResult;
 		}
 
@@ -788,29 +789,29 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		boolean access = accessCheck.hasAccess(classDef, fieldDef);
 		if (!access) {
 			String className = classDef.getClassName();
-			searchResult.addErrorMessage("Illegal access from " + className + ": " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
+			searchResult.addErrorMessage("Illegal access from " + code(className) + ": " + code(fieldRef.getDisplayName()) + " -> " + code(fieldDef.getDisplayName()));
 		}
 
 		// check field type
 		if (!fieldDef.getFieldType().equals(fieldRef.getFieldType())) {
-			searchResult.addErrorMessage("Incompatible field type: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
+			searchResult.addErrorMessage("Incompatible field type: " + code(fieldRef.getDisplayName()) + " -> " + code(fieldDef.getDisplayName()));
 		}
 
 		// check static/instance
 		if (fieldDef.isStatic()) {
 			if (!fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Instance access to static field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
+				searchResult.addErrorMessage("Instance access to static field: " + code(fieldRef.getDisplayName()) + " -> " + code(fieldDef.getDisplayName()));
 			}
 		} else {
 			if (fieldRef.isStaticAccess()) {
-				searchResult.addErrorMessage("Static access to instance field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
+				searchResult.addErrorMessage("Static access to instance field: " + code(fieldRef.getDisplayName()) + " -> " + code(fieldDef.getDisplayName()));
 			}
 		}
 
 		// check access to final fields
 		if (fieldDef.isFinal()) {
 			if (fieldRef.isWriteAccess()) {
-				searchResult.addErrorMessage("Write access to final field: " + fieldRef.getDisplayName() + " -> " + fieldDef.getDisplayName());
+				searchResult.addErrorMessage("Write access to final field: " + code(fieldRef.getDisplayName()) + " -> " + code(fieldDef.getDisplayName()));
 			}
 		}
 
@@ -885,7 +886,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				if (annotationDef.isAnnotation()) {
 					// TODO: check if class is valid annotation target
 				} else {
-					classIssues.add("Class is not an annotation: " + annotationDef.getDisplayName());
+					classIssues.add("Class is not an annotation: " + code(annotationDef.getDisplayName()));
 				}
 			}
 
@@ -912,7 +913,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 			if (searchInfos.length() > 0) {
 				searchInfos.append(System.lineSeparator());
 			}
-			searchInfos.append("> ").append(className).append(" (").append(message).append(")");
+			searchInfos.append("> ").append(code(className)).append(" (").append(message).append(")");
 		}
 
 		String getResult() {
