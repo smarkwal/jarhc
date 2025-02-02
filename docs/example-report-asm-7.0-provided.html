@@ -9,6 +9,7 @@ body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	margin: 20px;
 	font-size: 0.8rem;
+	line-height: 1.2rem;
 }
 
 table {
@@ -32,6 +33,11 @@ th, td {
 	top: 10px;
 	right: 10px;
 	color: gray;
+}
+
+code {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #333399;
 }
 </style>
 </head>
@@ -70,7 +76,7 @@ th, td {
 <p>Information found in META-INF/MANIFEST.MF.</p>
 <table>
 	<tr><th>Artifact</th><th>General</th><th>Runtime</th><th>Implementation</th><th>Specification</th><th>Signature</th></tr>
-	<tr><td>asm-commons</td><td>Manifest-Version: 1.0<br>Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: 7.0</td><td></td><td></td></tr>
+	<tr><td>asm-commons</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
 </table>
 </section>
 
@@ -79,7 +85,7 @@ th, td {
 <p>List of Java Modules found in classpath.</p>
 <table>
 	<tr><th>Artifact</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
-	<tr><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>Module-Info</td><td>No</td><td>org.objectweb.asm<br>org.objectweb.asm.tree<br>org.objectweb.asm.tree.analysis<br>java.base</td><td>org.objectweb.asm.commons</td></tr>
+	<tr><td>asm-commons</td><td><code>org.objectweb.asm.commons</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></td><td><code>org.objectweb.asm.commons</code></td></tr>
 </table>
 </section>
 
@@ -125,7 +131,7 @@ th, td {
 <p>List of packages per JAR file.</p>
 <table>
 	<tr><th>Artifact</th><th>Count</th><th>Packages</th><th>Issues</th></tr>
-	<tr><td>asm-commons</td><td>1</td><td>org.objectweb.asm.commons</td><td></td></tr>
+	<tr><td>asm-commons</td><td>1</td><td><code>org.objectweb.asm.commons</code></td><td></td></tr>
 </table>
 </section>
 
@@ -156,7 +162,7 @@ th, td {
 <section id="JavaRuntime">
 <h2>Java Runtime</h2>
 <p>Information about JRE/JDK runtime.</p>
-<p>Java home    : /home/markwalder/.jdks/temurin-17.0.12<br>Java runtime : OpenJDK Runtime Environment<br>Java version : 17.0.12<br>Java vendor  : Eclipse Adoptium</p>
+<p>Java home    : <code>/home/markwalder/.jdks/temurin-17.0.13</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.13</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
 <div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>

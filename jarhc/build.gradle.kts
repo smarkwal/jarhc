@@ -29,10 +29,10 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.9"
 
     // run Sonar analysis
-    id("org.sonarqube") version "5.1.0.4882"
+    id("org.sonarqube") version "6.0.1.5171"
 
     // get current Git branch name
-    id("org.ajoberstar.grgit") version "5.2.2"
+    id("org.ajoberstar.grgit") version "5.3.0"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.1.1"
@@ -145,8 +145,8 @@ val includeInJarApp: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.7")
-    implementation("org.json:json:20240303")
+    implementation("org.ow2.asm:asm:9.7.1")
+    implementation("org.json:json:20250107")
     implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
     implementation("org.slf4j:jul-to-slf4j:2.0.16")
     implementation("org.slf4j:jcl-over-slf4j:2.0.16")
@@ -156,9 +156,9 @@ dependencies {
     includeInJarApp("org.slf4j:slf4j-simple:2.0.16")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.1")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.4")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.mockito:mockito-core:5.13.0")
+    testFixturesApi("org.mockito:mockito-core:5.15.2")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.16")
 
 }
