@@ -1,0 +1,40 @@
+# Jakarta EE 10 specifications
+# See https://jakarta.ee/specifications/platform/10/jakarta-platform-spec-10.0#a3252
+Activation 2.1=jakarta.activation:jakarta.activation-api:2.1.3
+Annotations 2.1=jakarta.annotation:jakarta.annotation-api:2.1.1
+Authentication 3.0=jakarta.authentication:jakarta.authentication-api:3.0.0
+Authorization 2.1=jakarta.authorization:jakarta.authorization-api:2.1.0
+Batch 2.1=jakarta.batch:jakarta.batch-api:2.1.1
+Bean Validation 3.0=jakarta.validation:jakarta.validation-api:3.0.0
+Concurrency 3.0=jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4
+Connectors 2.1=jakarta.resource:jakarta.resource-api:2.1.0
+Contexts and Dependency Injection 4.0=jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1
+Debugging Support for Other Languages 2.0=NO_CODE
+Dependency Injection 2.0=jakarta.inject:jakarta.inject-api:2.0.1
+Enterprise Beans 4.0=jakarta.ejb:jakarta.ejb-api:4.0.0
+Expression Language 5.0=jakarta.el:jakarta.el-api:5.0.0
+Faces 4.0=jakarta.faces:jakarta.faces-api:4.0.1
+Interceptors 2.1=jakarta.interceptor:jakarta.interceptor-api:2.1.0
+JSON Binding 3.0=jakarta.json.bind:jakarta.json.bind-api:3.0.1
+JSON Processing 2.1=jakarta.json:jakarta.json-api:2.1.3
+Mail 2.1=jakarta.mail:jakarta.mail-api:2.1.3
+Managed Beans 2.0=jakarta.annotation:jakarta.annotation-api:2.0.0 (DUPLICATE?)
+Messaging 3.1=jakarta.jms:jakarta.jms-api:3.1.0
+Persistence 3.1=jakarta.persistence:jakarta.persistence-api:3.1.0
+RESTful Web Services 3.1=jakarta.ws.rs:jakarta.ws.rs-api:3.1.0
+Security 3.0=jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0
+Server Pages 3.1=jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0
+Servlet 6.0=jakarta.servlet:jakarta.servlet-api:6.0.0
+Standard Tag Library 3.0=jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2
+Transactions 2.0=jakarta.transaction:jakarta.transaction-api:2.0.0
+WebSocket 2.1=jakarta.websocket:jakarta.websocket-api:2.1.0,jakarta.websocket:jakarta.websocket-client-api:2.1.0
+
+# Optional technologies
+Enterprise Web Services 2.0=NO_CODE
+SOAP with Attachments 3.0=jakarta.xml.soap:jakarta.xml.soap-api:3.0.2
+Web Services Metadata 3.0=jakarta.jws:jakarta.jws-api:3.0.0
+XML Binding 4.0=jakarta.xml.bind:jakarta.xml.bind-api:4.0.2
+XML Web Services 4.0=jakarta.xml.ws:jakarta.xml.ws-api:4.0.2
+
+# Unknown specifications
+MVC 2.1=jakarta.mvc:jakarta.mvc-api:2.1.0
