@@ -1,0 +1,34 @@
+--title Jakarta EE 9
+--output docs/example-report-jakarta-ee-9.html
+--output docs/example-report-jakarta-ee-9.txt
+jakarta.activation:jakarta.activation-api:2.0.1
+jakarta.annotation:jakarta.annotation-api:2.0.0
+jakarta.authentication:jakarta.authentication-api:2.0.0
+jakarta.authorization:jakarta.authorization-api:2.0.0
+jakarta.batch:jakarta.batch-api:2.0.0
+jakarta.ejb:jakarta.ejb-api:4.0.0
+jakarta.el:jakarta.el-api:4.0.0
+jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0
+jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0
+jakarta.faces:jakarta.faces-api:3.0.0
+jakarta.inject:jakarta.inject-api:2.0.1
+jakarta.interceptor:jakarta.interceptor-api:2.0.0
+jakarta.jms:jakarta.jms-api:3.0.0
+jakarta.json.bind:jakarta.json.bind-api:2.0.0
+jakarta.json:jakarta.json-api:2.0.2
+jakarta.jws:jakarta.jws-api:3.0.0
+jakarta.mail:jakarta.mail-api:2.0.1
+jakarta.mvc:jakarta.mvc-api:2.0.0
+jakarta.persistence:jakarta.persistence-api:3.0.0
+jakarta.resource:jakarta.resource-api:2.0.0
+jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0
+jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0
+jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0
+jakarta.servlet:jakarta.servlet-api:5.0.0
+jakarta.transaction:jakarta.transaction-api:2.0.0
+jakarta.validation:jakarta.validation-api:3.0.0
+jakarta.websocket:jakarta.websocket-api:2.0.0,jakarta.websocket:jakarta.websocket-client-api:2.0.0
+jakarta.ws.rs:jakarta.ws.rs-api:3.0.0
+jakarta.xml.bind:jakarta.xml.bind-api:3.0.1
+jakarta.xml.soap:jakarta.xml.soap-api:2.0.1
+jakarta.xml.ws:jakarta.xml.ws-api:3.0.1
