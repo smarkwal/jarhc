@@ -204,13 +204,10 @@ Artifact: asm-analysis
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0
-		8)"
-		org.objectweb.asm.tree;version="[7.0
-		8)"
+		org.objectweb.asm;version="[7.0,8)"
+		org.objectweb.asm.tree;version="[7.0,8)"
 	Export Package:
-		org.objectweb.asm.tree.analysis;version="7.0";uses:="org.objectweb.asm
-		org.objectweb.asm.tree"
+		org.objectweb.asm.tree.analysis;version="7.0";uses:="org.objectweb.asm,org.objectweb.asm.tree"
 	Others:
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
@@ -223,16 +220,11 @@ Artifact: asm-commons
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0
-		8)"
-		org.objectweb.asm.signature;version="[7.0
-		8)"
-		org.objectweb.asm.tree;version="[7.0
-		8)"
+		org.objectweb.asm;version="[7.0,8)"
+		org.objectweb.asm.signature;version="[7.0,8)"
+		org.objectweb.asm.tree;version="[7.0,8)"
 	Export Package:
-		org.objectweb.asm.commons;version="7.0";uses:="org.objectweb.asm
-		org.objectweb.asm.signature
-		org.objectweb.asm.tree"
+		org.objectweb.asm.commons;version="7.0";uses:="org.objectweb.asm,org.objectweb.asm.signature,org.objectweb.asm.tree"
 	Others:
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
@@ -245,8 +237,7 @@ Artifact: asm-tree
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0
-		8)"
+		org.objectweb.asm;version="[7.0,8)"
 	Export Package:
 		org.objectweb.asm.tree;version="7.0";uses:="org.objectweb.asm"
 	Others:
@@ -430,8 +421,8 @@ Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-17.0.13
+Java home    : /home/markwalder/.jdks/temurin-17.0.14
 Java runtime : OpenJDK Runtime Environment
-Java version : 17.0.13
+Java version : 17.0.14
 Java vendor  : Eclipse Adoptium
 

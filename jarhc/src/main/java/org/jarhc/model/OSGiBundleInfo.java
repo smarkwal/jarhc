@@ -16,9 +16,11 @@
 
 package org.jarhc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.codehaus.plexus.util.StringUtils;
 
 public class OSGiBundleInfo {
 
@@ -329,10 +331,33 @@ public class OSGiBundleInfo {
 
 	private List<String> splitList(String value) {
 		if (value == null) return null;
-		// TODO: support escaping
-		//  example: org.apache.log4j;version="e;[1.2.15,2.0.0)"e;;resolution:=optional
-		// TODO: what does "e; mean?
-		return List.of(value.split(","));
+
+		// estimate the number of elements in the list
+		int commas = 0;
+		for (int i = 0; i < value.length(); i++) {
+			if (value.charAt(i) == ',') commas++;
+		}
+
+		// prepare list with estimated size
+		List<String> list = new ArrayList<>(commas + 1);
+
+		boolean quoted = false;
+		int start = 0;
+		for (int i = 0; i < value.length(); i++) {
+			char chr = value.charAt(i);
+			if (chr == '"') {
+				quoted = !quoted;
+			} else if (chr == ',' && !quoted) {
+				String element = value.substring(start, i);
+				list.add(element);
+				start = i + 1;
+			}
+		}
+		if(start < value.length()) {
+			list.add(value.substring(start));
+		}
+
+		return list;
 	}
 
 }

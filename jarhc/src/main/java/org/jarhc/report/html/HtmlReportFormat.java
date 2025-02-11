@@ -197,7 +197,7 @@ public class HtmlReportFormat implements ReportFormat {
 		// TODO: implement full HTML escaping
 		text = text.replace("<", "&lt;");
 		text = text.replace(">", "&gt;");
-		text = text.replace("\"", "&quote;");
+		text = text.replace("\"", "&quot;");
 		text = text.replaceAll(Pattern.quote(System.lineSeparator()), "<br>");
 		return text;
 	}

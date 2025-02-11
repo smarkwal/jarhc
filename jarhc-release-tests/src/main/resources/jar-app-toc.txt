@@ -1,5 +1,8 @@
 blacklist-patterns.txt | size=1234 | crc=3899595672
 html-report-style.css | size=1075 | crc=3273499505
+jakarta-ee-10.txt | size=2347 | crc=1490582316
+jakarta-ee-8.txt | size=2813 | crc=727063412
+jakarta-ee-9.txt | size=2525 | crc=2222807566
 jarhc.properties | size=609 | crc=1483914501
 LICENSE | size=11323 | crc=398435797
 simplelogger.properties | size=1045 | crc=237288634
@@ -2220,14 +2223,14 @@ org/jarhc/model/MemberDef.class | size=601 | crc=3680358327
 org/jarhc/model/MethodDef.class | size=2654 | crc=1190895107
 org/jarhc/model/MethodRef.class | size=3593 | crc=4104838845
 org/jarhc/model/ModuleInfo.class | size=5165 | crc=3410250729
-org/jarhc/model/OSGiBundleInfo.class | size=8114 | crc=3967537436
+org/jarhc/model/OSGiBundleInfo.class | size=8612 | crc=2801035404
 org/jarhc/model/RecordComponentDef.class | size=1228 | crc=3119940870
 org/jarhc/model/Ref.class | size=151 | crc=2546580372
 org/jarhc/model/ResourceDef.class | size=1135 | crc=4169474302
 org/jarhc/pom/Dependency.class | size=3207 | crc=3070612390
 org/jarhc/pom/Scope.class | size=1303 | crc=2969203394
 org/jarhc/report/html/DefaultStyleProvider.class | size=1255 | crc=3575769662
-org/jarhc/report/html/HtmlReportFormat.class | size=7896 | crc=3347834921
+org/jarhc/report/html/HtmlReportFormat.class | size=7895 | crc=2358472759
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
 org/jarhc/report/list/ListReportFormat.class | size=2464 | crc=2163679850
 org/jarhc/report/Report.class | size=1294 | crc=2508431441
