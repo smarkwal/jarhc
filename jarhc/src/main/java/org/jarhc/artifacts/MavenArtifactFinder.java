@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
@@ -62,6 +63,8 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	private final Settings settings;
 
 	private final Map<String, List<Artifact>> cache = new ConcurrentHashMap<>();
+
+	private final AtomicBoolean mavenStatusInfoLogged = new AtomicBoolean(false);
 
 	public MavenArtifactFinder(File cacheDir, Logger logger) {
 		this(cacheDir, logger, Settings.fromSystemProperties());
@@ -192,6 +195,10 @@ public class MavenArtifactFinder implements ArtifactFinder {
 			if (data.isEmpty()) throw new RepositoryException("URL not found: " + url);
 			return new String(data.get(), StandardCharsets.UTF_8);
 		} catch (IOException e) {
+			// log information about Maven Central status once
+			if (mavenStatusInfoLogged.compareAndSet(false, true)) {
+				logger.warn("Problem with search.maven.org. Visit https://status.maven.org to check the status of Maven Central.");
+			}
 			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
 		}
 	}
