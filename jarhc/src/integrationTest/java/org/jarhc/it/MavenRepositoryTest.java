@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 import org.jarhc.TestUtils;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactVersion;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.pom.Dependency;
@@ -165,6 +166,30 @@ class MavenRepositoryTest {
 		assertFalse(stream.isPresent());
 		assertLogger(logger).hasDebug("Download artifact: unknown:unknown:1.0:jar");
 
+	}
+
+	@Test
+	void test_getVersions_AsmCommons() throws RepositoryException {
+
+		// test
+		List<ArtifactVersion> versions = repository.getVersions("org.ow2.asm", "asm-commons");
+
+		// assert
+		assertEquals(41, versions.size());
+		assertEquals("4.0", versions.get(0).toString());
+		assertEquals("9.7.1", versions.get(versions.size() - 1).toString());
+		assertLogger(logger).hasDebug("Get versions: org.ow2.asm:asm-commons");
+	}
+
+	@Test
+	void test_getVersions_notFound() throws RepositoryException {
+
+		// test
+		List<ArtifactVersion> versions = repository.getVersions("net.markwalder", "unknown");
+
+		// assert
+		assertEquals(0, versions.size());
+		assertLogger(logger).hasDebug("Get versions: net.markwalder:unknown");
 	}
 
 	@Test

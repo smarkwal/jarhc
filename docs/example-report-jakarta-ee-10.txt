@@ -13,8 +13,8 @@ jakarta.annotation-api            | 2.1.1   | jakarta.annotation:jakarta.annotat
 jakarta.authentication-api        | 3.0.0   | jakarta.authentication:jakarta.authentication-api:3.0.0               | 44.2 KB | 35      | 5         | e1e3503070dcddcc9e24a062f734069446a99bc3 | jakarta.authentication:jakarta.authentication-api:3.0.0
 jakarta.authorization-api         | 2.1.0   | jakarta.authorization:jakarta.authorization-api:2.1.0                 | 45.6 KB | 14      | 1         | 31be189d7aa43710ac9a2ee422de3df1314deea8 | jakarta.authorization:jakarta.authorization-api:2.1.0
 jakarta.batch-api                 | 2.1.1   | jakarta.batch:jakarta.batch-api:2.1.1                                 | 44.6 KB | 60      | 2         | dfd728f3fc2f086484410ba2e5d06a26a371ed1d | jakarta.batch:jakarta.batch-api:2.1.1
-jakarta.ejb-api                   | 4.0.0   | jakarta.ejb:jakarta.ejb-api:4.0.0                                     | 58.6 KB | 81      | 3         | 8cec81f1a9fa7fc41c719df435e480dbbc9cce55 | jakarta.ejb:jakarta.ejb-api:4.0.0
-jakarta.el-api                    | 5.0.0   | jakarta.el:jakarta.el-api:5.0.0                                       | 85.8 KB | 52      | 1         | 2a22b304920f43d6427cdefb5ce5f6726e2a63a3 | jakarta.el:jakarta.el-api:5.0.0
+jakarta.ejb-api                   | 4.0.1   | jakarta.ejb:jakarta.ejb-api:4.0.1                                     | 60.4 KB | 81      | 3         | 70f6c55dad415f58b8428ae4bb215484368b8764 | jakarta.ejb:jakarta.ejb-api:4.0.1
+jakarta.el-api                    | 5.0.1   | jakarta.el:jakarta.el-api:5.0.1                                       | 86.2 KB | 52      | 1         | 6f46fb9143b18b7956806a657275fc41376d1a50 | jakarta.el:jakarta.el-api:5.0.1
 jakarta.enterprise.concurrent-api | 3.0.4   | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | 43.2 KB | 30      | 0         | d38e80ed9112c98a51f03a06a520cce00dd74d30 | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4
 jakarta.enterprise.cdi-api        | 4.0.1   | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   | 148 KB  | 183     | 5         | 2012f388c6de83e29101cbf82c3ed2bd37931c64 | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1
 jakarta.faces-api                 | 4.0.1   | jakarta.faces:jakarta.faces-api:4.0.1                                 | 702 KB  | 499     | 21        | c000786f025a6c09b26dbb8288a4c73452a679ac | jakarta.faces:jakarta.faces-api:4.0.1
@@ -73,18 +73,18 @@ jakarta.batch-api                 | Manifest-Version: 1.0                       
                                   | Built-By: 854188897                           |         |                                 |                                  |
                                   | Build-Jdk: 11.0.6                             |         |                                 |                                  |
                                   | Extension-Name: jakarta.batch                 |         |                                 |                                  |
-jakarta.ejb-api                   | Manifest-Version: 1.0                         |         | Version: 4.0.0                  | Version: 4.0                     |
-                                  | Built-By: jenkins                             |         |                                 | Vendor: Eclipse Foundation       |
-                                  | Bnd-LastModified: 1604599852416               |         |                                 |                                  |
-                                  | Tool: Bnd-4.2.0.201903051501                  |         |                                 |                                  |
+jakarta.ejb-api                   | Manifest-Version: 1.0                         |         | Version: 4.0.1                  | Version: 4.0                     |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 | Vendor: Eclipse Foundation       |
+                                  | Build-Jdk-Spec: 9                             |         |                                 |                                  |
+                                  | Bnd-LastModified: 1651625487623               |         |                                 |                                  |
+                                  | Build-Jdk: 9.0.4                              |         |                                 |                                  |
+                                  | Built-By: jenkins                             |         |                                 |                                  |
                                   | Extension-Name: jakarta.ejb                   |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 1.8                           |         |                                 |                                  |
-                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
-                                  | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
-jakarta.el-api                    | Manifest-Version: 1.0                         |         | Version: 5.0.0                  | Version: 5.0                     |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.el-api                    | Manifest-Version: 1.0                         |         | Version: 5.0.1                  | Version: 5.0                     |
                                   | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1645783375727               |         |                                 |                                  |
+                                  | Bnd-LastModified: 1655737655798               |         |                                 |                                  |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
                                   | Extension-Name: jakarta.el                    |         |                                 |                                  |
@@ -260,7 +260,10 @@ jakarta.batch-api                 | jakarta.batch                 | Module-Info 
                                   |                               |                |           |                               | jakarta.batch.operations
                                   |                               |                |           |                               | jakarta.batch.runtime
                                   |                               |                |           |                               | jakarta.batch.runtime.context
-jakarta.ejb-api                   | jakarta.ejb.api               | Auto-generated | Yes       | -                             | [all packages]
+jakarta.ejb-api                   | jakarta.ejb                   | Module-Info    | No        | jakarta.transaction           | jakarta.ejb
+                                  |                               |                |           | java.naming                   | jakarta.ejb.embeddable
+                                  |                               |                |           | java.rmi                      | jakarta.ejb.spi
+                                  |                               |                |           | java.base                     |
 jakarta.el-api                    | jakarta.el                    | Module-Info    | No        | java.desktop                  | jakarta.el
                                   |                               |                |           | java.base                     |
 jakarta.enterprise.concurrent-api | jakarta.concurrency           | Module-Info    | No        | jakarta.cdi                   | jakarta.enterprise.concurrent
@@ -407,13 +410,13 @@ jakarta.batch-api                 | jakarta.batch-api                           
                                   |                                             |         |                                                             |                                                                             | jakarta.batch.operations                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                   |
                                   |                                             |         |                                                             |                                                                             | jakarta.batch.runtime                                                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                   |
                                   |                                             |         |                                                             |                                                                             | jakarta.batch.runtime.context                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                   |
-jakarta.ejb-api                   | Jakarta Enterprise Beans API                | 4.0.0   | Jakarta Enterprise Beans 4.0 API Design Specification       | jakarta.ejb                                                                 | jakarta.ejb.embeddable;uses:="javax.naming";version="4.0.0"                                                                                                                                                                                                                                                                                                                                                     | Required:                                                                                                                                                                                                         | Manifest Version: 2
-                                  | [jakarta.ejb-api]                           |         | Vendor: Eclipse Foundation                                  | jakarta.ejb.embeddable                                                      | jakarta.ejb.spi;uses:="jakarta.ejb,jakarta.ejb.embeddable";version="4.0.0"                                                                                                                                                                                                                                                                                                                                      | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"                                                                                                                                                                |
-                                  |                                             |         | License:                                                    | jakarta.ejb.spi                                                             | jakarta.ejb;uses:="jakarta.transaction";version="4.0.0"                                                                                                                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                   |
+jakarta.ejb-api                   | Jakarta Enterprise Beans API                | 4.0.1   | Jakarta Enterprise Beans 4.0 API Design Specification       | jakarta.ejb                                                                 | jakarta.ejb.embeddable;uses:="javax.naming";version="4.0.1"                                                                                                                                                                                                                                                                                                                                                     | Required:                                                                                                                                                                                                         | Manifest Version: 2
+                                  | [jakarta.ejb-api]                           |         | Vendor: Eclipse Foundation                                  | jakarta.ejb.embeddable                                                      | jakarta.ejb.spi;uses:="jakarta.ejb,jakarta.ejb.embeddable";version="4.0.1"                                                                                                                                                                                                                                                                                                                                      | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"                                                                                                                                                                |
+                                  |                                             |         | License:                                                    | jakarta.ejb.spi                                                             | jakarta.ejb;uses:="jakarta.transaction";version="4.0.1"                                                                                                                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                   |
                                   |                                             |         | https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html, | jakarta.transaction;version="[2.0,3)"                                       |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                   |
                                   |                                             |         | https://www.gnu.org/software/classpath/license.html         | javax.naming                                                                |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                   |
                                   |                                             |         | Doc URL: https://projects.eclipse.org/projects/ee4j.ejb     |                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                   |
-jakarta.el-api                    | Jakarta Expression Language API             | 5.0.0   | Jakarta Expression Language 5.0                             |                                                                             | jakarta.el;version="5.0.0"                                                                                                                                                                                                                                                                                                                                                                                      | Required:                                                                                                                                                                                                         | Manifest Version: 2
+jakarta.el-api                    | Jakarta Expression Language API             | 5.0.1   | Jakarta Expression Language 5.0                             |                                                                             | jakarta.el;version="5.0.1"                                                                                                                                                                                                                                                                                                                                                                                      | Required:                                                                                                                                                                                                         | Manifest Version: 2
                                   | [jakarta.el-api]                            |         | Vendor: Eclipse Foundation                                  |                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                 | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=11))"                                                                                                                                                                 |
                                   |                                             |         | License:                                                    |                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                   |
                                   |                                             |         | https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt,  |                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                   |
@@ -696,6 +699,49 @@ jakarta.xml.soap-api              | No            | Java 11 (32)
 jakarta.xml.ws-api                | No            | Java 11 (79)
 Classpath                         | -             | Java 11 (1891), Java 8 (574)
 
+Updates
+-------
+Information about newer major, minor, and patch versions of artifacts.
+
+Artifact                          | Current version | Newer versions
+----------------------------------+-----------------+--------------------
+jakarta.activation-api            | 2.1.3           |
+jakarta.annotation-api            | 2.1.1           | 3.0.0
+jakarta.authentication-api        | 3.0.0           | 3.1.0
+jakarta.authorization-api         | 2.1.0           | 3.0.0
+jakarta.batch-api                 | 2.1.1           |
+jakarta.ejb-api                   | 4.0.1           |
+jakarta.el-api                    | 5.0.1           | 6.0.0, 6.0.1
+jakarta.enterprise.concurrent-api | 3.0.4           | 3.1.0, 3.1.1
+jakarta.enterprise.cdi-api        | 4.0.1           | 4.1.0
+jakarta.faces-api                 | 4.0.1           | 4.1.0, 4.1.1, 4.1.2
+jakarta.inject-api                | 2.0.1           | 2.0.1.MR
+jakarta.interceptor-api           | 2.1.0           | 2.2.0
+jakarta.jms-api                   | 3.1.0           |
+jakarta.json.bind-api             | 3.0.1           |
+jakarta.json-api                  | 2.1.3           |
+jakarta.jws-api                   | 3.0.0           |
+jakarta.mail-api                  | 2.1.3           |
+jakarta.mvc-api                   | 2.1.0           |
+jakarta.persistence-api           | 3.1.0           | 3.2.0
+jakarta.resource-api              | 2.1.0           |
+jakarta.security.enterprise-api   | 3.0.0           | 4.0.0
+jakarta.servlet.jsp.jstl-api      | 3.0.2           |
+jakarta.servlet.jsp-api           | 3.1.0           | 3.1.1
+                                  |                 | 4.0.0
+jakarta.servlet-api               | 6.0.0           | 6.1.0
+jakarta.transaction-api           | 2.0.0           | 2.0.1
+jakarta.validation-api            | 3.0.0           | 3.0.1, 3.0.2
+                                  |                 | 3.1.0, 3.1.1
+jakarta.websocket-api             | 2.1.0           | 2.1.1
+                                  |                 | 2.2.0
+jakarta.websocket-client-api      | 2.1.0           | 2.1.1
+                                  |                 | 2.2.0
+jakarta.ws.rs-api                 | 3.1.0           | 4.0.0
+jakarta.xml.bind-api              | 4.0.2           |
+jakarta.xml.soap-api              | 3.0.2           |
+jakarta.xml.ws-api                | 4.0.2           |
+
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
@@ -789,24 +835,24 @@ jakarta.authentication-api        | jakarta.authentication:jakarta.authenticatio
 jakarta.authorization-api         | jakarta.authorization:jakarta.authorization-api:2.1.0                 | jakarta.servlet:jakarta.servlet-api:6.0.0                              | OK
 jakarta.batch-api                 | jakarta.batch:jakarta.batch-api:2.1.1                                 | jakarta.inject:jakarta.inject-api:2.0.1 (provided)                     | OK
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
-jakarta.ejb-api                   | jakarta.ejb:jakarta.ejb-api:4.0.0                                     | jakarta.transaction:jakarta.transaction-api:2.0.0                      | OK
-jakarta.el-api                    | jakarta.el:jakarta.el-api:5.0.0                                       | [none]                                                                 |
+jakarta.ejb-api                   | jakarta.ejb:jakarta.ejb-api:4.0.1                                     | jakarta.transaction:jakarta.transaction-api:2.0.0                      | OK
+jakarta.el-api                    | jakarta.el:jakarta.el-api:5.0.1                                       | [none]                                                                 |
 jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1 (provided)         | OK
 jakarta.enterprise.cdi-api        | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   | jakarta.enterprise:jakarta.enterprise.lang-model:4.0.1                 | Unsatisfied
                                   |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.0                        | OK (version 2.1.1)
-                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK
+                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK (version 5.0.1)
                                   |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0                      | OK
                                   |                                                                       | jakarta.inject:jakarta.inject-api:2.0.1                                | OK
 jakarta.faces-api                 | jakarta.faces:jakarta.faces-api:4.0.1                                 | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
                                   |                                                                       | jakarta.websocket:jakarta.websocket-api:2.1.0 (provided)               | OK
                                   |                                                                       | jakarta.websocket:jakarta.websocket-client-api:2.1.0 (provided)        | OK
-                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK
+                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK (version 5.0.1)
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1 (provided)         | OK
                                   |                                                                       | jakarta.validation:jakarta.validation-api:3.0.2 (provided)             | OK (version 3.0.0)
                                   |                                                                       | jakarta.transaction:jakarta.transaction-api:2.0.1 (provided, optional) | OK (version 2.0.0)
                                   |                                                                       | jakarta.json:jakarta.json-api:2.1.0 (provided, optional)               | OK (version 2.1.3)
-                                  |                                                                       | jakarta.ejb:jakarta.ejb-api:4.0.1 (provided, optional)                 | OK (version 4.0.0)
+                                  |                                                                       | jakarta.ejb:jakarta.ejb-api:4.0.1 (provided, optional)                 | OK
                                   |                                                                       | jakarta.persistence:jakarta.persistence-api:3.1.0 (provided, optional) | OK
                                   |                                                                       | jakarta.xml.ws:jakarta.xml.ws-api:4.0.0 (provided, optional)           | OK (version 4.0.2)
                                   |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.0 (provided)             | OK (version 2.1.1)
@@ -829,16 +875,16 @@ jakarta.resource-api              | jakarta.resource:jakarta.resource-api:2.1.0 
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1 (provided)         | OK (version 4.0.1)
 jakarta.security.enterprise-api   | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
                                   |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
-                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK
+                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK (version 5.0.1)
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
                                   |                                                                       | jakarta.authentication:jakarta.authentication-api:3.0.0 (provided)     | OK
                                   |                                                                       | jakarta.authorization:jakarta.authorization-api:2.1.0 (provided)       | OK
                                   |                                                                       | jakarta.json:jakarta.json-api:2.1.0                                    | OK (version 2.1.3)
 jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2           | jakarta.servlet:jakarta.servlet-api:6.0.0                              | OK
                                   |                                                                       | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0 (provided)           | OK
-                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK
+                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK (version 5.0.1)
 jakarta.servlet.jsp-api           | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0                     | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
-                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK
+                                  |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK (version 5.0.1)
 jakarta.servlet-api               | jakarta.servlet:jakarta.servlet-api:6.0.0                             | [none]                                                                 |
 jakarta.transaction-api           | jakarta.transaction:jakarta.transaction-api:2.0.0                     | jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0-M1 (provided)      | OK (version 4.0.1)
                                   |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.0.0-RC1 (provided)       | OK (version 2.1.0)
@@ -1137,8 +1183,8 @@ Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-11.0.25
+Java home    : /home/markwalder/.jdks/temurin-11.0.26
 Java runtime : OpenJDK Runtime Environment
-Java version : 11.0.25
+Java version : 11.0.26
 Java vendor  : Eclipse Adoptium
 

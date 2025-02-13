@@ -73,6 +73,41 @@ asm-commons  | No            | Java 5 (32)
 asm-tree     | No            | Java 5 (37)
 Classpath    | -             | Java 5 (118)
 
+Updates
+-------
+Information about newer major, minor, and patch versions of artifacts.
+
+Artifact     | Current version | Newer versions
+-------------+-----------------+---------------
+asm          | 7.0             | 7.1
+             |                 | 7.2
+             |                 | 7.3, 7.3.1
+             |                 | [...]
+             |                 | 9.5
+             |                 | 9.6
+             |                 | 9.7, 9.7.1
+asm-analysis | 7.0             | 7.1
+             |                 | 7.2
+             |                 | 7.3, 7.3.1
+             |                 | [...]
+             |                 | 9.5
+             |                 | 9.6
+             |                 | 9.7, 9.7.1
+asm-commons  | 7.0             | 7.1
+             |                 | 7.2
+             |                 | 7.3, 7.3.1
+             |                 | [...]
+             |                 | 9.5
+             |                 | 9.6
+             |                 | 9.7, 9.7.1
+asm-tree     | 7.0             | 7.1
+             |                 | 7.2
+             |                 | 7.3, 7.3.1
+             |                 | [...]
+             |                 | 9.5
+             |                 | 9.6
+             |                 | 9.7, 9.7.1
+
 JAR Dependencies
 ----------------
 Dependencies between JAR files.

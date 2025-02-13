@@ -7,13 +7,13 @@ List of JAR files found in classpath.
 
 JAR file                                  | Size    | Classes | Resources | Checksum (SHA-1)                         | Artifact coordinates
 ------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------
-asm-9.7.jar                               | 122 KB  | 38      | 0         | 073d7b3086e14beb604ced229c302feff6449723 | org.ow2.asm:asm:9.7
+asm-9.7.1.jar                             | 123 KB  | 38      | 0         | f0ed132a49244b042cd0e15702ab9f2ce3cc8436 | org.ow2.asm:asm:9.7.1
 commons-codec-1.17.1.jar                  | 364 KB  | 107     | 128       | 973638b7149d333563584137ebf13a691bb60579 | commons-codec:commons-codec:1.17.1
 httpclient-4.5.14.jar                     | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
 httpcore-4.4.16.jar                       | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
-jarhc-3.0.0-SNAPSHOT.jar                  | 231 KB  | 131     | 6         | 725ebb61d35f90f6e6381a48a3869a31a4f21411 | [unknown]
+jarhc-3.0.0-SNAPSHOT.jar                  | 263 KB  | 141     | 9         | a83501eabf3ed3e08c60435da02b5ec9e56ff079 | [unknown]
 jcl-over-slf4j-2.0.16.jar                 | 18.0 KB | 8       | 0         | 9d08badad22f1ac07deac9188ade596472a2bfd9 | org.slf4j:jcl-over-slf4j:2.0.16
-json-20240303.jar                         | 76.5 KB | 30      | 0         | 0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a | org.json:json:20240303
+json-20250107.jar                         | 79.5 KB | 31      | 0         | a1b5f0b5a1ce018b93a691c57ffc7d141b3a10f1 | org.json:json:20250107
 jul-to-slf4j-2.0.16.jar                   | 6.20 KB | 1       | 0         | 6d57da3e961daac65bcca0dd3def6cd11e48a24a | org.slf4j:jul-to-slf4j:2.0.16
 maven-artifact-3.9.8.jar                  | 57.4 KB | 34      | 0         | a7f2d502a8bf72d17ea97eca6c46776314703a66 | org.apache.maven:maven-artifact:3.9.8
 maven-builder-support-3.9.8.jar           | 14.0 KB | 10      | 0         | b64ad95a741566ab289916d8073f45d6e03884ea | org.apache.maven:maven-builder-support:3.9.8
@@ -33,7 +33,7 @@ maven-resolver-util-1.9.22.jar            | 191 KB  | 116     | 0         | d5fe
 plexus-interpolation-1.27.jar             | 83.9 KB | 62      | 0         | 8dc73f4ff5eafcbb7ec035ba54736e828b272533 | org.codehaus.plexus:plexus-interpolation:1.27
 plexus-utils-3.5.1.jar                    | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
 slf4j-api-2.0.16.jar                      | 67.8 KB | 55      | 0         | 0172931663a09a1fa515567af5fbef00897d3c04 | org.slf4j:slf4j-api:2.0.16
-Classpath                                 | 3.69 MB | 2090    | 141       | -                                        | -
+Classpath                                 | 3.73 MB | 2101    | 144       | -                                        | -
 
 Modules
 -------
@@ -41,7 +41,7 @@ List of Java Modules found in classpath.
 
 JAR file                                  | Module name                               | Definition     | Automatic | Requires     | Exports
 ------------------------------------------+-------------------------------------------+----------------+-----------+--------------+-------------------------------------
-asm-9.7.jar                               | org.objectweb.asm                         | Module-Info    | No        | java.base    | org.objectweb.asm
+asm-9.7.1.jar                             | org.objectweb.asm                         | Module-Info    | No        | java.base    | org.objectweb.asm
                                           |                                           |                |           |              | org.objectweb.asm.signature
 commons-codec-1.17.1.jar                  | org.apache.commons.codec                  | Module-Info    | No        | java.base    | org.apache.commons.codec
                                           |                                           |                |           |              | org.apache.commons.codec.binary
@@ -55,7 +55,7 @@ httpcore-4.4.16.jar                       | org.apache.httpcomponents.httpcore  
 jarhc-3.0.0-SNAPSHOT.jar                  | org.jarhc                                 | Manifest       | Yes       | -            | [all packages]
 jcl-over-slf4j-2.0.16.jar                 | org.apache.commons.logging                | Module-Info    | No        | org.slf4j    | org.apache.commons.logging
                                           |                                           |                |           | java.base    |
-json-20240303.jar                         | org.json                                  | Module-Info    | No        | java.base    | org.json
+json-20250107.jar                         | org.json                                  | Module-Info    | No        | java.base    | org.json
 jul-to-slf4j-2.0.16.jar                   | jul.to.slf4j                              | Module-Info    | No        | org.slf4j    | org.slf4j.bridge
                                           |                                           |                |           | java.logging |
                                           |                                           |                |           | java.base    |
@@ -87,13 +87,13 @@ Java class file format information.
 
 JAR file                                  | Multi-release                  | Class files by Java version
 ------------------------------------------+--------------------------------+---------------------------------------------------------
-asm-9.7.jar                               | No                             | Java 5 (38)
+asm-9.7.1.jar                             | No                             | Java 5 (38)
 commons-codec-1.17.1.jar                  | Yes (Java 9)                   | Java 8 (107)
 httpclient-4.5.14.jar                     | No                             | Java 6 (470)
 httpcore-4.4.16.jar                       | No                             | Java 6 (253)
-jarhc-3.0.0-SNAPSHOT.jar                  | No                             | Java 11 (131)
+jarhc-3.0.0-SNAPSHOT.jar                  | No                             | Java 11 (141)
 jcl-over-slf4j-2.0.16.jar                 | Yes (Java 9)                   | Java 8 (8)
-json-20240303.jar                         | Yes (Java 9)                   | Java 8 (30)
+json-20250107.jar                         | Yes (Java 9)                   | Java 8 (31)
 jul-to-slf4j-2.0.16.jar                   | Yes (Java 9)                   | Java 8 (1)
 maven-artifact-3.9.8.jar                  | No                             | Java 8 (34)
 maven-builder-support-3.9.8.jar           | No                             | Java 8 (10)
@@ -113,7 +113,7 @@ maven-resolver-util-1.9.22.jar            | No                             | Jav
 plexus-interpolation-1.27.jar             | No                             | Java 8 (62)
 plexus-utils-3.5.1.jar                    | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
 slf4j-api-2.0.16.jar                      | Yes (Java 9)                   | Java 8 (55)
-Classpath                                 | -                              | Java 11 (132), Java 10 (1), Java 8 (1196), Java 6 (723),
+Classpath                                 | -                              | Java 11 (142), Java 10 (1), Java 8 (1197), Java 6 (723),
                                           |                                | Java 5 (38)
 
 JAR Dependencies
@@ -122,16 +122,16 @@ Dependencies between JAR files.
 
 JAR file                                  | Uses                                      | Used by
 ------------------------------------------+-------------------------------------------+------------------------------------------
-asm-9.7.jar                               | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
+asm-9.7.1.jar                             | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
 commons-codec-1.17.1.jar                  | [none]                                    | httpclient-4.5.14.jar
 httpclient-4.5.14.jar                     | commons-codec-1.17.1.jar                  | maven-resolver-transport-http-1.9.22.jar
                                           | httpcore-4.4.16.jar                       |
                                           | jcl-over-slf4j-2.0.16.jar                 |
 httpcore-4.4.16.jar                       | [none]                                    | httpclient-4.5.14.jar
                                           |                                           | maven-resolver-transport-http-1.9.22.jar
-jarhc-3.0.0-SNAPSHOT.jar                  | asm-9.7.jar                               | [none]
+jarhc-3.0.0-SNAPSHOT.jar                  | asm-9.7.1.jar                             | [none]
                                           | jcl-over-slf4j-2.0.16.jar                 |
-                                          | json-20240303.jar                         |
+                                          | json-20250107.jar                         |
                                           | jul-to-slf4j-2.0.16.jar                   |
                                           | maven-resolver-api-1.9.22.jar             |
                                           | maven-resolver-provider-3.9.8.jar         |
@@ -140,7 +140,7 @@ jarhc-3.0.0-SNAPSHOT.jar                  | asm-9.7.jar                         
                                           | slf4j-api-2.0.16.jar                      |
 jcl-over-slf4j-2.0.16.jar                 | slf4j-api-2.0.16.jar                      | httpclient-4.5.14.jar
                                           |                                           | jarhc-3.0.0-SNAPSHOT.jar
-json-20240303.jar                         | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
+json-20250107.jar                         | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
 jul-to-slf4j-2.0.16.jar                   | slf4j-api-2.0.16.jar                      | jarhc-3.0.0-SNAPSHOT.jar
 maven-artifact-3.9.8.jar                  | plexus-utils-3.5.1.jar                    | maven-model-builder-3.9.8.jar
                                           |                                           | maven-resolver-provider-3.9.8.jar
@@ -234,7 +234,7 @@ Dependencies as declared in POM file.
 
 JAR file                                  | Maven coordinates                                               | Direct dependencies                                                    | Status
 ------------------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+--------------------
-asm-9.7.jar                               | org.ow2.asm:asm:9.7                                             | [none]                                                                 |
+asm-9.7.1.jar                             | org.ow2.asm:asm:9.7.1                                           | [none]                                                                 |
 commons-codec-1.17.1.jar                  | commons-codec:commons-codec:1.17.1                              | [none]                                                                 |
 httpclient-4.5.14.jar                     | org.apache.httpcomponents:httpclient:4.5.14                     | org.apache.httpcomponents:httpcore:4.4.16                              | OK
                                           |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
@@ -242,7 +242,7 @@ httpclient-4.5.14.jar                     | org.apache.httpcomponents:httpclient
 httpcore-4.4.16.jar                       | org.apache.httpcomponents:httpcore:4.4.16                       | [none]                                                                 |
 jarhc-3.0.0-SNAPSHOT.jar                  | [unknown]                                                       | [unknown]                                                              |
 jcl-over-slf4j-2.0.16.jar                 | org.slf4j:jcl-over-slf4j:2.0.16                                 | org.slf4j:slf4j-api:2.0.16                                             | OK
-json-20240303.jar                         | org.json:json:20240303                                          | [none]                                                                 |
+json-20250107.jar                         | org.json:json:20250107                                          | [none]                                                                 |
 jul-to-slf4j-2.0.16.jar                   | org.slf4j:jul-to-slf4j:2.0.16                                   | org.slf4j:slf4j-api:2.0.16                                             | OK
 maven-artifact-3.9.8.jar                  | org.apache.maven:maven-artifact:3.9.8                           | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
 maven-builder-support-3.9.8.jar           | org.apache.maven:maven-builder-support:3.9.8                    | [none]                                                                 |
@@ -318,7 +318,7 @@ List of packages per JAR file.
 
 JAR file                                  | Count | Packages                                              | Issues
 ------------------------------------------+-------+-------------------------------------------------------+-------------------------------------------------------------
-asm-9.7.jar                               | 2     | org.objectweb.asm (+1 subpackage)                     |
+asm-9.7.1.jar                             | 2     | org.objectweb.asm (+1 subpackage)                     |
 commons-codec-1.17.1.jar                  | 7     | org.apache.commons.codec (+6 subpackages)             |
 httpclient-4.5.14.jar                     | 24    | org.apache.http.auth (+1 subpackage)                  |
                                           |       | org.apache.http.client (+6 subpackages)               |
@@ -348,7 +348,7 @@ httpcore-4.4.16.jar                       | 17    | org.apache.http             
                                           |       | org.apache.http.util                                  |
 jarhc-3.0.0-SNAPSHOT.jar                  | 18    | org.jarhc (+17 subpackages)                           |
 jcl-over-slf4j-2.0.16.jar                 | 2     | org.apache.commons.logging (+1 subpackage)            |
-json-20240303.jar                         | 1     | org.json                                              |
+json-20250107.jar                         | 1     | org.json                                              |
 jul-to-slf4j-2.0.16.jar                   | 1     | org.slf4j.bridge                                      |
 maven-artifact-3.9.8.jar                  | 11    | org.apache.maven.artifact                             | Split Package: org.apache.maven.artifact.repository.metadata
                                           |       | org.apache.maven.artifact.handler                     |
@@ -982,8 +982,8 @@ Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-17.0.12
+Java home    : /home/markwalder/.jdks/temurin-17.0.14
 Java runtime : OpenJDK Runtime Environment
-Java version : 17.0.12
+Java version : 17.0.14
 Java vendor  : Eclipse Adoptium
 

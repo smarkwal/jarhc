@@ -47,6 +47,16 @@ public interface Repository {
 	 */
 	Optional<InputStream> downloadArtifact(Artifact artifact) throws RepositoryException;
 
+	/**
+	 * Get the list of versions for the given artifact.
+	 *
+	 * @param groupId    Group ID
+	 * @param artifactId Artifact ID
+	 * @return List of versions (may be empty)
+	 * @throws RepositoryException if an unexpected exception occurs
+	 */
+	List<ArtifactVersion> getVersions(String groupId, String artifactId) throws RepositoryException;
+
 	List<Dependency> getDependencies(Artifact artifact) throws RepositoryException;
 
 }

@@ -143,6 +143,8 @@ class ApplicationTest {
 				.hasDebug("Find artifact: 478006d07b7c561ae3a92ddc1829bca81ae0cdd1")
 				.hasDebug("Get dependencies: org.ow2.asm:asm-commons:7.0:jar")
 				.hasDebug("Get dependencies: org.ow2.asm:asm-tree:7.0:jar")
+				.hasDebug("Get versions: org.ow2.asm:asm-commons")
+				.hasDebug("Get versions: org.ow2.asm:asm-tree")
 				.isEmpty();
 
 	}

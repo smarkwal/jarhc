@@ -87,7 +87,7 @@ class MainTest {
 		String[] args = new String[] {
 				"--title", "SLF4J 1.7.28",
 				"--output", reportFile.getAbsolutePath(),
-				"--sections", "-jr", // exclude Java Runtime section (depends on platform)
+				"--sections", "-u,jr", // exclude sections Updates and Java Runtime
 				"--data", dataDir.getAbsolutePath(),
 				"org.slf4j:slf4j-api:1.7.28"
 		};
@@ -118,7 +118,7 @@ class MainTest {
 		String[] args = new String[] {
 				"--title", "SLF4J 1.7.28",
 				"--output", reportFile.getAbsolutePath(),
-				"--sections", "-jr", // exclude Java Runtime section (depends on platform)
+				"--sections", "-u,jr", // exclude sections Updates and Java Runtime
 				"--data", "TEMP",
 				"org.slf4j:slf4j-api:1.7.28"
 		};

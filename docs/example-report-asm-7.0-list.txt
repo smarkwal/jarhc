@@ -278,6 +278,58 @@ Artifact: Classpath
 	Class files by Java version:
 		Java 5 (118)
 
+Updates
+-------
+Information about newer major, minor, and patch versions of artifacts.
+
+Artifact: asm
+	Current version:
+		7.0
+	Newer versions:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+
+Artifact: asm-analysis
+	Current version:
+		7.0
+	Newer versions:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+
+Artifact: asm-commons
+	Current version:
+		7.0
+	Newer versions:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+
+Artifact: asm-tree
+	Current version:
+		7.0
+	Newer versions:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+
 JAR Dependencies
 ----------------
 Dependencies between JAR files.

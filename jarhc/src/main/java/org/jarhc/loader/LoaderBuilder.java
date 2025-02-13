@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactVersion;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.java.ClassLoaderStrategy;
@@ -118,6 +119,11 @@ public class LoaderBuilder {
 		@Override
 		public Optional<InputStream> downloadArtifact(Artifact artifact) {
 			return Optional.empty();
+		}
+
+		@Override
+		public List<ArtifactVersion> getVersions(String groupId, String artifactId) {
+			return List.of();
 		}
 
 		@Override

@@ -1,6 +1,6 @@
 blacklist-patterns.txt | size=1234 | crc=3899595672
 html-report-style.css | size=1075 | crc=3273499505
-jakarta-ee-10.txt | size=2347 | crc=1490582316
+jakarta-ee-10.txt | size=2347 | crc=2037039179
 jakarta-ee-8.txt | size=2813 | crc=727063412
 jakarta-ee-9.txt | size=2525 | crc=2222807566
 jarhc.properties | size=609 | crc=1483914501
@@ -2132,7 +2132,7 @@ org/eclipse/aether/version/VersionScheme.class | size=522 | crc=2202234929
 org/jarhc/analyzer/Analysis.class | size=2895 | crc=3164599121
 org/jarhc/analyzer/Analyzer.class | size=198 | crc=378538728
 org/jarhc/analyzer/AnalyzerDescription.class | size=1108 | crc=1926440217
-org/jarhc/analyzer/AnalyzerRegistry.class | size=5089 | crc=2257325651
+org/jarhc/analyzer/AnalyzerRegistry.class | size=5176 | crc=484252676
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$FieldSearchResult.class | size=930 | crc=2614220828
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$MemberSearchResult.class | size=2151 | crc=811475381
 org/jarhc/analyzer/BinaryCompatibilityAnalyzer$MethodSearchResult.class | size=935 | crc=2514884578
@@ -2153,6 +2153,7 @@ org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5835 | crc=2284419596
 org/jarhc/analyzer/OSGiBundlesAnalyzer.class | size=7545 | crc=226976515
 org/jarhc/analyzer/PackagesAnalyzer.class | size=11682 | crc=2406325842
 org/jarhc/analyzer/TextComparator.class | size=1022 | crc=188287764
+org/jarhc/analyzer/UpdatesAnalyzer.class | size=8375 | crc=3013924670
 org/jarhc/app/Application.class | size=13239 | crc=1387380830
 org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
@@ -2163,12 +2164,15 @@ org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options.class | size=5696 | crc=4209018271
 org/jarhc/artifacts/Artifact.class | size=3403 | crc=1495505896
 org/jarhc/artifacts/ArtifactFinder.class | size=351 | crc=1381731833
-org/jarhc/artifacts/MavenArtifactFinder$Settings.class | size=3004 | crc=2767647163
-org/jarhc/artifacts/MavenArtifactFinder.class | size=12050 | crc=2326117662
+org/jarhc/artifacts/ArtifactVersion$Item.class | size=2720 | crc=1683821822
+org/jarhc/artifacts/ArtifactVersion$Tokenizer.class | size=3705 | crc=630957124
+org/jarhc/artifacts/ArtifactVersion.class | size=5982 | crc=3940564310
+org/jarhc/artifacts/MavenArtifactFinder$Settings.class | size=3004 | crc=574410923
+org/jarhc/artifacts/MavenArtifactFinder.class | size=12397 | crc=1393088699
 org/jarhc/artifacts/MavenRepository$Settings.class | size=356 | crc=3829355823
-org/jarhc/artifacts/MavenRepository$TransitiveDependencySelector.class | size=1362 | crc=1625284863
-org/jarhc/artifacts/MavenRepository.class | size=12883 | crc=1398887293
-org/jarhc/artifacts/Repository.class | size=695 | crc=3488938442
+org/jarhc/artifacts/MavenRepository$TransitiveDependencySelector.class | size=1362 | crc=256272627
+org/jarhc/artifacts/MavenRepository.class | size=15357 | crc=609422102
+org/jarhc/artifacts/Repository.class | size=888 | crc=551542577
 org/jarhc/artifacts/RepositoryException.class | size=563 | crc=2689614731
 org/jarhc/env/ClasspathJavaRuntime.class | size=1642 | crc=1284871351
 org/jarhc/env/DefaultJavaRuntime.class | size=5061 | crc=3817438369
@@ -2201,8 +2205,8 @@ org/jarhc/loader/ClasspathLoader.class | size=5788 | crc=1682277081
 org/jarhc/loader/FileNameNormalizer.class | size=2572 | crc=4085829154
 org/jarhc/loader/JarFileLoader.class | size=4264 | crc=4080946673
 org/jarhc/loader/JmodFileLoader.class | size=3344 | crc=454298808
-org/jarhc/loader/LoaderBuilder$NoOpRepository.class | size=1389 | crc=3794869474
-org/jarhc/loader/LoaderBuilder.class | size=4229 | crc=1930992956
+org/jarhc/loader/LoaderBuilder$NoOpRepository.class | size=1667 | crc=187784749
+org/jarhc/loader/LoaderBuilder.class | size=4229 | crc=3595554949
 org/jarhc/loader/ModuleInfoBuilder$ModuleInfoVisitor.class | size=2124 | crc=198857714
 org/jarhc/loader/ModuleInfoBuilder.class | size=1327 | crc=2511565686
 org/jarhc/loader/ModuleInfoLoader.class | size=1101 | crc=922726158

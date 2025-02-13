@@ -255,7 +255,7 @@ class JarHcTest extends ReleaseTest {
 		String outputPath = runner.getOutputPath(resourceName);
 		Command command = Command.jarHc(
 				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"-s", "-u,jr", // exclude sections Updates and Java Runtime
 				"--skip-empty", // exclude empty sections
 				"org.ow2.asm:asm:9.2"
 		);
@@ -274,7 +274,7 @@ class JarHcTest extends ReleaseTest {
 		String outputPath = runner.getOutputPath(resourceName);
 		Command command = Command.jarHc(
 				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"-s", "-u,jr", // exclude sections Updates and Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc-app.jar"
 		);
@@ -294,7 +294,7 @@ class JarHcTest extends ReleaseTest {
 		String dependencies = getDependencies("runtimeClasspath"); // direct + transitive dependencies
 		Command command = Command.jarHc(
 				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"-s", "-u,jr", // exclude sections Updates and Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--classpath", dependencies
@@ -315,7 +315,7 @@ class JarHcTest extends ReleaseTest {
 		String dependencies = getDependencies("runtimeClasspath"); // direct + transitive dependencies
 		Command command = Command.jarHc(
 				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"-s", "-u,jr", // exclude sections Updates and Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--provided", dependencies

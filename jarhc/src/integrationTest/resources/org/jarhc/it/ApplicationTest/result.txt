@@ -51,6 +51,14 @@ Artifact  | Multi-release | Class files by Java version
 a         | No            | Java 8 (1)
 Classpath | -             | Java 8 (1)
 
+Updates
+-------
+Information about newer major, minor, and patch versions of artifacts.
+
+Artifact | Current version | Newer versions
+---------+-----------------+---------------
+a        |                 |
+
 JAR Dependencies
 ----------------
 Dependencies between JAR files.

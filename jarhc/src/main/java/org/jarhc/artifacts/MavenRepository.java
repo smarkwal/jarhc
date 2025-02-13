@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
@@ -40,6 +41,9 @@ import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
+import org.eclipse.aether.resolution.VersionRangeRequest;
+import org.eclipse.aether.resolution.VersionRangeResolutionException;
+import org.eclipse.aether.resolution.VersionRangeResult;
 import org.eclipse.aether.supplier.RepositorySystemSupplier;
 import org.eclipse.aether.transfer.ArtifactNotFoundException;
 import org.eclipse.aether.util.graph.selector.AndDependencySelector;
@@ -48,6 +52,7 @@ import org.eclipse.aether.util.graph.selector.OptionalDependencySelector;
 import org.eclipse.aether.util.graph.selector.ScopeDependencySelector;
 import org.eclipse.aether.util.graph.visitor.PreorderNodeListGenerator;
 import org.eclipse.aether.util.repository.AuthenticationBuilder;
+import org.eclipse.aether.version.Version;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.slf4j.Logger;
@@ -126,6 +131,26 @@ public class MavenRepository implements Repository {
 			return Optional.of(stream);
 		} catch (FileNotFoundException e) {
 			throw new RepositoryException("I/O error", e);
+		}
+	}
+
+	public List<ArtifactVersion> getVersions(String groupId, String artifactId) throws RepositoryException {
+		logger.debug("Get versions: {}:{}", groupId, artifactId);
+
+		// prepare a request to fetch all versions of the artifact
+		DefaultArtifact artifact = new DefaultArtifact(groupId, artifactId, "jar", "[0,)");
+		VersionRangeRequest request = new VersionRangeRequest();
+		request.setArtifact(artifact);
+		request.addRepository(central);
+
+		try {
+			// fetch all versions of the artifact (list is already sorted)
+			VersionRangeResult versionResult = repoSystem.resolveVersionRange(session, request);
+			// return list of versions
+			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::new).collect(Collectors.toList());
+		} catch (VersionRangeResolutionException e) {
+			// TODO: exception handling
+			throw new RepositoryException("Maven error", e);
 		}
 	}
 
