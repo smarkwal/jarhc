@@ -23,12 +23,25 @@ import org.jarhc.artifacts.Artifact;
 
 public class Markdown {
 
+	// special labels which will be colored in HTML rendering
+	public static final String ERROR = "[error]";
+	public static final String UNKNOWN = "[unknown]";
+	public static final String NONE = "[none]";
+	public static final String MORE = "[...]";
+
+	// Regex for parsing Markdown syntax
 	private static final Pattern CODE = Pattern.compile("`([^`]+)`");
 	private static final Pattern ARTIFACT_LINK = Pattern.compile("\\[\\[([^]]+)]]");
 	private static final Pattern URL_LINK = Pattern.compile("\\[([^]]+)]\\(([^)]+)\\)");
 
+	// HTML code snippets with placeholders
+	private static final String HTML_CODE = "<code>$1</code>";
+	private static final String HTML_LINK = "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">%s</a>";
+
+	// URL for artifact links
+	// alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
 	// TODO: make this configurable?
-	private static final String ARTIFACT_URL = "https://central.sonatype.com/artifact/%s/%s/%s"; // alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
+	private static final String ARTIFACT_URL = "https://central.sonatype.com/artifact/%s/%s/%s";
 
 	public static String code(String text) {
 		if (text == null || text.isEmpty()) return text;
@@ -45,6 +58,8 @@ public class Markdown {
 		return "[" + text + "](" + url + ")";
 	}
 
+	// Text rendering ---------------------------------------------------------
+
 	public static String toText(String text) {
 		if (text == null || text.isEmpty()) return text;
 		text = CODE.matcher(text).replaceAll("$1");
@@ -53,12 +68,27 @@ public class Markdown {
 		return text;
 	}
 
+	// HTML rendering ---------------------------------------------------------
+
 	public static String toHtml(String text) {
 		if (text == null || text.isEmpty()) return text;
-		text = CODE.matcher(text).replaceAll("<code>$1</code>");
+		text = renderCode(text);
 		text = renderArtifactLinks(text);
 		text = renderUrlLinks(text);
+		text = renderLabels(text);
 		return text;
+	}
+
+	private static String renderLabels(String text) {
+		text = text.replace(ERROR, "<span style=\"color:red\">[error]</span>");
+		text = text.replace(UNKNOWN, "<span style=\"color:orange\">[unknown]</span>");
+		text = text.replace(NONE, "<span style=\"color:gray\">[none]</span>");
+		text = text.replace(MORE, "<span style=\"color:gray\">[...]</span>");
+		return text;
+	}
+
+	private static String renderCode(String text) {
+		return CODE.matcher(text).replaceAll(HTML_CODE);
 	}
 
 	private static String renderArtifactLinks(String text) {
@@ -90,23 +120,31 @@ public class Markdown {
 
 	private static String createArtifactLink(Matcher matcher) {
 		String coordinates = matcher.group(1);
-		Artifact artifact = new Artifact(coordinates);
-		String groupId = artifact.getGroupId();
-		String artifactId = artifact.getArtifactId();
-		String version = artifact.getVersion();
-		String url = String.format(ARTIFACT_URL, groupId, artifactId, version);
+		String url = createUrl(coordinates);
 		return createLink(coordinates, url);
 	}
 
 	private static String createUrlLink(Matcher matcher) {
 		String label = matcher.group(1);
 		String url = matcher.group(2);
+		// special case: URL is coordinates
+		// example: [1.2.3](org.example:artifact:1.2.3)
+		if (Artifact.validateCoordinates(url)) {
+			url = createUrl(url);
+		}
 		return createLink(label, url);
 	}
 
+	private static String createUrl(String coordinates) {
+		Artifact artifact = new Artifact(coordinates);
+		String groupId = artifact.getGroupId();
+		String artifactId = artifact.getArtifactId();
+		String version = artifact.getVersion();
+		return String.format(ARTIFACT_URL, groupId, artifactId, version);
+	}
+
 	private static String createLink(String label, String url) {
-		String target = DigestUtils.sha1Hex(label);
-		return String.format("<a href=\"%s\" target=\"%s\" rel=\"noopener\">%s</a>", url, target, label);
+		return String.format(HTML_LINK, url, label);
 	}
 
 }

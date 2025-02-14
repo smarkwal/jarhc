@@ -20,11 +20,9 @@ import java.util.function.Predicate;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
+import org.jarhc.utils.Markdown;
 
 public class ClasspathJavaRuntime extends JavaRuntime {
-
-	private static final String UNKNOWN = "[unknown]";
-	private static final String NONE = "[none]";
 
 	private final Classpath classpath;
 
@@ -34,22 +32,22 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 
 	@Override
 	public String getName() {
-		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
+		return Markdown.UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaVersion() {
-		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
+		return Markdown.UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaVendor() {
-		return UNKNOWN; // TODO: can we get this from the runtime classes somehow?
+		return Markdown.UNKNOWN; // TODO: can we get this from the runtime classes somehow?
 	}
 
 	@Override
 	public String getJavaHome() {
-		return NONE;
+		return Markdown.NONE;
 	}
 
 	@Override

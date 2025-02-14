@@ -30,6 +30,7 @@ import org.jarhc.model.JarFile;
 import org.jarhc.model.MethodDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.MultiMap;
 
 public class JarDependenciesAnalyzer implements Analyzer {
@@ -60,13 +61,13 @@ public class JarDependenciesAnalyzer implements Analyzer {
 			Set<String> sourceArtifactNames = inverted.getValues(artifactName);
 			String uses;
 			if (targetArtifactNames == null) {
-				uses = "[none]";
+				uses = Markdown.NONE;
 			} else {
 				uses = joinLines(targetArtifactNames);
 			}
 			String usedBy;
 			if (sourceArtifactNames == null) {
-				usedBy = "[none]";
+				usedBy = Markdown.NONE;
 			} else {
 				usedBy = joinLines(sourceArtifactNames);
 			}

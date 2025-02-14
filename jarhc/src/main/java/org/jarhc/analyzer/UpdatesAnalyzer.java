@@ -28,13 +28,11 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
 
 public class UpdatesAnalyzer implements Analyzer {
-
-	private static final String UNKNOWN = "[unknown]";
-	private static final String ERROR = "[error]";
 
 	private final Repository repository;
 	private final Logger logger;
@@ -62,18 +60,18 @@ public class UpdatesAnalyzer implements Analyzer {
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		jarFiles.parallelStream()
-				.map(jarFile -> buildRow(jarFile, classpath))
+				.map(this::buildRow)
 				.forEachOrdered(table::addRow);
 
 		return table;
 	}
 
-	private String[] buildRow(JarFile jarFile, Classpath classpath) {
+	private String[] buildRow(JarFile jarFile) {
 
 		String artifactName = jarFile.getArtifactName();
 		String coordinates = getCoordinates(jarFile);
 
-		String version = "";
+		String versionInfo = "";
 		String versionsInfo = "";
 
 		if (Artifact.validateCoordinates(coordinates)) {
@@ -81,7 +79,9 @@ public class UpdatesAnalyzer implements Analyzer {
 			Artifact artifact = new Artifact(coordinates);
 			String groupId = artifact.getGroupId();
 			String artifactId = artifact.getArtifactId();
-			version = artifact.getVersion();
+			String version = artifact.getVersion();
+
+			versionInfo = String.format("[%s](%s)", version, coordinates);
 
 			// get list of versions
 			List<ArtifactVersion> versions = null;
@@ -92,9 +92,9 @@ public class UpdatesAnalyzer implements Analyzer {
 			}
 
 			if (versions == null) { // error
-				versionsInfo = ERROR;
+				versionsInfo = Markdown.ERROR;
 			} else if (versions.isEmpty()) { // no versions found
-				versionsInfo = UNKNOWN;
+				versionsInfo = Markdown.UNKNOWN;
 			} else {
 
 				// keep only newer versions
@@ -106,16 +106,16 @@ public class UpdatesAnalyzer implements Analyzer {
 
 				if (!newerVersions.isEmpty()) {
 					// TODO: render Markdown link to version on Maven Central
-					versionsInfo = getVersionsInfo(newerVersions);
+					versionsInfo = getVersionsInfo(newerVersions, groupId, artifactId);
 				}
 			}
 
 		}
 
-		return new String[] { artifactName, version, versionsInfo };
+		return new String[] { artifactName, versionInfo, versionsInfo };
 	}
 
-	private String getVersionsInfo(List<ArtifactVersion> newerVersions) {
+	private String getVersionsInfo(List<ArtifactVersion> newerVersions, String groupId, String artifactId) {
 
 		// group versions by minor version
 		TreeMap<ArtifactVersion, List<ArtifactVersion>> versions = new TreeMap<>();
@@ -131,8 +131,15 @@ public class UpdatesAnalyzer implements Analyzer {
 			List<String> group = versions.get(version).stream().map(ArtifactVersion::toString).collect(Collectors.toList());
 			// keep at max 7 versions per group
 			if (group.size() > 7) {
-				group = List.of(group.get(0), group.get(1), group.get(2), "[...]", group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
+				group = List.of(group.get(0), group.get(1), group.get(2), Markdown.MORE, group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
 			}
+			// render versions as Markdown links
+			// example: [1.2.3](org.example:artifact:1.2.3)
+			group.replaceAll(v -> {
+				if (v.equals(Markdown.MORE)) return v;
+				String coordinates = String.format("%s:%s:%s", groupId, artifactId, v);
+				return Markdown.link(v, coordinates);
+			});
 			lines.add(String.join(", ", group));
 		}
 
@@ -140,7 +147,7 @@ public class UpdatesAnalyzer implements Analyzer {
 
 		// keep at max 7 groups
 		if (lines.size() > 7) {
-			lines = List.of(lines.get(0), lines.get(1), lines.get(2), "[...]", lines.get(lines.size() - 3), lines.get(lines.size() - 2), lines.get(lines.size() - 1));
+			lines = List.of(lines.get(0), lines.get(1), lines.get(2), Markdown.MORE, lines.get(lines.size() - 3), lines.get(lines.size() - 2), lines.get(lines.size() - 1));
 		}
 
 		return StringUtils.joinLines(lines);
@@ -156,9 +163,9 @@ public class UpdatesAnalyzer implements Analyzer {
 
 		List<Artifact> artifacts = jarFile.getArtifacts();
 		if (artifacts == null) {
-			return ERROR; // most likely a response timeout
+			return Markdown.ERROR; // most likely a response timeout
 		} else if (artifacts.isEmpty()) {
-			return UNKNOWN;
+			return Markdown.UNKNOWN;
 		}
 		// return only coordinates of "primary" artifact
 		return artifacts.get(0).toCoordinates();

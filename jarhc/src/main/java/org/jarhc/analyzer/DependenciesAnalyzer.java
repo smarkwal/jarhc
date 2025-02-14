@@ -30,14 +30,11 @@ import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.StringUtils;
 import org.slf4j.Logger;
 
 public class DependenciesAnalyzer implements Analyzer {
-
-	private static final String NONE = "[none]";
-	private static final String UNKNOWN = "[unknown]";
-	private static final String ERROR = "[error]";
 
 	private final Repository repository;
 	private final Logger logger;
@@ -77,7 +74,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		String coordinates = getCoordinates(jarFile);
 
 		String coordinatesInfo = coordinates;
-		String dependenciesInfo = UNKNOWN;
+		String dependenciesInfo = Markdown.UNKNOWN;
 		String status = "";
 
 		if (Artifact.validateCoordinates(coordinates)) {
@@ -94,10 +91,10 @@ public class DependenciesAnalyzer implements Analyzer {
 			}
 
 			if (dependencies == null) { // error
-				dependenciesInfo = ERROR;
+				dependenciesInfo = Markdown.ERROR;
 			} else if (dependencies.isEmpty()) { // no direct dependencies
 				// show special value "none"
-				dependenciesInfo = NONE;
+				dependenciesInfo = Markdown.NONE;
 			} else {
 				List<String> lines = dependencies.stream()
 						.map(Dependency::toString)
@@ -203,9 +200,9 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		List<Artifact> artifacts = jarFile.getArtifacts();
 		if (artifacts == null) {
-			return ERROR; // most likely a response timeout
+			return Markdown.ERROR; // most likely a response timeout
 		} else if (artifacts.isEmpty()) {
-			return UNKNOWN;
+			return Markdown.UNKNOWN;
 		}
 		// return only coordinates of "primary" artifact
 		return artifacts.get(0).toCoordinates();
