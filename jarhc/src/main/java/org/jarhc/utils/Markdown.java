@@ -106,8 +106,7 @@ public class Markdown {
 
 	private static String createLink(String label, String url) {
 		String target = DigestUtils.sha1Hex(label);
-		// TODO: add rel="noopener"
-		return String.format("<a href=\"%s\" target=\"%s\">%s</a>", url, target, label);
+		return String.format("<a href=\"%s\" target=\"%s\" rel=\"noopener\">%s</a>", url, target, label);
 	}
 
 }
