@@ -90,7 +90,7 @@ public class JarFilesAnalyzer implements Analyzer {
 		String coordinates = jarFile.getCoordinates();
 		if (coordinates != null) {
 			Artifact artifact = new Artifact(coordinates);
-			return artifact.toCoordinates();
+			return artifact.toLink();
 		}
 		return jarFile.getFileName();
 	}
@@ -109,7 +109,7 @@ public class JarFilesAnalyzer implements Analyzer {
 			return UNKNOWN;
 		}
 		// return coordinates of all artifacts
-		return artifacts.stream().map(Artifact::toCoordinates).collect(StringUtils.joinLines());
+		return artifacts.stream().map(Artifact::toLink).collect(StringUtils.joinLines());
 	}
 
 }

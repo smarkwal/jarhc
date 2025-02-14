@@ -128,14 +128,14 @@ Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact     | Maven coordinates                | Direct dependencies          | Status
--------------+----------------------------------+------------------------------+-------
-asm          | org.ow2.asm:asm:7.0:jar          | [none]                       |
-asm-analysis | org.ow2.asm:asm-analysis:7.0:jar | org.ow2.asm:asm-tree:7.0     | OK
-asm-commons  | org.ow2.asm:asm-commons:7.0:jar  | org.ow2.asm:asm:7.0          | OK
-             |                                  | org.ow2.asm:asm-tree:7.0     | OK
-             |                                  | org.ow2.asm:asm-analysis:7.0 | OK
-asm-tree     | org.ow2.asm:asm-tree:7.0:jar     | org.ow2.asm:asm:7.0          | OK
+Artifact     | Maven coordinates            | Direct dependencies          | Status
+-------------+------------------------------+------------------------------+-------
+asm          | org.ow2.asm:asm:7.0          | [none]                       |
+asm-analysis | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
+asm-commons  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm:7.0          | OK
+             |                              | org.ow2.asm:asm-tree:7.0     | OK
+             |                              | org.ow2.asm:asm-analysis:7.0 | OK
+asm-tree     | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
 
 Packages
 --------

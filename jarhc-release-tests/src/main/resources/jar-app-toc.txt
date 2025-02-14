@@ -2143,10 +2143,10 @@ org/jarhc/analyzer/BlacklistAnalyzer$MethodPattern.class | size=3500 | crc=11028
 org/jarhc/analyzer/BlacklistAnalyzer.class | size=16197 | crc=3127296412
 org/jarhc/analyzer/ClassVersionsAnalyzer$ClassVersionsCounter.class | size=3987 | crc=3697001664
 org/jarhc/analyzer/ClassVersionsAnalyzer.class | size=4651 | crc=704508433
-org/jarhc/analyzer/DependenciesAnalyzer.class | size=8618 | crc=701929250
+org/jarhc/analyzer/DependenciesAnalyzer.class | size=8715 | crc=3596885574
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13473 | crc=3573706335
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6129 | crc=1010706684
-org/jarhc/analyzer/JarFilesAnalyzer.class | size=5059 | crc=1956150710
+org/jarhc/analyzer/JarFilesAnalyzer.class | size=5052 | crc=1210725510
 org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6094 | crc=2281303776
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1940 | crc=3017108240
 org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5835 | crc=2284419596
@@ -2162,7 +2162,7 @@ org/jarhc/app/CommandLineParser.class | size=21100 | crc=3028277853
 org/jarhc/app/FileSource.class | size=887 | crc=885544477
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options.class | size=5696 | crc=4209018271
-org/jarhc/artifacts/Artifact.class | size=3403 | crc=1495505896
+org/jarhc/artifacts/Artifact.class | size=3574 | crc=1009426128
 org/jarhc/artifacts/ArtifactFinder.class | size=351 | crc=1381731833
 org/jarhc/artifacts/ArtifactVersion$Item.class | size=2720 | crc=1683821822
 org/jarhc/artifacts/ArtifactVersion$Tokenizer.class | size=3705 | crc=630957124
@@ -2231,12 +2231,12 @@ org/jarhc/model/OSGiBundleInfo.class | size=8612 | crc=2801035404
 org/jarhc/model/RecordComponentDef.class | size=1228 | crc=3119940870
 org/jarhc/model/Ref.class | size=151 | crc=2546580372
 org/jarhc/model/ResourceDef.class | size=1135 | crc=4169474302
-org/jarhc/pom/Dependency.class | size=3207 | crc=3070612390
+org/jarhc/pom/Dependency.class | size=3215 | crc=1271449275
 org/jarhc/pom/Scope.class | size=1303 | crc=2969203394
 org/jarhc/report/html/DefaultStyleProvider.class | size=1255 | crc=3575769662
-org/jarhc/report/html/HtmlReportFormat.class | size=7895 | crc=2358472759
+org/jarhc/report/html/HtmlReportFormat.class | size=6196 | crc=2316613143
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
-org/jarhc/report/list/ListReportFormat.class | size=2464 | crc=2163679850
+org/jarhc/report/list/ListReportFormat.class | size=2519 | crc=2466156722
 org/jarhc/report/Report.class | size=1294 | crc=2508431441
 org/jarhc/report/ReportFormat.class | size=677 | crc=545032329
 org/jarhc/report/ReportFormatFactory.class | size=2731 | crc=2692416368
@@ -2258,7 +2258,7 @@ org/jarhc/utils/JarHcException.class | size=703 | crc=2656007669
 org/jarhc/utils/JavaUtils.class | size=8351 | crc=501003748
 org/jarhc/utils/JavaVersion.class | size=1021 | crc=1793447338
 org/jarhc/utils/LimitedInputStream.class | size=1890 | crc=1521444556
-org/jarhc/utils/Markdown.class | size=1599 | crc=3652244643
+org/jarhc/utils/Markdown.class | size=4857 | crc=1685738824
 org/jarhc/utils/MultiMap.class | size=3369 | crc=3447526047
 org/jarhc/utils/Pool.class | size=1921 | crc=3757579641
 org/jarhc/utils/ResourceUtils.class | size=2880 | crc=4010998707

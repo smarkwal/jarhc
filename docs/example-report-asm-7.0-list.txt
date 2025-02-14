@@ -91,34 +91,34 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact: asm
 	General:
-		Manifest-Version: `1.0`
+		Manifest-Version: 1.0
 	Implementation:
 		ASM, a very small and fast Java bytecode manipulation framework
-		Version: `7.0`
+		Version: 7.0
 
 Artifact: asm-analysis
 	General:
-		Manifest-Version: `1.0`
-		Module-Requires: `org.objectweb.asm.tree;transitive=true`
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm.tree;transitive=true
 	Implementation:
 		Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework
-		Version: `7.0`
+		Version: 7.0
 
 Artifact: asm-commons
 	General:
-		Manifest-Version: `1.0`
-		Module-Requires: `org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true`
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true
 	Implementation:
 		Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework
-		Version: `7.0`
+		Version: 7.0
 
 Artifact: asm-tree
 	General:
-		Manifest-Version: `1.0`
-		Module-Requires: `org.objectweb.asm;transitive=true`
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true
 	Implementation:
 		Tree API of ASM, a very small and fast Java bytecode manipulation framework
-		Version: `7.0`
+		Version: 7.0
 
 JPMS Modules
 ------------
@@ -126,57 +126,57 @@ List of Java Modules found in classpath.
 
 Artifact: asm
 	Module name:
-		`org.objectweb.asm`
+		org.objectweb.asm
 	Definition:
 		Module-Info
 	Automatic:
 		No
 	Requires:
-		`java.base`
+		java.base
 	Exports:
-		`org.objectweb.asm`
-		`org.objectweb.asm.signature`
+		org.objectweb.asm
+		org.objectweb.asm.signature
 
 Artifact: asm-analysis
 	Module name:
-		`org.objectweb.asm.tree.analysis`
+		org.objectweb.asm.tree.analysis
 	Definition:
 		Module-Info
 	Automatic:
 		No
 	Requires:
-		`org.objectweb.asm.tree`
-		`java.base`
+		org.objectweb.asm.tree
+		java.base
 	Exports:
-		`org.objectweb.asm.tree.analysis`
+		org.objectweb.asm.tree.analysis
 
 Artifact: asm-commons
 	Module name:
-		`org.objectweb.asm.commons`
+		org.objectweb.asm.commons
 	Definition:
 		Module-Info
 	Automatic:
 		No
 	Requires:
-		`org.objectweb.asm`
-		`org.objectweb.asm.tree`
-		`org.objectweb.asm.tree.analysis`
-		`java.base`
+		org.objectweb.asm
+		org.objectweb.asm.tree
+		org.objectweb.asm.tree.analysis
+		java.base
 	Exports:
-		`org.objectweb.asm.commons`
+		org.objectweb.asm.commons
 
 Artifact: asm-tree
 	Module name:
-		`org.objectweb.asm.tree`
+		org.objectweb.asm.tree
 	Definition:
 		Module-Info
 	Automatic:
 		No
 	Requires:
-		`org.objectweb.asm`
-		`java.base`
+		org.objectweb.asm
+		java.base
 	Exports:
-		`org.objectweb.asm.tree`
+		org.objectweb.asm.tree
 
 OSGi Bundles
 ------------
@@ -369,13 +369,13 @@ Dependencies as declared in POM file.
 
 Artifact: asm
 	Maven coordinates:
-		org.ow2.asm:asm:7.0:jar
+		org.ow2.asm:asm:7.0
 	Direct dependencies:
 		[none]
 
 Artifact: asm-analysis
 	Maven coordinates:
-		org.ow2.asm:asm-analysis:7.0:jar
+		org.ow2.asm:asm-analysis:7.0
 	Direct dependencies:
 		org.ow2.asm:asm-tree:7.0
 	Status:
@@ -383,7 +383,7 @@ Artifact: asm-analysis
 
 Artifact: asm-commons
 	Maven coordinates:
-		org.ow2.asm:asm-commons:7.0:jar
+		org.ow2.asm:asm-commons:7.0
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
 		org.ow2.asm:asm-tree:7.0
@@ -395,7 +395,7 @@ Artifact: asm-commons
 
 Artifact: asm-tree
 	Maven coordinates:
-		org.ow2.asm:asm-tree:7.0:jar
+		org.ow2.asm:asm-tree:7.0
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
 	Status:
@@ -409,26 +409,26 @@ Artifact: asm
 	Count:
 		2
 	Packages:
-		`org.objectweb.asm`
-		`org.objectweb.asm.signature`
+		org.objectweb.asm
+		org.objectweb.asm.signature
 
 Artifact: asm-analysis
 	Count:
 		1
 	Packages:
-		`org.objectweb.asm.tree.analysis`
+		org.objectweb.asm.tree.analysis
 
 Artifact: asm-commons
 	Count:
 		1
 	Packages:
-		`org.objectweb.asm.commons`
+		org.objectweb.asm.commons
 
 Artifact: asm-tree
 	Count:
 		1
 	Packages:
-		`org.objectweb.asm.tree`
+		org.objectweb.asm.tree
 
 Duplicate Classes
 -----------------
@@ -446,28 +446,28 @@ Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 Artifact: asm-commons
 	Issues:
-		`org.objectweb.asm.commons.AdviceAdapter`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.AdviceAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 		
-		`org.objectweb.asm.commons.AnalyzerAdapter`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.AnalyzerAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 		
-		`org.objectweb.asm.commons.CodeSizeEvaluator`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.CodeSizeEvaluator
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 		
-		`org.objectweb.asm.commons.InstructionAdapter`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.InstructionAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 		
-		`org.objectweb.asm.commons.MethodRemapper`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.MethodRemapper
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 		
-		`org.objectweb.asm.commons.RemappingMethodAdapter`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.commons.RemappingMethodAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 
 Artifact: asm-tree
 	Issues:
-		`org.objectweb.asm.tree.MethodNode`
-		• @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`
+		org.objectweb.asm.tree.MethodNode
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 
 Java Runtime
 ------------

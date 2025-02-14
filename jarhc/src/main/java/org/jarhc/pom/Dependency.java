@@ -101,9 +101,8 @@ public class Dependency {
 	@Override
 	public String toString() {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append(groupId).append(":");
-		buffer.append(artifactId).append(":");
-		buffer.append(version);
+		Artifact artifact = toArtifact();
+		buffer.append(artifact.toLink());
 		if (scope != Scope.COMPILE || optional) {
 			buffer.append(" (");
 			if (scope != Scope.COMPILE) {

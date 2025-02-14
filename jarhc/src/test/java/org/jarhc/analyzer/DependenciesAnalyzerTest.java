@@ -103,10 +103,10 @@ class DependenciesAnalyzerTest {
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
 
-		assertValuesEquals(rows.get(0), "lib-with-deps", "group:lib-with-deps:1.0", "group:lib-with-deps-1:1.0 (provided, optional)\ngroup:lib-with-deps-2:1.0 (runtime)\ngroup:lib-with-deps-4:1.0 (system)\ngroup:lib-with-deps-5:1.0 (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
-		assertValuesEquals(rows.get(1), "lib-no-deps", "group:lib-no-deps:1.0", "[none]", "");
-		assertValuesEquals(rows.get(2), "lib-no-pom", "group:lib-no-pom:1.0", "[error]", "");
-		assertValuesEquals(rows.get(3), "lib-repo-error", "group:lib-repo-error:1.0", "[error]", "");
+		assertValuesEquals(rows.get(0), "lib-with-deps", "[[group:lib-with-deps:1.0]]", "[[group:lib-with-deps-1:1.0]] (provided, optional)\n[[group:lib-with-deps-2:1.0]] (runtime)\n[[group:lib-with-deps-4:1.0]] (system)\n[[group:lib-with-deps-5:1.0]] (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
+		assertValuesEquals(rows.get(1), "lib-no-deps", "[[group:lib-no-deps:1.0]]", "[none]", "");
+		assertValuesEquals(rows.get(2), "lib-no-pom", "[[group:lib-no-pom:1.0]]", "[error]", "");
+		assertValuesEquals(rows.get(3), "lib-repo-error", "[[group:lib-repo-error:1.0]]", "[error]", "");
 		assertValuesEquals(rows.get(4), "lib-unknown", "[unknown]", "[unknown]", "");
 
 		assertLogger(logger).inAnyOrder()

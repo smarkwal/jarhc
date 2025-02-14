@@ -76,10 +76,14 @@ public class DependenciesAnalyzer implements Analyzer {
 		String artifactName = jarFile.getArtifactName();
 		String coordinates = getCoordinates(jarFile);
 
+		String coordinatesInfo = coordinates;
 		String dependenciesInfo = UNKNOWN;
 		String status = "";
 
 		if (Artifact.validateCoordinates(coordinates)) {
+
+			Artifact artifact = new Artifact(coordinates);
+			coordinatesInfo = artifact.toLink();
 
 			// get list of direct dependencies
 			List<Dependency> dependencies = null;
@@ -107,7 +111,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		}
 
-		return new String[] { artifactName, coordinates, dependenciesInfo, status };
+		return new String[] { artifactName, coordinatesInfo, dependenciesInfo, status };
 	}
 
 	private List<Dependency> getDependencies(String coordinates) throws RepositoryException {

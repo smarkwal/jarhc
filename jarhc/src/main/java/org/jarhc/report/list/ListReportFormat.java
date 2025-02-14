@@ -20,6 +20,7 @@ import java.util.List;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.Markdown;
 
 public class ListReportFormat extends TextReportFormat {
 
@@ -46,12 +47,12 @@ public class ListReportFormat extends TextReportFormat {
 			if (value.isEmpty()) continue; // skip empty columns
 
 			if (c == 0) {
-				writer.println(column + ": " + value);
+				writer.println(column + ": " + Markdown.toText(value));
 			} else {
 				writer.println("\t" + column + ":");
 				String[] lines = value.split("\\r?\\n");
 				for (String line : lines) {
-					writer.println("\t\t" + line);
+					writer.println("\t\t" + Markdown.toText(line));
 				}
 			}
 

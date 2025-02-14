@@ -951,8 +951,8 @@ jakarta.servlet.jsp-api           | jakarta.servlet.jsp:jakarta.servlet.jsp-api:
 jakarta.servlet-api               | jakarta.servlet:jakarta.servlet-api:4.0.3                             | [none]                                                                           |
 jakarta.transaction-api           | jakarta.transaction:jakarta.transaction-api:1.3.3                     | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1 (provided)                   | OK (version 2.0.2)
 jakarta.validation-api            | jakarta.validation:jakarta.validation-api:2.0.2                       | [none]                                                                           |
-jakarta.websocket-api             | jakarta.websocket:jakarta.websocket-api:1.1.2:jar                     | jakarta.websocket:jakarta.websocket-client-api:1.1.2 (optional)                  | OK
-jakarta.websocket-client-api      | jakarta.websocket:jakarta.websocket-client-api:1.1.2:jar              | [none]                                                                           |
+jakarta.websocket-api             | jakarta.websocket:jakarta.websocket-api:1.1.2                         | jakarta.websocket:jakarta.websocket-client-api:1.1.2 (optional)                  | OK
+jakarta.websocket-client-api      | jakarta.websocket:jakarta.websocket-client-api:1.1.2                  | [none]                                                                           |
 jakarta.ws.rs-api                 | jakarta.ws.rs:jakarta.ws.rs-api:2.1.6                                 | jakarta.xml.bind:jakarta.xml.bind-api:2.3.2 (provided)                           | OK (version 2.3.3)
                                   |                                                                       | jakarta.activation:jakarta.activation-api:1.2.1 (provided)                       | OK (version 1.2.2)
 jakarta.xml.bind-api              | jakarta.xml.bind:jakarta.xml.bind-api:2.3.3                           | jakarta.activation:jakarta.activation-api:1.2.2                                  | OK

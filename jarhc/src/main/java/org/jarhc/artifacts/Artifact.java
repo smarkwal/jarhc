@@ -17,8 +17,10 @@
 package org.jarhc.artifacts;
 
 import java.util.Objects;
+import org.jarhc.utils.Markdown;
 
 public class Artifact {
+
 
 	private final String groupId;
 	private final String artifactId;
@@ -91,6 +93,10 @@ public class Artifact {
 
 	public String toCoordinates() {
 		return String.format("%s:%s:%s", groupId, artifactId, version);
+	}
+
+	public String toLink() {
+		return Markdown.link(toCoordinates());
 	}
 
 	public String toPackageUrl() {
