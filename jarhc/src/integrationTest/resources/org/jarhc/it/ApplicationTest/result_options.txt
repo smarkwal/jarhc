@@ -47,13 +47,13 @@ OSGi Bundles
 ------------
 Information about OSGi Bundles.
 
-Artifact    | Name                      | Version | Description                 | Import Package                                | Export Package                                                                                                       | Capabilities | Others
-------------+---------------------------+---------+-----------------------------+-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------+--------------+-----------------------------------------
-asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.commons;version="7.0";uses:="org.objectweb.asm,org.objectweb.asm.signature,org.objectweb.asm.tree" |              | Manifest Version: 2
-            |                           |         |                             | org.objectweb.asm.signature;version="[7.0,8)" |                                                                                                                      |              | Required Execution Environment: J2SE-1.5
-            |                           |         |                             | org.objectweb.asm.tree;version="[7.0,8)"      |                                                                                                                      |              |
-asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree;version="7.0";uses:="org.objectweb.asm"                                                       |              | Manifest Version: 2
-            |                           |         |                             |                                               |                                                                                                                      |              | Required Execution Environment: J2SE-1.5
+Artifact    | Name                      | Version | Description                 | Import Package                                | Export Package                                                                  | Capabilities | Others
+------------+---------------------------+---------+-----------------------------+-----------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
+asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.commons (Version: 7.0)                                        |              | Manifest Version: 2
+            |                           |         |                             | org.objectweb.asm.signature;version="[7.0,8)" |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
+            |                           |         |                             | org.objectweb.asm.tree;version="[7.0,8)"      |                                                                                 |              |
+asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
+            |                           |         |                             |                                               |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
 
 Class Versions
 --------------
