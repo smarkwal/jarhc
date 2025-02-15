@@ -176,6 +176,7 @@ public class HtmlReportFormat implements ReportFormat {
 		text = text.replace("<", "&lt;");
 		text = text.replace(">", "&gt;");
 		text = text.replace("\"", "&quot;");
+		text = text.replace("\t", "&nbsp;&nbsp;&nbsp;");
 		text = text.replaceAll(Pattern.quote(System.lineSeparator()), "<br>");
 		return text;
 	}

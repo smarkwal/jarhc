@@ -78,6 +78,7 @@ public class Markdown {
 		text = renderArtifactLinks(text);
 		text = renderUrlLinks(text);
 		text = renderLabels(text);
+		// TODO: convert leading spaces to non-breaking spaces?
 		return text;
 	}
 
