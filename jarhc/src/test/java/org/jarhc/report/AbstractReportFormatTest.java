@@ -43,6 +43,7 @@ public abstract class AbstractReportFormatTest {
 
 		String resource = "/org/jarhc/report/" + this.getClass().getSimpleName() + "/result.txt";
 		if (TestUtils.createResources()) {
+			text = text.replace("JarHC 0.0.1", "JarHC {version}");
 			TestUtils.saveResource("test", resource, text, "UTF-8");
 			return;
 		}

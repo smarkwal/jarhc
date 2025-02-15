@@ -93,4 +93,23 @@ public class ReportSection {
 		return json;
 	}
 
+	public static ReportSection fromJSON(JSONObject json) {
+		String title = json.getString("title");
+		String description = json.getString("description");
+		ReportSection section = new ReportSection(title, description);
+		JSONArray contentArray = json.getJSONArray("content");
+		for (int i = 0; i < contentArray.length(); i++) {
+			Object item = contentArray.get(i);
+			if (item instanceof JSONObject) {
+				JSONObject tableObject = (JSONObject) item;
+				ReportTable table = ReportTable.fromJSON(tableObject);
+				section.add(table);
+			} else {
+				String text = (String) item;
+				section.add(text);
+			}
+		}
+		return section;
+	}
+
 }

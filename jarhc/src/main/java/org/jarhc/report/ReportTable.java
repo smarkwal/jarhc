@@ -81,4 +81,23 @@ public class ReportTable {
 		return json;
 	}
 
+	public static ReportTable fromJSON(JSONObject json) {
+		JSONArray columnsArray = json.getJSONArray("columns");
+		String[] columns = new String[columnsArray.length()];
+		for (int i = 0; i < columnsArray.length(); i++) {
+			columns[i] = columnsArray.getString(i);
+		}
+		ReportTable table = new ReportTable(columns);
+		JSONArray rowsArray = json.getJSONArray("rows");
+		for (int i = 0; i < rowsArray.length(); i++) {
+			JSONArray rowArray = rowsArray.getJSONArray(i);
+			String[] row = new String[rowArray.length()];
+			for (int j = 0; j < rowArray.length(); j++) {
+				row[j] = rowArray.getString(j);
+			}
+			table.addRow(row);
+		}
+		return table;
+	}
+
 }

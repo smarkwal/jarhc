@@ -118,11 +118,11 @@ org/jarhc/report/html/HtmlReportFormat.class | size=6196 | crc=2316613143
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
 org/jarhc/report/json/JsonReportFormat.class | size=935 | crc=2313075363
 org/jarhc/report/list/ListReportFormat.class | size=2519 | crc=2466156722
-org/jarhc/report/Report.class | size=2066 | crc=2838298669
+org/jarhc/report/Report.class | size=2722 | crc=1089869791
 org/jarhc/report/ReportFormat.class | size=677 | crc=545032329
 org/jarhc/report/ReportFormatFactory.class | size=2802 | crc=677337208
-org/jarhc/report/ReportSection.class | size=4064 | crc=2141109641
-org/jarhc/report/ReportTable.class | size=3024 | crc=1955088923
+org/jarhc/report/ReportSection.class | size=4823 | crc=2022454372
+org/jarhc/report/ReportTable.class | size=3703 | crc=2869743991
 org/jarhc/report/text/TextReportFormat.class | size=5197 | crc=3635001362
 org/jarhc/report/writer/impl/FileReportWriter.class | size=2033 | crc=4126992305
 org/jarhc/report/writer/impl/MemoryReportWriter.class | size=810 | crc=202996241
