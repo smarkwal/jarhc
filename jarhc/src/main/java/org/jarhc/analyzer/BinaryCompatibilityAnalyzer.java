@@ -46,6 +46,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
 import org.jarhc.utils.JavaVersion;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.Pool;
 import org.jarhc.utils.StringUtils;
 
@@ -216,7 +217,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 	}
 
 	private String createParentIssue(String parentName, Set<String> issues) {
-		String lines = issues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		String lines = issues.stream().map(i -> Markdown.BULLET + " " + i).collect(StringUtils.joinLines());
 		return parentName + System.lineSeparator() + lines + System.lineSeparator();
 	}
 

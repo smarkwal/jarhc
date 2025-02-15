@@ -29,6 +29,8 @@ public class Markdown {
 	public static final String NONE = "[none]";
 	public static final String MORE = "[...]";
 
+	public static final String BULLET = "\u2022";
+
 	// Regex for parsing Markdown syntax
 	private static final Pattern CODE = Pattern.compile("`([^`]+)`");
 	private static final Pattern ARTIFACT_LINK = Pattern.compile("\\[\\[([^]]+)]]");

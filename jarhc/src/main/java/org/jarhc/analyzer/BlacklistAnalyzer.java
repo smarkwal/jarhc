@@ -42,6 +42,7 @@ import org.jarhc.model.ResourceDef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.JavaUtils;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.ResourceUtils;
 import org.jarhc.utils.StringPattern;
 import org.jarhc.utils.StringUtils;
@@ -223,7 +224,7 @@ public class BlacklistAnalyzer implements Analyzer {
 
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
 		String className = classDef.getClassName();
-		String lines = classIssues.stream().map(i -> "\u2022 " + i).collect(StringUtils.joinLines());
+		String lines = classIssues.stream().map(i -> Markdown.BULLET + " " + i).collect(StringUtils.joinLines());
 		return code(className) + System.lineSeparator() + lines + System.lineSeparator();
 	}
 
