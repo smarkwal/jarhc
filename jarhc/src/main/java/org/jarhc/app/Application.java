@@ -287,6 +287,8 @@ public class Application {
 	private String getReportFormat(String reportFile) {
 		if (reportFile.endsWith(".html")) {
 			return "html";
+		} else if (reportFile.endsWith(".json")) {
+			return "json";
 		} else if (reportFile.endsWith("-list.txt")) {
 			return "list";
 		} else {

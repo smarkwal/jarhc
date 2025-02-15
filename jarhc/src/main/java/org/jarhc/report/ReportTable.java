@@ -18,6 +18,8 @@ package org.jarhc.report;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ReportTable {
 
@@ -62,6 +64,21 @@ public class ReportTable {
 			diff = value1.compareTo(value2);
 		}
 		return diff;
+	}
+
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		json.put("columns", new JSONArray(columns));
+		JSONArray rowsArray = new JSONArray();
+		for (String[] row : rows) {
+			JSONArray rowArray = new JSONArray();
+			for (String value : row) {
+				rowArray.put(value);
+			}
+			rowsArray.put(rowArray);
+		}
+		json.put("rows", rowsArray);
+		return json;
 	}
 
 }

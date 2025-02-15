@@ -21,6 +21,7 @@ import java.util.Map;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
+import org.jarhc.report.json.JsonReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.utils.JarHcException;
@@ -33,6 +34,7 @@ import org.jarhc.utils.JarHcException;
  * <li>"text": Text report in table format</li>
  * <li>"list": Text report in list format</li>
  * <li>"html": HTML report</li>
+ * <li>"json": JSON report</li>
  * </ul>
  */
 public class ReportFormatFactory {
@@ -43,6 +45,7 @@ public class ReportFormatFactory {
 		reportFormatClasses.put("text", TextReportFormat.class);
 		reportFormatClasses.put("list", ListReportFormat.class);
 		reportFormatClasses.put("html", HtmlReportFormat.class);
+		reportFormatClasses.put("json", JsonReportFormat.class);
 	}
 
 	private final Injector injector;

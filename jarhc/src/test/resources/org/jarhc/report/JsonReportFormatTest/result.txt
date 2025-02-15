@@ -1,0 +1,50 @@
+{
+   "title": "Report Title",
+   "sections": [
+      {
+         "description": "Description 1",
+         "title": "Section 1",
+         "content": ["Some text."]
+      },
+      {
+         "description": "Description 2, Line 1\nDescription 2, Line 2",
+         "title": "Section 2",
+         "content": [{
+            "columns": [
+               "Column 1",
+               "Column 2",
+               "Column 3"
+            ],
+            "rows": [
+               [
+                  "Short",
+                  "Medium Medium",
+                  "Long Long Long Long Long Long Long"
+               ],
+               [
+                  "Line 1",
+                  "Line 1\nLonger Line 2",
+                  "Line 1\nLonger Line 2\nExtra Long Line 3\n[[commons-io:commons-io:2.8.0]]"
+               ]
+            ]
+         }]
+      },
+      {
+         "title": "Section 3",
+         "content": [
+            {
+               "columns": ["Values"],
+               "rows": [
+                  ["1"],
+                  ["2"],
+                  ["3"]
+               ]
+            },
+            {
+               "columns": ["Empty"],
+               "rows": []
+            }
+         ]
+      }
+   ]
+}

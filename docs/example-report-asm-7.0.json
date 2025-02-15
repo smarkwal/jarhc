@@ -1,0 +1,455 @@
+{
+   "title": "ASM 7.0",
+   "sections": [
+      {
+         "description": "List of JAR files found in classpath.",
+         "title": "JAR Files",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Version",
+               "Source",
+               "Size",
+               "Classes",
+               "Resources",
+               "Checksum (SHA-1)",
+               "Coordinates"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "7.0",
+                  "[[org.ow2.asm:asm:7.0]]",
+                  "111 KB",
+                  "35",
+                  "0",
+                  "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912",
+                  "[[org.ow2.asm:asm:7.0]]"
+               ],
+               [
+                  "asm-analysis",
+                  "7.0",
+                  "[[org.ow2.asm:asm-analysis:7.0]]",
+                  "32.5 KB",
+                  "14",
+                  "0",
+                  "4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f",
+                  "[[org.ow2.asm:asm-analysis:7.0]]"
+               ],
+               [
+                  "asm-commons",
+                  "7.0",
+                  "[[org.ow2.asm:asm-commons:7.0]]",
+                  "78.0 KB",
+                  "32",
+                  "0",
+                  "478006d07b7c561ae3a92ddc1829bca81ae0cdd1",
+                  "[[org.ow2.asm:asm-commons:7.0]]"
+               ],
+               [
+                  "asm-tree",
+                  "7.0",
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  "49.2 KB",
+                  "37",
+                  "0",
+                  "29bc62dcb85573af6e62e5b2d735ef65966c4180",
+                  "[[org.ow2.asm:asm-tree:7.0]]"
+               ],
+               [
+                  "Classpath",
+                  "-",
+                  "-",
+                  "271 KB",
+                  "118",
+                  "0",
+                  "-",
+                  "-"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information found in META-INF/MANIFEST.MF.",
+         "title": "JAR Manifests",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "General",
+               "Runtime",
+               "Implementation",
+               "Specification",
+               "Signature"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "Manifest-Version: `1.0`",
+                  "",
+                  "ASM, a very small and fast Java bytecode manipulation framework\nVersion: `7.0`",
+                  "",
+                  ""
+               ],
+               [
+                  "asm-analysis",
+                  "Manifest-Version: `1.0`\nModule-Requires: `org.objectweb.asm.tree;transitive=true`",
+                  "",
+                  "Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework\nVersion: `7.0`",
+                  "",
+                  ""
+               ],
+               [
+                  "asm-commons",
+                  "Manifest-Version: `1.0`\nModule-Requires: `org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true`",
+                  "",
+                  "Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework\nVersion: `7.0`",
+                  "",
+                  ""
+               ],
+               [
+                  "asm-tree",
+                  "Manifest-Version: `1.0`\nModule-Requires: `org.objectweb.asm;transitive=true`",
+                  "",
+                  "Tree API of ASM, a very small and fast Java bytecode manipulation framework\nVersion: `7.0`",
+                  "",
+                  ""
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "List of Java Modules found in classpath.",
+         "title": "JPMS Modules",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Module name",
+               "Definition",
+               "Automatic",
+               "Requires",
+               "Exports"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "`org.objectweb.asm`",
+                  "Module-Info",
+                  "No",
+                  "`java.base`",
+                  "`org.objectweb.asm`\n`org.objectweb.asm.signature`"
+               ],
+               [
+                  "asm-analysis",
+                  "`org.objectweb.asm.tree.analysis`",
+                  "Module-Info",
+                  "No",
+                  "`org.objectweb.asm.tree`\n`java.base`",
+                  "`org.objectweb.asm.tree.analysis`"
+               ],
+               [
+                  "asm-commons",
+                  "`org.objectweb.asm.commons`",
+                  "Module-Info",
+                  "No",
+                  "`org.objectweb.asm`\n`org.objectweb.asm.tree`\n`org.objectweb.asm.tree.analysis`\n`java.base`",
+                  "`org.objectweb.asm.commons`"
+               ],
+               [
+                  "asm-tree",
+                  "`org.objectweb.asm.tree`",
+                  "Module-Info",
+                  "No",
+                  "`org.objectweb.asm`\n`java.base`",
+                  "`org.objectweb.asm.tree`"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information about OSGi Bundles.",
+         "title": "OSGi Bundles",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Name",
+               "Version",
+               "Description",
+               "Import Package",
+               "Export Package",
+               "Capabilities",
+               "Others"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "org.objectweb.asm",
+                  "7.0.0",
+                  "Doc URL: http://asm.ow2.org",
+                  "",
+                  "`org.objectweb.asm` (Version: 7.0)\n`org.objectweb.asm.signature` (Version: 7.0)",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "asm-analysis",
+                  "org.objectweb.asm.tree.analysis",
+                  "7.0.0",
+                  "Doc URL: http://asm.ow2.org",
+                  "org.objectweb.asm;version=\"[7.0,8)\"\norg.objectweb.asm.tree;version=\"[7.0,8)\"",
+                  "`org.objectweb.asm.tree.analysis` (Version: 7.0)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.tree`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "asm-commons",
+                  "org.objectweb.asm.commons",
+                  "7.0.0",
+                  "Doc URL: http://asm.ow2.org",
+                  "org.objectweb.asm;version=\"[7.0,8)\"\norg.objectweb.asm.signature;version=\"[7.0,8)\"\norg.objectweb.asm.tree;version=\"[7.0,8)\"",
+                  "`org.objectweb.asm.commons` (Version: 7.0)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.signature`, `org.objectweb.asm.tree`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "asm-tree",
+                  "org.objectweb.asm.tree",
+                  "7.0.0",
+                  "Doc URL: http://asm.ow2.org",
+                  "org.objectweb.asm;version=\"[7.0,8)\"",
+                  "`org.objectweb.asm.tree` (Version: 7.0)\n\tUses: `org.objectweb.asm`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Java class file format information.",
+         "title": "Class Versions",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Multi-release",
+               "Class files by Java version"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "No",
+                  "Java 5 (35)"
+               ],
+               [
+                  "asm-analysis",
+                  "No",
+                  "Java 5 (14)"
+               ],
+               [
+                  "asm-commons",
+                  "No",
+                  "Java 5 (32)"
+               ],
+               [
+                  "asm-tree",
+                  "No",
+                  "Java 5 (37)"
+               ],
+               [
+                  "Classpath",
+                  "-",
+                  "Java 5 (118)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information about newer major, minor, and patch versions of artifacts.",
+         "title": "Updates",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Current version",
+               "Newer versions"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "[7.0](org.ow2.asm:asm:7.0:jar)",
+                  "[7.1](org.ow2.asm:asm:7.1)\n[7.2](org.ow2.asm:asm:7.2)\n[7.3](org.ow2.asm:asm:7.3), [7.3.1](org.ow2.asm:asm:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm:9.5)\n[9.6](org.ow2.asm:asm:9.6)\n[9.7](org.ow2.asm:asm:9.7), [9.7.1](org.ow2.asm:asm:9.7.1)"
+               ],
+               [
+                  "asm-analysis",
+                  "[7.0](org.ow2.asm:asm-analysis:7.0:jar)",
+                  "[7.1](org.ow2.asm:asm-analysis:7.1)\n[7.2](org.ow2.asm:asm-analysis:7.2)\n[7.3](org.ow2.asm:asm-analysis:7.3), [7.3.1](org.ow2.asm:asm-analysis:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-analysis:9.5)\n[9.6](org.ow2.asm:asm-analysis:9.6)\n[9.7](org.ow2.asm:asm-analysis:9.7), [9.7.1](org.ow2.asm:asm-analysis:9.7.1)"
+               ],
+               [
+                  "asm-commons",
+                  "[7.0](org.ow2.asm:asm-commons:7.0:jar)",
+                  "[7.1](org.ow2.asm:asm-commons:7.1)\n[7.2](org.ow2.asm:asm-commons:7.2)\n[7.3](org.ow2.asm:asm-commons:7.3), [7.3.1](org.ow2.asm:asm-commons:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-commons:9.5)\n[9.6](org.ow2.asm:asm-commons:9.6)\n[9.7](org.ow2.asm:asm-commons:9.7), [9.7.1](org.ow2.asm:asm-commons:9.7.1)"
+               ],
+               [
+                  "asm-tree",
+                  "[7.0](org.ow2.asm:asm-tree:7.0:jar)",
+                  "[7.1](org.ow2.asm:asm-tree:7.1)\n[7.2](org.ow2.asm:asm-tree:7.2)\n[7.3](org.ow2.asm:asm-tree:7.3), [7.3.1](org.ow2.asm:asm-tree:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-tree:9.5)\n[9.6](org.ow2.asm:asm-tree:9.6)\n[9.7](org.ow2.asm:asm-tree:9.7), [9.7.1](org.ow2.asm:asm-tree:9.7.1)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Dependencies between JAR files.",
+         "title": "JAR Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Uses",
+               "Used by"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "[none]",
+                  "asm-analysis\nasm-commons\nasm-tree"
+               ],
+               [
+                  "asm-analysis",
+                  "asm\nasm-tree",
+                  "[none]"
+               ],
+               [
+                  "asm-commons",
+                  "asm\nasm-tree",
+                  "[none]"
+               ],
+               [
+                  "asm-tree",
+                  "asm",
+                  "asm-analysis\nasm-commons"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Dependencies as declared in POM file.",
+         "title": "Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Maven coordinates",
+               "Direct dependencies",
+               "Status"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "[[org.ow2.asm:asm:7.0]]",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "asm-analysis",
+                  "[[org.ow2.asm:asm-analysis:7.0]]",
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  "OK"
+               ],
+               [
+                  "asm-commons",
+                  "[[org.ow2.asm:asm-commons:7.0]]",
+                  "[[org.ow2.asm:asm:7.0]]\n[[org.ow2.asm:asm-tree:7.0]]\n[[org.ow2.asm:asm-analysis:7.0]]",
+                  "OK\nOK\nOK"
+               ],
+               [
+                  "asm-tree",
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  "[[org.ow2.asm:asm:7.0]]",
+                  "OK"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "List of packages per JAR file.",
+         "title": "Packages",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Count",
+               "Packages",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "2",
+                  "`org.objectweb.asm`\n`org.objectweb.asm.signature`",
+                  ""
+               ],
+               [
+                  "asm-analysis",
+                  "1",
+                  "`org.objectweb.asm.tree.analysis`",
+                  ""
+               ],
+               [
+                  "asm-commons",
+                  "1",
+                  "`org.objectweb.asm.commons`",
+                  ""
+               ],
+               [
+                  "asm-tree",
+                  "1",
+                  "`org.objectweb.asm.tree`",
+                  ""
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
+         "title": "Duplicate Classes",
+         "content": [{
+            "columns": [
+               "Class/Resource",
+               "Sources",
+               "Similarity"
+            ],
+            "rows": []
+         }]
+      },
+      {
+         "description": "Compatibility issues between JAR files.",
+         "title": "Binary Compatibility",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": []
+         }]
+      },
+      {
+         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
+         "title": "Blacklist",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "asm-commons",
+                  "`org.objectweb.asm.commons.AdviceAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.AnalyzerAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.CodeSizeEvaluator`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.InstructionAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.MethodRemapper`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.RemappingMethodAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
+               ],
+               [
+                  "asm-tree",
+                  "`org.objectweb.asm.tree.MethodNode`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information about JRE/JDK runtime.",
+         "title": "Java Runtime",
+         "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
+      }
+   ]
+}

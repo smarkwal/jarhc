@@ -19,6 +19,8 @@ package org.jarhc.report;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ReportSection {
 
@@ -72,6 +74,23 @@ public class ReportSection {
 		// section is empty if all tables are empty
 		return tables.stream().allMatch(t -> t.getRows().isEmpty());
 
+	}
+
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		json.put("title", title);
+		json.put("description", description);
+		JSONArray contentList = new JSONArray();
+		for (Object item : content) {
+			if (item instanceof ReportTable) {
+				ReportTable table = (ReportTable) item;
+				contentList.put(table.toJSON());
+			} else {
+				contentList.put(item);
+			}
+		}
+		json.put("content", contentList);
+		return json;
 	}
 
 }

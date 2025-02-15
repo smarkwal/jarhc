@@ -28,6 +28,7 @@ import java.util.List;
 import org.jarhc.inject.Injector;
 import org.jarhc.inject.InjectorException;
 import org.jarhc.report.html.HtmlReportFormat;
+import org.jarhc.report.json.JsonReportFormat;
 import org.jarhc.report.list.ListReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.utils.JarHcException;
@@ -46,6 +47,7 @@ class ReportFormatFactoryTest {
 		tests.add(DynamicTest.dynamicTest("html", () -> isSupportedFormat("html", true)));
 		tests.add(DynamicTest.dynamicTest("text", () -> isSupportedFormat("text", true)));
 		tests.add(DynamicTest.dynamicTest("list", () -> isSupportedFormat("list", true)));
+		tests.add(DynamicTest.dynamicTest("json", () -> isSupportedFormat("json", true)));
 		tests.add(DynamicTest.dynamicTest("pdf", () -> isSupportedFormat("pdf", false)));
 		return tests;
 	}
@@ -143,6 +145,20 @@ class ReportFormatFactoryTest {
 
 		// assert
 		assertInstanceOf(HtmlReportFormat.class, format);
+
+	}
+
+	@Test
+	void test_getReportFormat_json() {
+
+		// prepare
+		ReportFormatFactory factory = new ReportFormatFactory(injector);
+
+		// test
+		ReportFormat format = factory.getReportFormat("json");
+
+		// assert
+		assertInstanceOf(JsonReportFormat.class, format);
 
 	}
 

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.jarhc.report.text;
+package org.jarhc.report.json;
 
 import org.jarhc.report.AbstractReportFormatTest;
 
-class TextReportFormatTest extends AbstractReportFormatTest {
+class JsonReportFormatTest extends AbstractReportFormatTest {
 
-	public TextReportFormatTest() {
-		super(new TextReportFormat());
+	public JsonReportFormatTest() {
+		super(new JsonReportFormat());
 	}
 
 }

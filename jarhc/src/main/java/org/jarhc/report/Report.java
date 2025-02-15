@@ -18,6 +18,7 @@ package org.jarhc.report;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject;
 
 public class Report {
 
@@ -42,6 +43,17 @@ public class Report {
 
 	public List<ReportSection> getSections() {
 		return new ArrayList<>(sections);
+	}
+
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		json.put("title", title);
+		List<JSONObject> sectionList = new ArrayList<>();
+		for (ReportSection section : sections) {
+			sectionList.add(section.toJSON());
+		}
+		json.put("sections", sectionList);
+		return json;
 	}
 
 }
