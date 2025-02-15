@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.codehaus.plexus.util.StringUtils;
+import java.util.stream.Collectors;
+import org.jarhc.model.osgi.ExportPackage;
 
 public class OSGiBundleInfo {
 
@@ -100,7 +101,7 @@ public class OSGiBundleInfo {
 	private List<String> importPackage;
 	private List<String> dynamicImportPackage;
 
-	private List<String> exportPackage;
+	private List<ExportPackage> exportPackage;
 
 	private List<String> requireCapability;
 	private List<String> provideCapability;
@@ -144,11 +145,11 @@ public class OSGiBundleInfo {
 		this.bundleVendor = manifestAttributes.get("Bundle-Vendor");
 		this.bundleLicense = manifestAttributes.get("Bundle-License");
 		this.bundleDocURL = manifestAttributes.get("Bundle-DocURL");
-		this.importPackage = splitList(manifestAttributes.get("Import-Package"));
-		this.dynamicImportPackage = splitList(manifestAttributes.get("DynamicImport-Package"));
-		this.exportPackage = splitList(manifestAttributes.get("Export-Package"));
-		this.requireCapability = splitList(manifestAttributes.get("Require-Capability"));
-		this.provideCapability = splitList(manifestAttributes.get("Provide-Capability"));
+		this.importPackage = splitAttributeValue(manifestAttributes.get("Import-Package"));
+		this.dynamicImportPackage = splitAttributeValue(manifestAttributes.get("DynamicImport-Package"));
+		this.exportPackage = parseExportPackage(manifestAttributes.get("Export-Package"));
+		this.requireCapability = splitAttributeValue(manifestAttributes.get("Require-Capability"));
+		this.provideCapability = splitAttributeValue(manifestAttributes.get("Provide-Capability"));
 		this.bundleActivationPolicy = manifestAttributes.get("Bundle-ActivationPolicy");
 		this.bundleActivator = manifestAttributes.get("Bundle-Activator");
 		this.bundleCategory = manifestAttributes.get("Bundle-Category");
@@ -167,10 +168,10 @@ public class OSGiBundleInfo {
 		this.importBundle = manifestAttributes.get("Import-Bundle");
 		this.importLibrary = manifestAttributes.get("Import-Library");
 		this.importService = manifestAttributes.get("Import-Service");
-		this.includeResource = splitList(manifestAttributes.get("Include-Resource"));
+		this.includeResource = splitAttributeValue(manifestAttributes.get("Include-Resource"));
 		this.moduleScope = manifestAttributes.get("Module-Scope");
 		this.moduleType = manifestAttributes.get("Module-Type");
-		this.privatePackage = splitList(manifestAttributes.get("Private-Package"));
+		this.privatePackage = splitAttributeValue(manifestAttributes.get("Private-Package"));
 		this.requireBundle = manifestAttributes.get("Require-Bundle");
 		this.webContextPath = manifestAttributes.get("Web-ContextPath");
 		this.webDispatcherServletUrlPatterns = manifestAttributes.get("Web-DispatcherServletUrlPatterns");
@@ -213,7 +214,7 @@ public class OSGiBundleInfo {
 		return dynamicImportPackage;
 	}
 
-	public List<String> getExportPackage() {
+	public List<ExportPackage> getExportPackage() {
 		return exportPackage;
 	}
 
@@ -329,7 +330,13 @@ public class OSGiBundleInfo {
 		return webFilterMappings;
 	}
 
-	private List<String> splitList(String value) {
+	private List<ExportPackage> parseExportPackage(String value) {
+		if (value == null) return null;
+		List<String> lines = splitAttributeValue(value);
+		return lines.stream().map(ExportPackage::new).collect(Collectors.toList());
+	}
+
+	private List<String> splitAttributeValue(String value) {
 		if (value == null) return null;
 
 		// estimate the number of elements in the list
@@ -341,6 +348,7 @@ public class OSGiBundleInfo {
 		// prepare list with estimated size
 		List<String> list = new ArrayList<>(commas + 1);
 
+		// split by comma, but ignore commas inside quotes
 		boolean quoted = false;
 		int start = 0;
 		for (int i = 0; i < value.length(); i++) {
@@ -353,7 +361,7 @@ public class OSGiBundleInfo {
 				start = i + 1;
 			}
 		}
-		if(start < value.length()) {
+		if (start < value.length()) {
 			list.add(value.substring(start));
 		}
 

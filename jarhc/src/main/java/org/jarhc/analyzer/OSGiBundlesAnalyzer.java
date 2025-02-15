@@ -21,6 +21,7 @@ import java.util.List;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.OSGiBundleInfo;
+import org.jarhc.model.osgi.ExportPackage;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.StringUtils;
@@ -136,11 +137,10 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 
 	private String getExportPackage(JarFile jarFile) {
 		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
-		List<String> exportPackage = bundleInfo.getExportPackage();
-
+		List<ExportPackage> exportPackage = bundleInfo.getExportPackage();
 		List<String> lines = new ArrayList<>();
 		if (exportPackage != null) {
-			lines.addAll(exportPackage);
+			exportPackage.forEach(p -> lines.add(p.toMarkdown()));
 		}
 		return StringUtils.joinLines(lines);
 	}
@@ -202,7 +202,7 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 	}
 
 	private static void wrapText(List<String> lines) {
-		lines.replaceAll(s -> wrapText(s));
+		lines.replaceAll(OSGiBundlesAnalyzer::wrapText);
 	}
 
 }
