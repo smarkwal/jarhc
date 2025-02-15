@@ -67,6 +67,7 @@ public class Markdown {
 		text = CODE.matcher(text).replaceAll("$1");
 		text = ARTIFACT_LINK.matcher(text).replaceAll("$1");
 		text = URL_LINK.matcher(text).replaceAll("$1");
+		text = text.replace("\t", "   ");
 		return text;
 	}
 
@@ -78,6 +79,7 @@ public class Markdown {
 		text = renderArtifactLinks(text);
 		text = renderUrlLinks(text);
 		text = renderLabels(text);
+		text = text.replace("\t", "&nbsp;&nbsp;&nbsp;");
 		// TODO: convert leading spaces to non-breaking spaces?
 		return text;
 	}
