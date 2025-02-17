@@ -48,191 +48,191 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact                          | General                                       | Runtime | Implementation                  | Specification                    | Signature
 ----------------------------------+-----------------------------------------------+---------+---------------------------------+----------------------------------+----------
-jakarta.activation-api            | Manifest-Version: 1.0                         |         | Jakarta Activation API          | Jakarta Activation Specification |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.8  |         | Build ID: 7f7d358               | Version: 2.1                     |
-                                  | Extension-Name: jakarta.activation            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-jakarta.annotation-api            | Manifest-Version: 1.0                         |         | Version: 2.1.1                  | Version: 2.1                     |
+jakarta.activation-api            | Created-By: Apache Maven Bundle Plugin 5.1.8  |         | Jakarta Activation API          | Jakarta Activation Specification |
+                                  | Extension-Name: jakarta.activation            |         | Build ID: 7f7d358               | Version: 2.1                     |
+                                  | Manifest-Version: 1.0                         |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
+jakarta.annotation-api            | Build-Jdk-Spec: 11                            |         | Version: 2.1.1                  | Version: 2.1                     |
                                   | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.glassfish        |                                  |
-                                  | Extension-Name: jakarta.annotation            |         |                                 |                                  |
-jakarta.authentication-api        | Manifest-Version: 1.0                         |         | Version: 3.0.0                  | Version: 3.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         | Vendor: Jakarta Authentication  | Vendor: Oracle Corporation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.glassfish        |                                  |
-                                  | Bnd-LastModified: 1646694714874               |         |                                 |                                  |
+                                  | Extension-Name: jakarta.annotation            |         | Vendor ID: org.glassfish        |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.authentication-api        | Bnd-LastModified: 1646694714874               |         | Version: 3.0.0                  | Version: 3.0                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Jakarta Authentication  | Vendor: Oracle Corporation       |
+                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         | Vendor ID: org.glassfish        |                                  |
                                   | Extension-Name: jakarta.security.auth.message |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.authorization-api         | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         | Vendor: Oracle Corporation      | Vendor: Oracle Corporation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.glassfish        |                                  |
-                                  | Bnd-LastModified: 1646697060871               |         |                                 |                                  |
+jakarta.authorization-api         | Bnd-LastModified: 1646697060871               |         | Version: 2.1.0                  | Version: 2.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Oracle Corporation      | Vendor: Oracle Corporation       |
+                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         | Vendor ID: org.glassfish        |                                  |
                                   | Extension-Name: jakarta.security.jacc         |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.batch-api                 | Manifest-Version: 1.0                         |         | Version: 2.1.1                  | Jakarta Batch                    |
-                                  | Archiver-Version: Plexus Archiver             |         |                                 | Version: 2.1                     |
-                                  | Created-By: Apache Maven 3.6.3                |         |                                 | Vendor: Eclipse Foundation       |
-                                  | Built-By: 854188897                           |         |                                 |                                  |
-                                  | Build-Jdk: 11.0.6                             |         |                                 |                                  |
+jakarta.batch-api                 | Archiver-Version: Plexus Archiver             |         | Version: 2.1.1                  | Jakarta Batch                    |
+                                  | Build-Jdk: 11.0.6                             |         |                                 | Version: 2.1                     |
+                                  | Built-By: 854188897                           |         |                                 | Vendor: Eclipse Foundation       |
+                                  | Created-By: Apache Maven 3.6.3                |         |                                 |                                  |
                                   | Extension-Name: jakarta.batch                 |         |                                 |                                  |
-jakarta.ejb-api                   | Manifest-Version: 1.0                         |         | Version: 4.0.1                  | Version: 4.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 9                             |         |                                 |                                  |
-                                  | Bnd-LastModified: 1651625487623               |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.ejb-api                   | Bnd-LastModified: 1651625487623               |         | Version: 4.0.1                  | Version: 4.0                     |
+                                  | Build-Jdk-Spec: 9                             |         |                                 | Vendor: Eclipse Foundation       |
                                   | Build-Jdk: 9.0.4                              |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.ejb                   |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.el-api                    | Manifest-Version: 1.0                         |         | Version: 5.0.1                  | Version: 5.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1655737655798               |         |                                 |                                  |
+jakarta.el-api                    | Bnd-LastModified: 1655737655798               |         | Version: 5.0.1                  | Version: 5.0                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
-                                  | Extension-Name: jakarta.el                    |         |                                 |                                  |
-                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.enterprise.concurrent-api | Manifest-Version: 1.0                         |         | Version: 3.0.4                  | Version: 3.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 17                            |         |                                 |                                  |
-                                  | Extension-Name: jakarta.enterprise.concurrent |         |                                 |                                  |
-                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.enterprise.cdi-api        | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Automatic-Module-Name: jakarta.cdi            |         |                                 |                                  |
+                                  | Extension-Name: jakarta.el                    |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.enterprise.concurrent-api | Build-Jdk-Spec: 17                            |         | Version: 3.0.4                  | Version: 3.0                     |
+                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         |                                 |                                  |
+                                  | Extension-Name: jakarta.enterprise.concurrent |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.enterprise.cdi-api        | Automatic-Module-Name: jakarta.cdi            |         |                                 |                                  |
                                   | Bnd-LastModified: 1652885418448               |         |                                 |                                  |
+                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Build-Jdk: 11.0.13                            |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
-                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.faces-api                 | Manifest-Version: 1.0                         |         |                                 |                                  |
-                                  | Created-By: Maven JAR Plugin 3.2.2            |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-jakarta.inject-api                | Manifest-Version: 1.0                         |         | Version: 2.0                    |                                  |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.faces-api                 | Build-Jdk-Spec: 11                            |         |                                 |                                  |
+                                  | Created-By: Maven JAR Plugin 3.2.2            |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.inject-api                | Bnd-LastModified: 1634410586985               |         | Version: 2.0                    |                                  |
                                   | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1634410586985               |         |                                 |                                  |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-4.2.0.201903051501                  |         |                                 |                                  |
-jakarta.interceptor-api           | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Oracle Corporation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.glassfish        |                                  |
-                                  | Bnd-LastModified: 1643175337219               |         |                                 |                                  |
-                                  | Build-Jdk: 11.0.2                             |         |                                 |                                  |
+jakarta.interceptor-api           | Bnd-LastModified: 1643175337219               |         | Version: 2.1.0                  | Version: 2.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Oracle Corporation       |
+                                  | Build-Jdk: 11.0.2                             |         | Vendor ID: org.glassfish        |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.interceptor           |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.jms-api                   | Manifest-Version: 1.0                         |         | Version: 3.1.0                  | Version: 3.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         | Vendor ID: org.eclipse.ee4j.jms | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1646145662665               |         |                                 |                                  |
+jakarta.jms-api                   | Bnd-LastModified: 1646145662665               |         | Version: 3.1.0                  | Version: 3.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.eclipse.ee4j.jms | Vendor: Eclipse Foundation       |
+                                  | Created-By: Apache Maven Bundle Plugin 5.1.4  |         |                                 |                                  |
                                   | Extension-Name: jakarta.jms                   |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.json.bind-api             | Manifest-Version: 1.0                         |         |                                 | Vendor: Oracle Corporation       |
+jakarta.json.bind-api             | Build-Id: 03/07/2024 12:18 PM                 |         |                                 | Vendor: Oracle Corporation       |
+                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Created-By: Apache Maven Bundle Plugin 5.1.9  |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Build-Id: 03/07/2024 12:18 PM                 |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-6.3.1.202206071316                  |         |                                 |                                  |
-jakarta.json-api                  | Manifest-Version: 1.0                         |         | Version: 2.1.3                  | Version: 2.1                     |
+jakarta.json-api                  | Build-Jdk-Spec: 11                            |         | Version: 2.1.3                  | Version: 2.1                     |
                                   | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Build ID: b7f9d85               | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Extension-Name: jakarta.json                  |         |                                 |                                  |
-jakarta.jws-api                   | Manifest-Version: 1.0                         |         | Version: 3.0.0                  | Version: 3.0                     |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.jws-api                   | Build-Jdk-Spec: 11                            |         | Version: 3.0.0                  | Version: 3.0                     |
                                   | Created-By: Apache Maven Bundle Plugin        |         | Build ID: b5b6f2e               | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Extension-Name: jakarta.jws                   |         |                                 |                                  |
-jakarta.mail-api                  | Manifest-Version: 1.0                         |         | Jakarta Mail API                | Jakarta Mail Specification       |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Build ID: 0f448dc               | Version: 2.1                     |
-                                  | Extension-Name: jakarta.mail                  |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-jakarta.mvc-api                   | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Bnd-LastModified: 1662389892270               |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.mail-api                  | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Jakarta Mail API                | Jakarta Mail Specification       |
+                                  | Extension-Name: jakarta.mail                  |         | Build ID: 0f448dc               | Version: 2.1                     |
+                                  | Manifest-Version: 1.0                         |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
+jakarta.mvc-api                   | Bnd-LastModified: 1662389892270               |         | Version: 2.1.0                  | Version: 2.1                     |
                                   | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.mvc                   |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.persistence-api           | Manifest-Version: 1.0                         |         | Version: 3.1.0                  | Version: 3.1                     |
+jakarta.persistence-api           | Build-Jdk-Spec: 11                            |         | Version: 3.1.0                  | Version: 3.1                     |
                                   | Created-By: Apache Maven Bundle Plugin 5.1.4  |         |                                 | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Extension-Name: jakarta.persistence           |         |                                 |                                  |
-jakarta.resource-api              | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Bnd-LastModified: 1650564122988               |         | Vendor: Eclipse Foundation      | Vendor: Jakarta Connectors       |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor ID: org.glassfish        |                                  |
-                                  | Extension-Name: jakarta.resource              |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.resource-api              | Bnd-LastModified: 1650564122988               |         | Version: 2.1.0                  | Version: 2.1                     |
+                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Jakarta Connectors       |
+                                  | Extension-Name: jakarta.resource              |         | Vendor ID: org.glassfish        |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.security.enterprise-api   | Manifest-Version: 1.0                         |         | Version: 3.0.0                  | Version: 3.0                     |
-                                  | Bnd-LastModified: 1648233951415               |         | Vendor: Eclipse Foundation      | Vendor: Oracle Corporation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
+jakarta.security.enterprise-api   | Bnd-LastModified: 1648233951415               |         | Version: 3.0.0                  | Version: 3.0                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Oracle Corporation       |
                                   | Created-By: Apache Maven Bundle Plugin 5.1.4  |         |                                 |                                  |
                                   | Extension-Name: jakarta.security.enterprise   |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.servlet.jsp.jstl-api      | Manifest-Version: 1.0                         |         | Version: 3.0.2                  | Version: 3.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.glassfish        |                                  |
-                                  | Bnd-LastModified: 1724345517089               |         |                                 |                                  |
+jakarta.servlet.jsp.jstl-api      | Bnd-LastModified: 1724345517089               |         | Version: 3.0.2                  | Version: 3.0                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
+                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor ID: org.glassfish        |                                  |
                                   | Extension-Name: jakarta.servlet.jsp.jstl      |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.servlet.jsp-api           | Manifest-Version: 1.0                         |         | Version: 3.1.0                  | Version: 3.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1650567672923               |         |                                 |                                  |
-                                  | Extension-Name: jakarta.servlet.jsp           |         |                                 |                                  |
-                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.servlet-api               | Manifest-Version: 1.0                         |         | Version: 6.0.0                  | Version: 6.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 11                            |         | Vendor ID: org.eclipse          |                                  |
-                                  | Bnd-LastModified: 1652339954197               |         |                                 |                                  |
-                                  | Build-Jdk: 11.0.2                             |         |                                 |                                  |
-                                  | Built-By: jenkins                             |         |                                 |                                  |
-                                  | Extension-Name: jakarta.servlet               |         |                                 |                                  |
-                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.transaction-api           | Manifest-Version: 1.0                         |         | Version: 2.0.0                  | Version: 2.0                     |
-                                  | Automatic-Module-Name: jakarta.transaction    |         | Vendor: EE4J Community          | Vendor: Oracle Corporation       |
-                                  | Archiver-Version: Plexus Archiver             |         | Vendor ID: org.glassfish        |                                  |
-                                  | Built-By: jenkins                             |         |                                 |                                  |
-                                  | Bnd-LastModified: 1601380706017               |         |                                 |                                  |
-                                  | Tool: Bnd-0.0.255                             |         |                                 |                                  |
-                                  | Extension-Name: jakarta.transaction           |         |                                 |                                  |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)    |         |                                 |                                  |
-                                  | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
-jakarta.validation-api            | Manifest-Version: 1.0                         |         |                                 |                                  |
-                                  | Automatic-Module-Name: jakarta.validation     |         |                                 |                                  |
-                                  | Built-By: jenkins                             |         |                                 |                                  |
-                                  | Bnd-LastModified: 1593873743039               |         |                                 |                                  |
-                                  | Tool: Bnd-3.2.0.201605172007                  |         |                                 |                                  |
+jakarta.servlet.jsp-api           | Bnd-LastModified: 1650567672923               |         | Version: 3.1.0                  | Version: 3.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
+                                  | Extension-Name: jakarta.servlet.jsp           |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.servlet-api               | Bnd-LastModified: 1652339954197               |         | Version: 6.0.0                  | Version: 6.0                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
+                                  | Build-Jdk: 11.0.2                             |         | Vendor ID: org.eclipse          |                                  |
+                                  | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
+                                  | Extension-Name: jakarta.servlet               |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
+jakarta.transaction-api           | Archiver-Version: Plexus Archiver             |         | Version: 2.0.0                  | Version: 2.0                     |
+                                  | Automatic-Module-Name: jakarta.transaction    |         | Vendor: EE4J Community          | Vendor: Oracle Corporation       |
+                                  | Bnd-LastModified: 1601380706017               |         | Vendor ID: org.glassfish        |                                  |
                                   | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
-jakarta.websocket-api             | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)    |         |                                 |                                  |
+                                  | Extension-Name: jakarta.transaction           |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-0.0.255                             |         |                                 |                                  |
+jakarta.validation-api            | Automatic-Module-Name: jakarta.validation     |         |                                 |                                  |
+                                  | Bnd-LastModified: 1593873743039               |         |                                 |                                  |
+                                  | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
+                                  | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+                                  | Tool: Bnd-3.2.0.201605172007                  |         |                                 |                                  |
+jakarta.websocket-api             | Bnd-LastModified: 1643013688235               |         | Version: 2.1.0                  | Version: 2.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
-                                  | Bnd-LastModified: 1643013688235               |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
+                                  | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.websocket             |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.websocket-client-api      | Manifest-Version: 1.0                         |         | Version: 2.1.0                  | Version: 2.1                     |
-                                  | Created-By: Apache Maven Bundle Plugin        |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
-                                  | Built-By: jenkins                             |         |                                 |                                  |
+jakarta.websocket-client-api      | Bnd-LastModified: 1643013674134               |         | Version: 2.1.0                  | Version: 2.1                     |
+                                  | Build-Jdk-Spec: 11                            |         | Vendor: Eclipse Foundation      | Vendor: Eclipse Foundation       |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
-                                  | Bnd-LastModified: 1643013674134               |         |                                 |                                  |
-                                  | Build-Jdk-Spec: 11                            |         |                                 |                                  |
+                                  | Built-By: jenkins                             |         |                                 |                                  |
+                                  | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.websocket-client      |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.ws.rs-api                 | Manifest-Version: 1.0                         |         | Version: 3.1.0                  | Version: 3.1                     |
-                                  | Bnd-LastModified: 1646083755769               |         |                                 | Vendor: Eclipse Foundation       |
-                                  | Build-Id: 02/28/2022 09:28 PM                 |         |                                 |                                  |
+jakarta.ws.rs-api                 | Bnd-LastModified: 1646083755769               |         | Version: 3.1.0                  | Version: 3.1                     |
+                                  | Build-Id: 02/28/2022 09:28 PM                 |         |                                 | Vendor: Eclipse Foundation       |
                                   | Build-Jdk: 11.0.2                             |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |
                                   | Extension-Name: jakarta.ws.rs                 |         |                                 |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.xml.bind-api              | Manifest-Version: 1.0                         |         | Version: 4.0.2                  | Version: 4.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Build ID: ca43d8b               | Vendor: Eclipse Foundation       |
-                                  | Extension-Name: jakarta.xml.bind              |         |                                 |                                  |
-jakarta.xml.soap-api              | Manifest-Version: 1.0                         |         | Version: 3.0.2                  | Version: 3.0                     |
-                                  | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Build ID: 03ea41a               | Vendor: Eclipse Foundation       |
-                                  | Extension-Name: jakarta.xml.soap              |         |                                 |                                  |
-jakarta.xml.ws-api                | Manifest-Version: 1.0                         |         | Version: 4.0.2                  | Version: 4.0                     |
+jakarta.xml.bind-api              | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Version: 4.0.2                  | Version: 4.0                     |
+                                  | Extension-Name: jakarta.xml.bind              |         | Build ID: ca43d8b               | Vendor: Eclipse Foundation       |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.xml.soap-api              | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Version: 3.0.2                  | Version: 3.0                     |
+                                  | Extension-Name: jakarta.xml.soap              |         | Build ID: 03ea41a               | Vendor: Eclipse Foundation       |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
+jakarta.xml.ws-api                | Build-Jdk-Spec: 21                            |         | Version: 4.0.2                  | Version: 4.0                     |
                                   | Created-By: Apache Maven Bundle Plugin 5.1.9  |         | Build ID: 4.0.2-RELEASE-a70d205 | Vendor: Eclipse Foundation       |
-                                  | Build-Jdk-Spec: 21                            |         | Vendor: Eclipse Foundation      |                                  |
-                                  | Extension-Name: jakarta.xml.ws                |         |                                 |                                  |
+                                  | Extension-Name: jakarta.xml.ws                |         | Vendor: Eclipse Foundation      |                                  |
+                                  | Manifest-Version: 1.0                         |         |                                 |                                  |
 
 JPMS Modules
 ------------
@@ -1179,52 +1179,164 @@ jakarta.xml.ws-api         | jakarta.jws.WebParam$Mode
                            | • Method not found: static jakarta.jws.WebParam$Mode[] jakarta.jws.WebParam$Mode.$values()
                            | > jakarta.jws.WebParam$Mode (method not found)
                            | > java.lang.Enum (method not found)
-                           | > java.lang.Comparable (method not found)
+                           | > java.lang.constant.Constable (method not found)
                            | > java.lang.Object (method not found)
+                           | > java.lang.Comparable (method not found)
                            | > java.io.Serializable (method not found)
                            |
                            | jakarta.jws.soap.SOAPBinding$ParameterStyle
                            | • Method not found: static jakarta.jws.soap.SOAPBinding$ParameterStyle[] jakarta.jws.soap.SOAPBinding$ParameterStyle.$values()
                            | > jakarta.jws.soap.SOAPBinding$ParameterStyle (method not found)
                            | > java.lang.Enum (method not found)
-                           | > java.lang.Comparable (method not found)
+                           | > java.lang.constant.Constable (method not found)
                            | > java.lang.Object (method not found)
+                           | > java.lang.Comparable (method not found)
                            | > java.io.Serializable (method not found)
                            |
                            | jakarta.jws.soap.SOAPBinding$Style
                            | • Method not found: static jakarta.jws.soap.SOAPBinding$Style[] jakarta.jws.soap.SOAPBinding$Style.$values()
                            | > jakarta.jws.soap.SOAPBinding$Style (method not found)
                            | > java.lang.Enum (method not found)
-                           | > java.lang.Comparable (method not found)
+                           | > java.lang.constant.Constable (method not found)
                            | > java.lang.Object (method not found)
+                           | > java.lang.Comparable (method not found)
                            | > java.io.Serializable (method not found)
                            |
                            | jakarta.jws.soap.SOAPBinding$Use
                            | • Method not found: static jakarta.jws.soap.SOAPBinding$Use[] jakarta.jws.soap.SOAPBinding$Use.$values()
                            | > jakarta.jws.soap.SOAPBinding$Use (method not found)
                            | > java.lang.Enum (method not found)
-                           | > java.lang.Comparable (method not found)
+                           | > java.lang.constant.Constable (method not found)
                            | > java.lang.Object (method not found)
+                           | > java.lang.Comparable (method not found)
                            | > java.io.Serializable (method not found)
 
 Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-Artifact           | Issues
--------------------+---------------------------------------------------------------------
-jakarta.xml.ws-api | jakarta.jws.soap.SOAPMessageHandler
-                   | • @Deprecated: public @interface jakarta.jws.soap.InitParam
-                   |
-                   | jakarta.jws.soap.SOAPMessageHandlers
-                   | • @Deprecated: public @interface jakarta.jws.soap.SOAPMessageHandler
+Artifact                   | Issues
+---------------------------+---------------------------------------------------------------------------------------------
+jakarta.activation-api     | jakarta.activation.CommandInfo$Beans
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.CommandMap
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.DataHandler
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.FileTypeMap
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.MailcapCommandMap
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.MimetypesFileTypeMap
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.SecuritySupport
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.authentication-api | jakarta.security.auth.message.config.AuthConfigFactory
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.authorization-api  | jakarta.security.jacc.PolicyConfigurationFactory
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.security.jacc.PolicyContext
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.batch-api          | jakarta.batch.runtime.BatchRuntime
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.el-api             | jakarta.el.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.enterprise.cdi-api | jakarta.enterprise.inject.build.compatible.spi.SecurityActions
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.enterprise.inject.spi.SecurityActions
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.enterprise.util.SecurityActions
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.json-api           | jakarta.json.spi.JsonProvider
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.mail-api           | jakarta.mail.Session
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.mail.internet.MimeUtil
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.mail.util.FactoryFinder
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.mail.util.StreamProvider
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.persistence-api    | jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.servlet-api        | jakarta.servlet.http.Cookie
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.validation-api     | jakarta.validation.Validation$GetValidationProviderListAction
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.validation.Validation$ProviderSpecificBootstrapImpl
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.ws.rs-api          | jakarta.ws.rs.client.ClientBuilder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.ws.rs.client.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.ws.rs.ext.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.ws.rs.ext.RuntimeDelegate
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.ws.rs.sse.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.xml.bind-api       | jakarta.xml.bind.ContextFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.bind.DatatypeConverter
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.xml.bind.JAXBContext
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.bind.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.soap-api       | jakarta.xml.soap.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.soap.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.ws-api         | jakarta.jws.soap.SOAPMessageHandler
+                           | • @Deprecated: public @interface jakarta.jws.soap.InitParam
+                           |
+                           | jakarta.jws.soap.SOAPMessageHandlers
+                           | • @Deprecated: public @interface jakarta.jws.soap.SOAPMessageHandler
+                           |
+                           | jakarta.xml.ws.spi.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.ws.spi.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
 
 Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-11.0.26
+Java home    : /home/markwalder/.jdks/temurin-17.0.14
 Java runtime : OpenJDK Runtime Environment
-Java version : 11.0.26
+Java version : 17.0.14
 Java vendor  : Eclipse Adoptium
 
