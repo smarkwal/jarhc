@@ -225,6 +225,14 @@ class JarHcTest extends ReleaseTest {
 		// test
 		TestResult result = runner.execute(command);
 
+		if (TestUtils.createResources()) {
+			String actualOutput = result.getStdOut();
+			if (!actualOutput.equals(expectedOutput)) {
+				writeProjectFile("src/main/resources/help.txt", actualOutput);
+				return;
+			}
+		}
+
 		// assert
 		result.assertEquals(0, expectedOutput, "");
 
