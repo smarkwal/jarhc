@@ -7,22 +7,22 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact         | General                                           | Runtime                                           | Implementation           | Specification           | Signature
 -----------------+---------------------------------------------------+---------------------------------------------------+--------------------------+-------------------------+----------
-hazelcast        | Manifest-Version: 1.0                             | Main Class: com.hazelcast.core.server.StartServer | hazelcast                | hazelcast               |
-                 | Archiver-Version: Plexus Archiver                 |                                                   | Version: 3.11.2          | Version: 3.11.2         |
-                 | Built-By: ubuntu                                  |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
-                 | Bnd-LastModified: 1550306249136                   |                                                   | Vendor ID: com.hazelcast |                         |
-                 | Automatic-Module-Name: com.hazelcast.core         |                                                   |                          |                         |
-                 | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
-                 | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
+hazelcast        | Archiver-Version: Plexus Archiver                 | Main Class: com.hazelcast.core.server.StartServer | hazelcast                | hazelcast               |
+                 | Automatic-Module-Name: com.hazelcast.core         |                                                   | Version: 3.11.2          | Version: 3.11.2         |
+                 | Bnd-LastModified: 1550306249136                   |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
+                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor ID: com.hazelcast |                         |
+                 | Built-By: ubuntu                                  |                                                   |                          |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |
-                 | Build-Jdk: 1.8.0_162                              |                                                   |                          |                         |
-hazelcast-client | Manifest-Version: 1.0                             |                                                   | hazelcast-client         | hazelcast-client        |
-                 | Archiver-Version: Plexus Archiver                 |                                                   | Version: 3.11.2          | Version: 3.11.2         |
-                 | Built-By: ubuntu                                  |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
-                 | Bnd-LastModified: 1550306325023                   |                                                   | Vendor ID: com.hazelcast |                         |
-                 | Automatic-Module-Name: com.hazelcast.client       |                                                   |                          |                         |
-                 | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
+                 | Manifest-Version: 1.0                             |                                                   |                          |                         |
                  | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
+                 | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
+hazelcast-client | Archiver-Version: Plexus Archiver                 |                                                   | hazelcast-client         | hazelcast-client        |
+                 | Automatic-Module-Name: com.hazelcast.client       |                                                   | Version: 3.11.2          | Version: 3.11.2         |
+                 | Bnd-LastModified: 1550306325023                   |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
+                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor ID: com.hazelcast |                         |
+                 | Built-By: ubuntu                                  |                                                   |                          |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |
-                 | Build-Jdk: 1.8.0_162                              |                                                   |                          |                         |
+                 | Manifest-Version: 1.0                             |                                                   |                          |                         |
+                 | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
+                 | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
 

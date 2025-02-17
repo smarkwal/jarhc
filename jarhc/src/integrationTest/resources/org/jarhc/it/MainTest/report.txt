@@ -17,14 +17,14 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact  | General                           | Runtime | Implementation  | Specification | Signature
 ----------+-----------------------------------+---------+-----------------+---------------+----------
-slf4j-api | Manifest-Version: 1.0             |         | slf4j-api       |               |
-          | Archiver-Version: Plexus Archiver |         | Version: 1.7.28 |               |
-          | Created-By: Apache Maven          |         |                 |               |
-          | Built-By: ceki                    |         |                 |               |
+slf4j-api | Archiver-Version: Plexus Archiver |         | slf4j-api       |               |
+          | Automatic-Module-Name: org.slf4j  |         | Version: 1.7.28 |               |
           | Build-Jdk: 1.8.0_121              |         |                 |               |
+          | Built-By: ceki                    |         |                 |               |
+          | Created-By: Apache Maven          |         |                 |               |
+          | Manifest-Version: 1.0             |         |                 |               |
           | X-Compile-Source-JDK: 1.5         |         |                 |               |
           | X-Compile-Target-JDK: 1.5         |         |                 |               |
-          | Automatic-Module-Name: org.slf4j  |         |                 |               |
 
 JPMS Modules
 ------------

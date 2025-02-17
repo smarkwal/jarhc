@@ -24,8 +24,8 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact | General                            | Runtime | Implementation | Specification | Signature
 ---------+------------------------------------+---------+----------------+---------------+----------
-a        | Manifest-Version: 1.0              |         |                |               |
-         | Created-By: 9 (Oracle Corporation) |         |                |               |
+a        | Created-By: 9 (Oracle Corporation) |         |                |               |
+         | Manifest-Version: 1.0              |         |                |               |
 
 JPMS Modules
 ------------
