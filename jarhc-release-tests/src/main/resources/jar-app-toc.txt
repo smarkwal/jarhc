@@ -6,7 +6,7 @@ jakarta-ee-9.txt | size=2525 | crc=2222807566
 jarhc.properties | size=609 | crc=1483914501
 LICENSE | size=11323 | crc=398435797
 simplelogger.properties | size=1045 | crc=237288634
-usage.txt | size=4249 | crc=582237783
+usage.txt | size=4831 | crc=4054430568
 VERSION | size=14 | crc=457604324
 licenses/extreme.indiana.edu.license.TXT | size=2192 | crc=3158728389
 licenses/javolution.license.TXT | size=1408 | crc=1759801567
@@ -2158,10 +2158,12 @@ org/jarhc/app/Application.class | size=13281 | crc=397855023
 org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
-org/jarhc/app/CommandLineParser.class | size=21100 | crc=3028277853
+org/jarhc/app/CommandLineParser.class | size=22788 | crc=2723317858
+org/jarhc/app/Diff.class | size=13244 | crc=63950021
 org/jarhc/app/FileSource.class | size=887 | crc=885544477
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
-org/jarhc/app/Options.class | size=5696 | crc=4209018271
+org/jarhc/app/Options$Command.class | size=1074 | crc=185019036
+org/jarhc/app/Options.class | size=6494 | crc=2227420125
 org/jarhc/artifacts/Artifact.class | size=3574 | crc=1009426128
 org/jarhc/artifacts/ArtifactFinder.class | size=351 | crc=1381731833
 org/jarhc/artifacts/ArtifactVersion$Item.class | size=2720 | crc=1683821822
@@ -2211,7 +2213,7 @@ org/jarhc/loader/ModuleInfoBuilder$ModuleInfoVisitor.class | size=2124 | crc=198
 org/jarhc/loader/ModuleInfoBuilder.class | size=1327 | crc=2511565686
 org/jarhc/loader/ModuleInfoLoader.class | size=1101 | crc=922726158
 org/jarhc/loader/WarFileLoader.class | size=7010 | crc=3554227205
-org/jarhc/Main.class | size=7773 | crc=449091368
+org/jarhc/Main.class | size=8217 | crc=3206181280
 org/jarhc/model/AccessFlags.class | size=2951 | crc=1705125100
 org/jarhc/model/AnnotationRef$Target.class | size=1719 | crc=2979948932
 org/jarhc/model/AnnotationRef.class | size=2085 | crc=1510810505
@@ -2239,7 +2241,7 @@ org/jarhc/report/html/HtmlReportFormat.class | size=5995 | crc=1785655145
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
 org/jarhc/report/json/JsonReportFormat.class | size=935 | crc=2313075363
 org/jarhc/report/list/ListReportFormat.class | size=2519 | crc=2466156722
-org/jarhc/report/Report.class | size=2722 | crc=1089869791
+org/jarhc/report/Report.class | size=3408 | crc=2272143156
 org/jarhc/report/ReportFormat.class | size=677 | crc=545032329
 org/jarhc/report/ReportFormatFactory.class | size=2802 | crc=677337208
 org/jarhc/report/ReportSection.class | size=4823 | crc=2022454372
@@ -2252,6 +2254,8 @@ org/jarhc/report/writer/ReportWriter.class | size=1093 | crc=2909383730
 org/jarhc/utils/ArrayUtils.class | size=881 | crc=3259604611
 org/jarhc/utils/ByteBuffer.class | size=770 | crc=4056160040
 org/jarhc/utils/ByteStream.class | size=521 | crc=3108451692
+org/jarhc/utils/DateTimeUtils.class | size=1278 | crc=2976458857
+org/jarhc/utils/DiffUtils.class | size=2387 | crc=1892327675
 org/jarhc/utils/DigestUtils.class | size=3827 | crc=3153809432
 org/jarhc/utils/ExceptionUtils.class | size=785 | crc=3324099865
 org/jarhc/utils/FileUtils.class | size=7249 | crc=4174235723

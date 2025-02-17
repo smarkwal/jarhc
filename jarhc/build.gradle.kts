@@ -147,7 +147,6 @@ dependencies {
     // main dependencies
     implementation("org.ow2.asm:asm:9.7.1")
     implementation("org.json:json:20250107")
-    implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
     implementation("org.slf4j:jul-to-slf4j:2.0.16")
     implementation("org.slf4j:jcl-over-slf4j:2.0.16")

@@ -16,10 +16,12 @@
 
 package org.jarhc.utils;
 
+import static org.jarhc.utils.Markdown.deleted;
+import static org.jarhc.utils.Markdown.inserted;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import org.apache.commons.collections4.sequence.CommandVisitor;
-import org.apache.commons.collections4.sequence.SequencesComparator;
 
 public class DiffUtils {
 
@@ -40,44 +42,67 @@ public class DiffUtils {
 
 		// TODO: do not depend on Markdown as output format
 
-		// TODO: get rid of dependency on Apache Commons Collections
-		SequencesComparator<String> comparator = new SequencesComparator<>(lines1, lines2);
-		LineDiffVisitor visitor = new LineDiffVisitor();
-		comparator.getScript().visit(visitor);
-		return visitor.getLines();
+		int n = lines1.size();
+		int m = lines2.size();
+
+		int[][] table = new int[n + 1][m + 1];
+
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+				String line1 = lines1.get(i - 1);
+				String line2 = lines2.get(j - 1);
+
+				if (line1.equals(line2)) {
+					table[i][j] = table[i - 1][j - 1] + 1;
+				} else {
+					table[i][j] = Math.max(
+							table[i][j - 1],
+							table[i - 1][j]
+					);
+				}
+			}
+		}
+
+		// print table
+		// for (int i = 0; i <= n; i++) {
+		// 	for (int j = 0; j <= m; j++) {
+		// 		System.out.print(table[i][j] + " ");
+		// 	}
+		// 	System.out.println();
+		// }
+
+		return collectChanges(table, lines1, lines2);
 	}
 
-	private static class LineDiffVisitor implements CommandVisitor<String> {
+	private static List<String> collectChanges(int[][] table, List<String> lines1, List<String> lines2) {
 
-		private final List<String> lines = new ArrayList<>();
-		private final List<String> insertedBuffer = new ArrayList<>();
+		int i = lines1.size();
+		int j = lines2.size();
 
-		@Override
-		public void visitInsertCommand(String line) {
-			insertedBuffer.add(Markdown.inserted(line));
+		// prepare result list with max size
+		List<String> result = new ArrayList<>(i + j);
+
+		// backtrack through table and collect changes (end to start)
+		while (i > 0 || j > 0) {
+			String line1 = i > 0 ? lines1.get(i - 1) : "undefined-1";
+			String line2 = j > 0 ? lines2.get(j - 1) : "undefined-2";
+			if (i >= 0 && j >= 0 && line1.equals(line2)) {
+				result.add(line1);
+				i = i - 1;
+				j = j - 1;
+			} else if (j > 0 && (i == 0 || table[i][j - 1] >= table[i - 1][j])) {
+				result.add(inserted(line2));
+				j = j - 1;
+			} else if (i > 0 && (j == 0 || table[i][j - 1] < table[i - 1][j])) {
+				result.add(deleted(line1));
+				i = i - 1;
+			}
 		}
 
-		@Override
-		public void visitKeepCommand(String line) {
-			emptyInsertedBuffer();
-			lines.add(line);
-		}
+		// reverse result list
+		Collections.reverse(result);
 
-		@Override
-		public void visitDeleteCommand(String line) {
-			lines.add(Markdown.deleted(line));
-		}
-
-		public List<String> getLines() {
-			emptyInsertedBuffer();
-			return lines;
-		}
-
-		private void emptyInsertedBuffer() {
-			lines.addAll(insertedBuffer);
-			insertedBuffer.clear();
-		}
-
+		return result;
 	}
 
 }
