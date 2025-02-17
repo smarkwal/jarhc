@@ -33,12 +33,18 @@ public class Markdown {
 
 	// Regex for parsing Markdown syntax
 	private static final Pattern CODE = Pattern.compile("`([^`]+)`");
+	private static final Pattern BOLD = Pattern.compile("\\*\\*([^*]+)\\*\\*");
 	private static final Pattern ARTIFACT_LINK = Pattern.compile("\\[\\[([^]]+)]]");
 	private static final Pattern URL_LINK = Pattern.compile("\\[([^]]+)]\\(([^)]+)\\)");
+	private static final Pattern INSERTED = Pattern.compile("\\+\\+\\+\\{([^}]+)}\\+\\+\\+");
+	private static final Pattern DELETED = Pattern.compile("---\\{([^}]+)}---");
 
 	// HTML code snippets with placeholders
 	private static final String HTML_CODE = "<code>$1</code>";
+	private static final String HTML_BOLD = "<strong>$1</strong>";
 	private static final String HTML_LINK = "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">%s</a>";
+	private static final String HTML_INSERTED = "<span style=\"background-color: #d4edda;\">$1</span>";
+	private static final String HTML_DELETED = "<span style=\"background-color: #f8d7da;\">$1</span>";
 
 	// URL for artifact links
 	// alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
@@ -48,6 +54,11 @@ public class Markdown {
 	public static String code(String text) {
 		if (text == null || text.isEmpty()) return text;
 		return "`" + text + "`";
+	}
+
+	public static String bold(String text) {
+		if (text == null || text.isEmpty()) return text;
+		return "**" + text + "**";
 	}
 
 	public static String link(String text) {
@@ -60,11 +71,22 @@ public class Markdown {
 		return "[" + text + "](" + url + ")";
 	}
 
+	public static String inserted(String text) {
+		if (text == null || text.isEmpty()) return text;
+		return "+++{" + text + "}+++";
+	}
+
+	public static String deleted(String text) {
+		if (text == null || text.isEmpty()) return text;
+		return "---{" + text + "}---";
+	}
+
 	// Text rendering ---------------------------------------------------------
 
 	public static String toText(String text) {
 		if (text == null || text.isEmpty()) return text;
 		text = CODE.matcher(text).replaceAll("$1");
+		text = BOLD.matcher(text).replaceAll("$1");
 		text = ARTIFACT_LINK.matcher(text).replaceAll("$1");
 		text = URL_LINK.matcher(text).replaceAll("$1");
 		text = text.replace("\t", "   ");
@@ -76,10 +98,15 @@ public class Markdown {
 	public static String toHtml(String text) {
 		if (text == null || text.isEmpty()) return text;
 		text = renderCode(text);
+		text = renderBold(text);
 		text = renderArtifactLinks(text);
 		text = renderUrlLinks(text);
 		text = renderLabels(text);
+		text = INSERTED.matcher(text).replaceAll(HTML_INSERTED);
+		text = DELETED.matcher(text).replaceAll(HTML_DELETED);
 		text = text.replace("\t", "&nbsp;&nbsp;&nbsp;");
+		text = text.replace("\n", "<br>");
+		text = text.replace("\r", "");
 		// TODO: convert leading spaces to non-breaking spaces?
 		return text;
 	}
@@ -94,6 +121,10 @@ public class Markdown {
 
 	private static String renderCode(String text) {
 		return CODE.matcher(text).replaceAll(HTML_CODE);
+	}
+
+	private static String renderBold(String text) {
+		return BOLD.matcher(text).replaceAll(HTML_BOLD);
 	}
 
 	private static String renderArtifactLinks(String text) {
