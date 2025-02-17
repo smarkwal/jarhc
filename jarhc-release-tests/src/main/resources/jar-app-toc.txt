@@ -1,5 +1,5 @@
 blacklist-patterns.txt | size=1234 | crc=3899595672
-html-report-style.css | size=1075 | crc=3273499505
+html-report-style.css | size=1160 | crc=1110123395
 jakarta-ee-10.txt | size=2347 | crc=2037039179
 jakarta-ee-8.txt | size=2813 | crc=727063412
 jakarta-ee-9.txt | size=2525 | crc=2222807566
@@ -2264,7 +2264,7 @@ org/jarhc/utils/JarHcException.class | size=703 | crc=2656007669
 org/jarhc/utils/JavaUtils.class | size=8351 | crc=501003748
 org/jarhc/utils/JavaVersion.class | size=1021 | crc=1793447338
 org/jarhc/utils/LimitedInputStream.class | size=1890 | crc=1521444556
-org/jarhc/utils/Markdown.class | size=6773 | crc=1638383782
+org/jarhc/utils/Markdown.class | size=6736 | crc=968855301
 org/jarhc/utils/MultiMap.class | size=3369 | crc=3447526047
 org/jarhc/utils/Pool.class | size=1921 | crc=3757579641
 org/jarhc/utils/ResourceUtils.class | size=2880 | crc=4010998707
