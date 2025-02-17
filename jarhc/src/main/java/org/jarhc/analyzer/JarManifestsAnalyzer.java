@@ -98,6 +98,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 			String attributeValue = manifestAttributes.get(attributeName);
 			lines.add(attributeName + ": " + code(attributeValue));
 		}
+		lines.sort(String.CASE_INSENSITIVE_ORDER);
 		return StringUtils.joinLines(lines);
 	}
 
