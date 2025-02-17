@@ -307,11 +307,15 @@ public class Diff {
 			String[] row2 = map2.get(key);
 
 			if (row1 == null) {
-				table.addRow(row2); // TODO: mark as added
-				continue;
+				// simulate an empty row with same size as row 2
+				// TODO: mark complete row as inserted
+				row1 = new String[row2.length];
+				Arrays.fill(row1, "");
 			} else if (row2 == null) {
-				table.addRow(row1); // TODO: mark as deleted
-				continue;
+				// simulate an empty row with same size as row 1
+				// TODO: mark complete row as deleted
+				row2 = new String[row1.length];
+				Arrays.fill(row2, "");
 			}
 
 			String[] row = diff(row1, row2);
@@ -347,8 +351,8 @@ public class Diff {
 		}
 
 		// split values into lines
-		List<String> lines1 = Arrays.asList(value1.split("\n"));
-		List<String> lines2 = Arrays.asList(value2.split("\n"));
+		List<String> lines1 = value1.isEmpty() ? List.of() : List.of(value1.split("\n"));
+		List<String> lines2 = value2.isEmpty() ? List.of() : List.of(value2.split("\n"));
 
 		// compare lines and calculate diff
 		List<String> lines = DiffUtils.diff(lines1, lines2);

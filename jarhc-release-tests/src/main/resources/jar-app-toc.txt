@@ -2159,7 +2159,7 @@ org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
 org/jarhc/app/CommandLineParser.class | size=22788 | crc=2723317858
-org/jarhc/app/Diff.class | size=13244 | crc=63950021
+org/jarhc/app/Diff.class | size=13375 | crc=2287350189
 org/jarhc/app/FileSource.class | size=887 | crc=885544477
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options$Command.class | size=1074 | crc=185019036
@@ -2255,7 +2255,7 @@ org/jarhc/utils/ArrayUtils.class | size=881 | crc=3259604611
 org/jarhc/utils/ByteBuffer.class | size=770 | crc=4056160040
 org/jarhc/utils/ByteStream.class | size=521 | crc=3108451692
 org/jarhc/utils/DateTimeUtils.class | size=1278 | crc=2976458857
-org/jarhc/utils/DiffUtils.class | size=2387 | crc=1892327675
+org/jarhc/utils/DiffUtils.class | size=2957 | crc=1904706553
 org/jarhc/utils/DigestUtils.class | size=3827 | crc=3153809432
 org/jarhc/utils/ExceptionUtils.class | size=785 | crc=3324099865
 org/jarhc/utils/FileUtils.class | size=7249 | crc=4174235723

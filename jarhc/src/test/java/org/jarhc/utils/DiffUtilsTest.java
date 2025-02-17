@@ -36,9 +36,7 @@ public class DiffUtilsTest {
 		List<String> lines = DiffUtils.diff(lines1, lines2);
 
 		// assert
-		List<String> expectedLines = List.of(deleted("a.jar 1.0"), deleted("b.jar 1.0"), inserted("a.jar 1.1"), inserted("c.jar 2.0"), "x.jar 3.0");
-		// TODO: changes for similar lines (same prefix) should stay together:
-		//  List<String> expectedLines = List.of(deleted("a.jar 1.0"), inserted("a.jar 1.1"), deleted("b.jar 1.0"), inserted("c.jar 2.0"), "x.jar 3.0");
+		List<String> expectedLines = List.of(deleted("a.jar 1.0"), inserted("a.jar 1.1"), deleted("b.jar 1.0"), inserted("c.jar 2.0"), "x.jar 3.0");
 		Assertions.assertEquals(expectedLines, lines);
 	}
 
@@ -71,6 +69,28 @@ public class DiffUtilsTest {
 
 		// assert
 		List<String> expectedLines = List.of(deleted("a"), inserted("x"), "a", "a");
+		Assertions.assertEquals(expectedLines, lines);
+	}
+
+	@Test
+	public void diff_keepSimilarValuesTogether() {
+
+		// prepare
+		List<String> lines1 = List.of("org.ow2.asm:asm:9.2 (runtime)", "org.json:json:20211205 (runtime)", "org.eclipse.aether:aether-impl:1.1.0 (runtime)");
+		List<String> lines2 = List.of("org.slf4j:slf4j-api:2.0.16", "org.ow2.asm:asm:9.7 (runtime)", "org.json:json:20240303 (runtime)", "org.eclipse.aether:aether-impl:1.1.0 (runtime)");
+
+		// test
+		List<String> lines = DiffUtils.diff(lines1, lines2);
+
+		// assert
+		List<String> expectedLines = List.of(
+				deleted("org.ow2.asm:asm:9.2 (runtime)"),
+				inserted("org.slf4j:slf4j-api:2.0.16"),
+				inserted("org.ow2.asm:asm:9.7 (runtime)"),
+				deleted("org.json:json:20211205 (runtime)"),
+				inserted("org.json:json:20240303 (runtime)"),
+				"org.eclipse.aether:aether-impl:1.1.0 (runtime)"
+		);
 		Assertions.assertEquals(expectedLines, lines);
 	}
 

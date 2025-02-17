@@ -45,7 +45,7 @@ public class DiffUtils {
 		int n = lines1.size();
 		int m = lines2.size();
 
-		int[][] table = new int[n + 1][m + 1];
+		double[][] table = new double[n + 1][m + 1];
 
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
@@ -55,10 +55,12 @@ public class DiffUtils {
 				if (line1.equals(line2)) {
 					table[i][j] = table[i - 1][j - 1] + 1;
 				} else {
+					double similarity = getSimilarityByPrefix(line1, line2);
+
 					table[i][j] = Math.max(
 							table[i][j - 1],
 							table[i - 1][j]
-					);
+					) + similarity;
 				}
 			}
 		}
@@ -74,7 +76,22 @@ public class DiffUtils {
 		return collectChanges(table, lines1, lines2);
 	}
 
-	private static List<String> collectChanges(int[][] table, List<String> lines1, List<String> lines2) {
+	private static double getSimilarityByPrefix(String line1, String line2) {
+		int diff = getCommonPrefixLength(line1, line2);
+		int maxLength = Math.max(line1.length(), line2.length());
+		return (double) diff / maxLength;
+	}
+
+	private static int getCommonPrefixLength(String line1, String line2) {
+		int minLength = Math.min(line1.length(), line2.length());
+		int prefixLength = 0;
+		while (prefixLength < minLength && line1.charAt(prefixLength) == line2.charAt(prefixLength)) {
+			prefixLength++;
+		}
+		return prefixLength;
+	}
+
+	private static List<String> collectChanges(double[][] table, List<String> lines1, List<String> lines2) {
 
 		int i = lines1.size();
 		int j = lines2.size();
@@ -84,8 +101,8 @@ public class DiffUtils {
 
 		// backtrack through table and collect changes (end to start)
 		while (i > 0 || j > 0) {
-			String line1 = i > 0 ? lines1.get(i - 1) : "undefined-1";
-			String line2 = j > 0 ? lines2.get(j - 1) : "undefined-2";
+			String line1 = i > 0 ? lines1.get(i - 1) : "\u0000";
+			String line2 = j > 0 ? lines2.get(j - 1) : "\u0001";
 			if (i >= 0 && j >= 0 && line1.equals(line2)) {
 				result.add(line1);
 				i = i - 1;
