@@ -1,5 +1,6 @@
 {
    "title": "Jakarta EE 9",
+   "version": "3.0.0-SNAPSHOT",
    "sections": [
       {
          "description": "List of JAR files found in classpath.",
@@ -2493,5 +2494,6 @@
          "title": "Java Runtime",
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
-   ]
+   ],
+   "timestamp": 1739812235265
 }

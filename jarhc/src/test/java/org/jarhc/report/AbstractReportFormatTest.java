@@ -62,6 +62,7 @@ public abstract class AbstractReportFormatTest {
 
 		Report report = new Report();
 		report.setTitle("Report Title");
+		report.setTimestamp(1739808014453L);
 
 		ReportSection section1 = new ReportSection("Section 1", "Description 1");
 		section1.add("Some text.");

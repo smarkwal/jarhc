@@ -1,5 +1,6 @@
 {
    "title": "Report Title",
+   "version": "0.0.1",
    "sections": [
       {
          "description": "Description 1",
@@ -46,5 +47,6 @@
             }
          ]
       }
-   ]
+   ],
+   "timestamp": 1739808014453
 }

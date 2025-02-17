@@ -18,13 +18,32 @@ package org.jarhc.report;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.utils.VersionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Report {
 
+	private String version = VersionUtils.getVersion();
+	private long timestamp = System.currentTimeMillis();
 	private String title = "JAR Health Check Report";
 	private final List<ReportSection> sections = new ArrayList<>();
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public String getTitle() {
 		return title;
@@ -48,6 +67,8 @@ public class Report {
 
 	public JSONObject toJSON() {
 		JSONObject json = new JSONObject();
+		json.put("version", version);
+		json.put("timestamp", timestamp);
 		json.put("title", title);
 		List<JSONObject> sectionList = new ArrayList<>();
 		for (ReportSection section : sections) {
@@ -59,6 +80,8 @@ public class Report {
 
 	public static Report fromJSON(JSONObject json) {
 		Report report = new Report();
+		report.version = json.getString("version");
+		report.timestamp = json.getLong("timestamp");
 		report.title = json.getString("title");
 		JSONArray sectionList = json.getJSONArray("sections");
 		for (int i = 0; i < sectionList.length(); i++) {

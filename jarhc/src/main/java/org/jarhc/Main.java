@@ -22,7 +22,9 @@ import java.util.logging.Level;
 import org.jarhc.app.Application;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
+import org.jarhc.app.Diff;
 import org.jarhc.app.Options;
+import org.jarhc.app.Options.Command;
 import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
@@ -56,14 +58,29 @@ public class Main {
 
 		setupLogging(options);
 
-		Repository repository = createRepository(options);
+		int exitCode = 0;
+		Command command = options.getCommand();
+		if (command == Command.SCAN) {
 
-		// create and run application
-		Logger logger = LoggerFactory.getLogger(Application.class);
-		Application application = new Application(logger);
-		application.setRepository(repository);
+			// prepare Maven repository
+			Repository repository = createRepository(options);
 
-		int exitCode = application.run(options);
+			// create and run application
+			Logger logger = LoggerFactory.getLogger(Application.class);
+			Application application = new Application(logger);
+			application.setRepository(repository);
+			exitCode = application.run(options);
+
+		} else if (command == Command.DIFF) {
+
+			// create and run diff
+			Logger logger = LoggerFactory.getLogger(Diff.class);
+			Diff diff = new Diff(logger);
+			exitCode = diff.run(options);
+
+		} else {
+			throw new JarHcException("Unsupported command: " + command);
+		}
 
 		// perform clean-up operations
 		cleanUp(options);
@@ -214,13 +231,17 @@ public class Main {
 
 	private static void cleanUp(Options options) {
 
-		// if data directory is a temporary directory ...
+		// if a data directory has been specified ...
 		String dataPath = options.getDataPath();
-		if (dataPath.contains(TEMPDIR_PREFIX)) {
+		if (dataPath != null) {
 
-			// delete data directory (recursively)
-			File directory = new File(dataPath);
-			FileUtils.delete(directory);
+			// if data directory is a temporary directory ...
+			if (dataPath.contains(TEMPDIR_PREFIX)) {
+
+				// delete data directory (recursively)
+				File directory = new File(dataPath);
+				FileUtils.delete(directory);
+			}
 		}
 	}
 

@@ -29,6 +29,7 @@ public class Markdown {
 	public static final String NONE = "[none]";
 	public static final String MORE = "[...]";
 
+	@SuppressWarnings("UnnecessaryUnicodeEscape")
 	public static final String BULLET = "\u2022";
 
 	// Regex for parsing Markdown syntax
@@ -43,8 +44,8 @@ public class Markdown {
 	private static final String HTML_CODE = "<code>$1</code>";
 	private static final String HTML_BOLD = "<strong>$1</strong>";
 	private static final String HTML_LINK = "<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">%s</a>";
-	private static final String HTML_INSERTED = "<span style=\"background-color: #d4edda;\">$1</span>";
-	private static final String HTML_DELETED = "<span style=\"background-color: #f8d7da;\">$1</span>";
+	private static final String HTML_INSERTED = "<span class=\"inserted\">$1</span>";
+	private static final String HTML_DELETED = "<span class=\"deleted\">$1</span>";
 
 	// URL for artifact links
 	// alternative: "https://mvnrepository.com/artifact/%s/%s/%s"
