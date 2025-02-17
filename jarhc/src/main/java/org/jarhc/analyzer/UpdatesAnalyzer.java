@@ -17,6 +17,7 @@
 package org.jarhc.analyzer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -131,7 +132,7 @@ public class UpdatesAnalyzer implements Analyzer {
 			List<String> group = versions.get(version).stream().map(ArtifactVersion::toString).collect(Collectors.toList());
 			// keep at max 7 versions per group
 			if (group.size() > 7) {
-				group = List.of(group.get(0), group.get(1), group.get(2), Markdown.MORE, group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
+				group = Arrays.asList(group.get(0), group.get(1), group.get(2), Markdown.MORE, group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
 			}
 			// render versions as Markdown links
 			// example: [1.2.3](org.example:artifact:1.2.3)
