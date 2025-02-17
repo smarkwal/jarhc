@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.app.Options.Command;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.utils.ArrayUtils;
@@ -65,6 +66,16 @@ public class CommandLineParser {
 		this.out = out;
 		this.err = err;
 
+		// general options
+		optionParsers.put("-h", (args, options) -> printUsage(null, out));
+		optionParsers.put("--help", (args, options) -> printUsage(null, out));
+		optionParsers.put("-v", (args, options) -> printVersion());
+		optionParsers.put("--version", (args, options) -> printVersion());
+		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
+		optionParsers.put("--trace", (args, options) -> options.setTrace(true));
+		optionParsers.put("--options", this::loadOptions);
+
+		// scan options
 		optionParsers.put("-r", this::parseRelease);
 		optionParsers.put("--release", this::parseRelease);
 		optionParsers.put("-cp", this::parseClasspath);
@@ -72,12 +83,6 @@ public class CommandLineParser {
 		optionParsers.put("--provided", this::parseProvided);
 		optionParsers.put("--runtime", this::parseRuntime);
 		optionParsers.put("--strategy", this::parseStrategy);
-		optionParsers.put("-o", this::parseOutput);
-		optionParsers.put("--output", this::parseOutput);
-		optionParsers.put("-t", this::parseTitle);
-		optionParsers.put("--title", this::parseTitle);
-		optionParsers.put("-s", this::parseSections);
-		optionParsers.put("--sections", this::parseSections);
 		optionParsers.put("--skip-empty", (args, options) -> options.setSkipEmpty(true));
 		optionParsers.put("--sort-rows", (args, options) -> options.setSortRows(true));
 		optionParsers.put("--remove-version", (args, options) -> options.setRemoveVersion(true));
@@ -88,25 +93,49 @@ public class CommandLineParser {
 		optionParsers.put("--repository-username", this::parseRepositoryUsername);
 		optionParsers.put("--repository-password", this::parseRepositoryPassword);
 		optionParsers.put("--data", this::parseData);
-		optionParsers.put("--debug", (args, options) -> options.setDebug(true));
-		optionParsers.put("--trace", (args, options) -> options.setTrace(true));
-		optionParsers.put("-h", (args, options) -> printUsage(null, out));
-		optionParsers.put("--help", (args, options) -> printUsage(null, out));
-		optionParsers.put("-v", (args, options) -> printVersion());
-		optionParsers.put("--version", (args, options) -> printVersion());
-		optionParsers.put("--options", this::loadOptions);
+
+		// diff options
+		optionParsers.put("--diff", this::parseDiff);
+		optionParsers.put("--input1", this::parseInput1);
+		optionParsers.put("--input2", this::parseInput2);
+
+		// report options
+		optionParsers.put("-o", this::parseOutput);
+		optionParsers.put("--output", this::parseOutput);
+		optionParsers.put("-t", this::parseTitle);
+		optionParsers.put("--title", this::parseTitle);
+		optionParsers.put("-s", this::parseSections);
+		optionParsers.put("--sections", this::parseSections);
+
 	}
 
 	public Options parse(String[] args) throws CommandLineException {
 
-		Options options = new Options();
+		// infer command from arguments
+		Command command = Command.SCAN;
+		if (ArrayUtils.containsAny(args, "--diff")) {
+			command = Command.DIFF;
+		}
 
-		options.setRemoveVersion(false);
-		options.setUseArtifactName(false);
-
-		options.setReportTitle("JAR Health Check Report");
-
+		Options options = new Options(command);
 		parseOptions(Arrays.asList(args), options);
+
+		// if diff mode is enabled ...
+		if (options.getCommand() == Command.DIFF) {
+
+			///  check if mandatory diff options are set
+			if (options.getInput1() == null) {
+				throw handleError(-27, "Diff JSON input path 1 not specified.");
+			}
+			if (options.getInput2() == null) {
+				throw handleError(-28, "Diff JSON input path 2 not specified.");
+			}
+			if (options.getReportFiles().isEmpty()) {
+				throw handleError(-29, "Diff HTML output path not specified.");
+			}
+
+			return options;
+		}
 
 		// if artifact argument is missing ...
 		if (options.getClasspathJarPaths().isEmpty()) {
@@ -414,7 +443,8 @@ public class CommandLineParser {
 
 	}
 
-	@SuppressWarnings("java:S135") // Loops should not contain more than a single "break" or "continue" statement
+	@SuppressWarnings("java:S135")
+		// Loops should not contain more than a single "break" or "continue" statement
 	List<String> loadArguments(File file) throws CommandLineException {
 
 		// list of arguments read from options file
@@ -469,6 +499,45 @@ public class CommandLineParser {
 		matcher.appendTail(result);
 
 		return result.toString();
+	}
+
+	private void parseDiff(Iterator<String> args, Options options) {
+		// nothing to do
+		// diff should already be set as command
+		Command command = options.getCommand();
+		if (command != Command.DIFF) {
+			throw new JarHcException("Unexpected command: " + command);
+		}
+	}
+
+	private void parseInput1(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-23, "Diff JSON input path 1 not specified.");
+
+		String path = args.next();
+
+		// check if file exists
+		File file = new File(path);
+		if (!file.isFile()) {
+			String errorMessage = String.format("Diff JSON input file 1 not found: %s", path);
+			throw handleError(-24, errorMessage);
+		}
+
+		options.setInput1(path);
+	}
+
+	private void parseInput2(Iterator<String> args, Options options) throws CommandLineException {
+		if (!args.hasNext()) throw handleError(-25, "Diff JSON input path 2 not specified.");
+
+		String path = args.next();
+
+		// check if file exists
+		File file = new File(path);
+		if (!file.isFile()) {
+			String errorMessage = String.format("Diff JSON input file 2 not found: %s", path);
+			throw handleError(-26, errorMessage);
+		}
+
+		options.setInput2(path);
 	}
 
 }

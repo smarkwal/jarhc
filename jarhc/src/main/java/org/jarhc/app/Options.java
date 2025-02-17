@@ -26,8 +26,14 @@ public class Options implements MavenRepository.Settings {
 
 	public static final String MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2/";
 
-	private int release = JavaUtils.getJavaVersion();
+	private final Command command;
 
+	// general options
+	private boolean debug = false;
+	private boolean trace = false;
+
+	// scan options
+	private int release = JavaUtils.getJavaVersion();
 	private final List<String> classpathJarPaths = new ArrayList<>();
 	private final List<String> providedJarPaths = new ArrayList<>();
 	private final List<String> runtimeJarPaths = new ArrayList<>();
@@ -36,21 +42,33 @@ public class Options implements MavenRepository.Settings {
 	private boolean useArtifactName = false;
 	private boolean ignoreMissingAnnotations = false;
 	private boolean ignoreExactCopy = false;
-
 	private String repositoryUrl = MAVEN_CENTRAL_URL;
 	private String repositoryUsername = null;
 	private String repositoryPassword = null;
-
-	private List<String> sections = null; // all sections
 	private boolean skipEmpty = false;
 	private boolean sortRows = false;
-
-	private String reportTitle = "JAR Health Check Report";
-	private final List<String> reportFiles = new ArrayList<>();
-
 	private String dataPath = null;
-	private boolean debug = false;
-	private boolean trace = false;
+
+	// diff options
+	private String input1 = null;
+	private String input2 = null;
+
+	// report options
+	private final List<String> reportFiles = new ArrayList<>();
+	private String reportTitle = "JAR Health Check Report";
+	private List<String> sections = null; // all sections
+
+	public Options() {
+		this(Command.SCAN);
+	}
+
+	public Options(Command command) {
+		this.command = command;
+	}
+
+	public Command getCommand() {
+		return command;
+	}
 
 	public int getRelease() {
 		return release;
@@ -196,6 +214,26 @@ public class Options implements MavenRepository.Settings {
 		this.dataPath = dataPath;
 	}
 
+	//-------------------------------------------------------------------------
+
+	public String getInput1() {
+		return input1;
+	}
+
+	public void setInput1(String input1) {
+		this.input1 = input1;
+	}
+
+	public String getInput2() {
+		return input2;
+	}
+
+	public void setInput2(String input2) {
+		this.input2 = input2;
+	}
+
+	//-------------------------------------------------------------------------
+
 	public boolean isDebug() {
 		return debug;
 	}
@@ -210,6 +248,13 @@ public class Options implements MavenRepository.Settings {
 
 	public void setTrace(boolean trace) {
 		this.trace = trace;
+	}
+
+	// ------------------------------------------------------------------------
+
+	public enum Command {
+		SCAN,
+		DIFF
 	}
 
 }
