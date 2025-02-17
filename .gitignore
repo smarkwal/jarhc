@@ -26,6 +26,7 @@ build/
 # user-specific files
 gradle.user.properties
 *.gpg
+.java-version
 
 # files used for local testing
 /test

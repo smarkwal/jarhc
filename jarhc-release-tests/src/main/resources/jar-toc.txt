@@ -26,13 +26,13 @@ org/jarhc/analyzer/DependenciesAnalyzer.class | size=8656 | crc=2270527049
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13473 | crc=3573706335
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6159 | crc=1145145252
 org/jarhc/analyzer/JarFilesAnalyzer.class | size=5016 | crc=1114783207
-org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6094 | crc=2281303776
+org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6212 | crc=2208364073
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1940 | crc=3017108240
 org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5835 | crc=2284419596
 org/jarhc/analyzer/OSGiBundlesAnalyzer.class | size=8001 | crc=3810914939
 org/jarhc/analyzer/PackagesAnalyzer.class | size=11682 | crc=2406325842
 org/jarhc/analyzer/TextComparator.class | size=1022 | crc=188287764
-org/jarhc/analyzer/UpdatesAnalyzer.class | size=8875 | crc=4040699841
+org/jarhc/analyzer/UpdatesAnalyzer.class | size=8983 | crc=2192506749
 org/jarhc/app/Application.class | size=13281 | crc=397855023
 org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
@@ -114,7 +114,7 @@ org/jarhc/model/ResourceDef.class | size=1135 | crc=4169474302
 org/jarhc/pom/Dependency.class | size=3215 | crc=1271449275
 org/jarhc/pom/Scope.class | size=1303 | crc=2969203394
 org/jarhc/report/html/DefaultStyleProvider.class | size=1255 | crc=3575769662
-org/jarhc/report/html/HtmlReportFormat.class | size=6196 | crc=2316613143
+org/jarhc/report/html/HtmlReportFormat.class | size=5995 | crc=1785655145
 org/jarhc/report/html/StyleProvider.class | size=171 | crc=1011181830
 org/jarhc/report/json/JsonReportFormat.class | size=935 | crc=2313075363
 org/jarhc/report/list/ListReportFormat.class | size=2519 | crc=2466156722
@@ -139,7 +139,7 @@ org/jarhc/utils/JarHcException.class | size=703 | crc=2656007669
 org/jarhc/utils/JavaUtils.class | size=8351 | crc=501003748
 org/jarhc/utils/JavaVersion.class | size=1021 | crc=1793447338
 org/jarhc/utils/LimitedInputStream.class | size=1890 | crc=1521444556
-org/jarhc/utils/Markdown.class | size=5776 | crc=2087669350
+org/jarhc/utils/Markdown.class | size=6773 | crc=1638383782
 org/jarhc/utils/MultiMap.class | size=3369 | crc=3447526047
 org/jarhc/utils/Pool.class | size=1921 | crc=3757579641
 org/jarhc/utils/ResourceUtils.class | size=2880 | crc=4010998707

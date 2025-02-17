@@ -16,8 +16,8 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact | General                          | Runtime                    | Implementation | Specification | Signature
 ---------+----------------------------------+----------------------------+----------------+---------------+----------
-jarhc    | Manifest-Version: 1.0            | Main Class: org.jarhc.Main |                |               |
-         | Automatic-Module-Name: org.jarhc |                            |                |               |
+jarhc    | Automatic-Module-Name: org.jarhc | Main Class: org.jarhc.Main |                |               |
+         | Manifest-Version: 1.0            |                            |                |               |
 
 JPMS Modules
 ------------

@@ -7,13 +7,13 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact     | General                                                        | Runtime                                           | Implementation | Specification | Signature
 -------------+----------------------------------------------------------------+---------------------------------------------------+----------------+---------------+----------
-xercesImpl   | Manifest-Version: 1.0                                          |                                                   |                |               |
-             | Ant-Version: Apache Ant version 1.7.1 compiled on June 27 2008 |                                                   |                |               |
+xercesImpl   | Ant-Version: Apache Ant version 1.7.1 compiled on June 27 2008 |                                                   |                |               |
              | Created-By: 1.3.1 (IBM Corporation)                            |                                                   |                |               |
-xml-apis     | Manifest-Version: 1.0                                          |                                                   |                |               |
-             | Ant-Version: Apache Ant 1.7.0                                  |                                                   |                |               |
+             | Manifest-Version: 1.0                                          |                                                   |                |               |
+xml-apis     | Ant-Version: Apache Ant 1.7.0                                  |                                                   |                |               |
              | Created-By: 1.3.1 (IBM Corporation)                            |                                                   |                |               |
-xml-resolver | Manifest-Version: 1.0                                          | Main Class: org.apache.xml.resolver.apps.resolver |                |               |
-             | Ant-Version: Apache Ant 1.6.5                                  |                                                   |                |               |
+             | Manifest-Version: 1.0                                          |                                                   |                |               |
+xml-resolver | Ant-Version: Apache Ant 1.6.5                                  | Main Class: org.apache.xml.resolver.apps.resolver |                |               |
              | Created-By: 1.3.1 (IBM Corporation)                            |                                                   |                |               |
+             | Manifest-Version: 1.0                                          |                                                   |                |               |
 

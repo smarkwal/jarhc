@@ -52,274 +52,274 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact                          | General                                                              | Runtime | Implementation                            | Specification                                | Signature
 ----------------------------------+----------------------------------------------------------------------+---------+-------------------------------------------+----------------------------------------------+----------
-jakarta.activation-api            | Manifest-Version: 1.0                                                |         | jakarta.activation.jakarta.activation-api | jakarta.activation.jakarta.activation-api    |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Version: 1.2.2                            | Version: 1.2                                 |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+jakarta.activation-api            | Archiver-Version: Plexus Archiver                                    |         | jakarta.activation.jakarta.activation-api | jakarta.activation.jakarta.activation-api    |
+                                  | Bnd-LastModified: 1582223848638                                      |         | Version: 1.2.2                            | Version: 1.2                                 |
+                                  | Build-Jdk: 11.0.4                                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
                                   | Built-By: default                                                    |         | Vendor ID: com.sun                        |                                              |
-                                  | Build-Jdk: 11.0.4                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.activation                                   |         |                                           |                                              |
-                                  | Bnd-LastModified: 1582223848638                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.annotation-api            | Manifest-Version: 1.0                                                |         | Version: 1.3.5                            | Version: 1.3                                 |
-                                  | Automatic-Module-Name: java.annotation                               |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1564744140223                                      |         |                                           |                                              |
-                                  | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
+jakarta.annotation-api            | Automatic-Module-Name: java.annotation                               |         | Version: 1.3.5                            | Version: 1.3                                 |
+                                  | Bnd-LastModified: 1564744140223                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.annotation                                   |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
+jakarta.authorization-api         | Archiver-Version: Plexus Archiver                                    |         | Version: 1.5.0                            | Version: 1.5                                 |
+                                  | Automatic-Module-Name: java.security.jacc                            |         | Vendor: Oracle Corporation                | Vendor: Oracle Corporation                   |
+                                  | Bnd-LastModified: 1566517755277                                      |         | Vendor ID: org.glassfish                  |                                              |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.authorization-api         | Manifest-Version: 1.0                                                |         | Version: 1.5.0                            | Version: 1.5                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Oracle Corporation                | Vendor: Oracle Corporation                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1566517755277                                      |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.security.jacc                                  |         |                                           |                                              |
-                                  | Automatic-Module-Name: java.security.jacc                            |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.batch-api                 | Manifest-Version: 1.0                                                |         | Version: 1.0.1                            | Jakarta Batch                                |
-                                  | Archiver-Version: Plexus Archiver                                    |         |                                           | Version: 1.0                                 |
+jakarta.batch-api                 | Archiver-Version: Plexus Archiver                                    |         | Version: 1.0.1                            | Jakarta Batch                                |
+                                  | Build-Jdk: 1.8.0_211                                                 |         |                                           | Version: 1.0                                 |
                                   | Built-By: ScottKurz                                                  |         |                                           | Vendor: IBM                                  |
-                                  | Extension-Name: jakarta.batch                                        |         |                                           |                                              |
                                   | Created-By: Apache Maven 3.6.1                                       |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_211                                                 |         |                                           |                                              |
-jakarta.ejb-api                   | Manifest-Version: 1.0                                                |         | Version: 3.2.6                            | Version: 3.2                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.eclipse.ee4j.ejb           |                                              |
-                                  | Bnd-LastModified: 1566600106602                                      |         |                                           |                                              |
+                                  | Extension-Name: jakarta.batch                                        |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+jakarta.ejb-api                   | Archiver-Version: Plexus Archiver                                    |         | Version: 3.2.6                            | Version: 3.2                                 |
+                                  | Bnd-LastModified: 1566600106602                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.eclipse.ee4j.ejb           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
                                   | Embed-Dependency: javax.xml.rpc;inline=javax/xml/rpc/handler/*.class |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
                                   | Extension-Name: javax.ejb                                            |         |                                           |                                              |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.el-api                    | Manifest-Version: 1.0                                                |         | Version: 3.0.3                            | Version: 3.0                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Oracle Corporation                | Vendor: Oracle Corporation                   |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1565741601417                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.el-api                    | Archiver-Version: Plexus Archiver                                    |         | Version: 3.0.3                            | Version: 3.0                                 |
+                                  | Bnd-LastModified: 1565741601417                                      |         | Vendor: Oracle Corporation                | Vendor: Oracle Corporation                   |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
                                   | Extension-Name: javax.el                                             |         |                                           |                                              |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.enterprise.concurrent-api | Manifest-Version: 1.0                                                |         | Version: 1.1.2                            | Version: 1.1                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-                                  | Bnd-LastModified: 1565210912808                                      |         |                                           |                                              |
-                                  | Extension-Name: javax.enterprise.concurrent                          |         |                                           |                                              |
-                                  | Tool: Bnd-1.50.0                                                     |         |                                           |                                              |
-jakarta.enterprise.deploy-api     | Manifest-Version: 1.0                                                |         | Version: 1.7.2                            | Version: 1.2                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1564052962311                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Extension-Name: javax.enterprise.deploy                              |         |                                           |                                              |
+jakarta.enterprise.concurrent-api | Archiver-Version: Plexus Archiver                                    |         | Version: 1.1.2                            | Version: 1.1                                 |
+                                  | Bnd-LastModified: 1565210912808                                      |         |                                           |                                              |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: javax.enterprise.concurrent                          |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-1.50.0                                                     |         |                                           |                                              |
+jakarta.enterprise.deploy-api     | Archiver-Version: Plexus Archiver                                    |         | Version: 1.7.2                            | Version: 1.2                                 |
+                                  | Bnd-LastModified: 1564052962311                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.enterprise.cdi-api        | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Extension-Name: javax.enterprise.deploy                              |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.enterprise.cdi-api        | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
                                   | Bnd-LastModified: 1565451400486                                      |         |                                           |                                              |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-2.4.1.201501161923                                         |         |                                           |                                              |
+jakarta.faces-api                 | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven 3.6.0                                       |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+jakarta.inject-api                | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven 3.6.0                                       |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+jakarta.interceptor-api           | Bnd-LastModified: 1568089347727                                      |         | Version: 1.2.5                            | Version: 1.2                                 |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor: Eclipse Foundation                | Vendor: Oracle Corporation                   |
+                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.faces-api                 | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven 3.6.0                                       |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.inject-api                | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven 3.6.0                                       |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.interceptor-api           | Manifest-Version: 1.0                                                |         | Version: 1.2.5                            | Version: 1.2                                 |
-                                  | Built-By: default                                                    |         | Vendor: Eclipse Foundation                | Vendor: Oracle Corporation                   |
-                                  | Bnd-LastModified: 1568089347727                                      |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
                                   | Extension-Name: javax.interceptor                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.jms-api                   | Manifest-Version: 1.0                                                |         | Version: 2.0.3                            | Version: 2.0                                 |
-                                  | Built-By: default                                                    |         | Vendor ID: org.eclipse.ee4j.jms           | Vendor: Eclipse Foundation                   |
-                                  | Bnd-LastModified: 1565691516374                                      |         |                                           |                                              |
-                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-                                  | Extension-Name: javax.jms                                            |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.json.bind-api             | Manifest-Version: 1.0                                                |         | Version: 1.0.2                            | Version: 1.0                                 |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           | Vendor: Oracle Corporation                   |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
+jakarta.jms-api                   | Bnd-LastModified: 1565691516374                                      |         | Version: 2.0.3                            | Version: 2.0                                 |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.eclipse.ee4j.jms           | Vendor: Eclipse Foundation                   |
                                   | Built-By: default                                                    |         |                                           |                                              |
-                                  | Build-Jdk: 11.0.2                                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1564758492481                                      |         |                                           |                                              |
-                                  | Build-Id: 08/02/2019 03:07 PM                                        |         |                                           |                                              |
-                                  | Extension-Name: jakarta.json.bind                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: javax.jms                                            |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.json-api                  | Manifest-Version: 1.0                                                |         | Version: 1.1.5                            | Version: 1.1                                 |
-                                  | Bnd-LastModified: 1566282557145                                      |         |                                           | Vendor: Eclipse Foundation                   |
+jakarta.json.bind-api             | Bnd-LastModified: 1564758492481                                      |         | Version: 1.0.2                            | Version: 1.0                                 |
+                                  | Build-Id: 08/02/2019 03:07 PM                                        |         |                                           | Vendor: Oracle Corporation                   |
                                   | Build-Jdk: 11.0.2                                                    |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: jakarta.json.bind                                    |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
+jakarta.json-api                  | Bnd-LastModified: 1566282557145                                      |         | Version: 1.1.5                            | Version: 1.1                                 |
+                                  | Build-Jdk: 11.0.2                                                    |         |                                           | Vendor: Eclipse Foundation                   |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.json                                         |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.jws-api                   | Manifest-Version: 1.0                                                |         | Version: 2.1.0                            | Version: 2.1                                 |
+jakarta.jws-api                   | Build-Jdk-Spec: 11                                                   |         | Version: 2.1.0                            | Version: 2.1                                 |
                                   | Created-By: Apache Maven Bundle Plugin                               |         | Build ID: 2.1.0-RELEASE-2072849           | Vendor: Eclipse Foundation                   |
-                                  | Build-Jdk-Spec: 11                                                   |         |                                           |                                              |
                                   | Extension-Name: jakarta.jws                                          |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
-jakarta.mail-api                  | Manifest-Version: 1.0                                                |         | jakarta.mail.jakarta.mail-api             | jakarta.mail.jakarta.mail-api                |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Version: 1.6.4                            | Version: 1.6                                 |
-                                  | Built-By: default                                                    |         | Vendor: Oracle                            | Vendor: Oracle                               |
-                                  | Bnd-LastModified: 1564699941309                                      |         | Vendor ID: com.sun                        |                                              |
+jakarta.mail-api                  | Archiver-Version: Plexus Archiver                                    |         | jakarta.mail.jakarta.mail-api             | jakarta.mail.jakarta.mail-api                |
+                                  | Bnd-LastModified: 1564699941309                                      |         | Version: 1.6.4                            | Version: 1.6                                 |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor: Oracle                            | Vendor: Oracle                               |
+                                  | Built-By: default                                                    |         | Vendor ID: com.sun                        |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.mail                                         |         |                                           |                                              |
-                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Originally-Created-By: Apache Maven Bundle Plugin                    |         |                                           |                                              |
                                   | Probe-Provider-XML-File-Names:                                       |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.management.j2ee-api       | Manifest-Version: 1.0                                                |         | Version: 1.1.4                            | Version: 1.1                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1566412005731                                      |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Extension-Name: javax.management.j2ee                                |         |                                           |                                              |
+                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
+jakarta.management.j2ee-api       | Archiver-Version: Plexus Archiver                                    |         | Version: 1.1.4                            | Version: 1.1                                 |
+                                  | Bnd-LastModified: 1566412005731                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.mvc-api                   | Manifest-Version: 1.0                                                |         | Version: 1.1.0                            | Version: 1.1                                 |
-                                  | Bnd-LastModified: 1601729252287                                      |         |                                           |                                              |
+                                  | Extension-Name: javax.management.j2ee                                |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.mvc-api                   | Bnd-LastModified: 1601729252287                                      |         | Version: 1.1.0                            | Version: 1.1                                 |
                                   | Build-Jdk: 1.8.0_252                                                 |         |                                           |                                              |
                                   | Built-By: jenkins                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.mvc                                            |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.persistence-api           | Manifest-Version: 1.0                                                |         | Version: 2.2.3                            | Version: 2.2                                 |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         |                                           |                                              |
+jakarta.persistence-api           | Automatic-Module-Name: java.persistence                              |         | Version: 2.2.3                            | Version: 2.2                                 |
+                                  | Bnd-LastModified: 1564765237028                                      |         |                                           | Vendor: Eclipse Foundation                   |
                                   | Build-Jdk: 11.0.2                                                    |         |                                           |                                              |
-                                  | Automatic-Module-Name: java.persistence                              |         |                                           |                                              |
-                                  | Bnd-LastModified: 1564765237028                                      |         |                                           |                                              |
-                                  | Extension-Name: jakarta.persistence                                  |         |                                           |                                              |
-                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.resource-api              | Manifest-Version: 1.0                                                |         | Version: 1.7.4                            | Version: 1.7                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Jakarta Connectors                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1566386457891                                      |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Extension-Name: javax.resource                                       |         |                                           |                                              |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.security.auth.message-api | Manifest-Version: 1.0                                                |         | Version: 1.1.3                            | Version: 1.1                                 |
-                                  | Automatic-Module-Name: java.security.auth.message                    |         | Vendor: Jakarta Authentication            | Vendor: Oracle Corporation                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1566562757906                                      |         |                                           |                                              |
-                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
-                                  | Extension-Name: javax.security.auth.message                          |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.security.enterprise-api   | Manifest-Version: 1.0                                                |         | Version: 1.0.2                            | Version: 1.0                                 |
-                                  | Bnd-LastModified: 1566525067451                                      |         | Vendor: Eclipse Foundation                | Vendor: Oracle Corporation                   |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Extension-Name: jakarta.persistence                                  |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
+jakarta.resource-api              | Archiver-Version: Plexus Archiver                                    |         | Version: 1.7.4                            | Version: 1.7                                 |
+                                  | Bnd-LastModified: 1566386457891                                      |         | Vendor: Eclipse Foundation                | Vendor: Jakarta Connectors                   |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
+                                  | Extension-Name: javax.resource                                       |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.security.auth.message-api | Automatic-Module-Name: java.security.auth.message                    |         | Version: 1.1.3                            | Version: 1.1                                 |
+                                  | Bnd-LastModified: 1566562757906                                      |         | Vendor: Jakarta Authentication            | Vendor: Oracle Corporation                   |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: javax.security.auth.message                          |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
+jakarta.security.enterprise-api   | Bnd-LastModified: 1566525067451                                      |         | Version: 1.0.2                            | Version: 1.0                                 |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor: Eclipse Foundation                | Vendor: Oracle Corporation                   |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.security.enterprise                            |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
-jakarta.servlet.jsp.jstl-api      | Manifest-Version: 1.0                                                |         | Version: 1.2.7                            | Version: 1.2                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1566181244110                                      |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Originally-Created-By: 1.8.0_181 (Oracle Corporation)                |         |                                           |                                              |
-                                  | Extension-Name: javax.servlet.jsp.jstl                               |         |                                           |                                              |
-                                  | Created-By: 1.8.0_181 (Oracle Corporation)                           |         |                                           |                                              |
+jakarta.servlet.jsp.jstl-api      | Archiver-Version: Plexus Archiver                                    |         | Version: 1.2.7                            | Version: 1.2                                 |
+                                  | Bnd-LastModified: 1566181244110                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
                                   | Build-Jdk: 1.8.0_181                                                 |         |                                           |                                              |
-jakarta.servlet.jsp-api           | Manifest-Version: 1.0                                                |         | Version: 2.3.6                            | Version: 2.3                                 |
-                                  | Built-By: default                                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_181 (Oracle Corporation)                           |         |                                           |                                              |
+                                  | Extension-Name: javax.servlet.jsp.jstl                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Originally-Created-By: 1.8.0_181 (Oracle Corporation)                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.servlet.jsp-api           | Bnd-LastModified: 1567417810411                                      |         | Version: 2.3.6                            | Version: 2.3                                 |
+                                  | Build-Jdk: 1.7.0_80                                                  |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: 1.7.0_80 (Oracle Corporation)                            |         |                                           |                                              |
-                                  | Build-Jdk: 1.7.0_80                                                  |         |                                           |                                              |
-                                  | Bnd-LastModified: 1567417810411                                      |         |                                           |                                              |
-                                  | Originally-Created-By: 1.7.0_80 (Oracle Corporation)                 |         |                                           |                                              |
                                   | Extension-Name: javax.servlet.jsp                                    |         |                                           |                                              |
-jakarta.servlet-api               | Manifest-Version: 1.0                                                |         | Version: 4.0.3                            | Version: 4.0                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         | Vendor ID: org.eclipse                    |                                              |
-                                  | Bnd-LastModified: 1566398855350                                      |         |                                           |                                              |
-                                  | Extension-Name: javax.servlet                                        |         |                                           |                                              |
-                                  | Automatic-Module-Name: java.servlet                                  |         |                                           |                                              |
-                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.transaction-api           | Manifest-Version: 1.0                                                |         | Version: 1.3.3                            | Version: 1.3                                 |
-                                  | Automatic-Module-Name: java.transaction                              |         | Vendor: EE4J Community                    | Vendor: Oracle Corporation                   |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1564784149519                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Originally-Created-By: 1.7.0_80 (Oracle Corporation)                 |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Extension-Name: javax.transaction                                    |         |                                           |                                              |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
+jakarta.servlet-api               | Archiver-Version: Plexus Archiver                                    |         | Version: 4.0.3                            | Version: 4.0                                 |
+                                  | Automatic-Module-Name: java.servlet                                  |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Bnd-LastModified: 1566398855350                                      |         | Vendor ID: org.eclipse                    |                                              |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.validation-api            | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Automatic-Module-Name: java.validation                               |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1565473508715                                      |         |                                           |                                              |
-                                  | Tool: Bnd-3.2.0.201605172007                                         |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: javax.servlet                                        |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
+jakarta.transaction-api           | Archiver-Version: Plexus Archiver                                    |         | Version: 1.3.3                            | Version: 1.3                                 |
+                                  | Automatic-Module-Name: java.transaction                              |         | Vendor: EE4J Community                    | Vendor: Oracle Corporation                   |
+                                  | Bnd-LastModified: 1564784149519                                      |         | Vendor ID: org.glassfish                  |                                              |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.websocket-api             | Manifest-Version: 1.0                                                |         | Version: 1.1.2                            | Version: 1.1                                 |
-                                  | Bnd-LastModified: 1565020902163                                      |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
+                                  | Extension-Name: javax.transaction                                    |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.validation-api            | Automatic-Module-Name: java.validation                               |         |                                           |                                              |
+                                  | Bnd-LastModified: 1565473508715                                      |         |                                           |                                              |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-3.2.0.201605172007                                         |         |                                           |                                              |
+jakarta.websocket-api             | Bnd-LastModified: 1565020902163                                      |         | Version: 1.1.2                            | Version: 1.1                                 |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.websocket                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-1.50.0                                                     |         |                                           |                                              |
-jakarta.websocket-client-api      | Manifest-Version: 1.0                                                |         | Version: 1.1.2                            | Version: 1.1                                 |
-                                  | Bnd-LastModified: 1565020858597                                      |         |                                           |                                              |
+jakarta.websocket-client-api      | Bnd-LastModified: 1565020858597                                      |         | Version: 1.1.2                            | Version: 1.1                                 |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.websocket.client                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-1.50.0                                                     |         |                                           |                                              |
-jakarta.ws.rs-api                 | Manifest-Version: 1.0                                                |         | Version: 2.1.6                            | Version: 2.1                                 |
-                                  | Automatic-Module-Name: java.ws.rs                                    |         |                                           | Vendor: Oracle Corporation                   |
-                                  | Bnd-LastModified: 1565616053029                                      |         |                                           |                                              |
+jakarta.ws.rs-api                 | Automatic-Module-Name: java.ws.rs                                    |         | Version: 2.1.6                            | Version: 2.1                                 |
+                                  | Bnd-LastModified: 1565616053029                                      |         |                                           | Vendor: Oracle Corporation                   |
                                   | Build-Id: 08/12/2019 01:20 PM                                        |         |                                           |                                              |
                                   | Build-Jdk: 12                                                        |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: javax.ws.rs                                          |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.xml.bind-api              | Manifest-Version: 1.0                                                |         | Version: 2.3.3                            | Version: 2.3                                 |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         | Build ID: 2.3.3-RELEASE-fd06b2b           | Vendor: Eclipse Foundation                   |
-                                  | Build-Jdk-Spec: 11                                                   |         |                                           |                                              |
-                                  | Build-Jdk: 11.0.4                                                    |         |                                           |                                              |
+jakarta.xml.bind-api              | Build-Jdk-Spec: 11                                                   |         | Version: 2.3.3                            | Version: 2.3                                 |
+                                  | Build-Jdk: 11.0.4                                                    |         | Build ID: 2.3.3-RELEASE-fd06b2b           | Vendor: Eclipse Foundation                   |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.xml.bind                                     |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Multi-Release: true                                                  |         |                                           |                                              |
                                   | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
-jakarta.xml.registry-api          | Manifest-Version: 1.0                                                |         | Version: 1.0.10                           | Version: 1.0                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1566395354830                                      |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.xml.registry-api          | Archiver-Version: Plexus Archiver                                    |         | Version: 1.0.10                           | Version: 1.0                                 |
+                                  | Bnd-LastModified: 1566395354830                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
                                   | Extension-Name: javax.xml.registry                                   |         |                                           |                                              |
-                                  | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.xml.rpc-api               | Manifest-Version: 1.0                                                |         | Version: 1.1.4                            | Version: 1.1                                 |
-                                  | Archiver-Version: Plexus Archiver                                    |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
-                                  | Built-By: default                                                    |         | Vendor ID: org.glassfish                  |                                              |
-                                  | Bnd-LastModified: 1564767266352                                      |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-                                  | Extension-Name: javax.xml.rpc                                        |         |                                           |                                              |
+jakarta.xml.rpc-api               | Archiver-Version: Plexus Archiver                                    |         | Version: 1.1.4                            | Version: 1.1                                 |
+                                  | Bnd-LastModified: 1564767266352                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Project for Stable EE4J APIs |
+                                  | Build-Jdk: 1.8.0_202                                                 |         | Vendor ID: org.glassfish                  |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: 1.8.0_202 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-jakarta.xml.soap-api              | Manifest-Version: 1.0                                                |         | Version: 1.4.2                            | Version: 1.4                                 |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         | Build ID: 1.4.2-RELEASE-27e9ccd           | Vendor: Eclipse Foundation                   |
-                                  | Build-Jdk-Spec: 11                                                   |         |                                           |                                              |
-                                  | Build-Jdk: 11.0.4                                                    |         |                                           |                                              |
+                                  | Extension-Name: javax.xml.rpc                                        |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.xml.soap-api              | Build-Jdk-Spec: 11                                                   |         | Version: 1.4.2                            | Version: 1.4                                 |
+                                  | Build-Jdk: 11.0.4                                                    |         | Build ID: 1.4.2-RELEASE-27e9ccd           | Vendor: Eclipse Foundation                   |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.xml.soap                                     |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
-jakarta.xml.ws-api                | Manifest-Version: 1.0                                                |         | Version: 2.3.3                            | Version: 2.3                                 |
+jakarta.xml.ws-api                | Build-Jdk-Spec: 11                                                   |         | Version: 2.3.3                            | Version: 2.3                                 |
                                   | Created-By: Apache Maven Bundle Plugin                               |         | Build ID: 2.3.3-RELEASE-126af43           | Vendor: Eclipse Foundation                   |
-                                  | Build-Jdk-Spec: 11                                                   |         | Vendor: Eclipse Foundation                |                                              |
-                                  | Extension-Name: jakarta.xml.ws                                       |         |                                           |                                              |
+                                  | Extension-Name: jakarta.xml.ws                                       |         | Vendor: Eclipse Foundation                |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.2.0.201903051501                                         |         |                                           |                                              |
 
 JPMS Modules
@@ -1302,17 +1302,93 @@ Blacklist
 ---------
 Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
-Artifact        | Issues
-----------------+------------------------------------------------------------
-jakarta.ejb-api | javax.ejb.EJBContext
-                | • @Deprecated: public abstract class java.security.Identity
+Artifact                          | Issues
+----------------------------------+-------------------------------------------------------------------------------------------
+jakarta.activation-api            | javax.activation.CommandInfo$Beans
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.activation.CommandMap
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  |
+                                  | javax.activation.DataHandler
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  |
+                                  | javax.activation.FileTypeMap
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  |
+                                  | javax.activation.MailcapCommandMap
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.activation.MimetypesFileTypeMap
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.activation.SecuritySupport
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.authorization-api         | javax.security.jacc.PolicyConfigurationFactory
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.security.jacc.PolicyContext
+                                  | • @Deprecated: public class java.lang.SecurityManager
+jakarta.batch-api                 | javax.batch.runtime.BatchRuntime
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.ejb-api                   | javax.ejb.EJBContext
+                                  | • @Deprecated: public abstract class java.security.Identity
+jakarta.enterprise.cdi-api        | javax.enterprise.inject.spi.SecurityActions
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.enterprise.util.SecurityActions
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.mail-api                  | javax.mail.Session
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.persistence-api           | javax.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.security.auth.message-api | javax.security.auth.message.config.AuthConfigFactory
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.validation-api            | javax.validation.Validation$GetValidationProviderListAction
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.validation.Validation$ProviderSpecificBootstrapImpl
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.ws.rs-api                 | javax.ws.rs.client.FactoryFinder
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.ws.rs.ext.FactoryFinder
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.ws.rs.ext.RuntimeDelegate
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  |
+                                  | javax.ws.rs.sse.FactoryFinder
+                                  | • @Deprecated: public final class java.security.AccessController
+jakarta.xml.bind-api              | javax.xml.bind.ContextFinder
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.xml.bind.DatatypeConverter
+                                  | • @Deprecated: public class java.lang.SecurityManager
+                                  |
+                                  | javax.xml.bind.JAXBContext
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.xml.bind.ServiceLoaderUtil
+                                  | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.soap-api              | javax.xml.soap.FactoryFinder
+                                  | • @Deprecated: public final class java.security.AccessController
+                                  |
+                                  | javax.xml.soap.ServiceLoaderUtil
+                                  | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.ws-api                | javax.xml.ws.spi.ServiceLoaderUtil
+                                  | • @Deprecated: public class java.lang.SecurityManager
 
 Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-11.0.26
+Java home    : /home/markwalder/.jdks/temurin-17.0.14
 Java runtime : OpenJDK Runtime Environment
-Java version : 11.0.26
+Java version : 17.0.14
 Java vendor  : Eclipse Adoptium
 

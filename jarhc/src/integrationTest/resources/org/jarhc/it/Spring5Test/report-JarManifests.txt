@@ -7,40 +7,40 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact               | General                                       | Runtime | Implementation         | Specification | Signature
 -----------------------+-----------------------------------------------+---------+------------------------+---------------+----------
-spring-aop             | Manifest-Version: 1.0                         |         | spring-aop             |               |
-                       | Automatic-Module-Name: spring.aop             |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-beans           | Manifest-Version: 1.0                         |         | spring-beans           |               |
-                       | Automatic-Module-Name: spring.beans           |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-context         | Manifest-Version: 1.0                         |         | spring-context         |               |
-                       | Automatic-Module-Name: spring.context         |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-context-support | Manifest-Version: 1.0                         |         | spring-context-support |               |
-                       | Automatic-Module-Name: spring.context.support |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-core            | Manifest-Version: 1.0                         |         | spring-core            |               |
-                       | Automatic-Module-Name: spring.core            |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-expression      | Manifest-Version: 1.0                         |         | spring-expression      |               |
-                       | Automatic-Module-Name: spring.expression      |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-jdbc            | Manifest-Version: 1.0                         |         | spring-jdbc            |               |
-                       | Automatic-Module-Name: spring.jdbc            |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-jms             | Manifest-Version: 1.0                         |         | spring-jms             |               |
-                       | Automatic-Module-Name: spring.jms             |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-messaging       | Manifest-Version: 1.0                         |         | spring-messaging       |               |
-                       | Automatic-Module-Name: spring.messaging       |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-orm             | Manifest-Version: 1.0                         |         | spring-orm             |               |
-                       | Automatic-Module-Name: spring.orm             |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-tx              | Manifest-Version: 1.0                         |         | spring-tx              |               |
-                       | Automatic-Module-Name: spring.tx              |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
-spring-web             | Manifest-Version: 1.0                         |         | spring-web             |               |
-                       | Automatic-Module-Name: spring.web             |         | Version: 5.1.3.RELEASE |               |
-                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         |                        |               |
+spring-aop             | Automatic-Module-Name: spring.aop             |         | spring-aop             |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-beans           | Automatic-Module-Name: spring.beans           |         | spring-beans           |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-context         | Automatic-Module-Name: spring.context         |         | spring-context         |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-context-support | Automatic-Module-Name: spring.context.support |         | spring-context-support |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-core            | Automatic-Module-Name: spring.core            |         | spring-core            |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-expression      | Automatic-Module-Name: spring.expression      |         | spring-expression      |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-jdbc            | Automatic-Module-Name: spring.jdbc            |         | spring-jdbc            |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-jms             | Automatic-Module-Name: spring.jms             |         | spring-jms             |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-messaging       | Automatic-Module-Name: spring.messaging       |         | spring-messaging       |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-orm             | Automatic-Module-Name: spring.orm             |         | spring-orm             |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-tx              | Automatic-Module-Name: spring.tx              |         | spring-tx              |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
+spring-web             | Automatic-Module-Name: spring.web             |         | spring-web             |               |
+                       | Created-By: 1.8.0_144 (Oracle Corporation)    |         | Version: 5.1.3.RELEASE |               |
+                       | Manifest-Version: 1.0                         |         |                        |               |
 

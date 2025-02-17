@@ -131,7 +131,7 @@ public class HtmlReportFormat implements ReportFormat {
 		// format header
 		writer.println("<h2>%s</h2>", escape(title));
 		if (description != null) {
-			writer.println("<p>%s</p>", escape(description));
+			writer.println("<p>%s</p>", Markdown.toHtml(escape(description)));
 		}
 
 		// format contents
