@@ -641,7 +641,7 @@
                   "1.7.33",
                   "The slf4j API\nVendor: SLF4J.ORG",
                   "org.slf4j.impl;version=1.6.0",
-                  "`org.slf4j` (Version: 1.7.33)\n` org.slf4j.spi` (Version: 1.7.33)\n` org.slf4j.helpers` (Version: 1.7.33)\n` org.slf4j.event` (Version: 1.7.33)",
+                  "`org.slf4j` (Version: 1.7.33)\n`org.slf4j.spi` (Version: 1.7.33)\n`org.slf4j.helpers` (Version: 1.7.33)\n`org.slf4j.event` (Version: 1.7.33)",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
@@ -660,8 +660,8 @@
                   "jcl-over-slf4j\n[jcl.over.slf4j]",
                   "1.7.33",
                   "JCL 1.2 implemented over SLF4J\nVendor: SLF4J.ORG",
-                  "org.slf4j;version=1.7.33\n org.slf4j.spi;version=1.7.33",
-                  "`org.apache.commons.logging` (Version: 1.2)\n`  org.apache.commons.logging.impl` (Version: 1.2)",
+                  "org.slf4j;version=1.7.33\norg.slf4j.spi;version=1.7.33",
+                  "`org.apache.commons.logging` (Version: 1.2)\n`org.apache.commons.logging.impl` (Version: 1.2)",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
@@ -1344,5 +1344,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1739812237317
+   "timestamp": 1739906832439
 }

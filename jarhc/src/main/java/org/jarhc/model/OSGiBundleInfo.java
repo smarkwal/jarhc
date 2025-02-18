@@ -357,12 +357,13 @@ public class OSGiBundleInfo {
 				quoted = !quoted;
 			} else if (chr == ',' && !quoted) {
 				String element = value.substring(start, i);
-				list.add(element);
+				list.add(element.trim());
 				start = i + 1;
 			}
 		}
 		if (start < value.length()) {
-			list.add(value.substring(start));
+			String element = value.substring(start);
+			list.add(element.trim());
 		}
 
 		return list;

@@ -38,12 +38,12 @@ OSGi Bundles
 ------------
 Information about OSGi Bundles.
 
-Artifact  | Name        | Version | Description       | Import Package               | Export Package                       | Capabilities | Others
-----------+-------------+---------+-------------------+------------------------------+--------------------------------------+--------------+-----------------------------------------
-slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1.6.0 | org.slf4j (Version: 1.7.28)          |              | Manifest Version: 2
-          | [slf4j.api] |         | Vendor: SLF4J.ORG |                              |  org.slf4j.spi (Version: 1.7.28)     |              | Required Execution Environment: J2SE-1.5
-          |             |         |                   |                              |  org.slf4j.helpers (Version: 1.7.28) |              |
-          |             |         |                   |                              |  org.slf4j.event (Version: 1.7.28)   |              |
+Artifact  | Name        | Version | Description       | Import Package               | Export Package                      | Capabilities | Others
+----------+-------------+---------+-------------------+------------------------------+-------------------------------------+--------------+-----------------------------------------
+slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1.6.0 | org.slf4j (Version: 1.7.28)         |              | Manifest Version: 2
+          | [slf4j.api] |         | Vendor: SLF4J.ORG |                              | org.slf4j.spi (Version: 1.7.28)     |              | Required Execution Environment: J2SE-1.5
+          |             |         |                   |                              | org.slf4j.helpers (Version: 1.7.28) |              |
+          |             |         |                   |                              | org.slf4j.event (Version: 1.7.28)   |              |
 
 Class Versions
 --------------
