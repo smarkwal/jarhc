@@ -671,59 +671,59 @@ Updates
 -------
 Information about newer major, minor, and patch versions of artifacts.
 
-Artifact                          | Current version | Newer versions
-----------------------------------+-----------------+----------------------------------
-jakarta.activation-api            | 2.0.1           | 2.1.0, 2.1.1, 2.1.2, 2.1.3
-jakarta.annotation-api            | 2.0.0           | 2.1.0, 2.1.1
-                                  |                 | 3.0.0
-jakarta.authentication-api        | 2.0.0           | 3.0.0
-                                  |                 | 3.1.0
-jakarta.authorization-api         | 2.0.0           | 2.1.0
-                                  |                 | 3.0.0
-jakarta.batch-api                 | 2.0.0           | 2.1.0, 2.1.1
-jakarta.ejb-api                   | 4.0.0           | 4.0.1
-jakarta.el-api                    | 4.0.0           | 5.0.0, 5.0.1
-                                  |                 | 6.0.0, 6.0.1
-jakarta.enterprise.concurrent-api | 2.0.0           | 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4
-                                  |                 | 3.1.0, 3.1.1
-jakarta.enterprise.cdi-api        | 3.0.0           | 3.0.1
-                                  |                 | 4.0.0, 4.0.1
-                                  |                 | 4.1.0
-jakarta.faces-api                 | 3.0.0           | 4.0.0, 4.0.1
-                                  |                 | 4.1.0, 4.1.1, 4.1.2
-jakarta.inject-api                | 2.0.1           | 2.0.1.MR
-jakarta.interceptor-api           | 2.0.0           | 2.0.1
-                                  |                 | 2.1.0
-                                  |                 | 2.2.0
-jakarta.jms-api                   | 3.0.0           | 3.1.0
-jakarta.json.bind-api             | 2.0.0           | 3.0.0, 3.0.1
-jakarta.json-api                  | 2.0.2           | 2.1.0, 2.1.1, 2.1.2, 2.1.3
-jakarta.jws-api                   | 3.0.0           |
-jakarta.mail-api                  | 2.0.1           | 2.1.0, 2.1.1, 2.1.2, 2.1.3
-jakarta.mvc-api                   | 2.0.0           | 2.0.1
-                                  |                 | 2.1.0
-jakarta.persistence-api           | 3.0.0           | 3.1.0
-                                  |                 | 3.2.0
-jakarta.resource-api              | 2.0.0           | 2.1.0
-jakarta.security.enterprise-api   | 2.0.0           | 3.0.0
-                                  |                 | 4.0.0
-jakarta.servlet.jsp.jstl-api      | 2.0.0           | 3.0.0, 3.0.1, 3.0.2
-jakarta.servlet.jsp-api           | 3.0.0           | 3.1.0, 3.1.1
-                                  |                 | 4.0.0
-jakarta.servlet-api               | 5.0.0           | 6.0.0
-                                  |                 | 6.1.0
-jakarta.transaction-api           | 2.0.0           | 2.0.1
-jakarta.validation-api            | 3.0.0           | 3.0.1, 3.0.2
-                                  |                 | 3.1.0, 3.1.1
-jakarta.websocket-api             | 2.0.0           | 2.1.0, 2.1.1
-                                  |                 | 2.2.0
-jakarta.websocket-client-api      | 2.0.0           | 2.1.0, 2.1.1
-                                  |                 | 2.2.0
-jakarta.ws.rs-api                 | 3.0.0           | 3.1.0
-                                  |                 | 4.0.0
-jakarta.xml.bind-api              | 3.0.1           | 4.0.0, 4.0.1, 4.0.2
-jakarta.xml.soap-api              | 2.0.1           | 3.0.0, 3.0.1, 3.0.2
-jakarta.xml.ws-api                | 3.0.1           | 4.0.0, 4.0.1, 4.0.2
+Artifact                          | Version | Updates
+----------------------------------+---------+----------------------------------
+jakarta.activation-api            | 2.0.1   | 2.1.0, 2.1.1, 2.1.2, 2.1.3
+jakarta.annotation-api            | 2.0.0   | 2.1.0, 2.1.1
+                                  |         | 3.0.0
+jakarta.authentication-api        | 2.0.0   | 3.0.0
+                                  |         | 3.1.0
+jakarta.authorization-api         | 2.0.0   | 2.1.0
+                                  |         | 3.0.0
+jakarta.batch-api                 | 2.0.0   | 2.1.0, 2.1.1
+jakarta.ejb-api                   | 4.0.0   | 4.0.1
+jakarta.el-api                    | 4.0.0   | 5.0.0, 5.0.1
+                                  |         | 6.0.0, 6.0.1
+jakarta.enterprise.concurrent-api | 2.0.0   | 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4
+                                  |         | 3.1.0, 3.1.1
+jakarta.enterprise.cdi-api        | 3.0.0   | 3.0.1
+                                  |         | 4.0.0, 4.0.1
+                                  |         | 4.1.0
+jakarta.faces-api                 | 3.0.0   | 4.0.0, 4.0.1
+                                  |         | 4.1.0, 4.1.1, 4.1.2
+jakarta.inject-api                | 2.0.1   | 2.0.1.MR
+jakarta.interceptor-api           | 2.0.0   | 2.0.1
+                                  |         | 2.1.0
+                                  |         | 2.2.0
+jakarta.jms-api                   | 3.0.0   | 3.1.0
+jakarta.json.bind-api             | 2.0.0   | 3.0.0, 3.0.1
+jakarta.json-api                  | 2.0.2   | 2.1.0, 2.1.1, 2.1.2, 2.1.3
+jakarta.jws-api                   | 3.0.0   |
+jakarta.mail-api                  | 2.0.1   | 2.1.0, 2.1.1, 2.1.2, 2.1.3
+jakarta.mvc-api                   | 2.0.0   | 2.0.1
+                                  |         | 2.1.0
+jakarta.persistence-api           | 3.0.0   | 3.1.0
+                                  |         | 3.2.0
+jakarta.resource-api              | 2.0.0   | 2.1.0
+jakarta.security.enterprise-api   | 2.0.0   | 3.0.0
+                                  |         | 4.0.0
+jakarta.servlet.jsp.jstl-api      | 2.0.0   | 3.0.0, 3.0.1, 3.0.2
+jakarta.servlet.jsp-api           | 3.0.0   | 3.1.0, 3.1.1
+                                  |         | 4.0.0
+jakarta.servlet-api               | 5.0.0   | 6.0.0
+                                  |         | 6.1.0
+jakarta.transaction-api           | 2.0.0   | 2.0.1
+jakarta.validation-api            | 3.0.0   | 3.0.1, 3.0.2
+                                  |         | 3.1.0, 3.1.1
+jakarta.websocket-api             | 2.0.0   | 2.1.0, 2.1.1
+                                  |         | 2.2.0
+jakarta.websocket-client-api      | 2.0.0   | 2.1.0, 2.1.1
+                                  |         | 2.2.0
+jakarta.ws.rs-api                 | 3.0.0   | 3.1.0
+                                  |         | 4.0.0
+jakarta.xml.bind-api              | 3.0.1   | 4.0.0, 4.0.1, 4.0.2
+jakarta.xml.soap-api              | 2.0.1   | 3.0.0, 3.0.1, 3.0.2
+jakarta.xml.ws-api                | 3.0.1   | 4.0.0, 4.0.1, 4.0.2
 
 JAR Dependencies
 ----------------

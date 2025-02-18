@@ -56,7 +56,7 @@ public class UpdatesAnalyzer implements Analyzer {
 
 	private ReportTable buildTable(Classpath classpath) {
 
-		ReportTable table = new ReportTable("Artifact", "Current version", "Newer versions");
+		ReportTable table = new ReportTable("Artifact", "Version", "Updates");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
