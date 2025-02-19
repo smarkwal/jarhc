@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source        | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 ----------+-----------+---------------+---------+---------+-----------+------------------------------------------+------------
-jarhc-app | [unknown] | jarhc-app.jar | 3.69 MB | 2113    | 145       | **************************************** | [unknown]
-Classpath | -         | -             | 3.69 MB | 2113    | 145       | -                                        | -
+jarhc-app | [unknown] | jarhc-app.jar | 3.69 MB | 2114    | 145       | **************************************** | [unknown]
+Classpath | -         | -             | 3.69 MB | 2114    | 145       | -                                        | -
 
 JAR Manifests
 -------------
@@ -33,9 +33,9 @@ Java class file format information.
 
 Artifact  | Multi-release                  | Class files by Java version
 ----------+--------------------------------+---------------------------------------------------------
-jarhc-app | Yes (Java 9, Java 10, Java 11) | Java 11 (148), Java 10 (1), Java 8 (1203), Java 6 (723),
+jarhc-app | Yes (Java 9, Java 10, Java 11) | Java 11 (149), Java 10 (1), Java 8 (1203), Java 6 (723),
           |                                | Java 5 (38)
-Classpath | -                              | Java 11 (148), Java 10 (1), Java 8 (1203), Java 6 (723),
+Classpath | -                              | Java 11 (149), Java 10 (1), Java 8 (1203), Java 6 (723),
           |                                | Java 5 (38)
 
 JAR Dependencies

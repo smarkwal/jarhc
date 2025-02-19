@@ -2159,7 +2159,8 @@ org/jarhc/app/ArtifactSource.class | size=3098 | crc=3635409093
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
 org/jarhc/app/CommandLineParser.class | size=22788 | crc=2723317858
-org/jarhc/app/Diff.class | size=13375 | crc=2287350189
+org/jarhc/app/Diff.class | size=5530 | crc=848935283
+org/jarhc/app/DiffReportGenerator.class | size=9421 | crc=2208050403
 org/jarhc/app/FileSource.class | size=1904 | crc=2761526149
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options$Command.class | size=1074 | crc=185019036
@@ -2213,7 +2214,7 @@ org/jarhc/loader/ModuleInfoBuilder$ModuleInfoVisitor.class | size=2124 | crc=198
 org/jarhc/loader/ModuleInfoBuilder.class | size=1327 | crc=2511565686
 org/jarhc/loader/ModuleInfoLoader.class | size=1101 | crc=922726158
 org/jarhc/loader/WarFileLoader.class | size=7010 | crc=3554227205
-org/jarhc/Main.class | size=8217 | crc=3206181280
+org/jarhc/Main.class | size=8194 | crc=312051995
 org/jarhc/model/AccessFlags.class | size=2951 | crc=1705125100
 org/jarhc/model/AnnotationRef$Target.class | size=1719 | crc=2979948932
 org/jarhc/model/AnnotationRef.class | size=2085 | crc=1510810505

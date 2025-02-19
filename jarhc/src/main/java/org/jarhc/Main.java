@@ -74,8 +74,7 @@ public class Main {
 		} else if (command == Command.DIFF) {
 
 			// create and run diff
-			Logger logger = LoggerFactory.getLogger(Diff.class);
-			Diff diff = new Diff(logger);
+			Diff diff = new Diff();
 			exitCode = diff.run(options);
 
 		} else {
