@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -184,6 +185,32 @@ class ClasspathLoaderTest {
 				.hasDebug("slf4j.jar: *")
 				.hasDebug("asm.jar: *")
 				.hasDebug("test.war: *")
+				.hasDebug("Total: *");
+	}
+
+	@Test
+	void load_JarSources_withDuplicates() {
+
+		// prepare
+		List<JarSource> jarSources = Arrays.asList(
+				new FileSource(new File("slf4j.jar")),
+				new FileSource(new File("asm.jar")),
+				new FileSource(new File("slf4j.jar"))
+		);
+
+		// test
+		Classpath result = classpathLoader.load(jarSources);
+
+		// assert
+		List<JarFile> jarFiles = result.getJarFiles();
+		assertEquals(2, jarFiles.size());
+		assertEquals("slf4j.jar", jarFiles.get(0).getFileName());
+		assertEquals("asm.jar", jarFiles.get(1).getFileName());
+
+		assertLogger(logger).inAnyOrder()
+				.hasWarn("Duplicate ignored: File slf4j.jar")
+				.hasDebug("slf4j.jar: *")
+				.hasDebug("asm.jar: *")
 				.hasDebug("Total: *");
 	}
 

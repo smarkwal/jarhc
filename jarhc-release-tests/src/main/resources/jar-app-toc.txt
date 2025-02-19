@@ -2155,12 +2155,12 @@ org/jarhc/analyzer/PackagesAnalyzer.class | size=11682 | crc=2406325842
 org/jarhc/analyzer/TextComparator.class | size=1022 | crc=188287764
 org/jarhc/analyzer/UpdatesAnalyzer.class | size=8955 | crc=3079470567
 org/jarhc/app/Application.class | size=13281 | crc=397855023
-org/jarhc/app/ArtifactSource.class | size=2529 | crc=2955291467
+org/jarhc/app/ArtifactSource.class | size=3098 | crc=3635409093
 org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
 org/jarhc/app/CommandLineParser.class | size=22788 | crc=2723317858
 org/jarhc/app/Diff.class | size=13375 | crc=2287350189
-org/jarhc/app/FileSource.class | size=887 | crc=885544477
+org/jarhc/app/FileSource.class | size=1904 | crc=2761526149
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options$Command.class | size=1074 | crc=185019036
 org/jarhc/app/Options.class | size=6494 | crc=2227420125
@@ -2203,7 +2203,7 @@ org/jarhc/loader/ClassDefBuilder$CustomMethodVisitor.class | size=6238 | crc=161
 org/jarhc/loader/ClassDefBuilder$CustomRecordComponentVisitor.class | size=1956 | crc=305914802
 org/jarhc/loader/ClassDefBuilder.class | size=10850 | crc=3474489515
 org/jarhc/loader/ClassDefLoader.class | size=2784 | crc=2641805275
-org/jarhc/loader/ClasspathLoader.class | size=5788 | crc=1682277081
+org/jarhc/loader/ClasspathLoader.class | size=6547 | crc=1987806442
 org/jarhc/loader/FileNameNormalizer.class | size=2572 | crc=4085829154
 org/jarhc/loader/JarFileLoader.class | size=4264 | crc=4080946673
 org/jarhc/loader/JmodFileLoader.class | size=3344 | crc=454298808

@@ -28,6 +28,7 @@ public class ArtifactSource implements JarSource {
 	private final Repository repository;
 
 	public ArtifactSource(String coordinates, Repository repository) {
+		if (coordinates == null) throw new IllegalArgumentException("coordinates");
 		this.coordinates = coordinates;
 		this.repository = repository;
 	}
@@ -50,6 +51,24 @@ public class ArtifactSource implements JarSource {
 		} catch (RepositoryException e) {
 			throw new IOException(e);
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Artifact " + coordinates;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
+		ArtifactSource source = (ArtifactSource) obj;
+		return coordinates.equals(source.coordinates);
+	}
+
+	@Override
+	public int hashCode() {
+		return coordinates.hashCode();
 	}
 
 }

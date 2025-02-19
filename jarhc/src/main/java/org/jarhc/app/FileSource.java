@@ -26,6 +26,7 @@ public class FileSource implements JarSource {
 	private final File file;
 
 	public FileSource(File file) {
+		if (file == null) throw new IllegalArgumentException("file");
 		this.file = file;
 	}
 
@@ -46,6 +47,24 @@ public class FileSource implements JarSource {
 	@Override
 	public InputStream getInputStream() throws IOException {
 		return new FileInputStream(file);
+	}
+
+	@Override
+	public String toString() {
+		return "File " + file.getName();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
+		FileSource source = (FileSource) obj;
+		return file.equals(source.file);
+	}
+
+	@Override
+	public int hashCode() {
+		return file.hashCode();
 	}
 
 }

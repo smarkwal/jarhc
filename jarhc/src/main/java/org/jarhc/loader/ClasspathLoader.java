@@ -18,10 +18,13 @@ package org.jarhc.loader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import org.jarhc.app.FileSource;
@@ -66,12 +69,15 @@ public class ClasspathLoader {
 	 *
 	 * @param sources List of JAR files.
 	 * @return Classpath
-	 * @throws IllegalArgumentException If <code>files</code> is <code>null</code>.
+	 * @throws IllegalArgumentException If <code>sources</code> is <code>null</code>.
 	 */
 	public Classpath load(List<JarSource> sources) {
 		if (sources == null) throw new IllegalArgumentException("files");
 
 		long totalTime = System.nanoTime();
+
+		// eliminate duplicate sources
+		sources = removeDuplicates(sources);
 
 		// temporary map to remember input file -> JAR file relation
 		Map<JarSource, List<JarFile>> filesMap = new ConcurrentHashMap<>();
@@ -116,6 +122,16 @@ public class ClasspathLoader {
 		}
 
 		return new Classpath(jarFiles, parentClassLoader, strategy);
+	}
+
+	private List<JarSource> removeDuplicates(List<JarSource> sources) {
+		Set<JarSource> set = new LinkedHashSet<>();
+		for (JarSource source : sources) {
+			if (!set.add(source)) {
+				logger.warn("Duplicate ignored: {}", source);
+			}
+		}
+		return new ArrayList<>(set);
 	}
 
 }
