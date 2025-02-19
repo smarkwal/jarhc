@@ -873,30 +873,30 @@ jakarta.activation-api            | jakarta.activation:jakarta.activation-api:2.
 jakarta.annotation-api            | jakarta.annotation:jakarta.annotation-api:2.1.1                       | [none]                                                                 |
 jakarta.authentication-api        | jakarta.authentication:jakarta.authentication-api:3.0.0               | [none]                                                                 |
 jakarta.authorization-api         | jakarta.authorization:jakarta.authorization-api:2.1.0                 | jakarta.servlet:jakarta.servlet-api:6.0.0                              | OK
-jakarta.batch-api                 | jakarta.batch:jakarta.batch-api:2.1.1                                 | jakarta.inject:jakarta.inject-api:2.0.1 (provided)                     | OK
-                                  |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
+jakarta.batch-api                 | jakarta.batch:jakarta.batch-api:2.1.1                                 | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
+                                  |                                                                       | jakarta.inject:jakarta.inject-api:2.0.1 (provided)                     | OK
 jakarta.ejb-api                   | jakarta.ejb:jakarta.ejb-api:4.0.1                                     | jakarta.transaction:jakarta.transaction-api:2.0.0                      | OK
 jakarta.el-api                    | jakarta.el:jakarta.el-api:5.0.1                                       | [none]                                                                 |
-jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
-                                  |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1 (provided)         | OK
+jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1 (provided)         | OK
+                                  |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
 jakarta.enterprise.cdi-api        | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   | jakarta.enterprise:jakarta.enterprise.lang-model:4.0.1                 | Unsatisfied
                                   |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.0                        | OK (version 2.1.1)
                                   |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK (version 5.0.1)
-                                  |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0                      | OK
                                   |                                                                       | jakarta.inject:jakarta.inject-api:2.0.1                                | OK
-jakarta.faces-api                 | jakarta.faces:jakarta.faces-api:4.0.1                                 | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
-                                  |                                                                       | jakarta.websocket:jakarta.websocket-api:2.1.0 (provided)               | OK
-                                  |                                                                       | jakarta.websocket:jakarta.websocket-client-api:2.1.0 (provided)        | OK
+                                  |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0                      | OK
+jakarta.faces-api                 | jakarta.faces:jakarta.faces-api:4.0.1                                 | jakarta.annotation:jakarta.annotation-api:2.1.0 (provided)             | OK (version 2.1.1)
+                                  |                                                                       | jakarta.ejb:jakarta.ejb-api:4.0.1 (provided, optional)                 | OK
                                   |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK (version 5.0.1)
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1 (provided)         | OK
-                                  |                                                                       | jakarta.validation:jakarta.validation-api:3.0.2 (provided)             | OK (version 3.0.0)
-                                  |                                                                       | jakarta.transaction:jakarta.transaction-api:2.0.1 (provided, optional) | OK (version 2.0.0)
                                   |                                                                       | jakarta.json:jakarta.json-api:2.1.0 (provided, optional)               | OK (version 2.1.3)
-                                  |                                                                       | jakarta.ejb:jakarta.ejb-api:4.0.1 (provided, optional)                 | OK
                                   |                                                                       | jakarta.persistence:jakarta.persistence-api:3.1.0 (provided, optional) | OK
-                                  |                                                                       | jakarta.xml.ws:jakarta.xml.ws-api:4.0.0 (provided, optional)           | OK (version 4.0.2)
-                                  |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.0 (provided)             | OK (version 2.1.1)
+                                  |                                                                       | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
+                                  |                                                                       | jakarta.transaction:jakarta.transaction-api:2.0.1 (provided, optional) | OK (version 2.0.0)
+                                  |                                                                       | jakarta.validation:jakarta.validation-api:3.0.2 (provided)             | OK (version 3.0.0)
+                                  |                                                                       | jakarta.websocket:jakarta.websocket-api:2.1.0 (provided)               | OK
+                                  |                                                                       | jakarta.websocket:jakarta.websocket-client-api:2.1.0 (provided)        | OK
                                   |                                                                       | jakarta.xml.bind:jakarta.xml.bind-api:4.0.0 (provided, optional)       | OK (version 4.0.2)
+                                  |                                                                       | jakarta.xml.ws:jakarta.xml.ws-api:4.0.0 (provided, optional)           | OK (version 4.0.2)
                                   |                                                                       | org.glassfish:jakarta.faces:4.0.0 (provided, optional)                 | Unsatisfied
 jakarta.inject-api                | jakarta.inject:jakarta.inject-api:2.0.1                               | [none]                                                                 |
 jakarta.interceptor-api           | jakarta.interceptor:jakarta.interceptor-api:2.1.0                     | jakarta.annotation:jakarta.annotation-api:2.1.0                        | OK (version 2.1.1)
@@ -905,21 +905,21 @@ jakarta.json.bind-api             | jakarta.json.bind:jakarta.json.bind-api:3.0.
 jakarta.json-api                  | jakarta.json:jakarta.json-api:2.1.3                                   | [none]                                                                 |
 jakarta.jws-api                   | jakarta.jws:jakarta.jws-api:3.0.0                                     | [none]                                                                 |
 jakarta.mail-api                  | jakarta.mail:jakarta.mail-api:2.1.3                                   | jakarta.activation:jakarta.activation-api:2.1.3                        | OK
-jakarta.mvc-api                   | jakarta.mvc:jakarta.mvc-api:2.1.0                                     | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0 (provided)                       | OK
+jakarta.mvc-api                   | jakarta.mvc:jakarta.mvc-api:2.1.0                                     | jakarta.annotation:jakarta.annotation-api:2.1.1 (provided)             | OK
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
                                   |                                                                       | jakarta.validation:jakarta.validation-api:3.0.2 (provided)             | OK (version 3.0.0)
-                                  |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.1 (provided)             | OK
+                                  |                                                                       | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0 (provided)                       | OK
 jakarta.persistence-api           | jakarta.persistence:jakarta.persistence-api:3.1.0                     | [none]                                                                 |
-jakarta.resource-api              | jakarta.resource:jakarta.resource-api:2.1.0                           | jakarta.transaction:jakarta.transaction-api:2.0.1                      | OK (version 2.0.0)
-                                  |                                                                       | jakarta.annotation:jakarta.annotation-api:2.1.0                        | OK (version 2.1.1)
+jakarta.resource-api              | jakarta.resource:jakarta.resource-api:2.1.0                           | jakarta.annotation:jakarta.annotation-api:2.1.0                        | OK (version 2.1.1)
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1 (provided)         | OK (version 4.0.1)
-jakarta.security.enterprise-api   | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
-                                  |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
+                                  |                                                                       | jakarta.transaction:jakarta.transaction-api:2.0.1                      | OK (version 2.0.0)
+jakarta.security.enterprise-api   | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     | jakarta.authentication:jakarta.authentication-api:3.0.0 (provided)     | OK
+                                  |                                                                       | jakarta.authorization:jakarta.authorization-api:2.1.0 (provided)       | OK
                                   |                                                                       | jakarta.el:jakarta.el-api:5.0.0 (provided)                             | OK (version 5.0.1)
                                   |                                                                       | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0 (provided)         | OK (version 4.0.1)
-                                  |                                                                       | jakarta.authentication:jakarta.authentication-api:3.0.0 (provided)     | OK
-                                  |                                                                       | jakarta.authorization:jakarta.authorization-api:2.1.0 (provided)       | OK
+                                  |                                                                       | jakarta.interceptor:jakarta.interceptor-api:2.1.0 (provided)           | OK
                                   |                                                                       | jakarta.json:jakarta.json-api:2.1.0                                    | OK (version 2.1.3)
+                                  |                                                                       | jakarta.servlet:jakarta.servlet-api:6.0.0 (provided)                   | OK
 jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2           | jakarta.servlet:jakarta.servlet-api:6.0.0                              | OK
                                   |                                                                       | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0 (provided)           | OK
                                   |                                                                       | jakarta.el:jakarta.el-api:5.0.0                                        | OK (version 5.0.1)
@@ -931,8 +931,8 @@ jakarta.transaction-api           | jakarta.transaction:jakarta.transaction-api:
 jakarta.validation-api            | jakarta.validation:jakarta.validation-api:3.0.0                       | [none]                                                                 |
 jakarta.websocket-api             | jakarta.websocket:jakarta.websocket-api:2.1.0                         | jakarta.websocket:jakarta.websocket-client-api:2.1.0 (provided)        | OK
 jakarta.websocket-client-api      | jakarta.websocket:jakarta.websocket-client-api:2.1.0                  | [none]                                                                 |
-jakarta.ws.rs-api                 | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0                                 | jakarta.xml.bind:jakarta.xml.bind-api:3.0.1 (provided, optional)       | OK (version 4.0.2)
-                                  |                                                                       | jakarta.activation:jakarta.activation-api:2.0.1 (provided)             | OK (version 2.1.3)
+jakarta.ws.rs-api                 | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0                                 | jakarta.activation:jakarta.activation-api:2.0.1 (provided)             | OK (version 2.1.3)
+                                  |                                                                       | jakarta.xml.bind:jakarta.xml.bind-api:3.0.1 (provided, optional)       | OK (version 4.0.2)
 jakarta.xml.bind-api              | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                           | jakarta.activation:jakarta.activation-api:2.1.3                        | OK
 jakarta.xml.soap-api              | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                           | jakarta.activation:jakarta.activation-api:2.1.3                        | OK
 jakarta.xml.ws-api                | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2                               | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                            | OK

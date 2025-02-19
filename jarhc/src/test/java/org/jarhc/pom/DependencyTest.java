@@ -36,7 +36,8 @@ class DependencyTest {
 		assertEquals(Scope.TEST, dependency.getScope());
 		assertFalse(dependency.isOptional());
 
-		assertEquals("[[junit:junit:4.12]] (test)", dependency.toString());
+		assertEquals("junit:junit:4.12 (test)", dependency.toString());
+		assertEquals("[[junit:junit:4.12]] (test)", dependency.toMarkdown());
 
 	}
 
@@ -51,7 +52,8 @@ class DependencyTest {
 		assertEquals(Scope.COMPILE, dependency.getScope());
 		assertTrue(dependency.isOptional());
 
-		assertEquals("[[org.ow2.asm:asm:7.1]] (optional)", dependency.toString());
+		assertEquals("org.ow2.asm:asm:7.1 (optional)", dependency.toString());
+		assertEquals("[[org.ow2.asm:asm:7.1]] (optional)", dependency.toMarkdown());
 
 	}
 
@@ -68,7 +70,8 @@ class DependencyTest {
 		assertEquals(Scope.PROVIDED, dependency.getScope());
 		assertTrue(dependency.isOptional());
 
-		assertEquals("[[javax.servlet:javax.servlet-api:3.1.0]] (provided, optional)", dependency.toString());
+		assertEquals("javax.servlet:javax.servlet-api:3.1.0 (provided, optional)", dependency.toString());
+		assertEquals("[[javax.servlet:javax.servlet-api:3.1.0]] (provided, optional)", dependency.toMarkdown());
 
 	}
 

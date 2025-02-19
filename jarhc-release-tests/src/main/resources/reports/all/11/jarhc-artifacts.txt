@@ -7,7 +7,7 @@ List of JAR files found in classpath.
 
 Artifact                       | Version   | Source                                                          | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 -------------------------------+-----------+-----------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------
-jarhc                          | [unknown] | jarhc.jar                                                       | 283 KB  | 148     | 9         | **************************************** | [unknown]
+jarhc                          | [unknown] | jarhc.jar                                                       | 285 KB  | 149     | 9         | **************************************** | [unknown]
 asm                            | 9.7.1     | org.ow2.asm:asm:9.7.1                                           | 123 KB  | 38      | 0         | f0ed132a49244b042cd0e15702ab9f2ce3cc8436 | org.ow2.asm:asm:9.7.1
 commons-codec                  | 1.17.1    | commons-codec:commons-codec:1.17.1                              | 364 KB  | 107     | 128       | 973638b7149d333563584137ebf13a691bb60579 | commons-codec:commons-codec:1.17.1
 httpclient                     | 4.5.14    | org.apache.httpcomponents:httpclient:4.5.14                     | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
@@ -33,7 +33,7 @@ maven-resolver-util            | 1.9.22    | org.apache.maven.resolver:maven-res
 plexus-interpolation           | 1.27      | org.codehaus.plexus:plexus-interpolation:1.27                   | 83.9 KB | 62      | 0         | 8dc73f4ff5eafcbb7ec035ba54736e828b272533 | org.codehaus.plexus:plexus-interpolation:1.27
 plexus-utils                   | 3.5.1     | org.codehaus.plexus:plexus-utils:3.5.1                          | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
 slf4j-api                      | 2.0.16    | org.slf4j:slf4j-api:2.0.16                                      | 67.8 KB | 55      | 0         | 0172931663a09a1fa515567af5fbef00897d3c04 | org.slf4j:slf4j-api:2.0.16
-Classpath                      | -         | -                                                               | 3.75 MB | 2108    | 144       | -                                        | -
+Classpath                      | -         | -                                                               | 3.75 MB | 2109    | 144       | -                                        | -
 
 JAR Manifests
 -------------
@@ -639,7 +639,7 @@ Java class file format information.
 
 Artifact                       | Multi-release                  | Class files by Java version
 -------------------------------+--------------------------------+---------------------------------------------------------
-jarhc                          | No                             | Java 11 (148)
+jarhc                          | No                             | Java 11 (149)
 asm                            | No                             | Java 5 (38)
 commons-codec                  | Yes (Java 9)                   | Java 8 (107)
 httpclient                     | No                             | Java 6 (470)
@@ -665,7 +665,7 @@ maven-resolver-util            | No                             | Java 8 (116)
 plexus-interpolation           | No                             | Java 8 (62)
 plexus-utils                   | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
 slf4j-api                      | Yes (Java 9)                   | Java 8 (55)
-Classpath                      | -                              | Java 11 (149), Java 10 (1), Java 8 (1197), Java 6 (723),
+Classpath                      | -                              | Java 11 (150), Java 10 (1), Java 8 (1197), Java 6 (723),
                                |                                | Java 5 (38)
 
 JAR Dependencies
@@ -790,19 +790,19 @@ jarhc                          | [unknown]                                      
 asm                            | org.ow2.asm:asm:9.7.1                                           | [none]                                                                 |
 commons-codec                  | commons-codec:commons-codec:1.17.1                              | [none]                                                                 |
 httpclient                     | org.apache.httpcomponents:httpclient:4.5.14                     | org.apache.httpcomponents:httpcore:4.4.16                              | OK
-                               |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
                                |                                                                 | commons-codec:commons-codec:1.11                                       | OK (version 1.17.1)
+                               |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
 httpcore                       | org.apache.httpcomponents:httpcore:4.4.16                       | [none]                                                                 |
 jcl-over-slf4j                 | org.slf4j:jcl-over-slf4j:2.0.16                                 | org.slf4j:slf4j-api:2.0.16                                             | OK
 json                           | org.json:json:20250107                                          | [none]                                                                 |
 jul-to-slf4j                   | org.slf4j:jul-to-slf4j:2.0.16                                   | org.slf4j:slf4j-api:2.0.16                                             | OK
 maven-artifact                 | org.apache.maven:maven-artifact:3.9.8                           | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
 maven-builder-support          | org.apache.maven:maven-builder-support:3.9.8                    | [none]                                                                 |
-maven-model-builder            | org.apache.maven:maven-model-builder:3.9.8                      | org.codehaus.plexus:plexus-interpolation:1.27                          | OK
-                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
-                               |                                                                 | org.apache.maven:maven-model:3.9.8                                     | OK
+maven-model-builder            | org.apache.maven:maven-model-builder:3.9.8                      | org.apache.maven:maven-model:3.9.8                                     | OK
                                |                                                                 | org.apache.maven:maven-artifact:3.9.8                                  | OK
                                |                                                                 | org.apache.maven:maven-builder-support:3.9.8                           | OK
+                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
+                               |                                                                 | org.codehaus.plexus:plexus-interpolation:1.27                          | OK
                                |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3                      | Unsatisfied
 maven-model                    | org.apache.maven:maven-model:3.9.8                              | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
 maven-repository-metadata      | org.apache.maven:maven-repository-metadata:3.9.8                | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
@@ -813,38 +813,38 @@ maven-resolver-connector-basic | org.apache.maven.resolver:maven-resolver-connec
                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
 maven-resolver-impl            | org.apache.maven.resolver:maven-resolver-impl:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               |                                                                 | com.google.inject:guice:6.0.0 (provided, optional)                     | Unsatisfied
                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
                                |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2 (provided, optional) | Unsatisfied
-                               |                                                                 | com.google.inject:guice:6.0.0 (provided, optional)                     | Unsatisfied
                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-named-locks     | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22     | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-maven-resolver-provider        | org.apache.maven:maven-resolver-provider:3.9.8                  | org.apache.maven:maven-model:3.9.8                                     | OK
+maven-resolver-named-locks     | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22     | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-provider        | org.apache.maven:maven-resolver-provider:3.9.8                  | org.apache.maven:maven-repository-metadata:3.9.8                       | OK
+                               |                                                                 | org.apache.maven:maven-model:3.9.8                                     | OK
                                |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
-                               |                                                                 | org.apache.maven:maven-repository-metadata:3.9.8                       | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.20                    | OK (version 1.9.22)
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.20                   | OK (version 1.9.22)
                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.20                    | OK (version 1.9.22)
                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.20                   | OK (version 1.9.22)
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.20                   | OK (version 1.9.22)
-                               |                                                                 | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
-                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
-                               |                                                                 | com.google.inject:guice:5.1.0 (optional)                               | Unsatisfied
-                               |                                                                 | com.google.guava:guava:33.2.1-jre (optional)                           | Unsatisfied
                                |                                                                 | com.google.guava:failureaccess:1.0.2 (optional)                        | Unsatisfied
+                               |                                                                 | com.google.guava:guava:33.2.1-jre (optional)                           | Unsatisfied
+                               |                                                                 | com.google.inject:guice:5.1.0 (optional)                               | Unsatisfied
+                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
+                               |                                                                 | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
 maven-resolver-spi             | org.apache.maven.resolver:maven-resolver-spi:1.9.22             | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-supplier:1.9.22        | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.22                   | OK
+maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-supplier:1.9.22        | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22        | OK
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.22                   | OK
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22         | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22         | OK
-                               |                                                                 | org.apache.maven:maven-resolver-provider:3.9.8                         | OK
+                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
                                |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
+                               |                                                                 | org.apache.maven:maven-resolver-provider:3.9.8                         | OK
                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
 maven-resolver-transport-file  | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
@@ -853,11 +853,11 @@ maven-resolver-transport-file  | org.apache.maven.resolver:maven-resolver-transp
 maven-resolver-transport-http  | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               |                                                                 | commons-codec:commons-codec:1.17.1 (runtime)                           | OK
+                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
                                |                                                                 | org.apache.httpcomponents:httpclient:4.5.14                            | OK
                                |                                                                 | org.apache.httpcomponents:httpcore:4.4.16                              | OK
-                               |                                                                 | commons-codec:commons-codec:1.17.1 (runtime)                           | OK
                                |                                                                 | org.slf4j:jcl-over-slf4j:1.7.36 (runtime)                              | OK (version 2.0.16)
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
 maven-resolver-util            | org.apache.maven.resolver:maven-resolver-util:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
 plexus-interpolation           | org.codehaus.plexus:plexus-interpolation:1.27                   | [none]                                                                 |

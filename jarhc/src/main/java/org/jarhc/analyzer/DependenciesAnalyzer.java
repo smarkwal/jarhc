@@ -28,6 +28,7 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
+import org.jarhc.pom.SmartDependencyComparator;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.utils.Markdown;
@@ -96,8 +97,10 @@ public class DependenciesAnalyzer implements Analyzer {
 				// show special value "none"
 				dependenciesInfo = Markdown.NONE;
 			} else {
+				// sort dependencies, prefer dependencies with same or similar group or artifact ID
+				dependencies.sort(new SmartDependencyComparator(artifact));
 				List<String> lines = dependencies.stream()
-						.map(Dependency::toString)
+						.map(Dependency::toMarkdown)
 						.collect(Collectors.toList());
 				dependenciesInfo = StringUtils.joinLines(lines);
 			}

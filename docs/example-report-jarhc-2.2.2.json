@@ -1016,7 +1016,7 @@
                [
                   "jarhc",
                   "[[org.jarhc:jarhc:2.2.2]]",
-                  "[[org.slf4j:slf4j-api:2.0.16]]\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)",
+                  "[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:slf4j-api:2.0.16]]",
                   "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
                ],
                [
@@ -1040,8 +1040,8 @@
                [
                   "aether-impl",
                   "[[org.eclipse.aether:aether-impl:1.1.0]]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional)\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional)",
-                  "OK\nOK\nOK\nUnsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 2.0.16)"
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional)\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional)",
+                  "OK\nOK\nOK\nUnsatisfied\nUnsatisfied\nOK (version 2.0.16)\nUnsatisfied"
                ],
                [
                   "aether-api",
@@ -1076,14 +1076,14 @@
                [
                   "aether-transport-http",
                   "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[org.apache.httpcomponents:httpclient:4.3.5]]\n[[org.slf4j:jcl-over-slf4j:1.6.2]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
-                  "OK\nOK\nOK\nOK (version 4.5.14)\nOK (version 2.0.16)\nUnsatisfied"
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.apache.httpcomponents:httpclient:4.3.5]]\n[[org.slf4j:jcl-over-slf4j:1.6.2]]",
+                  "OK\nOK\nOK\nUnsatisfied\nOK (version 4.5.14)\nOK (version 2.0.16)"
                ],
                [
                   "maven-aether-provider",
                   "[[org.apache.maven:maven-aether-provider:3.3.9]]",
-                  "[[org.apache.maven:maven-model:3.3.9]]\n[[org.apache.maven:maven-model-builder:3.3.9]]\n[[org.apache.maven:maven-repository-metadata:3.3.9]]\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]]\n[[org.codehaus.plexus:plexus-utils:3.0.22]]\n[[com.google.inject:guice:4.0]] (optional)\n[[org.apache.commons:commons-lang3:3.4]]",
-                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nUnsatisfied\nOK (version 3.5.1)\nUnsatisfied\nUnsatisfied"
+                  "[[org.apache.maven:maven-model:3.3.9]]\n[[org.apache.maven:maven-model-builder:3.3.9]]\n[[org.apache.maven:maven-repository-metadata:3.3.9]]\n[[com.google.inject:guice:4.0]] (optional)\n[[org.apache.commons:commons-lang3:3.4]]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]]\n[[org.codehaus.plexus:plexus-utils:3.0.22]]\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]]",
+                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 3.5.1)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)"
                ],
                [
                   "jul-to-slf4j",
@@ -1100,14 +1100,14 @@
                [
                   "guava",
                   "[[com.google.guava:guava:33.3.0-jre]]",
-                  "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[org.checkerframework:checker-qual:3.43.0]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]",
+                  "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]\n[[org.checkerframework:checker-qual:3.43.0]]",
                   "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
                ],
                [
                   "httpclient",
                   "[[org.apache.httpcomponents:httpclient:4.5.14]]",
-                  "[[org.apache.httpcomponents:httpcore:4.4.16]]\n[[commons-logging:commons-logging:1.2]]\n[[commons-codec:commons-codec:1.11]]",
-                  "Unsatisfied\nUnsatisfied\nOK (version 1.17.1)"
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]]\n[[commons-codec:commons-codec:1.11]]\n[[commons-logging:commons-logging:1.2]]",
+                  "Unsatisfied\nOK (version 1.17.1)\nUnsatisfied"
                ],
                [
                   "plexus-utils",
@@ -1340,5 +1340,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1739910831776
+   "timestamp": 1740002464198
 }

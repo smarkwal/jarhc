@@ -92,7 +92,7 @@ public class Artifact {
 	}
 
 	public String toCoordinates() {
-		return String.format("%s:%s:%s", groupId, artifactId, version);
+		return String.format("%s:%s:%s", groupId, artifactId, version); // TODO: append type if it is not "jar"?
 	}
 
 	public String toLink() {

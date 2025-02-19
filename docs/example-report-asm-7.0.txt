@@ -132,9 +132,9 @@ Artifact     | Maven coordinates            | Direct dependencies          | Sta
 -------------+------------------------------+------------------------------+-------
 asm          | org.ow2.asm:asm:7.0          | [none]                       |
 asm-analysis | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
-asm-commons  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm:7.0          | OK
+asm-commons  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm-analysis:7.0 | OK
              |                              | org.ow2.asm:asm-tree:7.0     | OK
-             |                              | org.ow2.asm:asm-analysis:7.0 | OK
+             |                              | org.ow2.asm:asm:7.0          | OK
 asm-tree     | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
 
 Packages

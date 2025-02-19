@@ -229,16 +229,16 @@ Dependencies as declared in POM file.
 Artifact           | Maven coordinates                                              | Direct dependencies                                        | Status
 -------------------+----------------------------------------------------------------+------------------------------------------------------------+-------------------------------
 jetty-continuation | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813          | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
-jetty-http         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
-                   |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+jetty-http         | org.eclipse.jetty:jetty-http:9.4.20.v20190813                  | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+                   |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
                    |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
 jetty-io           | org.eclipse.jetty:jetty-io:9.4.20.v20190813                    | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
 jetty-servlets     | org.eclipse.jetty:jetty-servlets:9.4.20.v20190813              | org.eclipse.jetty:jetty-continuation:9.4.20.v20190813      | OK
                    |                                                                | org.eclipse.jetty:jetty-http:9.4.20.v20190813              | OK
-                   |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) | Unsatisfied
-                   |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
-                   |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
                    |                                                                | org.eclipse.jetty:jetty-io:9.4.20.v20190813                | OK
+                   |                                                                | org.eclipse.jetty:jetty-util:9.4.20.v20190813              | OK
+                   |                                                                | org.eclipse.jetty:jetty-webapp:9.4.20.v20190813 (provided) | Unsatisfied
+                   |                                                                | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
 jetty-util         | org.eclipse.jetty:jetty-util:9.4.20.v20190813                  | javax.servlet:javax.servlet-api:3.1.0 (provided)           | OK [Provided]
                    |                                                                | org.slf4j:slf4j-api:1.7.25 (provided, optional)            | OK (version 1.7.28) [Provided]
 websocket-api      | org.eclipse.jetty.websocket:websocket-api:9.4.20.v20190813     | [none]                                                     |

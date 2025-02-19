@@ -17,8 +17,9 @@
 package org.jarhc.pom;
 
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactVersion;
 
-public class Dependency {
+public class Dependency implements Comparable<Dependency> {
 
 	private final String groupId;
 	private final String artifactId;
@@ -73,6 +74,33 @@ public class Dependency {
 	}
 
 	@Override
+	public int compareTo(Dependency dependency) {
+
+		// priority 1: sort by group ID
+		int diff = groupId.compareTo(dependency.groupId);
+		if (diff != 0) return diff;
+
+		// priority 2: sort by artifact ID
+		diff = artifactId.compareTo(dependency.artifactId);
+		if (diff != 0) return diff;
+
+		// priority 3: sort by version (semantic)
+		if (!version.equals(dependency.version)) { // quick check to avoid expensive version comparison
+			ArtifactVersion version1 = new ArtifactVersion(version);
+			ArtifactVersion version2 = new ArtifactVersion(dependency.version);
+			diff = version1.compareTo(version2);
+			if (diff != 0) return diff;
+		}
+
+		// priority 4: sort by scope
+		diff = scope.compareTo(dependency.scope);
+		if (diff != 0) return diff;
+
+		// priority 5: sort by optional
+		return Boolean.compare(optional, dependency.optional);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
 		if (obj == null || getClass() != obj.getClass()) return false;
@@ -98,11 +126,23 @@ public class Dependency {
 		return new Artifact(groupId, artifactId, version, "jar");
 	}
 
+	public String toMarkdown() {
+		return toString(true);
+	}
+
 	@Override
 	public String toString() {
+		return toString(false);
+	}
+
+	private String toString(boolean markdown) {
 		StringBuilder buffer = new StringBuilder();
 		Artifact artifact = toArtifact();
-		buffer.append(artifact.toLink());
+		if (markdown) {
+			buffer.append(artifact.toLink());
+		} else {
+			buffer.append(artifact.toCoordinates());
+		}
 		if (scope != Scope.COMPILE || optional) {
 			buffer.append(" (");
 			if (scope != Scope.COMPILE) {

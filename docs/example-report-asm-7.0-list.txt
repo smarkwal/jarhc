@@ -388,9 +388,9 @@ Artifact: asm-commons
 	Maven coordinates:
 		org.ow2.asm:asm-commons:7.0
 	Direct dependencies:
-		org.ow2.asm:asm:7.0
-		org.ow2.asm:asm-tree:7.0
 		org.ow2.asm:asm-analysis:7.0
+		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm:7.0
 	Status:
 		OK
 		OK
