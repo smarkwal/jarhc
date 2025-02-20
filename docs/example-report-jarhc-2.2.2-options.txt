@@ -1,8 +1,8 @@
 --title JarHC 2.2.2
 --ignore-missing-annotations
---output docs/example-report-jarhc-2.2.2.html
---output docs/example-report-jarhc-2.2.2.txt
---output docs/example-report-jarhc-2.2.2.json
+--output example-report-jarhc-2.2.2.html
+--output example-report-jarhc-2.2.2.txt
+--output example-report-jarhc-2.2.2.json
 org.jarhc:jarhc:2.2.2
 org.slf4j:slf4j-api:2.0.16
 org.ow2.asm:asm:9.7

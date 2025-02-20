@@ -1,29 +1,31 @@
 #!/bin/bash
 
+# JarHC version
 version=3.0.0-SNAPSHOT
+jarhc=../jarhc/build/libs/jarhc-${version}-app.jar
 
-export JDK_JAVA_OPTIONS="-Duser.language=en -Duser.country=US -Duser.timezone=UTC -Dfile.encoding=UTF-8"
+# load environment variables
+set -o allexport
+source ../.env
+set +o allexport
 
-cd ..
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-asm-7.0-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-asm-commons-7.0-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-asm-7.0-provided-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-jakarta-ee-8-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-jakarta-ee-9-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-jakarta-ee-10-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-jarhc-1.7-options.txt
-java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-jarhc-2.2.2-options.txt
+java -jar ${jarhc} --options example-report-asm-7.0-options.txt
+java -jar ${jarhc} --options example-report-asm-commons-7.0-options.txt
+java -jar ${jarhc} --options example-report-asm-7.0-provided-options.txt
+java -jar ${jarhc} --options example-report-jakarta-ee-8-options.txt
+java -jar ${jarhc} --options example-report-jakarta-ee-9-options.txt
+java -jar ${jarhc} --options example-report-jakarta-ee-10-options.txt
+java -jar ${jarhc} --options example-report-jarhc-1.7-options.txt
+java -jar ${jarhc} --options example-report-jarhc-2.2.2-options.txt
 
-java -jar jarhc/build/libs/jarhc-${version}-app.jar         \
-     --diff                                                 \
-     --input1 docs/example-report-jarhc-1.7.json            \
-     --input2 docs/example-report-jarhc-2.2.2.json          \
-     --output docs/example-report-jarhc-diff-1.7-2.2.2.html \
+java -jar ${jarhc} --diff                              \
+     --input1 example-report-jarhc-1.7.json            \
+     --input2 example-report-jarhc-2.2.2.json          \
+     --output example-report-jarhc-diff-1.7-2.2.2.html \
      --title "JarHC 1.7 and 2.2.2"
 
-java -jar jarhc/build/libs/jarhc-${version}-app.jar         \
-     --diff                                                 \
-     --input1 docs/example-report-jakarta-ee-9.json         \
-     --input2 docs/example-report-jakarta-ee-10.json        \
-     --output docs/example-report-jakarta-ee-diff-9-10.html \
+java -jar ${jarhc} --diff                              \
+     --input1 example-report-jakarta-ee-9.json         \
+     --input2 example-report-jakarta-ee-10.json        \
+     --output example-report-jakarta-ee-diff-9-10.html \
      --title "Jakarta EE 9 and 10"

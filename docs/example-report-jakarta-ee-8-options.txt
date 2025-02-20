@@ -1,7 +1,7 @@
 --title Jakarta EE 8
---output docs/example-report-jakarta-ee-8.html
---output docs/example-report-jakarta-ee-8.txt
---output docs/example-report-jakarta-ee-8.json
+--output example-report-jakarta-ee-8.html
+--output example-report-jakarta-ee-8.txt
+--output example-report-jakarta-ee-8.json
 jakarta.activation:jakarta.activation-api:1.2.2
 jakarta.annotation:jakarta.annotation-api:1.3.5
 jakarta.authorization:jakarta.authorization-api:1.5.0

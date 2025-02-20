@@ -1,9 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Main (Help)" type="Application" factoryName="Application" folderName="App">
+    <option name="envFilePaths">
+      <option value="$PROJECT_DIR$/.env" />
+    </option>
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
     <option name="PROGRAM_PARAMETERS" value="--help" />
-    <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G -Duser.language=en -Duser.country=US -Duser.timezone=UTC -Dfile.encoding=UTF-8" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

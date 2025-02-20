@@ -1,7 +1,7 @@
 --title Jakarta EE 10
---output docs/example-report-jakarta-ee-10.html
---output docs/example-report-jakarta-ee-10.txt
---output docs/example-report-jakarta-ee-10.json
+--output example-report-jakarta-ee-10.html
+--output example-report-jakarta-ee-10.txt
+--output example-report-jakarta-ee-10.json
 jakarta.activation:jakarta.activation-api:2.1.3
 jakarta.annotation:jakarta.annotation-api:2.1.1
 jakarta.authentication:jakarta.authentication-api:3.0.0
