@@ -46,7 +46,6 @@ public class Options implements MavenRepository.Settings {
 	private String repositoryUsername = null;
 	private String repositoryPassword = null;
 	private boolean skipEmpty = false;
-	private boolean sortRows = false;
 	private String dataPath = null;
 
 	// diff options
@@ -180,14 +179,6 @@ public class Options implements MavenRepository.Settings {
 
 	public void setSkipEmpty(boolean skipEmpty) {
 		this.skipEmpty = skipEmpty;
-	}
-
-	public boolean isSortRows() {
-		return sortRows;
-	}
-
-	public void setSortRows(boolean sortRows) {
-		this.sortRows = sortRows;
 	}
 
 	public String getReportTitle() {

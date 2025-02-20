@@ -14,15 +14,15 @@ jakarta.authorization-api         | 1.5.0   | jakarta.authorization:jakarta.auth
 jakarta.batch-api                 | 1.0.2   | jakarta.batch:jakarta.batch-api:1.0.2                                 | 38.9 KB | 60      | 0         | 254bd3be5c68b45f488d3bac47291ae3ac09eaa4 | jakarta.batch:jakarta.batch-api:1.0.2
 jakarta.ejb-api                   | 3.2.6   | jakarta.ejb:jakarta.ejb-api:3.2.6                                     | 62.2 KB | 87      | 3         | 3c52a831bfe8118a27ed393234f1d1d3baa50a7c | jakarta.ejb:jakarta.ejb-api:3.2.6
 jakarta.el-api                    | 3.0.3   | jakarta.el:jakarta.el-api:3.0.3                                       | 77.9 KB | 49      | 1         | f311ab94bb1d4380690a53d737226a6b879dd4f1 | jakarta.el:jakarta.el-api:3.0.3
+jakarta.enterprise.cdi-api        | 2.0.2   | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2                   | 107 KB  | 148     | 3         | 58f497f362cd19c2f8842d75c491d270f0600e7f | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2
 jakarta.enterprise.concurrent-api | 1.1.2   | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2 | 25.8 KB | 15      | 0         | 7a218c255aebb81b526e3a3e580f6f30aff4bc9c | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2
 jakarta.enterprise.deploy-api     | 1.7.2   | jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2         | 32.2 KB | 33      | 8         | adb36570b632ec6317e22e945a7e51326c7b828d | jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2
-jakarta.enterprise.cdi-api        | 2.0.2   | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2                   | 107 KB  | 148     | 3         | 58f497f362cd19c2f8842d75c491d270f0600e7f | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2
 jakarta.faces-api                 | 2.3.2   | jakarta.faces:jakarta.faces-api:2.3.2                                 | 748 KB  | 522     | 21        | bdaa44a4caaa9e14d5b466888f617306f6472f3a | jakarta.faces:jakarta.faces-api:2.3.2
 jakarta.inject-api                | 1.0     | jakarta.inject:jakarta.inject-api:1.0                                 | 4.55 KB | 6       | 0         | 93164437046e06b4876e069b8e7a321a02f10a2d | jakarta.inject:jakarta.inject-api:1.0
 jakarta.interceptor-api           | 1.2.5   | jakarta.interceptor:jakarta.interceptor-api:1.2.5                     | 24.4 KB | 10      | 1         | 20cbde692c555692ca835fb6ecb4a8c95acbe6e0 | jakarta.interceptor:jakarta.interceptor-api:1.2.5
 jakarta.jms-api                   | 2.0.3   | jakarta.jms:jakarta.jms-api:2.0.3                                     | 55.9 KB | 81      | 0         | c3267a1a8129ba26e1093e7b51ae296891c5fa17 | jakarta.jms:jakarta.jms-api:2.0.3
-jakarta.json.bind-api             | 1.0.2   | jakarta.json.bind:jakarta.json.bind-api:1.0.2                         | 34.5 KB | 26      | 0         | a0f7cf034442d1fd195ca78cf3d6633140d5928f | jakarta.json.bind:jakarta.json.bind-api:1.0.2
 jakarta.json-api                  | 1.1.6   | jakarta.json:jakarta.json-api:1.1.6                                   | 42.3 KB | 34      | 0         | 3b1f26306abd9d2b1847cf62ee491d0d1b942c7f | jakarta.json:jakarta.json-api:1.1.6
+jakarta.json.bind-api             | 1.0.2   | jakarta.json.bind:jakarta.json.bind-api:1.0.2                         | 34.5 KB | 26      | 0         | a0f7cf034442d1fd195ca78cf3d6633140d5928f | jakarta.json.bind:jakarta.json.bind-api:1.0.2
 jakarta.jws-api                   | 2.1.0   | jakarta.jws:jakarta.jws-api:2.1.0                                     | 15.2 KB | 14      | 1         | 7d283ef13e49c1422701e30639371edca788c609 | jakarta.jws:jakarta.jws-api:2.1.0
 jakarta.mail-api                  | 1.6.4   | jakarta.mail:jakarta.mail-api:1.6.4                                   | 212 KB  | 140     | 0         | 1ce0c37301d50810028a27f0b12e956cce1f0c19 | jakarta.mail:jakarta.mail-api:1.6.4
 jakarta.management.j2ee-api       | 1.1.4   | jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4             | 19.0 KB | 33      | 2         | dbbe7575f97efd0b04f3a8455cf82c256c853055 | jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4
@@ -31,9 +31,9 @@ jakarta.persistence-api           | 2.2.3   | jakarta.persistence:jakarta.persis
 jakarta.resource-api              | 1.7.4   | jakarta.resource:jakarta.resource-api:1.7.4                           | 66.0 KB | 89      | 7         | bfc06bc961c1be81b444f56754bf6d614b2ccd46 | jakarta.resource:jakarta.resource-api:1.7.4
 jakarta.security.auth.message-api | 1.1.3   | jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3 | 41.7 KB | 35      | 4         | 195b5f402cd126fcc8d7e243282b73dcda2cb84c | jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3
 jakarta.security.enterprise-api   | 1.0.2   | jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2     | 43.9 KB | 33      | 0         | 4730608a4cb5c5749c6779a23530a8a975f6d5a6 | jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2
-jakarta.servlet.jsp.jstl-api      | 1.2.7   | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7           | 43.3 KB | 22      | 1         | 34a035507f0270f1c6b7722d728bd7b5a9bbac4c | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7
-jakarta.servlet.jsp-api           | 2.3.6   | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6                     | 52.4 KB | 58      | 0         | ee48550ece1af1e0d8bd4877dbc6da5c29c5496b | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6
 jakarta.servlet-api               | 4.0.3   | jakarta.servlet:jakarta.servlet-api:4.0.3                             | 80.9 KB | 85      | 11        | 7c810f7bca93d109bac3323286b8e5ec6c394e12 | jakarta.servlet:jakarta.servlet-api:4.0.3
+jakarta.servlet.jsp-api           | 2.3.6   | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6                     | 52.4 KB | 58      | 0         | ee48550ece1af1e0d8bd4877dbc6da5c29c5496b | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6
+jakarta.servlet.jsp.jstl-api      | 1.2.7   | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7           | 43.3 KB | 22      | 1         | 34a035507f0270f1c6b7722d728bd7b5a9bbac4c | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7
 jakarta.transaction-api           | 1.3.3   | jakarta.transaction:jakarta.transaction-api:1.3.3                     | 15.0 KB | 19      | 1         | c4179d48720a1e87202115fbed6089bdc4195405 | jakarta.transaction:jakarta.transaction-api:1.3.3
 jakarta.validation-api            | 2.0.2   | jakarta.validation:jakarta.validation-api:2.0.2                       | 89.8 KB | 143     | 0         | 5eacc6522521f7eacb081f95cee1e231648461e7 | jakarta.validation:jakarta.validation-api:2.0.2
 jakarta.websocket-api             | 1.1.2   | jakarta.websocket:jakarta.websocket-api:1.1.2                         | 47.5 KB | 54      | 0         | 69c2fdfb75081cc935bc9d6c5616d12b0b73815f | jakarta.websocket:jakarta.websocket-api:1.1.2
@@ -100,6 +100,13 @@ jakarta.el-api                    | Archiver-Version: Plexus Archiver           
                                   | Extension-Name: javax.el                                             |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.enterprise.cdi-api        | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
+                                  | Bnd-LastModified: 1565451400486                                      |         |                                           |                                              |
+                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-2.4.1.201501161923                                         |         |                                           |                                              |
 jakarta.enterprise.concurrent-api | Archiver-Version: Plexus Archiver                                    |         | Version: 1.1.2                            | Version: 1.1                                 |
                                   | Bnd-LastModified: 1565210912808                                      |         |                                           |                                              |
                                   | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
@@ -116,13 +123,6 @@ jakarta.enterprise.deploy-api     | Archiver-Version: Plexus Archiver           
                                   | Extension-Name: javax.enterprise.deploy                              |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-jakarta.enterprise.cdi-api        | Archiver-Version: Plexus Archiver                                    |         |                                           |                                              |
-                                  | Bnd-LastModified: 1565451400486                                      |         |                                           |                                              |
-                                  | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Tool: Bnd-2.4.1.201501161923                                         |         |                                           |                                              |
 jakarta.faces-api                 | Build-Jdk: 1.8.0_202                                                 |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven 3.6.0                                       |         |                                           |                                              |
@@ -146,19 +146,19 @@ jakarta.jms-api                   | Bnd-LastModified: 1565691516374             
                                   | Extension-Name: javax.jms                                            |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
+jakarta.json-api                  | Bnd-LastModified: 1566282557145                                      |         | Version: 1.1.5                            | Version: 1.1                                 |
+                                  | Build-Jdk: 11.0.2                                                    |         |                                           | Vendor: Eclipse Foundation                   |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
+                                  | Extension-Name: jakarta.json                                         |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
 jakarta.json.bind-api             | Bnd-LastModified: 1564758492481                                      |         | Version: 1.0.2                            | Version: 1.0                                 |
                                   | Build-Id: 08/02/2019 03:07 PM                                        |         |                                           | Vendor: Oracle Corporation                   |
                                   | Build-Jdk: 11.0.2                                                    |         |                                           |                                              |
                                   | Built-By: default                                                    |         |                                           |                                              |
                                   | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
                                   | Extension-Name: jakarta.json.bind                                    |         |                                           |                                              |
-                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
-jakarta.json-api                  | Bnd-LastModified: 1566282557145                                      |         | Version: 1.1.5                            | Version: 1.1                                 |
-                                  | Build-Jdk: 11.0.2                                                    |         |                                           | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: Apache Maven Bundle Plugin                               |         |                                           |                                              |
-                                  | Extension-Name: jakarta.json                                         |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-3.5.0.201709291849                                         |         |                                           |                                              |
 jakarta.jws-api                   | Build-Jdk-Spec: 11                                                   |         | Version: 2.1.0                            | Version: 2.1                                 |
@@ -222,23 +222,6 @@ jakarta.security.enterprise-api   | Bnd-LastModified: 1566525067451             
                                   | Extension-Name: javax.security.enterprise                            |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
-jakarta.servlet.jsp.jstl-api      | Archiver-Version: Plexus Archiver                                    |         | Version: 1.2.7                            | Version: 1.2                                 |
-                                  | Bnd-LastModified: 1566181244110                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Build-Jdk: 1.8.0_181                                                 |         |                                           |                                              |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: 1.8.0_181 (Oracle Corporation)                           |         |                                           |                                              |
-                                  | Extension-Name: javax.servlet.jsp.jstl                               |         |                                           |                                              |
-                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Originally-Created-By: 1.8.0_181 (Oracle Corporation)                |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
-jakarta.servlet.jsp-api           | Bnd-LastModified: 1567417810411                                      |         | Version: 2.3.6                            | Version: 2.3                                 |
-                                  | Build-Jdk: 1.7.0_80                                                  |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
-                                  | Built-By: default                                                    |         |                                           |                                              |
-                                  | Created-By: 1.7.0_80 (Oracle Corporation)                            |         |                                           |                                              |
-                                  | Extension-Name: javax.servlet.jsp                                    |         |                                           |                                              |
-                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
-                                  | Originally-Created-By: 1.7.0_80 (Oracle Corporation)                 |         |                                           |                                              |
-                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
 jakarta.servlet-api               | Archiver-Version: Plexus Archiver                                    |         | Version: 4.0.3                            | Version: 4.0                                 |
                                   | Automatic-Module-Name: java.servlet                                  |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
                                   | Bnd-LastModified: 1566398855350                                      |         | Vendor ID: org.eclipse                    |                                              |
@@ -248,6 +231,23 @@ jakarta.servlet-api               | Archiver-Version: Plexus Archiver           
                                   | Extension-Name: javax.servlet                                        |         |                                           |                                              |
                                   | Manifest-Version: 1.0                                                |         |                                           |                                              |
                                   | Tool: Bnd-4.0.0.201805111645                                         |         |                                           |                                              |
+jakarta.servlet.jsp-api           | Bnd-LastModified: 1567417810411                                      |         | Version: 2.3.6                            | Version: 2.3                                 |
+                                  | Build-Jdk: 1.7.0_80                                                  |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.7.0_80 (Oracle Corporation)                            |         |                                           |                                              |
+                                  | Extension-Name: javax.servlet.jsp                                    |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Originally-Created-By: 1.7.0_80 (Oracle Corporation)                 |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
+jakarta.servlet.jsp.jstl-api      | Archiver-Version: Plexus Archiver                                    |         | Version: 1.2.7                            | Version: 1.2                                 |
+                                  | Bnd-LastModified: 1566181244110                                      |         | Vendor: Eclipse Foundation                | Vendor: Eclipse Foundation                   |
+                                  | Build-Jdk: 1.8.0_181                                                 |         |                                           |                                              |
+                                  | Built-By: default                                                    |         |                                           |                                              |
+                                  | Created-By: 1.8.0_181 (Oracle Corporation)                           |         |                                           |                                              |
+                                  | Extension-Name: javax.servlet.jsp.jstl                               |         |                                           |                                              |
+                                  | Manifest-Version: 1.0                                                |         |                                           |                                              |
+                                  | Originally-Created-By: 1.8.0_181 (Oracle Corporation)                |         |                                           |                                              |
+                                  | Tool: Bnd-0.0.255                                                    |         |                                           |                                              |
 jakarta.transaction-api           | Archiver-Version: Plexus Archiver                                    |         | Version: 1.3.3                            | Version: 1.3                                 |
                                   | Automatic-Module-Name: java.transaction                              |         | Vendor: EE4J Community                    | Vendor: Oracle Corporation                   |
                                   | Bnd-LastModified: 1564784149519                                      |         | Vendor ID: org.glassfish                  |                                              |
@@ -336,22 +336,22 @@ jakarta.authorization-api         | java.security.jacc                | Manifest
 jakarta.batch-api                 | jakarta.batch.api                 | Auto-generated | Yes       |                    | [all packages]
 jakarta.ejb-api                   | jakarta.ejb.api                   | Auto-generated | Yes       |                    | [all packages]
 jakarta.el-api                    | jakarta.el.api                    | Auto-generated | Yes       |                    | [all packages]
+jakarta.enterprise.cdi-api        | jakarta.enterprise.cdi.api        | Auto-generated | Yes       |                    | [all packages]
 jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent.api | Auto-generated | Yes       |                    | [all packages]
 jakarta.enterprise.deploy-api     | jakarta.enterprise.deploy.api     | Auto-generated | Yes       |                    | [all packages]
-jakarta.enterprise.cdi-api        | jakarta.enterprise.cdi.api        | Auto-generated | Yes       |                    | [all packages]
 jakarta.faces-api                 | jakarta.faces.api                 | Auto-generated | Yes       |                    | [all packages]
 jakarta.inject-api                | jakarta.inject.api                | Auto-generated | Yes       |                    | [all packages]
 jakarta.interceptor-api           | jakarta.interceptor.api           | Auto-generated | Yes       |                    | [all packages]
 jakarta.jms-api                   | jakarta.jms.api                   | Auto-generated | Yes       |                    | [all packages]
+jakarta.json-api                  | java.json                         | Module-Info    | No        | java.base          | javax.json
+                                  |                                   |                |           |                    | javax.json.spi
+                                  |                                   |                |           |                    | javax.json.stream
 jakarta.json.bind-api             | java.json.bind                    | Module-Info    | No        | java.json          | javax.json.bind
                                   |                                   |                |           | java.logging       | javax.json.bind.adapter
                                   |                                   |                |           | java.base          | javax.json.bind.annotation
                                   |                                   |                |           |                    | javax.json.bind.config
                                   |                                   |                |           |                    | javax.json.bind.serializer
                                   |                                   |                |           |                    | javax.json.bind.spi
-jakarta.json-api                  | java.json                         | Module-Info    | No        | java.base          | javax.json
-                                  |                                   |                |           |                    | javax.json.spi
-                                  |                                   |                |           |                    | javax.json.stream
 jakarta.jws-api                   | java.jws                          | Module-Info    | No        | java.base          | javax.jws
                                   |                                   |                |           |                    | javax.jws.soap
 jakarta.mail-api                  | jakarta.mail.api                  | Auto-generated | Yes       |                    | [all packages]
@@ -361,9 +361,9 @@ jakarta.persistence-api           | java.persistence                  | Manifest
 jakarta.resource-api              | jakarta.resource.api              | Auto-generated | Yes       |                    | [all packages]
 jakarta.security.auth.message-api | java.security.auth.message        | Manifest       | Yes       |                    | [all packages]
 jakarta.security.enterprise-api   | jakarta.security.enterprise.api   | Auto-generated | Yes       |                    | [all packages]
-jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl.api      | Auto-generated | Yes       |                    | [all packages]
-jakarta.servlet.jsp-api           | jakarta.servlet.jsp.api           | Auto-generated | Yes       |                    | [all packages]
 jakarta.servlet-api               | java.servlet                      | Manifest       | Yes       |                    | [all packages]
+jakarta.servlet.jsp-api           | jakarta.servlet.jsp.api           | Auto-generated | Yes       |                    | [all packages]
+jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl.api      | Auto-generated | Yes       |                    | [all packages]
 jakarta.transaction-api           | java.transaction                  | Manifest       | Yes       |                    | [all packages]
 jakarta.validation-api            | java.validation                   | Manifest       | Yes       |                    | [all packages]
 jakarta.websocket-api             | jakarta.websocket.api             | Auto-generated | Yes       |                    | [all packages]
@@ -436,25 +436,6 @@ jakarta.el-api                    | Jakarta Expression Language 3.0 API         
                                   |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             |                                                          |                                                                                                                      |                                                    |
                                   |                                               |         | https://www.gnu.org/software/classpath/license.html        |                                                          |                                                                                                                      |                                                    |
                                   |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          |                                                                                                                      |                                                    |
-jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent-api             | 1.1.2   | Jakarta Concurrency                                        |                                                          | javax.enterprise.concurrent (Version: 1.1.2)                                                                         |                                                    | Manifest Version: 2
-                                  |                                               |         | Vendor: Oracle Corporation                                 |                                                          |                                                                                                                      |                                                    |
-                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             |                                                          |                                                                                                                      |                                                    |
-                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        |                                                          |                                                                                                                      |                                                    |
-                                  |                                               |         | Doc URL: http://www.oracle.com/                            |                                                          |                                                                                                                      |                                                    |
-jakarta.enterprise.deploy-api     | javax.enterprise.deploy API                   | 1.7.2   | Java EE Deployment API 1.2 Design Specification            | javax.enterprise.deploy.model;version="1.7.2"            | javax.enterprise.deploy.spi.status (Version: 1.7.2)                                                                  |                                                    | Manifest Version: 2
-                                  | [javax.enterprise.deploy-api]                 |         | Vendor: Eclipse Foundation                                 | javax.enterprise.deploy.model.exceptions;version="1.7.2" |    Uses: javax.enterprise.deploy.spi, javax.enterprise.deploy.shared, javax.enterprise.deploy.spi.exceptions         |                                                    |
-                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.enterprise.deploy.shared;version="1.7.2"           | javax.enterprise.deploy.shared.factories (Version: 1.7.2)                                                            |                                                    |
-                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        | javax.enterprise.deploy.shared.factories;version="1.7.2" |    Uses: javax.enterprise.deploy.spi.factories, javax.enterprise.deploy.spi, javax.enterprise.deploy.spi.exceptions  |                                                    |
-                                  |                                               |         | Doc URL: https://www.eclipse.org                           | javax.enterprise.deploy.spi;version="1.7.2"              | javax.enterprise.deploy.spi.factories (Version: 1.7.2)                                                               |                                                    |
-                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.exceptions;version="1.7.2"   |    Uses: javax.enterprise.deploy.spi, javax.enterprise.deploy.spi.exceptions                                         |                                                    |
-                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.factories;version="1.7.2"    | javax.enterprise.deploy.spi (Version: 1.7.2)                                                                         |                                                    |
-                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.status;version="1.7.2"       |    Uses: javax.enterprise.deploy.spi.status, javax.enterprise.deploy.shared, javax.enterprise.deploy.spi.exceptions, |                                                    |
-                                  |                                               |         |                                                            |                                                          |       javax.enterprise.deploy.model                                                                                  |                                                    |
-                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.model.exceptions (Version: 1.7.2)                                                            |                                                    |
-                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.shared (Version: 1.7.2)                                                                      |                                                    |
-                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.spi.exceptions (Version: 1.7.2)                                                              |                                                    |
-                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.model (Version: 1.7.2)                                                                       |                                                    |
-                                  |                                               |         |                                                            |                                                          |    Uses: javax.enterprise.deploy.model.exceptions, javax.enterprise.deploy.shared                                    |                                                    |
 jakarta.enterprise.cdi-api        | Jakarta CDI                                   | 2.0.2   | APIs for Jakarta CDI (Contexts and Dependency Injection)   | javax.el;version="2.2"                                   | javax.decorator (Version: 2.0)                                                                                       | Required:                                          | Manifest Version: 2
                                   | [jakarta.enterprise.cdi-api]                  |         | Vendor: Eclipse Foundation                                 | javax.inject                                             |    Uses: javax.enterprise.inject                                                                                     | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))" |
                                   |                                               |         | License:                                                   | javax.interceptor;version="[1.2,2)"                      | javax.enterprise.context (Version: 2.0)                                                                              |                                                    |
@@ -477,6 +458,25 @@ jakarta.enterprise.cdi-api        | Jakarta CDI                                 
                                   |                                               |         |                                                            |                                                          |    Uses: javax.enterprise.context.spi, javax.enterprise.event, javax.enterprise.inject, javax.enterprise.inject.spi, |                                                    |
                                   |                                               |         |                                                            |                                                          |       javax.enterprise.util                                                                                          |                                                    |
                                   |                                               |         |                                                            |                                                          | javax.enterprise.util (Version: 2.0)                                                                                 |                                                    |
+jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent-api             | 1.1.2   | Jakarta Concurrency                                        |                                                          | javax.enterprise.concurrent (Version: 1.1.2)                                                                         |                                                    | Manifest Version: 2
+                                  |                                               |         | Vendor: Oracle Corporation                                 |                                                          |                                                                                                                      |                                                    |
+                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             |                                                          |                                                                                                                      |                                                    |
+                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        |                                                          |                                                                                                                      |                                                    |
+                                  |                                               |         | Doc URL: http://www.oracle.com/                            |                                                          |                                                                                                                      |                                                    |
+jakarta.enterprise.deploy-api     | javax.enterprise.deploy API                   | 1.7.2   | Java EE Deployment API 1.2 Design Specification            | javax.enterprise.deploy.model;version="1.7.2"            | javax.enterprise.deploy.spi.status (Version: 1.7.2)                                                                  |                                                    | Manifest Version: 2
+                                  | [javax.enterprise.deploy-api]                 |         | Vendor: Eclipse Foundation                                 | javax.enterprise.deploy.model.exceptions;version="1.7.2" |    Uses: javax.enterprise.deploy.spi, javax.enterprise.deploy.shared, javax.enterprise.deploy.spi.exceptions         |                                                    |
+                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.enterprise.deploy.shared;version="1.7.2"           | javax.enterprise.deploy.shared.factories (Version: 1.7.2)                                                            |                                                    |
+                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        | javax.enterprise.deploy.shared.factories;version="1.7.2" |    Uses: javax.enterprise.deploy.spi.factories, javax.enterprise.deploy.spi, javax.enterprise.deploy.spi.exceptions  |                                                    |
+                                  |                                               |         | Doc URL: https://www.eclipse.org                           | javax.enterprise.deploy.spi;version="1.7.2"              | javax.enterprise.deploy.spi.factories (Version: 1.7.2)                                                               |                                                    |
+                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.exceptions;version="1.7.2"   |    Uses: javax.enterprise.deploy.spi, javax.enterprise.deploy.spi.exceptions                                         |                                                    |
+                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.factories;version="1.7.2"    | javax.enterprise.deploy.spi (Version: 1.7.2)                                                                         |                                                    |
+                                  |                                               |         |                                                            | javax.enterprise.deploy.spi.status;version="1.7.2"       |    Uses: javax.enterprise.deploy.spi.status, javax.enterprise.deploy.shared, javax.enterprise.deploy.spi.exceptions, |                                                    |
+                                  |                                               |         |                                                            |                                                          |       javax.enterprise.deploy.model                                                                                  |                                                    |
+                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.model.exceptions (Version: 1.7.2)                                                            |                                                    |
+                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.shared (Version: 1.7.2)                                                                      |                                                    |
+                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.spi.exceptions (Version: 1.7.2)                                                              |                                                    |
+                                  |                                               |         |                                                            |                                                          | javax.enterprise.deploy.model (Version: 1.7.2)                                                                       |                                                    |
+                                  |                                               |         |                                                            |                                                          |    Uses: javax.enterprise.deploy.model.exceptions, javax.enterprise.deploy.shared                                    |                                                    |
 jakarta.interceptor-api           | Jakarta Interceptors                          | 1.2.5   | Jakarta Interceptors 1.2 Specification                     |                                                          | javax.interceptor (Version: 1.2.5)                                                                                   | Required:                                          | Manifest Version: 2
                                   | [jakarta.interceptor-api]                     |         | Vendor: Eclipse Foundation                                 |                                                          |                                                                                                                      | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))" |
                                   |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             |                                                          |                                                                                                                      |                                                    |
@@ -487,6 +487,12 @@ jakarta.jms-api                   | Jakarta Messaging API                       
                                   |                                               |         | License: https://projects.eclipse.org/license/epl-2.0,     |                                                          |                                                                                                                      |                                                    |
                                   |                                               |         | https://projects.eclipse.org/license/secondary-gpl-2.0-cp  |                                                          |                                                                                                                      |                                                    |
                                   |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          |                                                                                                                      |                                                    |
+jakarta.json-api                  | Jakarta JSON Processing API                   | 1.1.5   | Jakarta JSON Processing API 1.1                            | javax.json                                               | javax.json (Version: 1.1.5)                                                                                          |                                                    | Manifest Version: 2
+                                  | [jakarta.json-api]                            |         | Vendor: Eclipse Foundation                                 | javax.json.spi                                           |    Uses: javax.json.stream                                                                                           |                                                    |
+                                  |                                               |         | License: https://projects.eclipse.org/license/epl-2.0,     | javax.json.stream                                        | javax.json.spi (Version: 1.1.5)                                                                                      |                                                    |
+                                  |                                               |         | https://projects.eclipse.org/license/secondary-gpl-2.0-cp  |                                                          |    Uses: javax.json, javax.json.stream                                                                               |                                                    |
+                                  |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          | javax.json.stream (Version: 1.1.5)                                                                                   |                                                    |
+                                  |                                               |         |                                                            |                                                          |    Uses: javax.json                                                                                                  |                                                    |
 jakarta.json.bind-api             | JSON-B API                                    | 1.0.2   | Java API for JSON Binding (JSON-Binding)                   | javax.json.bind;version="[1.0,2)"                        | javax.json.bind (Version: 1.0)                                                                                       |                                                    | Manifest Version: 2
                                   | [jakarta.json.bind-api]                       |         | Vendor: Eclipse Foundation                                 | javax.json.bind.adapter;version="[1.0,2)"                |    Uses: javax.json.bind.adapter, javax.json.bind.config, javax.json.bind.serializer, javax.json.bind.spi,           |                                                    |
                                   |                                               |         | License: https://projects.eclipse.org/license/epl-2.0,     | javax.json.bind.config;version="[1.0,2)"                 |       javax.json.spi                                                                                                 |                                                    |
@@ -498,12 +504,6 @@ jakarta.json.bind-api             | JSON-B API                                  
                                   |                                               |         |                                                            | Dynamic:                                                 |    Uses: javax.json.stream                                                                                           |                                                    |
                                   |                                               |         |                                                            | *                                                        | javax.json.bind.spi (Version: 1.0)                                                                                   |                                                    |
                                   |                                               |         |                                                            |                                                          |    Uses: javax.json.bind                                                                                             |                                                    |
-jakarta.json-api                  | Jakarta JSON Processing API                   | 1.1.5   | Jakarta JSON Processing API 1.1                            | javax.json                                               | javax.json (Version: 1.1.5)                                                                                          |                                                    | Manifest Version: 2
-                                  | [jakarta.json-api]                            |         | Vendor: Eclipse Foundation                                 | javax.json.spi                                           |    Uses: javax.json.stream                                                                                           |                                                    |
-                                  |                                               |         | License: https://projects.eclipse.org/license/epl-2.0,     | javax.json.stream                                        | javax.json.spi (Version: 1.1.5)                                                                                      |                                                    |
-                                  |                                               |         | https://projects.eclipse.org/license/secondary-gpl-2.0-cp  |                                                          |    Uses: javax.json, javax.json.stream                                                                               |                                                    |
-                                  |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          | javax.json.stream (Version: 1.1.5)                                                                                   |                                                    |
-                                  |                                               |         |                                                            |                                                          |    Uses: javax.json                                                                                                  |                                                    |
 jakarta.jws-api                   | Jakarta Web Services Metadata API             | 2.1.0   | Jakarta Web Services Metadata API 2.1 Design Specification |                                                          | javax.jws (Version: 2.1.0)                                                                                           | Required:                                          | Manifest Version: 2
                                   | [jakarta.jws-api]                             |         | Vendor: Eclipse Foundation                                 |                                                          | javax.jws.soap (Version: 2.1.0)                                                                                      | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))" | Private Package:
                                   |                                               |         | License: http://www.eclipse.org/org/documents/edl-v10.php  |                                                          |                                                                                                                      |                                                    | javax.jws
@@ -577,6 +577,19 @@ jakarta.security.enterprise-api   | Jakarta Security                            
                                   |                                               |         |                                                            | javax.security.enterprise.credential                     | javax.security.enterprise.identitystore (Version: 1.0.2)                                                             |                                                    |
                                   |                                               |         |                                                            | javax.security.enterprise.identitystore                  |    Uses: javax.security.enterprise, javax.security.enterprise.credential                                             |                                                    |
                                   |                                               |         |                                                            | javax.servlet.http;version="[4.0,5)"                     |                                                                                                                      |                                                    |
+jakarta.servlet-api               | Jakarta Servlet                               | 4.0.0   | Jakarta Servlet 4.0                                        | javax.servlet                                            | javax.servlet (Version: 4.0.0)                                                                                       | Required:                                          | Manifest Version: 2
+                                  | [jakarta.servlet-api]                         |         | Vendor: Eclipse Foundation                                 | javax.servlet.annotation                                 |    Uses: javax.servlet.annotation, javax.servlet.descriptor                                                          | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))" |
+                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.servlet.descriptor                                 | javax.servlet.annotation (Version: 4.0.0)                                                                            |                                                    |
+                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        |                                                          |    Uses: javax.servlet                                                                                               |                                                    |
+                                  |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          | javax.servlet.descriptor (Version: 4.0.0)                                                                            |                                                    |
+                                  |                                               |         |                                                            |                                                          | javax.servlet.http (Version: 4.0.0)                                                                                  |                                                    |
+                                  |                                               |         |                                                            |                                                          |    Uses: javax.servlet                                                                                               |                                                    |
+jakarta.servlet.jsp-api           | Jakarta Server Pages API                      | 2.3.6   | Jakarta Server Pages API                                   | javax.el                                                 | javax.servlet.jsp.el (Version: 2.3.6)                                                                                |                                                    | Manifest Version: 2
+                                  | [javax.servlet.jsp-api]                       |         | Vendor: Eclipse Foundation                                 | javax.servlet                                            |    Uses: javax.servlet, javax.el, javax.servlet.jsp, javax.servlet.http                                              |                                                    |
+                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.servlet.http                                       | javax.servlet.jsp.tagext (Version: 2.3.6)                                                                            |                                                    |
+                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        | javax.servlet.jsp;version="2.3.6"                        |    Uses: javax.servlet.jsp                                                                                           |                                                    |
+                                  |                                               |         | Doc URL: https://www.eclipse.org                           | javax.servlet.jsp.el;version="2.3.6"                     | javax.servlet.jsp (Version: 2.3.6)                                                                                   |                                                    |
+                                  |                                               |         |                                                            | javax.servlet.jsp.tagext;version="2.3.6"                 |    Uses: javax.servlet, javax.el, javax.servlet.jsp.el, javax.servlet.jsp.tagext, javax.servlet.http                 |                                                    |
 jakarta.servlet.jsp.jstl-api      | JavaServer Pages(TM) Standard Tag Library API | 1.2.7   | JavaServer Pages(TM) Standard Tag Library API              | javax.el                                                 | javax.servlet.jsp.jstl.sql (Version: 1.2.7)                                                                          |                                                    | Manifest Version: 2
                                   | [javax.servlet.jsp.jstl-api]                  |         | Vendor: Eclipse Foundation                                 | javax.servlet                                            | javax.servlet.jsp.jstl.tlv (Version: 1.2.7)                                                                          |                                                    |
                                   |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.servlet.http                                       |    Uses: org.xml.sax.helpers, org.xml.sax, javax.servlet.jsp.tagext, javax.xml.parsers                               |                                                    |
@@ -589,19 +602,6 @@ jakarta.servlet.jsp.jstl-api      | JavaServer Pages(TM) Standard Tag Library AP
                                   |                                               |         |                                                            | javax.xml.parsers                                        |                                                                                                                      |                                                    |
                                   |                                               |         |                                                            | org.xml.sax                                              |                                                                                                                      |                                                    |
                                   |                                               |         |                                                            | org.xml.sax.helpers                                      |                                                                                                                      |                                                    |
-jakarta.servlet.jsp-api           | Jakarta Server Pages API                      | 2.3.6   | Jakarta Server Pages API                                   | javax.el                                                 | javax.servlet.jsp.el (Version: 2.3.6)                                                                                |                                                    | Manifest Version: 2
-                                  | [javax.servlet.jsp-api]                       |         | Vendor: Eclipse Foundation                                 | javax.servlet                                            |    Uses: javax.servlet, javax.el, javax.servlet.jsp, javax.servlet.http                                              |                                                    |
-                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.servlet.http                                       | javax.servlet.jsp.tagext (Version: 2.3.6)                                                                            |                                                    |
-                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        | javax.servlet.jsp;version="2.3.6"                        |    Uses: javax.servlet.jsp                                                                                           |                                                    |
-                                  |                                               |         | Doc URL: https://www.eclipse.org                           | javax.servlet.jsp.el;version="2.3.6"                     | javax.servlet.jsp (Version: 2.3.6)                                                                                   |                                                    |
-                                  |                                               |         |                                                            | javax.servlet.jsp.tagext;version="2.3.6"                 |    Uses: javax.servlet, javax.el, javax.servlet.jsp.el, javax.servlet.jsp.tagext, javax.servlet.http                 |                                                    |
-jakarta.servlet-api               | Jakarta Servlet                               | 4.0.0   | Jakarta Servlet 4.0                                        | javax.servlet                                            | javax.servlet (Version: 4.0.0)                                                                                       | Required:                                          | Manifest Version: 2
-                                  | [jakarta.servlet-api]                         |         | Vendor: Eclipse Foundation                                 | javax.servlet.annotation                                 |    Uses: javax.servlet.annotation, javax.servlet.descriptor                                                          | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))" |
-                                  |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.servlet.descriptor                                 | javax.servlet.annotation (Version: 4.0.0)                                                                            |                                                    |
-                                  |                                               |         | https://www.gnu.org/software/classpath/license.html        |                                                          |    Uses: javax.servlet                                                                                               |                                                    |
-                                  |                                               |         | Doc URL: https://www.eclipse.org                           |                                                          | javax.servlet.descriptor (Version: 4.0.0)                                                                            |                                                    |
-                                  |                                               |         |                                                            |                                                          | javax.servlet.http (Version: 4.0.0)                                                                                  |                                                    |
-                                  |                                               |         |                                                            |                                                          |    Uses: javax.servlet                                                                                               |                                                    |
 jakarta.transaction-api           | javax.transaction API                         | 1.3.3   | Jakarta(TM) Transactions 1.3 API Design Specification      | javax.enterprise.context                                 | javax.transaction (Version: 1.3.3)                                                                                   |                                                    | Manifest Version: 2
                                   | [jakarta.transaction-api]                     |         | Vendor: EE4J Community                                     | javax.enterprise.util                                    |    Uses: javax.interceptor, javax.transaction.xa, javax.enterprise.util, javax.enterprise.context                    |                                                    |
                                   |                                               |         | License: http://www.eclipse.org/legal/epl-2.0,             | javax.interceptor;version="[1.2,1.2.98)"                 |                                                                                                                      |                                                    |
@@ -725,15 +725,15 @@ jakarta.authorization-api         | No            | Java 8 (14)
 jakarta.batch-api                 | No            | Java 6 (60)
 jakarta.ejb-api                   | No            | Java 6 (87)
 jakarta.el-api                    | No            | Java 7 (49)
+jakarta.enterprise.cdi-api        | No            | Java 8 (148)
 jakarta.enterprise.concurrent-api | No            | Java 6 (15)
 jakarta.enterprise.deploy-api     | No            | Java 6 (33)
-jakarta.enterprise.cdi-api        | No            | Java 8 (148)
 jakarta.faces-api                 | No            | Java 8 (522)
 jakarta.inject-api                | No            | Java 5 (6)
 jakarta.interceptor-api           | No            | Java 7 (10)
 jakarta.jms-api                   | No            | Java 8 (81)
-jakarta.json.bind-api             | No            | Java 8 (26)
 jakarta.json-api                  | No            | Java 8 (34)
+jakarta.json.bind-api             | No            | Java 8 (26)
 jakarta.jws-api                   | No            | Java 8 (14)
 jakarta.mail-api                  | No            | Java 7 (140)
 jakarta.management.j2ee-api       | No            | Java 6 (33)
@@ -742,9 +742,9 @@ jakarta.persistence-api           | No            | Java 8 (207)
 jakarta.resource-api              | No            | Java 7 (89)
 jakarta.security.auth.message-api | No            | Java 8 (35)
 jakarta.security.enterprise-api   | No            | Java 8 (33)
-jakarta.servlet.jsp.jstl-api      | No            | Java 5 (22)
-jakarta.servlet.jsp-api           | No            | Java 7 (58)
 jakarta.servlet-api               | No            | Java 8 (85)
+jakarta.servlet.jsp-api           | No            | Java 7 (58)
+jakarta.servlet.jsp.jstl-api      | No            | Java 5 (22)
 jakarta.transaction-api           | No            | Java 7 (19)
 jakarta.validation-api            | No            | Java 8 (143)
 jakarta.websocket-api             | No            | Java 6 (54)
@@ -778,13 +778,13 @@ jakarta.ejb-api                   | 3.2.6   | 4.0.0, 4.0.1
 jakarta.el-api                    | 3.0.3   | 4.0.0
                                   |         | 5.0.0, 5.0.1
                                   |         | 6.0.0, 6.0.1
+jakarta.enterprise.cdi-api        | 2.0.2   | 3.0.0, 3.0.1
+                                  |         | 4.0.0, 4.0.1
+                                  |         | 4.1.0
 jakarta.enterprise.concurrent-api | 1.1.2   | 2.0.0
                                   |         | 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4
                                   |         | 3.1.0, 3.1.1
 jakarta.enterprise.deploy-api     | 1.7.2   |
-jakarta.enterprise.cdi-api        | 2.0.2   | 3.0.0, 3.0.1
-                                  |         | 4.0.0, 4.0.1
-                                  |         | 4.1.0
 jakarta.faces-api                 | 2.3.2   | 3.0.0
                                   |         | 4.0.0, 4.0.1
                                   |         | 4.1.0, 4.1.1, 4.1.2
@@ -795,10 +795,10 @@ jakarta.interceptor-api           | 1.2.5   | 2.0.0, 2.0.1
                                   |         | 2.2.0
 jakarta.jms-api                   | 2.0.3   | 3.0.0
                                   |         | 3.1.0
-jakarta.json.bind-api             | 1.0.2   | 2.0.0
-                                  |         | 3.0.0, 3.0.1
 jakarta.json-api                  | 1.1.6   | 2.0.0, 2.0.1, 2.0.2
                                   |         | 2.1.0, 2.1.1, 2.1.2, 2.1.3
+jakarta.json.bind-api             | 1.0.2   | 2.0.0
+                                  |         | 3.0.0, 3.0.1
 jakarta.jws-api                   | 2.1.0   | 3.0.0
 jakarta.mail-api                  | 1.6.4   | 1.6.5, 1.6.6, 1.6.7
                                   |         | 2.0.0, 2.0.1
@@ -815,15 +815,15 @@ jakarta.security.auth.message-api | 1.1.3   |
 jakarta.security.enterprise-api   | 1.0.2   | 2.0.0
                                   |         | 3.0.0
                                   |         | 4.0.0
-jakarta.servlet.jsp.jstl-api      | 1.2.7   | 2.0.0
-                                  |         | 3.0.0, 3.0.1, 3.0.2
-jakarta.servlet.jsp-api           | 2.3.6   | 3.0.0
-                                  |         | 3.1.0, 3.1.1
-                                  |         | 4.0.0
 jakarta.servlet-api               | 4.0.3   | 4.0.4
                                   |         | 5.0.0
                                   |         | 6.0.0
                                   |         | 6.1.0
+jakarta.servlet.jsp-api           | 2.3.6   | 3.0.0
+                                  |         | 3.1.0, 3.1.1
+                                  |         | 4.0.0
+jakarta.servlet.jsp.jstl-api      | 1.2.7   | 2.0.0
+                                  |         | 3.0.0, 3.0.1, 3.0.2
 jakarta.transaction-api           | 1.3.3   | 2.0.0, 2.0.1
 jakarta.validation-api            | 2.0.2   | 3.0.0, 3.0.1, 3.0.2
                                   |         | 3.1.0, 3.1.1
@@ -865,13 +865,13 @@ jakarta.el-api                    | [none]                            | jakarta.
                                   |                                   | jakarta.faces-api
                                   |                                   | jakarta.servlet.jsp-api
                                   |                                   | jakarta.servlet.jsp.jstl-api
-jakarta.enterprise.concurrent-api | [none]                            | [none]
-jakarta.enterprise.deploy-api     | [none]                            | [none]
 jakarta.enterprise.cdi-api        | jakarta.el-api                    | jakarta.batch-api
                                   | jakarta.inject-api                | jakarta.faces-api
                                   | jakarta.interceptor-api           | jakarta.mvc-api
                                   |                                   | jakarta.security.enterprise-api
                                   |                                   | jakarta.transaction-api
+jakarta.enterprise.concurrent-api | [none]                            | [none]
+jakarta.enterprise.deploy-api     | [none]                            | [none]
 jakarta.faces-api                 | jakarta.el-api                    | [none]
                                   | jakarta.enterprise.cdi-api        |
                                   | jakarta.inject-api                |
@@ -888,8 +888,8 @@ jakarta.interceptor-api           | [none]                            | jakarta.
                                   |                                   | jakarta.security.enterprise-api
                                   |                                   | jakarta.transaction-api
 jakarta.jms-api                   | [none]                            | [none]
-jakarta.json.bind-api             | jakarta.json-api                  | [none]
 jakarta.json-api                  | [none]                            | jakarta.json.bind-api
+jakarta.json.bind-api             | jakarta.json-api                  | [none]
 jakarta.jws-api                   | [none]                            | [none]
 jakarta.mail-api                  | jakarta.activation-api            | [none]
 jakarta.management.j2ee-api       | jakarta.ejb-api                   | [none]
@@ -903,17 +903,17 @@ jakarta.security.enterprise-api   | jakarta.enterprise.cdi-api        | [none]
                                   | jakarta.interceptor-api           |
                                   | jakarta.security.auth.message-api |
                                   | jakarta.servlet-api               |
-jakarta.servlet.jsp.jstl-api      | jakarta.el-api                    | jakarta.faces-api
-                                  | jakarta.servlet-api               |
-                                  | jakarta.servlet.jsp-api           |
-jakarta.servlet.jsp-api           | jakarta.el-api                    | jakarta.faces-api
-                                  | jakarta.servlet-api               | jakarta.servlet.jsp.jstl-api
 jakarta.servlet-api               | [none]                            | jakarta.authorization-api
                                   |                                   | jakarta.faces-api
                                   |                                   | jakarta.security.enterprise-api
                                   |                                   | jakarta.servlet.jsp-api
                                   |                                   | jakarta.servlet.jsp.jstl-api
                                   |                                   | jakarta.xml.rpc-api
+jakarta.servlet.jsp-api           | jakarta.el-api                    | jakarta.faces-api
+                                  | jakarta.servlet-api               | jakarta.servlet.jsp.jstl-api
+jakarta.servlet.jsp.jstl-api      | jakarta.el-api                    | jakarta.faces-api
+                                  | jakarta.servlet-api               |
+                                  | jakarta.servlet.jsp-api           |
 jakarta.transaction-api           | jakarta.enterprise.cdi-api        | jakarta.ejb-api
                                   | jakarta.interceptor-api           | jakarta.resource-api
 jakarta.validation-api            | [none]                            | jakarta.faces-api
@@ -948,11 +948,11 @@ jakarta.batch-api                 | jakarta.batch:jakarta.batch-api:1.0.2       
 jakarta.ejb-api                   | jakarta.ejb:jakarta.ejb-api:3.2.6                                     | jakarta.transaction:jakarta.transaction-api:1.3.2                                | OK (version 1.3.3)
                                   |                                                                       | jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.3 (optional)                             | OK (version 1.1.4)
 jakarta.el-api                    | jakarta.el:jakarta.el-api:3.0.3                                       | [none]                                                                           |
-jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2 | [none]                                                                           |
-jakarta.enterprise.deploy-api     | jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2         | [none]                                                                           |
 jakarta.enterprise.cdi-api        | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2                   | jakarta.el:jakarta.el-api:3.0.3                                                  | OK
                                   |                                                                       | jakarta.inject:jakarta.inject-api:1.0                                            | OK
                                   |                                                                       | jakarta.interceptor:jakarta.interceptor-api:1.2.5                                | OK
+jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2 | [none]                                                                           |
+jakarta.enterprise.deploy-api     | jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2         | [none]                                                                           |
 jakarta.faces-api                 | jakarta.faces:jakarta.faces-api:2.3.2                                 | jakarta.ejb:jakarta.ejb-api:3.2.5 (provided, optional)                           | OK (version 3.2.6)
                                   |                                                                       | jakarta.el:jakarta.el-api:3.0.3 (provided)                                       | OK
                                   |                                                                       | jakarta.json:jakarta.json-api:1.1.6 (provided, optional)                         | OK
@@ -971,8 +971,8 @@ jakarta.inject-api                | jakarta.inject:jakarta.inject-api:1.0       
 jakarta.interceptor-api           | jakarta.interceptor:jakarta.interceptor-api:1.2.5                     | jakarta.annotation:jakarta.annotation-api:1.3.5                                  | OK
                                   |                                                                       | jakarta.ejb:jakarta.ejb-api:3.2.6                                                | OK
 jakarta.jms-api                   | jakarta.jms:jakarta.jms-api:2.0.3                                     | [none]                                                                           |
-jakarta.json.bind-api             | jakarta.json.bind:jakarta.json.bind-api:1.0.2                         | jakarta.json:jakarta.json-api:1.1.6 (provided)                                   | OK
 jakarta.json-api                  | jakarta.json:jakarta.json-api:1.1.6                                   | [none]                                                                           |
+jakarta.json.bind-api             | jakarta.json.bind:jakarta.json.bind-api:1.0.2                         | jakarta.json:jakarta.json-api:1.1.6 (provided)                                   | OK
 jakarta.jws-api                   | jakarta.jws:jakarta.jws-api:2.1.0                                     | [none]                                                                           |
 jakarta.mail-api                  | jakarta.mail:jakarta.mail-api:1.6.4                                   | [none]                                                                           |
 jakarta.management.j2ee-api       | jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4             | jakarta.ejb:jakarta.ejb-api:3.2.6 (optional)                                     | OK
@@ -990,12 +990,12 @@ jakarta.security.enterprise-api   | jakarta.security.enterprise:jakarta.security
                                   |                                                                       | jakarta.interceptor:jakarta.interceptor-api:1.2.5 (provided)                     | OK
                                   |                                                                       | jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3 (provided) | OK
                                   |                                                                       | jakarta.servlet:jakarta.servlet-api:4.0.3 (provided)                             | OK
+jakarta.servlet-api               | jakarta.servlet:jakarta.servlet-api:4.0.3                             | [none]                                                                           |
+jakarta.servlet.jsp-api           | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6                     | jakarta.servlet:jakarta.servlet-api:4.0.2 (provided)                             | OK (version 4.0.3)
+                                  |                                                                       | jakarta.el:jakarta.el-api:3.0.2 (provided)                                       | OK (version 3.0.3)
 jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7           | javax.el:el-api:2.2 (provided)                                                   | Unsatisfied
                                   |                                                                       | javax.servlet:servlet-api:2.5 (provided)                                         | Unsatisfied
                                   |                                                                       | javax.servlet.jsp:jsp-api:2.2 (provided)                                         | Unsatisfied
-jakarta.servlet.jsp-api           | jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6                     | jakarta.servlet:jakarta.servlet-api:4.0.2 (provided)                             | OK (version 4.0.3)
-                                  |                                                                       | jakarta.el:jakarta.el-api:3.0.2 (provided)                                       | OK (version 3.0.3)
-jakarta.servlet-api               | jakarta.servlet:jakarta.servlet-api:4.0.3                             | [none]                                                                           |
 jakarta.transaction-api           | jakarta.transaction:jakarta.transaction-api:1.3.3                     | jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1 (provided)                   | OK (version 2.0.2)
 jakarta.validation-api            | jakarta.validation:jakarta.validation-api:2.0.2                       | [none]                                                                           |
 jakarta.websocket-api             | jakarta.websocket:jakarta.websocket-api:1.1.2                         | jakarta.websocket:jakarta.websocket-client-api:1.1.2 (optional)                  | OK
@@ -1080,27 +1080,25 @@ Class/Resource                                    | Sources                     
 --------------------------------------------------+------------------------------------------+-----------
 javax.websocket.ClientEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.ClientEndpointConfig              | jakarta.websocket-api (Classpath)        | Exact copy
+javax.websocket.ClientEndpointConfig$Builder$1    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.ClientEndpointConfig$Builder      | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.ClientEndpointConfig$Builder$1    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.ClientEndpointConfig$Configurator | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.CloseReason                       | jakarta.websocket-api (Classpath)        | Exact copy
+javax.websocket.ClientEndpointConfig              | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.CloseReason$CloseCode             | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
+javax.websocket.CloseReason$CloseCodes$1          | jakarta.websocket-api (Classpath)        | Exact copy
+                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.CloseReason$CloseCodes            | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.CloseReason$CloseCodes$1          | jakarta.websocket-api (Classpath)        | Exact copy
+javax.websocket.CloseReason                       | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.ContainerProvider                 | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.DecodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
-                                                  | jakarta.websocket-client-api (Classpath) |
-javax.websocket.Decoder                           | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Decoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
@@ -1110,13 +1108,13 @@ javax.websocket.Decoder$Text                      | jakarta.websocket-api (Class
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Decoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
+javax.websocket.Decoder                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.DefaultClientEndpointConfig       | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.DeploymentException               | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.EncodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
-                                                  | jakarta.websocket-client-api (Classpath) |
-javax.websocket.Encoder                           | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Encoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
@@ -1126,21 +1124,23 @@ javax.websocket.Encoder$Text                      | jakarta.websocket-api (Class
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Encoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
+javax.websocket.Encoder                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Endpoint                          | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.EndpointConfig                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.Extension                         | jakarta.websocket-api (Classpath)        | Exact copy
-                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.Extension$Parameter               | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.HandshakeResponse                 | jakarta.websocket-api (Classpath)        | Exact copy
+javax.websocket.Extension                         | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.MessageHandler                    | jakarta.websocket-api (Classpath)        | Exact copy
+javax.websocket.HandshakeResponse                 | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.MessageHandler$Partial            | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.MessageHandler$Whole              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                  | jakarta.websocket-client-api (Classpath) |
+javax.websocket.MessageHandler                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.OnClose                           | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
@@ -1152,11 +1152,11 @@ javax.websocket.OnOpen                            | jakarta.websocket-api (Class
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.PongMessage                       | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
-javax.websocket.RemoteEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                  | jakarta.websocket-client-api (Classpath) |
 javax.websocket.RemoteEndpoint$Async              | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.RemoteEndpoint$Basic              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                  | jakarta.websocket-client-api (Classpath) |
+javax.websocket.RemoteEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |
 javax.websocket.SendHandler                       | jakarta.websocket-api (Classpath)        | Exact copy
                                                   | jakarta.websocket-client-api (Classpath) |

@@ -67,7 +67,6 @@ class CommandLineParserTest {
 		assertFalse(options.isIgnoreExactCopy());
 		assertNull(options.getSections());
 		assertFalse(options.isSkipEmpty());
-		assertFalse(options.isSortRows());
 		assertEquals("JAR Health Check Report", options.getReportTitle());
 		assertEquals(Collections.emptyList(), options.getReportFiles());
 		assertNull(options.getDataPath());
@@ -479,20 +478,6 @@ class CommandLineParserTest {
 
 		// assert
 		assertTrue(options.isSkipEmpty());
-
-	}
-
-	@Test
-	void test_sort_rows(@TempDir Path tempDir) throws IOException, CommandLineException {
-
-		// prepare
-		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
-
-		// test
-		Options options = parser.parse(new String[] { "--sort-rows", file.getAbsolutePath() });
-
-		// assert
-		assertTrue(options.isSortRows());
 
 	}
 

@@ -7,23 +7,23 @@ List of JAR files found in classpath.
 
 Artifact               | Version    | Source                                          | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 -----------------------+------------+-------------------------------------------------+---------+---------+-----------+------------------------------------------+------------------------------------------------
-jarhc                  | 1.7        | org.jarhc:jarhc:1.7                             | 206 KB  | 121     | 7         | d2c5603b968f5e948427ecb700193d89a968d889 | org.jarhc:jarhc:1.7
-asm                    | 9.2        | org.ow2.asm:asm:9.2                             | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
-json                   | 20211205   | org.json:json:20211205                          | 69.0 KB | 27      | 0         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
-aether-impl            | 1.1.0      | org.eclipse.aether:aether-impl:1.1.0            | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
 aether-api             | 1.1.0      | org.eclipse.aether:aether-api:1.1.0             | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
-aether-util            | 1.1.0      | org.eclipse.aether:aether-util:1.1.0            | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
-aether-spi             | 1.1.0      | org.eclipse.aether:aether-spi:1.1.0             | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
 aether-connector-basic | 1.1.0      | org.eclipse.aether:aether-connector-basic:1.1.0 | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
+aether-impl            | 1.1.0      | org.eclipse.aether:aether-impl:1.1.0            | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
+aether-spi             | 1.1.0      | org.eclipse.aether:aether-spi:1.1.0             | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
 aether-transport-file  | 1.1.0      | org.eclipse.aether:aether-transport-file:1.1.0  | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
 aether-transport-http  | 1.1.0      | org.eclipse.aether:aether-transport-http:1.1.0  | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
-maven-aether-provider  | 3.3.9      | org.apache.maven:maven-aether-provider:3.3.9    | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
-slf4j-api              | 1.7.33     | org.slf4j:slf4j-api:1.7.33                      | 40.5 KB | 34      | 0         | d375aa1b98d34d5ddf73a3f19eaad66e98975b12 | org.slf4j:slf4j-api:1.7.33
-jul-to-slf4j           | 1.7.33     | org.slf4j:jul-to-slf4j:1.7.33                   | 4.48 KB | 1       | 0         | 053fd89b530d41b8f6744c754de1c9b02e82f2d7 | org.slf4j:jul-to-slf4j:1.7.33
-jcl-over-slf4j         | 1.7.33     | org.slf4j:jcl-over-slf4j:1.7.33                 | 16.2 KB | 9       | 0         | 28c441128bc81b6d95cc2857ae5bb46ae5bf658b | org.slf4j:jcl-over-slf4j:1.7.33
+aether-util            | 1.1.0      | org.eclipse.aether:aether-util:1.1.0            | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
+asm                    | 9.2        | org.ow2.asm:asm:9.2                             | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
 guava                  | 31.0.1-jre | com.google.guava:guava:31.0.1-jre               | 2.84 MB | 2045    | 0         | 119ea2b2bc205b138974d351777b20f02b92704b | com.google.guava:guava:31.0.1-jre
 httpclient             | 4.5.13     | org.apache.httpcomponents:httpclient:4.5.13     | 762 KB  | 470     | 2         | e5f6cae5ca7ecaac1ec2827a9e2d65ae2869cada | org.apache.httpcomponents:httpclient:4.5.13
+jarhc                  | 1.7        | org.jarhc:jarhc:1.7                             | 206 KB  | 121     | 7         | d2c5603b968f5e948427ecb700193d89a968d889 | org.jarhc:jarhc:1.7
+jcl-over-slf4j         | 1.7.33     | org.slf4j:jcl-over-slf4j:1.7.33                 | 16.2 KB | 9       | 0         | 28c441128bc81b6d95cc2857ae5bb46ae5bf658b | org.slf4j:jcl-over-slf4j:1.7.33
+json                   | 20211205   | org.json:json:20211205                          | 69.0 KB | 27      | 0         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
+jul-to-slf4j           | 1.7.33     | org.slf4j:jul-to-slf4j:1.7.33                   | 4.48 KB | 1       | 0         | 053fd89b530d41b8f6744c754de1c9b02e82f2d7 | org.slf4j:jul-to-slf4j:1.7.33
+maven-aether-provider  | 3.3.9      | org.apache.maven:maven-aether-provider:3.3.9    | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
 plexus-utils           | 3.4.1      | org.codehaus.plexus:plexus-utils:3.4.1          | 258 KB  | 105     | 3         | 4de9992988c534efd668bfcca0480ebe13e0c0eb | org.codehaus.plexus:plexus-utils:3.4.1
+slf4j-api              | 1.7.33     | org.slf4j:slf4j-api:1.7.33                      | 40.5 KB | 34      | 0         | d375aa1b98d34d5ddf73a3f19eaad66e98975b12 | org.slf4j:slf4j-api:1.7.33
 slf4j-simple           | 1.7.33     | org.slf4j:slf4j-simple:1.7.33                   | 15.0 KB | 10      | 0         | 463d6549ba948665ca0f874a0c520822afdf6ca2 | org.slf4j:slf4j-simple:1.7.33
 Classpath              | -          | -                                               | 4.90 MB | 3289    | 19        | -                                        | -
 
@@ -33,23 +33,6 @@ Information found in META-INF/MANIFEST.MF.
 
 Artifact               | General                                                     | Runtime                    | Implementation                                                  | Specification                          | Signature
 -----------------------+-------------------------------------------------------------+----------------------------+-----------------------------------------------------------------+----------------------------------------+----------
-jarhc                  | Manifest-Version: 1.0                                       | Main Class: org.jarhc.Main |                                                                 |                                        |
-asm                    | Manifest-Version: 1.0                                       |                            | ASM, a very small and fast Java bytecode manipulation framework |                                        |
-                       |                                                             |                            | Version: 9.2                                                    |                                        |
-json                   | Automatic-Module-Name: org.json                             |                            |                                                                 |                                        |
-                       | Bnd-LastModified: 1638721364920                             |                            |                                                                 |                                        |
-                       | Build-Jdk: 1.8.0_271                                        |                            |                                                                 |                                        |
-                       | Built-By: stlea                                             |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | Tool: Bnd-3.0.0.201509101326                                |                            |                                                                 |                                        |
-aether-impl            | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
-                       | Bnd-LastModified: 1454500851302                             |                            |                                                                 |                                        |
-                       | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
-                       | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
 aether-api             | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
                        | Bnd-LastModified: 1454500800999                             |                            |                                                                 |                                        |
                        | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
@@ -57,8 +40,15 @@ aether-api             | Archiver-Version: Plexus Archiver                      
                        | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
                        | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
                        | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
-aether-util            | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
-                       | Bnd-LastModified: 1454500838263                             |                            |                                                                 |                                        |
+aether-connector-basic | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
+                       | Bnd-LastModified: 1454500869000                             |                            |                                                                 |                                        |
+                       | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
+                       | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
+                       | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
+aether-impl            | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
+                       | Bnd-LastModified: 1454500851302                             |                            |                                                                 |                                        |
                        | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
                        | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
                        | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
@@ -66,13 +56,6 @@ aether-util            | Archiver-Version: Plexus Archiver                      
                        | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
 aether-spi             | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
                        | Bnd-LastModified: 1454500817800                             |                            |                                                                 |                                        |
-                       | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
-                       | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
-aether-connector-basic | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
-                       | Bnd-LastModified: 1454500869000                             |                            |                                                                 |                                        |
                        | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
                        | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
                        | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
@@ -92,34 +75,15 @@ aether-transport-http  | Archiver-Version: Plexus Archiver                      
                        | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
                        | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
                        | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
-maven-aether-provider  | Archiver-Version: Plexus Archiver                           |                            | Maven Aether Provider                                           | Maven Aether Provider                  |
-                       | Build-Jdk: 1.7.0_67                                         |                            | Version: 3.3.9                                                  | Version: 3.3.9                         |
-                       | Built-By: jvanzyl                                           |                            | Vendor: The Apache Software Foundation                          | Vendor: The Apache Software Foundation |
-                       | Created-By: Apache Maven 3.3.8                              |                            | Vendor ID: org.apache.maven                                     |                                        |
+aether-util            | Archiver-Version: Plexus Archiver                           |                            |                                                                 |                                        |
+                       | Bnd-LastModified: 1454500838263                             |                            |                                                                 |                                        |
+                       | Build-Jdk: 1.7.0_67                                         |                            |                                                                 |                                        |
+                       | Built-By: jvanzyl                                           |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
                        | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-slf4j-api              | Archiver-Version: Plexus Archiver                           |                            | slf4j-api                                                       |                                        |
-                       | Automatic-Module-Name: org.slf4j                            |                            | Version: 1.7.33                                                 |                                        |
-                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
-                       | Built-By: ceki                                              |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
-                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
-jul-to-slf4j           | Archiver-Version: Plexus Archiver                           |                            | Version: 1.7.33                                                 |                                        |
-                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
-                       | Built-By: ceki                                              |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
-                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
-jcl-over-slf4j         | Archiver-Version: Plexus Archiver                           |                            | jcl-over-slf4j                                                  |                                        |
-                       | Automatic-Module-Name: org.apache.commons.logging           |                            | Version: 1.7.33                                                 |                                        |
-                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
-                       | Built-By: ceki                                              |                            |                                                                 |                                        |
-                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
-                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
-                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
-                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
+                       | Tool: Bnd-2.1.0.20130426-122213                             |                            |                                                                 |                                        |
+asm                    | Manifest-Version: 1.0                                       |                            | ASM, a very small and fast Java bytecode manipulation framework |                                        |
+                       |                                                             |                            | Version: 9.2                                                    |                                        |
 guava                  | Automatic-Module-Name: com.google.common                    |                            |                                                                 |                                        |
                        | Bnd-LastModified: 1632770345453                             |                            |                                                                 |                                        |
                        | Build-Jdk: 11.0.12                                          |                            |                                                                 |                                        |
@@ -132,10 +96,46 @@ httpclient             | Automatic-Module-Name: org.apache.httpcomponents.httpcl
                        | Built-By: oleg                                              |                            | Vendor: The Apache Software Foundation                          | Vendor: The Apache Software Foundation |
                        | Created-By: Apache Maven 3.5.4                              |                            | Vendor ID: org.apache.httpcomponents                            |                                        |
                        | Manifest-Version: 1.0                                       |                            | URL: http://hc.apache.org/httpcomponents-client                 |                                        |
+jarhc                  | Manifest-Version: 1.0                                       | Main Class: org.jarhc.Main |                                                                 |                                        |
+jcl-over-slf4j         | Archiver-Version: Plexus Archiver                           |                            | jcl-over-slf4j                                                  |                                        |
+                       | Automatic-Module-Name: org.apache.commons.logging           |                            | Version: 1.7.33                                                 |                                        |
+                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
+                       | Built-By: ceki                                              |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
+                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
+                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
+json                   | Automatic-Module-Name: org.json                             |                            |                                                                 |                                        |
+                       | Bnd-LastModified: 1638721364920                             |                            |                                                                 |                                        |
+                       | Build-Jdk: 1.8.0_271                                        |                            |                                                                 |                                        |
+                       | Built-By: stlea                                             |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven Bundle Plugin                      |                            |                                                                 |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
+                       | Tool: Bnd-3.0.0.201509101326                                |                            |                                                                 |                                        |
+jul-to-slf4j           | Archiver-Version: Plexus Archiver                           |                            | Version: 1.7.33                                                 |                                        |
+                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
+                       | Built-By: ceki                                              |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
+                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
+                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
+maven-aether-provider  | Archiver-Version: Plexus Archiver                           |                            | Maven Aether Provider                                           | Maven Aether Provider                  |
+                       | Build-Jdk: 1.7.0_67                                         |                            | Version: 3.3.9                                                  | Version: 3.3.9                         |
+                       | Built-By: jvanzyl                                           |                            | Vendor: The Apache Software Foundation                          | Vendor: The Apache Software Foundation |
+                       | Created-By: Apache Maven 3.3.8                              |                            | Vendor ID: org.apache.maven                                     |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
 plexus-utils           | Build-Jdk-Spec: 11                                          |                            |                                                                 |                                        |
                        | Created-By: Maven Jar Plugin 3.2.0                          |                            |                                                                 |                                        |
                        | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
                        | Multi-Release: true                                         |                            |                                                                 |                                        |
+slf4j-api              | Archiver-Version: Plexus Archiver                           |                            | slf4j-api                                                       |                                        |
+                       | Automatic-Module-Name: org.slf4j                            |                            | Version: 1.7.33                                                 |                                        |
+                       | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
+                       | Built-By: ceki                                              |                            |                                                                 |                                        |
+                       | Created-By: Apache Maven                                    |                            |                                                                 |                                        |
+                       | Manifest-Version: 1.0                                       |                            |                                                                 |                                        |
+                       | X-Compile-Source-JDK: 1.5                                   |                            |                                                                 |                                        |
+                       | X-Compile-Target-JDK: 1.5                                   |                            |                                                                 |                                        |
 slf4j-simple           | Archiver-Version: Plexus Archiver                           |                            | slf4j-simple                                                    |                                        |
                        | Automatic-Module-Name: org.slf4j.simple                     |                            | Version: 1.7.33                                                 |                                        |
                        | Build-Jdk: 1.8.0_121                                        |                            |                                                                 |                                        |
@@ -151,24 +151,24 @@ List of Java Modules found in classpath.
 
 Artifact               | Module name                          | Definition     | Automatic | Requires  | Exports
 -----------------------+--------------------------------------+----------------+-----------+-----------+----------------------------
-jarhc                  | jarhc                                | Auto-generated | Yes       |           | [all packages]
-asm                    | org.objectweb.asm                    | Module-Info    | No        | java.base | org.objectweb.asm
-                       |                                      |                |           |           | org.objectweb.asm.signature
-json                   | org.json                             | Manifest       | Yes       |           | [all packages]
-aether-impl            | aether.impl                          | Auto-generated | Yes       |           | [all packages]
 aether-api             | aether.api                           | Auto-generated | Yes       |           | [all packages]
-aether-util            | aether.util                          | Auto-generated | Yes       |           | [all packages]
-aether-spi             | aether.spi                           | Auto-generated | Yes       |           | [all packages]
 aether-connector-basic | aether.connector.basic               | Auto-generated | Yes       |           | [all packages]
+aether-impl            | aether.impl                          | Auto-generated | Yes       |           | [all packages]
+aether-spi             | aether.spi                           | Auto-generated | Yes       |           | [all packages]
 aether-transport-file  | aether.transport.file                | Auto-generated | Yes       |           | [all packages]
 aether-transport-http  | aether.transport.http                | Auto-generated | Yes       |           | [all packages]
-maven-aether-provider  | maven.aether.provider                | Auto-generated | Yes       |           | [all packages]
-slf4j-api              | org.slf4j                            | Manifest       | Yes       |           | [all packages]
-jul-to-slf4j           | jul.to.slf4j                         | Auto-generated | Yes       |           | [all packages]
-jcl-over-slf4j         | org.apache.commons.logging           | Manifest       | Yes       |           | [all packages]
+aether-util            | aether.util                          | Auto-generated | Yes       |           | [all packages]
+asm                    | org.objectweb.asm                    | Module-Info    | No        | java.base | org.objectweb.asm
+                       |                                      |                |           |           | org.objectweb.asm.signature
 guava                  | com.google.common                    | Manifest       | Yes       |           | [all packages]
 httpclient             | org.apache.httpcomponents.httpclient | Manifest       | Yes       |           | [all packages]
+jarhc                  | jarhc                                | Auto-generated | Yes       |           | [all packages]
+jcl-over-slf4j         | org.apache.commons.logging           | Manifest       | Yes       |           | [all packages]
+json                   | org.json                             | Manifest       | Yes       |           | [all packages]
+jul-to-slf4j           | jul.to.slf4j                         | Auto-generated | Yes       |           | [all packages]
+maven-aether-provider  | maven.aether.provider                | Auto-generated | Yes       |           | [all packages]
 plexus-utils           | plexus.utils                         | Auto-generated | Yes       |           | [all packages]
+slf4j-api              | org.slf4j                            | Manifest       | Yes       |           | [all packages]
 slf4j-simple           | org.slf4j.simple                     | Manifest       | Yes       |           | [all packages]
 
 OSGi Bundles
@@ -177,21 +177,48 @@ Information about OSGi Bundles.
 
 Artifact               | Name                                  | Version      | Description                                                  | Import Package                                                  | Export Package                                                                                                        | Capabilities                                       | Others
 -----------------------+---------------------------------------+--------------+--------------------------------------------------------------+-----------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------+-----------------------------------------
-asm                    | org.objectweb.asm                     | 9.2.0        | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt    |                                                                 | org.objectweb.asm (Version: 9.2)                                                                                      |                                                    | Manifest Version: 2
-                       |                                       |              | Doc URL: http://asm.ow2.org                                  |                                                                 | org.objectweb.asm.signature (Version: 9.2)                                                                            |                                                    | Required Execution Environment: J2SE-1.5
-json                   | JSON in Java                          | 20211205.0.0 | JSON is a light-weight, language independent, data           |                                                                 | org.json (Version: 20211205.0.0)                                                                                      | Required:                                          | Manifest Version: 2
-                       | [json]                                |              | interchange format.        See http://www.JSON.org/          |                                                                 |                                                                                                                       | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))" |
-                       |                                       |              | The files in this package implement JSON encoders/decoders   |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | in Java.        It also includes the capability to convert   |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | between JSON and XML, HTTP        headers, Cookies, and CDL. |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | This is a reference implementation. There is a large number  |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | of JSON packages        in Java. Perhaps someday the Java    |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | community will standardize on one. Until        then, choose |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | carefully.        The license includes this restriction:     |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | "The software shall be used for good,        not evil." If   |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | your conscience cannot live with that, then choose a         |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | different        package.                                    |                                                                 |                                                                                                                       |                                                    |
-                       |                                       |              | License: http://json.org/license.html                        |                                                                 |                                                                                                                       |                                                    |
+aether-api             | Aether API                            | 1.1.0        | The application programming interface for the repository     |                                                                 | org.eclipse.aether (Version: 1.1.0)                                                                                   |                                                    | Manifest Version: 2
+                       | [org.eclipse.aether.api]              |              | system.                                                      |                                                                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.collection, org.eclipse.aether.deployment,                   |                                                    | Required Execution Environment: J2SE-1.5
+                       |                                       |              | Vendor: Eclipse Aether                                       |                                                                 |       org.eclipse.aether.installation, org.eclipse.aether.metadata, org.eclipse.aether.repository,                    |                                                    |
+                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           |                                                                 |       org.eclipse.aether.resolution, org.eclipse.aether.transfer                                                      |                                                    |
+                       |                                       |              | Doc URL: http://www.eclipse.org/aether/aether-api/           |                                                                 | org.eclipse.aether.artifact (Version: 1.1.0)                                                                          |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.collection (Version: 1.1.0)                                                                        |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.graph, org.eclipse.aether.repository,    |                                                    |
+                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.version                                                                                      |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.deployment (Version: 1.1.0)                                                                        |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                                |                                                    |
+                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository                                                                                   |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.graph (Version: 1.1.0)                                                                             |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.repository, org.eclipse.aether.version                       |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.installation (Version: 1.1.0)                                                                      |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata                                 |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.metadata (Version: 1.1.0)                                                                          |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether                                                                                           |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.repository (Version: 1.1.0)                                                                        |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata                                 |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.resolution (Version: 1.1.0)                                                                        |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.collection, org.eclipse.aether.graph,    |                                                    |
+                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.metadata, org.eclipse.aether.repository, org.eclipse.aether.version                          |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.transfer (Version: 1.1.0)                                                                          |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                                |                                                    |
+                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository                                                                                   |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.version (Version: 1.1.0)                                                                           |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether                                                                                           |                                                    |
+aether-connector-basic | Aether Connector Basic                | 1.1.0        | A repository connector implementation for repositories using | javax.inject;resolution:=optional                               | org.eclipse.aether.connector.basic (Version: 1.1.0)                                                                   |                                                    | Manifest Version: 2
+                       | [org.eclipse.aether.connector.basic]  |              | URI-based layouts.                                           | org.eclipse.aether;version="[1.1,2)"                            |    Uses: javax.inject, org.eclipse.aether, org.eclipse.aether.repository, org.eclipse.aether.spi.connector,           |                                                    | Required Execution Environment: J2SE-1.5
+                       |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.artifact;version="[1.1,2)"                   |       org.eclipse.aether.spi.connector.checksum, org.eclipse.aether.spi.connector.layout,                             |                                                    |
+                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           | org.eclipse.aether.metadata;version="[1.1,2)"                   |       org.eclipse.aether.spi.connector.transport, org.eclipse.aether.spi.io, org.eclipse.aether.spi.locator,          |                                                    |
+                       |                                       |              | Doc URL:                                                     | org.eclipse.aether.repository;version="[1.1,2)"                 |       org.eclipse.aether.spi.log, org.eclipse.aether.transfer                                                         |                                                    |
+                       |                                       |              | http://www.eclipse.org/aether/aether-connector-basic/        | org.eclipse.aether.spi.connector;version="[1.1,2)"              |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.checksum;version="[1.1,2)"     |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.layout;version="[1.1,2)"       |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.transport;version="[1.1,2)"    |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.io;version="[1.1,2)"                     |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.locator;version="[1.1,2)"                |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.spi.log;version="[1.1,2)"                    |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.transfer;version="[1.1,2)"                   |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.util;version="[1.1,2)"                       |                                                                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.util.concurrency;version="[1.1,2)"           |                                                                                                                       |                                                    |
 aether-impl            | Aether Implementation                 | 1.1.0        | An implementation of the repository system.                  | com.google.inject;version="[1.3,2)";resolution:=optional        | org.eclipse.aether.internal.impl (Version: 1.1.0)                                                                     |                                                    | Manifest Version: 2
                        | [org.eclipse.aether.impl]             |              | Vendor: Eclipse Aether                                       | com.google.inject.binder;version="[1.3,2)";resolution:=optional |    Uses: javax.inject, org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.collection,                |                                                    | Required Execution Environment: J2SE-1.5
                        |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           | com.google.inject.name;version="[1.3,2)";resolution:=optional   |       org.eclipse.aether.deployment, org.eclipse.aether.impl, org.eclipse.aether.installation,                        |                                                    |
@@ -223,59 +250,6 @@ aether-impl            | Aether Implementation                 | 1.1.0        | 
                        |                                       |              |                                                              | org.eclipse.sisu;resolution:=optional                           |                                                                                                                       |                                                    |
                        |                                       |              |                                                              | org.slf4j;version="[1.6,2)";resolution:=optional                |                                                                                                                       |                                                    |
                        |                                       |              |                                                              | org.slf4j.spi;version="[1.6,2)";resolution:=optional            |                                                                                                                       |                                                    |
-aether-api             | Aether API                            | 1.1.0        | The application programming interface for the repository     |                                                                 | org.eclipse.aether (Version: 1.1.0)                                                                                   |                                                    | Manifest Version: 2
-                       | [org.eclipse.aether.api]              |              | system.                                                      |                                                                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.collection, org.eclipse.aether.deployment,                   |                                                    | Required Execution Environment: J2SE-1.5
-                       |                                       |              | Vendor: Eclipse Aether                                       |                                                                 |       org.eclipse.aether.installation, org.eclipse.aether.metadata, org.eclipse.aether.repository,                    |                                                    |
-                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           |                                                                 |       org.eclipse.aether.resolution, org.eclipse.aether.transfer                                                      |                                                    |
-                       |                                       |              | Doc URL: http://www.eclipse.org/aether/aether-api/           |                                                                 | org.eclipse.aether.artifact (Version: 1.1.0)                                                                          |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.collection (Version: 1.1.0)                                                                        |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.graph, org.eclipse.aether.repository,    |                                                    |
-                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.version                                                                                      |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.deployment (Version: 1.1.0)                                                                        |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                                |                                                    |
-                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository                                                                                   |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.graph (Version: 1.1.0)                                                                             |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.repository, org.eclipse.aether.version                       |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.installation (Version: 1.1.0)                                                                      |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata                                 |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.metadata (Version: 1.1.0)                                                                          |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether                                                                                           |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.repository (Version: 1.1.0)                                                                        |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata                                 |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.resolution (Version: 1.1.0)                                                                        |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.collection, org.eclipse.aether.graph,    |                                                    |
-                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.metadata, org.eclipse.aether.repository, org.eclipse.aether.version                          |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.transfer (Version: 1.1.0)                                                                          |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                                |                                                    |
-                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository                                                                                   |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.version (Version: 1.1.0)                                                                           |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether                                                                                           |                                                    |
-aether-util            | Aether Utilities                      | 1.1.0        | A collection of utility classes to ease usage of the         | javax.net.ssl                                                   | org.eclipse.aether.util (Version: 1.1.0)                                                                              |                                                    | Manifest Version: 2
-                       | [org.eclipse.aether.util]             |              | repository system.                                           | org.eclipse.aether;version="[1.1,2)"                            |    Uses: org.eclipse.aether                                                                                           |                                                    | Required Execution Environment: J2SE-1.5
-                       |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.artifact;version="[1.1,2)"                   | org.eclipse.aether.util.artifact (Version: 1.1.0)                                                                     |                                                    |
-                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           | org.eclipse.aether.collection;version="[1.1,2)"                 |    Uses: org.eclipse.aether.artifact                                                                                  |                                                    |
-                       |                                       |              | Doc URL: http://www.eclipse.org/aether/aether-util/          | org.eclipse.aether.graph;version="[1.1,2)"                      | org.eclipse.aether.util.concurrency (Version: 1.1.0)                                                                  |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.metadata;version="[1.1,2)"                   | org.eclipse.aether.util.filter (Version: 1.1.0)                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.repository;version="[1.1,2)"                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.graph, org.eclipse.aether.version                            |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.resolution;version="[1.1,2)"                 | org.eclipse.aether.util.graph.manager (Version: 1.1.0)                                                                |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.transfer;version="[1.1,2)"                   |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.version;version="[1.1,2)"                    | org.eclipse.aether.util.graph.selector (Version: 1.1.0)                                                               |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.transformer (Version: 1.1.0)                                                            |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.collection, org.eclipse.aether.graph                                  |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.traverser (Version: 1.1.0)                                                              |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.version (Version: 1.1.0)                                                                |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.collection                                                            |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.visitor (Version: 1.1.0)                                                                |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.graph                                                                                     |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.listener (Version: 1.1.0)                                                                     |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.transfer                                                              |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.repository (Version: 1.1.0)                                                                   |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: javax.net.ssl, org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                 |                                                    |
-                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository, org.eclipse.aether.resolution                                                    |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.version (Version: 1.1.0)                                                                      |                                                    |
-                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.version                                                                                   |                                                    |
 aether-spi             | Aether SPI                            | 1.1.0        | The service provider interface for repository system         | org.eclipse.aether;version="[1.1,2)"                            | org.eclipse.aether.spi.connector (Version: 1.1.0)                                                                     |                                                    | Manifest Version: 2
                        | [org.eclipse.aether.spi]              |              | implementations and repository connectors.                   | org.eclipse.aether.artifact;version="[1.1,2)"                   |    Uses: org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                                |                                                    | Required Execution Environment: J2SE-1.5
                        |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.metadata;version="[1.1,2)"                   |       org.eclipse.aether.repository, org.eclipse.aether.transfer                                                      |                                                    |
@@ -291,21 +265,6 @@ aether-spi             | Aether SPI                            | 1.1.0        | 
                        |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.repository                                                            |                                                    |
                        |                                       |              |                                                              |                                                                 | org.eclipse.aether.spi.locator (Version: 1.1.0)                                                                       |                                                    |
                        |                                       |              |                                                              |                                                                 | org.eclipse.aether.spi.log (Version: 1.1.0)                                                                           |                                                    |
-aether-connector-basic | Aether Connector Basic                | 1.1.0        | A repository connector implementation for repositories using | javax.inject;resolution:=optional                               | org.eclipse.aether.connector.basic (Version: 1.1.0)                                                                   |                                                    | Manifest Version: 2
-                       | [org.eclipse.aether.connector.basic]  |              | URI-based layouts.                                           | org.eclipse.aether;version="[1.1,2)"                            |    Uses: javax.inject, org.eclipse.aether, org.eclipse.aether.repository, org.eclipse.aether.spi.connector,           |                                                    | Required Execution Environment: J2SE-1.5
-                       |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.artifact;version="[1.1,2)"                   |       org.eclipse.aether.spi.connector.checksum, org.eclipse.aether.spi.connector.layout,                             |                                                    |
-                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           | org.eclipse.aether.metadata;version="[1.1,2)"                   |       org.eclipse.aether.spi.connector.transport, org.eclipse.aether.spi.io, org.eclipse.aether.spi.locator,          |                                                    |
-                       |                                       |              | Doc URL:                                                     | org.eclipse.aether.repository;version="[1.1,2)"                 |       org.eclipse.aether.spi.log, org.eclipse.aether.transfer                                                         |                                                    |
-                       |                                       |              | http://www.eclipse.org/aether/aether-connector-basic/        | org.eclipse.aether.spi.connector;version="[1.1,2)"              |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.checksum;version="[1.1,2)"     |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.layout;version="[1.1,2)"       |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.connector.transport;version="[1.1,2)"    |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.io;version="[1.1,2)"                     |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.locator;version="[1.1,2)"                |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.spi.log;version="[1.1,2)"                    |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.transfer;version="[1.1,2)"                   |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.util;version="[1.1,2)"                       |                                                                                                                       |                                                    |
-                       |                                       |              |                                                              | org.eclipse.aether.util.concurrency;version="[1.1,2)"           |                                                                                                                       |                                                    |
 aether-transport-file  | Aether Transport File                 | 1.1.0        | A transport implementation for repositories using file://    | javax.inject;resolution:=optional                               | org.eclipse.aether.transport.file (Version: 1.1.0)                                                                    |                                                    | Manifest Version: 2
                        | [org.eclipse.aether.transport.file]   |              | URLs.                                                        | org.eclipse.aether;version="[1.1,2)"                            |    Uses: javax.inject, org.eclipse.aether, org.eclipse.aether.repository,                                             |                                                    | Required Execution Environment: J2SE-1.5
                        |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.repository;version="[1.1,2)"                 |       org.eclipse.aether.spi.connector.transport, org.eclipse.aether.spi.locator, org.eclipse.aether.spi.log,         |                                                    |
@@ -341,14 +300,34 @@ aether-transport-http  | Aether Transport HTTP                 | 1.1.0        | 
                        |                                       |              |                                                              | org.eclipse.aether.spi.log;version="[1.1,2)"                    |                                                                                                                       |                                                    |
                        |                                       |              |                                                              | org.eclipse.aether.transfer;version="[1.1,2)"                   |                                                                                                                       |                                                    |
                        |                                       |              |                                                              | org.eclipse.aether.util;version="[1.1,2)"                       |                                                                                                                       |                                                    |
-slf4j-api              | slf4j-api                             | 1.7.33       | The slf4j API                                                | org.slf4j.impl;version=1.6.0                                    | org.slf4j (Version: 1.7.33)                                                                                           |                                                    | Manifest Version: 2
-                       | [slf4j.api]                           |              | Vendor: SLF4J.ORG                                            |                                                                 | org.slf4j.spi (Version: 1.7.33)                                                                                       |                                                    | Required Execution Environment: J2SE-1.5
-                       |                                       |              |                                                              |                                                                 | org.slf4j.helpers (Version: 1.7.33)                                                                                   |                                                    |
-                       |                                       |              |                                                              |                                                                 | org.slf4j.event (Version: 1.7.33)                                                                                     |                                                    |
-jul-to-slf4j           | jul-to-slf4j                          | 1.7.33       | JUL to SLF4J bridge                                          | org.slf4j;version=1.7.33                                        | org.slf4j.bridge (Version: 1.7.33)                                                                                    |                                                    | Manifest Version: 2
-                       | [jul.to.slf4j]                        |              | Vendor: SLF4J.ORG                                            | org.slf4j.spi;version=1.7.33                                    |    Uses: org.slf4j, org.slf4j.spi                                                                                     |                                                    | Required Execution Environment: J2SE-1.5
-jcl-over-slf4j         | jcl-over-slf4j                        | 1.7.33       | JCL 1.2 implemented over SLF4J                               | org.slf4j;version=1.7.33                                        | org.apache.commons.logging (Version: 1.2)                                                                             |                                                    | Manifest Version: 2
-                       | [jcl.over.slf4j]                      |              | Vendor: SLF4J.ORG                                            | org.slf4j.spi;version=1.7.33                                    | org.apache.commons.logging.impl (Version: 1.2)                                                                        |                                                    | Required Execution Environment: J2SE-1.5
+aether-util            | Aether Utilities                      | 1.1.0        | A collection of utility classes to ease usage of the         | javax.net.ssl                                                   | org.eclipse.aether.util (Version: 1.1.0)                                                                              |                                                    | Manifest Version: 2
+                       | [org.eclipse.aether.util]             |              | repository system.                                           | org.eclipse.aether;version="[1.1,2)"                            |    Uses: org.eclipse.aether                                                                                           |                                                    | Required Execution Environment: J2SE-1.5
+                       |                                       |              | Vendor: Eclipse Aether                                       | org.eclipse.aether.artifact;version="[1.1,2)"                   | org.eclipse.aether.util.artifact (Version: 1.1.0)                                                                     |                                                    |
+                       |                                       |              | License: http://www.eclipse.org/legal/epl-v10.html           | org.eclipse.aether.collection;version="[1.1,2)"                 |    Uses: org.eclipse.aether.artifact                                                                                  |                                                    |
+                       |                                       |              | Doc URL: http://www.eclipse.org/aether/aether-util/          | org.eclipse.aether.graph;version="[1.1,2)"                      | org.eclipse.aether.util.concurrency (Version: 1.1.0)                                                                  |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.metadata;version="[1.1,2)"                   | org.eclipse.aether.util.filter (Version: 1.1.0)                                                                       |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.repository;version="[1.1,2)"                 |    Uses: org.eclipse.aether.artifact, org.eclipse.aether.graph, org.eclipse.aether.version                            |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.resolution;version="[1.1,2)"                 | org.eclipse.aether.util.graph.manager (Version: 1.1.0)                                                                |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.transfer;version="[1.1,2)"                   |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
+                       |                                       |              |                                                              | org.eclipse.aether.version;version="[1.1,2)"                    | org.eclipse.aether.util.graph.selector (Version: 1.1.0)                                                               |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.transformer (Version: 1.1.0)                                                            |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.collection, org.eclipse.aether.graph                                  |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.traverser (Version: 1.1.0)                                                              |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.collection, org.eclipse.aether.graph                                                      |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.version (Version: 1.1.0)                                                                |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.collection                                                            |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.graph.visitor (Version: 1.1.0)                                                                |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.graph                                                                                     |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.listener (Version: 1.1.0)                                                                     |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether, org.eclipse.aether.transfer                                                              |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.repository (Version: 1.1.0)                                                                   |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: javax.net.ssl, org.eclipse.aether, org.eclipse.aether.artifact, org.eclipse.aether.metadata,                 |                                                    |
+                       |                                       |              |                                                              |                                                                 |       org.eclipse.aether.repository, org.eclipse.aether.resolution                                                    |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.eclipse.aether.util.version (Version: 1.1.0)                                                                      |                                                    |
+                       |                                       |              |                                                              |                                                                 |    Uses: org.eclipse.aether.version                                                                                   |                                                    |
+asm                    | org.objectweb.asm                     | 9.2.0        | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt    |                                                                 | org.objectweb.asm (Version: 9.2)                                                                                      |                                                    | Manifest Version: 2
+                       |                                       |              | Doc URL: http://asm.ow2.org                                  |                                                                 | org.objectweb.asm.signature (Version: 9.2)                                                                            |                                                    | Required Execution Environment: J2SE-1.5
 guava                  | Guava: Google Core Libraries for Java | 31.0.1.jre   | Guava is a suite of core and expanded libraries that include | com.google.common.util.concurrent.internal;version="[1.0,2)"    | com.google.common.annotations (Version: 31.0.1)                                                                       | Required:                                          | Manifest Version: 2
                        | [com.google.guava]                    |              | utility classes, Google's collections, I/O classes, and      | javax.annotation;resolution:=optional;version="[3.0,4)"         | com.google.common.base (Version: 31.0.1)                                                                              | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))" |
                        |                                       |              | much more.                                                   | javax.crypto;resolution:=optional                               |    Uses: javax.annotation                                                                                             |                                                    |
@@ -381,6 +360,27 @@ guava                  | Guava: Google Core Libraries for Java | 31.0.1.jre   | 
                        |                                       |              |                                                              |                                                                 |       javax.annotation                                                                                                |                                                    |
                        |                                       |              |                                                              |                                                                 | com.google.common.xml (Version: 31.0.1)                                                                               |                                                    |
                        |                                       |              |                                                              |                                                                 |    Uses: com.google.common.escape                                                                                     |                                                    |
+jcl-over-slf4j         | jcl-over-slf4j                        | 1.7.33       | JCL 1.2 implemented over SLF4J                               | org.slf4j;version=1.7.33                                        | org.apache.commons.logging (Version: 1.2)                                                                             |                                                    | Manifest Version: 2
+                       | [jcl.over.slf4j]                      |              | Vendor: SLF4J.ORG                                            | org.slf4j.spi;version=1.7.33                                    | org.apache.commons.logging.impl (Version: 1.2)                                                                        |                                                    | Required Execution Environment: J2SE-1.5
+json                   | JSON in Java                          | 20211205.0.0 | JSON is a light-weight, language independent, data           |                                                                 | org.json (Version: 20211205.0.0)                                                                                      | Required:                                          | Manifest Version: 2
+                       | [json]                                |              | interchange format.        See http://www.JSON.org/          |                                                                 |                                                                                                                       | osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))" |
+                       |                                       |              | The files in this package implement JSON encoders/decoders   |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | in Java.        It also includes the capability to convert   |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | between JSON and XML, HTTP        headers, Cookies, and CDL. |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | This is a reference implementation. There is a large number  |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | of JSON packages        in Java. Perhaps someday the Java    |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | community will standardize on one. Until        then, choose |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | carefully.        The license includes this restriction:     |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | "The software shall be used for good,        not evil." If   |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | your conscience cannot live with that, then choose a         |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | different        package.                                    |                                                                 |                                                                                                                       |                                                    |
+                       |                                       |              | License: http://json.org/license.html                        |                                                                 |                                                                                                                       |                                                    |
+jul-to-slf4j           | jul-to-slf4j                          | 1.7.33       | JUL to SLF4J bridge                                          | org.slf4j;version=1.7.33                                        | org.slf4j.bridge (Version: 1.7.33)                                                                                    |                                                    | Manifest Version: 2
+                       | [jul.to.slf4j]                        |              | Vendor: SLF4J.ORG                                            | org.slf4j.spi;version=1.7.33                                    |    Uses: org.slf4j, org.slf4j.spi                                                                                     |                                                    | Required Execution Environment: J2SE-1.5
+slf4j-api              | slf4j-api                             | 1.7.33       | The slf4j API                                                | org.slf4j.impl;version=1.6.0                                    | org.slf4j (Version: 1.7.33)                                                                                           |                                                    | Manifest Version: 2
+                       | [slf4j.api]                           |              | Vendor: SLF4J.ORG                                            |                                                                 | org.slf4j.spi (Version: 1.7.33)                                                                                       |                                                    | Required Execution Environment: J2SE-1.5
+                       |                                       |              |                                                              |                                                                 | org.slf4j.helpers (Version: 1.7.33)                                                                                   |                                                    |
+                       |                                       |              |                                                              |                                                                 | org.slf4j.event (Version: 1.7.33)                                                                                     |                                                    |
 slf4j-simple           | slf4j-simple                          | 1.7.33       | SLF4J Simple binding                                         | org.slf4j;version=1.7.33                                        | org.slf4j.impl (Version: 1.7.33)                                                                                      |                                                    | Manifest Version: 2
                        | [slf4j.simple]                        |              | Vendor: SLF4J.ORG                                            | org.slf4j.spi;version=1.7.33                                    |                                                                                                                       |                                                    | Required Execution Environment: J2SE-1.5
                        |                                       |              |                                                              | org.slf4j.helpers;version=1.7.33                                |                                                                                                                       |                                                    |
@@ -392,23 +392,23 @@ Java class file format information.
 
 Artifact               | Multi-release         | Class files by Java version
 -----------------------+-----------------------+-------------------------------------------------------
-jarhc                  | No                    | Java 8 (121)
-asm                    | No                    | Java 5 (37)
-json                   | No                    | Java 6 (27)
-aether-impl            | No                    | Java 5 (96)
 aether-api             | No                    | Java 5 (128)
-aether-util            | No                    | Java 5 (103)
-aether-spi             | No                    | Java 5 (34)
 aether-connector-basic | No                    | Java 5 (19)
+aether-impl            | No                    | Java 5 (96)
+aether-spi             | No                    | Java 5 (34)
 aether-transport-file  | No                    | Java 5 (4)
 aether-transport-http  | No                    | Java 5 (20)
-maven-aether-provider  | No                    | Java 7 (26)
-slf4j-api              | No                    | Java 5 (34)
-jul-to-slf4j           | No                    | Java 5 (1)
-jcl-over-slf4j         | No                    | Java 5 (9)
+aether-util            | No                    | Java 5 (103)
+asm                    | No                    | Java 5 (37)
 guava                  | No                    | Java 8 (2045)
 httpclient             | No                    | Java 6 (470)
+jarhc                  | No                    | Java 8 (121)
+jcl-over-slf4j         | No                    | Java 5 (9)
+json                   | No                    | Java 6 (27)
+jul-to-slf4j           | No                    | Java 5 (1)
+maven-aether-provider  | No                    | Java 7 (26)
 plexus-utils           | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (104)
+slf4j-api              | No                    | Java 5 (34)
 slf4j-simple           | No                    | Java 5 (10)
 Classpath              | -                     | Java 10 (1), Java 8 (2270), Java 7 (26), Java 6 (497),
                        |                       | Java 5 (495)
@@ -419,35 +419,18 @@ Information about newer major, minor, and patch versions of artifacts.
 
 Artifact               | Version    | Updates
 -----------------------+------------+-------------------------------------------------------
-jarhc                  | 1.7        | 2.0.0
-                       |            | 2.1.0
-                       |            | 2.2.0, 2.2.1, 2.2.2
+aether-api             | 1.1.0      |
+aether-connector-basic | 1.1.0      |
+aether-impl            | 1.1.0      |
+aether-spi             | 1.1.0      |
+aether-transport-file  | 1.1.0      |
+aether-transport-http  | 1.1.0      |
+aether-util            | 1.1.0      |
 asm                    | 9.2        | 9.3
                        |            | 9.4
                        |            | 9.5
                        |            | 9.6
                        |            | 9.7, 9.7.1
-json                   | 20211205   | 20220320
-                       |            | 20220924
-                       |            | 20230227
-                       |            | [...]
-                       |            | 20240303
-                       |            | 20241224
-                       |            | 20250107
-aether-impl            | 1.1.0      |
-aether-api             | 1.1.0      |
-aether-util            | 1.1.0      |
-aether-spi             | 1.1.0      |
-aether-connector-basic | 1.1.0      |
-aether-transport-file  | 1.1.0      |
-aether-transport-http  | 1.1.0      |
-maven-aether-provider  | 3.3.9      |
-slf4j-api              | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
-                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
-jul-to-slf4j           | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
-                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
-jcl-over-slf4j         | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
-                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
 guava                  | 31.0.1-jre | 31.1-android, 31.1-jre
                        |            | 32.0.0-android, 32.0.0-jre
                        |            | 32.0.1-android, 32.0.1-jre
@@ -456,10 +439,27 @@ guava                  | 31.0.1-jre | 31.1-android, 31.1-jre
                        |            | 33.3.0-android, 33.3.0-jre, 33.3.1-android, 33.3.1-jre
                        |            | 33.4.0-android, 33.4.0-jre
 httpclient             | 4.5.13     | 4.5.14
+jarhc                  | 1.7        | 2.0.0
+                       |            | 2.1.0
+                       |            | 2.2.0, 2.2.1, 2.2.2
+jcl-over-slf4j         | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
+                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
+json                   | 20211205   | 20220320
+                       |            | 20220924
+                       |            | 20230227
+                       |            | [...]
+                       |            | 20240303
+                       |            | 20241224
+                       |            | 20250107
+jul-to-slf4j           | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
+                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
+maven-aether-provider  | 3.3.9      |
 plexus-utils           | 3.4.1      | 3.4.2
                        |            | 3.5.0, 3.5.1
                        |            | 3.6.0
                        |            | 4.0.0, 4.0.1, 4.0.2
+slf4j-api              | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
+                       |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
 slf4j-simple           | 1.7.33     | 1.7.34, 1.7.35, 1.7.36
                        |            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.14, 2.0.15, 2.0.16
 
@@ -469,6 +469,41 @@ Dependencies between JAR files.
 
 Artifact               | Uses                   | Used by
 -----------------------+------------------------+-----------------------
+aether-api             | [none]                 | aether-connector-basic
+                       |                        | aether-impl
+                       |                        | aether-spi
+                       |                        | aether-transport-file
+                       |                        | aether-transport-http
+                       |                        | aether-util
+                       |                        | jarhc
+                       |                        | maven-aether-provider
+aether-connector-basic | aether-api             | jarhc
+                       | aether-spi             |
+                       | aether-util            |
+aether-impl            | aether-api             | jarhc
+                       | aether-spi             | maven-aether-provider
+                       | aether-util            |
+                       | slf4j-api              |
+aether-spi             | aether-api             | aether-connector-basic
+                       |                        | aether-impl
+                       |                        | aether-transport-file
+                       |                        | aether-transport-http
+                       |                        | jarhc
+                       |                        | maven-aether-provider
+aether-transport-file  | aether-api             | jarhc
+                       | aether-spi             |
+aether-transport-http  | aether-api             | jarhc
+                       | aether-spi             |
+                       | aether-util            |
+                       | httpclient             |
+aether-util            | aether-api             | aether-connector-basic
+                       |                        | aether-impl
+                       |                        | aether-transport-http
+                       |                        | jarhc
+                       |                        | maven-aether-provider
+asm                    | [none]                 | jarhc
+guava                  | [none]                 | maven-aether-provider
+httpclient             | jcl-over-slf4j         | aether-transport-http
 jarhc                  | aether-api             | [none]
                        | aether-connector-basic |
                        | aether-impl            |
@@ -482,57 +517,22 @@ jarhc                  | aether-api             | [none]
                        | jul-to-slf4j           |
                        | maven-aether-provider  |
                        | slf4j-api              |
-asm                    | [none]                 | jarhc
+jcl-over-slf4j         | slf4j-api              | httpclient
+                       |                        | jarhc
 json                   | [none]                 | jarhc
-aether-impl            | aether-api             | jarhc
-                       | aether-spi             | maven-aether-provider
-                       | aether-util            |
-                       | slf4j-api              |
-aether-api             | [none]                 | aether-connector-basic
-                       |                        | aether-impl
-                       |                        | aether-spi
-                       |                        | aether-transport-file
-                       |                        | aether-transport-http
-                       |                        | aether-util
-                       |                        | jarhc
-                       |                        | maven-aether-provider
-aether-util            | aether-api             | aether-connector-basic
-                       |                        | aether-impl
-                       |                        | aether-transport-http
-                       |                        | jarhc
-                       |                        | maven-aether-provider
-aether-spi             | aether-api             | aether-connector-basic
-                       |                        | aether-impl
-                       |                        | aether-transport-file
-                       |                        | aether-transport-http
-                       |                        | jarhc
-                       |                        | maven-aether-provider
-aether-connector-basic | aether-api             | jarhc
-                       | aether-spi             |
-                       | aether-util            |
-aether-transport-file  | aether-api             | jarhc
-                       | aether-spi             |
-aether-transport-http  | aether-api             | jarhc
-                       | aether-spi             |
-                       | aether-util            |
-                       | httpclient             |
+jul-to-slf4j           | slf4j-api              | jarhc
 maven-aether-provider  | aether-api             | jarhc
                        | aether-impl            |
                        | aether-spi             |
                        | aether-util            |
                        | guava                  |
                        | plexus-utils           |
+plexus-utils           | [none]                 | maven-aether-provider
 slf4j-api              | slf4j-simple           | aether-impl
                        |                        | jarhc
                        |                        | jcl-over-slf4j
                        |                        | jul-to-slf4j
                        |                        | slf4j-simple
-jul-to-slf4j           | slf4j-api              | jarhc
-jcl-over-slf4j         | slf4j-api              | httpclient
-                       |                        | jarhc
-guava                  | [none]                 | maven-aether-provider
-httpclient             | jcl-over-slf4j         | aether-transport-http
-plexus-utils           | [none]                 | maven-aether-provider
 slf4j-simple           | slf4j-api              | slf4j-api
 
 Dependencies
@@ -541,6 +541,40 @@ Dependencies as declared in POM file.
 
 Artifact               | Maven coordinates                               | Direct dependencies                                                         | Status
 -----------------------+-------------------------------------------------+-----------------------------------------------------------------------------+--------------------
+aether-api             | org.eclipse.aether:aether-api:1.1.0             | [none]                                                                      |
+aether-connector-basic | org.eclipse.aether:aether-connector-basic:1.1.0 | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+aether-impl            | org.eclipse.aether:aether-impl:1.1.0            | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+                       |                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1 (provided, optional)         | Unsatisfied
+                       |                                                 | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 1.7.33)
+                       |                                                 | org.sonatype.sisu:sisu-guice:3.1.6 (provided, optional)                     | Unsatisfied
+aether-spi             | org.eclipse.aether:aether-spi:1.1.0             | org.eclipse.aether:aether-api:1.1.0                                         | OK
+aether-transport-file  | org.eclipse.aether:aether-transport-file:1.1.0  | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+aether-transport-http  | org.eclipse.aether:aether-transport-http:1.1.0  | org.eclipse.aether:aether-api:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
+                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
+                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
+                       |                                                 | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.13)
+                       |                                                 | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 1.7.33)
+aether-util            | org.eclipse.aether:aether-util:1.1.0            | org.eclipse.aether:aether-api:1.1.0                                         | OK
+asm                    | org.ow2.asm:asm:9.2                             | [none]                                                                      |
+guava                  | com.google.guava:guava:31.0.1-jre               | com.google.guava:failureaccess:1.0.1                                        | Unsatisfied
+                       |                                                 | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | Unsatisfied
+                       |                                                 | com.google.code.findbugs:jsr305:3.0.2                                       | Unsatisfied
+                       |                                                 | com.google.errorprone:error_prone_annotations:2.7.1                         | Unsatisfied
+                       |                                                 | com.google.j2objc:j2objc-annotations:1.3                                    | Unsatisfied
+                       |                                                 | org.checkerframework:checker-qual:3.12.0                                    | Unsatisfied
+httpclient             | org.apache.httpcomponents:httpclient:4.5.13     | org.apache.httpcomponents:httpcore:4.4.13                                   | Unsatisfied
+                       |                                                 | commons-codec:commons-codec:1.11                                            | Unsatisfied
+                       |                                                 | commons-logging:commons-logging:1.2                                         | Unsatisfied
 jarhc                  | org.jarhc:jarhc:1.7                             | com.google.guava:guava:31.0.1-jre (runtime)                                 | OK
                        |                                                 | org.apache.httpcomponents:httpclient:4.5.13 (runtime)                       | OK
                        |                                                 | org.apache.maven:maven-aether-provider:3.3.9 (runtime)                      | OK
@@ -558,32 +592,9 @@ jarhc                  | org.jarhc:jarhc:1.7                             | com.g
                        |                                                 | org.slf4j:jul-to-slf4j:1.7.33 (runtime)                                     | OK
                        |                                                 | org.slf4j:slf4j-api:1.7.33 (runtime)                                        | OK
                        |                                                 | org.slf4j:slf4j-simple:1.7.33 (runtime)                                     | OK
-asm                    | org.ow2.asm:asm:9.2                             | [none]                                                                      |
+jcl-over-slf4j         | org.slf4j:jcl-over-slf4j:1.7.33                 | org.slf4j:slf4j-api:1.7.33                                                  | OK
 json                   | org.json:json:20211205                          | [none]                                                                      |
-aether-impl            | org.eclipse.aether:aether-impl:1.1.0            | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-                       |                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1 (provided, optional)         | Unsatisfied
-                       |                                                 | org.slf4j:slf4j-api:1.6.2 (provided, optional)                              | OK (version 1.7.33)
-                       |                                                 | org.sonatype.sisu:sisu-guice:3.1.6 (provided, optional)                     | Unsatisfied
-aether-api             | org.eclipse.aether:aether-api:1.1.0             | [none]                                                                      |
-aether-util            | org.eclipse.aether:aether-util:1.1.0            | org.eclipse.aether:aether-api:1.1.0                                         | OK
-aether-spi             | org.eclipse.aether:aether-spi:1.1.0             | org.eclipse.aether:aether-api:1.1.0                                         | OK
-aether-connector-basic | org.eclipse.aether:aether-connector-basic:1.1.0 | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-transport-file  | org.eclipse.aether:aether-transport-file:1.1.0  | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-aether-transport-http  | org.eclipse.aether:aether-transport-http:1.1.0  | org.eclipse.aether:aether-api:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-spi:1.1.0                                         | OK
-                       |                                                 | org.eclipse.aether:aether-util:1.1.0                                        | OK
-                       |                                                 | javax.inject:javax.inject:1 (provided, optional)                            | Unsatisfied
-                       |                                                 | org.apache.httpcomponents:httpclient:4.3.5                                  | OK (version 4.5.13)
-                       |                                                 | org.slf4j:jcl-over-slf4j:1.6.2                                              | OK (version 1.7.33)
+jul-to-slf4j           | org.slf4j:jul-to-slf4j:1.7.33                   | org.slf4j:slf4j-api:1.7.33                                                  | OK
 maven-aether-provider  | org.apache.maven:maven-aether-provider:3.3.9    | org.apache.maven:maven-model:3.3.9                                          | Unsatisfied
                        |                                                 | org.apache.maven:maven-model-builder:3.3.9                                  | Unsatisfied
                        |                                                 | org.apache.maven:maven-repository-metadata:3.3.9                            | Unsatisfied
@@ -595,19 +606,8 @@ maven-aether-provider  | org.apache.maven:maven-aether-provider:3.3.9    | org.a
                        |                                                 | org.eclipse.aether:aether-impl:1.0.2.v20150114                              | OK (version 1.1.0)
                        |                                                 | org.eclipse.aether:aether-spi:1.0.2.v20150114                               | OK (version 1.1.0)
                        |                                                 | org.eclipse.aether:aether-util:1.0.2.v20150114                              | OK (version 1.1.0)
-slf4j-api              | org.slf4j:slf4j-api:1.7.33                      | [none]                                                                      |
-jul-to-slf4j           | org.slf4j:jul-to-slf4j:1.7.33                   | org.slf4j:slf4j-api:1.7.33                                                  | OK
-jcl-over-slf4j         | org.slf4j:jcl-over-slf4j:1.7.33                 | org.slf4j:slf4j-api:1.7.33                                                  | OK
-guava                  | com.google.guava:guava:31.0.1-jre               | com.google.guava:failureaccess:1.0.1                                        | Unsatisfied
-                       |                                                 | com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava | Unsatisfied
-                       |                                                 | com.google.code.findbugs:jsr305:3.0.2                                       | Unsatisfied
-                       |                                                 | com.google.errorprone:error_prone_annotations:2.7.1                         | Unsatisfied
-                       |                                                 | com.google.j2objc:j2objc-annotations:1.3                                    | Unsatisfied
-                       |                                                 | org.checkerframework:checker-qual:3.12.0                                    | Unsatisfied
-httpclient             | org.apache.httpcomponents:httpclient:4.5.13     | org.apache.httpcomponents:httpcore:4.4.13                                   | Unsatisfied
-                       |                                                 | commons-codec:commons-codec:1.11                                            | Unsatisfied
-                       |                                                 | commons-logging:commons-logging:1.2                                         | Unsatisfied
 plexus-utils           | org.codehaus.plexus:plexus-utils:3.4.1          | [none]                                                                      |
+slf4j-api              | org.slf4j:slf4j-api:1.7.33                      | [none]                                                                      |
 slf4j-simple           | org.slf4j:slf4j-simple:1.7.33                   | org.slf4j:slf4j-api:1.7.33                                                  | OK
 
 Packages
@@ -766,113 +766,6 @@ aether-transport-http | org.eclipse.aether.transport.http.DemuxCredentialsProvid
                       | org.eclipse.aether.transport.http.SharingHttpContext
                       | • Superclass not found: org.apache.http.protocol.BasicHttpContext
                       | • Class not found: org.apache.http.protocol.BasicHttpContext (package not found)
-maven-aether-provider | org.apache.maven.repository.internal.ArtifactDescriptorReaderDelegate
-                      | • Class not found: org.apache.maven.model.Dependency (package not found)
-                      | • Class not found: org.apache.maven.model.DependencyManagement (package not found)
-                      | • Class not found: org.apache.maven.model.DistributionManagement (package not found)
-                      | • Class not found: org.apache.maven.model.Exclusion (package not found)
-                      | • Class not found: org.apache.maven.model.License (package not found)
-                      | • Class not found: org.apache.maven.model.Model (package not found)
-                      | • Class not found: org.apache.maven.model.Prerequisites (package not found)
-                      | • Class not found: org.apache.maven.model.Repository (package not found)
-                      |
-                      | org.apache.maven.repository.internal.ArtifactDescriptorUtils
-                      | • Class not found: org.apache.maven.model.Repository (package not found)
-                      | • Class not found: org.apache.maven.model.RepositoryPolicy (package not found)
-                      |
-                      | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
-                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
-                      | • Class not found: org.apache.maven.model.DistributionManagement (package not found)
-                      | • Class not found: org.apache.maven.model.Model (package not found)
-                      | • Class not found: org.apache.maven.model.Relocation (package not found)
-                      | • Class not found: org.apache.maven.model.building.DefaultModelBuilderFactory (package not found)
-                      | • Class not found: org.apache.maven.model.building.DefaultModelBuildingRequest (package not found)
-                      | • Class not found: org.apache.maven.model.building.FileModelSource (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelBuilder (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelBuildingException (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelBuildingRequest (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelBuildingResult (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelCache (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelProblem (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelSource (package not found)
-                      | • Class not found: org.apache.maven.model.resolution.ModelResolver (package not found)
-                      | • Class not found: org.apache.maven.model.resolution.UnresolvableModelException (package not found)
-                      |
-                      | org.apache.maven.repository.internal.DefaultModelCache
-                      | • Interface not found: org.apache.maven.model.building.ModelCache
-                      | • Class not found: org.apache.maven.model.building.ModelCache (package not found)
-                      |
-                      | org.apache.maven.repository.internal.DefaultModelResolver
-                      | • Interface not found: org.apache.maven.model.resolution.ModelResolver
-                      | • Class not found: org.apache.maven.model.Parent (package not found)
-                      | • Class not found: org.apache.maven.model.Repository (package not found)
-                      | • Class not found: org.apache.maven.model.building.FileModelSource (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelSource (package not found)
-                      | • Class not found: org.apache.maven.model.resolution.InvalidRepositoryException (package not found)
-                      | • Class not found: org.apache.maven.model.resolution.ModelResolver (package not found)
-                      | • Class not found: org.apache.maven.model.resolution.UnresolvableModelException (package not found)
-                      |
-                      | org.apache.maven.repository.internal.DefaultVersionRangeResolver
-                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
-                      |
-                      | org.apache.maven.repository.internal.DefaultVersionResolver
-                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
-                      |
-                      | org.apache.maven.repository.internal.LocalSnapshotMetadata
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
-                      |
-                      | org.apache.maven.repository.internal.MavenAetherModule
-                      | • Superclass not found: com.google.inject.AbstractModule
-                      | • Class not found: com.google.inject.AbstractModule (package not found)
-                      | • Class not found: com.google.inject.Module (package not found)
-                      | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
-                      | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
-                      | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
-                      | • Class not found: com.google.inject.name.Names (package not found)
-                      | • Class not found: javax.inject.Singleton (package not found)
-                      | • Class not found: org.apache.maven.model.building.DefaultModelBuilderFactory (package not found)
-                      | • Class not found: org.apache.maven.model.building.ModelBuilder (package not found)
-                      | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenAetherModule.bind(java.lang.Class)
-                      | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
-                      | > com.google.inject.AbstractModule (class not found)
-                      | • Method not found: void org.apache.maven.repository.internal.MavenAetherModule.install(com.google.inject.Module)
-                      | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
-                      | > com.google.inject.AbstractModule (class not found)
-                      |
-                      | org.apache.maven.repository.internal.MavenMetadata
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Writer (package not found)
-                      |
-                      | org.apache.maven.repository.internal.MavenSnapshotMetadata
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      |
-                      | org.apache.maven.repository.internal.MavenWorkspaceReader
-                      | • Class not found: org.apache.maven.model.Model (package not found)
-                      |
-                      | org.apache.maven.repository.internal.RelocatedArtifact
-                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
-                      |
-                      | org.apache.maven.repository.internal.RemoteSnapshotMetadata
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
-                      |
-                      | org.apache.maven.repository.internal.VersionsMetadata
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
-                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
 guava                 | com.google.common.base.ParametricNullness
                       | • Class not found: javax.annotation.meta.When (package not found)
                       |
@@ -3975,6 +3868,113 @@ httpclient            | org.apache.http.auth.AuthOption
                       | • Superclass not found: org.apache.http.HttpException
                       | • Class not found: org.apache.http.HttpException (package not found)
                       | • Class not found: org.apache.http.HttpResponse (package not found)
+maven-aether-provider | org.apache.maven.repository.internal.ArtifactDescriptorReaderDelegate
+                      | • Class not found: org.apache.maven.model.Dependency (package not found)
+                      | • Class not found: org.apache.maven.model.DependencyManagement (package not found)
+                      | • Class not found: org.apache.maven.model.DistributionManagement (package not found)
+                      | • Class not found: org.apache.maven.model.Exclusion (package not found)
+                      | • Class not found: org.apache.maven.model.License (package not found)
+                      | • Class not found: org.apache.maven.model.Model (package not found)
+                      | • Class not found: org.apache.maven.model.Prerequisites (package not found)
+                      | • Class not found: org.apache.maven.model.Repository (package not found)
+                      |
+                      | org.apache.maven.repository.internal.ArtifactDescriptorUtils
+                      | • Class not found: org.apache.maven.model.Repository (package not found)
+                      | • Class not found: org.apache.maven.model.RepositoryPolicy (package not found)
+                      |
+                      | org.apache.maven.repository.internal.DefaultArtifactDescriptorReader
+                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
+                      | • Class not found: org.apache.maven.model.DistributionManagement (package not found)
+                      | • Class not found: org.apache.maven.model.Model (package not found)
+                      | • Class not found: org.apache.maven.model.Relocation (package not found)
+                      | • Class not found: org.apache.maven.model.building.DefaultModelBuilderFactory (package not found)
+                      | • Class not found: org.apache.maven.model.building.DefaultModelBuildingRequest (package not found)
+                      | • Class not found: org.apache.maven.model.building.FileModelSource (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelBuilder (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelBuildingException (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelBuildingRequest (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelBuildingResult (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelCache (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelProblem (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelSource (package not found)
+                      | • Class not found: org.apache.maven.model.resolution.ModelResolver (package not found)
+                      | • Class not found: org.apache.maven.model.resolution.UnresolvableModelException (package not found)
+                      |
+                      | org.apache.maven.repository.internal.DefaultModelCache
+                      | • Interface not found: org.apache.maven.model.building.ModelCache
+                      | • Class not found: org.apache.maven.model.building.ModelCache (package not found)
+                      |
+                      | org.apache.maven.repository.internal.DefaultModelResolver
+                      | • Interface not found: org.apache.maven.model.resolution.ModelResolver
+                      | • Class not found: org.apache.maven.model.Parent (package not found)
+                      | • Class not found: org.apache.maven.model.Repository (package not found)
+                      | • Class not found: org.apache.maven.model.building.FileModelSource (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelSource (package not found)
+                      | • Class not found: org.apache.maven.model.resolution.InvalidRepositoryException (package not found)
+                      | • Class not found: org.apache.maven.model.resolution.ModelResolver (package not found)
+                      | • Class not found: org.apache.maven.model.resolution.UnresolvableModelException (package not found)
+                      |
+                      | org.apache.maven.repository.internal.DefaultVersionRangeResolver
+                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
+                      |
+                      | org.apache.maven.repository.internal.DefaultVersionResolver
+                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
+                      |
+                      | org.apache.maven.repository.internal.LocalSnapshotMetadata
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
+                      |
+                      | org.apache.maven.repository.internal.MavenAetherModule
+                      | • Superclass not found: com.google.inject.AbstractModule
+                      | • Class not found: com.google.inject.AbstractModule (package not found)
+                      | • Class not found: com.google.inject.Module (package not found)
+                      | • Class not found: com.google.inject.binder.AnnotatedBindingBuilder (package not found)
+                      | • Class not found: com.google.inject.binder.LinkedBindingBuilder (package not found)
+                      | • Class not found: com.google.inject.binder.ScopedBindingBuilder (package not found)
+                      | • Class not found: com.google.inject.name.Names (package not found)
+                      | • Class not found: javax.inject.Singleton (package not found)
+                      | • Class not found: org.apache.maven.model.building.DefaultModelBuilderFactory (package not found)
+                      | • Class not found: org.apache.maven.model.building.ModelBuilder (package not found)
+                      | • Method not found: com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenAetherModule.bind(java.lang.Class)
+                      | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
+                      | > com.google.inject.AbstractModule (class not found)
+                      | • Method not found: void org.apache.maven.repository.internal.MavenAetherModule.install(com.google.inject.Module)
+                      | > org.apache.maven.repository.internal.MavenAetherModule (method not found)
+                      | > com.google.inject.AbstractModule (class not found)
+                      |
+                      | org.apache.maven.repository.internal.MavenMetadata
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Reader (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.io.xpp3.MetadataXpp3Writer (package not found)
+                      |
+                      | org.apache.maven.repository.internal.MavenSnapshotMetadata
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      |
+                      | org.apache.maven.repository.internal.MavenWorkspaceReader
+                      | • Class not found: org.apache.maven.model.Model (package not found)
+                      |
+                      | org.apache.maven.repository.internal.RelocatedArtifact
+                      | • Class not found: org.apache.commons.lang3.Validate (package not found)
+                      |
+                      | org.apache.maven.repository.internal.RemoteSnapshotMetadata
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Snapshot (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.SnapshotVersion (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
+                      |
+                      | org.apache.maven.repository.internal.VersionsMetadata
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Metadata (package not found)
+                      | • Class not found: org.apache.maven.artifact.repository.metadata.Versioning (package not found)
 
 Blacklist
 ---------
@@ -3982,8 +3982,6 @@ Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 Artifact              | Issues
 ----------------------+--------------------------------------------------------------------------------------------------------
-jarhc                 | org.jarhc.Main
-                      | • static void java.lang.System.exit(int)
 aether-transport-http | org.eclipse.aether.transport.http.GlobalState
                       | • @Deprecated: public class org.apache.http.conn.scheme.PlainSocketFactory
                       | • @Deprecated: public class org.apache.http.impl.conn.PoolingClientConnectionManager
@@ -4009,22 +4007,6 @@ aether-transport-http | org.eclipse.aether.transport.http.GlobalState
                       |
                       | org.eclipse.aether.transport.http.X509HostnameVerifierAdapter
                       | • @Deprecated: public interface org.apache.http.conn.ssl.X509HostnameVerifier
-maven-aether-provider | org.apache.maven.repository.internal.DefaultVersionRangeResolver
-                      | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
-                      |
-                      | org.apache.maven.repository.internal.DefaultVersionResolver
-                      | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
-                      | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
-                      |
-                      | org.apache.maven.repository.internal.DefaultVersionResolver$Key
-                      | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
-                      |
-                      | org.apache.maven.repository.internal.MavenAetherModule
-                      | • @Deprecated: public final class org.eclipse.aether.impl.AetherModule
-slf4j-api             | org.slf4j.helpers.Util$ClassContextSecurityManager
-                      | • @Deprecated: public class java.lang.SecurityManager
-jcl-over-slf4j        | org.apache.commons.logging.impl.SimpleLog
-                      | • @Deprecated: public final class java.security.AccessController
 guava                 | com.google.common.cache.Striped64
                       | • @Deprecated: public final class java.security.AccessController
                       | • boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)
@@ -4080,11 +4062,29 @@ guava                 | com.google.common.cache.Striped64
                       |
                       | com.google.common.util.concurrent.UncaughtExceptionHandlers$Exiter
                       | • void java.lang.Runtime.exit(int)
+jarhc                 | org.jarhc.Main
+                      | • static void java.lang.System.exit(int)
+jcl-over-slf4j        | org.apache.commons.logging.impl.SimpleLog
+                      | • @Deprecated: public final class java.security.AccessController
+maven-aether-provider | org.apache.maven.repository.internal.DefaultVersionRangeResolver
+                      | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
+                      |
+                      | org.apache.maven.repository.internal.DefaultVersionResolver
+                      | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
+                      | • @Deprecated: public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)
+                      |
+                      | org.apache.maven.repository.internal.DefaultVersionResolver$Key
+                      | • @Deprecated: public final class org.eclipse.aether.internal.impl.CacheUtils
+                      |
+                      | org.apache.maven.repository.internal.MavenAetherModule
+                      | • @Deprecated: public final class org.eclipse.aether.impl.AetherModule
 plexus-utils          | org.codehaus.plexus.util.cli.Commandline
                       | • java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)
                       |
                       | org.codehaus.plexus.util.cli.ShutdownHookUtils
                       | • @Deprecated: public class java.security.AccessControlException
+slf4j-api             | org.slf4j.helpers.Util$ClassContextSecurityManager
+                      | • @Deprecated: public class java.lang.SecurityManager
 slf4j-simple          | org.slf4j.impl.SimpleLoggerConfiguration
                       | • @Deprecated: public final class java.security.AccessController
 

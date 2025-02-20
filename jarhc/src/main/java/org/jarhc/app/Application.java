@@ -157,14 +157,12 @@ public class Application {
 			}
 		}
 
-		if (options.isSortRows()) {
-			// sort rows in all tables
-			for (ReportSection section : report.getSections()) {
-				for (Object content : section.getContent()) {
-					if (content instanceof ReportTable) {
-						ReportTable table = (ReportTable) content;
-						table.sortRows();
-					}
+		// sort rows in all tables
+		for (ReportSection section : report.getSections()) {
+			for (Object content : section.getContent()) {
+				if (content instanceof ReportTable) {
+					ReportTable table = (ReportTable) content;
+					table.sortRows();
 				}
 			}
 		}

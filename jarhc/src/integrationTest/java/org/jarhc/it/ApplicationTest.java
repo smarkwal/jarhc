@@ -100,7 +100,6 @@ class ApplicationTest {
 		options.addClasspathJarPath("org.ow2.asm:asm-commons:7.0");
 		options.addProvidedJarPath("org.ow2.asm:asm:7.0");
 		options.setSkipEmpty(true);
-		options.setSortRows(true);
 
 		// test
 		int exitCode = application.run(options);
