@@ -2,6 +2,8 @@
 
 version=3.0.0-SNAPSHOT
 
+export JDK_JAVA_OPTIONS="-Duser.language=en -Duser.country=US -Duser.timezone=UTC -Dfile.encoding=UTF-8"
+
 cd ..
 java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-asm-7.0-options.txt
 java -jar jarhc/build/libs/jarhc-${version}-app.jar --options docs/example-report-asm-commons-7.0-options.txt

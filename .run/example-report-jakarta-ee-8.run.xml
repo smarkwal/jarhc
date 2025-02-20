@@ -1,11 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="example-report-jakarta-ee-8" type="Application" factoryName="Application" folderName="Example Reports">
-    <option name="ALTERNATIVE_JRE_PATH" value="temurin-11" />
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
     <option name="PROGRAM_PARAMETERS" value="--options docs/example-report-jakarta-ee-8-options.txt" />
-    <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G" />
+    <option name="VM_PARAMETERS" value="-Xms1G -Xmx2G -Duser.language=en -Duser.country=US -Duser.timezone=UTC -Dfile.encoding=UTF-8" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

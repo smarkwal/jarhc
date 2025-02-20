@@ -30,8 +30,9 @@ public class DateTimeUtils {
 	}
 
 	public static String formatTimestamp(long timestamp) {
-		LocalDateTime date = new Date(timestamp).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-		return DATE_TIME_FORMAT.format(date);
+		Date date = new Date(timestamp);
+		LocalDateTime dateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return DATE_TIME_FORMAT.format(dateTime);
 	}
 
 }

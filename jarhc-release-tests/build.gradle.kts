@@ -123,6 +123,16 @@ tasks {
             }
         }
 
+        // set locale to English (US)
+        systemProperty("user.language", "en")
+        systemProperty("user.country", "US")
+
+        // set time zone to UTC
+        systemProperty("user.timezone", "UTC")
+
+        // set file encoding to UTF-8
+        systemProperty("file.encoding", "UTF-8")
+
         // settings
         maxHeapSize = "1G"
 
