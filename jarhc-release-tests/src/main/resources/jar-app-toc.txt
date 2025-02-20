@@ -2160,7 +2160,7 @@ org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
 org/jarhc/app/CommandLineParser.class | size=22599 | crc=2813457387
 org/jarhc/app/Diff.class | size=5530 | crc=848935283
-org/jarhc/app/DiffReportGenerator.class | size=9421 | crc=2208050403
+org/jarhc/app/DiffReportGenerator.class | size=9885 | crc=2386056112
 org/jarhc/app/FileSource.class | size=1904 | crc=2761526149
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options$Command.class | size=1074 | crc=2106135316
@@ -2247,7 +2247,8 @@ org/jarhc/report/Report.class | size=3408 | crc=2272143156
 org/jarhc/report/ReportFormat.class | size=677 | crc=545032329
 org/jarhc/report/ReportFormatFactory.class | size=2802 | crc=677337208
 org/jarhc/report/ReportSection.class | size=4823 | crc=2022454372
-org/jarhc/report/ReportTable.class | size=3703 | crc=2869743991
+org/jarhc/report/ReportTable$RowComparator.class | size=1260 | crc=651524183
+org/jarhc/report/ReportTable.class | size=3677 | crc=1578735336
 org/jarhc/report/text/TextReportFormat.class | size=5155 | crc=2052117225
 org/jarhc/report/writer/impl/FileReportWriter.class | size=2033 | crc=4126992305
 org/jarhc/report/writer/impl/MemoryReportWriter.class | size=810 | crc=202996241

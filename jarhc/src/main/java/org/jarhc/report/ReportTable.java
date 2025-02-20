@@ -17,6 +17,7 @@
 package org.jarhc.report;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,17 +54,29 @@ public class ReportTable {
 		String value1 = row1[0];
 		String value2 = row2[0];
 
-		// special handling for "Classpath" row:
-		// row should always be at the bottom
-		if (value1.equals("Classpath")) return 1;
-		if (value2.equals("Classpath")) return -1;
+		return RowComparator.INSTANCE.compare(value1, value2);
+	}
 
-		// first compare case-insensitive, then case-sensitive
-		int diff = value1.compareToIgnoreCase(value2);
-		if (diff == 0) {
-			diff = value1.compareTo(value2);
+	public static class RowComparator implements Comparator<String> {
+
+		public static final Comparator<String> INSTANCE = new RowComparator();
+
+		@Override
+		public int compare(String value1, String value2) {
+
+			// special handling for "Classpath" row:
+			// row should always be at the bottom
+			if (value1.equals("Classpath")) return 1;
+			if (value2.equals("Classpath")) return -1;
+
+			// first compare case-insensitive, then case-sensitive
+			int diff = value1.compareToIgnoreCase(value2);
+			if (diff == 0) {
+				diff = value1.compareTo(value2);
+			}
+			return diff;
 		}
-		return diff;
+
 	}
 
 	public JSONObject toJSON() {

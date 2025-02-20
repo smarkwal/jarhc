@@ -17,7 +17,6 @@
 package org.jarhc.app;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -168,59 +167,51 @@ public class DiffReportGenerator {
 		// create new empty table with same columns
 		ReportTable table = new ReportTable(columns1);
 
-		List<String[]> rows1 = table1.getRows();
-		List<String[]> rows2 = table2.getRows();
+		// collect rows by "key" (value in first column)
+		Map<String, List<String[]>> map1 = table1.getRows().stream().collect(Collectors.groupingBy(row -> row[0]));
+		Map<String, List<String[]>> map2 = table2.getRows().stream().collect(Collectors.groupingBy(row -> row[0]));
 
-		Map<String, String[]> map1 = new LinkedHashMap<>();
-		for (String[] row : rows1) {
-			String key = row[0];
-			if (map1.containsKey(key)) {
-				logger.warn("Duplicate key in table of report 1: {}", key);
-				continue;
-			}
-			map1.put(key, row);
-		}
-
-		Map<String, String[]> map2 = new LinkedHashMap<>();
-		for (String[] row : rows2) {
-			String key = row[0];
-			if (map2.containsKey(key)) {
-				logger.warn("Duplicate key in table of report 2: {}", key);
-				continue;
-			}
-			map2.put(key, row);
-		}
-
-		// get collection of all distinct keys
-		// TODO: implement a better merge strategy for keys with SequencesComparator
+		// get all distinct keys (sorted)
 		List<String> keys = Stream.concat(
 						map1.keySet().stream(),
 						map2.keySet().stream()
 				)
+				.sorted(ReportTable.RowComparator.INSTANCE)
 				.distinct()
 				.collect(Collectors.toList());
 
 		// for every key ...
 		for (String key : keys) {
 
-			// get rows for key (may be null if row is missing in a table)
-			String[] row1 = map1.get(key);
-			String[] row2 = map2.get(key);
+			// get rows for key (0 or more rows per key
+			List<String[]> rows1 = map1.getOrDefault(key, List.of());
+			List<String[]> rows2 = map2.getOrDefault(key, List.of());
 
-			if (row1 == null) {
-				// simulate an empty row with same size as row 2
-				// TODO: mark complete row as inserted
-				row1 = new String[row2.length];
-				Arrays.fill(row1, "");
-			} else if (row2 == null) {
-				// simulate an empty row with same size as row 1
-				// TODO: mark complete row as deleted
-				row2 = new String[row1.length];
-				Arrays.fill(row2, "");
+			// for every row in both tables ...
+			int rowCount1 = rows1.size();
+			int rowCount2 = rows2.size();
+			int rowCountMax = Math.max(rowCount1, rowCount2);
+			for (int r = 0; r < rowCountMax; r++) {
+
+				// get row from both tables
+				String[] row1 = r < rowCount1 ? rows1.get(r) : null;
+				String[] row2 = r < rowCount2 ? rows2.get(r) : null;
+
+				if (row1 == null) {
+					// simulate an empty row with same size as row 2
+					// TODO: mark complete row as inserted
+					row1 = new String[row2.length];
+					Arrays.fill(row1, "");
+				} else if (row2 == null) {
+					// simulate an empty row with same size as row 1
+					// TODO: mark complete row as deleted
+					row2 = new String[row1.length];
+					Arrays.fill(row2, "");
+				}
+
+				String[] row = diff(row1, row2);
+				table.addRow(row);
 			}
-
-			String[] row = diff(row1, row2);
-			table.addRow(row);
 		}
 
 		return table;
