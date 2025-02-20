@@ -5,7 +5,8 @@
     </option>
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
-    <option name="PROGRAM_PARAMETERS" value="--options docs/example-report-jakarta-ee-9-options.txt" />
+    <option name="PROGRAM_PARAMETERS" value="--options example-report-jakarta-ee-9-options.txt" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

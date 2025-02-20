@@ -184,7 +184,7 @@ public class JavaRuntimeMock extends JavaRuntime {
 		}
 
 		// open compressed output stream to test resource file
-		String resourcePath = "./src/test/resources/classes-oracle-jdk-1.8.0_144.dat.gz";
+		String resourcePath = "./src/testFixtures/resources/classes-oracle-jdk-1.8.0_144.dat.gz";
 		File resourceFile = new File(resourcePath);
 		try (FileOutputStream fos = new FileOutputStream(resourceFile)) {
 			try (GZIPOutputStream zos = new GZIPOutputStream(fos)) {
