@@ -25,7 +25,7 @@ List of Java Modules found in classpath.
 
 Artifact  | Module name | Definition     | Automatic | Requires | Exports
 ----------+-------------+----------------+-----------+----------+---------------
-jarhc-app | jarhc.app   | Auto-generated | Yes       | -        | [all packages]
+jarhc-app | jarhc.app   | Auto-generated | Yes       |          | [all packages]
 
 Class Versions
 --------------

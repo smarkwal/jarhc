@@ -7,13 +7,13 @@ List of Java Modules found in classpath.
 
 Artifact     | Module name  | Definition     | Automatic | Requires | Exports
 -------------+--------------+----------------+-----------+----------+---------------
-camel-core   | camel.core   | Auto-generated | Yes       | -        | [all packages]
-camel-jdbc   | camel.jdbc   | Auto-generated | Yes       | -        | [all packages]
-camel-jms    | camel.jms    | Auto-generated | Yes       | -        | [all packages]
-camel-jmx    | camel.jmx    | Auto-generated | Yes       | -        | [all packages]
-camel-jxpath | camel.jxpath | Auto-generated | Yes       | -        | [all packages]
-camel-ldap   | camel.ldap   | Auto-generated | Yes       | -        | [all packages]
-camel-mail   | camel.mail   | Auto-generated | Yes       | -        | [all packages]
-camel-soap   | camel.soap   | Auto-generated | Yes       | -        | [all packages]
-camel-spring | camel.spring | Auto-generated | Yes       | -        | [all packages]
+camel-core   | camel.core   | Auto-generated | Yes       |          | [all packages]
+camel-jdbc   | camel.jdbc   | Auto-generated | Yes       |          | [all packages]
+camel-jms    | camel.jms    | Auto-generated | Yes       |          | [all packages]
+camel-jmx    | camel.jmx    | Auto-generated | Yes       |          | [all packages]
+camel-jxpath | camel.jxpath | Auto-generated | Yes       |          | [all packages]
+camel-ldap   | camel.ldap   | Auto-generated | Yes       |          | [all packages]
+camel-mail   | camel.mail   | Auto-generated | Yes       |          | [all packages]
+camel-soap   | camel.soap   | Auto-generated | Yes       |          | [all packages]
+camel-spring | camel.spring | Auto-generated | Yes       |          | [all packages]
 

@@ -656,7 +656,7 @@
                   "`jakarta.security.auth.message`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -664,7 +664,7 @@
                   "`jakarta.security.jacc`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -672,7 +672,7 @@
                   "`jakarta.batch.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -680,7 +680,7 @@
                   "`jakarta.ejb.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -688,7 +688,7 @@
                   "`jakarta.el`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -696,7 +696,7 @@
                   "`jakarta.enterprise.concurrent.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -704,7 +704,7 @@
                   "`jakarta.cdi`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -712,7 +712,7 @@
                   "`jakarta.faces.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -728,7 +728,7 @@
                   "`jakarta.interceptor.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -736,7 +736,7 @@
                   "`jakarta.jms.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -776,7 +776,7 @@
                   "`jakarta.mvc.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -792,7 +792,7 @@
                   "`jakarta.resource.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -800,7 +800,7 @@
                   "`jakarta.security.enterprise.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -808,7 +808,7 @@
                   "`jakarta.servlet.jsp.jstl`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -816,7 +816,7 @@
                   "`jakarta.servlet.jsp`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -824,7 +824,7 @@
                   "`jakarta.servlet`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -832,7 +832,7 @@
                   "`jakarta.transaction`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -840,7 +840,7 @@
                   "`jakarta.validation`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -848,7 +848,7 @@
                   "`jakarta.websocket`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -856,7 +856,7 @@
                   "`jakarta.websocket.client`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -2495,5 +2495,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1740078354427
+   "timestamp": 1740085890108
 }

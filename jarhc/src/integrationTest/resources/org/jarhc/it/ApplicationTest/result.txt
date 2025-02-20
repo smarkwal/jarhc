@@ -33,7 +33,7 @@ List of Java Modules found in classpath.
 
 Artifact | Module name | Definition     | Automatic | Requires | Exports
 ---------+-------------+----------------+-----------+----------+---------------
-a        | a           | Auto-generated | Yes       | -        | [all packages]
+a        | a           | Auto-generated | Yes       |          | [all packages]
 
 OSGi Bundles
 ------------

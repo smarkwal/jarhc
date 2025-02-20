@@ -281,7 +281,7 @@ jakarta.enterprise.cdi-api        | jakarta.cdi                   | Module-Info 
                                   |                               |                |           |                               | jakarta.enterprise.inject.spi
                                   |                               |                |           |                               | jakarta.enterprise.inject.spi.configurator
                                   |                               |                |           |                               | jakarta.enterprise.util
-jakarta.faces-api                 | jakarta.faces.api             | Auto-generated | Yes       | -                             | [all packages]
+jakarta.faces-api                 | jakarta.faces.api             | Auto-generated | Yes       |                               | [all packages]
 jakarta.inject-api                | jakarta.inject                | Module-Info    | No        | java.base                     | jakarta.inject
 jakarta.interceptor-api           | jakarta.interceptor           | Module-Info    | No        | jakarta.annotation            | jakarta.interceptor
                                   |                               |                |           | java.base                     |
@@ -342,8 +342,8 @@ jakarta.servlet-api               | jakarta.servlet               | Module-Info 
                                   |                               |                |           |                               | jakarta.servlet.annotation
                                   |                               |                |           |                               | jakarta.servlet.descriptor
                                   |                               |                |           |                               | jakarta.servlet.http
-jakarta.transaction-api           | jakarta.transaction           | Manifest       | Yes       | -                             | [all packages]
-jakarta.validation-api            | jakarta.validation            | Manifest       | Yes       | -                             | [all packages]
+jakarta.transaction-api           | jakarta.transaction           | Manifest       | Yes       |                               | [all packages]
+jakarta.validation-api            | jakarta.validation            | Manifest       | Yes       |                               | [all packages]
 jakarta.websocket-api             | jakarta.websocket             | Module-Info    | No        | jakarta.websocket.client      | jakarta.websocket.server
                                   |                               |                |           | java.base                     |
 jakarta.websocket-client-api      | jakarta.websocket.client      | Module-Info    | No        | java.base                     | jakarta.websocket

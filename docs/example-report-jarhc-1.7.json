@@ -388,7 +388,7 @@
                   "`jarhc`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -404,7 +404,7 @@
                   "`org.json`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -412,7 +412,7 @@
                   "`aether.impl`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -420,7 +420,7 @@
                   "`aether.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -428,7 +428,7 @@
                   "`aether.util`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -436,7 +436,7 @@
                   "`aether.spi`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -444,7 +444,7 @@
                   "`aether.connector.basic`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -452,7 +452,7 @@
                   "`aether.transport.file`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -460,7 +460,7 @@
                   "`aether.transport.http`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -468,7 +468,7 @@
                   "`maven.aether.provider`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -476,7 +476,7 @@
                   "`org.slf4j`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -484,7 +484,7 @@
                   "`jul.to.slf4j`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -492,7 +492,7 @@
                   "`org.apache.commons.logging`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -500,7 +500,7 @@
                   "`com.google.common`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -508,7 +508,7 @@
                   "`org.apache.httpcomponents.httpclient`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -516,7 +516,7 @@
                   "`plexus.utils`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -524,7 +524,7 @@
                   "`org.slf4j.simple`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ]
             ]
@@ -1344,5 +1344,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1740078356915
+   "timestamp": 1740085892302
 }

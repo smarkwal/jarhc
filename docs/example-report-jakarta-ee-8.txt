@@ -331,18 +331,18 @@ Artifact                          | Module name                       | Definiti
 jakarta.activation-api            | jakarta.activation                | Module-Info    | No        | java.desktop       | javax.activation
                                   |                                   |                |           | java.logging       |
                                   |                                   |                |           | java.base          |
-jakarta.annotation-api            | java.annotation                   | Manifest       | Yes       | -                  | [all packages]
-jakarta.authorization-api         | java.security.jacc                | Manifest       | Yes       | -                  | [all packages]
-jakarta.batch-api                 | jakarta.batch.api                 | Auto-generated | Yes       | -                  | [all packages]
-jakarta.ejb-api                   | jakarta.ejb.api                   | Auto-generated | Yes       | -                  | [all packages]
-jakarta.el-api                    | jakarta.el.api                    | Auto-generated | Yes       | -                  | [all packages]
-jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent.api | Auto-generated | Yes       | -                  | [all packages]
-jakarta.enterprise.deploy-api     | jakarta.enterprise.deploy.api     | Auto-generated | Yes       | -                  | [all packages]
-jakarta.enterprise.cdi-api        | jakarta.enterprise.cdi.api        | Auto-generated | Yes       | -                  | [all packages]
-jakarta.faces-api                 | jakarta.faces.api                 | Auto-generated | Yes       | -                  | [all packages]
-jakarta.inject-api                | jakarta.inject.api                | Auto-generated | Yes       | -                  | [all packages]
-jakarta.interceptor-api           | jakarta.interceptor.api           | Auto-generated | Yes       | -                  | [all packages]
-jakarta.jms-api                   | jakarta.jms.api                   | Auto-generated | Yes       | -                  | [all packages]
+jakarta.annotation-api            | java.annotation                   | Manifest       | Yes       |                    | [all packages]
+jakarta.authorization-api         | java.security.jacc                | Manifest       | Yes       |                    | [all packages]
+jakarta.batch-api                 | jakarta.batch.api                 | Auto-generated | Yes       |                    | [all packages]
+jakarta.ejb-api                   | jakarta.ejb.api                   | Auto-generated | Yes       |                    | [all packages]
+jakarta.el-api                    | jakarta.el.api                    | Auto-generated | Yes       |                    | [all packages]
+jakarta.enterprise.concurrent-api | jakarta.enterprise.concurrent.api | Auto-generated | Yes       |                    | [all packages]
+jakarta.enterprise.deploy-api     | jakarta.enterprise.deploy.api     | Auto-generated | Yes       |                    | [all packages]
+jakarta.enterprise.cdi-api        | jakarta.enterprise.cdi.api        | Auto-generated | Yes       |                    | [all packages]
+jakarta.faces-api                 | jakarta.faces.api                 | Auto-generated | Yes       |                    | [all packages]
+jakarta.inject-api                | jakarta.inject.api                | Auto-generated | Yes       |                    | [all packages]
+jakarta.interceptor-api           | jakarta.interceptor.api           | Auto-generated | Yes       |                    | [all packages]
+jakarta.jms-api                   | jakarta.jms.api                   | Auto-generated | Yes       |                    | [all packages]
 jakarta.json.bind-api             | java.json.bind                    | Module-Info    | No        | java.json          | javax.json.bind
                                   |                                   |                |           | java.logging       | javax.json.bind.adapter
                                   |                                   |                |           | java.base          | javax.json.bind.annotation
@@ -354,20 +354,20 @@ jakarta.json-api                  | java.json                         | Module-I
                                   |                                   |                |           |                    | javax.json.stream
 jakarta.jws-api                   | java.jws                          | Module-Info    | No        | java.base          | javax.jws
                                   |                                   |                |           |                    | javax.jws.soap
-jakarta.mail-api                  | jakarta.mail.api                  | Auto-generated | Yes       | -                  | [all packages]
-jakarta.management.j2ee-api       | jakarta.management.j2ee.api       | Auto-generated | Yes       | -                  | [all packages]
-jakarta.mvc-api                   | jakarta.mvc.api                   | Auto-generated | Yes       | -                  | [all packages]
-jakarta.persistence-api           | java.persistence                  | Manifest       | Yes       | -                  | [all packages]
-jakarta.resource-api              | jakarta.resource.api              | Auto-generated | Yes       | -                  | [all packages]
-jakarta.security.auth.message-api | java.security.auth.message        | Manifest       | Yes       | -                  | [all packages]
-jakarta.security.enterprise-api   | jakarta.security.enterprise.api   | Auto-generated | Yes       | -                  | [all packages]
-jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl.api      | Auto-generated | Yes       | -                  | [all packages]
-jakarta.servlet.jsp-api           | jakarta.servlet.jsp.api           | Auto-generated | Yes       | -                  | [all packages]
-jakarta.servlet-api               | java.servlet                      | Manifest       | Yes       | -                  | [all packages]
-jakarta.transaction-api           | java.transaction                  | Manifest       | Yes       | -                  | [all packages]
-jakarta.validation-api            | java.validation                   | Manifest       | Yes       | -                  | [all packages]
-jakarta.websocket-api             | jakarta.websocket.api             | Auto-generated | Yes       | -                  | [all packages]
-jakarta.websocket-client-api      | jakarta.websocket.client.api      | Auto-generated | Yes       | -                  | [all packages]
+jakarta.mail-api                  | jakarta.mail.api                  | Auto-generated | Yes       |                    | [all packages]
+jakarta.management.j2ee-api       | jakarta.management.j2ee.api       | Auto-generated | Yes       |                    | [all packages]
+jakarta.mvc-api                   | jakarta.mvc.api                   | Auto-generated | Yes       |                    | [all packages]
+jakarta.persistence-api           | java.persistence                  | Manifest       | Yes       |                    | [all packages]
+jakarta.resource-api              | jakarta.resource.api              | Auto-generated | Yes       |                    | [all packages]
+jakarta.security.auth.message-api | java.security.auth.message        | Manifest       | Yes       |                    | [all packages]
+jakarta.security.enterprise-api   | jakarta.security.enterprise.api   | Auto-generated | Yes       |                    | [all packages]
+jakarta.servlet.jsp.jstl-api      | jakarta.servlet.jsp.jstl.api      | Auto-generated | Yes       |                    | [all packages]
+jakarta.servlet.jsp-api           | jakarta.servlet.jsp.api           | Auto-generated | Yes       |                    | [all packages]
+jakarta.servlet-api               | java.servlet                      | Manifest       | Yes       |                    | [all packages]
+jakarta.transaction-api           | java.transaction                  | Manifest       | Yes       |                    | [all packages]
+jakarta.validation-api            | java.validation                   | Manifest       | Yes       |                    | [all packages]
+jakarta.websocket-api             | jakarta.websocket.api             | Auto-generated | Yes       |                    | [all packages]
+jakarta.websocket-client-api      | jakarta.websocket.client.api      | Auto-generated | Yes       |                    | [all packages]
 jakarta.ws.rs-api                 | java.ws.rs                        | Module-Info    | No        | java.logging       | javax.ws.rs
                                   |                                   |                |           | java.xml.bind      | javax.ws.rs.client
                                   |                                   |                |           | java.base          | javax.ws.rs.container
@@ -380,8 +380,8 @@ jakarta.xml.bind-api              | java.xml.bind                     | Module-I
                                   |                                   |                |           | java.xml           | javax.xml.bind.attachment
                                   |                                   |                |           | java.base          | javax.xml.bind.helpers
                                   |                                   |                |           |                    | javax.xml.bind.util
-jakarta.xml.registry-api          | jakarta.xml.registry.api          | Auto-generated | Yes       | -                  | [all packages]
-jakarta.xml.rpc-api               | jakarta.xml.rpc.api               | Auto-generated | Yes       | -                  | [all packages]
+jakarta.xml.registry-api          | jakarta.xml.registry.api          | Auto-generated | Yes       |                    | [all packages]
+jakarta.xml.rpc-api               | jakarta.xml.rpc.api               | Auto-generated | Yes       |                    | [all packages]
 jakarta.xml.soap-api              | java.xml.soap                     | Module-Info    | No        | jakarta.activation | javax.xml.soap
                                   |                                   |                |           | java.logging       |
                                   |                                   |                |           | java.xml           |

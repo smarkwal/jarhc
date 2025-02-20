@@ -7,16 +7,16 @@ List of Java Modules found in classpath.
 
 Artifact               | Module name            | Definition | Automatic | Requires | Exports
 -----------------------+------------------------+------------+-----------+----------+---------------
-spring-aop             | spring.aop             | Manifest   | Yes       | -        | [all packages]
-spring-beans           | spring.beans           | Manifest   | Yes       | -        | [all packages]
-spring-context         | spring.context         | Manifest   | Yes       | -        | [all packages]
-spring-context-support | spring.context.support | Manifest   | Yes       | -        | [all packages]
-spring-core            | spring.core            | Manifest   | Yes       | -        | [all packages]
-spring-expression      | spring.expression      | Manifest   | Yes       | -        | [all packages]
-spring-jdbc            | spring.jdbc            | Manifest   | Yes       | -        | [all packages]
-spring-jms             | spring.jms             | Manifest   | Yes       | -        | [all packages]
-spring-messaging       | spring.messaging       | Manifest   | Yes       | -        | [all packages]
-spring-orm             | spring.orm             | Manifest   | Yes       | -        | [all packages]
-spring-tx              | spring.tx              | Manifest   | Yes       | -        | [all packages]
-spring-web             | spring.web             | Manifest   | Yes       | -        | [all packages]
+spring-aop             | spring.aop             | Manifest   | Yes       |          | [all packages]
+spring-beans           | spring.beans           | Manifest   | Yes       |          | [all packages]
+spring-context         | spring.context         | Manifest   | Yes       |          | [all packages]
+spring-context-support | spring.context.support | Manifest   | Yes       |          | [all packages]
+spring-core            | spring.core            | Manifest   | Yes       |          | [all packages]
+spring-expression      | spring.expression      | Manifest   | Yes       |          | [all packages]
+spring-jdbc            | spring.jdbc            | Manifest   | Yes       |          | [all packages]
+spring-jms             | spring.jms             | Manifest   | Yes       |          | [all packages]
+spring-messaging       | spring.messaging       | Manifest   | Yes       |          | [all packages]
+spring-orm             | spring.orm             | Manifest   | Yes       |          | [all packages]
+spring-tx              | spring.tx              | Manifest   | Yes       |          | [all packages]
+spring-web             | spring.web             | Manifest   | Yes       |          | [all packages]
 

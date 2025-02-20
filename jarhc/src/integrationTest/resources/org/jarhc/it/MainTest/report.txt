@@ -32,7 +32,7 @@ List of Java Modules found in classpath.
 
 Artifact  | Module name | Definition | Automatic | Requires | Exports
 ----------+-------------+------------+-----------+----------+---------------
-slf4j-api | org.slf4j   | Manifest   | Yes       | -        | [all packages]
+slf4j-api | org.slf4j   | Manifest   | Yes       |          | [all packages]
 
 OSGi Bundles
 ------------

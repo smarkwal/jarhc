@@ -63,10 +63,10 @@ class JpmsModulesAnalyzerTest {
 
 		List<String[]> rows = table.getRows();
 		assertEquals(4, rows.size());
-		assertValuesEquals(rows.get(0), "a-core", "`a`", "Manifest", "Yes", "-", "[all packages]");
+		assertValuesEquals(rows.get(0), "a-core", "`a`", "Manifest", "Yes", "", "[all packages]");
 		assertValuesEquals(rows.get(1), "b", "`b`", "Module-Info", "No", joinLines("`a`", "`java.base`"), "`b.x`\n`b.y`");
-		assertValuesEquals(rows.get(2), "C", "`c`", "Auto-generated", "Yes", "-", "[all packages]");
-		assertValuesEquals(rows.get(3), "d", "`d`", "Auto-generated", "Yes", "-", "[all packages]");
+		assertValuesEquals(rows.get(2), "C", "`c`", "Auto-generated", "Yes", "", "[all packages]");
+		assertValuesEquals(rows.get(3), "d", "`d`", "Auto-generated", "Yes", "", "[all packages]");
 	}
 
 }

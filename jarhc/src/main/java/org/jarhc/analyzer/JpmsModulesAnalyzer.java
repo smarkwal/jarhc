@@ -126,7 +126,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 		ModuleInfo moduleInfo = jarFile.getModuleInfo();
 		if (moduleInfo.isNamed()) {
 			if (moduleInfo.isAutomatic()) {
-				return "-";
+				return "";
 			} else {
 				List<String> requires = new ArrayList<>(moduleInfo.getRequires());
 				requires.sort(JpmsModulesAnalyzer::compareModuleNames);
@@ -134,7 +134,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 				return String.join("\n", requires);
 			}
 		} else {
-			return "-";
+			return "";
 		}
 	}
 

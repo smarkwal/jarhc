@@ -99,13 +99,13 @@ List of Java Modules found in classpath.
 
 Artifact           | Module name                         | Definition | Automatic | Requires | Exports
 -------------------+-------------------------------------+------------+-----------+----------+---------------
-jetty-continuation | org.eclipse.jetty.continuation      | Manifest   | Yes       | -        | [all packages]
-jetty-http         | org.eclipse.jetty.http              | Manifest   | Yes       | -        | [all packages]
-jetty-io           | org.eclipse.jetty.io                | Manifest   | Yes       | -        | [all packages]
-jetty-servlets     | org.eclipse.jetty.servlets          | Manifest   | Yes       | -        | [all packages]
-jetty-util         | org.eclipse.jetty.util              | Manifest   | Yes       | -        | [all packages]
-websocket-api      | org.eclipse.jetty.websocket.api     | Manifest   | Yes       | -        | [all packages]
-websocket-servlet  | org.eclipse.jetty.websocket.servlet | Manifest   | Yes       | -        | [all packages]
+jetty-continuation | org.eclipse.jetty.continuation      | Manifest   | Yes       |          | [all packages]
+jetty-http         | org.eclipse.jetty.http              | Manifest   | Yes       |          | [all packages]
+jetty-io           | org.eclipse.jetty.io                | Manifest   | Yes       |          | [all packages]
+jetty-servlets     | org.eclipse.jetty.servlets          | Manifest   | Yes       |          | [all packages]
+jetty-util         | org.eclipse.jetty.util              | Manifest   | Yes       |          | [all packages]
+websocket-api      | org.eclipse.jetty.websocket.api     | Manifest   | Yes       |          | [all packages]
+websocket-servlet  | org.eclipse.jetty.websocket.servlet | Manifest   | Yes       |          | [all packages]
 
 OSGi Bundles
 ------------

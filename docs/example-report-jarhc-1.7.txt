@@ -151,25 +151,25 @@ List of Java Modules found in classpath.
 
 Artifact               | Module name                          | Definition     | Automatic | Requires  | Exports
 -----------------------+--------------------------------------+----------------+-----------+-----------+----------------------------
-jarhc                  | jarhc                                | Auto-generated | Yes       | -         | [all packages]
+jarhc                  | jarhc                                | Auto-generated | Yes       |           | [all packages]
 asm                    | org.objectweb.asm                    | Module-Info    | No        | java.base | org.objectweb.asm
                        |                                      |                |           |           | org.objectweb.asm.signature
-json                   | org.json                             | Manifest       | Yes       | -         | [all packages]
-aether-impl            | aether.impl                          | Auto-generated | Yes       | -         | [all packages]
-aether-api             | aether.api                           | Auto-generated | Yes       | -         | [all packages]
-aether-util            | aether.util                          | Auto-generated | Yes       | -         | [all packages]
-aether-spi             | aether.spi                           | Auto-generated | Yes       | -         | [all packages]
-aether-connector-basic | aether.connector.basic               | Auto-generated | Yes       | -         | [all packages]
-aether-transport-file  | aether.transport.file                | Auto-generated | Yes       | -         | [all packages]
-aether-transport-http  | aether.transport.http                | Auto-generated | Yes       | -         | [all packages]
-maven-aether-provider  | maven.aether.provider                | Auto-generated | Yes       | -         | [all packages]
-slf4j-api              | org.slf4j                            | Manifest       | Yes       | -         | [all packages]
-jul-to-slf4j           | jul.to.slf4j                         | Auto-generated | Yes       | -         | [all packages]
-jcl-over-slf4j         | org.apache.commons.logging           | Manifest       | Yes       | -         | [all packages]
-guava                  | com.google.common                    | Manifest       | Yes       | -         | [all packages]
-httpclient             | org.apache.httpcomponents.httpclient | Manifest       | Yes       | -         | [all packages]
-plexus-utils           | plexus.utils                         | Auto-generated | Yes       | -         | [all packages]
-slf4j-simple           | org.slf4j.simple                     | Manifest       | Yes       | -         | [all packages]
+json                   | org.json                             | Manifest       | Yes       |           | [all packages]
+aether-impl            | aether.impl                          | Auto-generated | Yes       |           | [all packages]
+aether-api             | aether.api                           | Auto-generated | Yes       |           | [all packages]
+aether-util            | aether.util                          | Auto-generated | Yes       |           | [all packages]
+aether-spi             | aether.spi                           | Auto-generated | Yes       |           | [all packages]
+aether-connector-basic | aether.connector.basic               | Auto-generated | Yes       |           | [all packages]
+aether-transport-file  | aether.transport.file                | Auto-generated | Yes       |           | [all packages]
+aether-transport-http  | aether.transport.http                | Auto-generated | Yes       |           | [all packages]
+maven-aether-provider  | maven.aether.provider                | Auto-generated | Yes       |           | [all packages]
+slf4j-api              | org.slf4j                            | Manifest       | Yes       |           | [all packages]
+jul-to-slf4j           | jul.to.slf4j                         | Auto-generated | Yes       |           | [all packages]
+jcl-over-slf4j         | org.apache.commons.logging           | Manifest       | Yes       |           | [all packages]
+guava                  | com.google.common                    | Manifest       | Yes       |           | [all packages]
+httpclient             | org.apache.httpcomponents.httpclient | Manifest       | Yes       |           | [all packages]
+plexus-utils           | plexus.utils                         | Auto-generated | Yes       |           | [all packages]
+slf4j-simple           | org.slf4j.simple                     | Manifest       | Yes       |           | [all packages]
 
 OSGi Bundles
 ------------

@@ -179,7 +179,7 @@ List of Java Modules found in classpath.
 
 Artifact                       | Module name                               | Definition     | Automatic | Requires     | Exports
 -------------------------------+-------------------------------------------+----------------+-----------+--------------+-------------------------------------
-jarhc                          | org.jarhc                                 | Manifest       | Yes       | -            | [all packages]
+jarhc                          | org.jarhc                                 | Manifest       | Yes       |              | [all packages]
 asm                            | org.objectweb.asm                         | Module-Info    | No        | java.base    | org.objectweb.asm
                                |                                           |                |           |              | org.objectweb.asm.signature
 commons-codec                  | org.apache.commons.codec                  | Module-Info    | No        | java.base    | org.apache.commons.codec
@@ -189,31 +189,31 @@ commons-codec                  | org.apache.commons.codec                  | Mod
                                |                                           |                |           |              | org.apache.commons.codec.language
                                |                                           |                |           |              | org.apache.commons.codec.language.bm
                                |                                           |                |           |              | org.apache.commons.codec.net
-httpclient                     | org.apache.httpcomponents.httpclient      | Manifest       | Yes       | -            | [all packages]
-httpcore                       | org.apache.httpcomponents.httpcore        | Manifest       | Yes       | -            | [all packages]
+httpclient                     | org.apache.httpcomponents.httpclient      | Manifest       | Yes       |              | [all packages]
+httpcore                       | org.apache.httpcomponents.httpcore        | Manifest       | Yes       |              | [all packages]
 jcl-over-slf4j                 | org.apache.commons.logging                | Module-Info    | No        | org.slf4j    | org.apache.commons.logging
                                |                                           |                |           | java.base    |
 json                           | org.json                                  | Module-Info    | No        | java.base    | org.json
 jul-to-slf4j                   | jul.to.slf4j                              | Module-Info    | No        | org.slf4j    | org.slf4j.bridge
                                |                                           |                |           | java.logging |
                                |                                           |                |           | java.base    |
-maven-artifact                 | maven.artifact                            | Auto-generated | Yes       | -            | [all packages]
-maven-builder-support          | maven.builder.support                     | Auto-generated | Yes       | -            | [all packages]
-maven-model-builder            | maven.model.builder                       | Auto-generated | Yes       | -            | [all packages]
-maven-model                    | maven.model                               | Auto-generated | Yes       | -            | [all packages]
-maven-repository-metadata      | maven.repository.metadata                 | Auto-generated | Yes       | -            | [all packages]
-maven-resolver-api             | org.apache.maven.resolver                 | Manifest       | Yes       | -            | [all packages]
-maven-resolver-connector-basic | org.apache.maven.resolver.connector.basic | Manifest       | Yes       | -            | [all packages]
-maven-resolver-impl            | org.apache.maven.resolver.impl            | Manifest       | Yes       | -            | [all packages]
-maven-resolver-named-locks     | org.apache.maven.resolver.named.locks     | Manifest       | Yes       | -            | [all packages]
-maven-resolver-provider        | maven.resolver.provider                   | Auto-generated | Yes       | -            | [all packages]
-maven-resolver-spi             | org.apache.maven.resolver.spi             | Manifest       | Yes       | -            | [all packages]
-maven-resolver-supplier        | org.apache.maven.resolver.supplier        | Manifest       | Yes       | -            | [all packages]
-maven-resolver-transport-file  | org.apache.maven.resolver.transport.file  | Manifest       | Yes       | -            | [all packages]
-maven-resolver-transport-http  | org.apache.maven.resolver.transport.http  | Manifest       | Yes       | -            | [all packages]
-maven-resolver-util            | org.apache.maven.resolver.util            | Manifest       | Yes       | -            | [all packages]
-plexus-interpolation           | plexus.interpolation                      | Auto-generated | Yes       | -            | [all packages]
-plexus-utils                   | plexus.utils                              | Auto-generated | Yes       | -            | [all packages]
+maven-artifact                 | maven.artifact                            | Auto-generated | Yes       |              | [all packages]
+maven-builder-support          | maven.builder.support                     | Auto-generated | Yes       |              | [all packages]
+maven-model-builder            | maven.model.builder                       | Auto-generated | Yes       |              | [all packages]
+maven-model                    | maven.model                               | Auto-generated | Yes       |              | [all packages]
+maven-repository-metadata      | maven.repository.metadata                 | Auto-generated | Yes       |              | [all packages]
+maven-resolver-api             | org.apache.maven.resolver                 | Manifest       | Yes       |              | [all packages]
+maven-resolver-connector-basic | org.apache.maven.resolver.connector.basic | Manifest       | Yes       |              | [all packages]
+maven-resolver-impl            | org.apache.maven.resolver.impl            | Manifest       | Yes       |              | [all packages]
+maven-resolver-named-locks     | org.apache.maven.resolver.named.locks     | Manifest       | Yes       |              | [all packages]
+maven-resolver-provider        | maven.resolver.provider                   | Auto-generated | Yes       |              | [all packages]
+maven-resolver-spi             | org.apache.maven.resolver.spi             | Manifest       | Yes       |              | [all packages]
+maven-resolver-supplier        | org.apache.maven.resolver.supplier        | Manifest       | Yes       |              | [all packages]
+maven-resolver-transport-file  | org.apache.maven.resolver.transport.file  | Manifest       | Yes       |              | [all packages]
+maven-resolver-transport-http  | org.apache.maven.resolver.transport.http  | Manifest       | Yes       |              | [all packages]
+maven-resolver-util            | org.apache.maven.resolver.util            | Manifest       | Yes       |              | [all packages]
+plexus-interpolation           | plexus.interpolation                      | Auto-generated | Yes       |              | [all packages]
+plexus-utils                   | plexus.utils                              | Auto-generated | Yes       |              | [all packages]
 slf4j-api                      | org.slf4j                                 | Module-Info    | No        | java.base    | org.slf4j
                                |                                           |                |           |              | org.slf4j.event
                                |                                           |                |           |              | org.slf4j.helpers

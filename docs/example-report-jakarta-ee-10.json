@@ -712,7 +712,7 @@
                   "`jakarta.faces.api`",
                   "Auto-generated",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -832,7 +832,7 @@
                   "`jakarta.transaction`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -840,7 +840,7 @@
                   "`jakarta.validation`",
                   "Manifest",
                   "Yes",
-                  "-",
+                  "",
                   "[all packages]"
                ],
                [
@@ -2383,5 +2383,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1740078355912
+   "timestamp": 1740085891451
 }
