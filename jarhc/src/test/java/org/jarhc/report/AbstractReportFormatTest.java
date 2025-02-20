@@ -48,13 +48,9 @@ public abstract class AbstractReportFormatTest {
 			return;
 		}
 
-		// normalize
-		text = TextUtils.toUnixLineSeparators(text);
-		String expectedResult = TestUtils.getResourceAsString(resource, "UTF-8");
-		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
-		expectedResult = TextUtils.replacePlaceholders(expectedResult);
-
 		// assert
+		String expectedResult = TestUtils.getResourceAsString(resource, "UTF-8");
+		expectedResult = TextUtils.replacePlaceholders(expectedResult);
 		assertEquals(expectedResult, text);
 	}
 

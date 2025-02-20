@@ -41,15 +41,15 @@ public class StringUtils {
 	}
 
 	public static String joinLines(Collection<String> lines) {
-		return String.join(System.lineSeparator(), lines);
+		return String.join("\n", lines);
 	}
 
 	public static String joinLines(String... lines) {
-		return String.join(System.lineSeparator(), lines);
+		return String.join("\n", lines);
 	}
 
 	public static Collector<CharSequence, ?, String> joinLines() {
-		return Collectors.joining(System.lineSeparator());
+		return Collectors.joining("\n");
 	}
 
 	/**

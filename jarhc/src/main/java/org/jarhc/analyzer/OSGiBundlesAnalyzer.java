@@ -76,7 +76,7 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 			if (name.equals(symbolicName)) {
 				return name;
 			} else {
-				return name + System.lineSeparator() + "[" + symbolicName + "]";
+				return name + "\n[" + symbolicName + "]";
 			}
 		} else if (name != null) {
 			return name;

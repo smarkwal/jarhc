@@ -43,7 +43,6 @@ import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.test.JavaRuntimeMock;
-import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.io.TempDir;
@@ -118,12 +117,8 @@ abstract class AbstractTest {
 			return;
 		}
 
-		// normalize
-		output = TextUtils.toUnixLineSeparators(output);
-		String expectedOutput = TestUtils.getResourceAsString(getReportResourcePath(analyzerName), "UTF-8");
-		expectedOutput = TextUtils.toUnixLineSeparators(expectedOutput);
-
 		// assert
+		String expectedOutput = TestUtils.getResourceAsString(getReportResourcePath(analyzerName), "UTF-8");
 		assertEquals(expectedOutput, output);
 	}
 

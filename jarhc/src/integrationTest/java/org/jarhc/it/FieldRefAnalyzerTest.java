@@ -34,7 +34,6 @@ import org.jarhc.model.FieldRef;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
-import org.jarhc.test.TextUtils;
 import org.jarhc.utils.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -123,11 +122,6 @@ class FieldRefAnalyzerTest {
 
 		String value = values[1];
 		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/FieldRefAnalyzerTest/result.txt", "UTF-8");
-
-		// normalize
-		value = TextUtils.toUnixLineSeparators(value);
-		expectedValue = TextUtils.toUnixLineSeparators(expectedValue);
-
 		assertEquals(expectedValue, value);
 	}
 

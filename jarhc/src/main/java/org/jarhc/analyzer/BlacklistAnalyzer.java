@@ -225,7 +225,7 @@ public class BlacklistAnalyzer implements Analyzer {
 	private String createJarIssue(ClassDef classDef, Set<String> classIssues) {
 		String className = classDef.getClassName();
 		String lines = classIssues.stream().map(i -> Markdown.BULLET + " " + i).collect(StringUtils.joinLines());
-		return code(className) + System.lineSeparator() + lines + System.lineSeparator();
+		return code(className) + "\n" + lines + "\n";
 	}
 
 	// --------------------------------------------------------------------------------------------------

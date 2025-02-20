@@ -33,9 +33,9 @@ public class JavaRuntimeAnalyzer implements Analyzer {
 	@Override
 	public ReportSection analyze(Classpath classpath) {
 
-		String text = "Java home    : " + code(javaRuntime.getJavaHome()) + System.lineSeparator() +
-				"Java runtime : " + code(javaRuntime.getName()) + System.lineSeparator() +
-				"Java version : " + code(javaRuntime.getJavaVersion()) + System.lineSeparator() +
+		String text = "Java home    : " + code(javaRuntime.getJavaHome()) + "\n" +
+				"Java runtime : " + code(javaRuntime.getName()) + "\n" +
+				"Java version : " + code(javaRuntime.getJavaVersion()) + "\n" +
 				"Java vendor  : " + code(javaRuntime.getJavaVendor());
 
 		ReportSection section = new ReportSection("Java Runtime", "Information about JRE/JDK runtime.");

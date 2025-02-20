@@ -33,7 +33,6 @@ import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
-import org.jarhc.test.TextUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -91,11 +90,6 @@ class ClassHierarchyAnalyzerTest {
 
 		String value = values[1];
 		String expectedValue = TestUtils.getResourceAsString("/org/jarhc/it/ClassHierarchyAnalyzerTest/result.txt", "UTF-8");
-
-		// normalize
-		value = TextUtils.toUnixLineSeparators(value);
-		expectedValue = TextUtils.toUnixLineSeparators(expectedValue);
-
 		assertEquals(expectedValue, value);
 
 	}

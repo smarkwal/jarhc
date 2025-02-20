@@ -58,7 +58,7 @@ class ReportWriterTest {
 
 		// assert
 		String result = reportWriter.getText();
-		assertEquals(System.lineSeparator(), result);
+		assertEquals("\n", result);
 
 	}
 
@@ -70,7 +70,7 @@ class ReportWriterTest {
 
 		// assert
 		String result = reportWriter.getText();
-		assertEquals("Hello" + System.lineSeparator(), result);
+		assertEquals("Hello" + "\n", result);
 
 	}
 
@@ -82,7 +82,7 @@ class ReportWriterTest {
 
 		// assert
 		String result = reportWriter.getText();
-		assertEquals("Hello World" + System.lineSeparator(), result);
+		assertEquals("Hello World" + "\n", result);
 
 	}
 

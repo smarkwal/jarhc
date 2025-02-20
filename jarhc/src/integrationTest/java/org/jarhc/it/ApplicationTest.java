@@ -30,7 +30,6 @@ import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.it.utils.ArtifactFinderMock;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
-import org.jarhc.test.TextUtils;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -80,11 +79,6 @@ class ApplicationTest {
 		}
 
 		String expectedOutput = TestUtils.getResourceAsString("/org/jarhc/it/ApplicationTest/result.txt", "UTF-8");
-
-		// normalize output
-		output = TextUtils.toUnixLineSeparators(output);
-		expectedOutput = TextUtils.toUnixLineSeparators(expectedOutput);
-
 		assertEquals(expectedOutput, output);
 
 		assertLogger(applicationLogger)
@@ -122,11 +116,6 @@ class ApplicationTest {
 		}
 
 		String expectedOutput = TestUtils.getResourceAsString("/org/jarhc/it/ApplicationTest/result_options.txt", "UTF-8");
-
-		// normalize output
-		output = TextUtils.toUnixLineSeparators(output);
-		expectedOutput = TextUtils.toUnixLineSeparators(expectedOutput);
-
 		assertEquals(expectedOutput, output);
 
 		assertLogger(applicationLogger)

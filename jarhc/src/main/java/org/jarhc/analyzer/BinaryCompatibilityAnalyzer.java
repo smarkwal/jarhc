@@ -218,7 +218,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 	private String createParentIssue(String parentName, Set<String> issues) {
 		String lines = issues.stream().map(i -> Markdown.BULLET + " " + i).collect(StringUtils.joinLines());
-		return parentName + System.lineSeparator() + lines + System.lineSeparator();
+		return parentName + "\n" + lines + "\n";
 	}
 
 	// -----------------------------------------------------------------------------------------------------
@@ -905,14 +905,14 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 		void addErrorMessage(String message) {
 			if (errorMessages.length() > 0) {
-				errorMessages.append(System.lineSeparator());
+				errorMessages.append("\n");
 			}
 			errorMessages.append(message);
 		}
 
 		void addSearchInfo(String className, String message) {
 			if (searchInfos.length() > 0) {
-				searchInfos.append(System.lineSeparator());
+				searchInfos.append("\n");
 			}
 			searchInfos.append("> ").append(code(className)).append(" (").append(message).append(")");
 		}
@@ -922,7 +922,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 				return null;
 			} else {
 				if (searchInfos.length() > 0) {
-					errorMessages.append(System.lineSeparator()).append(searchInfos);
+					errorMessages.append("\n").append(searchInfos);
 				}
 				return errorMessages.toString();
 			}

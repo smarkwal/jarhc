@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
-import org.jarhc.test.TextUtils;
 import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -72,13 +71,7 @@ abstract class AbstractMainTest {
 		}
 
 		String expectedReport = TestUtils.getResourceAsString(resource, "UTF-8");
-
-		// normalize
-		actualReport = TextUtils.toUnixLineSeparators(actualReport);
-		expectedReport = TextUtils.toUnixLineSeparators(expectedReport);
-
 		assertEquals(expectedReport, actualReport);
-
 	}
 
 }

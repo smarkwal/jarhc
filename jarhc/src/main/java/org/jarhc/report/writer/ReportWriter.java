@@ -32,7 +32,7 @@ public interface ReportWriter extends Closeable {
 	}
 
 	default void println() {
-		print(System.lineSeparator());
+		print("\n");
 	}
 
 	default void println(String text) {

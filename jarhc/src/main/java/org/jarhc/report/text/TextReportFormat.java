@@ -124,7 +124,7 @@ public class TextReportFormat implements ReportFormat {
 		int maxHeight = 1;
 		for (int i = 0; i < values.length; i++) {
 			String value = values[i];
-			String[] lines = value.split(Pattern.quote(System.lineSeparator()));
+			String[] lines = value.split(Pattern.quote("\n"));
 			cells[i] = lines;
 			maxHeight = Math.max(maxHeight, lines.length);
 		}

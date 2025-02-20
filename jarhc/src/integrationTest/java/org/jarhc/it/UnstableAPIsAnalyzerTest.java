@@ -32,7 +32,6 @@ import org.jarhc.model.Classpath;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.test.JavaRuntimeMock;
-import org.jarhc.test.TextUtils;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -71,11 +70,6 @@ class UnstableAPIsAnalyzerTest {
 
 		String result = values[1];
 		String expectedResult = TestUtils.getResourceAsString("/org/jarhc/it/UnstableAPIsAnalyzerTest/result.txt", "UTF-8");
-
-		// normalize
-		result = TextUtils.toUnixLineSeparators(result);
-		expectedResult = TextUtils.toUnixLineSeparators(expectedResult);
-
 		assertEquals(expectedResult, result);
 	}
 

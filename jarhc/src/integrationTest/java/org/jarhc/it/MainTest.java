@@ -32,7 +32,6 @@ import org.jarhc.TestUtils;
 import org.jarhc.it.utils.MavenSearchApiMockServer;
 import org.jarhc.test.SystemExitException;
 import org.jarhc.test.SystemExitManager;
-import org.jarhc.test.TextUtils;
 import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -145,11 +144,6 @@ class MainTest {
 	private void assertReport(String actualReport) throws IOException {
 
 		String expectedReport = TestUtils.getResourceAsString("/org/jarhc/it/MainTest/report.txt", "UTF-8");
-
-		// normalize
-		actualReport = TextUtils.toUnixLineSeparators(actualReport);
-		expectedReport = TextUtils.toUnixLineSeparators(expectedReport);
-
 		assertEquals(expectedReport, actualReport);
 	}
 

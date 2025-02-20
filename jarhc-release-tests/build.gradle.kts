@@ -133,6 +133,9 @@ tasks {
         // set file encoding to UTF-8
         systemProperty("file.encoding", "UTF-8")
 
+        // use Linux/Unix line separator
+        systemProperty("line.separator", "\n")
+
         // settings
         maxHeapSize = "1G"
 
