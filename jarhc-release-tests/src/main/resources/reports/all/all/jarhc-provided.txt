@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Classes | Resources | Checksum (SHA-1)                         | Coordinates
 ----------+-----------+-----------+--------+---------+-----------+------------------------------------------+------------
-jarhc     | [unknown] | jarhc.jar | 284 KB | 150     | 9         | **************************************** | [unknown]
-Classpath | -         | -         | 284 KB | 150     | 9         | -                                        | -
+jarhc     | [unknown] | jarhc.jar | 287 KB | 151     | 9         | **************************************** | [unknown]
+Classpath | -         | -         | 287 KB | 151     | 9         | -                                        | -
 
 JAR Manifests
 -------------
@@ -33,8 +33,8 @@ Java class file format information.
 
 Artifact  | Multi-release | Class files by Java version
 ----------+---------------+----------------------------
-jarhc     | No            | Java 11 (150)
-Classpath | -             | Java 11 (150)
+jarhc     | No            | Java 11 (151)
+Classpath | -             | Java 11 (151)
 
 JAR Dependencies
 ----------------
