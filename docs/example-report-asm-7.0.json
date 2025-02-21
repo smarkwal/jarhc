@@ -24,7 +24,7 @@
                   "111 KB",
                   "35",
                   "0",
-                  "d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912",
+                  "[d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912](https://search.maven.org/search?q=1:d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912)",
                   "[[org.ow2.asm:asm:7.0]]"
                ],
                [
@@ -34,7 +34,7 @@
                   "32.5 KB",
                   "14",
                   "0",
-                  "4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f",
+                  "[4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f](https://search.maven.org/search?q=1:4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f)",
                   "[[org.ow2.asm:asm-analysis:7.0]]"
                ],
                [
@@ -44,7 +44,7 @@
                   "78.0 KB",
                   "32",
                   "0",
-                  "478006d07b7c561ae3a92ddc1829bca81ae0cdd1",
+                  "[478006d07b7c561ae3a92ddc1829bca81ae0cdd1](https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1)",
                   "[[org.ow2.asm:asm-commons:7.0]]"
                ],
                [
@@ -54,7 +54,7 @@
                   "49.2 KB",
                   "37",
                   "0",
-                  "29bc62dcb85573af6e62e5b2d735ef65966c4180",
+                  "[29bc62dcb85573af6e62e5b2d735ef65966c4180](https://search.maven.org/search?q=1:29bc62dcb85573af6e62e5b2d735ef65966c4180)",
                   "[[org.ow2.asm:asm-tree:7.0]]"
                ],
                [
@@ -453,5 +453,5 @@
          "content": ["Java home    : `/home/markwalder/.jdks/temurin-17.0.14`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.14`\nJava vendor  : `Eclipse Adoptium`"]
       }
    ],
-   "timestamp": 1740088652910
+   "timestamp": 1740171842708
 }

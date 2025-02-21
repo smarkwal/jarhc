@@ -2146,7 +2146,7 @@ org/jarhc/analyzer/ClassVersionsAnalyzer.class | size=4651 | crc=704508433
 org/jarhc/analyzer/DependenciesAnalyzer.class | size=8830 | crc=3604772196
 org/jarhc/analyzer/DuplicateClassesAnalyzer.class | size=13473 | crc=3573706335
 org/jarhc/analyzer/JarDependenciesAnalyzer.class | size=6159 | crc=1145145252
-org/jarhc/analyzer/JarFilesAnalyzer.class | size=5016 | crc=1114783207
+org/jarhc/analyzer/JarFilesAnalyzer.class | size=5312 | crc=3871130040
 org/jarhc/analyzer/JarManifestsAnalyzer.class | size=6212 | crc=2208364073
 org/jarhc/analyzer/JavaRuntimeAnalyzer.class | size=1829 | crc=2742109430
 org/jarhc/analyzer/JpmsModulesAnalyzer.class | size=5841 | crc=1847651798
@@ -2160,7 +2160,7 @@ org/jarhc/app/CommandLineException.class | size=538 | crc=525088724
 org/jarhc/app/CommandLineParser$OptionParser.class | size=461 | crc=2585591423
 org/jarhc/app/CommandLineParser.class | size=22599 | crc=2813457387
 org/jarhc/app/Diff.class | size=5530 | crc=848935283
-org/jarhc/app/DiffReportGenerator.class | size=9885 | crc=2386056112
+org/jarhc/app/DiffReportGenerator.class | size=9824 | crc=3747061160
 org/jarhc/app/FileSource.class | size=1904 | crc=2761526149
 org/jarhc/app/JarSource.class | size=278 | crc=665601583
 org/jarhc/app/Options$Command.class | size=1074 | crc=2106135316
