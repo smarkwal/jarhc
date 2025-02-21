@@ -61,8 +61,6 @@ class CommandLineParserTest {
 		assertEquals("https://repo1.maven.org/maven2/", options.getRepositoryUrl());
 		assertNull(options.getRepositoryUsername());
 		assertNull(options.getRepositoryPassword());
-		assertFalse(options.isRemoveVersion());
-		assertFalse(options.isUseArtifactName());
 		assertFalse(options.isIgnoreMissingAnnotations());
 		assertFalse(options.isIgnoreExactCopy());
 		assertNull(options.getSections());
@@ -436,34 +434,6 @@ class CommandLineParserTest {
 
 		// assert
 		assertEquals("/tmp/jarhc", options.getDataPath());
-
-	}
-
-	@Test
-	void test_remove_version(@TempDir Path tempDir) throws IOException, CommandLineException {
-
-		// prepare
-		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
-
-		// test
-		Options options = parser.parse(new String[] { "--remove-version", file.getAbsolutePath() });
-
-		// assert
-		assertTrue(options.isRemoveVersion());
-
-	}
-
-	@Test
-	void test_use_artifact_name(@TempDir Path tempDir) throws IOException, CommandLineException {
-
-		// prepare
-		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
-
-		// test
-		Options options = parser.parse(new String[] { "--use-artifact-name", file.getAbsolutePath() });
-
-		// assert
-		assertTrue(options.isUseArtifactName());
 
 	}
 

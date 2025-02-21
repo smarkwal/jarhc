@@ -53,6 +53,11 @@ public class JarFile {
 	private final String fileName;
 
 	/**
+	 * Unique display name based on artifact name, version, group ID, and checksum.
+	 */
+	private String displayName;
+
+	/**
 	 * JAR file size in bytes
 	 */
 	private final long fileSize;
@@ -253,6 +258,17 @@ public class JarFile {
 
 	public String getFileName() {
 		return fileName;
+	}
+
+	public String getDisplayName() {
+		if (displayName != null) {
+			return displayName;
+		}
+		return artifactName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 	public long getFileSize() {

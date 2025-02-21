@@ -52,7 +52,7 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 				continue;
 			}
 
-			String artifactName = jarFile.getArtifactName();
+			String displayName = jarFile.getDisplayName();
 			String name = getName(jarFile);
 			String version = getVersion(jarFile);
 			String description = getDescription(jarFile);
@@ -61,7 +61,7 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 			String capabilities = getCapabilities(jarFile);
 			String others = getOthers(jarFile);
 
-			table.addRow(artifactName, name, version, description, importPackage, exportPackage, capabilities, others);
+			table.addRow(displayName, name, version, description, importPackage, exportPackage, capabilities, others);
 		}
 
 		return table;

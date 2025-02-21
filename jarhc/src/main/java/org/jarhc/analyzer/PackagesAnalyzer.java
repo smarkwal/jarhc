@@ -76,7 +76,7 @@ public class PackagesAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			String artifactName = jarFile.getArtifactName();
+			String artifactName = jarFile.getDisplayName();
 
 			// for every class definition ...
 			List<ClassDef> classDefs = jarFile.getClassDefs();

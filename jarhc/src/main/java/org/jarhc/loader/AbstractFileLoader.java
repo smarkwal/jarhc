@@ -51,16 +51,14 @@ abstract class AbstractFileLoader {
 	private final int maxRelease; // for multi-release JAR files
 	private final ClassDefLoader classDefLoader;
 	private final ModuleInfoLoader moduleInfoLoader;
-	private final FileNameNormalizer fileNameNormalizer;
 	private final Repository repository;
 	private final Logger logger;
 
-	AbstractFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, FileNameNormalizer fileNameNormalizer, Repository repository, Logger logger) {
+	AbstractFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, Repository repository, Logger logger) {
 		this.classLoader = classLoader;
 		this.maxRelease = maxRelease;
 		this.classDefLoader = classDefLoader;
 		this.moduleInfoLoader = moduleInfoLoader;
-		this.fileNameNormalizer = fileNameNormalizer;
 		this.repository = repository;
 		this.logger = logger;
 	}
@@ -260,11 +258,6 @@ abstract class AbstractFileLoader {
 		}
 
 		// TODO: check if JAR file contains POM information
-
-		// normalize file name (optional)
-		if (fileNameNormalizer != null) {
-			fileName = fileNameNormalizer.getFileName(fileName, checksum);
-		}
 
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(archive.getFileSize())

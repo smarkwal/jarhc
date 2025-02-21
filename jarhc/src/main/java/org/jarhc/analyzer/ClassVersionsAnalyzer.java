@@ -72,7 +72,7 @@ public class ClassVersionsAnalyzer implements Analyzer {
 
 			// add row for JAR file
 			String javaVersions = jarFileCounter.toString();
-			table.addRow(jarFile.getArtifactName(), multiReleaseInfo, wrapList(javaVersions, 60));
+			table.addRow(jarFile.getDisplayName(), multiReleaseInfo, wrapList(javaVersions, 60));
 		}
 
 		// add row with summary

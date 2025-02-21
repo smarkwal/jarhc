@@ -17,7 +17,6 @@
 package org.jarhc.report.html;
 
 import java.util.List;
-import java.util.regex.Pattern;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;

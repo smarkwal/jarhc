@@ -56,7 +56,7 @@ public class JarFilesAnalyzer implements Analyzer {
 		for (JarFile jarFile : jarFiles) {
 
 			// add a row with file name, size and class count
-			String artifact = jarFile.getArtifactName();
+			String displayName = jarFile.getDisplayName();
 			String version = getVersion(jarFile);
 			String source = getSource(jarFile);
 			long fileSize = jarFile.getFileSize();
@@ -64,7 +64,7 @@ public class JarFilesAnalyzer implements Analyzer {
 			int classCount = (int) jarFile.getClassDefs().stream().filter(ClassDef::isRegularClass).count(); // TODO: make this configurable ?
 			int resourceCount = jarFile.getResourceDefs().size();
 			String coordinates = getCoordinates(jarFile);
-			table.addRow(artifact, version, source, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), checksum, coordinates);
+			table.addRow(displayName, version, source, formatFileSize(fileSize), String.valueOf(classCount), String.valueOf(resourceCount), checksum, coordinates);
 
 			// update total values
 			totalFileSize += fileSize;

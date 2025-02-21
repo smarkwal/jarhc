@@ -61,10 +61,6 @@ Scan options:
 
    --skip-empty          : Exclude empty sections from the report.
 
-   --remove-version      : Remove version number from JAR file names.
-
-   --use-artifact-name   : Create JAR file name from artifact name.
-
    --ignore-missing-annotations :
                            Report does not include warnings for unknown
                            annotations.

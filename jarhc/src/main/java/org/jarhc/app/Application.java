@@ -34,7 +34,6 @@ import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.java.ClassLoader;
 import org.jarhc.loader.ClasspathLoader;
-import org.jarhc.loader.FileNameNormalizer;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
 import org.jarhc.report.Report;
@@ -222,20 +221,13 @@ public class Application {
 
 	private Classpath createClasspath(Options options, List<JarSource> classpathJarFiles, ClassLoader parentClassLoader) {
 		// load classpath JAR files
-		FileNameNormalizer fileNameNormalizer = createFileNameNormalizer(options);
 		ClasspathLoader loader = LoaderBuilder.create()
 				.forRelease(options.getRelease())
-				.withFileNameNormalizer(fileNameNormalizer)
 				.withParentClassLoader(parentClassLoader)
 				.withClassLoaderStrategy(options.getClassLoaderStrategy())
 				.withRepository(repository)
 				.buildClasspathLoader();
 		return loader.load(classpathJarFiles);
-	}
-
-	private FileNameNormalizer createFileNameNormalizer(Options options) {
-		Logger fileNameNormalizerLogger = LoggerFactory.getLogger(FileNameNormalizer.class);
-		return new FileNameNormalizer(options, repository, fileNameNormalizerLogger);
 	}
 
 	private JavaRuntime createJavaRuntime(Options options, List<JarSource> runtimeJarFiles) {

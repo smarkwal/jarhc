@@ -76,14 +76,14 @@ public class JarManifestsAnalyzer implements Analyzer {
 				continue;
 			}
 
-			String artifactName = jarFile.getArtifactName();
+			String displayName = jarFile.getDisplayName();
 			String general = getGeneral(jarFile);
 			String runtime = getRuntime(jarFile);
 			String implementation = getImplementation(jarFile);
 			String specification = getSpecification(jarFile);
 			String signature = getSignature(jarFile);
 
-			table.addRow(artifactName, general, runtime, implementation, specification, signature);
+			table.addRow(displayName, general, runtime, implementation, specification, signature);
 		}
 
 		return table;

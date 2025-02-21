@@ -116,6 +116,19 @@ public class ClasspathLoader {
 		// create list of JAR files (same order as list of input files)
 		List<JarFile> jarFiles = sources.stream().map(filesMap::get).filter(Objects::nonNull).flatMap(Collection::stream).collect(Collectors.toList());
 
+		// create unique display names for JAR files with same artifact names
+		/*
+		Map<String, List<JarFile>> artifactMap = jarFiles.stream().collect(Collectors.groupingBy(JarFile::getArtifactName));
+		for (String artifactName : artifactMap.keySet()) {
+			List<JarFile> list = artifactMap.get(artifactName);
+			if (list.size() > 1) {
+				for (JarFile jarFile : list) {
+					jarFile.setDisplayName(jarFile.getArtifactName() + " " + jarFile.getArtifactVersion());
+				}
+			}
+		}
+		*/
+
 		if (logger.isDebugEnabled()) {
 			totalTime = System.nanoTime() - totalTime;
 			logger.debug("Total: {} ms", totalTime / 1000 / 1000);

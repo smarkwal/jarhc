@@ -16,54 +16,7 @@
 
 package org.jarhc.loader;
 
-import java.util.List;
-import org.jarhc.app.Options;
-import org.jarhc.artifacts.Artifact;
-import org.jarhc.artifacts.Repository;
-import org.jarhc.artifacts.RepositoryException;
-import org.slf4j.Logger;
-
 public class FileNameNormalizer {
-
-	private final boolean useArtifactName;
-	private final boolean removeVersion;
-	private final Repository repository;
-	private final Logger logger;
-
-	public FileNameNormalizer(Options options, Repository repository, Logger logger) {
-		this.useArtifactName = options.isUseArtifactName();
-		this.removeVersion = options.isRemoveVersion();
-		this.repository = repository;
-		this.logger = logger;
-	}
-
-	public String getFileName(String fileName, String checksum) {
-
-		if (useArtifactName) {
-			try {
-				List<Artifact> artifacts = repository.findArtifacts(checksum);
-				if (!artifacts.isEmpty()) {
-					Artifact artifact = artifacts.get(0);
-					if (removeVersion) {
-						// generate file name without version number
-						return artifact.getArtifactId() + ".jar";
-					} else {
-						// generate file name with version number
-						return artifact.getArtifactId() + "-" + artifact.getVersion() + ".jar";
-					}
-				}
-			} catch (RepositoryException e) {
-				logger.warn("Failed to find artifact in repository.", e);
-			}
-		}
-
-		if (removeVersion) {
-			return getFileNameWithoutVersionNumber(fileName);
-		} else {
-			return fileName;
-		}
-
-	}
 
 	/**
 	 * Removes the version number from the given file name.

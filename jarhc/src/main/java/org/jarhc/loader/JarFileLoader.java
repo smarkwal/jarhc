@@ -35,8 +35,8 @@ import org.slf4j.Logger;
  */
 class JarFileLoader extends AbstractFileLoader {
 
-	public JarFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, FileNameNormalizer fileNameNormalizer, Repository repository, Logger logger) {
-		super(classLoader, maxRelease, classDefLoader, moduleInfoLoader, fileNameNormalizer, repository, logger);
+	public JarFileLoader(String classLoader, int maxRelease, ClassDefLoader classDefLoader, ModuleInfoLoader moduleInfoLoader, Repository repository, Logger logger) {
+		super(classLoader, maxRelease, classDefLoader, moduleInfoLoader, repository, logger);
 	}
 
 	List<JarFile> load(JarSource source) throws IOException {

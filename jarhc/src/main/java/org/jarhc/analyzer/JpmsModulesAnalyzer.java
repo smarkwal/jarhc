@@ -52,14 +52,14 @@ public class JpmsModulesAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 
-			String artifactName = jarFile.getArtifactName();
+			String displayName = jarFile.getDisplayName();
 			String moduleName = getModuleName(jarFile);
 			String definitionInfo = getDefinitionInfo(jarFile);
 			String automaticInfo = getAutomaticInfo(jarFile);
 			String requiresInfo = getRequiresInfo(jarFile);
 			String exportsInfo = getExportsInfo(jarFile);
 
-			table.addRow(artifactName, code(moduleName), definitionInfo, automaticInfo, requiresInfo, exportsInfo);
+			table.addRow(displayName, code(moduleName), definitionInfo, automaticInfo, requiresInfo, exportsInfo);
 		}
 
 		return table;

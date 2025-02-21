@@ -69,7 +69,7 @@ public class UpdatesAnalyzer implements Analyzer {
 
 	private String[] buildRow(JarFile jarFile) {
 
-		String artifactName = jarFile.getArtifactName();
+		String displayName = jarFile.getDisplayName();
 		String coordinates = getCoordinates(jarFile);
 
 		String versionInfo = "";
@@ -113,7 +113,7 @@ public class UpdatesAnalyzer implements Analyzer {
 
 		}
 
-		return new String[] { artifactName, versionInfo, versionsInfo };
+		return new String[] { displayName, versionInfo, versionsInfo };
 	}
 
 	private String getVersionsInfo(List<ArtifactVersion> newerVersions, String groupId, String artifactId) {

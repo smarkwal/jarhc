@@ -38,8 +38,6 @@ public class Options implements MavenRepository.Settings {
 	private final List<String> providedJarPaths = new ArrayList<>();
 	private final List<String> runtimeJarPaths = new ArrayList<>();
 	private ClassLoaderStrategy classLoaderStrategy = ClassLoaderStrategy.ParentLast;
-	private boolean removeVersion = false;
-	private boolean useArtifactName = false;
 	private boolean ignoreMissingAnnotations = false;
 	private boolean ignoreExactCopy = false;
 	private String repositoryUrl = MAVEN_CENTRAL_URL;
@@ -107,22 +105,6 @@ public class Options implements MavenRepository.Settings {
 
 	public void setClassLoaderStrategy(ClassLoaderStrategy classLoaderStrategy) {
 		this.classLoaderStrategy = classLoaderStrategy;
-	}
-
-	public boolean isRemoveVersion() {
-		return removeVersion;
-	}
-
-	public void setRemoveVersion(boolean removeVersion) {
-		this.removeVersion = removeVersion;
-	}
-
-	public boolean isUseArtifactName() {
-		return useArtifactName;
-	}
-
-	public void setUseArtifactName(boolean useArtifactName) {
-		this.useArtifactName = useArtifactName;
 	}
 
 	public boolean isIgnoreMissingAnnotations() {

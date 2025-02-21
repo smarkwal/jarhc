@@ -105,7 +105,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 			if (!jarIssues.isEmpty()) {
 				String lines = joinLines(jarIssues).trim();
-				table.addRow(jarFile.getArtifactName(), lines);
+				table.addRow(jarFile.getDisplayName(), lines);
 			}
 		}
 

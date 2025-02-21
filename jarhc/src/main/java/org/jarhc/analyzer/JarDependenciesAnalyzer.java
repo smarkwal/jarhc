@@ -56,7 +56,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String artifactName = jarFile.getArtifactName();
+			String artifactName = jarFile.getDisplayName();
 			Set<String> targetArtifactNames = dependencies.getValues(artifactName);
 			Set<String> sourceArtifactNames = inverted.getValues(artifactName);
 			String uses;
@@ -85,7 +85,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String artifactName = jarFile.getArtifactName();
+			String artifactName = jarFile.getDisplayName();
 
 			// collect all references to other classes
 			Set<String> classNames = new HashSet<>();
@@ -119,7 +119,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 					}
 
 					// add dependency
-					String targetArtifactName = targetJarFile.getArtifactName();
+					String targetArtifactName = targetJarFile.getDisplayName();
 					dependencies.add(artifactName, targetArtifactName);
 				}
 
