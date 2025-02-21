@@ -197,18 +197,6 @@ public class DiffReportGenerator {
 				String[] row1 = r < rowCount1 ? rows1.get(r) : null;
 				String[] row2 = r < rowCount2 ? rows2.get(r) : null;
 
-				if (row1 == null) {
-					// simulate an empty row with same size as row 2
-					// TODO: mark complete row as inserted
-					row1 = new String[row2.length];
-					Arrays.fill(row1, "");
-				} else if (row2 == null) {
-					// simulate an empty row with same size as row 1
-					// TODO: mark complete row as deleted
-					row2 = new String[row1.length];
-					Arrays.fill(row2, "");
-				}
-
 				String[] row = diff(row1, row2);
 				table.addRow(row);
 			}
@@ -219,13 +207,15 @@ public class DiffReportGenerator {
 
 	private String[] diff(String[] row1, String[] row2) {
 
+		int length = row1 != null ? row1.length : row2.length;
+
 		// prepare a new empty row of the same size
-		String[] row = new String[row1.length];
+		String[] row = new String[length];
 
 		// for every column value in the rows ...
-		for (int i = 0; i < row1.length; i++) {
-			String value1 = row1[i];
-			String value2 = row2[i];
+		for (int i = 0; i < length; i++) {
+			String value1 = row1 != null ? row1[i] : "";
+			String value2 = row2 != null ? row2[i] : "";
 
 			// compare values
 			String value = diff(value1, value2);
