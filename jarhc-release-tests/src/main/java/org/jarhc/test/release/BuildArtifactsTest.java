@@ -104,6 +104,8 @@ class BuildArtifactsTest extends ReleaseTest {
 				if (entry.isDirectory()) continue; // ignore directories
 
 				String name = entry.getName();
+				if (name.startsWith("org/jarhc/")) continue; // ignore JarHC classes
+
 				long size = entry.getSize();
 				long crc = entry.getCrc();
 				toc.add(String.format("%s | size=%d | crc=%d", name, size, crc));
