@@ -54,6 +54,7 @@ public class DiffReportGenerator {
 
 		List<ReportSection> sections1 = report1.getSections();
 		List<ReportSection> sections2 = report2.getSections();
+		logMissingSections(sections1, sections2);
 
 		// for every section in report 1 ...
 		for (ReportSection section1 : sections1) {
@@ -65,7 +66,6 @@ public class DiffReportGenerator {
 					.findFirst()
 					.orElse(null);
 			if (section2 == null) {
-				logger.warn("Section found in report 1 but not in report 2: {}", title);
 				continue;
 			}
 
@@ -94,6 +94,23 @@ public class DiffReportGenerator {
 		section.add(text);
 
 		return section;
+	}
+
+	private void logMissingSections(List<ReportSection> sections1, List<ReportSection> sections2) {
+
+		// get all section titles from both reports
+		List<String> sectionTitles1 = sections1.stream().map(ReportSection::getTitle).collect(Collectors.toList());
+		List<String> sectionTitles2 = sections2.stream().map(ReportSection::getTitle).collect(Collectors.toList());
+
+		// find sections present in report 1 but missing in report 2
+		sectionTitles1.stream()
+				.filter(title -> !sectionTitles2.contains(title))
+				.forEach(title -> logger.warn("Section found in report 1 but not in report 2: {}", title));
+
+		// find sections present in report 2 but missing in report 1
+		sectionTitles2.stream()
+				.filter(title -> !sectionTitles1.contains(title))
+				.forEach(title -> logger.warn("Section found in report 2 but not in report 1: {}", title));
 	}
 
 	private ReportSection diff(ReportSection section1, ReportSection section2) {

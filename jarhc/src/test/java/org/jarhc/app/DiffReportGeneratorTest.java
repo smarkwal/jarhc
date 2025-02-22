@@ -77,6 +77,7 @@ public class DiffReportGeneratorTest {
 		assertJSON(report, "/org/jarhc/app/diff-report-2.json");
 		assertLogger(logger)
 				.hasWarn("Section found in report 1 but not in report 2: Section 2")
+				.hasWarn("Section found in report 2 but not in report 1: Section 3")
 				.isEmpty();
 	}
 
