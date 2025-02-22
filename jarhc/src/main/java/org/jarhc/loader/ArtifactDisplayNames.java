@@ -54,7 +54,7 @@ public class ArtifactDisplayNames {
 					jarFile.setDisplayName(getNameWithGroupId(jarFile));
 				} else { // there are multiple artifacts with the same group ID
 					// use group ID and version
-					jarFiles.forEach(jarFile -> jarFile.setDisplayName(getNameWithGroupIdAndVersion(jarFile))); // TODO: check if all versions are unique
+					group.forEach(jarFile -> jarFile.setDisplayName(getNameWithGroupIdAndVersion(jarFile))); // TODO: check if all versions are unique
 				}
 			}
 		}
