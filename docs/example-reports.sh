@@ -9,6 +9,9 @@ set -o allexport
 source ../.env
 set +o allexport
 
+# use fixed timestamp to make reports reproducible
+JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS} -Djarhc.timestamp.override=1739992928000"
+
 java -jar ${jarhc} --options example-report-asm-7.0-options.txt
 java -jar ${jarhc} --options example-report-asm-commons-7.0-options.txt
 java -jar ${jarhc} --options example-report-asm-7.0-provided-options.txt

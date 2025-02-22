@@ -18,6 +18,7 @@ package org.jarhc.report;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jarhc.utils.DateTimeUtils;
 import org.jarhc.utils.VersionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,7 +26,8 @@ import org.json.JSONObject;
 public class Report {
 
 	private String version = VersionUtils.getVersion();
-	private long timestamp = System.currentTimeMillis();
+	private long timestamp = DateTimeUtils.getTimestamp();
+
 	private String title = "JAR Health Check Report";
 	private final List<ReportSection> sections = new ArrayList<>();
 

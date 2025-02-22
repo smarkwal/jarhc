@@ -35,4 +35,12 @@ public class DateTimeUtils {
 		return DATE_TIME_FORMAT.format(dateTime);
 	}
 
+	public static long getTimestamp() {
+		String value = System.getProperty("jarhc.timestamp.override");
+		if (value != null) {
+			return Long.parseLong(value);
+		}
+		return System.currentTimeMillis();
+	}
+
 }
