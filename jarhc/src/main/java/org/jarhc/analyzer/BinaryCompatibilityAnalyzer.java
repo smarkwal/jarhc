@@ -164,7 +164,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 
 				// if class path element is a JAR file ...
 				if (classPathElement.endsWith(".jar")) {
-					JarFile classPathJarFile = classpath.getJarFile(classPathElement);
+					JarFile classPathJarFile = classpath.getJarFileByFileName(classPathElement);
 					if (classPathJarFile == null) {
 						issues.add("JAR file not found: " + code(classPathElement));
 					}

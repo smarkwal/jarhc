@@ -91,7 +91,7 @@ class ModuleInfoBuilderTest {
 		Classpath classpath = classpathLoader.load(Collections.singleton(jmodFile));
 
 		// get JAR file created for module
-		JarFile jarFile = classpath.getJarFile(moduleName + ".jmod");
+		JarFile jarFile = classpath.getJarFileByFileName(moduleName + ".jmod");
 		assertNotNull(jarFile);
 
 		// assert

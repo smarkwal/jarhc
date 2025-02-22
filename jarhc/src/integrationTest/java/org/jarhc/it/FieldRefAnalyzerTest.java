@@ -51,7 +51,7 @@ class FieldRefAnalyzerTest {
 		File jarFile1 = TestUtils.getResourceAsFile("/org/jarhc/it/FieldRefAnalyzerTest/a.jar", tempDir);
 		Classpath classpath = classpathLoader.load(Collections.singletonList(jarFile1));
 
-		List<FieldRef> fieldRefs = classpath.getJarFile("a.jar").getClassDef("a.A").getFieldRefs();
+		List<FieldRef> fieldRefs = classpath.getJarFileByFileName("a.jar").getClassDef("a.A").getFieldRefs();
 
 		String list = fieldRefs.stream().map(FieldRef::getDisplayName).sorted().collect(StringUtils.joinLines());
 

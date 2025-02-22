@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jarhc.artifacts.Artifact;
@@ -36,6 +37,13 @@ public class JarFile {
 
 	// TODO: support additional version patterns?
 	private static final Pattern VERSION_PATTERN = Pattern.compile("-([0-9]+(\\.[0-9]+){0,10}(-[1-9])?(-SNAPSHOT)?)");
+
+	/**
+	 * Unique identifier for this JAR file.
+	 * Note that this UUID is not deterministic or persisted
+	 * and will be different for each run.
+	 */
+	private final String uuid = UUID.randomUUID().toString();
 
 	/**
 	 * Artifact name (from Maven coordinates or file name)
@@ -246,6 +254,10 @@ public class JarFile {
 
 		// fallback: use file name as artifact name (version is unknown)
 		return new Artifact("", fileName, "", "");
+	}
+
+	public String getUUID() {
+		return uuid;
 	}
 
 	public String getArtifactName() {

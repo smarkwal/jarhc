@@ -21,6 +21,7 @@ import static org.jarhc.utils.StringUtils.joinLines;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.jarhc.model.AnnotationRef;
 import org.jarhc.model.ClassDef;
 import org.jarhc.model.ClassRef;
@@ -57,18 +58,34 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
 			String artifactName = jarFile.getDisplayName();
-			Set<String> targetArtifactNames = dependencies.getValues(artifactName);
-			Set<String> sourceArtifactNames = inverted.getValues(artifactName);
+			String uuid = jarFile.getUUID();
+
+			Set<String> targetUUIDs = dependencies.getValues(uuid);
+			Set<String> sourceUUIDs = inverted.getValues(uuid);
+
 			String uses;
-			if (targetArtifactNames == null) {
+			if (targetUUIDs == null) {
 				uses = Markdown.NONE;
 			} else {
+				List<String> targetArtifactNames =
+						targetUUIDs.stream()
+								.map(classpath::getJarFileByUUID)
+								.map(JarFile::getDisplayName)
+								.sorted()
+								.collect(Collectors.toList());
 				uses = joinLines(targetArtifactNames);
 			}
+
 			String usedBy;
-			if (sourceArtifactNames == null) {
+			if (sourceUUIDs == null) {
 				usedBy = Markdown.NONE;
 			} else {
+				List<String> sourceArtifactNames =
+						sourceUUIDs.stream()
+								.map(classpath::getJarFileByUUID)
+								.map(JarFile::getDisplayName)
+								.sorted()
+								.collect(Collectors.toList());
 				usedBy = joinLines(sourceArtifactNames);
 			}
 			table.addRow(artifactName, uses, usedBy);
@@ -85,7 +102,7 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
 		for (JarFile jarFile : jarFiles) {
-			String artifactName = jarFile.getDisplayName();
+			String sourceUUID = jarFile.getUUID();
 
 			// collect all references to other classes
 			Set<String> classNames = new HashSet<>();
@@ -119,8 +136,8 @@ public class JarDependenciesAnalyzer implements Analyzer {
 					}
 
 					// add dependency
-					String targetArtifactName = targetJarFile.getDisplayName();
-					dependencies.add(artifactName, targetArtifactName);
+					String targetUUID = targetJarFile.getUUID();
+					dependencies.add(sourceUUID, targetUUID);
 				}
 
 			}
@@ -129,9 +146,18 @@ public class JarDependenciesAnalyzer implements Analyzer {
 		return dependencies;
 	}
 
+	/**
+	 * Collect all classes used by a given class definition.
+	 *
+	 * @param classDef   Class definition.
+	 * @param classNames Set of class names.
+	 */
 	private void collectUsedClasses(ClassDef classDef, Set<String> classNames) {
 
 		// add all class references
+		// this SHOULD include the super class and all interfaces,
+		// classes used as field types, return types, parameter types,
+		// thrown exceptions, local variables, etc.
 		List<ClassRef> classRefs = classDef.getClassRefs();
 		//noinspection ForLoopReplaceableByForEach (performance)
 		for (int i = 0; i < classRefs.size(); i++) {

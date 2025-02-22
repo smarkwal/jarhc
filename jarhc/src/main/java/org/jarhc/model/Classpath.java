@@ -62,6 +62,7 @@ public class Classpath extends ClassLoader {
 
 			// add JAR file to fast lookup map
 			jarFilesMap.put(jarFile.getFileName(), jarFile);
+			jarFilesMap.put(jarFile.getUUID(), jarFile);
 
 			// for every class definition in this JAR file ...
 			jarFile.getClassDefs().forEach(classDef -> {
@@ -83,13 +84,24 @@ public class Classpath extends ClassLoader {
 	}
 
 	/**
+	 * Get the JAR file with the given UUID,
+	 * or <code>null</code> if the JAR file is not found in this classpath.
+	 *
+	 * @param uuid UUID
+	 * @return JAR file, or <code>null</code>
+	 */
+	public JarFile getJarFileByUUID(String uuid) {
+		return jarFilesMap.get(uuid);
+	}
+
+	/**
 	 * Get the JAR file with the given file name,
 	 * or <code>null</code> if the JAR file is not found in this classpath.
 	 *
 	 * @param fileName File name
 	 * @return JAR file, or <code>null</code>
 	 */
-	public JarFile getJarFile(String fileName) {
+	public JarFile getJarFileByFileName(String fileName) {
 		return jarFilesMap.get(fileName);
 	}
 

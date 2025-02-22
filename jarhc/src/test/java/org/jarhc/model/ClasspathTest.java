@@ -19,6 +19,7 @@ package org.jarhc.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.List;
 import org.jarhc.test.ClasspathBuilder;
@@ -64,7 +65,7 @@ class ClasspathTest {
 	}
 
 	@Test
-	void test_getJarFile() {
+	void test_getJarFileByFileName() {
 
 		// prepare
 		Classpath classpath = ClasspathBuilder.create(null)
@@ -73,14 +74,46 @@ class ClasspathTest {
 				.build();
 
 		// test
-		JarFile result = classpath.getJarFile("b.jar");
+		JarFile result = classpath.getJarFileByFileName("b.jar");
 
 		// assert
 		assertNotNull(result);
 		assertEquals("b.jar", result.getFileName());
 
 		// test
-		result = classpath.getJarFile("c.jar");
+		result = classpath.getJarFileByFileName("c.jar");
+
+		// assert
+		assertNull(result);
+
+	}
+
+	@Test
+	void test_getJarFileByUUID() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(null)
+				.addJarFile("a.jar").addClassDef("a.A")
+				.addJarFile("b.jar").addClassDef("b.B")
+				.build();
+
+		List<JarFile> jarFiles = classpath.getJarFiles();
+		assertEquals(2, jarFiles.size());
+
+		for (JarFile jarFile : jarFiles) {
+
+			String uuid = jarFile.getUUID();
+			assertNotNull(uuid);
+
+			// test
+			JarFile result = classpath.getJarFileByUUID(uuid);
+
+			// assert
+			assertSame(jarFile, result);
+		}
+
+		// test
+		JarFile result = classpath.getJarFileByUUID("00000000-1111-2222-3333-444444444444");
 
 		// assert
 		assertNull(result);
