@@ -81,7 +81,7 @@ public class HtmlReportFormat implements ReportFormat {
 		// add optional title
 		String title = report.getTitle();
 		if (title != null) {
-			writer.println("<h1>%s</h1>", escape(title));
+			writer.println("<h1 class=\"report-title\">%s</h1>", escape(title));
 			writer.println();
 		}
 
@@ -105,13 +105,13 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private void formatToC(Report report, ReportWriter writer) {
-		writer.println("<h3>Table of Contents</h3>");
-		writer.println("<ul>");
+		writer.println("<h3 class=\"report-toc-title\">Table of Contents</h3>");
+		writer.println("<ul class=\"report-toc\">");
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			String title = section.getTitle();
 			String id = section.getId();
-			writer.println("<li><a href=\"#%s\">%s</a></li>", id, escape(title));
+			writer.println("<li class=\"report-toc-item\"><a href=\"#%s\">%s</a></li>", id, escape(title));
 		}
 		writer.println("</ul>");
 		writer.println();
@@ -125,12 +125,12 @@ public class HtmlReportFormat implements ReportFormat {
 		List<Object> contents = section.getContent();
 
 		// section start
-		writer.println("<section id=\"%s\">", id);
+		writer.println("<section class=\"report-section\" id=\"%s\">", id);
 
 		// format header
-		writer.println("<h2>%s</h2>", escape(title));
+		writer.println("<h2 class=\"report-section-title\">%s</h2>", escape(title));
 		if (description != null) {
-			writer.println("<p>%s</p>", Markdown.toHtml(escape(description)));
+			writer.println("<p class=\"report-section-description\">%s</p>", Markdown.toHtml(escape(description)));
 		}
 
 		// format contents
@@ -139,7 +139,7 @@ public class HtmlReportFormat implements ReportFormat {
 				ReportTable table = (ReportTable) content;
 				formatTable(table, writer);
 			} else {
-				writer.println("<p>%s</p>", Markdown.toHtml(escape(content.toString())));
+				writer.println("<p class=\"report-content\">%s</p>", Markdown.toHtml(escape(content.toString())));
 			}
 		}
 
@@ -148,18 +148,22 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private void formatTable(ReportTable table, ReportWriter writer) {
-		writer.println("<table>");
+		writer.println("<table class=\"report-table\">");
 		String[] columns = table.getColumns();
+		writer.println("<thead>");
 		printTableRow(writer, columns, true);
+		writer.println("</thead>");
 		List<String[]> rows = table.getRows();
+		writer.println("<tbody>");
 		for (String[] values : rows) {
 			printTableRow(writer, values, false);
 		}
+		writer.println("</tbody>");
 		writer.println("</table>");
 	}
 
 	private static void printTableRow(ReportWriter writer, String[] values, boolean header) {
-		writer.print("\t<tr>");
+		writer.print("\t<tr class=\"%s\">", header ? "report-table-header" : "report-table-row");
 		for (String value : values) {
 			if (header) {
 				writer.print("<th>%s</th>", escape(value));

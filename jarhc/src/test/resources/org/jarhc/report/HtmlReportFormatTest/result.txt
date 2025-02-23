@@ -51,41 +51,53 @@ code {
 </head>
 <body>
 
-<h1>Report Title</h1>
+<h1 class="report-title">Report Title</h1>
 
-<h3>Table of Contents</h3>
-<ul>
-<li><a href="#Section1">Section 1</a></li>
-<li><a href="#Section2">Section 2</a></li>
-<li><a href="#Section3">Section 3</a></li>
+<h3 class="report-toc-title">Table of Contents</h3>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#Section1">Section 1</a></li>
+<li class="report-toc-item"><a href="#Section2">Section 2</a></li>
+<li class="report-toc-item"><a href="#Section3">Section 3</a></li>
 </ul>
 
-<section id="Section1">
-<h2>Section 1</h2>
-<p>Description 1</p>
-<p>Some text.</p>
+<section class="report-section" id="Section1">
+<h2 class="report-section-title">Section 1</h2>
+<p class="report-section-description">Description 1</p>
+<p class="report-content">Some text.</p>
 </section>
 
-<section id="Section2">
-<h2>Section 2</h2>
-<p>Description 2, Line 1<br>Description 2, Line 2</p>
-<table>
-	<tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
-	<tr><td>Short</td><td>Medium Medium</td><td>Long Long Long Long Long Long Long</td></tr>
-	<tr><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="_blank" rel="noopener noreferrer">commons-io:commons-io:2.8.0</a></td></tr>
+<section class="report-section" id="Section2">
+<h2 class="report-section-title">Section 2</h2>
+<p class="report-section-description">Description 2, Line 1<br>Description 2, Line 2</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>Short</td><td>Medium Medium</td><td>Long Long Long Long Long Long Long</td></tr>
+	<tr class="report-table-row"><td>Line 1</td><td>Line 1<br>Longer Line 2</td><td>Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="_blank" rel="noopener noreferrer">commons-io:commons-io:2.8.0</a></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="Section3">
-<h2>Section 3</h2>
-<table>
-	<tr><th>Values</th></tr>
-	<tr><td>1</td></tr>
-	<tr><td>2</td></tr>
-	<tr><td>3</td></tr>
+<section class="report-section" id="Section3">
+<h2 class="report-section-title">Section 3</h2>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Values</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>1</td></tr>
+	<tr class="report-table-row"><td>2</td></tr>
+	<tr class="report-table-row"><td>3</td></tr>
+</tbody>
 </table>
-<table>
-	<tr><th>Empty</th></tr>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Empty</th></tr>
+</thead>
+<tbody>
+</tbody>
 </table>
 </section>
 
