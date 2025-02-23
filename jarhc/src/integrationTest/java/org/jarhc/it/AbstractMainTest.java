@@ -46,7 +46,7 @@ abstract class AbstractMainTest {
 		String[] commonArgs = new String[] {
 				"--title", this.getClass().getSimpleName(),
 				"--output", reportFile.getAbsolutePath(),
-				"--sections", "-u,jr", // exclude sections Updates and Java Runtime
+				"--sections", "-jr", // exclude section Java Runtime
 				"--data", dataDir.getAbsolutePath(),
 		};
 

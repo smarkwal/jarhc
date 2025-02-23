@@ -62,57 +62,40 @@ asm-commons  | org.objectweb.asm.commons       | 7.0.0   | Doc URL: http://asm.o
 asm-tree     | org.objectweb.asm.tree          | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
              |                                 |         |                             |                                               |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
 
-Updates
--------
-Information about newer major, minor, and patch versions of artifacts.
-
-Artifact     | Version | Updates
--------------+---------+-----------
-asm          | 7.0     | 7.1
-             |         | 7.2
-             |         | 7.3, 7.3.1
-             |         | [...]
-             |         | 9.5
-             |         | 9.6
-             |         | 9.7, 9.7.1
-asm-analysis | 7.0     | 7.1
-             |         | 7.2
-             |         | 7.3, 7.3.1
-             |         | [...]
-             |         | 9.5
-             |         | 9.6
-             |         | 9.7, 9.7.1
-asm-commons  | 7.0     | 7.1
-             |         | 7.2
-             |         | 7.3, 7.3.1
-             |         | [...]
-             |         | 9.5
-             |         | 9.6
-             |         | 9.7, 9.7.1
-asm-tree     | 7.0     | 7.1
-             |         | 7.2
-             |         | 7.3, 7.3.1
-             |         | [...]
-             |         | 9.5
-             |         | 9.6
-             |         | 9.7, 9.7.1
-
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact     | Uses     | Used by      | Maven coordinates            | Direct dependencies          | Status
--------------+----------+--------------+------------------------------+------------------------------+-------
-asm          | [none]   | asm-analysis | org.ow2.asm:asm:7.0          | [none]                       |
-             |          | asm-commons  |                              |                              |
-             |          | asm-tree     |                              |                              |
-asm-analysis | asm      | [none]       | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
-             | asm-tree |              |                              |                              |
-asm-commons  | asm      | [none]       | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm-analysis:7.0 | OK
-             | asm-tree |              |                              | org.ow2.asm:asm-tree:7.0     | OK
-             |          |              |                              | org.ow2.asm:asm:7.0          | OK
-asm-tree     | asm      | asm-analysis | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
-             |          | asm-commons  |                              |                              |
+Artifact     | Uses     | Used by      | Maven coordinates            | Updates    | Direct dependencies          | Status
+-------------+----------+--------------+------------------------------+------------+------------------------------+-------
+asm          | [none]   | asm-analysis | org.ow2.asm:asm:7.0          | 7.1        | [none]                       |
+             |          | asm-commons  |                              | 7.2        |                              |
+             |          | asm-tree     |                              | 7.3, 7.3.1 |                              |
+             |          |              |                              | [...]      |                              |
+             |          |              |                              | 9.5        |                              |
+             |          |              |                              | 9.6        |                              |
+             |          |              |                              | 9.7, 9.7.1 |                              |
+asm-analysis | asm      | [none]       | org.ow2.asm:asm-analysis:7.0 | 7.1        | org.ow2.asm:asm-tree:7.0     | OK
+             | asm-tree |              |                              | 7.2        |                              |
+             |          |              |                              | 7.3, 7.3.1 |                              |
+             |          |              |                              | [...]      |                              |
+             |          |              |                              | 9.5        |                              |
+             |          |              |                              | 9.6        |                              |
+             |          |              |                              | 9.7, 9.7.1 |                              |
+asm-commons  | asm      | [none]       | org.ow2.asm:asm-commons:7.0  | 7.1        | org.ow2.asm:asm-analysis:7.0 | OK
+             | asm-tree |              |                              | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
+             |          |              |                              | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK
+             |          |              |                              | [...]      |                              |
+             |          |              |                              | 9.5        |                              |
+             |          |              |                              | 9.6        |                              |
+             |          |              |                              | 9.7, 9.7.1 |                              |
+asm-tree     | asm      | asm-analysis | org.ow2.asm:asm-tree:7.0     | 7.1        | org.ow2.asm:asm:7.0          | OK
+             |          | asm-commons  |                              | 7.2        |                              |
+             |          |              |                              | 7.3, 7.3.1 |                              |
+             |          |              |                              | [...]      |                              |
+             |          |              |                              | 9.5        |                              |
+             |          |              |                              | 9.6        |                              |
+             |          |              |                              | 9.7, 9.7.1 |                              |
 
 Duplicate Classes
 -----------------

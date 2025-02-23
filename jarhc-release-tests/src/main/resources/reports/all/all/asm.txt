@@ -39,9 +39,13 @@ asm      | org.objectweb.asm | 9.2.0   | License: BSD-3-Clause;link=https://asm.
 
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact | Uses   | Used by | Maven coordinates   | Direct dependencies | Status
----------+--------+---------+---------------------+---------------------+-------
-asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | [none]              |
+Artifact | Uses   | Used by | Maven coordinates   | Updates    | Direct dependencies | Status
+---------+--------+---------+---------------------+------------+---------------------+-------
+asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | 9.3        | [none]              |
+         |        |         |                     | 9.4        |                     |
+         |        |         |                     | 9.5        |                     |
+         |        |         |                     | 9.6        |                     |
+         |        |         |                     | 9.7, 9.7.1 |                     |
 

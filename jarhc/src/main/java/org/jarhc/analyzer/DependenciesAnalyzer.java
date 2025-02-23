@@ -19,13 +19,16 @@ package org.jarhc.analyzer;
 import static org.jarhc.utils.StringUtils.joinLines;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactVersion;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.model.AnnotationRef;
@@ -61,7 +64,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Dependencies", "Dependencies as declared in POM file.");
+		ReportSection section = new ReportSection("Dependencies", "Dependencies between JAR files, and as declared in POM file.");
 		section.add(table);
 		return section;
 	}
@@ -73,7 +76,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		// calculate "used by" dependencies
 		MultiMap<String, String> usedByMap = usesMap.invert();
 
-		ReportTable table = new ReportTable("Artifact", "Uses", "Used by", "Maven coordinates", "Direct dependencies", "Status");
+		ReportTable table = new ReportTable("Artifact", "Uses", "Used by", "Maven coordinates", "Updates", "Direct dependencies", "Status");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -93,6 +96,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		String uses = Markdown.NONE;
 		String usedBy = Markdown.NONE;
 		String coordinatesInfo = coordinates;
+		String updatesInfo = Markdown.UNKNOWN;
 		String dependenciesInfo = Markdown.UNKNOWN;
 		String status = "";
 
@@ -122,6 +126,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 			Artifact artifact = new Artifact(coordinates);
 			coordinatesInfo = artifact.toLink();
+			updatesInfo = getUpdatesInfo(artifact);
 
 			// get list of direct dependencies
 			List<Dependency> dependencies = null;
@@ -151,7 +156,79 @@ public class DependenciesAnalyzer implements Analyzer {
 
 		}
 
-		return new String[] { displayName, uses, usedBy, coordinatesInfo, dependenciesInfo, status };
+		return new String[] { displayName, uses, usedBy, coordinatesInfo, updatesInfo, dependenciesInfo, status };
+	}
+
+	private String getUpdatesInfo(Artifact artifact) {
+
+		String groupId = artifact.getGroupId();
+		String artifactId = artifact.getArtifactId();
+		String version = artifact.getVersion();
+
+		// get list of versions from repository
+		List<ArtifactVersion> versions = null;
+		try {
+			versions = repository.getVersions(groupId, artifactId);
+		} catch (RepositoryException e) {
+			logger.error("Resolver error for artifact: {}", artifact.toCoordinates(), e);
+		}
+
+		if (versions == null) { // error
+			return Markdown.ERROR;
+		} else if (versions.isEmpty()) { // no versions found
+			return Markdown.UNKNOWN;
+		}
+
+		// keep only newer stable versions
+		ArtifactVersion currentVersion = new ArtifactVersion(version);
+		List<ArtifactVersion> newerVersions = versions.stream()
+				.filter(v -> v.compareTo(currentVersion) > 0) // keep only newer versions
+				.filter(ArtifactVersion::isStable) // keep only stable versions // TODO: make this configurable?
+				.collect(Collectors.toList());
+
+		if (newerVersions.isEmpty()) {
+			return Markdown.NONE;
+		}
+
+		return getVersionsInfo(newerVersions, groupId, artifactId);
+	}
+
+	private String getVersionsInfo(List<ArtifactVersion> newerVersions, String groupId, String artifactId) {
+
+		// group versions by minor version
+		TreeMap<ArtifactVersion, List<ArtifactVersion>> versions = new TreeMap<>();
+		for (ArtifactVersion version : newerVersions) {
+			ArtifactVersion key = new ArtifactVersion(version.getMajor(), version.getMinor(), 0);
+			List<ArtifactVersion> group = versions.computeIfAbsent(key, k -> new ArrayList<>());
+			group.add(version);
+		}
+
+		List<String> lines = new ArrayList<>(versions.size());
+		for (ArtifactVersion version : versions.keySet()) {
+			// convert versions to strings
+			List<String> group = versions.get(version).stream().map(ArtifactVersion::toString).collect(Collectors.toList());
+			// keep at max 7 versions per group
+			if (group.size() > 7) {
+				group = Arrays.asList(group.get(0), group.get(1), group.get(2), Markdown.MORE, group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
+			}
+			// render versions as Markdown links
+			// example: [1.2.3](org.example:artifact:1.2.3)
+			group.replaceAll(v -> {
+				if (v.equals(Markdown.MORE)) return v;
+				String coordinates = String.format("%s:%s:%s", groupId, artifactId, v);
+				return Markdown.link(v, coordinates);
+			});
+			lines.add(String.join(", ", group));
+		}
+
+		// TODO: keep the group for the latest minor version of the same major version branch
+
+		// keep at max 7 groups
+		if (lines.size() > 7) {
+			lines = List.of(lines.get(0), lines.get(1), lines.get(2), Markdown.MORE, lines.get(lines.size() - 3), lines.get(lines.size() - 2), lines.get(lines.size() - 1));
+		}
+
+		return StringUtils.joinLines(lines);
 	}
 
 	private List<Dependency> getDependencies(String coordinates) throws RepositoryException {

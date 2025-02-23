@@ -42,21 +42,13 @@ Information about OSGi Bundles.
 Artifact | Name | Version | Description | Import Package | Export Package | Capabilities | Others
 ---------+------+---------+-------------+----------------+----------------+--------------+-------
 
-Updates
--------
-Information about newer major, minor, and patch versions of artifacts.
-
-Artifact | Version | Updates
----------+---------+--------
-a        |         |
-
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact | Uses   | Used by | Maven coordinates | Direct dependencies | Status
----------+--------+---------+-------------------+---------------------+-------
-a        | [none] | [none]  | [unknown]         | [unknown]           |
+Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
+---------+--------+---------+-------------------+-----------+---------------------+-------
+a        | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
 Duplicate Classes
 -----------------

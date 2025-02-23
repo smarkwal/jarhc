@@ -3,18 +3,22 @@ JAR Health Check Report
 
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact     | Uses     | Used by      | Maven coordinates            | Direct dependencies          | Status
--------------+----------+--------------+------------------------------+------------------------------+-------
-asm          | [none]   | asm-analysis | org.ow2.asm:asm:7.0          | [none]                       |
-             |          | asm-commons  |                              |                              |
-             |          | asm-tree     |                              |                              |
-asm-analysis | asm      | [none]       | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
-             | asm-tree |              |                              |                              |
-asm-commons  | asm      | [none]       | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm-analysis:7.0 | OK
-             | asm-tree |              |                              | org.ow2.asm:asm-tree:7.0     | OK
-             |          |              |                              | org.ow2.asm:asm:7.0          | OK
-asm-tree     | asm      | asm-analysis | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
-             |          | asm-commons  |                              |                              |
+Artifact     | Uses     | Used by      | Maven coordinates            | Updates    | Direct dependencies          | Status
+-------------+----------+--------------+------------------------------+------------+------------------------------+-------
+asm          | [none]   | asm-analysis | org.ow2.asm:asm:7.0          | [unknown]  | [none]                       |
+             |          | asm-commons  |                              |            |                              |
+             |          | asm-tree     |                              |            |                              |
+asm-analysis | asm      | [none]       | org.ow2.asm:asm-analysis:7.0 | [unknown]  | org.ow2.asm:asm-tree:7.0     | OK
+             | asm-tree |              |                              |            |                              |
+asm-commons  | asm      | [none]       | org.ow2.asm:asm-commons:7.0  | 7.1        | org.ow2.asm:asm-analysis:7.0 | OK
+             | asm-tree |              |                              | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
+             |          |              |                              | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK
+             |          |              |                              | [...]      |                              |
+             |          |              |                              | 9.5        |                              |
+             |          |              |                              | 9.6        |                              |
+             |          |              |                              | 9.7, 9.7.1 |                              |
+asm-tree     | asm      | asm-analysis | org.ow2.asm:asm-tree:7.0     | [unknown]  | org.ow2.asm:asm:7.0          | OK
+             |          | asm-commons  |                              |            |                              |
 

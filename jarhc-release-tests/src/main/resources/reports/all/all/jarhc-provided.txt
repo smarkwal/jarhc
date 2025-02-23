@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates | Issues
 ----------+-----------+-----------+--------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-------------+-------
-jarhc     | [unknown] | jarhc.jar | 284 KB | No            | Java 11 (148)          | 9         | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
-Classpath | -         | -         | 284 KB | -             | Java 11 (148)          | 9         | 20                          | -                                        | -           | -
+jarhc     | [unknown] | jarhc.jar | 282 KB | No            | Java 11 (147)          | 9         | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
+Classpath | -         | -         | 282 KB | -             | Java 11 (147)          | 9         | 20                          | -                                        | -           | -
 
 JAR Manifests
 -------------
@@ -29,11 +29,11 @@ jarhc    | org.jarhc   | Manifest   | Yes       |          | [all packages]
 
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact | Uses   | Used by | Maven coordinates | Direct dependencies | Status
----------+--------+---------+-------------------+---------------------+-------
-jarhc    | [none] | [none]  | [unknown]         | [unknown]           |
+Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
+---------+--------+---------+-------------------+-----------+---------------------+-------
+jarhc    | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
 Blacklist
 ---------

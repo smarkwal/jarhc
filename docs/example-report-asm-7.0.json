@@ -243,40 +243,7 @@
          }]
       },
       {
-         "description": "Information about newer major, minor, and patch versions of artifacts.",
-         "title": "Updates",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Version",
-               "Updates"
-            ],
-            "rows": [
-               [
-                  "asm",
-                  "[7.0](org.ow2.asm:asm:7.0:jar)",
-                  "[7.1](org.ow2.asm:asm:7.1)\n[7.2](org.ow2.asm:asm:7.2)\n[7.3](org.ow2.asm:asm:7.3), [7.3.1](org.ow2.asm:asm:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm:9.5)\n[9.6](org.ow2.asm:asm:9.6)\n[9.7](org.ow2.asm:asm:9.7), [9.7.1](org.ow2.asm:asm:9.7.1)"
-               ],
-               [
-                  "asm-analysis",
-                  "[7.0](org.ow2.asm:asm-analysis:7.0:jar)",
-                  "[7.1](org.ow2.asm:asm-analysis:7.1)\n[7.2](org.ow2.asm:asm-analysis:7.2)\n[7.3](org.ow2.asm:asm-analysis:7.3), [7.3.1](org.ow2.asm:asm-analysis:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-analysis:9.5)\n[9.6](org.ow2.asm:asm-analysis:9.6)\n[9.7](org.ow2.asm:asm-analysis:9.7), [9.7.1](org.ow2.asm:asm-analysis:9.7.1)"
-               ],
-               [
-                  "asm-commons",
-                  "[7.0](org.ow2.asm:asm-commons:7.0:jar)",
-                  "[7.1](org.ow2.asm:asm-commons:7.1)\n[7.2](org.ow2.asm:asm-commons:7.2)\n[7.3](org.ow2.asm:asm-commons:7.3), [7.3.1](org.ow2.asm:asm-commons:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-commons:9.5)\n[9.6](org.ow2.asm:asm-commons:9.6)\n[9.7](org.ow2.asm:asm-commons:9.7), [9.7.1](org.ow2.asm:asm-commons:9.7.1)"
-               ],
-               [
-                  "asm-tree",
-                  "[7.0](org.ow2.asm:asm-tree:7.0:jar)",
-                  "[7.1](org.ow2.asm:asm-tree:7.1)\n[7.2](org.ow2.asm:asm-tree:7.2)\n[7.3](org.ow2.asm:asm-tree:7.3), [7.3.1](org.ow2.asm:asm-tree:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-tree:9.5)\n[9.6](org.ow2.asm:asm-tree:9.6)\n[9.7](org.ow2.asm:asm-tree:9.7), [9.7.1](org.ow2.asm:asm-tree:9.7.1)"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies as declared in POM file.",
+         "description": "Dependencies between JAR files, and as declared in POM file.",
          "title": "Dependencies",
          "content": [{
             "columns": [
@@ -284,6 +251,7 @@
                "Uses",
                "Used by",
                "Maven coordinates",
+               "Updates",
                "Direct dependencies",
                "Status"
             ],
@@ -293,6 +261,7 @@
                   "[none]",
                   "asm-analysis\nasm-commons\nasm-tree",
                   "[[org.ow2.asm:asm:7.0]]",
+                  "[7.1](org.ow2.asm:asm:7.1)\n[7.2](org.ow2.asm:asm:7.2)\n[7.3](org.ow2.asm:asm:7.3), [7.3.1](org.ow2.asm:asm:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm:9.5)\n[9.6](org.ow2.asm:asm:9.6)\n[9.7](org.ow2.asm:asm:9.7), [9.7.1](org.ow2.asm:asm:9.7.1)",
                   "[none]",
                   ""
                ],
@@ -301,6 +270,7 @@
                   "asm\nasm-tree",
                   "[none]",
                   "[[org.ow2.asm:asm-analysis:7.0]]",
+                  "[7.1](org.ow2.asm:asm-analysis:7.1)\n[7.2](org.ow2.asm:asm-analysis:7.2)\n[7.3](org.ow2.asm:asm-analysis:7.3), [7.3.1](org.ow2.asm:asm-analysis:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-analysis:9.5)\n[9.6](org.ow2.asm:asm-analysis:9.6)\n[9.7](org.ow2.asm:asm-analysis:9.7), [9.7.1](org.ow2.asm:asm-analysis:9.7.1)",
                   "[[org.ow2.asm:asm-tree:7.0]]",
                   "OK"
                ],
@@ -309,6 +279,7 @@
                   "asm\nasm-tree",
                   "[none]",
                   "[[org.ow2.asm:asm-commons:7.0]]",
+                  "[7.1](org.ow2.asm:asm-commons:7.1)\n[7.2](org.ow2.asm:asm-commons:7.2)\n[7.3](org.ow2.asm:asm-commons:7.3), [7.3.1](org.ow2.asm:asm-commons:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-commons:9.5)\n[9.6](org.ow2.asm:asm-commons:9.6)\n[9.7](org.ow2.asm:asm-commons:9.7), [9.7.1](org.ow2.asm:asm-commons:9.7.1)",
                   "[[org.ow2.asm:asm-analysis:7.0]]\n[[org.ow2.asm:asm-tree:7.0]]\n[[org.ow2.asm:asm:7.0]]",
                   "OK\nOK\nOK"
                ],
@@ -317,6 +288,7 @@
                   "asm",
                   "asm-analysis\nasm-commons",
                   "[[org.ow2.asm:asm-tree:7.0]]",
+                  "[7.1](org.ow2.asm:asm-tree:7.1)\n[7.2](org.ow2.asm:asm-tree:7.2)\n[7.3](org.ow2.asm:asm-tree:7.3), [7.3.1](org.ow2.asm:asm-tree:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-tree:9.5)\n[9.6](org.ow2.asm:asm-tree:9.6)\n[9.7](org.ow2.asm:asm-tree:9.7), [9.7.1](org.ow2.asm:asm-tree:9.7.1)",
                   "[[org.ow2.asm:asm:7.0]]",
                   "OK"
                ]

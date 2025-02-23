@@ -749,110 +749,7 @@
          }]
       },
       {
-         "description": "Information about newer major, minor, and patch versions of artifacts.",
-         "title": "Updates",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Version",
-               "Updates"
-            ],
-            "rows": [
-               [
-                  "aether-api",
-                  "[1.1.0](org.eclipse.aether:aether-api:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-connector-basic",
-                  "[1.1.0](org.eclipse.aether:aether-connector-basic:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-impl",
-                  "[1.1.0](org.eclipse.aether:aether-impl:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-spi",
-                  "[1.1.0](org.eclipse.aether:aether-spi:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-transport-file",
-                  "[1.1.0](org.eclipse.aether:aether-transport-file:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-transport-http",
-                  "[1.1.0](org.eclipse.aether:aether-transport-http:1.1.0)",
-                  ""
-               ],
-               [
-                  "aether-util",
-                  "[1.1.0](org.eclipse.aether:aether-util:1.1.0)",
-                  ""
-               ],
-               [
-                  "asm",
-                  "[9.7](org.ow2.asm:asm:9.7)",
-                  "[9.7.1](org.ow2.asm:asm:9.7.1)"
-               ],
-               [
-                  "commons-codec",
-                  "[1.17.1](commons-codec:commons-codec:1.17.1)",
-                  "[1.17.2](commons-codec:commons-codec:1.17.2)\n[1.18.0](commons-codec:commons-codec:1.18.0)"
-               ],
-               [
-                  "guava",
-                  "[33.3.0-jre](com.google.guava:guava:33.3.0-jre)",
-                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre)"
-               ],
-               [
-                  "httpclient",
-                  "[4.5.14](org.apache.httpcomponents:httpclient:4.5.14)",
-                  ""
-               ],
-               [
-                  "jarhc",
-                  "[2.2.2](org.jarhc:jarhc:2.2.2)",
-                  ""
-               ],
-               [
-                  "jcl-over-slf4j",
-                  "[2.0.16](org.slf4j:jcl-over-slf4j:2.0.16)",
-                  ""
-               ],
-               [
-                  "json",
-                  "[20240303](org.json:json:20240303)",
-                  "[20241224](org.json:json:20241224)\n[20250107](org.json:json:20250107)"
-               ],
-               [
-                  "jul-to-slf4j",
-                  "[2.0.16](org.slf4j:jul-to-slf4j:2.0.16)",
-                  ""
-               ],
-               [
-                  "maven-aether-provider",
-                  "[3.3.9](org.apache.maven:maven-aether-provider:3.3.9)",
-                  ""
-               ],
-               [
-                  "plexus-utils",
-                  "[3.5.1](org.codehaus.plexus:plexus-utils:3.5.1)",
-                  "[3.6.0](org.codehaus.plexus:plexus-utils:3.6.0)\n[4.0.0](org.codehaus.plexus:plexus-utils:4.0.0), [4.0.1](org.codehaus.plexus:plexus-utils:4.0.1), [4.0.2](org.codehaus.plexus:plexus-utils:4.0.2)"
-               ],
-               [
-                  "slf4j-api",
-                  "[2.0.16](org.slf4j:slf4j-api:2.0.16)",
-                  ""
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies as declared in POM file.",
+         "description": "Dependencies between JAR files, and as declared in POM file.",
          "title": "Dependencies",
          "content": [{
             "columns": [
@@ -860,6 +757,7 @@
                "Uses",
                "Used by",
                "Maven coordinates",
+               "Updates",
                "Direct dependencies",
                "Status"
             ],
@@ -870,6 +768,7 @@
                   "aether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\njarhc\nmaven-aether-provider",
                   "[[org.eclipse.aether:aether-api:1.1.0]]",
                   "[none]",
+                  "[none]",
                   ""
                ],
                [
@@ -877,6 +776,7 @@
                   "aether-api\naether-spi\naether-util",
                   "jarhc",
                   "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
                   "OK\nOK\nOK\nUnsatisfied"
                ],
@@ -885,6 +785,7 @@
                   "aether-api\naether-spi\naether-util\nslf4j-api",
                   "jarhc\nmaven-aether-provider",
                   "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional)\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional)",
                   "OK\nOK\nOK\nUnsatisfied\nUnsatisfied\nOK (version 2.0.16)\nUnsatisfied"
                ],
@@ -893,6 +794,7 @@
                   "aether-api",
                   "aether-connector-basic\naether-impl\naether-transport-file\naether-transport-http\njarhc\nmaven-aether-provider",
                   "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]",
                   "OK"
                ],
@@ -901,6 +803,7 @@
                   "aether-api\naether-spi",
                   "jarhc",
                   "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
                   "OK\nOK\nOK\nUnsatisfied"
                ],
@@ -909,6 +812,7 @@
                   "aether-api\naether-spi\naether-util\nhttpclient",
                   "jarhc",
                   "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.apache.httpcomponents:httpclient:4.3.5]]\n[[org.slf4j:jcl-over-slf4j:1.6.2]]",
                   "OK\nOK\nOK\nUnsatisfied\nOK (version 4.5.14)\nOK (version 2.0.16)"
                ],
@@ -917,6 +821,7 @@
                   "aether-api",
                   "aether-connector-basic\naether-impl\naether-transport-http\njarhc\nmaven-aether-provider",
                   "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  "[none]",
                   "[[org.eclipse.aether:aether-api:1.1.0]]",
                   "OK"
                ],
@@ -925,6 +830,7 @@
                   "[none]",
                   "jarhc",
                   "[[org.ow2.asm:asm:9.7]]",
+                  "[9.7.1](org.ow2.asm:asm:9.7.1)",
                   "[none]",
                   ""
                ],
@@ -933,6 +839,7 @@
                   "[none]",
                   "httpclient",
                   "[[commons-codec:commons-codec:1.17.1]]",
+                  "[1.17.2](commons-codec:commons-codec:1.17.2)\n[1.18.0](commons-codec:commons-codec:1.18.0)",
                   "[none]",
                   ""
                ],
@@ -941,6 +848,7 @@
                   "[none]",
                   "maven-aether-provider",
                   "[[com.google.guava:guava:33.3.0-jre]]",
+                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre)",
                   "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]\n[[org.checkerframework:checker-qual:3.43.0]]",
                   "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
                ],
@@ -949,6 +857,7 @@
                   "commons-codec\njcl-over-slf4j",
                   "aether-transport-http",
                   "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  "[none]",
                   "[[org.apache.httpcomponents:httpcore:4.4.16]]\n[[commons-codec:commons-codec:1.11]]\n[[commons-logging:commons-logging:1.2]]",
                   "Unsatisfied\nOK (version 1.17.1)\nUnsatisfied"
                ],
@@ -957,6 +866,7 @@
                   "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
                   "[none]",
                   "[[org.jarhc:jarhc:2.2.2]]",
+                  "[none]",
                   "[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:slf4j-api:2.0.16]]",
                   "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
                ],
@@ -965,6 +875,7 @@
                   "slf4j-api",
                   "httpclient\njarhc",
                   "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  "[none]",
                   "[[org.slf4j:slf4j-api:2.0.16]]",
                   "OK"
                ],
@@ -973,6 +884,7 @@
                   "[none]",
                   "jarhc",
                   "[[org.json:json:20240303]]",
+                  "[20241224](org.json:json:20241224)\n[20250107](org.json:json:20250107)",
                   "[none]",
                   ""
                ],
@@ -981,6 +893,7 @@
                   "slf4j-api",
                   "jarhc",
                   "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  "[none]",
                   "[[org.slf4j:slf4j-api:2.0.16]]",
                   "OK"
                ],
@@ -989,6 +902,7 @@
                   "aether-api\naether-impl\naether-spi\naether-util\nguava\nplexus-utils",
                   "jarhc",
                   "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  "[none]",
                   "[[org.apache.maven:maven-model:3.3.9]]\n[[org.apache.maven:maven-model-builder:3.3.9]]\n[[org.apache.maven:maven-repository-metadata:3.3.9]]\n[[com.google.inject:guice:4.0]] (optional)\n[[org.apache.commons:commons-lang3:3.4]]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]]\n[[org.codehaus.plexus:plexus-utils:3.0.22]]\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]]",
                   "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 3.5.1)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)"
                ],
@@ -997,6 +911,7 @@
                   "[none]",
                   "maven-aether-provider",
                   "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  "[3.6.0](org.codehaus.plexus:plexus-utils:3.6.0)\n[4.0.0](org.codehaus.plexus:plexus-utils:4.0.0), [4.0.1](org.codehaus.plexus:plexus-utils:4.0.1), [4.0.2](org.codehaus.plexus:plexus-utils:4.0.2)",
                   "[none]",
                   ""
                ],
@@ -1005,6 +920,7 @@
                   "[none]",
                   "aether-impl\njarhc\njcl-over-slf4j\njul-to-slf4j",
                   "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "[none]",
                   "[none]",
                   ""
                ]

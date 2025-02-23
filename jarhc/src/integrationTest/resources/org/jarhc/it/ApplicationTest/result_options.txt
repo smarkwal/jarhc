@@ -55,31 +55,20 @@ asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org 
 asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
             |                           |         |                             |                                               |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
 
-Updates
--------
-Information about newer major, minor, and patch versions of artifacts.
-
-Artifact    | Version | Updates
-------------+---------+-----------
-asm-commons | 7.0     | 7.1
-            |         | 7.2
-            |         | 7.3, 7.3.1
-            |         | [...]
-            |         | 9.5
-            |         | 9.6
-            |         | 9.7, 9.7.1
-asm-tree    | 7.0     | [unknown]
-
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
-Artifact    | Uses     | Used by     | Maven coordinates           | Direct dependencies          | Status
-------------+----------+-------------+-----------------------------+------------------------------+--------------
-asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-            |          |             |                             | org.ow2.asm:asm-tree:7.0     | OK
-            |          |             |                             | org.ow2.asm:asm:7.0          | OK [Provided]
-asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
+Artifact    | Uses     | Used by     | Maven coordinates           | Updates    | Direct dependencies          | Status
+------------+----------+-------------+-----------------------------+------------+------------------------------+--------------
+asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
+            |          |             |                             | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
+            |          |             |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK [Provided]
+            |          |             |                             | [...]      |                              |
+            |          |             |                             | 9.5        |                              |
+            |          |             |                             | 9.6        |                              |
+            |          |             |                             | 9.7, 9.7.1 |                              |
+asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | [unknown]  | org.ow2.asm:asm:7.0          | OK [Provided]
 
 Java Runtime
 ------------

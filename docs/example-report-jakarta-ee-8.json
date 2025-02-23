@@ -1471,200 +1471,7 @@
          }]
       },
       {
-         "description": "Information about newer major, minor, and patch versions of artifacts.",
-         "title": "Updates",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Version",
-               "Updates"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "[1.2.2](jakarta.activation:jakarta.activation-api:1.2.2)",
-                  "[2.0.0](jakarta.activation:jakarta.activation-api:2.0.0), [2.0.1](jakarta.activation:jakarta.activation-api:2.0.1)\n[2.1.0](jakarta.activation:jakarta.activation-api:2.1.0), [2.1.1](jakarta.activation:jakarta.activation-api:2.1.1), [2.1.2](jakarta.activation:jakarta.activation-api:2.1.2), [2.1.3](jakarta.activation:jakarta.activation-api:2.1.3)"
-               ],
-               [
-                  "jakarta.annotation-api",
-                  "[1.3.5](jakarta.annotation:jakarta.annotation-api:1.3.5)",
-                  "[2.0.0](jakarta.annotation:jakarta.annotation-api:2.0.0)\n[2.1.0](jakarta.annotation:jakarta.annotation-api:2.1.0), [2.1.1](jakarta.annotation:jakarta.annotation-api:2.1.1)\n[3.0.0](jakarta.annotation:jakarta.annotation-api:3.0.0)"
-               ],
-               [
-                  "jakarta.authorization-api",
-                  "[1.5.0](jakarta.authorization:jakarta.authorization-api:1.5.0)",
-                  "[2.0.0](jakarta.authorization:jakarta.authorization-api:2.0.0)\n[2.1.0](jakarta.authorization:jakarta.authorization-api:2.1.0)\n[3.0.0](jakarta.authorization:jakarta.authorization-api:3.0.0)"
-               ],
-               [
-                  "jakarta.batch-api",
-                  "[1.0.2](jakarta.batch:jakarta.batch-api:1.0.2)",
-                  "[2.0.0](jakarta.batch:jakarta.batch-api:2.0.0)\n[2.1.0](jakarta.batch:jakarta.batch-api:2.1.0), [2.1.1](jakarta.batch:jakarta.batch-api:2.1.1)"
-               ],
-               [
-                  "jakarta.ejb-api",
-                  "[3.2.6](jakarta.ejb:jakarta.ejb-api:3.2.6)",
-                  "[4.0.0](jakarta.ejb:jakarta.ejb-api:4.0.0), [4.0.1](jakarta.ejb:jakarta.ejb-api:4.0.1)"
-               ],
-               [
-                  "jakarta.el-api",
-                  "[3.0.3](jakarta.el:jakarta.el-api:3.0.3)",
-                  "[4.0.0](jakarta.el:jakarta.el-api:4.0.0)\n[5.0.0](jakarta.el:jakarta.el-api:5.0.0), [5.0.1](jakarta.el:jakarta.el-api:5.0.1)\n[6.0.0](jakarta.el:jakarta.el-api:6.0.0), [6.0.1](jakarta.el:jakarta.el-api:6.0.1)"
-               ],
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "[2.0.2](jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2)",
-                  "[3.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0), [3.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1)\n[4.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0), [4.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1)\n[4.1.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0)"
-               ],
-               [
-                  "jakarta.enterprise.concurrent-api",
-                  "[1.1.2](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2)",
-                  "[2.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0)\n[3.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.0), [3.0.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.1), [3.0.2](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.2), [3.0.3](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.3), [3.0.4](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4)\n[3.1.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.0), [3.1.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.1)"
-               ],
-               [
-                  "jakarta.enterprise.deploy-api",
-                  "[1.7.2](jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2)",
-                  ""
-               ],
-               [
-                  "jakarta.faces-api",
-                  "[2.3.2](jakarta.faces:jakarta.faces-api:2.3.2)",
-                  "[3.0.0](jakarta.faces:jakarta.faces-api:3.0.0)\n[4.0.0](jakarta.faces:jakarta.faces-api:4.0.0), [4.0.1](jakarta.faces:jakarta.faces-api:4.0.1)\n[4.1.0](jakarta.faces:jakarta.faces-api:4.1.0), [4.1.1](jakarta.faces:jakarta.faces-api:4.1.1), [4.1.2](jakarta.faces:jakarta.faces-api:4.1.2)"
-               ],
-               [
-                  "jakarta.inject-api",
-                  "[1.0](jakarta.inject:jakarta.inject-api:1.0)",
-                  "[1.0.1](jakarta.inject:jakarta.inject-api:1.0.1), [1.0.2](jakarta.inject:jakarta.inject-api:1.0.2), [1.0.3](jakarta.inject:jakarta.inject-api:1.0.3), [1.0.4](jakarta.inject:jakarta.inject-api:1.0.4), [1.0.5](jakarta.inject:jakarta.inject-api:1.0.5)\n[2.0.0](jakarta.inject:jakarta.inject-api:2.0.0), [2.0.1](jakarta.inject:jakarta.inject-api:2.0.1), [2.0.1.MR](jakarta.inject:jakarta.inject-api:2.0.1.MR)"
-               ],
-               [
-                  "jakarta.interceptor-api",
-                  "[1.2.5](jakarta.interceptor:jakarta.interceptor-api:1.2.5)",
-                  "[2.0.0](jakarta.interceptor:jakarta.interceptor-api:2.0.0), [2.0.1](jakarta.interceptor:jakarta.interceptor-api:2.0.1)\n[2.1.0](jakarta.interceptor:jakarta.interceptor-api:2.1.0)\n[2.2.0](jakarta.interceptor:jakarta.interceptor-api:2.2.0)"
-               ],
-               [
-                  "jakarta.jms-api",
-                  "[2.0.3](jakarta.jms:jakarta.jms-api:2.0.3)",
-                  "[3.0.0](jakarta.jms:jakarta.jms-api:3.0.0)\n[3.1.0](jakarta.jms:jakarta.jms-api:3.1.0)"
-               ],
-               [
-                  "jakarta.json-api",
-                  "[1.1.6](jakarta.json:jakarta.json-api:1.1.6)",
-                  "[2.0.0](jakarta.json:jakarta.json-api:2.0.0), [2.0.1](jakarta.json:jakarta.json-api:2.0.1), [2.0.2](jakarta.json:jakarta.json-api:2.0.2)\n[2.1.0](jakarta.json:jakarta.json-api:2.1.0), [2.1.1](jakarta.json:jakarta.json-api:2.1.1), [2.1.2](jakarta.json:jakarta.json-api:2.1.2), [2.1.3](jakarta.json:jakarta.json-api:2.1.3)"
-               ],
-               [
-                  "jakarta.json.bind-api",
-                  "[1.0.2](jakarta.json.bind:jakarta.json.bind-api:1.0.2)",
-                  "[2.0.0](jakarta.json.bind:jakarta.json.bind-api:2.0.0)\n[3.0.0](jakarta.json.bind:jakarta.json.bind-api:3.0.0), [3.0.1](jakarta.json.bind:jakarta.json.bind-api:3.0.1)"
-               ],
-               [
-                  "jakarta.jws-api",
-                  "[2.1.0](jakarta.jws:jakarta.jws-api:2.1.0)",
-                  "[3.0.0](jakarta.jws:jakarta.jws-api:3.0.0)"
-               ],
-               [
-                  "jakarta.mail-api",
-                  "[1.6.4](jakarta.mail:jakarta.mail-api:1.6.4)",
-                  "[1.6.5](jakarta.mail:jakarta.mail-api:1.6.5), [1.6.6](jakarta.mail:jakarta.mail-api:1.6.6), [1.6.7](jakarta.mail:jakarta.mail-api:1.6.7)\n[2.0.0](jakarta.mail:jakarta.mail-api:2.0.0), [2.0.1](jakarta.mail:jakarta.mail-api:2.0.1)\n[2.1.0](jakarta.mail:jakarta.mail-api:2.1.0), [2.1.1](jakarta.mail:jakarta.mail-api:2.1.1), [2.1.2](jakarta.mail:jakarta.mail-api:2.1.2), [2.1.3](jakarta.mail:jakarta.mail-api:2.1.3)"
-               ],
-               [
-                  "jakarta.management.j2ee-api",
-                  "[1.1.4](jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4)",
-                  ""
-               ],
-               [
-                  "jakarta.mvc-api",
-                  "[1.1.0](jakarta.mvc:jakarta.mvc-api:1.1.0)",
-                  "[2.0.0](jakarta.mvc:jakarta.mvc-api:2.0.0), [2.0.1](jakarta.mvc:jakarta.mvc-api:2.0.1)\n[2.1.0](jakarta.mvc:jakarta.mvc-api:2.1.0)"
-               ],
-               [
-                  "jakarta.persistence-api",
-                  "[2.2.3](jakarta.persistence:jakarta.persistence-api:2.2.3)",
-                  "[3.0.0](jakarta.persistence:jakarta.persistence-api:3.0.0)\n[3.1.0](jakarta.persistence:jakarta.persistence-api:3.1.0)\n[3.2.0](jakarta.persistence:jakarta.persistence-api:3.2.0)"
-               ],
-               [
-                  "jakarta.resource-api",
-                  "[1.7.4](jakarta.resource:jakarta.resource-api:1.7.4)",
-                  "[2.0.0](jakarta.resource:jakarta.resource-api:2.0.0)\n[2.1.0](jakarta.resource:jakarta.resource-api:2.1.0)"
-               ],
-               [
-                  "jakarta.security.auth.message-api",
-                  "[1.1.3](jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3)",
-                  ""
-               ],
-               [
-                  "jakarta.security.enterprise-api",
-                  "[1.0.2](jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2)",
-                  "[2.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0)\n[3.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0)\n[4.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0)"
-               ],
-               [
-                  "jakarta.servlet-api",
-                  "[4.0.3](jakarta.servlet:jakarta.servlet-api:4.0.3)",
-                  "[4.0.4](jakarta.servlet:jakarta.servlet-api:4.0.4)\n[5.0.0](jakarta.servlet:jakarta.servlet-api:5.0.0)\n[6.0.0](jakarta.servlet:jakarta.servlet-api:6.0.0)\n[6.1.0](jakarta.servlet:jakarta.servlet-api:6.1.0)"
-               ],
-               [
-                  "jakarta.servlet.jsp-api",
-                  "[2.3.6](jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6)",
-                  "[3.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0)\n[3.1.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0), [3.1.1](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1)\n[4.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0)"
-               ],
-               [
-                  "jakarta.servlet.jsp.jstl-api",
-                  "[1.2.7](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7)",
-                  "[2.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0)\n[3.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0), [3.0.1](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1), [3.0.2](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2)"
-               ],
-               [
-                  "jakarta.transaction-api",
-                  "[1.3.3](jakarta.transaction:jakarta.transaction-api:1.3.3)",
-                  "[2.0.0](jakarta.transaction:jakarta.transaction-api:2.0.0), [2.0.1](jakarta.transaction:jakarta.transaction-api:2.0.1)"
-               ],
-               [
-                  "jakarta.validation-api",
-                  "[2.0.2](jakarta.validation:jakarta.validation-api:2.0.2)",
-                  "[3.0.0](jakarta.validation:jakarta.validation-api:3.0.0), [3.0.1](jakarta.validation:jakarta.validation-api:3.0.1), [3.0.2](jakarta.validation:jakarta.validation-api:3.0.2)\n[3.1.0](jakarta.validation:jakarta.validation-api:3.1.0), [3.1.1](jakarta.validation:jakarta.validation-api:3.1.1)"
-               ],
-               [
-                  "jakarta.websocket-api",
-                  "[1.1.2](jakarta.websocket:jakarta.websocket-api:1.1.2:jar)",
-                  "[2.0.0](jakarta.websocket:jakarta.websocket-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-api:2.2.0)"
-               ],
-               [
-                  "jakarta.websocket-client-api",
-                  "[1.1.2](jakarta.websocket:jakarta.websocket-client-api:1.1.2:jar)",
-                  "[2.0.0](jakarta.websocket:jakarta.websocket-client-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-client-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-client-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-client-api:2.2.0)"
-               ],
-               [
-                  "jakarta.ws.rs-api",
-                  "[2.1.6](jakarta.ws.rs:jakarta.ws.rs-api:2.1.6)",
-                  "[3.0.0](jakarta.ws.rs:jakarta.ws.rs-api:3.0.0)\n[3.1.0](jakarta.ws.rs:jakarta.ws.rs-api:3.1.0)\n[4.0.0](jakarta.ws.rs:jakarta.ws.rs-api:4.0.0)"
-               ],
-               [
-                  "jakarta.xml.bind-api",
-                  "[2.3.3](jakarta.xml.bind:jakarta.xml.bind-api:2.3.3)",
-                  "[3.0.0](jakarta.xml.bind:jakarta.xml.bind-api:3.0.0), [3.0.1](jakarta.xml.bind:jakarta.xml.bind-api:3.0.1)\n[4.0.0](jakarta.xml.bind:jakarta.xml.bind-api:4.0.0), [4.0.1](jakarta.xml.bind:jakarta.xml.bind-api:4.0.1), [4.0.2](jakarta.xml.bind:jakarta.xml.bind-api:4.0.2)"
-               ],
-               [
-                  "jakarta.xml.registry-api",
-                  "[1.0.10](jakarta.xml.registry:jakarta.xml.registry-api:1.0.10)",
-                  ""
-               ],
-               [
-                  "jakarta.xml.rpc-api",
-                  "[1.1.4](jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.4)",
-                  ""
-               ],
-               [
-                  "jakarta.xml.soap-api",
-                  "[1.4.2](jakarta.xml.soap:jakarta.xml.soap-api:1.4.2)",
-                  "[2.0.0](jakarta.xml.soap:jakarta.xml.soap-api:2.0.0), [2.0.1](jakarta.xml.soap:jakarta.xml.soap-api:2.0.1)\n[3.0.0](jakarta.xml.soap:jakarta.xml.soap-api:3.0.0), [3.0.1](jakarta.xml.soap:jakarta.xml.soap-api:3.0.1), [3.0.2](jakarta.xml.soap:jakarta.xml.soap-api:3.0.2)"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "[2.3.3](jakarta.xml.ws:jakarta.xml.ws-api:2.3.3)",
-                  "[3.0.0](jakarta.xml.ws:jakarta.xml.ws-api:3.0.0), [3.0.1](jakarta.xml.ws:jakarta.xml.ws-api:3.0.1)\n[4.0.0](jakarta.xml.ws:jakarta.xml.ws-api:4.0.0), [4.0.1](jakarta.xml.ws:jakarta.xml.ws-api:4.0.1), [4.0.2](jakarta.xml.ws:jakarta.xml.ws-api:4.0.2)"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies as declared in POM file.",
+         "description": "Dependencies between JAR files, and as declared in POM file.",
          "title": "Dependencies",
          "content": [{
             "columns": [
@@ -1672,6 +1479,7 @@
                "Uses",
                "Used by",
                "Maven coordinates",
+               "Updates",
                "Direct dependencies",
                "Status"
             ],
@@ -1681,6 +1489,7 @@
                   "[none]",
                   "jakarta.mail-api\njakarta.xml.bind-api\njakarta.xml.registry-api\njakarta.xml.soap-api",
                   "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
+                  "[2.0.0](jakarta.activation:jakarta.activation-api:2.0.0), [2.0.1](jakarta.activation:jakarta.activation-api:2.0.1)\n[2.1.0](jakarta.activation:jakarta.activation-api:2.1.0), [2.1.1](jakarta.activation:jakarta.activation-api:2.1.1), [2.1.2](jakarta.activation:jakarta.activation-api:2.1.2), [2.1.3](jakarta.activation:jakarta.activation-api:2.1.3)",
                   "[none]",
                   ""
                ],
@@ -1689,6 +1498,7 @@
                   "[none]",
                   "[none]",
                   "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]",
+                  "[2.0.0](jakarta.annotation:jakarta.annotation-api:2.0.0)\n[2.1.0](jakarta.annotation:jakarta.annotation-api:2.1.0), [2.1.1](jakarta.annotation:jakarta.annotation-api:2.1.1)\n[3.0.0](jakarta.annotation:jakarta.annotation-api:3.0.0)",
                   "[none]",
                   ""
                ],
@@ -1697,6 +1507,7 @@
                   "jakarta.servlet-api",
                   "[none]",
                   "[[jakarta.authorization:jakarta.authorization-api:1.5.0]]",
+                  "[2.0.0](jakarta.authorization:jakarta.authorization-api:2.0.0)\n[2.1.0](jakarta.authorization:jakarta.authorization-api:2.1.0)\n[3.0.0](jakarta.authorization:jakarta.authorization-api:3.0.0)",
                   "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
                   "OK"
                ],
@@ -1705,6 +1516,7 @@
                   "jakarta.enterprise.cdi-api\njakarta.inject-api",
                   "[none]",
                   "[[jakarta.batch:jakarta.batch-api:1.0.2]]",
+                  "[2.0.0](jakarta.batch:jakarta.batch-api:2.0.0)\n[2.1.0](jakarta.batch:jakarta.batch-api:2.1.0), [2.1.1](jakarta.batch:jakarta.batch-api:2.1.1)",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)\n[[jakarta.inject:jakarta.inject-api:1.0]] (provided)",
                   "OK (version 2.0.2)\nOK"
                ],
@@ -1713,6 +1525,7 @@
                   "jakarta.transaction-api\njakarta.xml.rpc-api",
                   "jakarta.management.j2ee-api\njakarta.xml.rpc-api",
                   "[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
+                  "[4.0.0](jakarta.ejb:jakarta.ejb-api:4.0.0), [4.0.1](jakarta.ejb:jakarta.ejb-api:4.0.1)",
                   "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]\n[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.3]] (optional)",
                   "OK (version 1.3.3)\nOK (version 1.1.4)"
                ],
@@ -1721,6 +1534,7 @@
                   "[none]",
                   "jakarta.enterprise.cdi-api\njakarta.faces-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api",
                   "[[jakarta.el:jakarta.el-api:3.0.3]]",
+                  "[4.0.0](jakarta.el:jakarta.el-api:4.0.0)\n[5.0.0](jakarta.el:jakarta.el-api:5.0.0), [5.0.1](jakarta.el:jakarta.el-api:5.0.1)\n[6.0.0](jakarta.el:jakarta.el-api:6.0.0), [6.0.1](jakarta.el:jakarta.el-api:6.0.1)",
                   "[none]",
                   ""
                ],
@@ -1729,6 +1543,7 @@
                   "jakarta.el-api\njakarta.inject-api\njakarta.interceptor-api",
                   "jakarta.batch-api\njakarta.faces-api\njakarta.mvc-api\njakarta.security.enterprise-api\njakarta.transaction-api",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]]",
+                  "[3.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0), [3.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1)\n[4.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0), [4.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1)\n[4.1.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0)",
                   "[[jakarta.el:jakarta.el-api:3.0.3]]\n[[jakarta.inject:jakarta.inject-api:1.0]]\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
                   "OK\nOK\nOK"
                ],
@@ -1737,6 +1552,7 @@
                   "[none]",
                   "[none]",
                   "[[jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2]]",
+                  "[2.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0)\n[3.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.0), [3.0.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.1), [3.0.2](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.2), [3.0.3](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.3), [3.0.4](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4)\n[3.1.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.0), [3.1.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.1)",
                   "[none]",
                   ""
                ],
@@ -1746,6 +1562,7 @@
                   "[none]",
                   "[[jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2]]",
                   "[none]",
+                  "[none]",
                   ""
                ],
                [
@@ -1753,6 +1570,7 @@
                   "jakarta.el-api\njakarta.enterprise.cdi-api\njakarta.inject-api\njakarta.servlet-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.validation-api\njakarta.websocket-api\njakarta.websocket-client-api",
                   "[none]",
                   "[[jakarta.faces:jakarta.faces-api:2.3.2]]",
+                  "[3.0.0](jakarta.faces:jakarta.faces-api:3.0.0)\n[4.0.0](jakarta.faces:jakarta.faces-api:4.0.0), [4.0.1](jakarta.faces:jakarta.faces-api:4.0.1)\n[4.1.0](jakarta.faces:jakarta.faces-api:4.1.0), [4.1.1](jakarta.faces:jakarta.faces-api:4.1.1), [4.1.2](jakarta.faces:jakarta.faces-api:4.1.2)",
                   "[[jakarta.ejb:jakarta.ejb-api:3.2.5]] (provided, optional)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.json:jakarta.json-api:1.1.6]] (provided, optional)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)\n[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]] (provided, optional)\n[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.5]] (provided, optional)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.websocket:jakarta.websocket-api:1.1.2]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided, optional)\n[[javax.enterprise:cdi-api:2.0.SP1]] (provided)\n[[org.apache.tomcat:catalina:6.0.51]] (provided)\n[[org.glassfish:jakarta.faces:2.3.13]] (provided)\n[[org.mortbay.jetty:jetty-annotations:6.1.26]] (optional)\n[[org.mortbay.jetty:jetty-plus:6.1.26]] (optional)",
                   "OK (version 3.2.6)\nOK\nOK\nOK\nOK\nOK (version 1.2.7)\nOK\nOK\nOK (version 2.3.3)\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
                ],
@@ -1761,6 +1579,7 @@
                   "[none]",
                   "jakarta.batch-api\njakarta.enterprise.cdi-api\njakarta.faces-api",
                   "[[jakarta.inject:jakarta.inject-api:1.0]]",
+                  "[1.0.1](jakarta.inject:jakarta.inject-api:1.0.1), [1.0.2](jakarta.inject:jakarta.inject-api:1.0.2), [1.0.3](jakarta.inject:jakarta.inject-api:1.0.3), [1.0.4](jakarta.inject:jakarta.inject-api:1.0.4), [1.0.5](jakarta.inject:jakarta.inject-api:1.0.5)\n[2.0.0](jakarta.inject:jakarta.inject-api:2.0.0), [2.0.1](jakarta.inject:jakarta.inject-api:2.0.1), [2.0.1.MR](jakarta.inject:jakarta.inject-api:2.0.1.MR)",
                   "[none]",
                   ""
                ],
@@ -1769,6 +1588,7 @@
                   "[none]",
                   "jakarta.enterprise.cdi-api\njakarta.security.enterprise-api\njakarta.transaction-api",
                   "[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
+                  "[2.0.0](jakarta.interceptor:jakarta.interceptor-api:2.0.0), [2.0.1](jakarta.interceptor:jakarta.interceptor-api:2.0.1)\n[2.1.0](jakarta.interceptor:jakarta.interceptor-api:2.1.0)\n[2.2.0](jakarta.interceptor:jakarta.interceptor-api:2.2.0)",
                   "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
                   "OK\nOK"
                ],
@@ -1777,6 +1597,7 @@
                   "[none]",
                   "[none]",
                   "[[jakarta.jms:jakarta.jms-api:2.0.3]]",
+                  "[3.0.0](jakarta.jms:jakarta.jms-api:3.0.0)\n[3.1.0](jakarta.jms:jakarta.jms-api:3.1.0)",
                   "[none]",
                   ""
                ],
@@ -1785,6 +1606,7 @@
                   "[none]",
                   "jakarta.json.bind-api",
                   "[[jakarta.json:jakarta.json-api:1.1.6]]",
+                  "[2.0.0](jakarta.json:jakarta.json-api:2.0.0), [2.0.1](jakarta.json:jakarta.json-api:2.0.1), [2.0.2](jakarta.json:jakarta.json-api:2.0.2)\n[2.1.0](jakarta.json:jakarta.json-api:2.1.0), [2.1.1](jakarta.json:jakarta.json-api:2.1.1), [2.1.2](jakarta.json:jakarta.json-api:2.1.2), [2.1.3](jakarta.json:jakarta.json-api:2.1.3)",
                   "[none]",
                   ""
                ],
@@ -1793,6 +1615,7 @@
                   "jakarta.json-api",
                   "[none]",
                   "[[jakarta.json.bind:jakarta.json.bind-api:1.0.2]]",
+                  "[2.0.0](jakarta.json.bind:jakarta.json.bind-api:2.0.0)\n[3.0.0](jakarta.json.bind:jakarta.json.bind-api:3.0.0), [3.0.1](jakarta.json.bind:jakarta.json.bind-api:3.0.1)",
                   "[[jakarta.json:jakarta.json-api:1.1.6]] (provided)",
                   "OK"
                ],
@@ -1801,6 +1624,7 @@
                   "[none]",
                   "[none]",
                   "[[jakarta.jws:jakarta.jws-api:2.1.0]]",
+                  "[3.0.0](jakarta.jws:jakarta.jws-api:3.0.0)",
                   "[none]",
                   ""
                ],
@@ -1809,6 +1633,7 @@
                   "jakarta.activation-api",
                   "[none]",
                   "[[jakarta.mail:jakarta.mail-api:1.6.4]]",
+                  "[1.6.5](jakarta.mail:jakarta.mail-api:1.6.5), [1.6.6](jakarta.mail:jakarta.mail-api:1.6.6), [1.6.7](jakarta.mail:jakarta.mail-api:1.6.7)\n[2.0.0](jakarta.mail:jakarta.mail-api:2.0.0), [2.0.1](jakarta.mail:jakarta.mail-api:2.0.1)\n[2.1.0](jakarta.mail:jakarta.mail-api:2.1.0), [2.1.1](jakarta.mail:jakarta.mail-api:2.1.1), [2.1.2](jakarta.mail:jakarta.mail-api:2.1.2), [2.1.3](jakarta.mail:jakarta.mail-api:2.1.3)",
                   "[none]",
                   ""
                ],
@@ -1817,6 +1642,7 @@
                   "jakarta.ejb-api",
                   "[none]",
                   "[[jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4]]",
+                  "[none]",
                   "[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (optional)",
                   "OK"
                ],
@@ -1825,6 +1651,7 @@
                   "jakarta.enterprise.cdi-api\njakarta.validation-api\njakarta.ws.rs-api",
                   "[none]",
                   "[[jakarta.mvc:jakarta.mvc-api:1.1.0]]",
+                  "[2.0.0](jakarta.mvc:jakarta.mvc-api:2.0.0), [2.0.1](jakarta.mvc:jakarta.mvc-api:2.0.1)\n[2.1.0](jakarta.mvc:jakarta.mvc-api:2.1.0)",
                   "[[jakarta.annotation:jakarta.annotation-api:1.3.4]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.5]] (provided)",
                   "OK (version 1.3.5)\nOK\nOK\nOK (version 2.1.6)"
                ],
@@ -1833,6 +1660,7 @@
                   "[none]",
                   "[none]",
                   "[[jakarta.persistence:jakarta.persistence-api:2.2.3]]",
+                  "[3.0.0](jakarta.persistence:jakarta.persistence-api:3.0.0)\n[3.1.0](jakarta.persistence:jakarta.persistence-api:3.1.0)\n[3.2.0](jakarta.persistence:jakarta.persistence-api:3.2.0)",
                   "[none]",
                   ""
                ],
@@ -1841,6 +1669,7 @@
                   "jakarta.transaction-api",
                   "[none]",
                   "[[jakarta.resource:jakarta.resource-api:1.7.4]]",
+                  "[2.0.0](jakarta.resource:jakarta.resource-api:2.0.0)\n[2.1.0](jakarta.resource:jakarta.resource-api:2.1.0)",
                   "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]",
                   "OK (version 1.3.3)"
                ],
@@ -1850,6 +1679,7 @@
                   "jakarta.security.enterprise-api",
                   "[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]]",
                   "[none]",
+                  "[none]",
                   ""
                ],
                [
@@ -1857,6 +1687,7 @@
                   "jakarta.enterprise.cdi-api\njakarta.interceptor-api\njakarta.security.auth.message-api\njakarta.servlet-api",
                   "[none]",
                   "[[jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2]]",
+                  "[2.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0)\n[3.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0)\n[4.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0)",
                   "[[jakarta.authorization:jakarta.authorization-api:1.5.0]] (provided)\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]] (provided)\n[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]] (provided)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)",
                   "OK\nOK\nOK\nOK\nOK\nOK\nOK"
                ],
@@ -1865,6 +1696,7 @@
                   "[none]",
                   "jakarta.authorization-api\njakarta.faces-api\njakarta.security.enterprise-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.xml.rpc-api",
                   "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
+                  "[4.0.4](jakarta.servlet:jakarta.servlet-api:4.0.4)\n[5.0.0](jakarta.servlet:jakarta.servlet-api:5.0.0)\n[6.0.0](jakarta.servlet:jakarta.servlet-api:6.0.0)\n[6.1.0](jakarta.servlet:jakarta.servlet-api:6.1.0)",
                   "[none]",
                   ""
                ],
@@ -1873,6 +1705,7 @@
                   "jakarta.el-api\njakarta.servlet-api",
                   "jakarta.faces-api\njakarta.servlet.jsp.jstl-api",
                   "[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]]",
+                  "[3.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0)\n[3.1.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0), [3.1.1](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1)\n[4.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0)",
                   "[[jakarta.servlet:jakarta.servlet-api:4.0.2]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.2]] (provided)",
                   "OK (version 4.0.3)\nOK (version 3.0.3)"
                ],
@@ -1881,6 +1714,7 @@
                   "jakarta.el-api\njakarta.servlet-api\njakarta.servlet.jsp-api",
                   "jakarta.faces-api",
                   "[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7]]",
+                  "[2.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0)\n[3.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0), [3.0.1](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1), [3.0.2](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2)",
                   "[[javax.el:el-api:2.2]] (provided)\n[[javax.servlet:servlet-api:2.5]] (provided)\n[[javax.servlet.jsp:jsp-api:2.2]] (provided)",
                   "Unsatisfied\nUnsatisfied\nUnsatisfied"
                ],
@@ -1889,6 +1723,7 @@
                   "jakarta.enterprise.cdi-api\njakarta.interceptor-api",
                   "jakarta.ejb-api\njakarta.resource-api",
                   "[[jakarta.transaction:jakarta.transaction-api:1.3.3]]",
+                  "[2.0.0](jakarta.transaction:jakarta.transaction-api:2.0.0), [2.0.1](jakarta.transaction:jakarta.transaction-api:2.0.1)",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)",
                   "OK (version 2.0.2)"
                ],
@@ -1897,6 +1732,7 @@
                   "[none]",
                   "jakarta.faces-api\njakarta.mvc-api",
                   "[[jakarta.validation:jakarta.validation-api:2.0.2]]",
+                  "[3.0.0](jakarta.validation:jakarta.validation-api:3.0.0), [3.0.1](jakarta.validation:jakarta.validation-api:3.0.1), [3.0.2](jakarta.validation:jakarta.validation-api:3.0.2)\n[3.1.0](jakarta.validation:jakarta.validation-api:3.1.0), [3.1.1](jakarta.validation:jakarta.validation-api:3.1.1)",
                   "[none]",
                   ""
                ],
@@ -1905,6 +1741,7 @@
                   "jakarta.websocket-client-api",
                   "jakarta.faces-api\njakarta.websocket-client-api",
                   "[[jakarta.websocket:jakarta.websocket-api:1.1.2]]",
+                  "[2.0.0](jakarta.websocket:jakarta.websocket-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-api:2.2.0)",
                   "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]] (optional)",
                   "OK"
                ],
@@ -1913,6 +1750,7 @@
                   "jakarta.websocket-api",
                   "jakarta.faces-api\njakarta.websocket-api",
                   "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]]",
+                  "[2.0.0](jakarta.websocket:jakarta.websocket-client-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-client-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-client-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-client-api:2.2.0)",
                   "[none]",
                   ""
                ],
@@ -1921,6 +1759,7 @@
                   "jakarta.xml.bind-api",
                   "jakarta.mvc-api",
                   "[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.6]]",
+                  "[3.0.0](jakarta.ws.rs:jakarta.ws.rs-api:3.0.0)\n[3.1.0](jakarta.ws.rs:jakarta.ws.rs-api:3.1.0)\n[4.0.0](jakarta.ws.rs:jakarta.ws.rs-api:4.0.0)",
                   "[[jakarta.activation:jakarta.activation-api:1.2.1]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided)",
                   "OK (version 1.2.2)\nOK (version 2.3.3)"
                ],
@@ -1929,6 +1768,7 @@
                   "jakarta.activation-api",
                   "jakarta.ws.rs-api\njakarta.xml.ws-api",
                   "[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]",
+                  "[3.0.0](jakarta.xml.bind:jakarta.xml.bind-api:3.0.0), [3.0.1](jakarta.xml.bind:jakarta.xml.bind-api:3.0.1)\n[4.0.0](jakarta.xml.bind:jakarta.xml.bind-api:4.0.0), [4.0.1](jakarta.xml.bind:jakarta.xml.bind-api:4.0.1), [4.0.2](jakarta.xml.bind:jakarta.xml.bind-api:4.0.2)",
                   "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
                   "OK"
                ],
@@ -1938,6 +1778,7 @@
                   "[none]",
                   "[[jakarta.xml.registry:jakarta.xml.registry-api:1.0.10]]",
                   "[none]",
+                  "[none]",
                   ""
                ],
                [
@@ -1945,6 +1786,7 @@
                   "jakarta.ejb-api\njakarta.servlet-api\njakarta.xml.soap-api",
                   "jakarta.ejb-api",
                   "[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.4]]",
+                  "[none]",
                   "[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (optional)",
                   "OK"
                ],
@@ -1953,6 +1795,7 @@
                   "jakarta.activation-api",
                   "jakarta.xml.rpc-api\njakarta.xml.ws-api",
                   "[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
+                  "[2.0.0](jakarta.xml.soap:jakarta.xml.soap-api:2.0.0), [2.0.1](jakarta.xml.soap:jakarta.xml.soap-api:2.0.1)\n[3.0.0](jakarta.xml.soap:jakarta.xml.soap-api:3.0.0), [3.0.1](jakarta.xml.soap:jakarta.xml.soap-api:3.0.1), [3.0.2](jakarta.xml.soap:jakarta.xml.soap-api:3.0.2)",
                   "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
                   "OK"
                ],
@@ -1961,6 +1804,7 @@
                   "jakarta.xml.bind-api\njakarta.xml.soap-api",
                   "[none]",
                   "[[jakarta.xml.ws:jakarta.xml.ws-api:2.3.3]]",
+                  "[3.0.0](jakarta.xml.ws:jakarta.xml.ws-api:3.0.0), [3.0.1](jakarta.xml.ws:jakarta.xml.ws-api:3.0.1)\n[4.0.0](jakarta.xml.ws:jakarta.xml.ws-api:4.0.0), [4.0.1](jakarta.xml.ws:jakarta.xml.ws-api:4.0.1), [4.0.2](jakarta.xml.ws:jakarta.xml.ws-api:4.0.2)",
                   "[[jakarta.jws:jakarta.jws-api:2.1.0]] (runtime)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]\n[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
                   "OK\nOK\nOK"
                ]

@@ -270,61 +270,9 @@ Artifact: asm-tree
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
 
-Updates
--------
-Information about newer major, minor, and patch versions of artifacts.
-
-Artifact: asm
-	Version:
-		7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-
-Artifact: asm-analysis
-	Version:
-		7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-
-Artifact: asm-commons
-	Version:
-		7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-
-Artifact: asm-tree
-	Version:
-		7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-
 Dependencies
 ------------
-Dependencies as declared in POM file.
+Dependencies between JAR files, and as declared in POM file.
 
 Artifact: asm
 	Uses:
@@ -335,6 +283,14 @@ Artifact: asm
 		asm-tree
 	Maven coordinates:
 		org.ow2.asm:asm:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
 	Direct dependencies:
 		[none]
 
@@ -346,6 +302,14 @@ Artifact: asm-analysis
 		[none]
 	Maven coordinates:
 		org.ow2.asm:asm-analysis:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
 	Direct dependencies:
 		org.ow2.asm:asm-tree:7.0
 	Status:
@@ -359,6 +323,14 @@ Artifact: asm-commons
 		[none]
 	Maven coordinates:
 		org.ow2.asm:asm-commons:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
 	Direct dependencies:
 		org.ow2.asm:asm-analysis:7.0
 		org.ow2.asm:asm-tree:7.0
@@ -376,6 +348,14 @@ Artifact: asm-tree
 		asm-commons
 	Maven coordinates:
 		org.ow2.asm:asm-tree:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
 	Direct dependencies:
 		org.ow2.asm:asm:7.0
 	Status:
