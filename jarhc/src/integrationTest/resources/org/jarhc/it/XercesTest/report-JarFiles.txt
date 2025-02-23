@@ -5,10 +5,27 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact     | Version | Source                | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
--------------+---------+-----------------------+---------+---------+-----------+------------------------------------------+------------------------------
-xercesImpl   | 2.11.0  | xercesImpl-2.11.0.jar | 1.30 MB | 952     | 23        | 9bb329db1cfc4e22462c9d6b43a8432f5850e92c | xerces:xercesImpl:2.11.0
-xml-apis     | 1.4.01  | xml-apis-1.4.01.jar   | 215 KB  | 346     | 7         | 3789d9fada2d3d458c4ba2de349d48780f381ee3 | xml-apis:xml-apis:1.4.01
-xml-resolver | 1.2     | xml-resolver-1.2.jar  | 82.1 KB | 30      | 6         | 3d0f97750b3a03e0971831566067754ba4bfd68c | xml-resolver:xml-resolver:1.2
-Classpath    | -       | -                     | 1.59 MB | 1328    | 36        | -                                        | -
+Artifact     | Version | Source                | Size    | Multi-release | Java version (classes)         | Resources | Packages                                 | Checksum (SHA-1)                         | Coordinates                   | Issues
+-------------+---------+-----------------------+---------+---------------+--------------------------------+-----------+------------------------------------------+------------------------------------------+-------------------------------+-----------------------------------------------------
+xercesImpl   | 2.11.0  | xercesImpl-2.11.0.jar | 1.30 MB | No            | Java 1.3 (952)                 | 23        | org.apache.html.dom                      | 9bb329db1cfc4e22462c9d6b43a8432f5850e92c | xerces:xercesImpl:2.11.0      | Split Package: org.w3c.dom.html
+             |         |                       |         |               |                                |           | org.apache.wml (+1 subpackage)           |                                          |                               | Fat JAR: org.apache.*, org.w3c.*
+             |         |                       |         |               |                                |           | org.apache.xerces.* (35 subpackages)     |                                          |                               |
+             |         |                       |         |               |                                |           | org.apache.xml.serialize                 |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.html                         |                                          |                               |
+xml-apis     | 1.4.01  | xml-apis-1.4.01.jar   | 215 KB  | No            | Java 1.1 (346)                 | 7         | javax.xml (+13 subpackages)              | 3789d9fada2d3d458c4ba2de349d48780f381ee3 | xml-apis:xml-apis:1.4.01      | Split Package: org.w3c.dom.html
+             |         |                       |         |               |                                |           | org.apache.xmlcommons                    |                                          |                               | Fat JAR: javax.*, org.apache.*, org.w3c.*, org.xml.*
+             |         |                       |         |               |                                |           | org.w3c.dom                              |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.bootstrap                    |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.css                          |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.events                       |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.html                         |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.ls                           |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.ranges                       |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.stylesheets                  |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.traversal                    |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.views                        |                                          |                               |
+             |         |                       |         |               |                                |           | org.w3c.dom.xpath                        |                                          |                               |
+             |         |                       |         |               |                                |           | org.xml.sax (+2 subpackages)             |                                          |                               |
+xml-resolver | 1.2     | xml-resolver-1.2.jar  | 82.1 KB | No            | Java 1.1 (30)                  | 6         | org.apache.xml.resolver (+4 subpackages) | 3d0f97750b3a03e0971831566067754ba4bfd68c | xml-resolver:xml-resolver:1.2 |
+Classpath    | -       | -                     | 1.59 MB | -             | Java 1.3 (952), Java 1.1 (376) | 36        | 74                                       | -                                        | -                             | -
 

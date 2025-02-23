@@ -11,10 +11,13 @@
                "Version",
                "Source",
                "Size",
-               "Classes",
+               "Multi-release",
+               "Java version (classes)",
                "Resources",
+               "Packages",
                "Checksum (SHA-1)",
-               "Coordinates"
+               "Coordinates",
+               "Issues"
             ],
             "rows": [
                [
@@ -22,188 +25,245 @@
                   "1.1.0",
                   "[[org.eclipse.aether:aether-api:1.1.0]]",
                   "133 KB",
-                  "128",
+                  "No",
+                  "Java 5 (128)",
                   "1",
+                  "`org.eclipse.aether`\n`org.eclipse.aether.artifact`\n`org.eclipse.aether.collection`\n`org.eclipse.aether.deployment`\n`org.eclipse.aether.graph`\n`org.eclipse.aether.installation`\n`org.eclipse.aether.metadata`\n`org.eclipse.aether.repository`\n`org.eclipse.aether.resolution`\n`org.eclipse.aether.transfer`\n`org.eclipse.aether.version`",
                   "[05dd291e788f50dfb48822dab29defc16ad70860](https://search.maven.org/search?q=1:05dd291e788f50dfb48822dab29defc16ad70860)",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]"
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  ""
                ],
                [
                   "aether-connector-basic",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
                   "35.9 KB",
-                  "19",
+                  "No",
+                  "Java 5 (19)",
                   "1",
+                  "`org.eclipse.aether.connector.basic`",
                   "[f5c784bdd704ff64166c086eb6b31e2784c87b66](https://search.maven.org/search?q=1:f5c784bdd704ff64166c086eb6b31e2784c87b66)",
-                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]"
+                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  ""
                ],
                [
                   "aether-impl",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-impl:1.1.0]]",
                   "169 KB",
-                  "96",
+                  "No",
+                  "Java 5 (96)",
                   "1",
+                  "`org.eclipse.aether.impl` (+1 subpackage)\n`org.eclipse.aether.internal.impl` (+1 subpackage)",
                   "[8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1](https://search.maven.org/search?q=1:8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1)",
-                  "[[org.eclipse.aether:aether-impl:1.1.0]]"
+                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  ""
                ],
                [
                   "aether-spi",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-spi:1.1.0]]",
                   "30.0 KB",
-                  "34",
+                  "No",
+                  "Java 5 (34)",
                   "1",
+                  "`org.eclipse.aether.spi.*` (8 subpackages)",
                   "[a532baa7b965d2893ceace03e804b1882f448052](https://search.maven.org/search?q=1:a532baa7b965d2893ceace03e804b1882f448052)",
-                  "[[org.eclipse.aether:aether-spi:1.1.0]]"
+                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  ""
                ],
                [
                   "aether-transport-file",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
                   "8.71 KB",
-                  "4",
+                  "No",
+                  "Java 5 (4)",
                   "1",
+                  "`org.eclipse.aether.transport.file`",
                   "[5c257319ccba22a02fa583c3946bfcbb47638bc8](https://search.maven.org/search?q=1:5c257319ccba22a02fa583c3946bfcbb47638bc8)",
-                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]"
+                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  ""
                ],
                [
                   "aether-transport-http",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
                   "35.8 KB",
-                  "20",
+                  "No",
+                  "Java 5 (20)",
                   "1",
+                  "`org.eclipse.aether.transport.http`",
                   "[5beffae29e88251ac419bf96dd1426babdb6a66f](https://search.maven.org/search?q=1:5beffae29e88251ac419bf96dd1426babdb6a66f)",
-                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]"
+                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  ""
                ],
                [
                   "aether-util",
                   "1.1.0",
                   "[[org.eclipse.aether:aether-util:1.1.0]]",
                   "146 KB",
-                  "103",
+                  "No",
+                  "Java 5 (103)",
                   "1",
+                  "`org.eclipse.aether.util` (+12 subpackages)",
                   "[d0f84ba994f0133580e8b957a44593eaa03d42cd](https://search.maven.org/search?q=1:d0f84ba994f0133580e8b957a44593eaa03d42cd)",
-                  "[[org.eclipse.aether:aether-util:1.1.0]]"
+                  "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  ""
                ],
                [
                   "asm",
                   "9.7",
                   "[[org.ow2.asm:asm:9.7]]",
                   "122 KB",
-                  "38",
+                  "No",
+                  "Java 5 (38)",
                   "0",
+                  "`org.objectweb.asm` (+1 subpackage)",
                   "[073d7b3086e14beb604ced229c302feff6449723](https://search.maven.org/search?q=1:073d7b3086e14beb604ced229c302feff6449723)",
-                  "[[org.ow2.asm:asm:9.7]]"
+                  "[[org.ow2.asm:asm:9.7]]",
+                  ""
                ],
                [
                   "commons-codec",
                   "1.17.1",
                   "[[commons-codec:commons-codec:1.17.1]]",
                   "364 KB",
-                  "107",
+                  "Yes (Java 9)",
+                  "Java 8 (107)",
                   "128",
+                  "`org.apache.commons.codec` (+6 subpackages)",
                   "[973638b7149d333563584137ebf13a691bb60579](https://search.maven.org/search?q=1:973638b7149d333563584137ebf13a691bb60579)",
-                  "[[commons-codec:commons-codec:1.17.1]]"
+                  "[[commons-codec:commons-codec:1.17.1]]",
+                  ""
                ],
                [
                   "guava",
                   "33.3.0-jre",
                   "[[com.google.guava:guava:33.3.0-jre]]",
                   "2.94 MB",
-                  "2001",
+                  "No",
+                  "Java 8 (2001)",
                   "0",
+                  "`com.google.*` (18 subpackages)",
                   "[13b4d0924e6023eda04b4c7aa83b32dfedf735a7](https://search.maven.org/search?q=1:13b4d0924e6023eda04b4c7aa83b32dfedf735a7)",
-                  "[[com.google.guava:guava:33.3.0-jre]]"
+                  "[[com.google.guava:guava:33.3.0-jre]]",
+                  ""
                ],
                [
                   "httpclient",
                   "4.5.14",
                   "[[org.apache.httpcomponents:httpclient:4.5.14]]",
                   "767 KB",
-                  "470",
+                  "No",
+                  "Java 6 (470)",
                   "2",
+                  "`org.apache.http.*` (24 subpackages)",
                   "[1194890e6f56ec29177673f2f12d0b8e627dec98](https://search.maven.org/search?q=1:1194890e6f56ec29177673f2f12d0b8e627dec98)",
-                  "[[org.apache.httpcomponents:httpclient:4.5.14]]"
+                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  ""
                ],
                [
                   "jarhc",
                   "2.2.2",
                   "[[org.jarhc:jarhc:2.2.2]]",
                   "228 KB",
-                  "131",
+                  "No",
+                  "Java 11 (131)",
                   "6",
+                  "`org.jarhc` (+17 subpackages)",
                   "[0a545f09b49d7d47e60a5494d7e9f2f5a020f0f9](https://search.maven.org/search?q=1:0a545f09b49d7d47e60a5494d7e9f2f5a020f0f9)",
-                  "[[org.jarhc:jarhc:2.2.2]]"
+                  "[[org.jarhc:jarhc:2.2.2]]",
+                  ""
                ],
                [
                   "jcl-over-slf4j",
                   "2.0.16",
                   "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
                   "18.0 KB",
-                  "8",
+                  "Yes (Java 9)",
+                  "Java 8 (8)",
                   "0",
+                  "`org.apache.commons.logging` (+1 subpackage)",
                   "[9d08badad22f1ac07deac9188ade596472a2bfd9](https://search.maven.org/search?q=1:9d08badad22f1ac07deac9188ade596472a2bfd9)",
-                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]"
+                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  ""
                ],
                [
                   "json",
                   "20240303",
                   "[[org.json:json:20240303]]",
                   "76.5 KB",
-                  "30",
+                  "Yes (Java 9)",
+                  "Java 8 (30)",
                   "0",
+                  "`org.json`",
                   "[0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a](https://search.maven.org/search?q=1:0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a)",
-                  "[[org.json:json:20240303]]"
+                  "[[org.json:json:20240303]]",
+                  ""
                ],
                [
                   "jul-to-slf4j",
                   "2.0.16",
                   "[[org.slf4j:jul-to-slf4j:2.0.16]]",
                   "6.20 KB",
-                  "1",
+                  "Yes (Java 9)",
+                  "Java 8 (1)",
                   "0",
+                  "`org.slf4j.bridge`",
                   "[6d57da3e961daac65bcca0dd3def6cd11e48a24a](https://search.maven.org/search?q=1:6d57da3e961daac65bcca0dd3def6cd11e48a24a)",
-                  "[[org.slf4j:jul-to-slf4j:2.0.16]]"
+                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  ""
                ],
                [
                   "maven-aether-provider",
                   "3.3.9",
                   "[[org.apache.maven:maven-aether-provider:3.3.9]]",
                   "65.3 KB",
-                  "26",
+                  "No",
+                  "Java 7 (26)",
                   "0",
+                  "`org.apache.maven.repository.internal`",
                   "[29e8e7122f7a166ea53785cd75af0ef9d4d848d4](https://search.maven.org/search?q=1:29e8e7122f7a166ea53785cd75af0ef9d4d848d4)",
-                  "[[org.apache.maven:maven-aether-provider:3.3.9]]"
+                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  ""
                ],
                [
                   "plexus-utils",
                   "3.5.1",
                   "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
                   "263 KB",
-                  "108",
+                  "Yes (Java 9, Java 10, Java 11)",
+                  "Java 11 (1), Java 10 (1), Java 8 (106)",
                   "3",
+                  "`org.codehaus.plexus.util` (+8 subpackages)",
                   "[c6bfb17c97ecc8863e88778ea301be742c62b06d](https://search.maven.org/search?q=1:c6bfb17c97ecc8863e88778ea301be742c62b06d)",
-                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]"
+                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  ""
                ],
                [
                   "slf4j-api",
                   "2.0.16",
                   "[[org.slf4j:slf4j-api:2.0.16]]",
                   "67.8 KB",
-                  "55",
+                  "Yes (Java 9)",
+                  "Java 8 (55)",
                   "0",
+                  "`org.slf4j`\n`org.slf4j.event`\n`org.slf4j.helpers`\n`org.slf4j.spi`",
                   "[0172931663a09a1fa515567af5fbef00897d3c04](https://search.maven.org/search?q=1:0172931663a09a1fa515567af5fbef00897d3c04)",
-                  "[[org.slf4j:slf4j-api:2.0.16]]"
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  ""
                ],
                [
                   "Classpath",
                   "-",
                   "-",
                   "5.41 MB",
-                  "3379",
+                  "-",
+                  "Java 11 (132), Java 10 (1), Java 8 (2308), Java 7 (26),\nJava 6 (470), Java 5 (442)",
                   "146",
+                  "126",
+                  "-",
                   "-",
                   "-"
                ]
@@ -689,114 +749,6 @@
          }]
       },
       {
-         "description": "Java class file format information.",
-         "title": "Class Versions",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Multi-release",
-               "Class files by Java version"
-            ],
-            "rows": [
-               [
-                  "aether-api",
-                  "No",
-                  "Java 5 (128)"
-               ],
-               [
-                  "aether-connector-basic",
-                  "No",
-                  "Java 5 (19)"
-               ],
-               [
-                  "aether-impl",
-                  "No",
-                  "Java 5 (96)"
-               ],
-               [
-                  "aether-spi",
-                  "No",
-                  "Java 5 (34)"
-               ],
-               [
-                  "aether-transport-file",
-                  "No",
-                  "Java 5 (4)"
-               ],
-               [
-                  "aether-transport-http",
-                  "No",
-                  "Java 5 (20)"
-               ],
-               [
-                  "aether-util",
-                  "No",
-                  "Java 5 (103)"
-               ],
-               [
-                  "asm",
-                  "No",
-                  "Java 5 (38)"
-               ],
-               [
-                  "commons-codec",
-                  "Yes (Java 9)",
-                  "Java 8 (107)"
-               ],
-               [
-                  "guava",
-                  "No",
-                  "Java 8 (2001)"
-               ],
-               [
-                  "httpclient",
-                  "No",
-                  "Java 6 (470)"
-               ],
-               [
-                  "jarhc",
-                  "No",
-                  "Java 11 (131)"
-               ],
-               [
-                  "jcl-over-slf4j",
-                  "Yes (Java 9)",
-                  "Java 8 (8)"
-               ],
-               [
-                  "json",
-                  "Yes (Java 9)",
-                  "Java 8 (30)"
-               ],
-               [
-                  "jul-to-slf4j",
-                  "Yes (Java 9)",
-                  "Java 8 (1)"
-               ],
-               [
-                  "maven-aether-provider",
-                  "No",
-                  "Java 7 (26)"
-               ],
-               [
-                  "plexus-utils",
-                  "Yes (Java 9, Java 10, Java 11)",
-                  "Java 11 (1), Java 10 (1), Java 8 (106)"
-               ],
-               [
-                  "slf4j-api",
-                  "Yes (Java 9)",
-                  "Java 8 (55)"
-               ],
-               [
-                  "Classpath",
-                  "-",
-                  "Java 11 (132), Java 10 (1), Java 8 (2308), Java 7 (26),\nJava 6 (470), Java 5 (442)"
-               ]
-            ]
-         }]
-      },
-      {
          "description": "Information about newer major, minor, and patch versions of artifacts.",
          "title": "Updates",
          "content": [{
@@ -1119,128 +1071,6 @@
                   "slf4j-api",
                   "[[org.slf4j:slf4j-api:2.0.16]]",
                   "[none]",
-                  ""
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "List of packages per JAR file.",
-         "title": "Packages",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Count",
-               "Packages",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "aether-api",
-                  "11",
-                  "`org.eclipse.aether`\n`org.eclipse.aether.artifact`\n`org.eclipse.aether.collection`\n`org.eclipse.aether.deployment`\n`org.eclipse.aether.graph`\n`org.eclipse.aether.installation`\n`org.eclipse.aether.metadata`\n`org.eclipse.aether.repository`\n`org.eclipse.aether.resolution`\n`org.eclipse.aether.transfer`\n`org.eclipse.aether.version`",
-                  ""
-               ],
-               [
-                  "aether-connector-basic",
-                  "1",
-                  "`org.eclipse.aether.connector.basic`",
-                  ""
-               ],
-               [
-                  "aether-impl",
-                  "4",
-                  "`org.eclipse.aether.impl` (+1 subpackage)\n`org.eclipse.aether.internal.impl` (+1 subpackage)",
-                  ""
-               ],
-               [
-                  "aether-spi",
-                  "8",
-                  "`org.eclipse.aether.spi.*` (8 subpackages)",
-                  ""
-               ],
-               [
-                  "aether-transport-file",
-                  "1",
-                  "`org.eclipse.aether.transport.file`",
-                  ""
-               ],
-               [
-                  "aether-transport-http",
-                  "1",
-                  "`org.eclipse.aether.transport.http`",
-                  ""
-               ],
-               [
-                  "aether-util",
-                  "13",
-                  "`org.eclipse.aether.util` (+12 subpackages)",
-                  ""
-               ],
-               [
-                  "asm",
-                  "2",
-                  "`org.objectweb.asm` (+1 subpackage)",
-                  ""
-               ],
-               [
-                  "commons-codec",
-                  "7",
-                  "`org.apache.commons.codec` (+6 subpackages)",
-                  ""
-               ],
-               [
-                  "guava",
-                  "18",
-                  "`com.google.*` (18 subpackages)",
-                  ""
-               ],
-               [
-                  "httpclient",
-                  "24",
-                  "`org.apache.http.*` (24 subpackages)",
-                  ""
-               ],
-               [
-                  "jarhc",
-                  "18",
-                  "`org.jarhc` (+17 subpackages)",
-                  ""
-               ],
-               [
-                  "jcl-over-slf4j",
-                  "2",
-                  "`org.apache.commons.logging` (+1 subpackage)",
-                  ""
-               ],
-               [
-                  "json",
-                  "1",
-                  "`org.json`",
-                  ""
-               ],
-               [
-                  "jul-to-slf4j",
-                  "1",
-                  "`org.slf4j.bridge`",
-                  ""
-               ],
-               [
-                  "maven-aether-provider",
-                  "1",
-                  "`org.apache.maven.repository.internal`",
-                  ""
-               ],
-               [
-                  "plexus-utils",
-                  "9",
-                  "`org.codehaus.plexus.util` (+8 subpackages)",
-                  ""
-               ],
-               [
-                  "slf4j-api",
-                  "4",
-                  "`org.slf4j`\n`org.slf4j.event`\n`org.slf4j.helpers`\n`org.slf4j.spi`",
                   ""
                ]
             ]

@@ -5,11 +5,11 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact  | Version | Source                     | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------+---------+----------------------------+---------+---------+-----------+------------------------------------------+-------------------------------------------
-slf4j-api | 1.7.28  | org.slf4j:slf4j-api:1.7.28 | 40.2 KB | 34      | 0         | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28
-          |         |                            |         |         |           |                                          | org.netbeans.external:slf4j-api:RELEASE113
-Classpath | -       | -                          | 40.2 KB | 34      | 0         | -                                        | -
+Artifact  | Version | Source                     | Size    | Multi-release | Java version (classes) | Resources | Packages                   | Checksum (SHA-1)                         | Coordinates                                | Issues
+----------+---------+----------------------------+---------+---------------+------------------------+-----------+----------------------------+------------------------------------------+--------------------------------------------+-------
+slf4j-api | 1.7.28  | org.slf4j:slf4j-api:1.7.28 | 40.2 KB | No            | Java 5 (34)            | 0         | org.slf4j (+3 subpackages) | 2cd9b264f76e3d087ee21bfc99305928e1bdb443 | org.slf4j:slf4j-api:1.7.28                 |
+          |         |                            |         |               |                        |           |                            |                                          | org.netbeans.external:slf4j-api:RELEASE113 |
+Classpath | -       | -                          | 40.2 KB | -             | Java 5 (34)            | 0         | 4                          | -                                        | -                                          | -
 
 JAR Manifests
 -------------
@@ -45,15 +45,6 @@ slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1
           |             |         |                   |                              | org.slf4j.helpers (Version: 1.7.28) |              |
           |             |         |                   |                              | org.slf4j.event (Version: 1.7.28)   |              |
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact  | Multi-release | Class files by Java version
-----------+---------------+----------------------------
-slf4j-api | No            | Java 5 (34)
-Classpath | -             | Java 5 (34)
-
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
@@ -69,14 +60,6 @@ Dependencies as declared in POM file.
 Artifact  | Maven coordinates          | Direct dependencies | Status
 ----------+----------------------------+---------------------+-------
 slf4j-api | org.slf4j:slf4j-api:1.7.28 | [none]              |
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact  | Count | Packages                   | Issues
-----------+-------+----------------------------+-------
-slf4j-api | 4     | org.slf4j (+3 subpackages) |
 
 Duplicate Classes
 -----------------

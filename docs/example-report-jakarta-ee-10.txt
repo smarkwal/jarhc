@@ -5,42 +5,56 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact                          | Version | Source                                                                | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------------------------------+---------+-----------------------------------------------------------------------+---------+---------+-----------+------------------------------------------+----------------------------------------------------------------------
-jakarta.activation-api            | 2.1.3   | jakarta.activation:jakarta.activation-api:2.1.3                       | 65.0 KB | 45      | 0         | fa165bd70cda600368eee31555222776a46b881f | jakarta.activation:jakarta.activation-api:2.1.3
-jakarta.annotation-api            | 2.1.1   | jakarta.annotation:jakarta.annotation-api:2.1.1                       | 25.5 KB | 17      | 0         | 48b9bda22b091b1f48b13af03fe36db3be6e1ae3 | jakarta.annotation:jakarta.annotation-api:2.1.1
-                                  |         |                                                                       |         |         |           |                                          | one.gfw:jakarta.annotation-api:2.1.1
-jakarta.authentication-api        | 3.0.0   | jakarta.authentication:jakarta.authentication-api:3.0.0               | 44.2 KB | 35      | 5         | e1e3503070dcddcc9e24a062f734069446a99bc3 | jakarta.authentication:jakarta.authentication-api:3.0.0
-jakarta.authorization-api         | 2.1.0   | jakarta.authorization:jakarta.authorization-api:2.1.0                 | 45.6 KB | 14      | 1         | 31be189d7aa43710ac9a2ee422de3df1314deea8 | jakarta.authorization:jakarta.authorization-api:2.1.0
-jakarta.batch-api                 | 2.1.1   | jakarta.batch:jakarta.batch-api:2.1.1                                 | 44.6 KB | 60      | 2         | dfd728f3fc2f086484410ba2e5d06a26a371ed1d | jakarta.batch:jakarta.batch-api:2.1.1
-jakarta.ejb-api                   | 4.0.1   | jakarta.ejb:jakarta.ejb-api:4.0.1                                     | 60.4 KB | 81      | 3         | 70f6c55dad415f58b8428ae4bb215484368b8764 | jakarta.ejb:jakarta.ejb-api:4.0.1
-jakarta.el-api                    | 5.0.1   | jakarta.el:jakarta.el-api:5.0.1                                       | 86.2 KB | 52      | 1         | 6f46fb9143b18b7956806a657275fc41376d1a50 | jakarta.el:jakarta.el-api:5.0.1
-jakarta.enterprise.cdi-api        | 4.0.1   | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   | 148 KB  | 183     | 5         | 2012f388c6de83e29101cbf82c3ed2bd37931c64 | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1
-jakarta.enterprise.concurrent-api | 3.0.4   | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | 43.2 KB | 30      | 0         | d38e80ed9112c98a51f03a06a520cce00dd74d30 | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4
-jakarta.faces-api                 | 4.0.1   | jakarta.faces:jakarta.faces-api:4.0.1                                 | 702 KB  | 499     | 21        | c000786f025a6c09b26dbb8288a4c73452a679ac | jakarta.faces:jakarta.faces-api:4.0.1
-jakarta.inject-api                | 2.0.1   | jakarta.inject:jakarta.inject-api:2.0.1                               | 10.4 KB | 6       | 0         | 4c28afe1991a941d7702fe1362c365f0a8641d1e | jakarta.inject:jakarta.inject-api:2.0.1
-jakarta.interceptor-api           | 2.1.0   | jakarta.interceptor:jakarta.interceptor-api:2.1.0                     | 24.7 KB | 10      | 1         | 1d06a662708601400af4556577ee514c4ad01549 | jakarta.interceptor:jakarta.interceptor-api:2.1.0
-jakarta.jms-api                   | 3.1.0   | jakarta.jms:jakarta.jms-api:3.1.0                                     | 57.6 KB | 81      | 0         | e194cf91a3f908e4846542849ac11a8e0b3c68ad | jakarta.jms:jakarta.jms-api:3.1.0
-jakarta.json-api                  | 2.1.3   | jakarta.json:jakarta.json-api:2.1.3                                   | 47.5 KB | 36      | 0         | 4febd83e1d9d1561d078af460ecd19532383735c | jakarta.json:jakarta.json-api:2.1.3
-jakarta.json.bind-api             | 3.0.1   | jakarta.json.bind:jakarta.json.bind-api:3.0.1                         | 37.1 KB | 28      | 0         | af7f10b8aa6475b6f6cc9d47ad85748629d05b79 | jakarta.json.bind:jakarta.json.bind-api:3.0.1
-jakarta.jws-api                   | 3.0.0   | jakarta.jws:jakarta.jws-api:3.0.0                                     | 16.3 KB | 14      | 2         | af8955221689acfde96fbd4b2c1c270589bc6903 | jakarta.jws:jakarta.jws-api:3.0.0
-jakarta.mail-api                  | 2.1.3   | jakarta.mail:jakarta.mail-api:2.1.3                                   | 231 KB  | 149     | 0         | a327aa5f514ba86e80d54584417d7376ed2bde0e | jakarta.mail:jakarta.mail-api:2.1.3
-jakarta.mvc-api                   | 2.1.0   | jakarta.mvc:jakarta.mvc-api:2.1.0                                     | 34.2 KB | 29      | 5         | e0e4b626aa77665673602128bee749485cb5fef1 | jakarta.mvc:jakarta.mvc-api:2.1.0
-jakarta.persistence-api           | 3.1.0   | jakarta.persistence:jakarta.persistence-api:3.1.0                     | 161 KB  | 206     | 5         | 66901fa1c373c6aff65c13791cc11da72060a8d6 | jakarta.persistence:jakarta.persistence-api:3.1.0
-jakarta.resource-api              | 2.1.0   | jakarta.resource:jakarta.resource-api:2.1.0                           | 63.7 KB | 89      | 0         | d98f0ac826cdc85f80061c21bc061841ac6d374c | jakarta.resource:jakarta.resource-api:2.1.0
-jakarta.security.enterprise-api   | 3.0.0   | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     | 83.3 KB | 54      | 6         | ca9d8039c16db579b7d45813015c8d677105bc0f | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0
-jakarta.servlet-api               | 6.0.0   | jakarta.servlet:jakarta.servlet-api:6.0.0                             | 339 KB  | 84      | 59        | abecc699286e65035ebba9844c03931357a6a963 | jakarta.servlet:jakarta.servlet-api:6.0.0
-jakarta.servlet.jsp-api           | 3.1.0   | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0                     | 69.5 KB | 59      | 1         | ea5fe947c87c9603db997f708587270593164a1e | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0
-jakarta.servlet.jsp.jstl-api      | 3.0.2   | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2           | 45.0 KB | 20      | 0         | 3993114cd341afa42b2c2841c88ef653fa7ef3ee | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2
-jakarta.transaction-api           | 2.0.0   | jakarta.transaction:jakarta.transaction-api:2.0.0                     | 27.3 KB | 19      | 1         | 24a0525b4acfbca4086d2f1278be3a084fe1c67d | jakarta.transaction:jakarta.transaction-api:2.0.0
-jakarta.validation-api            | 3.0.0   | jakarta.validation:jakarta.validation-api:3.0.0                       | 90.5 KB | 143     | 0         | 8c8eecc40da64037d7731356511c568d466f8480 | jakarta.validation:jakarta.validation-api:3.0.0
-jakarta.websocket-api             | 2.1.0   | jakarta.websocket:jakarta.websocket-api:2.1.0                         | 23.3 KB | 9       | 0         | 9b2b5363ead21c4480e37ec15378583e11d3a823 | jakarta.websocket:jakarta.websocket-api:2.1.0
-jakarta.websocket-client-api      | 2.1.0   | jakarta.websocket:jakarta.websocket-client-api:2.1.0                  | 40.8 KB | 45      | 0         | ac185d7945d4c0a501b79ae003d9f8d9a1ae7eff | jakarta.websocket:jakarta.websocket-client-api:2.1.0
-jakarta.ws.rs-api                 | 3.1.0   | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0                                 | 151 KB  | 149     | 0         | 15ce10d249a38865b58fc39521f10f29ab0e3363 | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0
-jakarta.xml.bind-api              | 4.0.2   | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                           | 128 KB  | 108     | 6         | 6cd5a999b834b63238005b7144136379dc36cad2 | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2
-jakarta.xml.soap-api              | 3.0.2   | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                           | 37.1 KB | 32      | 0         | 0445830286faf84fe40a3f47ccd7537d69cd58c4 | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2
-jakarta.xml.ws-api                | 4.0.2   | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2                               | 75.8 KB | 79      | 4         | 331ecab874ee75b48db661a331319958cb04edec | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2
-Classpath                         | -       | -                                                                     | 2.99 MB | 2465    | 128       | -                                        | -
+Artifact                          | Version | Source                                                                | Size    | Multi-release | Java version (classes)       | Resources | Packages                                       | Checksum (SHA-1)                         | Coordinates                                                           | Issues
+----------------------------------+---------+-----------------------------------------------------------------------+---------+---------------+------------------------------+-----------+------------------------------------------------+------------------------------------------+-----------------------------------------------------------------------+--------------------------------
+jakarta.activation-api            | 2.1.3   | jakarta.activation:jakarta.activation-api:2.1.3                       | 65.0 KB | No            | Java 8 (45)                  | 0         | jakarta.activation (+1 subpackage)             | fa165bd70cda600368eee31555222776a46b881f | jakarta.activation:jakarta.activation-api:2.1.3                       |
+jakarta.annotation-api            | 2.1.1   | jakarta.annotation:jakarta.annotation-api:2.1.1                       | 25.5 KB | No            | Java 8 (17)                  | 0         | jakarta.annotation (+2 subpackages)            | 48b9bda22b091b1f48b13af03fe36db3be6e1ae3 | jakarta.annotation:jakarta.annotation-api:2.1.1                       |
+                                  |         |                                                                       |         |               |                              |           |                                                |                                          | one.gfw:jakarta.annotation-api:2.1.1                                  |
+jakarta.authentication-api        | 3.0.0   | jakarta.authentication:jakarta.authentication-api:3.0.0               | 44.2 KB | No            | Java 11 (35)                 | 5         | jakarta.security.auth.message (+3 subpackages) | e1e3503070dcddcc9e24a062f734069446a99bc3 | jakarta.authentication:jakarta.authentication-api:3.0.0               |
+jakarta.authorization-api         | 2.1.0   | jakarta.authorization:jakarta.authorization-api:2.1.0                 | 45.6 KB | No            | Java 11 (14)                 | 1         | jakarta.security.jacc                          | 31be189d7aa43710ac9a2ee422de3df1314deea8 | jakarta.authorization:jakarta.authorization-api:2.1.0                 |
+jakarta.batch-api                 | 2.1.1   | jakarta.batch:jakarta.batch-api:2.1.1                                 | 44.6 KB | No            | Java 11 (60)                 | 2         | jakarta.batch.* (8 subpackages)                | dfd728f3fc2f086484410ba2e5d06a26a371ed1d | jakarta.batch:jakarta.batch-api:2.1.1                                 |
+jakarta.ejb-api                   | 4.0.1   | jakarta.ejb:jakarta.ejb-api:4.0.1                                     | 60.4 KB | No            | Java 8 (81)                  | 3         | jakarta.ejb (+2 subpackages)                   | 70f6c55dad415f58b8428ae4bb215484368b8764 | jakarta.ejb:jakarta.ejb-api:4.0.1                                     |
+jakarta.el-api                    | 5.0.1   | jakarta.el:jakarta.el-api:5.0.1                                       | 86.2 KB | No            | Java 11 (52)                 | 1         | jakarta.el                                     | 6f46fb9143b18b7956806a657275fc41376d1a50 | jakarta.el:jakarta.el-api:5.0.1                                       |
+jakarta.enterprise.cdi-api        | 4.0.1   | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   | 148 KB  | No            | Java 11 (183)                | 5         | jakarta.decorator                              | 2012f388c6de83e29101cbf82c3ed2bd37931c64 | jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1                   |
+                                  |         |                                                                       |         |               |                              |           | jakarta.enterprise.context (+2 subpackages)    |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.enterprise.event                       |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.enterprise.inject (+5 subpackages)     |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.enterprise.util                        |                                          |                                                                       |
+jakarta.enterprise.concurrent-api | 3.0.4   | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 | 43.2 KB | No            | Java 11 (30)                 | 0         | jakarta.enterprise.concurrent (+1 subpackage)  | d38e80ed9112c98a51f03a06a520cce00dd74d30 | jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4 |
+jakarta.faces-api                 | 4.0.1   | jakarta.faces:jakarta.faces-api:4.0.1                                 | 702 KB  | No            | Java 11 (499)                | 21        | jakarta.faces (+21 subpackages)                | c000786f025a6c09b26dbb8288a4c73452a679ac | jakarta.faces:jakarta.faces-api:4.0.1                                 |
+jakarta.inject-api                | 2.0.1   | jakarta.inject:jakarta.inject-api:2.0.1                               | 10.4 KB | No            | Java 8 (6)                   | 0         | jakarta.inject                                 | 4c28afe1991a941d7702fe1362c365f0a8641d1e | jakarta.inject:jakarta.inject-api:2.0.1                               |
+jakarta.interceptor-api           | 2.1.0   | jakarta.interceptor:jakarta.interceptor-api:2.1.0                     | 24.7 KB | No            | Java 8 (10)                  | 1         | jakarta.interceptor                            | 1d06a662708601400af4556577ee514c4ad01549 | jakarta.interceptor:jakarta.interceptor-api:2.1.0                     |
+jakarta.jms-api                   | 3.1.0   | jakarta.jms:jakarta.jms-api:3.1.0                                     | 57.6 KB | No            | Java 11 (81)                 | 0         | jakarta.jms                                    | e194cf91a3f908e4846542849ac11a8e0b3c68ad | jakarta.jms:jakarta.jms-api:3.1.0                                     |
+jakarta.json-api                  | 2.1.3   | jakarta.json:jakarta.json-api:2.1.3                                   | 47.5 KB | No            | Java 8 (36)                  | 0         | jakarta.json                                   | 4febd83e1d9d1561d078af460ecd19532383735c | jakarta.json:jakarta.json-api:2.1.3                                   |
+                                  |         |                                                                       |         |               |                              |           | jakarta.json.spi                               |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.json.stream                            |                                          |                                                                       |
+jakarta.json.bind-api             | 3.0.1   | jakarta.json.bind:jakarta.json.bind-api:3.0.1                         | 37.1 KB | No            | Java 11 (28)                 | 0         | jakarta.json.bind (+5 subpackages)             | af7f10b8aa6475b6f6cc9d47ad85748629d05b79 | jakarta.json.bind:jakarta.json.bind-api:3.0.1                         |
+jakarta.jws-api                   | 3.0.0   | jakarta.jws:jakarta.jws-api:3.0.0                                     | 16.3 KB | No            | Java 8 (14)                  | 2         | jakarta.jws                                    | af8955221689acfde96fbd4b2c1c270589bc6903 | jakarta.jws:jakarta.jws-api:3.0.0                                     | Split Package: jakarta.jws
+                                  |         |                                                                       |         |               |                              |           | jakarta.jws.soap                               |                                          |                                                                       | Split Package: jakarta.jws.soap
+jakarta.mail-api                  | 2.1.3   | jakarta.mail:jakarta.mail-api:2.1.3                                   | 231 KB  | No            | Java 8 (149)                 | 0         | jakarta.mail (+4 subpackages)                  | a327aa5f514ba86e80d54584417d7376ed2bde0e | jakarta.mail:jakarta.mail-api:2.1.3                                   |
+jakarta.mvc-api                   | 2.1.0   | jakarta.mvc:jakarta.mvc-api:2.1.0                                     | 34.2 KB | No            | Java 11 (29)                 | 5         | jakarta.mvc (+6 subpackages)                   | e0e4b626aa77665673602128bee749485cb5fef1 | jakarta.mvc:jakarta.mvc-api:2.1.0                                     |
+jakarta.persistence-api           | 3.1.0   | jakarta.persistence:jakarta.persistence-api:3.1.0                     | 161 KB  | No            | Java 11 (206)                | 5         | jakarta.persistence (+3 subpackages)           | 66901fa1c373c6aff65c13791cc11da72060a8d6 | jakarta.persistence:jakarta.persistence-api:3.1.0                     |
+jakarta.resource-api              | 2.1.0   | jakarta.resource:jakarta.resource-api:2.1.0                           | 63.7 KB | No            | Java 11 (89)                 | 0         | jakarta.resource (+5 subpackages)              | d98f0ac826cdc85f80061c21bc061841ac6d374c | jakarta.resource:jakarta.resource-api:2.1.0                           |
+jakarta.security.enterprise-api   | 3.0.0   | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     | 83.3 KB | No            | Java 11 (54)                 | 6         | jakarta.security.enterprise (+5 subpackages)   | ca9d8039c16db579b7d45813015c8d677105bc0f | jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0     |
+jakarta.servlet-api               | 6.0.0   | jakarta.servlet:jakarta.servlet-api:6.0.0                             | 339 KB  | No            | Java 11 (84)                 | 59        | jakarta.servlet                                | abecc699286e65035ebba9844c03931357a6a963 | jakarta.servlet:jakarta.servlet-api:6.0.0                             |
+                                  |         |                                                                       |         |               |                              |           | jakarta.servlet.annotation                     |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.servlet.descriptor                     |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.servlet.http                           |                                          |                                                                       |
+jakarta.servlet.jsp-api           | 3.1.0   | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0                     | 69.5 KB | No            | Java 11 (59)                 | 1         | jakarta.servlet.jsp                            | ea5fe947c87c9603db997f708587270593164a1e | jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0                     |
+                                  |         |                                                                       |         |               |                              |           | jakarta.servlet.jsp.el                         |                                          |                                                                       |
+                                  |         |                                                                       |         |               |                              |           | jakarta.servlet.jsp.tagext                     |                                          |                                                                       |
+jakarta.servlet.jsp.jstl-api      | 3.0.2   | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2           | 45.0 KB | No            | Java 11 (20)                 | 0         | jakarta.servlet.jsp.jstl.* (4 subpackages)     | 3993114cd341afa42b2c2841c88ef653fa7ef3ee | jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2           |
+jakarta.transaction-api           | 2.0.0   | jakarta.transaction:jakarta.transaction-api:2.0.0                     | 27.3 KB | No            | Java 8 (19)                  | 1         | jakarta.transaction                            | 24a0525b4acfbca4086d2f1278be3a084fe1c67d | jakarta.transaction:jakarta.transaction-api:2.0.0                     |
+jakarta.validation-api            | 3.0.0   | jakarta.validation:jakarta.validation-api:3.0.0                       | 90.5 KB | No            | Java 8 (143)                 | 0         | jakarta.validation (+8 subpackages)            | 8c8eecc40da64037d7731356511c568d466f8480 | jakarta.validation:jakarta.validation-api:3.0.0                       |
+jakarta.websocket-api             | 2.1.0   | jakarta.websocket:jakarta.websocket-api:2.1.0                         | 23.3 KB | No            | Java 8 (9)                   | 0         | jakarta.websocket.server                       | 9b2b5363ead21c4480e37ec15378583e11d3a823 | jakarta.websocket:jakarta.websocket-api:2.1.0                         |
+jakarta.websocket-client-api      | 2.1.0   | jakarta.websocket:jakarta.websocket-client-api:2.1.0                  | 40.8 KB | No            | Java 8 (45)                  | 0         | jakarta.websocket                              | ac185d7945d4c0a501b79ae003d9f8d9a1ae7eff | jakarta.websocket:jakarta.websocket-client-api:2.1.0                  |
+jakarta.ws.rs-api                 | 3.1.0   | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0                                 | 151 KB  | No            | Java 11 (149)                | 0         | jakarta.ws.rs (+5 subpackages)                 | 15ce10d249a38865b58fc39521f10f29ab0e3363 | jakarta.ws.rs:jakarta.ws.rs-api:3.1.0                                 |
+jakarta.xml.bind-api              | 4.0.2   | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                           | 128 KB  | No            | Java 11 (108)                | 6         | jakarta.xml.bind (+5 subpackages)              | 6cd5a999b834b63238005b7144136379dc36cad2 | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                           |
+jakarta.xml.soap-api              | 3.0.2   | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                           | 37.1 KB | No            | Java 11 (32)                 | 0         | jakarta.xml.soap                               | 0445830286faf84fe40a3f47ccd7537d69cd58c4 | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                           |
+jakarta.xml.ws-api                | 4.0.2   | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2                               | 75.8 KB | No            | Java 11 (79)                 | 4         | jakarta.jws                                    | 331ecab874ee75b48db661a331319958cb04edec | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2                               | Split Package: jakarta.jws
+                                  |         |                                                                       |         |               |                              |           | jakarta.jws.soap                               |                                          |                                                                       | Split Package: jakarta.jws.soap
+                                  |         |                                                                       |         |               |                              |           | jakarta.xml.ws (+7 subpackages)                |                                          |                                                                       |
+Classpath                         | -       | -                                                                     | 2.99 MB | -             | Java 11 (1891), Java 8 (574) | 128       | 146                                            | -                                        | -                                                                     | -
 
 JAR Manifests
 -------------
@@ -699,46 +713,6 @@ jakarta.xml.ws-api                | Jakarta XML Web Services API                
                                   |                                             |         |                                                             | Dynamic:                                                                    |                                                                                                                    |                                                                                                                                                                                                                   |
                                   |                                             |         |                                                             | org.glassfish.hk2.osgiresourcelocator                                       |                                                                                                                    |                                                                                                                                                                                                                   |
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact                          | Multi-release | Class files by Java version
-----------------------------------+---------------+-----------------------------
-jakarta.activation-api            | No            | Java 8 (45)
-jakarta.annotation-api            | No            | Java 8 (17)
-jakarta.authentication-api        | No            | Java 11 (35)
-jakarta.authorization-api         | No            | Java 11 (14)
-jakarta.batch-api                 | No            | Java 11 (60)
-jakarta.ejb-api                   | No            | Java 8 (81)
-jakarta.el-api                    | No            | Java 11 (52)
-jakarta.enterprise.cdi-api        | No            | Java 11 (183)
-jakarta.enterprise.concurrent-api | No            | Java 11 (30)
-jakarta.faces-api                 | No            | Java 11 (499)
-jakarta.inject-api                | No            | Java 8 (6)
-jakarta.interceptor-api           | No            | Java 8 (10)
-jakarta.jms-api                   | No            | Java 11 (81)
-jakarta.json-api                  | No            | Java 8 (36)
-jakarta.json.bind-api             | No            | Java 11 (28)
-jakarta.jws-api                   | No            | Java 8 (14)
-jakarta.mail-api                  | No            | Java 8 (149)
-jakarta.mvc-api                   | No            | Java 11 (29)
-jakarta.persistence-api           | No            | Java 11 (206)
-jakarta.resource-api              | No            | Java 11 (89)
-jakarta.security.enterprise-api   | No            | Java 11 (54)
-jakarta.servlet-api               | No            | Java 11 (84)
-jakarta.servlet.jsp-api           | No            | Java 11 (59)
-jakarta.servlet.jsp.jstl-api      | No            | Java 11 (20)
-jakarta.transaction-api           | No            | Java 8 (19)
-jakarta.validation-api            | No            | Java 8 (143)
-jakarta.websocket-api             | No            | Java 8 (9)
-jakarta.websocket-client-api      | No            | Java 8 (45)
-jakarta.ws.rs-api                 | No            | Java 11 (149)
-jakarta.xml.bind-api              | No            | Java 11 (108)
-jakarta.xml.soap-api              | No            | Java 11 (32)
-jakarta.xml.ws-api                | No            | Java 11 (79)
-Classpath                         | -             | Java 11 (1891), Java 8 (574)
-
 Updates
 -------
 Information about newer major, minor, and patch versions of artifacts.
@@ -937,59 +911,6 @@ jakarta.xml.bind-api              | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2 
 jakarta.xml.soap-api              | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                           | jakarta.activation:jakarta.activation-api:2.1.3                        | OK
 jakarta.xml.ws-api                | jakarta.xml.ws:jakarta.xml.ws-api:4.0.2                               | jakarta.xml.bind:jakarta.xml.bind-api:4.0.2                            | OK
                                   |                                                                       | jakarta.xml.soap:jakarta.xml.soap-api:3.0.2                            | OK
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact                          | Count | Packages                                       | Issues
-----------------------------------+-------+------------------------------------------------+--------------------------------
-jakarta.activation-api            | 2     | jakarta.activation (+1 subpackage)             |
-jakarta.annotation-api            | 3     | jakarta.annotation (+2 subpackages)            |
-jakarta.authentication-api        | 4     | jakarta.security.auth.message (+3 subpackages) |
-jakarta.authorization-api         | 1     | jakarta.security.jacc                          |
-jakarta.batch-api                 | 8     | jakarta.batch.* (8 subpackages)                |
-jakarta.ejb-api                   | 3     | jakarta.ejb (+2 subpackages)                   |
-jakarta.el-api                    | 1     | jakarta.el                                     |
-jakarta.enterprise.cdi-api        | 12    | jakarta.decorator                              |
-                                  |       | jakarta.enterprise.context (+2 subpackages)    |
-                                  |       | jakarta.enterprise.event                       |
-                                  |       | jakarta.enterprise.inject (+5 subpackages)     |
-                                  |       | jakarta.enterprise.util                        |
-jakarta.enterprise.concurrent-api | 2     | jakarta.enterprise.concurrent (+1 subpackage)  |
-jakarta.faces-api                 | 22    | jakarta.faces (+21 subpackages)                |
-jakarta.inject-api                | 1     | jakarta.inject                                 |
-jakarta.interceptor-api           | 1     | jakarta.interceptor                            |
-jakarta.jms-api                   | 1     | jakarta.jms                                    |
-jakarta.json-api                  | 3     | jakarta.json                                   |
-                                  |       | jakarta.json.spi                               |
-                                  |       | jakarta.json.stream                            |
-jakarta.json.bind-api             | 6     | jakarta.json.bind (+5 subpackages)             |
-jakarta.jws-api                   | 2     | jakarta.jws                                    | Split Package: jakarta.jws
-                                  |       | jakarta.jws.soap                               | Split Package: jakarta.jws.soap
-jakarta.mail-api                  | 5     | jakarta.mail (+4 subpackages)                  |
-jakarta.mvc-api                   | 7     | jakarta.mvc (+6 subpackages)                   |
-jakarta.persistence-api           | 4     | jakarta.persistence (+3 subpackages)           |
-jakarta.resource-api              | 6     | jakarta.resource (+5 subpackages)              |
-jakarta.security.enterprise-api   | 6     | jakarta.security.enterprise (+5 subpackages)   |
-jakarta.servlet-api               | 4     | jakarta.servlet                                |
-                                  |       | jakarta.servlet.annotation                     |
-                                  |       | jakarta.servlet.descriptor                     |
-                                  |       | jakarta.servlet.http                           |
-jakarta.servlet.jsp-api           | 3     | jakarta.servlet.jsp                            |
-                                  |       | jakarta.servlet.jsp.el                         |
-                                  |       | jakarta.servlet.jsp.tagext                     |
-jakarta.servlet.jsp.jstl-api      | 4     | jakarta.servlet.jsp.jstl.* (4 subpackages)     |
-jakarta.transaction-api           | 1     | jakarta.transaction                            |
-jakarta.validation-api            | 9     | jakarta.validation (+8 subpackages)            |
-jakarta.websocket-api             | 1     | jakarta.websocket.server                       |
-jakarta.websocket-client-api      | 1     | jakarta.websocket                              |
-jakarta.ws.rs-api                 | 6     | jakarta.ws.rs (+5 subpackages)                 |
-jakarta.xml.bind-api              | 6     | jakarta.xml.bind (+5 subpackages)              |
-jakarta.xml.soap-api              | 1     | jakarta.xml.soap                               |
-jakarta.xml.ws-api                | 10    | jakarta.jws                                    | Split Package: jakarta.jws
-                                  |       | jakarta.jws.soap                               | Split Package: jakarta.jws.soap
-                                  |       | jakarta.xml.ws (+7 subpackages)                |
 
 Duplicate Classes
 -----------------

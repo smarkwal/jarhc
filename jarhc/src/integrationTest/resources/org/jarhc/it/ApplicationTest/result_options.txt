@@ -13,11 +13,11 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact    | Version | Source                      | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-------------+---------+-----------------------------+---------+---------+-----------+------------------------------------------+----------------------------
-asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | 32      | 0         | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0
-asm-tree    | 7.0     | org.ow2.asm:asm-tree:7.0    | 49.2 KB | 37      | 0         | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0
-Classpath   | -       | -                           | 127 KB  | 69      | 0         | -                                        | -
+Artifact    | Version | Source                      | Size    | Multi-release | Java version (classes) | Resources | Packages                  | Checksum (SHA-1)                         | Coordinates                 | Issues
+------------+---------+-----------------------------+---------+---------------+------------------------+-----------+---------------------------+------------------------------------------+-----------------------------+-------
+asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | No            | Java 5 (32)            | 0         | org.objectweb.asm.commons | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0 |
+asm-tree    | 7.0     | org.ow2.asm:asm-tree:7.0    | 49.2 KB | No            | Java 5 (37)            | 0         | org.objectweb.asm.tree    | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0    |
+Classpath   | -       | -                           | 127 KB  | -             | Java 5 (69)            | 0         | 2                         | -                                        | -                           | -
 
 JAR Manifests
 -------------
@@ -55,16 +55,6 @@ asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org 
 asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
             |                           |         |                             |                                               |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact    | Multi-release | Class files by Java version
-------------+---------------+----------------------------
-asm-commons | No            | Java 5 (32)
-asm-tree    | No            | Java 5 (37)
-Classpath   | -             | Java 5 (69)
-
 Updates
 -------
 Information about newer major, minor, and patch versions of artifacts.
@@ -99,15 +89,6 @@ asm-commons | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm-analysis:7.0 | Unsat
             |                             | org.ow2.asm:asm-tree:7.0     | OK
             |                             | org.ow2.asm:asm:7.0          | OK [Provided]
 asm-tree    | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact    | Count | Packages                  | Issues
-------------+-------+---------------------------+-------
-asm-commons | 1     | org.objectweb.asm.commons |
-asm-tree    | 1     | org.objectweb.asm.tree    |
 
 Java Runtime
 ------------

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -139,7 +138,7 @@ public class JarFile {
 	/**
 	 * Set of Java packages in this JAR file.
 	 */
-	private final Set<String> packageNames = new HashSet<>();
+	private final Set<String> packageNames = new TreeSet<>();
 
 	/**
 	 * Create a new JAR file given the file name and the list of class definitions.
@@ -193,9 +192,11 @@ public class JarFile {
 			String className = classDef.getClassName();
 			classDefsMap.put(className, classDef);
 
-			// add package name to package list
-			String packageName = classDef.getPackageName();
-			packageNames.add(packageName);
+			if (classDef.isRegularClass()) {
+				// add package name to package list
+				String packageName = classDef.getPackageName();
+				packageNames.add(packageName);
+			}
 
 		});
 
@@ -369,6 +370,10 @@ public class JarFile {
 	 */
 	public boolean containsPackage(String packageName) {
 		return packageNames.contains(packageName);
+	}
+
+	public List<String> getPackageNames() {
+		return new ArrayList<>(packageNames);
 	}
 
 	/**

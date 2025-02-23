@@ -11,10 +11,13 @@
                "Version",
                "Source",
                "Size",
-               "Classes",
+               "Multi-release",
+               "Java version (classes)",
                "Resources",
+               "Packages",
                "Checksum (SHA-1)",
-               "Coordinates"
+               "Coordinates",
+               "Issues"
             ],
             "rows": [
                [
@@ -22,48 +25,63 @@
                   "7.0",
                   "[[org.ow2.asm:asm:7.0]]",
                   "111 KB",
-                  "35",
+                  "No",
+                  "Java 5 (35)",
                   "0",
+                  "`org.objectweb.asm`\n`org.objectweb.asm.signature`",
                   "[d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912](https://search.maven.org/search?q=1:d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912)",
-                  "[[org.ow2.asm:asm:7.0]]"
+                  "[[org.ow2.asm:asm:7.0]]",
+                  ""
                ],
                [
                   "asm-analysis",
                   "7.0",
                   "[[org.ow2.asm:asm-analysis:7.0]]",
                   "32.5 KB",
-                  "14",
+                  "No",
+                  "Java 5 (14)",
                   "0",
+                  "`org.objectweb.asm.tree.analysis`",
                   "[4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f](https://search.maven.org/search?q=1:4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f)",
-                  "[[org.ow2.asm:asm-analysis:7.0]]"
+                  "[[org.ow2.asm:asm-analysis:7.0]]",
+                  ""
                ],
                [
                   "asm-commons",
                   "7.0",
                   "[[org.ow2.asm:asm-commons:7.0]]",
                   "78.0 KB",
-                  "32",
+                  "No",
+                  "Java 5 (32)",
                   "0",
+                  "`org.objectweb.asm.commons`",
                   "[478006d07b7c561ae3a92ddc1829bca81ae0cdd1](https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1)",
-                  "[[org.ow2.asm:asm-commons:7.0]]"
+                  "[[org.ow2.asm:asm-commons:7.0]]",
+                  ""
                ],
                [
                   "asm-tree",
                   "7.0",
                   "[[org.ow2.asm:asm-tree:7.0]]",
                   "49.2 KB",
-                  "37",
+                  "No",
+                  "Java 5 (37)",
                   "0",
+                  "`org.objectweb.asm.tree`",
                   "[29bc62dcb85573af6e62e5b2d735ef65966c4180](https://search.maven.org/search?q=1:29bc62dcb85573af6e62e5b2d735ef65966c4180)",
-                  "[[org.ow2.asm:asm-tree:7.0]]"
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  ""
                ],
                [
                   "Classpath",
                   "-",
                   "-",
                   "271 KB",
-                  "118",
+                  "-",
+                  "Java 5 (118)",
                   "0",
+                  "5",
+                  "-",
                   "-",
                   "-"
                ]
@@ -225,44 +243,6 @@
          }]
       },
       {
-         "description": "Java class file format information.",
-         "title": "Class Versions",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Multi-release",
-               "Class files by Java version"
-            ],
-            "rows": [
-               [
-                  "asm",
-                  "No",
-                  "Java 5 (35)"
-               ],
-               [
-                  "asm-analysis",
-                  "No",
-                  "Java 5 (14)"
-               ],
-               [
-                  "asm-commons",
-                  "No",
-                  "Java 5 (32)"
-               ],
-               [
-                  "asm-tree",
-                  "No",
-                  "Java 5 (37)"
-               ],
-               [
-                  "Classpath",
-                  "-",
-                  "Java 5 (118)"
-               ]
-            ]
-         }]
-      },
-      {
          "description": "Information about newer major, minor, and patch versions of artifacts.",
          "title": "Updates",
          "content": [{
@@ -362,44 +342,6 @@
                   "[[org.ow2.asm:asm-tree:7.0]]",
                   "[[org.ow2.asm:asm:7.0]]",
                   "OK"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "List of packages per JAR file.",
-         "title": "Packages",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Count",
-               "Packages",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "asm",
-                  "2",
-                  "`org.objectweb.asm`\n`org.objectweb.asm.signature`",
-                  ""
-               ],
-               [
-                  "asm-analysis",
-                  "1",
-                  "`org.objectweb.asm.tree.analysis`",
-                  ""
-               ],
-               [
-                  "asm-commons",
-                  "1",
-                  "`org.objectweb.asm.commons`",
-                  ""
-               ],
-               [
-                  "asm-tree",
-                  "1",
-                  "`org.objectweb.asm.tree`",
-                  ""
                ]
             ]
          }]

@@ -5,27 +5,42 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact               | Version    | Source                                          | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
------------------------+------------+-------------------------------------------------+---------+---------+-----------+------------------------------------------+------------------------------------------------
-aether-api             | 1.1.0      | org.eclipse.aether:aether-api:1.1.0             | 133 KB  | 128     | 1         | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0
-aether-connector-basic | 1.1.0      | org.eclipse.aether:aether-connector-basic:1.1.0 | 35.9 KB | 19      | 1         | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0
-aether-impl            | 1.1.0      | org.eclipse.aether:aether-impl:1.1.0            | 169 KB  | 96      | 1         | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0
-aether-spi             | 1.1.0      | org.eclipse.aether:aether-spi:1.1.0             | 30.0 KB | 34      | 1         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0
-aether-transport-file  | 1.1.0      | org.eclipse.aether:aether-transport-file:1.1.0  | 8.71 KB | 4       | 1         | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0
-aether-transport-http  | 1.1.0      | org.eclipse.aether:aether-transport-http:1.1.0  | 35.8 KB | 20      | 1         | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0
-aether-util            | 1.1.0      | org.eclipse.aether:aether-util:1.1.0            | 146 KB  | 103     | 1         | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0
-asm                    | 9.2        | org.ow2.asm:asm:9.2                             | 119 KB  | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
-guava                  | 31.0.1-jre | com.google.guava:guava:31.0.1-jre               | 2.84 MB | 2045    | 0         | 119ea2b2bc205b138974d351777b20f02b92704b | com.google.guava:guava:31.0.1-jre
-httpclient             | 4.5.13     | org.apache.httpcomponents:httpclient:4.5.13     | 762 KB  | 470     | 2         | e5f6cae5ca7ecaac1ec2827a9e2d65ae2869cada | org.apache.httpcomponents:httpclient:4.5.13
-jarhc                  | 1.7        | org.jarhc:jarhc:1.7                             | 206 KB  | 121     | 7         | d2c5603b968f5e948427ecb700193d89a968d889 | org.jarhc:jarhc:1.7
-jcl-over-slf4j         | 1.7.33     | org.slf4j:jcl-over-slf4j:1.7.33                 | 16.2 KB | 9       | 0         | 28c441128bc81b6d95cc2857ae5bb46ae5bf658b | org.slf4j:jcl-over-slf4j:1.7.33
-json                   | 20211205   | org.json:json:20211205                          | 69.0 KB | 27      | 0         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205
-jul-to-slf4j           | 1.7.33     | org.slf4j:jul-to-slf4j:1.7.33                   | 4.48 KB | 1       | 0         | 053fd89b530d41b8f6744c754de1c9b02e82f2d7 | org.slf4j:jul-to-slf4j:1.7.33
-maven-aether-provider  | 3.3.9      | org.apache.maven:maven-aether-provider:3.3.9    | 65.3 KB | 26      | 0         | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9
-plexus-utils           | 3.4.1      | org.codehaus.plexus:plexus-utils:3.4.1          | 258 KB  | 105     | 3         | 4de9992988c534efd668bfcca0480ebe13e0c0eb | org.codehaus.plexus:plexus-utils:3.4.1
-slf4j-api              | 1.7.33     | org.slf4j:slf4j-api:1.7.33                      | 40.5 KB | 34      | 0         | d375aa1b98d34d5ddf73a3f19eaad66e98975b12 | org.slf4j:slf4j-api:1.7.33
-slf4j-simple           | 1.7.33     | org.slf4j:slf4j-simple:1.7.33                   | 15.0 KB | 10      | 0         | 463d6549ba948665ca0f874a0c520822afdf6ca2 | org.slf4j:slf4j-simple:1.7.33
-Classpath              | -          | -                                               | 4.90 MB | 3289    | 19        | -                                        | -
+Artifact               | Version    | Source                                          | Size    | Multi-release         | Java version (classes)                                 | Resources | Packages                                         | Checksum (SHA-1)                         | Coordinates                                     | Issues
+-----------------------+------------+-------------------------------------------------+---------+-----------------------+--------------------------------------------------------+-----------+--------------------------------------------------+------------------------------------------+-------------------------------------------------+-------
+aether-api             | 1.1.0      | org.eclipse.aether:aether-api:1.1.0             | 133 KB  | No                    | Java 5 (128)                                           | 1         | org.eclipse.aether                               | 05dd291e788f50dfb48822dab29defc16ad70860 | org.eclipse.aether:aether-api:1.1.0             |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.artifact                      |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.collection                    |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.deployment                    |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.graph                         |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.installation                  |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.metadata                      |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.repository                    |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.resolution                    |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.transfer                      |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.version                       |                                          |                                                 |
+aether-connector-basic | 1.1.0      | org.eclipse.aether:aether-connector-basic:1.1.0 | 35.9 KB | No                    | Java 5 (19)                                            | 1         | org.eclipse.aether.connector.basic               | f5c784bdd704ff64166c086eb6b31e2784c87b66 | org.eclipse.aether:aether-connector-basic:1.1.0 |
+aether-impl            | 1.1.0      | org.eclipse.aether:aether-impl:1.1.0            | 169 KB  | No                    | Java 5 (96)                                            | 1         | org.eclipse.aether.impl (+1 subpackage)          | 8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1 | org.eclipse.aether:aether-impl:1.1.0            |
+                       |            |                                                 |         |                       |                                                        |           | org.eclipse.aether.internal.impl (+1 subpackage) |                                          |                                                 |
+aether-spi             | 1.1.0      | org.eclipse.aether:aether-spi:1.1.0             | 30.0 KB | No                    | Java 5 (34)                                            | 1         | org.eclipse.aether.spi.* (8 subpackages)         | a532baa7b965d2893ceace03e804b1882f448052 | org.eclipse.aether:aether-spi:1.1.0             |
+aether-transport-file  | 1.1.0      | org.eclipse.aether:aether-transport-file:1.1.0  | 8.71 KB | No                    | Java 5 (4)                                             | 1         | org.eclipse.aether.transport.file                | 5c257319ccba22a02fa583c3946bfcbb47638bc8 | org.eclipse.aether:aether-transport-file:1.1.0  |
+aether-transport-http  | 1.1.0      | org.eclipse.aether:aether-transport-http:1.1.0  | 35.8 KB | No                    | Java 5 (20)                                            | 1         | org.eclipse.aether.transport.http                | 5beffae29e88251ac419bf96dd1426babdb6a66f | org.eclipse.aether:aether-transport-http:1.1.0  |
+aether-util            | 1.1.0      | org.eclipse.aether:aether-util:1.1.0            | 146 KB  | No                    | Java 5 (103)                                           | 1         | org.eclipse.aether.util (+12 subpackages)        | d0f84ba994f0133580e8b957a44593eaa03d42cd | org.eclipse.aether:aether-util:1.1.0            |
+asm                    | 9.2        | org.ow2.asm:asm:9.2                             | 119 KB  | No                    | Java 5 (37)                                            | 0         | org.objectweb.asm (+1 subpackage)                | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2                             |
+guava                  | 31.0.1-jre | com.google.guava:guava:31.0.1-jre               | 2.84 MB | No                    | Java 8 (2045)                                          | 0         | com.google.* (18 subpackages)                    | 119ea2b2bc205b138974d351777b20f02b92704b | com.google.guava:guava:31.0.1-jre               |
+httpclient             | 4.5.13     | org.apache.httpcomponents:httpclient:4.5.13     | 762 KB  | No                    | Java 6 (470)                                           | 2         | org.apache.http.* (24 subpackages)               | e5f6cae5ca7ecaac1ec2827a9e2d65ae2869cada | org.apache.httpcomponents:httpclient:4.5.13     |
+jarhc                  | 1.7        | org.jarhc:jarhc:1.7                             | 206 KB  | No                    | Java 8 (121)                                           | 7         | org.jarhc (+17 subpackages)                      | d2c5603b968f5e948427ecb700193d89a968d889 | org.jarhc:jarhc:1.7                             |
+jcl-over-slf4j         | 1.7.33     | org.slf4j:jcl-over-slf4j:1.7.33                 | 16.2 KB | No                    | Java 5 (9)                                             | 0         | org.apache.commons.logging (+1 subpackage)       | 28c441128bc81b6d95cc2857ae5bb46ae5bf658b | org.slf4j:jcl-over-slf4j:1.7.33                 |
+json                   | 20211205   | org.json:json:20211205                          | 69.0 KB | No                    | Java 6 (27)                                            | 0         | org.json                                         | 47032dcf2f69880f07dab3dc60b4b0ad97318308 | org.json:json:20211205                          |
+jul-to-slf4j           | 1.7.33     | org.slf4j:jul-to-slf4j:1.7.33                   | 4.48 KB | No                    | Java 5 (1)                                             | 0         | org.slf4j.bridge                                 | 053fd89b530d41b8f6744c754de1c9b02e82f2d7 | org.slf4j:jul-to-slf4j:1.7.33                   |
+maven-aether-provider  | 3.3.9      | org.apache.maven:maven-aether-provider:3.3.9    | 65.3 KB | No                    | Java 7 (26)                                            | 0         | org.apache.maven.repository.internal             | 29e8e7122f7a166ea53785cd75af0ef9d4d848d4 | org.apache.maven:maven-aether-provider:3.3.9    |
+plexus-utils           | 3.4.1      | org.codehaus.plexus:plexus-utils:3.4.1          | 258 KB  | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (104)                              | 3         | org.codehaus.plexus.util (+8 subpackages)        | 4de9992988c534efd668bfcca0480ebe13e0c0eb | org.codehaus.plexus:plexus-utils:3.4.1          |
+slf4j-api              | 1.7.33     | org.slf4j:slf4j-api:1.7.33                      | 40.5 KB | No                    | Java 5 (34)                                            | 0         | org.slf4j                                        | d375aa1b98d34d5ddf73a3f19eaad66e98975b12 | org.slf4j:slf4j-api:1.7.33                      |
+                       |            |                                                 |         |                       |                                                        |           | org.slf4j.event                                  |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.slf4j.helpers                                |                                          |                                                 |
+                       |            |                                                 |         |                       |                                                        |           | org.slf4j.spi                                    |                                          |                                                 |
+slf4j-simple           | 1.7.33     | org.slf4j:slf4j-simple:1.7.33                   | 15.0 KB | No                    | Java 5 (10)                                            | 0         | org.slf4j.impl                                   | 463d6549ba948665ca0f874a0c520822afdf6ca2 | org.slf4j:slf4j-simple:1.7.33                   |
+Classpath              | -          | -                                               | 4.90 MB | -                     | Java 10 (1), Java 8 (2270), Java 7 (26), Java 6 (497), | 19        | 120                                              | -                                        | -                                               | -
+                       |            |                                                 |         |                       | Java 5 (495)                                           |           |                                                  |                                          |                                                 |
 
 JAR Manifests
 -------------
@@ -386,33 +401,6 @@ slf4j-simple           | slf4j-simple                          | 1.7.33       | 
                        |                                       |              |                                                              | org.slf4j.helpers;version=1.7.33                                |                                                                                                                       |                                                    |
                        |                                       |              |                                                              | org.slf4j.event;version=1.7.33                                  |                                                                                                                       |                                                    |
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact               | Multi-release         | Class files by Java version
------------------------+-----------------------+-------------------------------------------------------
-aether-api             | No                    | Java 5 (128)
-aether-connector-basic | No                    | Java 5 (19)
-aether-impl            | No                    | Java 5 (96)
-aether-spi             | No                    | Java 5 (34)
-aether-transport-file  | No                    | Java 5 (4)
-aether-transport-http  | No                    | Java 5 (20)
-aether-util            | No                    | Java 5 (103)
-asm                    | No                    | Java 5 (37)
-guava                  | No                    | Java 8 (2045)
-httpclient             | No                    | Java 6 (470)
-jarhc                  | No                    | Java 8 (121)
-jcl-over-slf4j         | No                    | Java 5 (9)
-json                   | No                    | Java 6 (27)
-jul-to-slf4j           | No                    | Java 5 (1)
-maven-aether-provider  | No                    | Java 7 (26)
-plexus-utils           | Yes (Java 9, Java 10) | Java 10 (1), Java 8 (104)
-slf4j-api              | No                    | Java 5 (34)
-slf4j-simple           | No                    | Java 5 (10)
-Classpath              | -                     | Java 10 (1), Java 8 (2270), Java 7 (26), Java 6 (497),
-                       |                       | Java 5 (495)
-
 Updates
 -------
 Information about newer major, minor, and patch versions of artifacts.
@@ -609,45 +597,6 @@ maven-aether-provider  | org.apache.maven:maven-aether-provider:3.3.9    | org.a
 plexus-utils           | org.codehaus.plexus:plexus-utils:3.4.1          | [none]                                                                      |
 slf4j-api              | org.slf4j:slf4j-api:1.7.33                      | [none]                                                                      |
 slf4j-simple           | org.slf4j:slf4j-simple:1.7.33                   | org.slf4j:slf4j-api:1.7.33                                                  | OK
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact               | Count | Packages                                         | Issues
------------------------+-------+--------------------------------------------------+-------
-aether-api             | 11    | org.eclipse.aether                               |
-                       |       | org.eclipse.aether.artifact                      |
-                       |       | org.eclipse.aether.collection                    |
-                       |       | org.eclipse.aether.deployment                    |
-                       |       | org.eclipse.aether.graph                         |
-                       |       | org.eclipse.aether.installation                  |
-                       |       | org.eclipse.aether.metadata                      |
-                       |       | org.eclipse.aether.repository                    |
-                       |       | org.eclipse.aether.resolution                    |
-                       |       | org.eclipse.aether.transfer                      |
-                       |       | org.eclipse.aether.version                       |
-aether-connector-basic | 1     | org.eclipse.aether.connector.basic               |
-aether-impl            | 4     | org.eclipse.aether.impl (+1 subpackage)          |
-                       |       | org.eclipse.aether.internal.impl (+1 subpackage) |
-aether-spi             | 8     | org.eclipse.aether.spi.* (8 subpackages)         |
-aether-transport-file  | 1     | org.eclipse.aether.transport.file                |
-aether-transport-http  | 1     | org.eclipse.aether.transport.http                |
-aether-util            | 13    | org.eclipse.aether.util (+12 subpackages)        |
-asm                    | 2     | org.objectweb.asm (+1 subpackage)                |
-guava                  | 18    | com.google.* (18 subpackages)                    |
-httpclient             | 24    | org.apache.http.* (24 subpackages)               |
-jarhc                  | 18    | org.jarhc (+17 subpackages)                      |
-jcl-over-slf4j         | 2     | org.apache.commons.logging (+1 subpackage)       |
-json                   | 1     | org.json                                         |
-jul-to-slf4j           | 1     | org.slf4j.bridge                                 |
-maven-aether-provider  | 1     | org.apache.maven.repository.internal             |
-plexus-utils           | 9     | org.codehaus.plexus.util (+8 subpackages)        |
-slf4j-api              | 4     | org.slf4j                                        |
-                       |       | org.slf4j.event                                  |
-                       |       | org.slf4j.helpers                                |
-                       |       | org.slf4j.spi                                    |
-slf4j-simple           | 1     | org.slf4j.impl                                   |
 
 Duplicate Classes
 -----------------

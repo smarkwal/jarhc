@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact  | Version | Source              | Size   | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------+---------+---------------------+--------+---------+-----------+------------------------------------------+--------------------
-asm       | 9.2     | org.ow2.asm:asm:9.2 | 119 KB | 37      | 0         | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2
-Classpath | -       | -                   | 119 KB | 37      | 0         | -                                        | -
+Artifact  | Version | Source              | Size   | Multi-release | Java version (classes) | Resources | Packages                          | Checksum (SHA-1)                         | Coordinates         | Issues
+----------+---------+---------------------+--------+---------------+------------------------+-----------+-----------------------------------+------------------------------------------+---------------------+-------
+asm       | 9.2     | org.ow2.asm:asm:9.2 | 119 KB | No            | Java 5 (37)            | 0         | org.objectweb.asm (+1 subpackage) | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2 |
+Classpath | -       | -                   | 119 KB | -             | Java 5 (37)            | 0         | 2                                 | -                                        | -                   | -
 
 JAR Manifests
 -------------
@@ -37,15 +37,6 @@ Artifact | Name              | Version | Description                            
 asm      | org.objectweb.asm | 9.2.0   | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt |                | org.objectweb.asm (Version: 9.2)           |              | Manifest Version: 2
          |                   |         | Doc URL: http://asm.ow2.org                               |                | org.objectweb.asm.signature (Version: 9.2) |              | Required Execution Environment: J2SE-1.5
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact  | Multi-release | Class files by Java version
-----------+---------------+----------------------------
-asm       | No            | Java 5 (37)
-Classpath | -             | Java 5 (37)
-
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
@@ -61,12 +52,4 @@ Dependencies as declared in POM file.
 Artifact | Maven coordinates   | Direct dependencies | Status
 ---------+---------------------+---------------------+-------
 asm      | org.ow2.asm:asm:9.2 | [none]              |
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact | Count | Packages                          | Issues
----------+-------+-----------------------------------+-------
-asm      | 2     | org.objectweb.asm (+1 subpackage) |
 

@@ -5,10 +5,12 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact  | Version   | Source        | Size    | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------+-----------+---------------+---------+---------+-----------+------------------------------------------+------------
-jarhc-app | [unknown] | jarhc-app.jar | 3.69 MB | 2117    | 145       | **************************************** | [unknown]
-Classpath | -         | -             | 3.69 MB | 2117    | 145       | -                                        | -
+Artifact  | Version   | Source        | Size    | Multi-release                  | Java version (classes)                                   | Resources | Packages                | Checksum (SHA-1)                         | Coordinates | Issues
+----------+-----------+---------------+---------+--------------------------------+----------------------------------------------------------+-----------+-------------------------+------------------------------------------+-------------+------------------------------------------------------------------------------------------------------
+jarhc-app | [unknown] | jarhc-app.jar | 3.69 MB | Yes (Java 9, Java 10, Java 11) | Java 11 (150), Java 10 (1), Java 8 (1203), Java 6 (723), | 145       | org.* (186 subpackages) | **************************************** | [unknown]   | Fat JAR: org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+          |           |               |         |                                | Java 5 (38)                                              |           |                         |                                          |             |
+Classpath | -         | -             | 3.69 MB | -                              | Java 11 (150), Java 10 (1), Java 8 (1203), Java 6 (723), | 145       | 186                     | -                                        | -           | -
+          |           |               |         |                                | Java 5 (38)                                              |           |                         |                                          |             |
 
 JAR Manifests
 -------------
@@ -27,17 +29,6 @@ Artifact  | Module name | Definition     | Automatic | Requires | Exports
 ----------+-------------+----------------+-----------+----------+---------------
 jarhc-app | jarhc.app   | Auto-generated | Yes       |          | [all packages]
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact  | Multi-release                  | Class files by Java version
-----------+--------------------------------+---------------------------------------------------------
-jarhc-app | Yes (Java 9, Java 10, Java 11) | Java 11 (152), Java 10 (1), Java 8 (1203), Java 6 (723),
-          |                                | Java 5 (38)
-Classpath | -                              | Java 11 (152), Java 10 (1), Java 8 (1203), Java 6 (723),
-          |                                | Java 5 (38)
-
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
@@ -53,14 +44,6 @@ Dependencies as declared in POM file.
 Artifact  | Maven coordinates | Direct dependencies | Status
 ----------+-------------------+---------------------+-------
 jarhc-app | [unknown]         | [unknown]           |
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact  | Count | Packages                | Issues
-----------+-------+-------------------------+------------------------------------------------------------------------------------------------------
-jarhc-app | 186   | org.* (186 subpackages) | Fat JAR: org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
 
 Binary Compatibility
 --------------------

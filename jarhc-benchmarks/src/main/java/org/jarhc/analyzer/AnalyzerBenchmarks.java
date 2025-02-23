@@ -80,12 +80,6 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
-	public void test_ClassVersionsAnalyzer() {
-		Analyzer analyzer = new ClassVersionsAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
 	public void test_BinaryCompatibilityAnalyzer() {
 		Analyzer analyzer = new BinaryCompatibilityAnalyzer(new Options());
 		analyzer.analyze(classpath);
@@ -112,12 +106,6 @@ public class AnalyzerBenchmarks {
 	@Benchmark
 	public void test_JavaRuntimeAnalyzer() {
 		Analyzer analyzer = new JavaRuntimeAnalyzer(javaRuntime);
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
-	public void test_PackagesAnalyzer() {
-		Analyzer analyzer = new PackagesAnalyzer();
 		analyzer.analyze(classpath);
 	}
 

@@ -12,10 +12,15 @@ Artifact: asm
 		org.ow2.asm:asm:7.0
 	Size:
 		111 KB
-	Classes:
-		35
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (35)
 	Resources:
 		0
+	Packages:
+		org.objectweb.asm
+		org.objectweb.asm.signature
 	Checksum (SHA-1):
 		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
 	Coordinates:
@@ -28,10 +33,14 @@ Artifact: asm-analysis
 		org.ow2.asm:asm-analysis:7.0
 	Size:
 		32.5 KB
-	Classes:
-		14
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (14)
 	Resources:
 		0
+	Packages:
+		org.objectweb.asm.tree.analysis
 	Checksum (SHA-1):
 		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
 	Coordinates:
@@ -44,10 +53,14 @@ Artifact: asm-commons
 		org.ow2.asm:asm-commons:7.0
 	Size:
 		78.0 KB
-	Classes:
-		32
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (32)
 	Resources:
 		0
+	Packages:
+		org.objectweb.asm.commons
 	Checksum (SHA-1):
 		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
 	Coordinates:
@@ -60,10 +73,14 @@ Artifact: asm-tree
 		org.ow2.asm:asm-tree:7.0
 	Size:
 		49.2 KB
-	Classes:
-		37
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (37)
 	Resources:
 		0
+	Packages:
+		org.objectweb.asm.tree
 	Checksum (SHA-1):
 		29bc62dcb85573af6e62e5b2d735ef65966c4180
 	Coordinates:
@@ -76,13 +93,19 @@ Artifact: Classpath
 		-
 	Size:
 		271 KB
-	Classes:
-		118
+	Multi-release:
+		-
+	Java version (classes):
+		Java 5 (118)
 	Resources:
 		0
+	Packages:
+		5
 	Checksum (SHA-1):
 		-
 	Coordinates:
+		-
+	Issues:
 		-
 
 JAR Manifests
@@ -247,40 +270,6 @@ Artifact: asm-tree
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact: asm
-	Multi-release:
-		No
-	Class files by Java version:
-		Java 5 (35)
-
-Artifact: asm-analysis
-	Multi-release:
-		No
-	Class files by Java version:
-		Java 5 (14)
-
-Artifact: asm-commons
-	Multi-release:
-		No
-	Class files by Java version:
-		Java 5 (32)
-
-Artifact: asm-tree
-	Multi-release:
-		No
-	Class files by Java version:
-		Java 5 (37)
-
-Artifact: Classpath
-	Multi-release:
-		-
-	Class files by Java version:
-		Java 5 (118)
-
 Updates
 -------
 Information about newer major, minor, and patch versions of artifacts.
@@ -403,35 +392,6 @@ Artifact: asm-tree
 		org.ow2.asm:asm:7.0
 	Status:
 		OK
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact: asm
-	Count:
-		2
-	Packages:
-		org.objectweb.asm
-		org.objectweb.asm.signature
-
-Artifact: asm-analysis
-	Count:
-		1
-	Packages:
-		org.objectweb.asm.tree.analysis
-
-Artifact: asm-commons
-	Count:
-		1
-	Packages:
-		org.objectweb.asm.commons
-
-Artifact: asm-tree
-	Count:
-		1
-	Packages:
-		org.objectweb.asm.tree
 
 Duplicate Classes
 -----------------

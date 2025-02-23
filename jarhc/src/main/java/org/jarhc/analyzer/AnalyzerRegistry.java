@@ -42,11 +42,9 @@ public class AnalyzerRegistry {
 		descriptions.add(new AnalyzerDescription("jm", "JAR Manifests", JarManifestsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("m", "JPMS Modules", JpmsModulesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("ob", "OSGi Bundles", OSGiBundlesAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("cv", "Class Versions", ClassVersionsAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("u", "Updates", UpdatesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jd", "JAR Dependencies", JarDependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("p", "Packages", PackagesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));

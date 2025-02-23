@@ -5,10 +5,10 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact  | Version   | Source    | Size   | Classes | Resources | Checksum (SHA-1)                         | Coordinates
-----------+-----------+-----------+--------+---------+-----------+------------------------------------------+------------
-jarhc     | [unknown] | jarhc.jar | 289 KB | 151     | 9         | **************************************** | [unknown]
-Classpath | -         | -         | 289 KB | 151     | 9         | -                                        | -
+Artifact  | Version   | Source    | Size   | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates | Issues
+----------+-----------+-----------+--------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-------------+-------
+jarhc     | [unknown] | jarhc.jar | 286 KB | No            | Java 11 (149)          | 9         | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
+Classpath | -         | -         | 286 KB | -             | Java 11 (149)          | 9         | 20                          | -                                        | -           | -
 
 JAR Manifests
 -------------
@@ -27,15 +27,6 @@ Artifact | Module name | Definition | Automatic | Requires | Exports
 ---------+-------------+------------+-----------+----------+---------------
 jarhc    | org.jarhc   | Manifest   | Yes       |          | [all packages]
 
-Class Versions
---------------
-Java class file format information.
-
-Artifact  | Multi-release | Class files by Java version
-----------+---------------+----------------------------
-jarhc     | No            | Java 11 (151)
-Classpath | -             | Java 11 (151)
-
 JAR Dependencies
 ----------------
 Dependencies between JAR files.
@@ -51,14 +42,6 @@ Dependencies as declared in POM file.
 Artifact | Maven coordinates | Direct dependencies | Status
 ---------+-------------------+---------------------+-------
 jarhc    | [unknown]         | [unknown]           |
-
-Packages
---------
-List of packages per JAR file.
-
-Artifact | Count | Packages                    | Issues
----------+-------+-----------------------------+-------
-jarhc    | 20    | org.jarhc (+19 subpackages) |
 
 Blacklist
 ---------
