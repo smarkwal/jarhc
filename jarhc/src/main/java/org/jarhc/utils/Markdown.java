@@ -39,7 +39,7 @@ public class Markdown {
 	private static final Pattern URL_LINK = Pattern.compile("\\[([^]]+)]\\(([^)]+)\\)");
 	private static final Pattern INSERTED = Pattern.compile("\\+\\+\\+\\{([^}]+)}\\+\\+\\+");
 	private static final Pattern DELETED = Pattern.compile("---\\{([^}]+)}---");
-	private static final Pattern LEADING_SPACES = Pattern.compile("([\\r\\n]+)(\\s+)", Pattern.MULTILINE);
+	private static final Pattern LINEBREAKS = Pattern.compile("\\r?\\n(\\x20*)", Pattern.MULTILINE);
 
 	// HTML code snippets with placeholders
 	private static final String HTML_CODE = "<code>$1</code>";
@@ -110,23 +110,20 @@ public class Markdown {
 		text = renderLabels(text);
 		text = INSERTED.matcher(text).replaceAll(HTML_INSERTED);
 		text = DELETED.matcher(text).replaceAll(HTML_DELETED);
-		text = replaceLeadingSpaces(text);
+		text = replaceLineBreaks(text);
 		text = text.replace("\t", "&nbsp;&nbsp;&nbsp;");
-		text = text.replace("\n", "<br>");
-		text = text.replace("\r", "");
 		return text;
 	}
 
-	private static String replaceLeadingSpaces(String text) {
+	private static String replaceLineBreaks(String text) {
 		StringBuilder buffer = null; // lazy initialization
-		Matcher matcher = LEADING_SPACES.matcher(text);
+		Matcher matcher = LINEBREAKS.matcher(text);
 		while (matcher.find()) {
 			if (buffer == null) {
 				buffer = new StringBuilder(text.length() + 64);
 			}
-			String newline = matcher.group(1);
-			String spaces = matcher.group(2);
-			String replacement = newline + spaces.replace(" ", "&nbsp;");
+			String spaces = matcher.group(1);
+			String replacement = "<br>" + spaces.replace(" ", "&nbsp;");
 			matcher.appendReplacement(buffer, replacement);
 		}
 		if (buffer == null) return text;

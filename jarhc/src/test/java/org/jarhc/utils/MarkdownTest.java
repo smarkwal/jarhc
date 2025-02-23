@@ -24,18 +24,33 @@ import org.junit.jupiter.api.Test;
 class MarkdownTest {
 
 	@Test
-	void toHTML() {
+	void toText() {
+		assertNull(Markdown.toText(null));
+		assertEquals("", Markdown.toText(""));
+		assertEquals("   Indented with tab.", Markdown.toText("\tIndented with tab."));
+		assertEquals("This is bold!", Markdown.toText("This is " + Markdown.bold("bold") + "!"));
+		assertEquals("This is code.", Markdown.toText("This is " + Markdown.code("code") + "."));
+		assertEquals("Line 1\nLine2\nLine 3", Markdown.toText("Line 1\nLine2\nLine 3"));
+		assertEquals("Line 1\r\nLine2\r\nLine 3", Markdown.toText("Line 1\r\nLine2\r\nLine 3"));
+		assertEquals("Line 1\n  Line2\r\n    Line 3", Markdown.toText("Line 1\n  Line2\r\n    Line 3"));
+		assertEquals("JarHC", Markdown.toText(Markdown.link("JarHC", "https://jarhc.org")));
+		assertEquals("2.0.0", Markdown.toText(Markdown.link("2.0.0", "org.jarhc:jarhc:2.0.0")));
+		assertEquals("org.jarhc:jarhc:2.0.0", Markdown.toText(Markdown.link("org.jarhc:jarhc:2.0.0")));
+	}
 
+	@Test
+	void toHTML() {
 		assertNull(Markdown.toHtml(null));
 		assertEquals("", Markdown.toHtml(""));
 		assertEquals("&nbsp;&nbsp;&nbsp;Indented with tab.", Markdown.toHtml("\tIndented with tab."));
 		assertEquals("This is <strong>bold</strong>!", Markdown.toHtml("This is " + Markdown.bold("bold") + "!"));
 		assertEquals("This is <code>code</code>.", Markdown.toHtml("This is " + Markdown.code("code") + "."));
-		assertEquals("Line 1<br>Line2<br>&nbsp;&nbsp;&nbsp;Line 3", Markdown.toHtml("Line 1\nLine2\n   Line 3"));
+		assertEquals("Line 1<br>Line2<br>Line 3", Markdown.toHtml("Line 1\nLine2\nLine 3"));
+		assertEquals("Line 1<br>Line2<br>Line 3", Markdown.toHtml("Line 1\r\nLine2\r\nLine 3"));
+		assertEquals("Line 1<br>&nbsp;&nbsp;Line2<br>&nbsp;&nbsp;&nbsp;&nbsp;Line 3", Markdown.toHtml("Line 1\n  Line2\r\n    Line 3"));
 		assertEquals("<a href=\"https://jarhc.org\" target=\"_blank\" rel=\"noopener noreferrer\">JarHC</a>", Markdown.toHtml(Markdown.link("JarHC", "https://jarhc.org")));
 		assertEquals("<a href=\"https://central.sonatype.com/artifact/org.jarhc/jarhc/2.0.0\" target=\"_blank\" rel=\"noopener noreferrer\">2.0.0</a>", Markdown.toHtml(Markdown.link("2.0.0", "org.jarhc:jarhc:2.0.0")));
 		assertEquals("<a href=\"https://central.sonatype.com/artifact/org.jarhc/jarhc/2.0.0\" target=\"_blank\" rel=\"noopener noreferrer\">org.jarhc:jarhc:2.0.0</a>", Markdown.toHtml(Markdown.link("org.jarhc:jarhc:2.0.0")));
-
 	}
 
 }
