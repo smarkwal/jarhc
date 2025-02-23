@@ -75,6 +75,10 @@ public class Artifact {
 		return type;
 	}
 
+	public boolean isSame(String groupId, String artifactId) {
+		return this.groupId.equals(groupId) && this.artifactId.equals(artifactId);
+	}
+
 	/**
 	 * Create a new derived artifact with the given type.
 	 *

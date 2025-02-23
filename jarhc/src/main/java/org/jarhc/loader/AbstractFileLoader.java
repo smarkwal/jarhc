@@ -63,7 +63,11 @@ abstract class AbstractFileLoader {
 		this.logger = logger;
 	}
 
-	@SuppressWarnings({ "java:S135", "java:S3776", "java:S6541" }) // Loops should not contain more than a single "break" or "continue" statement // Cognitive Complexity of methods should not be too high // Methods should not perform too many tasks (aka Brain method)
+	@SuppressWarnings({
+			"java:S135", // Loops should not contain more than a single "break" or "continue" statement
+			"java:S3776", // Cognitive Complexity of methods should not be too high
+			"java:S6541" // Methods should not perform too many tasks (aka Brain method)
+	})
 	protected void load(String fileName, String coordinates, Archive archive, List<JarFile> jarFiles) throws IOException {
 
 		ModuleInfo moduleInfo = ModuleInfo.UNNAMED;

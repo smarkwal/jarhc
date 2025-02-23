@@ -328,7 +328,10 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 			this.versionLength = this.version.length();
 		}
 
-		@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
+		@SuppressWarnings({
+				"java:S3776", // Cognitive Complexity of methods should not be too high
+				"java:S135" // Loops should not contain more than a single "break" or "continue" statement
+		})
 		public boolean next() {
 			if (index >= versionLength) {
 				return false;

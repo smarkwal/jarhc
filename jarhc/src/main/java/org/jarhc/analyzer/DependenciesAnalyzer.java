@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Predicate;
@@ -265,31 +264,23 @@ public class DependenciesAnalyzer implements Analyzer {
 		return StringUtils.joinLines(lines);
 	}
 
+	/**
+	 * Checks if the given JAR file is matching the given dependency (by group ID and artifact ID).
+	 *
+	 * @param jarFile    JAR file
+	 * @param dependency Dependency
+	 * @return {@code true} if the JAR file is matching the dependency, {@code false} otherwise.
+	 */
 	private boolean matches(JarFile jarFile, Dependency dependency) {
 
-		List<Artifact> artifacts = jarFile.getArtifacts();
-		if (artifacts == null || artifacts.isEmpty()) {
-			// skip JAR files without coordinates
-			return false;
-		}
+		// prepare predicate
+		String groupId = dependency.getGroupId();
+		String artifactId = dependency.getArtifactId();
+		Predicate<Artifact> predicate = artifact -> artifact.isSame(groupId, artifactId);
 
-		for (Artifact artifact : artifacts) {
-
-			// check if group ID matches
-			if (!Objects.equals(artifact.getGroupId(), dependency.getGroupId())) {
-				continue;
-			}
-
-			// check if artifact ID matches
-			if (!Objects.equals(artifact.getArtifactId(), dependency.getArtifactId())) {
-				continue;
-			}
-
-			// note: version may be different
-			return true;
-		}
-
-		return false;
+		// search for matching artifact
+		Artifact artifact = jarFile.getArtifact(predicate);
+		return artifact != null;
 	}
 
 	private static String getDependencyStatus(Dependency dependency, JarFile jarFile) {

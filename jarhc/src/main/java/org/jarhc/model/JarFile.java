@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jarhc.artifacts.Artifact;
@@ -335,6 +336,22 @@ public class JarFile {
 
 	public List<Artifact> getArtifacts() {
 		return artifacts;
+	}
+
+	/**
+	 * Try to find an artifact for the given predicate.
+	 *
+	 * @param predicate Predicate
+	 * @return Artifact, or <code>null</code> if not found.
+	 */
+	public Artifact getArtifact(Predicate<Artifact> predicate) {
+		if (artifacts == null) {
+			return null;
+		}
+		return artifacts.stream()
+				.filter(predicate)
+				.findFirst()
+				.orElse(null);
 	}
 
 	public String getClassLoader() {
