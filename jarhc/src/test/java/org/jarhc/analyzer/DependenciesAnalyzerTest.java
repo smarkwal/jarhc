@@ -64,18 +64,18 @@ class DependenciesAnalyzerTest {
 
 		// prepare: provided
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-with-deps-1.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-1:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-with-deps-2.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-2:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-with-deps-3.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-3:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-with-deps-4.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps-4:1.1:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-with-deps-1.jar").withArtifact("group:lib-with-deps-1:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-with-deps-2.jar").withArtifact("group:lib-with-deps-2:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-with-deps-3.jar").withArtifact("group:lib-with-deps-3:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-with-deps-4.jar").withArtifact("group:lib-with-deps-4:1.1:jar").build());
 		Classpath provided = new Classpath(jarFiles, null, ClassLoaderStrategy.ParentLast);
 
 		// prepare: classpath
 		jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-with-deps.jar").withArtifacts(List.of(new Artifact("group:lib-with-deps:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-no-deps.jar").withArtifacts(List.of(new Artifact("group:lib-no-deps:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-no-pom.jar").withArtifacts(List.of(new Artifact("group:lib-no-pom:1.0:jar"))).build());
-		jarFiles.add(JarFile.withName("lib-repo-error.jar").withArtifacts(List.of(new Artifact("group:lib-repo-error:1.0:jar"))).build());
+		jarFiles.add(JarFile.withName("lib-with-deps.jar").withArtifact("group:lib-with-deps:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-no-deps.jar").withArtifact("group:lib-no-deps:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-no-pom.jar").withArtifact("group:lib-no-pom:1.0:jar").build());
+		jarFiles.add(JarFile.withName("lib-repo-error.jar").withArtifact("group:lib-repo-error:1.0:jar").build());
 		jarFiles.add(JarFile.withName("lib-unknown.jar").withArtifacts(List.of()).build());
 		Classpath classpath = new Classpath(jarFiles, provided, ClassLoaderStrategy.ParentLast);
 

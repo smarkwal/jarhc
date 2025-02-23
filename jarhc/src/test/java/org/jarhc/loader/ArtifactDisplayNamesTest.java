@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jarhc.artifacts.Artifact;
 import org.jarhc.model.JarFile;
 import org.junit.jupiter.api.Test;
 
@@ -32,11 +31,12 @@ public class ArtifactDisplayNamesTest {
 
 		// prepare
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-1.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:1.0.0"))).withChecksum("1111111111").build());
-		jarFiles.add(JarFile.withName("lib-2.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:2.0.0"))).withChecksum("2222222222").build());
-		jarFiles.add(JarFile.withName("lib-1.0.0.jar").withArtifacts(List.of(new Artifact("group-xxx:lib:1.0.0"))).withChecksum("3333333333").build());
-		jarFiles.add(JarFile.withName("lib-1.0.0.jar").withChecksum("4444444444").build()); // unknown artifact
-		jarFiles.add(JarFile.withName("lib.jar").withChecksum("5555555555").build()); // unknown artifact, unknown version
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:1.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:2.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-xxx:lib:1.0.0").build());
+		jarFiles.add(JarFile.forCoordinates("group-yyy:lib:1.0.0").build()); // coordinates not found in repository
+		jarFiles.add(JarFile.withName("lib-1.0.0.jar").build()); // file checksum not found in repository
+		jarFiles.add(JarFile.withName("lib.jar").build()); // file checksum not found in repository, unknown version
 
 		// test
 		ArtifactDisplayNames.generateUniqueNames(jarFiles);
@@ -44,7 +44,7 @@ public class ArtifactDisplayNamesTest {
 		List<String> displayNames = jarFiles.stream().map(JarFile::getDisplayName).collect(Collectors.toList());
 
 		// assert
-		assertEquals(List.of("lib [group-aaa, 1.0.0]", "lib [group-aaa, 2.0.0]", "lib [group-xxx]", "lib [unknown, 1.0.0]", "lib [unknown, unknown]"), displayNames);
+		assertEquals(List.of("lib [group-aaa, 1.0.0]", "lib [group-aaa, 2.0.0]", "lib [group-xxx]", "lib [group-yyy]", "lib [unknown, 1.0.0]", "lib [unknown, unknown]"), displayNames);
 	}
 
 	@Test
@@ -52,9 +52,9 @@ public class ArtifactDisplayNamesTest {
 
 		// prepare
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-1.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:1.0.0"))).withChecksum("1111111111").build());
-		jarFiles.add(JarFile.withName("lib-2.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:2.0.0"))).withChecksum("2222222222").build());
-		jarFiles.add(JarFile.withName("lib-3.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:3.0.0"))).withChecksum("3333333333").build());
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:1.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:2.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:3.0.0").build());
 
 		// test
 		ArtifactDisplayNames.generateUniqueNames(jarFiles);
@@ -70,9 +70,9 @@ public class ArtifactDisplayNamesTest {
 
 		// prepare
 		List<JarFile> jarFiles = new ArrayList<>();
-		jarFiles.add(JarFile.withName("lib-1.0.0.jar").withArtifacts(List.of(new Artifact("group-aaa:lib:1.0.0"))).withChecksum("1111111111").build());
-		jarFiles.add(JarFile.withName("lib-2.0.0.jar").withArtifacts(List.of(new Artifact("group-bbb:lib:2.0.0"))).withChecksum("2222222222").build());
-		jarFiles.add(JarFile.withName("lib-3.0.0.jar").withArtifacts(List.of(new Artifact("group-ccc:lib:3.0.0"))).withChecksum("3333333333").build());
+		jarFiles.add(JarFile.forArtifact("group-aaa:lib:1.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-bbb:lib:2.0.0").build());
+		jarFiles.add(JarFile.forArtifact("group-ccc:lib:3.0.0").build());
 
 		// test
 		ArtifactDisplayNames.generateUniqueNames(jarFiles);

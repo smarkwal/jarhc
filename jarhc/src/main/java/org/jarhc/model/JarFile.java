@@ -46,6 +46,11 @@ public class JarFile {
 	private final String uuid = UUID.randomUUID().toString();
 
 	/**
+	 * Artifact group ID (from Maven coordinates)
+	 */
+	private final String artifactGroupId;
+
+	/**
 	 * Artifact name (from Maven coordinates or file name)
 	 */
 	private final String artifactName;
@@ -210,8 +215,14 @@ public class JarFile {
 
 		// get artifact name and version from coordinates or file name
 		Artifact artifact = findArtifact(coordinates, fileName, artifacts);
-		this.artifactName = artifact.getArtifactId();
-		this.artifactVersion = artifact.getVersion();
+		String groupId = artifact.getGroupId();
+		String artifactId = artifact.getArtifactId();
+		String version = artifact.getVersion();
+		assert artifactId != null;
+
+		this.artifactGroupId = (groupId != null && !groupId.isEmpty()) ? groupId : null;
+		this.artifactName = artifactId;
+		this.artifactVersion = (version != null && !version.isEmpty()) ? version : null;
 	}
 
 	private static Artifact findArtifact(String coordinates, String fileName, List<Artifact> artifacts) {
@@ -226,13 +237,18 @@ public class JarFile {
 			fileName = fileName.substring(pos + 1);
 		}
 
-		// try to find an artifact with a matching file name
-		if (artifacts != null) {
+		// if artifact has been found in Maven repository ...
+		if (artifacts != null && !artifacts.isEmpty()) {
+
+			// try to find an artifact with a matching file name
 			for (Artifact artifact : artifacts) {
 				if (artifact.getFileName().equals(fileName)) {
 					return artifact;
 				}
 			}
+
+			// use first artifact as fallback
+			return artifacts.get(0);
 		}
 
 		// try to get artifact name and version from file name
@@ -260,10 +276,31 @@ public class JarFile {
 		return uuid;
 	}
 
+	/**
+	 * Get the group ID of the artifact.
+	 *
+	 * @return Group ID, or <code>null</code> if unknown.
+	 */
+	public String getArtifactGroupId() {
+		return artifactGroupId;
+	}
+
+	/**
+	 * Get the name of the artifact.
+	 * This is based on a Maven artifact ID or the file name.
+	 *
+	 * @return Artifact name.
+	 */
 	public String getArtifactName() {
 		return artifactName;
 	}
 
+	/**
+	 * Get the version of the artifact.
+	 * This is based on a Maven version or the file name.
+	 *
+	 * @return Artifact version, or <code>null</code> if unknown.
+	 */
 	public String getArtifactVersion() {
 		return artifactVersion;
 	}
@@ -383,6 +420,25 @@ public class JarFile {
 		return new Builder(fileName);
 	}
 
+	// intended for testing
+	public static Builder forCoordinates(String coordinates) {
+		Artifact artifact = new Artifact(coordinates);
+		String fileName = artifact.getFileName();
+		Builder builder = new Builder(fileName);
+		builder.withCoordinates(coordinates);
+		return builder;
+	}
+
+	// intended for testing
+	public static Builder forArtifact(String coordinates) {
+		Artifact artifact = new Artifact(coordinates);
+		String fileName = artifact.getFileName();
+		Builder builder = new Builder(fileName);
+		builder.withArtifact(coordinates);
+		builder.withCoordinates(coordinates);
+		return builder;
+	}
+
 	public static class Builder {
 
 		private final String fileName;
@@ -419,6 +475,14 @@ public class JarFile {
 
 		public Builder withArtifacts(List<Artifact> artifacts) {
 			this.artifacts = artifacts;
+			return this;
+		}
+
+		public Builder withArtifact(String coordinates) {
+			if (artifacts == null) {
+				artifacts = new ArrayList<>();
+			}
+			artifacts.add(new Artifact(coordinates));
 			return this;
 		}
 

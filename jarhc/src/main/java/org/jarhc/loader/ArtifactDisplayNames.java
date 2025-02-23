@@ -19,7 +19,6 @@ package org.jarhc.loader;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.jarhc.artifacts.Artifact;
 import org.jarhc.model.JarFile;
 
 public class ArtifactDisplayNames {
@@ -80,11 +79,11 @@ public class ArtifactDisplayNames {
 	}
 
 	private static String getGroupId(JarFile jarFile) {
-		List<Artifact> artifacts = jarFile.getArtifacts();
-		if (artifacts == null) {
+		String groupId = jarFile.getArtifactGroupId();
+		if (groupId == null) {
 			return "unknown";
 		}
-		return artifacts.get(0).getGroupId();
+		return groupId;
 	}
 
 	private static String getVersion(JarFile jarFile) {
