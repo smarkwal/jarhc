@@ -35,7 +35,7 @@ httpcore                       | 4.4.16    | org.apache.httpcomponents:httpcore:
                                |           |                                                                 |         |                                |                                                          |           | org.apache.http.protocol                              |                                          |                                                                 |
                                |           |                                                                 |         |                                |                                                          |           | org.apache.http.ssl                                   |                                          |                                                                 |
                                |           |                                                                 |         |                                |                                                          |           | org.apache.http.util                                  |                                          |                                                                 |
-jarhc                          | [unknown] | jarhc.jar                                                       | 286 KB  | No                             | Java 11 (149)                                            | 9         | org.jarhc (+19 subpackages)                           | **************************************** | [unknown]                                                       |
+jarhc                          | [unknown] | jarhc.jar                                                       | 284 KB  | No                             | Java 11 (148)                                            | 9         | org.jarhc (+19 subpackages)                           | **************************************** | [unknown]                                                       |
 jcl-over-slf4j                 | 2.0.16    | org.slf4j:jcl-over-slf4j:2.0.16                                 | 18.0 KB | Yes (Java 9)                   | Java 8 (8)                                               | 0         | org.apache.commons.logging (+1 subpackage)            | 9d08badad22f1ac07deac9188ade596472a2bfd9 | org.slf4j:jcl-over-slf4j:2.0.16                                 |
 json                           | 20250107  | org.json:json:20250107                                          | 79.5 KB | Yes (Java 9)                   | Java 8 (31)                                              | 0         | org.json                                              | a1b5f0b5a1ce018b93a691c57ffc7d141b3a10f1 | org.json:json:20250107                                          |
 jul-to-slf4j                   | 2.0.16    | org.slf4j:jul-to-slf4j:2.0.16                                   | 6.20 KB | Yes (Java 9)                   | Java 8 (1)                                               | 0         | org.slf4j.bridge                                      | 6d57da3e961daac65bcca0dd3def6cd11e48a24a | org.slf4j:jul-to-slf4j:2.0.16                                   |
@@ -99,7 +99,7 @@ slf4j-api                      | 2.0.16    | org.slf4j:slf4j-api:2.0.16         
                                |           |                                                                 |         |                                |                                                          |           | org.slf4j.event                                       |                                          |                                                                 |
                                |           |                                                                 |         |                                |                                                          |           | org.slf4j.helpers                                     |                                          |                                                                 |
                                |           |                                                                 |         |                                |                                                          |           | org.slf4j.spi                                         |                                          |                                                                 |
-Classpath                      | -         | -                                                               | 3.75 MB | -                              | Java 11 (150), Java 10 (1), Java 8 (1197), Java 6 (723), | 144       | 187                                                   | -                                        | -                                                               | -
+Classpath                      | -         | -                                                               | 3.75 MB | -                              | Java 11 (149), Java 10 (1), Java 8 (1197), Java 6 (723), | 144       | 187                                                   | -                                        | -                                                               | -
                                |           |                                                                 |         |                                | Java 5 (38)                                              |           |                                                       |                                          |                                                                 |
 
 JAR Manifests
@@ -700,201 +700,130 @@ slf4j-api                      | SLF4J API Module                            | 2
                                |                                             |              |                                                                     |                                                                              | org.slf4j (Version: 1.7.36)                                                                                            |                                                                                                                                              |
                                |                                             |              |                                                                     |                                                                              | org.slf4j.helpers (Version: 1.7.36)                                                                                    |                                                                                                                                              |
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact                       | Uses                           | Used by
--------------------------------+--------------------------------+-------------------------------
-asm                            | [none]                         | jarhc
-commons-codec                  | [none]                         | httpclient
-httpclient                     | commons-codec                  | maven-resolver-transport-http
-                               | httpcore                       |
-                               | jcl-over-slf4j                 |
-httpcore                       | [none]                         | httpclient
-                               |                                | maven-resolver-transport-http
-jarhc                          | asm                            | [none]
-                               | jcl-over-slf4j                 |
-                               | json                           |
-                               | jul-to-slf4j                   |
-                               | maven-resolver-api             |
-                               | maven-resolver-provider        |
-                               | maven-resolver-supplier        |
-                               | maven-resolver-util            |
-                               | slf4j-api                      |
-jcl-over-slf4j                 | slf4j-api                      | httpclient
-                               |                                | jarhc
-json                           | [none]                         | jarhc
-jul-to-slf4j                   | slf4j-api                      | jarhc
-maven-artifact                 | plexus-utils                   | maven-model-builder
-                               |                                | maven-resolver-provider
-maven-builder-support          | [none]                         | maven-model-builder
-maven-model                    | plexus-utils                   | maven-model-builder
-                               |                                | maven-resolver-provider
-maven-model-builder            | maven-artifact                 | maven-resolver-provider
-                               | maven-builder-support          | maven-resolver-supplier
-                               | maven-model                    |
-                               | plexus-interpolation           |
-                               | plexus-utils                   |
-maven-repository-metadata      | plexus-utils                   | maven-resolver-provider
-maven-resolver-api             | [none]                         | jarhc
-                               |                                | maven-resolver-connector-basic
-                               |                                | maven-resolver-impl
-                               |                                | maven-resolver-provider
-                               |                                | maven-resolver-spi
-                               |                                | maven-resolver-supplier
-                               |                                | maven-resolver-transport-file
-                               |                                | maven-resolver-transport-http
-                               |                                | maven-resolver-util
-maven-resolver-connector-basic | maven-resolver-api             | maven-resolver-supplier
-                               | maven-resolver-spi             |
-                               | maven-resolver-util            |
-                               | slf4j-api                      |
-maven-resolver-impl            | maven-resolver-api             | maven-resolver-provider
-                               | maven-resolver-named-locks     | maven-resolver-supplier
-                               | maven-resolver-spi             |
-                               | maven-resolver-util            |
-                               | slf4j-api                      |
-maven-resolver-named-locks     | slf4j-api                      | maven-resolver-impl
-                               |                                | maven-resolver-supplier
-maven-resolver-provider        | maven-artifact                 | jarhc
-                               | maven-model                    | maven-resolver-supplier
-                               | maven-model-builder            |
-                               | maven-repository-metadata      |
-                               | maven-resolver-api             |
-                               | maven-resolver-impl            |
-                               | maven-resolver-spi             |
-                               | maven-resolver-util            |
-                               | plexus-utils                   |
-                               | slf4j-api                      |
-maven-resolver-spi             | maven-resolver-api             | maven-resolver-connector-basic
-                               |                                | maven-resolver-impl
-                               |                                | maven-resolver-provider
-                               |                                | maven-resolver-supplier
-                               |                                | maven-resolver-transport-file
-                               |                                | maven-resolver-transport-http
-maven-resolver-supplier        | maven-model-builder            | jarhc
-                               | maven-resolver-api             |
-                               | maven-resolver-connector-basic |
-                               | maven-resolver-impl            |
-                               | maven-resolver-named-locks     |
-                               | maven-resolver-provider        |
-                               | maven-resolver-spi             |
-                               | maven-resolver-transport-file  |
-                               | maven-resolver-transport-http  |
-maven-resolver-transport-file  | maven-resolver-api             | maven-resolver-supplier
-                               | maven-resolver-spi             |
-                               | slf4j-api                      |
-maven-resolver-transport-http  | httpclient                     | maven-resolver-supplier
-                               | httpcore                       |
-                               | maven-resolver-api             |
-                               | maven-resolver-spi             |
-                               | maven-resolver-util            |
-                               | slf4j-api                      |
-maven-resolver-util            | maven-resolver-api             | jarhc
-                               |                                | maven-resolver-connector-basic
-                               |                                | maven-resolver-impl
-                               |                                | maven-resolver-provider
-                               |                                | maven-resolver-transport-http
-plexus-interpolation           | [none]                         | maven-model-builder
-plexus-utils                   | [none]                         | maven-artifact
-                               |                                | maven-model
-                               |                                | maven-model-builder
-                               |                                | maven-repository-metadata
-                               |                                | maven-resolver-provider
-slf4j-api                      | [none]                         | jarhc
-                               |                                | jcl-over-slf4j
-                               |                                | jul-to-slf4j
-                               |                                | maven-resolver-connector-basic
-                               |                                | maven-resolver-impl
-                               |                                | maven-resolver-named-locks
-                               |                                | maven-resolver-provider
-                               |                                | maven-resolver-transport-file
-                               |                                | maven-resolver-transport-http
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact                       | Maven coordinates                                               | Direct dependencies                                                    | Status
--------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+--------------------
-asm                            | org.ow2.asm:asm:9.7.1                                           | [none]                                                                 |
-commons-codec                  | commons-codec:commons-codec:1.17.1                              | [none]                                                                 |
-httpclient                     | org.apache.httpcomponents:httpclient:4.5.14                     | org.apache.httpcomponents:httpcore:4.4.16                              | OK
-                               |                                                                 | commons-codec:commons-codec:1.11                                       | OK (version 1.17.1)
-                               |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
-httpcore                       | org.apache.httpcomponents:httpcore:4.4.16                       | [none]                                                                 |
-jarhc                          | [unknown]                                                       | [unknown]                                                              |
-jcl-over-slf4j                 | org.slf4j:jcl-over-slf4j:2.0.16                                 | org.slf4j:slf4j-api:2.0.16                                             | OK
-json                           | org.json:json:20250107                                          | [none]                                                                 |
-jul-to-slf4j                   | org.slf4j:jul-to-slf4j:2.0.16                                   | org.slf4j:slf4j-api:2.0.16                                             | OK
-maven-artifact                 | org.apache.maven:maven-artifact:3.9.8                           | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
-maven-builder-support          | org.apache.maven:maven-builder-support:3.9.8                    | [none]                                                                 |
-maven-model                    | org.apache.maven:maven-model:3.9.8                              | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
-maven-model-builder            | org.apache.maven:maven-model-builder:3.9.8                      | org.apache.maven:maven-model:3.9.8                                     | OK
-                               |                                                                 | org.apache.maven:maven-artifact:3.9.8                                  | OK
-                               |                                                                 | org.apache.maven:maven-builder-support:3.9.8                           | OK
-                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
-                               |                                                                 | org.codehaus.plexus:plexus-interpolation:1.27                          | OK
-                               |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3                      | Unsatisfied
-maven-repository-metadata      | org.apache.maven:maven-repository-metadata:3.9.8                | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
-maven-resolver-api             | org.apache.maven.resolver:maven-resolver-api:1.9.22             | [none]                                                                 |
-maven-resolver-connector-basic | org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22 | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-impl            | org.apache.maven.resolver:maven-resolver-impl:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
-                               |                                                                 | com.google.inject:guice:6.0.0 (provided, optional)                     | Unsatisfied
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-                               |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2 (provided, optional) | Unsatisfied
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-named-locks     | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22     | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-provider        | org.apache.maven:maven-resolver-provider:3.9.8                  | org.apache.maven:maven-repository-metadata:3.9.8                       | OK
-                               |                                                                 | org.apache.maven:maven-model:3.9.8                                     | OK
-                               |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.20                    | OK (version 1.9.22)
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.20                   | OK (version 1.9.22)
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.20                    | OK (version 1.9.22)
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.20                   | OK (version 1.9.22)
-                               |                                                                 | com.google.guava:failureaccess:1.0.2 (optional)                        | Unsatisfied
-                               |                                                                 | com.google.guava:guava:33.2.1-jre (optional)                           | Unsatisfied
-                               |                                                                 | com.google.inject:guice:5.1.0 (optional)                               | Unsatisfied
-                               |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
-                               |                                                                 | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
-maven-resolver-spi             | org.apache.maven.resolver:maven-resolver-spi:1.9.22             | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-supplier:1.9.22        | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22        | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.22                   | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22         | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22         | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
-                               |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
-                               |                                                                 | org.apache.maven:maven-resolver-provider:3.9.8                         | OK
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-transport-file  | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-transport-http  | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
-                               |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
-                               |                                                                 | commons-codec:commons-codec:1.17.1 (runtime)                           | OK
-                               |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
-                               |                                                                 | org.apache.httpcomponents:httpclient:4.5.14                            | OK
-                               |                                                                 | org.apache.httpcomponents:httpcore:4.4.16                              | OK
-                               |                                                                 | org.slf4j:jcl-over-slf4j:1.7.36 (runtime)                              | OK (version 2.0.16)
-                               |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
-maven-resolver-util            | org.apache.maven.resolver:maven-resolver-util:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
-plexus-interpolation           | org.codehaus.plexus:plexus-interpolation:1.27                   | [none]                                                                 |
-plexus-utils                   | org.codehaus.plexus:plexus-utils:3.5.1                          | [none]                                                                 |
-slf4j-api                      | org.slf4j:slf4j-api:2.0.16                                      | [none]                                                                 |
+Artifact                       | Uses                           | Used by                        | Maven coordinates                                               | Direct dependencies                                                    | Status
+-------------------------------+--------------------------------+--------------------------------+-----------------------------------------------------------------+------------------------------------------------------------------------+--------------------
+asm                            | [none]                         | jarhc                          | org.ow2.asm:asm:9.7.1                                           | [none]                                                                 |
+commons-codec                  | [none]                         | httpclient                     | commons-codec:commons-codec:1.17.1                              | [none]                                                                 |
+httpclient                     | commons-codec                  | maven-resolver-transport-http  | org.apache.httpcomponents:httpclient:4.5.14                     | org.apache.httpcomponents:httpcore:4.4.16                              | OK
+                               | httpcore                       |                                |                                                                 | commons-codec:commons-codec:1.11                                       | OK (version 1.17.1)
+                               | jcl-over-slf4j                 |                                |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
+httpcore                       | [none]                         | httpclient                     | org.apache.httpcomponents:httpcore:4.4.16                       | [none]                                                                 |
+                               |                                | maven-resolver-transport-http  |                                                                 |                                                                        |
+jarhc                          | asm                            | [none]                         | [unknown]                                                       | [unknown]                                                              |
+                               | jcl-over-slf4j                 |                                |                                                                 |                                                                        |
+                               | json                           |                                |                                                                 |                                                                        |
+                               | jul-to-slf4j                   |                                |                                                                 |                                                                        |
+                               | maven-resolver-api             |                                |                                                                 |                                                                        |
+                               | maven-resolver-provider        |                                |                                                                 |                                                                        |
+                               | maven-resolver-supplier        |                                |                                                                 |                                                                        |
+                               | maven-resolver-util            |                                |                                                                 |                                                                        |
+                               | slf4j-api                      |                                |                                                                 |                                                                        |
+jcl-over-slf4j                 | slf4j-api                      | httpclient                     | org.slf4j:jcl-over-slf4j:2.0.16                                 | org.slf4j:slf4j-api:2.0.16                                             | OK
+                               |                                | jarhc                          |                                                                 |                                                                        |
+json                           | [none]                         | jarhc                          | org.json:json:20250107                                          | [none]                                                                 |
+jul-to-slf4j                   | slf4j-api                      | jarhc                          | org.slf4j:jul-to-slf4j:2.0.16                                   | org.slf4j:slf4j-api:2.0.16                                             | OK
+maven-artifact                 | plexus-utils                   | maven-model-builder            | org.apache.maven:maven-artifact:3.9.8                           | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+maven-builder-support          | [none]                         | maven-model-builder            | org.apache.maven:maven-builder-support:3.9.8                    | [none]                                                                 |
+maven-model                    | plexus-utils                   | maven-model-builder            | org.apache.maven:maven-model:3.9.8                              | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+maven-model-builder            | maven-artifact                 | maven-resolver-provider        | org.apache.maven:maven-model-builder:3.9.8                      | org.apache.maven:maven-model:3.9.8                                     | OK
+                               | maven-builder-support          | maven-resolver-supplier        |                                                                 | org.apache.maven:maven-artifact:3.9.8                                  | OK
+                               | maven-model                    |                                |                                                                 | org.apache.maven:maven-builder-support:3.9.8                           | OK
+                               | plexus-interpolation           |                                |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
+                               | plexus-utils                   |                                |                                                                 | org.codehaus.plexus:plexus-interpolation:1.27                          | OK
+                               |                                |                                |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3                      | Unsatisfied
+maven-repository-metadata      | plexus-utils                   | maven-resolver-provider        | org.apache.maven:maven-repository-metadata:3.9.8                | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
+maven-resolver-api             | [none]                         | jarhc                          | org.apache.maven.resolver:maven-resolver-api:1.9.22             | [none]                                                                 |
+                               |                                | maven-resolver-connector-basic |                                                                 |                                                                        |
+                               |                                | maven-resolver-impl            |                                                                 |                                                                        |
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+                               |                                | maven-resolver-spi             |                                                                 |                                                                        |
+                               |                                | maven-resolver-supplier        |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-file  |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-http  |                                                                 |                                                                        |
+                               |                                | maven-resolver-util            |                                                                 |                                                                        |
+maven-resolver-connector-basic | maven-resolver-api             | maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22 | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               | maven-resolver-spi             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               | maven-resolver-util            |                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               | slf4j-api                      |                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               |                                |                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-impl            | maven-resolver-api             | maven-resolver-provider        | org.apache.maven.resolver:maven-resolver-impl:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               | maven-resolver-named-locks     | maven-resolver-supplier        |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
+                               | maven-resolver-spi             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               | maven-resolver-util            |                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               | slf4j-api                      |                                |                                                                 | com.google.inject:guice:6.0.0 (provided, optional)                     | Unsatisfied
+                               |                                |                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               |                                |                                |                                                                 | org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M2 (provided, optional) | Unsatisfied
+                               |                                |                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-named-locks     | slf4j-api                      | maven-resolver-impl            | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22     | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               |                                | maven-resolver-supplier        |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-provider        | maven-artifact                 | jarhc                          | org.apache.maven:maven-resolver-provider:3.9.8                  | org.apache.maven:maven-repository-metadata:3.9.8                       | OK
+                               | maven-model                    | maven-resolver-supplier        |                                                                 | org.apache.maven:maven-model:3.9.8                                     | OK
+                               | maven-model-builder            |                                |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
+                               | maven-repository-metadata      |                                |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.20                    | OK (version 1.9.22)
+                               | maven-resolver-api             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.20                   | OK (version 1.9.22)
+                               | maven-resolver-impl            |                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.20                    | OK (version 1.9.22)
+                               | maven-resolver-spi             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.20                   | OK (version 1.9.22)
+                               | maven-resolver-util            |                                |                                                                 | com.google.guava:failureaccess:1.0.2 (optional)                        | Unsatisfied
+                               | plexus-utils                   |                                |                                                                 | com.google.guava:guava:33.2.1-jre (optional)                           | Unsatisfied
+                               | slf4j-api                      |                                |                                                                 | com.google.inject:guice:5.1.0 (optional)                               | Unsatisfied
+                               |                                |                                |                                                                 | javax.inject:javax.inject:1                                            | Unsatisfied
+                               |                                |                                |                                                                 | org.codehaus.plexus:plexus-utils:3.5.1                                 | OK
+maven-resolver-spi             | maven-resolver-api             | maven-resolver-connector-basic | org.apache.maven.resolver:maven-resolver-spi:1.9.22             | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               |                                | maven-resolver-impl            |                                                                 |                                                                        |
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+                               |                                | maven-resolver-supplier        |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-file  |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-http  |                                                                 |                                                                        |
+maven-resolver-supplier        | maven-model-builder            | jarhc                          | org.apache.maven.resolver:maven-resolver-supplier:1.9.22        | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               | maven-resolver-api             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               | maven-resolver-connector-basic |                                |                                                                 | org.apache.maven.resolver:maven-resolver-connector-basic:1.9.22        | OK
+                               | maven-resolver-impl            |                                |                                                                 | org.apache.maven.resolver:maven-resolver-impl:1.9.22                   | OK
+                               | maven-resolver-named-locks     |                                |                                                                 | org.apache.maven.resolver:maven-resolver-named-locks:1.9.22            | OK
+                               | maven-resolver-provider        |                                |                                                                 | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22         | OK
+                               | maven-resolver-spi             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22         | OK
+                               | maven-resolver-transport-file  |                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               | maven-resolver-transport-http  |                                |                                                                 | org.apache.maven:maven-model-builder:3.9.8                             | OK
+                               |                                |                                |                                                                 | org.apache.maven:maven-resolver-provider:3.9.8                         | OK
+                               |                                |                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-transport-file  | maven-resolver-api             | maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-transport-file:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               | maven-resolver-spi             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               | slf4j-api                      |                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               |                                |                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-transport-http  | httpclient                     | maven-resolver-supplier        | org.apache.maven.resolver:maven-resolver-transport-http:1.9.22  | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               | httpcore                       |                                |                                                                 | org.apache.maven.resolver:maven-resolver-spi:1.9.22                    | OK
+                               | maven-resolver-api             |                                |                                                                 | org.apache.maven.resolver:maven-resolver-util:1.9.22                   | OK
+                               | maven-resolver-spi             |                                |                                                                 | commons-codec:commons-codec:1.17.1 (runtime)                           | OK
+                               | maven-resolver-util            |                                |                                                                 | javax.inject:javax.inject:1 (provided, optional)                       | Unsatisfied
+                               | slf4j-api                      |                                |                                                                 | org.apache.httpcomponents:httpclient:4.5.14                            | OK
+                               |                                |                                |                                                                 | org.apache.httpcomponents:httpcore:4.4.16                              | OK
+                               |                                |                                |                                                                 | org.slf4j:jcl-over-slf4j:1.7.36 (runtime)                              | OK (version 2.0.16)
+                               |                                |                                |                                                                 | org.slf4j:slf4j-api:1.7.36                                             | OK (version 2.0.16)
+maven-resolver-util            | maven-resolver-api             | jarhc                          | org.apache.maven.resolver:maven-resolver-util:1.9.22            | org.apache.maven.resolver:maven-resolver-api:1.9.22                    | OK
+                               |                                | maven-resolver-connector-basic |                                                                 |                                                                        |
+                               |                                | maven-resolver-impl            |                                                                 |                                                                        |
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-http  |                                                                 |                                                                        |
+plexus-interpolation           | [none]                         | maven-model-builder            | org.codehaus.plexus:plexus-interpolation:1.27                   | [none]                                                                 |
+plexus-utils                   | [none]                         | maven-artifact                 | org.codehaus.plexus:plexus-utils:3.5.1                          | [none]                                                                 |
+                               |                                | maven-model                    |                                                                 |                                                                        |
+                               |                                | maven-model-builder            |                                                                 |                                                                        |
+                               |                                | maven-repository-metadata      |                                                                 |                                                                        |
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+slf4j-api                      | [none]                         | jarhc                          | org.slf4j:slf4j-api:2.0.16                                      | [none]                                                                 |
+                               |                                | jcl-over-slf4j                 |                                                                 |                                                                        |
+                               |                                | jul-to-slf4j                   |                                                                 |                                                                        |
+                               |                                | maven-resolver-connector-basic |                                                                 |                                                                        |
+                               |                                | maven-resolver-impl            |                                                                 |                                                                        |
+                               |                                | maven-resolver-named-locks     |                                                                 |                                                                        |
+                               |                                | maven-resolver-provider        |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-file  |                                                                 |                                                                        |
+                               |                                | maven-resolver-transport-http  |                                                                 |                                                                        |
 
 Binary Compatibility
 --------------------

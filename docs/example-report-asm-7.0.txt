@@ -97,34 +97,22 @@ asm-tree     | 7.0     | 7.1
              |         | 9.6
              |         | 9.7, 9.7.1
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact     | Uses     | Used by
--------------+----------+-------------
-asm          | [none]   | asm-analysis
-             |          | asm-commons
-             |          | asm-tree
-asm-analysis | asm      | [none]
-             | asm-tree |
-asm-commons  | asm      | [none]
-             | asm-tree |
-asm-tree     | asm      | asm-analysis
-             |          | asm-commons
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact     | Maven coordinates            | Direct dependencies          | Status
--------------+------------------------------+------------------------------+-------
-asm          | org.ow2.asm:asm:7.0          | [none]                       |
-asm-analysis | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
-asm-commons  | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm-analysis:7.0 | OK
-             |                              | org.ow2.asm:asm-tree:7.0     | OK
-             |                              | org.ow2.asm:asm:7.0          | OK
-asm-tree     | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
+Artifact     | Uses     | Used by      | Maven coordinates            | Direct dependencies          | Status
+-------------+----------+--------------+------------------------------+------------------------------+-------
+asm          | [none]   | asm-analysis | org.ow2.asm:asm:7.0          | [none]                       |
+             |          | asm-commons  |                              |                              |
+             |          | asm-tree     |                              |                              |
+asm-analysis | asm      | [none]       | org.ow2.asm:asm-analysis:7.0 | org.ow2.asm:asm-tree:7.0     | OK
+             | asm-tree |              |                              |                              |
+asm-commons  | asm      | [none]       | org.ow2.asm:asm-commons:7.0  | org.ow2.asm:asm-analysis:7.0 | OK
+             | asm-tree |              |                              | org.ow2.asm:asm-tree:7.0     | OK
+             |          |              |                              | org.ow2.asm:asm:7.0          | OK
+asm-tree     | asm      | asm-analysis | org.ow2.asm:asm-tree:7.0     | org.ow2.asm:asm:7.0          | OK
+             |          | asm-commons  |                              |                              |
 
 Duplicate Classes
 -----------------

@@ -92,12 +92,6 @@ public class AnalyzerBenchmarks {
 	}
 
 	@Benchmark
-	public void test_JarDependenciesAnalyzer() {
-		Analyzer analyzer = new JarDependenciesAnalyzer();
-		analyzer.analyze(classpath);
-	}
-
-	@Benchmark
 	public void test_JarFilesAnalyzer() {
 		Analyzer analyzer = new JarFilesAnalyzer();
 		analyzer.analyze(classpath);

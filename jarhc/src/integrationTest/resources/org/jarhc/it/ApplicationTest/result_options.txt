@@ -70,25 +70,16 @@ asm-commons | 7.0     | 7.1
             |         | 9.7, 9.7.1
 asm-tree    | 7.0     | [unknown]
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact    | Uses     | Used by
-------------+----------+------------
-asm-commons | asm-tree | [none]
-asm-tree    | [none]   | asm-commons
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact    | Maven coordinates           | Direct dependencies          | Status
-------------+-----------------------------+------------------------------+--------------
-asm-commons | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-            |                             | org.ow2.asm:asm-tree:7.0     | OK
-            |                             | org.ow2.asm:asm:7.0          | OK [Provided]
-asm-tree    | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
+Artifact    | Uses     | Used by     | Maven coordinates           | Direct dependencies          | Status
+------------+----------+-------------+-----------------------------+------------------------------+--------------
+asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
+            |          |             |                             | org.ow2.asm:asm-tree:7.0     | OK
+            |          |             |                             | org.ow2.asm:asm:7.0          | OK [Provided]
+asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | org.ow2.asm:asm:7.0          | OK [Provided]
 
 Java Runtime
 ------------

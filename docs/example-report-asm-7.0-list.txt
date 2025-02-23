@@ -322,50 +322,28 @@ Artifact: asm-tree
 		9.6
 		9.7, 9.7.1
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact: asm
-	Uses:
-		[none]
-	Used by:
-		asm-analysis
-		asm-commons
-		asm-tree
-
-Artifact: asm-analysis
-	Uses:
-		asm
-		asm-tree
-	Used by:
-		[none]
-
-Artifact: asm-commons
-	Uses:
-		asm
-		asm-tree
-	Used by:
-		[none]
-
-Artifact: asm-tree
-	Uses:
-		asm
-	Used by:
-		asm-analysis
-		asm-commons
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
 Artifact: asm
+	Uses:
+		[none]
+	Used by:
+		asm-analysis
+		asm-commons
+		asm-tree
 	Maven coordinates:
 		org.ow2.asm:asm:7.0
 	Direct dependencies:
 		[none]
 
 Artifact: asm-analysis
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
 	Maven coordinates:
 		org.ow2.asm:asm-analysis:7.0
 	Direct dependencies:
@@ -374,6 +352,11 @@ Artifact: asm-analysis
 		OK
 
 Artifact: asm-commons
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
 	Maven coordinates:
 		org.ow2.asm:asm-commons:7.0
 	Direct dependencies:
@@ -386,6 +369,11 @@ Artifact: asm-commons
 		OK
 
 Artifact: asm-tree
+	Uses:
+		asm
+	Used by:
+		asm-analysis
+		asm-commons
 	Maven coordinates:
 		org.ow2.asm:asm-tree:7.0
 	Direct dependencies:

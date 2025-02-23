@@ -19,6 +19,7 @@ package org.jarhc.analyzer;
 import static org.jarhc.TestUtils.assertValuesEquals;
 import static org.jarhc.pom.PomUtils.generateDependencies;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
+import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -35,6 +36,7 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.test.ClasspathBuilder;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -98,21 +100,62 @@ class DependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) content;
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "Artifact", "Maven coordinates", "Direct dependencies", "Status");
+		assertValuesEquals(columns, "Artifact", "Uses", "Used by", "Maven coordinates", "Direct dependencies", "Status");
 
 		List<String[]> rows = table.getRows();
 		assertEquals(5, rows.size());
 
-		assertValuesEquals(rows.get(0), "lib-with-deps", "[[group:lib-with-deps:1.0]]", "[[group:lib-with-deps-1:1.0]] (provided, optional)\n[[group:lib-with-deps-2:1.0]] (runtime)\n[[group:lib-with-deps-4:1.0]] (system)\n[[group:lib-with-deps-5:1.0]] (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
-		assertValuesEquals(rows.get(1), "lib-no-deps", "[[group:lib-no-deps:1.0]]", "[none]", "");
-		assertValuesEquals(rows.get(2), "lib-no-pom", "[[group:lib-no-pom:1.0]]", "[error]", "");
-		assertValuesEquals(rows.get(3), "lib-repo-error", "[[group:lib-repo-error:1.0]]", "[error]", "");
-		assertValuesEquals(rows.get(4), "lib-unknown", "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(0), "lib-with-deps", "[none]", "[none]", "[[group:lib-with-deps:1.0]]", "[[group:lib-with-deps-1:1.0]] (provided, optional)\n[[group:lib-with-deps-2:1.0]] (runtime)\n[[group:lib-with-deps-4:1.0]] (system)\n[[group:lib-with-deps-5:1.0]] (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
+		assertValuesEquals(rows.get(1), "lib-no-deps", "[none]", "[none]", "[[group:lib-no-deps:1.0]]", "[none]", "");
+		assertValuesEquals(rows.get(2), "lib-no-pom", "[none]", "[none]", "[[group:lib-no-pom:1.0]]", "[error]", "");
+		assertValuesEquals(rows.get(3), "lib-repo-error", "[none]", "[none]", "[[group:lib-repo-error:1.0]]", "[error]", "");
+		assertValuesEquals(rows.get(4), "lib-unknown", "[none]", "[none]", "[unknown]", "[unknown]", "");
 
 		assertLogger(logger).inAnyOrder()
 				.hasError("Resolver error for artifact: group:lib-no-pom:1.0", new RepositoryException("test"))
 				.hasError("Resolver error for artifact: group:lib-repo-error:1.0", new RepositoryException("test"))
 				.isEmpty();
+	}
+
+	@Test
+	void analyze_UsesUsedBy() {
+
+		// prepare
+		Classpath classpath = ClasspathBuilder.create(null)
+				.addJarFile("a.jar")
+				.addClassDef("a.A").addClassRef("b.B1").addClassRef("c.C").addClassRef("x.X")
+				.addJarFile("b.jar")
+				.addClassDef("b.B1")
+				.addClassDef("b.B2").addClassRef("c.C").addClassRef("b.B1")
+				.addJarFile("c.jar")
+				.addClassDef("c.C")
+				.addJarFile("d.jar")
+				.build();
+
+		// test
+		Logger logger = LoggerBuilder.collect(DependenciesAnalyzer.class);
+		DependenciesAnalyzer analyzer = new DependenciesAnalyzer(repository, logger);
+		ReportSection section = analyzer.analyze(classpath);
+
+		// assert
+		assertNotNull(section);
+		assertEquals("Dependencies", section.getTitle());
+		assertEquals("Dependencies as declared in POM file.", section.getDescription());
+		assertEquals("Dependencies", section.getId());
+		assertEquals(1, section.getContent().size());
+		assertInstanceOf(ReportTable.class, section.getContent().get(0));
+
+		ReportTable table = (ReportTable) section.getContent().get(0);
+
+		String[] columns = table.getColumns();
+		assertValuesEquals(columns, "Artifact", "Uses", "Used by", "Maven coordinates", "Direct dependencies", "Status");
+
+		List<String[]> rows = table.getRows();
+		assertEquals(4, rows.size());
+		assertValuesEquals(rows.get(0), "a", joinLines("b", "c"), "[none]", "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(1), "b", "c", "a", "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(2), "c", "[none]", joinLines("a", "b"), "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(3), "d", "[none]", "[none]", "[unknown]", "[unknown]", "");
 	}
 
 }

@@ -45,21 +45,13 @@ slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1
           |             |         |                   |                              | org.slf4j.helpers (Version: 1.7.28) |              |
           |             |         |                   |                              | org.slf4j.event (Version: 1.7.28)   |              |
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact  | Uses   | Used by
-----------+--------+--------
-slf4j-api | [none] | [none]
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact  | Maven coordinates          | Direct dependencies | Status
-----------+----------------------------+---------------------+-------
-slf4j-api | org.slf4j:slf4j-api:1.7.28 | [none]              |
+Artifact  | Uses   | Used by | Maven coordinates          | Direct dependencies | Status
+----------+--------+---------+----------------------------+---------------------+-------
+slf4j-api | [none] | [none]  | org.slf4j:slf4j-api:1.7.28 | [none]              |
 
 Duplicate Classes
 -----------------

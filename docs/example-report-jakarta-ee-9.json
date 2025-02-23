@@ -1498,184 +1498,13 @@
          }]
       },
       {
-         "description": "Dependencies between JAR files.",
-         "title": "JAR Dependencies",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Uses",
-               "Used by"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "[none]",
-                  "jakarta.mail-api\njakarta.xml.bind-api\njakarta.xml.soap-api"
-               ],
-               [
-                  "jakarta.annotation-api",
-                  "[none]",
-                  "[none]"
-               ],
-               [
-                  "jakarta.authentication-api",
-                  "[none]",
-                  "jakarta.security.enterprise-api"
-               ],
-               [
-                  "jakarta.authorization-api",
-                  "jakarta.servlet-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.batch-api",
-                  "jakarta.enterprise.cdi-api\njakarta.inject-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.ejb-api",
-                  "jakarta.transaction-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.el-api",
-                  "[none]",
-                  "jakarta.enterprise.cdi-api\njakarta.faces-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api"
-               ],
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "jakarta.el-api\njakarta.inject-api\njakarta.interceptor-api",
-                  "jakarta.batch-api\njakarta.faces-api\njakarta.mvc-api\njakarta.security.enterprise-api\njakarta.transaction-api"
-               ],
-               [
-                  "jakarta.enterprise.concurrent-api",
-                  "[none]",
-                  "[none]"
-               ],
-               [
-                  "jakarta.faces-api",
-                  "jakarta.el-api\njakarta.enterprise.cdi-api\njakarta.inject-api\njakarta.servlet-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.validation-api\njakarta.websocket-api\njakarta.websocket-client-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.inject-api",
-                  "[none]",
-                  "jakarta.batch-api\njakarta.enterprise.cdi-api\njakarta.faces-api"
-               ],
-               [
-                  "jakarta.interceptor-api",
-                  "[none]",
-                  "jakarta.enterprise.cdi-api\njakarta.security.enterprise-api\njakarta.transaction-api"
-               ],
-               [
-                  "jakarta.jms-api",
-                  "[none]",
-                  "[none]"
-               ],
-               [
-                  "jakarta.json-api",
-                  "[none]",
-                  "jakarta.json.bind-api"
-               ],
-               [
-                  "jakarta.json.bind-api",
-                  "jakarta.json-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.jws-api",
-                  "[none]",
-                  "[none]"
-               ],
-               [
-                  "jakarta.mail-api",
-                  "jakarta.activation-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.mvc-api",
-                  "jakarta.enterprise.cdi-api\njakarta.validation-api\njakarta.ws.rs-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.persistence-api",
-                  "[none]",
-                  "[none]"
-               ],
-               [
-                  "jakarta.resource-api",
-                  "jakarta.transaction-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.security.enterprise-api",
-                  "jakarta.authentication-api\njakarta.enterprise.cdi-api\njakarta.interceptor-api\njakarta.servlet-api",
-                  "[none]"
-               ],
-               [
-                  "jakarta.servlet-api",
-                  "[none]",
-                  "jakarta.authorization-api\njakarta.faces-api\njakarta.security.enterprise-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api"
-               ],
-               [
-                  "jakarta.servlet.jsp-api",
-                  "jakarta.el-api\njakarta.servlet-api",
-                  "jakarta.faces-api\njakarta.servlet.jsp.jstl-api"
-               ],
-               [
-                  "jakarta.servlet.jsp.jstl-api",
-                  "jakarta.el-api\njakarta.servlet-api\njakarta.servlet.jsp-api",
-                  "jakarta.faces-api"
-               ],
-               [
-                  "jakarta.transaction-api",
-                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api",
-                  "jakarta.ejb-api\njakarta.resource-api"
-               ],
-               [
-                  "jakarta.validation-api",
-                  "[none]",
-                  "jakarta.faces-api\njakarta.mvc-api"
-               ],
-               [
-                  "jakarta.websocket-api",
-                  "jakarta.websocket-client-api",
-                  "jakarta.faces-api\njakarta.websocket-client-api"
-               ],
-               [
-                  "jakarta.websocket-client-api",
-                  "jakarta.websocket-api",
-                  "jakarta.faces-api\njakarta.websocket-api"
-               ],
-               [
-                  "jakarta.ws.rs-api",
-                  "jakarta.xml.bind-api",
-                  "jakarta.mvc-api"
-               ],
-               [
-                  "jakarta.xml.bind-api",
-                  "jakarta.activation-api",
-                  "jakarta.ws.rs-api\njakarta.xml.ws-api"
-               ],
-               [
-                  "jakarta.xml.soap-api",
-                  "jakarta.activation-api",
-                  "jakarta.xml.ws-api"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "jakarta.xml.bind-api\njakarta.xml.soap-api",
-                  "[none]"
-               ]
-            ]
-         }]
-      },
-      {
          "description": "Dependencies as declared in POM file.",
          "title": "Dependencies",
          "content": [{
             "columns": [
                "Artifact",
+               "Uses",
+               "Used by",
                "Maven coordinates",
                "Direct dependencies",
                "Status"
@@ -1683,192 +1512,256 @@
             "rows": [
                [
                   "jakarta.activation-api",
+                  "[none]",
+                  "jakarta.mail-api\njakarta.xml.bind-api\njakarta.xml.soap-api",
                   "[[jakarta.activation:jakarta.activation-api:2.0.1]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.annotation-api",
+                  "[none]",
+                  "[none]",
                   "[[jakarta.annotation:jakarta.annotation-api:2.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.authentication-api",
+                  "[none]",
+                  "jakarta.security.enterprise-api",
                   "[[jakarta.authentication:jakarta.authentication-api:2.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.authorization-api",
+                  "jakarta.servlet-api",
+                  "[none]",
                   "[[jakarta.authorization:jakarta.authorization-api:2.0.0]]",
                   "[[jakarta.servlet:jakarta.servlet-api:5.0.0]]",
                   "OK"
                ],
                [
                   "jakarta.batch-api",
+                  "jakarta.enterprise.cdi-api\njakarta.inject-api",
+                  "[none]",
                   "[[jakarta.batch:jakarta.batch-api:2.0.0]]",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0]] (provided)\n[[jakarta.inject:jakarta.inject-api:2.0.0]] (provided)",
                   "OK\nOK (version 2.0.1)"
                ],
                [
                   "jakarta.ejb-api",
+                  "jakarta.transaction-api",
+                  "[none]",
                   "[[jakarta.ejb:jakarta.ejb-api:4.0.0]]",
                   "[[jakarta.transaction:jakarta.transaction-api:2.0.0]]",
                   "OK"
                ],
                [
                   "jakarta.el-api",
+                  "[none]",
+                  "jakarta.enterprise.cdi-api\njakarta.faces-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api",
                   "[[jakarta.el:jakarta.el-api:4.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.enterprise.cdi-api",
+                  "jakarta.el-api\njakarta.inject-api\njakarta.interceptor-api",
+                  "jakarta.batch-api\njakarta.faces-api\njakarta.mvc-api\njakarta.security.enterprise-api\njakarta.transaction-api",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0]]",
                   "[[jakarta.ejb:jakarta.ejb-api:4.0.0-RC2]] (provided)\n[[jakarta.el:jakarta.el-api:4.0.0]]\n[[jakarta.inject:jakarta.inject-api:2.0.0]]\n[[jakarta.interceptor:jakarta.interceptor-api:2.0.0]]\n[[jakarta.transaction:jakarta.transaction-api:2.0.0-RC2]] (provided)",
                   "OK (version 4.0.0)\nOK\nOK (version 2.0.1)\nOK\nOK (version 2.0.0)"
                ],
                [
                   "jakarta.enterprise.concurrent-api",
+                  "[none]",
+                  "[none]",
                   "[[jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.faces-api",
+                  "jakarta.el-api\njakarta.enterprise.cdi-api\njakarta.inject-api\njakarta.servlet-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.validation-api\njakarta.websocket-api\njakarta.websocket-client-api",
+                  "[none]",
                   "[[jakarta.faces:jakarta.faces-api:3.0.0]]",
                   "[[jakarta.annotation:jakarta.annotation-api:2.0.0]] (provided)\n[[jakarta.ejb:jakarta.ejb-api:4.0.0-RC2]] (provided, optional)\n[[jakarta.el:jakarta.el-api:4.0.0]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0]] (provided)\n[[jakarta.json:jakarta.json-api:2.0.0]] (provided, optional)\n[[jakarta.persistence:jakarta.persistence-api:3.0.0]] (provided, optional)\n[[jakarta.servlet:jakarta.servlet-api:5.0.0]] (provided)\n[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0]] (provided, optional)\n[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0]] (provided, optional)\n[[jakarta.transaction:jakarta.transaction-api:2.0.0-RC3]] (provided, optional)\n[[jakarta.validation:jakarta.validation-api:3.0.0]] (provided)\n[[jakarta.websocket:jakarta.websocket-api:2.0.0]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:3.0.0]] (provided, optional)\n[[jakarta.xml.ws:jakarta.xml.ws-api:3.0.0]] (provided, optional)\n[[org.glassfish:jakarta.faces:3.0.0-RC5]] (provided)",
                   "OK\nOK (version 4.0.0)\nOK\nOK\nOK (version 2.0.2)\nOK\nOK\nOK\nOK\nOK (version 2.0.0)\nOK\nOK\nOK (version 3.0.1)\nOK (version 3.0.1)\nUnsatisfied"
                ],
                [
                   "jakarta.inject-api",
+                  "[none]",
+                  "jakarta.batch-api\njakarta.enterprise.cdi-api\njakarta.faces-api",
                   "[[jakarta.inject:jakarta.inject-api:2.0.1]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.interceptor-api",
+                  "[none]",
+                  "jakarta.enterprise.cdi-api\njakarta.security.enterprise-api\njakarta.transaction-api",
                   "[[jakarta.interceptor:jakarta.interceptor-api:2.0.0]]",
                   "[[jakarta.annotation:jakarta.annotation-api:2.0.0]]",
                   "OK"
                ],
                [
                   "jakarta.jms-api",
+                  "[none]",
+                  "[none]",
                   "[[jakarta.jms:jakarta.jms-api:3.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.json-api",
+                  "[none]",
+                  "jakarta.json.bind-api",
                   "[[jakarta.json:jakarta.json-api:2.0.2]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.json.bind-api",
+                  "jakarta.json-api",
+                  "[none]",
                   "[[jakarta.json.bind:jakarta.json.bind-api:2.0.0]]",
                   "[[jakarta.json:jakarta.json-api:2.0.0]] (provided)",
                   "OK (version 2.0.2)"
                ],
                [
                   "jakarta.jws-api",
+                  "[none]",
+                  "[none]",
                   "[[jakarta.jws:jakarta.jws-api:3.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.mail-api",
+                  "jakarta.activation-api",
+                  "[none]",
                   "[[jakarta.mail:jakarta.mail-api:2.0.1]]",
                   "[[com.sun.activation:jakarta.activation:2.0.1]] (provided)",
                   "Unsatisfied"
                ],
                [
                   "jakarta.mvc-api",
+                  "jakarta.enterprise.cdi-api\njakarta.validation-api\njakarta.ws.rs-api",
+                  "[none]",
                   "[[jakarta.mvc:jakarta.mvc-api:2.0.0]]",
                   "[[jakarta.annotation:jakarta.annotation-api:2.0.0]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0]] (provided)\n[[jakarta.validation:jakarta.validation-api:3.0.0]] (provided)\n[[jakarta.ws.rs:jakarta.ws.rs-api:3.0.0]] (provided)",
                   "OK\nOK\nOK\nOK"
                ],
                [
                   "jakarta.persistence-api",
+                  "[none]",
+                  "[none]",
                   "[[jakarta.persistence:jakarta.persistence-api:3.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.resource-api",
+                  "jakarta.transaction-api",
+                  "[none]",
                   "[[jakarta.resource:jakarta.resource-api:2.0.0]]",
                   "[[jakarta.annotation:jakarta.annotation-api:2.0.0]]\n[[jakarta.transaction:jakarta.transaction-api:2.0.0-RC1]]",
                   "OK\nOK (version 2.0.0)"
                ],
                [
                   "jakarta.security.enterprise-api",
+                  "jakarta.authentication-api\njakarta.enterprise.cdi-api\njakarta.interceptor-api\njakarta.servlet-api",
+                  "[none]",
                   "[[jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0]]",
                   "[[jakarta.authentication:jakarta.authentication-api:2.0.0]] (provided)\n[[jakarta.authorization:jakarta.authorization-api:2.0.0]] (provided)\n[[jakarta.el:jakarta.el-api:4.0.0]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0]] (provided)\n[[jakarta.interceptor:jakarta.interceptor-api:2.0.0]] (provided)\n[[jakarta.servlet:jakarta.servlet-api:5.0.0]] (provided)",
                   "OK\nOK\nOK\nOK\nOK\nOK"
                ],
                [
                   "jakarta.servlet-api",
+                  "[none]",
+                  "jakarta.authorization-api\njakarta.faces-api\njakarta.security.enterprise-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api",
                   "[[jakarta.servlet:jakarta.servlet-api:5.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.servlet.jsp-api",
+                  "jakarta.el-api\njakarta.servlet-api",
+                  "jakarta.faces-api\njakarta.servlet.jsp.jstl-api",
                   "[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0]]",
                   "[[jakarta.servlet:jakarta.servlet-api:5.0.0]] (provided)\n[[jakarta.el:jakarta.el-api:4.0.0]] (provided)",
                   "OK\nOK"
                ],
                [
                   "jakarta.servlet.jsp.jstl-api",
+                  "jakarta.el-api\njakarta.servlet-api\njakarta.servlet.jsp-api",
+                  "jakarta.faces-api",
                   "[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0]]",
                   "[[jakarta.servlet:jakarta.servlet-api:5.0.0]]\n[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0]] (provided)\n[[jakarta.el:jakarta.el-api:4.0.0]]\n[[jakarta.xml.bind:jakarta.xml.bind-api:3.0.0]]",
                   "OK\nOK\nOK\nOK (version 3.0.1)"
                ],
                [
                   "jakarta.transaction-api",
+                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api",
+                  "jakarta.ejb-api\njakarta.resource-api",
                   "[[jakarta.transaction:jakarta.transaction-api:2.0.0]]",
                   "[[jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0-M1]] (provided)\n[[jakarta.interceptor:jakarta.interceptor-api:2.0.0-RC1]] (provided)",
                   "OK (version 3.0.0)\nOK (version 2.0.0)"
                ],
                [
                   "jakarta.validation-api",
+                  "[none]",
+                  "jakarta.faces-api\njakarta.mvc-api",
                   "[[jakarta.validation:jakarta.validation-api:3.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.websocket-api",
+                  "jakarta.websocket-client-api",
+                  "jakarta.faces-api\njakarta.websocket-client-api",
                   "[[jakarta.websocket:jakarta.websocket-api:2.0.0]]",
                   "[[jakarta.websocket:jakarta.websocket-client-api:2.0.0]] (optional)",
                   "OK"
                ],
                [
                   "jakarta.websocket-client-api",
+                  "jakarta.websocket-api",
+                  "jakarta.faces-api\njakarta.websocket-api",
                   "[[jakarta.websocket:jakarta.websocket-client-api:2.0.0]]",
                   "[none]",
                   ""
                ],
                [
                   "jakarta.ws.rs-api",
+                  "jakarta.xml.bind-api",
+                  "jakarta.mvc-api",
                   "[[jakarta.ws.rs:jakarta.ws.rs-api:3.0.0]]",
                   "[[jakarta.activation:jakarta.activation-api:2.0.0]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:3.0.0]] (provided, optional)",
                   "OK (version 2.0.1)\nOK (version 3.0.1)"
                ],
                [
                   "jakarta.xml.bind-api",
+                  "jakarta.activation-api",
+                  "jakarta.ws.rs-api\njakarta.xml.ws-api",
                   "[[jakarta.xml.bind:jakarta.xml.bind-api:3.0.1]]",
                   "[[com.sun.activation:jakarta.activation:2.0.1]]",
                   "Unsatisfied"
                ],
                [
                   "jakarta.xml.soap-api",
+                  "jakarta.activation-api",
+                  "jakarta.xml.ws-api",
                   "[[jakarta.xml.soap:jakarta.xml.soap-api:2.0.1]]",
                   "[[com.sun.activation:jakarta.activation:2.0.1]]",
                   "Unsatisfied"
                ],
                [
                   "jakarta.xml.ws-api",
+                  "jakarta.xml.bind-api\njakarta.xml.soap-api",
+                  "[none]",
                   "[[jakarta.xml.ws:jakarta.xml.ws-api:3.0.1]]",
                   "[[jakarta.jws:jakarta.jws-api:3.0.0]]\n[[jakarta.xml.bind:jakarta.xml.bind-api:3.0.1]]\n[[jakarta.xml.soap:jakarta.xml.soap-api:2.0.1]]",
                   "OK\nOK\nOK"

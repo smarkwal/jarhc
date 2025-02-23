@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates | Issues
 ----------+-----------+-----------+--------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-------------+-------
-jarhc     | [unknown] | jarhc.jar | 286 KB | No            | Java 11 (149)          | 9         | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
-Classpath | -         | -         | 286 KB | -             | Java 11 (149)          | 9         | 20                          | -                                        | -           | -
+jarhc     | [unknown] | jarhc.jar | 284 KB | No            | Java 11 (148)          | 9         | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
+Classpath | -         | -         | 284 KB | -             | Java 11 (148)          | 9         | 20                          | -                                        | -           | -
 
 JAR Manifests
 -------------
@@ -27,21 +27,13 @@ Artifact | Module name | Definition | Automatic | Requires | Exports
 ---------+-------------+------------+-----------+----------+---------------
 jarhc    | org.jarhc   | Manifest   | Yes       |          | [all packages]
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact | Uses   | Used by
----------+--------+--------
-jarhc    | [none] | [none]
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact | Maven coordinates | Direct dependencies | Status
----------+-------------------+---------------------+-------
-jarhc    | [unknown]         | [unknown]           |
+Artifact | Uses   | Used by | Maven coordinates | Direct dependencies | Status
+---------+--------+---------+-------------------+---------------------+-------
+jarhc    | [none] | [none]  | [unknown]         | [unknown]           |
 
 Blacklist
 ---------

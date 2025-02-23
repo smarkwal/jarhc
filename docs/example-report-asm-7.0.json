@@ -276,44 +276,13 @@
          }]
       },
       {
-         "description": "Dependencies between JAR files.",
-         "title": "JAR Dependencies",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Uses",
-               "Used by"
-            ],
-            "rows": [
-               [
-                  "asm",
-                  "[none]",
-                  "asm-analysis\nasm-commons\nasm-tree"
-               ],
-               [
-                  "asm-analysis",
-                  "asm\nasm-tree",
-                  "[none]"
-               ],
-               [
-                  "asm-commons",
-                  "asm\nasm-tree",
-                  "[none]"
-               ],
-               [
-                  "asm-tree",
-                  "asm",
-                  "asm-analysis\nasm-commons"
-               ]
-            ]
-         }]
-      },
-      {
          "description": "Dependencies as declared in POM file.",
          "title": "Dependencies",
          "content": [{
             "columns": [
                "Artifact",
+               "Uses",
+               "Used by",
                "Maven coordinates",
                "Direct dependencies",
                "Status"
@@ -321,24 +290,32 @@
             "rows": [
                [
                   "asm",
+                  "[none]",
+                  "asm-analysis\nasm-commons\nasm-tree",
                   "[[org.ow2.asm:asm:7.0]]",
                   "[none]",
                   ""
                ],
                [
                   "asm-analysis",
+                  "asm\nasm-tree",
+                  "[none]",
                   "[[org.ow2.asm:asm-analysis:7.0]]",
                   "[[org.ow2.asm:asm-tree:7.0]]",
                   "OK"
                ],
                [
                   "asm-commons",
+                  "asm\nasm-tree",
+                  "[none]",
                   "[[org.ow2.asm:asm-commons:7.0]]",
                   "[[org.ow2.asm:asm-analysis:7.0]]\n[[org.ow2.asm:asm-tree:7.0]]\n[[org.ow2.asm:asm:7.0]]",
                   "OK\nOK\nOK"
                ],
                [
                   "asm-tree",
+                  "asm",
+                  "asm-analysis\nasm-commons",
                   "[[org.ow2.asm:asm-tree:7.0]]",
                   "[[org.ow2.asm:asm:7.0]]",
                   "OK"

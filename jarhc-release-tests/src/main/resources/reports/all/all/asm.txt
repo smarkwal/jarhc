@@ -37,19 +37,11 @@ Artifact | Name              | Version | Description                            
 asm      | org.objectweb.asm | 9.2.0   | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt |                | org.objectweb.asm (Version: 9.2)           |              | Manifest Version: 2
          |                   |         | Doc URL: http://asm.ow2.org                               |                | org.objectweb.asm.signature (Version: 9.2) |              | Required Execution Environment: J2SE-1.5
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact | Uses   | Used by
----------+--------+--------
-asm      | [none] | [none]
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact | Maven coordinates   | Direct dependencies | Status
----------+---------------------+---------------------+-------
-asm      | org.ow2.asm:asm:9.2 | [none]              |
+Artifact | Uses   | Used by | Maven coordinates   | Direct dependencies | Status
+---------+--------+---------+---------------------+---------------------+-------
+asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | [none]              |
 

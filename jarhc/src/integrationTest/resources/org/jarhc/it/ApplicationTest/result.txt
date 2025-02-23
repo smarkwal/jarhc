@@ -50,21 +50,13 @@ Artifact | Version | Updates
 ---------+---------+--------
 a        |         |
 
-JAR Dependencies
-----------------
-Dependencies between JAR files.
-
-Artifact | Uses   | Used by
----------+--------+--------
-a        | [none] | [none]
-
 Dependencies
 ------------
 Dependencies as declared in POM file.
 
-Artifact | Maven coordinates | Direct dependencies | Status
----------+-------------------+---------------------+-------
-a        | [unknown]         | [unknown]           |
+Artifact | Uses   | Used by | Maven coordinates | Direct dependencies | Status
+---------+--------+---------+-------------------+---------------------+-------
+a        | [none] | [none]  | [unknown]         | [unknown]           |
 
 Duplicate Classes
 -----------------
