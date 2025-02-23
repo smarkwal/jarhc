@@ -51,136 +51,184 @@ code {
 </head>
 <body>
 
-<h1>ASM 7.0</h1>
+<h1 class="report-title">ASM 7.0</h1>
 
-<h3>Table of Contents</h3>
-<ul>
-<li><a href="#JARFiles">JAR Files</a></li>
-<li><a href="#JARManifests">JAR Manifests</a></li>
-<li><a href="#JPMSModules">JPMS Modules</a></li>
-<li><a href="#OSGiBundles">OSGi Bundles</a></li>
-<li><a href="#ClassVersions">Class Versions</a></li>
-<li><a href="#Updates">Updates</a></li>
-<li><a href="#JARDependencies">JAR Dependencies</a></li>
-<li><a href="#Dependencies">Dependencies</a></li>
-<li><a href="#Packages">Packages</a></li>
-<li><a href="#DuplicateClasses">Duplicate Classes</a></li>
-<li><a href="#BinaryCompatibility">Binary Compatibility</a></li>
-<li><a href="#Blacklist">Blacklist</a></li>
-<li><a href="#JavaRuntime">Java Runtime</a></li>
+<h3 class="report-toc-title">Table of Contents</h3>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
+<li class="report-toc-item"><a href="#ClassVersions">Class Versions</a></li>
+<li class="report-toc-item"><a href="#Updates">Updates</a></li>
+<li class="report-toc-item"><a href="#JARDependencies">JAR Dependencies</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#Packages">Packages</a></li>
+<li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
 
-<section id="JARFiles">
-<h2>JAR Files</h2>
-<p>List of JAR files found in classpath.</p>
-<table>
-	<tr><th>Artifact</th><th>Version</th><th>Source</th><th>Size</th><th>Classes</th><th>Resources</th><th>Checksum (SHA-1)</th><th>Coordinates</th></tr>
-	<tr><td>asm-commons</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td>78.0 KB</td><td>32</td><td>0</td><td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td></tr>
-	<tr><td>Classpath</td><td>-</td><td>-</td><td>78.0 KB</td><td>32</td><td>0</td><td>-</td><td>-</td></tr>
+<section class="report-section" id="JARFiles">
+<h2 class="report-section-title">JAR Files</h2>
+<p class="report-section-description">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Version</th><th>Source</th><th>Size</th><th>Classes</th><th>Resources</th><th>Checksum (SHA-1)</th><th>Coordinates</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td>78.0 KB</td><td>32</td><td>0</td><td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td></tr>
+	<tr class="report-table-row"><td>Classpath</td><td>-</td><td>-</td><td>78.0 KB</td><td>32</td><td>0</td><td>-</td><td>-</td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="JARManifests">
-<h2>JAR Manifests</h2>
-<p>Information found in META-INF/MANIFEST.MF.</p>
-<table>
-	<tr><th>Artifact</th><th>General</th><th>Runtime</th><th>Implementation</th><th>Specification</th><th>Signature</th></tr>
-	<tr><td>asm-commons</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
+<section class="report-section" id="JARManifests">
+<h2 class="report-section-title">JAR Manifests</h2>
+<p class="report-section-description">Information found in META-INF/MANIFEST.MF.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>General</th><th>Runtime</th><th>Implementation</th><th>Specification</th><th>Signature</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="JPMSModules">
-<h2>JPMS Modules</h2>
-<p>List of Java Modules found in classpath.</p>
-<table>
-	<tr><th>Artifact</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
-	<tr><td>asm-commons</td><td><code>org.objectweb.asm.commons</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></td><td><code>org.objectweb.asm.commons</code></td></tr>
+<section class="report-section" id="JPMSModules">
+<h2 class="report-section-title">JPMS Modules</h2>
+<p class="report-section-description">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td><code>org.objectweb.asm.commons</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></td><td><code>org.objectweb.asm.commons</code></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="OSGiBundles">
-<h2>OSGi Bundles</h2>
-<p>Information about OSGi Bundles.</p>
-<table>
-	<tr><th>Artifact</th><th>Name</th><th>Version</th><th>Description</th><th>Import Package</th><th>Export Package</th><th>Capabilities</th><th>Others</th></tr>
-	<tr><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td><td><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
+<section class="report-section" id="OSGiBundles">
+<h2 class="report-section-title">OSGi Bundles</h2>
+<p class="report-section-description">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Name</th><th>Version</th><th>Description</th><th>Import Package</th><th>Export Package</th><th>Capabilities</th><th>Others</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td><td><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="ClassVersions">
-<h2>Class Versions</h2>
-<p>Java class file format information.</p>
-<table>
-	<tr><th>Artifact</th><th>Multi-release</th><th>Class files by Java version</th></tr>
-	<tr><td>asm-commons</td><td>No</td><td>Java 5 (32)</td></tr>
-	<tr><td>Classpath</td><td>-</td><td>Java 5 (32)</td></tr>
+<section class="report-section" id="ClassVersions">
+<h2 class="report-section-title">Class Versions</h2>
+<p class="report-section-description">Java class file format information.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Multi-release</th><th>Class files by Java version</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td>No</td><td>Java 5 (32)</td></tr>
+	<tr class="report-table-row"><td>Classpath</td><td>-</td><td>Java 5 (32)</td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="Updates">
-<h2>Updates</h2>
-<p>Information about newer major, minor, and patch versions of artifacts.</p>
-<table>
-	<tr><th>Artifact</th><th>Version</th><th>Updates</th></tr>
-	<tr><td>asm-commons</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td></tr>
+<section class="report-section" id="Updates">
+<h2 class="report-section-title">Updates</h2>
+<p class="report-section-description">Information about newer major, minor, and patch versions of artifacts.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Version</th><th>Updates</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="JARDependencies">
-<h2>JAR Dependencies</h2>
-<p>Dependencies between JAR files.</p>
-<table>
-	<tr><th>Artifact</th><th>Uses</th><th>Used by</th></tr>
-	<tr><td>asm-commons</td><td><span style="color:gray">[none]</span></td><td><span style="color:gray">[none]</span></td></tr>
+<section class="report-section" id="JARDependencies">
+<h2 class="report-section-title">JAR Dependencies</h2>
+<p class="report-section-description">Dependencies between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Uses</th><th>Used by</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td><span style="color:gray">[none]</span></td><td><span style="color:gray">[none]</span></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="Dependencies">
-<h2>Dependencies</h2>
-<p>Dependencies as declared in POM file.</p>
-<table>
-	<tr><th>Artifact</th><th>Maven coordinates</th><th>Direct dependencies</th><th>Status</th></tr>
-	<tr><td>asm-commons</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td>OK [Provided]<br>OK [Provided]<br>OK [Provided]</td></tr>
+<section class="report-section" id="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<p class="report-section-description">Dependencies as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Maven coordinates</th><th>Direct dependencies</th><th>Status</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td>OK [Provided]<br>OK [Provided]<br>OK [Provided]</td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="Packages">
-<h2>Packages</h2>
-<p>List of packages per JAR file.</p>
-<table>
-	<tr><th>Artifact</th><th>Count</th><th>Packages</th><th>Issues</th></tr>
-	<tr><td>asm-commons</td><td>1</td><td><code>org.objectweb.asm.commons</code></td><td></td></tr>
+<section class="report-section" id="Packages">
+<h2 class="report-section-title">Packages</h2>
+<p class="report-section-description">List of packages per JAR file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Count</th><th>Packages</th><th>Issues</th></tr>
+</thead>
+<tbody>
+	<tr class="report-table-row"><td>asm-commons</td><td>1</td><td><code>org.objectweb.asm.commons</code></td><td></td></tr>
+</tbody>
 </table>
 </section>
 
-<section id="DuplicateClasses">
-<h2>Duplicate Classes</h2>
-<p>Duplicate classes, shadowed classes, and duplicate resources.</p>
-<table>
-	<tr><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
+<section class="report-section" id="DuplicateClasses">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<p class="report-section-description">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
+</thead>
+<tbody>
+</tbody>
 </table>
 </section>
 
-<section id="BinaryCompatibility">
-<h2>Binary Compatibility</h2>
-<p>Compatibility issues between JAR files.</p>
-<table>
-	<tr><th>Artifact</th><th>Issues</th></tr>
+<section class="report-section" id="BinaryCompatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<p class="report-section-description">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Issues</th></tr>
+</thead>
+<tbody>
+</tbody>
 </table>
 </section>
 
-<section id="Blacklist">
-<h2>Blacklist</h2>
-<p>Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
-<table>
-	<tr><th>Artifact</th><th>Issues</th></tr>
+<section class="report-section" id="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<p class="report-section-description">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header"><th>Artifact</th><th>Issues</th></tr>
+</thead>
+<tbody>
+</tbody>
 </table>
 </section>
 
-<section id="JavaRuntime">
-<h2>Java Runtime</h2>
-<p>Information about JRE/JDK runtime.</p>
-<p>Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+<section class="report-section" id="JavaRuntime">
+<h2 class="report-section-title">Java Runtime</h2>
+<p class="report-section-description">Information about JRE/JDK runtime.</p>
+<p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
 <div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
