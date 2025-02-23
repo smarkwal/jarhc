@@ -196,17 +196,17 @@ public class DependenciesAnalyzer implements Analyzer {
 	private String getVersionsInfo(List<ArtifactVersion> newerVersions, String groupId, String artifactId) {
 
 		// group versions by minor version
-		TreeMap<ArtifactVersion, List<ArtifactVersion>> versions = new TreeMap<>();
+		TreeMap<ArtifactVersion, List<ArtifactVersion>> map = new TreeMap<>();
 		for (ArtifactVersion version : newerVersions) {
 			ArtifactVersion key = new ArtifactVersion(version.getMajor(), version.getMinor(), 0);
-			List<ArtifactVersion> group = versions.computeIfAbsent(key, k -> new ArrayList<>());
-			group.add(version);
+			List<ArtifactVersion> versions = map.computeIfAbsent(key, k -> new ArrayList<>());
+			versions.add(version);
 		}
 
-		List<String> lines = new ArrayList<>(versions.size());
-		for (ArtifactVersion version : versions.keySet()) {
+		List<String> lines = new ArrayList<>(map.size());
+		for (List<ArtifactVersion> versions : map.values()) {
 			// convert versions to strings
-			List<String> group = versions.get(version).stream().map(ArtifactVersion::toString).collect(Collectors.toList());
+			List<String> group = versions.stream().map(ArtifactVersion::toString).collect(Collectors.toList());
 			// keep at max 7 versions per group
 			if (group.size() > 7) {
 				group = Arrays.asList(group.get(0), group.get(1), group.get(2), Markdown.MORE, group.get(group.size() - 3), group.get(group.size() - 2), group.get(group.size() - 1));
@@ -255,24 +255,8 @@ public class DependenciesAnalyzer implements Analyzer {
 			Predicate<JarFile> predicate = jarFile -> matches(jarFile, dependency);
 			JarFile jarFile = classpath.getJarFile(predicate);
 			if (jarFile != null) {
-
-				// check if it is an exact match
-				StringBuilder line = new StringBuilder("OK");
-				Artifact artifact = jarFile.getArtifacts().get(0);
-				if (artifact.getGroupId().equals(dependency.getGroupId()) && artifact.getArtifactId().equals(dependency.getArtifactId())) {
-					if (!artifact.getVersion().equals(dependency.getVersion())) {
-						line.append(" (version ").append(artifact.getVersion()).append(")");
-					}
-				} else {
-					line.append(" (").append(artifact.toCoordinates()).append(")");
-				}
-
-				String classLoader = jarFile.getClassLoader();
-				if (classLoader != null && !classLoader.equals("Classpath")) {
-					line.append(" [").append(classLoader).append("]");
-				}
-
-				lines.add(line.toString());
+				String status = getDependencyStatus(dependency, jarFile);
+				lines.add(status);
 			} else {
 				lines.add("Unsatisfied");
 			}
@@ -301,13 +285,32 @@ public class DependenciesAnalyzer implements Analyzer {
 				continue;
 			}
 
-			// TODO: check if type matches?
-
 			// note: version may be different
 			return true;
 		}
 
 		return false;
+	}
+
+	private static String getDependencyStatus(Dependency dependency, JarFile jarFile) {
+
+		StringBuilder line = new StringBuilder("OK");
+
+		// check if it is an exact match
+		Artifact artifact = jarFile.getArtifacts().get(0);
+		if (artifact.getGroupId().equals(dependency.getGroupId()) && artifact.getArtifactId().equals(dependency.getArtifactId())) {
+			if (!artifact.getVersion().equals(dependency.getVersion())) {
+				line.append(" (version ").append(artifact.getVersion()).append(")");
+			}
+		} else {
+			line.append(" (").append(artifact.toCoordinates()).append(")");
+		}
+
+		String classLoader = jarFile.getClassLoader();
+		if (classLoader != null && !classLoader.equals("Classpath")) {
+			line.append(" [").append(classLoader).append("]");
+		}
+		return line.toString();
 	}
 
 	private String getCoordinates(JarFile jarFile) {

@@ -28,6 +28,9 @@ import java.util.TreeMap;
 
 public class ArtifactVersion implements Comparable<ArtifactVersion> {
 
+	private static final BigInteger MIN_INTEGER = BigInteger.valueOf(Integer.MIN_VALUE);
+	private static final BigInteger MAX_INTEGER = BigInteger.valueOf(Integer.MAX_VALUE);
+
 	private final String version;
 
 	private final List<Item> items;
@@ -63,12 +66,32 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 
 	public int getPosition(int position) {
 		if (position < 0) throw new IllegalArgumentException("position < 0");
-		if (position >= items.size()) return 0;
+
+		if (position >= items.size()) {
+			return 0;
+		}
+
+		for (int i = 0; i <= position; i++) {
+			Item item = items.get(i);
+			if (!item.isNumber()) {
+				return 0;
+			}
+		}
+
 		Item item = items.get(position);
 		if (item.value instanceof Integer) {
 			return (Integer) item.value;
+		} else if (item.value instanceof BigInteger) {
+			BigInteger value = (BigInteger) item.value;
+			if (value.compareTo(MIN_INTEGER) < 0) {
+				return Integer.MIN_VALUE;
+			} else if (value.compareTo(MAX_INTEGER) > 0) {
+				return Integer.MAX_VALUE;
+			} else {
+				return value.intValue();
+			}
 		}
-		return -1;
+		return 0;
 	}
 
 	public boolean isStable() {
@@ -138,6 +161,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 		}
 	}
 
+	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 	private static int compareItems(List<Item> items1, List<Item> items2) {
 		boolean number = true;
 
@@ -160,9 +184,9 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 					return -comparePadding(items2, index, number);
 				}
 			} else {
-				int rel = item1.compareTo(item2);
-				if (rel != 0) {
-					return rel;
+				int diff = item1.compareTo(item2);
+				if (diff != 0) {
+					return diff;
 				}
 				number = item1.isNumber();
 			}
@@ -170,19 +194,18 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 	}
 
 	private static int comparePadding(List<Item> items, int index, Boolean number) {
-		int rel = 0;
 		for (int i = index; i < items.size(); i++) {
 			Item item = items.get(i);
 			if (number != null && number != item.isNumber()) {
 				// do not stop here, but continue, skipping non-number members
 				continue;
 			}
-			rel = item.compareTo(null);
-			if (rel != 0) {
-				break;
+			int diff = item.compareTo(null);
+			if (diff != 0) {
+				return diff;
 			}
 		}
-		return rel;
+		return 0;
 	}
 
 	// --------------------------------------------------------------------------------------------
@@ -211,49 +234,46 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 			return (kind & KIND_QUALIFIER) == 0; // i.e. kind != string/qualifier
 		}
 
-		public int compareTo(Item that) {
-			int rel;
-			if (that == null) {
+		public int compareTo(Item item) {
+
+			if (item == null) {
 				// null in this context denotes the pad item (0 or "ga")
 				switch (kind) {
 					case KIND_MIN:
-						rel = -1;
-						break;
+						return -1;
 					case KIND_MAX:
 					case KIND_BIGINT:
 					case KIND_STRING:
-						rel = 1;
-						break;
+						return 1;
 					case KIND_INT:
 					case KIND_QUALIFIER:
-						rel = (Integer) value;
-						break;
+						return (Integer) value;
 					default:
 						throw new IllegalStateException("unknown version item kind " + kind);
 				}
-			} else {
-				rel = kind - that.kind;
-				if (rel == 0) {
-					switch (kind) {
-						case KIND_MAX:
-						case KIND_MIN:
-							break;
-						case KIND_BIGINT:
-							rel = ((BigInteger) value).compareTo((BigInteger) that.value);
-							break;
-						case KIND_INT:
-						case KIND_QUALIFIER:
-							rel = ((Integer) value).compareTo((Integer) that.value);
-							break;
-						case KIND_STRING:
-							rel = ((String) value).compareToIgnoreCase((String) that.value);
-							break;
-						default:
-							throw new IllegalStateException("unknown version item kind " + kind);
-					}
-				}
 			}
-			return rel;
+
+			// compare kind of items
+			int diff = kind - item.kind;
+			if (diff != 0) {
+				return diff;
+			}
+
+			// same kind of items -> compare values
+			switch (kind) {
+				case KIND_MAX:
+				case KIND_MIN:
+					return 0;
+				case KIND_BIGINT:
+					return ((BigInteger) value).compareTo((BigInteger) item.value);
+				case KIND_INT:
+				case KIND_QUALIFIER:
+					return ((Integer) value).compareTo((Integer) item.value);
+				case KIND_STRING:
+					return ((String) value).compareToIgnoreCase((String) item.value);
+				default:
+					throw new IllegalStateException("unknown version item kind " + kind);
+			}
 		}
 
 		@Override
@@ -308,6 +328,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 			this.versionLength = this.version.length();
 		}
 
+		@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 		public boolean next() {
 			if (index >= versionLength) {
 				return false;
@@ -360,6 +381,7 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 			return true;
 		}
 
+		@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 		public Item toItem() {
 			if (number) {
 				try {

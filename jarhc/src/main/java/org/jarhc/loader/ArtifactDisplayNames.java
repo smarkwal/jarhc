@@ -29,11 +29,17 @@ public class ArtifactDisplayNames {
 
 	public static void generateUniqueNames(List<JarFile> jarFiles) {
 
+		// group artifacts by artifact name
 		Map<String, List<JarFile>> groups = jarFiles.stream().collect(Collectors.groupingBy(JarFile::getArtifactName));
-		for (String artifactName : groups.keySet()) {
-			List<JarFile> list = groups.get(artifactName);
-			if (list.size() > 1) {
-				generateUniqueNamesForSameArtifact(list);
+
+		// for every group ...
+		for (List<JarFile> group : groups.values()) {
+
+			// if there is more than one artifact with the same name ...
+			if (group.size() > 1) {
+
+				// generate unique names for every artifact in the group
+				generateUniqueNamesForSameArtifact(group);
 			}
 		}
 

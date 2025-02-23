@@ -120,66 +120,76 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		// validate Main-Class attribute (if present)
 		String mainClass = manifestAttributes.get("Main-Class");
 		if (mainClass != null) {
-
-			Set<String> issues = linkedHashSetPool.doBorrow();
-
-			// check if main class exists
-			ClassDef classDef = jarFile.getClassDef(mainClass);
-			if (classDef == null) {
-				issues.add("Class not found: " + code(mainClass));
-			} else {
-
-				// check if main method exists
-				MethodDef mainMethodDef = classDef.getMethodDef("main", "([Ljava/lang/String;)V");
-				if (mainMethodDef == null) {
-					issues.add("Main method not found: " + code("public static void main(String[])"));
-				} else {
-
-					// check if main method is public and static
-					if (!mainMethodDef.isPublic()) {
-						issues.add("Main method is not public: " + code(mainMethodDef.getDisplayName()));
-					}
-					if (!mainMethodDef.isStatic()) {
-						issues.add("Main method is not static: " + code(mainMethodDef.getDisplayName()));
-					}
-				}
-			}
-
-			if (!issues.isEmpty()) {
-				String issue = createParentIssue("Main-Class: " + code(mainClass), issues);
-				jarIssues.add(issue);
-			}
-
+			collectMainClassIssues(mainClass, jarFile, jarIssues);
 		}
 
 		// validate Class-Path attribute (if present)
 		String classPath = manifestAttributes.get("Class-Path");
 		if (classPath != null) {
-
-			Set<String> issues = linkedHashSetPool.doBorrow();
-
-			// for every class path element ...
-			String[] classPathElements = classPath.split(" ");
-			for (String classPathElement : classPathElements) {
-
-				// if class path element is a JAR file ...
-				if (classPathElement.endsWith(".jar")) {
-					JarFile classPathJarFile = classpath.getJarFileByFileName(classPathElement);
-					if (classPathJarFile == null) {
-						issues.add("JAR file not found: " + code(classPathElement));
-					}
-				} else { // class path element is a directory path
-					issues.add("Element is not a JAR file: " + code(classPathElement));
-				}
-			}
-
-			if (!issues.isEmpty()) {
-				String issue = createParentIssue("Class-Path: " + code(classPath), issues);
-				jarIssues.add(issue);
-			}
-
+			collectClassPathIssues(classPath, classpath, jarIssues);
 		}
 
+	}
+
+	private void collectMainClassIssues(String mainClass, JarFile jarFile, Set<String> jarIssues) {
+
+		Set<String> issues = linkedHashSetPool.doBorrow();
+
+		// check if main class exists
+		ClassDef classDef = jarFile.getClassDef(mainClass);
+		if (classDef == null) {
+			issues.add("Class not found: " + code(mainClass));
+		} else {
+
+			// check if main method exists
+			MethodDef mainMethodDef = classDef.getMethodDef("main", "([Ljava/lang/String;)V");
+			if (mainMethodDef == null) {
+				issues.add("Main method not found: " + code("public static void main(String[])"));
+			} else {
+
+				// check if main method is public and static
+				if (!mainMethodDef.isPublic()) {
+					issues.add("Main method is not public: " + code(mainMethodDef.getDisplayName()));
+				}
+				if (!mainMethodDef.isStatic()) {
+					issues.add("Main method is not static: " + code(mainMethodDef.getDisplayName()));
+				}
+			}
+		}
+
+		if (!issues.isEmpty()) {
+			String issue = createParentIssue("Main-Class: " + code(mainClass), issues);
+			jarIssues.add(issue);
+		}
+
+		linkedHashSetPool.doReturn(issues);
+	}
+
+	private void collectClassPathIssues(String classPath, Classpath classpath, Set<String> jarIssues) {
+
+		Set<String> issues = linkedHashSetPool.doBorrow();
+
+		// for every class path element ...
+		String[] classPathElements = classPath.split(" ");
+		for (String classPathElement : classPathElements) {
+
+			// if class path element is a JAR file ...
+			if (classPathElement.endsWith(".jar")) {
+				JarFile classPathJarFile = classpath.getJarFileByFileName(classPathElement);
+				if (classPathJarFile == null) {
+					issues.add("JAR file not found: " + code(classPathElement));
+				}
+			} else { // class path element is a directory path
+				issues.add("Element is not a JAR file: " + code(classPathElement));
+			}
+		}
+
+		if (!issues.isEmpty()) {
+			String issue = createParentIssue("Class-Path: " + code(classPath), issues);
+			jarIssues.add(issue);
+		}
+
+		linkedHashSetPool.doReturn(issues);
 	}
 
 	private void collectClassIssues(ClassDef classDef, Classpath classpath, AccessCheck accessCheck, Set<String> jarIssues) {

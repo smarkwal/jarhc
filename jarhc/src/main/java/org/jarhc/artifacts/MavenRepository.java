@@ -59,6 +59,9 @@ import org.slf4j.Logger;
 
 public class MavenRepository implements Repository {
 
+	private static final String MAVEN_ERROR = "Maven error";
+	private static final String IO_ERROR = "I/O error";
+
 	private final ArtifactFinder artifactFinder;
 	private final Logger logger;
 	private final RemoteRepository central;
@@ -112,10 +115,9 @@ public class MavenRepository implements Repository {
 		} catch (ArtifactResolutionException e) {
 			Throwable cause = e.getCause();
 			if (cause instanceof ArtifactNotFoundException) {
-				// TODO: log exception
 				return Optional.empty();
 			}
-			throw new RepositoryException("Maven error", e);
+			throw new RepositoryException(MAVEN_ERROR, e);
 		}
 
 		// TODO: what does "missing" and "resolved" mean?
@@ -130,7 +132,7 @@ public class MavenRepository implements Repository {
 			InputStream stream = new FileInputStream(file);
 			return Optional.of(stream);
 		} catch (FileNotFoundException e) {
-			throw new RepositoryException("I/O error", e);
+			throw new RepositoryException(IO_ERROR, e);
 		}
 	}
 
@@ -149,8 +151,7 @@ public class MavenRepository implements Repository {
 			// return list of versions
 			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::new).collect(Collectors.toList());
 		} catch (VersionRangeResolutionException e) {
-			// TODO: exception handling
-			throw new RepositoryException("Maven error", e);
+			throw new RepositoryException(MAVEN_ERROR, e);
 		}
 	}
 
@@ -177,8 +178,7 @@ public class MavenRepository implements Repository {
 			}
 
 		} catch (Exception e) {
-			// TODO: exception handling
-			throw new RepositoryException("Maven error", e);
+			throw new RepositoryException(MAVEN_ERROR, e);
 		}
 
 		return result;
