@@ -70,7 +70,7 @@ class JarFilesAnalyzerTest {
 		assertEquals(5, rows.size());
 		assertValuesEquals(rows.get(0), "a", "1.0", "[[org.jarhc:a:1.0]]", "128 B", "No", "Java 8 (3)", "1", "`a` (+2 subpackages)", "[0a4c26b96ef92cceb7c2c7c0e19c808baeb8d696](https://search.maven.org/search?q=1:0a4c26b96ef92cceb7c2c7c0e19c808baeb8d696)", "[[org.jarhc:a:1.0]]", "");
 		assertValuesEquals(rows.get(1), "b", "2.0", "[[org.jarhc:b:2.0]]", "4.00 KB", "No", "Java 8 (1), Java 7 (1)", "0", "`b`", "[1271677b4f55e181e4c8192f0edf87bb3ff9fde5](https://search.maven.org/search?q=1:1271677b4f55e181e4c8192f0edf87bb3ff9fde5)", "[[org.jarhc:b:2.0]]", "");
-		assertValuesEquals(rows.get(2), "c-test", "3.2.1-SNAPSHOT", "c-3.2.1-SNAPSHOT-test.jar", "23.4 KB", "Yes (Java 9, Java 11)", "Java 1.4 (1)", "0", "`c`", "[3ee0f133a54067f5200caafa674437460648ce16](https://search.maven.org/search?q=1:3ee0f133a54067f5200caafa674437460648ce16)", "[unknown]", "");
+		assertValuesEquals(rows.get(2), "c-test", "3.2.1-SNAPSHOT", "c-3.2.1-SNAPSHOT-test.jar", "23.4 KB", "Yes (Java 11, Java 9)", "Java 1.4 (1)", "0", "`c`", "[3ee0f133a54067f5200caafa674437460648ce16](https://search.maven.org/search?q=1:3ee0f133a54067f5200caafa674437460648ce16)", "[unknown]", "");
 		assertValuesEquals(rows.get(3), "d", "[unknown]", "d.jar", "1.18 MB", "No", "[no class files]", "0", "", "[458dea9210ea076f4c422be47390a9f2c0fcb0f8](https://search.maven.org/search?q=1:458dea9210ea076f4c422be47390a9f2c0fcb0f8)", "[unknown]", "");
 		assertValuesEquals(rows.get(4), "Classpath", "-", "-", "1.20 MB", "-", "Java 8 (4), Java 7 (1), Java 1.4 (1)", "1", "5", "-", "-", "-");
 	}

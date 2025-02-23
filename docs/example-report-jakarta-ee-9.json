@@ -453,7 +453,7 @@
          }]
       },
       {
-         "description": "Information found in META-INF/MANIFEST.MF.",
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
             "columns": [
@@ -483,7 +483,7 @@
                ],
                [
                   "jakarta.authentication-api",
-                  "Automatic-Module-Name: `jakarta.security.auth.message`\nBnd-LastModified: `1604529784516`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.security.auth.message`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1604529784516`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.security.auth.message`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `2.0.0`\nVendor: `Jakarta Authentication`\nVendor ID: `org.glassfish`",
                   "Version: `2.0`\nVendor: `Oracle Corporation`",
@@ -491,7 +491,7 @@
                ],
                [
                   "jakarta.authorization-api",
-                  "Automatic-Module-Name: `jakarta.security.jacc`\nBnd-LastModified: `1595884271199`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.security.jacc`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1595884271199`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.security.jacc`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `2.0.0`\nVendor: `Oracle Corporation`\nVendor ID: `org.glassfish`",
                   "Version: `2.0`\nVendor: `Oracle Corporation`",
@@ -515,7 +515,7 @@
                ],
                [
                   "jakarta.el-api",
-                  "Automatic-Module-Name: `jakarta.el`\nBnd-LastModified: `1597941398313`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.el`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1597941398313`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.el`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `4.0.0`\nVendor: `Eclipse Foundation`",
                   "Version: `4.0`\nVendor: `Eclipse Foundation`",
@@ -523,7 +523,7 @@
                ],
                [
                   "jakarta.enterprise.cdi-api",
-                  "Automatic-Module-Name: `jakarta.cdi`\nBnd-LastModified: `1598813164840`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nOriginally-Created-By: `Apache Maven Bundle Plugin`\nTool: `Bnd-2.4.1.201501161923`",
+                  "Bnd-LastModified: `1598813164840`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nOriginally-Created-By: `Apache Maven Bundle Plugin`\nTool: `Bnd-2.4.1.201501161923`",
                   "",
                   "",
                   "",
@@ -635,7 +635,7 @@
                ],
                [
                   "jakarta.servlet-api",
-                  "Automatic-Module-Name: `jakarta.servlet`\nBnd-LastModified: `1599478906731`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1599478906731`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `5.0.0`\nVendor: `Eclipse Foundation`\nVendor ID: `org.eclipse`",
                   "Version: `5.0`\nVendor: `Eclipse Foundation`",
@@ -643,7 +643,7 @@
                ],
                [
                   "jakarta.servlet.jsp-api",
-                  "Automatic-Module-Name: `jakarta.servlet.jsp`\nBnd-LastModified: `1603236234159`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet.jsp`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1603236234159`\nBuild-Jdk-Spec: `1.8`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet.jsp`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `3.0.0`\nVendor: `Eclipse Foundation`",
                   "Version: `3.0`\nVendor: `Eclipse Foundation`",
@@ -651,7 +651,7 @@
                ],
                [
                   "jakarta.servlet.jsp.jstl-api",
-                  "Automatic-Module-Name: `jakarta.servlet.jsp.jstl`\nBnd-LastModified: `1602873125932`\nBuild-Jdk-Spec: `1.8`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet.jsp.jstl`\nManifest-Version: `1.0`\nTool: `Bnd-5.1.1.202006162103`",
+                  "Bnd-LastModified: `1602873125932`\nBuild-Jdk-Spec: `1.8`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.servlet.jsp.jstl`\nManifest-Version: `1.0`\nTool: `Bnd-5.1.1.202006162103`",
                   "",
                   "Version: `2.0.0`\nVendor: `Eclipse Foundation`\nVendor ID: `org.glassfish`",
                   "Version: `2.0`\nVendor: `Eclipse Foundation`",
@@ -659,7 +659,7 @@
                ],
                [
                   "jakarta.transaction-api",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `jakarta.transaction`\nBnd-LastModified: `1601380706017`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `1.8.0_202 (Oracle Corporation)`\nExtension-Name: `jakarta.transaction`\nManifest-Version: `1.0`\nTool: `Bnd-0.0.255`",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1601380706017`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `1.8.0_202 (Oracle Corporation)`\nExtension-Name: `jakarta.transaction`\nManifest-Version: `1.0`\nTool: `Bnd-0.0.255`",
                   "",
                   "Version: `2.0.0`\nVendor: `EE4J Community`\nVendor ID: `org.glassfish`",
                   "Version: `2.0`\nVendor: `Oracle Corporation`",
@@ -667,7 +667,7 @@
                ],
                [
                   "jakarta.validation-api",
-                  "Automatic-Module-Name: `jakarta.validation`\nBnd-LastModified: `1593873743039`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.2.0.201605172007`",
+                  "Bnd-LastModified: `1593873743039`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.2.0.201605172007`",
                   "",
                   "",
                   "",
@@ -675,7 +675,7 @@
                ],
                [
                   "jakarta.websocket-api",
-                  "Automatic-Module-Name: `jakarta.websocket`\nBnd-LastModified: `1601575843560`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.websocket`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1601575843560`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.websocket`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `2.0.0`\nVendor: `Eclipse Foundation`",
                   "Version: `2.0`\nVendor: `Eclipse Foundation`",
@@ -683,7 +683,7 @@
                ],
                [
                   "jakarta.websocket-client-api",
-                  "Automatic-Module-Name: `jakarta.websocket.client`\nBnd-LastModified: `1601575821137`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.websocket`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1601575821137`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `jenkins`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.websocket`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `2.0.0`\nVendor: `Eclipse Foundation`",
                   "Version: `2.0`\nVendor: `Eclipse Foundation`",
@@ -699,7 +699,7 @@
                ],
                [
                   "jakarta.xml.bind-api",
-                  "Created-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.xml.bind`\nManifest-Version: `1.0`\nMulti-Release: `true`",
+                  "Created-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.xml.bind`\nManifest-Version: `1.0`",
                   "",
                   "Version: `3.0.0`\nBuild ID: `d8a68e7`",
                   "Version: `3.0`\nVendor: `Eclipse Foundation`",

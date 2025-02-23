@@ -33,7 +33,7 @@ public abstract class AbstractReportFormatTest {
 	}
 
 	@Test
-	public void test_format() throws IOException {
+	void test_format() throws IOException {
 
 		// prepare
 		Report report = createTestReport();

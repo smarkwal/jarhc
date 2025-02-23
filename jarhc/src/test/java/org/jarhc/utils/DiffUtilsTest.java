@@ -23,10 +23,10 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DiffUtilsTest {
+class DiffUtilsTest {
 
 	@Test
-	public void diff() {
+	void diff() {
 
 		// prepare
 		List<String> lines1 = List.of("a.jar 1.0", "b.jar 1.0", "x.jar 3.0");
@@ -41,7 +41,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_duplicateValuesAtStart() {
+	void diff_duplicateValuesAtStart() {
 
 		// prepare: lists with duplicate values at start
 		List<String> lines1 = List.of("a", "a", "a");
@@ -53,12 +53,12 @@ public class DiffUtilsTest {
 		// assert
 		List<String> expectedLines = List.of(deleted("a"), "a", "a", inserted("x"));
 		// TODO: changes should stay together:
-		//  List<String> expectedLines = List.of("a", "a", deleted("a"), inserted("x"));
+		// List<String> expectedLines = List.of("a", "a", deleted("a"), inserted("x"));
 		Assertions.assertEquals(expectedLines, lines);
 	}
 
 	@Test
-	public void diff_duplicateValuesAtEnd() {
+	void diff_duplicateValuesAtEnd() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "a", "a");
@@ -73,7 +73,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_keepSimilarValuesTogether() {
+	void diff_keepSimilarValuesTogether() {
 
 		// prepare
 		List<String> lines1 = List.of("org.ow2.asm:asm:9.2 (runtime)", "org.json:json:20211205 (runtime)", "org.eclipse.aether:aether-impl:1.1.0 (runtime)");
@@ -95,7 +95,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_sameLists() {
+	void diff_sameLists() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b", "c");
@@ -110,7 +110,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_samePrefix() {
+	void diff_samePrefix() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b", "x");
@@ -125,7 +125,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_leftIsPrefix() {
+	void diff_leftIsPrefix() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b");
@@ -140,7 +140,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_rightIsPrefix() {
+	void diff_rightIsPrefix() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b", "x");
@@ -155,7 +155,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_samePostfix() {
+	void diff_samePostfix() {
 
 		// prepare
 		List<String> lines1 = List.of("x", "a", "b");
@@ -170,7 +170,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_leftIsPostfix() {
+	void diff_leftIsPostfix() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b");
@@ -185,7 +185,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_rightIsPostfix() {
+	void diff_rightIsPostfix() {
 
 		// prepare
 		List<String> lines1 = List.of("x", "a", "b");
@@ -200,7 +200,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_deleteBeforeInsert() {
+	void diff_deleteBeforeInsert() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "x", "c");
@@ -215,7 +215,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_allDifferent() {
+	void diff_allDifferent() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b", "c");
@@ -230,7 +230,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_emptyLists() {
+	void diff_emptyLists() {
 
 		// prepare
 		List<String> lines1 = List.of();
@@ -244,7 +244,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_leftIsEmpty() {
+	void diff_leftIsEmpty() {
 
 		// prepare
 		List<String> lines1 = List.of();
@@ -259,7 +259,7 @@ public class DiffUtilsTest {
 	}
 
 	@Test
-	public void diff_rightIsEmpty() {
+	void diff_rightIsEmpty() {
 
 		// prepare
 		List<String> lines1 = List.of("a", "b", "c");

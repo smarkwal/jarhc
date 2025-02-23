@@ -220,7 +220,7 @@
                   "3.4.1",
                   "[[org.codehaus.plexus:plexus-utils:3.4.1]]",
                   "258 KB",
-                  "Yes (Java 9, Java 10)",
+                  "Yes (Java 10, Java 9)",
                   "Java 10 (1), Java 8 (104)",
                   "3",
                   "`org.codehaus.plexus.util` (+8 subpackages)",
@@ -271,7 +271,7 @@
          }]
       },
       {
-         "description": "Information found in META-INF/MANIFEST.MF.",
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
             "columns": [
@@ -349,7 +349,7 @@
                ],
                [
                   "guava",
-                  "Automatic-Module-Name: `com.google.common`\nBnd-LastModified: `1632770345453`\nBuild-Jdk: `11.0.12`\nBuilt-By: `cpovirk`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.3.0.201405100607`",
+                  "Bnd-LastModified: `1632770345453`\nBuild-Jdk: `11.0.12`\nBuilt-By: `cpovirk`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.3.0.201405100607`",
                   "",
                   "",
                   "",
@@ -357,7 +357,7 @@
                ],
                [
                   "httpclient",
-                  "Automatic-Module-Name: `org.apache.httpcomponents.httpclient`\nBuild-Jdk: `1.8.0_251`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.5.4`\nManifest-Version: `1.0`",
+                  "Build-Jdk: `1.8.0_251`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.5.4`\nManifest-Version: `1.0`",
                   "",
                   "Apache HttpClient\nVersion: `4.5.13`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.httpcomponents`\nURL: `http://hc.apache.org/httpcomponents-client`",
                   "Apache HttpClient\nVersion: `4.5`\nVendor: `The Apache Software Foundation`",
@@ -373,7 +373,7 @@
                ],
                [
                   "jcl-over-slf4j",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `org.apache.commons.logging`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
                   "",
                   "jcl-over-slf4j\nVersion: `1.7.33`",
                   "",
@@ -381,7 +381,7 @@
                ],
                [
                   "json",
-                  "Automatic-Module-Name: `org.json`\nBnd-LastModified: `1638721364920`\nBuild-Jdk: `1.8.0_271`\nBuilt-By: `stlea`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.0.0.201509101326`",
+                  "Bnd-LastModified: `1638721364920`\nBuild-Jdk: `1.8.0_271`\nBuilt-By: `stlea`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.0.0.201509101326`",
                   "",
                   "",
                   "",
@@ -405,7 +405,7 @@
                ],
                [
                   "plexus-utils",
-                  "Build-Jdk-Spec: `11`\nCreated-By: `Maven Jar Plugin 3.2.0`\nManifest-Version: `1.0`\nMulti-Release: `true`",
+                  "Build-Jdk-Spec: `11`\nCreated-By: `Maven Jar Plugin 3.2.0`\nManifest-Version: `1.0`",
                   "",
                   "",
                   "",
@@ -413,7 +413,7 @@
                ],
                [
                   "slf4j-api",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `org.slf4j`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
                   "",
                   "slf4j-api\nVersion: `1.7.33`",
                   "",
@@ -421,7 +421,7 @@
                ],
                [
                   "slf4j-simple",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `org.slf4j.simple`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.8.0_121`\nBuilt-By: `ceki`\nCreated-By: `Apache Maven`\nManifest-Version: `1.0`\nX-Compile-Source-JDK: `1.5`\nX-Compile-Target-JDK: `1.5`",
                   "",
                   "slf4j-simple\nVersion: `1.7.33`",
                   "",

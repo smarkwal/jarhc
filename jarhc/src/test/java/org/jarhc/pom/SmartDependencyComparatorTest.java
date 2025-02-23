@@ -25,7 +25,7 @@ import java.util.List;
 import org.jarhc.artifacts.Artifact;
 import org.junit.jupiter.api.Test;
 
-public class SmartDependencyComparatorTest {
+class SmartDependencyComparatorTest {
 
 	@Test
 	void test() {

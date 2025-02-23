@@ -233,7 +233,7 @@
                   "3.5.1",
                   "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
                   "263 KB",
-                  "Yes (Java 9, Java 10, Java 11)",
+                  "Yes (Java 11, Java 10, Java 9)",
                   "Java 11 (1), Java 10 (1), Java 8 (106)",
                   "3",
                   "`org.codehaus.plexus.util` (+8 subpackages)",
@@ -271,7 +271,7 @@
          }]
       },
       {
-         "description": "Information found in META-INF/MANIFEST.MF.",
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
             "columns": [
@@ -349,7 +349,7 @@
                ],
                [
                   "commons-codec",
-                  "Automatic-Module-Name: `org.apache.commons.codec`\nBuild-Jdk-Spec: `17`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nMulti-Release: `true`\nTool: `Bnd-6.4.1.202306080939`",
+                  "Build-Jdk-Spec: `17`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.4.1.202306080939`",
                   "",
                   "Apache Commons Codec\nVersion: `1.17.1`\nVendor: `The Apache Software Foundation`",
                   "Apache Commons Codec\nVersion: `1.17`\nVendor: `The Apache Software Foundation`",
@@ -357,7 +357,7 @@
                ],
                [
                   "guava",
-                  "Automatic-Module-Name: `com.google.common`\nBuild-Jdk-Spec: `11`\nCreated-By: `Apache Maven Bundle Plugin 5.1.8`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
+                  "Build-Jdk-Spec: `11`\nCreated-By: `Apache Maven Bundle Plugin 5.1.8`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
                   "",
                   "",
                   "",
@@ -365,7 +365,7 @@
                ],
                [
                   "httpclient",
-                  "Automatic-Module-Name: `org.apache.httpcomponents.httpclient`\nBuild-Jdk: `1.8.0_342`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.8.6`\nManifest-Version: `1.0`",
+                  "Build-Jdk: `1.8.0_342`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.8.6`\nManifest-Version: `1.0`",
                   "",
                   "Apache HttpClient\nVersion: `4.5.14`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.httpcomponents`\nURL: `http://hc.apache.org/httpcomponents-client-ga`",
                   "Apache HttpClient\nVersion: `4.5`\nVendor: `The Apache Software Foundation`",
@@ -373,7 +373,7 @@
                ],
                [
                   "jarhc",
-                  "Automatic-Module-Name: `org.jarhc`\nManifest-Version: `1.0`",
+                  "Manifest-Version: `1.0`",
                   "Main Class: `org.jarhc.Main`",
                   "",
                   "",
@@ -381,7 +381,7 @@
                ],
                [
                   "jcl-over-slf4j",
-                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nMulti-Release: `true`\nOriginally-Created-By: `Apache Maven Bundle Plugin 5.1.9`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nOriginally-Created-By: `Apache Maven Bundle Plugin 5.1.9`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
                   "",
                   "jcl-over-slf4j\nVersion: `2.0.16`",
                   "",
@@ -389,7 +389,7 @@
                ],
                [
                   "json",
-                  "Bnd-LastModified: `1709478962392`\nBuild-Jdk-Spec: `1.8`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nMulti-Release: `true`\nTool: `Bnd-6.3.1.202206071316`",
+                  "Bnd-LastModified: `1709478962392`\nBuild-Jdk-Spec: `1.8`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
                   "",
                   "",
                   "",
@@ -397,7 +397,7 @@
                ],
                [
                   "jul-to-slf4j",
-                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nMulti-Release: `true`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
                   "",
                   "jul-to-slf4j\nVersion: `2.0.16`",
                   "",
@@ -413,7 +413,7 @@
                ],
                [
                   "plexus-utils",
-                  "Build-Jdk-Spec: `11`\nCreated-By: `Maven JAR Plugin 3.2.2`\nManifest-Version: `1.0`\nMulti-Release: `true`",
+                  "Build-Jdk-Spec: `11`\nCreated-By: `Maven JAR Plugin 3.2.2`\nManifest-Version: `1.0`",
                   "",
                   "",
                   "",
@@ -421,7 +421,7 @@
                ],
                [
                   "slf4j-api",
-                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nMulti-Release: `true`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
                   "",
                   "slf4j-api\nVersion: `2.0.16`",
                   "",

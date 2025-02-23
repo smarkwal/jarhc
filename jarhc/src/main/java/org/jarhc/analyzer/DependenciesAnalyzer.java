@@ -183,7 +183,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		ArtifactVersion currentVersion = new ArtifactVersion(version);
 		List<ArtifactVersion> newerVersions = versions.stream()
 				.filter(v -> v.compareTo(currentVersion) > 0) // keep only newer versions
-				.filter(ArtifactVersion::isStable) // keep only stable versions // TODO: make this configurable?
+				.filter(ArtifactVersion::isStable) // keep only stable versions
 				.collect(Collectors.toList());
 
 		if (newerVersions.isEmpty()) {

@@ -27,13 +27,11 @@ public class SmartDependencyComparator implements Comparator<Dependency> {
 
 	private final String rootGroupId;
 	private final String rootArtifactId;
-	// private final String rootVersionId;
 
 	public SmartDependencyComparator(Artifact artifact) {
 		if (artifact == null) throw new IllegalArgumentException("artifact");
 		this.rootGroupId = artifact.getGroupId();
 		this.rootArtifactId = artifact.getArtifactId();
-		// this.rootVersionId = artifact.getVersion();
 	}
 
 	@Override
@@ -58,19 +56,18 @@ public class SmartDependencyComparator implements Comparator<Dependency> {
 				return 1000 - prefix.length();
 			}
 
-			// TODO: priority 1.x: dependencies with same version?
-
+			// priority 1.2: same group ID, but not common artifact ID prefix
 			return 1000;
 		}
 
 		// priority 2: dependencies with same group ID prefix
-		if (rootGroupId.startsWith(groupId + ".")) {
-			return 3000;
+		if (groupId.startsWith(rootGroupId + ".")) {
+			return 2000;
 		}
 
 		// priority 3: dependencies with parent group ID
-		if (groupId.startsWith(rootGroupId + ".")) {
-			return 2000;
+		if (rootGroupId.startsWith(groupId + ".")) {
+			return 3000;
 		}
 
 		// all other dependencies

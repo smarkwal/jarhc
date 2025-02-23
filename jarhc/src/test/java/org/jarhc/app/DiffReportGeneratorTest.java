@@ -29,7 +29,7 @@ import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
-public class DiffReportGeneratorTest {
+class DiffReportGeneratorTest {
 
 	private static final long TIMESTAMP = 1739992928000L;
 	private final Logger logger = LoggerBuilder.collect(DiffReportGenerator.class);
@@ -40,7 +40,7 @@ public class DiffReportGeneratorTest {
 	private final Options options = new Options();
 
 	@Test
-	public void test_noDifferences() throws IOException {
+	void test_noDifferences() throws IOException {
 
 		// test
 		Report report = generator.diff(report1, report2, options);
@@ -51,7 +51,7 @@ public class DiffReportGeneratorTest {
 	}
 
 	@Test
-	public void test_differences() throws IOException {
+	void test_differences() throws IOException {
 
 		// prepare
 

@@ -13,13 +13,12 @@ Classpath | -       | -                          | 40.2 KB | -             | Jav
 
 JAR Manifests
 -------------
-Information found in META-INF/MANIFEST.MF.
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
 Artifact  | General                           | Runtime | Implementation  | Specification | Signature
 ----------+-----------------------------------+---------+-----------------+---------------+----------
 slf4j-api | Archiver-Version: Plexus Archiver |         | slf4j-api       |               |
-          | Automatic-Module-Name: org.slf4j  |         | Version: 1.7.28 |               |
-          | Build-Jdk: 1.8.0_121              |         |                 |               |
+          | Build-Jdk: 1.8.0_121              |         | Version: 1.7.28 |               |
           | Built-By: ceki                    |         |                 |               |
           | Created-By: Apache Maven          |         |                 |               |
           | Manifest-Version: 1.0             |         |                 |               |

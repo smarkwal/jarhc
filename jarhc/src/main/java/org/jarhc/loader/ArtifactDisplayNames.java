@@ -23,6 +23,10 @@ import org.jarhc.model.JarFile;
 
 public class ArtifactDisplayNames {
 
+	private ArtifactDisplayNames() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static void generateUniqueNames(List<JarFile> jarFiles) {
 
 		Map<String, List<JarFile>> groups = jarFiles.stream().collect(Collectors.groupingBy(JarFile::getArtifactName));

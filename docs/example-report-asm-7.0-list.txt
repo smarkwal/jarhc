@@ -110,7 +110,7 @@ Artifact: Classpath
 
 JAR Manifests
 -------------
-Information found in META-INF/MANIFEST.MF.
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
 Artifact: asm
 	General:

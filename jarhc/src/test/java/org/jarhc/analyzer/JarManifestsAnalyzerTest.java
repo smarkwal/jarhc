@@ -65,7 +65,7 @@ class JarManifestsAnalyzerTest {
 		// assert
 		assertNotNull(section);
 		assertEquals("JAR Manifests", section.getTitle());
-		assertEquals("Information found in META-INF/MANIFEST.MF.", section.getDescription());
+		assertEquals("Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.", section.getDescription());
 		assertEquals(1, section.getContent().size());
 		assertInstanceOf(ReportTable.class, section.getContent().get(0));
 

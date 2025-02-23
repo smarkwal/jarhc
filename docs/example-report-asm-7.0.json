@@ -89,7 +89,7 @@
          }]
       },
       {
-         "description": "Information found in META-INF/MANIFEST.MF.",
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
             "columns": [

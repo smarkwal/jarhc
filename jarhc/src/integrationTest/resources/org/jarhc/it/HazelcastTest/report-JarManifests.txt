@@ -3,24 +3,22 @@ JAR Health Check Report
 
 JAR Manifests
 -------------
-Information found in META-INF/MANIFEST.MF.
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
 Artifact         | General                                           | Runtime                                           | Implementation           | Specification           | Signature
 -----------------+---------------------------------------------------+---------------------------------------------------+--------------------------+-------------------------+----------
 hazelcast        | Archiver-Version: Plexus Archiver                 | Main Class: com.hazelcast.core.server.StartServer | hazelcast                | hazelcast               |
-                 | Automatic-Module-Name: com.hazelcast.core         |                                                   | Version: 3.11.2          | Version: 3.11.2         |
-                 | Bnd-LastModified: 1550306249136                   |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
-                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor ID: com.hazelcast |                         |
-                 | Built-By: ubuntu                                  |                                                   |                          |                         |
+                 | Bnd-LastModified: 1550306249136                   |                                                   | Version: 3.11.2          | Version: 3.11.2         |
+                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
+                 | Built-By: ubuntu                                  |                                                   | Vendor ID: com.hazelcast |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |
                  | Manifest-Version: 1.0                             |                                                   |                          |                         |
                  | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |
                  | Tool: Bnd-1.50.0                                  |                                                   |                          |                         |
 hazelcast-client | Archiver-Version: Plexus Archiver                 |                                                   | hazelcast-client         | hazelcast-client        |
-                 | Automatic-Module-Name: com.hazelcast.client       |                                                   | Version: 3.11.2          | Version: 3.11.2         |
-                 | Bnd-LastModified: 1550306325023                   |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
-                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor ID: com.hazelcast |                         |
-                 | Built-By: ubuntu                                  |                                                   |                          |                         |
+                 | Bnd-LastModified: 1550306325023                   |                                                   | Version: 3.11.2          | Version: 3.11.2         |
+                 | Build-Jdk: 1.8.0_162                              |                                                   | Vendor: Hazelcast, Inc.  | Vendor: Hazelcast, Inc. |
+                 | Built-By: ubuntu                                  |                                                   | Vendor ID: com.hazelcast |                         |
                  | Created-By: Apache Maven Bundle Plugin            |                                                   |                          |                         |
                  | Manifest-Version: 1.0                             |                                                   |                          |                         |
                  | Originally-Created-By: Apache Maven Bundle Plugin |                                                   |                          |                         |

@@ -20,7 +20,7 @@ Classpath | -         | -      | 678 B | -             | Java 8 (1)             
 
 JAR Manifests
 -------------
-Information found in META-INF/MANIFEST.MF.
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
 Artifact | General                            | Runtime | Implementation | Specification | Signature
 ---------+------------------------------------+---------+----------------+---------------+----------

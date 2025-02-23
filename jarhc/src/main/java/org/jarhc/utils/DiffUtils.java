@@ -31,17 +31,6 @@ public class DiffUtils {
 
 	public static List<String> diff(List<String> lines1, List<String> lines2) {
 
-		// TODO: implement a better strategy which takes into account
-		//  the similarity of inserted and deleted lines,
-		//  especially if they have a long common prefix.
-		// Example:
-		// - a.jar 1.0
-		// + a.jar 1.1
-		// - b.jar 1.0
-		//   c.jar 2.0
-
-		// TODO: do not depend on Markdown as output format
-
 		int n = lines1.size();
 		int m = lines2.size();
 
@@ -64,14 +53,6 @@ public class DiffUtils {
 				}
 			}
 		}
-
-		// print table
-		// for (int i = 0; i <= n; i++) {
-		// 	for (int j = 0; j <= m; j++) {
-		// 		System.out.print(table[i][j] + " ");
-		// 	}
-		// 	System.out.println();
-		// }
 
 		return collectChanges(table, lines1, lines2);
 	}

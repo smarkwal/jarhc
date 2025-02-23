@@ -58,7 +58,7 @@ Classpath                         | -       | -                                 
 
 JAR Manifests
 -------------
-Information found in META-INF/MANIFEST.MF.
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
 Artifact                          | General                                       | Runtime | Implementation                  | Specification                    | Signature
 ----------------------------------+-----------------------------------------------+---------+---------------------------------+----------------------------------+----------
@@ -103,8 +103,7 @@ jakarta.el-api                    | Bnd-LastModified: 1655737655798             
                                   | Extension-Name: jakarta.el                    |         |                                 |                                  |
                                   | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
-jakarta.enterprise.cdi-api        | Automatic-Module-Name: jakarta.cdi            |         |                                 |                                  |
-                                  | Bnd-LastModified: 1652885418448               |         |                                 |                                  |
+jakarta.enterprise.cdi-api        | Bnd-LastModified: 1652885418448               |         |                                 |                                  |
                                   | Build-Jdk-Spec: 11                            |         |                                 |                                  |
                                   | Build-Jdk: 11.0.13                            |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
@@ -198,16 +197,14 @@ jakarta.servlet.jsp.jstl-api      | Bnd-LastModified: 1724345517089             
                                   | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-5.1.1.202006162103                  |         |                                 |                                  |
 jakarta.transaction-api           | Archiver-Version: Plexus Archiver             |         | Version: 2.0.0                  | Version: 2.0                     |
-                                  | Automatic-Module-Name: jakarta.transaction    |         | Vendor: EE4J Community          | Vendor: Oracle Corporation       |
-                                  | Bnd-LastModified: 1601380706017               |         | Vendor ID: org.glassfish        |                                  |
-                                  | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
+                                  | Bnd-LastModified: 1601380706017               |         | Vendor: EE4J Community          | Vendor: Oracle Corporation       |
+                                  | Build-Jdk: 1.8.0_202                          |         | Vendor ID: org.glassfish        |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
                                   | Created-By: 1.8.0_202 (Oracle Corporation)    |         |                                 |                                  |
                                   | Extension-Name: jakarta.transaction           |         |                                 |                                  |
                                   | Manifest-Version: 1.0                         |         |                                 |                                  |
                                   | Tool: Bnd-0.0.255                             |         |                                 |                                  |
-jakarta.validation-api            | Automatic-Module-Name: jakarta.validation     |         |                                 |                                  |
-                                  | Bnd-LastModified: 1593873743039               |         |                                 |                                  |
+jakarta.validation-api            | Bnd-LastModified: 1593873743039               |         |                                 |                                  |
                                   | Build-Jdk: 1.8.0_202                          |         |                                 |                                  |
                                   | Built-By: jenkins                             |         |                                 |                                  |
                                   | Created-By: Apache Maven Bundle Plugin        |         |                                 |                                  |

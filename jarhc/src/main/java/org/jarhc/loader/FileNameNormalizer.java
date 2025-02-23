@@ -18,6 +18,10 @@ package org.jarhc.loader;
 
 public class FileNameNormalizer {
 
+	private FileNameNormalizer() {
+		throw new IllegalStateException("utility class");
+	}
+
 	/**
 	 * Removes the version number from the given file name.
 	 * <p>

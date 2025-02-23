@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import org.jarhc.model.JarFile;
 import org.junit.jupiter.api.Test;
 
-public class ArtifactDisplayNamesTest {
+class ArtifactDisplayNamesTest {
 
 	@Test
 	void generateUniqueNames() {

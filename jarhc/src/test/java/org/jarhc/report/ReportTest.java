@@ -23,10 +23,10 @@ import org.jarhc.TestUtils;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-public class ReportTest {
+class ReportTest {
 
 	@Test
-	public void fromJSON_toJSON() throws IOException {
+	void fromJSON_toJSON() throws IOException {
 
 		// prepare
 		String resource = "/org/jarhc/report/test.json";

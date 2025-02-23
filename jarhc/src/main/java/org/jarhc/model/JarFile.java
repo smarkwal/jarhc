@@ -35,7 +35,7 @@ import org.jarhc.artifacts.Artifact;
 public class JarFile {
 
 	// TODO: support additional version patterns?
-	private static final Pattern VERSION_PATTERN = Pattern.compile("-([0-9]+(\\.[0-9]+){0,10}(-[1-9])?(-SNAPSHOT)?)");
+	private static final Pattern VERSION_PATTERN = Pattern.compile("-(\\d+(\\.\\d+){0,10}(-[1-9])?(-SNAPSHOT)?)");
 
 	/**
 	 * Unique identifier for this JAR file.
@@ -83,7 +83,7 @@ public class JarFile {
 	 * Maven coordinates for the JAR file specified as argument on the command line.
 	 * Is {@code null} if the JAR file was not loaded from a Maven repository.
 	 */
-	private final String coordinates; // TODO: change type to Artifact
+	private final String coordinates;
 
 	/**
 	 * Maven coordinates of the JAR file as found by Maven Search API.

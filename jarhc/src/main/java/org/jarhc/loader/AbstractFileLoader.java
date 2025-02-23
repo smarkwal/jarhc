@@ -257,8 +257,6 @@ abstract class AbstractFileLoader {
 			}
 		}
 
-		// TODO: check if JAR file contains POM information
-
 		JarFile jarFile = JarFile.withName(fileName)
 				.withFileSize(archive.getFileSize())
 				.withChecksum(checksum)

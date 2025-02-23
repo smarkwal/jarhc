@@ -21,6 +21,7 @@ import static org.jarhc.utils.Markdown.code;
 import static org.jarhc.utils.StringUtils.wrapList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -62,8 +63,6 @@ public class JarFilesAnalyzer implements Analyzer {
 		int totalPackageCount = 0;
 		ClassVersionsCounter classpathCounter = new ClassVersionsCounter();
 
-		// TODO: get package names from JarFile object
-
 		// map from JAR file UUID to package names
 		Map<String, List<String>> uuidToPackages = buildPackagesMap(classpath);
 
@@ -93,10 +92,6 @@ public class JarFilesAnalyzer implements Analyzer {
 			String packagesInfo = StringUtils.joinLines(getPackageGroups(packageNames, uuidToPackages, uuid, uuids));
 			String checksum = getChecksumInfo(jarFile);
 			String coordinates = getCoordinates(jarFile);
-
-			// TODO: add more issues:
-			// - "Artifact not found by checksum"
-			// - "Artifact not found by coordinates"
 			List<String> issues = findIssues(packageNames, packageToUUIDs);
 
 			table.addRow(displayName, version, source, formatFileSize(fileSize), multiReleaseInfo, javaVersionInfo, String.valueOf(resourceCount), packagesInfo, checksum, coordinates, StringUtils.joinLines(issues));
@@ -120,7 +115,6 @@ public class JarFilesAnalyzer implements Analyzer {
 		List<ClassDef> classDefs = jarFile.getClassDefs();
 		for (ClassDef classDef : classDefs) {
 
-			// TODO: make this configurable ?
 			if (!classDef.isRegularClass()) {
 				// ignore package-info and module-info classes
 				continue;
@@ -152,8 +146,10 @@ public class JarFilesAnalyzer implements Analyzer {
 
 	private String getMultiReleaseInfo(JarFile jarFile) {
 		if (jarFile.isMultiRelease()) {
-			// TODO: sort releases in descending order (17, 11, 8, ...)
-			String releases = jarFile.getReleases().stream().map(r -> "Java " + r).collect(Collectors.joining(", "));
+			String releases = jarFile.getReleases().stream()
+					.sorted(Collections.reverseOrder()) // sort in reverse order (17, 11, 8, ...)
+					.map(r -> "Java " + r)
+					.collect(Collectors.joining(", "));
 			return "Yes (" + releases + ")";
 		} else {
 			return "No";

@@ -505,7 +505,7 @@
          }]
       },
       {
-         "description": "Information found in META-INF/MANIFEST.MF.",
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
             "columns": [
@@ -527,7 +527,7 @@
                ],
                [
                   "jakarta.annotation-api",
-                  "Automatic-Module-Name: `java.annotation`\nBnd-LastModified: `1564744140223`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.annotation`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Bnd-LastModified: `1564744140223`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.annotation`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `1.3.5`\nVendor: `Eclipse Foundation`\nVendor ID: `org.glassfish`",
                   "Version: `1.3`\nVendor: `Eclipse Foundation`",
@@ -535,7 +535,7 @@
                ],
                [
                   "jakarta.authorization-api",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `java.security.jacc`\nBnd-LastModified: `1566517755277`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.security.jacc`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1566517755277`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.security.jacc`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
                   "",
                   "Version: `1.5.0`\nVendor: `Oracle Corporation`\nVendor ID: `org.glassfish`",
                   "Version: `1.5`\nVendor: `Oracle Corporation`",
@@ -671,7 +671,7 @@
                ],
                [
                   "jakarta.persistence-api",
-                  "Automatic-Module-Name: `java.persistence`\nBnd-LastModified: `1564765237028`\nBuild-Jdk: `11.0.2`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.persistence`\nManifest-Version: `1.0`\nTool: `Bnd-3.5.0.201709291849`",
+                  "Bnd-LastModified: `1564765237028`\nBuild-Jdk: `11.0.2`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.persistence`\nManifest-Version: `1.0`\nTool: `Bnd-3.5.0.201709291849`",
                   "",
                   "Version: `2.2.3`",
                   "Version: `2.2`\nVendor: `Eclipse Foundation`",
@@ -687,7 +687,7 @@
                ],
                [
                   "jakarta.security.auth.message-api",
-                  "Automatic-Module-Name: `java.security.auth.message`\nBnd-LastModified: `1566562757906`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.security.auth.message`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
+                  "Bnd-LastModified: `1566562757906`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.security.auth.message`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
                   "",
                   "Version: `1.1.3`\nVendor: `Jakarta Authentication`\nVendor ID: `org.glassfish`",
                   "Version: `1.1`\nVendor: `Oracle Corporation`",
@@ -703,7 +703,7 @@
                ],
                [
                   "jakarta.servlet-api",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `java.servlet`\nBnd-LastModified: `1566398855350`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.servlet`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1566398855350`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.servlet`\nManifest-Version: `1.0`\nTool: `Bnd-4.0.0.201805111645`",
                   "",
                   "Version: `4.0.3`\nVendor: `Eclipse Foundation`\nVendor ID: `org.eclipse`",
                   "Version: `4.0`\nVendor: `Eclipse Foundation`",
@@ -727,7 +727,7 @@
                ],
                [
                   "jakarta.transaction-api",
-                  "Archiver-Version: `Plexus Archiver`\nAutomatic-Module-Name: `java.transaction`\nBnd-LastModified: `1564784149519`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `1.8.0_202 (Oracle Corporation)`\nExtension-Name: `javax.transaction`\nManifest-Version: `1.0`\nTool: `Bnd-0.0.255`",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1564784149519`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `1.8.0_202 (Oracle Corporation)`\nExtension-Name: `javax.transaction`\nManifest-Version: `1.0`\nTool: `Bnd-0.0.255`",
                   "",
                   "Version: `1.3.3`\nVendor: `EE4J Community`\nVendor ID: `org.glassfish`",
                   "Version: `1.3`\nVendor: `Oracle Corporation`",
@@ -735,7 +735,7 @@
                ],
                [
                   "jakarta.validation-api",
-                  "Automatic-Module-Name: `java.validation`\nBnd-LastModified: `1565473508715`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.2.0.201605172007`",
+                  "Bnd-LastModified: `1565473508715`\nBuild-Jdk: `1.8.0_202`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-3.2.0.201605172007`",
                   "",
                   "",
                   "",
@@ -759,7 +759,7 @@
                ],
                [
                   "jakarta.ws.rs-api",
-                  "Automatic-Module-Name: `java.ws.rs`\nBnd-LastModified: `1565616053029`\nBuild-Id: `08/12/2019 01:20 PM`\nBuild-Jdk: `12`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.ws.rs`\nManifest-Version: `1.0`\nTool: `Bnd-3.5.0.201709291849`",
+                  "Bnd-LastModified: `1565616053029`\nBuild-Id: `08/12/2019 01:20 PM`\nBuild-Jdk: `12`\nBuilt-By: `default`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `javax.ws.rs`\nManifest-Version: `1.0`\nTool: `Bnd-3.5.0.201709291849`",
                   "",
                   "Version: `2.1.6`",
                   "Version: `2.1`\nVendor: `Oracle Corporation`",
@@ -767,7 +767,7 @@
                ],
                [
                   "jakarta.xml.bind-api",
-                  "Build-Jdk-Spec: `11`\nBuild-Jdk: `11.0.4`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.xml.bind`\nManifest-Version: `1.0`\nMulti-Release: `true`\nTool: `Bnd-4.2.0.201903051501`",
+                  "Build-Jdk-Spec: `11`\nBuild-Jdk: `11.0.4`\nCreated-By: `Apache Maven Bundle Plugin`\nExtension-Name: `jakarta.xml.bind`\nManifest-Version: `1.0`\nTool: `Bnd-4.2.0.201903051501`",
                   "",
                   "Version: `2.3.3`\nBuild ID: `2.3.3-RELEASE-fd06b2b`",
                   "Version: `2.3`\nVendor: `Eclipse Foundation`",

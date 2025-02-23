@@ -49,7 +49,11 @@ public class JarManifestsAnalyzer implements Analyzer {
 			// Specification
 			"Specification-Title",
 			"Specification-Version",
-			"Specification-Vendor"
+			"Specification-Vendor",
+
+			// section: JAR Files
+			"Multi-Release",
+			"Automatic-Module-Name"
 	);
 
 	@Override
@@ -57,7 +61,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("JAR Manifests", "Information found in META-INF/MANIFEST.MF.");
+		ReportSection section = new ReportSection("JAR Manifests", "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.");
 		section.add(table);
 		return section;
 	}
@@ -93,13 +97,18 @@ public class JarManifestsAnalyzer implements Analyzer {
 		Map<String, String> manifestAttributes = jarFile.getManifestAttributes();
 		List<String> lines = new ArrayList<>();
 		for (String attributeName : manifestAttributes.keySet()) {
-			if (SPECIAL_ATTRIBUTE_NAMES.contains(attributeName)) continue;
-			if (OSGiBundleInfo.isBundleHeader(attributeName)) continue;
+			if (isSpecialAttribute(attributeName)) continue;
 			String attributeValue = manifestAttributes.get(attributeName);
 			lines.add(attributeName + ": " + code(attributeValue));
 		}
 		lines.sort(String.CASE_INSENSITIVE_ORDER);
 		return StringUtils.joinLines(lines);
+	}
+
+	private static boolean isSpecialAttribute(String attributeName) {
+		if (SPECIAL_ATTRIBUTE_NAMES.contains(attributeName)) return true;
+		if (OSGiBundleInfo.isBundleHeader(attributeName)) return true;
+		return false;
 	}
 
 	private String getRuntime(JarFile jarFile) {

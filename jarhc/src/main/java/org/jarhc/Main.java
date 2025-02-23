@@ -230,17 +230,14 @@ public class Main {
 
 	private static void cleanUp(Options options) {
 
-		// if a data directory has been specified ...
+		// if a data directory has been specified,
+		// and it is a temporary directory ...
 		String dataPath = options.getDataPath();
-		if (dataPath != null) {
+		if (dataPath != null && dataPath.contains(TEMPDIR_PREFIX)) {
 
-			// if data directory is a temporary directory ...
-			if (dataPath.contains(TEMPDIR_PREFIX)) {
-
-				// delete data directory (recursively)
-				File directory = new File(dataPath);
-				FileUtils.delete(directory);
-			}
+			// delete data directory (recursively)
+			File directory = new File(dataPath);
+			FileUtils.delete(directory);
 		}
 	}
 
