@@ -273,4 +273,56 @@ class DiffUtilsTest {
 		Assertions.assertEquals(expectedLines, lines);
 	}
 
+	@Test
+	void diff_longList() {
+
+		String value1 = "camel-core-engine\n" +
+				"camel-core-languages\n" +
+				"camel-core-model\n" +
+				"camel-core-processor\n" +
+				"camel-core-reifier\n" +
+				"camel-direct\n" +
+				"camel-file\n" +
+				"camel-log\n" +
+				"camel-mail\n" +
+				"camel-seda\n" +
+				"nm-core";
+
+		String value2 = "camel-core-engine\n" +
+				"camel-core-languages\n" +
+				"camel-core-model\n" +
+				"camel-core-processor\n" +
+				"camel-core-reifier\n" +
+				"camel-direct\n" +
+				"camel-file\n" +
+				"camel-log\n" +
+				"camel-mail\n" +
+				"camel-seda\n" +
+				"nm-core-rc1";
+
+		String expectedValue = "camel-core-engine\n" +
+				"camel-core-languages\n" +
+				"camel-core-model\n" +
+				"camel-core-processor\n" +
+				"camel-core-reifier\n" +
+				"camel-direct\n" +
+				"camel-file\n" +
+				"camel-log\n" +
+				"camel-mail\n" +
+				"camel-seda\n" +
+				"---{nm-core}---\n" +
+				"+++{nm-core-rc1}+++";
+
+		List<String> lines1 = List.of(value1.split("\n"));
+		List<String> lines2 = List.of(value2.split("\n"));
+
+		// test
+		List<String> lines = DiffUtils.diff(lines1, lines2);
+		String value = String.join("\n", lines);
+
+		// assert
+		Assertions.assertEquals(expectedValue, value);
+
+	}
+
 }

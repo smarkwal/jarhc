@@ -60,7 +60,7 @@ public class DiffUtils {
 	private static double getSimilarityByPrefix(String line1, String line2) {
 		int diff = getCommonPrefixLength(line1, line2);
 		int maxLength = Math.max(line1.length(), line2.length());
-		return (double) diff / maxLength;
+		return (double) diff / maxLength * 0.5d; // reduce similarity by 50% to avoid "false shuffling" of long lists
 	}
 
 	private static int getCommonPrefixLength(String line1, String line2) {
