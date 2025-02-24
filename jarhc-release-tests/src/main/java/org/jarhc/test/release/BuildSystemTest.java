@@ -17,9 +17,15 @@
 
 package org.jarhc.test.release;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.TimeZone;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +42,40 @@ class BuildSystemTest extends ReleaseTest {
 		LOGGER.info("Java System Properties:");
 		for (String name : names) {
 			String value = properties.getProperty(name);
-			LOGGER.info("{} = {}", name, value);
+			if (name.equals("line.separator")) {
+				value = value.replace("\n", "\\n").replace("\r", "\\r"); // for better readability
+			}
+			if (name.contains("password") || name.contains("key") || name.contains("secret")) {
+				value = "****************";
+			}
+			LOGGER.info("{} = '{}'", name, value);
 		}
+	}
+
+	@Test
+	void defaultLocal() {
+		Locale locale = Locale.getDefault();
+		String code = locale.toString();
+		// "en" and "en_US" are both OK
+		assertTrue(code.equals("en") || code.equals("en_US"), code);
+	}
+
+	@Test
+	void defaultCharset() {
+		Charset charset = Charset.defaultCharset();
+		assertEquals("UTF-8", charset.name());
+	}
+
+	@Test
+	void defaultTimezone() {
+		TimeZone timeZone = TimeZone.getDefault();
+		assertEquals("UTC", timeZone.getID());
+	}
+
+	@Test
+	void lineSeparator() {
+		String lineSeparator = System.lineSeparator();
+		assertEquals("\n", lineSeparator);
 	}
 
 }

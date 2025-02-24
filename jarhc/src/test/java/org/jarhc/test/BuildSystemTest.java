@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.charset.Charset;
 import java.util.Locale;
+import java.util.TimeZone;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -40,6 +41,18 @@ class BuildSystemTest {
 	void defaultCharset() {
 		Charset charset = Charset.defaultCharset();
 		assertEquals("UTF-8", charset.name());
+	}
+
+	@Test
+	void defaultTimezone() {
+		TimeZone timeZone = TimeZone.getDefault();
+		assertEquals("UTC", timeZone.getID());
+	}
+
+	@Test
+	void lineSeparator() {
+		String lineSeparator = System.lineSeparator();
+		assertEquals("\n", lineSeparator);
 	}
 
 }
