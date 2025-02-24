@@ -17,9 +17,15 @@
 package org.jarhc.artifacts;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jarhc.utils.Markdown;
 
 public class Artifact {
+
+	// TODO: support additional version patterns?
+	private static final String[] QUALIFIER_PATTERNS = { "-snapshot", "-dev", "-alpha\\d*", "-beta\\d*", "-m\\d*", "-rc\\d*", "-sp\\d*", "-p\\d*", "-ga", "-final", "-release" };
+	private static final Pattern VERSION_PATTERN = Pattern.compile("-(\\d+(\\.\\d+){0,10}(-[1-9])?(" + String.join("|", QUALIFIER_PATTERNS) + ")?)", Pattern.CASE_INSENSITIVE);
 
 	private final String groupId;
 	private final String artifactId;
@@ -57,6 +63,36 @@ public class Artifact {
 			this.version = parts[2];
 			this.type = parts.length > 3 ? parts[3] : "jar";
 		}
+	}
+
+	/**
+	 * Create an artifact from a file name. The artifact ID and version are extracted from the file name.
+	 * The type is given by the file extension, and the group ID is always empty.
+	 * Note: This method should be used only if the artifact cannot be identified otherwise.
+	 *
+	 * @param fileName File name, including file extension
+	 * @return Artifact
+	 */
+	public static Artifact fromFileName(String fileName) {
+
+		// remove file extension and use as type
+		String type = "";
+		int pos = fileName.lastIndexOf(".");
+		if (pos >= 0) {
+			type = fileName.substring(pos + 1);
+			fileName = fileName.substring(0, pos);
+		}
+
+		// search for version number in file name
+		Matcher matcher = VERSION_PATTERN.matcher(fileName);
+		if (matcher.find()) {
+			String version = matcher.group(1);
+			String artifactId = matcher.replaceFirst("");
+			return new Artifact("", artifactId, version, type);
+		}
+
+		// fallback: use file name as artifact name (version is unknown)
+		return new Artifact("", fileName, "", type);
 	}
 
 	public String getGroupId() {

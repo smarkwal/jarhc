@@ -24,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ArtifactTest {
 
@@ -100,6 +102,36 @@ class ArtifactTest {
 		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", null, "1.3", "jar"));
 		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", "jarhc", null, "jar"));
 		assertThrows(IllegalArgumentException.class, () -> new Artifact("org.jarhc", "jarhc", "1.3", null));
+
+	}
+
+	@ParameterizedTest
+	@CsvSource({
+			"jarhc-1.3.jar,jarhc,1.3,jar",
+			"jarhc-1.4-SNAPSHOT.jar,jarhc,1.4-SNAPSHOT,jar",
+			"tomcat-11.0.0-m4.jar,tomcat,11.0.0-m4,jar",
+			"nm-core-11.1.3-dev.war,nm-core,11.1.3-dev,war",
+			"nm-2025.1.1-rc1.war,nm,2025.1.1-rc1,war",
+			"bcmail-jdk18on-1.78.1.jar,bcmail-jdk18on,1.78.1,jar",
+			"commons-dbcp2-2.10.0.jar,commons-dbcp2,2.10.0,jar",
+			"iTextHYPH-1.0.jar,iTextHYPH,1.0,jar",
+			"javassist-3.30.2-GA.jar,javassist,3.30.2-GA,jar",
+			"json-20231013.jar,json,20231013,jar",
+			"log4j-api-2.23.1.jar,log4j-api,2.23.1,jar",
+			"lz4-1.3.0-1.jar,lz4,1.3.0-1,jar",
+			"opentelemetry-api-events-1.35.0-alpha.jar,opentelemetry-api-events,1.35.0-alpha,jar",
+			// fails: "jarhc-2.0.0-tests.jar,jarhc-tests,2.0.0,jar",
+			// fails: "log4j-1.2-api-2.23.1.jar,log4j-1.2-api,2.23.1,jar",
+			// fails: "bsh-2.0b6.jar,bsh,2.0b6,jar",
+	})
+	void test_fromFileName(String fileName, String artifactId, String version, String type) {
+
+		Artifact artifact = Artifact.fromFileName(fileName);
+		assertEquals("", artifact.getGroupId());
+		assertEquals(artifactId, artifact.getArtifactId());
+		assertEquals(version, artifact.getVersion());
+		assertEquals(type, artifact.getType());
+		assertEquals(fileName, artifact.getFileName());
 
 	}
 

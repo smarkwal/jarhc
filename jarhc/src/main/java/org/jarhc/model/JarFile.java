@@ -26,17 +26,12 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jarhc.artifacts.Artifact;
 
 /**
  * Represents the content of a JAR file.
  */
 public class JarFile {
-
-	// TODO: support additional version patterns?
-	private static final Pattern VERSION_PATTERN = Pattern.compile("-(\\d+(\\.\\d+){0,10}(-[1-9])?(-SNAPSHOT)?)");
 
 	/**
 	 * Unique identifier for this JAR file.
@@ -254,24 +249,7 @@ public class JarFile {
 		}
 
 		// try to get artifact name and version from file name
-
-		// remove file extension
-		if (fileName.endsWith(".jar")) {
-			fileName = fileName.substring(0, fileName.length() - 4);
-		} else if (fileName.endsWith(".jmod")) {
-			fileName = fileName.substring(0, fileName.length() - 5);
-		}
-
-		// search for version number in file name
-		Matcher matcher = VERSION_PATTERN.matcher(fileName);
-		if (matcher.find()) {
-			String version = matcher.group(1);
-			String artifactId = matcher.replaceFirst("");
-			return new Artifact("", artifactId, version, "");
-		}
-
-		// fallback: use file name as artifact name (version is unknown)
-		return new Artifact("", fileName, "", "");
+		return Artifact.fromFileName(fileName);
 	}
 
 	public String getUUID() {
