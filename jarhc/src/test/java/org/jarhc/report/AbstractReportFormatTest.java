@@ -81,6 +81,18 @@ public abstract class AbstractReportFormatTest {
 		section3.add(table3b);
 		report.addSection(section3);
 
+		ReportSection section4 = new ReportSection("Section 4", null);
+		ReportSection subsection41 = new ReportSection("Subsection 4.1", "Description 4.1");
+		subsection41.add("Some text.");
+		section4.add(subsection41);
+		ReportSection subsection42 = new ReportSection("Subsection 4.2", "Description 4.2");
+		ReportSection subsection421 = new ReportSection("Subsection 4.2.1", "Description 4.2.1");
+		subsection42.add(subsection421);
+		subsection421.add("Some text.");
+		subsection42.add("Some text.");
+		section4.add(subsection42);
+		report.addSection(section4);
+
 		return report;
 	}
 

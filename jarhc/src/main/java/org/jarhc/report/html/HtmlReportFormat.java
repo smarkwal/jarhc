@@ -85,14 +85,11 @@ public class HtmlReportFormat implements ReportFormat {
 			writer.println();
 		}
 
-		// if report contains more than 1 section ...
-		List<ReportSection> sections = report.getSections();
-		if (sections.size() > 1) {
-			// add table of contents
-			formatToC(report, writer);
-		}
+		// add table of contents
+		formatToC(report, writer);
 
 		// add individual sections
+		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
 			formatSection(section, writer);
 			writer.println();
@@ -109,37 +106,63 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("<ul class=\"report-toc\">");
 		List<ReportSection> sections = report.getSections();
 		for (ReportSection section : sections) {
-			String title = section.getTitle();
-			String id = section.getId();
-			writer.println("<li class=\"report-toc-item\"><a href=\"#%s\">%s</a></li>", id, escape(title));
+			formatToC(section, writer);
 		}
 		writer.println("</ul>");
 		writer.println();
+	}
+
+	private static void formatToC(ReportSection section, ReportWriter writer) {
+		String title = section.getTitle();
+		String id = section.getId();
+		// if section has subsections ...
+		boolean nested = section.getContent().stream().anyMatch(item -> item instanceof ReportSection);
+		if (nested) {
+			writer.println("<li class=\"report-toc-item\"><a href=\"#%s\">%s</a>", id, escape(title));
+			// create nested list
+			writer.println("<ul class=\"report-toc-%d\">", section.getLevel() + 1);
+			List<Object> content = section.getContent();
+			for (Object item : content) {
+				if (item instanceof ReportSection) {
+					ReportSection subsection = (ReportSection) item;
+					formatToC(subsection, writer);
+				}
+			}
+			writer.println("</ul>");
+			writer.println("</li>");
+		} else {
+			writer.println("<li class=\"report-toc-item\"><a href=\"#%s\">%s</a></li>", id, escape(title));
+		}
 	}
 
 	private void formatSection(ReportSection section, ReportWriter writer) {
 
 		String title = section.getTitle();
 		String id = section.getId();
+		int level = section.getLevel();
 		String description = section.getDescription();
-		List<Object> contents = section.getContent();
+		List<Object> content = section.getContent();
 
 		// section start
 		writer.println("<section class=\"report-section\" id=\"%s\">", id);
 
 		// format header
-		writer.println("<h2 class=\"report-section-title\">%s</h2>", escape(title));
+		String heading = "h" + (level + 2); // root sections use h2
+		writer.println("<%s class=\"report-section-title\">%s</%s>", heading, escape(title), heading);
 		if (description != null) {
 			writer.println("<p class=\"report-section-description\">%s</p>", Markdown.toHtml(escape(description)));
 		}
 
-		// format contents
-		for (Object content : contents) {
-			if (content instanceof ReportTable) {
-				ReportTable table = (ReportTable) content;
+		// format content
+		for (Object item : content) {
+			if (item instanceof ReportSection) {
+				ReportSection subsection = (ReportSection) item;
+				formatSection(subsection, writer);
+			} else if (item instanceof ReportTable) {
+				ReportTable table = (ReportTable) item;
 				formatTable(table, writer);
 			} else {
-				writer.println("<p class=\"report-content\">%s</p>", Markdown.toHtml(escape(content.toString())));
+				writer.println("<p class=\"report-content\">%s</p>", Markdown.toHtml(escape(item.toString())));
 			}
 		}
 

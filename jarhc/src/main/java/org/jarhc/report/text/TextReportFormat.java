@@ -50,7 +50,7 @@ public class TextReportFormat implements ReportFormat {
 
 		String title = section.getTitle();
 		String description = section.getDescription();
-		List<Object> contents = section.getContent();
+		List<Object> content = section.getContent();
 
 		// format header
 		writer.println(title);
@@ -60,17 +60,20 @@ public class TextReportFormat implements ReportFormat {
 		}
 		writer.println();
 
-		// format contents
-		for (int i = 0; i < contents.size(); i++) {
-			Object content = contents.get(i);
+		// format content
+		for (int i = 0; i < content.size(); i++) {
+			Object item = content.get(i);
 			if (i > 0) {
 				writer.println(); // add an empty line between all content blocks
 			}
-			if (content instanceof ReportTable) {
-				ReportTable table = (ReportTable) content;
+			if (item instanceof ReportSection) {
+				ReportSection subsection = (ReportSection) item;
+				formatSection(subsection, writer);
+			} else if (item instanceof ReportTable) {
+				ReportTable table = (ReportTable) item;
 				formatTable(table, writer);
 			} else {
-				String text = String.valueOf(content);
+				String text = String.valueOf(item);
 				writer.println(Markdown.toText(text));
 			}
 		}

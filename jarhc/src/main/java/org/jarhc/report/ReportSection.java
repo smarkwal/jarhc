@@ -18,7 +18,6 @@ package org.jarhc.report;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,9 +27,19 @@ public class ReportSection {
 	private final String description;
 	private final List<Object> content = new ArrayList<>();
 
+	/**
+	 * Parent section, or null if this is a top-level section.
+	 */
+	private ReportSection parent;
+
 	public ReportSection(String title, String description) {
 		this.title = title;
 		this.description = description;
+	}
+
+	public void add(ReportSection section) {
+		content.add(section);
+		section.parent = this;
 	}
 
 	public void add(String text) {
@@ -46,7 +55,11 @@ public class ReportSection {
 	}
 
 	public String getId() {
-		return title.replaceAll("[^a-zA-Z0-9]", "");
+		String id = title.replaceAll("[^a-zA-Z0-9]", "");
+		if (parent != null) {
+			id = parent.getId() + "-" + id;
+		}
+		return id;
 	}
 
 	public String getDescription() {
@@ -57,23 +70,50 @@ public class ReportSection {
 		return content;
 	}
 
+	public int getLevel() {
+		if (parent == null) {
+			return 0;
+		}
+		return parent.getLevel() + 1;
+	}
+
 	public boolean isEmpty() {
 
-		if (content.isEmpty()) {
-			return true;
+		for (Object item : content) {
+
+			if (item instanceof ReportSection) {
+				ReportSection section = (ReportSection) item;
+
+				// check if subsection is empty
+				if (!section.isEmpty()) {
+					return false;
+				}
+			} else if (item instanceof ReportTable) {
+				ReportTable table = (ReportTable) item;
+
+				// check if table is empty
+				if (!table.isEmpty()) {
+					return false;
+				}
+			} else {
+
+				// text is never considered empty
+				return false;
+			}
 		}
 
-		// get all tables
-		List<ReportTable> tables = content.stream().filter(ReportTable.class::isInstance).map(ReportTable.class::cast).collect(Collectors.toList());
+		return true;
+	}
 
-		// special case: a section with text but no tables is not considered empty
-		if (tables.isEmpty()) {
+	void removeEmptySections() {
+		content.removeIf(item -> {
+			if (item instanceof ReportSection) {
+				ReportSection section = (ReportSection) item;
+				section.removeEmptySections();
+				return section.isEmpty();
+			}
 			return false;
-		}
-
-		// section is empty if all tables are empty
-		return tables.stream().allMatch(t -> t.getRows().isEmpty());
-
+		});
 	}
 
 	public JSONObject toJSON() {
@@ -82,7 +122,10 @@ public class ReportSection {
 		json.put("description", description);
 		JSONArray contentList = new JSONArray();
 		for (Object item : content) {
-			if (item instanceof ReportTable) {
+			if (item instanceof ReportSection) {
+				ReportSection section = (ReportSection) item;
+				contentList.put(section.toJSON());
+			} else if (item instanceof ReportTable) {
 				ReportTable table = (ReportTable) item;
 				contentList.put(table.toJSON());
 			} else {
@@ -97,13 +140,18 @@ public class ReportSection {
 		String title = json.getString("title");
 		String description = json.getString("description");
 		ReportSection section = new ReportSection(title, description);
-		JSONArray contentArray = json.getJSONArray("content");
-		for (int i = 0; i < contentArray.length(); i++) {
-			Object item = contentArray.get(i);
+		JSONArray content = json.getJSONArray("content");
+		for (int i = 0; i < content.length(); i++) {
+			Object item = content.get(i);
 			if (item instanceof JSONObject) {
-				JSONObject tableObject = (JSONObject) item;
-				ReportTable table = ReportTable.fromJSON(tableObject);
-				section.add(table);
+				JSONObject object = (JSONObject) item;
+				if (object.has("title")) {
+					ReportSection subsection = ReportSection.fromJSON(object);
+					section.add(subsection);
+				} else {
+					ReportTable table = ReportTable.fromJSON(object);
+					section.add(table);
+				}
 			} else {
 				String text = (String) item;
 				section.add(text);

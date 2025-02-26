@@ -62,6 +62,16 @@ code {
 <li class="report-toc-item"><a href="#Section1">Section 1</a></li>
 <li class="report-toc-item"><a href="#Section2">Section 2</a></li>
 <li class="report-toc-item"><a href="#Section3">Section 3</a></li>
+<li class="report-toc-item"><a href="#Section4">Section 4</a>
+<ul class="report-toc-1">
+<li class="report-toc-item"><a href="#Section4-Subsection41">Subsection 4.1</a></li>
+<li class="report-toc-item"><a href="#Section4-Subsection42">Subsection 4.2</a>
+<ul class="report-toc-2">
+<li class="report-toc-item"><a href="#Section4-Subsection42-Subsection421">Subsection 4.2.1</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 <section class="report-section" id="Section1">
@@ -103,6 +113,25 @@ code {
 <tbody>
 </tbody>
 </table>
+</section>
+
+<section class="report-section" id="Section4">
+<h2 class="report-section-title">Section 4</h2>
+<section class="report-section" id="Section4-Subsection41">
+<h3 class="report-section-title">Subsection 4.1</h3>
+<p class="report-section-description">Description 4.1</p>
+<p class="report-content">Some text.</p>
+</section>
+<section class="report-section" id="Section4-Subsection42">
+<h3 class="report-section-title">Subsection 4.2</h3>
+<p class="report-section-description">Description 4.2</p>
+<section class="report-section" id="Section4-Subsection42-Subsection421">
+<h4 class="report-section-title">Subsection 4.2.1</h4>
+<p class="report-section-description">Description 4.2.1</p>
+<p class="report-content">Some text.</p>
+</section>
+<p class="report-content">Some text.</p>
+</section>
 </section>
 
 <div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC {version}</a></div>

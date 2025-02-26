@@ -145,7 +145,14 @@ public class DiffReportGenerator {
 				continue;
 			}
 
-			if (item1 instanceof ReportTable) {
+			if (item1 instanceof ReportSection) {
+				ReportSection subsection1 = (ReportSection) item1;
+				ReportSection subsection2 = (ReportSection) item2;
+				ReportSection subsection = diff(subsection1, subsection2);
+				if (subsection != null) {
+					section.add(subsection);
+				}
+			} else if (item1 instanceof ReportTable) {
 				ReportTable table1 = (ReportTable) item1;
 				ReportTable table2 = (ReportTable) item2;
 				ReportTable table = diff(table1, table2);

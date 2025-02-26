@@ -46,6 +46,28 @@
                "rows": []
             }
          ]
+      },
+      {
+         "title": "Section 4",
+         "content": [
+            {
+               "description": "Description 4.1",
+               "title": "Subsection 4.1",
+               "content": ["Some text."]
+            },
+            {
+               "description": "Description 4.2",
+               "title": "Subsection 4.2",
+               "content": [
+                  {
+                     "description": "Description 4.2.1",
+                     "title": "Subsection 4.2.1",
+                     "content": ["Some text."]
+                  },
+                  "Some text."
+               ]
+            }
+         ]
       }
    ],
    "timestamp": 1739808014453

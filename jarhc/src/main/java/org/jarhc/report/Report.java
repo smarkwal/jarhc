@@ -94,4 +94,10 @@ public class Report {
 		return report;
 	}
 
+	public void removeEmptySections() {
+		for (ReportSection section : sections) {
+			section.removeEmptySections();
+		}
+		sections.removeIf(ReportSection::isEmpty);
+	}
 }

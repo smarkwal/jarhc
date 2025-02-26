@@ -44,6 +44,10 @@ public class ReportTable {
 		return rows;
 	}
 
+	public boolean isEmpty() {
+		return rows.isEmpty();
+	}
+
 	public void sortRows() {
 		rows.sort(ReportTable::compareRows);
 	}

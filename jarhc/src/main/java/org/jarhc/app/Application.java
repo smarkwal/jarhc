@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Supplier;
 import org.jarhc.analyzer.Analysis;
@@ -151,19 +152,20 @@ public class Application {
 		out.println();
 
 		if (options.isSkipEmpty()) {
-			// remove empty report sections.
-			for (ReportSection section : report.getSections()) {
-				if (section.isEmpty()) {
-					report.removeSection(section);
-				}
-			}
+			// remove empty report sections
+			report.removeEmptySections();
 		}
 
 		// sort rows in all tables
-		for (ReportSection section : report.getSections()) {
-			for (Object content : section.getContent()) {
-				if (content instanceof ReportTable) {
-					ReportTable table = (ReportTable) content;
+		LinkedList<ReportSection> queue = new LinkedList<>(report.getSections());
+		while (!queue.isEmpty()) {
+			ReportSection section = queue.poll();
+			for (Object item : section.getContent()) {
+				if (item instanceof ReportSection) {
+					ReportSection subsection = (ReportSection) item;
+					queue.add(subsection);
+				} else if (item instanceof ReportTable) {
+					ReportTable table = (ReportTable) item;
 					table.sortRows();
 				}
 			}
