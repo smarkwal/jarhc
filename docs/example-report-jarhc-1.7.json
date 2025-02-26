@@ -866,7 +866,7 @@
                   "slf4j-api",
                   "httpclient\njarhc",
                   "[[org.slf4j:jcl-over-slf4j:1.7.33]]",
-                  "[1.7.34](org.slf4j:jcl-over-slf4j:1.7.34), [1.7.35](org.slf4j:jcl-over-slf4j:1.7.35), [1.7.36](org.slf4j:jcl-over-slf4j:1.7.36)\n[2.0.0](org.slf4j:jcl-over-slf4j:2.0.0), [2.0.1](org.slf4j:jcl-over-slf4j:2.0.1), [2.0.2](org.slf4j:jcl-over-slf4j:2.0.2), [...], [2.0.14](org.slf4j:jcl-over-slf4j:2.0.14), [2.0.15](org.slf4j:jcl-over-slf4j:2.0.15), [2.0.16](org.slf4j:jcl-over-slf4j:2.0.16)",
+                  "[1.7.34](org.slf4j:jcl-over-slf4j:1.7.34), [1.7.35](org.slf4j:jcl-over-slf4j:1.7.35), [1.7.36](org.slf4j:jcl-over-slf4j:1.7.36)\n[2.0.0](org.slf4j:jcl-over-slf4j:2.0.0), [2.0.1](org.slf4j:jcl-over-slf4j:2.0.1), [2.0.2](org.slf4j:jcl-over-slf4j:2.0.2), [...], [2.0.15](org.slf4j:jcl-over-slf4j:2.0.15), [2.0.16](org.slf4j:jcl-over-slf4j:2.0.16), [2.0.17](org.slf4j:jcl-over-slf4j:2.0.17)",
                   "[[org.slf4j:slf4j-api:1.7.33]]",
                   "OK"
                ],
@@ -884,7 +884,7 @@
                   "slf4j-api",
                   "jarhc",
                   "[[org.slf4j:jul-to-slf4j:1.7.33]]",
-                  "[1.7.34](org.slf4j:jul-to-slf4j:1.7.34), [1.7.35](org.slf4j:jul-to-slf4j:1.7.35), [1.7.36](org.slf4j:jul-to-slf4j:1.7.36)\n[2.0.0](org.slf4j:jul-to-slf4j:2.0.0), [2.0.1](org.slf4j:jul-to-slf4j:2.0.1), [2.0.2](org.slf4j:jul-to-slf4j:2.0.2), [...], [2.0.14](org.slf4j:jul-to-slf4j:2.0.14), [2.0.15](org.slf4j:jul-to-slf4j:2.0.15), [2.0.16](org.slf4j:jul-to-slf4j:2.0.16)",
+                  "[1.7.34](org.slf4j:jul-to-slf4j:1.7.34), [1.7.35](org.slf4j:jul-to-slf4j:1.7.35), [1.7.36](org.slf4j:jul-to-slf4j:1.7.36)\n[2.0.0](org.slf4j:jul-to-slf4j:2.0.0), [2.0.1](org.slf4j:jul-to-slf4j:2.0.1), [2.0.2](org.slf4j:jul-to-slf4j:2.0.2), [...], [2.0.15](org.slf4j:jul-to-slf4j:2.0.15), [2.0.16](org.slf4j:jul-to-slf4j:2.0.16), [2.0.17](org.slf4j:jul-to-slf4j:2.0.17)",
                   "[[org.slf4j:slf4j-api:1.7.33]]",
                   "OK"
                ],
@@ -911,7 +911,7 @@
                   "slf4j-simple",
                   "aether-impl\njarhc\njcl-over-slf4j\njul-to-slf4j\nslf4j-simple",
                   "[[org.slf4j:slf4j-api:1.7.33]]",
-                  "[1.7.34](org.slf4j:slf4j-api:1.7.34), [1.7.35](org.slf4j:slf4j-api:1.7.35), [1.7.36](org.slf4j:slf4j-api:1.7.36)\n[2.0.0](org.slf4j:slf4j-api:2.0.0), [2.0.1](org.slf4j:slf4j-api:2.0.1), [2.0.2](org.slf4j:slf4j-api:2.0.2), [...], [2.0.14](org.slf4j:slf4j-api:2.0.14), [2.0.15](org.slf4j:slf4j-api:2.0.15), [2.0.16](org.slf4j:slf4j-api:2.0.16)",
+                  "[1.7.34](org.slf4j:slf4j-api:1.7.34), [1.7.35](org.slf4j:slf4j-api:1.7.35), [1.7.36](org.slf4j:slf4j-api:1.7.36)\n[2.0.0](org.slf4j:slf4j-api:2.0.0), [2.0.1](org.slf4j:slf4j-api:2.0.1), [2.0.2](org.slf4j:slf4j-api:2.0.2), [...], [2.0.15](org.slf4j:slf4j-api:2.0.15), [2.0.16](org.slf4j:slf4j-api:2.0.16), [2.0.17](org.slf4j:slf4j-api:2.0.17)",
                   "[none]",
                   ""
                ],
@@ -920,7 +920,7 @@
                   "slf4j-api",
                   "slf4j-api",
                   "[[org.slf4j:slf4j-simple:1.7.33]]",
-                  "[1.7.34](org.slf4j:slf4j-simple:1.7.34), [1.7.35](org.slf4j:slf4j-simple:1.7.35), [1.7.36](org.slf4j:slf4j-simple:1.7.36)\n[2.0.0](org.slf4j:slf4j-simple:2.0.0), [2.0.1](org.slf4j:slf4j-simple:2.0.1), [2.0.2](org.slf4j:slf4j-simple:2.0.2), [...], [2.0.14](org.slf4j:slf4j-simple:2.0.14), [2.0.15](org.slf4j:slf4j-simple:2.0.15), [2.0.16](org.slf4j:slf4j-simple:2.0.16)",
+                  "[1.7.34](org.slf4j:slf4j-simple:1.7.34), [1.7.35](org.slf4j:slf4j-simple:1.7.35), [1.7.36](org.slf4j:slf4j-simple:1.7.36)\n[2.0.0](org.slf4j:slf4j-simple:2.0.0), [2.0.1](org.slf4j:slf4j-simple:2.0.1), [2.0.2](org.slf4j:slf4j-simple:2.0.2), [...], [2.0.15](org.slf4j:slf4j-simple:2.0.15), [2.0.16](org.slf4j:slf4j-simple:2.0.16), [2.0.17](org.slf4j:slf4j-simple:2.0.17)",
                   "[[org.slf4j:slf4j-api:1.7.33]]",
                   "OK"
                ]

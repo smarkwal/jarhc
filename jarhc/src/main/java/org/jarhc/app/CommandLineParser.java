@@ -50,6 +50,7 @@ public class CommandLineParser {
 
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
+	private final CollectionManager collectionManager = new CollectionManager();
 
 	private final PrintStream out;
 	private final PrintStream err;
@@ -310,6 +311,16 @@ public class CommandLineParser {
 
 	private void addSource(String value, Consumer<String> classpath) throws CommandLineException {
 
+		// if value is the name of a collection ...
+		if (collectionManager.isCollection(value)) {
+			// add all elements of the collection (recursively)
+			List<String> collection = collectionManager.getCollection(value);
+			for (String element : collection) {
+				addSource(element, classpath);
+			}
+			return;
+		}
+
 		// if value is Maven artifact coordinates ...
 		if (Artifact.validateCoordinates(value)) {
 			classpath.accept(value);
@@ -440,7 +451,8 @@ public class CommandLineParser {
 
 	}
 
-	@SuppressWarnings("java:S135") // Loops should not contain more than a single "break" or "continue" statement
+	@SuppressWarnings("java:S135")
+		// Loops should not contain more than a single "break" or "continue" statement
 	List<String> loadArguments(File file) throws CommandLineException {
 
 		// list of arguments read from options file

@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import org.jarhc.app.Application;
+import org.jarhc.app.CollectionManager;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Diff;
