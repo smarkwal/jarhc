@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.Iterator;
@@ -42,7 +43,7 @@ class CommandLineParserTest {
 
 	private final PrintStreamBuffer out = new PrintStreamBuffer();
 	private final PrintStreamBuffer err = new PrintStreamBuffer();
-	private final CommandLineParser parser = new CommandLineParser(out, err);
+	private CommandLineParser parser = new CommandLineParser(out, err);
 
 	@Test
 	void test_default_options(@TempDir Path tempDir) throws IOException, CommandLineException {
@@ -369,6 +370,43 @@ class CommandLineParserTest {
 		assertEquals("john.smith", username);
 		String password = options.getRepositoryPassword();
 		assertEquals("my-secret", password);
+
+	}
+
+	@Test
+	void test_repository_properties(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// override user.home property
+		String userHome = System.getProperty("user.home");
+		try {
+			System.setProperty("user.home", tempDir.toString());
+
+			// prepare
+			Path path = tempDir.resolve(".jarhc").resolve("jarhc.properties");
+			Files.createDirectories(path.getParent());
+			Files.writeString(path,
+					"repository.url = https://repo.example.com/maven/\n" +
+							"repository.username = john.smith\n" +
+							"repository.password = my-secret"
+			);
+
+			parser = new CommandLineParser(out, err);
+
+			// test
+			Options options = parser.parse(new String[] { "servlet-3.1" });
+
+			// assert
+			String url = options.getRepositoryUrl();
+			assertEquals("https://repo.example.com/maven/", url);
+			String username = options.getRepositoryUsername();
+			assertEquals("john.smith", username);
+			String password = options.getRepositoryPassword();
+			assertEquals("my-secret", password);
+
+		} finally {
+			// restore user.home property
+			System.setProperty("user.home", userHome);
+		}
 
 	}
 

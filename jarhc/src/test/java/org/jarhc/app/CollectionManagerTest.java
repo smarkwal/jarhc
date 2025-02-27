@@ -22,11 +22,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,7 +37,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CollectionManagerTest {
 
-	private final CollectionManager manager = new CollectionManager();
+	private final PropertiesManager propertiesManager = mock(PropertiesManager.class);
+	private final CollectionManager manager = new CollectionManager(propertiesManager);
+
+	@BeforeEach
+	void setUp() {
+		doReturn(true).when(propertiesManager).hasProperty("collection.demo-0.1");
+		doReturn("org.demo:demo:0.1").when(propertiesManager).getProperty("collection.demo-0.1", "");
+	}
 
 	@Test
 	void isCollection() {
@@ -43,6 +53,9 @@ class CollectionManagerTest {
 		assertTrue(result);
 
 		result = manager.isCollection("test-0.9");
+		assertTrue(result);
+
+		result = manager.isCollection("demo-0.1");
 		assertTrue(result);
 	}
 
@@ -67,7 +80,8 @@ class CollectionManagerTest {
 			"servlet-5.0",
 			"servlet-6.0",
 			"servlet-6.1",
-			"test-0.9"
+			"test-0.9",
+			"demo-0.1"
 	})
 	void getCollection(String name) {
 

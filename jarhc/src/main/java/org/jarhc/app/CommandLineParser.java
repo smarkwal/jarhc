@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.regex.Matcher;
@@ -50,7 +51,8 @@ public class CommandLineParser {
 
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
-	private final CollectionManager collectionManager = new CollectionManager();
+	private final PropertiesManager propertiesManager = new PropertiesManager();
+	private final CollectionManager collectionManager = new CollectionManager(propertiesManager);
 
 	private final PrintStream out;
 	private final PrintStream err;
@@ -115,7 +117,11 @@ public class CommandLineParser {
 			command = Command.DIFF;
 		}
 
-		Options options = new Options(command);
+		// get properties
+		Properties properties = propertiesManager.getProperties();
+
+		// parse options
+		Options options = new Options(command, properties);
 		parseOptions(Arrays.asList(args), options);
 
 		// if diff mode is enabled ...

@@ -35,6 +35,13 @@ public class CollectionManager {
 	// cache for collections
 	private final Map<String, List<String>> cache = new ConcurrentHashMap<>();
 
+	private final PropertiesManager propertiesManager;
+
+	public CollectionManager(PropertiesManager propertiesManager) {
+		if (propertiesManager == null) throw new IllegalArgumentException("propertiesManager");
+		this.propertiesManager = propertiesManager;
+	}
+
 	/**
 	 * Check if a collection with the given name exists.
 	 *
@@ -76,7 +83,15 @@ public class CollectionManager {
 		return collection;
 	}
 
-	private static List<String> findCollection(String name) {
+	private List<String> findCollection(String name) {
+
+		// try to find collection in properties
+		String propertyName = "collection." + name;
+		if (propertiesManager.hasProperty(propertyName)) {
+			String collection = propertiesManager.getProperty(propertyName, "");
+			List<String> values = List.of(collection.split(","));
+			return filter(values);
+		}
 
 		// try to find collection file in user home directory
 		String userHome = System.getProperty("user.home");

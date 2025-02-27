@@ -18,6 +18,7 @@ package org.jarhc.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.utils.JavaUtils;
@@ -25,6 +26,12 @@ import org.jarhc.utils.JavaUtils;
 public class Options implements MavenRepository.Settings {
 
 	public static final String MAVEN_CENTRAL_URL = "https://repo1.maven.org/maven2/";
+
+	private static final String REPOSITORY_URL = "repository.url";
+	private static final String REPOSITORY_USERNAME = "repository.username";
+	private static final String REPOSITORY_PASSWORD = "repository.password";
+
+	private static final String DEFAULT_TITLE = "JAR Health Check Report";
 
 	private final Command command;
 
@@ -52,15 +59,25 @@ public class Options implements MavenRepository.Settings {
 
 	// report options
 	private final List<String> reportFiles = new ArrayList<>();
-	private String reportTitle = "JAR Health Check Report";
+	private String reportTitle = DEFAULT_TITLE;
 	private List<String> sections = null; // all sections
 
 	public Options() {
-		this(Command.SCAN);
+		this(Command.SCAN, new Properties());
 	}
 
-	public Options(Command command) {
+	public Options(Command command, Properties properties) {
 		this.command = command;
+
+		if (properties.containsKey(REPOSITORY_URL)) {
+			this.repositoryUrl = properties.getProperty(REPOSITORY_URL);
+		}
+		if (properties.containsKey(REPOSITORY_USERNAME)) {
+			this.repositoryUsername = properties.getProperty(REPOSITORY_USERNAME);
+		}
+		if (properties.containsKey(REPOSITORY_PASSWORD)) {
+			this.repositoryPassword = properties.getProperty(REPOSITORY_PASSWORD);
+		}
 	}
 
 	public Command getCommand() {
