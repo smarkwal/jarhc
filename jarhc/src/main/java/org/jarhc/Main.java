@@ -18,14 +18,18 @@ package org.jarhc;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.logging.Level;
 import org.jarhc.app.Application;
 import org.jarhc.app.CollectionManager;
+import org.jarhc.app.CollectionManagerImpl;
 import org.jarhc.app.CommandLineException;
 import org.jarhc.app.CommandLineParser;
 import org.jarhc.app.Diff;
 import org.jarhc.app.Options;
 import org.jarhc.app.Options.Command;
+import org.jarhc.app.PropertiesManager;
+import org.jarhc.app.PropertiesManagerImpl;
 import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
@@ -44,10 +48,17 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		// load properties
+		PropertiesManager propertiesManager = new PropertiesManagerImpl();
+		Properties properties = propertiesManager.loadProperties();
+
+		// prepare collection manager
+		CollectionManager collectionManager = new CollectionManagerImpl(properties);
+
 		// parse command line
 		Options options = null;
 		try {
-			CommandLineParser commandLineParser = new CommandLineParser(System.out, System.err);
+			CommandLineParser commandLineParser = new CommandLineParser(System.out, System.err, properties, collectionManager);
 			options = commandLineParser.parse(args);
 		} catch (CommandLineException e) {
 			// note: error message has already been printed

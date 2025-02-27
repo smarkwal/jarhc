@@ -51,11 +51,11 @@ public class CommandLineParser {
 
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
-	private final PropertiesManager propertiesManager = new PropertiesManager();
-	private final CollectionManager collectionManager = new CollectionManager(propertiesManager);
 
 	private final PrintStream out;
 	private final PrintStream err;
+	private final Properties properties;
+	private final CollectionManager collectionManager;
 
 	private final Map<String, OptionParser> optionParsers = new HashMap<>();
 
@@ -63,11 +63,13 @@ public class CommandLineParser {
 		void parse(Iterator<String> args, Options options) throws CommandLineException;
 	}
 
-	public CommandLineParser(PrintStream out, PrintStream err) {
+	public CommandLineParser(PrintStream out, PrintStream err, Properties properties, CollectionManager collectionManager) {
 		if (out == null) throw new IllegalArgumentException("out");
 		if (err == null) throw new IllegalArgumentException("err");
 		this.out = out;
 		this.err = err;
+		this.properties = properties;
+		this.collectionManager = collectionManager;
 
 		// general options
 		optionParsers.put("-h", (args, options) -> printUsage(null, out));
@@ -116,9 +118,6 @@ public class CommandLineParser {
 		if (ArrayUtils.containsAny(args, "--diff")) {
 			command = Command.DIFF;
 		}
-
-		// get properties
-		Properties properties = propertiesManager.getProperties();
 
 		// parse options
 		Options options = new Options(command, properties);

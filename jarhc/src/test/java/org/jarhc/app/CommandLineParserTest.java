@@ -23,19 +23,22 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import org.jarhc.TestUtils;
 import org.jarhc.java.ClassLoaderStrategy;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.utils.JavaUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -43,7 +46,15 @@ class CommandLineParserTest {
 
 	private final PrintStreamBuffer out = new PrintStreamBuffer();
 	private final PrintStreamBuffer err = new PrintStreamBuffer();
-	private CommandLineParser parser = new CommandLineParser(out, err);
+	private final Properties properties = new Properties();
+	private final CollectionManager collectionManager = mock(CollectionManager.class);
+	private final CommandLineParser parser = new CommandLineParser(out, err, properties, collectionManager);
+
+	@BeforeEach
+	void setUp() {
+		doReturn(true).when(collectionManager).isCollection("servlet-3.1");
+		doReturn(List.of("javax.servlet:javax.servlet-api:3.1.0")).when(collectionManager).getCollection("servlet-3.1");
+	}
 
 	@Test
 	void test_default_options(@TempDir Path tempDir) throws IOException, CommandLineException {
@@ -374,39 +385,23 @@ class CommandLineParserTest {
 	}
 
 	@Test
-	void test_repository_properties(@TempDir Path tempDir) throws IOException, CommandLineException {
+	void test_repository_properties() throws CommandLineException {
 
-		// override user.home property
-		String userHome = System.getProperty("user.home");
-		try {
-			System.setProperty("user.home", tempDir.toString());
+		// prepare
+		properties.setProperty("repository.url", "https://repo.example.com/maven/");
+		properties.setProperty("repository.username", "john.smith");
+		properties.setProperty("repository.password", "my-secret");
 
-			// prepare
-			Path path = tempDir.resolve(".jarhc").resolve("jarhc.properties");
-			Files.createDirectories(path.getParent());
-			Files.writeString(path,
-					"repository.url = https://repo.example.com/maven/\n" +
-							"repository.username = john.smith\n" +
-							"repository.password = my-secret"
-			);
+		// test
+		Options options = parser.parse(new String[] { "servlet-3.1" });
 
-			parser = new CommandLineParser(out, err);
-
-			// test
-			Options options = parser.parse(new String[] { "servlet-3.1" });
-
-			// assert
-			String url = options.getRepositoryUrl();
-			assertEquals("https://repo.example.com/maven/", url);
-			String username = options.getRepositoryUsername();
-			assertEquals("john.smith", username);
-			String password = options.getRepositoryPassword();
-			assertEquals("my-secret", password);
-
-		} finally {
-			// restore user.home property
-			System.setProperty("user.home", userHome);
-		}
+		// assert
+		String url = options.getRepositoryUrl();
+		assertEquals("https://repo.example.com/maven/", url);
+		String username = options.getRepositoryUsername();
+		assertEquals("john.smith", username);
+		String password = options.getRepositoryPassword();
+		assertEquals("my-secret", password);
 
 	}
 

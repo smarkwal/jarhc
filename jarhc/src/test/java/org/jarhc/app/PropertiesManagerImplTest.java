@@ -17,9 +17,6 @@
 package org.jarhc.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +25,9 @@ import java.util.Properties;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-class PropertiesManagerTest {
+class PropertiesManagerImplTest {
+
+	private final PropertiesManager propertiesManager = new PropertiesManagerImpl();
 
 	@Test
 	void test(@TempDir Path tempDir) throws IOException {
@@ -44,22 +43,13 @@ class PropertiesManagerTest {
 			Files.writeString(path, "aaa = AAA\nbbb = BBB\nccc = CCC");
 
 			// test
-			PropertiesManager manager = new PropertiesManager();
-			Properties properties = manager.getProperties();
+			Properties properties = propertiesManager.loadProperties();
 
 			// assert
 			assertEquals(3, properties.size());
 			assertEquals("AAA", properties.getProperty("aaa"));
 			assertEquals("BBB", properties.getProperty("bbb"));
 			assertEquals("CCC", properties.getProperty("ccc"));
-
-			assertTrue(manager.hasProperty("aaa"));
-			assertFalse(manager.hasProperty("xxx"));
-
-			assertEquals("AAA", manager.getProperty("aaa", "default"));
-			assertEquals("default", manager.getProperty("xxx", "default"));
-			assertEquals("", manager.getProperty("yyy", ""));
-			assertNull(manager.getProperty("zzz", null));
 
 		} finally {
 			// restore user.home property
