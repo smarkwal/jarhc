@@ -56,8 +56,7 @@ public class PropertiesManagerImpl implements PropertiesManager {
 		if (path == null) throw new IllegalArgumentException("path");
 		if (properties == null) throw new IllegalArgumentException("properties");
 		if (Files.isRegularFile(path)) {
-			try {
-				InputStream stream = new FileInputStream(path.toFile());
+			try (InputStream stream = new FileInputStream(path.toFile())) {
 				properties.load(stream);
 			} catch (IOException e) {
 				throw new JarHcException("Error loading properties file: " + path, e);

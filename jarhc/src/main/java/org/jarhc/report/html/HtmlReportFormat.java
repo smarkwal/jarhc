@@ -116,7 +116,7 @@ public class HtmlReportFormat implements ReportFormat {
 		String title = section.getTitle();
 		String id = section.getId();
 		// if section has subsections ...
-		boolean nested = section.getContent().stream().anyMatch(item -> item instanceof ReportSection);
+		boolean nested = section.getContent().stream().anyMatch(ReportSection.class::isInstance);
 		if (nested) {
 			writer.println("<li class=\"report-toc-item\"><a href=\"#%s\">%s</a>", id, escape(title));
 			// create nested list
