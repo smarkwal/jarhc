@@ -29,6 +29,7 @@ public class Report {
 	private long timestamp = DateTimeUtils.getTimestamp();
 
 	private String title = "JAR Health Check Report";
+	private String type = "scan";
 	private final List<ReportSection> sections = new ArrayList<>();
 
 	public String getVersion() {
@@ -55,6 +56,14 @@ public class Report {
 		this.title = title;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public void addSection(ReportSection section) {
 		sections.add(section);
 	}
@@ -72,6 +81,7 @@ public class Report {
 		json.put("version", version);
 		json.put("timestamp", timestamp);
 		json.put("title", title);
+		json.put("type", type);
 		List<JSONObject> sectionList = new ArrayList<>();
 		for (ReportSection section : sections) {
 			sectionList.add(section.toJSON());
@@ -85,6 +95,7 @@ public class Report {
 		report.version = json.getString("version");
 		report.timestamp = json.getLong("timestamp");
 		report.title = json.getString("title");
+		report.type = json.getString("type");
 		JSONArray sectionList = json.getJSONArray("sections");
 		for (int i = 0; i < sectionList.length(); i++) {
 			JSONObject sectionObject = sectionList.getJSONObject(i);

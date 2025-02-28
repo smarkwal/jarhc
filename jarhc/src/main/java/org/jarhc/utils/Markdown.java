@@ -32,13 +32,18 @@ public class Markdown {
 	@SuppressWarnings("UnnecessaryUnicodeEscape")
 	public static final String BULLET = "\u2022";
 
+	private static final String INSERTED_PREFIX = "+++{";
+	private static final String INSERTED_POSTFIX = "}+++";
+	public static final String DELETED_PREFIX = "---{";
+	private static final String DELETED_POSTFIX = "}---";
+
 	// Regex for parsing Markdown syntax
 	private static final Pattern CODE = Pattern.compile("`([^`]+)`");
 	private static final Pattern BOLD = Pattern.compile("\\*\\*([^*]+)\\*\\*");
 	private static final Pattern ARTIFACT_LINK = Pattern.compile("\\[\\[([^]]+)]]");
 	private static final Pattern URL_LINK = Pattern.compile("\\[([^]]+)]\\(([^)]+)\\)");
-	private static final Pattern INSERTED = Pattern.compile("\\+\\+\\+\\{([^}]+)}\\+\\+\\+");
-	private static final Pattern DELETED = Pattern.compile("---\\{([^}]+)}---");
+	private static final Pattern INSERTED = Pattern.compile(Pattern.quote(INSERTED_PREFIX) + "([^}]+)" + Pattern.quote(INSERTED_POSTFIX));
+	private static final Pattern DELETED = Pattern.compile(Pattern.quote(DELETED_PREFIX) + "([^}]+)" + Pattern.quote(DELETED_POSTFIX));
 	private static final Pattern LINEBREAKS = Pattern.compile("\\r?\\n(\\x20*)", Pattern.MULTILINE);
 
 	// HTML code snippets with placeholders
@@ -79,12 +84,17 @@ public class Markdown {
 
 	public static String inserted(String text) {
 		if (text == null || text.isEmpty()) return text;
-		return "+++{" + text + "}+++";
+		return INSERTED_PREFIX + text + INSERTED_POSTFIX;
 	}
 
 	public static String deleted(String text) {
 		if (text == null || text.isEmpty()) return text;
-		return "---{" + text + "}---";
+		return DELETED_PREFIX + text + DELETED_POSTFIX;
+	}
+
+	public static boolean isDiff(String text) {
+		if (text == null) return false;
+		return text.contains(INSERTED_PREFIX) || text.contains(DELETED_PREFIX);
 	}
 
 	// Text rendering ---------------------------------------------------------

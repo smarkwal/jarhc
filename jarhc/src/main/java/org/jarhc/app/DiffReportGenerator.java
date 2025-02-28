@@ -42,6 +42,7 @@ public class DiffReportGenerator {
 
 		// create a new empty report
 		Report report = new Report();
+		report.setType("diff");
 
 		// set report title
 		report.setTitle(options.getReportTitle());

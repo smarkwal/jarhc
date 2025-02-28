@@ -45,15 +45,19 @@ code {
 }
 
 .inserted {
-	background-color: #d4edda;
+	background-color: #D4EDDA;
 }
 
 .deleted {
-	background-color: #f8d7da;
+	background-color: #F8D7DA;
+}
+
+.marked {
+	background-color: #FFF6D8;
 }
 </style>
 </head>
-<body>
+<body class="report scan-report">
 
 <h1 class="report-title">ASM 7.0</h1>
 
@@ -75,14 +79,86 @@ code {
 <p class="report-section-description">List of JAR files found in classpath.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Version</th><th>Source</th><th>Size</th><th>Multi-release</th><th>Java version (classes)</th><th>Resources</th><th>Packages</th><th>Checksum (SHA-1)</th><th>Coordinates</th><th>Issues</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td>111 KB</td><td>No</td><td>Java 5 (35)</td><td>0</td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></td><td><a href="https://search.maven.org/search?q=1:d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912" target="_blank" rel="noopener noreferrer">d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-analysis</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td><td>32.5 KB</td><td>No</td><td>Java 5 (14)</td><td>0</td><td><code>org.objectweb.asm.tree.analysis</code></td><td><a href="https://search.maven.org/search?q=1:4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f" target="_blank" rel="noopener noreferrer">4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-commons</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td>78.0 KB</td><td>No</td><td>Java 5 (32)</td><td>0</td><td><code>org.objectweb.asm.commons</code></td><td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td>7.0</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td><td>49.2 KB</td><td>No</td><td>Java 5 (37)</td><td>0</td><td><code>org.objectweb.asm.tree</code></td><td><a href="https://search.maven.org/search?q=1:29bc62dcb85573af6e62e5b2d735ef65966c4180" target="_blank" rel="noopener noreferrer">29bc62dcb85573af6e62e5b2d735ef65966c4180</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td><td></td></tr>
-	<tr class="report-table-row"><td>Classpath</td><td>-</td><td>-</td><td>271 KB</td><td>-</td><td>Java 5 (118)</td><td>0</td><td>5</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr class="report-table-row">
+		<td>asm</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>111 KB</td>
+		<td>No</td>
+		<td>Java 5 (35)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></td>
+		<td><a href="https://search.maven.org/search?q=1:d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912" target="_blank" rel="noopener noreferrer">d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-analysis</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td>32.5 KB</td>
+		<td>No</td>
+		<td>Java 5 (14)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+		<td><a href="https://search.maven.org/search?q=1:4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f" target="_blank" rel="noopener noreferrer">4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>78.0 KB</td>
+		<td>No</td>
+		<td>Java 5 (32)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>49.2 KB</td>
+		<td>No</td>
+		<td>Java 5 (37)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+		<td><a href="https://search.maven.org/search?q=1:29bc62dcb85573af6e62e5b2d735ef65966c4180" target="_blank" rel="noopener noreferrer">29bc62dcb85573af6e62e5b2d735ef65966c4180</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>271 KB</td>
+		<td>-</td>
+		<td>Java 5 (118)</td>
+		<td>0</td>
+		<td>5</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -92,13 +168,48 @@ code {
 <p class="report-section-description">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>General</th><th>Runtime</th><th>Implementation</th><th>Specification</th><th>Signature</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm</td><td>Manifest-Version: <code>1.0</code></td><td></td><td>ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-analysis</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm.tree;transitive=true</code></td><td></td><td>Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-commons</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></td><td></td><td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true</code></td><td></td><td>Tree API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td><td></td><td></td></tr>
+	<tr class="report-table-row">
+		<td>asm</td>
+		<td>Manifest-Version: <code>1.0</code></td>
+		<td></td>
+		<td>ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-analysis</td>
+		<td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm.tree;transitive=true</code></td>
+		<td></td>
+		<td>Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></td>
+		<td></td>
+		<td>Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td>Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true</code></td>
+		<td></td>
+		<td>Tree API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></td>
+		<td></td>
+		<td></td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -108,13 +219,48 @@ code {
 <p class="report-section-description">List of Java Modules found in classpath.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Module name</th><th>Definition</th><th>Automatic</th><th>Requires</th><th>Exports</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm</td><td><code>org.objectweb.asm</code></td><td>Module-Info</td><td>No</td><td><code>java.base</code></td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></td></tr>
-	<tr class="report-table-row"><td>asm-analysis</td><td><code>org.objectweb.asm.tree.analysis</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm.tree</code><br><code>java.base</code></td><td><code>org.objectweb.asm.tree.analysis</code></td></tr>
-	<tr class="report-table-row"><td>asm-commons</td><td><code>org.objectweb.asm.commons</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></td><td><code>org.objectweb.asm.commons</code></td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td><code>org.objectweb.asm.tree</code></td><td>Module-Info</td><td>No</td><td><code>org.objectweb.asm</code><br><code>java.base</code></td><td><code>org.objectweb.asm.tree</code></td></tr>
+	<tr class="report-table-row">
+		<td>asm</td>
+		<td><code>org.objectweb.asm</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>java.base</code></td>
+		<td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-analysis</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>org.objectweb.asm.tree</code><br><code>java.base</code></td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></td>
+		<td><code>org.objectweb.asm.commons</code></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>org.objectweb.asm</code><br><code>java.base</code></td>
+		<td><code>org.objectweb.asm.tree</code></td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -124,13 +270,58 @@ code {
 <p class="report-section-description">Information about OSGi Bundles.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Name</th><th>Version</th><th>Description</th><th>Import Package</th><th>Export Package</th><th>Capabilities</th><th>Others</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm</td><td>org.objectweb.asm</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td></td><td><code>org.objectweb.asm</code> (Version: 7.0)<br><code>org.objectweb.asm.signature</code> (Version: 7.0)</td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
-	<tr class="report-table-row"><td>asm-analysis</td><td>org.objectweb.asm.tree.analysis</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td><td><code>org.objectweb.asm.tree.analysis</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.tree</code></td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
-	<tr class="report-table-row"><td>asm-commons</td><td>org.objectweb.asm.commons</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td><td><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td>org.objectweb.asm.tree</td><td>7.0.0</td><td>Doc URL: http://asm.ow2.org</td><td>org.objectweb.asm;version=&quot;[7.0,8)&quot;</td><td><code>org.objectweb.asm.tree</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code></td><td></td><td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td></tr>
+	<tr class="report-table-row">
+		<td>asm</td>
+		<td>org.objectweb.asm</td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td></td>
+		<td><code>org.objectweb.asm</code> (Version: 7.0)<br><code>org.objectweb.asm.signature</code> (Version: 7.0)</td>
+		<td></td>
+		<td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-analysis</td>
+		<td>org.objectweb.asm.tree.analysis</td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td>
+		<td><code>org.objectweb.asm.tree.analysis</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.tree</code></td>
+		<td></td>
+		<td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td>org.objectweb.asm.commons</td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td>org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</td>
+		<td><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></td>
+		<td></td>
+		<td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td>org.objectweb.asm.tree</td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td>org.objectweb.asm;version=&quot;[7.0,8)&quot;</td>
+		<td><code>org.objectweb.asm.tree</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code></td>
+		<td></td>
+		<td>Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -140,13 +331,53 @@ code {
 <p class="report-section-description">Dependencies between JAR files, and as declared in POM file.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Uses</th><th>Used by</th><th>Maven coordinates</th><th>Updates</th><th>Direct dependencies</th><th>Status</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm</td><td><span style="color:gray">[none]</span></td><td>asm-analysis<br>asm-commons<br>asm-tree</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td><td><span style="color:gray">[none]</span></td><td></td></tr>
-	<tr class="report-table-row"><td>asm-analysis</td><td>asm<br>asm-tree</td><td><span style="color:gray">[none]</span></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td><td>OK</td></tr>
-	<tr class="report-table-row"><td>asm-commons</td><td>asm<br>asm-tree</td><td><span style="color:gray">[none]</span></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td>OK<br>OK<br>OK</td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td>asm</td><td>asm-analysis<br>asm-commons</td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td><td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td><td>OK</td></tr>
+	<tr class="report-table-row">
+		<td>asm</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>asm-analysis<br>asm-commons<br>asm-tree</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-analysis</td>
+		<td>asm<br>asm-tree</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td>asm<br>asm-tree</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>OK<br>OK<br>OK</td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td>asm</td>
+		<td>asm-analysis<br>asm-commons</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>OK</td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -156,7 +387,11 @@ code {
 <p class="report-section-description">Duplicate classes, shadowed classes, and duplicate resources.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Class/Resource</th><th>Sources</th><th>Similarity</th></tr>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
 </thead>
 <tbody>
 </tbody>
@@ -168,7 +403,10 @@ code {
 <p class="report-section-description">Compatibility issues between JAR files.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Issues</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
 </thead>
 <tbody>
 </tbody>
@@ -180,11 +418,20 @@ code {
 <p class="report-section-description">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
 <table class="report-table">
 <thead>
-	<tr class="report-table-header"><th>Artifact</th><th>Issues</th></tr>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row"><td>asm-commons</td><td><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.MethodRemapper</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></td></tr>
-	<tr class="report-table-row"><td>asm-tree</td><td><code>org.objectweb.asm.tree.MethodNode</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></td></tr>
+	<tr class="report-table-row">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.MethodRemapper</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br><br><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></td>
+	</tr>
+	<tr class="report-table-row">
+		<td>asm-tree</td>
+		<td><code>org.objectweb.asm.tree.MethodNode</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></td>
+	</tr>
 </tbody>
 </table>
 </section>
@@ -198,3 +445,73 @@ code {
 <div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 </body>
 </html>
+<script>
+function init() {
+
+	// check if document is a diff report
+	const body = document.getElementsByTagName("body")[0];
+	if (body.classList.contains("diff-report")) {
+		initDiffUI();
+	}
+
+	initRowMarking();
+}
+
+function initDiffUI() {
+	const div = document.createElement("div");
+
+	// render checkbox
+	const input = document.createElement("input");
+	input.type = "checkbox";
+	input.style.marginLeft = "0";
+	input.onchange = function() {
+		showOnlyDiff(this.checked);
+	};
+	div.appendChild(input);
+
+	// render label for checkbox
+	const span = document.createElement("span");
+	span.innerText = "Show only differences";
+	span.style.cursor = "default";
+	span.onclick = function() {
+		input.click();
+	};
+	div.appendChild(span);
+
+	const section = document.getElementById("Diff");
+	section.appendChild(div);
+}
+
+function showOnlyDiff(enabled) {
+	const rows = document.getElementsByClassName("report-table-row");
+	for (let row of rows) {
+		if (!row.classList.contains("diff")) {
+			if (enabled) {
+				row.style.display = "none";
+			} else {
+				row.style.display = "table-row";
+			}
+		}
+	}
+}
+
+function initRowMarking() {
+
+	const toggleMarked = function(element) {
+		if (element.classList.contains("marked")) {
+			element.classList.remove("marked");
+		} else {
+			element.classList.add("marked");
+		}
+	}
+
+	const rows = document.getElementsByClassName("report-table-row");
+	for (let row of rows) {
+		row.ondblclick = () => {
+			toggleMarked(row)
+		}
+	}
+}
+
+init();
+</script>

@@ -54,9 +54,13 @@ code {
 }
 
 .inserted {
-	background-color: #d4edda;
+	background-color: #D4EDDA;
 }
 
 .deleted {
-	background-color: #f8d7da;
+	background-color: #F8D7DA;
+}
+
+.marked {
+	background-color: #FFF6D8;
 }

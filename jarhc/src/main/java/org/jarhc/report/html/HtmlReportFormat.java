@@ -17,6 +17,7 @@
 package org.jarhc.report.html;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
@@ -46,6 +47,14 @@ public class HtmlReportFormat implements ReportFormat {
 		formatHtmlHead(report, writer);
 		formatHtmlBody(report, writer);
 		writer.println("</html>");
+
+		// include JavaScript code
+		String script = styleProvider.getScript();
+		if (script != null) {
+			writer.println("<script>");
+			writer.println(script);
+			writer.println("</script>");
+		}
 	}
 
 	private void formatHtmlHead(Report report, ReportWriter writer) {
@@ -64,10 +73,10 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("<meta name=\"generator\" content=\"JarHC " + VersionUtils.getVersion() + "\">");
 
 		// include CSS styles
-		String css = styleProvider.getStyle();
-		if (css != null) {
+		String style = styleProvider.getStyle();
+		if (style != null) {
 			writer.println("<style>");
-			writer.println(css);
+			writer.println(style);
 			writer.println("</style>");
 		}
 
@@ -75,7 +84,13 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private void formatHtmlBody(Report report, ReportWriter writer) {
-		writer.println("<body>");
+
+		String cssClass = "report";
+		String type = report.getType();
+		if (type != null) {
+			cssClass += " " + type + "-report";
+		}
+		writer.println("<body class=\"%s\">", cssClass);
 		writer.println();
 
 		// add optional title
@@ -150,7 +165,11 @@ public class HtmlReportFormat implements ReportFormat {
 		String heading = "h" + (level + 2); // root sections use h2
 		writer.println("<%s class=\"report-section-title\">%s</%s>", heading, escape(title), heading);
 		if (description != null) {
-			writer.println("<p class=\"report-section-description\">%s</p>", Markdown.toHtml(escape(description)));
+			String cssClass = "report-section-description";
+			if (Markdown.isDiff(description)) {
+				cssClass += " diff";
+			}
+			writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(description)));
 		}
 
 		// format content
@@ -162,7 +181,12 @@ public class HtmlReportFormat implements ReportFormat {
 				ReportTable table = (ReportTable) item;
 				formatTable(table, writer);
 			} else {
-				writer.println("<p class=\"report-content\">%s</p>", Markdown.toHtml(escape(item.toString())));
+				String value = item.toString();
+				String cssClass = "report-content";
+				if (Markdown.isDiff(value)) {
+					cssClass += " diff";
+				}
+				writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(value)));
 			}
 		}
 
@@ -186,15 +210,22 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private static void printTableRow(ReportWriter writer, String[] values, boolean header) {
-		writer.print("\t<tr class=\"%s\">", header ? "report-table-header" : "report-table-row");
+
+		// prepare CSS class
+		String cssClass = header ? "report-table-header" : "report-table-row";
+		if (Stream.of(values).anyMatch(Markdown::isDiff)) {
+			cssClass += " diff";
+		}
+
+		writer.println("\t<tr class=\"%s\">", cssClass);
 		for (String value : values) {
 			if (header) {
-				writer.print("<th>%s</th>", escape(value));
+				writer.println("\t\t<th>%s</th>", escape(value));
 			} else {
-				writer.print("<td>%s</td>", Markdown.toHtml(escape(value)));
+				writer.println("\t\t<td>%s</td>", Markdown.toHtml(escape(value)));
 			}
 		}
-		writer.println("</tr>");
+		writer.println("\t</tr>");
 	}
 
 	private static String escape(String text) {

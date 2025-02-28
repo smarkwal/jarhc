@@ -31,4 +31,11 @@ public interface StyleProvider {
 	 */
 	String getStyle();
 
+	/**
+	 * Get the JavaScript source code to be included in HTML report.
+	 *
+	 * @return JavaScript code
+	 */
+	String getScript();
+
 }
