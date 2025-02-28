@@ -12,6 +12,22 @@ body {
 	line-height: 1.2rem;
 }
 
+header {
+	display: flex;
+	justify-content: space-between;
+	background-color: lightgray;
+	padding: 0.5em;
+}
+
+#controls {
+	align-self: flex-start;
+}
+
+#generator {
+	align-self: flex-end;
+	color: gray;
+}
+
 h2 {
 	margin-top: 3rem;
 }
@@ -32,13 +48,6 @@ th, td {
 	white-space: nowrap;
 }
 
-.generator {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: gray;
-}
-
 code {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: #333399;
@@ -55,13 +64,24 @@ code {
 .marked {
 	background-color: #FFF6D8;
 }
+
+@media print {
+	.no-print, .no-print * {
+		display: none !important;
+	}
+}
 </style>
 </head>
 <body class="report scan-report">
 
+<header class="no-print">
+	<div id="controls"></div>
+	<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
+</header>
+
 <h1 class="report-title">Jakarta EE 8</h1>
 
-<h3 class="report-toc-title">Table of Contents</h3>
+<h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
 <li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
@@ -2269,7 +2289,6 @@ code {
 <p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
-<div class="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 </body>
 </html>
 <script>
@@ -2290,7 +2309,6 @@ function initDiffUI() {
 	// render checkbox
 	const input = document.createElement("input");
 	input.type = "checkbox";
-	input.style.marginLeft = "0";
 	input.onchange = function() {
 		showOnlyDiff(this.checked);
 	};
@@ -2305,8 +2323,8 @@ function initDiffUI() {
 	};
 	div.appendChild(span);
 
-	const section = document.getElementById("Diff");
-	section.appendChild(div);
+	const controls = document.getElementById("controls");
+	controls.appendChild(div);
 }
 
 function showOnlyDiff(enabled) {

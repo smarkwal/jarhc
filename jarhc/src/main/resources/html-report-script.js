@@ -31,7 +31,6 @@ function initDiffUI() {
 	// render checkbox
 	const input = document.createElement("input");
 	input.type = "checkbox";
-	input.style.marginLeft = "0";
 	input.onchange = function() {
 		showOnlyDiff(this.checked);
 	};
@@ -46,8 +45,8 @@ function initDiffUI() {
 	};
 	div.appendChild(span);
 
-	const section = document.getElementById("Diff");
-	section.appendChild(div);
+	const controls = document.getElementById("controls");
+	controls.appendChild(div);
 }
 
 function showOnlyDiff(enabled) {
