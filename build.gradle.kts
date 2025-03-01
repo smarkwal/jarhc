@@ -25,7 +25,7 @@ plugins {
 
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
-    id("com.github.ben-manes.versions") version "0.51.0"
+    id("com.github.ben-manes.versions") version "0.52.0"
 
 }
 
@@ -33,8 +33,9 @@ buildscript {
     dependencies {
         // fix CVE-2023-3635 in Okio < 3.4.0
         // (indirect dependency of Gradle Versions Plugin 0.51.0)
-        classpath("com.squareup.okio:okio:3.9.1")
-        classpath("com.squareup.okio:okio-jvm:3.9.1")
+        // check dependencies with ./gradlew buildEnvironment | grep okio
+        classpath("com.squareup.okio:okio:3.10.2")
+        classpath("com.squareup.okio:okio-jvm:3.10.2")
     }
 }
 

@@ -148,18 +148,18 @@ dependencies {
     implementation("org.ow2.asm:asm:9.7.1")
     implementation("org.json:json:20250107")
     implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
-    implementation("org.slf4j:jul-to-slf4j:2.0.16")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.16")
-    api("org.slf4j:slf4j-api:2.0.16")
+    implementation("org.slf4j:jul-to-slf4j:2.0.17")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.17")
+    api("org.slf4j:slf4j-api:2.0.17")
 
     // additional libraries to be added to jar-with-deps
-    includeInJarApp("org.slf4j:slf4j-simple:2.0.16")
+    includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.11.4")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.12.0")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testFixturesApi("org.mockito:mockito-core:5.15.2")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.16")
+    testFixturesApi("org.slf4j:slf4j-simple:2.0.17")
 
 }
 
