@@ -67,6 +67,9 @@ public class TestUtils {
 				// mask checksum of JarHC JAR file
 				content = content.replaceAll("jarhc(.*) \\| [0-9a-f]{40} \\|", "jarhc$1 | **************************************** |");
 
+				// mask patch version of Java version
+				content = content.replaceAll("Java version : (\\d+)\\.(\\d+)\\.(\\d+)", "Java version : $1.$2.*");
+
 				// write content back into file
 				FileUtils.writeStringToFile(file, content, StandardCharsets.UTF_8);
 
