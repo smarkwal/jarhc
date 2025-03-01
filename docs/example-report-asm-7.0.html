@@ -5,29 +5,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="JarHC 3.0.0-SNAPSHOT">
 <style>
+html {
+	scroll-padding-top: 80px;
+}
+
 body {
+	margin: 0;
+	padding: 0;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	margin: 20px;
-	font-size: 0.8rem;
 	line-height: 1.2rem;
 }
 
 header {
 	position: sticky;
 	top: 0;
+	left: 0;
 	display: flex;
 	justify-content: space-between;
 	background-color: lightgray;
-	padding: 0.5em;
+	padding: 20px;
+	user-select: none;
 }
 
 #controls {
+	display: flex;
 	align-self: flex-start;
+}
+
+.control {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 2em;
+}
+
+.icon {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.icon-up {
+	background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+}
+
+.icon-down {
+	background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+}
+
+.label {
+	margin-left: 0.5em;
 }
 
 #generator {
 	align-self: flex-end;
-	color: gray;
+}
+
+main {
+	margin: 20px;
 }
 
 h2 {
@@ -36,6 +75,7 @@ h2 {
 
 table {
 	border-collapse: collapse;
+	font-size: 0.8rem;
 }
 
 th {
@@ -81,8 +121,11 @@ code {
 	<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 </header>
 
+<main>
+
 <h1 class="report-title">ASM 7.0</h1>
 
+<nav>
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
@@ -95,6 +138,7 @@ code {
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
 <li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
+</nav>
 
 <section class="report-section" id="JARFiles">
 <h2 class="report-section-title">JAR Files</h2>
@@ -464,10 +508,13 @@ code {
 <p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
+</main>
 </body>
 </html>
 <script>
 function init() {
+
+	initNavUI();
 
 	// check if document is a diff report
 	const body = document.getElementsByTagName("body")[0];
@@ -478,28 +525,116 @@ function init() {
 	initRowMarking();
 }
 
+function initNavUI() {
+
+	// link to next section
+	const link1 = createIconLink("icon-down", "Next section", function() {
+		scrollToSection(true);
+	});
+
+	// link to previous section
+	const link2 = createIconLink("icon-up", "Previous section", function() {
+		scrollToSection(false);
+	});
+
+	const controls = document.getElementById("controls");
+	controls.appendChild(link1);
+	controls.appendChild(link2);
+}
+
+function createIconLink(iconClass, text, onclick) {
+
+	const icon = document.createElement("span");
+	icon.classList.add("icon");
+	icon.classList.add(iconClass);
+
+	const label = document.createElement("span");
+	label.classList.add("label");
+	label.innerText = text;
+
+	return createControl(icon, label, onclick);
+}
+
+function scrollToSection(next) {
+
+	const targetY = 80; // target scroll position (relative to viewport)
+
+	// find next section
+	let nextSection = null;
+	let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
+
+	// iterate over all sections
+	const sections = document.getElementsByClassName("report-section");
+	for (let section of sections) {
+
+		// get position of section (relative to viewport)
+		const sectionY = section.getBoundingClientRect().top;
+
+		// check if section is closer than previous next section
+		let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+		if (better) {
+			nextSection = section;
+			nextSectionY = sectionY;
+		}
+	}
+
+	// if there is a next section ...
+	if (nextSection) {
+
+		// get current vertical scroll position
+		const scrollY = window.scrollY;
+
+		// scroll to next section
+		window.scrollTo(0, scrollY + nextSectionY - targetY);
+
+	} else if (!next) { // if there is no previous section
+
+		// scroll to top
+		window.scrollTo(0, 0);
+	}
+
+}
+
 function initDiffUI() {
-	const div = document.createElement("div");
 
-	// render checkbox
-	const input = document.createElement("input");
-	input.type = "checkbox";
-	input.onchange = function() {
+	const div = createCheckbox("Show only differences", function() {
 		showOnlyDiff(this.checked);
-	};
-	div.appendChild(input);
-
-	// render label for checkbox
-	const span = document.createElement("span");
-	span.innerText = "Show only differences";
-	span.style.cursor = "default";
-	span.onclick = function() {
-		input.click();
-	};
-	div.appendChild(span);
+	});
 
 	const controls = document.getElementById("controls");
 	controls.appendChild(div);
+}
+
+function createCheckbox(text, onchange) {
+
+	// create checkbox
+	const input = document.createElement("input");
+	input.type = "checkbox";
+	input.onchange = onchange;
+
+	// create label for checkbox
+	const label = document.createElement("span");
+	label.classList.add("label");
+	label.innerText = text;
+	label.onclick = function() {
+		input.click();
+	};
+
+	return createControl(input, label, null);
+}
+
+function createControl(control, label, onclick) {
+
+	const div = document.createElement("div");
+	div.classList.add("control");
+	if (onclick) {
+		div.onclick = onclick
+	}
+
+	div.appendChild(control);
+	div.appendChild(label);
+
+	return div;
 }
 
 function showOnlyDiff(enabled) {

@@ -98,6 +98,8 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("\t<div id=\"generator\">Generated with <a href=\"http://jarhc.org\" target=\"_blank\">JarHC " + VersionUtils.getVersion() + "</a></div>");
 		writer.println("</header>");
 		writer.println();
+		writer.println("<main>");
+		writer.println();
 
 		// add optional title
 		String title = report.getTitle();
@@ -116,10 +118,12 @@ public class HtmlReportFormat implements ReportFormat {
 			writer.println();
 		}
 
+		writer.println("</main>");
 		writer.println("</body>");
 	}
 
 	private void formatToC(Report report, ReportWriter writer) {
+		writer.println("<nav>");
 		writer.println("<h2 class=\"report-toc-title\">Table of Contents</h2>");
 		writer.println("<ul class=\"report-toc\">");
 		List<ReportSection> sections = report.getSections();
@@ -127,6 +131,7 @@ public class HtmlReportFormat implements ReportFormat {
 			formatToC(section, writer);
 		}
 		writer.println("</ul>");
+		writer.println("</nav>");
 		writer.println();
 	}
 
