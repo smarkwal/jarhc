@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
 <html lang="en">
 <head>
 <title>Report Title</title>
@@ -85,7 +86,7 @@ main {
 	margin: 20px;
 }
 
-h2 {
+h2, h3, h4, h5, h6 {
 	margin-top: 3rem;
 }
 
@@ -104,6 +105,17 @@ th, td {
 	vertical-align: top;
 	text-align: left;
 	white-space: nowrap;
+}
+
+.report-text-block {
+	margin-bottom: 1em;
+}
+
+.report-text-block:last-child {
+	margin-bottom: 0;
+}
+
+.report-issue {
 }
 
 code {
@@ -185,8 +197,12 @@ code {
 	</tr>
 	<tr class="report-table-row">
 		<td>Line 1</td>
-		<td>Line 1<br>Longer Line 2</td>
-		<td>Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="_blank" rel="noopener noreferrer">commons-io:commons-io:2.8.0</a></td>
+		<td>
+			<div class="report-text-block">Line 1<br>Longer Line 2</div>
+		</td>
+		<td>
+			<div class="report-text-block">Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="_blank" rel="noopener noreferrer">commons-io:commons-io:2.8.0</a></div>
+		</td>
 	</tr>
 </tbody>
 </table>
@@ -371,6 +387,8 @@ function createControl(control, label, onclick) {
 }
 
 function showOnlyDiff(enabled) {
+
+	// show or hide table rows
 	const rows = document.getElementsByClassName("report-table-row");
 	for (let row of rows) {
 		if (!row.classList.contains("diff")) {
@@ -378,6 +396,18 @@ function showOnlyDiff(enabled) {
 				row.style.display = "none";
 			} else {
 				row.style.display = "table-row";
+			}
+		}
+	}
+
+	// show or hide issues
+	const issues = document.getElementsByClassName("report-issue");
+	for (let issue of issues) {
+		if (!issue.classList.contains("diff")) {
+			if (enabled) {
+				issue.style.display = "none";
+			} else {
+				issue.style.display = "block";
 			}
 		}
 	}

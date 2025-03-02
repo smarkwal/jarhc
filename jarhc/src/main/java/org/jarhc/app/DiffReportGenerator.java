@@ -81,7 +81,7 @@ public class DiffReportGenerator {
 	}
 
 	private ReportSection createDiffSection(Report report1, Report report2) {
-		ReportSection section = new ReportSection("Diff", "Information about the reports used as input for this diff report.");
+		ReportSection section = new ReportSection("Reports", "Information about the reports used as input for this diff report.");
 
 		String text = Markdown.bold("Report 1") + "\n" +
 				report1.getTitle() + "\n" +

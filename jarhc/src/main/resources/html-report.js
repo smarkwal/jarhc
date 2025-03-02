@@ -140,6 +140,8 @@ function createControl(control, label, onclick) {
 }
 
 function showOnlyDiff(enabled) {
+
+	// show or hide table rows
 	const rows = document.getElementsByClassName("report-table-row");
 	for (let row of rows) {
 		if (!row.classList.contains("diff")) {
@@ -147,6 +149,18 @@ function showOnlyDiff(enabled) {
 				row.style.display = "none";
 			} else {
 				row.style.display = "table-row";
+			}
+		}
+	}
+
+	// show or hide issues
+	const issues = document.getElementsByClassName("report-issue");
+	for (let issue of issues) {
+		if (!issue.classList.contains("diff")) {
+			if (enabled) {
+				issue.style.display = "none";
+			} else {
+				issue.style.display = "block";
 			}
 		}
 	}

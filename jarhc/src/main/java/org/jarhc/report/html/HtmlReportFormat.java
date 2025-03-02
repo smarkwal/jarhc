@@ -29,6 +29,8 @@ import org.slf4j.LoggerFactory;
 
 public class HtmlReportFormat implements ReportFormat {
 
+	private static final String ISSUES_COLUMN = "Issues";
+
 	private final StyleProvider styleProvider;
 
 	public HtmlReportFormat() {
@@ -43,6 +45,7 @@ public class HtmlReportFormat implements ReportFormat {
 	@Override
 	public void format(Report report, ReportWriter writer) {
 		writer.println("<!DOCTYPE html>");
+		writer.println("<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->");
 		writer.println("<html lang=\"en\">");
 		formatHtmlHead(report, writer);
 		formatHtmlBody(report, writer);
@@ -207,34 +210,74 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("<table class=\"report-table\">");
 		String[] columns = table.getColumns();
 		writer.println("<thead>");
-		printTableRow(writer, columns, true);
+		printTableHeaders(writer, columns);
 		writer.println("</thead>");
 		List<String[]> rows = table.getRows();
 		writer.println("<tbody>");
 		for (String[] values : rows) {
-			printTableRow(writer, values, false);
+			printTableRow(writer, columns, values);
 		}
 		writer.println("</tbody>");
 		writer.println("</table>");
 	}
 
-	private static void printTableRow(ReportWriter writer, String[] values, boolean header) {
+	private static void printTableHeaders(ReportWriter writer, String[] columns) {
+		writer.println("\t<tr class=\"report-table-header\">");
+		for (String column : columns) {
+			writer.println("\t\t<th>%s</th>", escape(column));
+		}
+		writer.println("\t</tr>");
+	}
+
+	private static void printTableRow(ReportWriter writer, String[] columns, String[] values) {
 
 		// prepare CSS class
-		String cssClass = header ? "report-table-header" : "report-table-row";
+		String cssClass = "report-table-row";
 		if (Stream.of(values).anyMatch(Markdown::isDiff)) {
 			cssClass += " diff";
 		}
 
 		writer.println("\t<tr class=\"%s\">", cssClass);
-		for (String value : values) {
-			if (header) {
-				writer.println("\t\t<th>%s</th>", escape(value));
-			} else {
-				writer.println("\t\t<td>%s</td>", Markdown.toHtml(escape(value)));
-			}
+		for (int c = 0; c < columns.length; c++) {
+			String column = columns[c];
+			String value = values[c];
+			printTableCell(writer, column, value);
 		}
 		writer.println("\t</tr>");
+	}
+
+	private static void printTableCell(ReportWriter writer, String column, String value) {
+
+		// fast path: check if cell contains multiple lines or issues
+		if (!value.contains("\n") && !column.equals(ISSUES_COLUMN)) {
+			writer.println("\t\t<td>%s</td>", Markdown.toHtml(escape(value)));
+			return;
+		}
+
+		// start cell
+		writer.println("\t\t<td>");
+
+		// split cell value into blocks (separated by empty line)
+		String[] blocks = value.split("\n\n");
+
+		// render and wrap each block individually
+		for (String block : blocks) {
+
+			// wrap block in div element
+			// - with CSS class "report-issue" if it is in column "Issues"
+			// - with CSS class "diff" if it contains a diff
+			String cssClass = "report-text-block";
+			if (column.equals(ISSUES_COLUMN)) { // mark issues
+				cssClass += " report-issue";
+			}
+			if (Markdown.isDiff(block)) {
+				cssClass += " diff";
+			}
+			writer.println("\t\t\t<div class=\"%s\">%s</div>", cssClass, Markdown.toHtml(escape(block)));
+		}
+
+		// end cell
+		writer.println("\t\t</td>");
 	}
 
 	private static String escape(String text) {

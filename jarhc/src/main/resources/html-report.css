@@ -94,7 +94,7 @@ main {
 	margin: 20px;
 }
 
-h2 {
+h2, h3, h4, h5, h6 {
 	margin-top: 3rem;
 }
 
@@ -113,6 +113,17 @@ th, td {
 	vertical-align: top;
 	text-align: left;
 	white-space: nowrap;
+}
+
+.report-text-block {
+	margin-bottom: 1em;
+}
+
+.report-text-block:last-child {
+	margin-bottom: 0;
+}
+
+.report-issue {
 }
 
 code {
