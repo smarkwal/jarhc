@@ -11,7 +11,7 @@ asm-9.7.1.jar                             | 123 KB  | 38      | 0         | f0ed
 commons-codec-1.17.1.jar                  | 364 KB  | 107     | 128       | 973638b7149d333563584137ebf13a691bb60579 | commons-codec:commons-codec:1.17.1
 httpclient-4.5.14.jar                     | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
 httpcore-4.4.16.jar                       | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
-jarhc-3.0.0-SNAPSHOT.jar                  | 294 KB  | 151     | 18        | 72dd35a235dc48be98b17f85189730e525779378 | [unknown]
+jarhc-3.0.0-SNAPSHOT.jar                  | 297 KB  | 153     | 18        | 407733d92295ae54f476d5c52fd1b105a204497c | [unknown]
 jcl-over-slf4j-2.0.17.jar                 | 18.0 KB | 8       | 0         | 76ea503eb688f06556a9ba69995d7eab63e34531 | org.slf4j:jcl-over-slf4j:2.0.17
 json-20250107.jar                         | 79.5 KB | 31      | 0         | a1b5f0b5a1ce018b93a691c57ffc7d141b3a10f1 | org.json:json:20250107
 jul-to-slf4j-2.0.17.jar                   | 6.20 KB | 1       | 0         | 524cb6ccc2b68a57604750e1ab8b13b5a786a6aa | org.slf4j:jul-to-slf4j:2.0.17
@@ -33,7 +33,7 @@ maven-resolver-util-1.9.22.jar            | 191 KB  | 116     | 0         | d5fe
 plexus-interpolation-1.27.jar             | 83.9 KB | 62      | 0         | 8dc73f4ff5eafcbb7ec035ba54736e828b272533 | org.codehaus.plexus:plexus-interpolation:1.27
 plexus-utils-3.5.1.jar                    | 263 KB  | 108     | 3         | c6bfb17c97ecc8863e88778ea301be742c62b06d | org.codehaus.plexus:plexus-utils:3.5.1
 slf4j-api-2.0.17.jar                      | 68.3 KB | 55      | 0         | d9e58ac9c7779ba3bf8142aff6c830617a7fe60f | org.slf4j:slf4j-api:2.0.17
-Classpath                                 | 3.76 MB | 2111    | 153       | -                                        | -
+Classpath                                 | 3.76 MB | 2113    | 153       | -                                        | -
 
 Modules
 -------
@@ -91,7 +91,7 @@ asm-9.7.1.jar                             | No                             | Jav
 commons-codec-1.17.1.jar                  | Yes (Java 9)                   | Java 8 (107)
 httpclient-4.5.14.jar                     | No                             | Java 6 (470)
 httpcore-4.4.16.jar                       | No                             | Java 6 (253)
-jarhc-3.0.0-SNAPSHOT.jar                  | No                             | Java 11 (151)
+jarhc-3.0.0-SNAPSHOT.jar                  | No                             | Java 11 (153)
 jcl-over-slf4j-2.0.17.jar                 | Yes (Java 9)                   | Java 8 (8)
 json-20250107.jar                         | Yes (Java 9)                   | Java 8 (31)
 jul-to-slf4j-2.0.17.jar                   | Yes (Java 9)                   | Java 8 (1)
@@ -113,7 +113,7 @@ maven-resolver-util-1.9.22.jar            | No                             | Jav
 plexus-interpolation-1.27.jar             | No                             | Java 8 (62)
 plexus-utils-3.5.1.jar                    | Yes (Java 9, Java 10, Java 11) | Java 11 (1), Java 10 (1), Java 8 (106)
 slf4j-api-2.0.17.jar                      | Yes (Java 9)                   | Java 8 (55)
-Classpath                                 | -                              | Java 11 (152), Java 10 (1), Java 8 (1197), Java 6 (723),
+Classpath                                 | -                              | Java 11 (154), Java 10 (1), Java 8 (1197), Java 6 (723),
                                           |                                | Java 5 (38)
 
 JAR Dependencies

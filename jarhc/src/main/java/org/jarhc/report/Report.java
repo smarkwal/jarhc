@@ -29,7 +29,7 @@ public class Report {
 	private long timestamp = DateTimeUtils.getTimestamp();
 
 	private String title = "JAR Health Check Report";
-	private String type = "scan";
+	private Type type = Type.SCAN;
 	private final List<ReportSection> sections = new ArrayList<>();
 
 	public String getVersion() {
@@ -56,11 +56,12 @@ public class Report {
 		this.title = title;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
+		if (type == null) throw new IllegalArgumentException("type");
 		this.type = type;
 	}
 
@@ -95,7 +96,7 @@ public class Report {
 		report.version = json.getString("version");
 		report.timestamp = json.getLong("timestamp");
 		report.title = json.getString("title");
-		report.type = json.getString("type");
+		report.type = Type.valueOf(json.getString("type"));
 		JSONArray sectionList = json.getJSONArray("sections");
 		for (int i = 0; i < sectionList.length(); i++) {
 			JSONObject sectionObject = sectionList.getJSONObject(i);
@@ -111,4 +112,10 @@ public class Report {
 		}
 		sections.removeIf(ReportSection::isEmpty);
 	}
+
+	public enum Type {
+		SCAN,
+		DIFF
+	}
+
 }

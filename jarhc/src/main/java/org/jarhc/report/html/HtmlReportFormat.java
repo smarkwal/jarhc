@@ -23,6 +23,7 @@ import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
+import org.jarhc.utils.CompressUtils;
 import org.jarhc.utils.Markdown;
 import org.jarhc.utils.VersionUtils;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,10 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("<html lang=\"en\">");
 		formatHtmlHead(report, writer);
 		formatHtmlBody(report, writer);
+
+		if (report.getType() != Report.Type.DIFF) {
+			formatJsonData(report, writer);
+		}
 		writer.println("</html>");
 	}
 
@@ -80,11 +85,8 @@ public class HtmlReportFormat implements ReportFormat {
 
 	private void formatHtmlBody(Report report, ReportWriter writer) {
 
-		String cssClass = "report";
-		String type = report.getType();
-		if (type != null) {
-			cssClass += " " + type + "-report";
-		}
+		String type = report.getType().name().toLowerCase(); // "scan" or "diff"
+		String cssClass = "report " + type + "-report";
 		writer.println("<body class=\"%s\">", cssClass);
 		writer.println();
 
@@ -210,18 +212,18 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("<table class=\"report-table\">");
 		String[] columns = table.getColumns();
 		writer.println("<thead>");
-		printTableHeaders(writer, columns);
+		formatTableHeader(writer, columns);
 		writer.println("</thead>");
 		List<String[]> rows = table.getRows();
 		writer.println("<tbody>");
 		for (String[] values : rows) {
-			printTableRow(writer, columns, values);
+			formatTableRow(writer, columns, values);
 		}
 		writer.println("</tbody>");
 		writer.println("</table>");
 	}
 
-	private static void printTableHeaders(ReportWriter writer, String[] columns) {
+	private static void formatTableHeader(ReportWriter writer, String[] columns) {
 		writer.println("\t<tr class=\"report-table-header\">");
 		for (String column : columns) {
 			writer.println("\t\t<th>%s</th>", escape(column));
@@ -229,7 +231,7 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("\t</tr>");
 	}
 
-	private static void printTableRow(ReportWriter writer, String[] columns, String[] values) {
+	private static void formatTableRow(ReportWriter writer, String[] columns, String[] values) {
 
 		// prepare CSS class
 		String cssClass = "report-table-row";
@@ -241,12 +243,12 @@ public class HtmlReportFormat implements ReportFormat {
 		for (int c = 0; c < columns.length; c++) {
 			String column = columns[c];
 			String value = values[c];
-			printTableCell(writer, column, value);
+			formatTableCell(writer, column, value);
 		}
 		writer.println("\t</tr>");
 	}
 
-	private static void printTableCell(ReportWriter writer, String column, String value) {
+	private static void formatTableCell(ReportWriter writer, String column, String value) {
 
 		// fast path: check if cell contains multiple lines or issues
 		if (!value.contains("\n") && !column.equals(ISSUES_COLUMN)) {
@@ -278,6 +280,22 @@ public class HtmlReportFormat implements ReportFormat {
 
 		// end cell
 		writer.println("\t\t</td>");
+	}
+
+	private static void formatJsonData(Report report, ReportWriter writer) {
+
+		// get report data in JSON format
+		String json = report.toJSON().toString();
+
+		// compress and Base64-encode JSON data
+		String data = CompressUtils.compressString(json);
+
+		// split Base64 code into lines of max. 200 characters
+		data = data.replaceAll("(.{200})", "$1\n");
+
+		writer.println("<!-- JSON REPORT DATA");
+		writer.println(data);
+		writer.println("-->");
 	}
 
 	private static String escape(String text) {
