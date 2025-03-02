@@ -16,6 +16,7 @@
 function init() {
 
 	initNavUI();
+	initMinimap(); // TODO: add control to show/hide minimap
 
 	// check if document is a diff report
 	const body = document.getElementsByTagName("body")[0];
@@ -97,6 +98,75 @@ function scrollToSection(next) {
 
 }
 
+function initMinimap() {
+
+	updateMinimap();
+
+	window.addEventListener("scroll", updateMinimapView);
+	window.addEventListener("resize", updateMinimap);
+
+	const minimap = document.getElementById("minimap");
+	minimap.addEventListener("mousedown", scrollMinimapView);
+	minimap.addEventListener("mouseup", scrollMinimapView);
+	// TODO: on mouse drag
+}
+
+function updateMinimap() {
+
+	// TODO: clear content of minimap
+	// TODO: iterate over all sections and add them to the minimap
+	// TODO: iterate over all differences and add them to the minimap
+
+	console.log("TODO: update minimap");
+
+	updateMinimapView();
+}
+
+function updateMinimapView() {
+
+	const minimap = document.getElementById("minimap");
+
+	// get dimensions
+	const documentHeight = document.body.scrollHeight;
+	const viewportHeight = window.innerHeight;
+	const minimapHeight = minimap.clientHeight;
+	const scrollY = window.scrollY;
+
+	// calculate new position and height of minimap view
+	const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 3;
+	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+
+	// update position and height of minimap view
+	const minimapView = document.getElementById("minimap-view");
+	minimapView.style.top = minimapViewTop + "px";
+	minimapView.style.height = minimapViewHeight + "px";
+}
+
+function scrollMinimapView(event) {
+	const minimap = document.getElementById("minimap");
+
+	// calculate height of minimap view
+	const documentHeight = document.body.scrollHeight;
+	const viewportHeight = window.innerHeight;
+	const minimapHeight = minimap.clientHeight;
+	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+	const minimapViewOffset = minimapViewHeight / 2;
+
+	// calculate position of minimap view (relative to top of minimap)
+	let y = event.clientY - minimap.offsetTop;
+	if (y < minimapViewOffset) {
+		y = minimapViewOffset;
+	} else if (y > minimapHeight - minimapViewOffset) {
+		y = minimapHeight - minimapViewOffset;
+	}
+	y = y - minimapViewOffset;
+
+	const scrollY = y / minimapHeight * document.body.scrollHeight;
+	window.scrollTo(0, scrollY);
+
+	updateMinimapView();
+}
+
 function initDiffUI() {
 
 	showOnlyDiff(true);
@@ -167,6 +237,9 @@ function showOnlyDiff(enabled) {
 			}
 		}
 	}
+
+	// update minimap
+	updateMinimap();
 }
 
 function initRowMarking() {

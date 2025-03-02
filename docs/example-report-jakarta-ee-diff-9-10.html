@@ -38,6 +38,7 @@ header {
 	justify-content: space-between;
 	background-color: lightgray;
 	padding: 12px;
+	z-index: 100;
 }
 
 #controls {
@@ -52,7 +53,12 @@ header {
 	padding: 8px;
 	margin-right: 10px;
 	background-color: #EEEEEE;
+	border-radius: 8px;
 	user-select: none;
+}
+
+.control:hover {
+	background-color: white;
 }
 
 .icon {
@@ -83,7 +89,30 @@ input[type="checkbox"] {
 }
 
 main {
-	margin: 20px;
+	margin: 20px 20px 20px 100px;
+}
+
+#minimap {
+	position: fixed;
+	top: 70px;
+	left: 10px;
+	width: 70px;
+	height: calc(100% - 80px);
+	z-index: 80;
+	user-select: none;
+	background-color: #EEEEEE;
+	border: 1px solid #999999;
+}
+
+#minimap-view {
+	position: fixed;
+	top: 66px;
+	left: 7px;
+	width: 70px;
+	height: 0;
+	z-index: 90;
+	user-select: none;
+	border: 4px solid black;
 }
 
 h2, h3, h4, h5, h6 {
@@ -136,20 +165,41 @@ code {
 }
 
 @media print {
-	.no-print, .no-print * {
+
+	header {
 		display: none !important;
 	}
+
+	#minimap {
+		display: none !important;
+	}
+
+	#minimap-view {
+		display: none !important;
+	}
+
+	main {
+		margin: 0;
+	}
+
+	th, td {
+		white-space: normal;
+	}
+
 }
 </style>
 </head>
 <body class="report diff-report">
 
-<header class="no-print">
+<header>
 	<div id="controls"></div>
 	<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 </header>
 
 <main>
+
+<div id="minimap"></div>
+<div id="minimap-view"></div>
 
 <h1 class="report-title">Jakarta EE 9 and 10</h1>
 
@@ -3929,6 +3979,7 @@ code {
 function init() {
 
 	initNavUI();
+	initMinimap(); // TODO: add control to show/hide minimap
 
 	// check if document is a diff report
 	const body = document.getElementsByTagName("body")[0];
@@ -4010,9 +4061,80 @@ function scrollToSection(next) {
 
 }
 
+function initMinimap() {
+
+	updateMinimap();
+
+	window.addEventListener("scroll", updateMinimapView);
+	window.addEventListener("resize", updateMinimap);
+
+	const minimap = document.getElementById("minimap");
+	minimap.addEventListener("mousedown", scrollMinimapView);
+	minimap.addEventListener("mouseup", scrollMinimapView);
+	// TODO: on mouse drag
+}
+
+function updateMinimap() {
+
+	// TODO: clear content of minimap
+	// TODO: iterate over all sections and add them to the minimap
+	// TODO: iterate over all differences and add them to the minimap
+
+	console.log("TODO: update minimap");
+
+	updateMinimapView();
+}
+
+function updateMinimapView() {
+
+	const minimap = document.getElementById("minimap");
+
+	// get dimensions
+	const documentHeight = document.body.scrollHeight;
+	const viewportHeight = window.innerHeight;
+	const minimapHeight = minimap.clientHeight;
+	const scrollY = window.scrollY;
+
+	// calculate new position and height of minimap view
+	const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 3;
+	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+
+	// update position and height of minimap view
+	const minimapView = document.getElementById("minimap-view");
+	minimapView.style.top = minimapViewTop + "px";
+	minimapView.style.height = minimapViewHeight + "px";
+}
+
+function scrollMinimapView(event) {
+	const minimap = document.getElementById("minimap");
+
+	// calculate height of minimap view
+	const documentHeight = document.body.scrollHeight;
+	const viewportHeight = window.innerHeight;
+	const minimapHeight = minimap.clientHeight;
+	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+	const minimapViewOffset = minimapViewHeight / 2;
+
+	// calculate position of minimap view (relative to top of minimap)
+	let y = event.clientY - minimap.offsetTop;
+	if (y < minimapViewOffset) {
+		y = minimapViewOffset;
+	} else if (y > minimapHeight - minimapViewOffset) {
+		y = minimapHeight - minimapViewOffset;
+	}
+	y = y - minimapViewOffset;
+
+	const scrollY = y / minimapHeight * document.body.scrollHeight;
+	window.scrollTo(0, scrollY);
+
+	updateMinimapView();
+}
+
 function initDiffUI() {
 
-	const div = createCheckbox("Show only differences", function() {
+	showOnlyDiff(true);
+
+	const div = createCheckbox("Show only differences", true, function() {
 		showOnlyDiff(this.checked);
 	});
 
@@ -4020,11 +4142,12 @@ function initDiffUI() {
 	controls.appendChild(div);
 }
 
-function createCheckbox(text, onchange) {
+function createCheckbox(text, checked, onchange) {
 
 	// create checkbox
 	const input = document.createElement("input");
 	input.type = "checkbox";
+	input.checked = checked;
 	input.onchange = onchange;
 
 	// create label for checkbox
@@ -4077,6 +4200,9 @@ function showOnlyDiff(enabled) {
 			}
 		}
 	}
+
+	// update minimap
+	updateMinimap();
 }
 
 function initRowMarking() {
