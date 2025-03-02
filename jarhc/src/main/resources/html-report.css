@@ -60,7 +60,12 @@ header {
 	padding: 8px;
 	margin-right: 10px;
 	background-color: #EEEEEE;
+	border-radius: 8px;
 	user-select: none;
+}
+
+.control:hover {
+	background-color: white;
 }
 
 .icon {
