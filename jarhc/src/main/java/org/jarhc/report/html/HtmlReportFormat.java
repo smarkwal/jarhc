@@ -47,14 +47,6 @@ public class HtmlReportFormat implements ReportFormat {
 		formatHtmlHead(report, writer);
 		formatHtmlBody(report, writer);
 		writer.println("</html>");
-
-		// include JavaScript code
-		String script = styleProvider.getScript();
-		if (script != null) {
-			writer.println("<script>");
-			writer.println(script);
-			writer.println("</script>");
-		}
 	}
 
 	private void formatHtmlHead(Report report, ReportWriter writer) {
@@ -119,6 +111,15 @@ public class HtmlReportFormat implements ReportFormat {
 		}
 
 		writer.println("</main>");
+
+		// include JavaScript code
+		String script = styleProvider.getScript();
+		if (script != null) {
+			writer.println("<script>");
+			writer.println(script);
+			writer.println("</script>");
+		}
+
 		writer.println("</body>");
 	}
 

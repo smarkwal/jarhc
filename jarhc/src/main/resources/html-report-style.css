@@ -25,6 +25,19 @@ body {
 	line-height: 1.2rem;
 }
 
+a {
+	color: #333399;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #333399;
+}
+
 header {
 	position: sticky;
 	top: 0;
@@ -32,8 +45,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	background-color: lightgray;
-	padding: 20px;
-	user-select: none;
+	padding: 12px;
 }
 
 #controls {
@@ -45,7 +57,10 @@ header {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
-	margin-right: 2em;
+	padding: 8px;
+	margin-right: 10px;
+	background-color: #EEEEEE;
+	user-select: none;
 }
 
 .icon {
@@ -72,6 +87,7 @@ input[type="checkbox"] {
 
 #generator {
 	align-self: flex-end;
+	padding: 8px;
 }
 
 main {
