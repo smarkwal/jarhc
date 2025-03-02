@@ -99,7 +99,9 @@ function scrollToSection(next) {
 
 function initDiffUI() {
 
-	const div = createCheckbox("Show only differences", function() {
+	showOnlyDiff(true);
+
+	const div = createCheckbox("Show only differences", true, function() {
 		showOnlyDiff(this.checked);
 	});
 
@@ -107,11 +109,12 @@ function initDiffUI() {
 	controls.appendChild(div);
 }
 
-function createCheckbox(text, onchange) {
+function createCheckbox(text, checked, onchange) {
 
 	// create checkbox
 	const input = document.createElement("input");
 	input.type = "checkbox";
+	input.checked = checked;
 	input.onchange = onchange;
 
 	// create label for checkbox
