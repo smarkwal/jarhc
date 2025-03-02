@@ -255,6 +255,7 @@ function init() {
 	}
 
 	initRowMarking();
+	initKeyboardShortcuts();
 }
 
 function initNavUI() {
@@ -398,6 +399,25 @@ function initRowMarking() {
 			toggleMarked(row)
 		}
 	}
+}
+
+function initKeyboardShortcuts() {
+
+	// prepare event handler
+	function handleShortcut(event) {
+		if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+			event.preventDefault();
+			// scroll to previous section
+			scrollToSection(false);
+		} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+			event.preventDefault();
+			// scroll to next section
+			scrollToSection(true);
+		}
+	}
+
+	// register event handler
+	document.addEventListener("keydown", handleShortcut);
 }
 
 init();

@@ -26,22 +26,20 @@ import org.slf4j.Logger;
  */
 class DefaultStyleProvider implements StyleProvider {
 
-	private static final String STYLE_RESOURCE = "/html-report-style.css";
-	private static final String SCRIPT_RESOURCE = "/html-report-script.js";
+	private static final String STYLE_RESOURCE = "/html-report.css";
+	private static final String SCRIPT_RESOURCE = "/html-report.js";
 
-	private final Logger logger;
 	private final String style;
 	private final String script;
 
 	DefaultStyleProvider(Logger logger) {
-		this.logger = logger;
 
 		// load CSS styles from resource
 		String css = null;
 		try {
 			css = ResourceUtils.getResourceAsString(STYLE_RESOURCE, "UTF-8");
 		} catch (IOException e) {
-			this.logger.warn("Failed to load default style: {}", STYLE_RESOURCE, e);
+			logger.warn("Failed to load default style: {}", STYLE_RESOURCE, e);
 		}
 
 		if (css != null) {
@@ -52,9 +50,9 @@ class DefaultStyleProvider implements StyleProvider {
 		// load JavaScript code from resource
 		String js = null;
 		try {
-			js = ResourceUtils.getResourceAsString("/html-report-script.js", "UTF-8");
+			js = ResourceUtils.getResourceAsString(SCRIPT_RESOURCE, "UTF-8");
 		} catch (IOException e) {
-			this.logger.warn("Failed to load default script: {}", SCRIPT_RESOURCE, e);
+			logger.warn("Failed to load default script: {}", SCRIPT_RESOURCE, e);
 		}
 
 		if (js != null) {
