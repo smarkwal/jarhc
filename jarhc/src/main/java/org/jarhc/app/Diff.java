@@ -23,6 +23,7 @@ import org.jarhc.inject.Injector;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
 import org.jarhc.report.ReportFormatFactory;
+import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.report.writer.impl.FileReportWriter;
 import org.jarhc.utils.FileUtils;
@@ -106,6 +107,12 @@ public class Diff {
 			text = FileUtils.readFileToString(file);
 		} catch (IOException e) {
 			throw new JarHcException("I/O error when reading file: " + file.getAbsolutePath(), e);
+		}
+
+		// special handling for HTML report
+		if (text.startsWith("<!DOCTYPE html>")) {
+			// extract JSON data from HTML report
+			text = HtmlReportFormat.extractJsonData(text);
 		}
 
 		JSONObject json;

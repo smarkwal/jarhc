@@ -24,6 +24,7 @@ import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.utils.CompressUtils;
+import org.jarhc.utils.JarHcException;
 import org.jarhc.utils.Markdown;
 import org.jarhc.utils.VersionUtils;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,9 @@ import org.slf4j.LoggerFactory;
 public class HtmlReportFormat implements ReportFormat {
 
 	private static final String ISSUES_COLUMN = "Issues";
+
+	private static final String JSON_DATA_MARKER_START = "<!-- JSON REPORT DATA";
+	private static final String JSON_DATA_MARKER_END = "-->";
 
 	private final StyleProvider styleProvider;
 
@@ -293,9 +297,33 @@ public class HtmlReportFormat implements ReportFormat {
 		// split Base64 code into lines of max. 200 characters
 		data = data.replaceAll("(.{200})", "$1\n");
 
-		writer.println("<!-- JSON REPORT DATA");
+		writer.println(JSON_DATA_MARKER_START);
 		writer.println(data);
-		writer.println("-->");
+		writer.println(JSON_DATA_MARKER_END);
+	}
+
+	public static String extractJsonData(String text) {
+
+		// find JSON data in HTML report
+		int start = text.indexOf(JSON_DATA_MARKER_START);
+		if (start < 0) {
+			throw new JarHcException("JSON data not found in file.");
+		}
+
+		// find end marker
+		int end = text.indexOf(JSON_DATA_MARKER_END, start);
+		if (end < 0) {
+			throw new JarHcException("Invalid JSON data in file.");
+		}
+
+		// extract Base64-encoded JSON data
+		text = text.substring(start + JSON_DATA_MARKER_START.length(), end);
+
+		// remove all whitespaces (including line breaks)
+		text = text.replaceAll("\\s+", "");
+
+		// decode and decompress JSON data
+		return CompressUtils.decompressString(text);
 	}
 
 	private static String escape(String text) {

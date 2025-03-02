@@ -79,15 +79,15 @@ Scan options:
 
 Diff options:
 
-   --diff                : Enable diff mode to compare two JarHC JSON reports.
+   --diff                : Enable diff mode to compare two JarHC HTML or JSON reports.
 
-   --input1 <file>       : Path to the first JarHC JSON report.
-                           Example: --input1 report1.json
+   --input1 <file>       : Path to the first JarHC HTML or JSON report.
+                           Example: --input1 report1.html
 
-   --input2 <file>       : Path to the second JarHC JSON report.
+   --input2 <file>       : Path to the second JarHC HTML or JSON report.
                            Example: --input2 report2.json
 
-   Note: The output of the diff is an HTML report.
+   Note: The output of the diff is always an HTML report.
    Use the option --output to specify the output file path (see below).
    Example: --output diff-report.html
 
