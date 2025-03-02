@@ -30,6 +30,7 @@ gradle.user.properties
 
 # files used for local testing
 /test
+/run-*.sh
 
 # macOS files
 .DS_Store
