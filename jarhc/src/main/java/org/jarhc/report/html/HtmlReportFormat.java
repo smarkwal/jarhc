@@ -132,7 +132,7 @@ public class HtmlReportFormat implements ReportFormat {
 		List<Object> content = section.getContent();
 
 		// section start
-		writer.println("<section class=\"report-section\" id=\"%s\">", id);
+		writer.println("<section class=\"report-section\" id=\"%s\" title=\"%s\">", id, escape(title));
 
 		// format header
 		String heading = "h" + (level + 2); // root sections use h2

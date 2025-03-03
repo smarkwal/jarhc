@@ -103,18 +103,34 @@
 			z-index: 80;
 			user-select: none;
 			background-color: #EEEEEE;
-			border: 1px solid #999999;
 		}
 
 		#minimapView {
 			position: fixed;
 			top: 66px;
-			left: 7px;
+			left: 6px;
 			width: 70px;
 			height: 0;
 			z-index: 90;
+			pointer-events: none;
 			user-select: none;
 			border: 4px solid black;
+		}
+
+		.minimapSection {
+			position: absolute;
+			left: 2px;
+			width: 62px; /* minimap width - 8px padding */
+			padding: 2px;
+			background-color: lightgray;
+			overflow: hidden;
+		}
+
+		.minimapSectionTitle {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1em;
+			overflow-wrap: break-word;
 		}
 
 		main {
@@ -188,6 +204,10 @@
 				margin: 0;
 			}
 
+			nav {
+				display: none;
+			}
+
 			th, td {
 				white-space: normal;
 			}
@@ -196,6 +216,9 @@
 
 	</style>
 	<script>
+
+		const HEADER_HEIGHT = 80;
+		const MINIMAP_VSPACE = 10;
 
 		function init() {
 
@@ -236,10 +259,8 @@
 			window.addEventListener("resize", updateMinimap);
 
 			const minimap = document.getElementById("minimap");
-			minimap.addEventListener("mousedown", scrollMinimapView);
-			minimap.addEventListener("mouseup", scrollMinimapView);
+			minimap.addEventListener("click", scrollMinimapView);
 			// TODO: on mouse drag
-			// TODO: support clicks on minimapView
 		}
 
 		function initRowMarking() {
@@ -281,7 +302,7 @@
 
 		function scrollToSection(next) {
 
-			const targetY = 80; // target scroll position (relative to viewport)
+			const targetY = HEADER_HEIGHT; // target scroll position (relative to viewport)
 
 			// find next section
 			let nextSection = null;
@@ -351,16 +372,57 @@
 
 		function updateMinimap() {
 
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const minimapHeight = minimap.clientHeight;
+
+			// prepare list of new minimap elements
 			const elements = [];
 
-			console.log("TODO: update minimap");
-			// TODO: iterate over all sections and add them to the minimap
+			let previousElementBottom = -MINIMAP_VSPACE;
+
+			// iterate over all report tables and add them to the minimap
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// TODO: fix position
+				let elementTop = (section.offsetTop - HEADER_HEIGHT) * minimapHeight / documentHeight;
+				let elementHeight = section.clientHeight * minimapHeight / documentHeight - MINIMAP_VSPACE;
+
+				const minElementTop = previousElementBottom + MINIMAP_VSPACE;
+				if (elementTop < minElementTop) {
+					elementHeight = elementHeight - (minElementTop - elementTop);
+					elementTop = minElementTop;
+				}
+
+				const minElementHeight = 16; // 12px font size + 2 x 2px padding
+				if (elementHeight < minElementHeight) {
+					elementHeight = minElementHeight;
+				}
+
+				const title = document.createElement("div");
+				title.classList.add("minimapSectionTitle");
+				title.innerText = section.title;
+				title.addEventListener("click", function(event) {
+					window.scrollTo(0, section.offsetTop - HEADER_HEIGHT);
+					event.stopPropagation();
+				})
+
+				const element = document.createElement("div");
+				element.classList.add("minimapSection");
+				element.style.top = elementTop + "px";
+				element.style.height = elementHeight + "px";
+				element.appendChild(title);
+				elements.push(element);
+
+				previousElementBottom = elementTop + elementHeight;
+			}
+
 			// TODO: iterate over all differences and add them to the minimap
-			const element = document.createElement("div");
-			elements.push(element);
 
 			// replace content of minimap
-			const minimap = document.getElementById("minimap");
 			minimap.replaceChildren(...elements);
 
 			updateMinimapView();
@@ -377,8 +439,8 @@
 			const scrollY = window.scrollY;
 
 			// calculate new position and height of minimap view
-			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 3;
-			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 4;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
 
 			// update position and height of minimap view
 			const minimapView = document.getElementById("minimapView");
@@ -393,7 +455,7 @@
 			const documentHeight = document.body.scrollHeight;
 			const viewportHeight = window.innerHeight;
 			const minimapHeight = minimap.clientHeight;
-			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
 			const minimapViewOffset = minimapViewHeight / 2;
 
 			// calculate position of minimap view (relative to top of minimap)
@@ -446,7 +508,7 @@
 </ul>
 </nav>
 
-<section class="report-section" id="JARFiles">
+<section class="report-section" id="JARFiles" title="JAR Files">
 <h2 class="report-section-title">JAR Files</h2>
 <p class="report-section-description">List of JAR files found in classpath.</p>
 <table class="report-table">
@@ -763,7 +825,7 @@
 </table>
 </section>
 
-<section class="report-section" id="JARManifests">
+<section class="report-section" id="JARManifests" title="JAR Manifests">
 <h2 class="report-section-title">JAR Manifests</h2>
 <p class="report-section-description">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
 <table class="report-table">
@@ -978,7 +1040,7 @@
 </table>
 </section>
 
-<section class="report-section" id="JPMSModules">
+<section class="report-section" id="JPMSModules" title="JPMS Modules">
 <h2 class="report-section-title">JPMS Modules</h2>
 <p class="report-section-description">List of Java Modules found in classpath.</p>
 <table class="report-table">
@@ -1151,7 +1213,7 @@
 </table>
 </section>
 
-<section class="report-section" id="OSGiBundles">
+<section class="report-section" id="OSGiBundles" title="OSGi Bundles">
 <h2 class="report-section-title">OSGi Bundles</h2>
 <p class="report-section-description">Information about OSGi Bundles.</p>
 <table class="report-table">
@@ -1442,7 +1504,7 @@
 </table>
 </section>
 
-<section class="report-section" id="Dependencies">
+<section class="report-section" id="Dependencies" title="Dependencies">
 <h2 class="report-section-title">Dependencies</h2>
 <p class="report-section-description">Dependencies between JAR files, and as declared in POM file.</p>
 <table class="report-table">
@@ -1690,7 +1752,7 @@
 </table>
 </section>
 
-<section class="report-section" id="DuplicateClasses">
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
 <h2 class="report-section-title">Duplicate Classes</h2>
 <p class="report-section-description">Duplicate classes, shadowed classes, and duplicate resources.</p>
 <table class="report-table">
@@ -1713,7 +1775,7 @@
 </table>
 </section>
 
-<section class="report-section" id="BinaryCompatibility">
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
 <h2 class="report-section-title">Binary Compatibility</h2>
 <p class="report-section-description">Compatibility issues between JAR files.</p>
 <table class="report-table">
@@ -2129,7 +2191,7 @@
 </table>
 </section>
 
-<section class="report-section" id="Blacklist">
+<section class="report-section" id="Blacklist" title="Blacklist">
 <h2 class="report-section-title">Blacklist</h2>
 <p class="report-section-description">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
 <table class="report-table">
@@ -2205,7 +2267,7 @@
 </table>
 </section>
 
-<section class="report-section" id="JavaRuntime">
+<section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
 <p class="report-section-description">Information about JRE/JDK runtime.</p>
 <p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
