@@ -141,6 +141,8 @@ public class HtmlReportFormat implements ReportFormat {
 			String cssClass = "report-section-description";
 			if (Markdown.isDiff(description)) {
 				cssClass += " diff";
+			} else {
+				cssClass += " no-diff";
 			}
 			writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(description)));
 		}
@@ -158,6 +160,8 @@ public class HtmlReportFormat implements ReportFormat {
 				String cssClass = "report-content";
 				if (Markdown.isDiff(value)) {
 					cssClass += " diff";
+				} else {
+					cssClass += " no-diff";
 				}
 				writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(value)));
 			}
@@ -196,6 +200,8 @@ public class HtmlReportFormat implements ReportFormat {
 		String cssClass = "report-table-row";
 		if (Stream.of(values).anyMatch(Markdown::isDiff)) {
 			cssClass += " diff";
+		} else {
+			cssClass += " no-diff";
 		}
 
 		writer.println("\t<tr class=\"%s\">", cssClass);
@@ -233,6 +239,8 @@ public class HtmlReportFormat implements ReportFormat {
 			}
 			if (Markdown.isDiff(block)) {
 				cssClass += " diff";
+			} else {
+				cssClass += " no-diff";
 			}
 			writer.println("\t\t\t<div class=\"%s\">%s</div>", cssClass, Markdown.toHtml(escape(block)));
 		}

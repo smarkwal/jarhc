@@ -31,7 +31,7 @@
 			color: #333399;
 		}
 
-		header {
+		#header {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -95,6 +95,7 @@
 		}
 
 		#minimap {
+			display: none; /* hidden by default */
 			position: fixed;
 			top: 70px;
 			left: 10px;
@@ -106,12 +107,13 @@
 		}
 
 		#minimapView {
+			display: none; /* hidden by default */
 			position: fixed;
-			top: 66px;
-			left: 6px;
-			width: 70px;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
 			height: 0;
-			z-index: 90;
+			z-index: 90; /* float above minimap */
 			pointer-events: none;
 			user-select: none;
 			border: 4px solid black;
@@ -120,7 +122,7 @@
 		.minimapSection {
 			position: absolute;
 			left: 2px;
-			width: 62px; /* minimap width - 8px padding */
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
 			padding: 2px;
 			background-color: lightgray;
 			overflow: hidden;
@@ -133,8 +135,8 @@
 			overflow-wrap: break-word;
 		}
 
-		main {
-			margin: 80px 20px 20px 100px;
+		#main {
+			margin: 80px 20px 20px 20px;
 		}
 
 		h2, h3, h4, h5, h6 {
@@ -186,6 +188,20 @@
 			background-color: #FFF6D8;
 		}
 
+		/* special diff report settings */
+
+		.diff-report #showOnlyDiffControl {
+			/* only available in diff report */
+			display: flex;
+		}
+
+		.diff-report .no-diff {
+			/* default: only show differences */
+			display: none;
+		}
+
+		/* special print settings */
+
 		@media print {
 
 			header {
@@ -220,6 +236,8 @@
 		const HEADER_HEIGHT = 80;
 		const MINIMAP_VSPACE = 10;
 
+		let MINIMAP_ENABLED = false;
+
 		function init() {
 
 			// check if document is a diff report
@@ -235,10 +253,8 @@
 
 		function initDiffUI() {
 
-			// show control
+			// support click on control (outside of checkbox and label)
 			const control = document.getElementById("showOnlyDiffControl");
-			control.style.display = "flex";
-
 			control.addEventListener("click", function(event) {
 				if (event.target === control) { // ignore clicks on nested elements
 					// similate click on checkbox
@@ -246,14 +262,9 @@
 					checkbox.click();
 				}
 			});
-
-			// TODO: use CSS to show only differences by default
-			showOnlyDiff(true);
 		}
 
 		function initMinimap() {
-
-			updateMinimap();
 
 			window.addEventListener("scroll", updateMinimapView);
 			window.addEventListener("resize", updateMinimap);
@@ -345,7 +356,7 @@
 			// show or hide table rows
 			const rows = document.getElementsByClassName("report-table-row");
 			for (let row of rows) {
-				if (!row.classList.contains("diff")) {
+				if (row.classList.contains("no-diff")) {
 					if (enabled) {
 						row.style.display = "none";
 					} else {
@@ -357,7 +368,7 @@
 			// show or hide issues
 			const issues = document.getElementsByClassName("report-issue");
 			for (let issue of issues) {
-				if (!issue.classList.contains("diff")) {
+				if (issue.classList.contains("no-diff")) {
 					if (enabled) {
 						issue.style.display = "none";
 					} else {
@@ -370,7 +381,37 @@
 			updateMinimap();
 		}
 
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
 		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -429,6 +470,7 @@
 		}
 
 		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -477,12 +519,12 @@
 </head>
 <body class="report diff-report" onload="init()">
 
-	<header>
+	<header id="header">
 		<div id="controls">
 			<div class="control" onclick="scrollToSection(true)"><span class="icon icon-down"></span><span class="label">Next section</span></div>
 			<div class="control" onclick="scrollToSection(false)"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
 			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
-			<!-- TODO: add control to show/hide minimap -->
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
 		</div>
 		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 	</header>
@@ -490,7 +532,7 @@
 	<div id="minimap"></div>
 	<div id="minimapView"></div>
 
-	<main>
+	<main id="main">
 		<h1 class="report-title">Jakarta EE 9 and 10</h1>
 		
 <nav>
@@ -511,13 +553,13 @@
 
 <section class="report-section" id="Reports" title="Reports">
 <h2 class="report-section-title">Reports</h2>
-<p class="report-section-description">Information about the reports used as input for this diff report.</p>
-<p class="report-content"><strong>Report 1</strong><br>Jakarta EE 9<br>2025-02-19 19:22<br>JarHC 3.0.0-SNAPSHOT<br><br><strong>Report 2</strong><br>Jakarta EE 10<br>2025-02-19 19:22<br>JarHC 3.0.0-SNAPSHOT<br></p>
+<p class="report-section-description no-diff">Information about the reports used as input for this diff report.</p>
+<p class="report-content no-diff"><strong>Report 1</strong><br>Jakarta EE 9<br>2025-02-19 19:22<br>JarHC 3.0.0-SNAPSHOT<br><br><strong>Report 2</strong><br>Jakarta EE 10<br>2025-02-19 19:22<br>JarHC 3.0.0-SNAPSHOT<br></p>
 </section>
 
 <section class="report-section" id="JARFiles" title="JAR Files">
 <h2 class="report-section-title">JAR Files</h2>
-<p class="report-section-description">List of JAR files found in classpath.</p>
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -561,7 +603,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.activation/jakarta.activation-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.activation:jakarta.activation-api:2.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.activation/jakarta.activation-api/2.1.3" target="_blank" rel="noopener noreferrer">jakarta.activation:jakarta.activation-api:2.1.3</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -588,7 +630,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.annotation/jakarta.annotation-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.annotation:jakarta.annotation-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.annotation/jakarta.annotation-api/2.1.1" target="_blank" rel="noopener noreferrer">jakarta.annotation:jakarta.annotation-api:2.1.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/one.gfw/jakarta.annotation-api/2.1.1" target="_blank" rel="noopener noreferrer">one.gfw:jakarta.annotation-api:2.1.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -615,7 +657,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.authentication/jakarta.authentication-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.authentication:jakarta.authentication-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.authentication/jakarta.authentication-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.authentication:jakarta.authentication-api:3.0.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -642,7 +684,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.authorization/jakarta.authorization-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.authorization:jakarta.authorization-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.authorization/jakarta.authorization-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.authorization:jakarta.authorization-api:2.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -669,7 +711,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.batch/jakarta.batch-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.batch:jakarta.batch-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.batch/jakarta.batch-api/2.1.1" target="_blank" rel="noopener noreferrer">jakarta.batch:jakarta.batch-api:2.1.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -694,7 +736,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.ejb/jakarta.ejb-api/4.0.0" target="_blank" rel="noopener noreferrer">jakarta.ejb:jakarta.ejb-api:4.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.ejb/jakarta.ejb-api/4.0.1" target="_blank" rel="noopener noreferrer">jakarta.ejb:jakarta.ejb-api:4.0.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -721,7 +763,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.el/jakarta.el-api/4.0.0" target="_blank" rel="noopener noreferrer">jakarta.el:jakarta.el-api:4.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.el/jakarta.el-api/5.0.1" target="_blank" rel="noopener noreferrer">jakarta.el:jakarta.el-api:5.0.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -752,7 +794,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api/4.0.1" target="_blank" rel="noopener noreferrer">jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -781,7 +823,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.enterprise.concurrent/jakarta.enterprise.concurrent-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.enterprise.concurrent/jakarta.enterprise.concurrent-api/3.0.4" target="_blank" rel="noopener noreferrer">jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -810,10 +852,10 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.faces/jakarta.faces-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.faces:jakarta.faces-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.faces/jakarta.faces-api/4.0.1" target="_blank" rel="noopener noreferrer">jakarta.faces:jakarta.faces-api:4.0.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.inject-api</td>
 		<td>2.0.1</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.inject/jakarta.inject-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.inject:jakarta.inject-api:2.0.1</a></td>
@@ -825,7 +867,7 @@
 		<td><a href="https://search.maven.org/search?q=1:4c28afe1991a941d7702fe1362c365f0a8641d1e" target="_blank" rel="noopener noreferrer">4c28afe1991a941d7702fe1362c365f0a8641d1e</a></td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.inject/jakarta.inject-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.inject:jakarta.inject-api:2.0.1</a></td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -850,7 +892,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.interceptor/jakarta.interceptor-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.interceptor:jakarta.interceptor-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.interceptor/jakarta.interceptor-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.interceptor:jakarta.interceptor-api:2.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -877,7 +919,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.jms/jakarta.jms-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.jms:jakarta.jms-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.jms/jakarta.jms-api/3.1.0" target="_blank" rel="noopener noreferrer">jakarta.jms:jakarta.jms-api:3.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -897,7 +939,7 @@
 		</td>
 		<td>0</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.json</code><br><code>jakarta.json.spi</code><br><code>jakarta.json.stream</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.json</code><br><code>jakarta.json.spi</code><br><code>jakarta.json.stream</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://search.maven.org/search?q=1:d68fb64d6ee052d25873a7d5de9f9264bb80e4b6" target="_blank" rel="noopener noreferrer">d68fb64d6ee052d25873a7d5de9f9264bb80e4b6</a></span><br><span class="inserted"><a href="https://search.maven.org/search?q=1:4febd83e1d9d1561d078af460ecd19532383735c" target="_blank" rel="noopener noreferrer">4febd83e1d9d1561d078af460ecd19532383735c</a></span></div>
@@ -906,7 +948,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.json/jakarta.json-api/2.0.2" target="_blank" rel="noopener noreferrer">jakarta.json:jakarta.json-api:2.0.2</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.json/jakarta.json-api/2.1.3" target="_blank" rel="noopener noreferrer">jakarta.json:jakarta.json-api:2.1.3</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -933,7 +975,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.json.bind/jakarta.json.bind-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.json.bind:jakarta.json.bind-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.json.bind/jakarta.json.bind-api/3.0.1" target="_blank" rel="noopener noreferrer">jakarta.json.bind:jakarta.json.bind-api:3.0.1</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -977,7 +1019,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.mail/jakarta.mail-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.mail:jakarta.mail-api:2.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.mail/jakarta.mail-api/2.1.3" target="_blank" rel="noopener noreferrer">jakarta.mail:jakarta.mail-api:2.1.3</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1008,7 +1050,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.mvc/jakarta.mvc-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.mvc:jakarta.mvc-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.mvc/jakarta.mvc-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.mvc:jakarta.mvc-api:2.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1037,7 +1079,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.persistence/jakarta.persistence-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.persistence:jakarta.persistence-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.persistence/jakarta.persistence-api/3.1.0" target="_blank" rel="noopener noreferrer">jakarta.persistence:jakarta.persistence-api:3.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1066,7 +1108,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.resource/jakarta.resource-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.resource:jakarta.resource-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.resource/jakarta.resource-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.resource:jakarta.resource-api:2.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1097,7 +1139,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.security.enterprise/jakarta.security.enterprise-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.security.enterprise/jakarta.security.enterprise-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1119,7 +1161,7 @@
 			<div class="report-text-block diff"><span class="deleted">53</span><br><span class="inserted">59</span></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.servlet</code><br><code>jakarta.servlet.annotation</code><br><code>jakarta.servlet.descriptor</code><br><code>jakarta.servlet.http</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.servlet</code><br><code>jakarta.servlet.annotation</code><br><code>jakarta.servlet.descriptor</code><br><code>jakarta.servlet.http</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://search.maven.org/search?q=1:2e6b8ccde55522c879434ddec3714683ccae6867" target="_blank" rel="noopener noreferrer">2e6b8ccde55522c879434ddec3714683ccae6867</a></span><br><span class="inserted"><a href="https://search.maven.org/search?q=1:abecc699286e65035ebba9844c03931357a6a963" target="_blank" rel="noopener noreferrer">abecc699286e65035ebba9844c03931357a6a963</a></span></div>
@@ -1128,7 +1170,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.servlet/jakarta.servlet-api/5.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet:jakarta.servlet-api:5.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.servlet/jakarta.servlet-api/6.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet:jakarta.servlet-api:6.0.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1150,7 +1192,7 @@
 			<div class="report-text-block diff"><span class="deleted">0</span><br><span class="inserted">1</span></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.servlet.jsp</code><br><code>jakarta.servlet.jsp.el</code><br><code>jakarta.servlet.jsp.tagext</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.servlet.jsp</code><br><code>jakarta.servlet.jsp.el</code><br><code>jakarta.servlet.jsp.tagext</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://search.maven.org/search?q=1:d81ef945bf14a3a5cce1b9ccac0f840f64607f9a" target="_blank" rel="noopener noreferrer">d81ef945bf14a3a5cce1b9ccac0f840f64607f9a</a></span><br><span class="inserted"><a href="https://search.maven.org/search?q=1:ea5fe947c87c9603db997f708587270593164a1e" target="_blank" rel="noopener noreferrer">ea5fe947c87c9603db997f708587270593164a1e</a></span></div>
@@ -1159,7 +1201,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api/3.1.0" target="_blank" rel="noopener noreferrer">jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1186,10 +1228,10 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api/3.0.2" target="_blank" rel="noopener noreferrer">jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.transaction-api</td>
 		<td>2.0.0</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.transaction/jakarta.transaction-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.transaction:jakarta.transaction-api:2.0.0</a></td>
@@ -1201,10 +1243,10 @@
 		<td><a href="https://search.maven.org/search?q=1:24a0525b4acfbca4086d2f1278be3a084fe1c67d" target="_blank" rel="noopener noreferrer">24a0525b4acfbca4086d2f1278be3a084fe1c67d</a></td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.transaction/jakarta.transaction-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.transaction:jakarta.transaction-api:2.0.0</a></td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td>3.0.0</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.validation:jakarta.validation-api:3.0.0</a></td>
@@ -1216,7 +1258,7 @@
 		<td><a href="https://search.maven.org/search?q=1:8c8eecc40da64037d7731356511c568d466f8480" target="_blank" rel="noopener noreferrer">8c8eecc40da64037d7731356511c568d466f8480</a></td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.validation:jakarta.validation-api:3.0.0</a></td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1297,7 +1339,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.ws.rs:jakarta.ws.rs-api:3.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.ws.rs/jakarta.ws.rs-api/3.1.0" target="_blank" rel="noopener noreferrer">jakarta.ws.rs:jakarta.ws.rs-api:3.1.0</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1326,7 +1368,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/3.0.1" target="_blank" rel="noopener noreferrer">jakarta.xml.bind:jakarta.xml.bind-api:3.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/4.0.2" target="_blank" rel="noopener noreferrer">jakarta.xml.bind:jakarta.xml.bind-api:4.0.2</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1353,7 +1395,7 @@
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.xml.soap/jakarta.xml.soap-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.xml.soap:jakarta.xml.soap-api:2.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.xml.soap/jakarta.xml.soap-api/3.0.2" target="_blank" rel="noopener noreferrer">jakarta.xml.soap:jakarta.xml.soap-api:3.0.2</a></span></div>
 		</td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -1407,7 +1449,7 @@
 		<td>-</td>
 		<td>-</td>
 		<td>
-			<div class="report-text-block report-issue">-</div>
+			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
 	</tr>
 </tbody>
@@ -1416,7 +1458,7 @@
 
 <section class="report-section" id="JARManifests" title="JAR Manifests">
 <h2 class="report-section-title">JAR Manifests</h2>
-<p class="report-section-description">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -1446,7 +1488,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.annotation-api</td>
 		<td>
-			<div class="report-text-block">Build-Jdk-Spec: <code>11</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Extension-Name: <code>jakarta.annotation</code><br>Manifest-Version: <code>1.0</code></div>
+			<div class="report-text-block no-diff">Build-Jdk-Spec: <code>11</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Extension-Name: <code>jakarta.annotation</code><br>Manifest-Version: <code>1.0</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1509,7 +1551,7 @@
 			<div class="report-text-block diff"><span class="deleted">Version: <code>4.0.0</code></span><br><span class="inserted">Version: <code>4.0.1</code></span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Version: <code>4.0</code><br>Vendor: <code>Eclipse Foundation</code></div>
+			<div class="report-text-block no-diff">Version: <code>4.0</code><br>Vendor: <code>Eclipse Foundation</code></div>
 		</td>
 		<td></td>
 	</tr>
@@ -1561,10 +1603,10 @@
 		<td></td>
 		<td></td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.inject-api</td>
 		<td>
-			<div class="report-text-block">Bnd-LastModified: <code>1634410586985</code><br>Build-Jdk-Spec: <code>11</code><br>Build-Jdk: <code>11.0.2</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-4.2.0.201903051501</code></div>
+			<div class="report-text-block no-diff">Bnd-LastModified: <code>1634410586985</code><br>Build-Jdk-Spec: <code>11</code><br>Build-Jdk: <code>11.0.2</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-4.2.0.201903051501</code></div>
 		</td>
 		<td></td>
 		<td>Version: <code>2.0</code></td>
@@ -1625,17 +1667,17 @@
 		</td>
 		<td></td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.jws-api</td>
 		<td>
-			<div class="report-text-block">Build-Jdk-Spec: <code>11</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Extension-Name: <code>jakarta.jws</code><br>Manifest-Version: <code>1.0</code></div>
+			<div class="report-text-block no-diff">Build-Jdk-Spec: <code>11</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Extension-Name: <code>jakarta.jws</code><br>Manifest-Version: <code>1.0</code></div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block">Version: <code>3.0.0</code><br>Build ID: <code>b5b6f2e</code></div>
+			<div class="report-text-block no-diff">Version: <code>3.0.0</code><br>Build ID: <code>b5b6f2e</code></div>
 		</td>
 		<td>
-			<div class="report-text-block">Version: <code>3.0</code><br>Vendor: <code>Eclipse Foundation</code></div>
+			<div class="report-text-block no-diff">Version: <code>3.0</code><br>Vendor: <code>Eclipse Foundation</code></div>
 		</td>
 		<td></td>
 	</tr>
@@ -1751,24 +1793,24 @@
 		</td>
 		<td></td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.transaction-api</td>
 		<td>
-			<div class="report-text-block">Archiver-Version: <code>Plexus Archiver</code><br>Bnd-LastModified: <code>1601380706017</code><br>Build-Jdk: <code>1.8.0_202</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>1.8.0_202 (Oracle Corporation)</code><br>Extension-Name: <code>jakarta.transaction</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-0.0.255</code></div>
+			<div class="report-text-block no-diff">Archiver-Version: <code>Plexus Archiver</code><br>Bnd-LastModified: <code>1601380706017</code><br>Build-Jdk: <code>1.8.0_202</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>1.8.0_202 (Oracle Corporation)</code><br>Extension-Name: <code>jakarta.transaction</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-0.0.255</code></div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block">Version: <code>2.0.0</code><br>Vendor: <code>EE4J Community</code><br>Vendor ID: <code>org.glassfish</code></div>
+			<div class="report-text-block no-diff">Version: <code>2.0.0</code><br>Vendor: <code>EE4J Community</code><br>Vendor ID: <code>org.glassfish</code></div>
 		</td>
 		<td>
-			<div class="report-text-block">Version: <code>2.0</code><br>Vendor: <code>Oracle Corporation</code></div>
+			<div class="report-text-block no-diff">Version: <code>2.0</code><br>Vendor: <code>Oracle Corporation</code></div>
 		</td>
 		<td></td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td>
-			<div class="report-text-block">Bnd-LastModified: <code>1593873743039</code><br>Build-Jdk: <code>1.8.0_202</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-3.2.0.201605172007</code></div>
+			<div class="report-text-block no-diff">Bnd-LastModified: <code>1593873743039</code><br>Build-Jdk: <code>1.8.0_202</code><br>Built-By: <code>jenkins</code><br>Created-By: <code>Apache Maven Bundle Plugin</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-3.2.0.201605172007</code></div>
 		</td>
 		<td></td>
 		<td></td>
@@ -1865,7 +1907,7 @@
 
 <section class="report-section" id="JPMSModules" title="JPMS Modules">
 <h2 class="report-section-title">JPMS Modules</h2>
-<p class="report-section-description">List of Java Modules found in classpath.</p>
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -1890,14 +1932,14 @@
 			<div class="report-text-block diff"><code>jakarta.activation</code><br><span class="inserted"><code>jakarta.activation.spi</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.annotation-api</td>
 		<td><code>jakarta.annotation</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td><code>java.base</code></td>
 		<td>
-			<div class="report-text-block"><code>jakarta.annotation</code><br><code>jakarta.annotation.security</code><br><code>jakarta.annotation.sql</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.annotation</code><br><code>jakarta.annotation.security</code><br><code>jakarta.annotation.sql</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -2016,7 +2058,7 @@
 			<div class="report-text-block diff"><span class="deleted">[all packages]</span><br><span class="inserted"><code>jakarta.enterprise.concurrent</code></span><br><span class="inserted"><code>jakarta.enterprise.concurrent.spi</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.faces-api</td>
 		<td><code>jakarta.faces.api</code></td>
 		<td>Auto-generated</td>
@@ -2024,7 +2066,7 @@
 		<td></td>
 		<td>[all packages]</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.inject-api</td>
 		<td><code>jakarta.inject</code></td>
 		<td>Module-Info</td>
@@ -2077,29 +2119,29 @@
 			<div class="report-text-block diff"><span class="inserted"><code>java.logging</code></span><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.json</code><br><code>jakarta.json.spi</code><br><code>jakarta.json.stream</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.json</code><br><code>jakarta.json.spi</code><br><code>jakarta.json.stream</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.json.bind-api</td>
 		<td><code>jakarta.json.bind</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.json</code><br><code>java.logging</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.json</code><br><code>java.logging</code><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.json.bind</code><br><code>jakarta.json.bind.adapter</code><br><code>jakarta.json.bind.annotation</code><br><code>jakarta.json.bind.config</code><br><code>jakarta.json.bind.serializer</code><br><code>jakarta.json.bind.spi</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.json.bind</code><br><code>jakarta.json.bind.adapter</code><br><code>jakarta.json.bind.annotation</code><br><code>jakarta.json.bind.config</code><br><code>jakarta.json.bind.serializer</code><br><code>jakarta.json.bind.spi</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.jws-api</td>
 		<td><code>jakarta.jws</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td><code>java.base</code></td>
 		<td>
-			<div class="report-text-block"><code>jakarta.jws</code><br><code>jakarta.jws.soap</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.jws</code><br><code>jakarta.jws.soap</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -2111,7 +2153,7 @@
 			<div class="report-text-block diff"><code>jakarta.activation</code><br><span class="inserted"><code>java.desktop</code></span><br><code>java.logging</code><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.mail</code><br><code>jakarta.mail.event</code><br><code>jakarta.mail.internet</code><br><code>jakarta.mail.search</code><br><code>jakarta.mail.util</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.mail</code><br><code>jakarta.mail.event</code><br><code>jakarta.mail.internet</code><br><code>jakarta.mail.search</code><br><code>jakarta.mail.util</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -2141,7 +2183,7 @@
 			<div class="report-text-block diff"><span class="deleted"><code>java.instrument</code></span><br><code>java.logging</code><br><code>java.sql</code><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.persistence</code><br><code>jakarta.persistence.criteria</code><br><code>jakarta.persistence.metamodel</code><br><code>jakarta.persistence.spi</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.persistence</code><br><code>jakarta.persistence.criteria</code><br><code>jakarta.persistence.metamodel</code><br><code>jakarta.persistence.spi</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -2226,7 +2268,7 @@
 			<div class="report-text-block diff"><span class="deleted">[all packages]</span><br><span class="inserted"><code>jakarta.servlet.jsp.jstl.core</code></span><br><span class="inserted"><code>jakarta.servlet.jsp.jstl.fmt</code></span><br><span class="inserted"><code>jakarta.servlet.jsp.jstl.sql</code></span><br><span class="inserted"><code>jakarta.servlet.jsp.jstl.tlv</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.transaction-api</td>
 		<td><code>jakarta.transaction</code></td>
 		<td>Manifest</td>
@@ -2234,7 +2276,7 @@
 		<td></td>
 		<td>[all packages]</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td><code>jakarta.validation</code></td>
 		<td>Manifest</td>
@@ -2272,37 +2314,37 @@
 			<div class="report-text-block diff"><span class="deleted">[all packages]</span><br><span class="inserted"><code>jakarta.websocket</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.ws.rs-api</td>
 		<td><code>jakarta.ws.rs</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.xml.bind</code><br><code>java.logging</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.xml.bind</code><br><code>java.logging</code><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.ws.rs</code><br><code>jakarta.ws.rs.client</code><br><code>jakarta.ws.rs.container</code><br><code>jakarta.ws.rs.core</code><br><code>jakarta.ws.rs.ext</code><br><code>jakarta.ws.rs.sse</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.ws.rs</code><br><code>jakarta.ws.rs.client</code><br><code>jakarta.ws.rs.container</code><br><code>jakarta.ws.rs.core</code><br><code>jakarta.ws.rs.ext</code><br><code>jakarta.ws.rs.sse</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.xml.bind-api</td>
 		<td><code>jakarta.xml.bind</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.activation</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.activation</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.xml.bind</code><br><code>jakarta.xml.bind.annotation</code><br><code>jakarta.xml.bind.annotation.adapters</code><br><code>jakarta.xml.bind.attachment</code><br><code>jakarta.xml.bind.helpers</code><br><code>jakarta.xml.bind.util</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.xml.bind</code><br><code>jakarta.xml.bind.annotation</code><br><code>jakarta.xml.bind.annotation.adapters</code><br><code>jakarta.xml.bind.attachment</code><br><code>jakarta.xml.bind.helpers</code><br><code>jakarta.xml.bind.util</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.xml.soap-api</td>
 		<td><code>jakarta.xml.soap</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.activation</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.activation</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
 		</td>
 		<td><code>jakarta.xml.soap</code></td>
 	</tr>
@@ -2312,7 +2354,7 @@
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.xml.bind</code><br><code>jakarta.xml.soap</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.xml.bind</code><br><code>jakarta.xml.soap</code><br><code>java.logging</code><br><code>java.xml</code><br><code>java.base</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="inserted"><code>jakarta.jws</code></span><br><span class="inserted"><code>jakarta.jws.soap</code></span><br><code>jakarta.xml.ws</code><br><code>jakarta.xml.ws.handler</code><br><code>jakarta.xml.ws.handler.soap</code><br><code>jakarta.xml.ws.http</code><br><code>jakarta.xml.ws.soap</code><br><code>jakarta.xml.ws.spi</code><br><code>jakarta.xml.ws.spi.http</code><br><code>jakarta.xml.ws.wsaddressing</code></div>
@@ -2324,7 +2366,7 @@
 
 <section class="report-section" id="OSGiBundles" title="OSGi Bundles">
 <h2 class="report-section-title">OSGi Bundles</h2>
-<p class="report-section-description">Information about OSGi Bundles.</p>
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -2365,27 +2407,27 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.annotation-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Annotations API<br>[jakarta.annotation-api]</div>
+			<div class="report-text-block no-diff">Jakarta Annotations API<br>[jakarta.annotation-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">2.1.1</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Jakarta Annotations API<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org</div>
+			<div class="report-text-block no-diff">Jakarta Annotations API<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td></td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.annotation</code> (Version: 2.0.0)</span><br><span class="inserted"><code>jakarta.annotation</code> (Version: 2.1.1)</span><br><span class="deleted"><code>jakarta.annotation.security</code> (Version: 2.0.0)</span><br><span class="inserted"><code>jakarta.annotation.security</code> (Version: 2.1.1)</span><br><span class="deleted"><code>jakarta.annotation.sql</code> (Version: 2.0.0)</span><br><span class="inserted"><code>jakarta.annotation.sql</code> (Version: 2.1.1)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.authentication-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Authentication<br>[jakarta.security.auth.message-api]</div>
+			<div class="report-text-block no-diff">Jakarta Authentication<br>[jakarta.security.auth.message-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">3.0.0</span></div>
@@ -2407,7 +2449,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.authorization-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Authorization<br>[jakarta.security.jacc-api]</div>
+			<div class="report-text-block no-diff">Jakarta Authorization<br>[jakarta.security.jacc-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">2.1.0</span></div>
@@ -2434,10 +2476,10 @@
 		</td>
 		<td>License: http://www.apache.org/licenses/LICENSE-2.0.html</td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.util;resolution:=optional<br>jakarta.inject;resolution:=optional</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.util;resolution:=optional<br>jakarta.inject;resolution:=optional</div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.batch.api</code><br><code>jakarta.batch.api.chunk</code><br><code>jakarta.batch.api.chunk.listener</code><br><code>jakarta.batch.api.listener</code><br><code>jakarta.batch.api.partition</code><br><code>jakarta.batch.operations</code><br><code>jakarta.batch.runtime</code><br><code>jakarta.batch.runtime.context</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.batch.api</code><br><code>jakarta.batch.api.chunk</code><br><code>jakarta.batch.api.chunk.listener</code><br><code>jakarta.batch.api.listener</code><br><code>jakarta.batch.api.partition</code><br><code>jakarta.batch.operations</code><br><code>jakarta.batch.runtime</code><br><code>jakarta.batch.runtime.context</code></div>
 		</td>
 		<td></td>
 		<td>Manifest Version: 2</td>
@@ -2445,29 +2487,29 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.ejb-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Enterprise Beans API<br>[jakarta.ejb-api]</div>
+			<div class="report-text-block no-diff">Jakarta Enterprise Beans API<br>[jakarta.ejb-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">4.0.0</span><br><span class="inserted">4.0.1</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Jakarta Enterprise Beans 4.0 API Design Specification<br>Vendor: Eclipse Foundation<br>License:<br>https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://projects.eclipse.org/projects/ee4j.ejb</div>
+			<div class="report-text-block no-diff">Jakarta Enterprise Beans 4.0 API Design Specification<br>Vendor: Eclipse Foundation<br>License:<br>https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://projects.eclipse.org/projects/ee4j.ejb</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.ejb<br>jakarta.ejb.embeddable<br>jakarta.ejb.spi<br>jakarta.transaction;version=&quot;[2.0,3)&quot;<br>javax.naming</div>
+			<div class="report-text-block no-diff">jakarta.ejb<br>jakarta.ejb.embeddable<br>jakarta.ejb.spi<br>jakarta.transaction;version=&quot;[2.0,3)&quot;<br>javax.naming</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.ejb.embeddable</code> (Version: 4.0.0)</span><br><span class="inserted"><code>jakarta.ejb.embeddable</code> (Version: 4.0.1)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.naming</code><br><span class="deleted"><code>jakarta.ejb.spi</code> (Version: 4.0.0)</span><br><span class="inserted"><code>jakarta.ejb.spi</code> (Version: 4.0.1)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ejb</code>, <code>jakarta.ejb.embeddable</code><br><span class="deleted"><code>jakarta.ejb</code> (Version: 4.0.0)</span><br><span class="inserted"><code>jakarta.ejb</code> (Version: 4.0.1)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.transaction</code></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.el-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Expression Language API<br>[jakarta.el-api]</div>
+			<div class="report-text-block no-diff">Jakarta Expression Language API<br>[jakarta.el-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">4.0.0</span><br><span class="inserted">5.0.1</span></div>
@@ -2487,7 +2529,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.enterprise.cdi-api</td>
 		<td>
-			<div class="report-text-block">CDI APIs<br>[jakarta.enterprise.cdi-api]</div>
+			<div class="report-text-block no-diff">CDI APIs<br>[jakarta.enterprise.cdi-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.0</span><br><span class="inserted">4.0.1</span></div>
@@ -2528,26 +2570,26 @@
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.inject-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Dependency Injection<br>[jakarta.inject.jakarta.inject-api]</div>
+			<div class="report-text-block no-diff">Jakarta Dependency Injection<br>[jakarta.inject.jakarta.inject-api]</div>
 		</td>
 		<td>2.0.1</td>
 		<td>
-			<div class="report-text-block">Jakarta Dependency Injection<br>Vendor: Eclipse Foundation<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://www.eclipse.org</div>
+			<div class="report-text-block no-diff">Jakarta Dependency Injection<br>Vendor: Eclipse Foundation<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td></td>
 		<td><code>jakarta.inject</code> (Version: 2.0.1)</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.interceptor-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Interceptors<br>[jakarta.interceptor-api]</div>
+			<div class="report-text-block no-diff">Jakarta Interceptors<br>[jakarta.interceptor-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">2.1.0</span></div>
@@ -2560,14 +2602,14 @@
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.interceptor</code> (Version: 2.0.0)</span><br><span class="inserted"><code>jakarta.interceptor</code> (Version: 2.1.0)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.jms-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Messaging API<br>[jakarta.jms-api]</div>
+			<div class="report-text-block no-diff">Jakarta Messaging API<br>[jakarta.jms-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.0</span><br><span class="inserted">3.1.0</span></div>
@@ -2587,7 +2629,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.json-api</td>
 		<td>
-			<div class="report-text-block">Jakarta JSON Processing API<br>[jakarta.json-api]</div>
+			<div class="report-text-block no-diff">Jakarta JSON Processing API<br>[jakarta.json-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.2</span><br><span class="inserted">2.1.3</span></div>
@@ -2596,8 +2638,8 @@
 			<div class="report-text-block diff"><span class="deleted">Jakarta JSON Processing API 2.0</span><br><span class="inserted">Jakarta JSON Processing API 2.1</span><br>Vendor: Eclipse Foundation<br>License: https://projects.eclipse.org/license/epl-2.0,<br>https://projects.eclipse.org/license/secondary-gpl-2.0-cp<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.json<br>jakarta.json.spi<br>jakarta.json.stream</div>
-			<div class="report-text-block">Dynamic:<br>*</div>
+			<div class="report-text-block no-diff">jakarta.json<br>jakarta.json.spi<br>jakarta.json.stream</div>
+			<div class="report-text-block no-diff">Dynamic:<br>*</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.json</code> (Version: 2.0.2)</span><br><span class="inserted"><code>jakarta.json</code> (Version: 2.1.3)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json.stream</code><br><span class="deleted"><code>jakarta.json.spi</code> (Version: 2.0.2)</span><br><span class="inserted"><code>jakarta.json.spi</code> (Version: 2.1.3)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json</code>, <code>jakarta.json.stream</code><br><span class="deleted"><code>jakarta.json.stream</code> (Version: 2.0.2)</span><br><span class="inserted"><code>jakarta.json.stream</code> (Version: 2.1.3)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json</code></div>
@@ -2616,11 +2658,11 @@
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">0</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Java API for JSON Binding (JSON-Binding)<br>Vendor: Eclipse Foundation<br>License: https://projects.eclipse.org/license/epl-2.0,<br>https://projects.eclipse.org/license/secondary-gpl-2.0-cp<br>Doc URL: https://www.eclipse.org</div>
+			<div class="report-text-block no-diff">Java API for JSON Binding (JSON-Binding)<br>Vendor: Eclipse Foundation<br>License: https://projects.eclipse.org/license/epl-2.0,<br>https://projects.eclipse.org/license/secondary-gpl-2.0-cp<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.json.bind;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.bind;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.json.bind.adapter;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.bind.adapter;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.json.bind.config;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.bind.config;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.json.bind.serializer;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.bind.serializer;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.json.bind.spi;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.bind.spi;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.json.spi;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.spi;version=&quot;[2.1,3)&quot;</span><br><span class="deleted">jakarta.json.stream;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.json.stream;version=&quot;[2.1,3)&quot;</span><br><span class="inserted">java.io</span><br><span class="inserted">java.lang</span><br><span class="inserted">java.lang.annotation</span><br><span class="inserted">java.lang.invoke</span><br><span class="inserted">java.lang.reflect</span><br><span class="inserted">java.util</span><br><span class="inserted">org.eclipse.yasson</span></div>
-			<div class="report-text-block">Dynamic:<br>*</div>
+			<div class="report-text-block no-diff">Dynamic:<br>*</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.json.bind</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind</code> (Version: 3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json.bind.adapter</code>, <code>jakarta.json.bind.config</code>, <code>jakarta.json.bind.serializer</code>, <code>jakarta.json.bind.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>jakarta.json.spi</code><br><span class="deleted"><code>jakarta.json.bind.adapter</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind.adapter</code> (Version: 3.0)</span><br><span class="deleted"><code>jakarta.json.bind.annotation</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind.annotation</code> (Version: 3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json.bind.adapter</code>, <code>jakarta.json.bind.config</code>, <code>jakarta.json.bind.serializer</code><br><span class="deleted"><code>jakarta.json.bind.config</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind.config</code> (Version: 3.0)</span><br><span class="deleted"><code>jakarta.json.bind.serializer</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind.serializer</code> (Version: 3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json.stream</code><br><span class="deleted"><code>jakarta.json.bind.spi</code> (Version: 2.0)</span><br><span class="inserted"><code>jakarta.json.bind.spi</code> (Version: 3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.json.bind</code></div>
@@ -2628,21 +2670,21 @@
 		<td></td>
 		<td>Manifest Version: 2</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.jws-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Web Services Metadata API<br>[jakarta.jws-api]</div>
+			<div class="report-text-block no-diff">Jakarta Web Services Metadata API<br>[jakarta.jws-api]</div>
 		</td>
 		<td>3.0.0</td>
 		<td>
-			<div class="report-text-block">Jakarta Web Services Metadata API 3.0 Design Specification<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/org/documents/edl-v10.php<br>Doc URL: https://www.eclipse.org</div>
+			<div class="report-text-block no-diff">Jakarta Web Services Metadata API 3.0 Design Specification<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/org/documents/edl-v10.php<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block"><code>jakarta.jws</code> (Version: 3.0.0)<br><code>jakarta.jws.soap</code> (Version: 3.0.0)</div>
+			<div class="report-text-block no-diff"><code>jakarta.jws</code> (Version: 3.0.0)<br><code>jakarta.jws.soap</code> (Version: 3.0.0)</div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
@@ -2672,13 +2714,13 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.mvc-api</td>
 		<td>
-			<div class="report-text-block">Jakarta MVC API<br>[jakarta.mvc-api]</div>
+			<div class="report-text-block no-diff">Jakarta MVC API<br>[jakarta.mvc-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">2.1.0</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Jakarta MVC API<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org/org/foundation/</div>
+			<div class="report-text-block no-diff">Jakarta MVC API<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org/org/foundation/</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.enterprise.context;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.enterprise.context;version=&quot;4.0&quot;</span><br>jakarta.mvc<br>jakarta.mvc.engine<br>jakarta.mvc.security<br><span class="inserted">jakarta.validation;version=&quot;3.0&quot;</span><br><span class="deleted">jakarta.validation;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.ws.rs;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs;version=&quot;3.1&quot;</span><br><span class="inserted">jakarta.ws.rs.container;version=&quot;3.1&quot;</span><br><span class="deleted">jakarta.ws.rs.container;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.ws.rs.core;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs.core;version=&quot;3.1&quot;</span></div>
@@ -2694,7 +2736,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.persistence-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Persistence API jar<br>[jakarta.persistence-api]</div>
+			<div class="report-text-block no-diff">Jakarta Persistence API jar<br>[jakarta.persistence-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.0</span><br><span class="inserted">3.1.0</span></div>
@@ -2703,7 +2745,7 @@
 			<div class="report-text-block diff"><span class="deleted">Jakarta Persistence 3.0 API jar</span><br><span class="inserted">Jakarta Persistence 3.1 API jar</span><br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>http://www.eclipse.org/org/documents/edl-v10.php<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.persistence<br>jakarta.persistence.criteria<br>jakarta.persistence.metamodel<br>jakarta.persistence.spi<br>javax.sql</div>
+			<div class="report-text-block no-diff">jakarta.persistence<br>jakarta.persistence.criteria<br>jakarta.persistence.metamodel<br>jakarta.persistence.spi<br>javax.sql</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.persistence</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.persistence</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.persistence.criteria</code>, <code>jakarta.persistence.metamodel</code>, <code>jakarta.persistence.spi</code><br><span class="deleted"><code>jakarta.persistence.criteria</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.persistence.metamodel</code> (Version: 3.1.0)</span><br><span class="deleted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.persistence</code>, <code>jakarta.persistence.metamodel</code></span><br><span class="deleted"><code>jakarta.persistence.metamodel</code> (Version: 3.0.0)</span><br><span class="deleted"><code>jakarta.persistence.spi</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.persistence.spi</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.persistence</code>, <code>javax.sql</code><br><span class="inserted"><code>jakarta.persistence.criteria</code> (Version: 3.1.0)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.persistence</code>, <code>jakarta.persistence.metamodel</code></span></div>
@@ -2716,7 +2758,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.resource-api</td>
 		<td>
-			<div class="report-text-block">jakarta.resource API<br>[jakarta.resource-api]</div>
+			<div class="report-text-block no-diff">jakarta.resource API<br>[jakarta.resource-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">2.1.0</span></div>
@@ -2738,7 +2780,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.security.enterprise-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Security<br>[jakarta.security.enterprise-api]</div>
+			<div class="report-text-block no-diff">Jakarta Security<br>[jakarta.security.enterprise-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">3.0.0</span></div>
@@ -2760,7 +2802,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.servlet-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Servlet<br>[jakarta.servlet-api]</div>
+			<div class="report-text-block no-diff">Jakarta Servlet<br>[jakarta.servlet-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">5.0.0</span><br><span class="inserted">6.0.0</span></div>
@@ -2769,7 +2811,7 @@
 			<div class="report-text-block diff"><span class="deleted">Jakarta Servlet 5.0</span><br><span class="inserted">Jakarta Servlet 6.0</span><br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.servlet<br>jakarta.servlet.annotation<br>jakarta.servlet.descriptor</div>
+			<div class="report-text-block no-diff">jakarta.servlet<br>jakarta.servlet.annotation<br>jakarta.servlet.descriptor</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.servlet</code> (Version: 5.0.0)</span><br><span class="inserted"><code>jakarta.servlet</code> (Version: 6.0.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.servlet.annotation</code>, <code>jakarta.servlet.descriptor</code><br><span class="deleted"><code>jakarta.servlet.annotation</code> (Version: 5.0.0)</span><br><span class="inserted"><code>jakarta.servlet.annotation</code> (Version: 6.0.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.servlet</code><br><span class="deleted"><code>jakarta.servlet.descriptor</code> (Version: 5.0.0)</span><br><span class="inserted"><code>jakarta.servlet.descriptor</code> (Version: 6.0.0)</span><br><span class="deleted"><code>jakarta.servlet.http</code> (Version: 5.0.0)</span><br><span class="inserted"><code>jakarta.servlet.http</code> (Version: 6.0.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.servlet</code><br><span class="deleted"><code>jakarta.servlet.resources</code> (Version: 5.0.0)</span><br><span class="inserted"><code>jakarta.servlet.resources</code> (Version: 6.0.0)</span></div>
@@ -2782,7 +2824,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.servlet.jsp-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Server Pages API<br>[jakarta.servlet.jsp-api]</div>
+			<div class="report-text-block no-diff">Jakarta Server Pages API<br>[jakarta.servlet.jsp-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.0.SNAPSHOT</span><br><span class="inserted">3.1.0</span></div>
@@ -2804,7 +2846,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.servlet.jsp.jstl-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Standard Tag Library API<br>[jakarta.servlet.jsp.jstl-api]</div>
+			<div class="report-text-block no-diff">Jakarta Standard Tag Library API<br>[jakarta.servlet.jsp.jstl-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0</span><br><span class="inserted">3.0.2</span></div>
@@ -2823,48 +2865,48 @@
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.transaction-api</td>
 		<td>
-			<div class="report-text-block">jakarta.transaction API<br>[jakarta.transaction-api]</div>
+			<div class="report-text-block no-diff">jakarta.transaction API<br>[jakarta.transaction-api]</div>
 		</td>
 		<td>2.0.0</td>
 		<td>
-			<div class="report-text-block">Jakarta(TM) Transactions 2.0 API Design Specification<br>Vendor: EE4J Community<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://github.com/eclipse-ee4j</div>
+			<div class="report-text-block no-diff">Jakarta(TM) Transactions 2.0 API Design Specification<br>Vendor: EE4J Community<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://github.com/eclipse-ee4j</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.context<br>jakarta.enterprise.util<br>jakarta.interceptor<br>jakarta.transaction;version=&quot;2.0.0&quot;<br>javax.transaction.xa</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.context<br>jakarta.enterprise.util<br>jakarta.interceptor<br>jakarta.transaction;version=&quot;2.0.0&quot;<br>javax.transaction.xa</div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.transaction</code> (Version: 2.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.transaction.xa</code>, <code>jakarta.interceptor</code>, <code>jakarta.enterprise.context</code>, <code>jakarta.enterprise.util</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.transaction</code> (Version: 2.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.transaction.xa</code>, <code>jakarta.interceptor</code>, <code>jakarta.enterprise.context</code>, <code>jakarta.enterprise.util</code></div>
 		</td>
 		<td></td>
 		<td>Manifest Version: 2</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td>
-			<div class="report-text-block">Jakarta Bean Validation API<br>[jakarta.validation.jakarta.validation-api]</div>
+			<div class="report-text-block no-diff">Jakarta Bean Validation API<br>[jakarta.validation.jakarta.validation-api]</div>
 		</td>
 		<td>3.0.0</td>
 		<td>
-			<div class="report-text-block">Jakarta Bean Validation API<br>Vendor: Eclipse Foundation<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://www.eclipse.org</div>
+			<div class="report-text-block no-diff">Jakarta Bean Validation API<br>Vendor: Eclipse Foundation<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://www.eclipse.org</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.validation;version=&quot;[3.0,4)&quot;<br>jakarta.validation.bootstrap;version=&quot;[3.0,4)&quot;<br>jakarta.validation.executable;version=&quot;[3.0,4)&quot;<br>jakarta.validation.metadata;version=&quot;[3.0,4)&quot;<br>jakarta.validation.spi;version=&quot;[3.0,4)&quot;<br>jakarta.validation.valueextraction;version=&quot;[3.0,4)&quot;</div>
+			<div class="report-text-block no-diff">jakarta.validation;version=&quot;[3.0,4)&quot;<br>jakarta.validation.bootstrap;version=&quot;[3.0,4)&quot;<br>jakarta.validation.executable;version=&quot;[3.0,4)&quot;<br>jakarta.validation.metadata;version=&quot;[3.0,4)&quot;<br>jakarta.validation.spi;version=&quot;[3.0,4)&quot;<br>jakarta.validation.valueextraction;version=&quot;[3.0,4)&quot;</div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>jakarta.validation</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation.bootstrap</code>, <code>jakarta.validation.executable</code>, <code>jakarta.validation.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>jakarta.validation.spi</code>, <code>jakarta.validation.valueextraction</code><br><code>jakarta.validation.bootstrap</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.constraints</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.constraintvalidation</code> (Version: 3.0.0)<br><code>jakarta.validation.executable</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.groups</code> (Version: 3.0.0)<br><code>jakarta.validation.metadata</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.spi</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code>, <code>jakarta.validation.valueextraction</code><br><code>jakarta.validation.valueextraction</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code></div>
+			<div class="report-text-block no-diff"><code>jakarta.validation</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation.bootstrap</code>, <code>jakarta.validation.executable</code>, <code>jakarta.validation.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>jakarta.validation.spi</code>, <code>jakarta.validation.valueextraction</code><br><code>jakarta.validation.bootstrap</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.constraints</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.constraintvalidation</code> (Version: 3.0.0)<br><code>jakarta.validation.executable</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.groups</code> (Version: 3.0.0)<br><code>jakarta.validation.metadata</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code><br><code>jakarta.validation.spi</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code>, <code>jakarta.validation.valueextraction</code><br><code>jakarta.validation.valueextraction</code> (Version: 3.0.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.validation</code></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.websocket-api</td>
 		<td>
-			<div class="report-text-block">Jakarta WebSocket - Server API<br>[jakarta.websocket-api]</div>
+			<div class="report-text-block no-diff">Jakarta WebSocket - Server API<br>[jakarta.websocket-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.0.SNAPSHOT</span><br><span class="inserted">2.1.0</span></div>
@@ -2879,7 +2921,7 @@
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.websocket</code> (Version: 2.0.0.SNAPSHOT)</span><br><span class="inserted"><code>jakarta.websocket.server</code> (Version: 2.1.0)</span><br><span class="deleted"><code>jakarta.websocket.server</code> (Version: 2.0.0.SNAPSHOT)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.websocket</code></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
@@ -2899,7 +2941,7 @@
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.websocket</code> (Version: 2.0.0.SNAPSHOT)</span><br><span class="inserted"><code>jakarta.websocket</code> (Version: 2.1.0)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>javax.net.ssl</code></span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
@@ -2912,24 +2954,24 @@
 			<div class="report-text-block diff"><span class="deleted">3.0.0</span><br><span class="inserted">3.1.0</span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Jakarta RESTful Web Services API (JAX-RS)<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org/org/foundation/</div>
+			<div class="report-text-block no-diff">Jakarta RESTful Web Services API (JAX-RS)<br>Vendor: Eclipse Foundation<br>License: http://www.eclipse.org/legal/epl-2.0,<br>https://www.gnu.org/software/classpath/license.html<br>Doc URL: https://www.eclipse.org/org/foundation/</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.ws.rs;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs;version=&quot;[3.1,4)&quot;</span><br><span class="deleted">jakarta.ws.rs.client;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs.client;version=&quot;[3.1,4)&quot;</span><br><span class="deleted">jakarta.ws.rs.core;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs.core;version=&quot;[3.1,4)&quot;</span><br><span class="deleted">jakarta.ws.rs.ext;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.ws.rs.ext;version=&quot;[3.1,4)&quot;</span><br>jakarta.xml.bind.annotation;version=&quot;[3.0,4)&quot;;resolution:=optional<br>jakarta.xml.bind.annotation.adapters;version=&quot;[3.0,4)&quot;;resolution:=optional<br>javax.net.ssl<br>javax.xml.namespace</div>
-			<div class="report-text-block">Dynamic:<br>*</div>
+			<div class="report-text-block no-diff">Dynamic:<br>*</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.ws.rs.core</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.ws.rs.sse</code> (Version: 3.1.0)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs.client</code>, <code>jakarta.ws.rs.core</code></span><br><span class="inserted"><code>jakarta.ws.rs.core</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs</code>, <code>jakarta.xml.bind.annotation</code>, <code>jakarta.xml.bind.annotation.adapters</code>, <code>javax.xml.namespace</code><br><span class="deleted"><code>jakarta.ws.rs</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.ws.rs</code> (Version: 3.1.0)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs.core</code>, <code>javax.net.ssl</code></span><br><span class="inserted"><code>jakarta.ws.rs.container</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs.core</code><br><span class="deleted"><code>jakarta.ws.rs.ext</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.ws.rs.ext</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs</code>, <code>jakarta.ws.rs.core</code><br><span class="deleted"><code>jakarta.ws.rs.container</code> (Version: 3.0.0)</span><br><span class="deleted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs.core</code></span><br><span class="deleted"><code>jakarta.ws.rs.client</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.ws.rs.client</code> (Version: 3.1.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs</code>, <code>jakarta.ws.rs.core</code>, <code>javax.net.ssl</code><br><span class="deleted"><code>jakarta.ws.rs.sse</code> (Version: 3.0.0)</span><br><span class="deleted">&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.ws.rs.client</code>, <code>jakarta.ws.rs.core</code></span></div>
 		</td>
 		<td>
-			<div class="report-text-block">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.xml.bind-api</td>
 		<td>
-			<div class="report-text-block">Jakarta XML Binding API<br>[jakarta.xml.bind-api]</div>
+			<div class="report-text-block no-diff">Jakarta XML Binding API<br>[jakarta.xml.bind-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.1</span><br><span class="inserted">4.0.2</span></div>
@@ -2939,7 +2981,7 @@
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.activation;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.activation;version=&quot;[2.1,3)&quot;</span><br><span class="deleted">jakarta.xml.bind;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.xml.bind</span><br><span class="inserted">jakarta.xml.bind.annotation</span><br><span class="deleted">jakarta.xml.bind.annotation;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.xml.bind.annotation.adapters</span><br><span class="deleted">jakarta.xml.bind.annotation.adapters;version=&quot;[3.0,4)&quot;</span><br><span class="deleted">jakarta.xml.bind.attachment;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.xml.bind.attachment</span><br><span class="inserted">java.io</span><br><span class="inserted">java.lang</span><br><span class="inserted">java.lang.annotation</span><br><span class="inserted">java.lang.invoke</span><br><span class="inserted">java.lang.ref</span><br><span class="inserted">java.lang.reflect</span><br><span class="inserted">java.math</span><br><span class="inserted">java.net</span><br><span class="inserted">java.nio.charset</span><br><span class="inserted">java.security</span><br><span class="inserted">java.text</span><br><span class="inserted">java.util</span><br><span class="inserted">java.util.function</span><br><span class="inserted">java.util.logging</span><br><span class="inserted">java.util.stream</span><br>javax.xml.datatype<br>javax.xml.namespace<br>javax.xml.parsers<br>javax.xml.stream<br>javax.xml.transform<br>javax.xml.transform.dom<br>javax.xml.transform.sax<br>javax.xml.transform.stream<br>javax.xml.validation<br>org.w3c.dom<br>org.xml.sax<br>org.xml.sax.ext<br>org.xml.sax.helpers</div>
-			<div class="report-text-block">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
+			<div class="report-text-block no-diff">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.xml.bind</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind.annotation.adapters</code>, <code>jakarta.xml.bind.attachment</code>, <code>javax.xml.namespace</code>, <code>javax.xml.stream</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.xml.transform</code>, <code>javax.xml.validation</code>, <code>org.w3c.dom</code>, <code>org.xml.sax</code><br><span class="deleted"><code>jakarta.xml.bind.annotation</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind.annotation</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>javax.xml.parsers</code>, <code>javax.xml.transform</code>, <code>javax.xml.transform.dom</code>, <code>org.w3c.dom</code><br><span class="deleted"><code>jakarta.xml.bind.annotation.adapters</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind.annotation.adapters</code> (Version: 4.0.2)</span><br><span class="deleted"><code>jakarta.xml.bind.attachment</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind.attachment</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.activation</code><br><span class="deleted"><code>jakarta.xml.bind.helpers</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind.helpers</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>jakarta.xml.bind.annotation.adapters</code>, <code>jakarta.xml.bind.attachment</code>, <code>javax.xml.stream</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.xml.transform</code>, <code>javax.xml.validation</code>, <code>org.w3c.dom</code>, <code>org.xml.sax</code><br><span class="deleted"><code>jakarta.xml.bind.util</code> (Version: 3.0.0)</span><br><span class="inserted"><code>jakarta.xml.bind.util</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>javax.xml.transform.sax</code></div>
@@ -2952,7 +2994,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.xml.soap-api</td>
 		<td>
-			<div class="report-text-block">Jakarta SOAP with Attachments API<br>[jakarta.xml.soap-api]</div>
+			<div class="report-text-block no-diff">Jakarta SOAP with Attachments API<br>[jakarta.xml.soap-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">2.0.1</span><br><span class="inserted">3.0.2</span></div>
@@ -2962,7 +3004,7 @@
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.activation;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.activation;version=&quot;[2.1,3)&quot;</span><br><span class="inserted">java.io</span><br><span class="inserted">java.lang</span><br><span class="inserted">java.lang.invoke</span><br><span class="inserted">java.lang.reflect</span><br><span class="inserted">java.net</span><br><span class="inserted">java.security</span><br><span class="inserted">java.util</span><br><span class="inserted">java.util.logging</span><br>javax.xml.namespace<br>javax.xml.transform<br>javax.xml.transform.dom<br>org.w3c.dom</div>
-			<div class="report-text-block">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
+			<div class="report-text-block no-diff">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.xml.soap</code> (Version: 2.0.1)</span><br><span class="inserted"><code>jakarta.xml.soap</code> (Version: 3.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.activation</code>, <code>javax.xml.namespace</code>, <code>javax.xml.transform</code>, <code>javax.xml.transform.dom</code>, <code>org.w3c.dom</code></div>
@@ -2975,7 +3017,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.xml.ws-api</td>
 		<td>
-			<div class="report-text-block">Jakarta XML Web Services API<br>[jakarta.xml.ws-api]</div>
+			<div class="report-text-block no-diff">Jakarta XML Web Services API<br>[jakarta.xml.ws-api]</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">3.0.1</span><br><span class="inserted">4.0.2</span></div>
@@ -2985,7 +3027,7 @@
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.xml.bind;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.xml.bind;version=&quot;[4.0,5)&quot;</span><br><span class="deleted">jakarta.xml.bind.annotation;version=&quot;[3.0,4)&quot;</span><br><span class="inserted">jakarta.xml.bind.annotation;version=&quot;[4.0,5)&quot;</span><br><span class="deleted">jakarta.xml.soap;version=&quot;[2.0,3)&quot;</span><br><span class="inserted">jakarta.xml.soap;version=&quot;[3.0,4)&quot;</span><br>jakarta.xml.ws<br>jakarta.xml.ws.handler<br>jakarta.xml.ws.spi<br>jakarta.xml.ws.spi.http<br>jakarta.xml.ws.wsaddressing<br><span class="inserted">java.io</span><br><span class="inserted">java.lang</span><br><span class="inserted">java.lang.annotation</span><br><span class="inserted">java.lang.invoke</span><br><span class="inserted">java.lang.reflect</span><br><span class="inserted">java.net</span><br><span class="inserted">java.security</span><br><span class="inserted">java.util</span><br><span class="inserted">java.util.concurrent</span><br><span class="inserted">java.util.logging</span><br>javax.xml.namespace<br>javax.xml.transform<br>javax.xml.transform.stream<br>org.w3c.dom</div>
-			<div class="report-text-block">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
+			<div class="report-text-block no-diff">Dynamic:<br>org.glassfish.hk2.osgiresourcelocator</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><code>jakarta.xml.ws</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.jws</code> (Version: 4.0.2)</span><br><span class="inserted"><code>jakarta.jws.soap</code> (Version: 4.0.2)</span><br><span class="inserted"><code>jakarta.xml.ws</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>jakarta.xml.bind.annotation</code>, <code>jakarta.xml.ws.handler</code>, <code>jakarta.xml.ws.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>jakarta.xml.ws.spi.http</code>, <code>javax.xml.namespace</code>, <code>javax.xml.transform</code>, <code>org.w3c.dom</code><br><span class="deleted"><code>jakarta.xml.ws.handler</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.handler</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.ws</code>, <code>javax.xml.namespace</code><br><span class="deleted"><code>jakarta.xml.ws.handler.soap</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.handler.soap</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>jakarta.xml.soap</code>, <code>jakarta.xml.ws.handler</code>, <code>javax.xml.namespace</code><br><span class="deleted"><code>jakarta.xml.ws.http</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.http</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.ws</code><br><span class="deleted"><code>jakarta.xml.ws.soap</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.soap</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.soap</code>, <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.spi</code><br><span class="deleted"><code>jakarta.xml.ws.spi</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.spi</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind</code>, <code>jakarta.xml.ws</code>, <code>jakarta.xml.ws.handler</code>, <code>jakarta.xml.ws.wsaddressing</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.xml.namespace</code>, <code>javax.xml.transform</code>, <code>org.w3c.dom</code><br><span class="deleted"><code>jakarta.xml.ws.spi.http</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.spi.http</code> (Version: 4.0.2)</span><br><span class="deleted"><code>jakarta.xml.ws.wsaddressing</code> (Version: 3.0.1)</span><br><span class="inserted"><code>jakarta.xml.ws.wsaddressing</code> (Version: 4.0.2)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>jakarta.xml.bind.annotation</code>, <code>jakarta.xml.ws</code>, <code>javax.xml.namespace</code>, <code>javax.xml.transform</code>, <code>org.w3c.dom</code></div>
@@ -3001,7 +3043,7 @@
 
 <section class="report-section" id="Dependencies" title="Dependencies">
 <h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description">Dependencies between JAR files, and as declared in POM file.</p>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -3019,7 +3061,7 @@
 		<td>jakarta.activation-api</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
-			<div class="report-text-block">jakarta.mail-api<br>jakarta.xml.bind-api<br>jakarta.xml.soap-api</div>
+			<div class="report-text-block no-diff">jakarta.mail-api<br>jakarta.xml.bind-api<br>jakarta.xml.soap-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.activation/jakarta.activation-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.activation:jakarta.activation-api:2.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.activation/jakarta.activation-api/2.1.3" target="_blank" rel="noopener noreferrer">jakarta.activation:jakarta.activation-api:2.1.3</a></span></div>
@@ -3074,7 +3116,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.batch-api</td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.cdi-api<br>jakarta.inject-api</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.cdi-api<br>jakarta.inject-api</div>
 		</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
@@ -3107,7 +3149,7 @@
 		<td>jakarta.el-api</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.cdi-api<br>jakarta.faces-api<br>jakarta.servlet.jsp-api<br>jakarta.servlet.jsp.jstl-api</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.cdi-api<br>jakarta.faces-api<br>jakarta.servlet.jsp-api<br>jakarta.servlet.jsp.jstl-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.el/jakarta.el-api/4.0.0" target="_blank" rel="noopener noreferrer">jakarta.el:jakarta.el-api:4.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.el/jakarta.el-api/5.0.1" target="_blank" rel="noopener noreferrer">jakarta.el:jakarta.el-api:5.0.1</a></span></div>
@@ -3121,7 +3163,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.enterprise.cdi-api</td>
 		<td>
-			<div class="report-text-block">jakarta.el-api<br>jakarta.inject-api<br>jakarta.interceptor-api</div>
+			<div class="report-text-block no-diff">jakarta.el-api<br>jakarta.inject-api<br>jakarta.interceptor-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff">jakarta.batch-api<br><span class="inserted">jakarta.enterprise.concurrent-api</span><br>jakarta.faces-api<br>jakarta.mvc-api<br>jakarta.security.enterprise-api<br>jakarta.transaction-api</div>
@@ -3177,11 +3219,11 @@
 			<div class="report-text-block diff"><span class="deleted">OK</span><br><span class="inserted">OK (version 2.1.1)</span><br><span class="deleted">OK (version 4.0.0)</span><br><span class="deleted">OK</span><br><span class="deleted">OK</span><br><span class="deleted">OK (version 2.0.2)</span><br>OK<br><span class="inserted">OK (version 5.0.1)</span><br>OK<br><span class="inserted">OK (version 2.1.3)</span><br>OK<br>OK<br>OK (version 2.0.0)<br><span class="inserted">OK (version 3.0.0)</span><br>OK<br>OK<br><span class="deleted">OK (version 3.0.1)</span><br><span class="inserted">OK (version 4.0.2)</span><br><span class="deleted">OK (version 3.0.1)</span><br><span class="inserted">OK (version 4.0.2)</span><br>Unsatisfied</div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.inject-api</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
-			<div class="report-text-block">jakarta.batch-api<br>jakarta.enterprise.cdi-api<br>jakarta.faces-api</div>
+			<div class="report-text-block no-diff">jakarta.batch-api<br>jakarta.enterprise.cdi-api<br>jakarta.faces-api</div>
 		</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.inject/jakarta.inject-api/2.0.1" target="_blank" rel="noopener noreferrer">jakarta.inject:jakarta.inject-api:2.0.1</a></td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.inject/jakarta.inject-api/2.0.1.MR" target="_blank" rel="noopener noreferrer">2.0.1.MR</a></td>
@@ -3287,7 +3329,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.mvc-api</td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.cdi-api<br>jakarta.validation-api<br>jakarta.ws.rs-api</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.cdi-api<br>jakarta.validation-api<br>jakarta.ws.rs-api</div>
 		</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
@@ -3356,7 +3398,7 @@
 		<td>jakarta.servlet-api</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
-			<div class="report-text-block">jakarta.authorization-api<br>jakarta.faces-api<br>jakarta.security.enterprise-api<br>jakarta.servlet.jsp-api<br>jakarta.servlet.jsp.jstl-api</div>
+			<div class="report-text-block no-diff">jakarta.authorization-api<br>jakarta.faces-api<br>jakarta.security.enterprise-api<br>jakarta.servlet.jsp-api<br>jakarta.servlet.jsp.jstl-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.servlet/jakarta.servlet-api/5.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet:jakarta.servlet-api:5.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.servlet/jakarta.servlet-api/6.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet:jakarta.servlet-api:6.0.0</a></span></div>
@@ -3370,7 +3412,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.servlet.jsp-api</td>
 		<td>
-			<div class="report-text-block">jakarta.el-api<br>jakarta.servlet-api</div>
+			<div class="report-text-block no-diff">jakarta.el-api<br>jakarta.servlet-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.faces-api</span><br>jakarta.servlet.jsp.jstl-api</div>
@@ -3391,7 +3433,7 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.servlet.jsp.jstl-api</td>
 		<td>
-			<div class="report-text-block">jakarta.el-api<br>jakarta.servlet-api<br>jakarta.servlet.jsp-api</div>
+			<div class="report-text-block no-diff">jakarta.el-api<br>jakarta.servlet-api<br>jakarta.servlet.jsp-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">jakarta.faces-api</span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
@@ -3412,29 +3454,29 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.transaction-api</td>
 		<td>
-			<div class="report-text-block">jakarta.enterprise.cdi-api<br>jakarta.interceptor-api</div>
+			<div class="report-text-block no-diff">jakarta.enterprise.cdi-api<br>jakarta.interceptor-api</div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.ejb-api<br>jakarta.resource-api</div>
+			<div class="report-text-block no-diff">jakarta.ejb-api<br>jakarta.resource-api</div>
 		</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.transaction/jakarta.transaction-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.transaction:jakarta.transaction-api:2.0.0</a></td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.transaction/jakarta.transaction-api/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a></td>
 		<td>
-			<div class="report-text-block"><a href="https://central.sonatype.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api/3.0.0-M1" target="_blank" rel="noopener noreferrer">jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0-M1</a> (provided)<br><a href="https://central.sonatype.com/artifact/jakarta.interceptor/jakarta.interceptor-api/2.0.0-RC1" target="_blank" rel="noopener noreferrer">jakarta.interceptor:jakarta.interceptor-api:2.0.0-RC1</a> (provided)</div>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api/3.0.0-M1" target="_blank" rel="noopener noreferrer">jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0-M1</a> (provided)<br><a href="https://central.sonatype.com/artifact/jakarta.interceptor/jakarta.interceptor-api/2.0.0-RC1" target="_blank" rel="noopener noreferrer">jakarta.interceptor:jakarta.interceptor-api:2.0.0-RC1</a> (provided)</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">OK (version 3.0.0)</span><br><span class="inserted">OK (version 4.0.1)</span><br><span class="deleted">OK (version 2.0.0)</span><br><span class="inserted">OK (version 2.1.0)</span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td>
-			<div class="report-text-block">jakarta.faces-api<br>jakarta.mvc-api</div>
+			<div class="report-text-block no-diff">jakarta.faces-api<br>jakarta.mvc-api</div>
 		</td>
 		<td><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.0" target="_blank" rel="noopener noreferrer">jakarta.validation:jakarta.validation-api:3.0.0</a></td>
 		<td>
-			<div class="report-text-block"><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.1" target="_blank" rel="noopener noreferrer">3.0.1</a>, <a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.2" target="_blank" rel="noopener noreferrer">3.0.2</a><br><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.1.0" target="_blank" rel="noopener noreferrer">3.1.0</a>, <a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.1.1" target="_blank" rel="noopener noreferrer">3.1.1</a></div>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.1" target="_blank" rel="noopener noreferrer">3.0.1</a>, <a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.0.2" target="_blank" rel="noopener noreferrer">3.0.2</a><br><a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.1.0" target="_blank" rel="noopener noreferrer">3.1.0</a>, <a href="https://central.sonatype.com/artifact/jakarta.validation/jakarta.validation-api/3.1.1" target="_blank" rel="noopener noreferrer">3.1.1</a></div>
 		</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td></td>
@@ -3462,7 +3504,7 @@
 			<div class="report-text-block diff"><span class="deleted">jakarta.websocket-api</span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
 		</td>
 		<td>
-			<div class="report-text-block">jakarta.faces-api<br>jakarta.websocket-api</div>
+			<div class="report-text-block no-diff">jakarta.faces-api<br>jakarta.websocket-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.websocket/jakarta.websocket-client-api/2.0.0" target="_blank" rel="noopener noreferrer">jakarta.websocket:jakarta.websocket-client-api:2.0.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.websocket/jakarta.websocket-client-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.websocket:jakarta.websocket-client-api:2.1.0</a></span></div>
@@ -3494,7 +3536,7 @@
 		<td>jakarta.xml.bind-api</td>
 		<td>jakarta.activation-api</td>
 		<td>
-			<div class="report-text-block">jakarta.ws.rs-api<br>jakarta.xml.ws-api</div>
+			<div class="report-text-block no-diff">jakarta.ws.rs-api<br>jakarta.xml.ws-api</div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/3.0.1" target="_blank" rel="noopener noreferrer">jakarta.xml.bind:jakarta.xml.bind-api:3.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api/4.0.2" target="_blank" rel="noopener noreferrer">jakarta.xml.bind:jakarta.xml.bind-api:4.0.2</a></span></div>
@@ -3553,7 +3595,7 @@
 
 <section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
 <h2 class="report-section-title">Duplicate Classes</h2>
-<p class="report-section-description">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -4038,7 +4080,7 @@
 
 <section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
 <h2 class="report-section-title">Binary Compatibility</h2>
-<p class="report-section-description">Compatibility issues between JAR files.</p>
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -4079,18 +4121,18 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.faces-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.faces.CurrentThreadToServletContext</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>jakarta.faces.FactoryFinderInstance</code><br>• Class not found: <code>com.sun.faces.config.ConfigManager</code> (package not found)<br>• Class not found: <code>com.sun.faces.spi.InjectionProvider</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.FactoryFinderInstance</code><br>• Class not found: <code>com.sun.faces.config.ConfigManager</code> (package not found)<br>• Class not found: <code>com.sun.faces.spi.InjectionProvider</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
 			<div class="report-text-block report-issue diff"><code>jakarta.faces.component.ComponentStateHelper</code><br><span class="inserted">• Class not found: <code>com.sun.faces.facelets.tag.faces.ComponentSupport</code> (package not found)</span><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
 			<div class="report-text-block report-issue diff"><span class="deleted"><code>jakarta.faces.component.UICommand</code></span><br><span class="deleted">• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)</span><br><span class="deleted">• Class not found: <code>com.sun.faces.application.MethodExpressionMethodBindingAdapter</code> (package not found)</span></div>
-			<div class="report-text-block report-issue"><code>jakarta.faces.component.UIComponent</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIComponent</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
 			<div class="report-text-block report-issue diff"><code>jakarta.faces.component.UIComponentBase</code><br><span class="inserted">• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.faces.component.UIComponentBase$ChildrenList</code></span><br><span class="inserted">• Class not found: <code>com.sun.faces.facelets.tag.faces.ComponentSupport</code> (package not found)</span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.faces.component.UIComponentBase$FacetsMap</code></span><br><span class="deleted">• Class not found: <code>com.sun.faces.application.ValueBindingValueExpressionAdapter</code> (package not found)</span><br><span class="inserted">• Class not found: <code>com.sun.faces.facelets.tag.faces.ComponentSupport</code> (package not found)</span><br><span class="deleted">• Class not found: <code>com.sun.faces.application.ValueExpressionValueBindingAdapter</code> (package not found)</span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.faces.component.UIData</code></span><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>jakarta.faces.component.UIForm</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>jakarta.faces.component.UINamingContainer</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIForm</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UINamingContainer</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
 			<div class="report-text-block report-issue diff"><span class="deleted"><code>jakarta.faces.component.UIViewAction</code></span><br><span class="inserted"><code>jakarta.faces.component.UISelectItemGroup</code></span><br><span class="inserted">• Class not found: <code>com.sun.faces.util.SelectItemUtils</code> (package not found)</span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.faces.component.UISelectItemGroups</code></span><br><span class="deleted">• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)</span><br><span class="inserted">• Class not found: <code>com.sun.faces.util.SelectItemUtils</code> (package not found)</span></div>
 		</td>
@@ -4129,7 +4171,7 @@
 
 <section class="report-section" id="Blacklist" title="Blacklist">
 <h2 class="report-section-title">Blacklist</h2>
-<p class="report-section-description">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -4141,34 +4183,34 @@
 	<tr class="report-table-row diff">
 		<td>jakarta.activation-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.activation.CommandInfo$Beans</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.CommandMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.DataHandler</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandInfo$Beans</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.DataHandler</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.activation.FactoryFinder</code></span><br><span class="inserted">• @Deprecated: <code>public final class java.security.AccessController</code></span></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.FileTypeMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.MailcapCommandMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.activation.SecuritySupport</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.FileTypeMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MailcapCommandMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.SecuritySupport</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.activation.ServiceLoaderUtil</code></span><br><span class="inserted">• @Deprecated: <code>public class java.lang.SecurityManager</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.authentication-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.security.auth.message.config.AuthConfigFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.auth.message.config.AuthConfigFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.authorization-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.security.jacc.PolicyConfigurationFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.security.jacc.PolicyContext</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyConfigurationFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyContext</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.batch-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.batch.runtime.BatchRuntime</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.batch.runtime.BatchRuntime</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -4181,8 +4223,8 @@
 		<td>jakarta.enterprise.cdi-api</td>
 		<td>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.enterprise.inject.build.compatible.spi.SecurityActions</code></span><br><span class="inserted">• @Deprecated: <code>public final class java.security.AccessController</code></span></div>
-			<div class="report-text-block report-issue"><code>jakarta.enterprise.inject.spi.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.enterprise.util.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.inject.spi.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.util.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -4200,10 +4242,10 @@
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.mail.util.StreamProvider</code></span><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.persistence-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -4212,37 +4254,37 @@
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.servlet.http.Cookie</code></span><br><span class="inserted">• @Deprecated: <code>public final class java.security.AccessController</code></span></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.validation-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.validation.Validation$GetValidationProviderListAction</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.validation.Validation$ProviderSpecificBootstrapImpl</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$GetValidationProviderListAction</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$ProviderSpecificBootstrapImpl</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jakarta.ws.rs-api</td>
 		<td>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.ws.rs.client.ClientBuilder</code></span><br><span class="inserted">• @Deprecated: <code>public final class java.security.AccessController</code></span></div>
-			<div class="report-text-block report-issue"><code>jakarta.ws.rs.client.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.ws.rs.ext.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.ws.rs.ext.RuntimeDelegate</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.ws.rs.sse.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.client.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.RuntimeDelegate</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.sse.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.xml.bind-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.xml.bind.ContextFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.xml.bind.DatatypeConverter</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.xml.bind.JAXBContext</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.xml.bind.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ContextFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.DatatypeConverter</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.JAXBContext</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>jakarta.xml.soap-api</td>
 		<td>
-			<div class="report-text-block report-issue"><code>jakarta.xml.soap.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue"><code>jakarta.xml.soap.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 		</td>
 	</tr>
 	<tr class="report-table-row diff">
@@ -4251,7 +4293,7 @@
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.jws.soap.SOAPMessageHandler</code></span><br><span class="inserted">• @Deprecated: <code>public @interface jakarta.jws.soap.InitParam</code></span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.jws.soap.SOAPMessageHandlers</code></span><br><span class="inserted">• @Deprecated: <code>public @interface jakarta.jws.soap.SOAPMessageHandler</code></span></div>
 			<div class="report-text-block report-issue diff"><span class="inserted"><code>jakarta.xml.ws.spi.FactoryFinder</code></span><br><span class="inserted">• @Deprecated: <code>public final class java.security.AccessController</code></span></div>
-			<div class="report-text-block report-issue"><code>jakarta.xml.ws.spi.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.ws.spi.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 		</td>
 	</tr>
 </tbody>
@@ -4260,8 +4302,8 @@
 
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
-<p class="report-section-description">Information about JRE/JDK runtime.</p>
-<p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+<p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
+<p class="report-content no-diff">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
 

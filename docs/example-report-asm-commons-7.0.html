@@ -31,7 +31,7 @@
 			color: #333399;
 		}
 
-		header {
+		#header {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -95,6 +95,7 @@
 		}
 
 		#minimap {
+			display: none; /* hidden by default */
 			position: fixed;
 			top: 70px;
 			left: 10px;
@@ -106,12 +107,13 @@
 		}
 
 		#minimapView {
+			display: none; /* hidden by default */
 			position: fixed;
-			top: 66px;
-			left: 6px;
-			width: 70px;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
 			height: 0;
-			z-index: 90;
+			z-index: 90; /* float above minimap */
 			pointer-events: none;
 			user-select: none;
 			border: 4px solid black;
@@ -120,7 +122,7 @@
 		.minimapSection {
 			position: absolute;
 			left: 2px;
-			width: 62px; /* minimap width - 8px padding */
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
 			padding: 2px;
 			background-color: lightgray;
 			overflow: hidden;
@@ -133,8 +135,8 @@
 			overflow-wrap: break-word;
 		}
 
-		main {
-			margin: 80px 20px 20px 100px;
+		#main {
+			margin: 80px 20px 20px 20px;
 		}
 
 		h2, h3, h4, h5, h6 {
@@ -186,6 +188,20 @@
 			background-color: #FFF6D8;
 		}
 
+		/* special diff report settings */
+
+		.diff-report #showOnlyDiffControl {
+			/* only available in diff report */
+			display: flex;
+		}
+
+		.diff-report .no-diff {
+			/* default: only show differences */
+			display: none;
+		}
+
+		/* special print settings */
+
 		@media print {
 
 			header {
@@ -220,6 +236,8 @@
 		const HEADER_HEIGHT = 80;
 		const MINIMAP_VSPACE = 10;
 
+		let MINIMAP_ENABLED = false;
+
 		function init() {
 
 			// check if document is a diff report
@@ -235,10 +253,8 @@
 
 		function initDiffUI() {
 
-			// show control
+			// support click on control (outside of checkbox and label)
 			const control = document.getElementById("showOnlyDiffControl");
-			control.style.display = "flex";
-
 			control.addEventListener("click", function(event) {
 				if (event.target === control) { // ignore clicks on nested elements
 					// similate click on checkbox
@@ -246,14 +262,9 @@
 					checkbox.click();
 				}
 			});
-
-			// TODO: use CSS to show only differences by default
-			showOnlyDiff(true);
 		}
 
 		function initMinimap() {
-
-			updateMinimap();
 
 			window.addEventListener("scroll", updateMinimapView);
 			window.addEventListener("resize", updateMinimap);
@@ -345,7 +356,7 @@
 			// show or hide table rows
 			const rows = document.getElementsByClassName("report-table-row");
 			for (let row of rows) {
-				if (!row.classList.contains("diff")) {
+				if (row.classList.contains("no-diff")) {
 					if (enabled) {
 						row.style.display = "none";
 					} else {
@@ -357,7 +368,7 @@
 			// show or hide issues
 			const issues = document.getElementsByClassName("report-issue");
 			for (let issue of issues) {
-				if (!issue.classList.contains("diff")) {
+				if (issue.classList.contains("no-diff")) {
 					if (enabled) {
 						issue.style.display = "none";
 					} else {
@@ -370,7 +381,37 @@
 			updateMinimap();
 		}
 
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
 		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -429,6 +470,7 @@
 		}
 
 		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -477,12 +519,12 @@
 </head>
 <body class="report scan-report" onload="init()">
 
-	<header>
+	<header id="header">
 		<div id="controls">
 			<div class="control" onclick="scrollToSection(true)"><span class="icon icon-down"></span><span class="label">Next section</span></div>
 			<div class="control" onclick="scrollToSection(false)"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
 			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
-			<!-- TODO: add control to show/hide minimap -->
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
 		</div>
 		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
 	</header>
@@ -490,7 +532,7 @@
 	<div id="minimap"></div>
 	<div id="minimapView"></div>
 
-	<main>
+	<main id="main">
 		<h1 class="report-title">ASM Commons 7.0</h1>
 		
 <nav>
@@ -510,7 +552,7 @@
 
 <section class="report-section" id="JARFiles" title="JAR Files">
 <h2 class="report-section-title">JAR Files</h2>
-<p class="report-section-description">List of JAR files found in classpath.</p>
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -528,7 +570,7 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td>7.0</td>
 		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
@@ -540,10 +582,10 @@
 		<td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td>
 		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
 		<td>
-			<div class="report-text-block report-issue"></div>
+			<div class="report-text-block report-issue no-diff"></div>
 		</td>
 	</tr>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>Classpath</td>
 		<td>-</td>
 		<td>-</td>
@@ -555,7 +597,7 @@
 		<td>-</td>
 		<td>-</td>
 		<td>
-			<div class="report-text-block report-issue">-</div>
+			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
 	</tr>
 </tbody>
@@ -564,7 +606,7 @@
 
 <section class="report-section" id="JARManifests" title="JAR Manifests">
 <h2 class="report-section-title">JAR Manifests</h2>
-<p class="report-section-description">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -577,14 +619,14 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td>
-			<div class="report-text-block">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></div>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block">Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
+			<div class="report-text-block no-diff">Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
 		</td>
 		<td></td>
 		<td></td>
@@ -595,7 +637,7 @@
 
 <section class="report-section" id="JPMSModules" title="JPMS Modules">
 <h2 class="report-section-title">JPMS Modules</h2>
-<p class="report-section-description">List of Java Modules found in classpath.</p>
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -608,13 +650,13 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td><code>org.objectweb.asm.commons</code></td>
 		<td>Module-Info</td>
 		<td>No</td>
 		<td>
-			<div class="report-text-block"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></div>
 		</td>
 		<td><code>org.objectweb.asm.commons</code></td>
 	</tr>
@@ -624,7 +666,7 @@
 
 <section class="report-section" id="OSGiBundles" title="OSGi Bundles">
 <h2 class="report-section-title">OSGi Bundles</h2>
-<p class="report-section-description">Information about OSGi Bundles.</p>
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -639,20 +681,20 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td>org.objectweb.asm.commons</td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
 		<td>
-			<div class="report-text-block">org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</div>
+			<div class="report-text-block no-diff">org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</div>
 		</td>
 		<td>
-			<div class="report-text-block"><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
 		</td>
 	</tr>
 </tbody>
@@ -661,7 +703,7 @@
 
 <section class="report-section" id="Dependencies" title="Dependencies">
 <h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description">Dependencies between JAR files, and as declared in POM file.</p>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -675,19 +717,19 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td><span style="color:gray">[none]</span></td>
 		<td><span style="color:gray">[none]</span></td>
 		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
 		<td>
-			<div class="report-text-block"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
 		</td>
 		<td>
-			<div class="report-text-block"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
 		</td>
 		<td>
-			<div class="report-text-block">Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
 		</td>
 	</tr>
 </tbody>
@@ -696,7 +738,7 @@
 
 <section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
 <h2 class="report-section-title">Duplicate Classes</h2>
-<p class="report-section-description">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -712,7 +754,7 @@
 
 <section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
 <h2 class="report-section-title">Binary Compatibility</h2>
-<p class="report-section-description">Compatibility issues between JAR files.</p>
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -721,38 +763,38 @@
 	</tr>
 </thead>
 <tbody>
-	<tr class="report-table-row">
+	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
 		<td>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitCode()</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInsn(int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitIntInsn(int,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitJumpInsn(int,org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLabel(org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLdcInsn(java.lang.Object)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMultiANewArrayInsn(java.lang.String,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTypeInsn(int,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AdviceAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AdviceAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AdviceAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.AdviceAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnalyzerAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AnalyzerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.AnnotationRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.AnnotationVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnnotationRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.AnnotationRemapper.av</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.ClassRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.ClassRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.ClassRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.ClassVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.CodeSizeEvaluator.api</code><br>&gt; <code>org.objectweb.asm.commons.CodeSizeEvaluator</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.CodeSizeEvaluator.mv</code><br>&gt; <code>org.objectweb.asm.commons.CodeSizeEvaluator</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.FieldRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.FieldVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.FieldRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.FieldRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.FieldVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.GeneratorAdapter</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.GeneratorAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.InstructionAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.InstructionAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.JSRInlinerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.JumpInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LocalVariableNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LookupSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TableSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.JSRInlinerAdapter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.localVariables</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.JSRInlinerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.JSRInlinerAdapter$Instantiation</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.LocalVariablesSorter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.Method</code><br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.MethodRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.MethodRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.MethodRemapper.mv</code><br>&gt; <code>org.objectweb.asm.commons.MethodRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.ModuleHashesAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.ModuleRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ModuleVisitor</code><br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.ModuleResolutionAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.ModuleTargetAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.Remapper</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureWriter</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.RemappingAnnotationAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.AnnotationVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.RemappingAnnotationAdapter.av</code><br>&gt; <code>org.objectweb.asm.commons.RemappingAnnotationAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.RemappingClassAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.RemappingFieldAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.FieldVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.FieldVisitor org.objectweb.asm.commons.RemappingFieldAdapter.fv</code><br>&gt; <code>org.objectweb.asm.commons.RemappingFieldAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.FieldVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotation(java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotationDefault()</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitInsnAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitLdcInsn(java.lang.Object)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMultiANewArrayInsn(java.lang.String,int)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitParameterAnnotation(int,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTypeAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitTypeInsn(int,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>int org.objectweb.asm.commons.RemappingMethodAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.RemappingMethodAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.RemappingMethodAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.RemappingMethodAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.RemappingSignatureAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.signature.SignatureVisitor</code><br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.SerialVersionUIDAdder</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.SignatureRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.signature.SignatureVisitor</code><br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.StaticInitMerger</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.TableSwitchGenerator</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.TryCatchBlockSorter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.TryCatchBlockSorter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.TryCatchBlockSorter.mv</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.TryCatchBlockSorter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
-			<div class="report-text-block report-issue"><code>org.objectweb.asm.commons.TryCatchBlockSorter$1</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.TryCatchBlockSorter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitCode()</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInsn(int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitIntInsn(int,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitJumpInsn(int,org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLabel(org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLdcInsn(java.lang.Object)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMultiANewArrayInsn(java.lang.String,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTypeInsn(int,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AdviceAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AdviceAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AdviceAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.AdviceAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnalyzerAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AnalyzerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnnotationRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.AnnotationVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnnotationRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.AnnotationRemapper.av</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ClassRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.ClassRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.ClassRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.ClassVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.CodeSizeEvaluator.api</code><br>&gt; <code>org.objectweb.asm.commons.CodeSizeEvaluator</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.CodeSizeEvaluator.mv</code><br>&gt; <code>org.objectweb.asm.commons.CodeSizeEvaluator</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.FieldRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.FieldVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.FieldRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.FieldRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.FieldVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.GeneratorAdapter</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.GeneratorAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.InstructionAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.InstructionAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.JSRInlinerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.JumpInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LocalVariableNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LookupSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TableSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.JSRInlinerAdapter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.localVariables</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.JSRInlinerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.JSRInlinerAdapter$Instantiation</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.LocalVariablesSorter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.Method</code><br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.MethodRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.MethodRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.MethodRemapper.mv</code><br>&gt; <code>org.objectweb.asm.commons.MethodRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleHashesAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ModuleVisitor</code><br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleResolutionAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleTargetAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.Remapper</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureWriter</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingAnnotationAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.AnnotationVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.RemappingAnnotationAdapter.av</code><br>&gt; <code>org.objectweb.asm.commons.RemappingAnnotationAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingClassAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingFieldAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.FieldVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.FieldVisitor org.objectweb.asm.commons.RemappingFieldAdapter.fv</code><br>&gt; <code>org.objectweb.asm.commons.RemappingFieldAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.FieldVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotation(java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotationDefault()</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitInsnAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitLdcInsn(java.lang.Object)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitMultiANewArrayInsn(java.lang.String,int)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitParameterAnnotation(int,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTypeAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.LocalVariablesSorter.visitTypeInsn(int,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>int org.objectweb.asm.commons.RemappingMethodAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.RemappingMethodAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.RemappingMethodAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.RemappingMethodAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingSignatureAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.signature.SignatureVisitor</code><br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.SerialVersionUIDAdder</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.SignatureRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.signature.SignatureVisitor</code><br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.StaticInitMerger</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TableSwitchGenerator</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TryCatchBlockSorter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.TryCatchBlockSorter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.TryCatchBlockSorter.mv</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.TryCatchBlockSorter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TryCatchBlockSorter$1</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.TryCatchBlockSorter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
 		</td>
 	</tr>
 </tbody>
@@ -761,7 +803,7 @@
 
 <section class="report-section" id="Blacklist" title="Blacklist">
 <h2 class="report-section-title">Blacklist</h2>
-<p class="report-section-description">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
 <table class="report-table">
 <thead>
 	<tr class="report-table-header">
@@ -776,8 +818,8 @@
 
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
-<p class="report-section-description">Information about JRE/JDK runtime.</p>
-<p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+<p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
+<p class="report-content no-diff">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
 

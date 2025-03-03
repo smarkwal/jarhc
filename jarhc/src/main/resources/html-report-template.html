@@ -66,11 +66,6 @@
 			display: none;
 		}
 
-		.diff-report #showOnlyDiffControl {
-			/* only available in diff report */
-			display: flex;
-		}
-
 		.icon {
 			width: 16px;
 			height: 16px;
@@ -193,6 +188,20 @@
 			background-color: #FFF6D8;
 		}
 
+		/* special diff report settings */
+
+		.diff-report #showOnlyDiffControl {
+			/* only available in diff report */
+			display: flex;
+		}
+
+		.diff-report .no-diff {
+			/* default: only show differences */
+			display: none;
+		}
+
+		/* special print settings */
+
 		@media print {
 
 			header {
@@ -253,9 +262,6 @@
 					checkbox.click();
 				}
 			});
-
-			// TODO: use CSS to show only differences by default
-			showOnlyDiff(true);
 		}
 
 		function initMinimap() {
@@ -350,7 +356,7 @@
 			// show or hide table rows
 			const rows = document.getElementsByClassName("report-table-row");
 			for (let row of rows) {
-				if (!row.classList.contains("diff")) {
+				if (row.classList.contains("no-diff")) {
 					if (enabled) {
 						row.style.display = "none";
 					} else {
@@ -362,7 +368,7 @@
 			// show or hide issues
 			const issues = document.getElementsByClassName("report-issue");
 			for (let issue of issues) {
-				if (!issue.classList.contains("diff")) {
+				if (issue.classList.contains("no-diff")) {
 					if (enabled) {
 						issue.style.display = "none";
 					} else {
