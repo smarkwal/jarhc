@@ -7,8 +7,8 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates | Issues
 ----------+-----------+-----------+--------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-------------+-------
-jarhc     | [unknown] | jarhc.jar | 299 KB | No            | Java 11 (152)          | 17        | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
-Classpath | -         | -         | 299 KB | -             | Java 11 (152)          | 17        | 20                          | -                                        | -           | -
+jarhc     | [unknown] | jarhc.jar | 300 KB | No            | Java 11 (152)          | 19        | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
+Classpath | -         | -         | 300 KB | -             | Java 11 (152)          | 19        | 20                          | -                                        | -           | -
 
 Dependencies
 ------------

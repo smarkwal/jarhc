@@ -139,8 +139,42 @@
 			margin: 80px 20px 20px 20px;
 		}
 
+		nav ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding: 0;
+			line-height: 1.7em;
+		}
+
 		h2, h3, h4, h5, h6 {
 			margin-top: 3rem;
+		}
+
+		.report-section-title {
+			background-color: black;
+			color: white;
+			padding: 10px 10px 10px 45px;
+			user-select: none;
+
+			/* collapse icon */
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L30,30L30,10"/%3E%3Cpath d="M70,30L50,30L50,10"/%3E%3Cpath d="M10,50L30,50L30,70"/%3E%3Cpath d="M70,50L50,50L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			background-position: center left 5px;
+			background-repeat: no-repeat;
+			background-size: 30px 30px;
+		}
+
+		section.collapsed {
+			.report-section-title { /* replace collapse icon with expand icon */
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L10,10L30,10"/%3E%3Cpath d="M70,30L70,10L50,10"/%3E%3Cpath d="M10,50L10,70L30,70"/%3E%3Cpath d="M70,50L70,70L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			.report-section-content {
+				display: none;
+			}
+		}
+
+		.report-section-content {
+			margin-left: 10px;
 		}
 
 		table {
@@ -196,10 +230,7 @@
 				display: flex; /* only available in diff report */
 			}
 
-			.report-table-row.no-diff {
-				display: none; /* default: only show differences */
-			}
-
+			.report-table-row.no-diff,
 			.report-issue.no-diff {
 				display: none; /* default: only show differences */
 			}
@@ -210,24 +241,15 @@
 
 		@media print {
 
-			header {
-				display: none !important;
-			}
-
-			#minimap {
-				display: none !important;
-			}
-
-			#minimapView {
+			header,
+			#minimap,
+			#minimapView,
+			nav {
 				display: none !important;
 			}
 
 			main {
 				margin: 0;
-			}
-
-			nav {
-				display: none;
 			}
 
 			th, td {
@@ -253,6 +275,7 @@
 			}
 
 			initMinimap();
+			initCollapseExpand();
 			initRowMarking();
 			initKeyboardShortcuts();
 		}
@@ -280,21 +303,29 @@
 			// TODO: on mouse drag
 		}
 
-		function initRowMarking() {
+		function initCollapseExpand() {
 
-			const toggleMarked = function(element) {
-				if (element.classList.contains("marked")) {
-					element.classList.remove("marked");
-				} else {
-					element.classList.add("marked");
+			// for every report section ...
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				const title = section.querySelector("h2, h3, h4, h5, h6");
+				if (title) {
+					title.addEventListener("click", () => {
+						section.classList.toggle("collapsed");
+						updateMinimap();
+					});
 				}
 			}
+		}
+
+		function initRowMarking() {
 
 			const rows = document.getElementsByClassName("report-table-row");
 			for (let row of rows) {
-				row.ondblclick = () => {
-					toggleMarked(row)
-				}
+				row.addEventListener("dblclick", () => {
+					row.classList.toggle("marked");
+				});
 			}
 		}
 
@@ -527,8 +558,8 @@
 
 	<header id="header">
 		<div id="controls">
-			<div class="control" onclick="scrollToSection(true)"><span class="icon icon-down"></span><span class="label">Next section</span></div>
-			<div class="control" onclick="scrollToSection(false)"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
+			<div class="control" onclick="scrollToSection(true)" title="Ctrl+&#x2193;"><span class="icon icon-down"></span><span class="label">Next section</span></div>
+			<div class="control" onclick="scrollToSection(false)" title="Ctrl+&#x2191;"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
 			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
 			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
 		</div>
@@ -558,6 +589,7 @@
 
 <section class="report-section" id="JARFiles" title="JAR Files">
 <h2 class="report-section-title">JAR Files</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">List of JAR files found in classpath.</p>
 <table class="report-table">
 <thead>
@@ -1151,10 +1183,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
 <section class="report-section" id="Dependencies" title="Dependencies">
 <h2 class="report-section-title">Dependencies</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
 <table class="report-table">
 <thead>
@@ -1645,10 +1679,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
-<section class="report-section" id="JARManifests" title="JAR Manifests">
+<section class="report-section collapsed" id="JARManifests" title="JAR Manifests">
 <h2 class="report-section-title">JAR Manifests</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
 <table class="report-table">
 <thead>
@@ -2126,10 +2162,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
-<section class="report-section" id="JPMSModules" title="JPMS Modules">
+<section class="report-section collapsed" id="JPMSModules" title="JPMS Modules">
 <h2 class="report-section-title">JPMS Modules</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
 <table class="report-table">
 <thead>
@@ -2457,10 +2495,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
-<section class="report-section" id="OSGiBundles" title="OSGi Bundles">
+<section class="report-section collapsed" id="OSGiBundles" title="OSGi Bundles">
 <h2 class="report-section-title">OSGi Bundles</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Information about OSGi Bundles.</p>
 <table class="report-table">
 <thead>
@@ -3100,10 +3140,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
 <section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
 <h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
 <table class="report-table">
 <thead>
@@ -3473,10 +3515,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
 <section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
 <h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
 <table class="report-table">
 <thead>
@@ -3529,10 +3573,12 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
 <section class="report-section" id="Blacklist" title="Blacklist">
 <h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
 <table class="report-table">
 <thead>
@@ -3638,12 +3684,15 @@
 	</tr>
 </tbody>
 </table>
+</div>
 </section>
 
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
+<div class="report-section-content">
 <p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
 <p class="report-content no-diff">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+</div>
 </section>
 
 

@@ -131,14 +131,22 @@ public class HtmlReportFormat implements ReportFormat {
 		String description = section.getDescription();
 		List<Object> content = section.getContent();
 
+		// collapse sections 'JAR Manifests', 'JPMS Modules' and 'OSGi Bundles'
+		String cssClass = "report-section";
+		if (id.contains("JARManifests") || id.contains("JPMSModules") || id.contains("OSGiBundles")) {
+			cssClass += " collapsed";
+		}
+
 		// section start
-		writer.println("<section class=\"report-section\" id=\"%s\" title=\"%s\">", id, escape(title));
+		writer.println("<section class=\"%s\" id=\"%s\" title=\"%s\">", cssClass, id, escape(title));
 
 		// format header
 		String heading = "h" + (level + 2); // root sections use h2
 		writer.println("<%s class=\"report-section-title\">%s</%s>", heading, escape(title), heading);
+		writer.println("<div class=\"report-section-content\">");
+
 		if (description != null) {
-			String cssClass = "report-section-description";
+			cssClass = "report-section-description";
 			if (Markdown.isDiff(description)) {
 				cssClass += " diff";
 			} else {
@@ -157,7 +165,7 @@ public class HtmlReportFormat implements ReportFormat {
 				formatTable(table, writer);
 			} else {
 				String value = item.toString();
-				String cssClass = "report-content";
+				cssClass = "report-content";
 				if (Markdown.isDiff(value)) {
 					cssClass += " diff";
 				} else {
@@ -167,8 +175,8 @@ public class HtmlReportFormat implements ReportFormat {
 			}
 		}
 
+		writer.println("</div>");
 		writer.println("</section>");
-
 	}
 
 	private void formatTable(ReportTable table, ReportWriter writer) {
