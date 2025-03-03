@@ -63,11 +63,13 @@ public class OSGiBundleInfo {
 			"Bundle-Classpath",
 			"Bundle-ContactAddress",
 			"Bundle-Copyright",
+			"Bundle-Developers",
 			"Bundle-Icon",
 			"Bundle-Localization",
 			"Bundle-ManifestVersion",
 			"Bundle-NativeCode",
 			"Bundle-RequiredExecutionEnvironment",
+			"Bundle-SCM",
 			"Bundle-UpdateLocation",
 			"Export-Service",
 			"Fragment-Host",
@@ -113,11 +115,13 @@ public class OSGiBundleInfo {
 	private String bundleClasspath;
 	private String bundleContactAddress;
 	private String bundleCopyright;
+	private List<String> bundleDevelopers;
 	private String bundleIcon;
 	private String bundleLocalization;
 	private String bundleManifestVersion;
 	private String bundleNativeCode;
 	private String bundleRequiredExecutionEnvironment;
+	private String bundleSCM;
 	private String bundleUpdateLocation;
 	private String exportService;
 	private String fragmentHost;
@@ -157,11 +161,13 @@ public class OSGiBundleInfo {
 		this.bundleClasspath = manifestAttributes.get("Bundle-Classpath");
 		this.bundleContactAddress = manifestAttributes.get("Bundle-ContactAddress");
 		this.bundleCopyright = manifestAttributes.get("Bundle-Copyright");
+		this.bundleDevelopers = splitAttributeValue(manifestAttributes.get("Bundle-Developers"));
 		this.bundleIcon = manifestAttributes.get("Bundle-Icon");
 		this.bundleLocalization = manifestAttributes.get("Bundle-Localization");
 		this.bundleManifestVersion = manifestAttributes.get("Bundle-ManifestVersion");
 		this.bundleNativeCode = manifestAttributes.get("Bundle-NativeCode");
 		this.bundleRequiredExecutionEnvironment = manifestAttributes.get("Bundle-RequiredExecutionEnvironment");
+		this.bundleSCM = manifestAttributes.get("Bundle-SCM");
 		this.bundleUpdateLocation = manifestAttributes.get("Bundle-UpdateLocation");
 		this.exportService = manifestAttributes.get("Export-Service");
 		this.fragmentHost = manifestAttributes.get("Fragment-Host");
@@ -251,6 +257,10 @@ public class OSGiBundleInfo {
 		return bundleCopyright;
 	}
 
+	public List<String> getBundleDevelopers() {
+		return bundleDevelopers;
+	}
+
 	public String getBundleIcon() {
 		return bundleIcon;
 	}
@@ -269,6 +279,10 @@ public class OSGiBundleInfo {
 
 	public String getBundleRequiredExecutionEnvironment() {
 		return bundleRequiredExecutionEnvironment;
+	}
+
+	public String getBundleSCM() {
+		return bundleSCM;
 	}
 
 	public String getBundleUpdateLocation() {
