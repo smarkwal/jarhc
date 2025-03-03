@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.jarhc.model.osgi.ExportPackage;
+import org.jarhc.model.osgi.ImportPackage;
 
 public class OSGiBundleInfo {
 
@@ -98,8 +99,8 @@ public class OSGiBundleInfo {
 	private String bundleLicense;
 	private String bundleDocURL;
 
-	private List<String> importPackage;
-	private List<String> dynamicImportPackage;
+	private List<ImportPackage> importPackage;
+	private List<ImportPackage> dynamicImportPackage;
 
 	private List<ExportPackage> exportPackage;
 
@@ -145,8 +146,8 @@ public class OSGiBundleInfo {
 		this.bundleVendor = manifestAttributes.get("Bundle-Vendor");
 		this.bundleLicense = manifestAttributes.get("Bundle-License");
 		this.bundleDocURL = manifestAttributes.get("Bundle-DocURL");
-		this.importPackage = splitAttributeValue(manifestAttributes.get("Import-Package"));
-		this.dynamicImportPackage = splitAttributeValue(manifestAttributes.get("DynamicImport-Package"));
+		this.importPackage = parseImportPackage(manifestAttributes.get("Import-Package"));
+		this.dynamicImportPackage = parseImportPackage(manifestAttributes.get("DynamicImport-Package"));
 		this.exportPackage = parseExportPackage(manifestAttributes.get("Export-Package"));
 		this.requireCapability = splitAttributeValue(manifestAttributes.get("Require-Capability"));
 		this.provideCapability = splitAttributeValue(manifestAttributes.get("Provide-Capability"));
@@ -206,11 +207,11 @@ public class OSGiBundleInfo {
 		return bundleDocURL;
 	}
 
-	public List<String> getImportPackage() {
+	public List<ImportPackage> getImportPackage() {
 		return importPackage;
 	}
 
-	public List<String> getDynamicImportPackage() {
+	public List<ImportPackage> getDynamicImportPackage() {
 		return dynamicImportPackage;
 	}
 
@@ -328,6 +329,12 @@ public class OSGiBundleInfo {
 
 	public String getWebFilterMappings() {
 		return webFilterMappings;
+	}
+
+	private List<ImportPackage> parseImportPackage(String value) {
+		if (value == null) return null;
+		List<String> lines = splitAttributeValue(value);
+		return lines.stream().map(ImportPackage::new).collect(Collectors.toList());
 	}
 
 	private List<ExportPackage> parseExportPackage(String value) {

@@ -22,8 +22,10 @@ import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.OSGiBundleInfo;
 import org.jarhc.model.osgi.ExportPackage;
+import org.jarhc.model.osgi.ImportPackage;
 import org.jarhc.report.ReportSection;
 import org.jarhc.report.ReportTable;
+import org.jarhc.utils.Markdown;
 import org.jarhc.utils.StringUtils;
 
 public class OSGiBundlesAnalyzer implements Analyzer {
@@ -74,14 +76,14 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 
 		if (name != null && symbolicName != null) {
 			if (name.equals(symbolicName)) {
-				return name;
+				return Markdown.code(name);
 			} else {
-				return name + "\n[" + symbolicName + "]";
+				return name + "\nSymbolic Name: " + Markdown.code(symbolicName);
 			}
 		} else if (name != null) {
-			return name;
+			return Markdown.code(name);
 		} else if (symbolicName != null) {
-			return symbolicName;
+			return Markdown.code(symbolicName);
 		} else {
 			return null;
 		}
@@ -118,19 +120,19 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 
 	private String getImportPackage(JarFile jarFile) {
 		OSGiBundleInfo bundleInfo = jarFile.getOSGiBundleInfo();
-		List<String> importPackage = bundleInfo.getImportPackage();
-		List<String> dynamicImportPackage = bundleInfo.getDynamicImportPackage();
+		List<ImportPackage> importPackage = bundleInfo.getImportPackage();
+		List<ImportPackage> dynamicImportPackage = bundleInfo.getDynamicImportPackage();
 
 		List<String> lines = new ArrayList<>();
 		if (importPackage != null) {
-			lines.addAll(importPackage);
+			importPackage.forEach(p -> lines.add(p.toMarkdown()));
 		}
 		if (dynamicImportPackage != null) {
 			if (importPackage != null) {
 				lines.add("");
 			}
 			lines.add("Dynamic:");
-			lines.addAll(dynamicImportPackage);
+			dynamicImportPackage.forEach(p -> lines.add(p.toMarkdown()));
 		}
 		return StringUtils.joinLines(lines);
 	}
@@ -153,13 +155,12 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 		List<String> lines = new ArrayList<>();
 		if (requireCapability != null) {
 			lines.add("Required:");
-			lines.addAll(requireCapability);
+			requireCapability.forEach(c -> lines.add(Markdown.code(c)));
 		}
 		if (provideCapability != null) {
 			lines.add("Provided:");
-			lines.addAll(provideCapability);
+			provideCapability.forEach(c -> lines.add(Markdown.code(c)));
 		}
-		wrapText(lines);
 		return StringUtils.joinLines(lines);
 	}
 

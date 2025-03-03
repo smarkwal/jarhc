@@ -16,27 +16,23 @@
 
 package org.jarhc.model.osgi;
 
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.jarhc.utils.Markdown;
-import org.jarhc.utils.StringUtils;
 
-public class ExportPackage {
+public class ImportPackage {
 
 	private final String packageName;
 	private final String version;
-	private final String uses;
+	private final String resolution;
 	private final Map<String, String> attributes = new TreeMap<>();
 
-	public ExportPackage(String line) {
+	public ImportPackage(String line) {
 		int pos = line.indexOf(';');
 		if (pos < 0) {
 			this.packageName = line;
 			this.version = null;
-			this.uses = null;
+			this.resolution = null;
 		} else {
 			this.packageName = line.substring(0, pos);
 			String[] parts = line.substring(pos + 1).split(";");
@@ -55,7 +51,7 @@ public class ExportPackage {
 				}
 			}
 			this.version = attributes.remove("version");
-			this.uses = attributes.remove("uses:");
+			this.resolution = attributes.remove("resolution:");
 		}
 	}
 
@@ -71,8 +67,8 @@ public class ExportPackage {
 		return version;
 	}
 
-	public String getUses() {
-		return uses;
+	public String getResolution() {
+		return resolution;
 	}
 
 	public String toMarkdown() {
@@ -81,16 +77,11 @@ public class ExportPackage {
 		if (version != null) {
 			buffer.append(" (Version: ").append(Markdown.code(version)).append(")");
 		}
-		if (uses != null) {
-			String text = Stream.of(uses.split(",")).map(String::trim).map(Markdown::code).collect(Collectors.joining(", "));
-			List<String> lines = StringUtils.splitList("Uses: " + text, 120);
-			for (int i = 0; i < lines.size(); i++) {
-				String line = lines.get(i);
-				if (i == 0) {
-					buffer.append("\n\t").append(line);
-				} else {
-					buffer.append("\n\t\t").append(line);
-				}
+		if (resolution != null) {
+			if (resolution.equals("optional")) {
+				buffer.append(" (optional)");
+			} else {
+				buffer.append("\n\t").append("Resolution: ").append(resolution);
 			}
 		}
 		// TODO: implement Markdown formatting for more attributes
