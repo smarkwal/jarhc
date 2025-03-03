@@ -577,12 +577,12 @@
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
 <li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
-<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
-<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
-<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
 </nav>
@@ -675,6 +675,58 @@
 			<div class="report-text-block no-diff">OK [Provided]<br>OK [Provided]<br>OK [Provided]</div>
 		</td>
 	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
 </tbody>
 </table>
 </div>
@@ -783,58 +835,6 @@
 </div>
 </section>
 
-<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
-<h2 class="report-section-title">Duplicate Classes</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Class/Resource</th>
-		<th>Sources</th>
-		<th>Similarity</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
-<h2 class="report-section-title">Binary Compatibility</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="Blacklist" title="Blacklist">
-<h2 class="report-section-title">Blacklist</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</section>
-
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
 <div class="report-section-content">
@@ -848,14 +848,14 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
+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
 -->
 </html>

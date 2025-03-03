@@ -577,12 +577,12 @@
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
 <li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
-<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
-<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
-<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
 </nav>
@@ -1541,6 +1541,515 @@
 		</td>
 		<td>
 			<div class="report-text-block no-diff">OK<br>OK<br>OK</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td><code>exclude-common.xml</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.authentication-api<br>jakarta.authorization-api</div>
+		</td>
+		<td>Different content</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ClientEndpoint</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ClientEndpointConfig$Builder$1</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ClientEndpointConfig$Builder</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ClientEndpointConfig$Configurator</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ClientEndpointConfig</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.CloseReason$CloseCode</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.CloseReason$CloseCodes$1</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.CloseReason$CloseCodes</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.CloseReason</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.ContainerProvider</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.DecodeException</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Decoder$Binary</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Decoder$BinaryStream</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Decoder$Text</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Decoder$TextStream</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Decoder</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.DefaultClientEndpointConfig</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.DeploymentException</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.EncodeException</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Encoder$Binary</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Encoder$BinaryStream</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Encoder$Text</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Encoder$TextStream</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Encoder</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Endpoint</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.EndpointConfig</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Extension$Parameter</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Extension</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.HandshakeResponse</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.MessageHandler$Partial</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.MessageHandler$Whole</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.MessageHandler</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.OnClose</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.OnError</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.OnMessage</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.OnOpen</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.PongMessage</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.RemoteEndpoint$Async</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.RemoteEndpoint$Basic</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.RemoteEndpoint</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.SendHandler</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.SendResult</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.Session</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.SessionException</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><code>jakarta.websocket.WebSocketContainer</code></td>
+		<td>
+			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
+		</td>
+		<td>Exact copy</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.activation-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MailcapCommandMap</code><br>• Class not found: <code>com.sun.activation.registries.LogSupport</code> (package not found)<br>• Class not found: <code>com.sun.activation.registries.MailcapFile</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• Class not found: <code>com.sun.activation.registries.LogSupport</code> (package not found)<br>• Class not found: <code>com.sun.activation.registries.MimeTypeFile</code> (package not found)</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.faces-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.FactoryFinderInstance</code><br>• Class not found: <code>com.sun.faces.config.ConfigManager</code> (package not found)<br>• Class not found: <code>com.sun.faces.spi.InjectionProvider</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.ComponentStateHelper</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UICommand</code><br>• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.application.MethodExpressionMethodBindingAdapter</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIComponent</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIComponentBase</code><br>• Class not found: <code>com.sun.faces.application.ValueBindingValueExpressionAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.application.ValueExpressionValueBindingAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIForm</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UINamingContainer</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIViewAction</code><br>• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.mail-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.Session</code><br>• Class not found: <code>com.sun.mail.util.DefaultProvider</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.ContentDisposition</code><br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.InternetAddress</code><br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.InternetHeaders</code><br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat$AbstractDateParser</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat$Rfc2822LenientParser</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeBodyPart</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MessageRemovedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MimeUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeMessage</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MessageRemovedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MimeUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeMultipart</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimePartDataSource</code><br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeUtility</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BASE64DecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BASE64EncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QPDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QPEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.UUDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.UUEncoderStream</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.ParameterList</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.PreencodedMimeBodyPart</code><br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.activation-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandInfo$Beans</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.DataHandler</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.FileTypeMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MailcapCommandMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.SecuritySupport</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.authentication-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.auth.message.config.AuthConfigFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.authorization-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyConfigurationFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyContext</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.batch-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.batch.runtime.BatchRuntime</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.enterprise.cdi-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.inject.spi.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.util.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.json-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.json.spi.JsonProvider</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.mail-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.Session</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.persistence-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.validation-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$GetValidationProviderListAction</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$ProviderSpecificBootstrapImpl</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.ws.rs-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.client.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.RuntimeDelegate</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.sse.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.xml.bind-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ContextFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.DatatypeConverter</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.JAXBContext</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.xml.soap-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jakarta.xml.ws-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.ws.spi.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
 		</td>
 	</tr>
 </tbody>
@@ -2894,515 +3403,6 @@
 </div>
 </section>
 
-<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
-<h2 class="report-section-title">Duplicate Classes</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Class/Resource</th>
-		<th>Sources</th>
-		<th>Similarity</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td><code>exclude-common.xml</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.authentication-api<br>jakarta.authorization-api</div>
-		</td>
-		<td>Different content</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ClientEndpoint</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ClientEndpointConfig$Builder$1</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ClientEndpointConfig$Builder</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ClientEndpointConfig$Configurator</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ClientEndpointConfig</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.CloseReason$CloseCode</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.CloseReason$CloseCodes$1</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.CloseReason$CloseCodes</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.CloseReason</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.ContainerProvider</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.DecodeException</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Decoder$Binary</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Decoder$BinaryStream</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Decoder$Text</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Decoder$TextStream</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Decoder</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.DefaultClientEndpointConfig</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.DeploymentException</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.EncodeException</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Encoder$Binary</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Encoder$BinaryStream</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Encoder$Text</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Encoder$TextStream</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Encoder</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Endpoint</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.EndpointConfig</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Extension$Parameter</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Extension</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.HandshakeResponse</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.MessageHandler$Partial</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.MessageHandler$Whole</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.MessageHandler</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.OnClose</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.OnError</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.OnMessage</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.OnOpen</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.PongMessage</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.RemoteEndpoint$Async</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.RemoteEndpoint$Basic</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.RemoteEndpoint</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.SendHandler</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.SendResult</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.Session</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.SessionException</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td><code>jakarta.websocket.WebSocketContainer</code></td>
-		<td>
-			<div class="report-text-block no-diff">jakarta.websocket-api (Classpath)<br>jakarta.websocket-client-api (Classpath)</div>
-		</td>
-		<td>Exact copy</td>
-	</tr>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
-<h2 class="report-section-title">Binary Compatibility</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.activation-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MailcapCommandMap</code><br>• Class not found: <code>com.sun.activation.registries.LogSupport</code> (package not found)<br>• Class not found: <code>com.sun.activation.registries.MailcapFile</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• Class not found: <code>com.sun.activation.registries.LogSupport</code> (package not found)<br>• Class not found: <code>com.sun.activation.registries.MimeTypeFile</code> (package not found)</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.faces-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.FactoryFinderInstance</code><br>• Class not found: <code>com.sun.faces.config.ConfigManager</code> (package not found)<br>• Class not found: <code>com.sun.faces.spi.InjectionProvider</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.ComponentStateHelper</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UICommand</code><br>• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.application.MethodExpressionMethodBindingAdapter</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIComponent</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIComponentBase</code><br>• Class not found: <code>com.sun.faces.application.ValueBindingValueExpressionAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.application.ValueExpressionValueBindingAdapter</code> (package not found)<br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIForm</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UINamingContainer</code><br>• Class not found: <code>com.sun.faces.util.Util</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.faces.component.UIViewAction</code><br>• Class not found: <code>com.sun.faces.application.MethodBindingMethodExpressionAdapter</code> (package not found)</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.mail-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.Session</code><br>• Class not found: <code>com.sun.mail.util.DefaultProvider</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.ContentDisposition</code><br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.InternetAddress</code><br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.InternetHeaders</code><br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat$AbstractDateParser</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MailDateFormat$Rfc2822LenientParser</code><br>• Class not found: <code>com.sun.mail.util.MailLogger</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeBodyPart</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MessageRemovedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MimeUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeMessage</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MessageRemovedIOException</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.MimeUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeMultipart</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimePartDataSource</code><br>• Class not found: <code>com.sun.mail.util.FolderClosedIOException</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.MimeUtility</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BASE64DecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BASE64EncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.BEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.LineInputStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QPDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.QPEncoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.UUDecoderStream</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.UUEncoderStream</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.ParameterList</code><br>• Class not found: <code>com.sun.mail.util.ASCIIUtility</code> (package not found)<br>• Class not found: <code>com.sun.mail.util.PropUtil</code> (package not found)</div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.internet.PreencodedMimeBodyPart</code><br>• Class not found: <code>com.sun.mail.util.LineOutputStream</code> (package not found)</div>
-		</td>
-	</tr>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="Blacklist" title="Blacklist">
-<h2 class="report-section-title">Blacklist</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.activation-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandInfo$Beans</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.CommandMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.DataHandler</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.FileTypeMap</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MailcapCommandMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.MimetypesFileTypeMap</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.activation.SecuritySupport</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.authentication-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.security.auth.message.config.AuthConfigFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.authorization-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyConfigurationFactory</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.security.jacc.PolicyContext</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.batch-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.batch.runtime.BatchRuntime</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.enterprise.cdi-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.inject.spi.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.enterprise.util.SecurityActions</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.json-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.json.spi.JsonProvider</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.mail-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.mail.Session</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.persistence-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.validation-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$GetValidationProviderListAction</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.validation.Validation$ProviderSpecificBootstrapImpl</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.ws.rs-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.client.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.ext.RuntimeDelegate</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.ws.rs.sse.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.xml.bind-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ContextFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.DatatypeConverter</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.JAXBContext</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.bind.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.xml.soap-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.FactoryFinder</code><br>• @Deprecated: <code>public final class java.security.AccessController</code></div>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.soap.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jakarta.xml.ws-api</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>jakarta.xml.ws.spi.ServiceLoaderUtil</code><br>• @Deprecated: <code>public class java.lang.SecurityManager</code></div>
-		</td>
-	</tr>
-</tbody>
-</table>
-</div>
-</section>
-
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
 <div class="report-section-content">
@@ -3416,81 +3416,80 @@
 
 </body>
 <!-- JSON REPORT DATA
-H4sIAAAAAAAA/+19iXLcurXgr7BUrinrPanFfelXqRlZlmP5elEsO8kr+9aICyjR7iY7JFuy8ir/PgC4NEAAJNirbk1SuWU1ARwABwcHZwX+56hMyhk4mh6983/6eekrl5eKd3RyVD4t0Nebi/OP8NcDyIskS+EHY6JO1NObj+fXN28/fYFFBQhLWFQcTb/9z1EEijBP
-FmVV931SlEoWK+/OPytxMgOFEmfLNFKSVAlnflEs/PJ+gvpqhgDrvUH14LcwS0uQlhhqmM2Wc9zD0XleJrEflrDGX+sxnRzdZMs8BOiP5J/onw/LWZmc5mAG/AL9fuc/+Eo9BeUl7hoUx7DgMyhwU9ThtR/+9O/wnxf3IPxZLOfKy5u356caqnmRZXmUpH6JK1wVxRL+
-8fvJUZ49onF9O/pRoW8Cx5Y8+AgBp/4igXV1iDAN/vvtG1tlym81xW1+/x22Mu2Jo/z2Cv71MWtm4iovDTwoFf53y4K4Rb05tq47ph4Gjm2Zrh9EamjbhhEHVqhpYeBpnqtacaz//vK+LBfF9OysAH4e3k/m/gNIJ1l+V3/43//4kzaVhXa89kQhMgkkpmlWdpGo0rDb
-KlN+KwxbxbB1c+JykKhZLBJbELfKy//UlWIZLGq6wFOLjTByzTA0rdhyDV+No9DUfVez7MgOrcBzI1uHKPHlsCoL7XjtmdNYXZb3cEsl4QBmqWpTcWuiH1OfaDwyxRi2SAxDdrHMk/IJw5vMQVFA5CJkGwyy/UC1jCDyDNP3TWCorqXFYRyGmh6Elm44kat7TuAbcsiW
-hXa8MTIYpGd58s9hnLe1psK2JMYNPk2baPwaF+M//DDEvMEGrgYsNwrcIIAkFwFNVYELItN0TNuMYscy/BgiRQ6xstBYxI6bMYXWwC/DeyE6cemUqUujz+Ogz1bRKHUSfbj15D8giboshWqeb5hubIehrnq+7dhBbMehFppuoHmRHRkWsEHoSlKoJLTjkXOlEAd+BDXa
-TAZtsGzaqTc1WzCWO7E5KHPxUWSQKINt+ezTDeHwtVjzvdh34tDUQgdOLDbhxExXjYIg9MIQWJYcvmShHY+YJI2rmRhVsyldi4DhuNwz2/SYrQlmeD8GvucaZhDpUeBbqmaqjh74YeDHIIxjH4Sa7RiBGntyaJGFdiw9IRopUC7LF3lSgEkYJTWCDBZBbbWpuOXUaPvQ
-NB7ONBNTu0kiLQJhlvtllt9+T295sJHk+KtkKZBfHUAUlgJQSfoDSrcIkikBaVkm1XpqeqyrwPAtKzBCyzdtNzb0ILAcx9dMK3IDD8SW7UuyBVloxxvhX7jGWQqPjxx+EXJbbm1urxQsUkCzuNyYI6BxoVWHmufqcLObvq0GUKQyo8gBtmFahgH0ANha7AVOrMax5KEm
-CU2E9HUxQS0DVHRAIdxhuHTK1CXW1DF5QpmlY46tU5wIN8dbhuXawNbdIHZc39Itz3E0H4qr8GCKdQA8U480KDd5wNQkyVkW2vHIyVKYqzauUAOriqdsbUIh0dSJyZMQGJKsmQTqwAx1F/JZzfPgoWRqkeOoOvxp2Hpo2Fas+q4Nv2pADlOy0I5Hz62DK0iWIVhAjirc
-4kSdqaAdrW+pvO2sMgcgAQMj0HAdXTdU3XUCz9b8GOmbTuxDgrF1zw8cww7jyA4COQTKQusicMxcKVT+mIu3KyybduoR1GtZXJS5rJ4P21aHTGCpAIqKngkiJ3ZN04iBqrmW60VO6Dmq5bpeEBiSspQstOMRc6JRU1Dqj07DKQgdoKmJkaxX0ro10XnqpcliBzYmD3P0
-e1IsEvZbmQN/jjEZwRM1gJqKDYBq6ZFuuY7hO5EVAS/2dNsMAlcFZmDLYVIW2vEoDDC4nARJGgn3a1tjym1D0K9hco9eneVzLQR0TFjMKaFboW6EkFm5WhDAAzIARmSGFhI5dd+NfdXQHQCxIodFWWgsFuWmTePzsWfbPhIk/tglcc2eGEItnFIjYVuEN43AW6VCxq5n
-Wbqu2a7nQ3YEPDsOIjPQod6no33nBaHtqbJGDkloxyPmSKFq7icz4bGKCqfdmsSxA4fFI7XjEwX/7UDEGS5DdwgQK4Kjjh3N8gM/CDXIq8JYdSDbAibkVhE8GmNkr4Sqc+jajqSNUxLa8ag509h7CIVbFpZNO/UIeoWExsWdw6LrIeRv0Nh1dTXQIlPV/NBCNho9VDVI
-JvB/QI89Fzjwf0DS6iML7XjEJClcLZC9vihBGgLh5iTqTAXtyM1q8faqrjqMiknAEJgm4zh0XNf0XSuwXceOTMP1XTewIl0Dvu4FWhjqUSRr+JGEdrzB5Cnc5rXfQ0iMTYUprwWxYrbNPT1cbFxwSJQ2AASHhw3VWjWGM499LY4cF2h2oJsmVH1jxzdUD3KtMFAjycND
-EtrxWnOmMNkaV1fKnRCpnLrTATikxdLkHjWGwXAADiwBFdsq1MFUT3OhOOwbNjA02zFDgPQNL4ptNXJUKK2EklQsCe14i0jprEX+MAON1mdx8I/Lp5z6U2slEKk8pdmtPBkGjWfcnhQt60+kH4lT2nhJaRNWU4pwjeVSHdiBG4YRsNCRHrqOZxpmFIHQcDRI4EYY+sCW
-Pt5koXWXRwZnvGWAotdCyLiJOl3QTTuCd9kWl/QtVlYgYPBQCz8jm6ugpIQb41elyEeuBmLPtIJYM33Dt+CZpgUeRFGoQuUIshbTVp3Yk/TzyULjol4SR6IlgP+Vsx6WRFfkddRCoJkRV2vQ+1YEA8KeFFaUgzqRbUJUaLYPPKDbwPNiI4RaQGRogQn/7zia6/qSB4As
-NCHCRyGDQn2Z+2nhh73ePqLOVNCOtKY4fB2DdScQMCoGYvpQBbUCE6oCQeibqmtHeqzpjgvVKV91zRhooe3InqqS0I43mCuFygd/lkSk35TlI6sqU34rYod46sTi6mrsCbqCgQ5O1u/nhi4AYWiqkW+bquFEjmNohmVbmhZathuZtg03tqvK+rHkoB2vPXUKrY8gKLLw
-JxAb9NsaU24bkg+4XMOMxRpmWggk920/4i0GKhugHgVG4LiepwE71m0vcjQ98KJINw0jCHTVh/qFZwFJqUQW2vGaGLhZzJJSqYOHpgpnvgLkh7Okz6nSN4JVU3Ip+PZqk/WhEEPD1n3bDx3H9KMghOJaEHt66CCDfGwaUEaOIf5iyEVNWeu+HDR5dHMnOxbrxSQXm3hw
-6ZSpS2qOBk/51gwOblFrvo5jAeBD2Tiy4cb2Hd1ygtANDVszLdUBmmWqoQM3eiipf8tCOx45VQpvv+Yz0s5oMBafpsKU1wJDrZ0peo3A/waF8hIjEB9f1V8QlY0NCLsJcJFNorUBK8AsnL5n6FFsQEIzgAlsKOWqpg63OSQ12/RU3/ZdVZIdy0I7XgsTDH6LzF8QXIDF
-L6ow5bUgrEyGzd38HOWwAVDtfdM1jciPrEBVPT3yDcOLQs9FiltkaZFmeYGlR6YkScpCYxEnM0UGcZTRlkUbYdNc1SYWwla5FjXbYky3VXNEeg5LeogS4tAEphPDubpxZEHxKDQM34C8z/Q9KIhGjidLepLQWAwOzRZj76IJuoUfTuv/9ImrKR9e1b94+1HXbZs10Woa
-0oU1UyVgnR79/vu/fv/XSTcO+DVYgDQCaZjA3R+A8hGAVGmDgk8UP40Uv1CgLjrzc4Djg68/fcClZHgwCeZIJkL4a4Erwn8iJXiCf31ASFdCKpb36yKq/3qd5CAs4TCobm6gHr+UjPX9lmYpQOjuGoS/pzy2QH8lGMF6IbTf9IkGufjLMW1hA7i2uKU2tqXWtNTHttSb
-lsbYlpXnokFzf9BwW231x1pBtAxeJdoK8CrVUjv+nn6rTuQRLXGDHuzwgn8ZehWbMzcLiWWmIw2jmhZGiLYuBG0IMd0AXb5FkUdGo6NYGWKShqA1eGAwKdN+RR4jbXuffhMG3jbf2MCyFWejInE4GBwOX+1iTNyCv+n66msbBM0pLxd59pBEIELLIhl/Q7fD6P2efvpN
-edmkp2B2fiwI2RUbmTiY7Q90/Wbic+PlUO0OhsaZczq008bTMnynj4LaYK/Vp44ZlFtAGj7lwly/WfTWYuviCojErA7yuDUxH7eHYNoNTHsIpt0uB5eRcQNzaRC8bUl+6waCMZumd1Vqhy65GtzTZFWBQ8drB7B+Mzr4k26P18nsrJNUa7NZu+5mkm5d962t07fWZejC
-HX/6+UIXMizhlhjF1ejK0hF0ZDNp3sJMB7OaFQ81a5mBz1v539Vj4WbqRkD3yZWbRwB3D/h1IRoNbQr3xXh4WgNP3w48vYFnbAee0cAztwPP5Aie68PTmvXQtrMeWt9pQMaOiw4BObmNOV03OItXpbSvYvWdsrPzPlN2c84OHI4U7/J6UQsRd++rz+Pn4vpaA1+Tg1/r
-3Catc/fV72bdyaq9orNC9oQ5UTJs/fFncmeNqL8tCOTi0FpVYsQjoqwGYUkoXII5jIgFkB3FODf3INQxh7chAU/avSnAmKQHT9B62Jovg5N+w2wfhCy/m9wha22cFPf01q7aQixaQ6okLQaxIo9OlYnEIn5ZIzfzvn2Fi14mcOggEiflMCogR8eQ0gop/iaT/PIN/zn5
-8HnFQQeawbrig5bVmkZptxvpSONSVaqJk7OWa43PtI4RRq5tbbLSJ/r4tnpXuxljsu0YHlZ5OX2ye382S1cO5NfuNTUSOTAMjXRzOuRTQ7pLI6rPt46Ja/PM++LaPJO+uHaPGb+LiD7krZP50dWvhlqK9CiZdh3jmaQk0lVnK14tyFjpJejevA62pSjTo91uQn+XfD5E
-l1pF9fnUKq7No1ZxbR61imvX6TJhNp8Uy7TfU9VMlV5O0ZG4SgiROSuEOhMR3sJbkt6ki+6pIKrNOwX4dRm71MZaxxa0gI3lyf7IGZ4k1vw3kNbSt4PH5Xh0jyi51q1fSR/fVu877jpZJj0CDTtx2WSMLkUOtVufNtdVdrRaIBk0OYp9r+3AGOemrC2HEq64Bh3+MmyW
-ndE9ateB1vp/zc1hmawPdLQzW8AeRjqCx5rid8gYR+gQ/cYJSbMGwx65bFJAmULEDrgLB3Ss9f2Jcj70rhewr5XdELxNc7b+Nr16B5uRQ1OZiCH0olQOMZLZK92TS64136Au25bn9pNpy+Ei6xv2ZHZ8u2NkcnwkVlZI97wlFy3qqAwZ9iAYA0ekgY2HwvNfjYeij178
-jU254x22UhZMhhd3jXkDqU1rCB9kq8qBsKraERjXjTrpajSyrdcPBjr9oG1+vlayotgM0EhCA2IkkzXFHJ7i0A1q/mMSjLpbU64tbzvKtdQ5jlmZlvwTQ65lj7O1m1LFfqe8lj0LIfJzrpGZ1FWNhlvybS4y7TSOmXe4HWPiHZcHpLxsfSasyXcA9aIV612SMWvBTVsa
-syQUgPEr02k+doGo5r1aPml84p01xGcelxnOSOruc3ELjaspiurztEGpaPtduA05Jl++e60vP4s/ZpLqm8nTmQePrKQnm87URXZ/O1FExXArrWmlj2mlr2G47bHWdrI0BtHdg1uZjKeu1NzfTiQlD7fiHcPDrXaA28c+PiJOlmHNVjIZUTzK5bfpo1pxCxHFilt09Ioe
-7804nqOxDWTIj7TMcNO6rtI4y+d4gVcPO3y4/HJ+evXxzdmH849Xby5vvkw+vDlRwC8k7Srvrj/c4GyvTzd/ThS/LPMkWJag6D4C8cFPkxgUpVya159BCnJ/Bv/6vEzLZI6efLiaL2ZgDtvh4R2hjGEQJnFt0EO/k7vUL5c5kMvsegXx+d4vyg9ZlCDanSq3mq0Zmuai
-hxFM7fZ7+mqZzKLTd9HPU9QXqoC+XuTAL0F0+uoJfjlf+OE9UKo0tFcQYzOgXM+Wdwm6JubyF5wn4vSnH/05mdRMvOzwPW1Qc1o/f4H6maiw4EuWzeAPNFALHfgTXdVV1dZsXVMNlO3J5VgT/oy/pyvwmCJu0Zc0gjqMcnsJhYNFAZQ3aM2bcVWlytVrWKHmCbcb9DjQ
-X1cIYXK/drcY5M0+gsWokE1jcGhGNAap+J/bLrCxyOGlfnEJWjUt3XNc09JsLkFPXPJz9WWi/l9IafX3skLtD5D+TNJiOxjnvxghtxPMCXaeq5qnGqqlWao2vDjvqn6Vcwptay/Qp9wP4TwvsnyBri0XLVA3BY23PpZnua6pO5rmec9wffD7ErtbFw4id7gmZJ7beR7e
-J1AMJ2Z0PQO/loXSlPDRbnbQfhNmZfnbMv9nL+KNiT0x+hCOhzaW+xydtC88vULtN+O3q5Q0ER/xPNfSzefER9CrFFujTrNBKvVpLBZnvZvd8UzNQPcnGM8IibNt43AQZRthmJcTx8e260JxzjZdU907toX4/JQnsIY/mz2dykMjFkGf4BwAFaEfique3giC9f9lM57k
-GCAXrZ5n6oauejRa90Wt3Nci5AhYm1hqHzel2WcXm6T/TEBM1Pyqib3z83pWCo6tGWLynGWkgqy5zNmA6opquTZk0EKthVooDW3kHVL5aLngljvvrpuJfzKprmeYlm3Yunibb4HyyIcNNlTa9qNHSIhEqyhqEWp1zGQEdHWQ8wq9lrA10jMo/K8wDKplmABg/mjeZ6Ba
-jTy1iFDnnemx9UMJI2TIdsPUSr6rGpGvb6qcdsO9BaeIrlm27ej2irSuUJHqnanmGdo0iqZODVM5/7Aj7tWLyOpuMjk6MyZWRWeO6ume5pqe7Bkzcrc+is+fbdHQY8/mEm0egoQCK7BjHWy6XYhIdb6ZztKhZOchEWiXZjr8TkEPDVznWQBOryvfT3769w/vT9FjtxhM
-MVXGWfBQZ5MuAnqtdhXJDFvqZCBz4DKL0vr6+IeFq+rwDLZtgXKzrTV5kLVISB+/g6IfG+G9s+mR7xSM3Igb7rlOqM7aCoINd6VnaZqj6ZspCG1t5SXLHI/7kNi+TCBHKCri3pa1V+GssdxcZGkKpfssL5gFEUeP89EOKRxSueXp9kZo39BkSLxQsDvD4ZBZYfzZSofJ
-CkQW03E91XYMvm/oQKba5sWCLeHaWovoa3n5tgtqJA9io1f5pG6gk8Yw4Zo8u5WoHyrYiX4iQfnj+b4g6ljAY1xI/brlGbvVtbtj+mMo3BLIZgNuNzlnDVd1VPivc6BzlnydYNtH7aX5Do5jPl+m8FTZpQ2Eia7lM38DUr5jGqrh7Y63yCmbNdOwIctwIKU7YsthN85R
-QEaWY7mmYdmHsOeSjwg8E2lBYhsLQlF78KtrmrHZNv3/Cr9EBKrIMulCPoLeMGXMR7pRmY9UC5mPrvduPqoeDNia6Wgryl0nrHQLs2zv79/EXBS5vu0CZxuzI8IHtzQ7fKf+KHuqRs9OdY3AUPvNfpKz273lr74Sf9RqduaLP51+vnx/eX5zeaqHlqaH+g6EV27o4vuk
-KJUsri61h7xiOQPFKoYxbO7Jp+ISUexiXfVIJiyxqqukPg5IfA3iBAonCQ4+PF+WGQqcDOHfn8E/lkmOYV7+gnJHKXnXPC88sO31FMVmHtVPG8CaD/5klt3BRb27xc/vPKAokkoD48Lpja3jxcL19cz2xH0db/W1tQ+Iiv8xux2OcBsIIEMjron3CL9LUtHsN382U5on
-Hn4fDNMSREGNB07GG9GRPhP48bYmmtM7HOsKd68k2FWgDhkHsxnIGQNxtsaEuaEZLUj4aUOY3RiG/qCAjTBCOvtvqY8bgaVc+bf013EbrmnT7zDnOa83msDKYUz6YzcDWbBbD7syR+Fj9CvxfR5LjidQOJhu9zJ8mXQwsh8nfuQvSpALCrmcdlUON0Cc3PHLCpAnUNv9
-pwg2wpfA40h5CMetDJYqyJ/1a0UChx/tfRvAOxVIL4n92qtH/Z6AhyqOiP6Kt00K2ILqhR/m87JMOufYymlGerA22jCsN4rrPepbJKjrlPly3k6ZgzZ0IgtRSHupeJ8nUDQrEbmJyueg9OdZRL/dSlZgiLHjoGK8PRshVexs6XNxbNgl6XJgLPrjz0rWes41Tm8EmDQR
-i82147tgDaOiN1BHAmbMe7wnQceD7ZrW+E8xrg2UMitxHtesytfpgrCsdCwWA6yWUPglGW1jCKE/NGNnv0P9y09S+nBqinLAfkVPOzMfCzSIHtMHO5/NjxgISowFGm/0N8FpziluhIKCX68soc4/76C1Lb4Hs4WoKXtkdawp3HcGd40wVkKgrCBdq8Uo0mUsPGuO8ZFB
-KKTAex/ZW3JxCdEpXYzeiGc/C2p3JNvVVxGcx8KPInhSFmiKEtmffpAtyyqpszIhURmd5PcjGcvJx8pkUpt6jpDxZNUzzu3M8vb116PGbkJ8uPAXfpDMkrJ6wu9TeQ9ByZlV3lUFynlboJxfXyk//Px7evM0D7JZEirCBM3T+ohvXvLsg9ZYrljD1ff0fRKCtIB9oAWa
-np09Pj62UabozUj0X5SFWCgrzkA0O33Q1MnifvE9fZ2FytfP76umBdsWofMp9edJOIUL/x8iE5DykrZCotzk2lQVoYZZcZdMAPivOJlBRjP90/ejl//rZf3xT8isdnN53Fxd8Cdt4h4ffz8iTyClBa/3W5taFLYFBcJhz2pQEJrVUPtAbbIUM3Dnz87AYnYKuzn5npJo
-v0uX1ROfWVw++jk4ay2LZ7MKLNyB85nUolHrtDoIOuuEVmrApibfAgr1nMr7IgSeTa9dQapQTAtc05+QLCig6A4OhcoaX9GJaBiHoZW7pLxfBlDsmZ/VnZ2iSPQzGoNc5aSTUovPr19QG3talNnqN1Vd8HkSQjEygBxYVA5PzCQVFf6yKs9H/whXfXBp+HuJHnzFq0/M
-4kThzoL/edWDoBwPlNgugnFWZpWhUfYtxprDHhzaHEs+Oxia/BikVk9q2hVN7ZEhdc3/JCNoyyTYEXIS9LGhFlYfF2LDVQ7BgerGGR4MYkI8XR/LmeSyoxcUT+xjfJrw0SNNokQPe6IEsa+mu6a85fCxx7Vajaq4OHt/dXH5EblBYTuEYxIwYUDC6hdx7Rmx02oTP30n
-Gj04bH8imrQfJ+H9Mv3ZUzSZYTsbrams6vSXLuDvpKu0VsXZAlSEW7BleXWXi7AAWwCQUl/JRkNrtnKENfvsssWr8gr4Q1Jl3R71ZnY2LAMIVsBiPlRbkrtUtH37hE16Y/ZI/tVGPru8ft/SztbkikWeIZoqqP6bj2c42Q1ihSJVnGJP/pyAeQCiyA9moFvS0UpJwx3F
-KRCjMo5rIRWdAUh5QXppx6dJ9ES2NwUHTA2FM6ih1qu5nihyc5UE2bFd7oOVtc7clph/LbDiD4+e9356t4Tn9cDGmAn3BQcUrLPbHVD+KvekhIEZb1n3tW487/nF6yu0VkXPYjHNUGdGvXCorRJnuYIAvbyo+GuBL+x6DRZw0UAaPilX+KRJ8KVfOY6gOSY0o1dZUSjB
-k/IZRMpbvzyB1cMJb1lzsMiKpMxyeNwHsBF9IFaHZLOinLVp2/QvyS33jBRxl6baKnebW5fsMgIhEr46VQ0R01jhvx4MySiowAR8to2EieUDginJ9IH/zbPZ2L6aIVLdkUnvfX122azRWSmiSeVrXQcRfHgcIlhvtuvivSqEQlOJbq3b6RLXXRVgTeLkz7aBSp/f/ApS
-/c4EHZHUwq9REUffMG9PUI/fy/5x1hr7strJo0haBGQ9AtvDXPtomD/FWu3ozOcAJ924mC6Rgn3R1Aifnr0yfdYVOrg32vCttBLIpULMGvzwznqxSFETFguR5wfhgx5rfh/SoPkSQ780xzkWqiDtfdE5G4/XIO1qVdIj2nXa8wifBNRnWPqjuEFEgtp+HRWrKMcGzx+w
-nRNql/2aU92QlMBZCMYGyyRU4musc5art3oBZV3YU/50elc1PA3lHI61yk3ot5NfPh33Ny+6JwxXa2dB7GWJC8bi++7m00flOs/Cyks+sNIF7YzU+wGhvfkHXebVfMfE18JlToVOaQysu711rjxFw2S7l4dCCkm9UKvPIwDvkWTJSCZEZqevhsm0bUMfIA8+Jkys8SOC
-fQVrIWp9WcGtfh3/4Ym2CvwZMhCwwdfyLTiuwf4GRBj2iEYdYhfWlq/IEjpRd2D7smjVBRoRi9ruRiSxyC0jEMYvRypQR1ESMijhKusdiwU35n7/M5alOfHwBfTWO3wBc+SS4iAeJB06q2yD5iT9GwiUG5A/QI5QQAmqhPgs/QGO9ygUwYTQsEi2vmtnNyFd1I57FMhS
-ZI0qVpBTbU/nE5HD0Qq98NNwsF3TkKde0hBo1X4vKkzdaoPl7XWnd4NlVxjhmEl5rJxMR5Gqy5h+WHdcN1qo+g33PQhXH9u0mPrHpChmqw/jIolWMThUWeEXrHMc1UBBrVhvQAGrt/zPBAtDr9m0QFmPe89Rh3OFZHgdsY4nCm8du18FGUTsoot65KYxtQlLm41ZlO+0
-9rgYolsDj+3c9sXP2tStlhn99aL/8Kmb8Cw1bdtnb5LBjC1uR3UmNlYyDi305tSJ2WE6D+Et/RNCuUtS0P3KSxEncnSG+qmyTaRqEakmsvVzwK9KMYsH2RCnfjcUhQziezXD7gcmOQY1Dyr1TXI4BJb5KyUHBs2fM7oG1VID5/I/cX/NADftdpbBI0p2nmIwfRHZe+Ja
-bHZow4GuVyXDMlkHDE+cJuEZdXzUxmkQPA63ddGaN8ud5rGuRJt/zISJtEPG0p6xnfDLV2MTVOjox1zYo4c1PJpBVPbrOt0ZrDlCYj32sTE76cvdz/2CBdlY4ACtr5H9o3qBbuF2PoU4BwWfCzOokKw2CUPWSiyoyjMoi6vCsydaZInouOK3kczZodo8ZrkgP6Kt3x9q
-OVE5wZab5oL0uH76l4gftXnCEnuXPY1APrP72yG1W78z/rH99y+ksP9emOKFXnM+o7NhGDPq4LiF20s85FFbb2DmfZQhqoDRLMRbiwBBzgq74eB8epmXnPVTfANFw+Rv6hoS2Sg0DN6J0QD7w54XHF2KNW1xNLrBWNBRyU69rai70PuKO6mRsKfwHpJLMWfSuXmNQyi5
-oMb+bKhmguuVT0XZUV6Gs3rWPC64yUAEXkZmrUmj7EThz22jdRit3LOhnSvaO+FMj03KE2Ouy6kHKKMfWocyRNgbZI4jcwj5Q+0XdYZHvzZNDSGJGOOelAb6jqAV78Zf+86BthnqxWJ4Py5WrFFBKc+B2a+eO2AIlH+VSlPa3HQBNx4PHkky1mBmItEVZ6cQXfUPc1Sn
-A5Piwhpm72t12whTBQ/UfjcGcdcVSdwgV67R3Uf9SnUHRmvjmtx8PL++efvpiwiq8cdOeVqdVB1pyYSb2OrKMuwGoWWCUQIEg3gefaFrxMBMVFLCJahyRLnwGGNQu5oSmQrNbIXnH5d4+EDIwYonOX64/WgZCa9zL9yedy55mVy70UofBX1Fyhf/TnmfBLmfP0lv4xYg
-V+PhQf7Daz/PYAsPaVzdBWJcJwN0TMNsHP0LP4ftcJo5eg8E3+fl/+r8bK8+E7ALYjySwv0W+MV6zAKPNJ7LGrwkeCyGKLgSqK9JOXsYPwiCb++Dy7D3SXJK+vlKBwSHpbz88uFY+bKqVhnfJe4JoB63eWaXDA24+3vyyQRGFgkzNUl0A7blQRD96QXDyvi4FFE52x5z
-CWlzJqHbJZS/tqX9BLmCMuED5nlpuT0cKj2LM5XB04OYdZBlZQEXdPjIIRqBX1CTL5lLJAZazevw0DFtmMjr/urwzyWA5JXz/Da8+BIB0sQuTy7qTrjlBJb4FVqEdO1OHQTwW3fnOmZ9ZeYnAAg3MIIHd/pwLtJokEPLMYIYNxjPXZ4tF0PRwUOEvUH/8g54AtQmRNK3
-baQ635ME0r0humHIfwPBDf6unDZWhV6uT8FphRCejWIFWTrb7JkbKFaXaXN9LoKrsfitdEYbZhtggZVNkxjSoqk7v/dLW9RF4TwSu8AV/k1iPdkVcvSyr6UVXtAukvA+X958iZczOr0FKSEv353//fTzzZgcvucYczwqsLe6W37TqF6mqkygM+9Sd24b/nV/vZe+S8Hh
-JmIgsOjBMrgqOPSiJ9lBgBXxocoEJPNQ0F+8mmLrP+yOuIcQBobW827AmhPsA8sPKl9viBw6Xm+ULVYpwiCrFexdQv0DrobG725PTLLzpkPDCf/+4X2bxtx74JHtG5aqiQE9y/zAdjKCK955kSntQwhb42UbMTBu49VTFsM2YKTIlE8LIGZ3fIPx6iOZ5yqdWRZl4qSz
-ygTdn4+2KqXVK2S4fjTCBn6PWbu2xPEs3R0WT72VPbn/qU/Q/mtcuCjvoesT5xKJmCsMM3XxCgt4PvW5RhsdekIvE1WfVjNJlNY/CZTKkvvw7OkxNKRGfRSMlyarzpDX2V6s+j+0ucTT46enMg/LrIOrLVPPXsmEd33aKAKhGcYeT03iYZ/WL/rp/Fp5TMp75bzF7UDk
-BAmJl7XNBynpHHnmJ+nAKSN7eNC7fAssm8n+ry87k0iyHeDA6zCuPZI0c2sEkt66ynA/LdN3RnQlQUax3uQGr91R786FO4bCRCLmyJexNnvMaiubciWbbX1fcq7u4O9KyeOxW0ygli3h3YzTxe9oFtAjoBCDkZ/0o4zyz3tFbTO8YhADyJQaUjdeZnC2HGIfNx3+0AXr
-z99wm+GO25mYDKkNy4pomxNdS8zcafUOZxwiejfiZltpl0cm972/18vFDB1gQMFmW1CcKMW9H2WPIFp9QVfFR23FNvSXfA1wBeeianUkfBIQVzj7XEOB9W4qcOivZJ7MfBRyTz3rdwt+hbNlBE7DbD5HMRxzHHTRijLMm2LfU7Ks+7zP6ySOAbphV2lGiMQJ1hUwqfwm
-l00uGdEl5S1RXl40Ju/jVc88/wxZ8wi9cAilMDiIxZPcCC7wjV8vXi2TWQTyF9pzG9GzGc8FeWX3MxnUYcaRFeAz8IssfYH/vsgi8GwGUhyKgnljOfBIDtJ946y4zrOH5ED79zUIIfovf6EgvOQweKiGkL94laR+/nT4EdxUisgBx/GljtI9ZP8Hx8Jhuo795ax8LufH
-a7CYZU/IJnHQDXqZHpxHVEM4JI+gR3C43dGM41A8guz/4Fg4TNeH00cOz5Iuf0GNDem0L679HGrX5YEWoRnGITp/CxVyqKX/hLJjscjS4iAiffWYBXhbGXzQajRJ8Qceyd/us9kzwMghRvApxSrFYbq+zPPDaNuf0hrzh+n80wIchAtcZ+ndASf+GcyzEjQHwovz4ikN
-n8E4XvlF8gzGcYgR3IA0OiDzQd3DAwmqL4fpvTjUcVx3fVD95G9NUH5r1NntKLjOhItsDusmQTJDl4olRbEEhRKA8hGAVHl3/lnB16ORboNKmVGohmLPwTkUMWI4BljjCgOnvATNTFaRDd0Q+lXJBL0pEPoLlIALd8wHH7mYvy91VdcrB4aSZqWCg9Gnym2YzSfo/nii
-fQ7ukqLMEzid99ndzXKxyHIUULXww5/oReS2+fHacOshvklwohgXcMqdWgKl4qcFKFDLL/CP5zk7OEo0OOH0qBgPuOqAyYjAHycX1WuJX+6hKhh9yep7jS7aVOXB8VVgUDjX5GsV0zWAa4l+X7zx0U2sT2+SFGqJFyhz9jfwtMPRUP1dpUXpV/cZS/ZXvSUzqdS6D34K
-+8vXXe8KIvLGto9BtgbmjUCORgpsDtUjuEiTi+avm9IvwVscsrjD1Vh1/PWqZjHyvfmLypWK9zIo77OoDkOvfqzeXz9vHzDaAKlsb6sOqN4HehtAQfX3/lBe/Q2FwRGbgETFX1GGaT1z/PcO0d6BT3a9lb42wuWbKmJqH119xLcArwSY/fT61wQ8njfJxvvcoqKHk27J
-b61cKzG29pWVxo2wKdtdAXwPF+QqXSwbi+vGAJFwA0WLnmMmpfHQvPyCvZZw5V4nxSIrEtl1W/UMkbKQoxW636v6j/MqbGi/nb6FMkad2HHARVt3FmixX8NzF/ESX+oQ2Aah0L2+OA8KfF8A+nSNczMONJDPcai7uv4epEjP2vNQoNT9KouekLV2XJ/nNxdXV2jxq/vO
-N6SkNxmKF8LGyujq00pz3gqj+rQst8mpKhMbMu88bHmwaDX69tMediYcQWND/Dc5/JscEDlAwSFZHJg/bP3o2j4hbIJjxH7hieDfNI8h7G6v9A2jWa4DLvSr85tL26wjbra1NBXQ2kW/NaBbhrd36Uwe0l+2vB5/2TLq/nK97QFeb3mEX79ueYRfv0qNULTb21iJ90lx
-UMa+Lte8zgHACIjWF2GlzgCBa+NrAZQsViI/hVJ3tixOlGVa+DHA/+LL3E6ULFciADV/lAbRZk/g5Ik5NgvQno8Z7HoGV2Mv7o7aCHmVxtkLdBskoUn+n9ftmCHWFssA5UfiwSsoYWUyg1OeNC/FNKbh/tZxkvozEkb7kMJ5GEL5CanweTarMgH5TgyeY2bdkXI7QMfv
-2zYdcRc9cN0vW+2hx4m1q3Xpdy7tqtcGIY0namsdUjY4No+I3E3cB1oax8k5/FY5T2pHzHPZX8wEu8lQ7Px++GE4uUZp0k+rPBrY4JnNjKIVweBpF+Ba46UQGPhleN9FHP44yZeQcuZg8gr9+lz92NEykrcTR0l3OOSTONj/hl1xzbQqS/cQ+193GTo3I++uVwofPwqW
-mtE3PPF3BeF+3CIpyBvsnxEDYB8GvuUUYbwRL/s26EMpm7MHkL/FGuiLxskgrrijWTA3ad+yJZPVddcv/gzK1a9mjEgQ7rp9troX+GNpum+ujnjVXHd8NV/MdoQv8XWS9UVudPTAjvDR3ru3595qXvwaoEssyyGePEoUay/P29WU+i68Y9PS6wNvp3htO3tdX7sGK8Kd
-Xm5Xim57eXf+91dy5/jGE6pvd3mfIU/b1+otg62dFp1rl2673/eyJ9rOdj7VR4bdEHc0bL93rsaOdF3kb4O/FD/IlqXy7vPl2bvXvymNqEZo4+guBaXmFJRCXpXcZ3OgwP/BQZ2hv8/mfv7z0UfH4NnkR/SzOCvBHA4qPdUcdH2ECaeEG9ZdoYYoTBz1XveiXKYPSZ6l
-8yosBteub3JAtTtwHvDVQngAze1C5xG6+XU5h/P/1+9oJlAlKf354miqOYbnebqnu6qq/uv/AaX4U5IMTgEA
+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
 -->
 </html>

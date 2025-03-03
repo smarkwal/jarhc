@@ -143,6 +143,49 @@
          }]
       },
       {
+         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
+         "title": "Duplicate Classes",
+         "content": [{
+            "columns": [
+               "Class/Resource",
+               "Sources",
+               "Similarity"
+            ],
+            "rows": []
+         }]
+      },
+      {
+         "description": "Compatibility issues between JAR files.",
+         "title": "Binary Compatibility",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": []
+         }]
+      },
+      {
+         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
+         "title": "Blacklist",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "asm-commons",
+                  "`org.objectweb.asm.commons.AdviceAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.AnalyzerAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.CodeSizeEvaluator`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.InstructionAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.MethodRemapper`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.RemappingMethodAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
+               ],
+               [
+                  "asm-tree",
+                  "`org.objectweb.asm.tree.MethodNode`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -292,49 +335,6 @@
                   "`org.objectweb.asm.tree` (Version: `7.0`)\n\tUses: `org.objectweb.asm`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
-         "title": "Duplicate Classes",
-         "content": [{
-            "columns": [
-               "Class/Resource",
-               "Sources",
-               "Similarity"
-            ],
-            "rows": []
-         }]
-      },
-      {
-         "description": "Compatibility issues between JAR files.",
-         "title": "Binary Compatibility",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": []
-         }]
-      },
-      {
-         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
-         "title": "Blacklist",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "asm-commons",
-                  "`org.objectweb.asm.commons.AdviceAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.AnalyzerAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.CodeSizeEvaluator`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.InstructionAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.MethodRemapper`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`\n\n`org.objectweb.asm.commons.RemappingMethodAdapter`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
-               ],
-               [
-                  "asm-tree",
-                  "`org.objectweb.asm.tree.MethodNode`\n\u2022 @Deprecated: `public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)`"
                ]
             ]
          }]

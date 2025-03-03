@@ -20,22 +20,6 @@ Artifact  | Uses   | Used by | Maven coordinates | Updates   | Direct dependenci
 ----------+--------+---------+-------------------+-----------+---------------------+-------
 jarhc-app | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
-JAR Manifests
--------------
-Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
-
-Artifact  | General               | Runtime                    | Implementation | Specification | Signature
-----------+-----------------------+----------------------------+----------------+---------------+----------
-jarhc-app | Manifest-Version: 1.0 | Main Class: org.jarhc.Main |                |               |
-
-JPMS Modules
-------------
-List of Java Modules found in classpath.
-
-Artifact  | Module name | Definition     | Automatic | Requires | Exports
-----------+-------------+----------------+-----------+----------+---------------
-jarhc-app | jarhc.app   | Auto-generated | Yes       |          | [all packages]
-
 Binary Compatibility
 --------------------
 Compatibility issues between JAR files.
@@ -565,4 +549,20 @@ jarhc-app | org.apache.commons.logging.impl.SimpleLog
           |
           | org.slf4j.simple.SimpleLoggerConfiguration
           | • @Deprecated: public final class java.security.AccessController
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
+
+Artifact  | General               | Runtime                    | Implementation | Specification | Signature
+----------+-----------------------+----------------------------+----------------+---------------+----------
+jarhc-app | Manifest-Version: 1.0 | Main Class: org.jarhc.Main |                |               |
+
+JPMS Modules
+------------
+List of Java Modules found in classpath.
+
+Artifact  | Module name | Definition     | Automatic | Requires | Exports
+----------+-------------+----------------+-----------+----------+---------------
+jarhc-app | jarhc.app   | Auto-generated | Yes       |          | [all packages]
 

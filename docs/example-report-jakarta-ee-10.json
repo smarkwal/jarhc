@@ -759,6 +759,225 @@
          }]
       },
       {
+         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
+         "title": "Duplicate Classes",
+         "content": [{
+            "columns": [
+               "Class/Resource",
+               "Sources",
+               "Similarity"
+            ],
+            "rows": [
+               [
+                  "`beans_1_0.xsd`",
+                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
+                  "Exact copy"
+               ],
+               [
+                  "`beans_1_1.xsd`",
+                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
+                  "Exact copy"
+               ],
+               [
+                  "`beans_2_0.xsd`",
+                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
+                  "Exact copy"
+               ],
+               [
+                  "`beans_3_0.xsd`",
+                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
+                  "Exact copy"
+               ],
+               [
+                  "`beans_4_0.xsd`",
+                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
+                  "Exact copy"
+               ],
+               [
+                  "`exclude-common.xml`",
+                  "jakarta.authentication-api\njakarta.authorization-api\njakarta.security.enterprise-api",
+                  "Different content"
+               ],
+               [
+                  "`jakarta.jws.HandlerChain`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.Oneway`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.InitParam`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPBinding$ParameterStyle`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPBinding$Style`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPBinding$Use`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPBinding`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPMessageHandler`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.soap.SOAPMessageHandlers`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.WebMethod`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.WebParam$Mode`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.WebParam`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.WebResult`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta.jws.WebService`",
+                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
+                  "Same API"
+               ],
+               [
+                  "`jakarta/jws/jakartaee_web_services_metadata_handler_3_0.xsd`",
+                  "jakarta.jws-api\njakarta.xml.ws-api",
+                  "Different content"
+               ],
+               [
+                  "`jakarta/jws/javaee_web_services_metadata_handler_2_0.xsd`",
+                  "jakarta.jws-api\njakarta.xml.ws-api",
+                  "Different content"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Compatibility issues between JAR files.",
+         "title": "Binary Compatibility",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "jakarta.enterprise.cdi-api",
+                  "`jakarta.enterprise.inject.build.compatible.spi.AnnotationBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationMember` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.AnnotationBuilderFactory`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.BeanInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.FieldInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ClassConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.DeclarationConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.DisposerInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.FieldConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.FieldInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.InjectionPointInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.Messages`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationTarget` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.MethodConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ObserverInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ParameterConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ScopeInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticComponents`\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticObserverBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.Types`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ArrayType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ClassType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ParameterizedType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.PrimitiveType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.PrimitiveType$PrimitiveKind` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.VoidType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.WildcardType` (package not found)"
+               ],
+               [
+                  "jakarta.faces-api",
+                  "`jakarta.faces.CurrentThreadToServletContext`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.FactoryFinderInstance`\n\u2022 Class not found: `com.sun.faces.config.ConfigManager` (package not found)\n\u2022 Class not found: `com.sun.faces.spi.InjectionProvider` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.ComponentStateHelper`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponent`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponentBase`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponentBase$ChildrenList`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\n`jakarta.faces.component.UIComponentBase$FacetsMap`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\n`jakarta.faces.component.UIData`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIForm`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UINamingContainer`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UISelectItemGroup`\n\u2022 Class not found: `com.sun.faces.util.SelectItemUtils` (package not found)\n\n`jakarta.faces.component.UISelectItemGroups`\n\u2022 Class not found: `com.sun.faces.util.SelectItemUtils` (package not found)"
+               ],
+               [
+                  "jakarta.xml.ws-api",
+                  "`jakarta.jws.WebParam$Mode`\n\u2022 Method not found: `static jakarta.jws.WebParam$Mode[] jakarta.jws.WebParam$Mode.$values()`\n> `jakarta.jws.WebParam$Mode` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$ParameterStyle`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$ParameterStyle[] jakarta.jws.soap.SOAPBinding$ParameterStyle.$values()`\n> `jakarta.jws.soap.SOAPBinding$ParameterStyle` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$Style`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$Style[] jakarta.jws.soap.SOAPBinding$Style.$values()`\n> `jakarta.jws.soap.SOAPBinding$Style` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$Use`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$Use[] jakarta.jws.soap.SOAPBinding$Use.$values()`\n> `jakarta.jws.soap.SOAPBinding$Use` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
+         "title": "Blacklist",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "jakarta.activation-api",
+                  "`jakarta.activation.CommandInfo$Beans`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.CommandMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.DataHandler`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.FileTypeMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.MailcapCommandMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.MimetypesFileTypeMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.SecuritySupport`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.authentication-api",
+                  "`jakarta.security.auth.message.config.AuthConfigFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.authorization-api",
+                  "`jakarta.security.jacc.PolicyConfigurationFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.security.jacc.PolicyContext`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.batch-api",
+                  "`jakarta.batch.runtime.BatchRuntime`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.el-api",
+                  "`jakarta.el.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.enterprise.cdi-api",
+                  "`jakarta.enterprise.inject.build.compatible.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.enterprise.inject.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.enterprise.util.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.json-api",
+                  "`jakarta.json.spi.JsonProvider`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.mail-api",
+                  "`jakarta.mail.Session`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.mail.internet.MimeUtil`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.mail.util.FactoryFinder`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.mail.util.StreamProvider`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.persistence-api",
+                  "`jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.servlet-api",
+                  "`jakarta.servlet.http.Cookie`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.validation-api",
+                  "`jakarta.validation.Validation$GetValidationProviderListAction`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.validation.Validation$ProviderSpecificBootstrapImpl`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.ws.rs-api",
+                  "`jakarta.ws.rs.client.ClientBuilder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.client.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.ext.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.ext.RuntimeDelegate`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.ws.rs.sse.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.xml.bind-api",
+                  "`jakarta.xml.bind.ContextFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.bind.DatatypeConverter`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.xml.bind.JAXBContext`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.bind.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.xml.soap-api",
+                  "`jakarta.xml.soap.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.soap.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.xml.ws-api",
+                  "`jakarta.jws.soap.SOAPMessageHandler`\n\u2022 @Deprecated: `public @interface jakarta.jws.soap.InitParam`\n\n`jakarta.jws.soap.SOAPMessageHandlers`\n\u2022 @Deprecated: `public @interface jakarta.jws.soap.SOAPMessageHandler`\n\n`jakarta.xml.ws.spi.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.ws.spi.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -1626,225 +1845,6 @@
                   "`jakarta.jws` (Version: `4.0.2`)\n`jakarta.jws.soap` (Version: `4.0.2`)\n`jakarta.xml.ws` (Version: `4.0.2`)\n\tUses: `jakarta.xml.bind`, `jakarta.xml.bind.annotation`, `jakarta.xml.ws.handler`, `jakarta.xml.ws.spi`,\n\t\t`jakarta.xml.ws.spi.http`, `javax.xml.namespace`, `javax.xml.transform`, `org.w3c.dom`\n`jakarta.xml.ws.handler` (Version: `4.0.2`)\n\tUses: `jakarta.xml.ws`, `javax.xml.namespace`\n`jakarta.xml.ws.handler.soap` (Version: `4.0.2`)\n\tUses: `jakarta.xml.bind`, `jakarta.xml.soap`, `jakarta.xml.ws.handler`, `javax.xml.namespace`\n`jakarta.xml.ws.http` (Version: `4.0.2`)\n\tUses: `jakarta.xml.ws`\n`jakarta.xml.ws.soap` (Version: `4.0.2`)\n\tUses: `jakarta.xml.soap`, `jakarta.xml.ws`, `jakarta.xml.ws.spi`\n`jakarta.xml.ws.spi` (Version: `4.0.2`)\n\tUses: `jakarta.xml.bind`, `jakarta.xml.ws`, `jakarta.xml.ws.handler`, `jakarta.xml.ws.wsaddressing`,\n\t\t`javax.xml.namespace`, `javax.xml.transform`, `org.w3c.dom`\n`jakarta.xml.ws.spi.http` (Version: `4.0.2`)\n`jakarta.xml.ws.wsaddressing` (Version: `4.0.2`)\n\tUses: `jakarta.xml.bind.annotation`, `jakarta.xml.ws`, `javax.xml.namespace`, `javax.xml.transform`, `org.w3c.dom`",
                   "Required:\n`osgi.extender;filter:=\"(&(osgi.extender=osgi.serviceloader.processor)(version>=1.0.0)(!(version>=2.0.0)))\";resolution:=optional`\n`osgi.serviceloader;filter:=\"(osgi.serviceloader=jakarta.xml.ws.spi.Provider)\";osgi.serviceloader=\"jakarta.xml.ws.spi.Provider\";cardinality:=multiple;resolution:=optional`\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=11))\"`",
                   "Manifest Version: 2"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
-         "title": "Duplicate Classes",
-         "content": [{
-            "columns": [
-               "Class/Resource",
-               "Sources",
-               "Similarity"
-            ],
-            "rows": [
-               [
-                  "`beans_1_0.xsd`",
-                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
-                  "Exact copy"
-               ],
-               [
-                  "`beans_1_1.xsd`",
-                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
-                  "Exact copy"
-               ],
-               [
-                  "`beans_2_0.xsd`",
-                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
-                  "Exact copy"
-               ],
-               [
-                  "`beans_3_0.xsd`",
-                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
-                  "Exact copy"
-               ],
-               [
-                  "`beans_4_0.xsd`",
-                  "jakarta.enterprise.cdi-api\njakarta.mvc-api\njakarta.security.enterprise-api",
-                  "Exact copy"
-               ],
-               [
-                  "`exclude-common.xml`",
-                  "jakarta.authentication-api\njakarta.authorization-api\njakarta.security.enterprise-api",
-                  "Different content"
-               ],
-               [
-                  "`jakarta.jws.HandlerChain`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.Oneway`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.InitParam`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPBinding$ParameterStyle`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPBinding$Style`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPBinding$Use`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPBinding`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPMessageHandler`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.soap.SOAPMessageHandlers`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.WebMethod`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.WebParam$Mode`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.WebParam`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.WebResult`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta.jws.WebService`",
-                  "jakarta.jws-api (Classpath)\njakarta.xml.ws-api (Classpath)",
-                  "Same API"
-               ],
-               [
-                  "`jakarta/jws/jakartaee_web_services_metadata_handler_3_0.xsd`",
-                  "jakarta.jws-api\njakarta.xml.ws-api",
-                  "Different content"
-               ],
-               [
-                  "`jakarta/jws/javaee_web_services_metadata_handler_2_0.xsd`",
-                  "jakarta.jws-api\njakarta.xml.ws-api",
-                  "Different content"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Compatibility issues between JAR files.",
-         "title": "Binary Compatibility",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "`jakarta.enterprise.inject.build.compatible.spi.AnnotationBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationMember` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.AnnotationBuilderFactory`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.BeanInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.FieldInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ClassConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.DeclarationConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.DisposerInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.FieldConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.FieldInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.InjectionPointInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.Messages`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationTarget` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.MethodConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ObserverInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.MethodInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ParameterConfig`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.DeclarationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ParameterInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.ScopeInfo`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticBeanBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticComponents`\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.SyntheticObserverBuilder`\n\u2022 Class not found: `jakarta.enterprise.lang.model.AnnotationInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\n`jakarta.enterprise.inject.build.compatible.spi.Types`\n\u2022 Class not found: `jakarta.enterprise.lang.model.declarations.ClassInfo` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ArrayType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ClassType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.ParameterizedType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.PrimitiveType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.PrimitiveType$PrimitiveKind` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.Type` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.VoidType` (package not found)\n\u2022 Class not found: `jakarta.enterprise.lang.model.types.WildcardType` (package not found)"
-               ],
-               [
-                  "jakarta.faces-api",
-                  "`jakarta.faces.CurrentThreadToServletContext`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.FactoryFinderInstance`\n\u2022 Class not found: `com.sun.faces.config.ConfigManager` (package not found)\n\u2022 Class not found: `com.sun.faces.spi.InjectionProvider` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.ComponentStateHelper`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponent`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponentBase`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIComponentBase$ChildrenList`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\n`jakarta.faces.component.UIComponentBase$FacetsMap`\n\u2022 Class not found: `com.sun.faces.facelets.tag.faces.ComponentSupport` (package not found)\n\n`jakarta.faces.component.UIData`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UIForm`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UINamingContainer`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`jakarta.faces.component.UISelectItemGroup`\n\u2022 Class not found: `com.sun.faces.util.SelectItemUtils` (package not found)\n\n`jakarta.faces.component.UISelectItemGroups`\n\u2022 Class not found: `com.sun.faces.util.SelectItemUtils` (package not found)"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "`jakarta.jws.WebParam$Mode`\n\u2022 Method not found: `static jakarta.jws.WebParam$Mode[] jakarta.jws.WebParam$Mode.$values()`\n> `jakarta.jws.WebParam$Mode` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$ParameterStyle`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$ParameterStyle[] jakarta.jws.soap.SOAPBinding$ParameterStyle.$values()`\n> `jakarta.jws.soap.SOAPBinding$ParameterStyle` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$Style`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$Style[] jakarta.jws.soap.SOAPBinding$Style.$values()`\n> `jakarta.jws.soap.SOAPBinding$Style` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)\n\n`jakarta.jws.soap.SOAPBinding$Use`\n\u2022 Method not found: `static jakarta.jws.soap.SOAPBinding$Use[] jakarta.jws.soap.SOAPBinding$Use.$values()`\n> `jakarta.jws.soap.SOAPBinding$Use` (method not found)\n> `java.lang.Enum` (method not found)\n> `java.lang.constant.Constable` (method not found)\n> `java.lang.Object` (method not found)\n> `java.lang.Comparable` (method not found)\n> `java.io.Serializable` (method not found)"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
-         "title": "Blacklist",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "`jakarta.activation.CommandInfo$Beans`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.CommandMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.DataHandler`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.FileTypeMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.activation.MailcapCommandMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.MimetypesFileTypeMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.SecuritySupport`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.activation.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.authentication-api",
-                  "`jakarta.security.auth.message.config.AuthConfigFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.authorization-api",
-                  "`jakarta.security.jacc.PolicyConfigurationFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.security.jacc.PolicyContext`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.batch-api",
-                  "`jakarta.batch.runtime.BatchRuntime`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.el-api",
-                  "`jakarta.el.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "`jakarta.enterprise.inject.build.compatible.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.enterprise.inject.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.enterprise.util.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.json-api",
-                  "`jakarta.json.spi.JsonProvider`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.mail-api",
-                  "`jakarta.mail.Session`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.mail.internet.MimeUtil`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.mail.util.FactoryFinder`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.mail.util.StreamProvider`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.persistence-api",
-                  "`jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.servlet-api",
-                  "`jakarta.servlet.http.Cookie`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.validation-api",
-                  "`jakarta.validation.Validation$GetValidationProviderListAction`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.validation.Validation$ProviderSpecificBootstrapImpl`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.ws.rs-api",
-                  "`jakarta.ws.rs.client.ClientBuilder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.client.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.ext.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.ws.rs.ext.RuntimeDelegate`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.ws.rs.sse.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.xml.bind-api",
-                  "`jakarta.xml.bind.ContextFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.bind.DatatypeConverter`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`jakarta.xml.bind.JAXBContext`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.bind.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.xml.soap-api",
-                  "`jakarta.xml.soap.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.soap.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "`jakarta.jws.soap.SOAPMessageHandler`\n\u2022 @Deprecated: `public @interface jakarta.jws.soap.InitParam`\n\n`jakarta.jws.soap.SOAPMessageHandlers`\n\u2022 @Deprecated: `public @interface jakarta.jws.soap.SOAPMessageHandler`\n\n`jakarta.xml.ws.spi.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`jakarta.xml.ws.spi.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
                ]
             ]
          }]

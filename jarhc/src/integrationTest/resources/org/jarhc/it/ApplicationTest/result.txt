@@ -26,6 +26,27 @@ Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencie
 ---------+--------+---------+-------------------+-----------+---------------------+-------
 a        | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+Artifact | Issues
+---------+-------
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact | Issues
+---------+-------
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -49,27 +70,6 @@ Information about OSGi Bundles.
 
 Artifact | Name | Version | Description | Import Package | Export Package | Capabilities | Others
 ---------+------+---------+-------------+----------------+----------------+--------------+-------
-
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource | Sources | Similarity
----------------+---------+-----------
-
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-Artifact | Issues
----------+-------
-
-Blacklist
----------
-Use of dangerous, unsafe, unstable, or deprecated classes and methods.
-
-Artifact | Issues
----------+-------
 
 Java Runtime
 ------------

@@ -119,10 +119,10 @@ Sections:
 
    jf - JAR Files
    d  - Dependencies
-   jm - JAR Manifests
-   m  - JPMS Modules
-   ob - OSGi Bundles
    dc - Duplicate Classes
    bc - Binary Compatibility
    bl - Blacklist
+   jm - JAR Manifests
+   m  - JPMS Modules
+   ob - OSGi Bundles
    jr - Java Runtime

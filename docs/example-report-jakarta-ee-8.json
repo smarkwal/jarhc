@@ -847,6 +847,362 @@
          }]
       },
       {
+         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
+         "title": "Duplicate Classes",
+         "content": [{
+            "columns": [
+               "Class/Resource",
+               "Sources",
+               "Similarity"
+            ],
+            "rows": [
+               [
+                  "`javax.websocket.ClientEndpoint`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.ClientEndpointConfig$Builder$1`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.ClientEndpointConfig$Builder`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.ClientEndpointConfig$Configurator`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.ClientEndpointConfig`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.CloseReason$CloseCode`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.CloseReason$CloseCodes$1`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.CloseReason$CloseCodes`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.CloseReason`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.ContainerProvider`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.DecodeException`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Decoder$Binary`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Decoder$BinaryStream`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Decoder$Text`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Decoder$TextStream`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Decoder`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.DefaultClientEndpointConfig`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.DeploymentException`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.EncodeException`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Encoder$Binary`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Encoder$BinaryStream`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Encoder$Text`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Encoder$TextStream`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Encoder`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Endpoint`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.EndpointConfig`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Extension$Parameter`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Extension`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.HandshakeResponse`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.MessageHandler$Partial`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.MessageHandler$Whole`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.MessageHandler`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.OnClose`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.OnError`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.OnMessage`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.OnOpen`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.PongMessage`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.RemoteEndpoint$Async`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.RemoteEndpoint$Basic`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.RemoteEndpoint`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.SendHandler`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.SendResult`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.Session`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.SessionException`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.websocket.WebSocketContainer`",
+                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.GenericHandler`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.Handler`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.HandlerChain`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.HandlerInfo`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.HandlerRegistry`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ],
+               [
+                  "`javax.xml.rpc.handler.MessageContext`",
+                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
+                  "Exact copy"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Compatibility issues between JAR files.",
+         "title": "Binary Compatibility",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "jakarta.activation-api",
+                  "`javax.activation.MailcapCommandMap`\n\u2022 Class not found: `com.sun.activation.registries.LogSupport` (package not found)\n\u2022 Class not found: `com.sun.activation.registries.MailcapFile` (package not found)\n\n`javax.activation.MimetypesFileTypeMap`\n\u2022 Class not found: `com.sun.activation.registries.LogSupport` (package not found)\n\u2022 Class not found: `com.sun.activation.registries.MimeTypeFile` (package not found)"
+               ],
+               [
+                  "jakarta.faces-api",
+                  "`javax.faces.CurrentThreadToServletContext`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.CurrentThreadToServletContext$FactoryFinderCacheKey`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.FactoryFinderInstance`\n\u2022 Class not found: `com.sun.faces.config.ConfigManager` (package not found)\n\u2022 Class not found: `com.sun.faces.spi.InjectionProvider` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.ComponentStateHelper`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UICommand`\n\u2022 Class not found: `com.sun.faces.application.MethodBindingMethodExpressionAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.application.MethodExpressionMethodBindingAdapter` (package not found)\n\n`javax.faces.component.UIComponent`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIComponentBase`\n\u2022 Class not found: `com.sun.faces.application.ValueBindingValueExpressionAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.application.ValueExpressionValueBindingAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIForm`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UINamingContainer`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIViewAction`\n\u2022 Class not found: `com.sun.faces.application.MethodBindingMethodExpressionAdapter` (package not found)"
+               ],
+               [
+                  "jakarta.mail-api",
+                  "`javax.mail.Session`\n\u2022 Class not found: `com.sun.mail.util.DefaultProvider` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.ContentDisposition`\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.InternetAddress`\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.InternetHeaders`\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MailDateFormat`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MailDateFormat$AbstractDateParser`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MailDateFormat$Rfc2822LenientParser`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MimeBodyPart`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MessageRemovedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MimeUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimeMessage`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MessageRemovedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MimeUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimeMultipart`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimePartDataSource`\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\n`javax.mail.internet.MimeUtility`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BASE64DecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BASE64EncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QPDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QPEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.UUDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.UUEncoderStream` (package not found)\n\n`javax.mail.internet.ParameterList`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.PreencodedMimeBodyPart`\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
+         "title": "Blacklist",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "jakarta.activation-api",
+                  "`javax.activation.CommandInfo$Beans`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.CommandMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.DataHandler`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.FileTypeMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.MailcapCommandMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.MimetypesFileTypeMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.SecuritySupport`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.authorization-api",
+                  "`javax.security.jacc.PolicyConfigurationFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.security.jacc.PolicyContext`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.batch-api",
+                  "`javax.batch.runtime.BatchRuntime`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.ejb-api",
+                  "`javax.ejb.EJBContext`\n\u2022 @Deprecated: `public abstract class java.security.Identity`"
+               ],
+               [
+                  "jakarta.enterprise.cdi-api",
+                  "`javax.enterprise.inject.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.enterprise.util.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.mail-api",
+                  "`javax.mail.Session`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.persistence-api",
+                  "`javax.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.security.auth.message-api",
+                  "`javax.security.auth.message.config.AuthConfigFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.validation-api",
+                  "`javax.validation.Validation$GetValidationProviderListAction`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.validation.Validation$ProviderSpecificBootstrapImpl`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.ws.rs-api",
+                  "`javax.ws.rs.client.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.ws.rs.ext.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.ws.rs.ext.RuntimeDelegate`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.ws.rs.sse.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jakarta.xml.bind-api",
+                  "`javax.xml.bind.ContextFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.bind.DatatypeConverter`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.xml.bind.JAXBContext`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.bind.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.xml.soap-api",
+                  "`javax.xml.soap.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.soap.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ],
+               [
+                  "jakarta.xml.ws-api",
+                  "`javax.xml.ws.spi.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -1808,362 +2164,6 @@
                   "`javax.xml.ws.wsaddressing` (Version: `2.3.3`)\n\tUses: `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `org.w3c.dom`\n`javax.xml.ws.spi` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `javax.xml.ws.handler`,\n\t\t`javax.xml.ws.wsaddressing`, `org.w3c.dom`\n`javax.xml.ws.spi.http` (Version: `2.3.3`)\n`javax.xml.ws` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`,\n\t\t`javax.xml.ws.handler`, `javax.xml.ws.spi`, `javax.xml.ws.spi.http`, `org.w3c.dom`\n`javax.xml.ws.handler` (Version: `2.3.3`)\n\tUses: `javax.xml.namespace`, `javax.xml.ws`\n`javax.xml.ws.handler.soap` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.soap`, `javax.xml.ws.handler`\n`javax.xml.ws.http` (Version: `2.3.3`)\n\tUses: `javax.xml.ws`\n`javax.xml.ws.soap` (Version: `2.3.3`)\n\tUses: `javax.xml.soap`, `javax.xml.ws`, `javax.xml.ws.spi`",
                   "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2\nPrivate Package:\njavax.xml.ws.wsaddressing\njavax.xml.ws.spi\njavax.xml.ws.spi.http\njavax.xml.ws\njavax.xml.ws.handler\njavax.xml.ws.handler.soap\njavax.xml.ws.http\njavax.xml.ws.soap\n."
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
-         "title": "Duplicate Classes",
-         "content": [{
-            "columns": [
-               "Class/Resource",
-               "Sources",
-               "Similarity"
-            ],
-            "rows": [
-               [
-                  "`javax.websocket.ClientEndpoint`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.ClientEndpointConfig$Builder$1`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.ClientEndpointConfig$Builder`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.ClientEndpointConfig$Configurator`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.ClientEndpointConfig`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.CloseReason$CloseCode`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.CloseReason$CloseCodes$1`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.CloseReason$CloseCodes`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.CloseReason`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.ContainerProvider`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.DecodeException`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Decoder$Binary`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Decoder$BinaryStream`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Decoder$Text`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Decoder$TextStream`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Decoder`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.DefaultClientEndpointConfig`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.DeploymentException`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.EncodeException`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Encoder$Binary`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Encoder$BinaryStream`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Encoder$Text`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Encoder$TextStream`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Encoder`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Endpoint`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.EndpointConfig`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Extension$Parameter`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Extension`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.HandshakeResponse`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.MessageHandler$Partial`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.MessageHandler$Whole`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.MessageHandler`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.OnClose`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.OnError`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.OnMessage`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.OnOpen`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.PongMessage`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.RemoteEndpoint$Async`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.RemoteEndpoint$Basic`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.RemoteEndpoint`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.SendHandler`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.SendResult`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.Session`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.SessionException`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.websocket.WebSocketContainer`",
-                  "jakarta.websocket-api (Classpath)\njakarta.websocket-client-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.GenericHandler`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.Handler`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.HandlerChain`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.HandlerInfo`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.HandlerRegistry`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ],
-               [
-                  "`javax.xml.rpc.handler.MessageContext`",
-                  "jakarta.ejb-api (Classpath)\njakarta.xml.rpc-api (Classpath)",
-                  "Exact copy"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Compatibility issues between JAR files.",
-         "title": "Binary Compatibility",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "`javax.activation.MailcapCommandMap`\n\u2022 Class not found: `com.sun.activation.registries.LogSupport` (package not found)\n\u2022 Class not found: `com.sun.activation.registries.MailcapFile` (package not found)\n\n`javax.activation.MimetypesFileTypeMap`\n\u2022 Class not found: `com.sun.activation.registries.LogSupport` (package not found)\n\u2022 Class not found: `com.sun.activation.registries.MimeTypeFile` (package not found)"
-               ],
-               [
-                  "jakarta.faces-api",
-                  "`javax.faces.CurrentThreadToServletContext`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.CurrentThreadToServletContext$FactoryFinderCacheKey`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.FactoryFinderInstance`\n\u2022 Class not found: `com.sun.faces.config.ConfigManager` (package not found)\n\u2022 Class not found: `com.sun.faces.spi.InjectionProvider` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.ComponentStateHelper`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UICommand`\n\u2022 Class not found: `com.sun.faces.application.MethodBindingMethodExpressionAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.application.MethodExpressionMethodBindingAdapter` (package not found)\n\n`javax.faces.component.UIComponent`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIComponentBase`\n\u2022 Class not found: `com.sun.faces.application.ValueBindingValueExpressionAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.application.ValueExpressionValueBindingAdapter` (package not found)\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIForm`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UINamingContainer`\n\u2022 Class not found: `com.sun.faces.util.Util` (package not found)\n\n`javax.faces.component.UIViewAction`\n\u2022 Class not found: `com.sun.faces.application.MethodBindingMethodExpressionAdapter` (package not found)"
-               ],
-               [
-                  "jakarta.mail-api",
-                  "`javax.mail.Session`\n\u2022 Class not found: `com.sun.mail.util.DefaultProvider` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.ContentDisposition`\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.InternetAddress`\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.InternetHeaders`\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MailDateFormat`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MailDateFormat$AbstractDateParser`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MailDateFormat$Rfc2822LenientParser`\n\u2022 Class not found: `com.sun.mail.util.MailLogger` (package not found)\n\n`javax.mail.internet.MimeBodyPart`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MessageRemovedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MimeUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimeMessage`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MessageRemovedIOException` (package not found)\n\u2022 Class not found: `com.sun.mail.util.MimeUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimeMultipart`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.MimePartDataSource`\n\u2022 Class not found: `com.sun.mail.util.FolderClosedIOException` (package not found)\n\n`javax.mail.internet.MimeUtility`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BASE64DecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BASE64EncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.BEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.LineInputStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QPDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.QPEncoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.UUDecoderStream` (package not found)\n\u2022 Class not found: `com.sun.mail.util.UUEncoderStream` (package not found)\n\n`javax.mail.internet.ParameterList`\n\u2022 Class not found: `com.sun.mail.util.ASCIIUtility` (package not found)\n\u2022 Class not found: `com.sun.mail.util.PropUtil` (package not found)\n\n`javax.mail.internet.PreencodedMimeBodyPart`\n\u2022 Class not found: `com.sun.mail.util.LineOutputStream` (package not found)"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
-         "title": "Blacklist",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Issues"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "`javax.activation.CommandInfo$Beans`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.CommandMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.DataHandler`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.FileTypeMap`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.activation.MailcapCommandMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.MimetypesFileTypeMap`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.activation.SecuritySupport`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.authorization-api",
-                  "`javax.security.jacc.PolicyConfigurationFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.security.jacc.PolicyContext`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.batch-api",
-                  "`javax.batch.runtime.BatchRuntime`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.ejb-api",
-                  "`javax.ejb.EJBContext`\n\u2022 @Deprecated: `public abstract class java.security.Identity`"
-               ],
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "`javax.enterprise.inject.spi.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.enterprise.util.SecurityActions`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.mail-api",
-                  "`javax.mail.Session`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.persistence-api",
-                  "`javax.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.security.auth.message-api",
-                  "`javax.security.auth.message.config.AuthConfigFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.validation-api",
-                  "`javax.validation.Validation$GetValidationProviderListAction`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.validation.Validation$ProviderSpecificBootstrapImpl`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.ws.rs-api",
-                  "`javax.ws.rs.client.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.ws.rs.ext.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.ws.rs.ext.RuntimeDelegate`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.ws.rs.sse.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
-               ],
-               [
-                  "jakarta.xml.bind-api",
-                  "`javax.xml.bind.ContextFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.bind.DatatypeConverter`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\n`javax.xml.bind.JAXBContext`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.bind.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.xml.soap-api",
-                  "`javax.xml.soap.FactoryFinder`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`javax.xml.soap.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "`javax.xml.ws.spi.ServiceLoaderUtil`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
                ]
             ]
          }]

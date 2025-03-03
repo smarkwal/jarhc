@@ -150,6 +150,307 @@ jakarta.xml.ws-api                | jakarta.xml.bind-api         | [none]       
                                   | jakarta.xml.soap-api         |                                 |                                                                       |                                   | jakarta.xml.bind:jakarta.xml.bind-api:3.0.1                                      | OK
                                   |                              |                                 |                                                                       |                                   | jakarta.xml.soap:jakarta.xml.soap-api:2.0.1                                      | OK
 
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource                                      | Sources                                  | Similarity
+----------------------------------------------------+------------------------------------------+------------------
+exclude-common.xml                                  | jakarta.authentication-api               | Different content
+                                                    | jakarta.authorization-api                |
+jakarta.websocket.ClientEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.ClientEndpointConfig$Builder$1    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.ClientEndpointConfig$Builder      | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.ClientEndpointConfig$Configurator | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.ClientEndpointConfig              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.CloseReason$CloseCode             | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.CloseReason$CloseCodes$1          | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.CloseReason$CloseCodes            | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.CloseReason                       | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.ContainerProvider                 | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.DecodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Decoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Decoder$BinaryStream              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Decoder$Text                      | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Decoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Decoder                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.DefaultClientEndpointConfig       | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.DeploymentException               | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.EncodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Encoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Encoder$BinaryStream              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Encoder$Text                      | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Encoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Encoder                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Endpoint                          | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.EndpointConfig                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Extension$Parameter               | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Extension                         | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.HandshakeResponse                 | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.MessageHandler$Partial            | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.MessageHandler$Whole              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.MessageHandler                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.OnClose                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.OnError                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.OnMessage                         | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.OnOpen                            | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.PongMessage                       | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.RemoteEndpoint$Async              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.RemoteEndpoint$Basic              | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.RemoteEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.SendHandler                       | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.SendResult                        | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.Session                           | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.SessionException                  | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+jakarta.websocket.WebSocketContainer                | jakarta.websocket-api (Classpath)        | Exact copy
+                                                    | jakarta.websocket-client-api (Classpath) |
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+Artifact               | Issues
+-----------------------+------------------------------------------------------------------------------------------------------
+jakarta.activation-api | jakarta.activation.MailcapCommandMap
+                       | • Class not found: com.sun.activation.registries.LogSupport (package not found)
+                       | • Class not found: com.sun.activation.registries.MailcapFile (package not found)
+                       |
+                       | jakarta.activation.MimetypesFileTypeMap
+                       | • Class not found: com.sun.activation.registries.LogSupport (package not found)
+                       | • Class not found: com.sun.activation.registries.MimeTypeFile (package not found)
+jakarta.faces-api      | jakarta.faces.CurrentThreadToServletContext
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.FactoryFinderInstance
+                       | • Class not found: com.sun.faces.config.ConfigManager (package not found)
+                       | • Class not found: com.sun.faces.spi.InjectionProvider (package not found)
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.ComponentStateHelper
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.UICommand
+                       | • Class not found: com.sun.faces.application.MethodBindingMethodExpressionAdapter (package not found)
+                       | • Class not found: com.sun.faces.application.MethodExpressionMethodBindingAdapter (package not found)
+                       |
+                       | jakarta.faces.component.UIComponent
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.UIComponentBase
+                       | • Class not found: com.sun.faces.application.ValueBindingValueExpressionAdapter (package not found)
+                       | • Class not found: com.sun.faces.application.ValueExpressionValueBindingAdapter (package not found)
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.UIForm
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.UINamingContainer
+                       | • Class not found: com.sun.faces.util.Util (package not found)
+                       |
+                       | jakarta.faces.component.UIViewAction
+                       | • Class not found: com.sun.faces.application.MethodBindingMethodExpressionAdapter (package not found)
+jakarta.mail-api       | jakarta.mail.Session
+                       | • Class not found: com.sun.mail.util.DefaultProvider (package not found)
+                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
+                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
+                       |
+                       | jakarta.mail.internet.ContentDisposition
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.InternetAddress
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.InternetHeaders
+                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.MailDateFormat
+                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
+                       |
+                       | jakarta.mail.internet.MailDateFormat$AbstractDateParser
+                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
+                       |
+                       | jakarta.mail.internet.MailDateFormat$Rfc2822LenientParser
+                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
+                       |
+                       | jakarta.mail.internet.MimeBodyPart
+                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
+                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
+                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
+                       | • Class not found: com.sun.mail.util.MessageRemovedIOException (package not found)
+                       | • Class not found: com.sun.mail.util.MimeUtil (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.MimeMessage
+                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
+                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
+                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
+                       | • Class not found: com.sun.mail.util.MessageRemovedIOException (package not found)
+                       | • Class not found: com.sun.mail.util.MimeUtil (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.MimeMultipart
+                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
+                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
+                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.MimePartDataSource
+                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
+                       |
+                       | jakarta.mail.internet.MimeUtility
+                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
+                       | • Class not found: com.sun.mail.util.BASE64DecoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.BASE64EncoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.BEncoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       | • Class not found: com.sun.mail.util.QDecoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.QEncoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.QPDecoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.QPEncoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.UUDecoderStream (package not found)
+                       | • Class not found: com.sun.mail.util.UUEncoderStream (package not found)
+                       |
+                       | jakarta.mail.internet.ParameterList
+                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
+                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
+                       |
+                       | jakarta.mail.internet.PreencodedMimeBodyPart
+                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact                   | Issues
+---------------------------+---------------------------------------------------------------------------------------------
+jakarta.activation-api     | jakarta.activation.CommandInfo$Beans
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.CommandMap
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.DataHandler
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.FileTypeMap
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.activation.MailcapCommandMap
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.MimetypesFileTypeMap
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.activation.SecuritySupport
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.authentication-api | jakarta.security.auth.message.config.AuthConfigFactory
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.authorization-api  | jakarta.security.jacc.PolicyConfigurationFactory
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.security.jacc.PolicyContext
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.batch-api          | jakarta.batch.runtime.BatchRuntime
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.enterprise.cdi-api | jakarta.enterprise.inject.spi.SecurityActions
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.enterprise.util.SecurityActions
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.json-api           | jakarta.json.spi.JsonProvider
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.mail-api           | jakarta.mail.Session
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.persistence-api    | jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.validation-api     | jakarta.validation.Validation$GetValidationProviderListAction
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.validation.Validation$ProviderSpecificBootstrapImpl
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.ws.rs-api          | jakarta.ws.rs.client.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.ws.rs.ext.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.ws.rs.ext.RuntimeDelegate
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.ws.rs.sse.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+jakarta.xml.bind-api       | jakarta.xml.bind.ContextFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.bind.DatatypeConverter
+                           | • @Deprecated: public class java.lang.SecurityManager
+                           |
+                           | jakarta.xml.bind.JAXBContext
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.bind.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.soap-api       | jakarta.xml.soap.FactoryFinder
+                           | • @Deprecated: public final class java.security.AccessController
+                           |
+                           | jakarta.xml.soap.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+jakarta.xml.ws-api         | jakarta.xml.ws.spi.ServiceLoaderUtil
+                           | • @Deprecated: public class java.lang.SecurityManager
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -723,307 +1024,6 @@ jakarta.xml.ws-api                | Jakarta XML Web Services API                
                                   |                                                          |                |                                                             | org.glassfish.hk2.osgiresourcelocator                              | jakarta.xml.ws.spi.http (Version: 3.0.1)                                                                           |                                                    |
                                   |                                                          |                |                                                             |                                                                    | jakarta.xml.ws.wsaddressing (Version: 3.0.1)                                                                       |                                                    |
                                   |                                                          |                |                                                             |                                                                    |    Uses: jakarta.xml.bind.annotation, jakarta.xml.ws, javax.xml.namespace, javax.xml.transform, org.w3c.dom        |                                                    |
-
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource                                      | Sources                                  | Similarity
-----------------------------------------------------+------------------------------------------+------------------
-exclude-common.xml                                  | jakarta.authentication-api               | Different content
-                                                    | jakarta.authorization-api                |
-jakarta.websocket.ClientEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.ClientEndpointConfig$Builder$1    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.ClientEndpointConfig$Builder      | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.ClientEndpointConfig$Configurator | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.ClientEndpointConfig              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.CloseReason$CloseCode             | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.CloseReason$CloseCodes$1          | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.CloseReason$CloseCodes            | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.CloseReason                       | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.ContainerProvider                 | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.DecodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Decoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Decoder$BinaryStream              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Decoder$Text                      | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Decoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Decoder                           | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.DefaultClientEndpointConfig       | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.DeploymentException               | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.EncodeException                   | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Encoder$Binary                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Encoder$BinaryStream              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Encoder$Text                      | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Encoder$TextStream                | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Encoder                           | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Endpoint                          | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.EndpointConfig                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Extension$Parameter               | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Extension                         | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.HandshakeResponse                 | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.MessageHandler$Partial            | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.MessageHandler$Whole              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.MessageHandler                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.OnClose                           | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.OnError                           | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.OnMessage                         | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.OnOpen                            | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.PongMessage                       | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.RemoteEndpoint$Async              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.RemoteEndpoint$Basic              | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.RemoteEndpoint                    | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.SendHandler                       | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.SendResult                        | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.Session                           | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.SessionException                  | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-jakarta.websocket.WebSocketContainer                | jakarta.websocket-api (Classpath)        | Exact copy
-                                                    | jakarta.websocket-client-api (Classpath) |
-
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-Artifact               | Issues
------------------------+------------------------------------------------------------------------------------------------------
-jakarta.activation-api | jakarta.activation.MailcapCommandMap
-                       | • Class not found: com.sun.activation.registries.LogSupport (package not found)
-                       | • Class not found: com.sun.activation.registries.MailcapFile (package not found)
-                       |
-                       | jakarta.activation.MimetypesFileTypeMap
-                       | • Class not found: com.sun.activation.registries.LogSupport (package not found)
-                       | • Class not found: com.sun.activation.registries.MimeTypeFile (package not found)
-jakarta.faces-api      | jakarta.faces.CurrentThreadToServletContext
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.CurrentThreadToServletContext$FactoryFinderCacheKey
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.FactoryFinderInstance
-                       | • Class not found: com.sun.faces.config.ConfigManager (package not found)
-                       | • Class not found: com.sun.faces.spi.InjectionProvider (package not found)
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.ComponentStateHelper
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.UICommand
-                       | • Class not found: com.sun.faces.application.MethodBindingMethodExpressionAdapter (package not found)
-                       | • Class not found: com.sun.faces.application.MethodExpressionMethodBindingAdapter (package not found)
-                       |
-                       | jakarta.faces.component.UIComponent
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.UIComponentBase
-                       | • Class not found: com.sun.faces.application.ValueBindingValueExpressionAdapter (package not found)
-                       | • Class not found: com.sun.faces.application.ValueExpressionValueBindingAdapter (package not found)
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.UIForm
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.UINamingContainer
-                       | • Class not found: com.sun.faces.util.Util (package not found)
-                       |
-                       | jakarta.faces.component.UIViewAction
-                       | • Class not found: com.sun.faces.application.MethodBindingMethodExpressionAdapter (package not found)
-jakarta.mail-api       | jakarta.mail.Session
-                       | • Class not found: com.sun.mail.util.DefaultProvider (package not found)
-                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
-                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
-                       |
-                       | jakarta.mail.internet.ContentDisposition
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.InternetAddress
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.InternetHeaders
-                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.MailDateFormat
-                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
-                       |
-                       | jakarta.mail.internet.MailDateFormat$AbstractDateParser
-                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
-                       |
-                       | jakarta.mail.internet.MailDateFormat$Rfc2822LenientParser
-                       | • Class not found: com.sun.mail.util.MailLogger (package not found)
-                       |
-                       | jakarta.mail.internet.MimeBodyPart
-                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
-                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
-                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
-                       | • Class not found: com.sun.mail.util.MessageRemovedIOException (package not found)
-                       | • Class not found: com.sun.mail.util.MimeUtil (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.MimeMessage
-                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
-                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
-                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
-                       | • Class not found: com.sun.mail.util.MessageRemovedIOException (package not found)
-                       | • Class not found: com.sun.mail.util.MimeUtil (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.MimeMultipart
-                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
-                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
-                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.MimePartDataSource
-                       | • Class not found: com.sun.mail.util.FolderClosedIOException (package not found)
-                       |
-                       | jakarta.mail.internet.MimeUtility
-                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
-                       | • Class not found: com.sun.mail.util.BASE64DecoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.BASE64EncoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.BEncoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.LineInputStream (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       | • Class not found: com.sun.mail.util.QDecoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.QEncoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.QPDecoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.QPEncoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.UUDecoderStream (package not found)
-                       | • Class not found: com.sun.mail.util.UUEncoderStream (package not found)
-                       |
-                       | jakarta.mail.internet.ParameterList
-                       | • Class not found: com.sun.mail.util.ASCIIUtility (package not found)
-                       | • Class not found: com.sun.mail.util.PropUtil (package not found)
-                       |
-                       | jakarta.mail.internet.PreencodedMimeBodyPart
-                       | • Class not found: com.sun.mail.util.LineOutputStream (package not found)
-
-Blacklist
----------
-Use of dangerous, unsafe, unstable, or deprecated classes and methods.
-
-Artifact                   | Issues
----------------------------+---------------------------------------------------------------------------------------------
-jakarta.activation-api     | jakarta.activation.CommandInfo$Beans
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.activation.CommandMap
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           |
-                           | jakarta.activation.DataHandler
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           |
-                           | jakarta.activation.FileTypeMap
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           |
-                           | jakarta.activation.MailcapCommandMap
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.activation.MimetypesFileTypeMap
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.activation.SecuritySupport
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.authentication-api | jakarta.security.auth.message.config.AuthConfigFactory
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.authorization-api  | jakarta.security.jacc.PolicyConfigurationFactory
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.security.jacc.PolicyContext
-                           | • @Deprecated: public class java.lang.SecurityManager
-jakarta.batch-api          | jakarta.batch.runtime.BatchRuntime
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.enterprise.cdi-api | jakarta.enterprise.inject.spi.SecurityActions
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.enterprise.util.SecurityActions
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.json-api           | jakarta.json.spi.JsonProvider
-                           | • @Deprecated: public class java.lang.SecurityManager
-jakarta.mail-api           | jakarta.mail.Session
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.persistence-api    | jakarta.persistence.spi.PersistenceProviderResolverHolder$DefaultPersistenceProviderResolver
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.validation-api     | jakarta.validation.Validation$GetValidationProviderListAction
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.validation.Validation$ProviderSpecificBootstrapImpl
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.ws.rs-api          | jakarta.ws.rs.client.FactoryFinder
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.ws.rs.ext.FactoryFinder
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.ws.rs.ext.RuntimeDelegate
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           |
-                           | jakarta.ws.rs.sse.FactoryFinder
-                           | • @Deprecated: public final class java.security.AccessController
-jakarta.xml.bind-api       | jakarta.xml.bind.ContextFinder
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.xml.bind.DatatypeConverter
-                           | • @Deprecated: public class java.lang.SecurityManager
-                           |
-                           | jakarta.xml.bind.JAXBContext
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.xml.bind.ServiceLoaderUtil
-                           | • @Deprecated: public class java.lang.SecurityManager
-jakarta.xml.soap-api       | jakarta.xml.soap.FactoryFinder
-                           | • @Deprecated: public final class java.security.AccessController
-                           |
-                           | jakarta.xml.soap.ServiceLoaderUtil
-                           | • @Deprecated: public class java.lang.SecurityManager
-jakarta.xml.ws-api         | jakarta.xml.ws.spi.ServiceLoaderUtil
-                           | • @Deprecated: public class java.lang.SecurityManager
 
 Java Runtime
 ------------

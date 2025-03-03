@@ -46,6 +46,44 @@ websocket-servlet  | websocket-api | [none]            | org.eclipse.jetty.webso
                    |               |                   |                                                                | 10.0.0, 10.0.1, 10.0.2, [...], 10.0.22, 10.0.23, 10.0.24                                                          | javax.servlet:javax.servlet-api:3.1.0                      | OK [Provided]
                    |               |                   |                                                                | 11.0.0, 11.0.1, 11.0.2, [...], 11.0.22, 11.0.23, 11.0.24                                                          |                                                            |
 
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource | Sources            | Similarity
+---------------+--------------------+-----------
+about.html     | jetty-continuation | Exact copy
+               | jetty-http         |
+               | jetty-io           |
+               | jetty-servlets     |
+               | jetty-util         |
+               | websocket-api      |
+               | websocket-servlet  |
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+Artifact | Issues
+---------+-------
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact       | Issues
+---------------+---------------------------------------------------------------------------------------------
+jetty-servlets | org.eclipse.jetty.servlets.CGI
+               | • java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)
+               |
+               | org.eclipse.jetty.servlets.MultiPartFilter
+               | • @Deprecated: public class org.eclipse.jetty.util.MultiPartInputStreamParser
+jetty-util     | org.eclipse.jetty.util.security.Password
+               | • static void java.lang.System.exit(int)
+               |
+               | org.eclipse.jetty.util.security.UnixCrypt
+               | • static void java.lang.System.exit(int)
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -209,42 +247,4 @@ websocket-servlet  | Jetty :: Websocket :: Servlet Interface            | 9.4.20
                    |                                                    |                  |                                                        | Dynamic:                                                          |                                                                                                                      |                                                                                                                                                   |
                    |                                                    |                  |                                                        | org.eclipse.jetty.websocket.server (Version: 9.4)                 |                                                                                                                      |                                                                                                                                                   |
                    |                                                    |                  |                                                        | org.eclipse.jetty.websocket.server.pathmap (Version: 9.4)         |                                                                                                                      |                                                                                                                                                   |
-
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource | Sources            | Similarity
----------------+--------------------+-----------
-about.html     | jetty-continuation | Exact copy
-               | jetty-http         |
-               | jetty-io           |
-               | jetty-servlets     |
-               | jetty-util         |
-               | websocket-api      |
-               | websocket-servlet  |
-
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-Artifact | Issues
----------+-------
-
-Blacklist
----------
-Use of dangerous, unsafe, unstable, or deprecated classes and methods.
-
-Artifact       | Issues
----------------+---------------------------------------------------------------------------------------------
-jetty-servlets | org.eclipse.jetty.servlets.CGI
-               | • java.lang.Process java.lang.Runtime.exec(java.lang.String,java.lang.String[],java.io.File)
-               |
-               | org.eclipse.jetty.servlets.MultiPartFilter
-               | • @Deprecated: public class org.eclipse.jetty.util.MultiPartInputStreamParser
-jetty-util     | org.eclipse.jetty.util.security.Password
-               | • static void java.lang.System.exit(int)
-               |
-               | org.eclipse.jetty.util.security.UnixCrypt
-               | • static void java.lang.System.exit(int)
 

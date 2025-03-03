@@ -577,12 +577,12 @@
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
 <li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
-<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
-<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
-<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
 <li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
 </ul>
 </nav>
@@ -762,6 +762,75 @@
 		</td>
 		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
 		<td>OK</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.tree.MethodNode</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+		</td>
 	</tr>
 </tbody>
 </table>
@@ -979,75 +1048,6 @@
 </div>
 </section>
 
-<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
-<h2 class="report-section-title">Duplicate Classes</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Class/Resource</th>
-		<th>Sources</th>
-		<th>Similarity</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
-<h2 class="report-section-title">Binary Compatibility</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="report-section" id="Blacklist" title="Blacklist">
-<h2 class="report-section-title">Blacklist</h2>
-<div class="report-section-content">
-<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Issues</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>asm-commons</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>asm-tree</td>
-		<td>
-			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.tree.MethodNode</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
-		</td>
-	</tr>
-</tbody>
-</table>
-</div>
-</section>
-
 <section class="report-section" id="JavaRuntime" title="Java Runtime">
 <h2 class="report-section-title">Java Runtime</h2>
 <div class="report-section-content">
@@ -1061,19 +1061,19 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
-c2KOdV3/+jfc+OONTiIAAA==
+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
+OdZ1/cs/RISimE4iAAA=
 -->
 </html>

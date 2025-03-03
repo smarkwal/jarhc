@@ -18,6 +18,15 @@ Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencie
 ---------+--------+---------+-------------------+-----------+---------------------+-------
 jarhc    | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact | Issues
+---------+-----------------------------------------
+jarhc    | org.jarhc.Main
+         | • static void java.lang.System.exit(int)
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -33,13 +42,4 @@ List of Java Modules found in classpath.
 Artifact | Module name | Definition | Automatic | Requires | Exports
 ---------+-------------+------------+-----------+----------+---------------
 jarhc    | org.jarhc   | Manifest   | Yes       |          | [all packages]
-
-Blacklist
----------
-Use of dangerous, unsafe, unstable, or deprecated classes and methods.
-
-Artifact | Issues
----------+-----------------------------------------
-jarhc    | org.jarhc.Main
-         | • static void java.lang.System.exit(int)
 

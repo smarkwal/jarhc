@@ -20,6 +20,35 @@ Artifact  | Uses   | Used by | Maven coordinates          | Updates             
 slf4j-api | [none] | [none]  | org.slf4j:slf4j-api:1.7.28 | 1.7.29, 1.7.30, 1.7.31, [...], 1.7.34, 1.7.35, 1.7.36 | [none]              |
           |        |         |                            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.15, 2.0.16, 2.0.17    |                     |
 
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+Artifact  | Issues
+----------+-------------------------------------------------------------------------
+slf4j-api | org.slf4j.LoggerFactory
+          | • Class not found: org.slf4j.impl.StaticLoggerBinder (package not found)
+          |
+          | org.slf4j.MDC
+          | • Class not found: org.slf4j.impl.StaticMDCBinder (package not found)
+          |
+          | org.slf4j.MarkerFactory
+          | • Class not found: org.slf4j.impl.StaticMarkerBinder (package not found)
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact | Issues
+---------+-------
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -52,33 +81,4 @@ slf4j-api | slf4j-api                | 1.7.28  | The slf4j API     | org.slf4j.i
           | Symbolic Name: slf4j.api |         | Vendor: SLF4J.ORG |                                 | org.slf4j.spi (Version: 1.7.28)     |              | Required Execution Environment: J2SE-1.5
           |                          |         |                   |                                 | org.slf4j.helpers (Version: 1.7.28) |              |
           |                          |         |                   |                                 | org.slf4j.event (Version: 1.7.28)   |              |
-
-Duplicate Classes
------------------
-Duplicate classes, shadowed classes, and duplicate resources.
-
-Class/Resource | Sources | Similarity
----------------+---------+-----------
-
-Binary Compatibility
---------------------
-Compatibility issues between JAR files.
-
-Artifact  | Issues
-----------+-------------------------------------------------------------------------
-slf4j-api | org.slf4j.LoggerFactory
-          | • Class not found: org.slf4j.impl.StaticLoggerBinder (package not found)
-          |
-          | org.slf4j.MDC
-          | • Class not found: org.slf4j.impl.StaticMDCBinder (package not found)
-          |
-          | org.slf4j.MarkerFactory
-          | • Class not found: org.slf4j.impl.StaticMarkerBinder (package not found)
-
-Blacklist
----------
-Use of dangerous, unsafe, unstable, or deprecated classes and methods.
-
-Artifact | Issues
----------+-------
 

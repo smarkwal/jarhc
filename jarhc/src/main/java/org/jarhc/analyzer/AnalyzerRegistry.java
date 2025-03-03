@@ -40,12 +40,12 @@ public class AnalyzerRegistry {
 		this.injector = injector;
 		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("jm", "JAR Manifests", JarManifestsAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("m", "JPMS Modules", JpmsModulesAnalyzer.class));
-		descriptions.add(new AnalyzerDescription("ob", "OSGi Bundles", OSGiBundlesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bl", "Blacklist", BlacklistAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("jm", "JAR Manifests", JarManifestsAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("m", "JPMS Modules", JpmsModulesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("ob", "OSGi Bundles", OSGiBundlesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("jr", "Java Runtime", JavaRuntimeAnalyzer.class));
 	}
 
