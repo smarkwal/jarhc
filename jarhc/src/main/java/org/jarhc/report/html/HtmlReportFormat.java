@@ -99,10 +99,10 @@ public class HtmlReportFormat implements ReportFormat {
 		writer.println("\t<div id=\"generator\">Generated with <a href=\"http://jarhc.org\" target=\"_blank\">JarHC " + VersionUtils.getVersion() + "</a></div>");
 		writer.println("</header>");
 		writer.println();
-		writer.println("<main>");
-		writer.println();
 		writer.println("<div id=\"minimap\"></div>");
 		writer.println("<div id=\"minimap-view\"></div>");
+		writer.println();
+		writer.println("<main>");
 		writer.println();
 
 		// add optional title

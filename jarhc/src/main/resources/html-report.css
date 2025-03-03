@@ -39,9 +39,10 @@ a:visited {
 }
 
 header {
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	background-color: lightgray;
@@ -93,11 +94,8 @@ input[type="checkbox"] {
 
 #generator {
 	align-self: flex-end;
+	margin-right: 20px;
 	padding: 8px;
-}
-
-main {
-	margin: 20px 20px 20px 100px;
 }
 
 #minimap {
@@ -121,6 +119,10 @@ main {
 	z-index: 90;
 	user-select: none;
 	border: 4px solid black;
+}
+
+main {
+	margin: 80px 20px 20px 100px;
 }
 
 h2, h3, h4, h5, h6 {
