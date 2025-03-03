@@ -272,6 +272,185 @@
          }]
       },
       {
+         "description": "Dependencies between JAR files, and as declared in POM file.",
+         "title": "Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Uses",
+               "Used by",
+               "Maven coordinates",
+               "Updates",
+               "Direct dependencies",
+               "Status"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "[none]",
+                  "aether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  "[none]",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "aether-connector-basic",
+                  "aether-api\naether-spi\naether-util",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
+                  "OK\nOK\nOK\nUnsatisfied"
+               ],
+               [
+                  "aether-impl",
+                  "aether-api\naether-spi\naether-util\nslf4j-api",
+                  "jarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional)\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional)",
+                  "OK\nOK\nOK\nUnsatisfied\nUnsatisfied\nOK (version 2.0.16)\nUnsatisfied"
+               ],
+               [
+                  "aether-spi",
+                  "aether-api",
+                  "aether-connector-basic\naether-impl\naether-transport-file\naether-transport-http\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  "OK"
+               ],
+               [
+                  "aether-transport-file",
+                  "aether-api\naether-spi",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
+                  "OK\nOK\nOK\nUnsatisfied"
+               ],
+               [
+                  "aether-transport-http",
+                  "aether-api\naether-spi\naether-util\nhttpclient",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.apache.httpcomponents:httpclient:4.3.5]]\n[[org.slf4j:jcl-over-slf4j:1.6.2]]",
+                  "OK\nOK\nOK\nUnsatisfied\nOK (version 4.5.14)\nOK (version 2.0.16)"
+               ],
+               [
+                  "aether-util",
+                  "aether-api",
+                  "aether-connector-basic\naether-impl\naether-transport-http\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  "OK"
+               ],
+               [
+                  "asm",
+                  "[none]",
+                  "jarhc",
+                  "[[org.ow2.asm:asm:9.7]]",
+                  "[9.7.1](org.ow2.asm:asm:9.7.1)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "commons-codec",
+                  "[none]",
+                  "httpclient",
+                  "[[commons-codec:commons-codec:1.17.1]]",
+                  "[1.17.2](commons-codec:commons-codec:1.17.2)\n[1.18.0](commons-codec:commons-codec:1.18.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "guava",
+                  "[none]",
+                  "maven-aether-provider",
+                  "[[com.google.guava:guava:33.3.0-jre]]",
+                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre)",
+                  "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]\n[[org.checkerframework:checker-qual:3.43.0]]",
+                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
+               ],
+               [
+                  "httpclient",
+                  "commons-codec\njcl-over-slf4j",
+                  "aether-transport-http",
+                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  "[none]",
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]]\n[[commons-codec:commons-codec:1.11]]\n[[commons-logging:commons-logging:1.2]]",
+                  "Unsatisfied\nOK (version 1.17.1)\nUnsatisfied"
+               ],
+               [
+                  "jarhc",
+                  "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
+                  "[none]",
+                  "[[org.jarhc:jarhc:2.2.2]]",
+                  "[none]",
+                  "[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:slf4j-api:2.0.16]]",
+                  "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "slf4j-api",
+                  "httpclient\njarhc",
+                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  "[2.0.17](org.slf4j:jcl-over-slf4j:2.0.17)",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "OK"
+               ],
+               [
+                  "json",
+                  "[none]",
+                  "jarhc",
+                  "[[org.json:json:20240303]]",
+                  "[20241224](org.json:json:20241224)\n[20250107](org.json:json:20250107)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jul-to-slf4j",
+                  "slf4j-api",
+                  "jarhc",
+                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  "[2.0.17](org.slf4j:jul-to-slf4j:2.0.17)",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "OK"
+               ],
+               [
+                  "maven-aether-provider",
+                  "aether-api\naether-impl\naether-spi\naether-util\nguava\nplexus-utils",
+                  "jarhc",
+                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  "[none]",
+                  "[[org.apache.maven:maven-model:3.3.9]]\n[[org.apache.maven:maven-model-builder:3.3.9]]\n[[org.apache.maven:maven-repository-metadata:3.3.9]]\n[[com.google.inject:guice:4.0]] (optional)\n[[org.apache.commons:commons-lang3:3.4]]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]]\n[[org.codehaus.plexus:plexus-utils:3.0.22]]\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]]",
+                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 3.5.1)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)"
+               ],
+               [
+                  "plexus-utils",
+                  "[none]",
+                  "maven-aether-provider",
+                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  "[3.6.0](org.codehaus.plexus:plexus-utils:3.6.0)\n[4.0.0](org.codehaus.plexus:plexus-utils:4.0.0), [4.0.1](org.codehaus.plexus:plexus-utils:4.0.1), [4.0.2](org.codehaus.plexus:plexus-utils:4.0.2)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "slf4j-api",
+                  "[none]",
+                  "aether-impl\njarhc\njcl-over-slf4j\njul-to-slf4j",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "[2.0.17](org.slf4j:slf4j-api:2.0.17)",
+                  "[none]",
+                  ""
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -608,322 +787,143 @@
             "rows": [
                [
                   "aether-api",
-                  "Aether API\n[org.eclipse.aether.api]",
+                  "Aether API\nSymbolic Name: `org.eclipse.aether.api`",
                   "1.1.0",
                   "The application programming interface for the repository\nsystem.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-api/",
                   "",
-                  "`org.eclipse.aether` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.deployment`,\n\t\t`org.eclipse.aether.installation`, `org.eclipse.aether.metadata`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.resolution`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.artifact` (Version: 1.1.0)\n`org.eclipse.aether.collection` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.version`\n`org.eclipse.aether.deployment` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.graph` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.installation` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.metadata` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.repository` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.resolution` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.transfer` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.version` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`",
+                  "`org.eclipse.aether` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.deployment`,\n\t\t`org.eclipse.aether.installation`, `org.eclipse.aether.metadata`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.resolution`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.artifact` (Version: `1.1.0`)\n`org.eclipse.aether.collection` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.version`\n`org.eclipse.aether.deployment` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.graph` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.installation` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.metadata` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.repository` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.resolution` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.transfer` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-connector-basic",
-                  "Aether Connector Basic\n[org.eclipse.aether.connector.basic]",
+                  "Aether Connector Basic\nSymbolic Name: `org.eclipse.aether.connector.basic`",
                   "1.1.0",
                   "A repository connector implementation for repositories using\nURI-based layouts.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-connector-basic/",
-                  "javax.inject;resolution:=optional\norg.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.artifact;version=\"[1.1,2)\"\norg.eclipse.aether.metadata;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.checksum;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.layout;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.transport;version=\"[1.1,2)\"\norg.eclipse.aether.spi.io;version=\"[1.1,2)\"\norg.eclipse.aether.spi.locator;version=\"[1.1,2)\"\norg.eclipse.aether.spi.log;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"\norg.eclipse.aether.util;version=\"[1.1,2)\"\norg.eclipse.aether.util.concurrency;version=\"[1.1,2)\"",
-                  "`org.eclipse.aether.connector.basic` (Version: 1.1.0)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.spi.connector`,\n\t\t`org.eclipse.aether.spi.connector.checksum`, `org.eclipse.aether.spi.connector.layout`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`, `org.eclipse.aether.spi.locator`,\n\t\t`org.eclipse.aether.spi.log`, `org.eclipse.aether.transfer`",
+                  "`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.checksum` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.layout` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.io` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.concurrency` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.connector.basic` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.spi.connector`,\n\t\t`org.eclipse.aether.spi.connector.checksum`, `org.eclipse.aether.spi.connector.layout`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`, `org.eclipse.aether.spi.locator`,\n\t\t`org.eclipse.aether.spi.log`, `org.eclipse.aether.transfer`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-impl",
-                  "Aether Implementation\n[org.eclipse.aether.impl]",
+                  "Aether Implementation\nSymbolic Name: `org.eclipse.aether.impl`",
                   "1.1.0",
                   "An implementation of the repository system.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-impl/",
-                  "com.google.inject;version=\"[1.3,2)\";resolution:=optional\ncom.google.inject.binder;version=\"[1.3,2)\";resolution:=optional\ncom.google.inject.name;version=\"[1.3,2)\";resolution:=optional\njavax.inject;resolution:=optional\norg.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.artifact;version=\"[1.1,2)\"\norg.eclipse.aether.collection;version=\"[1.1,2)\"\norg.eclipse.aether.deployment;version=\"[1.1,2)\"\norg.eclipse.aether.graph;version=\"[1.1,2)\"\norg.eclipse.aether.installation;version=\"[1.1,2)\"\norg.eclipse.aether.metadata;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.resolution;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.checksum;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.layout;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.transport;version=\"[1.1,2)\"\norg.eclipse.aether.spi.io;version=\"[1.1,2)\"\norg.eclipse.aether.spi.localrepo;version=\"[1.1,2)\"\norg.eclipse.aether.spi.locator;version=\"[1.1,2)\"\norg.eclipse.aether.spi.log;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"\norg.eclipse.aether.util;version=\"[1.1,2)\"\norg.eclipse.aether.util.artifact;version=\"[1.1,2)\"\norg.eclipse.aether.util.concurrency;version=\"[1.1,2)\"\norg.eclipse.aether.util.graph.transformer;version=\"[1.1,2)\"\norg.eclipse.aether.util.graph.visitor;version=\"[1.1,2)\"\norg.eclipse.aether.version;version=\"[1.1,2)\"\norg.eclipse.sisu;resolution:=optional\norg.slf4j;version=\"[1.6,2)\";resolution:=optional\norg.slf4j.spi;version=\"[1.6,2)\";resolution:=optional",
-                  "`org.eclipse.aether.internal.impl` (Version: 1.1.0)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.connector.checksum`,\n\t\t`org.eclipse.aether.spi.connector.layout`, `org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`,\n\t\t`org.eclipse.aether.spi.localrepo`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`\n\tx-internal:: `true`\n`org.eclipse.aether.internal.impl.slf4j` (Version: 1.1.0)\n\tUses: `javax.inject`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`, `org.slf4j`\n\tx-internal:: `true`\n`org.eclipse.aether.impl` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl.guice`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.impl.guice` (Version: 1.1.0)\n\tUses: `com.google.inject`",
+                  "`com.google.inject` (Version: `[1.3,2)`) (optional)\n`com.google.inject.binder` (Version: `[1.3,2)`) (optional)\n`com.google.inject.name` (Version: `[1.3,2)`) (optional)\n`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.collection` (Version: `[1.1,2)`)\n`org.eclipse.aether.deployment` (Version: `[1.1,2)`)\n`org.eclipse.aether.graph` (Version: `[1.1,2)`)\n`org.eclipse.aether.installation` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.resolution` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.checksum` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.layout` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.io` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.localrepo` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.concurrency` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.graph.transformer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.graph.visitor` (Version: `[1.1,2)`)\n`org.eclipse.aether.version` (Version: `[1.1,2)`)\n`org.eclipse.sisu` (optional)\n`org.slf4j` (Version: `[1.6,2)`) (optional)\n`org.slf4j.spi` (Version: `[1.6,2)`) (optional)",
+                  "`org.eclipse.aether.internal.impl` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.connector.checksum`,\n\t\t`org.eclipse.aether.spi.connector.layout`, `org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`,\n\t\t`org.eclipse.aether.spi.localrepo`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`\n\tx-internal:: `true`\n`org.eclipse.aether.internal.impl.slf4j` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`, `org.slf4j`\n\tx-internal:: `true`\n`org.eclipse.aether.impl` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl.guice`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.impl.guice` (Version: `1.1.0`)\n\tUses: `com.google.inject`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-spi",
-                  "Aether SPI\n[org.eclipse.aether.spi]",
+                  "Aether SPI\nSymbolic Name: `org.eclipse.aether.spi`",
                   "1.1.0",
                   "The service provider interface for repository system\nimplementations and repository connectors.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-spi/",
-                  "org.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.artifact;version=\"[1.1,2)\"\norg.eclipse.aether.metadata;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"",
-                  "`org.eclipse.aether.spi.connector` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.checksum` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.layout` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.transport` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.io` (Version: 1.1.0)\n`org.eclipse.aether.spi.localrepo` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`\n`org.eclipse.aether.spi.locator` (Version: 1.1.0)\n`org.eclipse.aether.spi.log` (Version: 1.1.0)",
+                  "`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.spi.connector` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.checksum` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.layout` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.transport` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.io` (Version: `1.1.0`)\n`org.eclipse.aether.spi.localrepo` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`\n`org.eclipse.aether.spi.locator` (Version: `1.1.0`)\n`org.eclipse.aether.spi.log` (Version: `1.1.0`)",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-transport-file",
-                  "Aether Transport File\n[org.eclipse.aether.transport.file]",
+                  "Aether Transport File\nSymbolic Name: `org.eclipse.aether.transport.file`",
                   "1.1.0",
                   "A transport implementation for repositories using file://\nURLs.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-transport-file/",
-                  "javax.inject;resolution:=optional\norg.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.transport;version=\"[1.1,2)\"\norg.eclipse.aether.spi.locator;version=\"[1.1,2)\"\norg.eclipse.aether.spi.log;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"",
-                  "`org.eclipse.aether.transport.file` (Version: 1.1.0)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
+                  "`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.transport.file` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-transport-http",
-                  "Aether Transport HTTP\n[org.eclipse.aether.transport.http]",
+                  "Aether Transport HTTP\nSymbolic Name: `org.eclipse.aether.transport.http`",
                   "1.1.0",
                   "A transport implementation for repositories using http://\nand https:// URLs.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-transport-http/",
-                  "org.apache.http;version=\"[4.2.1,4.4)\"\norg.apache.http.auth;version=\"[4.2.1,4.4)\"\norg.apache.http.auth.params;version=\"[4.2.1,4.4)\"\norg.apache.http.client;version=\"[4.2.1,4.4)\"\norg.apache.http.client.methods;version=\"[4.2.1,4.4)\"\norg.apache.http.client.utils;version=\"[4.2.1,4.4)\"\norg.apache.http.conn;version=\"[4.2.1,4.4)\"\norg.apache.http.conn.params;version=\"[4.2.1,4.4)\"\norg.apache.http.conn.scheme;version=\"[4.2.1,4.4)\"\norg.apache.http.conn.ssl;version=\"[4.2.1,4.4)\"\norg.apache.http.entity;version=\"[4.2.1,4.4)\"\norg.apache.http.impl.auth;version=\"[4.2.1,4.4)\"\norg.apache.http.impl.client;version=\"[4.2.1,4.4)\"\norg.apache.http.impl.conn;version=\"[4.2.1,4.4)\"\norg.apache.http.impl.cookie;version=\"[4.2.1,4.4)\"\norg.apache.http.params;version=\"[4.2.1,4.4)\"\norg.apache.http.protocol;version=\"[4.2.1,4.4)\"\norg.apache.http.util;version=\"[4.2.1,4.4)\"\njavax.inject;resolution:=optional\njavax.net\njavax.net.ssl\norg.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.spi.connector.transport;version=\"[1.1,2)\"\norg.eclipse.aether.spi.locator;version=\"[1.1,2)\"\norg.eclipse.aether.spi.log;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"\norg.eclipse.aether.util;version=\"[1.1,2)\"",
-                  "`org.eclipse.aether.transport.http` (Version: 1.1.0)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
+                  "`org.apache.http` (Version: `[4.2.1,4.4)`)\n`org.apache.http.auth` (Version: `[4.2.1,4.4)`)\n`org.apache.http.auth.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client.methods` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client.utils` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.scheme` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.ssl` (Version: `[4.2.1,4.4)`)\n`org.apache.http.entity` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.auth` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.client` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.conn` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.cookie` (Version: `[4.2.1,4.4)`)\n`org.apache.http.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.protocol` (Version: `[4.2.1,4.4)`)\n`org.apache.http.util` (Version: `[4.2.1,4.4)`)\n`javax.inject` (optional)\n`javax.net`\n`javax.net.ssl`\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.transport.http` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "aether-util",
-                  "Aether Utilities\n[org.eclipse.aether.util]",
+                  "Aether Utilities\nSymbolic Name: `org.eclipse.aether.util`",
                   "1.1.0",
                   "A collection of utility classes to ease usage of the\nrepository system.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-util/",
-                  "javax.net.ssl\norg.eclipse.aether;version=\"[1.1,2)\"\norg.eclipse.aether.artifact;version=\"[1.1,2)\"\norg.eclipse.aether.collection;version=\"[1.1,2)\"\norg.eclipse.aether.graph;version=\"[1.1,2)\"\norg.eclipse.aether.metadata;version=\"[1.1,2)\"\norg.eclipse.aether.repository;version=\"[1.1,2)\"\norg.eclipse.aether.resolution;version=\"[1.1,2)\"\norg.eclipse.aether.transfer;version=\"[1.1,2)\"\norg.eclipse.aether.version;version=\"[1.1,2)\"",
-                  "`org.eclipse.aether.util` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.util.artifact` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.artifact`\n`org.eclipse.aether.util.concurrency` (Version: 1.1.0)\n`org.eclipse.aether.util.filter` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.version`\n`org.eclipse.aether.util.graph.manager` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.selector` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.transformer` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.traverser` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.version` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`\n`org.eclipse.aether.util.graph.visitor` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.graph`\n`org.eclipse.aether.util.listener` (Version: 1.1.0)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.util.repository` (Version: 1.1.0)\n\tUses: `javax.net.ssl`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.resolution`\n`org.eclipse.aether.util.version` (Version: 1.1.0)\n\tUses: `org.eclipse.aether.version`",
+                  "`javax.net.ssl`\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.collection` (Version: `[1.1,2)`)\n`org.eclipse.aether.graph` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.resolution` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.version` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.util` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.util.artifact` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`\n`org.eclipse.aether.util.concurrency` (Version: `1.1.0`)\n`org.eclipse.aether.util.filter` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.version`\n`org.eclipse.aether.util.graph.manager` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.selector` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.transformer` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.traverser` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`\n`org.eclipse.aether.util.graph.visitor` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.graph`\n`org.eclipse.aether.util.listener` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.util.repository` (Version: `1.1.0`)\n\tUses: `javax.net.ssl`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.resolution`\n`org.eclipse.aether.util.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.version`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "asm",
-                  "org.objectweb.asm",
+                  "`org.objectweb.asm`",
                   "9.7",
                   "License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt\nDoc URL: http://asm.ow2.org",
                   "",
-                  "`org.objectweb.asm` (Version: 9.7)\n`org.objectweb.asm.signature` (Version: 9.7)",
+                  "`org.objectweb.asm` (Version: `9.7`)\n`org.objectweb.asm.signature` (Version: `9.7`)",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "commons-codec",
-                  "Apache Commons Codec\n[org.apache.commons.commons-codec]",
+                  "Apache Commons Codec\nSymbolic Name: `org.apache.commons.commons-codec`",
                   "1.17.1",
                   "The Apache Commons Codec component contains encoders and\ndecoders for     various formats such as Base16, Base32,\nBase64, digest, and Hexadecimal. In addition to these\nwidely used encoders and decoders, the codec package also\nmaintains a     collection of phonetic encoding utilities.\nVendor: The Apache Software Foundation\nLicense: https://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://commons.apache.org/proper/commons-codec/",
-                  "javax.crypto\njavax.crypto.spec",
-                  "`org.apache.commons.codec` (Version: 1.17.1)\n`org.apache.commons.codec.binary` (Version: 1.17.1)\n`org.apache.commons.codec.cli` (Version: 1.17.1)\n`org.apache.commons.codec.digest` (Version: 1.17.1)\n`org.apache.commons.codec.language` (Version: 1.17.1)\n`org.apache.commons.codec.language.bm` (Version: 1.17.1)\n`org.apache.commons.codec.net` (Version: 1.17.1)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.crypto`\n`javax.crypto.spec`",
+                  "`org.apache.commons.codec` (Version: `1.17.1`)\n`org.apache.commons.codec.binary` (Version: `1.17.1`)\n`org.apache.commons.codec.cli` (Version: `1.17.1`)\n`org.apache.commons.codec.digest` (Version: `1.17.1`)\n`org.apache.commons.codec.language` (Version: `1.17.1`)\n`org.apache.commons.codec.language.bm` (Version: `1.17.1`)\n`org.apache.commons.codec.net` (Version: `1.17.1`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2\nInclude Resource:\norg/apache/commons/codec/language/bm/ash_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_any.txt\norg/apache/commons/codec/language/bm/ash_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_common.txt\norg/apache/commons/codec/language/bm/ash_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_english.txt\norg/apache/commons/codec/language/bm/ash_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_french.txt\norg/apache/commons/codec/language/bm/ash_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_german.txt\norg/apache/commons/codec/language/bm/ash_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hebrew.txt\norg/apache/commons/codec/language/bm/ash_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hungarian.txt\norg/apache/commons/codec/language/bm/ash_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_polish.txt\norg/apache/commons/codec/language/bm/ash_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_romanian.txt\norg/apache/commons/codec/language/bm/ash_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_russian.txt\norg/apache/commons/codec/language/bm/ash_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_spanish.txt\norg/apache/commons/codec/language/bm/ash_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_any.txt\norg/apache/commons/codec/language/bm/ash_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_approx_common.txt\norg/apache/commons/codec/language/bm/ash_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_common.txt\norg/apache/commons/codec/language/bm/ash_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_english.txt\norg/apache/commons/codec/language/bm/ash_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_french.txt\norg/apache/commons/codec/language/bm/ash_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_german.txt\norg/apache/commons/codec/language/bm/ash_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hebrew.txt\norg/apache/commons/codec/language/bm/ash_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hungarian.txt\norg/apache/commons/codec/language/bm/ash_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_polish.txt\norg/apache/commons/codec/language/bm/ash_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_romanian.txt\norg/apache/commons/codec/language/bm/ash_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_russian.txt\norg/apache/commons/codec/language/bm/ash_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_spanish.txt\norg/apache/commons/codec/language/bm/ash_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_hebrew_common.txt\norg/apache/commons/codec/language/bm/ash_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_lang.txt\norg/apache/commons/codec/language/bm/ash_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_languages.txt\norg/apache/commons/codec/language/bm/ash_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_any.txt\norg/apache/commons/codec/language/bm/ash_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_english.txt\norg/apache/commons/codec/language/bm/ash_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_french.txt\norg/apache/commons/codec/language/bm/ash_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_german.txt\norg/apache/commons/codec/language/bm/ash_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hebrew.txt\norg/apache/commons/codec/language/bm/ash_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hungarian.txt\norg/apache/commons/codec/language/bm/ash_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_polish.txt\norg/apache/commons/codec/language/bm/ash_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_romanian.txt\norg/apache/commons/codec/language/bm/ash_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_russian.txt\norg/apache/commons/codec/language/bm/ash_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_spanish.txt\norg/apache/commons/codec/language/bm/gen_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_any.txt\norg/apache/commons/codec/language/bm/gen_approx_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_arabic.txt\norg/apache/commons/codec/language/bm/gen_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_common.txt\norg/apache/commons/codec/language/bm/gen_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_approx_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_czech.txt\norg/apache/commons/codec/language/bm/gen_approx_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_dutch.txt\norg/apache/commons/codec/language/bm/gen_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_english.txt\norg/apache/commons/codec/language/bm/gen_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_french.txt\norg/apache/commons/codec/language/bm/gen_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_german.txt\norg/apache/commons/codec/language/bm/gen_approx_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greek.txt\norg/apache/commons/codec/language/bm/gen_approx_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hebrew.txt\norg/apache/commons/codec/language/bm/gen_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hungarian.txt\norg/apache/commons/codec/language/bm/gen_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_italian.txt\norg/apache/commons/codec/language/bm/gen_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_polish.txt\norg/apache/commons/codec/language/bm/gen_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_portuguese.txt\norg/apache/commons/codec/language/bm/gen_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_romanian.txt\norg/apache/commons/codec/language/bm/gen_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_russian.txt\norg/apache/commons/codec/language/bm/gen_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_spanish.txt\norg/apache/commons/codec/language/bm/gen_approx_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_turkish.txt\norg/apache/commons/codec/language/bm/gen_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_any.txt\norg/apache/commons/codec/language/bm/gen_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_approx_common.txt\norg/apache/commons/codec/language/bm/gen_exact_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_arabic.txt\norg/apache/commons/codec/language/bm/gen_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_common.txt\norg/apache/commons/codec/language/bm/gen_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_exact_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_czech.txt\norg/apache/commons/codec/language/bm/gen_exact_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_dutch.txt\norg/apache/commons/codec/language/bm/gen_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_english.txt\norg/apache/commons/codec/language/bm/gen_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_french.txt\norg/apache/commons/codec/language/bm/gen_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_german.txt\norg/apache/commons/codec/language/bm/gen_exact_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greek.txt\norg/apache/commons/codec/language/bm/gen_exact_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hebrew.txt\norg/apache/commons/codec/language/bm/gen_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hungarian.txt\norg/apache/commons/codec/language/bm/gen_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_italian.txt\norg/apache/commons/codec/language/bm/gen_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_polish.txt\norg/apache/commons/codec/language/bm/gen_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_portuguese.txt\norg/apache/commons/codec/language/bm/gen_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_romanian.txt\norg/apache/commons/codec/language/bm/gen_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_russian.txt\norg/apache/commons/codec/language/bm/gen_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_spanish.txt\norg/apache/commons/codec/language/bm/gen_exact_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_turkish.txt\norg/apache/commons/codec/language/bm/gen_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_hebrew_common.txt\norg/apache/commons/codec/language/bm/gen_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_lang.txt\norg/apache/commons/codec/language/bm/gen_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_languages.txt\norg/apache/commons/codec/language/bm/gen_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_any.txt\norg/apache/commons/codec/language/bm/gen_rules_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_arabic.txt\norg/apache/commons/codec/language/bm/gen_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_rules_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_czech.txt\norg/apache/commons/codec/language/bm/gen_rules_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_dutch.txt\norg/apache/commons/codec/language/bm/gen_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_english.txt\norg/apache/commons/codec/language/bm/gen_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_french.txt\norg/apache/commons/codec/language/bm/gen_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_german.txt\norg/apache/commons/codec/language/bm/gen_rules_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greek.txt\norg/apache/commons/codec/language/bm/gen_rules_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hebrew.txt\norg/apache/commons/codec/language/bm/gen_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hungarian.txt\norg/apache/commons/codec/language/bm/gen_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_italian.txt\norg/apache/commons/codec/language/bm/gen_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_polish.txt\norg/apache/commons/codec/language/bm/gen_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_portuguese.txt\norg/apache/commons/codec/language/bm/gen_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_romanian.txt\norg/apache/commons/codec/language/bm/gen_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_russian.txt\norg/apache/commons/codec/language/bm/gen_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_spanish.txt\norg/apache/commons/codec/language/bm/gen_rules_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_turkish.txt\norg/apache/commons/codec/language/bm/lang.txt=src/main/resources/org/apache/commons/codec/language/bm/lang.txt\norg/apache/commons/codec/language/bm/sep_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_any.txt\norg/apache/commons/codec/language/bm/sep_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_common.txt\norg/apache/commons/codec/language/bm/sep_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_french.txt\norg/apache/commons/codec/language/bm/sep_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_hebrew.txt\norg/apache/commons/codec/language/bm/sep_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_italian.txt\norg/apache/commons/codec/language/bm/sep_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_portuguese.txt\norg/apache/commons/codec/language/bm/sep_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_spanish.txt\norg/apache/commons/codec/language/bm/sep_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_any.txt\norg/apache/commons/codec/language/bm/sep_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_approx_common.txt\norg/apache/commons/codec/language/bm/sep_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_common.txt\norg/apache/commons/codec/language/bm/sep_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_french.txt\norg/apache/commons/codec/language/bm/sep_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_hebrew.txt\norg/apache/commons/codec/language/bm/sep_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_italian.txt\norg/apache/commons/codec/language/bm/sep_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_portuguese.txt\norg/apache/commons/codec/language/bm/sep_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_spanish.txt\norg/apache/commons/codec/language/bm/sep_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_hebrew_common.txt\norg/apache/commons/codec/language/bm/sep_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_lang.txt\norg/apache/commons/codec/language/bm/sep_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_languages.txt\norg/apache/commons/codec/language/bm/sep_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_any.txt\norg/apache/commons/codec/language/bm/sep_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_french.txt\norg/apache/commons/codec/language/bm/sep_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_hebrew.txt\norg/apache/commons/codec/language/bm/sep_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_italian.txt\norg/apache/commons/codec/language/bm/sep_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_portuguese.txt\norg/apache/commons/codec/language/bm/sep_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_spanish.txt\norg/apache/commons/codec/language/dmrules.txt=src/main/resources/org/apache/commons/codec/language/dmrules.txt\nMETA-INF/LICENSE.txt=LICENSE.txt\nMETA-INF/NOTICE.txt=NOTICE.txt"
                ],
                [
                   "guava",
-                  "Guava: Google Core Libraries for Java\n[com.google.guava]",
+                  "Guava: Google Core Libraries for Java\nSymbolic Name: `com.google.guava`",
                   "33.3.0.jre",
                   "Guava is a suite of core and expanded libraries that include\nutility classes, Google's collections, I/O classes, and\nmuch more.\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://github.com/google/guava/",
-                  "com.google.common.util.concurrent.internal;version=\"[1.0,2)\"\njavax.annotation;resolution:=optional;version=\"[3.0,4)\"\njavax.crypto;resolution:=optional\njavax.crypto.spec;resolution:=optional\nsun.misc;resolution:=optional",
-                  "`com.google.common.annotations` (Version: 33.3.0)\n`com.google.common.base` (Version: 33.3.0)\n\tUses: `javax.annotation`\n`com.google.common.cache` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent`, `javax.annotation`\n`com.google.common.collect` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.escape` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.eventbus` (Version: 33.3.0)\n`com.google.common.graph` (Version: 33.3.0)\n\tUses: `com.google.common.collect`, `javax.annotation`\n`com.google.common.hash` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.html` (Version: 33.3.0)\n\tUses: `com.google.common.escape`\n`com.google.common.io` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.graph`, `com.google.common.hash`,\n\t\t`javax.annotation`\n`com.google.common.math` (Version: 33.3.0)\n\tUses: `javax.annotation`\n`com.google.common.net` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.escape`, `javax.annotation`\n`com.google.common.primitives` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.reflect` (Version: 33.3.0)\n\tUses: `com.google.common.collect`, `com.google.common.io`, `javax.annotation`\n`com.google.common.util.concurrent` (Version: 33.3.0)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent.internal`,\n\t\t`javax.annotation`\n`com.google.common.xml` (Version: 33.3.0)\n\tUses: `com.google.common.escape`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`com.google.common.util.concurrent.internal` (Version: `[1.0,2)`)\n`javax.annotation` (Version: `[3.0,4)`) (optional)\n`javax.crypto` (optional)\n`javax.crypto.spec` (optional)\n`sun.misc` (optional)",
+                  "`com.google.common.annotations` (Version: `33.3.0`)\n`com.google.common.base` (Version: `33.3.0`)\n\tUses: `javax.annotation`\n`com.google.common.cache` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent`, `javax.annotation`\n`com.google.common.collect` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.escape` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.eventbus` (Version: `33.3.0`)\n`com.google.common.graph` (Version: `33.3.0`)\n\tUses: `com.google.common.collect`, `javax.annotation`\n`com.google.common.hash` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.html` (Version: `33.3.0`)\n\tUses: `com.google.common.escape`\n`com.google.common.io` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.graph`, `com.google.common.hash`,\n\t\t`javax.annotation`\n`com.google.common.math` (Version: `33.3.0`)\n\tUses: `javax.annotation`\n`com.google.common.net` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.escape`, `javax.annotation`\n`com.google.common.primitives` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.reflect` (Version: `33.3.0`)\n\tUses: `com.google.common.collect`, `com.google.common.io`, `javax.annotation`\n`com.google.common.util.concurrent` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent.internal`,\n\t\t`javax.annotation`\n`com.google.common.xml` (Version: `33.3.0`)\n\tUses: `com.google.common.escape`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jcl-over-slf4j",
-                  "JCL 1.2 implemented over SLF4J\n[jcl.over.slf4j]",
+                  "JCL 1.2 implemented over SLF4J\nSymbolic Name: `jcl.over.slf4j`",
                   "2.0.16",
                   "JCL 1.2 implemented over SLF4J\nVendor: SLF4J.ORG\nLicense: https://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: http://www.slf4j.org",
-                  "org.slf4j;version=\"[2.0,3)\"\norg.slf4j.spi;version=\"[2.0,3)\"",
-                  "`org.apache.commons.logging` (Version: 1.2)\n`org.apache.commons.logging.impl` (Version: 1.2)\n\tUses: `org.apache.commons.logging`, `org.slf4j`, `org.slf4j.spi`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`org.slf4j` (Version: `[2.0,3)`)\n`org.slf4j.spi` (Version: `[2.0,3)`)",
+                  "`org.apache.commons.logging` (Version: `1.2`)\n`org.apache.commons.logging.impl` (Version: `1.2`)\n\tUses: `org.apache.commons.logging`, `org.slf4j`, `org.slf4j.spi`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "json",
-                  "JSON in Java\n[json]",
+                  "JSON in Java\nSymbolic Name: `json`",
                   "20240303.0.0",
                   "JSON is a light-weight, language independent, data\ninterchange format.        See http://www.JSON.org/\nThe files in this package implement JSON encoders/decoders\nin Java.        It also includes the capability to convert\nbetween JSON and XML, HTTP        headers, Cookies, and CDL.\nThis is a reference implementation. There are a large number\nof JSON packages        in Java. Perhaps someday the Java\ncommunity will standardize on one. Until        then, choose\ncarefully.\nLicense:\nhttps://github.com/stleary/JSON-java/blob/master/LICENSE",
                   "",
-                  "`org.json` (Version: 20240303.0.0)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`org.json` (Version: `20240303.0.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jul-to-slf4j",
-                  "JUL to SLF4J bridge\n[jul.to.slf4j]",
+                  "JUL to SLF4J bridge\nSymbolic Name: `jul.to.slf4j`",
                   "2.0.16",
                   "JUL to SLF4J bridge\nVendor: SLF4J.ORG\nLicense: http://www.opensource.org/licenses/mit-license.php\nDoc URL: http://www.slf4j.org",
-                  "org.slf4j;version=\"[2.0,3)\"\norg.slf4j.spi;version=\"[2.0,3)\"",
-                  "`org.slf4j.bridge` (Version: 2.0.16)\n\tUses: `org.slf4j`, `org.slf4j.spi`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`org.slf4j` (Version: `[2.0,3)`)\n`org.slf4j.spi` (Version: `[2.0,3)`)",
+                  "`org.slf4j.bridge` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.spi`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "slf4j-api",
-                  "SLF4J API Module\n[slf4j.api]",
+                  "SLF4J API Module\nSymbolic Name: `slf4j.api`",
                   "2.0.16",
                   "The slf4j API\nVendor: SLF4J.ORG\nLicense: http://www.opensource.org/licenses/mit-license.php\nDoc URL: http://www.slf4j.org",
-                  "org.slf4j.spi;version=\"[2.0.16,3)\"",
-                  "`org.slf4j` (Version: 2.0.16)\n\tUses: `org.slf4j.event`, `org.slf4j.helpers`, `org.slf4j.spi`\n`org.slf4j.event` (Version: 2.0.16)\n\tUses: `org.slf4j`, `org.slf4j.helpers`\n`org.slf4j.helpers` (Version: 2.0.16)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.spi`\n`org.slf4j.spi` (Version: 2.0.16)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.helpers`\n`org.slf4j` (Version: 1.7.36)\n`org.slf4j.helpers` (Version: 1.7.36)",
-                  "Required:\nosgi.extender;filter:=\"(&(osgi.extender=osgi.serviceloader.processor)(version>=1.0.0)(!(version>=2.0.0)))\"\nosgi.serviceloader;filter:=\"(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)\";osgi.serviceloader=\"org.slf4j.spi.SLF4JServiceProvider\"\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`org.slf4j.spi` (Version: `[2.0.16,3)`)",
+                  "`org.slf4j` (Version: `2.0.16`)\n\tUses: `org.slf4j.event`, `org.slf4j.helpers`, `org.slf4j.spi`\n`org.slf4j.event` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.helpers`\n`org.slf4j.helpers` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.spi`\n`org.slf4j.spi` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.helpers`\n`org.slf4j` (Version: `1.7.36`)\n`org.slf4j.helpers` (Version: `1.7.36`)",
+                  "Required:\n`osgi.extender;filter:=\"(&(osgi.extender=osgi.serviceloader.processor)(version>=1.0.0)(!(version>=2.0.0)))\"`\n`osgi.serviceloader;filter:=\"(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)\";osgi.serviceloader=\"org.slf4j.spi.SLF4JServiceProvider\"`\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies between JAR files, and as declared in POM file.",
-         "title": "Dependencies",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Uses",
-               "Used by",
-               "Maven coordinates",
-               "Updates",
-               "Direct dependencies",
-               "Status"
-            ],
-            "rows": [
-               [
-                  "aether-api",
-                  "[none]",
-                  "aether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\njarhc\nmaven-aether-provider",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]",
-                  "[none]",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "aether-connector-basic",
-                  "aether-api\naether-spi\naether-util",
-                  "jarhc",
-                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
-                  "OK\nOK\nOK\nUnsatisfied"
-               ],
-               [
-                  "aether-impl",
-                  "aether-api\naether-spi\naether-util\nslf4j-api",
-                  "jarhc\nmaven-aether-provider",
-                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional)\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional)",
-                  "OK\nOK\nOK\nUnsatisfied\nUnsatisfied\nOK (version 2.0.16)\nUnsatisfied"
-               ],
-               [
-                  "aether-spi",
-                  "aether-api",
-                  "aether-connector-basic\naether-impl\naether-transport-file\naether-transport-http\njarhc\nmaven-aether-provider",
-                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]",
-                  "OK"
-               ],
-               [
-                  "aether-transport-file",
-                  "aether-api\naether-spi",
-                  "jarhc",
-                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)",
-                  "OK\nOK\nOK\nUnsatisfied"
-               ],
-               [
-                  "aether-transport-http",
-                  "aether-api\naether-spi\naether-util\nhttpclient",
-                  "jarhc",
-                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]\n[[org.eclipse.aether:aether-spi:1.1.0]]\n[[org.eclipse.aether:aether-util:1.1.0]]\n[[javax.inject:javax.inject:1]] (provided, optional)\n[[org.apache.httpcomponents:httpclient:4.3.5]]\n[[org.slf4j:jcl-over-slf4j:1.6.2]]",
-                  "OK\nOK\nOK\nUnsatisfied\nOK (version 4.5.14)\nOK (version 2.0.16)"
-               ],
-               [
-                  "aether-util",
-                  "aether-api",
-                  "aether-connector-basic\naether-impl\naether-transport-http\njarhc\nmaven-aether-provider",
-                  "[[org.eclipse.aether:aether-util:1.1.0]]",
-                  "[none]",
-                  "[[org.eclipse.aether:aether-api:1.1.0]]",
-                  "OK"
-               ],
-               [
-                  "asm",
-                  "[none]",
-                  "jarhc",
-                  "[[org.ow2.asm:asm:9.7]]",
-                  "[9.7.1](org.ow2.asm:asm:9.7.1)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "commons-codec",
-                  "[none]",
-                  "httpclient",
-                  "[[commons-codec:commons-codec:1.17.1]]",
-                  "[1.17.2](commons-codec:commons-codec:1.17.2)\n[1.18.0](commons-codec:commons-codec:1.18.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "guava",
-                  "[none]",
-                  "maven-aether-provider",
-                  "[[com.google.guava:guava:33.3.0-jre]]",
-                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre)",
-                  "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]\n[[org.checkerframework:checker-qual:3.43.0]]",
-                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
-               ],
-               [
-                  "httpclient",
-                  "commons-codec\njcl-over-slf4j",
-                  "aether-transport-http",
-                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
-                  "[none]",
-                  "[[org.apache.httpcomponents:httpcore:4.4.16]]\n[[commons-codec:commons-codec:1.11]]\n[[commons-logging:commons-logging:1.2]]",
-                  "Unsatisfied\nOK (version 1.17.1)\nUnsatisfied"
-               ],
-               [
-                  "jarhc",
-                  "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
-                  "[none]",
-                  "[[org.jarhc:jarhc:2.2.2]]",
-                  "[none]",
-                  "[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:slf4j-api:2.0.16]]",
-                  "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
-               ],
-               [
-                  "jcl-over-slf4j",
-                  "slf4j-api",
-                  "httpclient\njarhc",
-                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
-                  "[2.0.17](org.slf4j:jcl-over-slf4j:2.0.17)",
-                  "[[org.slf4j:slf4j-api:2.0.16]]",
-                  "OK"
-               ],
-               [
-                  "json",
-                  "[none]",
-                  "jarhc",
-                  "[[org.json:json:20240303]]",
-                  "[20241224](org.json:json:20241224)\n[20250107](org.json:json:20250107)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jul-to-slf4j",
-                  "slf4j-api",
-                  "jarhc",
-                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
-                  "[2.0.17](org.slf4j:jul-to-slf4j:2.0.17)",
-                  "[[org.slf4j:slf4j-api:2.0.16]]",
-                  "OK"
-               ],
-               [
-                  "maven-aether-provider",
-                  "aether-api\naether-impl\naether-spi\naether-util\nguava\nplexus-utils",
-                  "jarhc",
-                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
-                  "[none]",
-                  "[[org.apache.maven:maven-model:3.3.9]]\n[[org.apache.maven:maven-model-builder:3.3.9]]\n[[org.apache.maven:maven-repository-metadata:3.3.9]]\n[[com.google.inject:guice:4.0]] (optional)\n[[org.apache.commons:commons-lang3:3.4]]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]]\n[[org.codehaus.plexus:plexus-utils:3.0.22]]\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]]\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]]",
-                  "Unsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nOK (version 3.5.1)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)\nOK (version 1.1.0)"
-               ],
-               [
-                  "plexus-utils",
-                  "[none]",
-                  "maven-aether-provider",
-                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
-                  "[3.6.0](org.codehaus.plexus:plexus-utils:3.6.0)\n[4.0.0](org.codehaus.plexus:plexus-utils:4.0.0), [4.0.1](org.codehaus.plexus:plexus-utils:4.0.1), [4.0.2](org.codehaus.plexus:plexus-utils:4.0.2)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "slf4j-api",
-                  "[none]",
-                  "aether-impl\njarhc\njcl-over-slf4j\njul-to-slf4j",
-                  "[[org.slf4j:slf4j-api:2.0.16]]",
-                  "[2.0.17](org.slf4j:slf4j-api:2.0.17)",
-                  "[none]",
-                  ""
                ]
             ]
          }]

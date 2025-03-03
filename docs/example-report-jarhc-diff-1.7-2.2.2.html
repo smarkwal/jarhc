@@ -21,14 +21,14 @@
 		a {
 			color: #333399;
 			text-decoration: none;
-		}
 
-		a:hover {
-			text-decoration: underline;
-		}
+			&:hover {
+				text-decoration: underline;
+			}
 
-		a:visited {
-			color: #333399;
+			&:visited {
+				color: #333399;
+			}
 		}
 
 		#header {
@@ -56,10 +56,10 @@
 			background-color: #EEEEEE;
 			border-radius: 8px;
 			user-select: none;
-		}
 
-		.control:hover {
-			background-color: white;
+			&:hover {
+				background-color: white;
+			}
 		}
 
 		#showOnlyDiffControl {
@@ -70,14 +70,14 @@
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-		}
 
-		.icon-up {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-		}
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 
-		.icon-down {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 		}
 
 		input[type="checkbox"] {
@@ -162,10 +162,10 @@
 
 		.report-text-block {
 			margin-bottom: 1em;
-		}
 
-		.report-text-block:last-child {
-			margin-bottom: 0;
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
 		}
 
 		.report-issue {
@@ -190,14 +190,20 @@
 
 		/* special diff report settings */
 
-		.diff-report #showOnlyDiffControl {
-			/* only available in diff report */
-			display: flex;
-		}
+		.diff-report {
 
-		.diff-report .no-diff {
-			/* default: only show differences */
-			display: none;
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
 		}
 
 		/* special print settings */
@@ -540,10 +546,10 @@
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#Reports">Reports</a></li>
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
 <li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
 <li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
-<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
@@ -1013,6 +1019,301 @@
 </table>
 </section>
 
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>aether-api</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-connector-basic</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>aether-impl</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>slf4j-api</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.eclipse.sisu/org.eclipse.sisu.inject/0.1.1" target="_blank" rel="noopener noreferrer">org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.6.2</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.sonatype.sisu/sisu-guice/3.1.6" target="_blank" rel="noopener noreferrer">org.sonatype.sisu:sisu-guice:3.1.6</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block diff">OK<br>OK<br>OK<br>Unsatisfied<br>Unsatisfied<br><span class="deleted">OK (version 1.7.33)</span><br><span class="inserted">OK (version 2.0.16)</span><br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-spi</td>
+		<td>aether-api</td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-file<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-transport-file</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>aether-transport-http</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>httpclient</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.3.5" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.3.5</a><br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.6.2</a></div>
+		</td>
+		<td>
+			<div class="report-text-block diff">OK<br>OK<br>OK<br>Unsatisfied<br><span class="deleted">OK (version 4.5.13)</span><br><span class="inserted">OK (version 4.5.14)</span><br><span class="deleted">OK (version 1.7.33)</span><br><span class="inserted">OK (version 2.0.16)</span></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-util</td>
+		<td>aether-api</td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>asm</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>jarhc</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.2" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.2</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.3" target="_blank" rel="noopener noreferrer">9.3</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.4" target="_blank" rel="noopener noreferrer">9.4</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></span></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td><span class="inserted">commons-codec</span></td>
+		<td><span class="inserted"><span style="color:gray">[none]</span></span></td>
+		<td><span class="inserted">httpclient</span></td>
+		<td><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a></span></td>
+		<td>
+			<div class="report-text-block diff"><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.2" target="_blank" rel="noopener noreferrer">1.17.2</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.18.0" target="_blank" rel="noopener noreferrer">1.18.0</a></span></div>
+		</td>
+		<td><span class="inserted"><span style="color:gray">[none]</span></span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>guava</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>maven-aether-provider</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.0.1-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:31.0.1-jre</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.1-android" target="_blank" rel="noopener noreferrer">31.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.1-jre" target="_blank" rel="noopener noreferrer">31.1-jre</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.0-android" target="_blank" rel="noopener noreferrer">32.0.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.0-jre" target="_blank" rel="noopener noreferrer">32.0.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.1-android" target="_blank" rel="noopener noreferrer">32.0.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.1-jre" target="_blank" rel="noopener noreferrer">32.0.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.0-android" target="_blank" rel="noopener noreferrer">32.1.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.0-jre" target="_blank" rel="noopener noreferrer">32.1.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.1-android" target="_blank" rel="noopener noreferrer">32.1.1-android</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.2-jre" target="_blank" rel="noopener noreferrer">32.1.2-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.3-android" target="_blank" rel="noopener noreferrer">32.1.3-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.3-jre" target="_blank" rel="noopener noreferrer">32.1.3-jre</a></span><br><span class="deleted"><span style="color:gray">[...]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.0-android" target="_blank" rel="noopener noreferrer">33.2.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.0-jre" target="_blank" rel="noopener noreferrer">33.2.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.1-android" target="_blank" rel="noopener noreferrer">33.2.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.1-jre" target="_blank" rel="noopener noreferrer">33.2.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-android" target="_blank" rel="noopener noreferrer">33.3.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">33.3.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a></span><br><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-android" target="_blank" rel="noopener noreferrer">33.4.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-jre" target="_blank" rel="noopener noreferrer">33.4.0-jre</a></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.1" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.2" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.2</a></span><br><a href="https://central.sonatype.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava" target="_blank" rel="noopener noreferrer">com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava</a><br><a href="https://central.sonatype.com/artifact/com.google.code.findbugs/jsr305/3.0.2" target="_blank" rel="noopener noreferrer">com.google.code.findbugs:jsr305:3.0.2</a><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.7.1" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.7.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.28.0" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.28.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:3.0.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/1.3" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:1.3</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.43.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.43.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.12.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.12.0</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>httpclient</td>
+		<td>
+			<div class="report-text-block diff"><span class="inserted">commons-codec</span><br>jcl-over-slf4j</div>
+		</td>
+		<td>aether-transport-http</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.13</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">4.5.14</a></span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.13</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.16" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.16</a></span><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.11" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.11</a><br><a href="https://central.sonatype.com/artifact/commons-logging/commons-logging/1.2" target="_blank" rel="noopener noreferrer">commons-logging:commons-logging:1.2</a></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted">Unsatisfied</span><br>Unsatisfied<br><span class="inserted">OK (version 1.17.1)</span><br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>jarhc</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>asm<br>jcl-over-slf4j<br>json<br>jul-to-slf4j<br>maven-aether-provider<br>slf4j-api</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/1.7" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:1.7</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:2.2.2</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a></span><br><span class="inserted"><span style="color:gray">[none]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.1.0" target="_blank" rel="noopener noreferrer">2.1.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.0" target="_blank" rel="noopener noreferrer">2.2.0</a>, <a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.1" target="_blank" rel="noopener noreferrer">2.2.1</a>, <a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">2.2.2</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.0.1-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:31.0.1-jre</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.13</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a> (runtime)</span><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a> (runtime)<br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.4.1</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a> (runtime)</span><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a> (runtime)<br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20211205" target="_blank" rel="noopener noreferrer">org.json:json:20211205</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.2" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.2</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-simple:1.7.33</a> (runtime)</span></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>jcl-over-slf4j</td>
+		<td>slf4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">httpclient<br>jarhc</div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
+		</td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>json</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>jarhc</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20211205" target="_blank" rel="noopener noreferrer">org.json:json:20211205</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20220320" target="_blank" rel="noopener noreferrer">20220320</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20220924" target="_blank" rel="noopener noreferrer">20220924</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20230227" target="_blank" rel="noopener noreferrer">20230227</a></span><br><span class="deleted"><span style="color:gray">[...]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">20240303</a></span><br><a href="https://central.sonatype.com/artifact/org.json/json/20241224" target="_blank" rel="noopener noreferrer">20241224</a><br><a href="https://central.sonatype.com/artifact/org.json/json/20250107" target="_blank" rel="noopener noreferrer">20250107</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>jul-to-slf4j</td>
+		<td>slf4j-api</td>
+		<td>jarhc</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
+		</td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>maven-aether-provider</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-impl<br>aether-spi<br>aether-util<br>guava<br>plexus-utils</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model-builder/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model-builder:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-repository-metadata/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-repository-metadata:3.3.9</a><br><a href="https://central.sonatype.com/artifact/com.google.inject/guice/4.0" target="_blank" rel="noopener noreferrer">com.google.inject:guice:4.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.apache.commons/commons-lang3/3.4" target="_blank" rel="noopener noreferrer">org.apache.commons:commons-lang3:3.4</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-component-annotations/1.6" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-component-annotations:1.6</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.0.22" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.0.22</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.0.2.v20150114</a></div>
+		</td>
+		<td>
+			<div class="report-text-block diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br><span class="deleted">OK (version 3.4.1)</span><br><span class="inserted">OK (version 3.5.1)</span><br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>plexus-utils</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>maven-aether-provider</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.4.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.2" target="_blank" rel="noopener noreferrer">3.4.2</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.0" target="_blank" rel="noopener noreferrer">3.5.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">3.5.1</a></span><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.6.0" target="_blank" rel="noopener noreferrer">3.6.0</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.0" target="_blank" rel="noopener noreferrer">4.0.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.1" target="_blank" rel="noopener noreferrer">4.0.1</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.2" target="_blank" rel="noopener noreferrer">4.0.2</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>slf4j-api</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted">slf4j-simple</span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff">aether-impl<br>jarhc<br>jcl-over-slf4j<br>jul-to-slf4j<br><span class="deleted">slf4j-simple</span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
+		</td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td><span class="deleted">slf4j-simple</span></td>
+		<td><span class="deleted">slf4j-api</span></td>
+		<td><span class="deleted">slf4j-api</span></td>
+		<td><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-simple:1.7.33</a></span></td>
+		<td>
+			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
+		</td>
+		<td><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span></td>
+		<td><span class="deleted">OK</span></td>
+	</tr>
+</tbody>
+</table>
+</section>
+
 <section class="report-section" id="JARManifests" title="JAR Manifests">
 <h2 class="report-section-title">JAR Manifests</h2>
 <p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
@@ -1467,7 +1768,7 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-api</td>
 		<td>
-			<div class="report-text-block no-diff">Aether API<br>[org.eclipse.aether.api]</div>
+			<div class="report-text-block no-diff">Aether API<br>Symbolic Name: <code>org.eclipse.aether.api</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
@@ -1475,7 +1776,7 @@
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.deployment</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.installation</code>, <code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.resolution</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.artifact</code> (Version: 1.1.0)<br><code>org.eclipse.aether.collection</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.deployment</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.graph</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.installation</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.metadata</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.repository</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.resolution</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.transfer</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.deployment</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.installation</code>, <code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.resolution</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.artifact</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.deployment</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.graph</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.installation</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.metadata</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.repository</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.resolution</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.transfer</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1485,17 +1786,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-connector-basic</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Connector Basic<br>[org.eclipse.aether.connector.basic]</div>
+			<div class="report-text-block no-diff">Aether Connector Basic<br>Symbolic Name: <code>org.eclipse.aether.connector.basic</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A repository connector implementation for repositories using<br>URI-based layouts.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-connector-basic/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.checksum;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.layout;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.io;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.concurrency;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.io</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.connector.basic</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.spi.connector</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.checksum</code>, <code>org.eclipse.aether.spi.connector.layout</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>, <code>org.eclipse.aether.spi.locator</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.log</code>, <code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.connector.basic</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.spi.connector</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.checksum</code>, <code>org.eclipse.aether.spi.connector.layout</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>, <code>org.eclipse.aether.spi.locator</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.log</code>, <code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1505,17 +1806,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-impl</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Implementation<br>[org.eclipse.aether.impl]</div>
+			<div class="report-text-block no-diff">Aether Implementation<br>Symbolic Name: <code>org.eclipse.aether.impl</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">An implementation of the repository system.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-impl/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">com.google.inject;version=&quot;[1.3,2)&quot;;resolution:=optional<br>com.google.inject.binder;version=&quot;[1.3,2)&quot;;resolution:=optional<br>com.google.inject.name;version=&quot;[1.3,2)&quot;;resolution:=optional<br>javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.collection;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.deployment;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.graph;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.installation;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.resolution;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.checksum;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.layout;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.io;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.localrepo;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.concurrency;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.graph.transformer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.graph.visitor;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.version;version=&quot;[1.1,2)&quot;<br>org.eclipse.sisu;resolution:=optional<br>org.slf4j;version=&quot;[1.6,2)&quot;;resolution:=optional<br>org.slf4j.spi;version=&quot;[1.6,2)&quot;;resolution:=optional</div>
+			<div class="report-text-block no-diff"><code>com.google.inject</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>com.google.inject.binder</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>com.google.inject.name</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.deployment</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.graph</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.installation</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.resolution</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.io</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.graph.transformer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.graph.visitor</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.version</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.sisu</code> (optional)<br><code>org.slf4j</code> (Version: <code>[1.6,2)</code>) (optional)<br><code>org.slf4j.spi</code> (Version: <code>[1.6,2)</code>) (optional)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.internal.impl</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.connector.checksum</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.layout</code>, <code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.localrepo</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.internal.impl.slf4j</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>, <code>org.slf4j</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.impl</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl.guice</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.impl.guice</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.inject</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.internal.impl</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.connector.checksum</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.layout</code>, <code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.localrepo</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.internal.impl.slf4j</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>, <code>org.slf4j</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.impl</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl.guice</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.impl.guice</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.inject</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1525,17 +1826,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-spi</td>
 		<td>
-			<div class="report-text-block no-diff">Aether SPI<br>[org.eclipse.aether.spi]</div>
+			<div class="report-text-block no-diff">Aether SPI<br>Symbolic Name: <code>org.eclipse.aether.spi</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">The service provider interface for repository system<br>implementations and repository connectors.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-spi/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.spi.connector</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.layout</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.transport</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.io</code> (Version: 1.1.0)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.spi.locator</code> (Version: 1.1.0)<br><code>org.eclipse.aether.spi.log</code> (Version: 1.1.0)</div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.spi.connector</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.io</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.spi.locator</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>1.1.0</code>)</div>
 		</td>
 		<td></td>
 		<td>
@@ -1545,17 +1846,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-transport-file</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Transport File<br>[org.eclipse.aether.transport.file]</div>
+			<div class="report-text-block no-diff">Aether Transport File<br>Symbolic Name: <code>org.eclipse.aether.transport.file</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A transport implementation for repositories using file://<br>URLs.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-transport-file/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.file</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.file</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1565,17 +1866,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-transport-http</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Transport HTTP<br>[org.eclipse.aether.transport.http]</div>
+			<div class="report-text-block no-diff">Aether Transport HTTP<br>Symbolic Name: <code>org.eclipse.aether.transport.http</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A transport implementation for repositories using http://<br>and https:// URLs.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-transport-http/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.apache.http;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.auth;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.auth.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client.methods;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client.utils;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.scheme;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.ssl;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.entity;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.auth;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.client;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.conn;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.cookie;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.protocol;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.util;version=&quot;[4.2.1,4.4)&quot;<br>javax.inject;resolution:=optional<br>javax.net<br>javax.net.ssl<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.apache.http</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.auth</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.auth.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client.methods</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client.utils</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.scheme</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.ssl</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.entity</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.auth</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.client</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.conn</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.cookie</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.protocol</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.util</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>javax.inject</code> (optional)<br><code>javax.net</code><br><code>javax.net.ssl</code><br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.http</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.http</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1585,17 +1886,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-util</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Utilities<br>[org.eclipse.aether.util]</div>
+			<div class="report-text-block no-diff">Aether Utilities<br>Symbolic Name: <code>org.eclipse.aether.util</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A collection of utility classes to ease usage of the<br>repository system.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-util/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.net.ssl<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.collection;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.graph;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.resolution;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.version;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.net.ssl</code><br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.graph</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.resolution</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.version</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.util</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.util.artifact</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code><br><code>org.eclipse.aether.util.concurrency</code> (Version: 1.1.0)<br><code>org.eclipse.aether.util.filter</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.util.graph.manager</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.selector</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.transformer</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.traverser</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code><br><code>org.eclipse.aether.util.graph.visitor</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.listener</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.util.repository</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.net.ssl</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code><br><code>org.eclipse.aether.util.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.version</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.util</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.util.artifact</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code><br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.util.filter</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.util.graph.manager</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.selector</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.transformer</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.traverser</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code><br><code>org.eclipse.aether.util.graph.visitor</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.listener</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.util.repository</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.net.ssl</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code><br><code>org.eclipse.aether.util.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.version</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1604,7 +1905,7 @@
 	</tr>
 	<tr class="report-table-row diff">
 		<td>asm</td>
-		<td>org.objectweb.asm</td>
+		<td><code>org.objectweb.asm</code></td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">9.2.0</span><br><span class="inserted">9.7</span></div>
 		</td>
@@ -1613,7 +1914,7 @@
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted"><code>org.objectweb.asm</code> (Version: 9.2)</span><br><span class="inserted"><code>org.objectweb.asm</code> (Version: 9.7)</span><br><span class="deleted"><code>org.objectweb.asm.signature</code> (Version: 9.2)</span><br><span class="inserted"><code>org.objectweb.asm.signature</code> (Version: 9.7)</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.objectweb.asm</code> (Version: <code>9.2</code>)</span><br><span class="inserted"><code>org.objectweb.asm</code> (Version: <code>9.7</code>)</span><br><span class="deleted"><code>org.objectweb.asm.signature</code> (Version: <code>9.2</code>)</span><br><span class="inserted"><code>org.objectweb.asm.signature</code> (Version: <code>9.7</code>)</span></div>
 		</td>
 		<td></td>
 		<td>
@@ -1623,20 +1924,20 @@
 	<tr class="report-table-row diff">
 		<td><span class="inserted">commons-codec</span></td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">Apache Commons Codec</span><br><span class="inserted">[org.apache.commons.commons-codec]</span></div>
+			<div class="report-text-block diff"><span class="inserted">Apache Commons Codec</span><br><span class="inserted">Symbolic Name: <code>org.apache.commons.commons-codec</code></span></div>
 		</td>
 		<td><span class="inserted">1.17.1</span></td>
 		<td>
 			<div class="report-text-block diff"><span class="inserted">The Apache Commons Codec component contains encoders and</span><br><span class="inserted">decoders for     various formats such as Base16, Base32,</span><br><span class="inserted">Base64, digest, and Hexadecimal. In addition to these</span><br><span class="inserted">widely used encoders and decoders, the codec package also</span><br><span class="inserted">maintains a     collection of phonetic encoding utilities.</span><br><span class="inserted">Vendor: The Apache Software Foundation</span><br><span class="inserted">License: https://www.apache.org/licenses/LICENSE-2.0.txt</span><br><span class="inserted">Doc URL: https://commons.apache.org/proper/commons-codec/</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">javax.crypto</span><br><span class="inserted">javax.crypto.spec</span></div>
+			<div class="report-text-block diff"><span class="inserted"><code>javax.crypto</code></span><br><span class="inserted"><code>javax.crypto.spec</code></span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted"><code>org.apache.commons.codec</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.binary</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.cli</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.digest</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.language</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.language.bm</code> (Version: 1.17.1)</span><br><span class="inserted"><code>org.apache.commons.codec.net</code> (Version: 1.17.1)</span></div>
+			<div class="report-text-block diff"><span class="inserted"><code>org.apache.commons.codec</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.binary</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.cli</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.digest</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.language</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.language.bm</code> (Version: <code>1.17.1</code>)</span><br><span class="inserted"><code>org.apache.commons.codec.net</code> (Version: <code>1.17.1</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</span></div>
+			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></span></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="inserted">Manifest Version: 2</span><br><span class="inserted">Include Resource:</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_hebrew_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_lang.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_languages.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/ash_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_arabic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_czech.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_dutch.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greek.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_approx_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_turkish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_arabic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_czech.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_dutch.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greek.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_exact_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_turkish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_hebrew_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_lang.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_languages.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_arabic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_czech.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_dutch.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_english.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_german.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greek.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hungarian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_polish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_romanian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_russian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/gen_rules_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_turkish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/lang.txt=src/main/resources/org/apache/commons/codec/language/bm/lang.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_approx_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_hebrew_common.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_lang.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_languages.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_any.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_french.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_hebrew.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_italian.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_portuguese.txt</span><br><span class="inserted">org/apache/commons/codec/language/bm/sep_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_spanish.txt</span><br><span class="inserted">org/apache/commons/codec/language/dmrules.txt=src/main/resources/org/apache/commons/codec/language/dmrules.txt</span><br><span class="inserted">META-INF/LICENSE.txt=LICENSE.txt</span><br><span class="inserted">META-INF/NOTICE.txt=NOTICE.txt</span></div>
@@ -1645,7 +1946,7 @@
 	<tr class="report-table-row diff">
 		<td>guava</td>
 		<td>
-			<div class="report-text-block no-diff">Guava: Google Core Libraries for Java<br>[com.google.guava]</div>
+			<div class="report-text-block no-diff">Guava: Google Core Libraries for Java<br>Symbolic Name: <code>com.google.guava</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">31.0.1.jre</span><br><span class="inserted">33.3.0.jre</span></div>
@@ -1654,20 +1955,20 @@
 			<div class="report-text-block no-diff">Guava is a suite of core and expanded libraries that include<br>utility classes, Google's collections, I/O classes, and<br>much more.<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://github.com/google/guava/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">com.google.common.util.concurrent.internal;version=&quot;[1.0,2)&quot;<br>javax.annotation;resolution:=optional;version=&quot;[3.0,4)&quot;<br>javax.crypto;resolution:=optional<br>javax.crypto.spec;resolution:=optional<br>sun.misc;resolution:=optional</div>
+			<div class="report-text-block no-diff"><code>com.google.common.util.concurrent.internal</code> (Version: <code>[1.0,2)</code>)<br><code>javax.annotation</code> (Version: <code>[3.0,4)</code>) (optional)<br><code>javax.crypto</code> (optional)<br><code>javax.crypto.spec</code> (optional)<br><code>sun.misc</code> (optional)</div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted"><code>com.google.common.annotations</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.annotations</code> (Version: 33.3.0)</span><br><span class="deleted"><code>com.google.common.base</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.base</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.cache</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.cache</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.collect</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.collect</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.escape</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.escape</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.eventbus</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.eventbus</code> (Version: 33.3.0)</span><br><span class="deleted"><code>com.google.common.graph</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.graph</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.hash</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.hash</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.html</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.html</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code><br><span class="deleted"><code>com.google.common.io</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.io</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.graph</code>, <code>com.google.common.hash</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><span class="deleted"><code>com.google.common.math</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.math</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.net</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.net</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.escape</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.primitives</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.primitives</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.reflect</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.reflect</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>com.google.common.io</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.util.concurrent</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.util.concurrent</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent.internal</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><span class="deleted"><code>com.google.common.xml</code> (Version: 31.0.1)</span><br><span class="inserted"><code>com.google.common.xml</code> (Version: 33.3.0)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code></div>
+			<div class="report-text-block diff"><span class="deleted"><code>com.google.common.annotations</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.annotations</code> (Version: <code>33.3.0</code>)</span><br><span class="deleted"><code>com.google.common.base</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.base</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.cache</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.cache</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.collect</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.collect</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.escape</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.escape</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.eventbus</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.eventbus</code> (Version: <code>33.3.0</code>)</span><br><span class="deleted"><code>com.google.common.graph</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.graph</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.hash</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.hash</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.html</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.html</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code><br><span class="deleted"><code>com.google.common.io</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.io</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.graph</code>, <code>com.google.common.hash</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><span class="deleted"><code>com.google.common.math</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.math</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.net</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.net</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.escape</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.primitives</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.primitives</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.reflect</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.reflect</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>com.google.common.io</code>, <code>javax.annotation</code><br><span class="deleted"><code>com.google.common.util.concurrent</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.util.concurrent</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent.internal</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><span class="deleted"><code>com.google.common.xml</code> (Version: <code>31.0.1</code>)</span><br><span class="inserted"><code>com.google.common.xml</code> (Version: <code>33.3.0</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code></div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jcl-over-slf4j</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">jcl-over-slf4j</span><br><span class="inserted">JCL 1.2 implemented over SLF4J</span><br>[jcl.over.slf4j]</div>
+			<div class="report-text-block diff"><span class="deleted">jcl-over-slf4j</span><br><span class="inserted">JCL 1.2 implemented over SLF4J</span><br>Symbolic Name: <code>jcl.over.slf4j</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">1.7.33</span><br><span class="inserted">2.0.16</span></div>
@@ -1676,13 +1977,13 @@
 			<div class="report-text-block diff">JCL 1.2 implemented over SLF4J<br>Vendor: SLF4J.ORG<br><span class="inserted">License: https://www.apache.org/licenses/LICENSE-2.0.txt</span><br><span class="inserted">Doc URL: http://www.slf4j.org</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">org.slf4j;version=1.7.33</span><br><span class="inserted">org.slf4j;version=&quot;[2.0,3)&quot;</span><br><span class="deleted">org.slf4j.spi;version=1.7.33</span><br><span class="inserted">org.slf4j.spi;version=&quot;[2.0,3)&quot;</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j</code> (Version: <code>[2.0,3)</code>)</span><br><span class="deleted"><code>org.slf4j.spi</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j.spi</code> (Version: <code>[2.0,3)</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><code>org.apache.commons.logging</code> (Version: 1.2)<br><code>org.apache.commons.logging.impl</code> (Version: 1.2)<br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.commons.logging</code>, <code>org.slf4j</code>, <code>org.slf4j.spi</code></span></div>
+			<div class="report-text-block diff"><code>org.apache.commons.logging</code> (Version: <code>1.2</code>)<br><code>org.apache.commons.logging.impl</code> (Version: <code>1.2</code>)<br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.commons.logging</code>, <code>org.slf4j</code>, <code>org.slf4j.spi</code></span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</span></div>
+			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></span></div>
 		</td>
 		<td>
 			<div class="report-text-block diff">Manifest Version: 2<br><span class="deleted">Required Execution Environment: J2SE-1.5</span></div>
@@ -1691,7 +1992,7 @@
 	<tr class="report-table-row diff">
 		<td>json</td>
 		<td>
-			<div class="report-text-block no-diff">JSON in Java<br>[json]</div>
+			<div class="report-text-block no-diff">JSON in Java<br>Symbolic Name: <code>json</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">20211205.0.0</span><br><span class="inserted">20240303.0.0</span></div>
@@ -1701,17 +2002,17 @@
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted"><code>org.json</code> (Version: 20211205.0.0)</span><br><span class="inserted"><code>org.json</code> (Version: 20240303.0.0)</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.json</code> (Version: <code>20211205.0.0</code>)</span><br><span class="inserted"><code>org.json</code> (Version: <code>20240303.0.0</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff">Required:<br><span class="deleted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.6))&quot;</span><br><span class="inserted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</span></div>
+			<div class="report-text-block diff">Required:<br><span class="deleted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.6))&quot;</code></span><br><span class="inserted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></span></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row diff">
 		<td>jul-to-slf4j</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">jul-to-slf4j</span><br><span class="inserted">JUL to SLF4J bridge</span><br>[jul.to.slf4j]</div>
+			<div class="report-text-block diff"><span class="deleted">jul-to-slf4j</span><br><span class="inserted">JUL to SLF4J bridge</span><br>Symbolic Name: <code>jul.to.slf4j</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">1.7.33</span><br><span class="inserted">2.0.16</span></div>
@@ -1720,13 +2021,13 @@
 			<div class="report-text-block diff">JUL to SLF4J bridge<br>Vendor: SLF4J.ORG<br><span class="inserted">License: http://www.opensource.org/licenses/mit-license.php</span><br><span class="inserted">Doc URL: http://www.slf4j.org</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">org.slf4j;version=1.7.33</span><br><span class="inserted">org.slf4j;version=&quot;[2.0,3)&quot;</span><br><span class="deleted">org.slf4j.spi;version=1.7.33</span><br><span class="inserted">org.slf4j.spi;version=&quot;[2.0,3)&quot;</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j</code> (Version: <code>[2.0,3)</code>)</span><br><span class="deleted"><code>org.slf4j.spi</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j.spi</code> (Version: <code>[2.0,3)</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j.bridge</code> (Version: 1.7.33)</span><br><span class="inserted"><code>org.slf4j.bridge</code> (Version: 2.0.16)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j.bridge</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j.bridge</code> (Version: <code>2.0.16</code>)</span><br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</span></div>
+			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></span></div>
 		</td>
 		<td>
 			<div class="report-text-block diff">Manifest Version: 2<br><span class="deleted">Required Execution Environment: J2SE-1.5</span></div>
@@ -1735,7 +2036,7 @@
 	<tr class="report-table-row diff">
 		<td>slf4j-api</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">slf4j-api</span><br><span class="inserted">SLF4J API Module</span><br>[slf4j.api]</div>
+			<div class="report-text-block diff"><span class="deleted">slf4j-api</span><br><span class="inserted">SLF4J API Module</span><br>Symbolic Name: <code>slf4j.api</code></div>
 		</td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">1.7.33</span><br><span class="inserted">2.0.16</span></div>
@@ -1744,13 +2045,13 @@
 			<div class="report-text-block diff">The slf4j API<br>Vendor: SLF4J.ORG<br><span class="inserted">License: http://www.opensource.org/licenses/mit-license.php</span><br><span class="inserted">Doc URL: http://www.slf4j.org</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">org.slf4j.impl;version=1.6.0</span><br><span class="inserted">org.slf4j.spi;version=&quot;[2.0.16,3)&quot;</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j.impl</code> (Version: <code>1.6.0</code>)</span><br><span class="inserted"><code>org.slf4j.spi</code> (Version: <code>[2.0.16,3)</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j</code> (Version: 1.7.33)</span><br><span class="inserted"><code>org.slf4j</code> (Version: 2.0.16)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code>, <code>org.slf4j.spi</code></span><br><span class="inserted"><code>org.slf4j.event</code> (Version: 2.0.16)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.helpers</code></span><br><span class="inserted"><code>org.slf4j.helpers</code> (Version: 2.0.16)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.spi</code></span><br><span class="inserted"><code>org.slf4j.spi</code> (Version: 2.0.16)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code></span><br><span class="inserted"><code>org.slf4j</code> (Version: 1.7.36)</span><br><span class="deleted"><code>org.slf4j.spi</code> (Version: 1.7.33)</span><br><span class="inserted"><code>org.slf4j.helpers</code> (Version: 1.7.36)</span><br><span class="deleted"><code>org.slf4j.helpers</code> (Version: 1.7.33)</span><br><span class="deleted"><code>org.slf4j.event</code> (Version: 1.7.33)</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j</code> (Version: <code>2.0.16</code>)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code>, <code>org.slf4j.spi</code></span><br><span class="inserted"><code>org.slf4j.event</code> (Version: <code>2.0.16</code>)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.helpers</code></span><br><span class="inserted"><code>org.slf4j.helpers</code> (Version: <code>2.0.16</code>)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.spi</code></span><br><span class="inserted"><code>org.slf4j.spi</code> (Version: <code>2.0.16</code>)</span><br><span class="inserted">&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code></span><br><span class="inserted"><code>org.slf4j</code> (Version: <code>1.7.36</code>)</span><br><span class="deleted"><code>org.slf4j.spi</code> (Version: <code>1.7.33</code>)</span><br><span class="inserted"><code>org.slf4j.helpers</code> (Version: <code>1.7.36</code>)</span><br><span class="deleted"><code>org.slf4j.helpers</code> (Version: <code>1.7.33</code>)</span><br><span class="deleted"><code>org.slf4j.event</code> (Version: <code>1.7.33</code>)</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted">osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</span><br><span class="inserted">osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)&quot;;osgi.serviceloader=&quot;org.slf4j.spi.SLF4JServiceProvider&quot;</span><br><span class="inserted">osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</span></div>
+			<div class="report-text-block diff"><span class="inserted">Required:</span><br><span class="inserted"><code>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</code></span><br><span class="inserted"><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)&quot;;osgi.serviceloader=&quot;org.slf4j.spi.SLF4JServiceProvider&quot;</code></span><br><span class="inserted"><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></span></div>
 		</td>
 		<td>
 			<div class="report-text-block diff">Manifest Version: 2<br><span class="deleted">Required Execution Environment: J2SE-1.5</span></div>
@@ -1759,315 +2060,20 @@
 	<tr class="report-table-row diff">
 		<td><span class="deleted">slf4j-simple</span></td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">slf4j-simple</span><br><span class="deleted">[slf4j.simple]</span></div>
+			<div class="report-text-block diff"><span class="deleted">slf4j-simple</span><br><span class="deleted">Symbolic Name: <code>slf4j.simple</code></span></div>
 		</td>
 		<td><span class="deleted">1.7.33</span></td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">SLF4J Simple binding</span><br><span class="deleted">Vendor: SLF4J.ORG</span></div>
 		</td>
 		<td>
-			<div class="report-text-block diff"><span class="deleted">org.slf4j;version=1.7.33</span><br><span class="deleted">org.slf4j.spi;version=1.7.33</span><br><span class="deleted">org.slf4j.helpers;version=1.7.33</span><br><span class="deleted">org.slf4j.event;version=1.7.33</span></div>
+			<div class="report-text-block diff"><span class="deleted"><code>org.slf4j</code> (Version: <code>1.7.33</code>)</span><br><span class="deleted"><code>org.slf4j.spi</code> (Version: <code>1.7.33</code>)</span><br><span class="deleted"><code>org.slf4j.helpers</code> (Version: <code>1.7.33</code>)</span><br><span class="deleted"><code>org.slf4j.event</code> (Version: <code>1.7.33</code>)</span></div>
 		</td>
-		<td><span class="deleted"><code>org.slf4j.impl</code> (Version: 1.7.33)</span></td>
+		<td><span class="deleted"><code>org.slf4j.impl</code> (Version: <code>1.7.33</code>)</span></td>
 		<td></td>
 		<td>
 			<div class="report-text-block diff"><span class="deleted">Manifest Version: 2</span><br><span class="deleted">Required Execution Environment: J2SE-1.5</span></div>
 		</td>
-	</tr>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Dependencies" title="Dependencies">
-<h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Uses</th>
-		<th>Used by</th>
-		<th>Maven coordinates</th>
-		<th>Updates</th>
-		<th>Direct dependencies</th>
-		<th>Status</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>aether-api</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-connector-basic</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>aether-impl</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>slf4j-api</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.eclipse.sisu/org.eclipse.sisu.inject/0.1.1" target="_blank" rel="noopener noreferrer">org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.6.2</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.sonatype.sisu/sisu-guice/3.1.6" target="_blank" rel="noopener noreferrer">org.sonatype.sisu:sisu-guice:3.1.6</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block diff">OK<br>OK<br>OK<br>Unsatisfied<br>Unsatisfied<br><span class="deleted">OK (version 1.7.33)</span><br><span class="inserted">OK (version 2.0.16)</span><br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-spi</td>
-		<td>aether-api</td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-file<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-transport-file</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>aether-transport-http</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>httpclient</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.3.5" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.3.5</a><br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.6.2</a></div>
-		</td>
-		<td>
-			<div class="report-text-block diff">OK<br>OK<br>OK<br>Unsatisfied<br><span class="deleted">OK (version 4.5.13)</span><br><span class="inserted">OK (version 4.5.14)</span><br><span class="deleted">OK (version 1.7.33)</span><br><span class="inserted">OK (version 2.0.16)</span></div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-util</td>
-		<td>aether-api</td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>asm</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>jarhc</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.2" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.2</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.3" target="_blank" rel="noopener noreferrer">9.3</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.4" target="_blank" rel="noopener noreferrer">9.4</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></span></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td><span class="inserted">commons-codec</span></td>
-		<td><span class="inserted"><span style="color:gray">[none]</span></span></td>
-		<td><span class="inserted">httpclient</span></td>
-		<td><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a></span></td>
-		<td>
-			<div class="report-text-block diff"><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.2" target="_blank" rel="noopener noreferrer">1.17.2</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.18.0" target="_blank" rel="noopener noreferrer">1.18.0</a></span></div>
-		</td>
-		<td><span class="inserted"><span style="color:gray">[none]</span></span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>guava</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>maven-aether-provider</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.0.1-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:31.0.1-jre</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.1-android" target="_blank" rel="noopener noreferrer">31.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.1-jre" target="_blank" rel="noopener noreferrer">31.1-jre</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.0-android" target="_blank" rel="noopener noreferrer">32.0.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.0-jre" target="_blank" rel="noopener noreferrer">32.0.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.1-android" target="_blank" rel="noopener noreferrer">32.0.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.0.1-jre" target="_blank" rel="noopener noreferrer">32.0.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.0-android" target="_blank" rel="noopener noreferrer">32.1.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.0-jre" target="_blank" rel="noopener noreferrer">32.1.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.1-android" target="_blank" rel="noopener noreferrer">32.1.1-android</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.2-jre" target="_blank" rel="noopener noreferrer">32.1.2-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.3-android" target="_blank" rel="noopener noreferrer">32.1.3-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/32.1.3-jre" target="_blank" rel="noopener noreferrer">32.1.3-jre</a></span><br><span class="deleted"><span style="color:gray">[...]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.0-android" target="_blank" rel="noopener noreferrer">33.2.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.0-jre" target="_blank" rel="noopener noreferrer">33.2.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.1-android" target="_blank" rel="noopener noreferrer">33.2.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.2.1-jre" target="_blank" rel="noopener noreferrer">33.2.1-jre</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-android" target="_blank" rel="noopener noreferrer">33.3.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">33.3.0-jre</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a></span><br><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-android" target="_blank" rel="noopener noreferrer">33.4.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-jre" target="_blank" rel="noopener noreferrer">33.4.0-jre</a></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.1" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.2" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.2</a></span><br><a href="https://central.sonatype.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava" target="_blank" rel="noopener noreferrer">com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava</a><br><a href="https://central.sonatype.com/artifact/com.google.code.findbugs/jsr305/3.0.2" target="_blank" rel="noopener noreferrer">com.google.code.findbugs:jsr305:3.0.2</a><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.7.1" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.7.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.28.0" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.28.0</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:3.0.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/1.3" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:1.3</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.43.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.43.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.12.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.12.0</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>httpclient</td>
-		<td>
-			<div class="report-text-block diff"><span class="inserted">commons-codec</span><br>jcl-over-slf4j</div>
-		</td>
-		<td>aether-transport-http</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.13</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">4.5.14</a></span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.13</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.16" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.16</a></span><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.11" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.11</a><br><a href="https://central.sonatype.com/artifact/commons-logging/commons-logging/1.2" target="_blank" rel="noopener noreferrer">commons-logging:commons-logging:1.2</a></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted">Unsatisfied</span><br>Unsatisfied<br><span class="inserted">OK (version 1.17.1)</span><br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>jarhc</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>asm<br>jcl-over-slf4j<br>json<br>jul-to-slf4j<br>maven-aether-provider<br>slf4j-api</div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/1.7" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:1.7</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:2.2.2</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a></span><br><span class="inserted"><span style="color:gray">[none]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.1.0" target="_blank" rel="noopener noreferrer">2.1.0</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.0" target="_blank" rel="noopener noreferrer">2.2.0</a>, <a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.1" target="_blank" rel="noopener noreferrer">2.2.1</a>, <a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">2.2.2</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/31.0.1-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:31.0.1-jre</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.13" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.13</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a> (runtime)</span><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a> (runtime)<br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.4.1</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a> (runtime)</span><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a> (runtime)<br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20211205" target="_blank" rel="noopener noreferrer">org.json:json:20211205</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.2" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.2</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a> (runtime)</span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a> (runtime)</span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-simple:1.7.33</a> (runtime)</span></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>jcl-over-slf4j</td>
-		<td>slf4j-api</td>
-		<td>
-			<div class="report-text-block no-diff">httpclient<br>jarhc</div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
-		</td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>json</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>jarhc</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20211205" target="_blank" rel="noopener noreferrer">org.json:json:20211205</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20220320" target="_blank" rel="noopener noreferrer">20220320</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20220924" target="_blank" rel="noopener noreferrer">20220924</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20230227" target="_blank" rel="noopener noreferrer">20230227</a></span><br><span class="deleted"><span style="color:gray">[...]</span></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">20240303</a></span><br><a href="https://central.sonatype.com/artifact/org.json/json/20241224" target="_blank" rel="noopener noreferrer">20241224</a><br><a href="https://central.sonatype.com/artifact/org.json/json/20250107" target="_blank" rel="noopener noreferrer">20250107</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>jul-to-slf4j</td>
-		<td>slf4j-api</td>
-		<td>jarhc</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
-		</td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>maven-aether-provider</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-impl<br>aether-spi<br>aether-util<br>guava<br>plexus-utils</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model-builder/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model-builder:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-repository-metadata/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-repository-metadata:3.3.9</a><br><a href="https://central.sonatype.com/artifact/com.google.inject/guice/4.0" target="_blank" rel="noopener noreferrer">com.google.inject:guice:4.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.apache.commons/commons-lang3/3.4" target="_blank" rel="noopener noreferrer">org.apache.commons:commons-lang3:3.4</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-component-annotations/1.6" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-component-annotations:1.6</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.0.22" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.0.22</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.0.2.v20150114</a></div>
-		</td>
-		<td>
-			<div class="report-text-block diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br><span class="deleted">OK (version 3.4.1)</span><br><span class="inserted">OK (version 3.5.1)</span><br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)</div>
-		</td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>plexus-utils</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>maven-aether-provider</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.4.1</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.4.2" target="_blank" rel="noopener noreferrer">3.4.2</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.0" target="_blank" rel="noopener noreferrer">3.5.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">3.5.1</a></span><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.6.0" target="_blank" rel="noopener noreferrer">3.6.0</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.0" target="_blank" rel="noopener noreferrer">4.0.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.1" target="_blank" rel="noopener noreferrer">4.0.1</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.2" target="_blank" rel="noopener noreferrer">4.0.2</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td>slf4j-api</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted">slf4j-simple</span><br><span class="inserted"><span style="color:gray">[none]</span></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff">aether-impl<br>jarhc<br>jcl-over-slf4j<br>jul-to-slf4j<br><span class="deleted">slf4j-simple</span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></span></div>
-		</td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="inserted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row diff">
-		<td><span class="deleted">slf4j-simple</span></td>
-		<td><span class="deleted">slf4j-api</span></td>
-		<td><span class="deleted">slf4j-api</span></td>
-		<td><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-simple:1.7.33</a></span></td>
-		<td>
-			<div class="report-text-block diff"><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.34" target="_blank" rel="noopener noreferrer">1.7.34</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.35" target="_blank" rel="noopener noreferrer">1.7.35</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/1.7.36" target="_blank" rel="noopener noreferrer">1.7.36</a></span><br><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.0" target="_blank" rel="noopener noreferrer">2.0.0</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.1" target="_blank" rel="noopener noreferrer">2.0.1</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.2" target="_blank" rel="noopener noreferrer">2.0.2</a>, <span style="color:gray">[...]</span>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.15" target="_blank" rel="noopener noreferrer">2.0.15</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.16" target="_blank" rel="noopener noreferrer">2.0.16</a>, <a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-simple/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></span></div>
-		</td>
-		<td><span class="deleted"><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.7.33" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.7.33</a></span></td>
-		<td><span class="deleted">OK</span></td>
 	</tr>
 </tbody>
 </table>

@@ -90,6 +90,59 @@
          }]
       },
       {
+         "description": "Dependencies between JAR files, and as declared in POM file.",
+         "title": "Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Uses",
+               "Used by",
+               "Maven coordinates",
+               "Updates",
+               "Direct dependencies",
+               "Status"
+            ],
+            "rows": [
+               [
+                  "asm",
+                  "[none]",
+                  "asm-analysis\nasm-commons\nasm-tree",
+                  "[[org.ow2.asm:asm:7.0]]",
+                  "[7.1](org.ow2.asm:asm:7.1)\n[7.2](org.ow2.asm:asm:7.2)\n[7.3](org.ow2.asm:asm:7.3), [7.3.1](org.ow2.asm:asm:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm:9.5)\n[9.6](org.ow2.asm:asm:9.6)\n[9.7](org.ow2.asm:asm:9.7), [9.7.1](org.ow2.asm:asm:9.7.1)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "asm-analysis",
+                  "asm\nasm-tree",
+                  "[none]",
+                  "[[org.ow2.asm:asm-analysis:7.0]]",
+                  "[7.1](org.ow2.asm:asm-analysis:7.1)\n[7.2](org.ow2.asm:asm-analysis:7.2)\n[7.3](org.ow2.asm:asm-analysis:7.3), [7.3.1](org.ow2.asm:asm-analysis:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-analysis:9.5)\n[9.6](org.ow2.asm:asm-analysis:9.6)\n[9.7](org.ow2.asm:asm-analysis:9.7), [9.7.1](org.ow2.asm:asm-analysis:9.7.1)",
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  "OK"
+               ],
+               [
+                  "asm-commons",
+                  "asm\nasm-tree",
+                  "[none]",
+                  "[[org.ow2.asm:asm-commons:7.0]]",
+                  "[7.1](org.ow2.asm:asm-commons:7.1)\n[7.2](org.ow2.asm:asm-commons:7.2)\n[7.3](org.ow2.asm:asm-commons:7.3), [7.3.1](org.ow2.asm:asm-commons:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-commons:9.5)\n[9.6](org.ow2.asm:asm-commons:9.6)\n[9.7](org.ow2.asm:asm-commons:9.7), [9.7.1](org.ow2.asm:asm-commons:9.7.1)",
+                  "[[org.ow2.asm:asm-analysis:7.0]]\n[[org.ow2.asm:asm-tree:7.0]]\n[[org.ow2.asm:asm:7.0]]",
+                  "OK\nOK\nOK"
+               ],
+               [
+                  "asm-tree",
+                  "asm",
+                  "asm-analysis\nasm-commons",
+                  "[[org.ow2.asm:asm-tree:7.0]]",
+                  "[7.1](org.ow2.asm:asm-tree:7.1)\n[7.2](org.ow2.asm:asm-tree:7.2)\n[7.3](org.ow2.asm:asm-tree:7.3), [7.3.1](org.ow2.asm:asm-tree:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-tree:9.5)\n[9.6](org.ow2.asm:asm-tree:9.6)\n[9.7](org.ow2.asm:asm-tree:9.7), [9.7.1](org.ow2.asm:asm-tree:9.7.1)",
+                  "[[org.ow2.asm:asm:7.0]]",
+                  "OK"
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -202,96 +255,43 @@
             "rows": [
                [
                   "asm",
-                  "org.objectweb.asm",
+                  "`org.objectweb.asm`",
                   "7.0.0",
                   "Doc URL: http://asm.ow2.org",
                   "",
-                  "`org.objectweb.asm` (Version: 7.0)\n`org.objectweb.asm.signature` (Version: 7.0)",
+                  "`org.objectweb.asm` (Version: `7.0`)\n`org.objectweb.asm.signature` (Version: `7.0`)",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "asm-analysis",
-                  "org.objectweb.asm.tree.analysis",
+                  "`org.objectweb.asm.tree.analysis`",
                   "7.0.0",
                   "Doc URL: http://asm.ow2.org",
-                  "org.objectweb.asm;version=\"[7.0,8)\"\norg.objectweb.asm.tree;version=\"[7.0,8)\"",
-                  "`org.objectweb.asm.tree.analysis` (Version: 7.0)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.tree`",
+                  "`org.objectweb.asm` (Version: `[7.0,8)`)\n`org.objectweb.asm.tree` (Version: `[7.0,8)`)",
+                  "`org.objectweb.asm.tree.analysis` (Version: `7.0`)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.tree`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "asm-commons",
-                  "org.objectweb.asm.commons",
+                  "`org.objectweb.asm.commons`",
                   "7.0.0",
                   "Doc URL: http://asm.ow2.org",
-                  "org.objectweb.asm;version=\"[7.0,8)\"\norg.objectweb.asm.signature;version=\"[7.0,8)\"\norg.objectweb.asm.tree;version=\"[7.0,8)\"",
-                  "`org.objectweb.asm.commons` (Version: 7.0)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.signature`, `org.objectweb.asm.tree`",
+                  "`org.objectweb.asm` (Version: `[7.0,8)`)\n`org.objectweb.asm.signature` (Version: `[7.0,8)`)\n`org.objectweb.asm.tree` (Version: `[7.0,8)`)",
+                  "`org.objectweb.asm.commons` (Version: `7.0`)\n\tUses: `org.objectweb.asm`, `org.objectweb.asm.signature`, `org.objectweb.asm.tree`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
                ],
                [
                   "asm-tree",
-                  "org.objectweb.asm.tree",
+                  "`org.objectweb.asm.tree`",
                   "7.0.0",
                   "Doc URL: http://asm.ow2.org",
-                  "org.objectweb.asm;version=\"[7.0,8)\"",
-                  "`org.objectweb.asm.tree` (Version: 7.0)\n\tUses: `org.objectweb.asm`",
+                  "`org.objectweb.asm` (Version: `[7.0,8)`)",
+                  "`org.objectweb.asm.tree` (Version: `7.0`)\n\tUses: `org.objectweb.asm`",
                   "",
                   "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies between JAR files, and as declared in POM file.",
-         "title": "Dependencies",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Uses",
-               "Used by",
-               "Maven coordinates",
-               "Updates",
-               "Direct dependencies",
-               "Status"
-            ],
-            "rows": [
-               [
-                  "asm",
-                  "[none]",
-                  "asm-analysis\nasm-commons\nasm-tree",
-                  "[[org.ow2.asm:asm:7.0]]",
-                  "[7.1](org.ow2.asm:asm:7.1)\n[7.2](org.ow2.asm:asm:7.2)\n[7.3](org.ow2.asm:asm:7.3), [7.3.1](org.ow2.asm:asm:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm:9.5)\n[9.6](org.ow2.asm:asm:9.6)\n[9.7](org.ow2.asm:asm:9.7), [9.7.1](org.ow2.asm:asm:9.7.1)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "asm-analysis",
-                  "asm\nasm-tree",
-                  "[none]",
-                  "[[org.ow2.asm:asm-analysis:7.0]]",
-                  "[7.1](org.ow2.asm:asm-analysis:7.1)\n[7.2](org.ow2.asm:asm-analysis:7.2)\n[7.3](org.ow2.asm:asm-analysis:7.3), [7.3.1](org.ow2.asm:asm-analysis:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-analysis:9.5)\n[9.6](org.ow2.asm:asm-analysis:9.6)\n[9.7](org.ow2.asm:asm-analysis:9.7), [9.7.1](org.ow2.asm:asm-analysis:9.7.1)",
-                  "[[org.ow2.asm:asm-tree:7.0]]",
-                  "OK"
-               ],
-               [
-                  "asm-commons",
-                  "asm\nasm-tree",
-                  "[none]",
-                  "[[org.ow2.asm:asm-commons:7.0]]",
-                  "[7.1](org.ow2.asm:asm-commons:7.1)\n[7.2](org.ow2.asm:asm-commons:7.2)\n[7.3](org.ow2.asm:asm-commons:7.3), [7.3.1](org.ow2.asm:asm-commons:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-commons:9.5)\n[9.6](org.ow2.asm:asm-commons:9.6)\n[9.7](org.ow2.asm:asm-commons:9.7), [9.7.1](org.ow2.asm:asm-commons:9.7.1)",
-                  "[[org.ow2.asm:asm-analysis:7.0]]\n[[org.ow2.asm:asm-tree:7.0]]\n[[org.ow2.asm:asm:7.0]]",
-                  "OK\nOK\nOK"
-               ],
-               [
-                  "asm-tree",
-                  "asm",
-                  "asm-analysis\nasm-commons",
-                  "[[org.ow2.asm:asm-tree:7.0]]",
-                  "[7.1](org.ow2.asm:asm-tree:7.1)\n[7.2](org.ow2.asm:asm-tree:7.2)\n[7.3](org.ow2.asm:asm-tree:7.3), [7.3.1](org.ow2.asm:asm-tree:7.3.1)\n[...]\n[9.5](org.ow2.asm:asm-tree:9.5)\n[9.6](org.ow2.asm:asm-tree:9.6)\n[9.7](org.ow2.asm:asm-tree:9.7), [9.7.1](org.ow2.asm:asm-tree:9.7.1)",
-                  "[[org.ow2.asm:asm:7.0]]",
-                  "OK"
                ]
             ]
          }]

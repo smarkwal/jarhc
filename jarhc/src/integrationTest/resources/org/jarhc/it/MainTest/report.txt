@@ -11,6 +11,15 @@ slf4j-api | 1.7.28  | org.slf4j:slf4j-api:1.7.28 | 40.2 KB | No            | Jav
           |         |                            |         |               |                        |           |                            |                                          | org.netbeans.external:slf4j-api:RELEASE113 |
 Classpath | -       | -                          | 40.2 KB | -             | Java 5 (34)            | 0         | 4                          | -                                        | -                                          | -
 
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact  | Uses   | Used by | Maven coordinates          | Updates                                               | Direct dependencies | Status
+----------+--------+---------+----------------------------+-------------------------------------------------------+---------------------+-------
+slf4j-api | [none] | [none]  | org.slf4j:slf4j-api:1.7.28 | 1.7.29, 1.7.30, 1.7.31, [...], 1.7.34, 1.7.35, 1.7.36 | [none]              |
+          |        |         |                            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.15, 2.0.16, 2.0.17    |                     |
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -37,21 +46,12 @@ OSGi Bundles
 ------------
 Information about OSGi Bundles.
 
-Artifact  | Name        | Version | Description       | Import Package               | Export Package                      | Capabilities | Others
-----------+-------------+---------+-------------------+------------------------------+-------------------------------------+--------------+-----------------------------------------
-slf4j-api | slf4j-api   | 1.7.28  | The slf4j API     | org.slf4j.impl;version=1.6.0 | org.slf4j (Version: 1.7.28)         |              | Manifest Version: 2
-          | [slf4j.api] |         | Vendor: SLF4J.ORG |                              | org.slf4j.spi (Version: 1.7.28)     |              | Required Execution Environment: J2SE-1.5
-          |             |         |                   |                              | org.slf4j.helpers (Version: 1.7.28) |              |
-          |             |         |                   |                              | org.slf4j.event (Version: 1.7.28)   |              |
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact  | Uses   | Used by | Maven coordinates          | Updates                                               | Direct dependencies | Status
-----------+--------+---------+----------------------------+-------------------------------------------------------+---------------------+-------
-slf4j-api | [none] | [none]  | org.slf4j:slf4j-api:1.7.28 | 1.7.29, 1.7.30, 1.7.31, [...], 1.7.34, 1.7.35, 1.7.36 | [none]              |
-          |        |         |                            | 2.0.0, 2.0.1, 2.0.2, [...], 2.0.15, 2.0.16, 2.0.17    |                     |
+Artifact  | Name                     | Version | Description       | Import Package                  | Export Package                      | Capabilities | Others
+----------+--------------------------+---------+-------------------+---------------------------------+-------------------------------------+--------------+-----------------------------------------
+slf4j-api | slf4j-api                | 1.7.28  | The slf4j API     | org.slf4j.impl (Version: 1.6.0) | org.slf4j (Version: 1.7.28)         |              | Manifest Version: 2
+          | Symbolic Name: slf4j.api |         | Vendor: SLF4J.ORG |                                 | org.slf4j.spi (Version: 1.7.28)     |              | Required Execution Environment: J2SE-1.5
+          |                          |         |                   |                                 | org.slf4j.helpers (Version: 1.7.28) |              |
+          |                          |         |                   |                                 | org.slf4j.event (Version: 1.7.28)   |              |
 
 Duplicate Classes
 -----------------

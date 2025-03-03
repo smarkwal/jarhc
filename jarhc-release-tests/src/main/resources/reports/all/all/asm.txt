@@ -10,6 +10,18 @@ Artifact  | Version | Source              | Size   | Multi-release | Java versio
 asm       | 9.2     | org.ow2.asm:asm:9.2 | 119 KB | No            | Java 5 (37)            | 0         | org.objectweb.asm (+1 subpackage) | 81a03f76019c67362299c40e0ba13405f5467bff | org.ow2.asm:asm:9.2 |
 Classpath | -       | -                   | 119 KB | -             | Java 5 (37)            | 0         | 2                                 | -                                        | -                   | -
 
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact | Uses   | Used by | Maven coordinates   | Updates    | Direct dependencies | Status
+---------+--------+---------+---------------------+------------+---------------------+-------
+asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | 9.3        | [none]              |
+         |        |         |                     | 9.4        |                     |
+         |        |         |                     | 9.5        |                     |
+         |        |         |                     | 9.6        |                     |
+         |        |         |                     | 9.7, 9.7.1 |                     |
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -36,16 +48,4 @@ Artifact | Name              | Version | Description                            
 ---------+-------------------+---------+-----------------------------------------------------------+----------------+--------------------------------------------+--------------+-----------------------------------------
 asm      | org.objectweb.asm | 9.2.0   | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt |                | org.objectweb.asm (Version: 9.2)           |              | Manifest Version: 2
          |                   |         | Doc URL: http://asm.ow2.org                               |                | org.objectweb.asm.signature (Version: 9.2) |              | Required Execution Environment: J2SE-1.5
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact | Uses   | Used by | Maven coordinates   | Updates    | Direct dependencies | Status
----------+--------+---------+---------------------+------------+---------------------+-------
-asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | 9.3        | [none]              |
-         |        |         |                     | 9.4        |                     |
-         |        |         |                     | 9.5        |                     |
-         |        |         |                     | 9.6        |                     |
-         |        |         |                     | 9.7, 9.7.1 |                     |
 

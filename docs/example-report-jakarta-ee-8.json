@@ -506,6 +506,347 @@
          }]
       },
       {
+         "description": "Dependencies between JAR files, and as declared in POM file.",
+         "title": "Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Uses",
+               "Used by",
+               "Maven coordinates",
+               "Updates",
+               "Direct dependencies",
+               "Status"
+            ],
+            "rows": [
+               [
+                  "jakarta.activation-api",
+                  "[none]",
+                  "jakarta.mail-api\njakarta.xml.bind-api\njakarta.xml.registry-api\njakarta.xml.soap-api",
+                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
+                  "[2.0.0](jakarta.activation:jakarta.activation-api:2.0.0), [2.0.1](jakarta.activation:jakarta.activation-api:2.0.1)\n[2.1.0](jakarta.activation:jakarta.activation-api:2.1.0), [2.1.1](jakarta.activation:jakarta.activation-api:2.1.1), [2.1.2](jakarta.activation:jakarta.activation-api:2.1.2), [2.1.3](jakarta.activation:jakarta.activation-api:2.1.3)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.annotation-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]",
+                  "[2.0.0](jakarta.annotation:jakarta.annotation-api:2.0.0)\n[2.1.0](jakarta.annotation:jakarta.annotation-api:2.1.0), [2.1.1](jakarta.annotation:jakarta.annotation-api:2.1.1)\n[3.0.0](jakarta.annotation:jakarta.annotation-api:3.0.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.authorization-api",
+                  "jakarta.servlet-api",
+                  "[none]",
+                  "[[jakarta.authorization:jakarta.authorization-api:1.5.0]]",
+                  "[2.0.0](jakarta.authorization:jakarta.authorization-api:2.0.0)\n[2.1.0](jakarta.authorization:jakarta.authorization-api:2.1.0)\n[3.0.0](jakarta.authorization:jakarta.authorization-api:3.0.0)",
+                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
+                  "OK"
+               ],
+               [
+                  "jakarta.batch-api",
+                  "jakarta.enterprise.cdi-api\njakarta.inject-api",
+                  "[none]",
+                  "[[jakarta.batch:jakarta.batch-api:1.0.2]]",
+                  "[2.0.0](jakarta.batch:jakarta.batch-api:2.0.0)\n[2.1.0](jakarta.batch:jakarta.batch-api:2.1.0), [2.1.1](jakarta.batch:jakarta.batch-api:2.1.1)",
+                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)\n[[jakarta.inject:jakarta.inject-api:1.0]] (provided)",
+                  "OK (version 2.0.2)\nOK"
+               ],
+               [
+                  "jakarta.ejb-api",
+                  "jakarta.transaction-api\njakarta.xml.rpc-api",
+                  "jakarta.management.j2ee-api\njakarta.xml.rpc-api",
+                  "[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
+                  "[4.0.0](jakarta.ejb:jakarta.ejb-api:4.0.0), [4.0.1](jakarta.ejb:jakarta.ejb-api:4.0.1)",
+                  "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]\n[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.3]] (optional)",
+                  "OK (version 1.3.3)\nOK (version 1.1.4)"
+               ],
+               [
+                  "jakarta.el-api",
+                  "[none]",
+                  "jakarta.enterprise.cdi-api\njakarta.faces-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api",
+                  "[[jakarta.el:jakarta.el-api:3.0.3]]",
+                  "[4.0.0](jakarta.el:jakarta.el-api:4.0.0)\n[5.0.0](jakarta.el:jakarta.el-api:5.0.0), [5.0.1](jakarta.el:jakarta.el-api:5.0.1)\n[6.0.0](jakarta.el:jakarta.el-api:6.0.0), [6.0.1](jakarta.el:jakarta.el-api:6.0.1)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.enterprise.cdi-api",
+                  "jakarta.el-api\njakarta.inject-api\njakarta.interceptor-api",
+                  "jakarta.batch-api\njakarta.faces-api\njakarta.mvc-api\njakarta.security.enterprise-api\njakarta.transaction-api",
+                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]]",
+                  "[3.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0), [3.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1)\n[4.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0), [4.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1)\n[4.1.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0)",
+                  "[[jakarta.el:jakarta.el-api:3.0.3]]\n[[jakarta.inject:jakarta.inject-api:1.0]]\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
+                  "OK\nOK\nOK"
+               ],
+               [
+                  "jakarta.enterprise.concurrent-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2]]",
+                  "[2.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0)\n[3.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.0), [3.0.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.1), [3.0.2](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.2), [3.0.3](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.3), [3.0.4](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4)\n[3.1.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.0), [3.1.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.1)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.enterprise.deploy-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2]]",
+                  "[none]",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.faces-api",
+                  "jakarta.el-api\njakarta.enterprise.cdi-api\njakarta.inject-api\njakarta.servlet-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.validation-api\njakarta.websocket-api\njakarta.websocket-client-api",
+                  "[none]",
+                  "[[jakarta.faces:jakarta.faces-api:2.3.2]]",
+                  "[3.0.0](jakarta.faces:jakarta.faces-api:3.0.0)\n[4.0.0](jakarta.faces:jakarta.faces-api:4.0.0), [4.0.1](jakarta.faces:jakarta.faces-api:4.0.1)\n[4.1.0](jakarta.faces:jakarta.faces-api:4.1.0), [4.1.1](jakarta.faces:jakarta.faces-api:4.1.1), [4.1.2](jakarta.faces:jakarta.faces-api:4.1.2)",
+                  "[[jakarta.ejb:jakarta.ejb-api:3.2.5]] (provided, optional)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.json:jakarta.json-api:1.1.6]] (provided, optional)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)\n[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]] (provided, optional)\n[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.5]] (provided, optional)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.websocket:jakarta.websocket-api:1.1.2]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided, optional)\n[[javax.enterprise:cdi-api:2.0.SP1]] (provided)\n[[org.apache.tomcat:catalina:6.0.51]] (provided)\n[[org.glassfish:jakarta.faces:2.3.13]] (provided)\n[[org.mortbay.jetty:jetty-annotations:6.1.26]] (optional)\n[[org.mortbay.jetty:jetty-plus:6.1.26]] (optional)",
+                  "OK (version 3.2.6)\nOK\nOK\nOK\nOK\nOK (version 1.2.7)\nOK\nOK\nOK (version 2.3.3)\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
+               ],
+               [
+                  "jakarta.inject-api",
+                  "[none]",
+                  "jakarta.batch-api\njakarta.enterprise.cdi-api\njakarta.faces-api",
+                  "[[jakarta.inject:jakarta.inject-api:1.0]]",
+                  "[1.0.1](jakarta.inject:jakarta.inject-api:1.0.1), [1.0.2](jakarta.inject:jakarta.inject-api:1.0.2), [1.0.3](jakarta.inject:jakarta.inject-api:1.0.3), [1.0.4](jakarta.inject:jakarta.inject-api:1.0.4), [1.0.5](jakarta.inject:jakarta.inject-api:1.0.5)\n[2.0.0](jakarta.inject:jakarta.inject-api:2.0.0), [2.0.1](jakarta.inject:jakarta.inject-api:2.0.1), [2.0.1.MR](jakarta.inject:jakarta.inject-api:2.0.1.MR)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.interceptor-api",
+                  "[none]",
+                  "jakarta.enterprise.cdi-api\njakarta.security.enterprise-api\njakarta.transaction-api",
+                  "[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
+                  "[2.0.0](jakarta.interceptor:jakarta.interceptor-api:2.0.0), [2.0.1](jakarta.interceptor:jakarta.interceptor-api:2.0.1)\n[2.1.0](jakarta.interceptor:jakarta.interceptor-api:2.1.0)\n[2.2.0](jakarta.interceptor:jakarta.interceptor-api:2.2.0)",
+                  "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
+                  "OK\nOK"
+               ],
+               [
+                  "jakarta.jms-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.jms:jakarta.jms-api:2.0.3]]",
+                  "[3.0.0](jakarta.jms:jakarta.jms-api:3.0.0)\n[3.1.0](jakarta.jms:jakarta.jms-api:3.1.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.json-api",
+                  "[none]",
+                  "jakarta.json.bind-api",
+                  "[[jakarta.json:jakarta.json-api:1.1.6]]",
+                  "[2.0.0](jakarta.json:jakarta.json-api:2.0.0), [2.0.1](jakarta.json:jakarta.json-api:2.0.1), [2.0.2](jakarta.json:jakarta.json-api:2.0.2)\n[2.1.0](jakarta.json:jakarta.json-api:2.1.0), [2.1.1](jakarta.json:jakarta.json-api:2.1.1), [2.1.2](jakarta.json:jakarta.json-api:2.1.2), [2.1.3](jakarta.json:jakarta.json-api:2.1.3)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.json.bind-api",
+                  "jakarta.json-api",
+                  "[none]",
+                  "[[jakarta.json.bind:jakarta.json.bind-api:1.0.2]]",
+                  "[2.0.0](jakarta.json.bind:jakarta.json.bind-api:2.0.0)\n[3.0.0](jakarta.json.bind:jakarta.json.bind-api:3.0.0), [3.0.1](jakarta.json.bind:jakarta.json.bind-api:3.0.1)",
+                  "[[jakarta.json:jakarta.json-api:1.1.6]] (provided)",
+                  "OK"
+               ],
+               [
+                  "jakarta.jws-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.jws:jakarta.jws-api:2.1.0]]",
+                  "[3.0.0](jakarta.jws:jakarta.jws-api:3.0.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.mail-api",
+                  "jakarta.activation-api",
+                  "[none]",
+                  "[[jakarta.mail:jakarta.mail-api:1.6.4]]",
+                  "[1.6.5](jakarta.mail:jakarta.mail-api:1.6.5), [1.6.6](jakarta.mail:jakarta.mail-api:1.6.6), [1.6.7](jakarta.mail:jakarta.mail-api:1.6.7)\n[2.0.0](jakarta.mail:jakarta.mail-api:2.0.0), [2.0.1](jakarta.mail:jakarta.mail-api:2.0.1)\n[2.1.0](jakarta.mail:jakarta.mail-api:2.1.0), [2.1.1](jakarta.mail:jakarta.mail-api:2.1.1), [2.1.2](jakarta.mail:jakarta.mail-api:2.1.2), [2.1.3](jakarta.mail:jakarta.mail-api:2.1.3)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.management.j2ee-api",
+                  "jakarta.ejb-api",
+                  "[none]",
+                  "[[jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4]]",
+                  "[none]",
+                  "[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (optional)",
+                  "OK"
+               ],
+               [
+                  "jakarta.mvc-api",
+                  "jakarta.enterprise.cdi-api\njakarta.validation-api\njakarta.ws.rs-api",
+                  "[none]",
+                  "[[jakarta.mvc:jakarta.mvc-api:1.1.0]]",
+                  "[2.0.0](jakarta.mvc:jakarta.mvc-api:2.0.0), [2.0.1](jakarta.mvc:jakarta.mvc-api:2.0.1)\n[2.1.0](jakarta.mvc:jakarta.mvc-api:2.1.0)",
+                  "[[jakarta.annotation:jakarta.annotation-api:1.3.4]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.5]] (provided)",
+                  "OK (version 1.3.5)\nOK\nOK\nOK (version 2.1.6)"
+               ],
+               [
+                  "jakarta.persistence-api",
+                  "[none]",
+                  "[none]",
+                  "[[jakarta.persistence:jakarta.persistence-api:2.2.3]]",
+                  "[3.0.0](jakarta.persistence:jakarta.persistence-api:3.0.0)\n[3.1.0](jakarta.persistence:jakarta.persistence-api:3.1.0)\n[3.2.0](jakarta.persistence:jakarta.persistence-api:3.2.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.resource-api",
+                  "jakarta.transaction-api",
+                  "[none]",
+                  "[[jakarta.resource:jakarta.resource-api:1.7.4]]",
+                  "[2.0.0](jakarta.resource:jakarta.resource-api:2.0.0)\n[2.1.0](jakarta.resource:jakarta.resource-api:2.1.0)",
+                  "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]",
+                  "OK (version 1.3.3)"
+               ],
+               [
+                  "jakarta.security.auth.message-api",
+                  "[none]",
+                  "jakarta.security.enterprise-api",
+                  "[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]]",
+                  "[none]",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.security.enterprise-api",
+                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api\njakarta.security.auth.message-api\njakarta.servlet-api",
+                  "[none]",
+                  "[[jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2]]",
+                  "[2.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0)\n[3.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0)\n[4.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0)",
+                  "[[jakarta.authorization:jakarta.authorization-api:1.5.0]] (provided)\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]] (provided)\n[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]] (provided)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)",
+                  "OK\nOK\nOK\nOK\nOK\nOK\nOK"
+               ],
+               [
+                  "jakarta.servlet-api",
+                  "[none]",
+                  "jakarta.authorization-api\njakarta.faces-api\njakarta.security.enterprise-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.xml.rpc-api",
+                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
+                  "[4.0.4](jakarta.servlet:jakarta.servlet-api:4.0.4)\n[5.0.0](jakarta.servlet:jakarta.servlet-api:5.0.0)\n[6.0.0](jakarta.servlet:jakarta.servlet-api:6.0.0)\n[6.1.0](jakarta.servlet:jakarta.servlet-api:6.1.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.servlet.jsp-api",
+                  "jakarta.el-api\njakarta.servlet-api",
+                  "jakarta.faces-api\njakarta.servlet.jsp.jstl-api",
+                  "[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]]",
+                  "[3.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0)\n[3.1.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0), [3.1.1](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1)\n[4.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0)",
+                  "[[jakarta.servlet:jakarta.servlet-api:4.0.2]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.2]] (provided)",
+                  "OK (version 4.0.3)\nOK (version 3.0.3)"
+               ],
+               [
+                  "jakarta.servlet.jsp.jstl-api",
+                  "jakarta.el-api\njakarta.servlet-api\njakarta.servlet.jsp-api",
+                  "jakarta.faces-api",
+                  "[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7]]",
+                  "[2.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0)\n[3.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0), [3.0.1](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1), [3.0.2](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2)",
+                  "[[javax.el:el-api:2.2]] (provided)\n[[javax.servlet:servlet-api:2.5]] (provided)\n[[javax.servlet.jsp:jsp-api:2.2]] (provided)",
+                  "Unsatisfied\nUnsatisfied\nUnsatisfied"
+               ],
+               [
+                  "jakarta.transaction-api",
+                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api",
+                  "jakarta.ejb-api\njakarta.resource-api",
+                  "[[jakarta.transaction:jakarta.transaction-api:1.3.3]]",
+                  "[2.0.0](jakarta.transaction:jakarta.transaction-api:2.0.0), [2.0.1](jakarta.transaction:jakarta.transaction-api:2.0.1)",
+                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)",
+                  "OK (version 2.0.2)"
+               ],
+               [
+                  "jakarta.validation-api",
+                  "[none]",
+                  "jakarta.faces-api\njakarta.mvc-api",
+                  "[[jakarta.validation:jakarta.validation-api:2.0.2]]",
+                  "[3.0.0](jakarta.validation:jakarta.validation-api:3.0.0), [3.0.1](jakarta.validation:jakarta.validation-api:3.0.1), [3.0.2](jakarta.validation:jakarta.validation-api:3.0.2)\n[3.1.0](jakarta.validation:jakarta.validation-api:3.1.0), [3.1.1](jakarta.validation:jakarta.validation-api:3.1.1)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.websocket-api",
+                  "jakarta.websocket-client-api",
+                  "jakarta.faces-api\njakarta.websocket-client-api",
+                  "[[jakarta.websocket:jakarta.websocket-api:1.1.2]]",
+                  "[2.0.0](jakarta.websocket:jakarta.websocket-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-api:2.2.0)",
+                  "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]] (optional)",
+                  "OK"
+               ],
+               [
+                  "jakarta.websocket-client-api",
+                  "jakarta.websocket-api",
+                  "jakarta.faces-api\njakarta.websocket-api",
+                  "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]]",
+                  "[2.0.0](jakarta.websocket:jakarta.websocket-client-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-client-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-client-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-client-api:2.2.0)",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.ws.rs-api",
+                  "jakarta.xml.bind-api",
+                  "jakarta.mvc-api",
+                  "[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.6]]",
+                  "[3.0.0](jakarta.ws.rs:jakarta.ws.rs-api:3.0.0)\n[3.1.0](jakarta.ws.rs:jakarta.ws.rs-api:3.1.0)\n[4.0.0](jakarta.ws.rs:jakarta.ws.rs-api:4.0.0)",
+                  "[[jakarta.activation:jakarta.activation-api:1.2.1]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided)",
+                  "OK (version 1.2.2)\nOK (version 2.3.3)"
+               ],
+               [
+                  "jakarta.xml.bind-api",
+                  "jakarta.activation-api",
+                  "jakarta.ws.rs-api\njakarta.xml.ws-api",
+                  "[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]",
+                  "[3.0.0](jakarta.xml.bind:jakarta.xml.bind-api:3.0.0), [3.0.1](jakarta.xml.bind:jakarta.xml.bind-api:3.0.1)\n[4.0.0](jakarta.xml.bind:jakarta.xml.bind-api:4.0.0), [4.0.1](jakarta.xml.bind:jakarta.xml.bind-api:4.0.1), [4.0.2](jakarta.xml.bind:jakarta.xml.bind-api:4.0.2)",
+                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
+                  "OK"
+               ],
+               [
+                  "jakarta.xml.registry-api",
+                  "jakarta.activation-api",
+                  "[none]",
+                  "[[jakarta.xml.registry:jakarta.xml.registry-api:1.0.10]]",
+                  "[none]",
+                  "[none]",
+                  ""
+               ],
+               [
+                  "jakarta.xml.rpc-api",
+                  "jakarta.ejb-api\njakarta.servlet-api\njakarta.xml.soap-api",
+                  "jakarta.ejb-api",
+                  "[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.4]]",
+                  "[none]",
+                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (optional)",
+                  "OK"
+               ],
+               [
+                  "jakarta.xml.soap-api",
+                  "jakarta.activation-api",
+                  "jakarta.xml.rpc-api\njakarta.xml.ws-api",
+                  "[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
+                  "[2.0.0](jakarta.xml.soap:jakarta.xml.soap-api:2.0.0), [2.0.1](jakarta.xml.soap:jakarta.xml.soap-api:2.0.1)\n[3.0.0](jakarta.xml.soap:jakarta.xml.soap-api:3.0.0), [3.0.1](jakarta.xml.soap:jakarta.xml.soap-api:3.0.1), [3.0.2](jakarta.xml.soap:jakarta.xml.soap-api:3.0.2)",
+                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
+                  "OK"
+               ],
+               [
+                  "jakarta.xml.ws-api",
+                  "jakarta.xml.bind-api\njakarta.xml.soap-api",
+                  "[none]",
+                  "[[jakarta.xml.ws:jakarta.xml.ws-api:2.3.3]]",
+                  "[3.0.0](jakarta.xml.ws:jakarta.xml.ws-api:3.0.0), [3.0.1](jakarta.xml.ws:jakarta.xml.ws-api:3.0.1)\n[4.0.0](jakarta.xml.ws:jakarta.xml.ws-api:4.0.0), [4.0.1](jakarta.xml.ws:jakarta.xml.ws-api:4.0.1), [4.0.2](jakarta.xml.ws:jakarta.xml.ws-api:4.0.2)",
+                  "[[jakarta.jws:jakarta.jws-api:2.1.0]] (runtime)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]\n[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
+                  "OK\nOK\nOK"
+               ]
+            ]
+         }]
+      },
+      {
          "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
          "title": "JAR Manifests",
          "content": [{
@@ -1130,684 +1471,343 @@
             "rows": [
                [
                   "jakarta.activation-api",
-                  "Jakarta Activation API jar\n[jakarta.activation-api]",
+                  "Jakarta Activation API jar\nSymbolic Name: `jakarta.activation-api`",
                   "1.2.2",
                   "Jakarta Activation API jar\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
-                  "Dynamic:\n*",
-                  "`javax.activation` (Version: 1.2)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=9.0))\"",
+                  "Dynamic:\n`*`",
+                  "`javax.activation` (Version: `1.2`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=9.0))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.annotation-api",
-                  "Jakarta Annotations API\n[jakarta.annotation-api]",
+                  "Jakarta Annotations API\nSymbolic Name: `jakarta.annotation-api`",
                   "1.3.5",
                   "Jakarta Annotations API\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
                   "",
-                  "`javax.annotation.security` (Version: 1.3.5)\n`javax.annotation.sql` (Version: 1.3.5)\n`javax.annotation` (Version: 1.3.5)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.annotation.security` (Version: `1.3.5`)\n`javax.annotation.sql` (Version: `1.3.5`)\n`javax.annotation` (Version: `1.3.5`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.authorization-api",
-                  "Jakarta Authorization\n[javax.security.jacc-api]",
+                  "Jakarta Authorization\nSymbolic Name: `javax.security.jacc-api`",
                   "1.5.0",
                   "Jakarta Authorization 1.5 Specification\nVendor: Oracle Corporation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: http://www.oracle.com",
-                  "javax.servlet.http;version=\"[4.0,5)\"",
-                  "`javax.security.jacc` (Version: 1.5.0)\n\tUses: `javax.servlet.http`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.servlet.http` (Version: `[4.0,5)`)",
+                  "`javax.security.jacc` (Version: `1.5.0`)\n\tUses: `javax.servlet.http`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.batch-api",
-                  "jakarta.batch-api",
+                  "`jakarta.batch-api`",
                   "1.0.1",
                   "License: http://www.apache.org/licenses/LICENSE-2.0.html",
-                  "javax.enterprise.util;resolution:=optional\njavax.inject;resolution:=optional",
+                  "`javax.enterprise.util` (optional)\n`javax.inject` (optional)",
                   "`javax.batch.api`\n`javax.batch.api.chunk`\n`javax.batch.api.chunk.listener`\n`javax.batch.api.listener`\n`javax.batch.api.partition`\n`javax.batch.operations`\n`javax.batch.runtime`\n`javax.batch.runtime.context`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.ejb-api",
-                  "Jakarta Enterprise Beans\n[jakarta.ejb-api]",
+                  "Jakarta Enterprise Beans\nSymbolic Name: `jakarta.ejb-api`",
                   "3.2.6",
                   "Jakarta Enterprise Beans 3.2 API Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.ejb;version=\"3.2.6\"\njavax.ejb.embeddable;version=\"3.2.6\"\njavax.ejb.spi;version=\"3.2.6\"\njavax.naming\njavax.transaction;version=\"[1.3,2.0)\"\njavax.xml.namespace\njavax.xml.rpc.handler;version=\"1.1.2\"",
-                  "`javax.ejb.embeddable` (Version: 3.2.6)\n\tUses: `javax.ejb.spi`, `javax.naming`, `javax.ejb`\n`javax.xml.rpc.handler` (Version: 1.1.2)\n\tUses: `javax.xml.namespace`\n`javax.ejb.spi` (Version: 3.2.6)\n\tUses: `javax.ejb.embeddable`, `javax.ejb`\n`javax.ejb` (Version: 3.2.6)\n\tUses: `javax.transaction`, `javax.xml.rpc.handler`",
+                  "`javax.ejb` (Version: `3.2.6`)\n`javax.ejb.embeddable` (Version: `3.2.6`)\n`javax.ejb.spi` (Version: `3.2.6`)\n`javax.naming`\n`javax.transaction` (Version: `[1.3,2.0)`)\n`javax.xml.namespace`\n`javax.xml.rpc.handler` (Version: `1.1.2`)",
+                  "`javax.ejb.embeddable` (Version: `3.2.6`)\n\tUses: `javax.ejb.spi`, `javax.naming`, `javax.ejb`\n`javax.xml.rpc.handler` (Version: `1.1.2`)\n\tUses: `javax.xml.namespace`\n`javax.ejb.spi` (Version: `3.2.6`)\n\tUses: `javax.ejb.embeddable`, `javax.ejb`\n`javax.ejb` (Version: `3.2.6`)\n\tUses: `javax.transaction`, `javax.xml.rpc.handler`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.el-api",
-                  "Jakarta Expression Language 3.0 API\n[javax.el-api]",
+                  "Jakarta Expression Language 3.0 API\nSymbolic Name: `javax.el-api`",
                   "3.0.3",
                   "Jakarta Expression Language 3.0\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.el;version=\"3.0.3\"",
-                  "`javax.el` (Version: 3.0.3)",
+                  "`javax.el` (Version: `3.0.3`)",
+                  "`javax.el` (Version: `3.0.3`)",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.enterprise.cdi-api",
-                  "Jakarta CDI\n[jakarta.enterprise.cdi-api]",
+                  "Jakarta CDI\nSymbolic Name: `jakarta.enterprise.cdi-api`",
                   "2.0.2",
                   "APIs for Jakarta CDI (Contexts and Dependency Injection)\nVendor: Eclipse Foundation\nLicense:\nhttps://repository.jboss.org/licenses/apache-2.0.txt\nDoc URL: https://jakarta.ee",
-                  "javax.el;version=\"2.2\"\njavax.inject\njavax.interceptor;version=\"[1.2,2)\"",
-                  "`javax.decorator` (Version: 2.0)\n\tUses: `javax.enterprise.inject`\n`javax.enterprise.context` (Version: 2.0)\n\tUses: `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.context.control` (Version: 2.0)\n\tUses: `javax.enterprise.context`, `javax.interceptor`\n`javax.enterprise.context.spi` (Version: 2.0)\n`javax.enterprise.event` (Version: 2.0)\n\tUses: `javax.enterprise.util`\n`javax.enterprise.inject` (Version: 2.0)\n\tUses: `javax.enterprise.context`, `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.inject.literal` (Version: 2.0)\n\tUses: `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.inject.se` (Version: 2.0)\n\tUses: `javax.enterprise.inject`, `javax.enterprise.inject.spi`\n`javax.enterprise.inject.spi` (Version: 2.0)\n\tUses: `javax.el`, `javax.enterprise.context.spi`, `javax.enterprise.event`, `javax.enterprise.inject`,\n\t\t`javax.enterprise.inject.spi.configurator`, `javax.interceptor`\n`javax.enterprise.inject.spi.configurator` (Version: 2.0)\n\tUses: `javax.enterprise.context.spi`, `javax.enterprise.event`, `javax.enterprise.inject`, `javax.enterprise.inject.spi`,\n\t\t`javax.enterprise.util`\n`javax.enterprise.util` (Version: 2.0)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.el` (Version: `2.2`)\n`javax.inject`\n`javax.interceptor` (Version: `[1.2,2)`)",
+                  "`javax.decorator` (Version: `2.0`)\n\tUses: `javax.enterprise.inject`\n`javax.enterprise.context` (Version: `2.0`)\n\tUses: `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.context.control` (Version: `2.0`)\n\tUses: `javax.enterprise.context`, `javax.interceptor`\n`javax.enterprise.context.spi` (Version: `2.0`)\n`javax.enterprise.event` (Version: `2.0`)\n\tUses: `javax.enterprise.util`\n`javax.enterprise.inject` (Version: `2.0`)\n\tUses: `javax.enterprise.context`, `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.inject.literal` (Version: `2.0`)\n\tUses: `javax.enterprise.util`, `javax.inject`\n`javax.enterprise.inject.se` (Version: `2.0`)\n\tUses: `javax.enterprise.inject`, `javax.enterprise.inject.spi`\n`javax.enterprise.inject.spi` (Version: `2.0`)\n\tUses: `javax.el`, `javax.enterprise.context.spi`, `javax.enterprise.event`, `javax.enterprise.inject`,\n\t\t`javax.enterprise.inject.spi.configurator`, `javax.interceptor`\n`javax.enterprise.inject.spi.configurator` (Version: `2.0`)\n\tUses: `javax.enterprise.context.spi`, `javax.enterprise.event`, `javax.enterprise.inject`, `javax.enterprise.inject.spi`,\n\t\t`javax.enterprise.util`\n`javax.enterprise.util` (Version: `2.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.enterprise.concurrent-api",
-                  "jakarta.enterprise.concurrent-api",
+                  "`jakarta.enterprise.concurrent-api`",
                   "1.1.2",
                   "Jakarta Concurrency\nVendor: Oracle Corporation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: http://www.oracle.com/",
                   "",
-                  "`javax.enterprise.concurrent` (Version: 1.1.2)",
+                  "`javax.enterprise.concurrent` (Version: `1.1.2`)",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.enterprise.deploy-api",
-                  "javax.enterprise.deploy API\n[javax.enterprise.deploy-api]",
+                  "javax.enterprise.deploy API\nSymbolic Name: `javax.enterprise.deploy-api`",
                   "1.7.2",
                   "Java EE Deployment API 1.2 Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.enterprise.deploy.model;version=\"1.7.2\"\njavax.enterprise.deploy.model.exceptions;version=\"1.7.2\"\njavax.enterprise.deploy.shared;version=\"1.7.2\"\njavax.enterprise.deploy.shared.factories;version=\"1.7.2\"\njavax.enterprise.deploy.spi;version=\"1.7.2\"\njavax.enterprise.deploy.spi.exceptions;version=\"1.7.2\"\njavax.enterprise.deploy.spi.factories;version=\"1.7.2\"\njavax.enterprise.deploy.spi.status;version=\"1.7.2\"",
-                  "`javax.enterprise.deploy.spi.status` (Version: 1.7.2)\n\tUses: `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.shared`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.shared.factories` (Version: 1.7.2)\n\tUses: `javax.enterprise.deploy.spi.factories`, `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.spi.factories` (Version: 1.7.2)\n\tUses: `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.spi` (Version: 1.7.2)\n\tUses: `javax.enterprise.deploy.spi.status`, `javax.enterprise.deploy.shared`, `javax.enterprise.deploy.spi.exceptions`,\n\t\t`javax.enterprise.deploy.model`\n`javax.enterprise.deploy.model.exceptions` (Version: 1.7.2)\n`javax.enterprise.deploy.shared` (Version: 1.7.2)\n`javax.enterprise.deploy.spi.exceptions` (Version: 1.7.2)\n`javax.enterprise.deploy.model` (Version: 1.7.2)\n\tUses: `javax.enterprise.deploy.model.exceptions`, `javax.enterprise.deploy.shared`",
+                  "`javax.enterprise.deploy.model` (Version: `1.7.2`)\n`javax.enterprise.deploy.model.exceptions` (Version: `1.7.2`)\n`javax.enterprise.deploy.shared` (Version: `1.7.2`)\n`javax.enterprise.deploy.shared.factories` (Version: `1.7.2`)\n`javax.enterprise.deploy.spi` (Version: `1.7.2`)\n`javax.enterprise.deploy.spi.exceptions` (Version: `1.7.2`)\n`javax.enterprise.deploy.spi.factories` (Version: `1.7.2`)\n`javax.enterprise.deploy.spi.status` (Version: `1.7.2`)",
+                  "`javax.enterprise.deploy.spi.status` (Version: `1.7.2`)\n\tUses: `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.shared`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.shared.factories` (Version: `1.7.2`)\n\tUses: `javax.enterprise.deploy.spi.factories`, `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.spi.factories` (Version: `1.7.2`)\n\tUses: `javax.enterprise.deploy.spi`, `javax.enterprise.deploy.spi.exceptions`\n`javax.enterprise.deploy.spi` (Version: `1.7.2`)\n\tUses: `javax.enterprise.deploy.spi.status`, `javax.enterprise.deploy.shared`, `javax.enterprise.deploy.spi.exceptions`,\n\t\t`javax.enterprise.deploy.model`\n`javax.enterprise.deploy.model.exceptions` (Version: `1.7.2`)\n`javax.enterprise.deploy.shared` (Version: `1.7.2`)\n`javax.enterprise.deploy.spi.exceptions` (Version: `1.7.2`)\n`javax.enterprise.deploy.model` (Version: `1.7.2`)\n\tUses: `javax.enterprise.deploy.model.exceptions`, `javax.enterprise.deploy.shared`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.interceptor-api",
-                  "Jakarta Interceptors\n[jakarta.interceptor-api]",
+                  "Jakarta Interceptors\nSymbolic Name: `jakarta.interceptor-api`",
                   "1.2.5",
                   "Jakarta Interceptors 1.2 Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
                   "",
-                  "`javax.interceptor` (Version: 1.2.5)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"",
+                  "`javax.interceptor` (Version: `1.2.5`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.jms-api",
-                  "Jakarta Messaging API\n[jakarta.jms-api]",
+                  "Jakarta Messaging API\nSymbolic Name: `jakarta.jms-api`",
                   "2.0.3",
                   "Jakarta Messaging 2.0 Specification\nVendor: Eclipse Foundation\nLicense: https://projects.eclipse.org/license/epl-2.0,\nhttps://projects.eclipse.org/license/secondary-gpl-2.0-cp\nDoc URL: https://www.eclipse.org",
-                  "javax.transaction.xa",
-                  "`javax.jms` (Version: 2.0.3)\n\tUses: `javax.transaction.xa`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.transaction.xa`",
+                  "`javax.jms` (Version: `2.0.3`)\n\tUses: `javax.transaction.xa`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.json-api",
-                  "Jakarta JSON Processing API\n[jakarta.json-api]",
+                  "Jakarta JSON Processing API\nSymbolic Name: `jakarta.json-api`",
                   "1.1.5",
                   "Jakarta JSON Processing API 1.1\nVendor: Eclipse Foundation\nLicense: https://projects.eclipse.org/license/epl-2.0,\nhttps://projects.eclipse.org/license/secondary-gpl-2.0-cp\nDoc URL: https://www.eclipse.org",
-                  "javax.json\njavax.json.spi\njavax.json.stream",
-                  "`javax.json` (Version: 1.1.5)\n\tUses: `javax.json.stream`\n`javax.json.spi` (Version: 1.1.5)\n\tUses: `javax.json`, `javax.json.stream`\n`javax.json.stream` (Version: 1.1.5)\n\tUses: `javax.json`",
+                  "`javax.json`\n`javax.json.spi`\n`javax.json.stream`",
+                  "`javax.json` (Version: `1.1.5`)\n\tUses: `javax.json.stream`\n`javax.json.spi` (Version: `1.1.5`)\n\tUses: `javax.json`, `javax.json.stream`\n`javax.json.stream` (Version: `1.1.5`)\n\tUses: `javax.json`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.json.bind-api",
-                  "JSON-B API\n[jakarta.json.bind-api]",
+                  "JSON-B API\nSymbolic Name: `jakarta.json.bind-api`",
                   "1.0.2",
                   "Java API for JSON Binding (JSON-Binding)\nVendor: Eclipse Foundation\nLicense: https://projects.eclipse.org/license/epl-2.0,\nhttps://projects.eclipse.org/license/secondary-gpl-2.0-cp\nDoc URL: https://www.eclipse.org",
-                  "javax.json.bind;version=\"[1.0,2)\"\njavax.json.bind.adapter;version=\"[1.0,2)\"\njavax.json.bind.config;version=\"[1.0,2)\"\njavax.json.bind.serializer;version=\"[1.0,2)\"\njavax.json.bind.spi;version=\"[1.0,2)\"\njavax.json.spi;version=\"[1.1,2)\"\njavax.json.stream;version=\"[1.1,2)\"\n\nDynamic:\n*",
-                  "`javax.json.bind` (Version: 1.0)\n\tUses: `javax.json.bind.adapter`, `javax.json.bind.config`, `javax.json.bind.serializer`, `javax.json.bind.spi`,\n\t\t`javax.json.spi`\n`javax.json.bind.adapter` (Version: 1.0)\n`javax.json.bind.annotation` (Version: 1.0)\n\tUses: `javax.json.bind.adapter`, `javax.json.bind.config`, `javax.json.bind.serializer`\n`javax.json.bind.config` (Version: 1.0)\n`javax.json.bind.serializer` (Version: 1.0)\n\tUses: `javax.json.stream`\n`javax.json.bind.spi` (Version: 1.0)\n\tUses: `javax.json.bind`",
+                  "`javax.json.bind` (Version: `[1.0,2)`)\n`javax.json.bind.adapter` (Version: `[1.0,2)`)\n`javax.json.bind.config` (Version: `[1.0,2)`)\n`javax.json.bind.serializer` (Version: `[1.0,2)`)\n`javax.json.bind.spi` (Version: `[1.0,2)`)\n`javax.json.spi` (Version: `[1.1,2)`)\n`javax.json.stream` (Version: `[1.1,2)`)\n\nDynamic:\n`*`",
+                  "`javax.json.bind` (Version: `1.0`)\n\tUses: `javax.json.bind.adapter`, `javax.json.bind.config`, `javax.json.bind.serializer`, `javax.json.bind.spi`,\n\t\t`javax.json.spi`\n`javax.json.bind.adapter` (Version: `1.0`)\n`javax.json.bind.annotation` (Version: `1.0`)\n\tUses: `javax.json.bind.adapter`, `javax.json.bind.config`, `javax.json.bind.serializer`\n`javax.json.bind.config` (Version: `1.0`)\n`javax.json.bind.serializer` (Version: `1.0`)\n\tUses: `javax.json.stream`\n`javax.json.bind.spi` (Version: `1.0`)\n\tUses: `javax.json.bind`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.jws-api",
-                  "Jakarta Web Services Metadata API\n[jakarta.jws-api]",
+                  "Jakarta Web Services Metadata API\nSymbolic Name: `jakarta.jws-api`",
                   "2.1.0",
                   "Jakarta Web Services Metadata API 2.1 Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
                   "",
-                  "`javax.jws` (Version: 2.1.0)\n`javax.jws.soap` (Version: 2.1.0)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.jws` (Version: `2.1.0`)\n`javax.jws.soap` (Version: `2.1.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2\nPrivate Package:\njavax.jws\njavax.jws.soap\n."
                ],
                [
                   "jakarta.mail-api",
-                  "Jakarta Mail API jar\n[jakarta.mail-api]",
+                  "Jakarta Mail API jar\nSymbolic Name: `jakarta.mail-api`",
                   "1.6.4",
                   "Jakarta Mail API jar\nVendor: Oracle\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html,\nhttp://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: http://www.oracle.com",
-                  "javax.activation\ncom.sun.mail.util\njavax.mail;version=\"[1.6,2)\"\njavax.mail.event;version=\"[1.6,2)\"\njavax.mail.internet;version=\"[1.6,2)\"\njavax.mail.search;version=\"[1.6,2)\"\njavax.mail.util;version=\"[1.6,2)\"\njavax.security.sasl;resolution:=optional\nsun.security.util;resolution:=optional\n\nDynamic:\n*",
-                  "`javax.mail` (Version: 1.6)\n\tUses: `javax.activation`, `javax.mail.event`, `javax.mail.search`\n`javax.mail.event` (Version: 1.6)\n\tUses: `javax.mail`\n`javax.mail.internet` (Version: 1.6)\n\tUses: `javax.activation`, `javax.mail`\n`javax.mail.search` (Version: 1.6)\n\tUses: `javax.mail`\n`javax.mail.util` (Version: 1.6)\n\tUses: `javax.activation`, `javax.mail.internet`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"",
+                  "`javax.activation`\n`com.sun.mail.util`\n`javax.mail` (Version: `[1.6,2)`)\n`javax.mail.event` (Version: `[1.6,2)`)\n`javax.mail.internet` (Version: `[1.6,2)`)\n`javax.mail.search` (Version: `[1.6,2)`)\n`javax.mail.util` (Version: `[1.6,2)`)\n`javax.security.sasl` (optional)\n`sun.security.util` (optional)\n\nDynamic:\n`*`",
+                  "`javax.mail` (Version: `1.6`)\n\tUses: `javax.activation`, `javax.mail.event`, `javax.mail.search`\n`javax.mail.event` (Version: `1.6`)\n\tUses: `javax.mail`\n`javax.mail.internet` (Version: `1.6`)\n\tUses: `javax.activation`, `javax.mail`\n`javax.mail.search` (Version: `1.6`)\n\tUses: `javax.mail`\n`javax.mail.util` (Version: `1.6`)\n\tUses: `javax.activation`, `javax.mail.internet`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.management.j2ee-api",
-                  "javax.management.j2ee API\n[javax.management.j2ee-api]",
+                  "javax.management.j2ee API\nSymbolic Name: `javax.management.j2ee-api`",
                   "1.1.4",
                   "Jakarta Management 1.1 API Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.ejb;version=\"[3.1,3.2.98)\"\njavax.management\njavax.management.j2ee;version=\"1.1.4\"\njavax.management.j2ee.statistics;version=\"1.1.4\"",
-                  "`javax.management.j2ee` (Version: 1.1.4)\n\tUses: `javax.management`, `javax.ejb`\n`javax.management.j2ee.statistics` (Version: 1.1.4)",
+                  "`javax.ejb` (Version: `[3.1,3.2.98)`)\n`javax.management`\n`javax.management.j2ee` (Version: `1.1.4`)\n`javax.management.j2ee.statistics` (Version: `1.1.4`)",
+                  "`javax.management.j2ee` (Version: `1.1.4`)\n\tUses: `javax.management`, `javax.ejb`\n`javax.management.j2ee.statistics` (Version: `1.1.4`)",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.mvc-api",
-                  "Jakarta MVC API\n[javax.mvc-api]",
+                  "Jakarta MVC API\nSymbolic Name: `javax.mvc-api`",
                   "1.1.0",
                   "Jakarta MVC API\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org/org/foundation/",
-                  "javax.enterprise.context;version=\"[2.0,3)\"\njavax.mvc\njavax.mvc.engine\njavax.mvc.security\njavax.validation;version=\"[2.0,3)\"\njavax.ws.rs;version=\"[2.1,3)\"\njavax.ws.rs.container;version=\"[2.1,3)\"\njavax.ws.rs.core;version=\"[2.1,3)\"",
-                  "`javax.mvc` (Version: 1.1.0)\n\tUses: `javax.enterprise.context`, `javax.mvc.security`, `javax.ws.rs`, `javax.ws.rs.core`\n`javax.mvc.binding` (Version: 1.1.0)\n\tUses: `javax.validation`\n`javax.mvc.engine` (Version: 1.1.0)\n\tUses: `javax.mvc`, `javax.ws.rs.container`, `javax.ws.rs.core`\n`javax.mvc.event` (Version: 1.1.0)\n\tUses: `javax.mvc.engine`, `javax.ws.rs.container`, `javax.ws.rs.core`\n`javax.mvc.locale` (Version: 1.1.0)\n\tUses: `javax.ws.rs.core`\n`javax.mvc.security` (Version: 1.1.0)",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.enterprise.context` (Version: `[2.0,3)`)\n`javax.mvc`\n`javax.mvc.engine`\n`javax.mvc.security`\n`javax.validation` (Version: `[2.0,3)`)\n`javax.ws.rs` (Version: `[2.1,3)`)\n`javax.ws.rs.container` (Version: `[2.1,3)`)\n`javax.ws.rs.core` (Version: `[2.1,3)`)",
+                  "`javax.mvc` (Version: `1.1.0`)\n\tUses: `javax.enterprise.context`, `javax.mvc.security`, `javax.ws.rs`, `javax.ws.rs.core`\n`javax.mvc.binding` (Version: `1.1.0`)\n\tUses: `javax.validation`\n`javax.mvc.engine` (Version: `1.1.0`)\n\tUses: `javax.mvc`, `javax.ws.rs.container`, `javax.ws.rs.core`\n`javax.mvc.event` (Version: `1.1.0`)\n\tUses: `javax.mvc.engine`, `javax.ws.rs.container`, `javax.ws.rs.core`\n`javax.mvc.locale` (Version: `1.1.0`)\n\tUses: `javax.ws.rs.core`\n`javax.mvc.security` (Version: `1.1.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.persistence-api",
-                  "Jakarta Persistence API jar\n[jakarta.persistence-api]",
+                  "Jakarta Persistence API jar\nSymbolic Name: `jakarta.persistence-api`",
                   "2.2.3",
                   "Jakarta Persistence 2.2 API jar\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttp://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
-                  "javax.persistence\njavax.persistence.criteria\njavax.persistence.metamodel\njavax.persistence.spi\njavax.sql",
-                  "`javax.persistence.metamodel` (Version: 2.2.3)\n`javax.persistence` (Version: 2.2.3)\n\tUses: `javax.persistence.criteria`, `javax.persistence.metamodel`, `javax.persistence.spi`\n`javax.persistence.criteria` (Version: 2.2.3)\n\tUses: `javax.persistence`, `javax.persistence.metamodel`\n`javax.persistence.spi` (Version: 2.2.3)\n\tUses: `javax.persistence`, `javax.sql`",
+                  "`javax.persistence`\n`javax.persistence.criteria`\n`javax.persistence.metamodel`\n`javax.persistence.spi`\n`javax.sql`",
+                  "`javax.persistence.metamodel` (Version: `2.2.3`)\n`javax.persistence` (Version: `2.2.3`)\n\tUses: `javax.persistence.criteria`, `javax.persistence.metamodel`, `javax.persistence.spi`\n`javax.persistence.criteria` (Version: `2.2.3`)\n\tUses: `javax.persistence`, `javax.persistence.metamodel`\n`javax.persistence.spi` (Version: `2.2.3`)\n\tUses: `javax.persistence`, `javax.sql`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.resource-api",
-                  "javax.resource API\n[jakarta.resource-api]",
+                  "javax.resource API\nSymbolic Name: `jakarta.resource-api`",
                   "1.7.4",
                   "Jakarta Connectors 1.7 Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "doc-files;version=\"1.7.4\"\njavax.naming\njavax.resource;version=\"1.7.4\"\njavax.resource.cci;version=\"1.7.4\"\njavax.resource.spi;version=\"1.7.4\"\njavax.resource.spi.endpoint;version=\"1.7.4\"\njavax.resource.spi.security;version=\"1.7.4\"\njavax.resource.spi.work;version=\"1.7.4\"\njavax.security.auth\njavax.security.auth.callback\njavax.transaction;version=\"[1.3,2.0)\"\njavax.transaction.xa",
-                  "`javax.resource.spi.work` (Version: 1.7.4)\n\tUses: `javax.transaction.xa`, `javax.security.auth.callback`, `javax.security.auth`, `javax.resource`,\n\t\t`javax.resource.spi`\n`javax.resource.spi.endpoint` (Version: 1.7.4)\n\tUses: `javax.transaction.xa`, `javax.resource`, `javax.resource.spi`\n`javax.resource.spi.security` (Version: 1.7.4)\n\tUses: `javax.resource.spi`\n`javax.resource.cci` (Version: 1.7.4)\n\tUses: `javax.resource`\n`doc-files` (Version: 1.7.4)\n`javax.resource` (Version: 1.7.4)\n\tUses: `javax.naming`, `javax.resource.spi`\n`javax.resource.spi` (Version: 1.7.4)\n\tUses: `javax.resource.spi.work`, `javax.transaction.xa`, `javax.resource.spi.endpoint`, `javax.transaction`,\n\t\t`javax.security.auth`, `javax.resource`",
+                  "`doc-files` (Version: `1.7.4`)\n`javax.naming`\n`javax.resource` (Version: `1.7.4`)\n`javax.resource.cci` (Version: `1.7.4`)\n`javax.resource.spi` (Version: `1.7.4`)\n`javax.resource.spi.endpoint` (Version: `1.7.4`)\n`javax.resource.spi.security` (Version: `1.7.4`)\n`javax.resource.spi.work` (Version: `1.7.4`)\n`javax.security.auth`\n`javax.security.auth.callback`\n`javax.transaction` (Version: `[1.3,2.0)`)\n`javax.transaction.xa`",
+                  "`javax.resource.spi.work` (Version: `1.7.4`)\n\tUses: `javax.transaction.xa`, `javax.security.auth.callback`, `javax.security.auth`, `javax.resource`,\n\t\t`javax.resource.spi`\n`javax.resource.spi.endpoint` (Version: `1.7.4`)\n\tUses: `javax.transaction.xa`, `javax.resource`, `javax.resource.spi`\n`javax.resource.spi.security` (Version: `1.7.4`)\n\tUses: `javax.resource.spi`\n`javax.resource.cci` (Version: `1.7.4`)\n\tUses: `javax.resource`\n`doc-files` (Version: `1.7.4`)\n`javax.resource` (Version: `1.7.4`)\n\tUses: `javax.naming`, `javax.resource.spi`\n`javax.resource.spi` (Version: `1.7.4`)\n\tUses: `javax.resource.spi.work`, `javax.transaction.xa`, `javax.resource.spi.endpoint`, `javax.transaction`,\n\t\t`javax.security.auth`, `javax.resource`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.security.auth.message-api",
-                  "Jakarta Authentication\n[javax.security.auth.message-api]",
+                  "Jakarta Authentication\nSymbolic Name: `javax.security.auth.message-api`",
                   "1.1.3",
                   "Jakarta Authentication 1.1 Specification\nVendor: Jakarta Authentication\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://github.com/eclipse-ee4j/jaspic",
-                  "javax.crypto\njavax.security.auth\njavax.security.auth.callback\njavax.security.auth.login\njavax.security.auth.message\njavax.security.auth.x500",
-                  "`javax.security.auth.message.callback` (Version: 1.1.3)\n\tUses: `javax.crypto`, `javax.security.auth`, `javax.security.auth.callback`, `javax.security.auth.x500`\n`javax.security.auth.message.config` (Version: 1.1.3)\n\tUses: `javax.security.auth`, `javax.security.auth.callback`, `javax.security.auth.message`\n`javax.security.auth.message.module` (Version: 1.1.3)\n\tUses: `javax.security.auth.callback`, `javax.security.auth.message`\n`javax.security.auth.message` (Version: 1.1.3)\n\tUses: `javax.security.auth`, `javax.security.auth.login`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.crypto`\n`javax.security.auth`\n`javax.security.auth.callback`\n`javax.security.auth.login`\n`javax.security.auth.message`\n`javax.security.auth.x500`",
+                  "`javax.security.auth.message.callback` (Version: `1.1.3`)\n\tUses: `javax.crypto`, `javax.security.auth`, `javax.security.auth.callback`, `javax.security.auth.x500`\n`javax.security.auth.message.config` (Version: `1.1.3`)\n\tUses: `javax.security.auth`, `javax.security.auth.callback`, `javax.security.auth.message`\n`javax.security.auth.message.module` (Version: `1.1.3`)\n\tUses: `javax.security.auth.callback`, `javax.security.auth.message`\n`javax.security.auth.message` (Version: `1.1.3`)\n\tUses: `javax.security.auth`, `javax.security.auth.login`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.security.enterprise-api",
-                  "Jakarta Security\n[javax.security.enterprise-api]",
+                  "Jakarta Security\nSymbolic Name: `javax.security.enterprise-api`",
                   "1.0.2",
                   "Jakarta Security 1.0 Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.enterprise.util;version=\"[2.0,3)\"\njavax.interceptor;version=\"[1.2,2)\"\njavax.security.auth\njavax.security.auth.callback\njavax.security.auth.message;version=\"[1.1,2)\"\njavax.security.enterprise\njavax.security.enterprise.authentication.mechanism.http\njavax.security.enterprise.credential\njavax.security.enterprise.identitystore\njavax.servlet.http;version=\"[4.0,5)\"",
-                  "`javax.security.enterprise` (Version: 1.0.2)\n\tUses: `javax.security.enterprise.authentication.mechanism.http`, `javax.servlet.http`\n`javax.security.enterprise.authentication.mechanism.http` (Version: 1.0.2)\n\tUses: `javax.enterprise.util`, `javax.interceptor`, `javax.security.auth`, `javax.security.auth.callback`,\n\t\t`javax.security.auth.message`, `javax.security.enterprise`, `javax.security.enterprise.credential`,\n\t\t`javax.security.enterprise.identitystore`, `javax.servlet.http`\n`javax.security.enterprise.credential` (Version: 1.0.2)\n`javax.security.enterprise.identitystore` (Version: 1.0.2)\n\tUses: `javax.security.enterprise`, `javax.security.enterprise.credential`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.enterprise.util` (Version: `[2.0,3)`)\n`javax.interceptor` (Version: `[1.2,2)`)\n`javax.security.auth`\n`javax.security.auth.callback`\n`javax.security.auth.message` (Version: `[1.1,2)`)\n`javax.security.enterprise`\n`javax.security.enterprise.authentication.mechanism.http`\n`javax.security.enterprise.credential`\n`javax.security.enterprise.identitystore`\n`javax.servlet.http` (Version: `[4.0,5)`)",
+                  "`javax.security.enterprise` (Version: `1.0.2`)\n\tUses: `javax.security.enterprise.authentication.mechanism.http`, `javax.servlet.http`\n`javax.security.enterprise.authentication.mechanism.http` (Version: `1.0.2`)\n\tUses: `javax.enterprise.util`, `javax.interceptor`, `javax.security.auth`, `javax.security.auth.callback`,\n\t\t`javax.security.auth.message`, `javax.security.enterprise`, `javax.security.enterprise.credential`,\n\t\t`javax.security.enterprise.identitystore`, `javax.servlet.http`\n`javax.security.enterprise.credential` (Version: `1.0.2`)\n`javax.security.enterprise.identitystore` (Version: `1.0.2`)\n\tUses: `javax.security.enterprise`, `javax.security.enterprise.credential`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.servlet-api",
-                  "Jakarta Servlet\n[jakarta.servlet-api]",
+                  "Jakarta Servlet\nSymbolic Name: `jakarta.servlet-api`",
                   "4.0.0",
                   "Jakarta Servlet 4.0\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.servlet\njavax.servlet.annotation\njavax.servlet.descriptor",
-                  "`javax.servlet` (Version: 4.0.0)\n\tUses: `javax.servlet.annotation`, `javax.servlet.descriptor`\n`javax.servlet.annotation` (Version: 4.0.0)\n\tUses: `javax.servlet`\n`javax.servlet.descriptor` (Version: 4.0.0)\n`javax.servlet.http` (Version: 4.0.0)\n\tUses: `javax.servlet`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.servlet`\n`javax.servlet.annotation`\n`javax.servlet.descriptor`",
+                  "`javax.servlet` (Version: `4.0.0`)\n\tUses: `javax.servlet.annotation`, `javax.servlet.descriptor`\n`javax.servlet.annotation` (Version: `4.0.0`)\n\tUses: `javax.servlet`\n`javax.servlet.descriptor` (Version: `4.0.0`)\n`javax.servlet.http` (Version: `4.0.0`)\n\tUses: `javax.servlet`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.servlet.jsp-api",
-                  "Jakarta Server Pages API\n[javax.servlet.jsp-api]",
+                  "Jakarta Server Pages API\nSymbolic Name: `javax.servlet.jsp-api`",
                   "2.3.6",
                   "Jakarta Server Pages API\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.el\njavax.servlet\njavax.servlet.http\njavax.servlet.jsp;version=\"2.3.6\"\njavax.servlet.jsp.el;version=\"2.3.6\"\njavax.servlet.jsp.tagext;version=\"2.3.6\"",
-                  "`javax.servlet.jsp.el` (Version: 2.3.6)\n\tUses: `javax.servlet`, `javax.el`, `javax.servlet.jsp`, `javax.servlet.http`\n`javax.servlet.jsp.tagext` (Version: 2.3.6)\n\tUses: `javax.servlet.jsp`\n`javax.servlet.jsp` (Version: 2.3.6)\n\tUses: `javax.servlet`, `javax.el`, `javax.servlet.jsp.el`, `javax.servlet.jsp.tagext`, `javax.servlet.http`",
+                  "`javax.el`\n`javax.servlet`\n`javax.servlet.http`\n`javax.servlet.jsp` (Version: `2.3.6`)\n`javax.servlet.jsp.el` (Version: `2.3.6`)\n`javax.servlet.jsp.tagext` (Version: `2.3.6`)",
+                  "`javax.servlet.jsp.el` (Version: `2.3.6`)\n\tUses: `javax.servlet`, `javax.el`, `javax.servlet.jsp`, `javax.servlet.http`\n`javax.servlet.jsp.tagext` (Version: `2.3.6`)\n\tUses: `javax.servlet.jsp`\n`javax.servlet.jsp` (Version: `2.3.6`)\n\tUses: `javax.servlet`, `javax.el`, `javax.servlet.jsp.el`, `javax.servlet.jsp.tagext`, `javax.servlet.http`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.servlet.jsp.jstl-api",
-                  "JavaServer Pages(TM) Standard Tag Library API\n[javax.servlet.jsp.jstl-api]",
+                  "JavaServer Pages(TM) Standard Tag Library API\nSymbolic Name: `javax.servlet.jsp.jstl-api`",
                   "1.2.7",
                   "JavaServer Pages(TM) Standard Tag Library API\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.el\njavax.servlet\njavax.servlet.http\njavax.servlet.jsp\njavax.servlet.jsp.jstl.core;version=\"1.2.7\"\njavax.servlet.jsp.jstl.fmt;version=\"1.2.7\"\njavax.servlet.jsp.jstl.sql;version=\"1.2.7\"\njavax.servlet.jsp.jstl.tlv;version=\"1.2.7\"\njavax.servlet.jsp.tagext\njavax.xml.parsers\norg.xml.sax\norg.xml.sax.helpers",
-                  "`javax.servlet.jsp.jstl.sql` (Version: 1.2.7)\n`javax.servlet.jsp.jstl.tlv` (Version: 1.2.7)\n\tUses: `org.xml.sax.helpers`, `org.xml.sax`, `javax.servlet.jsp.tagext`, `javax.xml.parsers`\n`javax.servlet.jsp.jstl.core` (Version: 1.2.7)\n\tUses: `javax.servlet`, `javax.servlet.http`, `javax.servlet.jsp.tagext`, `javax.el`, `javax.servlet.jsp`\n`javax.servlet.jsp.jstl.fmt` (Version: 1.2.7)\n\tUses: `javax.servlet`, `javax.servlet.jsp.jstl.core`, `javax.servlet.http`, `javax.servlet.jsp`",
+                  "`javax.el`\n`javax.servlet`\n`javax.servlet.http`\n`javax.servlet.jsp`\n`javax.servlet.jsp.jstl.core` (Version: `1.2.7`)\n`javax.servlet.jsp.jstl.fmt` (Version: `1.2.7`)\n`javax.servlet.jsp.jstl.sql` (Version: `1.2.7`)\n`javax.servlet.jsp.jstl.tlv` (Version: `1.2.7`)\n`javax.servlet.jsp.tagext`\n`javax.xml.parsers`\n`org.xml.sax`\n`org.xml.sax.helpers`",
+                  "`javax.servlet.jsp.jstl.sql` (Version: `1.2.7`)\n`javax.servlet.jsp.jstl.tlv` (Version: `1.2.7`)\n\tUses: `org.xml.sax.helpers`, `org.xml.sax`, `javax.servlet.jsp.tagext`, `javax.xml.parsers`\n`javax.servlet.jsp.jstl.core` (Version: `1.2.7`)\n\tUses: `javax.servlet`, `javax.servlet.http`, `javax.servlet.jsp.tagext`, `javax.el`, `javax.servlet.jsp`\n`javax.servlet.jsp.jstl.fmt` (Version: `1.2.7`)\n\tUses: `javax.servlet`, `javax.servlet.jsp.jstl.core`, `javax.servlet.http`, `javax.servlet.jsp`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.transaction-api",
-                  "javax.transaction API\n[jakarta.transaction-api]",
+                  "javax.transaction API\nSymbolic Name: `jakarta.transaction-api`",
                   "1.3.3",
                   "Jakarta(TM) Transactions 1.3 API Design Specification\nVendor: EE4J Community\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://github.com/eclipse-ee4j",
-                  "javax.enterprise.context\njavax.enterprise.util\njavax.interceptor;version=\"[1.2,1.2.98)\"\njavax.transaction;version=\"1.3.3\"\njavax.transaction.xa",
-                  "`javax.transaction` (Version: 1.3.3)\n\tUses: `javax.interceptor`, `javax.transaction.xa`, `javax.enterprise.util`, `javax.enterprise.context`",
+                  "`javax.enterprise.context`\n`javax.enterprise.util`\n`javax.interceptor` (Version: `[1.2,1.2.98)`)\n`javax.transaction` (Version: `1.3.3`)\n`javax.transaction.xa`",
+                  "`javax.transaction` (Version: `1.3.3`)\n\tUses: `javax.interceptor`, `javax.transaction.xa`, `javax.enterprise.util`, `javax.enterprise.context`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.validation-api",
-                  "Jakarta Bean Validation API\n[jakarta.validation.jakarta.validation-api]",
+                  "Jakarta Bean Validation API\nSymbolic Name: `jakarta.validation.jakarta.validation-api`",
                   "2.0.2",
                   "Jakarta Bean Validation API\nVendor: Eclipse Foundation\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://www.eclipse.org",
-                  "javax.validation;version=\"[2.0,3)\"\njavax.validation.bootstrap;version=\"[2.0,3)\"\njavax.validation.executable;version=\"[2.0,3)\"\njavax.validation.metadata;version=\"[2.0,3)\"\njavax.validation.spi;version=\"[2.0,3)\"\njavax.validation.valueextraction;version=\"[2.0,3)\"",
-                  "`javax.validation` (Version: 2.0.2)\n\tUses: `javax.validation.bootstrap`, `javax.validation.executable`, `javax.validation.metadata`, `javax.validation.spi`,\n\t\t`javax.validation.valueextraction`\n`javax.validation.bootstrap` (Version: 2.0.2)\n\tUses: `javax.validation`\n`javax.validation.constraints` (Version: 2.0.2)\n\tUses: `javax.validation`\n`javax.validation.constraintvalidation` (Version: 2.0.2)\n`javax.validation.executable` (Version: 2.0.2)\n\tUses: `javax.validation`\n`javax.validation.groups` (Version: 2.0.2)\n`javax.validation.metadata` (Version: 2.0.2)\n\tUses: `javax.validation`\n`javax.validation.spi` (Version: 2.0.2)\n\tUses: `javax.validation`, `javax.validation.valueextraction`\n`javax.validation.valueextraction` (Version: 2.0.2)\n\tUses: `javax.validation`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.validation` (Version: `[2.0,3)`)\n`javax.validation.bootstrap` (Version: `[2.0,3)`)\n`javax.validation.executable` (Version: `[2.0,3)`)\n`javax.validation.metadata` (Version: `[2.0,3)`)\n`javax.validation.spi` (Version: `[2.0,3)`)\n`javax.validation.valueextraction` (Version: `[2.0,3)`)",
+                  "`javax.validation` (Version: `2.0.2`)\n\tUses: `javax.validation.bootstrap`, `javax.validation.executable`, `javax.validation.metadata`, `javax.validation.spi`,\n\t\t`javax.validation.valueextraction`\n`javax.validation.bootstrap` (Version: `2.0.2`)\n\tUses: `javax.validation`\n`javax.validation.constraints` (Version: `2.0.2`)\n\tUses: `javax.validation`\n`javax.validation.constraintvalidation` (Version: `2.0.2`)\n`javax.validation.executable` (Version: `2.0.2`)\n\tUses: `javax.validation`\n`javax.validation.groups` (Version: `2.0.2`)\n`javax.validation.metadata` (Version: `2.0.2`)\n\tUses: `javax.validation`\n`javax.validation.spi` (Version: `2.0.2`)\n\tUses: `javax.validation`, `javax.validation.valueextraction`\n`javax.validation.valueextraction` (Version: `2.0.2`)\n\tUses: `javax.validation`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.websocket-api",
-                  "Jakarta WebSocket - Server API\n[javax.websocket-api]",
+                  "Jakarta WebSocket - Server API\nSymbolic Name: `javax.websocket-api`",
                   "1.1.2",
                   "Jakarta WebSocket - Server API\nVendor: Eclipse Foundation\nLicense: https://projects.eclipse.org/license/epl-2.0,\nhttps://projects.eclipse.org/license/secondary-gpl-2.0-cp\nDoc URL: https://www.eclipse.org",
                   "",
-                  "`javax.websocket` (Version: 1.1.2)\n`javax.websocket.server` (Version: 1.1.2)\n\tUses: `javax.websocket`",
+                  "`javax.websocket` (Version: `1.1.2`)\n`javax.websocket.server` (Version: `1.1.2`)\n\tUses: `javax.websocket`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.websocket-client-api",
-                  "Jakarta WebSocket - Client API\n[javax.websocket.client-api]",
+                  "Jakarta WebSocket - Client API\nSymbolic Name: `javax.websocket.client-api`",
                   "1.1.2",
                   "Jakarta WebSocket - Client API\nVendor: Eclipse Foundation\nLicense: https://projects.eclipse.org/license/epl-2.0,\nhttps://projects.eclipse.org/license/secondary-gpl-2.0-cp\nDoc URL: https://www.eclipse.org",
                   "",
-                  "`javax.websocket` (Version: 1.1.2)",
+                  "`javax.websocket` (Version: `1.1.2`)",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.ws.rs-api",
-                  "jakarta.ws.rs-api",
+                  "`jakarta.ws.rs-api`",
                   "2.1.6",
                   "Jakarta RESTful Web Services API\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org/org/foundation/",
-                  "javax.net.ssl\njavax.ws.rs;version=\"[2.1,3)\"\njavax.ws.rs.client;version=\"[2.1,3)\"\njavax.ws.rs.core;version=\"[2.1,3)\"\njavax.ws.rs.ext;version=\"[2.1,3)\"\njavax.xml.bind.annotation;version=\"[2.3,3)\"\njavax.xml.bind.annotation.adapters;version=\"[2.3,3)\"\njavax.xml.namespace\n\nDynamic:\n*",
-                  "`javax.ws.rs.client` (Version: 2.1.6)\n\tUses: `javax.net.ssl`, `javax.ws.rs`, `javax.ws.rs.core`\n`javax.ws.rs` (Version: 2.1.6)\n\tUses: `javax.ws.rs.core`\n`javax.ws.rs.core` (Version: 2.1.6)\n\tUses: `javax.ws.rs`, `javax.xml.bind.annotation`, `javax.xml.bind.annotation.adapters`, `javax.xml.namespace`\n`javax.ws.rs.container` (Version: 2.1.6)\n\tUses: `javax.ws.rs.core`\n`javax.ws.rs.ext` (Version: 2.1.6)\n\tUses: `javax.ws.rs`, `javax.ws.rs.core`\n`javax.ws.rs.sse` (Version: 2.1.6)\n\tUses: `javax.ws.rs.client`, `javax.ws.rs.core`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.net.ssl`\n`javax.ws.rs` (Version: `[2.1,3)`)\n`javax.ws.rs.client` (Version: `[2.1,3)`)\n`javax.ws.rs.core` (Version: `[2.1,3)`)\n`javax.ws.rs.ext` (Version: `[2.1,3)`)\n`javax.xml.bind.annotation` (Version: `[2.3,3)`)\n`javax.xml.bind.annotation.adapters` (Version: `[2.3,3)`)\n`javax.xml.namespace`\n\nDynamic:\n`*`",
+                  "`javax.ws.rs.client` (Version: `2.1.6`)\n\tUses: `javax.net.ssl`, `javax.ws.rs`, `javax.ws.rs.core`\n`javax.ws.rs` (Version: `2.1.6`)\n\tUses: `javax.ws.rs.core`\n`javax.ws.rs.core` (Version: `2.1.6`)\n\tUses: `javax.ws.rs`, `javax.xml.bind.annotation`, `javax.xml.bind.annotation.adapters`, `javax.xml.namespace`\n`javax.ws.rs.container` (Version: `2.1.6`)\n\tUses: `javax.ws.rs.core`\n`javax.ws.rs.ext` (Version: `2.1.6`)\n\tUses: `javax.ws.rs`, `javax.ws.rs.core`\n`javax.ws.rs.sse` (Version: `2.1.6`)\n\tUses: `javax.ws.rs.client`, `javax.ws.rs.core`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.xml.bind-api",
-                  "Jakarta XML Binding API\n[jakarta.xml.bind-api]",
+                  "Jakarta XML Binding API\nSymbolic Name: `jakarta.xml.bind-api`",
                   "2.3.3",
                   "Jakarta XML Binding API 2.3 Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
-                  "javax.activation\njavax.xml.bind;version=\"[2.3,3)\"\njavax.xml.bind.annotation;version=\"[2.3,3)\"\njavax.xml.bind.annotation.adapters;version=\"[2.3,3)\"\njavax.xml.bind.attachment;version=\"[2.3,3)\"\njavax.xml.datatype\njavax.xml.namespace\njavax.xml.parsers\njavax.xml.stream\njavax.xml.transform\njavax.xml.transform.dom\njavax.xml.transform.sax\njavax.xml.transform.stream\njavax.xml.validation\norg.w3c.dom\norg.xml.sax\norg.xml.sax.ext\norg.xml.sax.helpers\n\nDynamic:\norg.glassfish.hk2.osgiresourcelocator",
-                  "`javax.xml.bind` (Version: 2.3.3)\n\tUses: `javax.xml.bind.annotation.adapters`, `javax.xml.bind.attachment`, `javax.xml.namespace`, `javax.xml.stream`,\n\t\t`javax.xml.transform`, `javax.xml.validation`, `org.w3c.dom`, `org.xml.sax`\n`javax.xml.bind.annotation` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.parsers`, `javax.xml.transform`, `javax.xml.transform.dom`, `org.w3c.dom`\n`javax.xml.bind.annotation.adapters` (Version: 2.3.3)\n`javax.xml.bind.attachment` (Version: 2.3.3)\n\tUses: `javax.activation`\n`javax.xml.bind.helpers` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.bind.annotation.adapters`, `javax.xml.bind.attachment`, `javax.xml.stream`,\n\t\t`javax.xml.transform`, `javax.xml.validation`, `org.w3c.dom`, `org.xml.sax`\n`javax.xml.bind.util` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.transform.sax`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.activation`\n`javax.xml.bind` (Version: `[2.3,3)`)\n`javax.xml.bind.annotation` (Version: `[2.3,3)`)\n`javax.xml.bind.annotation.adapters` (Version: `[2.3,3)`)\n`javax.xml.bind.attachment` (Version: `[2.3,3)`)\n`javax.xml.datatype`\n`javax.xml.namespace`\n`javax.xml.parsers`\n`javax.xml.stream`\n`javax.xml.transform`\n`javax.xml.transform.dom`\n`javax.xml.transform.sax`\n`javax.xml.transform.stream`\n`javax.xml.validation`\n`org.w3c.dom`\n`org.xml.sax`\n`org.xml.sax.ext`\n`org.xml.sax.helpers`\n\nDynamic:\n`org.glassfish.hk2.osgiresourcelocator`",
+                  "`javax.xml.bind` (Version: `2.3.3`)\n\tUses: `javax.xml.bind.annotation.adapters`, `javax.xml.bind.attachment`, `javax.xml.namespace`, `javax.xml.stream`,\n\t\t`javax.xml.transform`, `javax.xml.validation`, `org.w3c.dom`, `org.xml.sax`\n`javax.xml.bind.annotation` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.parsers`, `javax.xml.transform`, `javax.xml.transform.dom`, `org.w3c.dom`\n`javax.xml.bind.annotation.adapters` (Version: `2.3.3`)\n`javax.xml.bind.attachment` (Version: `2.3.3`)\n\tUses: `javax.activation`\n`javax.xml.bind.helpers` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.bind.annotation.adapters`, `javax.xml.bind.attachment`, `javax.xml.stream`,\n\t\t`javax.xml.transform`, `javax.xml.validation`, `org.w3c.dom`, `org.xml.sax`\n`javax.xml.bind.util` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.transform.sax`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.xml.registry-api",
-                  "javax.xml.registry API\n[javax.xml.registry-api]",
+                  "javax.xml.registry API\nSymbolic Name: `javax.xml.registry-api`",
                   "1.0.10",
                   "Jakarta(TM) XML Registries 1.0 API Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "doc-files;version=\"1.0.10\"\njavax.activation\njavax.xml.registry;version=\"1.0.10\"\njavax.xml.registry.infomodel;version=\"1.0.10\"\nresources.images;version=\"1.0.10\"",
-                  "`javax.xml.registry` (Version: 1.0.10)\n\tUses: `javax.xml.registry.infomodel`, `javax.activation`\n`resources.images` (Version: 1.0.10)\n`javax.xml.registry.infomodel` (Version: 1.0.10)\n\tUses: `javax.xml.registry`, `javax.activation`\n`doc-files` (Version: 1.0.10)",
+                  "`doc-files` (Version: `1.0.10`)\n`javax.activation`\n`javax.xml.registry` (Version: `1.0.10`)\n`javax.xml.registry.infomodel` (Version: `1.0.10`)\n`resources.images` (Version: `1.0.10`)",
+                  "`javax.xml.registry` (Version: `1.0.10`)\n\tUses: `javax.xml.registry.infomodel`, `javax.activation`\n`resources.images` (Version: `1.0.10`)\n`javax.xml.registry.infomodel` (Version: `1.0.10`)\n\tUses: `javax.xml.registry`, `javax.activation`\n`doc-files` (Version: `1.0.10`)",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.xml.rpc-api",
-                  "Jakarta XML RPC API\n[javax.xml.rpc-api]",
+                  "Jakarta XML RPC API\nSymbolic Name: `javax.xml.rpc-api`",
                   "1.1.4",
                   "JavaTM APIs for XML based RPC 1.1 Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/legal/epl-2.0,\nhttps://www.gnu.org/software/classpath/license.html\nDoc URL: https://www.eclipse.org",
-                  "javax.servlet;version=\"4.0\"\njavax.servlet.http;version=\"4.0\"\njavax.xml.namespace\njavax.xml.rpc;version=\"1.1\"\njavax.xml.rpc.encoding;version=\"1.1\"\njavax.xml.rpc.handler;version=\"1.1\"\njavax.xml.rpc.handler.soap;version=\"1.1\"\njavax.xml.rpc.holders;version=\"1.1\"\njavax.xml.rpc.server;version=\"1.1\"\njavax.xml.rpc.soap;version=\"1.1\"\njavax.xml.soap",
-                  "`javax.xml.rpc.soap` (Version: 1.1)\n\tUses: `javax.xml.soap`, `javax.xml.namespace`\n`javax.xml.rpc.encoding` (Version: 1.1)\n\tUses: `javax.xml.namespace`, `javax.xml.rpc`\n`javax.xml.rpc.server` (Version: 1.1)\n\tUses: `javax.servlet`, `javax.servlet.http`, `javax.xml.rpc.handler`, `javax.xml.rpc`\n`javax.xml.rpc.handler` (Version: 1.1)\n\tUses: `javax.xml.namespace`\n`javax.xml.rpc` (Version: 1.1)\n\tUses: `javax.xml.rpc.encoding`, `javax.xml.namespace`, `javax.xml.rpc.handler`\n`javax.xml.rpc.handler.soap` (Version: 1.1)\n\tUses: `javax.xml.soap`, `javax.xml.rpc.handler`\n`javax.xml.rpc.holders` (Version: 1.1)\n\tUses: `javax.xml.namespace`",
+                  "`javax.servlet` (Version: `4.0`)\n`javax.servlet.http` (Version: `4.0`)\n`javax.xml.namespace`\n`javax.xml.rpc` (Version: `1.1`)\n`javax.xml.rpc.encoding` (Version: `1.1`)\n`javax.xml.rpc.handler` (Version: `1.1`)\n`javax.xml.rpc.handler.soap` (Version: `1.1`)\n`javax.xml.rpc.holders` (Version: `1.1`)\n`javax.xml.rpc.server` (Version: `1.1`)\n`javax.xml.rpc.soap` (Version: `1.1`)\n`javax.xml.soap`",
+                  "`javax.xml.rpc.soap` (Version: `1.1`)\n\tUses: `javax.xml.soap`, `javax.xml.namespace`\n`javax.xml.rpc.encoding` (Version: `1.1`)\n\tUses: `javax.xml.namespace`, `javax.xml.rpc`\n`javax.xml.rpc.server` (Version: `1.1`)\n\tUses: `javax.servlet`, `javax.servlet.http`, `javax.xml.rpc.handler`, `javax.xml.rpc`\n`javax.xml.rpc.handler` (Version: `1.1`)\n\tUses: `javax.xml.namespace`\n`javax.xml.rpc` (Version: `1.1`)\n\tUses: `javax.xml.rpc.encoding`, `javax.xml.namespace`, `javax.xml.rpc.handler`\n`javax.xml.rpc.handler.soap` (Version: `1.1`)\n\tUses: `javax.xml.soap`, `javax.xml.rpc.handler`\n`javax.xml.rpc.holders` (Version: `1.1`)\n\tUses: `javax.xml.namespace`",
                   "",
                   "Manifest Version: 2"
                ],
                [
                   "jakarta.xml.soap-api",
-                  "Jakarta SOAP with Attachments API\n[jakarta.xml.soap-api]",
+                  "Jakarta SOAP with Attachments API\nSymbolic Name: `jakarta.xml.soap-api`",
                   "1.4.2",
                   "Jakarta SOAP with Attachments 1.4 API Design Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
-                  "javax.activation\njavax.xml.namespace\njavax.xml.transform\njavax.xml.transform.dom\norg.w3c.dom\n\nDynamic:\norg.glassfish.hk2.osgiresourcelocator",
-                  "`javax.xml.soap` (Version: 1.4.2)\n\tUses: `javax.activation`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.transform.dom`, `org.w3c.dom`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.activation`\n`javax.xml.namespace`\n`javax.xml.transform`\n`javax.xml.transform.dom`\n`org.w3c.dom`\n\nDynamic:\n`org.glassfish.hk2.osgiresourcelocator`",
+                  "`javax.xml.soap` (Version: `1.4.2`)\n\tUses: `javax.activation`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.transform.dom`, `org.w3c.dom`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2\nPrivate Package:\n.\njavax.xml.soap"
                ],
                [
                   "jakarta.xml.ws-api",
-                  "Jakarta XML Web Services API\n[jakarta.xml.ws-api]",
+                  "Jakarta XML Web Services API\nSymbolic Name: `jakarta.xml.ws-api`",
                   "2.3.3",
                   "Jakarta XML Web Services API 2.3 Specification\nVendor: Eclipse Foundation\nLicense: http://www.eclipse.org/org/documents/edl-v10.php\nDoc URL: https://www.eclipse.org",
-                  "javax.xml.bind;version=\"[2.3,3)\"\njavax.xml.bind.annotation;version=\"[2.3,3)\"\njavax.xml.namespace\njavax.xml.soap;version=\"[1.4,2)\"\njavax.xml.transform\njavax.xml.transform.stream\njavax.xml.ws\njavax.xml.ws.handler\njavax.xml.ws.spi\njavax.xml.ws.spi.http\njavax.xml.ws.wsaddressing\norg.w3c.dom\n\nDynamic:\norg.glassfish.hk2.osgiresourcelocator",
-                  "`javax.xml.ws.wsaddressing` (Version: 2.3.3)\n\tUses: `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `org.w3c.dom`\n`javax.xml.ws.spi` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `javax.xml.ws.handler`,\n\t\t`javax.xml.ws.wsaddressing`, `org.w3c.dom`\n`javax.xml.ws.spi.http` (Version: 2.3.3)\n`javax.xml.ws` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`,\n\t\t`javax.xml.ws.handler`, `javax.xml.ws.spi`, `javax.xml.ws.spi.http`, `org.w3c.dom`\n`javax.xml.ws.handler` (Version: 2.3.3)\n\tUses: `javax.xml.namespace`, `javax.xml.ws`\n`javax.xml.ws.handler.soap` (Version: 2.3.3)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.soap`, `javax.xml.ws.handler`\n`javax.xml.ws.http` (Version: 2.3.3)\n\tUses: `javax.xml.ws`\n`javax.xml.ws.soap` (Version: 2.3.3)\n\tUses: `javax.xml.soap`, `javax.xml.ws`, `javax.xml.ws.spi`",
-                  "Required:\nosgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"",
+                  "`javax.xml.bind` (Version: `[2.3,3)`)\n`javax.xml.bind.annotation` (Version: `[2.3,3)`)\n`javax.xml.namespace`\n`javax.xml.soap` (Version: `[1.4,2)`)\n`javax.xml.transform`\n`javax.xml.transform.stream`\n`javax.xml.ws`\n`javax.xml.ws.handler`\n`javax.xml.ws.spi`\n`javax.xml.ws.spi.http`\n`javax.xml.ws.wsaddressing`\n`org.w3c.dom`\n\nDynamic:\n`org.glassfish.hk2.osgiresourcelocator`",
+                  "`javax.xml.ws.wsaddressing` (Version: `2.3.3`)\n\tUses: `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `org.w3c.dom`\n`javax.xml.ws.spi` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.transform`, `javax.xml.ws`, `javax.xml.ws.handler`,\n\t\t`javax.xml.ws.wsaddressing`, `org.w3c.dom`\n`javax.xml.ws.spi.http` (Version: `2.3.3`)\n`javax.xml.ws` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.bind.annotation`, `javax.xml.namespace`, `javax.xml.transform`,\n\t\t`javax.xml.ws.handler`, `javax.xml.ws.spi`, `javax.xml.ws.spi.http`, `org.w3c.dom`\n`javax.xml.ws.handler` (Version: `2.3.3`)\n\tUses: `javax.xml.namespace`, `javax.xml.ws`\n`javax.xml.ws.handler.soap` (Version: `2.3.3`)\n\tUses: `javax.xml.bind`, `javax.xml.namespace`, `javax.xml.soap`, `javax.xml.ws.handler`\n`javax.xml.ws.http` (Version: `2.3.3`)\n\tUses: `javax.xml.ws`\n`javax.xml.ws.soap` (Version: `2.3.3`)\n\tUses: `javax.xml.soap`, `javax.xml.ws`, `javax.xml.ws.spi`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
                   "Manifest Version: 2\nPrivate Package:\njavax.xml.ws.wsaddressing\njavax.xml.ws.spi\njavax.xml.ws.spi.http\njavax.xml.ws\njavax.xml.ws.handler\njavax.xml.ws.handler.soap\njavax.xml.ws.http\njavax.xml.ws.soap\n."
-               ]
-            ]
-         }]
-      },
-      {
-         "description": "Dependencies between JAR files, and as declared in POM file.",
-         "title": "Dependencies",
-         "content": [{
-            "columns": [
-               "Artifact",
-               "Uses",
-               "Used by",
-               "Maven coordinates",
-               "Updates",
-               "Direct dependencies",
-               "Status"
-            ],
-            "rows": [
-               [
-                  "jakarta.activation-api",
-                  "[none]",
-                  "jakarta.mail-api\njakarta.xml.bind-api\njakarta.xml.registry-api\njakarta.xml.soap-api",
-                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
-                  "[2.0.0](jakarta.activation:jakarta.activation-api:2.0.0), [2.0.1](jakarta.activation:jakarta.activation-api:2.0.1)\n[2.1.0](jakarta.activation:jakarta.activation-api:2.1.0), [2.1.1](jakarta.activation:jakarta.activation-api:2.1.1), [2.1.2](jakarta.activation:jakarta.activation-api:2.1.2), [2.1.3](jakarta.activation:jakarta.activation-api:2.1.3)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.annotation-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]",
-                  "[2.0.0](jakarta.annotation:jakarta.annotation-api:2.0.0)\n[2.1.0](jakarta.annotation:jakarta.annotation-api:2.1.0), [2.1.1](jakarta.annotation:jakarta.annotation-api:2.1.1)\n[3.0.0](jakarta.annotation:jakarta.annotation-api:3.0.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.authorization-api",
-                  "jakarta.servlet-api",
-                  "[none]",
-                  "[[jakarta.authorization:jakarta.authorization-api:1.5.0]]",
-                  "[2.0.0](jakarta.authorization:jakarta.authorization-api:2.0.0)\n[2.1.0](jakarta.authorization:jakarta.authorization-api:2.1.0)\n[3.0.0](jakarta.authorization:jakarta.authorization-api:3.0.0)",
-                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
-                  "OK"
-               ],
-               [
-                  "jakarta.batch-api",
-                  "jakarta.enterprise.cdi-api\njakarta.inject-api",
-                  "[none]",
-                  "[[jakarta.batch:jakarta.batch-api:1.0.2]]",
-                  "[2.0.0](jakarta.batch:jakarta.batch-api:2.0.0)\n[2.1.0](jakarta.batch:jakarta.batch-api:2.1.0), [2.1.1](jakarta.batch:jakarta.batch-api:2.1.1)",
-                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)\n[[jakarta.inject:jakarta.inject-api:1.0]] (provided)",
-                  "OK (version 2.0.2)\nOK"
-               ],
-               [
-                  "jakarta.ejb-api",
-                  "jakarta.transaction-api\njakarta.xml.rpc-api",
-                  "jakarta.management.j2ee-api\njakarta.xml.rpc-api",
-                  "[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
-                  "[4.0.0](jakarta.ejb:jakarta.ejb-api:4.0.0), [4.0.1](jakarta.ejb:jakarta.ejb-api:4.0.1)",
-                  "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]\n[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.3]] (optional)",
-                  "OK (version 1.3.3)\nOK (version 1.1.4)"
-               ],
-               [
-                  "jakarta.el-api",
-                  "[none]",
-                  "jakarta.enterprise.cdi-api\njakarta.faces-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api",
-                  "[[jakarta.el:jakarta.el-api:3.0.3]]",
-                  "[4.0.0](jakarta.el:jakarta.el-api:4.0.0)\n[5.0.0](jakarta.el:jakarta.el-api:5.0.0), [5.0.1](jakarta.el:jakarta.el-api:5.0.1)\n[6.0.0](jakarta.el:jakarta.el-api:6.0.0), [6.0.1](jakarta.el:jakarta.el-api:6.0.1)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.enterprise.cdi-api",
-                  "jakarta.el-api\njakarta.inject-api\njakarta.interceptor-api",
-                  "jakarta.batch-api\njakarta.faces-api\njakarta.mvc-api\njakarta.security.enterprise-api\njakarta.transaction-api",
-                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]]",
-                  "[3.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0), [3.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.1)\n[4.0.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.0), [4.0.1](jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1)\n[4.1.0](jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0)",
-                  "[[jakarta.el:jakarta.el-api:3.0.3]]\n[[jakarta.inject:jakarta.inject-api:1.0]]\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
-                  "OK\nOK\nOK"
-               ],
-               [
-                  "jakarta.enterprise.concurrent-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:1.1.2]]",
-                  "[2.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:2.0.0)\n[3.0.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.0), [3.0.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.1), [3.0.2](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.2), [3.0.3](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.3), [3.0.4](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.0.4)\n[3.1.0](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.0), [3.1.1](jakarta.enterprise.concurrent:jakarta.enterprise.concurrent-api:3.1.1)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.enterprise.deploy-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.enterprise.deploy:jakarta.enterprise.deploy-api:1.7.2]]",
-                  "[none]",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.faces-api",
-                  "jakarta.el-api\njakarta.enterprise.cdi-api\njakarta.inject-api\njakarta.servlet-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.validation-api\njakarta.websocket-api\njakarta.websocket-client-api",
-                  "[none]",
-                  "[[jakarta.faces:jakarta.faces-api:2.3.2]]",
-                  "[3.0.0](jakarta.faces:jakarta.faces-api:3.0.0)\n[4.0.0](jakarta.faces:jakarta.faces-api:4.0.0), [4.0.1](jakarta.faces:jakarta.faces-api:4.0.1)\n[4.1.0](jakarta.faces:jakarta.faces-api:4.1.0), [4.1.1](jakarta.faces:jakarta.faces-api:4.1.1), [4.1.2](jakarta.faces:jakarta.faces-api:4.1.2)",
-                  "[[jakarta.ejb:jakarta.ejb-api:3.2.5]] (provided, optional)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.json:jakarta.json-api:1.1.6]] (provided, optional)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)\n[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]] (provided, optional)\n[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.5]] (provided, optional)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.websocket:jakarta.websocket-api:1.1.2]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided, optional)\n[[javax.enterprise:cdi-api:2.0.SP1]] (provided)\n[[org.apache.tomcat:catalina:6.0.51]] (provided)\n[[org.glassfish:jakarta.faces:2.3.13]] (provided)\n[[org.mortbay.jetty:jetty-annotations:6.1.26]] (optional)\n[[org.mortbay.jetty:jetty-plus:6.1.26]] (optional)",
-                  "OK (version 3.2.6)\nOK\nOK\nOK\nOK\nOK (version 1.2.7)\nOK\nOK\nOK (version 2.3.3)\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied\nUnsatisfied"
-               ],
-               [
-                  "jakarta.inject-api",
-                  "[none]",
-                  "jakarta.batch-api\njakarta.enterprise.cdi-api\njakarta.faces-api",
-                  "[[jakarta.inject:jakarta.inject-api:1.0]]",
-                  "[1.0.1](jakarta.inject:jakarta.inject-api:1.0.1), [1.0.2](jakarta.inject:jakarta.inject-api:1.0.2), [1.0.3](jakarta.inject:jakarta.inject-api:1.0.3), [1.0.4](jakarta.inject:jakarta.inject-api:1.0.4), [1.0.5](jakarta.inject:jakarta.inject-api:1.0.5)\n[2.0.0](jakarta.inject:jakarta.inject-api:2.0.0), [2.0.1](jakarta.inject:jakarta.inject-api:2.0.1), [2.0.1.MR](jakarta.inject:jakarta.inject-api:2.0.1.MR)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.interceptor-api",
-                  "[none]",
-                  "jakarta.enterprise.cdi-api\njakarta.security.enterprise-api\njakarta.transaction-api",
-                  "[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]]",
-                  "[2.0.0](jakarta.interceptor:jakarta.interceptor-api:2.0.0), [2.0.1](jakarta.interceptor:jakarta.interceptor-api:2.0.1)\n[2.1.0](jakarta.interceptor:jakarta.interceptor-api:2.1.0)\n[2.2.0](jakarta.interceptor:jakarta.interceptor-api:2.2.0)",
-                  "[[jakarta.annotation:jakarta.annotation-api:1.3.5]]\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]]",
-                  "OK\nOK"
-               ],
-               [
-                  "jakarta.jms-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.jms:jakarta.jms-api:2.0.3]]",
-                  "[3.0.0](jakarta.jms:jakarta.jms-api:3.0.0)\n[3.1.0](jakarta.jms:jakarta.jms-api:3.1.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.json-api",
-                  "[none]",
-                  "jakarta.json.bind-api",
-                  "[[jakarta.json:jakarta.json-api:1.1.6]]",
-                  "[2.0.0](jakarta.json:jakarta.json-api:2.0.0), [2.0.1](jakarta.json:jakarta.json-api:2.0.1), [2.0.2](jakarta.json:jakarta.json-api:2.0.2)\n[2.1.0](jakarta.json:jakarta.json-api:2.1.0), [2.1.1](jakarta.json:jakarta.json-api:2.1.1), [2.1.2](jakarta.json:jakarta.json-api:2.1.2), [2.1.3](jakarta.json:jakarta.json-api:2.1.3)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.json.bind-api",
-                  "jakarta.json-api",
-                  "[none]",
-                  "[[jakarta.json.bind:jakarta.json.bind-api:1.0.2]]",
-                  "[2.0.0](jakarta.json.bind:jakarta.json.bind-api:2.0.0)\n[3.0.0](jakarta.json.bind:jakarta.json.bind-api:3.0.0), [3.0.1](jakarta.json.bind:jakarta.json.bind-api:3.0.1)",
-                  "[[jakarta.json:jakarta.json-api:1.1.6]] (provided)",
-                  "OK"
-               ],
-               [
-                  "jakarta.jws-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.jws:jakarta.jws-api:2.1.0]]",
-                  "[3.0.0](jakarta.jws:jakarta.jws-api:3.0.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.mail-api",
-                  "jakarta.activation-api",
-                  "[none]",
-                  "[[jakarta.mail:jakarta.mail-api:1.6.4]]",
-                  "[1.6.5](jakarta.mail:jakarta.mail-api:1.6.5), [1.6.6](jakarta.mail:jakarta.mail-api:1.6.6), [1.6.7](jakarta.mail:jakarta.mail-api:1.6.7)\n[2.0.0](jakarta.mail:jakarta.mail-api:2.0.0), [2.0.1](jakarta.mail:jakarta.mail-api:2.0.1)\n[2.1.0](jakarta.mail:jakarta.mail-api:2.1.0), [2.1.1](jakarta.mail:jakarta.mail-api:2.1.1), [2.1.2](jakarta.mail:jakarta.mail-api:2.1.2), [2.1.3](jakarta.mail:jakarta.mail-api:2.1.3)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.management.j2ee-api",
-                  "jakarta.ejb-api",
-                  "[none]",
-                  "[[jakarta.management.j2ee:jakarta.management.j2ee-api:1.1.4]]",
-                  "[none]",
-                  "[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (optional)",
-                  "OK"
-               ],
-               [
-                  "jakarta.mvc-api",
-                  "jakarta.enterprise.cdi-api\njakarta.validation-api\njakarta.ws.rs-api",
-                  "[none]",
-                  "[[jakarta.mvc:jakarta.mvc-api:1.1.0]]",
-                  "[2.0.0](jakarta.mvc:jakarta.mvc-api:2.0.0), [2.0.1](jakarta.mvc:jakarta.mvc-api:2.0.1)\n[2.1.0](jakarta.mvc:jakarta.mvc-api:2.1.0)",
-                  "[[jakarta.annotation:jakarta.annotation-api:1.3.4]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.validation:jakarta.validation-api:2.0.2]] (provided)\n[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.5]] (provided)",
-                  "OK (version 1.3.5)\nOK\nOK\nOK (version 2.1.6)"
-               ],
-               [
-                  "jakarta.persistence-api",
-                  "[none]",
-                  "[none]",
-                  "[[jakarta.persistence:jakarta.persistence-api:2.2.3]]",
-                  "[3.0.0](jakarta.persistence:jakarta.persistence-api:3.0.0)\n[3.1.0](jakarta.persistence:jakarta.persistence-api:3.1.0)\n[3.2.0](jakarta.persistence:jakarta.persistence-api:3.2.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.resource-api",
-                  "jakarta.transaction-api",
-                  "[none]",
-                  "[[jakarta.resource:jakarta.resource-api:1.7.4]]",
-                  "[2.0.0](jakarta.resource:jakarta.resource-api:2.0.0)\n[2.1.0](jakarta.resource:jakarta.resource-api:2.1.0)",
-                  "[[jakarta.transaction:jakarta.transaction-api:1.3.2]]",
-                  "OK (version 1.3.3)"
-               ],
-               [
-                  "jakarta.security.auth.message-api",
-                  "[none]",
-                  "jakarta.security.enterprise-api",
-                  "[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]]",
-                  "[none]",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.security.enterprise-api",
-                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api\njakarta.security.auth.message-api\njakarta.servlet-api",
-                  "[none]",
-                  "[[jakarta.security.enterprise:jakarta.security.enterprise-api:1.0.2]]",
-                  "[2.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:2.0.0)\n[3.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0)\n[4.0.0](jakarta.security.enterprise:jakarta.security.enterprise-api:4.0.0)",
-                  "[[jakarta.authorization:jakarta.authorization-api:1.5.0]] (provided)\n[[jakarta.ejb:jakarta.ejb-api:3.2.6]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.3]] (provided)\n[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.2]] (provided)\n[[jakarta.interceptor:jakarta.interceptor-api:1.2.5]] (provided)\n[[jakarta.security.auth.message:jakarta.security.auth.message-api:1.1.3]] (provided)\n[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (provided)",
-                  "OK\nOK\nOK\nOK\nOK\nOK\nOK"
-               ],
-               [
-                  "jakarta.servlet-api",
-                  "[none]",
-                  "jakarta.authorization-api\njakarta.faces-api\njakarta.security.enterprise-api\njakarta.servlet.jsp-api\njakarta.servlet.jsp.jstl-api\njakarta.xml.rpc-api",
-                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]]",
-                  "[4.0.4](jakarta.servlet:jakarta.servlet-api:4.0.4)\n[5.0.0](jakarta.servlet:jakarta.servlet-api:5.0.0)\n[6.0.0](jakarta.servlet:jakarta.servlet-api:6.0.0)\n[6.1.0](jakarta.servlet:jakarta.servlet-api:6.1.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.servlet.jsp-api",
-                  "jakarta.el-api\njakarta.servlet-api",
-                  "jakarta.faces-api\njakarta.servlet.jsp.jstl-api",
-                  "[[jakarta.servlet.jsp:jakarta.servlet.jsp-api:2.3.6]]",
-                  "[3.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0)\n[3.1.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0), [3.1.1](jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1)\n[4.0.0](jakarta.servlet.jsp:jakarta.servlet.jsp-api:4.0.0)",
-                  "[[jakarta.servlet:jakarta.servlet-api:4.0.2]] (provided)\n[[jakarta.el:jakarta.el-api:3.0.2]] (provided)",
-                  "OK (version 4.0.3)\nOK (version 3.0.3)"
-               ],
-               [
-                  "jakarta.servlet.jsp.jstl-api",
-                  "jakarta.el-api\njakarta.servlet-api\njakarta.servlet.jsp-api",
-                  "jakarta.faces-api",
-                  "[[jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.7]]",
-                  "[2.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0)\n[3.0.0](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0), [3.0.1](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1), [3.0.2](jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2)",
-                  "[[javax.el:el-api:2.2]] (provided)\n[[javax.servlet:servlet-api:2.5]] (provided)\n[[javax.servlet.jsp:jsp-api:2.2]] (provided)",
-                  "Unsatisfied\nUnsatisfied\nUnsatisfied"
-               ],
-               [
-                  "jakarta.transaction-api",
-                  "jakarta.enterprise.cdi-api\njakarta.interceptor-api",
-                  "jakarta.ejb-api\njakarta.resource-api",
-                  "[[jakarta.transaction:jakarta.transaction-api:1.3.3]]",
-                  "[2.0.0](jakarta.transaction:jakarta.transaction-api:2.0.0), [2.0.1](jakarta.transaction:jakarta.transaction-api:2.0.1)",
-                  "[[jakarta.enterprise:jakarta.enterprise.cdi-api:2.0.1]] (provided)",
-                  "OK (version 2.0.2)"
-               ],
-               [
-                  "jakarta.validation-api",
-                  "[none]",
-                  "jakarta.faces-api\njakarta.mvc-api",
-                  "[[jakarta.validation:jakarta.validation-api:2.0.2]]",
-                  "[3.0.0](jakarta.validation:jakarta.validation-api:3.0.0), [3.0.1](jakarta.validation:jakarta.validation-api:3.0.1), [3.0.2](jakarta.validation:jakarta.validation-api:3.0.2)\n[3.1.0](jakarta.validation:jakarta.validation-api:3.1.0), [3.1.1](jakarta.validation:jakarta.validation-api:3.1.1)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.websocket-api",
-                  "jakarta.websocket-client-api",
-                  "jakarta.faces-api\njakarta.websocket-client-api",
-                  "[[jakarta.websocket:jakarta.websocket-api:1.1.2]]",
-                  "[2.0.0](jakarta.websocket:jakarta.websocket-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-api:2.2.0)",
-                  "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]] (optional)",
-                  "OK"
-               ],
-               [
-                  "jakarta.websocket-client-api",
-                  "jakarta.websocket-api",
-                  "jakarta.faces-api\njakarta.websocket-api",
-                  "[[jakarta.websocket:jakarta.websocket-client-api:1.1.2]]",
-                  "[2.0.0](jakarta.websocket:jakarta.websocket-client-api:2.0.0)\n[2.1.0](jakarta.websocket:jakarta.websocket-client-api:2.1.0), [2.1.1](jakarta.websocket:jakarta.websocket-client-api:2.1.1)\n[2.2.0](jakarta.websocket:jakarta.websocket-client-api:2.2.0)",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.ws.rs-api",
-                  "jakarta.xml.bind-api",
-                  "jakarta.mvc-api",
-                  "[[jakarta.ws.rs:jakarta.ws.rs-api:2.1.6]]",
-                  "[3.0.0](jakarta.ws.rs:jakarta.ws.rs-api:3.0.0)\n[3.1.0](jakarta.ws.rs:jakarta.ws.rs-api:3.1.0)\n[4.0.0](jakarta.ws.rs:jakarta.ws.rs-api:4.0.0)",
-                  "[[jakarta.activation:jakarta.activation-api:1.2.1]] (provided)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.2]] (provided)",
-                  "OK (version 1.2.2)\nOK (version 2.3.3)"
-               ],
-               [
-                  "jakarta.xml.bind-api",
-                  "jakarta.activation-api",
-                  "jakarta.ws.rs-api\njakarta.xml.ws-api",
-                  "[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]",
-                  "[3.0.0](jakarta.xml.bind:jakarta.xml.bind-api:3.0.0), [3.0.1](jakarta.xml.bind:jakarta.xml.bind-api:3.0.1)\n[4.0.0](jakarta.xml.bind:jakarta.xml.bind-api:4.0.0), [4.0.1](jakarta.xml.bind:jakarta.xml.bind-api:4.0.1), [4.0.2](jakarta.xml.bind:jakarta.xml.bind-api:4.0.2)",
-                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
-                  "OK"
-               ],
-               [
-                  "jakarta.xml.registry-api",
-                  "jakarta.activation-api",
-                  "[none]",
-                  "[[jakarta.xml.registry:jakarta.xml.registry-api:1.0.10]]",
-                  "[none]",
-                  "[none]",
-                  ""
-               ],
-               [
-                  "jakarta.xml.rpc-api",
-                  "jakarta.ejb-api\njakarta.servlet-api\njakarta.xml.soap-api",
-                  "jakarta.ejb-api",
-                  "[[jakarta.xml.rpc:jakarta.xml.rpc-api:1.1.4]]",
-                  "[none]",
-                  "[[jakarta.servlet:jakarta.servlet-api:4.0.3]] (optional)",
-                  "OK"
-               ],
-               [
-                  "jakarta.xml.soap-api",
-                  "jakarta.activation-api",
-                  "jakarta.xml.rpc-api\njakarta.xml.ws-api",
-                  "[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
-                  "[2.0.0](jakarta.xml.soap:jakarta.xml.soap-api:2.0.0), [2.0.1](jakarta.xml.soap:jakarta.xml.soap-api:2.0.1)\n[3.0.0](jakarta.xml.soap:jakarta.xml.soap-api:3.0.0), [3.0.1](jakarta.xml.soap:jakarta.xml.soap-api:3.0.1), [3.0.2](jakarta.xml.soap:jakarta.xml.soap-api:3.0.2)",
-                  "[[jakarta.activation:jakarta.activation-api:1.2.2]]",
-                  "OK"
-               ],
-               [
-                  "jakarta.xml.ws-api",
-                  "jakarta.xml.bind-api\njakarta.xml.soap-api",
-                  "[none]",
-                  "[[jakarta.xml.ws:jakarta.xml.ws-api:2.3.3]]",
-                  "[3.0.0](jakarta.xml.ws:jakarta.xml.ws-api:3.0.0), [3.0.1](jakarta.xml.ws:jakarta.xml.ws-api:3.0.1)\n[4.0.0](jakarta.xml.ws:jakarta.xml.ws-api:4.0.0), [4.0.1](jakarta.xml.ws:jakarta.xml.ws-api:4.0.1), [4.0.2](jakarta.xml.ws:jakarta.xml.ws-api:4.0.2)",
-                  "[[jakarta.jws:jakarta.jws-api:2.1.0]] (runtime)\n[[jakarta.xml.bind:jakarta.xml.bind-api:2.3.3]]\n[[jakarta.xml.soap:jakarta.xml.soap-api:1.4.2]]",
-                  "OK\nOK\nOK"
                ]
             ]
          }]

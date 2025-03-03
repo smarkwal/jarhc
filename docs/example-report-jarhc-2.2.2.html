@@ -21,14 +21,14 @@
 		a {
 			color: #333399;
 			text-decoration: none;
-		}
 
-		a:hover {
-			text-decoration: underline;
-		}
+			&:hover {
+				text-decoration: underline;
+			}
 
-		a:visited {
-			color: #333399;
+			&:visited {
+				color: #333399;
+			}
 		}
 
 		#header {
@@ -56,10 +56,10 @@
 			background-color: #EEEEEE;
 			border-radius: 8px;
 			user-select: none;
-		}
 
-		.control:hover {
-			background-color: white;
+			&:hover {
+				background-color: white;
+			}
 		}
 
 		#showOnlyDiffControl {
@@ -70,14 +70,14 @@
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-		}
 
-		.icon-up {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-		}
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 
-		.icon-down {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 		}
 
 		input[type="checkbox"] {
@@ -162,10 +162,10 @@
 
 		.report-text-block {
 			margin-bottom: 1em;
-		}
 
-		.report-text-block:last-child {
-			margin-bottom: 0;
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
 		}
 
 		.report-issue {
@@ -190,14 +190,20 @@
 
 		/* special diff report settings */
 
-		.diff-report #showOnlyDiffControl {
-			/* only available in diff report */
-			display: flex;
-		}
+		.diff-report {
 
-		.diff-report .no-diff {
-			/* default: only show differences */
-			display: none;
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
 		}
 
 		/* special print settings */
@@ -539,10 +545,10 @@
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
 <li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
 <li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
-<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
@@ -862,6 +868,254 @@
 		<td>
 			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
+	</tr>
+</tbody>
+</table>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>aether-api</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-connector-basic</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-impl</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>slf4j-api</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.eclipse.sisu/org.eclipse.sisu.inject/0.1.1" target="_blank" rel="noopener noreferrer">org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.6.2</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.sonatype.sisu/sisu-guice/3.1.6" target="_blank" rel="noopener noreferrer">org.sonatype.sisu:sisu-guice:3.1.6</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied<br>Unsatisfied<br>OK (version 2.0.16)<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-spi</td>
+		<td>aether-api</td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-file<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-transport-file</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-transport-http</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>httpclient</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.3.5" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.3.5</a><br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.6.2</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied<br>OK (version 4.5.14)<br>OK (version 2.0.16)</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>aether-util</td>
+		<td>aether-api</td>
+		<td>
+			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>commons-codec</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>httpclient</td>
+		<td><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.2" target="_blank" rel="noopener noreferrer">1.17.2</a><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.18.0" target="_blank" rel="noopener noreferrer">1.18.0</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>guava</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>maven-aether-provider</td>
+		<td><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a><br><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-android" target="_blank" rel="noopener noreferrer">33.4.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-jre" target="_blank" rel="noopener noreferrer">33.4.0-jre</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.2" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.2</a><br><a href="https://central.sonatype.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava" target="_blank" rel="noopener noreferrer">com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava</a><br><a href="https://central.sonatype.com/artifact/com.google.code.findbugs/jsr305/3.0.2" target="_blank" rel="noopener noreferrer">com.google.code.findbugs:jsr305:3.0.2</a><br><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.28.0" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.28.0</a><br><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:3.0.0</a><br><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.43.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.43.0</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>httpclient</td>
+		<td>
+			<div class="report-text-block no-diff">commons-codec<br>jcl-over-slf4j</div>
+		</td>
+		<td>aether-transport-http</td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.16" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.16</a><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.11" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.11</a><br><a href="https://central.sonatype.com/artifact/commons-logging/commons-logging/1.2" target="_blank" rel="noopener noreferrer">commons-logging:commons-logging:1.2</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>OK (version 1.17.1)<br>Unsatisfied</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jarhc</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>asm<br>jcl-over-slf4j<br>json<br>jul-to-slf4j<br>maven-aether-provider<br>slf4j-api</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:2.2.2</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a> (runtime)<br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jcl-over-slf4j</td>
+		<td>slf4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">httpclient<br>jarhc</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>json</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.json/json/20241224" target="_blank" rel="noopener noreferrer">20241224</a><br><a href="https://central.sonatype.com/artifact/org.json/json/20250107" target="_blank" rel="noopener noreferrer">20250107</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>jul-to-slf4j</td>
+		<td>slf4j-api</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>maven-aether-provider</td>
+		<td>
+			<div class="report-text-block no-diff">aether-api<br>aether-impl<br>aether-spi<br>aether-util<br>guava<br>plexus-utils</div>
+		</td>
+		<td>jarhc</td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model-builder/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model-builder:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-repository-metadata/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-repository-metadata:3.3.9</a><br><a href="https://central.sonatype.com/artifact/com.google.inject/guice/4.0" target="_blank" rel="noopener noreferrer">com.google.inject:guice:4.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.apache.commons/commons-lang3/3.4" target="_blank" rel="noopener noreferrer">org.apache.commons:commons-lang3:3.4</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-component-annotations/1.6" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-component-annotations:1.6</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.0.22" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.0.22</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.0.2.v20150114</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>OK (version 3.5.1)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>plexus-utils</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>maven-aether-provider</td>
+		<td><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.6.0" target="_blank" rel="noopener noreferrer">3.6.0</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.0" target="_blank" rel="noopener noreferrer">4.0.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.1" target="_blank" rel="noopener noreferrer">4.0.1</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.2" target="_blank" rel="noopener noreferrer">4.0.2</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff">aether-impl<br>jarhc<br>jcl-over-slf4j<br>jul-to-slf4j</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
 	</tr>
 </tbody>
 </table>
@@ -1275,7 +1529,7 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-api</td>
 		<td>
-			<div class="report-text-block no-diff">Aether API<br>[org.eclipse.aether.api]</div>
+			<div class="report-text-block no-diff">Aether API<br>Symbolic Name: <code>org.eclipse.aether.api</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
@@ -1283,7 +1537,7 @@
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.deployment</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.installation</code>, <code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.resolution</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.artifact</code> (Version: 1.1.0)<br><code>org.eclipse.aether.collection</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.deployment</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.graph</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.installation</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.metadata</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.repository</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.resolution</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.transfer</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.deployment</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.installation</code>, <code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.resolution</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.artifact</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.deployment</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.graph</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.installation</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.metadata</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.repository</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code><br><code>org.eclipse.aether.resolution</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.transfer</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1293,17 +1547,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-connector-basic</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Connector Basic<br>[org.eclipse.aether.connector.basic]</div>
+			<div class="report-text-block no-diff">Aether Connector Basic<br>Symbolic Name: <code>org.eclipse.aether.connector.basic</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A repository connector implementation for repositories using<br>URI-based layouts.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-connector-basic/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.checksum;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.layout;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.io;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.concurrency;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.io</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.connector.basic</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.spi.connector</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.checksum</code>, <code>org.eclipse.aether.spi.connector.layout</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>, <code>org.eclipse.aether.spi.locator</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.log</code>, <code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.connector.basic</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.spi.connector</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.checksum</code>, <code>org.eclipse.aether.spi.connector.layout</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>, <code>org.eclipse.aether.spi.locator</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.log</code>, <code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1313,17 +1567,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-impl</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Implementation<br>[org.eclipse.aether.impl]</div>
+			<div class="report-text-block no-diff">Aether Implementation<br>Symbolic Name: <code>org.eclipse.aether.impl</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">An implementation of the repository system.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-impl/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">com.google.inject;version=&quot;[1.3,2)&quot;;resolution:=optional<br>com.google.inject.binder;version=&quot;[1.3,2)&quot;;resolution:=optional<br>com.google.inject.name;version=&quot;[1.3,2)&quot;;resolution:=optional<br>javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.collection;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.deployment;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.graph;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.installation;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.resolution;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.checksum;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.layout;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.io;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.localrepo;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.concurrency;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.graph.transformer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util.graph.visitor;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.version;version=&quot;[1.1,2)&quot;<br>org.eclipse.sisu;resolution:=optional<br>org.slf4j;version=&quot;[1.6,2)&quot;;resolution:=optional<br>org.slf4j.spi;version=&quot;[1.6,2)&quot;;resolution:=optional</div>
+			<div class="report-text-block no-diff"><code>com.google.inject</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>com.google.inject.binder</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>com.google.inject.name</code> (Version: <code>[1.3,2)</code>) (optional)<br><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.deployment</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.graph</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.installation</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.resolution</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.io</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.graph.transformer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util.graph.visitor</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.version</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.sisu</code> (optional)<br><code>org.slf4j</code> (Version: <code>[1.6,2)</code>) (optional)<br><code>org.slf4j.spi</code> (Version: <code>[1.6,2)</code>) (optional)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.internal.impl</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.connector.checksum</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.layout</code>, <code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.localrepo</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.internal.impl.slf4j</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>, <code>org.slf4j</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.impl</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl.guice</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.impl.guice</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.inject</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.internal.impl</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.connector.checksum</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.layout</code>, <code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.io</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.localrepo</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.internal.impl.slf4j</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>, <code>org.slf4j</code><br>&nbsp;&nbsp;&nbsp;x-internal:: <code>true</code><br><code>org.eclipse.aether.impl</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.collection</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.deployment</code>, <code>org.eclipse.aether.impl.guice</code>, <code>org.eclipse.aether.installation</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.metadata</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.impl.guice</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.inject</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1333,17 +1587,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-spi</td>
 		<td>
-			<div class="report-text-block no-diff">Aether SPI<br>[org.eclipse.aether.spi]</div>
+			<div class="report-text-block no-diff">Aether SPI<br>Symbolic Name: <code>org.eclipse.aether.spi</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">The service provider interface for repository system<br>implementations and repository connectors.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-spi/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.spi.connector</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.layout</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.transport</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.io</code> (Version: 1.1.0)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.spi.locator</code> (Version: 1.1.0)<br><code>org.eclipse.aether.spi.log</code> (Version: 1.1.0)</div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.spi.connector</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.checksum</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.layout</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.spi.io</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.spi.localrepo</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code><br><code>org.eclipse.aether.spi.locator</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>1.1.0</code>)</div>
 		</td>
 		<td></td>
 		<td>
@@ -1353,17 +1607,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-transport-file</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Transport File<br>[org.eclipse.aether.transport.file]</div>
+			<div class="report-text-block no-diff">Aether Transport File<br>Symbolic Name: <code>org.eclipse.aether.transport.file</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A transport implementation for repositories using file://<br>URLs.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-transport-file/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.inject;resolution:=optional<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.inject</code> (optional)<br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.file</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.file</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1373,17 +1627,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-transport-http</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Transport HTTP<br>[org.eclipse.aether.transport.http]</div>
+			<div class="report-text-block no-diff">Aether Transport HTTP<br>Symbolic Name: <code>org.eclipse.aether.transport.http</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A transport implementation for repositories using http://<br>and https:// URLs.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL:<br>http://www.eclipse.org/aether/aether-transport-http/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.apache.http;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.auth;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.auth.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client.methods;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.client.utils;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.scheme;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.conn.ssl;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.entity;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.auth;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.client;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.conn;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.impl.cookie;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.params;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.protocol;version=&quot;[4.2.1,4.4)&quot;<br>org.apache.http.util;version=&quot;[4.2.1,4.4)&quot;<br>javax.inject;resolution:=optional<br>javax.net<br>javax.net.ssl<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.connector.transport;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.locator;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.spi.log;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.util;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.apache.http</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.auth</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.auth.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client.methods</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.client.utils</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.scheme</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.conn.ssl</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.entity</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.auth</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.client</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.conn</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.impl.cookie</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.params</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.protocol</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>org.apache.http.util</code> (Version: <code>[4.2.1,4.4)</code>)<br><code>javax.inject</code> (optional)<br><code>javax.net</code><br><code>javax.net.ssl</code><br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.connector.transport</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.locator</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.spi.log</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.util</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.http</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.transport.http</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.inject</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.repository</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.spi.connector.transport</code>, <code>org.eclipse.aether.spi.locator</code>, <code>org.eclipse.aether.spi.log</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.transfer</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1393,17 +1647,17 @@
 	<tr class="report-table-row no-diff">
 		<td>aether-util</td>
 		<td>
-			<div class="report-text-block no-diff">Aether Utilities<br>[org.eclipse.aether.util]</div>
+			<div class="report-text-block no-diff">Aether Utilities<br>Symbolic Name: <code>org.eclipse.aether.util</code></div>
 		</td>
 		<td>1.1.0</td>
 		<td>
 			<div class="report-text-block no-diff">A collection of utility classes to ease usage of the<br>repository system.<br>Vendor: Eclipse Aether<br>License: http://www.eclipse.org/legal/epl-v10.html<br>Doc URL: http://www.eclipse.org/aether/aether-util/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.net.ssl<br>org.eclipse.aether;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.artifact;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.collection;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.graph;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.metadata;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.repository;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.resolution;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.transfer;version=&quot;[1.1,2)&quot;<br>org.eclipse.aether.version;version=&quot;[1.1,2)&quot;</div>
+			<div class="report-text-block no-diff"><code>javax.net.ssl</code><br><code>org.eclipse.aether</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.artifact</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.collection</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.graph</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.metadata</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.repository</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.resolution</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.transfer</code> (Version: <code>[1.1,2)</code>)<br><code>org.eclipse.aether.version</code> (Version: <code>[1.1,2)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.eclipse.aether.util</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.util.artifact</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code><br><code>org.eclipse.aether.util.concurrency</code> (Version: 1.1.0)<br><code>org.eclipse.aether.util.filter</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.util.graph.manager</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.selector</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.transformer</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.traverser</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code><br><code>org.eclipse.aether.util.graph.visitor</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.listener</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.util.repository</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.net.ssl</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code><br><code>org.eclipse.aether.util.version</code> (Version: 1.1.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.version</code></div>
+			<div class="report-text-block no-diff"><code>org.eclipse.aether.util</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code><br><code>org.eclipse.aether.util.artifact</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code><br><code>org.eclipse.aether.util.concurrency</code> (Version: <code>1.1.0</code>)<br><code>org.eclipse.aether.util.filter</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.graph</code>, <code>org.eclipse.aether.version</code><br><code>org.eclipse.aether.util.graph.manager</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.selector</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.transformer</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.traverser</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.collection</code>, <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.graph.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.collection</code><br><code>org.eclipse.aether.util.graph.visitor</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.graph</code><br><code>org.eclipse.aether.util.listener</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether</code>, <code>org.eclipse.aether.transfer</code><br><code>org.eclipse.aether.util.repository</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.net.ssl</code>, <code>org.eclipse.aether</code>, <code>org.eclipse.aether.artifact</code>, <code>org.eclipse.aether.metadata</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.eclipse.aether.repository</code>, <code>org.eclipse.aether.resolution</code><br><code>org.eclipse.aether.util.version</code> (Version: <code>1.1.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.eclipse.aether.version</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -1412,14 +1666,14 @@
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>asm</td>
-		<td>org.objectweb.asm</td>
+		<td><code>org.objectweb.asm</code></td>
 		<td>9.7</td>
 		<td>
 			<div class="report-text-block no-diff">License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt<br>Doc URL: http://asm.ow2.org</div>
 		</td>
 		<td></td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: 9.7)<br><code>org.objectweb.asm.signature</code> (Version: 9.7)</div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>9.7</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>9.7</code>)</div>
 		</td>
 		<td></td>
 		<td>
@@ -1429,20 +1683,20 @@
 	<tr class="report-table-row no-diff">
 		<td>commons-codec</td>
 		<td>
-			<div class="report-text-block no-diff">Apache Commons Codec<br>[org.apache.commons.commons-codec]</div>
+			<div class="report-text-block no-diff">Apache Commons Codec<br>Symbolic Name: <code>org.apache.commons.commons-codec</code></div>
 		</td>
 		<td>1.17.1</td>
 		<td>
 			<div class="report-text-block no-diff">The Apache Commons Codec component contains encoders and<br>decoders for     various formats such as Base16, Base32,<br>Base64, digest, and Hexadecimal. In addition to these<br>widely used encoders and decoders, the codec package also<br>maintains a     collection of phonetic encoding utilities.<br>Vendor: The Apache Software Foundation<br>License: https://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://commons.apache.org/proper/commons-codec/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">javax.crypto<br>javax.crypto.spec</div>
+			<div class="report-text-block no-diff"><code>javax.crypto</code><br><code>javax.crypto.spec</code></div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.apache.commons.codec</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.binary</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.cli</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.digest</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.language</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.language.bm</code> (Version: 1.17.1)<br><code>org.apache.commons.codec.net</code> (Version: 1.17.1)</div>
+			<div class="report-text-block no-diff"><code>org.apache.commons.codec</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.binary</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.cli</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.digest</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.language</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.language.bm</code> (Version: <code>1.17.1</code>)<br><code>org.apache.commons.codec.net</code> (Version: <code>1.17.1</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>
 			<div class="report-text-block no-diff">Manifest Version: 2<br>Include Resource:<br>org/apache/commons/codec/language/bm/ash_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_any.txt<br>org/apache/commons/codec/language/bm/ash_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_common.txt<br>org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt<br>org/apache/commons/codec/language/bm/ash_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_english.txt<br>org/apache/commons/codec/language/bm/ash_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_french.txt<br>org/apache/commons/codec/language/bm/ash_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_german.txt<br>org/apache/commons/codec/language/bm/ash_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hebrew.txt<br>org/apache/commons/codec/language/bm/ash_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hungarian.txt<br>org/apache/commons/codec/language/bm/ash_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_polish.txt<br>org/apache/commons/codec/language/bm/ash_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_romanian.txt<br>org/apache/commons/codec/language/bm/ash_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_russian.txt<br>org/apache/commons/codec/language/bm/ash_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_spanish.txt<br>org/apache/commons/codec/language/bm/ash_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_any.txt<br>org/apache/commons/codec/language/bm/ash_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_approx_common.txt<br>org/apache/commons/codec/language/bm/ash_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_common.txt<br>org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt<br>org/apache/commons/codec/language/bm/ash_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_english.txt<br>org/apache/commons/codec/language/bm/ash_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_french.txt<br>org/apache/commons/codec/language/bm/ash_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_german.txt<br>org/apache/commons/codec/language/bm/ash_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hebrew.txt<br>org/apache/commons/codec/language/bm/ash_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hungarian.txt<br>org/apache/commons/codec/language/bm/ash_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_polish.txt<br>org/apache/commons/codec/language/bm/ash_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_romanian.txt<br>org/apache/commons/codec/language/bm/ash_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_russian.txt<br>org/apache/commons/codec/language/bm/ash_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_spanish.txt<br>org/apache/commons/codec/language/bm/ash_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_hebrew_common.txt<br>org/apache/commons/codec/language/bm/ash_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_lang.txt<br>org/apache/commons/codec/language/bm/ash_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_languages.txt<br>org/apache/commons/codec/language/bm/ash_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_any.txt<br>org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt<br>org/apache/commons/codec/language/bm/ash_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_english.txt<br>org/apache/commons/codec/language/bm/ash_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_french.txt<br>org/apache/commons/codec/language/bm/ash_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_german.txt<br>org/apache/commons/codec/language/bm/ash_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hebrew.txt<br>org/apache/commons/codec/language/bm/ash_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hungarian.txt<br>org/apache/commons/codec/language/bm/ash_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_polish.txt<br>org/apache/commons/codec/language/bm/ash_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_romanian.txt<br>org/apache/commons/codec/language/bm/ash_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_russian.txt<br>org/apache/commons/codec/language/bm/ash_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_spanish.txt<br>org/apache/commons/codec/language/bm/gen_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_any.txt<br>org/apache/commons/codec/language/bm/gen_approx_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_arabic.txt<br>org/apache/commons/codec/language/bm/gen_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_common.txt<br>org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt<br>org/apache/commons/codec/language/bm/gen_approx_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_czech.txt<br>org/apache/commons/codec/language/bm/gen_approx_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_dutch.txt<br>org/apache/commons/codec/language/bm/gen_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_english.txt<br>org/apache/commons/codec/language/bm/gen_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_french.txt<br>org/apache/commons/codec/language/bm/gen_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_german.txt<br>org/apache/commons/codec/language/bm/gen_approx_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greek.txt<br>org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt<br>org/apache/commons/codec/language/bm/gen_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hebrew.txt<br>org/apache/commons/codec/language/bm/gen_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hungarian.txt<br>org/apache/commons/codec/language/bm/gen_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_italian.txt<br>org/apache/commons/codec/language/bm/gen_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_polish.txt<br>org/apache/commons/codec/language/bm/gen_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_portuguese.txt<br>org/apache/commons/codec/language/bm/gen_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_romanian.txt<br>org/apache/commons/codec/language/bm/gen_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_russian.txt<br>org/apache/commons/codec/language/bm/gen_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_spanish.txt<br>org/apache/commons/codec/language/bm/gen_approx_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_turkish.txt<br>org/apache/commons/codec/language/bm/gen_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_any.txt<br>org/apache/commons/codec/language/bm/gen_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_approx_common.txt<br>org/apache/commons/codec/language/bm/gen_exact_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_arabic.txt<br>org/apache/commons/codec/language/bm/gen_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_common.txt<br>org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt<br>org/apache/commons/codec/language/bm/gen_exact_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_czech.txt<br>org/apache/commons/codec/language/bm/gen_exact_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_dutch.txt<br>org/apache/commons/codec/language/bm/gen_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_english.txt<br>org/apache/commons/codec/language/bm/gen_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_french.txt<br>org/apache/commons/codec/language/bm/gen_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_german.txt<br>org/apache/commons/codec/language/bm/gen_exact_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greek.txt<br>org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt<br>org/apache/commons/codec/language/bm/gen_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hebrew.txt<br>org/apache/commons/codec/language/bm/gen_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hungarian.txt<br>org/apache/commons/codec/language/bm/gen_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_italian.txt<br>org/apache/commons/codec/language/bm/gen_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_polish.txt<br>org/apache/commons/codec/language/bm/gen_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_portuguese.txt<br>org/apache/commons/codec/language/bm/gen_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_romanian.txt<br>org/apache/commons/codec/language/bm/gen_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_russian.txt<br>org/apache/commons/codec/language/bm/gen_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_spanish.txt<br>org/apache/commons/codec/language/bm/gen_exact_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_turkish.txt<br>org/apache/commons/codec/language/bm/gen_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_hebrew_common.txt<br>org/apache/commons/codec/language/bm/gen_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_lang.txt<br>org/apache/commons/codec/language/bm/gen_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_languages.txt<br>org/apache/commons/codec/language/bm/gen_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_any.txt<br>org/apache/commons/codec/language/bm/gen_rules_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_arabic.txt<br>org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt<br>org/apache/commons/codec/language/bm/gen_rules_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_czech.txt<br>org/apache/commons/codec/language/bm/gen_rules_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_dutch.txt<br>org/apache/commons/codec/language/bm/gen_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_english.txt<br>org/apache/commons/codec/language/bm/gen_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_french.txt<br>org/apache/commons/codec/language/bm/gen_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_german.txt<br>org/apache/commons/codec/language/bm/gen_rules_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greek.txt<br>org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt<br>org/apache/commons/codec/language/bm/gen_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hebrew.txt<br>org/apache/commons/codec/language/bm/gen_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hungarian.txt<br>org/apache/commons/codec/language/bm/gen_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_italian.txt<br>org/apache/commons/codec/language/bm/gen_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_polish.txt<br>org/apache/commons/codec/language/bm/gen_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_portuguese.txt<br>org/apache/commons/codec/language/bm/gen_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_romanian.txt<br>org/apache/commons/codec/language/bm/gen_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_russian.txt<br>org/apache/commons/codec/language/bm/gen_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_spanish.txt<br>org/apache/commons/codec/language/bm/gen_rules_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_turkish.txt<br>org/apache/commons/codec/language/bm/lang.txt=src/main/resources/org/apache/commons/codec/language/bm/lang.txt<br>org/apache/commons/codec/language/bm/sep_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_any.txt<br>org/apache/commons/codec/language/bm/sep_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_common.txt<br>org/apache/commons/codec/language/bm/sep_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_french.txt<br>org/apache/commons/codec/language/bm/sep_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_hebrew.txt<br>org/apache/commons/codec/language/bm/sep_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_italian.txt<br>org/apache/commons/codec/language/bm/sep_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_portuguese.txt<br>org/apache/commons/codec/language/bm/sep_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_spanish.txt<br>org/apache/commons/codec/language/bm/sep_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_any.txt<br>org/apache/commons/codec/language/bm/sep_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_approx_common.txt<br>org/apache/commons/codec/language/bm/sep_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_common.txt<br>org/apache/commons/codec/language/bm/sep_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_french.txt<br>org/apache/commons/codec/language/bm/sep_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_hebrew.txt<br>org/apache/commons/codec/language/bm/sep_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_italian.txt<br>org/apache/commons/codec/language/bm/sep_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_portuguese.txt<br>org/apache/commons/codec/language/bm/sep_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_spanish.txt<br>org/apache/commons/codec/language/bm/sep_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_hebrew_common.txt<br>org/apache/commons/codec/language/bm/sep_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_lang.txt<br>org/apache/commons/codec/language/bm/sep_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_languages.txt<br>org/apache/commons/codec/language/bm/sep_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_any.txt<br>org/apache/commons/codec/language/bm/sep_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_french.txt<br>org/apache/commons/codec/language/bm/sep_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_hebrew.txt<br>org/apache/commons/codec/language/bm/sep_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_italian.txt<br>org/apache/commons/codec/language/bm/sep_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_portuguese.txt<br>org/apache/commons/codec/language/bm/sep_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_spanish.txt<br>org/apache/commons/codec/language/dmrules.txt=src/main/resources/org/apache/commons/codec/language/dmrules.txt<br>META-INF/LICENSE.txt=LICENSE.txt<br>META-INF/NOTICE.txt=NOTICE.txt</div>
@@ -1451,344 +1705,96 @@
 	<tr class="report-table-row no-diff">
 		<td>guava</td>
 		<td>
-			<div class="report-text-block no-diff">Guava: Google Core Libraries for Java<br>[com.google.guava]</div>
+			<div class="report-text-block no-diff">Guava: Google Core Libraries for Java<br>Symbolic Name: <code>com.google.guava</code></div>
 		</td>
 		<td>33.3.0.jre</td>
 		<td>
 			<div class="report-text-block no-diff">Guava is a suite of core and expanded libraries that include<br>utility classes, Google's collections, I/O classes, and<br>much more.<br>License: http://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: https://github.com/google/guava/</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">com.google.common.util.concurrent.internal;version=&quot;[1.0,2)&quot;<br>javax.annotation;resolution:=optional;version=&quot;[3.0,4)&quot;<br>javax.crypto;resolution:=optional<br>javax.crypto.spec;resolution:=optional<br>sun.misc;resolution:=optional</div>
+			<div class="report-text-block no-diff"><code>com.google.common.util.concurrent.internal</code> (Version: <code>[1.0,2)</code>)<br><code>javax.annotation</code> (Version: <code>[3.0,4)</code>) (optional)<br><code>javax.crypto</code> (optional)<br><code>javax.crypto.spec</code> (optional)<br><code>sun.misc</code> (optional)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>com.google.common.annotations</code> (Version: 33.3.0)<br><code>com.google.common.base</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><code>com.google.common.cache</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent</code>, <code>javax.annotation</code><br><code>com.google.common.collect</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.escape</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.eventbus</code> (Version: 33.3.0)<br><code>com.google.common.graph</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>javax.annotation</code><br><code>com.google.common.hash</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.html</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code><br><code>com.google.common.io</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.graph</code>, <code>com.google.common.hash</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><code>com.google.common.math</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><code>com.google.common.net</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.escape</code>, <code>javax.annotation</code><br><code>com.google.common.primitives</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.reflect</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>com.google.common.io</code>, <code>javax.annotation</code><br><code>com.google.common.util.concurrent</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent.internal</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><code>com.google.common.xml</code> (Version: 33.3.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code></div>
+			<div class="report-text-block no-diff"><code>com.google.common.annotations</code> (Version: <code>33.3.0</code>)<br><code>com.google.common.base</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><code>com.google.common.cache</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent</code>, <code>javax.annotation</code><br><code>com.google.common.collect</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.escape</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.eventbus</code> (Version: <code>33.3.0</code>)<br><code>com.google.common.graph</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>javax.annotation</code><br><code>com.google.common.hash</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.html</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code><br><code>com.google.common.io</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.graph</code>, <code>com.google.common.hash</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><code>com.google.common.math</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>javax.annotation</code><br><code>com.google.common.net</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.escape</code>, <code>javax.annotation</code><br><code>com.google.common.primitives</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>javax.annotation</code><br><code>com.google.common.reflect</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.collect</code>, <code>com.google.common.io</code>, <code>javax.annotation</code><br><code>com.google.common.util.concurrent</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.base</code>, <code>com.google.common.collect</code>, <code>com.google.common.util.concurrent.internal</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>javax.annotation</code><br><code>com.google.common.xml</code> (Version: <code>33.3.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>com.google.common.escape</code></div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>jcl-over-slf4j</td>
 		<td>
-			<div class="report-text-block no-diff">JCL 1.2 implemented over SLF4J<br>[jcl.over.slf4j]</div>
+			<div class="report-text-block no-diff">JCL 1.2 implemented over SLF4J<br>Symbolic Name: <code>jcl.over.slf4j</code></div>
 		</td>
 		<td>2.0.16</td>
 		<td>
 			<div class="report-text-block no-diff">JCL 1.2 implemented over SLF4J<br>Vendor: SLF4J.ORG<br>License: https://www.apache.org/licenses/LICENSE-2.0.txt<br>Doc URL: http://www.slf4j.org</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.slf4j;version=&quot;[2.0,3)&quot;<br>org.slf4j.spi;version=&quot;[2.0,3)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.slf4j</code> (Version: <code>[2.0,3)</code>)<br><code>org.slf4j.spi</code> (Version: <code>[2.0,3)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.apache.commons.logging</code> (Version: 1.2)<br><code>org.apache.commons.logging.impl</code> (Version: 1.2)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.commons.logging</code>, <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
+			<div class="report-text-block no-diff"><code>org.apache.commons.logging</code> (Version: <code>1.2</code>)<br><code>org.apache.commons.logging.impl</code> (Version: <code>1.2</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.commons.logging</code>, <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>json</td>
 		<td>
-			<div class="report-text-block no-diff">JSON in Java<br>[json]</div>
+			<div class="report-text-block no-diff">JSON in Java<br>Symbolic Name: <code>json</code></div>
 		</td>
 		<td>20240303.0.0</td>
 		<td>
 			<div class="report-text-block no-diff">JSON is a light-weight, language independent, data<br>interchange format.        See http://www.JSON.org/<br>The files in this package implement JSON encoders/decoders<br>in Java.        It also includes the capability to convert<br>between JSON and XML, HTTP        headers, Cookies, and CDL.<br>This is a reference implementation. There are a large number<br>of JSON packages        in Java. Perhaps someday the Java<br>community will standardize on one. Until        then, choose<br>carefully.<br>License:<br>https://github.com/stleary/JSON-java/blob/master/LICENSE</div>
 		</td>
 		<td></td>
-		<td><code>org.json</code> (Version: 20240303.0.0)</td>
+		<td><code>org.json</code> (Version: <code>20240303.0.0</code>)</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>jul-to-slf4j</td>
 		<td>
-			<div class="report-text-block no-diff">JUL to SLF4J bridge<br>[jul.to.slf4j]</div>
+			<div class="report-text-block no-diff">JUL to SLF4J bridge<br>Symbolic Name: <code>jul.to.slf4j</code></div>
 		</td>
 		<td>2.0.16</td>
 		<td>
 			<div class="report-text-block no-diff">JUL to SLF4J bridge<br>Vendor: SLF4J.ORG<br>License: http://www.opensource.org/licenses/mit-license.php<br>Doc URL: http://www.slf4j.org</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">org.slf4j;version=&quot;[2.0,3)&quot;<br>org.slf4j.spi;version=&quot;[2.0,3)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.slf4j</code> (Version: <code>[2.0,3)</code>)<br><code>org.slf4j.spi</code> (Version: <code>[2.0,3)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.slf4j.bridge</code> (Version: 2.0.16)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
+			<div class="report-text-block no-diff"><code>org.slf4j.bridge</code> (Version: <code>2.0.16</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.spi</code></div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>slf4j-api</td>
 		<td>
-			<div class="report-text-block no-diff">SLF4J API Module<br>[slf4j.api]</div>
+			<div class="report-text-block no-diff">SLF4J API Module<br>Symbolic Name: <code>slf4j.api</code></div>
 		</td>
 		<td>2.0.16</td>
 		<td>
 			<div class="report-text-block no-diff">The slf4j API<br>Vendor: SLF4J.ORG<br>License: http://www.opensource.org/licenses/mit-license.php<br>Doc URL: http://www.slf4j.org</div>
 		</td>
-		<td>org.slf4j.spi;version=&quot;[2.0.16,3)&quot;</td>
+		<td><code>org.slf4j.spi</code> (Version: <code>[2.0.16,3)</code>)</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.slf4j</code> (Version: 2.0.16)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.event</code> (Version: 2.0.16)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j.helpers</code> (Version: 2.0.16)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.spi</code> (Version: 2.0.16)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j</code> (Version: 1.7.36)<br><code>org.slf4j.helpers</code> (Version: 1.7.36)</div>
+			<div class="report-text-block no-diff"><code>org.slf4j</code> (Version: <code>2.0.16</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.event</code> (Version: <code>2.0.16</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j.helpers</code> (Version: <code>2.0.16</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.spi</code> (Version: <code>2.0.16</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j</code> (Version: <code>1.7.36</code>)<br><code>org.slf4j.helpers</code> (Version: <code>1.7.36</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff">Required:<br>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;<br>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)&quot;;osgi.serviceloader=&quot;org.slf4j.spi.SLF4JServiceProvider&quot;<br>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</div>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</code><br><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)&quot;;osgi.serviceloader=&quot;org.slf4j.spi.SLF4JServiceProvider&quot;</code><br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
 		</td>
 		<td>Manifest Version: 2</td>
-	</tr>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Dependencies" title="Dependencies">
-<h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Uses</th>
-		<th>Used by</th>
-		<th>Maven coordinates</th>
-		<th>Updates</th>
-		<th>Direct dependencies</th>
-		<th>Status</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>aether-api</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-connector-basic</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-impl</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>slf4j-api</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.eclipse.sisu/org.eclipse.sisu.inject/0.1.1" target="_blank" rel="noopener noreferrer">org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:1.6.2</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.sonatype.sisu/sisu-guice/3.1.6" target="_blank" rel="noopener noreferrer">org.sonatype.sisu:sisu-guice:3.1.6</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied<br>Unsatisfied<br>OK (version 2.0.16)<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-spi</td>
-		<td>aether-api</td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-file<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-transport-file</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)</div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-transport-http</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-spi<br>aether-util<br>httpclient</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a><br><a href="https://central.sonatype.com/artifact/javax.inject/javax.inject/1" target="_blank" rel="noopener noreferrer">javax.inject:javax.inject:1</a> (provided, optional)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.3.5" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.3.5</a><br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/1.6.2" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:1.6.2</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>Unsatisfied<br>OK (version 4.5.14)<br>OK (version 2.0.16)</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>aether-util</td>
-		<td>aether-api</td>
-		<td>
-			<div class="report-text-block no-diff">aether-connector-basic<br>aether-impl<br>aether-transport-http<br>jarhc<br>maven-aether-provider</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>asm</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>commons-codec</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>httpclient</td>
-		<td><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.2" target="_blank" rel="noopener noreferrer">1.17.2</a><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.18.0" target="_blank" rel="noopener noreferrer">1.18.0</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>guava</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>maven-aether-provider</td>
-		<td><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-android" target="_blank" rel="noopener noreferrer">33.3.1-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.1-jre" target="_blank" rel="noopener noreferrer">33.3.1-jre</a><br><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-android" target="_blank" rel="noopener noreferrer">33.4.0-android</a>, <a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.4.0-jre" target="_blank" rel="noopener noreferrer">33.4.0-jre</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/failureaccess/1.0.2" target="_blank" rel="noopener noreferrer">com.google.guava:failureaccess:1.0.2</a><br><a href="https://central.sonatype.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava" target="_blank" rel="noopener noreferrer">com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava</a><br><a href="https://central.sonatype.com/artifact/com.google.code.findbugs/jsr305/3.0.2" target="_blank" rel="noopener noreferrer">com.google.code.findbugs:jsr305:3.0.2</a><br><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.28.0" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.28.0</a><br><a href="https://central.sonatype.com/artifact/com.google.j2objc/j2objc-annotations/3.0.0" target="_blank" rel="noopener noreferrer">com.google.j2objc:j2objc-annotations:3.0.0</a><br><a href="https://central.sonatype.com/artifact/org.checkerframework/checker-qual/3.43.0" target="_blank" rel="noopener noreferrer">org.checkerframework:checker-qual:3.43.0</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>httpclient</td>
-		<td>
-			<div class="report-text-block no-diff">commons-codec<br>jcl-over-slf4j</div>
-		</td>
-		<td>aether-transport-http</td>
-		<td><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpcore/4.4.16" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpcore:4.4.16</a><br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.11" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.11</a><br><a href="https://central.sonatype.com/artifact/commons-logging/commons-logging/1.2" target="_blank" rel="noopener noreferrer">commons-logging:commons-logging:1.2</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">Unsatisfied<br>OK (version 1.17.1)<br>Unsatisfied</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jarhc</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-connector-basic<br>aether-impl<br>aether-spi<br>aether-transport-file<br>aether-transport-http<br>aether-util<br>asm<br>jcl-over-slf4j<br>json<br>jul-to-slf4j<br>maven-aether-provider<br>slf4j-api</div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.jarhc/jarhc/2.2.2" target="_blank" rel="noopener noreferrer">org.jarhc:jarhc:2.2.2</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/com.google.guava/guava/33.3.0-jre" target="_blank" rel="noopener noreferrer">com.google.guava:guava:33.3.0-jre</a> (runtime)<br><a href="https://central.sonatype.com/artifact/commons-codec/commons-codec/1.17.1" target="_blank" rel="noopener noreferrer">commons-codec:commons-codec:1.17.1</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.apache.httpcomponents/httpclient/4.5.14" target="_blank" rel="noopener noreferrer">org.apache.httpcomponents:httpclient:4.5.14</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-connector-basic/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-connector-basic:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-file/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-file:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-transport-http/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-transport-http:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.1.0" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.1.0</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.7</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a> (runtime)<br><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK<br>OK</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jcl-over-slf4j</td>
-		<td>slf4j-api</td>
-		<td>
-			<div class="report-text-block no-diff">httpclient<br>jarhc</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jcl-over-slf4j:2.0.16</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jcl-over-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>json</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.json/json/20240303" target="_blank" rel="noopener noreferrer">org.json:json:20240303</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.json/json/20241224" target="_blank" rel="noopener noreferrer">20241224</a><br><a href="https://central.sonatype.com/artifact/org.json/json/20250107" target="_blank" rel="noopener noreferrer">20250107</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>jul-to-slf4j</td>
-		<td>slf4j-api</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:jul-to-slf4j:2.0.16</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/jul-to-slf4j/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>maven-aether-provider</td>
-		<td>
-			<div class="report-text-block no-diff">aether-api<br>aether-impl<br>aether-spi<br>aether-util<br>guava<br>plexus-utils</div>
-		</td>
-		<td>jarhc</td>
-		<td><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-aether-provider/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-aether-provider:3.3.9</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-model-builder/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-model-builder:3.3.9</a><br><a href="https://central.sonatype.com/artifact/org.apache.maven/maven-repository-metadata/3.3.9" target="_blank" rel="noopener noreferrer">org.apache.maven:maven-repository-metadata:3.3.9</a><br><a href="https://central.sonatype.com/artifact/com.google.inject/guice/4.0" target="_blank" rel="noopener noreferrer">com.google.inject:guice:4.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.apache.commons/commons-lang3/3.4" target="_blank" rel="noopener noreferrer">org.apache.commons:commons-lang3:3.4</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-component-annotations/1.6" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-component-annotations:1.6</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.0.22" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.0.22</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-api/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-api:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-impl/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-impl:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-spi/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-spi:1.0.2.v20150114</a><br><a href="https://central.sonatype.com/artifact/org.eclipse.aether/aether-util/1.0.2.v20150114" target="_blank" rel="noopener noreferrer">org.eclipse.aether:aether-util:1.0.2.v20150114</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>OK (version 3.5.1)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)<br>OK (version 1.1.0)</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>plexus-utils</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>maven-aether-provider</td>
-		<td><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.5.1" target="_blank" rel="noopener noreferrer">org.codehaus.plexus:plexus-utils:3.5.1</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/3.6.0" target="_blank" rel="noopener noreferrer">3.6.0</a><br><a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.0" target="_blank" rel="noopener noreferrer">4.0.0</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.1" target="_blank" rel="noopener noreferrer">4.0.1</a>, <a href="https://central.sonatype.com/artifact/org.codehaus.plexus/plexus-utils/4.0.2" target="_blank" rel="noopener noreferrer">4.0.2</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>slf4j-api</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff">aether-impl<br>jarhc<br>jcl-over-slf4j<br>jul-to-slf4j</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.16" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.16</a></td>
-		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">2.0.17</a></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
 	</tr>
 </tbody>
 </table>
@@ -2320,144 +2326,144 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
+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
+BAA=
 -->
 </html>

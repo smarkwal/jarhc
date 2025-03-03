@@ -19,6 +19,21 @@ asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | No            | 
 asm-tree    | 7.0     | org.ow2.asm:asm-tree:7.0    | 49.2 KB | No            | Java 5 (37)            | 0         | org.objectweb.asm.tree    | 29bc62dcb85573af6e62e5b2d735ef65966c4180 | org.ow2.asm:asm-tree:7.0    |
 Classpath   | -       | -                           | 127 KB  | -             | Java 5 (69)            | 0         | 2                         | -                                        | -                           | -
 
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact    | Uses     | Used by     | Maven coordinates           | Updates    | Direct dependencies          | Status
+------------+----------+-------------+-----------------------------+------------+------------------------------+--------------
+asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
+            |          |             |                             | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
+            |          |             |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK [Provided]
+            |          |             |                             | [...]      |                              |
+            |          |             |                             | 9.5        |                              |
+            |          |             |                             | 9.6        |                              |
+            |          |             |                             | 9.7, 9.7.1 |                              |
+asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | [unknown]  | org.ow2.asm:asm:7.0          | OK [Provided]
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -47,28 +62,13 @@ OSGi Bundles
 ------------
 Information about OSGi Bundles.
 
-Artifact    | Name                      | Version | Description                 | Import Package                                | Export Package                                                                  | Capabilities | Others
-------------+---------------------------+---------+-----------------------------+-----------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
-asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.commons (Version: 7.0)                                        |              | Manifest Version: 2
-            |                           |         |                             | org.objectweb.asm.signature;version="[7.0,8)" |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
-            |                           |         |                             | org.objectweb.asm.tree;version="[7.0,8)"      |                                                                                 |              |
-asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm;version="[7.0,8)"           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
-            |                           |         |                             |                                               |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact    | Uses     | Used by     | Maven coordinates           | Updates    | Direct dependencies          | Status
-------------+----------+-------------+-----------------------------+------------+------------------------------+--------------
-asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-            |          |             |                             | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
-            |          |             |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK [Provided]
-            |          |             |                             | [...]      |                              |
-            |          |             |                             | 9.5        |                              |
-            |          |             |                             | 9.6        |                              |
-            |          |             |                             | 9.7, 9.7.1 |                              |
-asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | [unknown]  | org.ow2.asm:asm:7.0          | OK [Provided]
+Artifact    | Name                      | Version | Description                 | Import Package                                 | Export Package                                                                  | Capabilities | Others
+------------+---------------------------+---------+-----------------------------+------------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
+asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm (Version: [7.0,8))           | org.objectweb.asm.commons (Version: 7.0)                                        |              | Manifest Version: 2
+            |                           |         |                             | org.objectweb.asm.signature (Version: [7.0,8)) |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
+            |                           |         |                             | org.objectweb.asm.tree (Version: [7.0,8))      |                                                                                 |              |
+asm-tree    | org.objectweb.asm.tree    | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm (Version: [7.0,8))           | org.objectweb.asm.tree (Version: 7.0)                                           |              | Manifest Version: 2
+            |                           |         |                             |                                                |    Uses: org.objectweb.asm                                                      |              | Required Execution Environment: J2SE-1.5
 
 Java Runtime
 ------------

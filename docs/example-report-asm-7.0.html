@@ -21,14 +21,14 @@
 		a {
 			color: #333399;
 			text-decoration: none;
-		}
 
-		a:hover {
-			text-decoration: underline;
-		}
+			&:hover {
+				text-decoration: underline;
+			}
 
-		a:visited {
-			color: #333399;
+			&:visited {
+				color: #333399;
+			}
 		}
 
 		#header {
@@ -56,10 +56,10 @@
 			background-color: #EEEEEE;
 			border-radius: 8px;
 			user-select: none;
-		}
 
-		.control:hover {
-			background-color: white;
+			&:hover {
+				background-color: white;
+			}
 		}
 
 		#showOnlyDiffControl {
@@ -70,14 +70,14 @@
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-		}
 
-		.icon-up {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-		}
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 
-		.icon-down {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 		}
 
 		input[type="checkbox"] {
@@ -162,10 +162,10 @@
 
 		.report-text-block {
 			margin-bottom: 1em;
-		}
 
-		.report-text-block:last-child {
-			margin-bottom: 0;
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
 		}
 
 		.report-issue {
@@ -190,14 +190,20 @@
 
 		/* special diff report settings */
 
-		.diff-report #showOnlyDiffControl {
-			/* only available in diff report */
-			display: flex;
-		}
+		.diff-report {
 
-		.diff-report .no-diff {
-			/* default: only show differences */
-			display: none;
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
 		}
 
 		/* special print settings */
@@ -539,10 +545,10 @@
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
 <li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
 <li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
-<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
@@ -646,6 +652,82 @@
 		<td>
 			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
+	</tr>
+</tbody>
+</table>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff">asm-analysis<br>asm-commons<br>asm-tree</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td>
+			<div class="report-text-block no-diff">asm<br>asm-tree</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block no-diff">asm<br>asm-tree</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>asm</td>
+		<td>
+			<div class="report-text-block no-diff">asm-analysis<br>asm-commons</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>OK</td>
 	</tr>
 </tbody>
 </table>
@@ -794,12 +876,12 @@
 <tbody>
 	<tr class="report-table-row no-diff">
 		<td>asm</td>
-		<td>org.objectweb.asm</td>
+		<td><code>org.objectweb.asm</code></td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
 		<td></td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: 7.0)<br><code>org.objectweb.asm.signature</code> (Version: 7.0)</div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>7.0</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>7.0</code>)</div>
 		</td>
 		<td></td>
 		<td>
@@ -808,14 +890,14 @@
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>asm-analysis</td>
-		<td>org.objectweb.asm.tree.analysis</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
 		<td>
-			<div class="report-text-block no-diff">org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>[7.0,8)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree.analysis</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.tree</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree.analysis</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.tree</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -824,14 +906,14 @@
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
-		<td>org.objectweb.asm.commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
 		<td>
-			<div class="report-text-block no-diff">org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>[7.0,8)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
 		</td>
 		<td></td>
 		<td>
@@ -840,93 +922,17 @@
 	</tr>
 	<tr class="report-table-row no-diff">
 		<td>asm-tree</td>
-		<td>org.objectweb.asm.tree</td>
+		<td><code>org.objectweb.asm.tree</code></td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
-		<td>org.objectweb.asm;version=&quot;[7.0,8)&quot;</td>
+		<td><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code></div>
 		</td>
 		<td></td>
 		<td>
 			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
 		</td>
-	</tr>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Dependencies" title="Dependencies">
-<h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Uses</th>
-		<th>Used by</th>
-		<th>Maven coordinates</th>
-		<th>Updates</th>
-		<th>Direct dependencies</th>
-		<th>Status</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>asm</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td>
-			<div class="report-text-block no-diff">asm-analysis<br>asm-commons<br>asm-tree</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td></td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>asm-analysis</td>
-		<td>
-			<div class="report-text-block no-diff">asm<br>asm-tree</div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
-		<td>OK</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>asm-commons</td>
-		<td>
-			<div class="report-text-block no-diff">asm<br>asm-tree</div>
-		</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK<br>OK<br>OK</div>
-		</td>
-	</tr>
-	<tr class="report-table-row no-diff">
-		<td>asm-tree</td>
-		<td>asm</td>
-		<td>
-			<div class="report-text-block no-diff">asm-analysis<br>asm-commons</div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
-		</td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
-		<td>OK</td>
 	</tr>
 </tbody>
 </table>
@@ -1006,19 +1012,19 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
+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
+c2KOdV3/+jfc+OONTiIAAA==
 -->
 </html>

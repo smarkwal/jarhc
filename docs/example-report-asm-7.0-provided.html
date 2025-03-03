@@ -21,14 +21,14 @@
 		a {
 			color: #333399;
 			text-decoration: none;
-		}
 
-		a:hover {
-			text-decoration: underline;
-		}
+			&:hover {
+				text-decoration: underline;
+			}
 
-		a:visited {
-			color: #333399;
+			&:visited {
+				color: #333399;
+			}
 		}
 
 		#header {
@@ -56,10 +56,10 @@
 			background-color: #EEEEEE;
 			border-radius: 8px;
 			user-select: none;
-		}
 
-		.control:hover {
-			background-color: white;
+			&:hover {
+				background-color: white;
+			}
 		}
 
 		#showOnlyDiffControl {
@@ -70,14 +70,14 @@
 			width: 16px;
 			height: 16px;
 			display: inline-block;
-		}
 
-		.icon-up {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-		}
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 
-		.icon-down {
-			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
 		}
 
 		input[type="checkbox"] {
@@ -162,10 +162,10 @@
 
 		.report-text-block {
 			margin-bottom: 1em;
-		}
 
-		.report-text-block:last-child {
-			margin-bottom: 0;
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
 		}
 
 		.report-issue {
@@ -190,14 +190,20 @@
 
 		/* special diff report settings */
 
-		.diff-report #showOnlyDiffControl {
-			/* only available in diff report */
-			display: flex;
-		}
+		.diff-report {
 
-		.diff-report .no-diff {
-			/* default: only show differences */
-			display: none;
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
 		}
 
 		/* special print settings */
@@ -539,10 +545,10 @@
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
 <li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
 <li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
-<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
 <li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
@@ -598,6 +604,41 @@
 		<td>-</td>
 		<td>
 			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK [Provided]<br>OK [Provided]<br>OK [Provided]</div>
 		</td>
 	</tr>
 </tbody>
@@ -683,53 +724,18 @@
 <tbody>
 	<tr class="report-table-row no-diff">
 		<td>asm-commons</td>
-		<td>org.objectweb.asm.commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
 		<td>7.0.0</td>
 		<td>Doc URL: http://asm.ow2.org</td>
 		<td>
-			<div class="report-text-block no-diff">org.objectweb.asm;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.signature;version=&quot;[7.0,8)&quot;<br>org.objectweb.asm.tree;version=&quot;[7.0,8)&quot;</div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>[7.0,8)</code>)</div>
 		</td>
 		<td>
-			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: 7.0)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
 		</td>
 		<td></td>
 		<td>
 			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
-		</td>
-	</tr>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Dependencies" title="Dependencies">
-<h2 class="report-section-title">Dependencies</h2>
-<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Artifact</th>
-		<th>Uses</th>
-		<th>Used by</th>
-		<th>Maven coordinates</th>
-		<th>Updates</th>
-		<th>Direct dependencies</th>
-		<th>Status</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row no-diff">
-		<td>asm-commons</td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><span style="color:gray">[none]</span></td>
-		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
-		</td>
-		<td>
-			<div class="report-text-block no-diff">OK [Provided]<br>OK [Provided]<br>OK [Provided]</div>
 		</td>
 	</tr>
 </tbody>
@@ -793,14 +799,14 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
+H4sIAAAAAAAA/61XbW8aORD+K9Z+ChIsb00InKoTJaQNKUkU2vtCkDC2CW527a3tTcJV+e83413eyku400WK1ms/npmdeeaFX4GTLhJBK2gP+qQRVoJi4OYJbgw67Rt4exbGSq1gox5WwkppcNO+G3y5/QZHVjAHRzZoDX8FXFhmZOIy7FdpHdFT0mvfk6mMhCVTnSpO
+pCIsotYm1M1C1JVrR9wl4mCPaeWEcl4q01Eaew1B2zg5pcwB4q/cpmIw0KlhAhfyb3z008jJkhGRoBbfe/SZkvwTyIlXLWwBDu6F9VdR4R1lT/TRLzszwZ5sGpOTwZd2qYrIjtaGS0WdB1xZm8JiVAyMfkG7hgG1cYnpOEZPFIPMh8OhNo+hfqmFcNpaQ7TgfDRC3HlY
+IdefYHWjF4aekpN6DXWiiLGXMPkBTn4RE5QT5jLGqOBD47xSOeOVxqTBTs+qVNRps8Y5q57XmhNGz2Gnwjivjk5mziW2VS5bQQ2bhTF9FioE4fnGnz8/VlvHSisc9W3gnmHQWcQZNkr5/+qjSzu/ubqGLQWj0dvorfg7tS5EIhQXiklg1USAc4Ra8axIKNCMWsIFRNsI
+T7m7274/XWfcupijSPfdeiA8OJnMkWvoSMI26PE94fnqQhqIHJixoWbgqEsP0WeotBKjjcW77h42QgjzflS18KAAUzuEqWWY+iFMvVAkiDmsrZ7pC8NwBI9meLofDIcFjzk7hDnLMI1DmAaaBo9Dpvnj3QSmikZzK3OXgrothDNC7D1dRuL2mgzvjH6WXHAAHnrdw+4r
+NdUmpvi2Kpn97rd26ermstxv31xddgffwv5lkYhXJhJHenf9gSf97eCzJNQ5IycpcPD38tqnSk6Fdcex/bNQwtAIK2WqnIyxmF7FSSRiuOfNQzYngsmpZMt3+QiJkBpxgOALM0p5EW+RcTWsjB9UX/M0EqV78TOF1LGwv1UA/3CGKiudfBYfnUlFcbtEYpyOhIWLqP+O
+x/qaZfo0jaKsYRHKaeLAZDKhWAEgPNAxodpgd5kTG1NAYhSmFDqfr2yTuRNMc0Fi+OQkjfKgGhqLF22eHtTKA8CfXOkeWiz7KQrOPPVuS0Ve5NCjQp5hiaI+2BdiKpXMA9tOnUZSMt85swDBsvuaaOMOlbPDTSwPOXJ+0Qe3LwA1dkjBAO4/WYYWIT/AZyFGbfyOQe9n
+JJ3o1GWJ9gl8H21m2fr+UR6/yVy9Gmcu1jT7fAP3knw8Wfp7baNDEzqREYTJa7x1MxD1n8PRwAEPrdCMfL//2iI4OcDggDCsdnB5d4TIyYrK0CAqxfPCuLAzOHZRIf7FHR/qnfDDX7R+BRMMpD847OK7Ssu4uGNzzdydx96yLG8XZY0sddYeVJ4qnHRfBUs9g7rqWRqt
+sIq2SK826Jaq4em+SSdNIiyuguSDa5HYGeX6BSQud7Dm8CXQLMbajVFnedzJbu0npweUF8PxcsD2o4uMJUxU0s3XCLbT7o6OoRhJT8w5kX5i3p7U1i38BAMUVNGNi0dl0NY4vtMgCDoWT07VozA6Ba+lytKp8E9HJxGstMFZDWY28NPSvd67sXAzzTftjSAFI6jJ/6OR
+23Wmd98t9y6uick68EZxxz6w6swrG7KTmY4FgT9gehnX5ZiapxcacWHK4Q/+ZMtOxKmRqlTFpK9+gDrpL+aq8OItDK6oPdeyztwFevHDCnv4phyYjDl4FE+6LJIJBKDNNXxqGkOdfRvhl8SQLjROgla1UW82m7VmDX6DVN7+Af7BMi2TDgAA
 -->
 </html>

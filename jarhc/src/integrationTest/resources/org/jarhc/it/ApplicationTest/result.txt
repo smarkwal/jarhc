@@ -18,6 +18,14 @@ Artifact  | Version   | Source | Size  | Multi-release | Java version (classes) 
 a         | [unknown] | a.jar  | 678 B | No            | Java 8 (1)             | 0         | a        | b2de6f7c6eff51a28729be9c4f6555354f16a1ca | [unknown]   |
 Classpath | -         | -      | 678 B | -             | Java 8 (1)             | 0         | 1        | -                                        | -           | -
 
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
+---------+--------+---------+-------------------+-----------+---------------------+-------
+a        | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -41,14 +49,6 @@ Information about OSGi Bundles.
 
 Artifact | Name | Version | Description | Import Package | Export Package | Capabilities | Others
 ---------+------+---------+-------------+----------------+----------------+--------------+-------
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
----------+--------+---------+-------------------+-----------+---------------------+-------
-a        | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
 Duplicate Classes
 -----------------

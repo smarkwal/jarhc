@@ -7,8 +7,16 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source    | Size   | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates | Issues
 ----------+-----------+-----------+--------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-------------+-------
-jarhc     | [unknown] | jarhc.jar | 296 KB | No            | Java 11 (151)          | 17        | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
-Classpath | -         | -         | 296 KB | -             | Java 11 (151)          | 17        | 20                          | -                                        | -           | -
+jarhc     | [unknown] | jarhc.jar | 299 KB | No            | Java 11 (152)          | 17        | org.jarhc (+19 subpackages) | **************************************** | [unknown]   |
+Classpath | -         | -         | 299 KB | -             | Java 11 (152)          | 17        | 20                          | -                                        | -           | -
+
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
+---------+--------+---------+-------------------+-----------+---------------------+-------
+jarhc    | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
 JAR Manifests
 -------------
@@ -25,14 +33,6 @@ List of Java Modules found in classpath.
 Artifact | Module name | Definition | Automatic | Requires | Exports
 ---------+-------------+------------+-----------+----------+---------------
 jarhc    | org.jarhc   | Manifest   | Yes       |          | [all packages]
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
----------+--------+---------+-------------------+-----------+---------------------+-------
-jarhc    | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
 
 Blacklist
 ---------

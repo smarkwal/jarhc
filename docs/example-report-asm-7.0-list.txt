@@ -108,6 +108,97 @@ Artifact: Classpath
 	Issues:
 		-
 
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact: asm
+	Uses:
+		[none]
+	Used by:
+		asm-analysis
+		asm-commons
+		asm-tree
+	Maven coordinates:
+		org.ow2.asm:asm:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		[none]
+
+Artifact: asm-analysis
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
+	Maven coordinates:
+		org.ow2.asm:asm-analysis:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm-tree:7.0
+	Status:
+		OK
+
+Artifact: asm-commons
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
+	Maven coordinates:
+		org.ow2.asm:asm-commons:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm-analysis:7.0
+		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm:7.0
+	Status:
+		OK
+		OK
+		OK
+
+Artifact: asm-tree
+	Uses:
+		asm
+	Used by:
+		asm-analysis
+		asm-commons
+	Maven coordinates:
+		org.ow2.asm:asm-tree:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm:7.0
+	Status:
+		OK
+
 JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
@@ -227,8 +318,8 @@ Artifact: asm-analysis
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0,8)"
-		org.objectweb.asm.tree;version="[7.0,8)"
+		org.objectweb.asm (Version: [7.0,8))
+		org.objectweb.asm.tree (Version: [7.0,8))
 	Export Package:
 		org.objectweb.asm.tree.analysis (Version: 7.0)
 		   Uses: org.objectweb.asm, org.objectweb.asm.tree
@@ -244,9 +335,9 @@ Artifact: asm-commons
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0,8)"
-		org.objectweb.asm.signature;version="[7.0,8)"
-		org.objectweb.asm.tree;version="[7.0,8)"
+		org.objectweb.asm (Version: [7.0,8))
+		org.objectweb.asm.signature (Version: [7.0,8))
+		org.objectweb.asm.tree (Version: [7.0,8))
 	Export Package:
 		org.objectweb.asm.commons (Version: 7.0)
 		   Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree
@@ -262,104 +353,13 @@ Artifact: asm-tree
 	Description:
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm;version="[7.0,8)"
+		org.objectweb.asm (Version: [7.0,8))
 	Export Package:
 		org.objectweb.asm.tree (Version: 7.0)
 		   Uses: org.objectweb.asm
 	Others:
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
-
-Dependencies
-------------
-Dependencies between JAR files, and as declared in POM file.
-
-Artifact: asm
-	Uses:
-		[none]
-	Used by:
-		asm-analysis
-		asm-commons
-		asm-tree
-	Maven coordinates:
-		org.ow2.asm:asm:7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-	Direct dependencies:
-		[none]
-
-Artifact: asm-analysis
-	Uses:
-		asm
-		asm-tree
-	Used by:
-		[none]
-	Maven coordinates:
-		org.ow2.asm:asm-analysis:7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-	Direct dependencies:
-		org.ow2.asm:asm-tree:7.0
-	Status:
-		OK
-
-Artifact: asm-commons
-	Uses:
-		asm
-		asm-tree
-	Used by:
-		[none]
-	Maven coordinates:
-		org.ow2.asm:asm-commons:7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-	Direct dependencies:
-		org.ow2.asm:asm-analysis:7.0
-		org.ow2.asm:asm-tree:7.0
-		org.ow2.asm:asm:7.0
-	Status:
-		OK
-		OK
-		OK
-
-Artifact: asm-tree
-	Uses:
-		asm
-	Used by:
-		asm-analysis
-		asm-commons
-	Maven coordinates:
-		org.ow2.asm:asm-tree:7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.5
-		9.6
-		9.7, 9.7.1
-	Direct dependencies:
-		org.ow2.asm:asm:7.0
-	Status:
-		OK
 
 Duplicate Classes
 -----------------

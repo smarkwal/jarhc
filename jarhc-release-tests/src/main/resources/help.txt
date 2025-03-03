@@ -118,10 +118,10 @@ Environment variables:
 Sections:
 
    jf - JAR Files
+   d  - Dependencies
    jm - JAR Manifests
    m  - JPMS Modules
    ob - OSGi Bundles
-   d  - Dependencies
    dc - Duplicate Classes
    bc - Binary Compatibility
    bl - Blacklist
