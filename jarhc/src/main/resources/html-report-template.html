@@ -2,9 +2,9 @@
 <!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
 <html lang="en">
 <head>
-	<title>Report Title</title>
+	<title>{TITLE}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="generator" content="JarHC {version}">
+	<meta name="generator" content="JarHC {VERSION}">
 	<style>
 
 		html {
@@ -193,125 +193,19 @@
 
 	</style>
 </head>
-<body class="report scan-report">
+<body class="report {TYPE}-report">
 
 	<header>
 		<div id="controls"></div>
-		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC {version}</a></div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC {VERSION}</a></div>
 	</header>
 
 	<div id="minimap"></div>
 	<div id="minimap-view"></div>
 
 	<main>
-		<h1 class="report-title">Report Title</h1>
-		
-<nav>
-<h2 class="report-toc-title">Table of Contents</h2>
-<ul class="report-toc">
-<li class="report-toc-item"><a href="#Section1">Section 1</a></li>
-<li class="report-toc-item"><a href="#Section2">Section 2</a></li>
-<li class="report-toc-item"><a href="#Section3">Section 3</a></li>
-<li class="report-toc-item"><a href="#Section4">Section 4</a>
-<ul class="report-toc-1">
-<li class="report-toc-item"><a href="#Section4-Subsection41">Subsection 4.1</a></li>
-<li class="report-toc-item"><a href="#Section4-Subsection42">Subsection 4.2</a>
-<ul class="report-toc-2">
-<li class="report-toc-item"><a href="#Section4-Subsection42-Subsection421">Subsection 4.2.1</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-
-<section class="report-section" id="Section1">
-<h2 class="report-section-title">Section 1</h2>
-<p class="report-section-description">Description 1</p>
-<p class="report-content">Some text.</p>
-</section>
-
-<section class="report-section" id="Section2">
-<h2 class="report-section-title">Section 2</h2>
-<p class="report-section-description">Description 2, Line 1<br>Description 2, Line 2</p>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Column 1</th>
-		<th>Column 2</th>
-		<th>Column 3</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row">
-		<td>Short</td>
-		<td>Medium Medium</td>
-		<td>Long Long Long Long Long Long Long</td>
-	</tr>
-	<tr class="report-table-row">
-		<td>Line 1</td>
-		<td>
-			<div class="report-text-block">Line 1<br>Longer Line 2</div>
-		</td>
-		<td>
-			<div class="report-text-block">Line 1<br>Longer Line 2<br>Extra Long Line 3<br><a href="https://central.sonatype.com/artifact/commons-io/commons-io/2.8.0" target="_blank" rel="noopener noreferrer">commons-io:commons-io:2.8.0</a></div>
-		</td>
-	</tr>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Section3">
-<h2 class="report-section-title">Section 3</h2>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Values</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="report-table-row">
-		<td>1</td>
-	</tr>
-	<tr class="report-table-row">
-		<td>2</td>
-	</tr>
-	<tr class="report-table-row">
-		<td>3</td>
-	</tr>
-</tbody>
-</table>
-<table class="report-table">
-<thead>
-	<tr class="report-table-header">
-		<th>Empty</th>
-	</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</section>
-
-<section class="report-section" id="Section4">
-<h2 class="report-section-title">Section 4</h2>
-<section class="report-section" id="Section4-Subsection41">
-<h3 class="report-section-title">Subsection 4.1</h3>
-<p class="report-section-description">Description 4.1</p>
-<p class="report-content">Some text.</p>
-</section>
-<section class="report-section" id="Section4-Subsection42">
-<h3 class="report-section-title">Subsection 4.2</h3>
-<p class="report-section-description">Description 4.2</p>
-<section class="report-section" id="Section4-Subsection42-Subsection421">
-<h4 class="report-section-title">Subsection 4.2.1</h4>
-<p class="report-section-description">Description 4.2.1</p>
-<p class="report-content">Some text.</p>
-</section>
-<p class="report-content">Some text.</p>
-</section>
-</section>
-
-
+		<h1 class="report-title">{TITLE}</h1>
+		{REPORT}
 	</main>
 
 	<script>
@@ -594,9 +488,5 @@
 	</script>
 
 </body>
-<!-- JSON REPORT DATA
-H4sIAAAAAAAAAJ1SwW6DMAz9lchnFkFgWsdt6nrrdhjTLpRDR60NiSSIhK1V1X+fE1q1VIXDhBTsF/v58fAebGVrhBTesNGtZe8+DcDuGodm86dXyn6wNZVWBIQ85BEhBktLiIE038MGTdlWje1Lns8Zc6WnCVnf4rFSK4vKUjdkWiKzuLUcikMwRSYCtqwUsmilbsHi
-xiwxmLWnuO6kVw1zH3o1x1CcwxiKAFr96ypJ4jdZQ5cvuKk6yfoX5UutvtjkQTQ59KJd/VG9u8H2rPomvlKLrW3XRy4HxSuV56WWkny/q3R6EQo+42FRQFEcvInXPsTjPnys6w7N4HsjL1v4M3acwaBjIRu7u2gYmZlczRz/sQkf7En3aU4U/N/LknAxxnm9FJMk49LE
-tLhhSo+jkWjsWjaQRg/x4yychVGS3MeHP2JCBnuHAwAA
--->
+{JSONDATA}
 </html>

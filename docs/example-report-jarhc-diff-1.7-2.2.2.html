@@ -2,207 +2,210 @@
 <!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
 <html lang="en">
 <head>
-<title>JarHC 1.7 and 2.2.2</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="JarHC 3.0.0-SNAPSHOT">
-<style>
-html {
-	scroll-padding-top: 80px;
-}
+	<title>JarHC 1.7 and 2.2.2</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="JarHC 3.0.0-SNAPSHOT">
+	<style>
 
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	line-height: 1.2rem;
-}
+		html {
+			scroll-padding-top: 80px;
+		}
 
-a {
-	color: #333399;
-	text-decoration: none;
-}
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			line-height: 1.2rem;
+		}
 
-a:hover {
-	text-decoration: underline;
-}
+		a {
+			color: #333399;
+			text-decoration: none;
+		}
 
-a:visited {
-	color: #333399;
-}
+		a:hover {
+			text-decoration: underline;
+		}
 
-header {
-	position: sticky;
-	top: 0;
-	left: 0;
-	display: flex;
-	justify-content: space-between;
-	background-color: lightgray;
-	padding: 12px;
-	z-index: 100;
-}
+		a:visited {
+			color: #333399;
+		}
 
-#controls {
-	display: flex;
-	align-self: flex-start;
-}
+		header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			background-color: lightgray;
+			padding: 12px;
+			z-index: 100;
+		}
 
-.control {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	padding: 8px;
-	margin-right: 10px;
-	background-color: #EEEEEE;
-	border-radius: 8px;
-	user-select: none;
-}
+		#controls {
+			display: flex;
+			align-self: flex-start;
+		}
 
-.control:hover {
-	background-color: white;
-}
+		.control {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			padding: 8px;
+			margin-right: 10px;
+			background-color: #EEEEEE;
+			border-radius: 8px;
+			user-select: none;
+		}
 
-.icon {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
-}
+		.control:hover {
+			background-color: white;
+		}
 
-.icon-up {
-	background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-}
+		.icon {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+		}
 
-.icon-down {
-	background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
-}
+		.icon-up {
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+		}
 
-input[type="checkbox"] {
-	transform: scale(1.5);
-}
+		.icon-down {
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+		}
 
-.label {
-	margin-left: 0.5em;
-}
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
 
-#generator {
-	align-self: flex-end;
-	padding: 8px;
-}
+		.label {
+			margin-left: 0.5em;
+		}
 
-main {
-	margin: 20px 20px 20px 100px;
-}
+		#generator {
+			align-self: flex-end;
+			margin-right: 20px;
+			padding: 8px;
+		}
 
-#minimap {
-	position: fixed;
-	top: 70px;
-	left: 10px;
-	width: 70px;
-	height: calc(100% - 80px);
-	z-index: 80;
-	user-select: none;
-	background-color: #EEEEEE;
-	border: 1px solid #999999;
-}
+		#minimap {
+			position: fixed;
+			top: 70px;
+			left: 10px;
+			width: 70px;
+			height: calc(100% - 80px);
+			z-index: 80;
+			user-select: none;
+			background-color: #EEEEEE;
+			border: 1px solid #999999;
+		}
 
-#minimap-view {
-	position: fixed;
-	top: 66px;
-	left: 7px;
-	width: 70px;
-	height: 0;
-	z-index: 90;
-	user-select: none;
-	border: 4px solid black;
-}
+		#minimap-view {
+			position: fixed;
+			top: 66px;
+			left: 7px;
+			width: 70px;
+			height: 0;
+			z-index: 90;
+			user-select: none;
+			border: 4px solid black;
+		}
 
-h2, h3, h4, h5, h6 {
-	margin-top: 3rem;
-}
+		main {
+			margin: 80px 20px 20px 100px;
+		}
 
-table {
-	border-collapse: collapse;
-	font-size: 0.8rem;
-}
+		h2, h3, h4, h5, h6 {
+			margin-top: 3rem;
+		}
 
-th {
-	background-color: lightgray;
-}
+		table {
+			border-collapse: collapse;
+			font-size: 0.8rem;
+		}
 
-th, td {
-	border: 1px solid gray;
-	padding: 0.3rem;
-	vertical-align: top;
-	text-align: left;
-	white-space: nowrap;
-}
+		th {
+			background-color: lightgray;
+		}
 
-.report-text-block {
-	margin-bottom: 1em;
-}
+		th, td {
+			border: 1px solid gray;
+			padding: 0.3rem;
+			vertical-align: top;
+			text-align: left;
+			white-space: nowrap;
+		}
 
-.report-text-block:last-child {
-	margin-bottom: 0;
-}
+		.report-text-block {
+			margin-bottom: 1em;
+		}
 
-.report-issue {
-}
+		.report-text-block:last-child {
+			margin-bottom: 0;
+		}
 
-code {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: #333399;
-}
+		.report-issue {
+		}
 
-.inserted {
-	background-color: #D4EDDA;
-}
+		code {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: #333399;
+		}
 
-.deleted {
-	background-color: #F8D7DA;
-}
+		.inserted {
+			background-color: #D4EDDA;
+		}
 
-.marked {
-	background-color: #FFF6D8;
-}
+		.deleted {
+			background-color: #F8D7DA;
+		}
 
-@media print {
+		.marked {
+			background-color: #FFF6D8;
+		}
 
-	header {
-		display: none !important;
-	}
+		@media print {
 
-	#minimap {
-		display: none !important;
-	}
+			header {
+				display: none !important;
+			}
 
-	#minimap-view {
-		display: none !important;
-	}
+			#minimap {
+				display: none !important;
+			}
 
-	main {
-		margin: 0;
-	}
+			#minimap-view {
+				display: none !important;
+			}
 
-	th, td {
-		white-space: normal;
-	}
+			main {
+				margin: 0;
+			}
 
-}
-</style>
+			th, td {
+				white-space: normal;
+			}
+
+		}
+
+	</style>
 </head>
 <body class="report diff-report">
 
-<header>
-	<div id="controls"></div>
-	<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
-</header>
+	<header>
+		<div id="controls"></div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.0-SNAPSHOT</a></div>
+	</header>
 
-<main>
+	<div id="minimap"></div>
+	<div id="minimap-view"></div>
 
-<div id="minimap"></div>
-<div id="minimap-view"></div>
-
-<h1 class="report-title">JarHC 1.7 and 2.2.2</h1>
-
+	<main>
+		<h1 class="report-title">JarHC 1.7 and 2.2.2</h1>
+		
 <nav>
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
@@ -2269,275 +2272,288 @@ code {
 <p class="report-content">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
 </section>
 
-</main>
-<script>
-function init() {
 
-	initNavUI();
-	initMinimap(); // TODO: add control to show/hide minimap
+	</main>
 
-	// check if document is a diff report
-	const body = document.getElementsByTagName("body")[0];
-	if (body.classList.contains("diff-report")) {
-		initDiffUI();
-	}
+	<script>
 
-	initRowMarking();
-	initKeyboardShortcuts();
-}
+		function init() {
 
-function initNavUI() {
+			initNavUI();
+			initMinimap(); // TODO: add control to show/hide minimap
 
-	// link to next section
-	const link1 = createIconLink("icon-down", "Next section", function() {
-		scrollToSection(true);
-	});
+			// check if document is a diff report
+			const body = document.getElementsByTagName("body")[0];
+			if (body.classList.contains("diff-report")) {
+				initDiffUI();
+			}
 
-	// link to previous section
-	const link2 = createIconLink("icon-up", "Previous section", function() {
-		scrollToSection(false);
-	});
-
-	const controls = document.getElementById("controls");
-	controls.appendChild(link1);
-	controls.appendChild(link2);
-}
-
-function createIconLink(iconClass, text, onclick) {
-
-	const icon = document.createElement("span");
-	icon.classList.add("icon");
-	icon.classList.add(iconClass);
-
-	const label = document.createElement("span");
-	label.classList.add("label");
-	label.innerText = text;
-
-	return createControl(icon, label, onclick);
-}
-
-function scrollToSection(next) {
-
-	const targetY = 80; // target scroll position (relative to viewport)
-
-	// find next section
-	let nextSection = null;
-	let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
-
-	// iterate over all sections
-	const sections = document.getElementsByClassName("report-section");
-	for (let section of sections) {
-
-		// get position of section (relative to viewport)
-		const sectionY = section.getBoundingClientRect().top;
-
-		// check if section is closer than previous next section
-		let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
-		if (better) {
-			nextSection = section;
-			nextSectionY = sectionY;
+			initRowMarking();
+			initKeyboardShortcuts();
 		}
-	}
 
-	// if there is a next section ...
-	if (nextSection) {
+		function initNavUI() {
 
-		// get current vertical scroll position
-		const scrollY = window.scrollY;
+			// link to next section
+			const link1 = createIconLink("icon-down", "Next section", function() {
+				scrollToSection(true);
+			});
 
-		// scroll to next section
-		window.scrollTo(0, scrollY + nextSectionY - targetY);
+			// link to previous section
+			const link2 = createIconLink("icon-up", "Previous section", function() {
+				scrollToSection(false);
+			});
 
-	} else if (!next) { // if there is no previous section
+			const controls = document.getElementById("controls");
+			controls.appendChild(link1);
+			controls.appendChild(link2);
+		}
 
-		// scroll to top
-		window.scrollTo(0, 0);
-	}
+		function createIconLink(iconClass, text, onclick) {
 
-}
+			const icon = document.createElement("span");
+			icon.classList.add("icon");
+			icon.classList.add(iconClass);
 
-function initMinimap() {
+			const label = document.createElement("span");
+			label.classList.add("label");
+			label.innerText = text;
 
-	updateMinimap();
+			return createControl(icon, label, onclick);
+		}
 
-	window.addEventListener("scroll", updateMinimapView);
-	window.addEventListener("resize", updateMinimap);
+		function scrollToSection(next) {
 
-	const minimap = document.getElementById("minimap");
-	minimap.addEventListener("mousedown", scrollMinimapView);
-	minimap.addEventListener("mouseup", scrollMinimapView);
-	// TODO: on mouse drag
-}
+			const targetY = 80; // target scroll position (relative to viewport)
 
-function updateMinimap() {
+			// find next section
+			let nextSection = null;
+			let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
 
-	// TODO: clear content of minimap
-	// TODO: iterate over all sections and add them to the minimap
-	// TODO: iterate over all differences and add them to the minimap
+			// iterate over all sections
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
 
-	console.log("TODO: update minimap");
+				// get position of section (relative to viewport)
+				const sectionY = section.getBoundingClientRect().top;
 
-	updateMinimapView();
-}
+				// check if section is closer than previous next section
+				let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+				if (better) {
+					nextSection = section;
+					nextSectionY = sectionY;
+				}
+			}
 
-function updateMinimapView() {
+			// if there is a next section ...
+			if (nextSection) {
 
-	const minimap = document.getElementById("minimap");
+				// get current vertical scroll position
+				const scrollY = window.scrollY;
 
-	// get dimensions
-	const documentHeight = document.body.scrollHeight;
-	const viewportHeight = window.innerHeight;
-	const minimapHeight = minimap.clientHeight;
-	const scrollY = window.scrollY;
+				// scroll to next section
+				window.scrollTo(0, scrollY + nextSectionY - targetY);
 
-	// calculate new position and height of minimap view
-	const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 3;
-	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+			} else if (!next) { // if there is no previous section
 
-	// update position and height of minimap view
-	const minimapView = document.getElementById("minimap-view");
-	minimapView.style.top = minimapViewTop + "px";
-	minimapView.style.height = minimapViewHeight + "px";
-}
+				// scroll to top
+				window.scrollTo(0, 0);
+			}
 
-function scrollMinimapView(event) {
-	const minimap = document.getElementById("minimap");
+		}
 
-	// calculate height of minimap view
-	const documentHeight = document.body.scrollHeight;
-	const viewportHeight = window.innerHeight;
-	const minimapHeight = minimap.clientHeight;
-	const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
-	const minimapViewOffset = minimapViewHeight / 2;
+		function initMinimap() {
 
-	// calculate position of minimap view (relative to top of minimap)
-	let y = event.clientY - minimap.offsetTop;
-	if (y < minimapViewOffset) {
-		y = minimapViewOffset;
-	} else if (y > minimapHeight - minimapViewOffset) {
-		y = minimapHeight - minimapViewOffset;
-	}
-	y = y - minimapViewOffset;
+			updateMinimap();
 
-	const scrollY = y / minimapHeight * document.body.scrollHeight;
-	window.scrollTo(0, scrollY);
+			window.addEventListener("scroll", updateMinimapView);
+			window.addEventListener("resize", updateMinimap);
 
-	updateMinimapView();
-}
+			const minimap = document.getElementById("minimap");
+			minimap.addEventListener("mousedown", scrollMinimapView);
+			minimap.addEventListener("mouseup", scrollMinimapView);
+			// TODO: on mouse drag
+			// TODO: support clicks on minimap-view
+		}
 
-function initDiffUI() {
+		function updateMinimap() {
 
-	showOnlyDiff(true);
+			const elements = [];
 
-	const div = createCheckbox("Show only differences", true, function() {
-		showOnlyDiff(this.checked);
-	});
+			console.log("TODO: update minimap");
+			// TODO: iterate over all sections and add them to the minimap
+			// TODO: iterate over all differences and add them to the minimap
+			const element = document.createElement("div");
+			elements.push(element);
 
-	const controls = document.getElementById("controls");
-	controls.appendChild(div);
-}
+			// replace content of minimap
+			const minimap = document.getElementById("minimap");
+			minimap.replaceChildren(...elements);
 
-function createCheckbox(text, checked, onchange) {
+			updateMinimapView();
+		}
 
-	// create checkbox
-	const input = document.createElement("input");
-	input.type = "checkbox";
-	input.checked = checked;
-	input.onchange = onchange;
+		function updateMinimapView() {
 
-	// create label for checkbox
-	const label = document.createElement("span");
-	label.classList.add("label");
-	label.innerText = text;
-	label.onclick = function() {
-		input.click();
-	};
+			const minimap = document.getElementById("minimap");
 
-	return createControl(input, label, null);
-}
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const scrollY = window.scrollY;
 
-function createControl(control, label, onclick) {
+			// calculate new position and height of minimap view
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 3;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
 
-	const div = document.createElement("div");
-	div.classList.add("control");
-	if (onclick) {
-		div.onclick = onclick
-	}
+			// update position and height of minimap view
+			const minimapView = document.getElementById("minimap-view");
+			minimapView.style.top = minimapViewTop + "px";
+			minimapView.style.height = minimapViewHeight + "px";
+		}
 
-	div.appendChild(control);
-	div.appendChild(label);
+		function scrollMinimapView(event) {
+			const minimap = document.getElementById("minimap");
 
-	return div;
-}
+			// calculate height of minimap view
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 5;
+			const minimapViewOffset = minimapViewHeight / 2;
 
-function showOnlyDiff(enabled) {
+			// calculate position of minimap view (relative to top of minimap)
+			let y = event.clientY - minimap.offsetTop;
+			if (y < minimapViewOffset) {
+				y = minimapViewOffset;
+			} else if (y > minimapHeight - minimapViewOffset) {
+				y = minimapHeight - minimapViewOffset;
+			}
+			y = y - minimapViewOffset;
 
-	// show or hide table rows
-	const rows = document.getElementsByClassName("report-table-row");
-	for (let row of rows) {
-		if (!row.classList.contains("diff")) {
-			if (enabled) {
-				row.style.display = "none";
-			} else {
-				row.style.display = "table-row";
+			const scrollY = y / minimapHeight * document.body.scrollHeight;
+			window.scrollTo(0, scrollY);
+
+			updateMinimapView();
+		}
+
+		function initDiffUI() {
+
+			showOnlyDiff(true);
+
+			const div = createCheckbox("Show only differences", true, function() {
+				showOnlyDiff(this.checked);
+			});
+
+			const controls = document.getElementById("controls");
+			controls.appendChild(div);
+		}
+
+		function createCheckbox(text, checked, onchange) {
+
+			// create checkbox
+			const input = document.createElement("input");
+			input.type = "checkbox";
+			input.checked = checked;
+			input.onchange = onchange;
+
+			// create label for checkbox
+			const label = document.createElement("span");
+			label.classList.add("label");
+			label.innerText = text;
+			label.onclick = function() {
+				input.click();
+			};
+
+			return createControl(input, label, null);
+		}
+
+		function createControl(control, label, onclick) {
+
+			const div = document.createElement("div");
+			div.classList.add("control");
+			if (onclick) {
+				div.onclick = onclick
+			}
+
+			div.appendChild(control);
+			div.appendChild(label);
+
+			return div;
+		}
+
+		function showOnlyDiff(enabled) {
+
+			// show or hide table rows
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				if (!row.classList.contains("diff")) {
+					if (enabled) {
+						row.style.display = "none";
+					} else {
+						row.style.display = "table-row";
+					}
+				}
+			}
+
+			// show or hide issues
+			const issues = document.getElementsByClassName("report-issue");
+			for (let issue of issues) {
+				if (!issue.classList.contains("diff")) {
+					if (enabled) {
+						issue.style.display = "none";
+					} else {
+						issue.style.display = "block";
+					}
+				}
+			}
+
+			// update minimap
+			updateMinimap();
+		}
+
+		function initRowMarking() {
+
+			const toggleMarked = function(element) {
+				if (element.classList.contains("marked")) {
+					element.classList.remove("marked");
+				} else {
+					element.classList.add("marked");
+				}
+			}
+
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				row.ondblclick = () => {
+					toggleMarked(row)
+				}
 			}
 		}
-	}
 
-	// show or hide issues
-	const issues = document.getElementsByClassName("report-issue");
-	for (let issue of issues) {
-		if (!issue.classList.contains("diff")) {
-			if (enabled) {
-				issue.style.display = "none";
-			} else {
-				issue.style.display = "block";
+		function initKeyboardShortcuts() {
+
+			// prepare event handler
+			function handleShortcut(event) {
+				if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+					event.preventDefault();
+					// scroll to previous section
+					scrollToSection(false);
+				} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+					event.preventDefault();
+					// scroll to next section
+					scrollToSection(true);
+				}
 			}
+
+			// register event handler
+			document.addEventListener("keydown", handleShortcut);
 		}
-	}
 
-	// update minimap
-	updateMinimap();
-}
+		init();
 
-function initRowMarking() {
+	</script>
 
-	const toggleMarked = function(element) {
-		if (element.classList.contains("marked")) {
-			element.classList.remove("marked");
-		} else {
-			element.classList.add("marked");
-		}
-	}
-
-	const rows = document.getElementsByClassName("report-table-row");
-	for (let row of rows) {
-		row.ondblclick = () => {
-			toggleMarked(row)
-		}
-	}
-}
-
-function initKeyboardShortcuts() {
-
-	// prepare event handler
-	function handleShortcut(event) {
-		if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
-			event.preventDefault();
-			// scroll to previous section
-			scrollToSection(false);
-		} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
-			event.preventDefault();
-			// scroll to next section
-			scrollToSection(true);
-		}
-	}
-
-	// register event handler
-	document.addEventListener("keydown", handleShortcut);
-}
-
-init();
-</script>
 </body>
+
 </html>
