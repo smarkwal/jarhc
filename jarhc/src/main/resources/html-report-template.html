@@ -31,7 +31,7 @@
 			color: #333399;
 		}
 
-		header {
+		#header {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -66,6 +66,11 @@
 			display: none;
 		}
 
+		.diff-report #showOnlyDiffControl {
+			/* only available in diff report */
+			display: flex;
+		}
+
 		.icon {
 			width: 16px;
 			height: 16px;
@@ -95,6 +100,7 @@
 		}
 
 		#minimap {
+			display: none; /* hidden by default */
 			position: fixed;
 			top: 70px;
 			left: 10px;
@@ -106,12 +112,13 @@
 		}
 
 		#minimapView {
+			display: none; /* hidden by default */
 			position: fixed;
-			top: 66px;
-			left: 6px;
-			width: 70px;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
 			height: 0;
-			z-index: 90;
+			z-index: 90; /* float above minimap */
 			pointer-events: none;
 			user-select: none;
 			border: 4px solid black;
@@ -120,7 +127,7 @@
 		.minimapSection {
 			position: absolute;
 			left: 2px;
-			width: 62px; /* minimap width - 8px padding */
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
 			padding: 2px;
 			background-color: lightgray;
 			overflow: hidden;
@@ -133,8 +140,8 @@
 			overflow-wrap: break-word;
 		}
 
-		main {
-			margin: 80px 20px 20px 100px;
+		#main {
+			margin: 80px 20px 20px 20px;
 		}
 
 		h2, h3, h4, h5, h6 {
@@ -220,6 +227,8 @@
 		const HEADER_HEIGHT = 80;
 		const MINIMAP_VSPACE = 10;
 
+		let MINIMAP_ENABLED = false;
+
 		function init() {
 
 			// check if document is a diff report
@@ -235,10 +244,8 @@
 
 		function initDiffUI() {
 
-			// show control
+			// support click on control (outside of checkbox and label)
 			const control = document.getElementById("showOnlyDiffControl");
-			control.style.display = "flex";
-
 			control.addEventListener("click", function(event) {
 				if (event.target === control) { // ignore clicks on nested elements
 					// similate click on checkbox
@@ -252,8 +259,6 @@
 		}
 
 		function initMinimap() {
-
-			updateMinimap();
 
 			window.addEventListener("scroll", updateMinimapView);
 			window.addEventListener("resize", updateMinimap);
@@ -370,7 +375,37 @@
 			updateMinimap();
 		}
 
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
 		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -429,6 +464,7 @@
 		}
 
 		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
 
 			const minimap = document.getElementById("minimap");
 
@@ -477,12 +513,12 @@
 </head>
 <body class="report {TYPE}-report" onload="init()">
 
-	<header>
+	<header id="header">
 		<div id="controls">
 			<div class="control" onclick="scrollToSection(true)"><span class="icon icon-down"></span><span class="label">Next section</span></div>
 			<div class="control" onclick="scrollToSection(false)"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
 			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
-			<!-- TODO: add control to show/hide minimap -->
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
 		</div>
 		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC {VERSION}</a></div>
 	</header>
@@ -490,7 +526,7 @@
 	<div id="minimap"></div>
 	<div id="minimapView"></div>
 
-	<main>
+	<main id="main">
 		<h1 class="report-title">{TITLE}</h1>
 		{REPORT}
 	</main>
