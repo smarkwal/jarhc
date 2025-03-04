@@ -194,10 +194,10 @@ public class Application {
 
 			} catch (IOException e) {
 				logger.error("I/O error while writing report.", e);
-				return 2; // TODO: exit code?
+				return 2;
 			} catch (Exception e) {
 				logger.error("Internal error while generating report.", e);
-				return 2; // TODO: exit code?
+				return 2;
 			}
 		}
 

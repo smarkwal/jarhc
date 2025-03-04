@@ -146,29 +146,7 @@ public class DiffReportGenerator {
 				continue;
 			}
 
-			if (item1 instanceof ReportSection) {
-				ReportSection subsection1 = (ReportSection) item1;
-				ReportSection subsection2 = (ReportSection) item2;
-				ReportSection subsection = diff(subsection1, subsection2);
-				if (subsection != null) {
-					section.add(subsection);
-				}
-			} else if (item1 instanceof ReportTable) {
-				ReportTable table1 = (ReportTable) item1;
-				ReportTable table2 = (ReportTable) item2;
-				ReportTable table = diff(table1, table2);
-				if (table != null) {
-					section.add(table);
-				}
-			} else if (item1 instanceof String) {
-				String value1 = (String) item1;
-				String value2 = (String) item2;
-				String value = diff(value1, value2);
-				section.add(value);
-			} else {
-				String type = item1.getClass().getSimpleName();
-				logger.warn("Unexpected content in section '{}': {}", title, type);
-			}
+			diffReportSectionItem(item1, item2, section);
 		}
 
 		if (section.isEmpty()) {
@@ -176,6 +154,34 @@ public class DiffReportGenerator {
 		}
 
 		return section;
+	}
+
+	private void diffReportSectionItem(Object item1, Object item2, ReportSection section) {
+
+		if (item1 instanceof ReportSection) {
+			ReportSection subsection1 = (ReportSection) item1;
+			ReportSection subsection2 = (ReportSection) item2;
+			ReportSection subsection = diff(subsection1, subsection2);
+			if (subsection != null) {
+				section.add(subsection);
+			}
+		} else if (item1 instanceof ReportTable) {
+			ReportTable table1 = (ReportTable) item1;
+			ReportTable table2 = (ReportTable) item2;
+			ReportTable table = diff(table1, table2);
+			if (table != null) {
+				section.add(table);
+			}
+		} else if (item1 instanceof String) {
+			String value1 = (String) item1;
+			String value2 = (String) item2;
+			String value = diff(value1, value2);
+			section.add(value);
+		} else {
+			String type = item1.getClass().getSimpleName();
+			String title = section.getTitle();
+			logger.warn("Unexpected content in section '{}': {}", title, type);
+		}
 	}
 
 	private ReportTable diff(ReportTable table1, ReportTable table2) {

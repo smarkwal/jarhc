@@ -26,6 +26,10 @@ import java.util.zip.GZIPOutputStream;
 
 public class CompressUtils {
 
+	private CompressUtils() {
+		throw new IllegalStateException("utility class");
+	}
+
 	public static String compressString(String text) {
 		if (text == null) throw new IllegalArgumentException("text");
 

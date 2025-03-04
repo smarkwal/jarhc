@@ -23,7 +23,6 @@ import org.jarhc.utils.Markdown;
 
 public class Artifact {
 
-	// TODO: support additional version patterns?
 	private static final String[] QUALIFIER_PATTERNS = { "-snapshot", "-dev", "-alpha\\d*", "-beta\\d*", "-m\\d*", "-rc\\d*", "-sp\\d*", "-p\\d*", "-ga", "-final", "-release" };
 	private static final Pattern VERSION_PATTERN = Pattern.compile("-(\\d+(\\.\\d+){0,10}(-[1-9])?(" + String.join("|", QUALIFIER_PATTERNS) + ")?)", Pattern.CASE_INSENSITIVE);
 

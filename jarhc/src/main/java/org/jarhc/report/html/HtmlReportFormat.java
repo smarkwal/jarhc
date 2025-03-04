@@ -37,6 +37,8 @@ public class HtmlReportFormat implements ReportFormat {
 	private static final String RESOURCE = "/html-report-template.html";
 	private static final String JSON_DATA_MARKER_START = "<!-- JSON REPORT DATA";
 	private static final String JSON_DATA_MARKER_END = "-->";
+	private static final String CSS_CLASS_DIFF = "diff";
+	private static final String CSS_CLASS_NODIFF = "no-diff";
 
 	private final String template;
 
@@ -148,9 +150,9 @@ public class HtmlReportFormat implements ReportFormat {
 		if (description != null) {
 			cssClass = "report-section-description";
 			if (Markdown.isDiff(description)) {
-				cssClass += " diff";
+				cssClass += " " + CSS_CLASS_DIFF;
 			} else {
-				cssClass += " no-diff";
+				cssClass += " " + CSS_CLASS_NODIFF;
 			}
 			writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(description)));
 		}
@@ -167,9 +169,9 @@ public class HtmlReportFormat implements ReportFormat {
 				String value = item.toString();
 				cssClass = "report-content";
 				if (Markdown.isDiff(value)) {
-					cssClass += " diff";
+					cssClass += " " + CSS_CLASS_DIFF;
 				} else {
-					cssClass += " no-diff";
+					cssClass += " " + CSS_CLASS_NODIFF;
 				}
 				writer.println("<p class=\"%s\">%s</p>", cssClass, Markdown.toHtml(escape(value)));
 			}
@@ -207,9 +209,9 @@ public class HtmlReportFormat implements ReportFormat {
 		// prepare CSS class
 		String cssClass = "report-table-row";
 		if (Stream.of(values).anyMatch(Markdown::isDiff)) {
-			cssClass += " diff";
+			cssClass += " " + CSS_CLASS_DIFF;
 		} else {
-			cssClass += " no-diff";
+			cssClass += " " + CSS_CLASS_NODIFF;
 		}
 
 		writer.println("\t<tr class=\"%s\">", cssClass);
@@ -246,9 +248,9 @@ public class HtmlReportFormat implements ReportFormat {
 				cssClass += " report-issue";
 			}
 			if (Markdown.isDiff(block)) {
-				cssClass += " diff";
+				cssClass += " " + CSS_CLASS_DIFF;
 			} else {
-				cssClass += " no-diff";
+				cssClass += " " + CSS_CLASS_NODIFF;
 			}
 			writer.println("\t\t\t<div class=\"%s\">%s</div>", cssClass, Markdown.toHtml(escape(block)));
 		}
