@@ -190,10 +190,6 @@ java {
     withJavadocJar()
 }
 
-jacoco {
-    toolVersion = "0.8.10"
-}
-
 sonar {
     // documentation: https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-gradle/
 
