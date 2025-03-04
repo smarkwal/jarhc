@@ -344,7 +344,7 @@ tasks {
 
 }
 
-val jarApp = task("jar-app", type = Jar::class) {
+val jarApp = tasks.register("jar-app", type = Jar::class) {
     group = "build"
     description = "Assembles a fat/uber jar archive with all runtime dependencies."
 
@@ -397,7 +397,7 @@ val jarApp = task("jar-app", type = Jar::class) {
     with(tasks.jar.get() as CopySpec)
 }
 
-val integrationTest = task("integrationTest", type = Test::class) {
+val integrationTest = tasks.register("integrationTest", type = Test::class) {
     group = "verification"
     description = "Runs the integration test suite."
 
