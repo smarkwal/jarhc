@@ -31,9 +31,6 @@ plugins {
     // run Sonar analysis
     id("org.sonarqube") version "6.0.1.5171"
 
-    // get current Git branch name
-    id("org.ajoberstar.grgit") version "5.3.0"
-
     // JarHC Gradle plugin
     id("org.jarhc") version "1.1.1"
 
@@ -202,6 +199,12 @@ sonar {
 
         // Git branch
         property("sonar.branch.name", getGitBranchName())
+        if (getGitBranchName() != "master") {
+            // https://docs.sonarsource.com/sonarqube-cloud/enriching/branch-analysis-setup/
+            property("sonar.branch.target", "master")
+            // https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/analysis-parameters/
+            property("sonar.newCode.referenceBranch", "master")
+        }
 
         // paths to test sources and test classes
         property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/integrationTest/java")
@@ -492,5 +495,13 @@ tasks.withType<GenerateModuleMetadata> {
 // helper functions ------------------------------------------------------------
 
 fun getGitBranchName(): String {
-    return grgit.branch.current().name
+    val file = project.rootDir.resolve(".git/HEAD")
+    if (file.isFile) {
+        val content = file.readText(Charsets.UTF_8).trim()
+        if (content.startsWith("ref: refs/heads/")) {
+            return content.substring("ref: refs/heads/".length)
+        }
+        return content
+    }
+    throw GradleException("Git branch name not found.")
 }
