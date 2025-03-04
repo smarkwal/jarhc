@@ -69,6 +69,33 @@
                ]
             }
          ]
+      },
+      {
+         "description": "---{Old description.}---\n+++{New description.}+++",
+         "title": "JAR Manifests",
+         "content": [
+            {
+               "columns": [
+                  "Artifact",
+                  "Issues"
+               ],
+               "rows": [
+                  [
+                     "a.jar",
+                     "---{Old issue.}---\n+++{New issue.}+++"
+                  ],
+                  [
+                     "b.jar",
+                     "Issue 1\nIssue 2"
+                  ],
+                  [
+                     "c.jar",
+                     "Issue 1\n---{Old issue 2}---\n+++{New issue 2}+++\nIssue 3"
+                  ]
+               ]
+            },
+            "---{Old content.}---\n+++{New content.}+++"
+         ]
       }
    ],
    "timestamp": 1739808014453

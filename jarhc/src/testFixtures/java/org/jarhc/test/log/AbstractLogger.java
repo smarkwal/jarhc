@@ -245,7 +245,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public void warn(String format, Object arg1, Object arg2) {
-		log(Level.WARN, null, format, arg1);
+		log(Level.WARN, null, format, arg1, arg2);
 	}
 
 	@Override

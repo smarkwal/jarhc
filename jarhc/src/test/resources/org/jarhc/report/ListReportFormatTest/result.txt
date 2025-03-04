@@ -59,3 +59,28 @@ Some text.
 
 Some text.
 
+JAR Manifests
+-------------
+---{Old description.}---
++++{New description.}+++
+
+Artifact: a.jar
+	Issues:
+		---{Old issue.}---
+		+++{New issue.}+++
+
+Artifact: b.jar
+	Issues:
+		Issue 1
+		Issue 2
+
+Artifact: c.jar
+	Issues:
+		Issue 1
+		---{Old issue 2}---
+		+++{New issue 2}+++
+		Issue 3
+
+---{Old content.}---
++++{New content.}+++
+

@@ -149,7 +149,7 @@ class ClasspathLoaderTest {
 
 		assertLogger(logger).inAnyOrder()
 				.hasWarn("Unsupported file extension: run.sh")
-				.hasWarn("Unable to parse file: not-found.jar")
+				.hasWarn("Unable to parse file: not-found.jar", new FileNotFoundException("not-found.jar"))
 				.hasDebug("slf4j.jar: *")
 				.hasDebug("asm.jar: *")
 				.hasDebug("test.war: *")
@@ -181,7 +181,7 @@ class ClasspathLoaderTest {
 
 		assertLogger(logger).inAnyOrder()
 				.hasWarn("Unsupported file extension: run.sh")
-				.hasWarn("Unable to parse file: not-found.jar")
+				.hasWarn("Unable to parse file: not-found.jar", new FileNotFoundException("not-found.jar"))
 				.hasDebug("slf4j.jar: *")
 				.hasDebug("asm.jar: *")
 				.hasDebug("test.war: *")

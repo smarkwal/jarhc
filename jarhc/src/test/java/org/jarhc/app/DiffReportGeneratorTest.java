@@ -35,19 +35,22 @@ class DiffReportGeneratorTest {
 	private final Logger logger = LoggerBuilder.collect(DiffReportGenerator.class);
 	private final DiffReportGenerator generator = new DiffReportGenerator(logger);
 
-	private final Report report1 = generateTestReport("Test Report 1");
-	private final Report report2 = generateTestReport("Test Report 2");
+	private final Report report1 = generateTestReport("Test Report 1", false);
+	private final Report report2a = generateTestReport("Test Report 2", false);
+	private final Report report2b = generateTestReport("Test Report 2", true);
 	private final Options options = new Options();
 
 	@Test
 	void test_noDifferences() throws IOException {
 
 		// test
-		Report report = generator.diff(report1, report2, options);
+		Report report = generator.diff(report1, report2a, options);
 
 		// assert
 		assertJSON(report, "/org/jarhc/app/diff-report-1.json");
-		assertLogger(logger).isEmpty();
+		assertLogger(logger)
+				.hasWarn("Unexpected content in section 'Section 5': Boolean")
+				.isEmpty();
 	}
 
 	@Test
@@ -55,29 +58,25 @@ class DiffReportGeneratorTest {
 
 		// prepare
 
-		// replace row 3 in section 1 or report 2
-		List<String[]> rows = ((ReportTable) report2.getSections().get(0).getContent().get(0)).getRows();
+		// replace row 3 in report 2
+		List<String[]> rows = ((ReportTable) report2b.getSections().get(0).getContent().get(0)).getRows();
 		rows.get(0)[1] = "Value 1.2\nAdditional line";
 		rows.get(0)[2] = "Additional line\nValue 1.3";
 		rows.get(1)[1] = "Replaced line";
 		rows.get(1)[2] = "";
 		rows.set(2, new String[] { "Value 4.1", "Value 4.2", "Value 4.3" });
 
-		// remove section 3 from report 1
-		report1.removeSection(report1.getSections().get(2));
-		// remove section 2 from report 2
-		report2.removeSection(report2.getSections().get(1));
-		// change text in last section of report 2
-		report2.getSections().get(2).getContent().set(0, "This is a changed text section.\nIt contains multiple lines of text.");
-
 		// test
-		Report report = generator.diff(report1, report2, options);
+		Report report = generator.diff(report1, report2b, options);
 
 		// assert
 		assertJSON(report, "/org/jarhc/app/diff-report-2.json");
 		assertLogger(logger)
 				.hasWarn("Section found in report 1 but not in report 2: Section 2")
 				.hasWarn("Section found in report 2 but not in report 1: Section 3")
+				.hasWarn("Non-matching size of section 'Section 1': 2 and 3")
+				.hasWarn("Non-matching content in section 'Section 4': ReportTable and String")
+				.hasWarn("Unexpected content in section 'Section 5': Boolean")
 				.isEmpty();
 	}
 
@@ -98,16 +97,38 @@ class DiffReportGeneratorTest {
 		assertEquals(expectedJson, actualJson);
 	}
 
-	private static Report generateTestReport(String title) {
+	private static Report generateTestReport(String title, boolean diff) {
 
 		// prepare report with given title and fixed timestamp
 		Report report = new Report();
 		report.setTitle(title);
 		report.setTimestamp(TIMESTAMP);
 
-		// add 3 sections
-		for (int s = 1; s <= 3; s++) {
+		// add 6 sections
+		for (int s = 1; s <= 6; s++) {
+
+			// skip section 3 in report 1
+			if (!diff && s == 3) {
+				continue;
+			}
+			// skip section 2 in report 2
+			if (diff && s == 2) {
+				continue;
+			}
+
 			ReportSection section = new ReportSection("Section " + s, "Description for section " + s + ".");
+			report.addSection(section);
+
+			// section 5 contains an unexpected item in both reports
+			if (s == 5) {
+				section.getContent().add(diff);
+				continue;
+			}
+
+			// section 6 is empty in both reports
+			if (s == 6) {
+				continue;
+			}
 
 			// add table with 3 columns and 3 rows
 			ReportTable table = new ReportTable("Column 1", "Column 2", "Column 3");
@@ -116,13 +137,35 @@ class DiffReportGeneratorTest {
 				table.addRow(values);
 			}
 			section.add(table);
-			report.addSection(section);
+
+			// add a subsection to section 1
+			if (s == 1) {
+				ReportSection subsection = new ReportSection("Subsection 1.1", "Description for subsection 1.1.");
+				subsection.add("Text in subsection 1.1.");
+				section.add(subsection);
+			}
+
+			// add additional content to section 1 in report 2
+			if (diff && s == 1) {
+				section.add("This is additional text content.");
+			}
+
+			// replace content of section 4 in report 2 with a non-table item
+			if (diff && s == 4) {
+				section.getContent().clear();
+				section.add("This is a text item instead of a table.");
+			}
 		}
 
 		// add last section with text content
 		ReportSection section = new ReportSection("Last section", "Description for last section.");
-		String text = "This is a text section.\nIt contains multiple lines of text.";
-		section.add(text);
+		if (diff) {
+			String text = "This is a changed text section.\nIt contains multiple lines of text.";
+			section.add(text);
+		} else {
+			String text = "This is a text section.\nIt contains multiple lines of text.";
+			section.add(text);
+		}
 		report.addSection(section);
 
 		return report;

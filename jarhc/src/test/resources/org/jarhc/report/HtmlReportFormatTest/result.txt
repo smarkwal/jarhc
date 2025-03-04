@@ -588,6 +588,7 @@
 </li>
 </ul>
 </li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
 </ul>
 </nav>
 
@@ -691,13 +692,49 @@
 </div>
 </section>
 
+<section class="report-section collapsed" id="JARManifests" title="JAR Manifests">
+<h2 class="report-section-title">JAR Manifests</h2>
+<div class="report-section-content">
+<p class="report-section-description diff"><span class="deleted">Old description.</span><br><span class="inserted">New description.</span></p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row diff">
+		<td>a.jar</td>
+		<td>
+			<div class="report-text-block report-issue diff"><span class="deleted">Old issue.</span><br><span class="inserted">New issue.</span></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>b.jar</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">Issue 1<br>Issue 2</div>
+		</td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td>c.jar</td>
+		<td>
+			<div class="report-text-block report-issue diff">Issue 1<br><span class="deleted">Old issue 2</span><br><span class="inserted">New issue 2</span><br>Issue 3</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+<p class="report-content diff"><span class="deleted">Old content.</span><br><span class="inserted">New content.</span></p>
+</div>
+</section>
+
 
 	</main>
 
 </body>
 <!-- JSON REPORT DATA
-H4sIAAAAAAAAAJ1SwW6DMAz9lchnFkFgWsdt6nrrdhjTLpRDR60NiSSIhK1V1X+fE1q1VIXDhBTsF/v58fAebGVrhBTesNGtZe8+DcDuGodm86dXyn6wNZVWBIQ85BEhBktLiIE038MGTdlWje1Lns8Zc6WnCVnf4rFSK4vKUjdkWiKzuLUcikMwRSYCtqwUsmilbsHi
-xiwxmLWnuO6kVw1zH3o1x1CcwxiKAFr96ypJ4jdZQ5cvuKk6yfoX5UutvtjkQTQ59KJd/VG9u8H2rPomvlKLrW3XRy4HxSuV56WWkny/q3R6EQo+42FRQFEcvInXPsTjPnys6w7N4HsjL1v4M3acwaBjIRu7u2gYmZlczRz/sQkf7En3aU4U/N/LknAxxnm9FJMk49LE
-tLhhSo+jkWjsWjaQRg/x4yychVGS3MeHP2JCBnuHAwAA
+H4sIAAAAAAAAAJ1STW+DMAz9K1GuhQgC07reqq6HTW0ntdMuLQdK0y1TCYiEtRPiv88J9AMEPeyS2M/284vjAiuuDgyP8JKlSabQu3EtrH5Tja4m4wV4PyyTPBEAOMQhLiCSRQoQiUfrAu+YjDKeqirl+eohnXrusKpKDBYlQjGhoBqvkpghxU6K4KC07pFRC824YMjd
+iC6YdvSijV4F2Ic8NqrxxJhGTW3Sq+nhwMJZctSZIPELRgPBOdvxPEbVBf4sEZ/o7gE0a1yJ1vm1eh1h2VV1J74R05PKwppLQ95GrNdREscwd5snoxuTkiFxggAHQWmG2J6D1z+Hj/CQM9l4r2tkU3N6mtNqVEzjVP3eFPT09Fs9+z/WJ409ybfyTEH+vSw+oX2c7aW4
+S9Ivjd4X13Q71Nq2XbwddugGJSWAGzEYDIoFOzYjAN4oeR0v0TwUfM+kkv2fO84U34eRXt4XKdv/HJLvMIPQWQnXKS0NNaa763XY1iWGTe9sZVS7ErWDDWJEO5gBBP9MUy3bRU/9qJaiC2o0lYEeSgxjCOMUj9xH72noDB3X9x+88g85AsiL3wQAAA==
 -->
 </html>

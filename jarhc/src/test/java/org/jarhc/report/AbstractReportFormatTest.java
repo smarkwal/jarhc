@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import org.jarhc.TestUtils;
 import org.jarhc.test.TextUtils;
+import org.jarhc.utils.Markdown;
 import org.junit.jupiter.api.Test;
 
 public abstract class AbstractReportFormatTest {
@@ -92,6 +93,15 @@ public abstract class AbstractReportFormatTest {
 		subsection42.add("Some text.");
 		section4.add(subsection42);
 		report.addSection(section4);
+
+		ReportSection section5 = new ReportSection("JAR Manifests", Markdown.deleted("Old description.") + "\n" + Markdown.inserted("New description."));
+		ReportTable table5 = new ReportTable("Artifact", "Issues");
+		table5.addRow("a.jar", Markdown.deleted("Old issue.") + "\n" + Markdown.inserted("New issue."));
+		table5.addRow("b.jar", "Issue 1\nIssue 2");
+		table5.addRow("c.jar", "Issue 1\n" + Markdown.deleted("Old issue 2") + "\n" + Markdown.inserted("New issue 2") + "\nIssue 3");
+		section5.add(table5);
+		section5.add(Markdown.deleted("Old content.") + "\n" + Markdown.inserted("New content."));
+		report.addSection(section5);
 
 		return report;
 	}

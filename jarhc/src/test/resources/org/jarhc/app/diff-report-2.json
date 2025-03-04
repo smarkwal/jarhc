@@ -11,35 +11,42 @@
       {
          "description": "Description for section 1.",
          "title": "Section 1",
-         "content": [{
-            "columns": [
-               "Column 1",
-               "Column 2",
-               "Column 3"
-            ],
-            "rows": [
-               [
-                  "Value 1.1",
-                  "Value 1.2\n+++{Additional line}+++",
-                  "+++{Additional line}+++\nValue 1.3"
+         "content": [
+            {
+               "columns": [
+                  "Column 1",
+                  "Column 2",
+                  "Column 3"
                ],
-               [
-                  "Value 2.1",
-                  "---{Value 2.2}---\n+++{Replaced line}+++",
-                  "---{Value 2.3}---"
-               ],
-               [
-                  "---{Value 3.1}---",
-                  "---{Value 3.2}---",
-                  "---{Value 3.3}---"
-               ],
-               [
-                  "+++{Value 4.1}+++",
-                  "+++{Value 4.2}+++",
-                  "+++{Value 4.3}+++"
+               "rows": [
+                  [
+                     "Value 1.1",
+                     "Value 1.2\n+++{Additional line}+++",
+                     "+++{Additional line}+++\nValue 1.3"
+                  ],
+                  [
+                     "Value 2.1",
+                     "---{Value 2.2}---\n+++{Replaced line}+++",
+                     "---{Value 2.3}---"
+                  ],
+                  [
+                     "---{Value 3.1}---",
+                     "---{Value 3.2}---",
+                     "---{Value 3.3}---"
+                  ],
+                  [
+                     "+++{Value 4.1}+++",
+                     "+++{Value 4.2}+++",
+                     "+++{Value 4.3}+++"
+                  ]
                ]
-            ]
-         }]
+            },
+            {
+               "description": "Description for subsection 1.1.",
+               "title": "Subsection 1.1",
+               "content": ["Text in subsection 1.1."]
+            }
+         ]
       },
       {
          "description": "Description for last section.",
