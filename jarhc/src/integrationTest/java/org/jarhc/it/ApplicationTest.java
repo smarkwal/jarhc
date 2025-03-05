@@ -38,6 +38,8 @@ import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.slf4j.Logger;
 
 class ApplicationTest {
@@ -253,74 +255,18 @@ class ApplicationTest {
 				.isEmpty();
 	}
 
-	@Test
-	void test_textReport() {
-
-		// prepare
-		File reportFile = tempDir.resolve("report.txt").toFile();
-
-		// test
-		test_report(reportFile);
-
-		// assert
-		assertThat(reportFile)
-				.isFile()
-				.content()
-				.contains("Artifact  | Version | Source");
-	}
-
-	@Test
-	void test_htmlReport() {
-
-		// prepare
-		File reportFile = tempDir.resolve("report.html").toFile();
-
-		// test
-		test_report(reportFile);
-
-		// assert
-		assertThat(reportFile)
-				.isFile()
-				.content()
-				.contains("<meta name=\"generator\" content=\"JarHC 0.0.1\">");
-	}
-
-	@Test
-	void test_listReport() {
-
-		// prepare
-		File reportFile = tempDir.resolve("report-list.txt").toFile();
-
-		// test
-		test_report(reportFile);
-
-		// assert
-		assertThat(reportFile)
-				.isFile()
-				.content()
-				.contains("Artifact: Classpath");
-	}
-
-	@Test
-	void test_jsonReport() {
-
-		// prepare
-		File reportFile = tempDir.resolve("report.json").toFile();
-
-		// test
-		test_report(reportFile);
-
-		// assert
-		assertThat(reportFile)
-				.isFile()
-				.content()
-				.contains("\"title\": \"JAR Health Check Report\"");
-	}
-
-	private void test_report(File reportFile) {
+	@ParameterizedTest
+	@CsvSource({
+			"report.txt,Artifact  | Version | Source",
+			"report.html,<meta name=\"generator\" content=\"JarHC 0.0.1\">",
+			"report-list.txt,Artifact: Classpath",
+			"report.json,\"title\": \"JAR Health Check Report\""
+	})
+	void test_report(String reportFileName, String expectedContent) {
 
 		// prepare
 		Options options = new Options();
+		File reportFile = tempDir.resolve(reportFileName).toFile();
 		options.addReportFile(reportFile.getAbsolutePath());
 
 		// test
@@ -331,6 +277,12 @@ class ApplicationTest {
 
 		String output = out.getText();
 		assertEquals("JarHC - JAR Health Check 0.0.1\n==============================\n\nLoad JAR files ...\nScan JAR files ...\nAnalyze classpath ...\nCreate report ...\n\n", output);
+
+		// assert
+		assertThat(reportFile)
+				.isFile()
+				.content()
+				.contains(expectedContent);
 
 		assertLogger(applicationLogger)
 				.hasDebug("Time: *")
