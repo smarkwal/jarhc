@@ -56,6 +56,14 @@ class ArtifactVersionTest {
 	}
 
 	@Test
+	void constructors() {
+		ArtifactVersion artifactVersion1 = new ArtifactVersion(1, 2, 3);
+		ArtifactVersion artifactVersion2 = new ArtifactVersion("1.2.3");
+		assertEquals(artifactVersion1, artifactVersion2);
+		assertEquals(artifactVersion2, artifactVersion1);
+	}
+
+	@Test
 	void compareTo() {
 
 		List<String> versions = Arrays.asList(
@@ -150,6 +158,33 @@ class ArtifactVersionTest {
 				assertEquals(0, actual2, artifactVersion2 + " == " + artifactVersion1);
 			}
 		}
+	}
+
+	@Test
+	void compareTo_bigInt() {
+		ArtifactVersion version1 = new ArtifactVersion("0.12345678901234567890");
+		ArtifactVersion version2 = new ArtifactVersion("0.12345678901234567891");
+		assertTrue(version1.compareTo(version2) < 0);
+		assertTrue(version2.compareTo(version1) > 0);
+	}
+
+	@Test
+	void compareTo_NaN() {
+		ArtifactVersion version1 = new ArtifactVersion("1.2.x");
+		ArtifactVersion version2 = new ArtifactVersion("1.2.3");
+		assertTrue(version1.compareTo(version2) < 0);
+		assertTrue(version2.compareTo(version1) > 0);
+	}
+
+	@Test
+	void getPosition() {
+		ArtifactVersion version = new ArtifactVersion("1.23.1000000000.45678901234567890.x");
+		assertEquals(1, version.getPosition(0));
+		assertEquals(23, version.getPosition(1));
+		assertEquals(1000000000, version.getPosition(2));
+		assertEquals(Integer.MAX_VALUE, version.getPosition(3));
+		assertEquals(0, version.getPosition(4));
+		assertEquals(0, version.getPosition(5));
 	}
 
 }

@@ -16,6 +16,7 @@
 
 package org.jarhc.it;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -33,6 +34,7 @@ import org.jarhc.it.utils.MavenSearchApiMockServer;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.test.log.LoggerUtils;
 import org.jarhc.utils.FileUtils;
+import org.json.JSONException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -192,6 +194,63 @@ class MavenArtifactFinderTest {
 		assertLogger(logger)
 				.hasWarn("Artifact not found: 1234567890123456789012345678901234567890 (time: *")
 				.isEmpty();
+	}
+
+	@Test
+	void test_findArtifacts_invalidJSON_0000() {
+
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("ffff0000"));
+
+		// assert
+		assertThat(result)
+				.hasMessageStartingWith("JSON parser error for URL: ")
+				.hasCause(new JSONException("A JSONObject text must begin with '{' at 1 [character 2 line 1]"));
+		assertLogger(logger).isEmpty();
+	}
+
+	@Test
+	void test_findArtifacts_invalidJSON_0001() {
+
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("ffff0001"));
+
+		// assert
+		assertThat(result).hasMessageStartingWith("JSON key 'response' not found: ");
+		assertLogger(logger).isEmpty();
+	}
+
+	@Test
+	void test_findArtifacts_invalidJSON_0002() {
+
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("ffff0002"));
+
+		// assert
+		assertThat(result).hasMessageStartingWith("JSON key 'numFound' not found: ");
+		assertLogger(logger).isEmpty();
+	}
+
+	@Test
+	void test_findArtifacts_invalidJSON_0003() {
+
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("ffff0003"));
+
+		// assert
+		assertThat(result).hasMessageStartingWith("JSON key 'docs' not found: ");
+		assertLogger(logger).isEmpty();
+	}
+
+	@Test
+	void test_findArtifacts_invalidJSON_0004() {
+
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("ffff0004"));
+
+		// assert
+		assertThat(result).hasMessageStartingWith("JSON array 'docs' is empty: ");
+		assertLogger(logger).isEmpty();
 	}
 
 	@Test
