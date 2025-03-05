@@ -16,12 +16,15 @@
 
 package org.jarhc.it;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
@@ -31,6 +34,7 @@ import org.jarhc.it.utils.ArtifactFinderMock;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.log.LoggerBuilder;
+import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -135,6 +139,205 @@ class ApplicationTest {
 				.hasDebug("Get versions: org.ow2.asm:asm-tree")
 				.isEmpty();
 
+	}
+
+	@Test
+	void test_sectionNotFound() {
+
+		// prepare: section "foo" does not exist
+		Options options = new Options();
+		options.setSections(List.of("foo"));
+
+		// test
+		int exitCode = application.run(options);
+
+		// assert
+		assertEquals(3, exitCode);
+
+		String output = out.getText();
+		assertEquals("JarHC - JAR Health Check 0.0.1\n==============================\n\nLoad JAR files ...\nScan JAR files ...\nAnalyze classpath ...\n", output);
+
+		assertLogger(applicationLogger)
+				.hasError("Analyzer not found: foo")
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.isEmpty();
+	}
+
+	@Test
+	void test_reportDirNotFound() {
+
+		// prepare: directory "foo" does not exist
+		File reportFile = new File("foo/report.txt");
+		Options options = new Options();
+		options.addReportFile(reportFile.getPath());
+
+		// test
+		int exitCode = application.run(options);
+
+		// assert
+		assertEquals(2, exitCode);
+
+		String output = out.getText();
+		assertEquals("JarHC - JAR Health Check 0.0.1\n==============================\n\nLoad JAR files ...\nScan JAR files ...\nAnalyze classpath ...\nCreate report ...\n\n", output);
+
+		assertLogger(applicationLogger)
+				.hasDebug("Time: *")
+				.hasError("Internal error while generating report.", new JarHcException("I/O error for file '" + reportFile.getAbsolutePath() + "'"))
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.isEmpty();
+	}
+
+	@Test
+	void test_directoryPath() throws IOException {
+
+		// prepare
+		Path libsDir = tempDir.resolve("libs");
+		Files.createDirectory(libsDir);
+
+		Options options = new Options();
+		TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationTest/a.jar", libsDir);
+		options.addClasspathJarPath(libsDir.toAbsolutePath().toString());
+
+		// test
+		int exitCode = application.run(options);
+
+		// assert
+		assertEquals(0, exitCode);
+
+		String output = out.getText();
+		assertThat(output)
+				.startsWith("JarHC - JAR Health Check 0.0.1")
+				.contains("a.jar")
+				.contains("b2de6f7c6eff51a28729be9c4f6555354f16a1ca");
+
+		assertLogger(applicationLogger)
+				.hasDebug("Time: *")
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.hasDebug("Find artifact: b2de6f7c6eff51a28729be9c4f6555354f16a1ca")
+				.isEmpty();
+	}
+
+	@Test
+	void test_runtimePath() throws IOException {
+
+		// prepare
+		Path libsDir = tempDir.resolve("libs");
+		Files.createDirectory(libsDir);
+
+		Options options = new Options();
+		TestUtils.getResourceAsFile("/org/jarhc/it/ApplicationTest/a.jar", libsDir);
+		options.addRuntimeJarPath(libsDir.toAbsolutePath().toString());
+
+		// test
+		int exitCode = application.run(options);
+
+		// assert
+		assertEquals(0, exitCode);
+
+		String output = out.getText();
+		assertThat(output)
+				.startsWith("JarHC - JAR Health Check 0.0.1")
+				.contains("Java runtime : [unknown]");
+
+		assertLogger(applicationLogger)
+				.hasDebug("Time: *")
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.isEmpty();
+	}
+
+	@Test
+	void test_textReport() {
+
+		// prepare
+		File reportFile = tempDir.resolve("report.txt").toFile();
+
+		// test
+		test_report(reportFile);
+
+		// assert
+		assertThat(reportFile)
+				.isFile()
+				.content()
+				.contains("Artifact  | Version | Source");
+	}
+
+	@Test
+	void test_htmlReport() {
+
+		// prepare
+		File reportFile = tempDir.resolve("report.html").toFile();
+
+		// test
+		test_report(reportFile);
+
+		// assert
+		assertThat(reportFile)
+				.isFile()
+				.content()
+				.contains("<meta name=\"generator\" content=\"JarHC 0.0.1\">");
+	}
+
+	@Test
+	void test_listReport() {
+
+		// prepare
+		File reportFile = tempDir.resolve("report-list.txt").toFile();
+
+		// test
+		test_report(reportFile);
+
+		// assert
+		assertThat(reportFile)
+				.isFile()
+				.content()
+				.contains("Artifact: Classpath");
+	}
+
+	@Test
+	void test_jsonReport() {
+
+		// prepare
+		File reportFile = tempDir.resolve("report.json").toFile();
+
+		// test
+		test_report(reportFile);
+
+		// assert
+		assertThat(reportFile)
+				.isFile()
+				.content()
+				.contains("\"title\": \"JAR Health Check Report\"");
+	}
+
+	private void test_report(File reportFile) {
+
+		// prepare
+		Options options = new Options();
+		options.addReportFile(reportFile.getAbsolutePath());
+
+		// test
+		int exitCode = application.run(options);
+
+		// assert
+		assertEquals(0, exitCode);
+
+		String output = out.getText();
+		assertEquals("JarHC - JAR Health Check 0.0.1\n==============================\n\nLoad JAR files ...\nScan JAR files ...\nAnalyze classpath ...\nCreate report ...\n\n", output);
+
+		assertLogger(applicationLogger)
+				.hasDebug("Time: *")
+				.isEmpty();
+
+		assertLogger(mavenRepositoryLogger)
+				.isEmpty();
 	}
 
 }
