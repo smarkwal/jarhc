@@ -19,10 +19,8 @@ package org.jarhc.app;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import org.jarhc.inject.Injector;
 import org.jarhc.report.Report;
 import org.jarhc.report.ReportFormat;
-import org.jarhc.report.ReportFormatFactory;
 import org.jarhc.report.html.HtmlReportFormat;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.report.writer.impl.FileReportWriter;
@@ -66,8 +64,8 @@ public class Diff {
 		String inputPath2 = options.getInput2();
 		out.println("Load report 2: " + inputPath2);
 		Report report2 = loadJsonReport(inputPath2);
-		if (!version.equals(report1.getVersion())) {
-			String errorMessage = String.format("Report 2 was generated with a different version of JarHC: %s", report1.getVersion());
+		if (!version.equals(report2.getVersion())) {
+			String errorMessage = String.format("Report 2 was generated with a different version of JarHC: %s", report2.getVersion());
 			out.println(errorMessage);
 		}
 
@@ -78,13 +76,8 @@ public class Diff {
 		Report report = generator.diff(report1, report2, options);
 
 		out.println("Create diff report ...");
-		// TODO: reuse existing code to generate output report
-		// prepare an injector
 
-		Injector injector = new Injector();
-		injector.addBinding(Options.class, options);
-		ReportFormatFactory reportFormatFactory = new ReportFormatFactory(injector);
-		ReportFormat reportFormat = reportFormatFactory.getReportFormat("html");
+		ReportFormat reportFormat = new HtmlReportFormat();
 		String outputPath = options.getReportFiles().get(0);
 		try (ReportWriter writer = new FileReportWriter(new File(outputPath))) {
 			reportFormat.format(report, writer);
