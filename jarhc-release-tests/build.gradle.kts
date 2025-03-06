@@ -47,15 +47,15 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter")
     runtimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.assertj:assertj-core:3.27.3")
-    implementation("org.testcontainers:testcontainers:1.20.5")
-    implementation("org.testcontainers:junit-jupiter:1.20.5")
+    implementation("org.testcontainers:testcontainers:1.20.6")
+    implementation("org.testcontainers:junit-jupiter:1.20.6")
     implementation("org.apache.commons:commons-lang3:3.17.0")
     implementation("commons-io:commons-io:2.18.0")
     runtimeOnly("org.slf4j:slf4j-api:2.0.17")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
-    // (dependency of Testcontainers 1.20.5)
+    // (dependency of Testcontainers 1.20.6)
     // check dependencies with ../gradlew dependencies --configuration testRuntimeClasspath | grep compress
     implementation("org.apache.commons:commons-compress:1.27.1")
 
