@@ -37,12 +37,12 @@ public class ClasspathJavaRuntime extends JavaRuntime {
 
 	@Override
 	public String getJavaVersion() {
-		return Markdown.UNKNOWN; // TODO: can we get this from the runtime classes somehow?
+		return Markdown.UNKNOWN;
 	}
 
 	@Override
 	public String getJavaVendor() {
-		return Markdown.UNKNOWN; // TODO: can we get this from the runtime classes somehow?
+		return Markdown.UNKNOWN;
 	}
 
 	@Override

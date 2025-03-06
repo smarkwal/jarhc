@@ -300,7 +300,6 @@ public class HtmlReportFormat implements ReportFormat {
 	}
 
 	private static String escape(String text) {
-		// TODO: implement full HTML escaping
 		text = text.replace("<", "&lt;");
 		text = text.replace(">", "&gt;");
 		text = text.replace("\"", "&quot;");

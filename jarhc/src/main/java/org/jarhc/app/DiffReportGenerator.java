@@ -50,9 +50,6 @@ public class DiffReportGenerator {
 		ReportSection diffSection = createDiffSection(report1, report2);
 		report.addSection(diffSection);
 
-		// TODO: use sections from options
-		// List<String> sections = options.getSections();
-
 		List<ReportSection> sections1 = report1.getSections();
 		List<ReportSection> sections2 = report2.getSections();
 		logMissingSections(sections1, sections2);
