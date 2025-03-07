@@ -16,21 +16,16 @@
 
 package org.jarhc.app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Properties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -105,31 +100,6 @@ class CollectionManagerImplTest {
 
 		// assert
 		assertNull(result);
-	}
-
-	@Test
-	void getCollection_fromUserHomeFile(@TempDir Path tempDir) throws IOException {
-
-		// override user.home property
-		String userHome = System.getProperty("user.home");
-		try {
-			System.setProperty("user.home", tempDir.toString());
-
-			// prepare
-			Path path = tempDir.resolve(".jarhc").resolve("collections").resolve("test-0.9.txt");
-			Files.createDirectories(path.getParent());
-			Files.writeString(path, "org.test:test:0.9");
-
-			// test
-			List<String> result = collectionManager.getCollection("test-0.9");
-
-			// assert
-			assertEquals(List.of("org.test:test:0.9"), result);
-
-		} finally {
-			// restore user.home property
-			System.setProperty("user.home", userHome);
-		}
 	}
 
 }

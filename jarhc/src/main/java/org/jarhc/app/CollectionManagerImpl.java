@@ -17,15 +17,11 @@
 package org.jarhc.app;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import org.jarhc.utils.JarHcException;
 import org.jarhc.utils.ResourceUtils;
 
 public class CollectionManagerImpl implements CollectionManager {
@@ -76,20 +72,6 @@ public class CollectionManagerImpl implements CollectionManager {
 			String collection = properties.getProperty(propertyName, "");
 			List<String> values = List.of(collection.split(","));
 			return filter(values);
-		}
-
-		// try to find collection file in user home directory
-		String userHome = System.getProperty("user.home");
-		if (userHome != null) {
-			Path path = Paths.get(userHome, ".jarhc", "collections", name + ".txt");
-			if (Files.isRegularFile(path)) {
-				try {
-					List<String> lines = Files.readAllLines(path);
-					return filter(lines);
-				} catch (IOException e) {
-					throw new JarHcException("Failed to read collection file: " + path, e);
-				}
-			}
 		}
 
 		// try to find collection file in classpath

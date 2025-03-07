@@ -149,7 +149,7 @@ dependencies {
     implementation("org.slf4j:jcl-over-slf4j:2.0.17")
     api("org.slf4j:slf4j-api:2.0.17")
 
-    // additional libraries to be added to jar-with-deps
+    // additional libraries to be added to jar-app
     includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
 
     // test dependencies (available in unit and integration tests)
@@ -370,7 +370,7 @@ val jarApp = tasks.register("jar-app", type = Jar::class) {
     // add all additional libraries
     from(includeInJarApp.map { if (it.isDirectory) it else zipTree(it) })
 
-    // add additional resources for jar-with-deps
+    // add additional resources for jar-app
     from("src/app/resources")
 
     // include license report
