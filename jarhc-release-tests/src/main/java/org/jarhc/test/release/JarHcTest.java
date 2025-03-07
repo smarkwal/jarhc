@@ -244,8 +244,8 @@ class JarHcTest extends ReleaseTest {
 		String resourceName = "java-runtime.txt";
 		String outputPath = runner.getOutputPath(resourceName);
 		Command command = Command.jarHc(
-				"-o", outputPath,
-				"-s", "jr", // include only section Java Runtime
+				"--output", outputPath,
+				"--sections", "jr", // include only section Java Runtime
 				"minimal.jar"
 		);
 
@@ -262,8 +262,8 @@ class JarHcTest extends ReleaseTest {
 		String resourceName = "asm.txt";
 		String outputPath = runner.getOutputPath(resourceName);
 		Command command = Command.jarHc(
-				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"--output", outputPath,
+				"--sections", "-jr", // exclude section Java Runtime
 				"--skip-empty", // exclude empty sections
 				"org.ow2.asm:asm:9.2"
 		);
@@ -281,8 +281,8 @@ class JarHcTest extends ReleaseTest {
 		String resourceName = "jarhc-fat.txt";
 		String outputPath = runner.getOutputPath(resourceName);
 		Command command = Command.jarHc(
-				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"--output", outputPath,
+				"--sections", "-jr", // exclude section Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc-app.jar"
 		);
@@ -301,8 +301,8 @@ class JarHcTest extends ReleaseTest {
 		String outputPath = runner.getOutputPath(resourceName);
 		String dependencies = getDependencies("runtimeClasspath"); // direct + transitive dependencies
 		Command command = Command.jarHc(
-				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"--output", outputPath,
+				"--sections", "-jr", // exclude section Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--classpath", dependencies
@@ -322,8 +322,8 @@ class JarHcTest extends ReleaseTest {
 		String outputPath = runner.getOutputPath(resourceName);
 		String dependencies = getDependencies("runtimeClasspath"); // direct + transitive dependencies
 		Command command = Command.jarHc(
-				"-o", outputPath,
-				"-s", "-jr", // exclude section Java Runtime
+				"--output", outputPath,
+				"--sections", "-jr", // exclude section Java Runtime
 				"--skip-empty", // exclude empty sections
 				"jarhc.jar",
 				"--provided", dependencies

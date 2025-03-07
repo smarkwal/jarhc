@@ -49,6 +49,8 @@ public class CommandLineParser {
 
 	private static final Pattern ENV_VAR_PATTERN = Pattern.compile("\\$\\{([^}]+)}");
 
+	private static final List<String> DEPRECATED_OPTIONS = Arrays.asList("-h", "-v", "-r", "-cp", "-s", "-t", "-o");
+
 	// TODO: inject dependency
 	private final AnalyzerRegistry registry = new AnalyzerRegistry(null);
 
@@ -117,6 +119,13 @@ public class CommandLineParser {
 		Command command = Command.SCAN;
 		if (ArrayUtils.containsAny(args, "--diff")) {
 			command = Command.DIFF;
+		}
+
+		for (String option : DEPRECATED_OPTIONS) {
+			if (ArrayUtils.containsAny(args, option)) {
+				String message = String.format("Option '%s' is deprecated.", option);
+				err.println(message);
+			}
 		}
 
 		// parse options
@@ -456,8 +465,7 @@ public class CommandLineParser {
 
 	}
 
-	@SuppressWarnings("java:S135")
-		// Loops should not contain more than a single "break" or "continue" statement
+	@SuppressWarnings("java:S135") // Loops should not contain more than a single "break" or "continue" statement
 	List<String> loadArguments(File file) throws CommandLineException {
 
 		// list of arguments read from options file

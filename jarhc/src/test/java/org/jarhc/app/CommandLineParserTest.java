@@ -179,7 +179,7 @@ class CommandLineParserTest {
 		// test
 		CommandLineException exception = null;
 		try {
-			parser.parse(new String[] { "-o" });
+			parser.parse(new String[] { "--output" });
 		} catch (CommandLineException e) {
 			exception = e;
 		}
@@ -218,7 +218,7 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[] { "-o", "report.txt", file.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--output", "report.txt", file.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -240,7 +240,7 @@ class CommandLineParserTest {
 		File directory = file.getParentFile();
 
 		// test
-		Options options = parser.parse(new String[] { "-o", "report.html", directory.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--output", "report.html", directory.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -262,7 +262,7 @@ class CommandLineParserTest {
 		File file2 = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir); // TODO: use a different JAR file here
 
 		// test
-		Options options = parser.parse(new String[] { "-o", "report.html", "-o", "report.txt", file1.getAbsolutePath(), file2.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--output", "report.html", "--output", "report.txt", file1.getAbsolutePath(), file2.getAbsolutePath() });
 
 		// assert
 		assertNotNull(options);
@@ -412,7 +412,7 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[] { "-t", "Test Title", file.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--title", "Test Title", file.getAbsolutePath() });
 
 		// assert
 		String title = options.getReportTitle();
@@ -427,7 +427,7 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[] { "-s", "jf,cv,jd", file.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--sections", "jf,cv,jd", file.getAbsolutePath() });
 
 		// assert
 		List<String> sections = options.getSections();
@@ -445,7 +445,7 @@ class CommandLineParserTest {
 		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
 
 		// test
-		Options options = parser.parse(new String[] { "-s", "-jf,cv,jd", file.getAbsolutePath() });
+		Options options = parser.parse(new String[] { "--sections", "-jf,cv,jd", file.getAbsolutePath() });
 
 		// assert
 		List<String> sections = options.getSections();
@@ -545,7 +545,7 @@ class CommandLineParserTest {
 
 		// test
 		try {
-			parser.parse(new String[] { "-h" });
+			parser.parse(new String[] { "--help" });
 			fail("CommandLineException not thrown");
 		} catch (CommandLineException e) {
 			assertEquals("OK", e.getMessage());
@@ -563,7 +563,7 @@ class CommandLineParserTest {
 
 		// test
 		try {
-			parser.parse(new String[] { "-v" });
+			parser.parse(new String[] { "--version" });
 			fail("CommandLineException not thrown");
 		} catch (CommandLineException e) {
 			assertEquals("OK", e.getMessage());
@@ -652,7 +652,7 @@ class CommandLineParserTest {
 	void test_release_8() throws CommandLineException {
 
 		// test
-		Options options = parser.parse(new String[] { "-r", "8", "com.test:test:1.0" });
+		Options options = parser.parse(new String[] { "--release", "8", "com.test:test:1.0" });
 
 		// assert
 		assertEquals(8, options.getRelease());

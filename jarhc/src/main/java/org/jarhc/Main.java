@@ -70,7 +70,7 @@ public class Main {
 
 		setupLogging(options);
 
-		int exitCode = 0;
+		int exitCode;
 		Command command = options.getCommand();
 		if (command == Command.SCAN) {
 
