@@ -3,7 +3,7 @@ org.ow2.asm:asm-analysis:7.0:jar
 org.ow2.asm:asm-commons:7.0:jar
 org.ow2.asm:asm-tree:7.0:jar
 --title ASM 7.0
---output asm-7.0/report.txt
---output asm-7.0/report.html
---output asm-7.0/report-list.txt
---output asm-7.0/report.json
+--output report.txt
+--output report.html
+--output report-list.txt
+--output report.json

@@ -1,12 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="example-report-jakarta-ee-10" type="Application" factoryName="Application" folderName="Example Reports">
+  <configuration default="false" name="jakarta-ee-9" type="Application" factoryName="Application" folderName="Example Reports">
     <option name="envFilePaths">
       <option value="$PROJECT_DIR$/.env" />
     </option>
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
-    <option name="PROGRAM_PARAMETERS" value="--options example-report-jakarta-ee-10-options.txt" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs" />
+    <option name="PROGRAM_PARAMETERS" value="--options options.txt" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs/wiki/reports/jakarta-ee-9" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

@@ -1,5 +1,5 @@
 --title Jakarta EE 8
---output jakarta-ee-8/report.html
---output jakarta-ee-8/report.txt
---output jakarta-ee-8/report.json
+--output report.html
+--output report.txt
+--output report.json
 jakarta-ee-8

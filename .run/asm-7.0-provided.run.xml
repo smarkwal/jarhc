@@ -1,12 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="example-report-jarhc-1.7" type="Application" factoryName="Application" folderName="Example Reports">
+  <configuration default="false" name="asm-7.0-provided" type="Application" factoryName="Application" folderName="Example Reports">
     <option name="envFilePaths">
       <option value="$PROJECT_DIR$/.env" />
     </option>
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
-    <option name="PROGRAM_PARAMETERS" value="--options example-report-jarhc-1.7-options.txt" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs" />
+    <option name="PROGRAM_PARAMETERS" value="--options options.txt" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs/wiki/reports/asm-7.0-provided" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

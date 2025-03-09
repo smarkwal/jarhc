@@ -2,7 +2,7 @@
 
 # JarHC version
 version=3.0.0-SNAPSHOT
-jarhc=../../../jarhc/build/libs/jarhc-${version}-app.jar
+jarhc=`realpath ../../../jarhc/build/libs/jarhc-${version}-app.jar`
 
 # load environment variables
 set -o allexport
@@ -12,14 +12,15 @@ set +o allexport
 # use fixed timestamp to make reports reproducible
 JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS} -Djarhc.timestamp.override=1739992928000"
 
-java -jar ${jarhc} --options asm-7.0/options.txt
-java -jar ${jarhc} --options asm-commons-7.0/options.txt
-java -jar ${jarhc} --options asm-7.0-provided/options.txt
-java -jar ${jarhc} --options jakarta-ee-8/options.txt
-java -jar ${jarhc} --options jakarta-ee-9/options.txt
-java -jar ${jarhc} --options jakarta-ee-10/options.txt
-java -jar ${jarhc} --options jarhc-1.7/options.txt
-java -jar ${jarhc} --options jarhc-2.2.2/options.txt
+for report in asm-7.0 asm-commons-7.0 asm-7.0-provided \
+             jakarta-ee-8 jakarta-ee-9 jakarta-ee-10 \
+             jarhc-1.7 jarhc-2.2.2 ; do
+
+  cd ${report}
+  java -jar ${jarhc} --options options.txt
+  cd ..
+
+done
 
 java -jar ${jarhc} --diff                      \
      --input1 jarhc-1.7/report.json            \

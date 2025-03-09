@@ -1,8 +1,8 @@
 --title JarHC 1.7
 --ignore-missing-annotations
---output jarhc-1.7/report.html
---output jarhc-1.7/report.txt
---output jarhc-1.7/report.json
+--output report.html
+--output report.txt
+--output report.json
 org.jarhc:jarhc:1.7
 com.google.code.findbugs:jsr305:3.0.2
 com.google.errorprone:error_prone_annotations:2.7.1
