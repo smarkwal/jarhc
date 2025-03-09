@@ -1,5 +1,5 @@
-JarHC Report for jarhc 3.0.0-SNAPSHOT
-=====================================
+JarHC Report for jarhc 3.0.0
+============================
 
 JAR Files
 ---------
@@ -11,7 +11,7 @@ asm-9.7.1.jar                             | 123 KB  | 38      | 0         | f0ed
 commons-codec-1.17.1.jar                  | 364 KB  | 107     | 128       | 973638b7149d333563584137ebf13a691bb60579 | commons-codec:commons-codec:1.17.1
 httpclient-4.5.14.jar                     | 767 KB  | 470     | 2         | 1194890e6f56ec29177673f2f12d0b8e627dec98 | org.apache.httpcomponents:httpclient:4.5.14
 httpcore-4.4.16.jar                       | 320 KB  | 253     | 1         | 51cf043c87253c9f58b539c9f7e44c8894223850 | org.apache.httpcomponents:httpcore:4.4.16
-jarhc-3.0.0-SNAPSHOT.jar                  | 300 KB  | 152     | 19        | 45091b37fbd137b69352286b3883b4ff0a170767 | [unknown]
+jarhc-3.0.0.jar                           | 300 KB  | 152     | 19        | 8d17cf67bbb4ea29b3fc8521f2d0fcce3463a739 | [unknown]
 jcl-over-slf4j-2.0.17.jar                 | 18.0 KB | 8       | 0         | 76ea503eb688f06556a9ba69995d7eab63e34531 | org.slf4j:jcl-over-slf4j:2.0.17
 json-20250107.jar                         | 79.5 KB | 31      | 0         | a1b5f0b5a1ce018b93a691c57ffc7d141b3a10f1 | org.json:json:20250107
 jul-to-slf4j-2.0.17.jar                   | 6.20 KB | 1       | 0         | 524cb6ccc2b68a57604750e1ab8b13b5a786a6aa | org.slf4j:jul-to-slf4j:2.0.17
@@ -52,7 +52,7 @@ commons-codec-1.17.1.jar                  | org.apache.commons.codec            
                                           |                                           |                |           |              | org.apache.commons.codec.net
 httpclient-4.5.14.jar                     | org.apache.httpcomponents.httpclient      | Manifest       | Yes       | -            | [all packages]
 httpcore-4.4.16.jar                       | org.apache.httpcomponents.httpcore        | Manifest       | Yes       | -            | [all packages]
-jarhc-3.0.0-SNAPSHOT.jar                  | org.jarhc                                 | Manifest       | Yes       | -            | [all packages]
+jarhc-3.0.0.jar                           | org.jarhc                                 | Manifest       | Yes       | -            | [all packages]
 jcl-over-slf4j-2.0.17.jar                 | org.apache.commons.logging                | Module-Info    | No        | org.slf4j    | org.apache.commons.logging
                                           |                                           |                |           | java.base    |
 json-20250107.jar                         | org.json                                  | Module-Info    | No        | java.base    | org.json
@@ -91,7 +91,7 @@ asm-9.7.1.jar                             | No                             | Jav
 commons-codec-1.17.1.jar                  | Yes (Java 9)                   | Java 8 (107)
 httpclient-4.5.14.jar                     | No                             | Java 6 (470)
 httpcore-4.4.16.jar                       | No                             | Java 6 (253)
-jarhc-3.0.0-SNAPSHOT.jar                  | No                             | Java 11 (152)
+jarhc-3.0.0.jar                           | No                             | Java 11 (152)
 jcl-over-slf4j-2.0.17.jar                 | Yes (Java 9)                   | Java 8 (8)
 json-20250107.jar                         | Yes (Java 9)                   | Java 8 (31)
 jul-to-slf4j-2.0.17.jar                   | Yes (Java 9)                   | Java 8 (1)
@@ -122,14 +122,14 @@ Dependencies between JAR files.
 
 JAR file                                  | Uses                                      | Used by
 ------------------------------------------+-------------------------------------------+------------------------------------------
-asm-9.7.1.jar                             | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
+asm-9.7.1.jar                             | [none]                                    | jarhc-3.0.0.jar
 commons-codec-1.17.1.jar                  | [none]                                    | httpclient-4.5.14.jar
 httpclient-4.5.14.jar                     | commons-codec-1.17.1.jar                  | maven-resolver-transport-http-1.9.22.jar
                                           | httpcore-4.4.16.jar                       |
                                           | jcl-over-slf4j-2.0.17.jar                 |
 httpcore-4.4.16.jar                       | [none]                                    | httpclient-4.5.14.jar
                                           |                                           | maven-resolver-transport-http-1.9.22.jar
-jarhc-3.0.0-SNAPSHOT.jar                  | asm-9.7.1.jar                             | [none]
+jarhc-3.0.0.jar                           | asm-9.7.1.jar                             | [none]
                                           | jcl-over-slf4j-2.0.17.jar                 |
                                           | json-20250107.jar                         |
                                           | jul-to-slf4j-2.0.17.jar                   |
@@ -139,9 +139,9 @@ jarhc-3.0.0-SNAPSHOT.jar                  | asm-9.7.1.jar                       
                                           | maven-resolver-util-1.9.22.jar            |
                                           | slf4j-api-2.0.17.jar                      |
 jcl-over-slf4j-2.0.17.jar                 | slf4j-api-2.0.17.jar                      | httpclient-4.5.14.jar
-                                          |                                           | jarhc-3.0.0-SNAPSHOT.jar
-json-20250107.jar                         | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
-jul-to-slf4j-2.0.17.jar                   | slf4j-api-2.0.17.jar                      | jarhc-3.0.0-SNAPSHOT.jar
+                                          |                                           | jarhc-3.0.0.jar
+json-20250107.jar                         | [none]                                    | jarhc-3.0.0.jar
+jul-to-slf4j-2.0.17.jar                   | slf4j-api-2.0.17.jar                      | jarhc-3.0.0.jar
 maven-artifact-3.9.8.jar                  | plexus-utils-3.5.1.jar                    | maven-model-builder-3.9.8.jar
                                           |                                           | maven-resolver-provider-3.9.8.jar
 maven-builder-support-3.9.8.jar           | [none]                                    | maven-model-builder-3.9.8.jar
@@ -153,7 +153,7 @@ maven-model-builder-3.9.8.jar             | maven-artifact-3.9.8.jar            
                                           | plexus-interpolation-1.27.jar             |
                                           | plexus-utils-3.5.1.jar                    |
 maven-repository-metadata-3.9.8.jar       | plexus-utils-3.5.1.jar                    | maven-resolver-provider-3.9.8.jar
-maven-resolver-api-1.9.22.jar             | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
+maven-resolver-api-1.9.22.jar             | [none]                                    | jarhc-3.0.0.jar
                                           |                                           | maven-resolver-connector-basic-1.9.22.jar
                                           |                                           | maven-resolver-impl-1.9.22.jar
                                           |                                           | maven-resolver-provider-3.9.8.jar
@@ -173,7 +173,7 @@ maven-resolver-impl-1.9.22.jar            | maven-resolver-api-1.9.22.jar       
                                           | slf4j-api-2.0.17.jar                      |
 maven-resolver-named-locks-1.9.22.jar     | slf4j-api-2.0.17.jar                      | maven-resolver-impl-1.9.22.jar
                                           |                                           | maven-resolver-supplier-1.9.22.jar
-maven-resolver-provider-3.9.8.jar         | maven-artifact-3.9.8.jar                  | jarhc-3.0.0-SNAPSHOT.jar
+maven-resolver-provider-3.9.8.jar         | maven-artifact-3.9.8.jar                  | jarhc-3.0.0.jar
                                           | maven-model-3.9.8.jar                     | maven-resolver-supplier-1.9.22.jar
                                           | maven-model-builder-3.9.8.jar             |
                                           | maven-repository-metadata-3.9.8.jar       |
@@ -189,7 +189,7 @@ maven-resolver-spi-1.9.22.jar             | maven-resolver-api-1.9.22.jar       
                                           |                                           | maven-resolver-supplier-1.9.22.jar
                                           |                                           | maven-resolver-transport-file-1.9.22.jar
                                           |                                           | maven-resolver-transport-http-1.9.22.jar
-maven-resolver-supplier-1.9.22.jar        | maven-model-builder-3.9.8.jar             | jarhc-3.0.0-SNAPSHOT.jar
+maven-resolver-supplier-1.9.22.jar        | maven-model-builder-3.9.8.jar             | jarhc-3.0.0.jar
                                           | maven-resolver-api-1.9.22.jar             |
                                           | maven-resolver-connector-basic-1.9.22.jar |
                                           | maven-resolver-impl-1.9.22.jar            |
@@ -207,7 +207,7 @@ maven-resolver-transport-http-1.9.22.jar  | httpclient-4.5.14.jar               
                                           | maven-resolver-spi-1.9.22.jar             |
                                           | maven-resolver-util-1.9.22.jar            |
                                           | slf4j-api-2.0.17.jar                      |
-maven-resolver-util-1.9.22.jar            | maven-resolver-api-1.9.22.jar             | jarhc-3.0.0-SNAPSHOT.jar
+maven-resolver-util-1.9.22.jar            | maven-resolver-api-1.9.22.jar             | jarhc-3.0.0.jar
                                           |                                           | maven-resolver-connector-basic-1.9.22.jar
                                           |                                           | maven-resolver-impl-1.9.22.jar
                                           |                                           | maven-resolver-provider-3.9.8.jar
@@ -218,7 +218,7 @@ plexus-utils-3.5.1.jar                    | [none]                              
                                           |                                           | maven-model-builder-3.9.8.jar
                                           |                                           | maven-repository-metadata-3.9.8.jar
                                           |                                           | maven-resolver-provider-3.9.8.jar
-slf4j-api-2.0.17.jar                      | [none]                                    | jarhc-3.0.0-SNAPSHOT.jar
+slf4j-api-2.0.17.jar                      | [none]                                    | jarhc-3.0.0.jar
                                           |                                           | jcl-over-slf4j-2.0.17.jar
                                           |                                           | jul-to-slf4j-2.0.17.jar
                                           |                                           | maven-resolver-connector-basic-1.9.22.jar
@@ -240,7 +240,7 @@ httpclient-4.5.14.jar                     | org.apache.httpcomponents:httpclient
                                           |                                                                 | commons-logging:commons-logging:1.2                                    | Unsatisfied
                                           |                                                                 | commons-codec:commons-codec:1.11                                       | OK (version 1.17.1)
 httpcore-4.4.16.jar                       | org.apache.httpcomponents:httpcore:4.4.16                       | [none]                                                                 |
-jarhc-3.0.0-SNAPSHOT.jar                  | [unknown]                                                       | [unknown]                                                              |
+jarhc-3.0.0.jar                           | [unknown]                                                       | [unknown]                                                              |
 jcl-over-slf4j-2.0.17.jar                 | org.slf4j:jcl-over-slf4j:2.0.17                                 | org.slf4j:slf4j-api:2.0.17                                             | OK
 json-20250107.jar                         | org.json:json:20250107                                          | [none]                                                                 |
 jul-to-slf4j-2.0.17.jar                   | org.slf4j:jul-to-slf4j:2.0.17                                   | org.slf4j:slf4j-api:2.0.17                                             | OK
@@ -346,7 +346,7 @@ httpcore-4.4.16.jar                       | 17    | org.apache.http             
                                           |       | org.apache.http.protocol                              |
                                           |       | org.apache.http.ssl                                   |
                                           |       | org.apache.http.util                                  |
-jarhc-3.0.0-SNAPSHOT.jar                  | 20    | org.jarhc (+19 subpackages)                           |
+jarhc-3.0.0.jar                           | 20    | org.jarhc (+19 subpackages)                           |
 jcl-over-slf4j-2.0.17.jar                 | 2     | org.apache.commons.logging (+1 subpackage)            |
 json-20250107.jar                         | 1     | org.json                                              |
 jul-to-slf4j-2.0.17.jar                   | 1     | org.slf4j.bridge                                      |
@@ -805,7 +805,7 @@ httpclient-4.5.14.jar                     | org.apache.http.auth.AuthSchemeFacto
                                           | • @Deprecated: public abstract void org.apache.http.HttpEntity.consumeContent()
 httpcore-4.4.16.jar                       | org.apache.http.impl.pool.BasicConnFactory
                                           | • @Deprecated: public final class java.security.AccessController
-jarhc-3.0.0-SNAPSHOT.jar                  | org.jarhc.Main
+jarhc-3.0.0.jar                           | org.jarhc.Main
                                           | • static void java.lang.System.exit(int)
 jcl-over-slf4j-2.0.17.jar                 | org.apache.commons.logging.impl.SimpleLog
                                           | • @Deprecated: public final class java.security.AccessController
