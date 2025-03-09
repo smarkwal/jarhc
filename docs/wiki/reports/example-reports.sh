@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # JarHC version
-version=3.0.0
+version=3.0.1-SNAPSHOT
 jarhc=`realpath ../../../jarhc/build/libs/jarhc-${version}-app.jar`
 
 # load environment variables
