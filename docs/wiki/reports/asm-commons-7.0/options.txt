@@ -1,3 +1,4 @@
 org.ow2.asm:asm-commons:7.0:jar
 --title ASM Commons 7.0
 --output report.html
+--output report.txt
