@@ -100,8 +100,6 @@ public class CommandLineParser {
 
 		// diff options
 		optionParsers.put("--diff", this::parseDiff);
-		optionParsers.put("--input1", this::parseInput1);
-		optionParsers.put("--input2", this::parseInput2);
 
 		// report options
 		optionParsers.put("-o", this::parseOutput);
@@ -522,43 +520,37 @@ public class CommandLineParser {
 		return result.toString();
 	}
 
-	private void parseDiff(Iterator<String> args, Options options) {
+	private void parseDiff(Iterator<String> args, Options options) throws CommandLineException {
 		// nothing to do
 		// diff should already be set as command
 		Command command = options.getCommand();
 		if (command != Command.DIFF) {
 			throw new JarHcException("Unexpected command: " + command);
 		}
-	}
 
-	private void parseInput1(Iterator<String> args, Options options) throws CommandLineException {
-		if (!args.hasNext()) throw handleError(-23, "Diff JSON input path 1 not specified.");
-
-		String path = args.next();
+		if (!args.hasNext()) throw handleError(-23, "Diff file path 1 not specified.");
+		String path1 = args.next();
 
 		// check if file exists
-		File file = new File(path);
-		if (!file.isFile()) {
-			String errorMessage = String.format("Diff JSON input file 1 not found: %s", path);
+		File file1 = new File(path1);
+		if (!file1.isFile()) {
+			String errorMessage = String.format("Diff file 1 not found: %s", path1);
 			throw handleError(-24, errorMessage);
 		}
 
-		options.setInput1(path);
-	}
+		options.setInput1(path1);
 
-	private void parseInput2(Iterator<String> args, Options options) throws CommandLineException {
-		if (!args.hasNext()) throw handleError(-25, "Diff JSON input path 2 not specified.");
-
-		String path = args.next();
+		if (!args.hasNext()) throw handleError(-25, "Diff file path 2 not specified.");
+		String path2 = args.next();
 
 		// check if file exists
-		File file = new File(path);
-		if (!file.isFile()) {
-			String errorMessage = String.format("Diff JSON input file 2 not found: %s", path);
+		File file2 = new File(path2);
+		if (!file2.isFile()) {
+			String errorMessage = String.format("Diff file 2 not found: %s", path2);
 			throw handleError(-26, errorMessage);
 		}
 
-		options.setInput2(path);
+		options.setInput2(path2);
 	}
 
 }
