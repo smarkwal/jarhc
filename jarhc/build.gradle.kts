@@ -330,10 +330,6 @@ tasks {
         ignoreMissingAnnotations.set(true)
     }
 
-    build {
-        dependsOn(jarhcReport)
-    }
-
     assemble {
         dependsOn(jarApp)
     }
