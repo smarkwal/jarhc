@@ -31,7 +31,7 @@ plugins {
     id("org.sonarqube") version "6.0.1.5171"
 
     // JarHC Gradle plugin
-    id("org.jarhc") version "1.1.1"
+    id("org.jarhc") version "1.2.0"
 
 }
 
