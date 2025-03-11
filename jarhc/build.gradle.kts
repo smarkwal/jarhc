@@ -184,6 +184,9 @@ java {
     withJavadocJar()
 }
 
+val sonarBranchName: String = getGitBranchName()
+val sonarBranchTarget: String = getGitBranchTarget(sonarBranchName)
+
 sonar {
     // documentation: https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-gradle/
 
@@ -195,12 +198,14 @@ sonar {
         property("sonar.projectKey", "smarkwal_jarhc")
 
         // Git branch
-        property("sonar.branch.name", getGitBranchName())
-        if (getGitBranchName() != "master") {
+        property("sonar.branch.name", sonarBranchName)
+
+        // target Git branch for merge
+        if (sonarBranchTarget != sonarBranchName) {
             // https://docs.sonarsource.com/sonarqube-cloud/enriching/branch-analysis-setup/
-            property("sonar.branch.target", "master")
+            property("sonar.branch.target", sonarBranchTarget)
             // https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/analysis-parameters/
-            property("sonar.newCode.referenceBranch", "master")
+            property("sonar.newCode.referenceBranch", sonarBranchTarget)
         }
 
         // paths to test sources and test classes
@@ -328,10 +333,6 @@ tasks {
         )
         sortRows.set(true)
         ignoreMissingAnnotations.set(true)
-    }
-
-    build {
-        dependsOn(jarhcReport)
     }
 
     assemble {
@@ -487,4 +488,21 @@ fun getGitBranchName(): String {
         return content
     }
     throw GradleException("Git branch name not found.")
+}
+
+fun getGitBranchTarget(branchName: String): String {
+    // Gitflow workflow merge targets
+    if (branchName == "master") {
+        return "master"
+    } else if (branchName.startsWith("hotfix/")) {
+        return "master"
+    } else if (branchName.startsWith("release/")) {
+        return "master"
+    } else if (branchName == "develop") {
+        return "master"
+    } else if (branchName.startsWith("feature/")) {
+        return "develop"
+    } else {
+        return branchName
+    }
 }

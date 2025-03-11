@@ -651,7 +651,7 @@
                   "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
                   "[none]",
                   "[[org.jarhc:jarhc:1.7]]",
-                  "[2.0.0](org.jarhc:jarhc:2.0.0)\n[2.1.0](org.jarhc:jarhc:2.1.0)\n[2.2.0](org.jarhc:jarhc:2.2.0), [2.2.1](org.jarhc:jarhc:2.2.1), [2.2.2](org.jarhc:jarhc:2.2.2)",
+                  "[2.0.0](org.jarhc:jarhc:2.0.0)\n[2.1.0](org.jarhc:jarhc:2.1.0)\n[2.2.0](org.jarhc:jarhc:2.2.0), [2.2.1](org.jarhc:jarhc:2.2.1), [2.2.2](org.jarhc:jarhc:2.2.2)\n[3.0.0](org.jarhc:jarhc:3.0.0)",
                   "[[com.google.guava:guava:31.0.1-jre]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.13]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.4.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20211205]] (runtime)\n[[org.ow2.asm:asm:9.2]] (runtime)\n[[org.slf4j:jcl-over-slf4j:1.7.33]] (runtime)\n[[org.slf4j:jul-to-slf4j:1.7.33]] (runtime)\n[[org.slf4j:slf4j-api:1.7.33]] (runtime)\n[[org.slf4j:slf4j-simple:1.7.33]] (runtime)",
                   "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
                ],
