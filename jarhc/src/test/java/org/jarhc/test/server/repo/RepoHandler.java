@@ -19,6 +19,7 @@ package org.jarhc.test.server.repo;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Optional;
 import org.jarhc.test.server.HttpException;
 import org.jarhc.test.server.ServerMode;
@@ -29,9 +30,9 @@ public class RepoHandler implements HttpHandler {
 	private final LocalRepoClient localRepoClient;
 	private final RemoteRepoClient remoteRepoClient;
 
-	public RepoHandler(ServerMode mode, int timeout) {
+	public RepoHandler(ServerMode mode, int timeout, Path rootPath) {
 		this.mode = mode;
-		localRepoClient = new LocalRepoClient();
+		localRepoClient = new LocalRepoClient(rootPath);
 		remoteRepoClient = new RemoteRepoClient(timeout);
 	}
 
@@ -43,6 +44,11 @@ public class RepoHandler implements HttpHandler {
 			path = path.substring(6);
 		} else {
 			exchange.sendResponseHeaders(404, -1);
+			return;
+		}
+
+		if (path.endsWith("/")) {
+			exchange.sendResponseHeaders(400, -1);
 			return;
 		}
 

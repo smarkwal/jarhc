@@ -18,9 +18,12 @@ package org.jarhc.test.server;
 
 import com.sun.net.httpserver.HttpServer;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import org.jarhc.test.server.repo.RepoHandler;
 import org.jarhc.test.server.search.SearchHandler;
 
@@ -29,6 +32,7 @@ public class MavenProxyServer {
 	private final ServerMode mode;
 	private final int port;
 	private final int timeout;
+	private final Path rootPath;
 
 	private HttpServer server;
 
@@ -37,7 +41,8 @@ public class MavenProxyServer {
 		// TODO: parse arguments to get mode, port and timeout
 		// TODO: support setting address
 
-		MavenProxyServer server = new MavenProxyServer(ServerMode.LocalRemote, 8080, 10);
+		Path rootPath = Path.of("jarhc/src/test/resources/proxy");
+		MavenProxyServer server = new MavenProxyServer(ServerMode.LocalRemoteUpdate, 8080, 10, rootPath);
 
 		System.out.println("Starting server...");
 		server.start();
@@ -64,10 +69,15 @@ public class MavenProxyServer {
 		System.out.println("Server stopped.");
 	}
 
-	public MavenProxyServer(ServerMode mode, int port, int timeout) {
+	public MavenProxyServer(ServerMode mode, int port, int timeout, Path rootPath) {
+		if (mode == null) throw new IllegalArgumentException("mode");
+		if (port < 0 || port > 65535) throw new IllegalArgumentException("port");
+		if (timeout < 0) throw new IllegalArgumentException("timeout");
+		if (rootPath == null) throw new IllegalArgumentException("rootPath");
 		this.mode = mode;
 		this.port = port;
 		this.timeout = timeout;
+		this.rootPath = rootPath.toAbsolutePath();
 	}
 
 	public String getBaseURL() {
@@ -88,9 +98,21 @@ public class MavenProxyServer {
 
 	public void start() throws IOException {
 		if (server != null) throw new IllegalStateException("Server already started.");
+
+		// check if root path exists
+		if (!Files.isDirectory(rootPath)) {
+			throw new FileNotFoundException(rootPath.toString());
+		}
+
+		// create subdirectories (if not exist)
+		Path searchPath = rootPath.resolve("search");
+		Files.createDirectories(searchPath);
+		Path repoPath = rootPath.resolve("repo");
+		Files.createDirectories(repoPath);
+
 		server = HttpServer.create(new InetSocketAddress(port), 0);
-		server.createContext("/search", new SearchHandler(mode, timeout));
-		server.createContext("/repo", new RepoHandler(mode, timeout));
+		server.createContext("/search", new SearchHandler(mode, timeout, searchPath));
+		server.createContext("/repo", new RepoHandler(mode, timeout, repoPath));
 		server.setExecutor(null); // creates a default executor
 		server.start();
 	}

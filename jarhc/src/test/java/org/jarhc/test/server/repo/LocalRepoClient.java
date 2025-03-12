@@ -16,18 +16,43 @@
 
 package org.jarhc.test.server.repo;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
 
 class LocalRepoClient implements RepoClient {
 
+	private final Path rootPath;
+
+	public LocalRepoClient(Path rootPath) {
+		if (rootPath == null) throw new IllegalArgumentException("rootPath");
+		if (!Files.isDirectory(rootPath)) throw new IllegalArgumentException("Directory not found: " + rootPath.toAbsolutePath());
+		this.rootPath = rootPath.toAbsolutePath();
+	}
+
 	@Override
-	public Optional<byte[]> get(String path) {
-		// TODO: implement
+	public Optional<byte[]> get(String path) throws IOException {
+		Path file = getFile(path);
+		if (Files.exists(file)) {
+			byte[] data = Files.readAllBytes(file);
+			return Optional.of(data);
+		}
 		return Optional.empty();
 	}
 
-	public void put(String path, byte[] bytes) {
-		// TODO: implement
+	public void put(String path, byte[] bytes) throws IOException {
+		Path file = getFile(path);
+		Files.createDirectories(file.getParent());
+		Files.write(file, bytes);
+	}
+
+	private Path getFile(String path) {
+		Path file = rootPath.resolve(path).toAbsolutePath();
+		if (!file.startsWith(rootPath)) {
+			throw new IllegalArgumentException("Invalid path: " + path);
+		}
+		return file;
 	}
 
 }

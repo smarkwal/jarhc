@@ -20,6 +20,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -34,9 +35,9 @@ public class SearchHandler implements HttpHandler {
 	private final LocalSearchClient localSearchClient;
 	private final RemoteSearchClient remoteSearchClient;
 
-	public SearchHandler(ServerMode mode, int timeout) {
+	public SearchHandler(ServerMode mode, int timeout, Path rootPath) {
 		this.mode = mode;
-		localSearchClient = new LocalSearchClient();
+		localSearchClient = new LocalSearchClient(rootPath);
 		remoteSearchClient = new RemoteSearchClient(timeout);
 	}
 
