@@ -29,7 +29,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 
 class RemoteRepoClient implements RepoClient {
 
-	private static final URI BASE_URL = URI.create("https://repo.maven.apache.org/maven2/");
+	private static final URI BASE_URL = URI.create("https://repo1.maven.org/maven2/");
 
 	private final Duration timeout;
 

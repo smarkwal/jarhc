@@ -30,7 +30,7 @@ import java.util.List;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.MavenArtifactFinder;
 import org.jarhc.artifacts.RepositoryException;
-import org.jarhc.it.utils.MavenSearchApiMockServer;
+import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.test.log.LoggerUtils;
 import org.jarhc.utils.FileUtils;
@@ -43,7 +43,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.slf4j.Logger;
 
-@ExtendWith(MavenSearchApiMockServer.class)
+@ExtendWith(MavenProxyServerExtension.class)
 class MavenArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);
@@ -199,11 +199,11 @@ class MavenArtifactFinderTest {
 
 	@ParameterizedTest
 	@CsvSource({
-			"ffff0000,JSON parser error for URL: ",
-			"ffff0001,JSON key 'response' not found: ",
-			"ffff0002,JSON key 'numFound' not found: ",
-			"ffff0003,JSON key 'docs' not found: ",
-			"ffff0004,JSON array 'docs' is empty: ",
+			"ffff000000000000000000000000000000000000,JSON parser error for URL: ",
+			"ffff000000000000000000000000000000000001,JSON key 'response' not found: ",
+			"ffff000000000000000000000000000000000002,JSON key 'numFound' not found: ",
+			"ffff000000000000000000000000000000000003,JSON key 'docs' not found: ",
+			"ffff000000000000000000000000000000000004,JSON array 'docs' is empty: ",
 	})
 	void test_findArtifacts_invalidJSON(String checksum, String expectedMessagePrefix) {
 

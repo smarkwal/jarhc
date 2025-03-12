@@ -19,6 +19,7 @@ package org.jarhc.test.server.search;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
@@ -26,10 +27,14 @@ import java.util.Map;
 import java.util.Optional;
 import org.jarhc.test.server.HttpException;
 import org.jarhc.test.server.ServerMode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class SearchHandler implements HttpHandler {
+
+	private final Logger LOGGER = LoggerFactory.getLogger(SearchHandler.class);
 
 	private final ServerMode mode;
 	private final LocalSearchClient localSearchClient;
@@ -43,15 +48,22 @@ public class SearchHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
+		URI uri = exchange.getRequestURI();
+		LOGGER.debug("Request: {}", uri);
 
-		String path = exchange.getRequestURI().getPath();
+		String path = uri.getPath();
 		if (!path.equals("/search")) {
-			exchange.sendResponseHeaders(404, -1);
+			sendNotFound(exchange);
 			return;
 		}
 
-		Map<String, String> params = queryToMap(exchange);
+		Map<String, String> params = queryToMap(uri);
 		String checksum = params.get("checksum");
+
+		if (!checksum.matches("^[0-9a-f]{40}$")) {
+			sendNotFound(exchange);
+			return;
+		}
 
 		if (mode != ServerMode.RemoteOnly) {
 
@@ -59,8 +71,7 @@ public class SearchHandler implements HttpHandler {
 
 			if (response.isPresent()) {
 				byte[] data = response.get();
-				exchange.sendResponseHeaders(200, data.length);
-				exchange.getResponseBody().write(data);
+				sendData(exchange, data);
 				return;
 			}
 		}
@@ -71,33 +82,32 @@ public class SearchHandler implements HttpHandler {
 			try {
 				response = remoteSearchClient.get(checksum);
 			} catch (HttpException e) {
-				exchange.sendResponseHeaders(e.getStatusCode(), -1);
+				LOGGER.warn("Unexpected HTTP status code: {}", e.getStatusCode());
+				sendError(exchange, e);
 				return;
 			} catch (IOException e) {
-				e.printStackTrace();
-				exchange.sendResponseHeaders(500, -1);
+				LOGGER.error("Unexpected I/O error", e);
+				sendInternalServerError(exchange);
 				return;
 			}
 
 			if (response.isEmpty()) {
-				exchange.sendResponseHeaders(404, -1);
+				sendNotFound(exchange);
 				return;
 			}
 
 			byte[] data = response.get();
-			exchange.sendResponseHeaders(200, data.length);
-			exchange.getResponseBody().write(data);
+			sendData(exchange, data);
 
 			if (mode == ServerMode.LocalRemoteUpdate) {
 				localSearchClient.put(checksum, data);
 			}
 
 		}
-
 	}
 
-	public static Map<String, String> queryToMap(HttpExchange exchange) {
-		String query = exchange.getRequestURI().getQuery();
+	public static Map<String, String> queryToMap(URI uri) {
+		String query = uri.getQuery();
 		Map<String, String> result = new LinkedHashMap<>();
 		if (query == null) {
 			return result;
@@ -109,6 +119,28 @@ public class SearchHandler implements HttpHandler {
 			result.put(name, value);
 		}
 		return result;
+	}
+
+	private static void sendNotFound(HttpExchange exchange) throws IOException {
+		exchange.sendResponseHeaders(404, -1);
+		exchange.close();
+	}
+
+	private static void sendError(HttpExchange exchange, HttpException exception) throws IOException {
+		exchange.sendResponseHeaders(exception.getStatusCode(), -1);
+		exchange.close();
+	}
+
+	private static void sendInternalServerError(HttpExchange exchange) throws IOException {
+		exchange.sendResponseHeaders(500, -1);
+		exchange.close();
+	}
+
+	private static void sendData(HttpExchange exchange, byte[] data) throws IOException {
+		exchange.getResponseHeaders().add("Content-Type", "application/json");
+		exchange.sendResponseHeaders(200, data.length);
+		exchange.getResponseBody().write(data);
+		exchange.close();
 	}
 
 }

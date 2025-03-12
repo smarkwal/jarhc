@@ -26,11 +26,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.jarhc.test.server.repo.RepoHandler;
 import org.jarhc.test.server.search.SearchHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MavenProxyServer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MavenProxyServer.class);
+
 	private final ServerMode mode;
-	private final int port;
+	private int port;
 	private final int timeout;
 	private final Path rootPath;
 
@@ -69,9 +73,19 @@ public class MavenProxyServer {
 		System.out.println("Server stopped.");
 	}
 
+	public MavenProxyServer(ServerMode mode, int timeout, Path rootPath) {
+		if (mode == null) throw new IllegalArgumentException("mode");
+		if (timeout < 0) throw new IllegalArgumentException("timeout");
+		if (rootPath == null) throw new IllegalArgumentException("rootPath");
+		this.mode = mode;
+		this.port = 0; // port is set when server is started
+		this.timeout = timeout;
+		this.rootPath = rootPath.toAbsolutePath();
+	}
+
 	public MavenProxyServer(ServerMode mode, int port, int timeout, Path rootPath) {
 		if (mode == null) throw new IllegalArgumentException("mode");
-		if (port < 0 || port > 65535) throw new IllegalArgumentException("port");
+		if (port < 1024 || port > 65535) throw new IllegalArgumentException("port");
 		if (timeout < 0) throw new IllegalArgumentException("timeout");
 		if (rootPath == null) throw new IllegalArgumentException("rootPath");
 		this.mode = mode;
@@ -81,11 +95,7 @@ public class MavenProxyServer {
 	}
 
 	public String getBaseURL() {
-		if (port == 80) {
-			return "http://localhost";
-		} else {
-			return "http://localhost:" + port;
-		}
+		return "http://localhost:" + port;
 	}
 
 	public String getSearchURL() {
@@ -93,7 +103,7 @@ public class MavenProxyServer {
 	}
 
 	public String getRepoURL() {
-		return getBaseURL() + "/repo/%s";
+		return getBaseURL() + "/repo/";
 	}
 
 	public void start() throws IOException {
@@ -104,23 +114,37 @@ public class MavenProxyServer {
 			throw new FileNotFoundException(rootPath.toString());
 		}
 
+		LOGGER.debug("Starting server ...");
+
 		// create subdirectories (if not exist)
 		Path searchPath = rootPath.resolve("search");
 		Files.createDirectories(searchPath);
 		Path repoPath = rootPath.resolve("repo");
 		Files.createDirectories(repoPath);
 
-		server = HttpServer.create(new InetSocketAddress(port), 0);
+		server = HttpServer.create(new InetSocketAddress("localhost", port), 0);
 		server.createContext("/search", new SearchHandler(mode, timeout, searchPath));
 		server.createContext("/repo", new RepoHandler(mode, timeout, repoPath));
 		server.setExecutor(null); // creates a default executor
 		server.start();
+		LOGGER.debug("Server started.");
+
+		// get server port
+		port = server.getAddress().getPort();
+
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("Server endpoints:");
+			LOGGER.debug("- {}", getSearchURL());
+			LOGGER.debug("- {}", getRepoURL());
+		}
 	}
 
 	public void stop() {
 		if (server == null) throw new IllegalStateException("Server not started.");
+		LOGGER.debug("Stopping server ...");
 		server.stop(0);
 		server = null;
+		LOGGER.debug("Server stopped.");
 	}
 
 }
