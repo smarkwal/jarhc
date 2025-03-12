@@ -144,7 +144,7 @@ public class TestUtils {
 	}
 
 	public static String getFileRepositoryURL() {
-		File directory = new File("src/test/resources/repository");
+		File directory = new File("src/test/resources/maven-proxy-server/repo");
 		return "file://" + directory.getAbsolutePath();
 	}
 

@@ -64,7 +64,7 @@ abstract class AbstractTest {
 		List<File> files = new ArrayList<>();
 		for (String coordinates : artifacts) {
 			Artifact artifact = new Artifact(coordinates);
-			String resourcePath = "/repository/" + artifact.getPath();
+			String resourcePath = "/maven-proxy-server/repo/" + artifact.getPath();
 			File file = TestUtils.getResourceAsFile(resourcePath, tempDir);
 			files.add(file);
 		}

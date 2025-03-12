@@ -94,7 +94,7 @@ public class MavenSearchApiMockServer implements BeforeAllCallback, AfterAllCall
 			LOGGER.debug("Mock Maven Search API response for checksum: '{}'", checksum);
 
 			// load response from test resources
-			String response = TestUtils.getResourceAsString("/maven-search-api-responses/" + checksum + ".json", "UTF-8");
+			String response = TestUtils.getResourceAsString("/maven-proxy-server/search/" + checksum + ".json", "UTF-8");
 
 			// send response headers
 			Headers headers = exchange.getResponseHeaders();
