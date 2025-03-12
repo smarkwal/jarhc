@@ -47,9 +47,9 @@ public class Options implements MavenRepository.Settings {
 	private ClassLoaderStrategy classLoaderStrategy = ClassLoaderStrategy.ParentLast;
 	private boolean ignoreMissingAnnotations = false;
 	private boolean ignoreExactCopy = false;
-	private String repositoryUrl = MAVEN_CENTRAL_URL;
-	private String repositoryUsername = null;
-	private String repositoryPassword = null;
+	private String repositoryUrl = System.getProperty("jarhc." + REPOSITORY_URL, MAVEN_CENTRAL_URL);
+	private String repositoryUsername = System.getProperty("jarhc." + REPOSITORY_USERNAME);
+	private String repositoryPassword = System.getProperty("jarhc." + REPOSITORY_PASSWORD);
 	private boolean skipEmpty = false;
 	private String dataPath = null;
 
