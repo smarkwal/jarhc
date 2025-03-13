@@ -74,36 +74,38 @@ public class SearchHandler implements HttpHandler {
 				sendData(exchange, data);
 				return;
 			}
-		}
 
-		if (mode != ServerMode.LocalOnly) {
-
-			Optional<byte[]> response;
-			try {
-				response = remoteSearchClient.get(checksum);
-			} catch (HttpException e) {
-				LOGGER.warn("Unexpected HTTP status code: {}", e.getStatusCode());
-				sendError(exchange, e);
-				return;
-			} catch (IOException e) {
-				LOGGER.error("Unexpected I/O error", e);
-				sendInternalServerError(exchange);
-				return;
-			}
-
-			if (response.isEmpty()) {
+			if (mode == ServerMode.LocalOnly) {
 				sendNotFound(exchange);
 				return;
 			}
-
-			byte[] data = response.get();
-			sendData(exchange, data);
-
-			if (mode == ServerMode.LocalRemoteUpdate) {
-				localSearchClient.put(checksum, data);
-			}
-
 		}
+
+		Optional<byte[]> response;
+		try {
+			response = remoteSearchClient.get(checksum);
+		} catch (HttpException e) {
+			LOGGER.warn("Unexpected HTTP status code: {}", e.getStatusCode());
+			sendError(exchange, e);
+			return;
+		} catch (IOException e) {
+			LOGGER.error("Unexpected I/O error", e);
+			sendInternalServerError(exchange);
+			return;
+		}
+
+		if (response.isEmpty()) {
+			sendNotFound(exchange);
+			return;
+		}
+
+		byte[] data = response.get();
+		sendData(exchange, data);
+
+		if (mode == ServerMode.LocalRemoteUpdate) {
+			localSearchClient.put(checksum, data);
+		}
+
 	}
 
 	public static Map<String, String> queryToMap(URI uri) {

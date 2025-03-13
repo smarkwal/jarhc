@@ -88,36 +88,38 @@ public class RepoHandler implements HttpHandler {
 				sendData(exchange, contentType, data);
 				return;
 			}
-		}
 
-		if (mode != ServerMode.LocalOnly) {
-
-			Optional<byte[]> response;
-			try {
-				response = remoteRepoClient.get(path);
-			} catch (HttpException e) {
-				LOGGER.warn("Unexpected HTTP status code: {}", e.getStatusCode());
-				sendError(exchange, e);
-				return;
-			} catch (IOException e) {
-				LOGGER.error("Unexpected I/O error", e);
-				sendInternalServerError(exchange);
-				return;
-			}
-
-			if (response.isEmpty()) {
+			if (mode == ServerMode.LocalOnly) {
 				sendNotFound(exchange);
 				return;
 			}
-
-			byte[] data = response.get();
-			sendData(exchange, contentType, data);
-
-			if (mode == ServerMode.LocalRemoteUpdate) {
-				localRepoClient.put(path, data);
-			}
-
 		}
+
+		Optional<byte[]> response;
+		try {
+			response = remoteRepoClient.get(path);
+		} catch (HttpException e) {
+			LOGGER.warn("Unexpected HTTP status code: {}", e.getStatusCode());
+			sendError(exchange, e);
+			return;
+		} catch (IOException e) {
+			LOGGER.error("Unexpected I/O error", e);
+			sendInternalServerError(exchange);
+			return;
+		}
+
+		if (response.isEmpty()) {
+			sendNotFound(exchange);
+			return;
+		}
+
+		byte[] data = response.get();
+		sendData(exchange, contentType, data);
+
+		if (mode == ServerMode.LocalRemoteUpdate) {
+			localRepoClient.put(path, data);
+		}
+
 	}
 
 	private static void sendNotFound(HttpExchange exchange) throws IOException {
