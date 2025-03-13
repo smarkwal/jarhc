@@ -47,7 +47,7 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 		// update repository URL in Java System Properties
 		originalRepositoryUrl = System.getProperty("jarhc.repository.url");
 		String repositoryUrl = server.getRepoURL();
-		// TODO: System.setProperty("jarhc.repository.url", repositoryUrl);
+		System.setProperty("jarhc.repository.url", repositoryUrl);
 	}
 
 	@Override

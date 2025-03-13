@@ -413,6 +413,9 @@ tasks.withType<Test> {
         }
     }
 
+    // do not allow requests to non-local repositories in tests
+    systemProperty("jarhc.test.maven.local-only", "true")
+
     // set locale to English (US)
     systemProperty("user.language", "en")
     systemProperty("user.country", "US")
