@@ -114,7 +114,7 @@ public class MavenProxyServer {
 			throw new FileNotFoundException(rootPath.toString());
 		}
 
-		LOGGER.debug("Starting server ...");
+		LOGGER.trace("Starting server ...");
 
 		// create subdirectories (if not exist)
 		Path searchPath = rootPath.resolve("search");
@@ -127,24 +127,24 @@ public class MavenProxyServer {
 		server.createContext("/repo", new RepoHandler(mode, timeout, repoPath));
 		server.setExecutor(null); // creates a default executor
 		server.start();
-		LOGGER.debug("Server started.");
+		LOGGER.trace("Server started.");
 
 		// get server port
 		port = server.getAddress().getPort();
 
-		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("Server endpoints:");
-			LOGGER.debug("- {}", getSearchURL());
-			LOGGER.debug("- {}", getRepoURL());
+		if (LOGGER.isTraceEnabled()) {
+			LOGGER.trace("Server endpoints:");
+			LOGGER.trace("- {}", getSearchURL());
+			LOGGER.trace("- {}", getRepoURL());
 		}
 	}
 
 	public void stop() {
 		if (server == null) throw new IllegalStateException("Server not started.");
-		LOGGER.debug("Stopping server ...");
+		LOGGER.trace("Stopping server ...");
 		server.stop(0);
 		server = null;
-		LOGGER.debug("Server stopped.");
+		LOGGER.trace("Server stopped.");
 	}
 
 }

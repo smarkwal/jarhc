@@ -62,7 +62,7 @@ public class RepoHandler implements HttpHandler {
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
 		URI uri = exchange.getRequestURI();
-		LOGGER.debug("Request: {}", uri);
+		LOGGER.trace("Request: {}", uri);
 
 		String path = uri.getPath();
 		if (path.startsWith("/repo/")) {
