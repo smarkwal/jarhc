@@ -17,6 +17,7 @@
 package org.jarhc.it.utils;
 
 import java.nio.file.Path;
+import org.jarhc.TestUtils;
 import org.jarhc.test.server.MavenProxyServer;
 import org.jarhc.test.server.ServerMode;
 import org.junit.jupiter.api.extension.AfterAllCallback;
@@ -35,8 +36,9 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 			throw new IllegalStateException("Server is already running.");
 		}
 
+		ServerMode mode = TestUtils.createResources() ? ServerMode.LocalRemoteUpdate : ServerMode.LocalOnly;
 		Path proxyPath = Path.of("src/test/resources/maven-proxy-server");
-		server = new MavenProxyServer(ServerMode.LocalOnly, 10, proxyPath);
+		server = new MavenProxyServer(mode, 10, proxyPath);
 		server.start();
 
 		// update search URL in Java System Properties
