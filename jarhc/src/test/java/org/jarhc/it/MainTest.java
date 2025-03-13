@@ -29,7 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
-import org.jarhc.it.utils.MavenSearchApiMockServer;
+import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.test.SystemExitException;
 import org.jarhc.test.SystemExitManager;
 import org.jarhc.utils.FileUtils;
@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 
-@ExtendWith(MavenSearchApiMockServer.class)
+@ExtendWith(MavenProxyServerExtension.class)
 class MainTest {
 
 	private SecurityManager originalSecurityManager;

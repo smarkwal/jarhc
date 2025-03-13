@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Properties;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.test.TestDataException;
+import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 
@@ -144,7 +145,7 @@ public class TestUtils {
 	}
 
 	public static String getFileRepositoryURL() {
-		File directory = new File("src/test/resources/repository");
+		File directory = new File("src/test/resources/maven-proxy-server/repo");
 		return "file://" + directory.getAbsolutePath();
 	}
 
@@ -153,6 +154,29 @@ public class TestUtils {
 			@Override
 			public String getRepositoryUrl() {
 				return getFileRepositoryURL();
+			}
+
+			@Override
+			public String getRepositoryUsername() {
+				return null;
+			}
+
+			@Override
+			public String getRepositoryPassword() {
+				return null;
+			}
+		};
+	}
+
+	public static MavenRepository.Settings getTestRepositorySettings() {
+		return new MavenRepository.Settings() {
+			@Override
+			public String getRepositoryUrl() {
+				String repositoryUrl = System.getProperty("jarhc.repository.url");
+				if (repositoryUrl == null) {
+					throw new JarHcException("Test repository URL not set. [jarhc.repository.url]");
+				}
+				return repositoryUrl;
 			}
 
 			@Override
