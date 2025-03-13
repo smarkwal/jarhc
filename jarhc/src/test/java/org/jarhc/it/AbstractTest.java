@@ -18,7 +18,6 @@ package org.jarhc.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -28,8 +27,9 @@ import org.jarhc.TestUtils;
 import org.jarhc.analyzer.Analysis;
 import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
+import org.jarhc.app.ArtifactSource;
+import org.jarhc.app.JarSource;
 import org.jarhc.app.Options;
-import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
@@ -63,21 +63,19 @@ abstract class AbstractTest {
 	@TestFactory
 	Collection<DynamicTest> testAnalyzers(@TempDir Path tempDir) throws IOException {
 
-		// prepare list of files
-		List<File> files = new ArrayList<>();
-		for (String coordinates : artifacts) {
-			Artifact artifact = new Artifact(coordinates);
-			String resourcePath = "/maven-proxy-server/repo/" + artifact.getPath();
-			File file = TestUtils.getResourceAsFile(resourcePath, tempDir);
-			files.add(file);
-		}
-
 		// prepare context
 		Options options = new Options();
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
 		MavenRepository repository = new MavenRepository(11, TestUtils.getTestRepositorySettings(), tempDir.toString(), artifactFinder, logger);
+
+		// prepare list of artifacts
+		List<JarSource> sources = new ArrayList<>();
+		for (String coordinates : artifacts) {
+			ArtifactSource source = new ArtifactSource(coordinates, repository);
+			sources.add(source);
+		}
 
 		// prepare an injector
 		Injector injector = new Injector();
@@ -90,7 +88,7 @@ abstract class AbstractTest {
 				.withParentClassLoader(javaRuntime)
 				.withRepository(repository)
 				.buildClasspathLoader();
-		Classpath classpath = classpathLoader.load(files);
+		Classpath classpath = classpathLoader.load(sources);
 
 		List<DynamicTest> tests = new ArrayList<>();
 		AnalyzerRegistry registry = new AnalyzerRegistry(injector);
