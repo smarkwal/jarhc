@@ -31,17 +31,20 @@ import org.jarhc.app.Options;
 import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.it.utils.ArtifactFinderMock;
+import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.test.JavaRuntimeMock;
 import org.jarhc.test.PrintStreamBuffer;
 import org.jarhc.test.log.LoggerBuilder;
 import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.slf4j.Logger;
 
+@ExtendWith(MavenProxyServerExtension.class)
 class ApplicationTest {
 
 	PrintStreamBuffer out = new PrintStreamBuffer();
@@ -59,7 +62,7 @@ class ApplicationTest {
 		application.setJavaRuntimeFactory(JavaRuntimeMock::getOracleRuntime);
 
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
-		MavenRepository repository = new MavenRepository(11, TestUtils.getFileRepositorySettings(), tempDir.toString(), artifactFinder, mavenRepositoryLogger);
+		MavenRepository repository = new MavenRepository(11, TestUtils.getTestRepositorySettings(), tempDir.toString(), artifactFinder, mavenRepositoryLogger);
 		application.setRepository(repository);
 	}
 

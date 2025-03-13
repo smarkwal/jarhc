@@ -36,6 +36,7 @@ import org.jarhc.artifacts.Repository;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.it.utils.ArtifactFinderMock;
+import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.loader.ClasspathLoader;
 import org.jarhc.loader.LoaderBuilder;
 import org.jarhc.model.Classpath;
@@ -45,10 +46,12 @@ import org.jarhc.report.text.TextReportFormat;
 import org.jarhc.test.JavaRuntimeMock;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@ExtendWith(MavenProxyServerExtension.class)
 abstract class AbstractTest {
 
 	private final String[] artifacts;
@@ -74,7 +77,7 @@ abstract class AbstractTest {
 		JavaRuntime javaRuntime = JavaRuntimeMock.getOracleRuntime();
 		Logger logger = LoggerFactory.getLogger(MavenRepository.class);
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
-		MavenRepository repository = new MavenRepository(11, TestUtils.getFileRepositorySettings(), tempDir.toString(), artifactFinder, logger);
+		MavenRepository repository = new MavenRepository(11, TestUtils.getTestRepositorySettings(), tempDir.toString(), artifactFinder, logger);
 
 		// prepare an injector
 		Injector injector = new Injector();

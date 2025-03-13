@@ -31,6 +31,7 @@ import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.ArtifactVersion;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.RepositoryException;
+import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
 import org.jarhc.test.log.LoggerBuilder;
@@ -38,9 +39,11 @@ import org.jarhc.utils.IOUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 
+@ExtendWith(MavenProxyServerExtension.class)
 @SuppressWarnings("NewClassNamingConvention")
 class MavenRepositoryTest {
 
@@ -50,7 +53,7 @@ class MavenRepositoryTest {
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
-		repository = new MavenRepository(11, TestUtils.getFileRepositorySettings(), tempDir.toString(), null, logger);
+		repository = new MavenRepository(11, TestUtils.getTestRepositorySettings(), tempDir.toString(), null, logger);
 	}
 
 	@AfterEach
@@ -249,7 +252,7 @@ class MavenRepositoryTest {
 	void test_getDependencies_CamelJDBC_onJava8(@TempDir Path tempDir) throws RepositoryException {
 
 		// create a new repository for Java 11
-		repository = new MavenRepository(8, TestUtils.getFileRepositorySettings(), tempDir.toString(), null, logger);
+		repository = new MavenRepository(8, TestUtils.getTestRepositorySettings(), tempDir.toString(), null, logger);
 
 		// prepare
 		Artifact artifact = new Artifact("org.apache.camel:camel-jdbc:2.17.7");

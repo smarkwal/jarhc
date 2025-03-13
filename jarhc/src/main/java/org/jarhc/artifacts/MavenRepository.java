@@ -76,7 +76,7 @@ public class MavenRepository implements Repository {
 		// check if code is running in a test where only local repositories are allowed
 		String localOnly = System.getProperty("jarhc.test.maven.local-only", "false");
 		if (localOnly.equals("true")) {
-			if (!repositoryUrl.startsWith("http://localhost") && !repositoryUrl.startsWith("file://")) {
+			if (!repositoryUrl.startsWith("http://localhost")) { // && !repositoryUrl.startsWith("file://")) {
 				throw new JarHcException("Non-local repository URL: " + repositoryUrl);
 			}
 		}
