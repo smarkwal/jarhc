@@ -159,7 +159,7 @@ public class MavenRepository implements Repository {
 			// fetch all versions of the artifact (list is already sorted)
 			VersionRangeResult versionResult = repoSystem.resolveVersionRange(session, request);
 			// return list of versions
-			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::new).collect(Collectors.toList());
+			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::of).collect(Collectors.toList());
 		} catch (VersionRangeResolutionException e) {
 			throw new RepositoryException(MAVEN_ERROR, e);
 		}

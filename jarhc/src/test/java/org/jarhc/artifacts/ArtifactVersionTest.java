@@ -46,7 +46,7 @@ class ArtifactVersionTest {
 			"9.0.12345678901234567890-snapshot,false,9,0,2147483647"
 	})
 	void test(String version, boolean stable, int major, int minor, int patch) {
-		ArtifactVersion artifactVersion = new ArtifactVersion(version);
+		ArtifactVersion artifactVersion = ArtifactVersion.of(version);
 		assertEquals(stable, artifactVersion.isStable());
 		assertEquals(stable, !artifactVersion.isUnstable());
 		assertEquals(major, artifactVersion.getMajor());
@@ -57,8 +57,8 @@ class ArtifactVersionTest {
 
 	@Test
 	void constructors() {
-		ArtifactVersion artifactVersion1 = new ArtifactVersion(1, 2, 3);
-		ArtifactVersion artifactVersion2 = new ArtifactVersion("1.2.3");
+		ArtifactVersion artifactVersion1 = ArtifactVersion.of(1, 2, 3);
+		ArtifactVersion artifactVersion2 = ArtifactVersion.of("1.2.3");
 		assertEquals(artifactVersion1, artifactVersion2);
 		assertEquals(artifactVersion2, artifactVersion1);
 	}
@@ -108,8 +108,8 @@ class ArtifactVersionTest {
 			for (int j = 0; j < versions.size(); j++) {
 				String version1 = versions.get(i);
 				String version2 = versions.get(j);
-				ArtifactVersion artifactVersion1 = new ArtifactVersion(version1);
-				ArtifactVersion artifactVersion2 = new ArtifactVersion(version2);
+				ArtifactVersion artifactVersion1 = ArtifactVersion.of(version1);
+				ArtifactVersion artifactVersion2 = ArtifactVersion.of(version2);
 				int expected = Integer.compare(i, j);
 				int actual1 = artifactVersion1.compareTo(artifactVersion2);
 				int actual2 = artifactVersion2.compareTo(artifactVersion1);
@@ -150,8 +150,8 @@ class ArtifactVersionTest {
 
 		for (String version1 : versions) {
 			for (String version2 : versions) {
-				ArtifactVersion artifactVersion1 = new ArtifactVersion(version1);
-				ArtifactVersion artifactVersion2 = new ArtifactVersion(version2);
+				ArtifactVersion artifactVersion1 = ArtifactVersion.of(version1);
+				ArtifactVersion artifactVersion2 = ArtifactVersion.of(version2);
 				int actual1 = artifactVersion1.compareTo(artifactVersion2);
 				int actual2 = artifactVersion2.compareTo(artifactVersion1);
 				assertEquals(0, actual1, artifactVersion1 + " == " + artifactVersion2);
@@ -162,23 +162,23 @@ class ArtifactVersionTest {
 
 	@Test
 	void compareTo_bigInt() {
-		ArtifactVersion version1 = new ArtifactVersion("0.12345678901234567890");
-		ArtifactVersion version2 = new ArtifactVersion("0.12345678901234567891");
+		ArtifactVersion version1 = ArtifactVersion.of("0.12345678901234567890");
+		ArtifactVersion version2 = ArtifactVersion.of("0.12345678901234567891");
 		assertTrue(version1.compareTo(version2) < 0);
 		assertTrue(version2.compareTo(version1) > 0);
 	}
 
 	@Test
 	void compareTo_NaN() {
-		ArtifactVersion version1 = new ArtifactVersion("1.2.x");
-		ArtifactVersion version2 = new ArtifactVersion("1.2.3");
+		ArtifactVersion version1 = ArtifactVersion.of("1.2.x");
+		ArtifactVersion version2 = ArtifactVersion.of("1.2.3");
 		assertTrue(version1.compareTo(version2) < 0);
 		assertTrue(version2.compareTo(version1) > 0);
 	}
 
 	@Test
 	void getPosition() {
-		ArtifactVersion version = new ArtifactVersion("1.23.1000000000.45678901234567890.x");
+		ArtifactVersion version = ArtifactVersion.of("1.23.1000000000.45678901234567890.x");
 		assertEquals(1, version.getPosition(0));
 		assertEquals(23, version.getPosition(1));
 		assertEquals(1000000000, version.getPosition(2));
