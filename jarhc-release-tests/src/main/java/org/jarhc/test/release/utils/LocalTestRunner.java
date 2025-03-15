@@ -104,7 +104,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			}
 
 			int exitCode = process.exitValue();
-			LOGGER.info("Exit code: {}", exitCode);
+			LOGGER.debug("Exit code: {}", exitCode);
 			String stdOut = stdOutBuffer.toString(StandardCharsets.UTF_8);
 			String stdErr = stdErrBuffer.toString(StandardCharsets.UTF_8);
 

@@ -74,13 +74,13 @@ class JarHcTest extends ReleaseTest {
 
 		// workaround for AccessDeniedException in @TempDir
 		// when Testcontainers has not released all resources yet
-		LOGGER.info("Delete temporary directory: {}", tempDir);
+		LOGGER.debug("Delete temporary directory: {}", tempDir);
 		int retries = 10;
 		for (int n = 1; n <= retries; n++) {
 			try {
 				FileUtils.deleteDirectory(tempDir);
 				// no IO exception -> success
-				LOGGER.info("Temporary directory has been deleted.");
+				LOGGER.debug("Temporary directory has been deleted.");
 				return;
 			} catch (IOException e) {
 				if (n == retries) {
@@ -107,7 +107,7 @@ class JarHcTest extends ReleaseTest {
 		// note: all runners and tests will use the same data directory
 		File dataDir = new File(tempDir, "data");
 		createDirectory(dataDir);
-		LOGGER.info("Data directory: {}", dataDir.getAbsolutePath());
+		LOGGER.debug("Data directory: {}", dataDir.getAbsolutePath());
 
 		// add a local test runner first
 		List<AbstractTestRunner> runners = new ArrayList<>();
@@ -119,7 +119,7 @@ class JarHcTest extends ReleaseTest {
 
 		// get image filter from system property
 		String imageNameFilter = System.getProperty("jarhc.test.docker.filter", "eclipse-temurin");
-		LOGGER.info("Docker image name filter: {}", imageNameFilter);
+		LOGGER.debug("Docker image name filter: {}", imageNameFilter);
 
 		// add a Docker-based test runner for every Java image
 		for (JavaImage javaImage : JAVA_IMAGES) {
@@ -127,9 +127,9 @@ class JarHcTest extends ReleaseTest {
 
 			// check if image is accepted by filter
 			if (javaImage.matches(imageNameFilter)) {
-				LOGGER.info("- TEST: {}", imageName);
+				LOGGER.debug("- TEST: {}", imageName);
 			} else {
-				LOGGER.info("- skip: {}", imageName);
+				LOGGER.debug("- skip: {}", imageName);
 				continue; // skip this image
 			}
 
