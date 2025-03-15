@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# load environment variables
-set -o allexport
-source .env
-set +o allexport
-
 usage()
 {
   echo "Usage: $0 <command>"
