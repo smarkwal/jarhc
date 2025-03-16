@@ -58,10 +58,10 @@ public class DockerTestRunner extends AbstractTestRunner {
 		Container.ExecResult result;
 		try {
 
-			LOGGER.info("Start container: {}", getName());
+			LOGGER.debug("Start container: {}", getName());
 			container.start();
 
-			LOGGER.info("Run command: {}", command);
+			LOGGER.debug("Run command: {}", command);
 			result = container.exec(command);
 
 			int exitCode = result.getExitCode();

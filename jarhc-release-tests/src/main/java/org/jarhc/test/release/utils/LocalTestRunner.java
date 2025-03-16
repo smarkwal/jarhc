@@ -76,7 +76,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			cmd[0] = javaHome + "/bin/" + cmd[0];
 
 			// start JVM with given command
-			LOGGER.info("Run command: {}", command);
+			LOGGER.debug("Run command: {}", command);
 			Runtime runtime = Runtime.getRuntime();
 			Process process = runtime.exec(cmd, null, workDir);
 
