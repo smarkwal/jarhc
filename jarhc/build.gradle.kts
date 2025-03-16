@@ -15,8 +15,6 @@
  */
 
 import com.github.jk1.license.render.CsvReportRenderer
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     `java-library`
@@ -434,19 +432,7 @@ tasks.withType<Test> {
 
     // test task output
     testLogging {
-        events = mutableSetOf(
-            // TestLogEvent.STARTED,
-            // TestLogEvent.PASSED,
-            TestLogEvent.FAILED,
-            TestLogEvent.SKIPPED,
-            TestLogEvent.STANDARD_OUT,
-            TestLogEvent.STANDARD_ERROR
-        )
         showStandardStreams = true
-        exceptionFormat = TestExceptionFormat.SHORT
-        showExceptions = true
-        showCauses = true
-        showStackTraces = true
     }
 
 }

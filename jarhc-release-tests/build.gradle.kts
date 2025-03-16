@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     java
 }
@@ -85,6 +82,8 @@ tasks {
             // write all JarHC dependencies into configurations.properties
             val dependencies = StringBuilder()
             project(":jarhc").configurations.forEach { conf ->
+                // skip configuration "signatures" as it will not be resolvable anymore in Gradle 9.0
+                if (conf.name == "signatures") return@forEach
                 val artifacts = if (conf.isCanBeResolved) {
                     conf.resolvedConfiguration.resolvedArtifacts.map { it.moduleVersion.id }.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
                 } else {
@@ -142,19 +141,7 @@ tasks {
 
         // test task output
         testLogging {
-            events = mutableSetOf(
-                // TestLogEvent.STARTED,
-                // TestLogEvent.PASSED,
-                TestLogEvent.FAILED,
-                TestLogEvent.SKIPPED,
-                TestLogEvent.STANDARD_OUT,
-                TestLogEvent.STANDARD_ERROR
-            )
             showStandardStreams = true
-            exceptionFormat = TestExceptionFormat.SHORT
-            showExceptions = true
-            showCauses = true
-            showStackTraces = true
         }
 
         dependsOn("prepareTests")

@@ -21,11 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
@@ -40,14 +37,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 
 @ExtendWith(MavenProxyServerExtension.class)
-class MainTest {
+class MainTest extends AbstractOutputTest {
 
 	private SecurityManager originalSecurityManager;
-	private PrintStream originalSystemOut;
-	private PrintStream originalSystemErr;
-
-	private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	private final PrintStream stream = new PrintStream(buffer);
 
 	@BeforeEach
 	void setUp() {
@@ -56,20 +48,10 @@ class MainTest {
 		originalSecurityManager = System.getSecurityManager();
 		System.setSecurityManager(new SystemExitManager(originalSecurityManager));
 
-		// redirect STDOUT and STDERR to an in-memory buffer
-		originalSystemOut = System.out;
-		originalSystemErr = System.err;
-		System.setOut(stream);
-		System.setErr(stream);
-
 	}
 
 	@AfterEach
 	void tearDown() {
-
-		// restore original STDOUT and STDERR
-		System.setOut(originalSystemOut);
-		System.setErr(originalSystemErr);
 
 		// restore original security manager (may be null)
 		System.setSecurityManager(originalSecurityManager);
@@ -164,10 +146,7 @@ class MainTest {
 			assertEquals(0, e.getStatus());
 		}
 
-		// flush output to buffer
-		stream.flush();
-
-		String output = buffer.toString(StandardCharsets.UTF_8);
+		String output = getOutput();
 		assertTrue(output.startsWith("Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*"));
 
 	}
@@ -189,10 +168,7 @@ class MainTest {
 			assertEquals(-100, e.getStatus());
 		}
 
-		// flush output to buffer
-		stream.flush();
-
-		String output = buffer.toString(StandardCharsets.UTF_8);
+		String output = getOutput();
 		assertTrue(output.startsWith("Unknown option: '--unknown-option'."));
 
 	}
