@@ -16,6 +16,7 @@
 
 package org.jarhc.it;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +29,7 @@ import org.jarhc.utils.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-abstract class AbstractMainTest {
+abstract class AbstractMainTest extends AbstractOutputTest {
 
 	private final String[] extraArgs;
 
@@ -72,6 +73,9 @@ abstract class AbstractMainTest {
 
 		String expectedReport = TestUtils.getResourceAsString(resource, "UTF-8");
 		assertEquals(expectedReport, actualReport);
+
+		String output = getOutput();
+		assertThat(output).startsWith("JarHC - JAR Health Check 0.0.1");
 	}
 
 }
