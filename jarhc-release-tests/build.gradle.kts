@@ -142,19 +142,7 @@ tasks {
 
         // test task output
         testLogging {
-            events = mutableSetOf(
-                // TestLogEvent.STARTED,
-                // TestLogEvent.PASSED,
-                TestLogEvent.FAILED,
-                TestLogEvent.SKIPPED,
-                TestLogEvent.STANDARD_OUT,
-                TestLogEvent.STANDARD_ERROR
-            )
             showStandardStreams = true
-            exceptionFormat = TestExceptionFormat.SHORT
-            showExceptions = true
-            showCauses = true
-            showStackTraces = true
         }
 
         dependsOn("prepareTests")
