@@ -56,7 +56,6 @@ allprojects {
 subprojects {
 
     apply(plugin = "idea")
-    apply(plugin = "com.github.ben-manes.versions")
 
     // Java version check ------------------------------------------------------
 
@@ -70,14 +69,6 @@ subprojects {
     repositories {
         maven {
             url = uri("https://repo.maven.apache.org/maven2/")
-        }
-    }
-
-    tasks {
-        dependencyUpdates {
-            rejectVersionIf {
-                isUnstableVersion(candidate)
-            }
         }
     }
 
