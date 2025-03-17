@@ -92,9 +92,6 @@ val mainClassName: String = "org.jarhc.Main"
 // license report
 val licenseReportPath: String = "${layout.buildDirectory.get()}/reports/licenses"
 
-// test results
-val testReportPath: String = "${layout.buildDirectory.get()}/test-results/test"
-
 // JaCoCo coverage report
 val jacocoTestReportXml: String = "${layout.buildDirectory.get()}/reports/jacoco/test/report.xml"
 
@@ -211,7 +208,7 @@ sonar {
         property("sonar.java.test.binaries", "${layout.buildDirectory.get()}/classes/java/test")
 
         // include test results
-        property("sonar.junit.reportPaths", testReportPath)
+        property("sonar.junit.reportPaths", "${layout.buildDirectory.get()}/test-results/test")
 
         // include test coverage results
         property("sonar.java.coveragePlugin", "jacoco")
