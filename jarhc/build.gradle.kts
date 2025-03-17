@@ -153,10 +153,10 @@ dependencies {
     includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
 
     // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.12.0")
+    testFixturesApi("org.junit.jupiter:junit-jupiter:5.12.1")
     testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testFixturesApi("org.assertj:assertj-core:3.27.3")
-    testFixturesApi("org.mockito:mockito-core:5.16.0")
+    testFixturesApi("org.mockito:mockito-core:5.16.1")
     testFixturesApi("org.slf4j:slf4j-simple:2.0.17")
 
 }
