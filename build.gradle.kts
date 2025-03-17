@@ -29,16 +29,6 @@ plugins {
 
 }
 
-buildscript {
-    dependencies {
-        // fix CVE-2023-3635 in Okio < 3.4.0
-        // (indirect dependency of Gradle Versions Plugin 0.51.0)
-        // check dependencies with ./gradlew buildEnvironment | grep okio
-        classpath("com.squareup.okio:okio:3.10.2")
-        classpath("com.squareup.okio:okio-jvm:3.10.2")
-    }
-}
-
 allprojects {
 
     // load user-specific properties -------------------------------------------
