@@ -76,7 +76,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			cmd[0] = javaHome + "/bin/" + cmd[0];
 
 			// start JVM with given command
-			LOGGER.info("Run command: {}", command);
+			LOGGER.debug("Run command: {}", command);
 			Runtime runtime = Runtime.getRuntime();
 			Process process = runtime.exec(cmd, null, workDir);
 
@@ -104,7 +104,7 @@ public class LocalTestRunner extends AbstractTestRunner {
 			}
 
 			int exitCode = process.exitValue();
-			LOGGER.info("Exit code: {}", exitCode);
+			LOGGER.debug("Exit code: {}", exitCode);
 			String stdOut = stdOutBuffer.toString(StandardCharsets.UTF_8);
 			String stdErr = stdErrBuffer.toString(StandardCharsets.UTF_8);
 

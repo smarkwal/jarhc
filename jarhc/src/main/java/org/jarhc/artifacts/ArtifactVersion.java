@@ -16,8 +16,6 @@
 
 package org.jarhc.artifacts;
 
-import static java.util.Objects.requireNonNull;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,8 +23,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ArtifactVersion implements Comparable<ArtifactVersion> {
+
+	// cache ArtifactVersion as there will be many instances with the same version strings
+	private static final Map<String, ArtifactVersion> CACHE = new ConcurrentHashMap<>();
 
 	private static final BigInteger MIN_INTEGER = BigInteger.valueOf(Integer.MIN_VALUE);
 	private static final BigInteger MAX_INTEGER = BigInteger.valueOf(Integer.MAX_VALUE);
@@ -37,18 +39,20 @@ public class ArtifactVersion implements Comparable<ArtifactVersion> {
 
 	private final int hash;
 
-	public ArtifactVersion(String version) {
-		this.version = requireNonNull(version, "version cannot be null");
-		items = parse(version);
-		hash = items.hashCode();
+	public static ArtifactVersion of(String version) {
+		if (version == null) {
+			throw new IllegalArgumentException("version cannot be null");
+		}
+		return CACHE.computeIfAbsent(version, ArtifactVersion::new);
 	}
 
-	public ArtifactVersion(int major, int minor, int patch) {
-		this.version = major + "." + minor + "." + patch;
-		items = new ArrayList<>(3);
-		items.add(new Item(Item.KIND_INT, major));
-		items.add(new Item(Item.KIND_INT, minor));
-		items.add(new Item(Item.KIND_INT, patch));
+	public static ArtifactVersion of(int major, int minor, int patch) {
+		return of(major + "." + minor + "." + patch);
+	}
+
+	private ArtifactVersion(String version) {
+		this.version = version;
+		items = parse(version);
 		hash = items.hashCode();
 	}
 

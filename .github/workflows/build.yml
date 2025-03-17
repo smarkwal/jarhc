@@ -50,7 +50,7 @@ jobs:
         cache-read-only: false
 
     - name: Build with Gradle
-      run: './gradlew --no-daemon :jarhc:build -x :jarhc:jarhcReport ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
+      run: './gradlew --no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@v4

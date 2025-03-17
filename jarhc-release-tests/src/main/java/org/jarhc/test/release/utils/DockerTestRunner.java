@@ -58,18 +58,18 @@ public class DockerTestRunner extends AbstractTestRunner {
 		Container.ExecResult result;
 		try {
 
-			LOGGER.info("Start container: {}", getName());
+			LOGGER.debug("Start container: {}", getName());
 			container.start();
 
-			LOGGER.info("Run command: {}", command);
+			LOGGER.debug("Run command: {}", command);
 			result = container.exec(command);
 
 			int exitCode = result.getExitCode();
-			LOGGER.info("Exit code: {}", exitCode);
+			LOGGER.debug("Exit code: {}", exitCode);
 
 		} finally {
 
-			LOGGER.info("Stop container: {}", getName());
+			LOGGER.debug("Stop container: {}", getName());
 			container.stop();
 		}
 
@@ -107,7 +107,7 @@ public class DockerTestRunner extends AbstractTestRunner {
 
 		String user = getUser();
 		if (user != null) {
-			LOGGER.info("Run as user: {}", user);
+			LOGGER.debug("Run as user: {}", user);
 			container.withCreateContainerCmdModifier(cmd -> cmd.withUser(user));
 		}
 

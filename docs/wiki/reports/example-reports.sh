@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # JarHC version
-version=3.0.0
+version=3.0.1-SNAPSHOT
 jarhc=`realpath ../../../jarhc/build/libs/jarhc-${version}-app.jar`
 
 # load environment variables
@@ -17,15 +17,15 @@ for report in asm-7.0 asm-commons-7.0 asm-7.0-provided \
              jarhc-1.7 jarhc-2.2.2 ; do
 
   cd ${report}
-  java -jar ${jarhc} --options options.txt
+  $JAVA_HOME/bin/java -jar ${jarhc} --options options.txt
   cd ..
 
 done
 
-java -jar ${jarhc} --diff jarhc-1.7/report.json jarhc-2.2.2/report.html \
+$JAVA_HOME/bin/java -jar ${jarhc} --diff jarhc-1.7/report.json jarhc-2.2.2/report.html \
      --output jarhc-diff-1.7-2.2.2/report.html \
      --title "JarHC 1.7 and 2.2.2"
 
-java -jar ${jarhc} --diff jakarta-ee-9/report.html jakarta-ee-10/report.json \
+$JAVA_HOME/bin/java -jar ${jarhc} --diff jakarta-ee-9/report.html jakarta-ee-10/report.json \
      --output jakarta-ee-diff-9-10/report.html \
      --title "Jakarta EE 9 and 10"

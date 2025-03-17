@@ -179,7 +179,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		}
 
 		// keep only newer stable versions
-		ArtifactVersion currentVersion = new ArtifactVersion(version);
+		ArtifactVersion currentVersion = ArtifactVersion.of(version);
 		List<ArtifactVersion> newerVersions = versions.stream()
 				.filter(v -> v.compareTo(currentVersion) > 0) // keep only newer versions
 				.filter(ArtifactVersion::isStable) // keep only stable versions
@@ -197,7 +197,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		// group versions by minor version
 		TreeMap<ArtifactVersion, List<ArtifactVersion>> map = new TreeMap<>();
 		for (ArtifactVersion version : newerVersions) {
-			ArtifactVersion key = new ArtifactVersion(version.getMajor(), version.getMinor(), 0);
+			ArtifactVersion key = ArtifactVersion.of(version.getMajor(), version.getMinor(), 0);
 			List<ArtifactVersion> versions = map.computeIfAbsent(key, k -> new ArrayList<>());
 			versions.add(version);
 		}

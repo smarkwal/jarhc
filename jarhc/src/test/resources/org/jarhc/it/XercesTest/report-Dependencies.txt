@@ -1,0 +1,15 @@
+JAR Health Check Report
+=======================
+
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact     | Uses         | Used by      | Maven coordinates             | Updates                | Direct dependencies                      | Status
+-------------+--------------+--------------+-------------------------------+------------------------+------------------------------------------+-------
+xercesImpl   | xml-apis     | [none]       | xerces:xercesImpl:2.11.0      | 2.12.0, 2.12.1, 2.12.2 | xml-apis:xml-apis:1.4.01                 | OK
+             | xml-resolver |              |                               |                        | xml-resolver:xml-resolver:1.2 (optional) | OK
+xml-apis     | [none]       | xercesImpl   | xml-apis:xml-apis:1.4.01      | 2.0.0, 2.0.2           | [none]                                   |
+             |              | xml-resolver |                               |                        |                                          |
+xml-resolver | xml-apis     | xercesImpl   | xml-resolver:xml-resolver:1.2 | [none]                 | [none]                                   |
+

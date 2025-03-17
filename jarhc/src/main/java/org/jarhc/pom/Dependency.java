@@ -86,8 +86,8 @@ public class Dependency implements Comparable<Dependency> {
 
 		// priority 3: sort by version (semantic)
 		if (!version.equals(dependency.version)) { // quick check to avoid expensive version comparison
-			ArtifactVersion version1 = new ArtifactVersion(version);
-			ArtifactVersion version2 = new ArtifactVersion(dependency.version);
+			ArtifactVersion version1 = ArtifactVersion.of(version);
+			ArtifactVersion version2 = ArtifactVersion.of(dependency.version);
 			diff = version1.compareTo(version2);
 			if (diff != 0) return diff;
 		}
