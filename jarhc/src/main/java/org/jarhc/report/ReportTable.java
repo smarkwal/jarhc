@@ -19,6 +19,7 @@ package org.jarhc.report;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import org.jarhc.utils.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,11 +75,7 @@ public class ReportTable {
 			if (value2.equals("Classpath")) return -1;
 
 			// first compare case-insensitive, then case-sensitive
-			int diff = value1.compareToIgnoreCase(value2);
-			if (diff == 0) {
-				diff = value1.compareTo(value2);
-			}
-			return diff;
+			return StringUtils.SMART_ORDER.compare(value1, value2);
 		}
 
 	}

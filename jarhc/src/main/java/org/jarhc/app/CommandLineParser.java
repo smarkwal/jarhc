@@ -90,6 +90,7 @@ public class CommandLineParser {
 		optionParsers.put("--provided", this::parseProvided);
 		optionParsers.put("--runtime", this::parseRuntime);
 		optionParsers.put("--strategy", this::parseStrategy);
+		optionParsers.put("--isolated-scan", (args, options) -> options.setIsolatedScan(true));
 		optionParsers.put("--skip-empty", (args, options) -> options.setSkipEmpty(true));
 		optionParsers.put("--ignore-missing-annotations", (args, options) -> options.setIgnoreMissingAnnotations(true));
 		optionParsers.put("--ignore-exact-copy", (args, options) -> options.setIgnoreExactCopy(true));

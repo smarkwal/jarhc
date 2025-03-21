@@ -18,11 +18,17 @@ package org.jarhc.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StringUtils {
+
+	/**
+	 * A comparator that sorts strings in a "smart" way (first case-insensitive, then case-sensitive).
+	 */
+	public static final Comparator<String> SMART_ORDER = new SmartComparator();
 
 	private StringUtils() {
 		throw new IllegalStateException("utility class");
@@ -135,6 +141,33 @@ public class StringUtils {
 
 	public static List<String> prefixLines(List<String> lines, String prefix) {
 		return lines.stream().map(line -> prefix + " " + line).collect(Collectors.toList());
+	}
+
+	private static class SmartComparator implements Comparator<String> {
+
+		@Override
+		public int compare(String value1, String value2) {
+			if (value1 == null && value2 == null) {
+				return 0;
+			}
+
+			// null values are sorted to the end
+			if (value1 == null) {
+				return 1;
+			}
+			if (value2 == null) {
+				return -1;
+			}
+
+			// compare case-insensitive
+			int diff = value1.compareToIgnoreCase(value2);
+			if (diff != 0) {
+				return diff;
+			}
+
+			// compare case-sensitive
+			return value1.compareTo(value2);
+		}
 	}
 
 }

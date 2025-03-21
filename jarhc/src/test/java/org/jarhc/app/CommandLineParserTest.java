@@ -73,6 +73,7 @@ class CommandLineParserTest {
 		assertEquals("https://repo1.maven.org/maven2/", options.getRepositoryUrl());
 		assertNull(options.getRepositoryUsername());
 		assertNull(options.getRepositoryPassword());
+		assertFalse(options.isIsolatedScan());
 		assertFalse(options.isIgnoreMissingAnnotations());
 		assertFalse(options.isIgnoreExactCopy());
 		assertNull(options.getSections());
@@ -467,6 +468,20 @@ class CommandLineParserTest {
 
 		// assert
 		assertEquals("/tmp/jarhc", options.getDataPath());
+
+	}
+
+	@Test
+	void test_isolated_scan(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] { "--isolated-scan", file.getAbsolutePath() });
+
+		// assert
+		assertTrue(options.isIsolatedScan());
 
 	}
 

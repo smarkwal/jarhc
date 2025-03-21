@@ -89,7 +89,7 @@ public class ClasspathLoader {
 
 			List<JarFile> jarFiles;
 			try {
-				String fileName = source.getName().toLowerCase();
+				String fileName = source.getFileName().toLowerCase();
 				if (fileName.endsWith(".jar")) {
 					jarFiles = jarFileLoader.load(source);
 				} else if (fileName.endsWith(".jmod")) {
@@ -97,11 +97,11 @@ public class ClasspathLoader {
 				} else if (fileName.endsWith(".war")) {
 					jarFiles = warFileLoader.load(source);
 				} else {
-					logger.warn("Unsupported file extension: {}", source.getName());
+					logger.warn("Unsupported file extension: {}", source.getFileName());
 					return;
 				}
 			} catch (IOException e) {
-				logger.warn("Unable to parse file: {}", source.getName(), e);
+				logger.warn("Unable to parse file: {}", source.getFileName(), e);
 				return;
 			}
 

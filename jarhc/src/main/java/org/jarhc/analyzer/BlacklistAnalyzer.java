@@ -104,7 +104,7 @@ public class BlacklistAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("Blacklist", "Use of dangerous, unsafe, unstable, or deprecated classes and methods.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

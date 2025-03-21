@@ -40,6 +40,12 @@ public class ArtifactSource implements JarSource {
 	@Override
 	public String getName() {
 		Artifact artifact = new Artifact(coordinates);
+		return String.format("%s %s", artifact.getArtifactId(), artifact.getVersion());
+	}
+
+	@Override
+	public String getFileName() {
+		Artifact artifact = new Artifact(coordinates);
 		return artifact.getFileName();
 	}
 

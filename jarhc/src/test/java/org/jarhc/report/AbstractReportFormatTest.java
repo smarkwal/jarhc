@@ -20,6 +20,7 @@ import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 import org.jarhc.TestUtils;
 import org.jarhc.test.TextUtils;
 import org.jarhc.utils.Markdown;
@@ -42,6 +43,9 @@ public abstract class AbstractReportFormatTest {
 		// test
 		String text = format.format(report);
 
+		// remove embedded JSON report data (different JDKs and Java versions use different compression parameters)
+		text = Pattern.compile("<!-- JSON REPORT DATA.*-->", Pattern.DOTALL).matcher(text).replaceAll("<!-- JSON REPORT DATA\n[REMOVED]\n-->");
+
 		String resource = "/org/jarhc/report/" + this.getClass().getSimpleName() + "/result.txt";
 		if (TestUtils.createResources()) {
 			text = text.replace("JarHC 0.0.1", "JarHC {version}");
@@ -62,14 +66,14 @@ public abstract class AbstractReportFormatTest {
 		report.setTimestamp(1739808014453L);
 
 		ReportSection section1 = new ReportSection("Section 1", "Description 1");
-		section1.add("Some text.");
+		section1.addText("Some text.");
 		report.addSection(section1);
 
 		ReportSection section2 = new ReportSection("Section 2", joinLines("Description 2, Line 1", "Description 2, Line 2"));
 		ReportTable table2 = new ReportTable("Column 1", "Column 2", "Column 3");
 		table2.addRow("Short", "Medium Medium", "Long Long Long Long Long Long Long");
 		table2.addRow("Line 1", joinLines("Line 1", "Longer Line 2"), joinLines("Line 1", "Longer Line 2", "Extra Long Line 3", "[[commons-io:commons-io:2.8.0]]"));
-		section2.add(table2);
+		section2.addTable(table2);
 		report.addSection(section2);
 
 		ReportSection section3 = new ReportSection("Section 3", null);
@@ -77,21 +81,21 @@ public abstract class AbstractReportFormatTest {
 		table3.addRow("1");
 		table3.addRow("2");
 		table3.addRow("3");
-		section3.add(table3);
+		section3.addTable(table3);
 		ReportTable table3b = new ReportTable("Empty");
-		section3.add(table3b);
+		section3.addTable(table3b);
 		report.addSection(section3);
 
 		ReportSection section4 = new ReportSection("Section 4", null);
 		ReportSection subsection41 = new ReportSection("Subsection 4.1", "Description 4.1");
-		subsection41.add("Some text.");
-		section4.add(subsection41);
+		subsection41.addText("Some text.");
+		section4.addSection(subsection41);
 		ReportSection subsection42 = new ReportSection("Subsection 4.2", "Description 4.2");
 		ReportSection subsection421 = new ReportSection("Subsection 4.2.1", "Description 4.2.1");
-		subsection42.add(subsection421);
-		subsection421.add("Some text.");
-		subsection42.add("Some text.");
-		section4.add(subsection42);
+		subsection42.addSection(subsection421);
+		subsection421.addText("Some text.");
+		subsection42.addText("Some text.");
+		section4.addSection(subsection42);
 		report.addSection(section4);
 
 		ReportSection section5 = new ReportSection("JAR Manifests", Markdown.deleted("Old description.") + "\n" + Markdown.inserted("New description."));
@@ -99,8 +103,8 @@ public abstract class AbstractReportFormatTest {
 		table5.addRow("a.jar", Markdown.deleted("Old issue.") + "\n" + Markdown.inserted("New issue."));
 		table5.addRow("b.jar", "Issue 1\nIssue 2");
 		table5.addRow("c.jar", "Issue 1\n" + Markdown.deleted("Old issue 2") + "\n" + Markdown.inserted("New issue 2") + "\nIssue 3");
-		section5.add(table5);
-		section5.add(Markdown.deleted("Old content.") + "\n" + Markdown.inserted("New content."));
+		section5.addTable(table5);
+		section5.addText(Markdown.deleted("Old content.") + "\n" + Markdown.inserted("New content."));
 		report.addSection(section5);
 
 		return report;

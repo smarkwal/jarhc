@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
+<html lang="en">
+<head>
+	<title>Java Logging Libraries</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="JarHC 0.0.1">
+	<style>
+
+		html {
+			scroll-padding-top: 80px;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			line-height: 1.2rem;
+		}
+
+		a {
+			color: #333399;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:visited {
+				color: #333399;
+			}
+		}
+
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			background-color: lightgray;
+			padding: 12px;
+			z-index: 100;
+		}
+
+		#controls {
+			display: flex;
+			align-self: flex-start;
+		}
+
+		.control {
+			display: flex;
+			align-items: center;
+			padding: 8px;
+			margin-right: 10px;
+			background-color: #EEEEEE;
+			border-radius: 8px;
+			user-select: none;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+
+		#showOnlyDiffControl {
+			display: none;
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
+
+		.label {
+			margin-left: 0.5em;
+		}
+
+		#generator {
+			align-self: flex-end;
+			margin-right: 20px;
+			padding: 8px;
+		}
+
+		#minimap {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 70px;
+			left: 10px;
+			width: 70px;
+			height: calc(100% - 80px);
+			z-index: 80;
+			user-select: none;
+			background-color: #EEEEEE;
+		}
+
+		#minimapView {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
+			height: 0;
+			z-index: 90; /* float above minimap */
+			pointer-events: none;
+			user-select: none;
+			border: 4px solid black;
+		}
+
+		.minimapSection {
+			position: absolute;
+			left: 2px;
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
+			padding: 2px;
+			background-color: lightgray;
+			overflow: hidden;
+		}
+
+		.minimapSectionTitle {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1em;
+			overflow-wrap: break-word;
+		}
+
+		#main {
+			margin: 80px 20px 20px 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding: 0;
+			line-height: 1.7em;
+		}
+
+		h2, h3, h4, h5, h6 {
+			margin-top: 3rem;
+		}
+
+		.report-section-title {
+			background-color: black;
+			color: white;
+			padding: 10px 10px 10px 45px;
+			user-select: none;
+
+			/* collapse icon */
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L30,30L30,10"/%3E%3Cpath d="M70,30L50,30L50,10"/%3E%3Cpath d="M10,50L30,50L30,70"/%3E%3Cpath d="M70,50L50,50L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			background-position: center left 5px;
+			background-repeat: no-repeat;
+			background-size: 30px 30px;
+		}
+
+		section.collapsed {
+			.report-section-title { /* replace collapse icon with expand icon */
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L10,10L30,10"/%3E%3Cpath d="M70,30L70,10L50,10"/%3E%3Cpath d="M10,50L10,70L30,70"/%3E%3Cpath d="M70,50L70,70L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			.report-section-content {
+				display: none;
+			}
+		}
+
+		.report-section-content {
+			margin-left: 10px;
+		}
+
+		table {
+			border-collapse: collapse;
+			font-size: 0.8rem;
+		}
+
+		th {
+			background-color: lightgray;
+		}
+
+		th, td {
+			border: 1px solid gray;
+			padding: 0.3rem;
+			vertical-align: top;
+			text-align: left;
+			white-space: nowrap;
+		}
+
+		.report-text-block {
+			margin-bottom: 1em;
+
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
+		}
+
+		.report-issue {
+		}
+
+		code {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: #333399;
+		}
+
+		.inserted {
+			background-color: #D4EDDA;
+		}
+
+		.deleted {
+			background-color: #F8D7DA;
+		}
+
+		.marked {
+			background-color: #FFF6D8;
+		}
+
+		/* special diff report settings */
+
+		.diff-report {
+
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff,
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+		}
+
+		/* special print settings */
+
+		@media print {
+
+			header,
+			#minimap,
+			#minimapView,
+			nav {
+				display: none !important;
+			}
+
+			main {
+				margin: 0;
+			}
+
+			th, td {
+				white-space: normal;
+			}
+
+		}
+
+	</style>
+	<script>
+
+		const HEADER_HEIGHT = 80;
+		const MINIMAP_VSPACE = 10;
+
+		let MINIMAP_ENABLED = false;
+
+		function init() {
+
+			// check if document is a diff report
+			const isDiffReport = "scan" === "diff"
+			if (isDiffReport) {
+				initDiffUI();
+			}
+
+			initMinimap();
+			initCollapseExpand();
+			initRowMarking();
+			initKeyboardShortcuts();
+		}
+
+		function initDiffUI() {
+
+			// support click on control (outside of checkbox and label)
+			const control = document.getElementById("showOnlyDiffControl");
+			control.addEventListener("click", function(event) {
+				if (event.target === control) { // ignore clicks on nested elements
+					// similate click on checkbox
+					const checkbox = document.getElementById("showOnlyDiffCheckbox");
+					checkbox.click();
+				}
+			});
+		}
+
+		function initMinimap() {
+
+			window.addEventListener("scroll", updateMinimapView);
+			window.addEventListener("resize", updateMinimap);
+
+			const minimap = document.getElementById("minimap");
+			minimap.addEventListener("click", scrollMinimapView);
+			// TODO: on mouse drag
+		}
+
+		function initCollapseExpand() {
+
+			// for every report section ...
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				const title = section.querySelector("h2, h3, h4, h5, h6");
+				if (title) {
+					title.addEventListener("click", () => {
+						section.classList.toggle("collapsed");
+						updateMinimap();
+					});
+				}
+			}
+		}
+
+		function initRowMarking() {
+
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				row.addEventListener("dblclick", () => {
+					row.classList.toggle("marked");
+				});
+			}
+		}
+
+		function initKeyboardShortcuts() {
+
+			// prepare event handler
+			function handleShortcut(event) {
+				if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+					event.preventDefault();
+					// scroll to previous section
+					scrollToSection(false);
+				} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+					event.preventDefault();
+					// scroll to next section
+					scrollToSection(true);
+				}
+			}
+
+			// register event handler
+			document.addEventListener("keydown", handleShortcut);
+		}
+
+		function scrollToSection(next) {
+
+			const targetY = HEADER_HEIGHT; // target scroll position (relative to viewport)
+
+			// find next section
+			let nextSection = null;
+			let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
+
+			// iterate over all sections
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// get position of section (relative to viewport)
+				const sectionY = section.getBoundingClientRect().top;
+
+				// check if section is closer than previous next section
+				let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+				if (better) {
+					nextSection = section;
+					nextSectionY = sectionY;
+				}
+			}
+
+			// if there is a next section ...
+			if (nextSection) {
+
+				// get current vertical scroll position
+				const scrollY = window.scrollY;
+
+				// scroll to next section
+				window.scrollTo(0, scrollY + nextSectionY - targetY);
+
+			} else if (!next) { // if there is no previous section
+
+				// scroll to top
+				window.scrollTo(0, 0);
+			}
+
+		}
+
+		function showOnlyDiff(enabled) {
+
+			// show or hide table rows
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				if (row.classList.contains("no-diff")) {
+					if (enabled) {
+						row.style.display = "none";
+					} else {
+						row.style.display = "table-row";
+					}
+				}
+			}
+
+			// show or hide issues
+			const issues = document.getElementsByClassName("report-issue");
+			for (let issue of issues) {
+				if (issue.classList.contains("no-diff")) {
+					if (enabled) {
+						issue.style.display = "none";
+					} else {
+						issue.style.display = "block";
+					}
+				}
+			}
+
+			// update minimap
+			updateMinimap();
+		}
+
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
+		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const minimapHeight = minimap.clientHeight;
+
+			// prepare list of new minimap elements
+			const elements = [];
+
+			let previousElementBottom = -MINIMAP_VSPACE;
+
+			// iterate over all report tables and add them to the minimap
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// TODO: fix position
+				let elementTop = (section.offsetTop - HEADER_HEIGHT) * minimapHeight / documentHeight;
+				let elementHeight = section.clientHeight * minimapHeight / documentHeight - MINIMAP_VSPACE;
+
+				const minElementTop = previousElementBottom + MINIMAP_VSPACE;
+				if (elementTop < minElementTop) {
+					elementHeight = elementHeight - (minElementTop - elementTop);
+					elementTop = minElementTop;
+				}
+
+				const minElementHeight = 16; // 12px font size + 2 x 2px padding
+				if (elementHeight < minElementHeight) {
+					elementHeight = minElementHeight;
+				}
+
+				const title = document.createElement("div");
+				title.classList.add("minimapSectionTitle");
+				title.innerText = section.title;
+				title.addEventListener("click", function(event) {
+					window.scrollTo(0, section.offsetTop - HEADER_HEIGHT);
+					event.stopPropagation();
+				})
+
+				const element = document.createElement("div");
+				element.classList.add("minimapSection");
+				element.style.top = elementTop + "px";
+				element.style.height = elementHeight + "px";
+				element.appendChild(title);
+				elements.push(element);
+
+				previousElementBottom = elementTop + elementHeight;
+			}
+
+			// TODO: iterate over all differences and add them to the minimap
+
+			// replace content of minimap
+			minimap.replaceChildren(...elements);
+
+			updateMinimapView();
+		}
+
+		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const scrollY = window.scrollY;
+
+			// calculate new position and height of minimap view
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 4;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+
+			// update position and height of minimap view
+			const minimapView = document.getElementById("minimapView");
+			minimapView.style.top = minimapViewTop + "px";
+			minimapView.style.height = minimapViewHeight + "px";
+		}
+
+		function scrollMinimapView(event) {
+			const minimap = document.getElementById("minimap");
+
+			// calculate height of minimap view
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+			const minimapViewOffset = minimapViewHeight / 2;
+
+			// calculate position of minimap view (relative to top of minimap)
+			let y = event.clientY - minimap.offsetTop;
+			if (y < minimapViewOffset) {
+				y = minimapViewOffset;
+			} else if (y > minimapHeight - minimapViewOffset) {
+				y = minimapHeight - minimapViewOffset;
+			}
+			y = y - minimapViewOffset;
+
+			const scrollY = y / minimapHeight * document.body.scrollHeight;
+			window.scrollTo(0, scrollY);
+
+			updateMinimapView();
+		}
+
+	</script>
+</head>
+<body class="report scan-report" onload="init()">
+
+	<header id="header">
+		<div id="controls">
+			<div class="control" onclick="scrollToSection(true)" title="Ctrl+&#x2193;"><span class="icon icon-down"></span><span class="label">Next section</span></div>
+			<div class="control" onclick="scrollToSection(false)" title="Ctrl+&#x2191;"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
+			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
+		</div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 0.0.1</a></div>
+	</header>
+
+	<div id="minimap"></div>
+	<div id="minimapView"></div>
+
+	<main id="main">
+		<h1 class="report-title">Java Logging Libraries</h1>
+		
+<nav>
+<h2 class="report-toc-title">Table of Contents</h2>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#log4japi2243">log4j-api 2.24.3</a>
+<ul class="report-toc-1">
+<li class="report-toc-item"><a href="#log4japi2243-JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#log4japi2243-Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#log4japi2243-BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#log4japi2243-JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#log4japi2243-JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#log4japi2243-OSGiBundles">OSGi Bundles</a></li>
+</ul>
+</li>
+<li class="report-toc-item"><a href="#logbackcore1518">logback-core 1.5.18</a>
+<ul class="report-toc-1">
+<li class="report-toc-item"><a href="#logbackcore1518-JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#logbackcore1518-Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#logbackcore1518-BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#logbackcore1518-JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#logbackcore1518-JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#logbackcore1518-OSGiBundles">OSGi Bundles</a></li>
+</ul>
+</li>
+<li class="report-toc-item"><a href="#slf4japi2017">slf4j-api 2.0.17</a>
+<ul class="report-toc-1">
+<li class="report-toc-item"><a href="#slf4japi2017-JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#slf4japi2017-Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#slf4japi2017-JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#slf4japi2017-JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#slf4japi2017-OSGiBundles">OSGi Bundles</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+
+<section class="report-section" id="log4japi2243" title="log4j-api 2.24.3">
+<h2 class="report-section-title">log4j-api 2.24.3</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff"></p>
+<section class="report-section" id="log4japi2243-JARFiles" title="JAR Files">
+<h3 class="report-section-title">JAR Files</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td>2.24.3</td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.logging.log4j/log4j-api/2.24.3" target="_blank" rel="noopener noreferrer">org.apache.logging.log4j:log4j-api:2.24.3</a></td>
+		<td>340 KB</td>
+		<td>Yes (Java 9)</td>
+		<td>Java 9 (4), Java 8 (198)</td>
+		<td>1</td>
+		<td><code>org.apache.logging.log4j</code> (+9 subpackages)</td>
+		<td><a href="https://search.maven.org/search?q=1:b02c125db8b6d295adf72ae6e71af5d83bce2370" target="_blank" rel="noopener noreferrer">b02c125db8b6d295adf72ae6e71af5d83bce2370</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.logging.log4j/log4j-api/2.24.3" target="_blank" rel="noopener noreferrer">org.apache.logging.log4j:log4j-api:2.24.3</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>340 KB</td>
+		<td>-</td>
+		<td>Java 9 (4), Java 8 (198)</td>
+		<td>1</td>
+		<td>10</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section" id="log4japi2243-Dependencies" title="Dependencies">
+<h3 class="report-section-title">Dependencies</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.apache.logging.log4j/log4j-api/2.24.3" target="_blank" rel="noopener noreferrer">org.apache.logging.log4j:log4j-api:2.24.3</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/biz.aQute.bnd/biz.aQute.bnd.annotation/7.0.0" target="_blank" rel="noopener noreferrer">biz.aQute.bnd:biz.aQute.bnd.annotation:7.0.0</a> (provided)<br><a href="https://central.sonatype.com/artifact/com.github.spotbugs/spotbugs-annotations/4.8.6" target="_blank" rel="noopener noreferrer">com.github.spotbugs:spotbugs-annotations:4.8.6</a> (provided)<br><a href="https://central.sonatype.com/artifact/com.google.errorprone/error_prone_annotations/2.32.0" target="_blank" rel="noopener noreferrer">com.google.errorprone:error_prone_annotations:2.32.0</a> (provided)<br><a href="https://central.sonatype.com/artifact/org.jspecify/jspecify/1.0.0" target="_blank" rel="noopener noreferrer">org.jspecify:jspecify:1.0.0</a> (provided)<br><a href="https://central.sonatype.com/artifact/org.osgi/org.osgi.annotation.bundle/2.0.0" target="_blank" rel="noopener noreferrer">org.osgi:org.osgi.annotation.bundle:2.0.0</a> (provided)<br><a href="https://central.sonatype.com/artifact/org.osgi/org.osgi.core/6.0.0" target="_blank" rel="noopener noreferrer">org.osgi:org.osgi.core:6.0.0</a> (provided)<br><a href="https://central.sonatype.com/artifact/org.osgi/osgi.annotation/8.1.0" target="_blank" rel="noopener noreferrer">org.osgi:osgi.annotation:8.1.0</a> (provided)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section" id="log4japi2243-BinaryCompatibility" title="Binary Compatibility">
+<h3 class="report-section-title">Binary Compatibility</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.Level</code><br>• Annotation not found: <code>aQute.bnd.annotation.baseline.BaselineIgnore</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.MarkerManager</code><br>• Annotation not found: <code>com.google.errorprone.annotations.InlineMe</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.message.LocalizedMessageFactory</code><br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.message.ParameterizedMessage</code><br>• Annotation not found: <code>com.google.errorprone.annotations.InlineMe</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.message.StructuredDataId</code><br>• Annotation not found: <code>aQute.bnd.annotation.baseline.BaselineIgnore</code> (package not found)<br>• Annotation not found: <code>com.google.errorprone.annotations.InlineMe</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.message.ThreadDumpMessage</code><br>• Annotation not found: <code>aQute.bnd.annotation.spi.ServiceConsumer</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.message.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.simple.SimpleLogger</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.simple.SimpleLoggerContext</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)<br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.simple.internal.SimpleProvider</code><br>• Annotation not found: <code>org.jspecify.annotations.NullMarked</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.simple.internal.SimpleProvider$Config</code><br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.simple.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.spi.LoggerRegistry</code><br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.spi.NoOpThreadContextMap</code><br>• Annotation not found: <code>org.jspecify.annotations.NullMarked</code> (package not found)<br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.spi.Provider</code><br>• Annotation not found: <code>org.jspecify.annotations.NullMarked</code> (package not found)<br>• Annotation not found: <code>org.jspecify.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.spi.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.status.StatusData</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.Nullable</code> (package not found)<br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.status.StatusLogger</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.Nullable</code> (package not found)<br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.status.StatusLogger$Config</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.status.StatusLogger$PropertiesUtilsDouble</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.Nullable</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.status.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.Activator</code><br>• Interface not found: <code>org.osgi.framework.BundleActivator</code><br>• Interface not found: <code>org.osgi.framework.SynchronousBundleListener</code><br>• Class not found: <code>org.osgi.framework.AdaptPermission</code> (package not found)<br>• Class not found: <code>org.osgi.framework.AdminPermission</code> (package not found)<br>• Class not found: <code>org.osgi.framework.Bundle</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleActivator</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleContext</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleEvent</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleListener</code> (package not found)<br>• Class not found: <code>org.osgi.framework.InvalidSyntaxException</code> (package not found)<br>• Class not found: <code>org.osgi.framework.ServiceReference</code> (package not found)<br>• Class not found: <code>org.osgi.framework.SynchronousBundleListener</code> (package not found)<br>• Class not found: <code>org.osgi.framework.wiring.BundleWire</code> (package not found)<br>• Class not found: <code>org.osgi.framework.wiring.BundleWiring</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.bundle.Headers</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.EnvironmentPropertySource</code><br>• Annotation not found: <code>aQute.bnd.annotation.spi.ServiceProvider</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.OsgiServiceLocator</code><br>• Class not found: <code>org.osgi.framework.Bundle</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleContext</code> (package not found)<br>• Class not found: <code>org.osgi.framework.FrameworkUtil</code> (package not found)<br>• Class not found: <code>org.osgi.framework.wiring.BundleRevision</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.PropertiesUtil</code><br>• Annotation not found: <code>aQute.bnd.annotation.spi.ServiceConsumer</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.PropertyFilePropertySource</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.ProviderActivator</code><br>• Interface not found: <code>org.osgi.framework.BundleActivator</code><br>• Class not found: <code>org.osgi.framework.BundleActivator</code> (package not found)<br>• Class not found: <code>org.osgi.framework.BundleContext</code> (package not found)<br>• Class not found: <code>org.osgi.framework.ServiceRegistration</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.ProviderUtil</code><br>• Annotation not found: <code>aQute.bnd.annotation.spi.ServiceConsumer</code> (package not found)<br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.ServiceLoaderUtil</code><br>• Annotation not found: <code>aQute.bnd.annotation.baseline.BaselineIgnore</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.SystemPropertiesPropertySource</code><br>• Annotation not found: <code>aQute.bnd.annotation.spi.ServiceProvider</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.internal.SerializationUtil</code><br>• Annotation not found: <code>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.apache.logging.log4j.util.package-info</code><br>• Annotation not found: <code>org.osgi.annotation.bundle.Export</code> (package not found)<br>• Annotation not found: <code>org.osgi.annotation.versioning.Version</code> (package not found)</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="log4japi2243-JARManifests" title="JAR Manifests">
+<h3 class="report-section-title">JAR Manifests</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">Build-Jdk-Spec: <code>17</code><br>Created-By: <code>Maven JAR Plugin 3.4.2</code><br>Manifest-Version: <code>1.0</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Apache Log4j API<br>Version: <code>2.24.3</code><br>Vendor: <code>The Apache Software Foundation</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Apache Log4j API<br>Version: <code>2.24</code><br>Vendor: <code>The Apache Software Foundation</code></div>
+		</td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="log4japi2243-JPMSModules" title="JPMS Modules">
+<h3 class="report-section-title">JPMS Modules</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td><code>org.apache.logging.log4j</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.jspecify</code><br><code>org.osgi.core</code><br><code>java.management</code><br><code>java.sql</code><br><code>java.base</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.apache.logging.log4j</code><br><code>org.apache.logging.log4j.message</code><br><code>org.apache.logging.log4j.simple</code><br><code>org.apache.logging.log4j.spi</code><br><code>org.apache.logging.log4j.status</code><br><code>org.apache.logging.log4j.util</code></div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="log4japi2243-OSGiBundles" title="OSGi Bundles">
+<h3 class="report-section-title">OSGi Bundles</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>log4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">Apache Log4j API<br>Symbolic Name: <code>org.apache.logging.log4j.api</code></div>
+		</td>
+		<td>2.24.3</td>
+		<td>
+			<div class="report-text-block no-diff">The logging API of the Log4j project.     Library and<br>application code can log through this API.     It contains a<br>simple built-in implementation (<code>SimpleLogger</code>) for trivial<br>use cases.     Production applications are recommended to<br>use Log4j API in combination with a fully-fledged<br>implementation, such as Log4j Core.<br>Vendor: The Apache Software Foundation<br>License:<br>&quot;Apache-2.0&quot;;link=&quot;https://www.apache.org/licenses/LICENSE-2.0.txt&quot;</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.jspecify.annotations</code> (Version: <code>[1.0,2)</code>) (optional)<br><code>org.apache.logging.log4j.status</code> (Version: <code>[2.23,3)</code>)<br><code>org.osgi.framework</code> (Version: <code>[1.8,2)</code>)<br><code>org.osgi.framework.wiring</code> (Version: <code>[1.2,2)</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.apache.logging.log4j</code> (Version: <code>2.20.2</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j.message</code>, <code>org.apache.logging.log4j.spi</code>, <code>org.apache.logging.log4j.util</code><br><code>org.apache.logging.log4j.message</code> (Version: <code>2.24.1</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j.util</code><br><code>org.apache.logging.log4j.simple</code> (Version: <code>2.24.1</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j</code>, <code>org.apache.logging.log4j.message</code>, <code>org.apache.logging.log4j.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.apache.logging.log4j.util</code>, <code>org.jspecify.annotations</code><br><code>org.apache.logging.log4j.spi</code> (Version: <code>2.24.2</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j</code>, <code>org.apache.logging.log4j.message</code>, <code>org.apache.logging.log4j.util</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.jspecify.annotations</code><br><code>org.apache.logging.log4j.status</code> (Version: <code>2.23.1</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j</code>, <code>org.apache.logging.log4j.message</code>, <code>org.apache.logging.log4j.spi</code><br><code>org.apache.logging.log4j.util</code> (Version: <code>2.24.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.apache.logging.log4j</code>, <code>org.apache.logging.log4j.message</code>, <code>org.apache.logging.log4j.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.osgi.framework</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;;resolution:=optional</code><br><code>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.registrar)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;;resolution:=optional</code><br><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.apache.logging.log4j.message.ThreadDumpMessage$ThreadInfoFactory)&quot;;osgi.serviceloader=&quot;org.apache.logging.log4j.message.ThreadDumpMessage$ThreadInfoFactory&quot;;cardinality:=single;resolution:=optional</code><br><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.apache.logging.log4j.spi.Provider)&quot;;osgi.serviceloader=&quot;org.apache.logging.log4j.spi.Provider&quot;;cardinality:=multiple;resolution:=optional</code><br><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.apache.logging.log4j.util.PropertySource)&quot;;osgi.serviceloader=&quot;org.apache.logging.log4j.util.PropertySource&quot;;cardinality:=multiple;resolution:=optional</code><br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code><br>Provided:<br><code>osgi.service;objectClass:List&lt;String&gt;=&quot;org.apache.logging.log4j.util.PropertySource&quot;;effective:=active</code><br><code>osgi.serviceloader;osgi.serviceloader=&quot;org.apache.logging.log4j.util.PropertySource&quot;;register:=&quot;org.apache.logging.log4j.util.EnvironmentPropertySource&quot;</code><br><code>osgi.serviceloader;osgi.serviceloader=&quot;org.apache.logging.log4j.util.PropertySource&quot;;register:=&quot;org.apache.logging.log4j.util.SystemPropertiesPropertySource&quot;</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Activator: org.apache.logging.log4j.util.Activator<br>Activation Policy: lazy<br>Manifest Version: 2<br>Private Package:<br>org.apache.logging.log4j.internal<br>org.apache.logging.log4j.internal.map<br>org.apache.logging.log4j.simple.internal<br>org.apache.logging.log4j.util.internal</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</section>
+
+<section class="report-section" id="logbackcore1518" title="logback-core 1.5.18">
+<h2 class="report-section-title">logback-core 1.5.18</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff"></p>
+<section class="report-section" id="logbackcore1518-JARFiles" title="JAR Files">
+<h3 class="report-section-title">JAR Files</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td>1.5.18</td>
+		<td><a href="https://central.sonatype.com/artifact/ch.qos.logback/logback-core/1.5.18" target="_blank" rel="noopener noreferrer">ch.qos.logback:logback-core:1.5.18</a></td>
+		<td>613 KB</td>
+		<td>Yes (Java 21)</td>
+		<td>Java 11 (471)</td>
+		<td>0</td>
+		<td><code>ch.qos.logback.core</code> (+39 subpackages)</td>
+		<td><a href="https://search.maven.org/search?q=1:6c0375624f6f36b4e089e2488ba21334a11ef13f" target="_blank" rel="noopener noreferrer">6c0375624f6f36b4e089e2488ba21334a11ef13f</a></td>
+		<td><a href="https://central.sonatype.com/artifact/ch.qos.logback/logback-core/1.5.18" target="_blank" rel="noopener noreferrer">ch.qos.logback:logback-core:1.5.18</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>613 KB</td>
+		<td>-</td>
+		<td>Java 11 (471)</td>
+		<td>0</td>
+		<td>40</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section" id="logbackcore1518-Dependencies" title="Dependencies">
+<h3 class="report-section-title">Dependencies</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/ch.qos.logback/logback-core/1.5.18" target="_blank" rel="noopener noreferrer">ch.qos.logback:logback-core:1.5.18</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/jakarta.mail/jakarta.mail-api/2.1.0" target="_blank" rel="noopener noreferrer">jakarta.mail:jakarta.mail-api:2.1.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/jakarta.servlet/jakarta.servlet-api/5.0.0" target="_blank" rel="noopener noreferrer">jakarta.servlet:jakarta.servlet-api:5.0.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.codehaus.janino/commons-compiler/3.1.8" target="_blank" rel="noopener noreferrer">org.codehaus.janino:commons-compiler:3.1.8</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.codehaus.janino/janino/3.1.8" target="_blank" rel="noopener noreferrer">org.codehaus.janino:janino:3.1.8</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.fusesource.jansi/jansi/2.4.0" target="_blank" rel="noopener noreferrer">org.fusesource.jansi:jansi:2.4.0</a> (optional)<br><a href="https://central.sonatype.com/artifact/org.tukaani/xz/1.10" target="_blank" rel="noopener noreferrer">org.tukaani:xz:1.10</a> (provided, optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied<br>Unsatisfied</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section" id="logbackcore1518-BinaryCompatibility" title="Binary Compatibility">
+<h3 class="report-section-title">Binary Compatibility</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>ch.qos.logback.core.joran.conditional.PropertyEvalScriptBuilder</code><br>• Class not found: <code>org.codehaus.commons.compiler.CompileException</code> (package not found)<br>• Class not found: <code>org.codehaus.janino.ClassBodyEvaluator</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>ch.qos.logback.core.net.LoginAuthenticator</code><br>• Superclass not found: <code>jakarta.mail.Authenticator</code><br>• Class not found: <code>jakarta.mail.Authenticator</code> (package not found)<br>• Class not found: <code>jakarta.mail.PasswordAuthentication</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>ch.qos.logback.core.net.SMTPAppenderBase</code><br>• Class not found: <code>jakarta.mail.Address</code> (package not found)<br>• Class not found: <code>jakarta.mail.Authenticator</code> (package not found)<br>• Class not found: <code>jakarta.mail.BodyPart</code> (package not found)<br>• Class not found: <code>jakarta.mail.Message</code> (package not found)<br>• Class not found: <code>jakarta.mail.Message$RecipientType</code> (package not found)<br>• Class not found: <code>jakarta.mail.Multipart</code> (package not found)<br>• Class not found: <code>jakarta.mail.Session</code> (package not found)<br>• Class not found: <code>jakarta.mail.Transport</code> (package not found)<br>• Class not found: <code>jakarta.mail.internet.AddressException</code> (package not found)<br>• Class not found: <code>jakarta.mail.internet.InternetAddress</code> (package not found)<br>• Class not found: <code>jakarta.mail.internet.MimeBodyPart</code> (package not found)<br>• Class not found: <code>jakarta.mail.internet.MimeMessage</code> (package not found)<br>• Class not found: <code>jakarta.mail.internet.MimeMultipart</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>ch.qos.logback.core.rolling.helper.XZCompressionStrategy</code><br>• Class not found: <code>org.tukaani.xz.FilterOptions</code> (package not found)<br>• Class not found: <code>org.tukaani.xz.LZMA2Options</code> (package not found)<br>• Class not found: <code>org.tukaani.xz.XZOutputStream</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>ch.qos.logback.core.status.ViewStatusMessagesServletBase</code><br>• Superclass not found: <code>jakarta.servlet.http.HttpServlet</code><br>• Class not found: <code>jakarta.servlet.ServletException</code> (package not found)<br>• Class not found: <code>jakarta.servlet.http.HttpServlet</code> (package not found)<br>• Class not found: <code>jakarta.servlet.http.HttpServletRequest</code> (package not found)<br>• Class not found: <code>jakarta.servlet.http.HttpServletResponse</code> (package not found)</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="logbackcore1518-JARManifests" title="JAR Manifests">
+<h3 class="report-section-title">JAR Manifests</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td>
+			<div class="report-text-block no-diff">Build-Jdk-Spec: <code>21</code><br>Created-By: <code>Apache Maven Bundle Plugin 5.1.9</code><br>Manifest-Version: <code>1.0</code><br>Originally-Created-By: <code>Apache Maven Bundle Plugin 5.1.9</code><br>Tool: <code>Bnd-6.3.1.202206071316</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Logback Core Module<br>Version: <code>1.5.18</code><br>Vendor: <code>QOS.ch</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Logback Core Module<br>Version: <code>1.5</code><br>Vendor: <code>QOS.ch</code></div>
+		</td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="logbackcore1518-JPMSModules" title="JPMS Modules">
+<h3 class="report-section-title">JPMS Modules</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td><code>ch.qos.logback.core</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>commons.compiler</code><br><code>jakarta.mail</code><br><code>jakarta.servlet</code><br><code>janino</code><br><code>org.fusesource.jansi</code><br><code>org.tukaani.xz</code><br><code>java.naming</code><br><code>java.sql</code><br><code>java.xml</code><br><code>java.base</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>ch.qos.logback.core</code><br><code>ch.qos.logback.core.boolex</code><br><code>ch.qos.logback.core.encoder</code><br><code>ch.qos.logback.core.filter</code><br><code>ch.qos.logback.core.helpers</code><br><code>ch.qos.logback.core.hook</code><br><code>ch.qos.logback.core.html</code><br><code>ch.qos.logback.core.joran</code><br><code>ch.qos.logback.core.joran.action</code><br><code>ch.qos.logback.core.joran.conditional</code><br><code>ch.qos.logback.core.joran.event</code><br><code>ch.qos.logback.core.joran.sanity</code><br><code>ch.qos.logback.core.joran.spi</code><br><code>ch.qos.logback.core.joran.util</code><br><code>ch.qos.logback.core.joran.util.beans</code><br><code>ch.qos.logback.core.layout</code><br><code>ch.qos.logback.core.model</code><br><code>ch.qos.logback.core.model.conditional</code><br><code>ch.qos.logback.core.model.processor</code><br><code>ch.qos.logback.core.model.processor.conditional</code><br><code>ch.qos.logback.core.model.util</code><br><code>ch.qos.logback.core.net</code><br><code>ch.qos.logback.core.net.server</code><br><code>ch.qos.logback.core.net.ssl</code><br><code>ch.qos.logback.core.pattern</code><br><code>ch.qos.logback.core.pattern.color</code><br><code>ch.qos.logback.core.pattern.parser</code><br><code>ch.qos.logback.core.read</code><br><code>ch.qos.logback.core.recovery</code><br><code>ch.qos.logback.core.rolling</code><br><code>ch.qos.logback.core.rolling.helper</code><br><code>ch.qos.logback.core.sift</code><br><code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.status</code><br><code>ch.qos.logback.core.testUtil</code><br><code>ch.qos.logback.core.util</code></div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="logbackcore1518-OSGiBundles" title="OSGi Bundles">
+<h3 class="report-section-title">OSGi Bundles</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>logback-core</td>
+		<td>
+			<div class="report-text-block no-diff">Logback Core Module<br>Symbolic Name: <code>ch.qos.logback.core</code></div>
+		</td>
+		<td>1.5.18</td>
+		<td>
+			<div class="report-text-block no-diff">logback-core module<br>Vendor: QOS.ch<br>License: http://www.eclipse.org/legal/epl-v10.html,<br>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html<br>Doc URL: http://www.qos.ch</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>ch.qos.logback.core</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.boolex</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.encoder</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.filter</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.helpers</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.hook</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.action</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.conditional</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.event</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.sanity</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.spi</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.util</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.joran.util.beans</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.model</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.model.conditional</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.model.processor</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.model.processor.conditional</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.model.util</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.net</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.net.ssl</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.pattern</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.pattern.color</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.pattern.parser</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.pattern.util</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.read</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.recovery</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.rolling</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.rolling.helper</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.sift</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.spi</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.status</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.subst</code> (Version: <code>[1.5,2)</code>)<br><code>ch.qos.logback.core.util</code> (Version: <code>[1.5,2)</code>)<br><code>jakarta.mail</code> (Version: <code>[2.1,3)</code>) (optional)<br><code>jakarta.mail.internet</code> (Version: <code>[2.1,3)</code>) (optional)<br><code>jakarta.servlet</code> (Version: <code>[5.0,6)</code>) (optional)<br><code>jakarta.servlet.http</code> (Version: <code>[5.0,6)</code>) (optional)<br><code>org.xml.sax</code> (optional)<br><code>org.xml.sax.helpers</code> (optional)<br><code>org.codehaus.janino</code> (Version: <code>[3.1,4)</code>) (optional)<br><code>org.codehaus.commons.compiler</code> (Version: <code>[3.1,4)</code>) (optional)<br><code>org.tukaani.xz</code> (optional)<br><code>java.io</code><br><code>java.lang</code><br><code>java.lang.annotation</code><br><code>java.lang.invoke</code><br><code>java.lang.module</code><br><code>java.lang.reflect</code><br><code>java.math</code><br><code>java.net</code><br><code>java.nio</code><br><code>java.nio.channels</code><br><code>java.nio.charset</code><br><code>java.nio.file</code><br><code>java.security</code><br><code>java.security.cert</code><br><code>java.text</code><br><code>java.time</code><br><code>java.time.format</code><br><code>java.time.temporal</code><br><code>java.util</code><br><code>java.util.concurrent</code><br><code>java.util.concurrent.atomic</code><br><code>java.util.concurrent.locks</code><br><code>java.util.function</code><br><code>java.util.regex</code><br><code>java.util.stream</code><br><code>java.util.zip</code><br><code>javax.naming</code><br><code>javax.naming.spi</code><br><code>javax.net</code><br><code>javax.net.ssl</code><br><code>javax.xml.parsers</code><br><code>org.fusesource.jansi</code> (Version: <code>[2.4,3)</code>) (optional)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>ch.qos.logback.core</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.encoder</code>, <code>ch.qos.logback.core.filter</code>, <code>ch.qos.logback.core.helpers</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.status</code>, <code>ch.qos.logback.core.util</code><br><code>ch.qos.logback.core.boolex</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.encoder</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.filter</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.boolex</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.helpers</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code><br><code>ch.qos.logback.core.hook</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code><br><code>ch.qos.logback.core.html</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.pattern</code><br><code>ch.qos.logback.core.joran</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.event</code>, <code>ch.qos.logback.core.joran.sanity</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.joran.util.beans</code>, <code>ch.qos.logback.core.model</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.model.processor</code>, <code>ch.qos.logback.core.spi</code>, <code>org.xml.sax</code><br><code>ch.qos.logback.core.joran.action</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.joran.util</code>, <code>ch.qos.logback.core.model</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code>, <code>org.xml.sax</code><br><code>ch.qos.logback.core.joran.conditional</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.joran.action</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.model</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.spi</code>, <code>org.codehaus.commons.compiler</code>, <code>org.xml.sax</code><br><code>ch.qos.logback.core.joran.event</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.status</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>org.xml.sax</code>, <code>org.xml.sax.helpers</code><br><code>ch.qos.logback.core.joran.node</code> (Version: <code>1.5.18</code>)<br><code>ch.qos.logback.core.joran.sanity</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.model</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.joran.spi</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.action</code>, <code>ch.qos.logback.core.joran.event</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.model</code>, <code>ch.qos.logback.core.model.processor</code>, <code>ch.qos.logback.core.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.status</code>, <code>org.xml.sax</code><br><code>ch.qos.logback.core.joran.util</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.joran.util.beans</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code><br><code>ch.qos.logback.core.joran.util.beans</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.layout</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code><br><code>ch.qos.logback.core.model</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.action</code>, <code>ch.qos.logback.core.model.processor</code><br><code>ch.qos.logback.core.model.conditional</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.model</code><br><code>ch.qos.logback.core.model.processor</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran</code>, <code>ch.qos.logback.core.joran.action</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.joran.event</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.joran.util.beans</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.model</code>, <code>ch.qos.logback.core.model.util</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.model.processor.conditional</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.model</code>, <code>ch.qos.logback.core.model.conditional</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.model.processor</code><br><code>ch.qos.logback.core.model.util</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.action</code>, <code>ch.qos.logback.core.model</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.net</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.boolex</code>, <code>ch.qos.logback.core.helpers</code>, <code>ch.qos.logback.core.net.ssl</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.pattern</code>, <code>ch.qos.logback.core.sift</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>jakarta.mail</code>, <code>jakarta.mail.internet</code>, <code>javax.net</code><br><code>ch.qos.logback.core.net.server</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.net.ssl</code>, <code>ch.qos.logback.core.spi</code>, <code>javax.net</code><br><code>ch.qos.logback.core.net.ssl</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.spi</code>, <code>javax.net</code>, <code>javax.net.ssl</code><br><code>ch.qos.logback.core.pattern</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.encoder</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.status</code><br><code>ch.qos.logback.core.pattern.color</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.pattern</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.pattern.parser</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.pattern</code>, <code>ch.qos.logback.core.pattern.util</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.pattern.util</code> (Version: <code>1.5.18</code>)<br><code>ch.qos.logback.core.property</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code><br><code>ch.qos.logback.core.read</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code><br><code>ch.qos.logback.core.recovery</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.status</code><br><code>ch.qos.logback.core.rolling</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.rolling.helper</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code><br><code>ch.qos.logback.core.rolling.helper</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.pattern</code>, <code>ch.qos.logback.core.rolling</code>, <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.sift</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.joran.spi</code>, <code>ch.qos.logback.core.model</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.model.processor</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.util</code><br><code>ch.qos.logback.core.spi</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.filter</code>, <code>ch.qos.logback.core.helpers</code>, <code>ch.qos.logback.core.joran</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.status</code><br><code>ch.qos.logback.core.status</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.spi</code>, <code>jakarta.servlet</code>, <code>jakarta.servlet.http</code><br><code>ch.qos.logback.core.subst</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core.spi</code><br><code>ch.qos.logback.core.testUtil</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.encoder</code>, <code>ch.qos.logback.core.read</code>, <code>ch.qos.logback.core.spi</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.status</code>, <code>javax.naming</code>, <code>javax.naming.spi</code><br><code>ch.qos.logback.core.util</code> (Version: <code>1.5.18</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>ch.qos.logback.core</code>, <code>ch.qos.logback.core.hook</code>, <code>ch.qos.logback.core.rolling</code>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ch.qos.logback.core.rolling.helper</code>, <code>ch.qos.logback.core.spi</code>, <code>ch.qos.logback.core.status</code>, <code>javax.naming</code></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=11))&quot;</code></div>
+		</td>
+		<td>Manifest Version: 2</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</section>
+
+<section class="report-section" id="slf4japi2017" title="slf4j-api 2.0.17">
+<h2 class="report-section-title">slf4j-api 2.0.17</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff"></p>
+<section class="report-section" id="slf4japi2017-JARFiles" title="JAR Files">
+<h3 class="report-section-title">JAR Files</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td>2.0.17</td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.17</a></td>
+		<td>68.3 KB</td>
+		<td>Yes (Java 9)</td>
+		<td>Java 8 (55)</td>
+		<td>0</td>
+		<td><code>org.slf4j</code> (+3 subpackages)</td>
+		<td><a href="https://search.maven.org/search?q=1:d9e58ac9c7779ba3bf8142aff6c830617a7fe60f" target="_blank" rel="noopener noreferrer">d9e58ac9c7779ba3bf8142aff6c830617a7fe60f</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.17</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>68.3 KB</td>
+		<td>-</td>
+		<td>Java 8 (55)</td>
+		<td>0</td>
+		<td>4</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section" id="slf4japi2017-Dependencies" title="Dependencies">
+<h3 class="report-section-title">Dependencies</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.slf4j/slf4j-api/2.0.17" target="_blank" rel="noopener noreferrer">org.slf4j:slf4j-api:2.0.17</a></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="slf4japi2017-JARManifests" title="JAR Manifests">
+<h3 class="report-section-title">JAR Manifests</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">Build-Jdk-Spec: <code>21</code><br>Created-By: <code>Apache Maven Bundle Plugin 5.1.9</code><br>Manifest-Version: <code>1.0</code><br>Tool: <code>Bnd-6.3.1.202206071316</code><br>X-Compile-Source-JDK: <code>8</code><br>X-Compile-Target-JDK: <code>8</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">slf4j-api<br>Version: <code>2.0.17</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="slf4japi2017-JPMSModules" title="JPMS Modules">
+<h3 class="report-section-title">JPMS Modules</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td><code>org.slf4j</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>java.base</code></td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.slf4j</code><br><code>org.slf4j.event</code><br><code>org.slf4j.helpers</code><br><code>org.slf4j.spi</code></div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="report-section collapsed" id="slf4japi2017-OSGiBundles" title="OSGi Bundles">
+<h3 class="report-section-title">OSGi Bundles</h3>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>slf4j-api</td>
+		<td>
+			<div class="report-text-block no-diff">SLF4J API Module<br>Symbolic Name: <code>slf4j.api</code></div>
+		</td>
+		<td>2.0.17</td>
+		<td>
+			<div class="report-text-block no-diff">The slf4j API<br>Vendor: SLF4J.ORG<br>License: https://opensource.org/license/mit<br>Doc URL: http://www.slf4j.org</div>
+		</td>
+		<td><code>org.slf4j.spi</code> (Version: <code>[2.0.17,3)</code>)</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.slf4j</code> (Version: <code>2.0.17</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.event</code> (Version: <code>2.0.17</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j.helpers</code> (Version: <code>2.0.17</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.spi</code><br><code>org.slf4j.spi</code> (Version: <code>2.0.17</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.slf4j</code>, <code>org.slf4j.event</code>, <code>org.slf4j.helpers</code><br><code>org.slf4j</code> (Version: <code>1.7.36</code>)<br><code>org.slf4j.helpers</code> (Version: <code>1.7.36</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">Required:<br><code>osgi.extender;filter:=&quot;(&(osgi.extender=osgi.serviceloader.processor)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))&quot;</code><br><code>osgi.serviceloader;filter:=&quot;(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)&quot;;osgi.serviceloader=&quot;org.slf4j.spi.SLF4JServiceProvider&quot;</code><br><code>osgi.ee;filter:=&quot;(&(osgi.ee=JavaSE)(version=1.8))&quot;</code></div>
+		</td>
+		<td>Manifest Version: 2</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</section>
+
+
+	</main>
+
+</body>
+<!-- JSON REPORT DATA
+[REMOVED]
+-->
+</html>

@@ -23,7 +23,7 @@ import org.jarhc.utils.VersionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Report {
+public class Report implements ReportContainer {
 
 	private String version = VersionUtils.getVersion();
 	private long timestamp = DateTimeUtils.getTimestamp();
@@ -65,6 +65,7 @@ public class Report {
 		this.type = type;
 	}
 
+	@Override
 	public void addSection(ReportSection section) {
 		sections.add(section);
 	}

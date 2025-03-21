@@ -21,7 +21,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ReportSection {
+public class ReportSection implements ReportContainer {
 
 	private final String title;
 	private final String description;
@@ -37,16 +37,17 @@ public class ReportSection {
 		this.description = description;
 	}
 
-	public void add(ReportSection section) {
+	@Override
+	public void addSection(ReportSection section) {
 		content.add(section);
 		section.parent = this;
 	}
 
-	public void add(String text) {
+	public void addText(String text) {
 		content.add(text);
 	}
 
-	public void add(ReportTable table) {
+	public void addTable(ReportTable table) {
 		content.add(table);
 	}
 
@@ -147,14 +148,14 @@ public class ReportSection {
 				JSONObject object = (JSONObject) item;
 				if (object.has("title")) {
 					ReportSection subsection = ReportSection.fromJSON(object);
-					section.add(subsection);
+					section.addSection(subsection);
 				} else {
 					ReportTable table = ReportTable.fromJSON(object);
-					section.add(table);
+					section.addTable(table);
 				}
 			} else {
 				String text = (String) item;
-				section.add(text);
+				section.addText(text);
 			}
 		}
 		return section;

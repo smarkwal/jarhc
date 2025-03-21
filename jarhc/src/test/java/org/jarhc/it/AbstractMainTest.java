@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.regex.Pattern;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
 import org.jarhc.utils.FileUtils;
@@ -31,9 +32,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 abstract class AbstractMainTest extends AbstractOutputTest {
 
+	private final String reportFileName;
 	private final String[] extraArgs;
 
-	AbstractMainTest(String... extraArgs) {
+	AbstractMainTest(String reportFileName, String... extraArgs) {
+		this.reportFileName = reportFileName;
 		this.extraArgs = extraArgs;
 	}
 
@@ -41,7 +44,7 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 	void main(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File reportFile = new File(tempDir.toFile(), "report.txt");
+		File reportFile = new File(tempDir.toFile(), reportFileName);
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
 		String[] commonArgs = new String[] {
@@ -65,7 +68,10 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 
 		String actualReport = FileUtils.readFileToString(reportFile);
 
-		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/report.txt";
+		// remove embedded JSON report data (different JDKs and Java versions use different compression parameters)
+		actualReport = Pattern.compile("<!-- JSON REPORT DATA.*-->", Pattern.DOTALL).matcher(actualReport).replaceAll("<!-- JSON REPORT DATA\n[REMOVED]\n-->");
+
+		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/" + reportFileName;
 		if (TestUtils.createResources()) {
 			TestUtils.saveResource("test", resource, actualReport, "UTF-8");
 			return;

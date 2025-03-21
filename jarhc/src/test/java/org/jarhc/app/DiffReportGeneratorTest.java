@@ -136,24 +136,24 @@ class DiffReportGeneratorTest {
 				String[] values = new String[] { "Value " + r + ".1", "Value " + r + ".2", "Value " + r + ".3" };
 				table.addRow(values);
 			}
-			section.add(table);
+			section.addTable(table);
 
 			// add a subsection to section 1
 			if (s == 1) {
 				ReportSection subsection = new ReportSection("Subsection 1.1", "Description for subsection 1.1.");
-				subsection.add("Text in subsection 1.1.");
-				section.add(subsection);
+				subsection.addText("Text in subsection 1.1.");
+				section.addSection(subsection);
 			}
 
 			// add additional content to section 1 in report 2
 			if (diff && s == 1) {
-				section.add("This is additional text content.");
+				section.addText("This is additional text content.");
 			}
 
 			// replace content of section 4 in report 2 with a non-table item
 			if (diff && s == 4) {
 				section.getContent().clear();
-				section.add("This is a text item instead of a table.");
+				section.addText("This is a text item instead of a table.");
 			}
 		}
 
@@ -161,10 +161,10 @@ class DiffReportGeneratorTest {
 		ReportSection section = new ReportSection("Last section", "Description for last section.");
 		if (diff) {
 			String text = "This is a changed text section.\nIt contains multiple lines of text.";
-			section.add(text);
+			section.addText(text);
 		} else {
 			String text = "This is a text section.\nIt contains multiple lines of text.";
-			section.add(text);
+			section.addText(text);
 		}
 		report.addSection(section);
 

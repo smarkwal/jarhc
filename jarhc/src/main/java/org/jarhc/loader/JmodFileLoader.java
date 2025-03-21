@@ -43,7 +43,7 @@ class JmodFileLoader extends AbstractFileLoader {
 			FileSource fileSource = (FileSource) source;
 			return load(fileSource.getFile());
 		} else {
-			throw new IOException("JMOD can only be loaded from a file: " + source.getName());
+			throw new IOException("JMOD can only be loaded from a file: " + source.getFileName());
 		}
 	}
 
