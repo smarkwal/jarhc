@@ -45,6 +45,11 @@ Scan options:
                            Example: --strategy ParentFirst
                            Default: ParentLast
 
+   --isolated-scan       : Every artifact on the classpath is analyzed separately.
+						   This option is useful for analyzing a classpath with
+						   multiple versions of the same library, or for analyzing
+						   a set of independent libraries like plugins of a framework.
+
    --repository-url <url> : URL of the Maven repository.
                             Example: --repository-url https://repo1.maven.org/maven2/
                             Default: https://repo1.maven.org/maven2/

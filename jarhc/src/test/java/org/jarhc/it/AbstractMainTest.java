@@ -31,9 +31,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 abstract class AbstractMainTest extends AbstractOutputTest {
 
+	private final String reportFileName;
 	private final String[] extraArgs;
 
-	AbstractMainTest(String... extraArgs) {
+	AbstractMainTest(String reportFileName, String... extraArgs) {
+		this.reportFileName = reportFileName;
 		this.extraArgs = extraArgs;
 	}
 
@@ -41,7 +43,7 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 	void main(@TempDir Path tempDir) throws IOException {
 
 		// prepare
-		File reportFile = new File(tempDir.toFile(), "report.txt");
+		File reportFile = new File(tempDir.toFile(), reportFileName);
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
 		String[] commonArgs = new String[] {
@@ -65,7 +67,7 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 
 		String actualReport = FileUtils.readFileToString(reportFile);
 
-		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/report.txt";
+		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/" + reportFileName;
 		if (TestUtils.createResources()) {
 			TestUtils.saveResource("test", resource, actualReport, "UTF-8");
 			return;

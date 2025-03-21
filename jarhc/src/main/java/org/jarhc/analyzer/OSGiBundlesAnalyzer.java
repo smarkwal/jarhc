@@ -36,7 +36,7 @@ public class OSGiBundlesAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("OSGi Bundles", "Information about OSGi Bundles.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

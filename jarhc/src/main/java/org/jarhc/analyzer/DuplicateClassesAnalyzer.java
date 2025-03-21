@@ -57,7 +57,7 @@ public class DuplicateClassesAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("Duplicate Classes", "Duplicate classes, shadowed classes, and duplicate resources.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

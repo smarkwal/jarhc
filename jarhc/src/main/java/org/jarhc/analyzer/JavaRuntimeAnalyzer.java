@@ -39,7 +39,7 @@ public class JavaRuntimeAnalyzer implements Analyzer {
 				"Java vendor  : " + code(javaRuntime.getJavaVendor());
 
 		ReportSection section = new ReportSection("Java Runtime", "Information about JRE/JDK runtime.");
-		section.add(text);
+		section.addText(text);
 		return section;
 
 	}

@@ -24,6 +24,7 @@ class TestJettyWebAppTest extends AbstractMainTest {
 
 	TestJettyWebAppTest() {
 		super(
+				"report.txt",
 				"--classpath", "org.eclipse.jetty:test-jetty-webapp:war:9.4.20.v20190813",
 				"--provided", "javax.servlet:javax.servlet-api:jar:3.1.0",
 				"--provided", "org.slf4j:slf4j-api:jar:1.7.28",

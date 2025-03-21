@@ -89,7 +89,7 @@ public class DiffReportGenerator {
 				report2.getTitle() + "\n" +
 				DateTimeUtils.formatTimestamp(report2.getTimestamp()) + "\n" +
 				"JarHC " + report2.getVersion() + "\n";
-		section.add(text);
+		section.addText(text);
 
 		return section;
 	}
@@ -160,20 +160,20 @@ public class DiffReportGenerator {
 			ReportSection subsection2 = (ReportSection) item2;
 			ReportSection subsection = diff(subsection1, subsection2);
 			if (subsection != null) {
-				section.add(subsection);
+				section.addSection(subsection);
 			}
 		} else if (item1 instanceof ReportTable) {
 			ReportTable table1 = (ReportTable) item1;
 			ReportTable table2 = (ReportTable) item2;
 			ReportTable table = diff(table1, table2);
 			if (table != null) {
-				section.add(table);
+				section.addTable(table);
 			}
 		} else if (item1 instanceof String) {
 			String value1 = (String) item1;
 			String value2 = (String) item2;
 			String value = diff(value1, value2);
-			section.add(value);
+			section.addText(value);
 		} else {
 			String type = item1.getClass().getSimpleName();
 			String title = section.getTitle();

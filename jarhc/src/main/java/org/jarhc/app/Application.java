@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -107,7 +108,28 @@ public class Application {
 
 		JavaRuntime javaRuntime = createJavaRuntime(options, runtimeJarSources);
 		ClassLoader parentClassLoader = createClassLoader(options, javaRuntime, providedJarSources);
-		Classpath classpath = createClasspath(options, classpathJarSources, parentClassLoader);
+
+		List<Classpath> classpaths = new ArrayList<>();
+		if (options.isIsolatedScan()) {
+
+			// create isolated classpath for every JAR file
+			for (JarSource source : classpathJarSources) {
+				Classpath classpath = createClasspath(options, List.of(source), parentClassLoader);
+				classpaths.add(classpath);
+
+				// set title for classpath based on artifact
+				classpath.setTitle(source.getName());
+			}
+
+			// sort classpaths by title to get a consistent order
+			classpaths.sort(Comparator.comparing(Classpath::getTitle, StringUtils.SMART_ORDER));
+
+		} else {
+
+			// create a single classpath for all JAR files
+			Classpath classpath = createClasspath(options, classpathJarSources, parentClassLoader);
+			classpaths.add(classpath);
+		}
 
 		out.println("Analyze classpath ...");
 
@@ -141,7 +163,22 @@ public class Application {
 		Analysis analysis = new Analysis(analyzers.toArray(new Analyzer[0]));
 
 		// run analysis
-		analysis.run(classpath, report);
+		if (options.isIsolatedScan()) {
+			for (Classpath classpath : classpaths) {
+
+				// create a new section for every classpath
+				String sectionTitle = classpath.getTitle();
+				ReportSection section = new ReportSection(sectionTitle, "");
+				report.addSection(section);
+
+				// analyze classpath
+				analysis.run(classpath, section);
+			}
+		} else {
+			// analyze classpath
+			Classpath classpath = classpaths.get(0);
+			analysis.run(classpath, report);
+		}
 
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;

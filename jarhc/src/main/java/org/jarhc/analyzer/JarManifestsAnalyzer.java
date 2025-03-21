@@ -62,7 +62,7 @@ public class JarManifestsAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("JAR Manifests", "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

@@ -64,7 +64,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("Dependencies", "Dependencies between JAR files, and as declared in POM file.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

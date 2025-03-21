@@ -78,7 +78,7 @@ class ClasspathLoaderTest {
 				.thenAnswer((Answer<List<JarFile>>) invocation ->
 				{
 					JarSource jarSource = invocation.getArgument(0);
-					String fileName = jarSource.getName();
+					String fileName = jarSource.getFileName();
 					if (fileName.equals("not-found.jar")) {
 						throw new FileNotFoundException(fileName);
 					}
@@ -91,7 +91,7 @@ class ClasspathLoaderTest {
 				.thenAnswer((Answer<List<JarFile>>) invocation ->
 				{
 					JarSource jarSource = invocation.getArgument(0);
-					String fileName = jarSource.getName();
+					String fileName = jarSource.getFileName();
 					JarFile jarFile1 = JarFile.withName(fileName.replaceAll(".war", "-1.jar")).build();
 					JarFile jarFile2 = JarFile.withName(fileName.replaceAll(".war", "-2.jar")).build();
 					return List.of(jarFile1, jarFile2);

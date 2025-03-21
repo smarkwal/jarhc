@@ -79,7 +79,7 @@ public class BinaryCompatibilityAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("Binary Compatibility", "Compatibility issues between JAR files.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

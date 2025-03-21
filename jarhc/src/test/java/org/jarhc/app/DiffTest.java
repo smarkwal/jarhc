@@ -210,7 +210,7 @@ class DiffTest {
 		report.setVersion(version);
 
 		ReportSection section = new ReportSection("Test Section", "Description of the test section.");
-		section.add("Test content.");
+		section.addText("Test content.");
 		report.addSection(section);
 
 		ReportFormat format;
