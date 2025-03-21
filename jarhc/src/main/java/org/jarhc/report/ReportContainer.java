@@ -16,6 +16,7 @@
 
 package org.jarhc.report;
 
+@SuppressWarnings("javaarchitecture:S7027") // Circular dependencies between classes in the same package should be resolved
 public interface ReportContainer {
 
 	void addSection(ReportSection section);
