@@ -20,6 +20,7 @@ import static org.jarhc.utils.StringUtils.joinLines;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 import org.jarhc.TestUtils;
 import org.jarhc.test.TextUtils;
 import org.jarhc.utils.Markdown;
@@ -41,6 +42,9 @@ public abstract class AbstractReportFormatTest {
 
 		// test
 		String text = format.format(report);
+
+		// remove embedded JSON report data (different JDKs and Java versions use different compression parameters)
+		text = Pattern.compile("<!-- JSON REPORT DATA.*-->", Pattern.DOTALL).matcher(text).replaceAll("<!-- JSON REPORT DATA\n[REMOVED]\n-->");
 
 		String resource = "/org/jarhc/report/" + this.getClass().getSimpleName() + "/result.txt";
 		if (TestUtils.createResources()) {

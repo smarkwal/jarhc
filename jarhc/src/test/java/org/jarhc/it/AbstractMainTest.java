@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.regex.Pattern;
 import org.jarhc.Main;
 import org.jarhc.TestUtils;
 import org.jarhc.utils.FileUtils;
@@ -66,6 +67,9 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 		assertTrue(dataDir.isDirectory());
 
 		String actualReport = FileUtils.readFileToString(reportFile);
+
+		// remove embedded JSON report data (different JDKs and Java versions use different compression parameters)
+		actualReport = Pattern.compile("<!-- JSON REPORT DATA.*-->", Pattern.DOTALL).matcher(actualReport).replaceAll("<!-- JSON REPORT DATA\n[REMOVED]\n-->");
 
 		String resource = "/org/jarhc/it/" + this.getClass().getSimpleName() + "/" + reportFileName;
 		if (TestUtils.createResources()) {
