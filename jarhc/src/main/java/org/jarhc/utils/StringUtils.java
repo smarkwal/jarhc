@@ -28,7 +28,7 @@ public class StringUtils {
 	/**
 	 * A comparator that sorts strings in a "smart" way (first case-insensitive, then case-sensitive).
 	 */
-	public static Comparator<String> SMART_ORDER = new SmartComparator();
+	public static final Comparator<String> SMART_ORDER = new SmartComparator();
 
 	private StringUtils() {
 		throw new IllegalStateException("utility class");
