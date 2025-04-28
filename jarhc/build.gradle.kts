@@ -26,7 +26,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.9"
 
     // run Sonar analysis
-    id("org.sonarqube") version "6.0.1.5171"
+    id("org.sonarqube") version "6.1.0.5360"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.2.0"
@@ -134,7 +134,7 @@ val includeInJarApp: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.7.1")
+    implementation("org.ow2.asm:asm:9.8")
     implementation("org.json:json:20250107")
     implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
     implementation("org.slf4j:jul-to-slf4j:2.0.17")
@@ -145,9 +145,9 @@ dependencies {
     includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
 
     // test dependencies
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
     testImplementation("org.assertj:assertj-core:3.27.3")
-    testImplementation("org.mockito:mockito-core:5.16.1")
+    testImplementation("org.mockito:mockito-core:5.17.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.slf4j:slf4j-simple:2.0.17")
 
