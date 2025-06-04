@@ -336,7 +336,7 @@ tasks {
 
 }
 
-val jarApp = tasks.register("jar-app", type = Jar::class) {
+val jarApp = tasks.register<Jar>("jar-app") {
     group = "build"
     description = "Assembles a fat/uber jar archive with all runtime dependencies."
 
@@ -434,7 +434,7 @@ tasks.withType<Test> {
 
 }
 
-val jmh = tasks.register("jmh", type = JavaExec::class) {
+tasks.register<JavaExec>("jmh") {
     group = "verification"
     description = "Runs JMH benchmarks."
 
@@ -478,17 +478,17 @@ fun getGitBranchName(): String {
 
 fun getGitBranchTarget(branchName: String): String {
     // Gitflow workflow merge targets
-    if (branchName == "master") {
-        return "master"
+    return if (branchName == "master") {
+        "master"
     } else if (branchName.startsWith("hotfix/")) {
-        return "master"
+        "master"
     } else if (branchName.startsWith("release/")) {
-        return "master"
+        "master"
     } else if (branchName == "develop") {
-        return "master"
+        "master"
     } else if (branchName.startsWith("feature/")) {
-        return "develop"
+        "develop"
     } else {
-        return branchName
+        branchName
     }
 }
