@@ -26,7 +26,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "3.1.2"
 
     // run Sonar analysis
-    id("org.sonarqube") version "6.1.0.5360"
+    id("org.sonarqube") version "7.2.3.7755"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.2.0"
