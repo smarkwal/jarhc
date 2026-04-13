@@ -1,7 +1,7 @@
 {
    "title": "JarHC 2.2.2",
    "type": "SCAN",
-   "version": "3.0.0",
+   "version": "3.0.1-SNAPSHOT",
    "sections": [
       {
          "description": "List of JAR files found in classpath.",
@@ -571,7 +571,7 @@
                   "[none]",
                   "guava",
                   "[[com.google.errorprone:error_prone_annotations:2.28.0]]",
-                  "[2.29.0](com.google.errorprone:error_prone_annotations:2.29.0), [2.29.1](com.google.errorprone:error_prone_annotations:2.29.1), [2.29.2](com.google.errorprone:error_prone_annotations:2.29.2)\n[2.30.0](com.google.errorprone:error_prone_annotations:2.30.0)\n[2.31.0](com.google.errorprone:error_prone_annotations:2.31.0)\n[...]\n[2.34.0](com.google.errorprone:error_prone_annotations:2.34.0)\n[2.35.0](com.google.errorprone:error_prone_annotations:2.35.0), [2.35.1](com.google.errorprone:error_prone_annotations:2.35.1)\n[2.36.0](com.google.errorprone:error_prone_annotations:2.36.0)",
+                  "[2.29.0](com.google.errorprone:error_prone_annotations:2.29.0), [2.29.1](com.google.errorprone:error_prone_annotations:2.29.1), [2.29.2](com.google.errorprone:error_prone_annotations:2.29.2)\n[2.30.0](com.google.errorprone:error_prone_annotations:2.30.0)\n[2.31.0](com.google.errorprone:error_prone_annotations:2.31.0)\n[...]\n[2.35.0](com.google.errorprone:error_prone_annotations:2.35.0), [2.35.1](com.google.errorprone:error_prone_annotations:2.35.1)\n[2.36.0](com.google.errorprone:error_prone_annotations:2.36.0)\n[2.37.0](com.google.errorprone:error_prone_annotations:2.37.0)",
                   "[none]",
                   ""
                ],
@@ -580,7 +580,7 @@
                   "[none]",
                   "guava",
                   "[[com.google.guava:failureaccess:1.0.2]]",
-                  "[none]",
+                  "[1.0.3](com.google.guava:failureaccess:1.0.3)",
                   "[none]",
                   ""
                ],
@@ -589,7 +589,7 @@
                   "checker-qual\nerror_prone_annotations\nfailureaccess\njsr305",
                   "maven-aether-provider\nmaven-model-builder",
                   "[[com.google.guava:guava:33.3.0-jre]]",
-                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre)",
+                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre), [33.4.1-android](com.google.guava:guava:33.4.1-android), [...], [33.4.4-jre](com.google.guava:guava:33.4.4-jre), [33.4.5-android](com.google.guava:guava:33.4.5-android), [33.4.5-jre](com.google.guava:guava:33.4.5-jre)",
                   "[[com.google.guava:failureaccess:1.0.2]]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]\n[[com.google.code.findbugs:jsr305:3.0.2]]\n[[com.google.errorprone:error_prone_annotations:2.28.0]]\n[[com.google.j2objc:j2objc-annotations:3.0.0]]\n[[org.checkerframework:checker-qual:3.43.0]]",
                   "OK\nOK\nOK\nOK\nUnsatisfied\nOK"
                ],
@@ -616,7 +616,7 @@
                   "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
                   "[none]",
                   "[[org.jarhc:jarhc:2.2.2]]",
-                  "[none]",
+                  "[3.0.0](org.jarhc:jarhc:3.0.0)",
                   "[[com.google.guava:guava:33.3.0-jre]] (runtime)\n[[commons-codec:commons-codec:1.17.1]] (runtime)\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime)\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime)\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime)\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime)\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime)\n[[org.json:json:20240303]] (runtime)\n[[org.ow2.asm:asm:9.7]] (runtime)\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime)\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime)\n[[org.slf4j:slf4j-api:2.0.16]]",
                   "OK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK\nOK"
                ],

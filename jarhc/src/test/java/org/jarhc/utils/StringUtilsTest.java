@@ -16,12 +16,13 @@
 
 package org.jarhc.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Collections;
 import java.util.List;
 import org.jarhc.test.AssertUtils;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StringUtilsTest {
 
@@ -123,6 +124,25 @@ class StringUtilsTest {
 		List<String> expected = Collections.singletonList("");
 		assertEquals(expected, result);
 
+	}
+
+	@Test
+	@SuppressWarnings("EqualsWithItself")
+	void smartOrder() {
+
+		assertEquals(0, StringUtils.SMART_ORDER.compare(null, null));
+		assertEquals(0, StringUtils.SMART_ORDER.compare("abc", "abc"));
+		assertEquals(0, StringUtils.SMART_ORDER.compare("ABC", "ABC"));
+
+		assertTrue(StringUtils.SMART_ORDER.compare("abc", null) < 0);
+		assertTrue(StringUtils.SMART_ORDER.compare(null, "abc") > 0);
+
+		assertTrue(StringUtils.SMART_ORDER.compare("ABC", "abc") < 0);
+		assertTrue(StringUtils.SMART_ORDER.compare("abc", "ABC") > 0);
+		assertTrue(StringUtils.SMART_ORDER.compare("abc", "xyz") < 0);
+		assertTrue(StringUtils.SMART_ORDER.compare("ABC", "xyz") < 0);
+		assertTrue(StringUtils.SMART_ORDER.compare("abc", "XYZ") < 0);
+		assertTrue(StringUtils.SMART_ORDER.compare("ABC", "XYZ") < 0);
 	}
 
 }

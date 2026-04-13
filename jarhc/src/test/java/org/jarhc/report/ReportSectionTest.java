@@ -31,7 +31,7 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		// test
-		section.add("Lorem ipsum.");
+		section.addText("Lorem ipsum.");
 		// assert
 		assertEquals(1, section.getContent().size());
 		assertEquals("Lorem ipsum.", section.getContent().get(0));
@@ -43,7 +43,7 @@ class ReportSectionTest {
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		ReportTable table = new ReportTable("Artifact", "File size");
 		// test
-		section.add(table);
+		section.addTable(table);
 		// assert
 		assertEquals(1, section.getContent().size());
 		assertSame(table, section.getContent().get(0));
@@ -83,12 +83,12 @@ class ReportSectionTest {
 	void getContent() {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
-		section.add("File sizes.");
+		section.addText("File sizes.");
 		ReportTable table1 = new ReportTable("Artifact", "File size");
-		section.add(table1);
-		section.add("Java classes.");
+		section.addTable(table1);
+		section.addText("Java classes.");
 		ReportTable table2 = new ReportTable("Artifact", "Java classes");
-		section.add(table2);
+		section.addTable(table2);
 		// test
 		List<Object> content = section.getContent();
 		// assert
@@ -113,7 +113,7 @@ class ReportSectionTest {
 	void isEmpty_onlyText() {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
-		section.add("Lorem ipsum.");
+		section.addText("Lorem ipsum.");
 		// test
 		boolean result = section.isEmpty();
 		// assert
@@ -124,7 +124,7 @@ class ReportSectionTest {
 	void isEmpty_emptyTable() {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
-		section.add(new ReportTable("Artifact", "File size"));
+		section.addTable(new ReportTable("Artifact", "File size"));
 		// test
 		boolean result = section.isEmpty();
 		// assert
@@ -136,7 +136,7 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files.");
 		ReportTable table = new ReportTable("Artifact", "File size");
-		section.add(table);
+		section.addTable(table);
 		table.addRow("a.jar", "12 KB");
 		// test
 		boolean result = section.isEmpty();
@@ -149,9 +149,9 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("Artifacts", "");
 		ReportSection subsection = new ReportSection("JAR Files", "List of JAR files.");
-		section.add(subsection);
+		section.addSection(subsection);
 		ReportTable table = new ReportTable("Artifact", "File size");
-		subsection.add(table);
+		subsection.addTable(table);
 		// test
 		boolean result = section.isEmpty();
 		// assert
@@ -163,9 +163,9 @@ class ReportSectionTest {
 		// prepare
 		ReportSection section = new ReportSection("Artifacts", "");
 		ReportSection subsection = new ReportSection("JAR Files", "List of JAR files.");
-		section.add(subsection);
+		section.addSection(subsection);
 		ReportTable table = new ReportTable("Artifact", "File size");
-		subsection.add(table);
+		subsection.addTable(table);
 		table.addRow("a.jar", "12 KB");
 		// test
 		boolean result = section.isEmpty();

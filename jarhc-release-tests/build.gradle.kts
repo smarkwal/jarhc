@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     java
 }
@@ -43,21 +40,21 @@ idea {
 
 dependencies {
 
-    implementation(platform("org.junit:junit-bom:5.12.1"))
+    implementation(platform("org.junit:junit-bom:5.12.2"))
     implementation("org.junit.jupiter:junit-jupiter")
     runtimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("org.assertj:assertj-core:3.27.3")
-    implementation("org.testcontainers:testcontainers:1.20.6")
-    implementation("org.testcontainers:junit-jupiter:1.20.6")
-    implementation("org.apache.commons:commons-lang3:3.17.0")
-    implementation("commons-io:commons-io:2.18.0")
+    implementation("org.assertj:assertj-core:3.27.7")
+    implementation("org.testcontainers:testcontainers:1.21.4")
+    implementation("org.testcontainers:junit-jupiter:1.21.4")
+    implementation("org.apache.commons:commons-lang3:3.20.0")
+    implementation("commons-io:commons-io:2.21.0")
     runtimeOnly("org.slf4j:slf4j-api:2.0.17")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
-    // (dependency of Testcontainers 1.20.6)
+    // (dependency of Testcontainers 1.21.0)
     // check dependencies with ../gradlew dependencies --configuration testRuntimeClasspath | grep compress
-    implementation("org.apache.commons:commons-compress:1.27.1")
+    implementation("org.apache.commons:commons-compress:1.28.0")
 
 }
 
@@ -85,6 +82,8 @@ tasks {
             // write all JarHC dependencies into configurations.properties
             val dependencies = StringBuilder()
             project(":jarhc").configurations.forEach { conf ->
+                // skip configuration "signatures" as it will not be resolvable anymore in Gradle 9.0
+                if (conf.name == "signatures") return@forEach
                 val artifacts = if (conf.isCanBeResolved) {
                     conf.resolvedConfiguration.resolvedArtifacts.map { it.moduleVersion.id }.joinToString(",") { it.group + ":" + it.name + ":" + it.version }
                 } else {
@@ -142,19 +141,7 @@ tasks {
 
         // test task output
         testLogging {
-            events = mutableSetOf(
-                // TestLogEvent.STARTED,
-                // TestLogEvent.PASSED,
-                TestLogEvent.FAILED,
-                TestLogEvent.SKIPPED,
-                TestLogEvent.STANDARD_OUT,
-                TestLogEvent.STANDARD_ERROR
-            )
             showStandardStreams = true
-            exceptionFormat = TestExceptionFormat.SHORT
-            showExceptions = true
-            showCauses = true
-            showStackTraces = true
         }
 
         dependsOn("prepareTests")

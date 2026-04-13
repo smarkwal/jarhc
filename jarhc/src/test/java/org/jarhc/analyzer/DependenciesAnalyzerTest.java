@@ -74,7 +74,7 @@ class DependenciesAnalyzerTest {
 		for (int major = 1; major <= 9; major++) {
 			for (int minor = 0; minor <= 9; minor++) {
 				for (int patch = 0; patch <= 9; patch++) {
-					versions.add(new ArtifactVersion(major, minor, +patch));
+					versions.add(ArtifactVersion.of(major, minor, +patch));
 				}
 			}
 		}
@@ -83,7 +83,7 @@ class DependenciesAnalyzerTest {
 	}
 
 	private List<ArtifactVersion> versions(String... versions) {
-		return Stream.of(versions).map(ArtifactVersion::new).collect(Collectors.toList());
+		return Stream.of(versions).map(ArtifactVersion::of).collect(Collectors.toList());
 	}
 
 	@Test

@@ -39,7 +39,7 @@ class BuildSystemTest extends ReleaseTest {
 		Properties properties = System.getProperties();
 		List<String> names = new ArrayList<>(properties.stringPropertyNames());
 		names.sort(String.CASE_INSENSITIVE_ORDER);
-		LOGGER.info("Java System Properties:");
+		LOGGER.debug("Java System Properties:");
 		for (String name : names) {
 			String value = properties.getProperty(name);
 			if (name.equals("line.separator")) {
@@ -48,7 +48,7 @@ class BuildSystemTest extends ReleaseTest {
 			if (name.contains("password") || name.contains("key") || name.contains("secret")) {
 				value = "****************";
 			}
-			LOGGER.info("{} = '{}'", name, value);
+			LOGGER.debug("{} = '{}'", name, value);
 		}
 	}
 

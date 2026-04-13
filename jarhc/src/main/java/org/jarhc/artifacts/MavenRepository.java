@@ -55,6 +55,7 @@ import org.eclipse.aether.util.repository.AuthenticationBuilder;
 import org.eclipse.aether.version.Version;
 import org.jarhc.pom.Dependency;
 import org.jarhc.pom.Scope;
+import org.jarhc.utils.JarHcException;
 import org.slf4j.Logger;
 
 public class MavenRepository implements Repository {
@@ -71,6 +72,15 @@ public class MavenRepository implements Repository {
 	public MavenRepository(int javaVersion, Settings settings, String dataPath, ArtifactFinder artifactFinder, Logger logger) {
 
 		String repositoryUrl = settings.getRepositoryUrl();
+
+		// check if code is running in a test where only local repositories are allowed
+		String localOnly = System.getProperty("jarhc.test.maven.local-only", "false");
+		if (localOnly.equals("true")) {
+			if (!repositoryUrl.startsWith("http://localhost")) { // && !repositoryUrl.startsWith("file://")) {
+				throw new JarHcException("Non-local repository URL: " + repositoryUrl);
+			}
+		}
+
 		RemoteRepository.Builder repoBuilder = new RemoteRepository.Builder("central", "default", repositoryUrl);
 
 		// add authentication (if username or password is set)
@@ -149,7 +159,7 @@ public class MavenRepository implements Repository {
 			// fetch all versions of the artifact (list is already sorted)
 			VersionRangeResult versionResult = repoSystem.resolveVersionRange(session, request);
 			// return list of versions
-			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::new).collect(Collectors.toList());
+			return versionResult.getVersions().stream().map(Version::toString).map(ArtifactVersion::of).collect(Collectors.toList());
 		} catch (VersionRangeResolutionException e) {
 			throw new RepositoryException(MAVEN_ERROR, e);
 		}

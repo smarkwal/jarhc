@@ -36,6 +36,11 @@ public class FileSource implements JarSource {
 
 	@Override
 	public String getName() {
+		return getFileName();
+	}
+
+	@Override
+	public String getFileName() {
 		return file.getName();
 	}
 

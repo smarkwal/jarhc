@@ -52,8 +52,14 @@ class CompressUtilsTest {
 		// test
 		String result = CompressUtils.compressString("");
 
+		// assert: Base64 encoded string
+		assertTrue(result.matches("^[-A-Za-z0-9+/]*={0,3}$"));
+
+		// test
+		result = CompressUtils.decompressString(result);
+
 		// assert
-		assertEquals("H4sIAAAAAAAAAAMAAAAAAAAAAAA=", result);
+		assertEquals("", result);
 	}
 
 	@Test

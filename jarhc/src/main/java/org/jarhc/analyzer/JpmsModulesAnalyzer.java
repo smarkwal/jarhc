@@ -37,7 +37,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("JPMS Modules", "List of Java Modules found in classpath.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

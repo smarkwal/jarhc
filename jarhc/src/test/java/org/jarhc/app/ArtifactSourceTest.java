@@ -93,10 +93,10 @@ class ArtifactSourceTest {
 	}
 
 	@Test
-	void getName() {
+	void getFileName() {
 
 		// test
-		String result = artifactSource.getName();
+		String result = artifactSource.getFileName();
 
 		// assert
 		assertEquals("test-1.0.jar", result);

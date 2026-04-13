@@ -45,11 +45,12 @@ public class Options implements MavenRepository.Settings {
 	private final List<String> providedJarPaths = new ArrayList<>();
 	private final List<String> runtimeJarPaths = new ArrayList<>();
 	private ClassLoaderStrategy classLoaderStrategy = ClassLoaderStrategy.ParentLast;
+	private boolean isolatedScan = false;
 	private boolean ignoreMissingAnnotations = false;
 	private boolean ignoreExactCopy = false;
-	private String repositoryUrl = MAVEN_CENTRAL_URL;
-	private String repositoryUsername = null;
-	private String repositoryPassword = null;
+	private String repositoryUrl = System.getProperty("jarhc." + REPOSITORY_URL, MAVEN_CENTRAL_URL);
+	private String repositoryUsername = System.getProperty("jarhc." + REPOSITORY_USERNAME);
+	private String repositoryPassword = System.getProperty("jarhc." + REPOSITORY_PASSWORD);
 	private boolean skipEmpty = false;
 	private String dataPath = null;
 
@@ -122,6 +123,14 @@ public class Options implements MavenRepository.Settings {
 
 	public void setClassLoaderStrategy(ClassLoaderStrategy classLoaderStrategy) {
 		this.classLoaderStrategy = classLoaderStrategy;
+	}
+
+	public boolean isIsolatedScan() {
+		return isolatedScan;
+	}
+
+	public void setIsolatedScan(boolean isolatedScan) {
+		this.isolatedScan = isolatedScan;
 	}
 
 	public boolean isIgnoreMissingAnnotations() {

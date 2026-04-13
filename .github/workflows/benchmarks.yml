@@ -35,4 +35,4 @@ jobs:
         cache-read-only: false
 
     - name: Run Benchmarks
-      run: './gradlew --no-daemon :jarhc-benchmarks:runBenchmarks ${{ github.event.inputs.additionalGradleOptions }}'
+      run: './gradlew --no-daemon :jarhc:jmh ${{ github.event.inputs.additionalGradleOptions }}'

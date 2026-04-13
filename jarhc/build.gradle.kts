@@ -15,21 +15,18 @@
  */
 
 import com.github.jk1.license.render.CsvReportRenderer
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     `java-library`
-    `java-test-fixtures`
     jacoco
     signing
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "2.9"
+    id("com.github.jk1.dependency-license-report") version "3.1.2"
 
     // run Sonar analysis
-    id("org.sonarqube") version "6.0.1.5171"
+    id("org.sonarqube") version "7.2.3.7755"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.2.0"
@@ -50,14 +47,12 @@ idea {
             file("src/main/resources")
         )
         testSources.from(
-            //file("src/testFixtures/java"), // TODO: mark as test sources causes "Symbol not found" in integration tests
             file("src/test/java"),
-            file("src/integrationTest/java"),
+            file("src/jmh/java")
         )
         testResources.from(
-            file("src/testFixtures/resources"),
             file("src/test/resources"),
-            file("src/integrationTest/resources"),
+            file("src/jmh/resources")
         )
         isDownloadJavadoc = true
         isDownloadSources = true
@@ -82,9 +77,13 @@ gradle.taskGraph.whenReady {
 
 // configuration properties ----------------------------------------------------
 
-// flag to skip unit and integration tests
+// flag to skip tests
 // command line option: -Pskip.tests
 val skipTests: Boolean = project.hasProperty("skip.tests")
+
+// select JMH benchmarks
+// to run a single benchmark: -Pbenchmarks=DefaultJavaRuntimeBenchmark
+val benchmarks: String = (project.properties["benchmarks"] ?: ".*") as String
 
 // constants -------------------------------------------------------------------
 
@@ -93,10 +92,6 @@ val mainClassName: String = "org.jarhc.Main"
 // license report
 val licenseReportPath: String = "${layout.buildDirectory.get()}/reports/licenses"
 
-// test results
-val testReportPath: String = "${layout.buildDirectory.get()}/test-results/test"
-val integrationTestReportPath: String = "${layout.buildDirectory.get()}/test-results/integrationTest"
-
 // JaCoCo coverage report
 val jacocoTestReportXml: String = "${layout.buildDirectory.get()}/reports/jacoco/test/report.xml"
 
@@ -104,11 +99,12 @@ val jacocoTestReportXml: String = "${layout.buildDirectory.get()}/reports/jacoco
 
 sourceSets {
 
-    create("integrationTest") {
-        compileClasspath += sourceSets.main.get().output + sourceSets.testFixtures.get().output
-        runtimeClasspath += sourceSets.main.get().output + sourceSets.testFixtures.get().output
+    create("jmh") {
+        java {
+            compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+            runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        }
     }
-
 }
 
 configurations {
@@ -121,18 +117,14 @@ configurations {
 
 }
 
-val integrationTestImplementation: Configuration by configurations.getting {
+val jmhImplementation: Configuration by configurations.getting {
     extendsFrom(
         configurations.implementation.get(),
-        configurations.testFixturesImplementation.get()
+        configurations.testImplementation.get()
     )
 }
 
-val integrationTestRuntimeOnly: Configuration by configurations.getting {
-    extendsFrom(
-        configurations.runtimeOnly.get(),
-        configurations.testFixturesRuntimeOnly.get()
-    )
+val jmhAnnotationProcessor: Configuration by configurations.getting {
 }
 
 val includeInJarApp: Configuration by configurations.creating
@@ -142,9 +134,9 @@ val includeInJarApp: Configuration by configurations.creating
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.7.1")
-    implementation("org.json:json:20250107")
-    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.22")
+    implementation("org.ow2.asm:asm:9.9.1")
+    implementation("org.json:json:20251224")
+    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.27")
     implementation("org.slf4j:jul-to-slf4j:2.0.17")
     implementation("org.slf4j:jcl-over-slf4j:2.0.17")
     api("org.slf4j:slf4j-api:2.0.17")
@@ -152,19 +144,18 @@ dependencies {
     // additional libraries to be added to jar-app
     includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
 
-    // test dependencies (available in unit and integration tests)
-    testFixturesApi("org.junit.jupiter:junit-jupiter:5.12.1")
-    testFixturesRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testFixturesApi("org.assertj:assertj-core:3.27.3")
-    testFixturesApi("org.mockito:mockito-core:5.16.1")
-    testFixturesApi("org.slf4j:slf4j-simple:2.0.17")
+    // test dependencies
+    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
+    testImplementation("org.assertj:assertj-core:3.27.7")
+    testImplementation("org.mockito:mockito-core:5.23.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("org.slf4j:slf4j-simple:2.0.17")
+
+    // benchmark dependencies
+    jmhImplementation("org.openjdk.jmh:jmh-core:1.37")
+    jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
 
 }
-
-/// do not add test-fixtures dependencies to POM file
-val javaComponent = components["java"] as AdhocComponentWithVariants
-javaComponent.withVariantsFromConfiguration(configurations["testFixturesApiElements"]) { skip() }
-javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeElements"]) { skip() }
 
 // plugin configurations -------------------------------------------------------
 
@@ -188,6 +179,9 @@ java {
     withJavadocJar()
 }
 
+val sonarBranchName: String = getGitBranchName()
+val sonarBranchTarget: String = getGitBranchTarget(sonarBranchName)
+
 sonar {
     // documentation: https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-gradle/
 
@@ -199,20 +193,22 @@ sonar {
         property("sonar.projectKey", "smarkwal_jarhc")
 
         // Git branch
-        property("sonar.branch.name", getGitBranchName())
-        if (getGitBranchName() != "master") {
+        property("sonar.branch.name", sonarBranchName)
+
+        // target Git branch for merge
+        if (sonarBranchTarget != sonarBranchName) {
             // https://docs.sonarsource.com/sonarqube-cloud/enriching/branch-analysis-setup/
-            property("sonar.branch.target", "master")
+            property("sonar.branch.target", sonarBranchTarget)
             // https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/analysis-parameters/
-            property("sonar.newCode.referenceBranch", "master")
+            property("sonar.newCode.referenceBranch", sonarBranchTarget)
         }
 
         // paths to test sources and test classes
-        property("sonar.tests", "${projectDir}/src/test/java,${projectDir}/src/integrationTest/java")
-        property("sonar.java.test.binaries", "${layout.buildDirectory.get()}/classes/java/test,${layout.buildDirectory.get()}/classes/java/integrationTest")
+        property("sonar.tests", "${projectDir}/src/test/java")
+        property("sonar.java.test.binaries", "${layout.buildDirectory.get()}/classes/java/test")
 
         // include test results
-        property("sonar.junit.reportPaths", "${testReportPath},${integrationTestReportPath}")
+        property("sonar.junit.reportPaths", "${layout.buildDirectory.get()}/test-results/test")
 
         // include test coverage results
         property("sonar.java.coveragePlugin", "jacoco")
@@ -293,18 +289,17 @@ tasks {
     }
 
     check {
-        dependsOn(test, integrationTest)
+        dependsOn(test)
     }
 
     jacocoTestReport {
 
         // run all tests first
-        dependsOn(test, integrationTest)
+        dependsOn(test)
 
         // get JaCoCo data from all test tasks
         executionData.from(
-            "${layout.buildDirectory.get()}/jacoco/test.exec",
-            "${layout.buildDirectory.get()}/jacoco/integrationTest.exec"
+            "${layout.buildDirectory.get()}/jacoco/test.exec"
         )
 
         reports {
@@ -335,17 +330,13 @@ tasks {
         ignoreMissingAnnotations.set(true)
     }
 
-    build {
-        dependsOn(jarhcReport)
-    }
-
     assemble {
         dependsOn(jarApp)
     }
 
 }
 
-val jarApp = tasks.register("jar-app", type = Jar::class) {
+val jarApp = tasks.register<Jar>("jar-app") {
     group = "build"
     description = "Assembles a fat/uber jar archive with all runtime dependencies."
 
@@ -398,30 +389,6 @@ val jarApp = tasks.register("jar-app", type = Jar::class) {
     with(tasks.jar.get() as CopySpec)
 }
 
-val integrationTest = tasks.register("integrationTest", type = Test::class) {
-    group = "verification"
-    description = "Runs the integration test suite."
-
-    // use tests in integrationTest source set
-    testClassesDirs = sourceSets["integrationTest"].output.classesDirs
-    classpath = sourceSets["integrationTest"].runtimeClasspath
-
-    /* DISABLED: @ExtendWith(MavenSearchApiMockServer.class) is not compatible with parallel execution
-    // run tests in parallel in the same JVM (experimental feature of JUnit 5)
-    // see https://junit.org/junit5/docs/current/user-guide/#writing-tests-parallel-execution
-    systemProperty("junit.jupiter.execution.parallel.enabled", "true")
-    // run test classes in parallel, but all test methods of a class by the same thread
-    systemProperty("junit.jupiter.execution.parallel.mode.default", "same_thread")
-    systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
-    // run max 4 test classes in parallel (more can result in an OutOfMemoryError)
-    systemProperty("junit.jupiter.execution.parallel.config.strategy", "fixed")
-    systemProperty("junit.jupiter.execution.parallel.config.fixed.parallelism", "4")
-    */
-
-    // run integration tests after unit tests
-    shouldRunAfter(tasks.test)
-}
-
 // common settings for all test tasks
 tasks.withType<Test> {
 
@@ -441,6 +408,9 @@ tasks.withType<Test> {
         }
     }
 
+    // do not allow requests to non-local repositories in tests
+    systemProperty("jarhc.test.maven.local-only", "true")
+
     // set locale to English (US)
     systemProperty("user.language", "en")
     systemProperty("user.country", "US")
@@ -459,21 +429,20 @@ tasks.withType<Test> {
 
     // test task output
     testLogging {
-        events = mutableSetOf(
-            // TestLogEvent.STARTED,
-            // TestLogEvent.PASSED,
-            TestLogEvent.FAILED,
-            TestLogEvent.SKIPPED,
-            TestLogEvent.STANDARD_OUT,
-            TestLogEvent.STANDARD_ERROR
-        )
         showStandardStreams = true
-        exceptionFormat = TestExceptionFormat.SHORT
-        showExceptions = true
-        showCauses = true
-        showStackTraces = true
     }
 
+}
+
+tasks.register<JavaExec>("jmh") {
+    group = "verification"
+    description = "Runs JMH benchmarks."
+
+    // settings
+    // documentation: https://github.com/guozheng/jmh-tutorial/blob/master/README.md
+    classpath = sourceSets["jmh"].runtimeClasspath
+    mainClass.set("org.openjdk.jmh.Main")
+    args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
 }
 
 tasks.withType<JavaCompile> {
@@ -483,7 +452,7 @@ tasks.withType<JavaCompile> {
 tasks.sonar {
     // run all tests and generate JaCoCo XML report
     dependsOn(
-        tasks.test, integrationTest,
+        tasks.test,
         tasks.jacocoTestReport
     )
 }
@@ -505,4 +474,21 @@ fun getGitBranchName(): String {
         return content
     }
     throw GradleException("Git branch name not found.")
+}
+
+fun getGitBranchTarget(branchName: String): String {
+    // Gitflow workflow merge targets
+    return if (branchName == "master") {
+        "master"
+    } else if (branchName.startsWith("hotfix/")) {
+        "master"
+    } else if (branchName.startsWith("release/")) {
+        "master"
+    } else if (branchName == "develop") {
+        "master"
+    } else if (branchName.startsWith("feature/")) {
+        "develop"
+    } else {
+        branchName
+    }
 }

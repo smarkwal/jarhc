@@ -51,15 +51,19 @@ class JarHcTest extends ReleaseTest {
 			new JavaImage("amazon", "corretto", "11", "amazoncorretto:11"),
 			new JavaImage("amazon", "corretto", "17", "amazoncorretto:17"),
 			new JavaImage("amazon", "corretto", "21", "amazoncorretto:21"),
+			new JavaImage("amazon", "corretto", "25", "amazoncorretto:25"),
 			new JavaImage("eclipse", "temurin", "11", "eclipse-temurin:11-jre"),
 			new JavaImage("eclipse", "temurin", "17", "eclipse-temurin:17-jre"),
 			new JavaImage("eclipse", "temurin", "21", "eclipse-temurin:21-jre"),
+			new JavaImage("eclipse", "temurin", "25", "eclipse-temurin:25-jre"),
 			new JavaImage("ibm", "semeru", "11", "ibm-semeru-runtimes:open-11-jre"),
 			new JavaImage("ibm", "semeru", "17", "ibm-semeru-runtimes:open-17-jre"),
 			new JavaImage("ibm", "semeru", "21", "ibm-semeru-runtimes:open-21-jre"),
+			new JavaImage("ibm", "semeru", "25", "ibm-semeru-runtimes:open-25-jre"),
 			new JavaImage("microsoft", "openjdk", "11", "mcr.microsoft.com/openjdk/jdk:11-ubuntu"),
 			new JavaImage("microsoft", "openjdk", "17", "mcr.microsoft.com/openjdk/jdk:17-ubuntu"),
 			new JavaImage("microsoft", "openjdk", "21", "mcr.microsoft.com/openjdk/jdk:21-ubuntu"),
+			new JavaImage("microsoft", "openjdk", "25", "mcr.microsoft.com/openjdk/jdk:25-ubuntu"),
 	};
 
 	private static File tempDir;
@@ -74,13 +78,13 @@ class JarHcTest extends ReleaseTest {
 
 		// workaround for AccessDeniedException in @TempDir
 		// when Testcontainers has not released all resources yet
-		LOGGER.info("Delete temporary directory: {}", tempDir);
+		LOGGER.debug("Delete temporary directory: {}", tempDir);
 		int retries = 10;
 		for (int n = 1; n <= retries; n++) {
 			try {
 				FileUtils.deleteDirectory(tempDir);
 				// no IO exception -> success
-				LOGGER.info("Temporary directory has been deleted.");
+				LOGGER.debug("Temporary directory has been deleted.");
 				return;
 			} catch (IOException e) {
 				if (n == retries) {
@@ -107,7 +111,7 @@ class JarHcTest extends ReleaseTest {
 		// note: all runners and tests will use the same data directory
 		File dataDir = new File(tempDir, "data");
 		createDirectory(dataDir);
-		LOGGER.info("Data directory: {}", dataDir.getAbsolutePath());
+		LOGGER.debug("Data directory: {}", dataDir.getAbsolutePath());
 
 		// add a local test runner first
 		List<AbstractTestRunner> runners = new ArrayList<>();
@@ -119,7 +123,7 @@ class JarHcTest extends ReleaseTest {
 
 		// get image filter from system property
 		String imageNameFilter = System.getProperty("jarhc.test.docker.filter", "eclipse-temurin");
-		LOGGER.info("Docker image name filter: {}", imageNameFilter);
+		LOGGER.debug("Docker image name filter: {}", imageNameFilter);
 
 		// add a Docker-based test runner for every Java image
 		for (JavaImage javaImage : JAVA_IMAGES) {
@@ -127,9 +131,9 @@ class JarHcTest extends ReleaseTest {
 
 			// check if image is accepted by filter
 			if (javaImage.matches(imageNameFilter)) {
-				LOGGER.info("- TEST: {}", imageName);
+				LOGGER.debug("- TEST: {}", imageName);
 			} else {
-				LOGGER.info("- skip: {}", imageName);
+				LOGGER.debug("- skip: {}", imageName);
 				continue; // skip this image
 			}
 

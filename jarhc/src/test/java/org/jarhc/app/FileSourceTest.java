@@ -46,14 +46,14 @@ class FileSourceTest {
 	}
 
 	@Test
-	void getName() {
+	void getFileName() {
 
 		// prepare
 		File file = new File("test.jar");
 		FileSource source = new FileSource(file);
 
 		// test
-		String result = source.getName();
+		String result = source.getFileName();
 
 		// assert
 		assertEquals("test.jar", result);

@@ -73,6 +73,7 @@ class CommandLineParserTest {
 		assertEquals("https://repo1.maven.org/maven2/", options.getRepositoryUrl());
 		assertNull(options.getRepositoryUsername());
 		assertNull(options.getRepositoryPassword());
+		assertFalse(options.isIsolatedScan());
 		assertFalse(options.isIgnoreMissingAnnotations());
 		assertFalse(options.isIgnoreExactCopy());
 		assertNull(options.getSections());
@@ -471,6 +472,20 @@ class CommandLineParserTest {
 	}
 
 	@Test
+	void test_isolated_scan(@TempDir Path tempDir) throws IOException, CommandLineException {
+
+		// prepare
+		File file = TestUtils.getResourceAsFile("/org/jarhc/app/CommandLineParserTest/a.jar", tempDir);
+
+		// test
+		Options options = parser.parse(new String[] { "--isolated-scan", file.getAbsolutePath() });
+
+		// assert
+		assertTrue(options.isIsolatedScan());
+
+	}
+
+	@Test
 	void test_skip_empty(@TempDir Path tempDir) throws IOException, CommandLineException {
 
 		// prepare
@@ -755,7 +770,7 @@ class CommandLineParserTest {
 		// test
 		CommandLineException exception = assertThrows(CommandLineException.class, () -> parser.loadOptions(args, options));
 		assertTrue(exception.getMessage().startsWith("Options file not found: "));
-		assertTrue(exception.getMessage().endsWith("/options.txt"));
+		assertTrue(exception.getMessage().endsWith("options.txt"));
 
 	}
 

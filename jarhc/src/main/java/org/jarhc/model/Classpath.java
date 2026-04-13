@@ -29,6 +29,8 @@ import org.jarhc.java.ClassLoaderStrategy;
  */
 public class Classpath extends ClassLoader {
 
+	private String title;
+
 	/**
 	 * List of JAR files on the classpath.
 	 */
@@ -72,6 +74,17 @@ public class Classpath extends ClassLoader {
 				classDefs.add(classDef);
 			});
 		});
+	}
+
+	public String getTitle() {
+		if (title == null) {
+			return getName();
+		}
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**

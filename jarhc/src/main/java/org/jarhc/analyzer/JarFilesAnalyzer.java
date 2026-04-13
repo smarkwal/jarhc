@@ -49,7 +49,7 @@ public class JarFilesAnalyzer implements Analyzer {
 		ReportTable table = buildTable(classpath);
 
 		ReportSection section = new ReportSection("JAR Files", "List of JAR files found in classpath.");
-		section.add(table);
+		section.addTable(table);
 		return section;
 	}
 

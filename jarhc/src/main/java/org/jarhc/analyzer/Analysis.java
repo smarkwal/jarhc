@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import org.jarhc.model.Classpath;
-import org.jarhc.report.Report;
+import org.jarhc.report.ReportContainer;
 import org.jarhc.report.ReportSection;
 
 public class Analysis {
@@ -32,7 +32,7 @@ public class Analysis {
 		this.analyzers = Arrays.asList(analyzers);
 	}
 
-	public void run(Classpath classpath, Report report) {
+	public void run(Classpath classpath, ReportContainer report) {
 
 		// run all analyzers in parallel
 		Map<Analyzer, ReportSection> sections = new ConcurrentHashMap<>();

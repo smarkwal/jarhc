@@ -1,11 +1,8 @@
-Benchmark                                                         Mode  Cnt  Score    Error  Units
-o.j.analyzer.AnalyzerBenchmarks.test_BinaryCompatibilityAnalyzer    ss   10  0.217 ±  0.028   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer              ss   10  0.184 ±  0.039   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_ClassVersionsAnalyzer          ss   10  0.031 ±  0.003   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_DuplicatesAnalyzer             ss   10  0.018 ±  0.004   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarDependenciesAnalyzer        ss   10  0.018 ±  0.004   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer               ss   10  0.030 ±  0.004   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer            ss   10  0.001 ±  0.001   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_PackagesAnalyzer               ss   10  0.053 ±  0.014   s/op
-o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                     ss   10  0.073 ±  0.004   s/op
-o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime               ss   10  0.522 ±  0.077   s/op
+Benchmark                                                         Mode  Cnt  Score   Error  Units
+o.j.analyzer.AnalyzerBenchmarks.test_BinaryCompatibilityAnalyzer    ss   10  0.319 ± 0.031   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer              ss   10  0.104 ± 0.022   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_DuplicatesAnalyzer             ss   10  0.016 ± 0.002   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer               ss   10  0.044 ± 0.012   s/op
+o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer            ss   10  0.010 ± 0.005   s/op
+o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                     ss   10  0.036 ± 0.008   s/op
+o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime               ss   10  0.162 ± 0.013   s/op

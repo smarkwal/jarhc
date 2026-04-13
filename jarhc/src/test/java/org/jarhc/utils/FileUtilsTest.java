@@ -30,8 +30,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.jarhc.test.AssertUtils;
+import org.jarhc.test.log.LoggerSilencer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class FileUtilsTest {
 
@@ -288,8 +291,14 @@ class FileUtilsTest {
 		// prepare
 		File file = new File(tempDir.toFile(), "test.txt");
 
-		// test
-		FileUtils.delete(file);
+		// disable FileUtils logger
+		Logger logger = LoggerFactory.getLogger(FileUtils.class);
+		LoggerSilencer.run(logger, () -> {
+
+			// test
+			FileUtils.delete(file);
+
+		});
 
 		// assert
 		assertFalse(file.exists());

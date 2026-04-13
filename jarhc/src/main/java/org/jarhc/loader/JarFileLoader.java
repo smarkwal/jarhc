@@ -43,7 +43,7 @@ class JarFileLoader extends AbstractFileLoader {
 		if (source == null) throw new IllegalArgumentException("source");
 
 		try (InputStream inputStream = source.getInputStream()) {
-			return load(source.getName(), source.getCoordinates(), inputStream);
+			return load(source.getFileName(), source.getCoordinates(), inputStream);
 		}
 	}
 
