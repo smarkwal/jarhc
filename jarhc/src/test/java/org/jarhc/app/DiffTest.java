@@ -96,7 +96,7 @@ class DiffTest {
 		// assert
 		assertThat(result)
 				.hasMessageStartingWith("File not found: ")
-				.hasMessageEndingWith("/report1.json")
+				.hasMessageEndingWith("report1.json")
 				.hasNoCause();
 		assertThat(reportFile).doesNotExist();
 	}
@@ -115,7 +115,7 @@ class DiffTest {
 		// assert
 		assertThat(result)
 				.hasMessageStartingWith("File not found: ")
-				.hasMessageEndingWith("/report2.html")
+				.hasMessageEndingWith("report2.html")
 				.hasNoCause();
 		assertThat(reportFile).doesNotExist();
 	}
@@ -136,7 +136,7 @@ class DiffTest {
 		// assert
 		assertThat(result)
 				.hasMessageStartingWith("Invalid JSON data in file: ")
-				.hasMessageEndingWith("/report1.json")
+				.hasMessageEndingWith("report1.json")
 				.hasCause(new JSONException("A JSONObject text must begin with '{' at 1 [character 2 line 1]"));
 		assertThat(reportFile).doesNotExist();
 	}
