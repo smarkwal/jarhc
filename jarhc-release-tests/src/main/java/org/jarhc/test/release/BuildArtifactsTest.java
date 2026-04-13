@@ -80,6 +80,9 @@ class BuildArtifactsTest extends ReleaseTest {
 		String actualPom = readProjectFile(JARHC_BUILD + "/publications/maven/pom-default.xml");
 		String expectedPom = readResource("pom.xml");
 
+		// normalize line endings (when POM has been generated on Windows)
+		actualPom = actualPom.replace("\r\n", "\n"); // normalize line endings
+
 		if (!actualPom.equals(expectedPom)) {
 			if (TestUtils.createResources()) {
 				writeProjectFile("src/main/resources/pom.xml", actualPom);
