@@ -5,12 +5,12 @@ JAR Files
 ---------
 List of JAR files found in classpath.
 
-Artifact  | Version   | Source        | Size    | Multi-release                  | Java version (classes)                                   | Resources | Packages                | Checksum (SHA-1)                         | Coordinates | Issues
-----------+-----------+---------------+---------+--------------------------------+----------------------------------------------------------+-----------+-------------------------+------------------------------------------+-------------+------------------------------------------------------------------------------------------------------
-jarhc-app | [unknown] | jarhc-app.jar | 3.71 MB | Yes (Java 11, Java 10, Java 9) | Java 11 (155), Java 10 (1), Java 8 (1203), Java 6 (723), | 155       | org.* (186 subpackages) | **************************************** | [unknown]   | Fat JAR: org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
-          |           |               |         |                                | Java 5 (38)                                              |           |                         |                                          |             |
-Classpath | -         | -             | 3.71 MB | -                              | Java 11 (155), Java 10 (1), Java 8 (1203), Java 6 (723), | 155       | 186                     | -                                        | -           | -
-          |           |               |         |                                | Java 5 (38)                                              |           |                         |                                          |             |
+Artifact  | Version   | Source        | Size    | Multi-release                  | Java version (classes)                                   | Resources | Packages                      | Checksum (SHA-1)                         | Coordinates | Issues
+----------+-----------+---------------+---------+--------------------------------+----------------------------------------------------------+-----------+-------------------------------+------------------------------------------+-------------+--------------------------------------------------------------------------------------------------------------------
+jarhc-app | [unknown] | jarhc-app.jar | 4.05 MB | Yes (Java 11, Java 10, Java 9) | Java 11 (155), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | com.google.* (11 subpackages) | **************************************** | [unknown]   | Fat JAR: com.google.*, org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+          |           |               |         |                                | Java 5 (38)                                              |           | org.* (187 subpackages)       |                                          |             |
+Classpath | -         | -             | 4.05 MB | -                              | Java 11 (155), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | 198                           | -                                        | -           | -
+          |           |               |         |                                | Java 5 (38)                                              |           |                               |                                          |             |
 
 Dependencies
 ------------
@@ -452,7 +452,19 @@ jarhc-app | org.apache.maven.model.building.DefaultModelBuilder
           | • Annotation not found: javax.inject.Named (package not found)
           | • Annotation not found: javax.inject.Singleton (package not found)
           |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.FileGAECVNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
           | org.eclipse.aether.internal.impl.synccontext.named.providers.FileGAVNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.FileHashingGAECVNameMapperProvider
           | • Interface not found: javax.inject.Provider
           | • Class not found: javax.inject.Provider (package not found)
           | • Annotation not found: javax.inject.Named (package not found)
@@ -465,6 +477,12 @@ jarhc-app | org.apache.maven.model.building.DefaultModelBuilder
           | • Annotation not found: javax.inject.Singleton (package not found)
           |
           | org.eclipse.aether.internal.impl.synccontext.named.providers.FileStaticNameMapperProvider
+          | • Interface not found: javax.inject.Provider
+          | • Class not found: javax.inject.Provider (package not found)
+          | • Annotation not found: javax.inject.Named (package not found)
+          | • Annotation not found: javax.inject.Singleton (package not found)
+          |
+          | org.eclipse.aether.internal.impl.synccontext.named.providers.GAECVNameMapperProvider
           | • Interface not found: javax.inject.Provider
           | • Class not found: javax.inject.Provider (package not found)
           | • Annotation not found: javax.inject.Named (package not found)
