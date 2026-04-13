@@ -108,6 +108,10 @@ public class LocalTestRunner extends AbstractTestRunner {
 			String stdOut = stdOutBuffer.toString(StandardCharsets.UTF_8);
 			String stdErr = stdErrBuffer.toString(StandardCharsets.UTF_8);
 
+			// normalize output by replacing Windows line breaks with Unix line breaks
+			stdOut = stdOut.replace("\r\n", "\n");
+			stdErr = stdErr.replace("\r\n", "\n");
+
 			return new TestResult(exitCode, stdOut, stdErr);
 
 		} catch (IOException e) {

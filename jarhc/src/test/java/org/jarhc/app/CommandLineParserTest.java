@@ -770,7 +770,7 @@ class CommandLineParserTest {
 		// test
 		CommandLineException exception = assertThrows(CommandLineException.class, () -> parser.loadOptions(args, options));
 		assertTrue(exception.getMessage().startsWith("Options file not found: "));
-		assertTrue(exception.getMessage().endsWith("/options.txt"));
+		assertTrue(exception.getMessage().endsWith("options.txt"));
 
 	}
 

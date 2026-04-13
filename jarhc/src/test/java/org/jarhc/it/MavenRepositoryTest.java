@@ -75,6 +75,8 @@ class MavenRepositoryTest {
 		assertEquals(214788, data.length);
 		assertLogger(logger).hasDebug("Download artifact: commons-io:commons-io:2.6:jar");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
@@ -91,6 +93,8 @@ class MavenRepositoryTest {
 		assertEquals(14256, data.length);
 		assertLogger(logger).hasDebug("Download artifact: commons-io:commons-io:2.6:pom");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
@@ -107,6 +111,8 @@ class MavenRepositoryTest {
 		assertEquals(335042, data.length);
 		assertLogger(logger).hasDebug("Download artifact: commons-codec:commons-codec:1.11:jar");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
@@ -123,6 +129,8 @@ class MavenRepositoryTest {
 		assertEquals(113676, data.length);
 		assertLogger(logger).hasDebug("Download artifact: org.ow2.asm:asm:7.0:jar");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
@@ -139,6 +147,8 @@ class MavenRepositoryTest {
 		assertEquals(1213592, data.length);
 		assertLogger(logger).hasDebug("Download artifact: org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:war");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
@@ -155,6 +165,8 @@ class MavenRepositoryTest {
 		assertEquals(8851, data.length);
 		assertLogger(logger).hasDebug("Download artifact: org.eclipse.jetty:test-jetty-webapp:9.4.20.v20190813:pom");
 
+		// release
+		stream.get().close();
 	}
 
 	@Test
