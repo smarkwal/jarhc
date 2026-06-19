@@ -117,9 +117,9 @@ tasks {
         testClassesDirs = sourceSets["main"].output.classesDirs
 
         // pass all 'jarhc.*' Gradle properties as system properties to JUnit JVM
-        project.properties.forEach {
+        gradle.startParameter.projectProperties.forEach {
             if (it.key.startsWith("jarhc.")) {
-                systemProperty(it.key, it.value.toString())
+                systemProperty(it.key, it.value)
             }
         }
 

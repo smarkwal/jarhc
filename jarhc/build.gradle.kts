@@ -83,7 +83,7 @@ val skipTests: Boolean = project.hasProperty("skip.tests")
 
 // select JMH benchmarks
 // to run a single benchmark: -Pbenchmarks=DefaultJavaRuntimeBenchmark
-val benchmarks: String = (project.properties["benchmarks"] ?: ".*") as String
+val benchmarks: String = providers.gradleProperty("benchmarks").orNull ?: ".*"
 
 // constants -------------------------------------------------------------------
 
@@ -117,17 +117,16 @@ configurations {
 
 }
 
-val jmhImplementation: Configuration by configurations.getting {
+val jmhImplementation = configurations.getByName("jmhImplementation").apply {
     extendsFrom(
         configurations.implementation.get(),
         configurations.testImplementation.get()
     )
 }
 
-val jmhAnnotationProcessor: Configuration by configurations.getting {
-}
+val jmhAnnotationProcessor = configurations.getByName("jmhAnnotationProcessor")
 
-val includeInJarApp: Configuration by configurations.creating
+val includeInJarApp = configurations.create("includeInJarApp")
 
 // dependencies ----------------------------------------------------------------
 
@@ -402,9 +401,9 @@ tasks.withType<Test> {
     useJUnitPlatform()
 
     // pass all 'jarhc.*' Gradle properties as system properties to JUnit JVM
-    properties.forEach {
+    gradle.startParameter.projectProperties.forEach {
         if (it.key.startsWith("jarhc.")) {
-            systemProperty(it.key, it.value.toString())
+            systemProperty(it.key, it.value)
         }
     }
 
