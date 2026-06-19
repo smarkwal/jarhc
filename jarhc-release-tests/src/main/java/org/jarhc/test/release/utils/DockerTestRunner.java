@@ -53,6 +53,7 @@ public class DockerTestRunner extends AbstractTestRunner {
 	@Override
 	public TestResult execute(Command command) {
 
+		@SuppressWarnings("resource")
 		JavaContainer container = createJavaContainer();
 
 		Container.ExecResult result;
