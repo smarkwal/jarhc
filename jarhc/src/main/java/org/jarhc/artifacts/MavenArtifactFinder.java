@@ -16,7 +16,6 @@
 
 package org.jarhc.artifacts;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,21 +28,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
-import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.IOUtils;
-import org.jarhc.utils.JarHcException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of {@link ArtifactFinder} that uses the Maven Search API
  * on <a href="https://search.maven.org">search.maven.org</a>to find artifacts.
- * It uses a disk-based and memory-based cache to store results locally.
  */
 public class MavenArtifactFinder implements ArtifactFinder {
 
@@ -58,50 +53,28 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	private static final int SEARCH_TIMEOUT = 65;
 	private static final String SEARCH_USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
 
-	private final File cacheDir;
 	private final Logger logger;
 	private final Settings settings;
 
-	private final Map<String, List<Artifact>> cache = new ConcurrentHashMap<>();
-
 	private final AtomicBoolean mavenStatusInfoLogged = new AtomicBoolean(false);
 
-	public MavenArtifactFinder(File cacheDir, Logger logger) {
-		this(cacheDir, logger, Settings.fromSystemProperties());
+	public MavenArtifactFinder() {
+		this(LoggerFactory.getLogger(MavenArtifactFinder.class), Settings.fromSystemProperties());
 	}
 
-	MavenArtifactFinder(File cacheDir, Logger logger, Settings settings) {
-		this.cacheDir = cacheDir;
+	public MavenArtifactFinder(Logger logger) {
+		this(logger, Settings.fromSystemProperties());
+	}
+
+	MavenArtifactFinder(Logger logger, Settings settings) {
 		this.logger = logger;
 		this.settings = settings;
 	}
 
 	@Override
-	@SuppressWarnings("java:S3776") // Cognitive Complexity of methods should not be too high
 	public List<Artifact> findArtifacts(String checksum) throws RepositoryException {
 
-		// check memory cache
-		if (cache.containsKey(checksum)) {
-			List<Artifact> artifacts = new ArrayList<>(cache.get(checksum)); // decouple
-			logger.debug("Artifact found: {} -> {} (memory cache)", checksum, artifacts);
-			return artifacts;
-		}
-
-		validateChecksum(checksum);
-
-		// check disk cache
-		File cacheFile = new File(cacheDir, checksum + ".txt");
-		if (cacheFile.isFile()) {
-
-			// read coordinates from file
-			List<Artifact> artifacts = readArtifactsFromFile(cacheFile);
-
-			// update in-memory cache
-			cache.put(checksum, new ArrayList<>(artifacts)); // decouple
-
-			logger.debug("Artifact found: {} -> {} (disk cache)", checksum, artifacts);
-			return artifacts;
-		}
+		ArtifactFinder.validateChecksum(checksum);
 
 		long time = 0;
 		if (logger.isDebugEnabled()) {
@@ -158,35 +131,11 @@ public class MavenArtifactFinder implements ArtifactFinder {
 		// parse JSON code and create of list of artifacts (ordered by relevance)
 		List<Artifact> artifacts = parseArtifacts(docs);
 
-		// update memory cache
-		cache.put(checksum, new ArrayList<>(artifacts)); // decouple
-
-		// update disk cache
-		writeArtifactsToFile(artifacts, cacheFile);
-
 		if (logger.isDebugEnabled()) {
 			time = System.nanoTime() - time;
 			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifacts, time / 1000 / 1000);
 		}
 		return artifacts;
-	}
-
-	/**
-	 * Checks if the given checksum is valid:
-	 * <ol>
-	 * <li>checksum must not be <code>null</code>.</li>
-	 * <li>checksum must contain only the digits '0' - '9' and letters 'a' - 'f' (hex numbers).</li>
-	 * </ol>
-	 * <p>
-	 * This method can be used by repository implementations to validate the input value.
-	 *
-	 * @param checksum Checksum
-	 * @throws IllegalArgumentException if the given checksum is not valid.
-	 */
-	private static void validateChecksum(String checksum) {
-		if (checksum == null || !checksum.matches("[0-9a-f]+")) {
-			throw new IllegalArgumentException("checksum: " + checksum);
-		}
 	}
 
 	private String downloadText(URL url) throws RepositoryException {
@@ -242,39 +191,6 @@ public class MavenArtifactFinder implements ArtifactFinder {
 			}
 		}
 
-	}
-
-	private static List<Artifact> readArtifactsFromFile(File cacheFile) {
-
-		// read coordinates from file
-		String[] lines;
-		try {
-			lines = FileUtils.readFileToString(cacheFile).split("\n");
-		} catch (IOException e) {
-			throw new JarHcException(e);
-		}
-
-		List<Artifact> artifacts = new ArrayList<>();
-		for (String coordinates : lines) {
-			// validate coordinates and create artifact
-			if (Artifact.validateCoordinates(coordinates)) {
-				Artifact artifact = new Artifact(coordinates);
-				artifacts.add(artifact);
-			} else {
-				throw new JarHcException("Invalid artifact coordinates: " + coordinates);
-			}
-		}
-
-		return artifacts;
-	}
-
-	private static void writeArtifactsToFile(List<Artifact> artifacts, File cacheFile) {
-		String lines = artifacts.stream().map(Artifact::toString).collect(Collectors.joining("\n"));
-		try {
-			FileUtils.writeStringToFile(lines, cacheFile);
-		} catch (IOException e) {
-			throw new JarHcException(e);
-		}
 	}
 
 	private List<Artifact> parseArtifacts(JSONArray docs) {

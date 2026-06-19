@@ -31,7 +31,9 @@ import org.jarhc.app.Options.Command;
 import org.jarhc.app.PropertiesManager;
 import org.jarhc.app.PropertiesManagerImpl;
 import org.jarhc.artifacts.ArtifactFinder;
+import org.jarhc.artifacts.DiskCacheArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
+import org.jarhc.artifacts.MemoryCacheArtifactFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
 import org.jarhc.utils.FileUtils;
@@ -184,8 +186,9 @@ public class Main {
 		}
 
 		File cacheDir = new File(dataPath, "checksums");
-		Logger mavenArtifactFinderLogger = LoggerFactory.getLogger(MavenArtifactFinder.class);
-		ArtifactFinder artifactFinder = new MavenArtifactFinder(cacheDir, mavenArtifactFinderLogger);
+		ArtifactFinder apiArtifactFinder = new MavenArtifactFinder();
+		ArtifactFinder diskCacheArtifactFinder = new DiskCacheArtifactFinder(cacheDir, apiArtifactFinder);
+		ArtifactFinder artifactFinder = new MemoryCacheArtifactFinder(diskCacheArtifactFinder);
 
 		int javaVersion = options.getRelease();
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
