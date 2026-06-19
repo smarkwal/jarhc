@@ -28,6 +28,7 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 
 	private MavenProxyServer server;
 	private String originalSearchUrl;
+	private String originalDepsDevUrl;
 	private String originalRepositoryUrl;
 
 	@Override
@@ -45,6 +46,11 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 		originalSearchUrl = System.getProperty("jarhc.search.url");
 		String searchUrl = server.getSearchURL();
 		System.setProperty("jarhc.search.url", searchUrl);
+
+		// update deps.dev query URL in Java System Properties
+		originalDepsDevUrl = System.getProperty("jarhc.depsdev.url");
+		String queryUrl = server.getQueryURL();
+		System.setProperty("jarhc.depsdev.url", queryUrl);
 
 		// update repository URL in Java System Properties
 		originalRepositoryUrl = System.getProperty("jarhc.repository.url");
@@ -66,6 +72,13 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 			System.setProperty("jarhc.search.url", originalSearchUrl);
 		} else {
 			System.clearProperty("jarhc.search.url");
+		}
+
+		// restore original deps.dev query URL in Java System Properties
+		if (originalDepsDevUrl != null) {
+			System.setProperty("jarhc.depsdev.url", originalDepsDevUrl);
+		} else {
+			System.clearProperty("jarhc.depsdev.url");
 		}
 
 		// restore original repository URL in Java System Properties

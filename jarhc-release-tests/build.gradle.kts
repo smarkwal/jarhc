@@ -133,6 +133,13 @@ tasks {
         // set file encoding to UTF-8
         systemProperty("file.encoding", "UTF-8")
 
+        // keep JUnit temp directories inside the build tree
+        val tmpDir = layout.buildDirectory.dir("tmp").get().asFile
+        doFirst {
+            tmpDir.mkdirs()
+        }
+        systemProperty("java.io.tmpdir", tmpDir.absolutePath)
+
         // use Linux/Unix line separator
         systemProperty("line.separator", "\n")
 
