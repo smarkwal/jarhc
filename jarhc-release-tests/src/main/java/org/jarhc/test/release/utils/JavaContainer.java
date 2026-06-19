@@ -39,4 +39,14 @@ public class JavaContainer extends GenericContainer<JavaContainer> {
 		}
 	}
 
+	public void symlink(String source, String target) {
+		try {
+			execInContainer(StandardCharsets.UTF_8, "ln", "-sf", source, target);
+		} catch (IOException e) {
+			throw new AssertionError("Unexpected I/O error.", e);
+		} catch (InterruptedException e) {
+			throw new AssertionError("Unexpected interruption.", e);
+		}
+	}
+
 }

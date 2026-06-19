@@ -61,6 +61,10 @@ public class DockerTestRunner extends AbstractTestRunner {
 			LOGGER.debug("Start container: {}", getName());
 			container.start();
 
+			for (String path : files.keySet()) {
+				container.symlink("/jarhc-files/" + path, "/jarhc/" + path);
+			}
+
 			LOGGER.debug("Run command: {}", command);
 			result = container.exec(command);
 
@@ -86,10 +90,10 @@ public class DockerTestRunner extends AbstractTestRunner {
 		// map JarHC work directory into container
 		container.withFileSystemBind(workDir.getAbsolutePath(), "/jarhc", BindMode.READ_WRITE);
 
-		// map installed files into container
+		// map installed files into a separate container directory
 		for (String path : files.keySet()) {
 			File file = files.get(path);
-			container.withFileSystemBind(file.getAbsolutePath(), "/jarhc/" + path, BindMode.READ_WRITE);
+			container.withFileSystemBind(file.getAbsolutePath(), "/jarhc-files/" + path, BindMode.READ_ONLY);
 		}
 
 		// map JarHC data directory into container
