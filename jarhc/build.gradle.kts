@@ -401,10 +401,8 @@ tasks.withType<Test> {
     useJUnitPlatform()
 
     // pass all 'jarhc.*' Gradle properties as system properties to JUnit JVM
-    gradle.startParameter.projectProperties.forEach {
-        if (it.key.startsWith("jarhc.")) {
-            systemProperty(it.key, it.value)
-        }
+    providers.gradlePropertiesPrefixedBy("jarhc.").get().forEach { (name, value) ->
+        systemProperty(name, value)
     }
 
     // do not allow requests to non-local repositories in tests

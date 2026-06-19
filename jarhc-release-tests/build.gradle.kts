@@ -117,10 +117,8 @@ tasks {
         testClassesDirs = sourceSets["main"].output.classesDirs
 
         // pass all 'jarhc.*' Gradle properties as system properties to JUnit JVM
-        gradle.startParameter.projectProperties.forEach {
-            if (it.key.startsWith("jarhc.")) {
-                systemProperty(it.key, it.value)
-            }
+        providers.gradlePropertiesPrefixedBy("jarhc.").get().forEach { (name, value) ->
+            systemProperty(name, value)
         }
 
         // set locale to English (US)
