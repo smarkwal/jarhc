@@ -40,6 +40,8 @@ public class DiskCacheArtifactFinder implements ArtifactFinder {
 	@Override
 	public List<Artifact> findArtifacts(String checksum) throws RepositoryException {
 
+		ArtifactFinder.validateChecksum(checksum);
+
 		File cacheFile = new File(cacheDir, checksum + ".txt");
 		if (cacheFile.isFile()) {
 			List<Artifact> artifacts = ArtifactCacheFiles.readArtifactsFromFile(cacheFile);

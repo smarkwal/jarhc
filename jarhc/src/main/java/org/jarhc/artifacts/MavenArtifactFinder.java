@@ -74,7 +74,7 @@ public class MavenArtifactFinder implements ArtifactFinder {
 	@Override
 	public List<Artifact> findArtifacts(String checksum) throws RepositoryException {
 
-		validateChecksum(checksum);
+		ArtifactFinder.validateChecksum(checksum);
 
 		long time = 0;
 		if (logger.isDebugEnabled()) {
@@ -136,24 +136,6 @@ public class MavenArtifactFinder implements ArtifactFinder {
 			logger.debug("Artifact found: {} -> {} (time: {} ms)", checksum, artifacts, time / 1000 / 1000);
 		}
 		return artifacts;
-	}
-
-	/**
-	 * Checks if the given checksum is valid:
-	 * <ol>
-	 * <li>checksum must not be <code>null</code>.</li>
-	 * <li>checksum must contain only the digits '0' - '9' and letters 'a' - 'f' (hex numbers).</li>
-	 * </ol>
-	 * <p>
-	 * This method can be used by repository implementations to validate the input value.
-	 *
-	 * @param checksum Checksum
-	 * @throws IllegalArgumentException if the given checksum is not valid.
-	 */
-	private static void validateChecksum(String checksum) {
-		if (checksum == null || !checksum.matches("[0-9a-f]+")) {
-			throw new IllegalArgumentException("checksum: " + checksum);
-		}
 	}
 
 	private String downloadText(URL url) throws RepositoryException {
