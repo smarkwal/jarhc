@@ -28,7 +28,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import org.jarhc.artifacts.Artifact;
+import org.jarhc.artifacts.ArtifactFinder;
+import org.jarhc.artifacts.DiskCacheArtifactFinder;
 import org.jarhc.artifacts.MavenArtifactFinder;
+import org.jarhc.artifacts.MemoryCacheArtifactFinder;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.test.log.LoggerBuilder;
@@ -48,12 +51,14 @@ class MavenArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);
 	private File cacheDir;
-	private MavenArtifactFinder artifactFinder;
+	private ArtifactFinder artifactFinder;
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
 		cacheDir = tempDir.toFile();
-		artifactFinder = new MavenArtifactFinder(cacheDir, logger);
+		ArtifactFinder apiArtifactFinder = new MavenArtifactFinder(logger);
+		ArtifactFinder diskCacheArtifactFinder = new DiskCacheArtifactFinder(cacheDir, apiArtifactFinder, logger);
+		artifactFinder = new MemoryCacheArtifactFinder(diskCacheArtifactFinder, logger);
 	}
 
 	@AfterEach

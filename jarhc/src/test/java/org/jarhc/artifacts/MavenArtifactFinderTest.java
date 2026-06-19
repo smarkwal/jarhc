@@ -21,29 +21,23 @@ import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
-import java.nio.file.Path;
 import java.util.Map;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 
 class MavenArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MavenArtifactFinder.class);
-	private File cacheDir;
 	private final MavenArtifactFinder.Settings settings = Mockito.mock(MavenArtifactFinder.Settings.class);
-	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder(cacheDir, logger, settings);
+	private final MavenArtifactFinder artifactFinder = new MavenArtifactFinder(logger, settings);
 
 	@BeforeEach
-	void setUp(@TempDir Path tempDir) {
-		cacheDir = tempDir.toFile();
-
+	void setUp() {
 		doReturn("http://localhost/checksum=%s").when(settings).getUrl();
 		doReturn(10).when(settings).getTimeout();
 		doReturn(Map.of()).when(settings).getHeaders();
