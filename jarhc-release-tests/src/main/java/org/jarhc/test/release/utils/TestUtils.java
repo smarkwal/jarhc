@@ -70,8 +70,8 @@ public class TestUtils {
 				// mask platform in Java home path (macOS vs Linux/Windows)
 				content = content.replaceAll("Java home (.*)-amd64", "Java home $1-***64");
 				content = content.replaceAll("Java home (.*)-arm64", "Java home $1-***64");
-				content = content.replaceAll("Java home (.*).x86_64", "Java home $1.***64");
-				content = content.replaceAll("Java home (.*).aarch64", "Java home $1.***64");
+				content = content.replaceAll("Java home (.*)\\.x86_64", "Java home $1.***64");
+				content = content.replaceAll("Java home (.*)\\.aarch64", "Java home $1.***64");
 
 				// mask patch version of Java version
 				content = content.replaceAll("Java version : (\\d+)\\.(\\d+)\\.(\\d+)", "Java version : $1.$2.*");
