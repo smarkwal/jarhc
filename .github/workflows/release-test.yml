@@ -3,6 +3,15 @@ name: Release Test
 on:
   workflow_dispatch:
     inputs:
+      runner_os:
+        description: 'Runner OS'
+        required: false
+        default: 'ubuntu-latest'
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
       additionalGradleOptions:
         description: 'Additional Gradle options'
         required: false
@@ -12,7 +21,7 @@ jobs:
   release-test:
     name: Release Test
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.inputs.runner_os }}
 
     steps:
 
@@ -35,6 +44,7 @@ jobs:
         cache-read-only: false
 
     - name: Run Release Test
+      shell: bash
       run: './gradlew --no-daemon :jarhc-release-test:test ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload report
