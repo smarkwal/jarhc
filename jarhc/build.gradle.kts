@@ -154,6 +154,11 @@ dependencies {
     jmhImplementation("org.openjdk.jmh:jmh-core:1.37")
     jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
 
+    // fix CVE-2025-67030 in plexus-utils < 3.6.0
+    // (dependency of maven-resolver-supplier 1.9.27)
+    // check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
+    implementation("org.codehaus.plexus:plexus-utils:3.6.1")
+
 }
 
 // plugin configurations -------------------------------------------------------
@@ -349,7 +354,7 @@ val jarApp = tasks.register<Jar>("jar-app") {
     manifest {
         attributes["Main-Class"] = mainClassName
 
-        // plexus-utils-3.4.1.jar is a multi-release JAR
+        // plexus-utils-3.6.1.jar is a multi-release JAR
         // -> fat/uber JAR is also a multi-release JAR
         attributes["Multi-Release"] = "true"
     }

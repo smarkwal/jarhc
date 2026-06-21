@@ -161,7 +161,7 @@ META-INF/licenses/httpcore-4.4.16.jar/META-INF/LICENSE | size=11358 | crc=226300
 META-INF/licenses/httpcore-4.4.16.jar/META-INF/NOTICE | size=172 | crc=2906556078
 META-INF/licenses/jcl-over-slf4j-2.0.18.jar/META-INF/LICENSE.txt | size=1178 | crc=1232761363
 META-INF/licenses/jul-to-slf4j-2.0.18.jar/META-INF/LICENSE.txt | size=1178 | crc=1232761363
-META-INF/licenses/licenses.csv | size=4117 | crc=1129229106
+META-INF/licenses/licenses.csv | size=4100 | crc=2990209374
 META-INF/licenses/maven-artifact-3.9.12.jar/META-INF/LICENSE | size=11358 | crc=2263004340
 META-INF/licenses/maven-artifact-3.9.12.jar/META-INF/NOTICE | size=169 | crc=3240519305
 META-INF/licenses/maven-builder-support-3.9.12.jar/META-INF/LICENSE | size=11358 | crc=2263004340
@@ -192,8 +192,8 @@ META-INF/licenses/maven-resolver-transport-http-1.9.27.jar/META-INF/LICENSE | si
 META-INF/licenses/maven-resolver-transport-http-1.9.27.jar/META-INF/NOTICE | size=193 | crc=1177084939
 META-INF/licenses/maven-resolver-util-1.9.27.jar/META-INF/LICENSE | size=11358 | crc=2263004340
 META-INF/licenses/maven-resolver-util-1.9.27.jar/META-INF/NOTICE | size=188 | crc=3788321449
-META-INF/licenses/plexus-utils-3.6.0.jar/META-INF/LICENSE | size=11358 | crc=2263004340
-META-INF/licenses/plexus-utils-3.6.0.jar/META-INF/NOTICE | size=474 | crc=1309731612
+META-INF/licenses/plexus-utils-3.6.1.jar/META-INF/LICENSE | size=11358 | crc=2263004340
+META-INF/licenses/plexus-utils-3.6.1.jar/META-INF/NOTICE | size=474 | crc=1309731612
 META-INF/licenses/slf4j-api-2.0.18.jar/META-INF/LICENSE.txt | size=1178 | crc=1232761363
 META-INF/MANIFEST.MF | size=74 | crc=1792797236
 META-INF/maven/com.google.code.gson/gson/pom.properties | size=60 | crc=97391251
@@ -238,8 +238,8 @@ META-INF/maven/org.apache.maven/maven-resolver-provider/pom.properties | size=75
 META-INF/maven/org.apache.maven/maven-resolver-provider/pom.xml | size=4542 | crc=99250371
 META-INF/maven/org.codehaus.plexus/plexus-interpolation/pom.properties | size=73 | crc=3124752992
 META-INF/maven/org.codehaus.plexus/plexus-interpolation/pom.xml | size=4721 | crc=2272090555
-META-INF/maven/org.codehaus.plexus/plexus-utils/pom.properties | size=66 | crc=755569928
-META-INF/maven/org.codehaus.plexus/plexus-utils/pom.xml | size=7634 | crc=2990504616
+META-INF/maven/org.codehaus.plexus/plexus-utils/pom.properties | size=66 | crc=873604169
+META-INF/maven/org.codehaus.plexus/plexus-utils/pom.xml | size=7912 | crc=3323340986
 META-INF/maven/org.json/json/pom.properties | size=50 | crc=3461280021
 META-INF/maven/org.json/json/pom.xml | size=10568 | crc=2910548502
 META-INF/maven/org.slf4j/jcl-over-slf4j/pom.properties | size=59 | crc=2388670077
@@ -1715,8 +1715,8 @@ org/codehaus/plexus/interpolation/StringSearchInterpolator.class | size=7953 | c
 org/codehaus/plexus/interpolation/util/StringUtils.class | size=1718 | crc=1107265684
 org/codehaus/plexus/interpolation/util/ValueSourceUtils.class | size=1679 | crc=2111648886
 org/codehaus/plexus/interpolation/ValueSource.class | size=640 | crc=838393480
-org/codehaus/plexus/util/AbstractScanner.class | size=6083 | crc=4084905661
-org/codehaus/plexus/util/Base64.class | size=5173 | crc=4177384575
+org/codehaus/plexus/util/AbstractScanner.class | size=6058 | crc=3744894715
+org/codehaus/plexus/util/Base64.class | size=5257 | crc=2776441505
 org/codehaus/plexus/util/BaseFileUtils.class | size=1270 | crc=1513065533
 org/codehaus/plexus/util/BaseIOUtil.class | size=928 | crc=1905645829
 org/codehaus/plexus/util/CachedMap.class | size=4408 | crc=2378580159
@@ -1754,7 +1754,7 @@ org/codehaus/plexus/util/DirectoryWalker$DirStackEntry.class | size=1918 | crc=1
 org/codehaus/plexus/util/DirectoryWalker.class | size=7766 | crc=185253404
 org/codehaus/plexus/util/DirectoryWalkListener.class | size=327 | crc=3325243993
 org/codehaus/plexus/util/ExceptionUtils.class | size=9644 | crc=1122296141
-org/codehaus/plexus/util/Expand.class | size=3972 | crc=2042245153
+org/codehaus/plexus/util/Expand.class | size=4276 | crc=2843365950
 org/codehaus/plexus/util/FastMap$1.class | size=219 | crc=3362447246
 org/codehaus/plexus/util/FastMap$EntryImpl.class | size=3988 | crc=868853482
 org/codehaus/plexus/util/FastMap$EntrySet$1.class | size=1701 | crc=3061305789
@@ -1765,7 +1765,7 @@ org/codehaus/plexus/util/FastMap$Values$1.class | size=1782 | crc=3738727941
 org/codehaus/plexus/util/FastMap$Values.class | size=1590 | crc=782249438
 org/codehaus/plexus/util/FastMap.class | size=10551 | crc=3292931189
 org/codehaus/plexus/util/FileUtils$FilterWrapper.class | size=474 | crc=855975389
-org/codehaus/plexus/util/FileUtils.class | size=29746 | crc=2927424172
+org/codehaus/plexus/util/FileUtils.class | size=29746 | crc=423529010
 org/codehaus/plexus/util/InterpolationFilterReader.class | size=3579 | crc=3529687875
 org/codehaus/plexus/util/introspection/ClassMap$1.class | size=250 | crc=2258212006
 org/codehaus/plexus/util/introspection/ClassMap$CacheMiss.class | size=698 | crc=4198635424
@@ -1784,7 +1784,7 @@ org/codehaus/plexus/util/IOUtil.class | size=8483 | crc=2698185224
 org/codehaus/plexus/util/LineOrientedInterpolatingReader.class | size=8131 | crc=1852552054
 org/codehaus/plexus/util/MatchPattern.class | size=3562 | crc=2566462983
 org/codehaus/plexus/util/MatchPatterns.class | size=3627 | crc=642109888
-org/codehaus/plexus/util/NioFiles.class | size=3837 | crc=1286504498
+org/codehaus/plexus/util/NioFiles.class | size=3837 | crc=1181278375
 org/codehaus/plexus/util/Os.class | size=4867 | crc=1780374039
 org/codehaus/plexus/util/PathTool.class | size=4936 | crc=3417558684
 org/codehaus/plexus/util/PropertyUtils.class | size=1651 | crc=283408383
@@ -1804,7 +1804,7 @@ org/codehaus/plexus/util/WriterFactory.class | size=2329 | crc=2196729836
 org/codehaus/plexus/util/xml/CompactXMLWriter.class | size=635 | crc=2683713544
 org/codehaus/plexus/util/xml/PrettyPrintXMLWriter.class | size=7910 | crc=1755573520
 org/codehaus/plexus/util/xml/pull/EntityReplacementMap.class | size=11862 | crc=2741881814
-org/codehaus/plexus/util/xml/pull/MXParser.class | size=50996 | crc=4210054884
+org/codehaus/plexus/util/xml/pull/MXParser.class | size=50996 | crc=2113297645
 org/codehaus/plexus/util/xml/pull/MXSerializer.class | size=19245 | crc=348559853
 org/codehaus/plexus/util/xml/pull/XmlPullParser.class | size=2869 | crc=4104733218
 org/codehaus/plexus/util/xml/pull/XmlPullParserException.class | size=2444 | crc=2916829248
