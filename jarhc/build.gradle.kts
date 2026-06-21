@@ -23,10 +23,10 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "3.1.2"
+    id("com.github.jk1.dependency-license-report") version "3.1.4"
 
     // run Sonar analysis
-    id("org.sonarqube") version "7.2.3.7755"
+    id("org.sonarqube") version "7.3.1.8318"
 
     // JarHC Gradle plugin
     id("org.jarhc") version "1.2.0"
@@ -133,26 +133,31 @@ val includeInJarApp = configurations.create("includeInJarApp")
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.9.1")
-    implementation("org.json:json:20251224")
+    implementation("org.ow2.asm:asm:9.10.1")
+    implementation("org.json:json:20260522")
     implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.27")
-    implementation("org.slf4j:jul-to-slf4j:2.0.17")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.17")
-    api("org.slf4j:slf4j-api:2.0.17")
+    implementation("org.slf4j:jul-to-slf4j:2.0.18")
+    implementation("org.slf4j:jcl-over-slf4j:2.0.18")
+    api("org.slf4j:slf4j-api:2.0.18")
 
     // additional libraries to be added to jar-app
-    includeInJarApp("org.slf4j:slf4j-simple:2.0.17")
+    includeInJarApp("org.slf4j:slf4j-simple:2.0.18")
 
     // test dependencies
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
     testImplementation("org.assertj:assertj-core:3.27.7")
     testImplementation("org.mockito:mockito-core:5.23.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("org.slf4j:slf4j-simple:2.0.17")
+    testRuntimeOnly("org.slf4j:slf4j-simple:2.0.18")
 
     // benchmark dependencies
     jmhImplementation("org.openjdk.jmh:jmh-core:1.37")
     jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+
+    // fix CVE-2025-67030 in plexus-utils < 3.6.0
+    // (dependency of maven-resolver-supplier 1.9.27)
+    // check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
+    implementation("org.codehaus.plexus:plexus-utils:3.6.1")
 
 }
 
@@ -349,7 +354,7 @@ val jarApp = tasks.register<Jar>("jar-app") {
     manifest {
         attributes["Main-Class"] = mainClassName
 
-        // plexus-utils-3.4.1.jar is a multi-release JAR
+        // plexus-utils-3.6.1.jar is a multi-release JAR
         // -> fat/uber JAR is also a multi-release JAR
         attributes["Multi-Release"] = "true"
     }

@@ -47,9 +47,9 @@ dependencies {
     implementation("org.testcontainers:testcontainers:1.21.4")
     implementation("org.testcontainers:junit-jupiter:1.21.4")
     implementation("org.apache.commons:commons-lang3:3.20.0")
-    implementation("commons-io:commons-io:2.21.0")
-    runtimeOnly("org.slf4j:slf4j-api:2.0.17")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
+    implementation("commons-io:commons-io:2.22.0")
+    runtimeOnly("org.slf4j:slf4j-api:2.0.18")
+    runtimeOnly("org.slf4j:slf4j-simple:2.0.18")
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
     // (dependency of Testcontainers 1.21.0)
