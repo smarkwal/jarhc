@@ -55,6 +55,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -102,7 +104,8 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="JarHC - JAR Health Check" class="md-header__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -239,7 +242,8 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="JarHC - JAR Health Check" class="md-nav__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     JarHC - JAR Health Check
@@ -1139,7 +1143,7 @@
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>OpenJDK 64-Bit Server VM Temurin-17.0.12+7 (build 17.0.12+7, mixed mode, sharing)
 </code></pre></div></p>
 <h3 id="download-and-test">Download and test<a class="headerlink" href="#download-and-test" title="Permanent link">&para;</a></h3>
-<p>Download the file <strong>jarhc-\&lt;version&gt;-app.jar</strong> from the <a href="https://github.com/smarkwal/jarhc/releases/latest">latest release of JarHC</a> and rename it to <strong>jarhc.jar</strong>.</p>
+<p>Download the file <code>jarhc-&lt;version&gt;-app.jar</code> from the <a href="https://github.com/smarkwal/jarhc/releases/latest">latest release of JarHC</a> and rename it to <code>jarhc.jar</code>.</p>
 <p>Run the following command to test if JarHC can be started:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>java -jar jarhc.jar --version
 </code></pre></div>

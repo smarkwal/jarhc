@@ -55,6 +55,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -102,7 +104,8 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="JarHC - JAR Health Check" class="md-header__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -239,7 +242,8 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="JarHC - JAR Health Check" class="md-nav__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     JarHC - JAR Health Check
@@ -1008,10 +1012,10 @@
 
 <h1 id="quick-start">Quick-start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
 <h2 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h2>
-<p>Test if Java 11, 17, or 21 is installed:</p>
+<p>Test if Java 11, 17, 21, or 25 is installed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>java<span class="w"> </span>-version
 </code></pre></div>
-<p>Download the file <strong>jarhc-\&lt;version&gt;-app.jar</strong> from the <a href="https://github.com/smarkwal/jarhc/releases/latest">latest release of JarHC</a> and rename it to <strong>jarhc.jar</strong>.</p>
+<p>Download the file <code>jarhc-&lt;version&gt;-app.jar</code> from the <a href="https://github.com/smarkwal/jarhc/releases/latest">latest release of JarHC</a> and rename it to <code>jarhc.jar</code>.</p>
 <p>Test if JarHC can be started:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>jarhc.jar<span class="w"> </span>--version
 </code></pre></div>
@@ -1031,7 +1035,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>jarhc.jar<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">     </span>--diff<span class="w"> </span>report-v1.html<span class="w"> </span>report-v2.html<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">     </span>--title<span class="w"> </span><span class="s2">&quot;Compare V1 and V2&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">     </span>--output<span class="w"> </span>report-diff.html<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">     </span>--output<span class="w"> </span>report-diff.html
 </code></pre></div>
 
 
