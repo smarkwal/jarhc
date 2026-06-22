@@ -53,6 +53,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -100,7 +102,8 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="JarHC - JAR Health Check" class="md-header__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -237,7 +240,8 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="JarHC - JAR Health Check" class="md-nav__button md-logo" aria-label="JarHC - JAR Health Check" data-md-component="logo">
       
-  <img src="../assets/jarhc-logo.png" alt="logo">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     JarHC - JAR Health Check
@@ -1023,6 +1027,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1201,6 +1216,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1289,6 +1315,20 @@
 </code></pre></div>
 <p>Scan results can be found in SonarCloud:
 https://sonarcloud.io/project/overview?id=smarkwal_jarhc</p>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
+<p>The documentation is automatically built and published to GitHub Pages:</p>
+<ol>
+<li>On every push to the <code>master</code> branch by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-snapshot.yml">Docs Snapshot</a>.</li>
+<li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml">Docs Release</a>.</li>
+</ol>
+<p>To test the documentation locally before publishing, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+</code></pre></div>
+<p>And then visit http://localhost:8000/jarhc/ in your browser.</p>
+<p>To build and inspect the documentation locally, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
+</code></pre></div>
+<p>And then open the generated file <code>site/index.html</code> in your browser.</p>
 
 
 
