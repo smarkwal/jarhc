@@ -111,7 +111,7 @@ class MultiMapTest {
 		assertEquals(1, map.getSize());
 		assertEquals(1, map.getKeys().size());
 		assertEquals(3, map.getValues("a").size());
-		assertArrayEquals(new Object[]{2, 8, 10}, map.getValues("a").toArray());
+		assertArrayEquals(new Object[] { 2, 8, 10 }, map.getValues("a").toArray());
 
 	}
 
@@ -130,7 +130,7 @@ class MultiMapTest {
 		assertEquals(1, map.getSize());
 		assertEquals(1, map.getKeys().size());
 		assertEquals(3, map.getValues("a").size());
-		assertArrayEquals(new Object[]{10, 2, 8}, map.getValues("a").toArray());
+		assertArrayEquals(new Object[] { 10, 2, 8 }, map.getValues("a").toArray());
 
 	}
 
