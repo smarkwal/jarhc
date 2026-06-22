@@ -11,7 +11,6 @@ copyright: JarHC - JAR Health Check | <a href="https://jarhc.org">jarhc.org</a>
 
 theme:
   name: material
-  logo: assets/jarhc-logo.png
   favicon: assets/jarhc-logo.png
   features:
     - navigation.sections
@@ -33,6 +32,9 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home: index.md
