@@ -2,13 +2,13 @@
 
 ## Prepare
 
-Test if Java 11, 17, or 21 is installed:
+Test if Java 11, 17, 21, or 25 is installed:
 
 ```shell
 java -version
 ```
 
-Download the file **jarhc-\<version\>-app.jar** from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to **jarhc.jar**.
+Download the file **jarhc-<version>-app.jar** from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to **jarhc.jar**.
 
 Test if JarHC can be started:
 
@@ -39,5 +39,5 @@ Compare two JarHC reports:
 java -jar jarhc.jar \
      --diff report-v1.html report-v2.html \
      --title "Compare V1 and V2" \
-     --output report-diff.html \
+     --output report-diff.html
 ```

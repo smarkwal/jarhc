@@ -17,7 +17,7 @@ OpenJDK 64-Bit Server VM Temurin-17.0.12+7 (build 17.0.12+7, mixed mode, sharing
 
 ### Download and test
 
-Download the file **jarhc-\<version\>-app.jar** from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to **jarhc.jar**.
+Download the file **jarhc-<version>-app.jar** from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to **jarhc.jar**.
 
 Run the following command to test if JarHC can be started:
 
