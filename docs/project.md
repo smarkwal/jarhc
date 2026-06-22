@@ -110,3 +110,26 @@ Finally, run the Sonar analysis.
 
 Scan results can be found in SonarCloud:
 https://sonarcloud.io/project/overview?id=smarkwal_jarhc
+
+### Documentation
+
+The documentation is automatically built and published to GitHub Pages:
+
+1. On every push to the `master` branch by the GitHub workflow [Docs Snapshot](https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-snapshot.yml).
+2. On every release by the GitHub workflow [Docs Release](https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml).
+
+To test the documentation locally before publishing, run:
+
+```shell
+docker run --rm -it -p 8000:8000 -v "$PWD":/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000
+```
+
+And then visit http://localhost:8000/jarhc/ in your browser.
+
+To build and inspect the documentation locally, run:
+
+```shell
+docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material build
+```
+
+And then open the generated file `site/index.html` in your browser.
