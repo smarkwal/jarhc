@@ -16,6 +16,8 @@
 
 package org.jarhc.test.server.query;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
@@ -30,8 +32,6 @@ import org.jarhc.test.server.HttpException;
 import org.jarhc.test.server.ServerMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class QueryHandler implements HttpHandler {
 

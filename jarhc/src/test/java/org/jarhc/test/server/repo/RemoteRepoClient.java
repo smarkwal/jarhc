@@ -16,6 +16,8 @@
 
 package org.jarhc.test.server.repo;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -24,8 +26,6 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Optional;
 import org.jarhc.test.server.HttpException;
-
-import static java.time.temporal.ChronoUnit.SECONDS;
 
 class RemoteRepoClient implements RepoClient {
 
