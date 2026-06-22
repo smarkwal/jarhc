@@ -42,7 +42,7 @@ class DepsDevAPIArtifactFinderTest {
 
 	@BeforeEach
 	void setUp() {
-		// the finder reads the proxy query URL from system property "jarhc.depsdev.url",
+		// the finder reads the proxy query URL from system property "jarhc.search.url",
 		// which is set by MavenProxyServerExtension
 		artifactFinder = new DepsDevAPIArtifactFinder(logger);
 	}

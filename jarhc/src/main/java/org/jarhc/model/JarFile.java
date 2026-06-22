@@ -82,7 +82,7 @@ public class JarFile {
 	private final String coordinates;
 
 	/**
-	 * Maven coordinates of the JAR file as found by Maven Search API.
+	 * Maven coordinates of the JAR file as returned by ArtifactFinder.
 	 */
 	private final List<Artifact> artifacts;
 
@@ -143,7 +143,7 @@ public class JarFile {
 	 * @param fileSize           JAR file size in bytes
 	 * @param checksum           JAR file SHA-1 checksum
 	 * @param coordinates        Maven coordinates given on command line
-	 * @param artifacts          List of Maven coordinates found by Maven Search API
+	 * @param artifacts          List of Maven coordinates returned by ArtifactFinder
 	 * @param classLoader        Class loader name
 	 * @param manifestAttributes Manifest attributes
 	 * @param releases           List of releases supported by this JAR file (for multi-release JAR files)
