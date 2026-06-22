@@ -1,0 +1,5 @@
+# Python dependencies for building the JarHC documentation site.
+# Installed only on the CI runners (see .github/workflows/docs-*.yml).
+# pymdown-extensions ships as a dependency of mkdocs-material.
+mkdocs-material~=9.6
+mike~=2.1
