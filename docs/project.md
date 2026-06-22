@@ -124,7 +124,7 @@ To test the documentation locally before publishing, run:
 docker run --rm -it -p 8000:8000 -v "$PWD":/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000
 ```
 
-And then visit http://0.0.0.0:8000/jarhc/ in your browser.
+And then visit http://localhost:8000/jarhc/ in your browser.
 
 To build and inspect the documentation locally, run:
 
