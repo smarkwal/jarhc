@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
+<html lang="en">
+<head>
+	<title>ASM 7.0</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="JarHC 3.0.1-SNAPSHOT">
+	<style>
+
+		html {
+			scroll-padding-top: 80px;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			line-height: 1.2rem;
+		}
+
+		a {
+			color: #333399;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:visited {
+				color: #333399;
+			}
+		}
+
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			background-color: lightgray;
+			padding: 12px;
+			z-index: 100;
+		}
+
+		#controls {
+			display: flex;
+			align-self: flex-start;
+		}
+
+		.control {
+			display: flex;
+			align-items: center;
+			padding: 8px;
+			margin-right: 10px;
+			background-color: #EEEEEE;
+			border-radius: 8px;
+			user-select: none;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+
+		#showOnlyDiffControl {
+			display: none;
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
+
+		.label {
+			margin-left: 0.5em;
+		}
+
+		#generator {
+			align-self: flex-end;
+			margin-right: 20px;
+			padding: 8px;
+		}
+
+		#minimap {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 70px;
+			left: 10px;
+			width: 70px;
+			height: calc(100% - 80px);
+			z-index: 80;
+			user-select: none;
+			background-color: #EEEEEE;
+		}
+
+		#minimapView {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
+			height: 0;
+			z-index: 90; /* float above minimap */
+			pointer-events: none;
+			user-select: none;
+			border: 4px solid black;
+		}
+
+		.minimapSection {
+			position: absolute;
+			left: 2px;
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
+			padding: 2px;
+			background-color: lightgray;
+			overflow: hidden;
+		}
+
+		.minimapSectionTitle {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1em;
+			overflow-wrap: break-word;
+		}
+
+		#main {
+			margin: 80px 20px 20px 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding: 0;
+			line-height: 1.7em;
+		}
+
+		h2, h3, h4, h5, h6 {
+			margin-top: 3rem;
+		}
+
+		.report-section-title {
+			background-color: black;
+			color: white;
+			padding: 10px 10px 10px 45px;
+			user-select: none;
+
+			/* collapse icon */
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L30,30L30,10"/%3E%3Cpath d="M70,30L50,30L50,10"/%3E%3Cpath d="M10,50L30,50L30,70"/%3E%3Cpath d="M70,50L50,50L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			background-position: center left 5px;
+			background-repeat: no-repeat;
+			background-size: 30px 30px;
+		}
+
+		section.collapsed {
+			.report-section-title { /* replace collapse icon with expand icon */
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L10,10L30,10"/%3E%3Cpath d="M70,30L70,10L50,10"/%3E%3Cpath d="M10,50L10,70L30,70"/%3E%3Cpath d="M70,50L70,70L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			.report-section-content {
+				display: none;
+			}
+		}
+
+		.report-section-content {
+			margin-left: 10px;
+		}
+
+		table {
+			border-collapse: collapse;
+			font-size: 0.8rem;
+		}
+
+		th {
+			background-color: lightgray;
+		}
+
+		th, td {
+			border: 1px solid gray;
+			padding: 0.3rem;
+			vertical-align: top;
+			text-align: left;
+			white-space: nowrap;
+		}
+
+		.report-text-block {
+			margin-bottom: 1em;
+
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
+		}
+
+		.report-issue {
+		}
+
+		code {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: #333399;
+		}
+
+		.inserted {
+			background-color: #D4EDDA;
+		}
+
+		.deleted {
+			background-color: #F8D7DA;
+		}
+
+		.marked {
+			background-color: #FFF6D8;
+		}
+
+		/* special diff report settings */
+
+		.diff-report {
+
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff,
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+		}
+
+		/* special print settings */
+
+		@media print {
+
+			header,
+			#minimap,
+			#minimapView,
+			nav {
+				display: none !important;
+			}
+
+			main {
+				margin: 0;
+			}
+
+			th, td {
+				white-space: normal;
+			}
+
+		}
+
+	</style>
+	<script>
+
+		const HEADER_HEIGHT = 80;
+		const MINIMAP_VSPACE = 10;
+
+		let MINIMAP_ENABLED = false;
+
+		function init() {
+
+			// check if document is a diff report
+			const isDiffReport = "scan" === "diff"
+			if (isDiffReport) {
+				initDiffUI();
+			}
+
+			initMinimap();
+			initCollapseExpand();
+			initRowMarking();
+			initKeyboardShortcuts();
+		}
+
+		function initDiffUI() {
+
+			// support click on control (outside of checkbox and label)
+			const control = document.getElementById("showOnlyDiffControl");
+			control.addEventListener("click", function(event) {
+				if (event.target === control) { // ignore clicks on nested elements
+					// similate click on checkbox
+					const checkbox = document.getElementById("showOnlyDiffCheckbox");
+					checkbox.click();
+				}
+			});
+		}
+
+		function initMinimap() {
+
+			window.addEventListener("scroll", updateMinimapView);
+			window.addEventListener("resize", updateMinimap);
+
+			const minimap = document.getElementById("minimap");
+			minimap.addEventListener("click", scrollMinimapView);
+			// TODO: on mouse drag
+		}
+
+		function initCollapseExpand() {
+
+			// for every report section ...
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				const title = section.querySelector("h2, h3, h4, h5, h6");
+				if (title) {
+					title.addEventListener("click", () => {
+						section.classList.toggle("collapsed");
+						updateMinimap();
+					});
+				}
+			}
+		}
+
+		function initRowMarking() {
+
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				row.addEventListener("dblclick", () => {
+					row.classList.toggle("marked");
+				});
+			}
+		}
+
+		function initKeyboardShortcuts() {
+
+			// prepare event handler
+			function handleShortcut(event) {
+				if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+					event.preventDefault();
+					// scroll to previous section
+					scrollToSection(false);
+				} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+					event.preventDefault();
+					// scroll to next section
+					scrollToSection(true);
+				}
+			}
+
+			// register event handler
+			document.addEventListener("keydown", handleShortcut);
+		}
+
+		function scrollToSection(next) {
+
+			const targetY = HEADER_HEIGHT; // target scroll position (relative to viewport)
+
+			// find next section
+			let nextSection = null;
+			let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
+
+			// iterate over all sections
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// get position of section (relative to viewport)
+				const sectionY = section.getBoundingClientRect().top;
+
+				// check if section is closer than previous next section
+				let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+				if (better) {
+					nextSection = section;
+					nextSectionY = sectionY;
+				}
+			}
+
+			// if there is a next section ...
+			if (nextSection) {
+
+				// get current vertical scroll position
+				const scrollY = window.scrollY;
+
+				// scroll to next section
+				window.scrollTo(0, scrollY + nextSectionY - targetY);
+
+			} else if (!next) { // if there is no previous section
+
+				// scroll to top
+				window.scrollTo(0, 0);
+			}
+
+		}
+
+		function showOnlyDiff(enabled) {
+
+			// show or hide table rows
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				if (row.classList.contains("no-diff")) {
+					if (enabled) {
+						row.style.display = "none";
+					} else {
+						row.style.display = "table-row";
+					}
+				}
+			}
+
+			// show or hide issues
+			const issues = document.getElementsByClassName("report-issue");
+			for (let issue of issues) {
+				if (issue.classList.contains("no-diff")) {
+					if (enabled) {
+						issue.style.display = "none";
+					} else {
+						issue.style.display = "block";
+					}
+				}
+			}
+
+			// update minimap
+			updateMinimap();
+		}
+
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
+		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const minimapHeight = minimap.clientHeight;
+
+			// prepare list of new minimap elements
+			const elements = [];
+
+			let previousElementBottom = -MINIMAP_VSPACE;
+
+			// iterate over all report tables and add them to the minimap
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// TODO: fix position
+				let elementTop = (section.offsetTop - HEADER_HEIGHT) * minimapHeight / documentHeight;
+				let elementHeight = section.clientHeight * minimapHeight / documentHeight - MINIMAP_VSPACE;
+
+				const minElementTop = previousElementBottom + MINIMAP_VSPACE;
+				if (elementTop < minElementTop) {
+					elementHeight = elementHeight - (minElementTop - elementTop);
+					elementTop = minElementTop;
+				}
+
+				const minElementHeight = 16; // 12px font size + 2 x 2px padding
+				if (elementHeight < minElementHeight) {
+					elementHeight = minElementHeight;
+				}
+
+				const title = document.createElement("div");
+				title.classList.add("minimapSectionTitle");
+				title.innerText = section.title;
+				title.addEventListener("click", function(event) {
+					window.scrollTo(0, section.offsetTop - HEADER_HEIGHT);
+					event.stopPropagation();
+				})
+
+				const element = document.createElement("div");
+				element.classList.add("minimapSection");
+				element.style.top = elementTop + "px";
+				element.style.height = elementHeight + "px";
+				element.appendChild(title);
+				elements.push(element);
+
+				previousElementBottom = elementTop + elementHeight;
+			}
+
+			// TODO: iterate over all differences and add them to the minimap
+
+			// replace content of minimap
+			minimap.replaceChildren(...elements);
+
+			updateMinimapView();
+		}
+
+		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const scrollY = window.scrollY;
+
+			// calculate new position and height of minimap view
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 4;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+
+			// update position and height of minimap view
+			const minimapView = document.getElementById("minimapView");
+			minimapView.style.top = minimapViewTop + "px";
+			minimapView.style.height = minimapViewHeight + "px";
+		}
+
+		function scrollMinimapView(event) {
+			const minimap = document.getElementById("minimap");
+
+			// calculate height of minimap view
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+			const minimapViewOffset = minimapViewHeight / 2;
+
+			// calculate position of minimap view (relative to top of minimap)
+			let y = event.clientY - minimap.offsetTop;
+			if (y < minimapViewOffset) {
+				y = minimapViewOffset;
+			} else if (y > minimapHeight - minimapViewOffset) {
+				y = minimapHeight - minimapViewOffset;
+			}
+			y = y - minimapViewOffset;
+
+			const scrollY = y / minimapHeight * document.body.scrollHeight;
+			window.scrollTo(0, scrollY);
+
+			updateMinimapView();
+		}
+
+	</script>
+</head>
+<body class="report scan-report" onload="init()">
+
+	<header id="header">
+		<div id="controls">
+			<div class="control" onclick="scrollToSection(true)" title="Ctrl+&#x2193;"><span class="icon icon-down"></span><span class="label">Next section</span></div>
+			<div class="control" onclick="scrollToSection(false)" title="Ctrl+&#x2191;"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
+			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
+		</div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.0.1-SNAPSHOT</a></div>
+	</header>
+
+	<div id="minimap"></div>
+	<div id="minimapView"></div>
+
+	<main id="main">
+		<h1 class="report-title">ASM 7.0</h1>
+		
+<nav>
+<h2 class="report-toc-title">Table of Contents</h2>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
+<li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
+</ul>
+</nav>
+
+<section class="report-section" id="JARFiles" title="JAR Files">
+<h2 class="report-section-title">JAR Files</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>111 KB</td>
+		<td>No</td>
+		<td>Java 5 (35)</td>
+		<td>0</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></div>
+		</td>
+		<td><a href="https://search.maven.org/search?q=1:d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912" target="_blank" rel="noopener noreferrer">d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td>32.5 KB</td>
+		<td>No</td>
+		<td>Java 5 (14)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+		<td><a href="https://search.maven.org/search?q=1:4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f" target="_blank" rel="noopener noreferrer">4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>78.0 KB</td>
+		<td>No</td>
+		<td>Java 5 (32)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td><a href="https://search.maven.org/search?q=1:478006d07b7c561ae3a92ddc1829bca81ae0cdd1" target="_blank" rel="noopener noreferrer">478006d07b7c561ae3a92ddc1829bca81ae0cdd1</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>7.0</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>49.2 KB</td>
+		<td>No</td>
+		<td>Java 5 (37)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+		<td><a href="https://search.maven.org/search?q=1:29bc62dcb85573af6e62e5b2d735ef65966c4180" target="_blank" rel="noopener noreferrer">29bc62dcb85573af6e62e5b2d735ef65966c4180</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>271 KB</td>
+		<td>-</td>
+		<td>Java 5 (118)</td>
+		<td>0</td>
+		<td>5</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+		<th>Status</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td>
+			<div class="report-text-block no-diff">asm-analysis<br>asm-commons<br>asm-tree</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td>
+			<div class="report-text-block no-diff">asm<br>asm-tree</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>OK</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block no-diff">asm<br>asm-tree</div>
+		</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-analysis/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-analysis:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff">OK<br>OK<br>OK</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>asm</td>
+		<td>
+			<div class="report-text-block no-diff">asm-analysis<br>asm-commons</div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:7.0</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.1" target="_blank" rel="noopener noreferrer">7.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.2" target="_blank" rel="noopener noreferrer">7.2</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3" target="_blank" rel="noopener noreferrer">7.3</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/7.3.1" target="_blank" rel="noopener noreferrer">7.3.1</a><br><span style="color:gray">[...]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.5" target="_blank" rel="noopener noreferrer">9.5</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.6" target="_blank" rel="noopener noreferrer">9.6</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7" target="_blank" rel="noopener noreferrer">9.7</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.7.1" target="_blank" rel="noopener noreferrer">9.7.1</a></div>
+		</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/7.0" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:7.0</a></td>
+		<td>OK</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RemappingMethodAdapter</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.tree.MethodNode</code><br>• @Deprecated: <code>public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)</code></div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JARManifests" title="JAR Manifests">
+<h2 class="report-section-title">JAR Manifests</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td>Manifest-Version: <code>1.0</code></td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm.tree;transitive=true</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Tree API of ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>7.0</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JPMSModules" title="JPMS Modules">
+<h2 class="report-section-title">JPMS Modules</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td><code>org.objectweb.asm</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td><code>java.base</code></td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.signature</code></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree</code><br><code>java.base</code></div>
+		</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>org.objectweb.asm.tree.analysis</code><br><code>java.base</code></div>
+		</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>java.base</code></div>
+		</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="OSGiBundles" title="OSGi Bundles">
+<h2 class="report-section-title">OSGi Bundles</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm</td>
+		<td><code>org.objectweb.asm</code></td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>7.0</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>7.0</code>)</div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-analysis</td>
+		<td><code>org.objectweb.asm.tree.analysis</code></td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>[7.0,8)</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree.analysis</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.tree</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>[7.0,8)</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>[7.0,8)</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>asm-tree</td>
+		<td><code>org.objectweb.asm.tree</code></td>
+		<td>7.0.0</td>
+		<td>Doc URL: http://asm.ow2.org</td>
+		<td><code>org.objectweb.asm</code> (Version: <code>[7.0,8)</code>)</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.tree</code> (Version: <code>7.0</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="JavaRuntime" title="Java Runtime">
+<h2 class="report-section-title">Java Runtime</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
+<p class="report-content no-diff">Java home    : <code>/home/markwalder/.jdks/temurin-17.0.14</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.14</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+</div>
+</section>
+
+
+	</main>
+
+</body>
+<!-- JSON REPORT DATA
+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
+rUm/3//yD8Zyfp9OIgAA
+-->
+</html>

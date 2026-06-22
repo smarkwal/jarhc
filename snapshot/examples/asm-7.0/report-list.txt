@@ -1,0 +1,411 @@
+ASM 7.0
+=======
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+Artifact: asm
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm:7.0
+	Size:
+		111 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (35)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+	Checksum (SHA-1):
+		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
+	Coordinates:
+		org.ow2.asm:asm:7.0
+
+Artifact: asm-analysis
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-analysis:7.0
+	Size:
+		32.5 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (14)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm.tree.analysis
+	Checksum (SHA-1):
+		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
+	Coordinates:
+		org.ow2.asm:asm-analysis:7.0
+
+Artifact: asm-commons
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-commons:7.0
+	Size:
+		78.0 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (32)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm.commons
+	Checksum (SHA-1):
+		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
+	Coordinates:
+		org.ow2.asm:asm-commons:7.0
+
+Artifact: asm-tree
+	Version:
+		7.0
+	Source:
+		org.ow2.asm:asm-tree:7.0
+	Size:
+		49.2 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (37)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm.tree
+	Checksum (SHA-1):
+		29bc62dcb85573af6e62e5b2d735ef65966c4180
+	Coordinates:
+		org.ow2.asm:asm-tree:7.0
+
+Artifact: Classpath
+	Version:
+		-
+	Source:
+		-
+	Size:
+		271 KB
+	Multi-release:
+		-
+	Java version (classes):
+		Java 5 (118)
+	Resources:
+		0
+	Packages:
+		5
+	Checksum (SHA-1):
+		-
+	Coordinates:
+		-
+	Issues:
+		-
+
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact: asm
+	Uses:
+		[none]
+	Used by:
+		asm-analysis
+		asm-commons
+		asm-tree
+	Maven coordinates:
+		org.ow2.asm:asm:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		[none]
+
+Artifact: asm-analysis
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
+	Maven coordinates:
+		org.ow2.asm:asm-analysis:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm-tree:7.0
+	Status:
+		OK
+
+Artifact: asm-commons
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
+	Maven coordinates:
+		org.ow2.asm:asm-commons:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm-analysis:7.0
+		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm:7.0
+	Status:
+		OK
+		OK
+		OK
+
+Artifact: asm-tree
+	Uses:
+		asm
+	Used by:
+		asm-analysis
+		asm-commons
+	Maven coordinates:
+		org.ow2.asm:asm-tree:7.0
+	Updates:
+		7.1
+		7.2
+		7.3, 7.3.1
+		[...]
+		9.5
+		9.6
+		9.7, 9.7.1
+	Direct dependencies:
+		org.ow2.asm:asm:7.0
+	Status:
+		OK
+
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact: asm-commons
+	Issues:
+		org.objectweb.asm.commons.AdviceAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.AnalyzerAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.CodeSizeEvaluator
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.InstructionAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.MethodRemapper
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+		
+		org.objectweb.asm.commons.RemappingMethodAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+Artifact: asm-tree
+	Issues:
+		org.objectweb.asm.tree.MethodNode
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
+
+Artifact: asm
+	General:
+		Manifest-Version: 1.0
+	Implementation:
+		ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-analysis
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm.tree;transitive=true
+	Implementation:
+		Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-commons
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true
+	Implementation:
+		Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+Artifact: asm-tree
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true
+	Implementation:
+		Tree API of ASM, a very small and fast Java bytecode manipulation framework
+		Version: 7.0
+
+JPMS Modules
+------------
+List of Java Modules found in classpath.
+
+Artifact: asm
+	Module name:
+		org.objectweb.asm
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		java.base
+	Exports:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+
+Artifact: asm-analysis
+	Module name:
+		org.objectweb.asm.tree.analysis
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm.tree
+		java.base
+	Exports:
+		org.objectweb.asm.tree.analysis
+
+Artifact: asm-commons
+	Module name:
+		org.objectweb.asm.commons
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		org.objectweb.asm.tree
+		org.objectweb.asm.tree.analysis
+		java.base
+	Exports:
+		org.objectweb.asm.commons
+
+Artifact: asm-tree
+	Module name:
+		org.objectweb.asm.tree
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		java.base
+	Exports:
+		org.objectweb.asm.tree
+
+OSGi Bundles
+------------
+Information about OSGi Bundles.
+
+Artifact: asm
+	Name:
+		org.objectweb.asm
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Export Package:
+		org.objectweb.asm (Version: 7.0)
+		org.objectweb.asm.signature (Version: 7.0)
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-analysis
+	Name:
+		org.objectweb.asm.tree.analysis
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm (Version: [7.0,8))
+		org.objectweb.asm.tree (Version: [7.0,8))
+	Export Package:
+		org.objectweb.asm.tree.analysis (Version: 7.0)
+		   Uses: org.objectweb.asm, org.objectweb.asm.tree
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-commons
+	Name:
+		org.objectweb.asm.commons
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm (Version: [7.0,8))
+		org.objectweb.asm.signature (Version: [7.0,8))
+		org.objectweb.asm.tree (Version: [7.0,8))
+	Export Package:
+		org.objectweb.asm.commons (Version: 7.0)
+		   Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-tree
+	Name:
+		org.objectweb.asm.tree
+	Version:
+		7.0.0
+	Description:
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm (Version: [7.0,8))
+	Export Package:
+		org.objectweb.asm.tree (Version: 7.0)
+		   Uses: org.objectweb.asm
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Java Runtime
+------------
+Information about JRE/JDK runtime.
+
+Java home    : /home/markwalder/.jdks/temurin-17.0.14
+Java runtime : OpenJDK Runtime Environment
+Java version : 17.0.14
+Java vendor  : Eclipse Adoptium
+
