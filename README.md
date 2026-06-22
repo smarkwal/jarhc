@@ -10,9 +10,9 @@ It is available as [Gradle plugin](https://github.com/smarkwal/jarhc-gradle-plug
 java -jar jarhc-app.jar [options] <artifact> [<artifact>]*
 ```
 
-More information can be found in the [wiki](https://github.com/smarkwal/jarhc/wiki).
+More information can be found in the [documentation](https://smarkwal.github.io/jarhc/).
 
-![JarHC Logo](https://smarkwal.github.io/jarhc/jarhc-logo.png)
+![JarHC Logo](https://smarkwal.github.io/jarhc/latest/assets/jarhc-logo.png)
 
 ---
 

@@ -2,11 +2,11 @@
 
 # JarHC version
 version=3.0.1-SNAPSHOT
-jarhc=`realpath ../../../jarhc/build/libs/jarhc-${version}-app.jar`
+jarhc=`realpath ../../jarhc/build/libs/jarhc-${version}-app.jar`
 
 # load environment variables
 set -o allexport
-source ../../../.env
+source ../../.env
 set +o allexport
 
 # use fixed timestamp to make reports reproducible

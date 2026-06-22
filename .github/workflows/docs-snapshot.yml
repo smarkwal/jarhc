@@ -1,0 +1,52 @@
+name: Docs Snapshot
+
+# Publish the "snapshot" docs version (current master) to GitHub Pages.
+# Releases are published by docs-release.yml.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'docs-requirements.txt'
+      - '.github/workflows/docs-snapshot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize all deployments to the gh-pages branch to avoid push conflicts.
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy snapshot
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+        cache: pip
+        cache-dependency-path: docs-requirements.txt
+
+    - name: Install dependencies
+      run: pip install -r docs-requirements.txt
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Deploy snapshot docs
+      run: mike deploy --push snapshot
