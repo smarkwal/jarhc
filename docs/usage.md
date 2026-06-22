@@ -268,7 +268,7 @@ It is a kind of "alias" for a frequently used set of artifacts.
 Custom collections can be defined in JarHC Properties files:
 
 ```properties
-collection.<name>=<artifact>[,<artifact>]*`
+collection.<name>=<artifact>[,<artifact>]*
 ```
 
 Example file:

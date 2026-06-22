@@ -42,7 +42,7 @@ Pass this to JarHC:
 java -jar jarhc.jar org.ow2.asm:asm-commons:7.0
 ```
 
-The output is text report with over 500 lines, starting like this:
+The output is a text report with over 500 lines, starting like this:
 
 ```
 JarHC - JAR Health Check 3.0.0
@@ -116,7 +116,7 @@ asm-commons-7.0.jar | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm:7.0         
                     |                             | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
 ```
 
-ASM Commons has dependencies on three more AMS libraries:
+ASM Commons has dependencies on three more ASM libraries:
 
 * **ASM 7.0** with coordinates `org.ow2.asm:asm:7.0`
 * **ASM Tree 7.0** with coordinates `org.ow2.asm:asm-tree:7.0`
