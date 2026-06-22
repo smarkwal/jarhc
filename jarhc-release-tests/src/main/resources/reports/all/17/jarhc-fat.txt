@@ -7,9 +7,9 @@ List of JAR files found in classpath.
 
 Artifact  | Version   | Source        | Size    | Multi-release                  | Java version (classes)                                   | Resources | Packages                      | Checksum (SHA-1)                         | Coordinates | Issues
 ----------+-----------+---------------+---------+--------------------------------+----------------------------------------------------------+-----------+-------------------------------+------------------------------------------+-------------+--------------------------------------------------------------------------------------------------------------------
-jarhc-app | [unknown] | jarhc-app.jar | 4.06 MB | Yes (Java 11, Java 10, Java 9) | Java 11 (160), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | com.google.* (11 subpackages) | **************************************** | [unknown]   | Fat JAR: com.google.*, org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
+jarhc-app | [unknown] | jarhc-app.jar | 4.06 MB | Yes (Java 11, Java 10, Java 9) | Java 11 (158), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | com.google.* (11 subpackages) | **************************************** | [unknown]   | Fat JAR: com.google.*, org.apache.*, org.codehaus.*, org.eclipse.*, org.jarhc, org.json, org.objectweb.*, org.slf4j
           |           |               |         |                                | Java 5 (38)                                              |           | org.* (187 subpackages)       |                                          |             |
-Classpath | -         | -             | 4.06 MB | -                              | Java 11 (160), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | 198                           | -                                        | -           | -
+Classpath | -         | -             | 4.06 MB | -                              | Java 11 (158), Java 10 (1), Java 8 (1464), Java 6 (723), | 155       | 198                           | -                                        | -           | -
           |           |               |         |                                | Java 5 (38)                                              |           |                               |                                          |             |
 
 Dependencies

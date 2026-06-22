@@ -56,7 +56,7 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 	// filtered to the Maven system on the client side instead.
 
 	private static final String QUERY_URL = "https://api.deps.dev/v3/query?hash.type=SHA1&hash.value=%s";
-	private static final int QUERY_TIMEOUT = 65;
+	private static final int QUERY_TIMEOUT = 30;
 	private static final String QUERY_USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
 
 	private static final String MAVEN_SYSTEM = "MAVEN";
@@ -299,15 +299,15 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 		public static Settings fromProperties(Properties properties) {
 
 			// read settings from properties (using default values if property is not set)
-			String url = properties.getProperty("jarhc.depsdev.url", QUERY_URL);
-			int timeout = Integer.parseInt(properties.getProperty("jarhc.depsdev.timeout", String.valueOf(QUERY_TIMEOUT)));
+			String url = properties.getProperty("jarhc.search.url", QUERY_URL);
+			int timeout = Integer.parseInt(properties.getProperty("jarhc.search.timeout", String.valueOf(QUERY_TIMEOUT)));
 			Map<String, String> headers = new HashMap<>();
-			headers.put("User-Agent", properties.getProperty("jarhc.depsdev.headers.User-Agent", QUERY_USER_AGENT));
+			headers.put("User-Agent", properties.getProperty("jarhc.search.headers.User-Agent", QUERY_USER_AGENT));
 
 			// read additional HTTP headers from properties
 			for (String propertyName : properties.stringPropertyNames()) {
-				if (propertyName.startsWith("jarhc.depsdev.headers.")) {
-					String headerName = propertyName.substring("jarhc.depsdev.headers.".length());
+				if (propertyName.startsWith("jarhc.search.headers.")) {
+					String headerName = propertyName.substring("jarhc.search.headers.".length());
 					String headerValue = properties.getProperty(propertyName);
 					headers.put(headerName, headerValue);
 				}

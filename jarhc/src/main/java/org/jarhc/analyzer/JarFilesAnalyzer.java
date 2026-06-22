@@ -41,7 +41,7 @@ import org.jarhc.utils.StringUtils;
 
 public class JarFilesAnalyzer implements Analyzer {
 
-	private static final String MAVEN_SEARCH_URL_PATTERN = "https://search.maven.org/search?q=1:%s";
+	private static final String CHECKSUM_SEARCH_URL_PATTERN = "https://central.sonatype.com/search?q=1:%s";
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -159,7 +159,7 @@ public class JarFilesAnalyzer implements Analyzer {
 	private String getChecksumInfo(JarFile jarFile) {
 		String checksum = jarFile.getChecksum();
 		if (checksum == null || checksum.isEmpty()) return Markdown.UNKNOWN;
-		String url = String.format(MAVEN_SEARCH_URL_PATTERN, checksum);
+		String url = String.format(CHECKSUM_SEARCH_URL_PATTERN, checksum);
 		return Markdown.link(checksum, url);
 	}
 

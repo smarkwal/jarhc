@@ -26,7 +26,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.jarhc.test.server.query.QueryHandler;
 import org.jarhc.test.server.repo.RepoHandler;
-import org.jarhc.test.server.search.SearchHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +53,6 @@ public class MavenProxyServer {
 		System.out.println("Server started.");
 
 		System.out.println("Server URLs:");
-		System.out.println("- " + server.getSearchURL());
 		System.out.println("- " + server.getQueryURL());
 		System.out.println("- " + server.getRepoURL());
 
@@ -100,10 +98,6 @@ public class MavenProxyServer {
 		return "http://localhost:" + port;
 	}
 
-	public String getSearchURL() {
-		return getBaseURL() + "/search?checksum=%s";
-	}
-
 	public String getQueryURL() {
 		return getBaseURL() + "/query?hash=%s";
 	}
@@ -123,15 +117,12 @@ public class MavenProxyServer {
 		LOGGER.trace("Starting server ...");
 
 		// create subdirectories (if not exist)
-		Path searchPath = rootPath.resolve("search");
-		Files.createDirectories(searchPath);
 		Path queryPath = rootPath.resolve("query");
 		Files.createDirectories(queryPath);
 		Path repoPath = rootPath.resolve("repo");
 		Files.createDirectories(repoPath);
 
 		server = HttpServer.create(new InetSocketAddress("localhost", port), 0);
-		server.createContext("/search", new SearchHandler(mode, timeout, searchPath));
 		server.createContext("/query", new QueryHandler(mode, timeout, queryPath));
 		server.createContext("/repo", new RepoHandler(mode, timeout, repoPath));
 		server.setExecutor(null); // creates a default executor
@@ -143,7 +134,6 @@ public class MavenProxyServer {
 
 		if (LOGGER.isTraceEnabled()) {
 			LOGGER.trace("Server endpoints:");
-			LOGGER.trace("- {}", getSearchURL());
 			LOGGER.trace("- {}", getQueryURL());
 			LOGGER.trace("- {}", getRepoURL());
 		}

@@ -232,9 +232,9 @@ abstract class AbstractFileLoader {
 		} catch (RepositoryException e) {
 			String source = coordinates != null ? coordinates : fileName;
 			if (ExceptionUtils.getRootCause(e) instanceof SocketTimeoutException) {
-				logger.warn("Maven Search API: Timeout for artifact '{}' with checksum '{}'", source, checksum);
+				logger.warn("Artifact Finder: Timeout for artifact '{}' with checksum '{}'", source, checksum);
 			} else {
-				logger.warn("Maven Search API: Error for artifact '{}' with checksum '{}'", source, checksum, e);
+				logger.warn("Artifact Finder: Error for artifact '{}' with checksum '{}'", source, checksum, e);
 			}
 		}
 

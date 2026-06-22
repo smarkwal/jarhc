@@ -27,7 +27,6 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCallback {
 
 	private MavenProxyServer server;
-	private String originalSearchUrl;
 	private String originalDepsDevUrl;
 	private String originalRepositoryUrl;
 
@@ -42,15 +41,10 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 		server = new MavenProxyServer(mode, 10, proxyPath);
 		server.start();
 
-		// update search URL in Java System Properties
-		originalSearchUrl = System.getProperty("jarhc.search.url");
-		String searchUrl = server.getSearchURL();
-		System.setProperty("jarhc.search.url", searchUrl);
-
 		// update deps.dev query URL in Java System Properties
-		originalDepsDevUrl = System.getProperty("jarhc.depsdev.url");
+		originalDepsDevUrl = System.getProperty("jarhc.search.url");
 		String queryUrl = server.getQueryURL();
-		System.setProperty("jarhc.depsdev.url", queryUrl);
+		System.setProperty("jarhc.search.url", queryUrl);
 
 		// update repository URL in Java System Properties
 		originalRepositoryUrl = System.getProperty("jarhc.repository.url");
@@ -67,18 +61,11 @@ public class MavenProxyServerExtension implements BeforeAllCallback, AfterAllCal
 			server = null;
 		}
 
-		// restore original search URL in Java System Properties
-		if (originalSearchUrl != null) {
-			System.setProperty("jarhc.search.url", originalSearchUrl);
-		} else {
-			System.clearProperty("jarhc.search.url");
-		}
-
 		// restore original deps.dev query URL in Java System Properties
 		if (originalDepsDevUrl != null) {
-			System.setProperty("jarhc.depsdev.url", originalDepsDevUrl);
+			System.setProperty("jarhc.search.url", originalDepsDevUrl);
 		} else {
-			System.clearProperty("jarhc.depsdev.url");
+			System.clearProperty("jarhc.search.url");
 		}
 
 		// restore original repository URL in Java System Properties
