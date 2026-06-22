@@ -35,17 +35,17 @@ class ArrayUtilsTest {
 
 		assertFalse(ArrayUtils.containsAny(null));
 		assertFalse(ArrayUtils.containsAny(null, "test"));
-		assertFalse(ArrayUtils.containsAny(new Object[]{}));
-		assertFalse(ArrayUtils.containsAny(new Object[]{}, "test"));
-		assertFalse(ArrayUtils.containsAny(new Object[]{}, "test1", "test2"));
-		assertFalse(ArrayUtils.containsAny(new Object[]{"foo"}, "test"));
-		assertFalse(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "test"));
-		assertFalse(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "test1", "test2"));
+		assertFalse(ArrayUtils.containsAny(new Object[] {}));
+		assertFalse(ArrayUtils.containsAny(new Object[] {}, "test"));
+		assertFalse(ArrayUtils.containsAny(new Object[] {}, "test1", "test2"));
+		assertFalse(ArrayUtils.containsAny(new Object[] { "foo" }, "test"));
+		assertFalse(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "test"));
+		assertFalse(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "test1", "test2"));
 
-		assertTrue(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "foo"));
-		assertTrue(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "bar"));
-		assertTrue(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "test", "foo"));
-		assertTrue(ArrayUtils.containsAny(new Object[]{"foo", "bar"}, "bar", "foo"));
+		assertTrue(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "foo"));
+		assertTrue(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "bar"));
+		assertTrue(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "test", "foo"));
+		assertTrue(ArrayUtils.containsAny(new Object[] { "foo", "bar" }, "bar", "foo"));
 
 	}
 

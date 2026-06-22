@@ -57,7 +57,7 @@ class JavaUtilsTest {
 		assertEquals("com", JavaUtils.getParentPackageName("com", 1));
 		assertEquals("com", JavaUtils.getParentPackageName("com", 2));
 		assertEquals("com", JavaUtils.getParentPackageName("com", 3));
-		
+
 		assertEquals("", JavaUtils.getParentPackageName("java.lang", 0));
 		assertEquals("java", JavaUtils.getParentPackageName("java.lang", 1));
 		assertEquals("java.lang", JavaUtils.getParentPackageName("java.lang", 2));

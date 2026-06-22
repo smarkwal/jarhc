@@ -16,6 +16,9 @@
 
 package org.jarhc.test.server.query;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -26,9 +29,6 @@ import java.time.Duration;
 import java.util.Base64;
 import java.util.Optional;
 import org.jarhc.test.server.HttpException;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.time.temporal.ChronoUnit.SECONDS;
 
 class RemoteQueryClient implements QueryClient {
 
