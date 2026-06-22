@@ -8,7 +8,7 @@ Test if Java 11, 17, 21, or 25 is installed:
 java -version
 ```
 
-Download the file `jarhc-<version>-app.jar` from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to **jarhc.jar**.
+Download the file `jarhc-<version>-app.jar` from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to `jarhc.jar`.
 
 Test if JarHC can be started:
 
