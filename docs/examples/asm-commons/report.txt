@@ -1,4 +1,4 @@
-ASM Commons 7.0
+ASM Commons 9.9
 ===============
 
 JAR Files
@@ -7,22 +7,17 @@ List of JAR files found in classpath.
 
 Artifact    | Version | Source                      | Size    | Multi-release | Java version (classes) | Resources | Packages                  | Checksum (SHA-1)                         | Coordinates                 | Issues
 ------------+---------+-----------------------------+---------+---------------+------------------------+-----------+---------------------------+------------------------------------------+-----------------------------+-------
-asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | No            | Java 5 (32)            | 0         | org.objectweb.asm.commons | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0 |
-Classpath   | -       | -                           | 78.0 KB | -             | Java 5 (32)            | 0         | 1                         | -                                        | -                           | -
+asm-commons | 9.9     | org.ow2.asm:asm-commons:9.9 | 72.6 KB | No            | Java 5 (27)            | 0         | org.objectweb.asm.commons | db9165a3bf908ded6b08612d583a15d1d0c7bda0 | org.ow2.asm:asm-commons:9.9 |
+Classpath   | -       | -                           | 72.6 KB | -             | Java 5 (27)            | 0         | 1                         | -                                        | -                           | -
 
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.
 
 Artifact    | Uses   | Used by | Maven coordinates           | Updates      | Direct dependencies
-------------+--------+---------+-----------------------------+--------------+-----------------------------------------
-asm-commons | [none] | [none]  | org.ow2.asm:asm-commons:7.0 | 7.1          | org.ow2.asm:asm-analysis:7.0 [not found]
-            |        |         |                             | 7.2          | org.ow2.asm:asm-tree:7.0 [not found]
-            |        |         |                             | 7.3, 7.3.1   | org.ow2.asm:asm:7.0 [not found]
-            |        |         |                             | [...]        |
-            |        |         |                             | 9.8          |
-            |        |         |                             | 9.9, 9.9.1   |
-            |        |         |                             | 9.10, 9.10.1 |
+------------+--------+---------+-----------------------------+--------------+-------------------------------------
+asm-commons | [none] | [none]  | org.ow2.asm:asm-commons:9.9 | 9.9.1        | org.ow2.asm:asm-tree:9.9 [not found]
+            |        |         |                             | 9.10, 9.10.1 | org.ow2.asm:asm:9.9 [not found]
 
 Duplicate Classes
 -----------------
@@ -36,7 +31,7 @@ Binary Compatibility
 Compatibility issues between JAR files.
 
 Artifact    | Issues
-------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Interface not found: org.objectweb.asm.Opcodes
             | • Class not found: org.objectweb.asm.ConstantDynamic (package not found)
@@ -81,10 +76,6 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | > org.objectweb.asm.commons.GeneratorAdapter (method not found)
             | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
             | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-            | > org.objectweb.asm.commons.GeneratorAdapter (method not found)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
             | • Method not found: void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)
             | > org.objectweb.asm.commons.GeneratorAdapter (method not found)
             | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
@@ -106,12 +97,6 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
             | > org.objectweb.asm.MethodVisitor (class not found)
             | • Field not found: int org.objectweb.asm.commons.AdviceAdapter.api
-            | > org.objectweb.asm.commons.AdviceAdapter (field not found)
-            | > org.objectweb.asm.Opcodes (class not found)
-            | > org.objectweb.asm.commons.GeneratorAdapter (field not found)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (field not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Field not found: org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AdviceAdapter.mv
             | > org.objectweb.asm.commons.AdviceAdapter (field not found)
             | > org.objectweb.asm.Opcodes (class not found)
             | > org.objectweb.asm.commons.GeneratorAdapter (field not found)
@@ -151,6 +136,7 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Class not found: org.objectweb.asm.FieldVisitor (package not found)
             | • Class not found: org.objectweb.asm.MethodVisitor (package not found)
             | • Class not found: org.objectweb.asm.ModuleVisitor (package not found)
+            | • Class not found: org.objectweb.asm.RecordComponentVisitor (package not found)
             | • Class not found: org.objectweb.asm.TypePath (package not found)
             | • Field not found: int org.objectweb.asm.commons.ClassRemapper.api
             | > org.objectweb.asm.commons.ClassRemapper (field not found)
@@ -165,10 +151,6 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Class not found: org.objectweb.asm.MethodVisitor (package not found)
             | • Class not found: org.objectweb.asm.Opcodes (package not found)
             | • Field not found: int org.objectweb.asm.commons.CodeSizeEvaluator.api
-            | > org.objectweb.asm.commons.CodeSizeEvaluator (field not found)
-            | > org.objectweb.asm.Opcodes (class not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Field not found: org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.CodeSizeEvaluator.mv
             | > org.objectweb.asm.commons.CodeSizeEvaluator (field not found)
             | > org.objectweb.asm.Opcodes (class not found)
             | > org.objectweb.asm.MethodVisitor (class not found)
@@ -276,9 +258,6 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Field not found: int org.objectweb.asm.commons.MethodRemapper.api
             | > org.objectweb.asm.commons.MethodRemapper (field not found)
             | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Field not found: org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.MethodRemapper.mv
-            | > org.objectweb.asm.commons.MethodRemapper (field not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
             |
             | org.objectweb.asm.commons.ModuleHashesAttribute
             | • Superclass not found: org.objectweb.asm.Attribute
@@ -308,6 +287,15 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Class not found: org.objectweb.asm.ClassWriter (package not found)
             | • Class not found: org.objectweb.asm.Label (package not found)
             |
+            | org.objectweb.asm.commons.RecordComponentRemapper
+            | • Superclass not found: org.objectweb.asm.RecordComponentVisitor
+            | • Class not found: org.objectweb.asm.AnnotationVisitor (package not found)
+            | • Class not found: org.objectweb.asm.RecordComponentVisitor (package not found)
+            | • Class not found: org.objectweb.asm.TypePath (package not found)
+            | • Field not found: int org.objectweb.asm.commons.RecordComponentRemapper.api
+            | > org.objectweb.asm.commons.RecordComponentRemapper (field not found)
+            | > org.objectweb.asm.RecordComponentVisitor (class not found)
+            |
             | org.objectweb.asm.commons.Remapper
             | • Class not found: org.objectweb.asm.ConstantDynamic (package not found)
             | • Class not found: org.objectweb.asm.Handle (package not found)
@@ -315,92 +303,6 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | • Class not found: org.objectweb.asm.signature.SignatureReader (package not found)
             | • Class not found: org.objectweb.asm.signature.SignatureVisitor (package not found)
             | • Class not found: org.objectweb.asm.signature.SignatureWriter (package not found)
-            |
-            | org.objectweb.asm.commons.RemappingAnnotationAdapter
-            | • Superclass not found: org.objectweb.asm.AnnotationVisitor
-            | • Class not found: org.objectweb.asm.AnnotationVisitor (package not found)
-            | • Field not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.RemappingAnnotationAdapter.av
-            | > org.objectweb.asm.commons.RemappingAnnotationAdapter (field not found)
-            | > org.objectweb.asm.AnnotationVisitor (class not found)
-            |
-            | org.objectweb.asm.commons.RemappingClassAdapter
-            | • Superclass not found: org.objectweb.asm.ClassVisitor
-            | • Class not found: org.objectweb.asm.AnnotationVisitor (package not found)
-            | • Class not found: org.objectweb.asm.ClassVisitor (package not found)
-            | • Class not found: org.objectweb.asm.FieldVisitor (package not found)
-            | • Class not found: org.objectweb.asm.MethodVisitor (package not found)
-            | • Class not found: org.objectweb.asm.ModuleVisitor (package not found)
-            | • Class not found: org.objectweb.asm.TypePath (package not found)
-            |
-            | org.objectweb.asm.commons.RemappingFieldAdapter
-            | • Superclass not found: org.objectweb.asm.FieldVisitor
-            | • Class not found: org.objectweb.asm.AnnotationVisitor (package not found)
-            | • Class not found: org.objectweb.asm.FieldVisitor (package not found)
-            | • Class not found: org.objectweb.asm.TypePath (package not found)
-            | • Field not found: org.objectweb.asm.FieldVisitor org.objectweb.asm.commons.RemappingFieldAdapter.fv
-            | > org.objectweb.asm.commons.RemappingFieldAdapter (field not found)
-            | > org.objectweb.asm.FieldVisitor (class not found)
-            |
-            | org.objectweb.asm.commons.RemappingMethodAdapter
-            | • Class not found: org.objectweb.asm.AnnotationVisitor (package not found)
-            | • Class not found: org.objectweb.asm.Handle (package not found)
-            | • Class not found: org.objectweb.asm.Label (package not found)
-            | • Class not found: org.objectweb.asm.MethodVisitor (package not found)
-            | • Class not found: org.objectweb.asm.TypePath (package not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotation(java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitAnnotationDefault()
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitInsnAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitLdcInsn(java.lang.Object)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitMultiANewArrayInsn(java.lang.String,int)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitParameterAnnotation(int,java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.LocalVariablesSorter.visitTypeAnnotation(int,org.objectweb.asm.TypePath,java.lang.String,boolean)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Method not found: void org.objectweb.asm.commons.LocalVariablesSorter.visitTypeInsn(int,java.lang.String)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (method not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Field not found: int org.objectweb.asm.commons.RemappingMethodAdapter.api
-            | > org.objectweb.asm.commons.RemappingMethodAdapter (field not found)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (field not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            | • Field not found: org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.RemappingMethodAdapter.mv
-            | > org.objectweb.asm.commons.RemappingMethodAdapter (field not found)
-            | > org.objectweb.asm.commons.LocalVariablesSorter (field not found)
-            | > org.objectweb.asm.MethodVisitor (class not found)
-            |
-            | org.objectweb.asm.commons.RemappingSignatureAdapter
-            | • Superclass not found: org.objectweb.asm.signature.SignatureVisitor
-            | • Class not found: org.objectweb.asm.signature.SignatureVisitor (package not found)
             |
             | org.objectweb.asm.commons.SerialVersionUIDAdder
             | • Superclass not found: org.objectweb.asm.ClassVisitor
@@ -411,6 +313,9 @@ asm-commons | org.objectweb.asm.commons.AdviceAdapter
             | org.objectweb.asm.commons.SignatureRemapper
             | • Superclass not found: org.objectweb.asm.signature.SignatureVisitor
             | • Class not found: org.objectweb.asm.signature.SignatureVisitor (package not found)
+            |
+            | org.objectweb.asm.commons.SimpleRemapper
+            | • Class not found: org.objectweb.asm.Handle (package not found)
             |
             | org.objectweb.asm.commons.StaticInitMerger
             | • Superclass not found: org.objectweb.asm.ClassVisitor
@@ -455,31 +360,30 @@ JAR Manifests
 -------------
 Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
 
-Artifact    | General                                                                                                                                   | Runtime | Implementation                                                                                  | Specification | Signature
-------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------------------------------+---------------+----------
-asm-commons | Manifest-Version: 1.0                                                                                                                     |         | Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework |               |
-            | Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true |         | Version: 7.0                                                                                    |               |
+Artifact    | General                                                                                   | Runtime | Implementation                                                                                  | Specification | Signature
+------------+-------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------------------------------+---------------+----------
+asm-commons | Manifest-Version: 1.0                                                                     |         | Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework |               |
+            | Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true |         | Version: 9.9                                                                                    |               |
 
 JPMS Modules
 ------------
 List of Java Modules found in classpath.
 
-Artifact    | Module name               | Definition  | Automatic | Requires                        | Exports
-------------+---------------------------+-------------+-----------+---------------------------------+--------------------------
-asm-commons | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm               | org.objectweb.asm.commons
-            |                           |             |           | org.objectweb.asm.tree          |
-            |                           |             |           | org.objectweb.asm.tree.analysis |
-            |                           |             |           | java.base                       |
+Artifact    | Module name               | Definition  | Automatic | Requires               | Exports
+------------+---------------------------+-------------+-----------+------------------------+--------------------------
+asm-commons | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm      | org.objectweb.asm.commons
+            |                           |             |           | org.objectweb.asm.tree |
+            |                           |             |           | java.base              |
 
 OSGi Bundles
 ------------
 Information about OSGi Bundles.
 
-Artifact    | Name                      | Version | Description                 | Import Package                                 | Export Package                                                                  | Capabilities | Others
-------------+---------------------------+---------+-----------------------------+------------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
-asm-commons | org.objectweb.asm.commons | 7.0.0   | Doc URL: http://asm.ow2.org | org.objectweb.asm (Version: [7.0,8))           | org.objectweb.asm.commons (Version: 7.0)                                        |              | Manifest Version: 2
-            |                           |         |                             | org.objectweb.asm.signature (Version: [7.0,8)) |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
-            |                           |         |                             | org.objectweb.asm.tree (Version: [7.0,8))      |                                                                                 |              |
+Artifact    | Name                      | Version | Description                                               | Import Package                             | Export Package                                                                  | Capabilities | Others
+------------+---------------------------+---------+-----------------------------------------------------------+--------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
+asm-commons | org.objectweb.asm.commons | 9.9     | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt | org.objectweb.asm (Version: 9.9)           | org.objectweb.asm.commons (Version: 9.9)                                        |              | Manifest Version: 2
+            |                           |         | Doc URL: http://asm.ow2.org                               | org.objectweb.asm.signature (Version: 9.9) |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
+            |                           |         |                                                           | org.objectweb.asm.tree (Version: 9.9)      |                                                                                 |              |
 
 Java Runtime
 ------------

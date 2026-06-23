@@ -1,4 +1,4 @@
-ASM 7.0
+ASM 9.9
 =======
 
 JAR Files
@@ -7,84 +7,64 @@ List of JAR files found in classpath.
 
 Artifact: asm
 	Version:
-		7.0
+		9.9
 	Source:
-		org.ow2.asm:asm:7.0
+		org.ow2.asm:asm:9.9
 	Size:
-		111 KB
+		123 KB
 	Multi-release:
 		No
 	Java version (classes):
-		Java 5 (35)
+		Java 5 (38)
 	Resources:
 		0
 	Packages:
 		org.objectweb.asm
 		org.objectweb.asm.signature
 	Checksum (SHA-1):
-		d74d4ba0dee443f68fb2dcb7fcdb945a2cd89912
+		c29635c8a7afa03d74b33c1884df8abb2b3f3dcc
 	Coordinates:
-		org.ow2.asm:asm:7.0
-
-Artifact: asm-analysis
-	Version:
-		7.0
-	Source:
-		org.ow2.asm:asm-analysis:7.0
-	Size:
-		32.5 KB
-	Multi-release:
-		No
-	Java version (classes):
-		Java 5 (14)
-	Resources:
-		0
-	Packages:
-		org.objectweb.asm.tree.analysis
-	Checksum (SHA-1):
-		4b310d20d6f1c6b7197a75f1b5d69f169bc8ac1f
-	Coordinates:
-		org.ow2.asm:asm-analysis:7.0
+		org.ow2.asm:asm:9.9
 
 Artifact: asm-commons
 	Version:
-		7.0
+		9.9
 	Source:
-		org.ow2.asm:asm-commons:7.0
+		org.ow2.asm:asm-commons:9.9
 	Size:
-		78.0 KB
+		72.6 KB
 	Multi-release:
 		No
 	Java version (classes):
-		Java 5 (32)
+		Java 5 (27)
 	Resources:
 		0
 	Packages:
 		org.objectweb.asm.commons
 	Checksum (SHA-1):
-		478006d07b7c561ae3a92ddc1829bca81ae0cdd1
+		db9165a3bf908ded6b08612d583a15d1d0c7bda0
 	Coordinates:
-		org.ow2.asm:asm-commons:7.0
+		org.ow2.asm:asm-commons:9.9
 
 Artifact: asm-tree
 	Version:
-		7.0
+		9.9
 	Source:
-		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm-tree:9.9
 	Size:
-		49.2 KB
+		50.7 KB
 	Multi-release:
 		No
 	Java version (classes):
-		Java 5 (37)
+		Java 5 (38)
 	Resources:
 		0
 	Packages:
 		org.objectweb.asm.tree
 	Checksum (SHA-1):
-		29bc62dcb85573af6e62e5b2d735ef65966c4180
+		f8de6eead6d24dd0f45bd065bbe112b2cda6ea21
 	Coordinates:
-		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm-tree:9.9
 
 Artifact: Classpath
 	Version:
@@ -92,15 +72,15 @@ Artifact: Classpath
 	Source:
 		-
 	Size:
-		271 KB
+		247 KB
 	Multi-release:
 		-
 	Java version (classes):
-		Java 5 (118)
+		Java 5 (103)
 	Resources:
 		0
 	Packages:
-		5
+		4
 	Checksum (SHA-1):
 		-
 	Coordinates:
@@ -116,40 +96,15 @@ Artifact: asm
 	Uses:
 		[none]
 	Used by:
-		asm-analysis
 		asm-commons
 		asm-tree
 	Maven coordinates:
-		org.ow2.asm:asm:7.0
+		org.ow2.asm:asm:9.9
 	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.8
-		9.9, 9.9.1
+		9.9.1
 		9.10, 9.10.1
 	Direct dependencies:
 		[none]
-
-Artifact: asm-analysis
-	Uses:
-		asm
-		asm-tree
-	Used by:
-		[none]
-	Maven coordinates:
-		org.ow2.asm:asm-analysis:7.0
-	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.8
-		9.9, 9.9.1
-		9.10, 9.10.1
-	Direct dependencies:
-		org.ow2.asm:asm-tree:7.0 [OK]
 
 Artifact: asm-commons
 	Uses:
@@ -158,38 +113,26 @@ Artifact: asm-commons
 	Used by:
 		[none]
 	Maven coordinates:
-		org.ow2.asm:asm-commons:7.0
+		org.ow2.asm:asm-commons:9.9
 	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.8
-		9.9, 9.9.1
+		9.9.1
 		9.10, 9.10.1
 	Direct dependencies:
-		org.ow2.asm:asm-analysis:7.0 [OK]
-		org.ow2.asm:asm-tree:7.0 [OK]
-		org.ow2.asm:asm:7.0 [OK]
+		org.ow2.asm:asm-tree:9.9 [OK]
+		org.ow2.asm:asm:9.9 [OK]
 
 Artifact: asm-tree
 	Uses:
 		asm
 	Used by:
-		asm-analysis
 		asm-commons
 	Maven coordinates:
-		org.ow2.asm:asm-tree:7.0
+		org.ow2.asm:asm-tree:9.9
 	Updates:
-		7.1
-		7.2
-		7.3, 7.3.1
-		[...]
-		9.8
-		9.9, 9.9.1
+		9.9.1
 		9.10, 9.10.1
 	Direct dependencies:
-		org.ow2.asm:asm:7.0 [OK]
+		org.ow2.asm:asm:9.9 [OK]
 
 Duplicate Classes
 -----------------
@@ -207,27 +150,7 @@ Use of dangerous, unsafe, unstable, or deprecated classes and methods.
 
 Artifact: asm-commons
 	Issues:
-		org.objectweb.asm.commons.AdviceAdapter
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-		
-		org.objectweb.asm.commons.AnalyzerAdapter
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-		
-		org.objectweb.asm.commons.CodeSizeEvaluator
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-		
 		org.objectweb.asm.commons.InstructionAdapter
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-		
-		org.objectweb.asm.commons.MethodRemapper
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-		
-		org.objectweb.asm.commons.RemappingMethodAdapter
-		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
-
-Artifact: asm-tree
-	Issues:
-		org.objectweb.asm.tree.MethodNode
 		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
 
 JAR Manifests
@@ -239,23 +162,15 @@ Artifact: asm
 		Manifest-Version: 1.0
 	Implementation:
 		ASM, a very small and fast Java bytecode manipulation framework
-		Version: 7.0
-
-Artifact: asm-analysis
-	General:
-		Manifest-Version: 1.0
-		Module-Requires: org.objectweb.asm.tree;transitive=true
-	Implementation:
-		Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework
-		Version: 7.0
+		Version: 9.9
 
 Artifact: asm-commons
 	General:
 		Manifest-Version: 1.0
-		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true,org.objectweb.asm.tree.analysis;transitive=true
+		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true
 	Implementation:
 		Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework
-		Version: 7.0
+		Version: 9.9
 
 Artifact: asm-tree
 	General:
@@ -263,7 +178,7 @@ Artifact: asm-tree
 		Module-Requires: org.objectweb.asm;transitive=true
 	Implementation:
 		Tree API of ASM, a very small and fast Java bytecode manipulation framework
-		Version: 7.0
+		Version: 9.9
 
 JPMS Modules
 ------------
@@ -282,19 +197,6 @@ Artifact: asm
 		org.objectweb.asm
 		org.objectweb.asm.signature
 
-Artifact: asm-analysis
-	Module name:
-		org.objectweb.asm.tree.analysis
-	Definition:
-		Module-Info
-	Automatic:
-		No
-	Requires:
-		org.objectweb.asm.tree
-		java.base
-	Exports:
-		org.objectweb.asm.tree.analysis
-
 Artifact: asm-commons
 	Module name:
 		org.objectweb.asm.commons
@@ -305,7 +207,6 @@ Artifact: asm-commons
 	Requires:
 		org.objectweb.asm
 		org.objectweb.asm.tree
-		org.objectweb.asm.tree.analysis
 		java.base
 	Exports:
 		org.objectweb.asm.commons
@@ -331,29 +232,13 @@ Artifact: asm
 	Name:
 		org.objectweb.asm
 	Version:
-		7.0.0
+		9.9
 	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
 		Doc URL: http://asm.ow2.org
 	Export Package:
-		org.objectweb.asm (Version: 7.0)
-		org.objectweb.asm.signature (Version: 7.0)
-	Others:
-		Manifest Version: 2
-		Required Execution Environment: J2SE-1.5
-
-Artifact: asm-analysis
-	Name:
-		org.objectweb.asm.tree.analysis
-	Version:
-		7.0.0
-	Description:
-		Doc URL: http://asm.ow2.org
-	Import Package:
-		org.objectweb.asm (Version: [7.0,8))
-		org.objectweb.asm.tree (Version: [7.0,8))
-	Export Package:
-		org.objectweb.asm.tree.analysis (Version: 7.0)
-		   Uses: org.objectweb.asm, org.objectweb.asm.tree
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
 	Others:
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
@@ -362,15 +247,16 @@ Artifact: asm-commons
 	Name:
 		org.objectweb.asm.commons
 	Version:
-		7.0.0
+		9.9
 	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm (Version: [7.0,8))
-		org.objectweb.asm.signature (Version: [7.0,8))
-		org.objectweb.asm.tree (Version: [7.0,8))
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
+		org.objectweb.asm.tree (Version: 9.9)
 	Export Package:
-		org.objectweb.asm.commons (Version: 7.0)
+		org.objectweb.asm.commons (Version: 9.9)
 		   Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree
 	Others:
 		Manifest Version: 2
@@ -380,14 +266,16 @@ Artifact: asm-tree
 	Name:
 		org.objectweb.asm.tree
 	Version:
-		7.0.0
+		9.9
 	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
 		Doc URL: http://asm.ow2.org
 	Import Package:
-		org.objectweb.asm (Version: [7.0,8))
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
 	Export Package:
-		org.objectweb.asm.tree (Version: 7.0)
-		   Uses: org.objectweb.asm
+		org.objectweb.asm.tree (Version: 9.9)
+		   Uses: org.objectweb.asm, org.objectweb.asm.signature
 	Others:
 		Manifest Version: 2
 		Required Execution Environment: J2SE-1.5
