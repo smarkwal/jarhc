@@ -147,8 +147,9 @@ public class GenerateReportScreenshots {
 		String reportUrl = reportFile.toURI().toString();
 		System.out.println("Rendering report: " + reportUrl);
 
-		try (Playwright playwright = Playwright.create()) {
-			Browser browser = playwright.chromium().launch();
+		try (Playwright playwright = Playwright.create();
+				Browser browser = playwright.chromium().launch()) {
+			// closing the browser also closes its contexts and pages
 			BrowserContext context = browser.newContext(new Browser.NewContextOptions()
 					.setViewportSize(INITIAL_VIEWPORT_WIDTH, VIEWPORT_HEIGHT)
 					.setDeviceScaleFactor(DEVICE_SCALE_FACTOR));
@@ -198,7 +199,6 @@ public class GenerateReportScreenshots {
 				count++;
 			}
 
-			browser.close();
 			System.out.println("Done. Generated " + count + " screenshot(s).");
 		}
 	}
