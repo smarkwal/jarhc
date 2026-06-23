@@ -111,6 +111,19 @@ Finally, run the Sonar analysis.
 Scan results can be found in SonarCloud:
 https://sonarcloud.io/project/overview?id=smarkwal_jarhc
 
+### Locking dependencies
+
+To lock the dependencies to their current versions, run:
+
+```shell
+./gradlew dependencies buildEnvironment \
+          :jarhc:dependencies :jarhc:buildEnvironment \
+          :jarhc-release-tests:dependencies :jarhc-release-tests:buildEnvironment \
+          --write-locks
+```
+
+See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_locking.html) for more information.
+
 ### Documentation
 
 The documentation is automatically built and published to GitHub Pages:

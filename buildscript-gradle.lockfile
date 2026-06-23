@@ -1,0 +1,21 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+# To regenerate this file, run: ./gradlew dependencies --write-locks
+com.github.ben-manes.versions:com.github.ben-manes.versions.gradle.plugin:0.54.0=classpath
+com.github.ben-manes:gradle-versions-plugin:0.54.0=classpath
+com.squareup.moshi:moshi-kotlin:1.12.0=classpath
+com.squareup.moshi:moshi:1.12.0=classpath
+com.squareup.okhttp3:okhttp:4.12.0=classpath
+com.squareup.okio:okio-jvm:3.6.0=classpath
+com.squareup.okio:okio:3.6.0=classpath
+io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0=classpath
+io.github.gradle-nexus:publish-plugin:2.0.0=classpath
+org.jetbrains.kotlin:kotlin-bom:2.0.21=classpath
+org.jetbrains.kotlin:kotlin-reflect:2.3.21=classpath
+org.jetbrains.kotlin:kotlin-stdlib-common:2.3.21=classpath
+org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.21=classpath
+org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.21=classpath
+org.jetbrains.kotlin:kotlin-stdlib:2.3.21=classpath
+org.jetbrains:annotations:13.0=classpath
+empty=
