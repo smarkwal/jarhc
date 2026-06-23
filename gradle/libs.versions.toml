@@ -7,6 +7,7 @@ junit = "5.12.2"
 assertj = "3.27.7"
 jmh = "1.37"
 testcontainers = "1.21.4"
+playwright = "1.50.0"
 
 [libraries]
 
@@ -43,6 +44,9 @@ commons-io = { module = "commons-io:commons-io", version = "2.22.0" }
 # (dependency of testcontainers 1.21.4)
 # check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep commons-compress
 commons-compress = { module = "org.apache.commons:commons-compress", version = "1.28.0" }
+
+# documentation task dependencies (jarhc-docs-tasks)
+playwright = { module = "com.microsoft.playwright:playwright", version.ref = "playwright" }
 
 [plugins]
 nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0" }
