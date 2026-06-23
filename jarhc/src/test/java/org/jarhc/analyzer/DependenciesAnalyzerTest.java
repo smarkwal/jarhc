@@ -113,11 +113,11 @@ class DependenciesAnalyzerTest {
 		List<String[]> rows = assertTable(section);
 		assertEquals(5, rows.size());
 
-		assertValuesEquals(rows.get(0), "lib-with-deps", "[none]", "[none]", "[[group:lib-with-deps:1.0]]", "[unknown]", "[[group:lib-with-deps-1:1.0]] (provided, optional)\n[[group:lib-with-deps-2:1.0]] (runtime)\n[[group:lib-with-deps-4:1.0]] (system)\n[[group:lib-with-deps-5:1.0]] (import, optional)", "OK\nOK\nOK (version 1.1)\nUnsatisfied");
-		assertValuesEquals(rows.get(1), "lib-no-deps", "[none]", "[none]", "[[group:lib-no-deps:1.0]]", "[unknown]", "[none]", "");
-		assertValuesEquals(rows.get(2), "lib-no-pom", "[none]", "[none]", "[[group:lib-no-pom:1.0]]", "[unknown]", "[error]", "");
-		assertValuesEquals(rows.get(3), "lib-repo-error", "[none]", "[none]", "[[group:lib-repo-error:1.0]]", "[unknown]", "[error]", "");
-		assertValuesEquals(rows.get(4), "lib-unknown", "[none]", "[none]", "[unknown]", "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(0), "lib-with-deps", "[none]", "[none]", "[[group:lib-with-deps:1.0]]", "[unknown]", "[[group:lib-with-deps-1:1.0]] (provided, optional) [OK]\n[[group:lib-with-deps-2:1.0]] (runtime) [OK]\n[[group:lib-with-deps-4:1.0]] (system) [OK] (version 1.1)\n[[group:lib-with-deps-5:1.0]] (import, optional) [not found]");
+		assertValuesEquals(rows.get(1), "lib-no-deps", "[none]", "[none]", "[[group:lib-no-deps:1.0]]", "[unknown]", "[none]");
+		assertValuesEquals(rows.get(2), "lib-no-pom", "[none]", "[none]", "[[group:lib-no-pom:1.0]]", "[unknown]", "[error]");
+		assertValuesEquals(rows.get(3), "lib-repo-error", "[none]", "[none]", "[[group:lib-repo-error:1.0]]", "[unknown]", "[error]");
+		assertValuesEquals(rows.get(4), "lib-unknown", "[none]", "[none]", "[unknown]", "[unknown]", "[unknown]");
 
 		assertLogger(logger).inAnyOrder()
 				.hasError("Resolver error for artifact: group:lib-no-pom:1.0", new RepositoryException("test"))
@@ -147,10 +147,10 @@ class DependenciesAnalyzerTest {
 		List<String[]> rows = assertTable(section);
 		assertEquals(4, rows.size());
 
-		assertValuesEquals(rows.get(0), "a", joinLines("b", "c"), "[none]", "[unknown]", "[unknown]", "[unknown]", "");
-		assertValuesEquals(rows.get(1), "b", "c", "a", "[unknown]", "[unknown]", "[unknown]", "");
-		assertValuesEquals(rows.get(2), "c", "[none]", joinLines("a", "b"), "[unknown]", "[unknown]", "[unknown]", "");
-		assertValuesEquals(rows.get(3), "d", "[none]", "[none]", "[unknown]", "[unknown]", "[unknown]", "");
+		assertValuesEquals(rows.get(0), "a", joinLines("b", "c"), "[none]", "[unknown]", "[unknown]", "[unknown]");
+		assertValuesEquals(rows.get(1), "b", "c", "a", "[unknown]", "[unknown]", "[unknown]");
+		assertValuesEquals(rows.get(2), "c", "[none]", joinLines("a", "b"), "[unknown]", "[unknown]", "[unknown]");
+		assertValuesEquals(rows.get(3), "d", "[none]", "[none]", "[unknown]", "[unknown]", "[unknown]");
 	}
 
 	@Test
@@ -172,10 +172,10 @@ class DependenciesAnalyzerTest {
 		List<String[]> rows = assertTable(section);
 		assertEquals(5, rows.size());
 
-		assertValuesEquals(rows.get(0), "a", "[none]", "[none]", "[[a:a:1.0.0]]", "[1.0.1](a:a:1.0.1)\n[1.1.0](a:a:1.1.0)\n[2.0.0](a:a:2.0.0)", "[none]", "");
-		assertValuesEquals(rows.get(1), "b", "[none]", "[none]", "[[b:b:2.0.0]]", "[none]", "[none]", "");
-		assertValuesEquals(rows.get(2), "c", "[none]", "[none]", "[[c:c:3.0.0]]", "[unknown]", "[none]", "");
-		assertValuesEquals(rows.get(3), "d", "[none]", "[none]", "[[d:d:4.0.0]]", "[error]", "[none]", "");
+		assertValuesEquals(rows.get(0), "a", "[none]", "[none]", "[[a:a:1.0.0]]", "[1.0.1](a:a:1.0.1)\n[1.1.0](a:a:1.1.0)\n[2.0.0](a:a:2.0.0)", "[none]");
+		assertValuesEquals(rows.get(1), "b", "[none]", "[none]", "[[b:b:2.0.0]]", "[none]", "[none]");
+		assertValuesEquals(rows.get(2), "c", "[none]", "[none]", "[[c:c:3.0.0]]", "[unknown]", "[none]");
+		assertValuesEquals(rows.get(3), "d", "[none]", "[none]", "[[d:d:4.0.0]]", "[error]", "[none]");
 
 		String updates = "[5.0.1](e:e:5.0.1), [5.0.2](e:e:5.0.2), [5.0.3](e:e:5.0.3), [...], [5.0.7](e:e:5.0.7), [5.0.8](e:e:5.0.8), [5.0.9](e:e:5.0.9)\n" +
 				"[5.1.0](e:e:5.1.0), [5.1.1](e:e:5.1.1), [5.1.2](e:e:5.1.2), [...], [5.1.7](e:e:5.1.7), [5.1.8](e:e:5.1.8), [5.1.9](e:e:5.1.9)\n" +
@@ -184,7 +184,7 @@ class DependenciesAnalyzerTest {
 				"[9.7.0](e:e:9.7.0), [9.7.1](e:e:9.7.1), [9.7.2](e:e:9.7.2), [...], [9.7.7](e:e:9.7.7), [9.7.8](e:e:9.7.8), [9.7.9](e:e:9.7.9)\n" +
 				"[9.8.0](e:e:9.8.0), [9.8.1](e:e:9.8.1), [9.8.2](e:e:9.8.2), [...], [9.8.7](e:e:9.8.7), [9.8.8](e:e:9.8.8), [9.8.9](e:e:9.8.9)\n" +
 				"[9.9.0](e:e:9.9.0), [9.9.1](e:e:9.9.1), [9.9.2](e:e:9.9.2), [...], [9.9.7](e:e:9.9.7), [9.9.8](e:e:9.9.8), [9.9.9](e:e:9.9.9)";
-		assertValuesEquals(rows.get(4), "e", "[none]", "[none]", "[[e:e:5.0.0]]", updates, "[none]", "");
+		assertValuesEquals(rows.get(4), "e", "[none]", "[none]", "[[e:e:5.0.0]]", updates, "[none]");
 
 		assertLogger(logger)
 				.hasError("Resolver error for artifact: d:d:4.0.0", new RepositoryException("Test"))
@@ -205,7 +205,7 @@ class DependenciesAnalyzerTest {
 		ReportTable table = (ReportTable) content;
 
 		String[] columns = table.getColumns();
-		assertValuesEquals(columns, "Artifact", "Uses", "Used by", "Maven coordinates", "Updates", "Direct dependencies", "Status");
+		assertValuesEquals(columns, "Artifact", "Uses", "Used by", "Maven coordinates", "Updates", "Direct dependencies");
 
 		return table.getRows();
 	}

@@ -75,7 +75,7 @@ public class DependenciesAnalyzer implements Analyzer {
 		// calculate "used by" dependencies
 		MultiMap<String, String> usedByMap = usesMap.invert();
 
-		ReportTable table = new ReportTable("Artifact", "Uses", "Used by", "Maven coordinates", "Updates", "Direct dependencies", "Status");
+		ReportTable table = new ReportTable("Artifact", "Uses", "Used by", "Maven coordinates", "Updates", "Direct dependencies");
 
 		// for every JAR file ...
 		List<JarFile> jarFiles = classpath.getJarFiles();
@@ -97,7 +97,6 @@ public class DependenciesAnalyzer implements Analyzer {
 		String coordinatesInfo = coordinates;
 		String updatesInfo = Markdown.UNKNOWN;
 		String dependenciesInfo = Markdown.UNKNOWN;
-		String status = "";
 
 		Set<String> targetUUIDs = usesMap.getValues(uuid);
 		if (targetUUIDs != null) {
@@ -143,19 +142,18 @@ public class DependenciesAnalyzer implements Analyzer {
 			} else {
 				// sort dependencies, prefer dependencies with same or similar group or artifact ID
 				dependencies.sort(new SmartDependencyComparator(artifact));
-				List<String> lines = dependencies.stream()
-						.map(Dependency::toMarkdown)
-						.collect(Collectors.toList());
+
+				List<String> lines = new ArrayList<>(dependencies.size());
+				for (Dependency dependency : dependencies) {
+					String link = dependency.toMarkdown();
+					String status = getDependencyStatus(dependency, classpath);
+					lines.add(link + " " + status);
+				}
 				dependenciesInfo = StringUtils.joinLines(lines);
 			}
-
-			if (dependencies != null) {
-				status = getStatus(dependencies, classpath);
-			}
-
 		}
 
-		return new String[] { displayName, uses, usedBy, coordinatesInfo, updatesInfo, dependenciesInfo, status };
+		return new String[] { displayName, uses, usedBy, coordinatesInfo, updatesInfo, dependenciesInfo };
 	}
 
 	private String getUpdatesInfo(Artifact artifact) {
@@ -244,24 +242,16 @@ public class DependenciesAnalyzer implements Analyzer {
 		return dependencies;
 	}
 
-	private String getStatus(List<Dependency> dependencies, Classpath classpath) {
+	private String getDependencyStatus(Dependency dependency, Classpath classpath) {
 
-		List<String> lines = new ArrayList<>(dependencies.size());
-
-		for (Dependency dependency : dependencies) {
-
-			// search for JAR file with same group ID and artifact ID
-			Predicate<JarFile> predicate = jarFile -> matches(jarFile, dependency);
-			JarFile jarFile = classpath.getJarFile(predicate);
-			if (jarFile != null) {
-				String status = getDependencyStatus(dependency, jarFile);
-				lines.add(status);
-			} else {
-				lines.add("Unsatisfied");
-			}
+		// search for JAR file with same group ID and artifact ID
+		Predicate<JarFile> predicate = jarFile -> matches(jarFile, dependency);
+		JarFile jarFile = classpath.getJarFile(predicate);
+		if (jarFile != null) {
+			return getDependencyStatus(dependency, jarFile);
+		} else {
+			return Markdown.NOT_FOUND;
 		}
-
-		return StringUtils.joinLines(lines);
 	}
 
 	/**
@@ -285,7 +275,7 @@ public class DependenciesAnalyzer implements Analyzer {
 
 	private static String getDependencyStatus(Dependency dependency, JarFile jarFile) {
 
-		StringBuilder line = new StringBuilder("OK");
+		StringBuilder line = new StringBuilder(Markdown.OK);
 
 		// check if it is an exact match
 		Artifact artifact = jarFile.getArtifacts().get(0);

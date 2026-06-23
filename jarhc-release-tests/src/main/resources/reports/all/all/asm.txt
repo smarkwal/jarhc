@@ -14,15 +14,15 @@ Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.
 
-Artifact | Uses   | Used by | Maven coordinates   | Updates      | Direct dependencies | Status
----------+--------+---------+---------------------+--------------+---------------------+-------
-asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | 9.3          | [none]              |
-         |        |         |                     | 9.4          |                     |
-         |        |         |                     | 9.5          |                     |
-         |        |         |                     | [...]        |                     |
-         |        |         |                     | 9.8          |                     |
-         |        |         |                     | 9.9, 9.9.1   |                     |
-         |        |         |                     | 9.10, 9.10.1 |                     |
+Artifact | Uses   | Used by | Maven coordinates   | Updates      | Direct dependencies
+---------+--------+---------+---------------------+--------------+--------------------
+asm      | [none] | [none]  | org.ow2.asm:asm:9.2 | 9.3          | [none]
+         |        |         |                     | 9.4          |
+         |        |         |                     | 9.5          |
+         |        |         |                     | [...]        |
+         |        |         |                     | 9.8          |
+         |        |         |                     | 9.9, 9.9.1   |
+         |        |         |                     | 9.10, 9.10.1 |
 
 JAR Manifests
 -------------
