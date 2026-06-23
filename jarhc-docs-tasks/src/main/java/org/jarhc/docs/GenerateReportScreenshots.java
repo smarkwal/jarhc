@@ -22,7 +22,9 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -147,6 +149,12 @@ public class GenerateReportScreenshots {
 		String reportUrl = reportFile.toURI().toString();
 		System.out.println("Rendering report: " + reportUrl);
 
+		// sections mapped in SECTIONS but not found in the report
+		List<String> missing = new ArrayList<>();
+		// sections found in the report but not mapped in SECTIONS
+		List<String> unknown = new ArrayList<>();
+		int count = 0;
+
 		try (Playwright playwright = Playwright.create();
 				Browser browser = playwright.chromium().launch()) {
 			// closing the browser also closes its contexts and pages
@@ -163,6 +171,17 @@ public class GenerateReportScreenshots {
 			page.evaluate("() => document.querySelectorAll('section.report-section.collapsed')"
 					+ ".forEach(s => s.classList.remove('collapsed'))");
 
+			// detect report sections that are not mapped in SECTIONS (e.g. a new
+			// section was added to JarHC but not yet to this generator)
+			@SuppressWarnings("unchecked")
+			List<String> reportSectionIds = (List<String>) page.evaluate(
+					"() => Array.from(document.querySelectorAll('section.report-section'), s => s.id)");
+			for (String id : reportSectionIds) {
+				if (!SECTIONS.containsKey(id)) {
+					unknown.add(id);
+				}
+			}
+
 			// Shrink the viewport width to the actual content width, so that the
 			// fixed-width section title bars do not extend far beyond the
 			// tables (which would add large empty margins to the screenshots).
@@ -175,7 +194,6 @@ public class GenerateReportScreenshots {
 					"() => Math.ceil(document.documentElement.scrollHeight)")).intValue();
 			page.setViewportSize(viewportWidth, Math.max(VIEWPORT_HEIGHT, pageHeight));
 
-			int count = 0;
 			for (Map.Entry<String, String> entry : SECTIONS.entrySet()) {
 				String sectionId = entry.getKey();
 				String fileName = entry.getValue();
@@ -183,7 +201,7 @@ public class GenerateReportScreenshots {
 				@SuppressWarnings("unchecked")
 				Map<String, Object> box = (Map<String, Object>) page.evaluate(MEASURE_SECTION_BOX, sectionId);
 				if (box == null) {
-					System.err.println("WARNING: section not found in report, skipping: #" + sectionId);
+					missing.add(sectionId);
 					continue;
 				}
 
@@ -199,8 +217,25 @@ public class GenerateReportScreenshots {
 				count++;
 			}
 
-			System.out.println("Done. Generated " + count + " screenshot(s).");
 		}
+
+		// Fail if the generator is out of sync with the report, in either
+		// direction. This is checked after the browser has been closed by the
+		// try-with-resources above, so that System.exit() does not bypass it.
+		// For this controlled example report any mismatch is a genuine defect.
+		if (!missing.isEmpty() || !unknown.isEmpty()) {
+			if (!missing.isEmpty()) {
+				System.err.println("ERROR: sections mapped in SECTIONS but not found in the report: " + missing);
+			}
+			if (!unknown.isEmpty()) {
+				System.err.println("ERROR: sections found in the report but not mapped in SECTIONS: " + unknown);
+			}
+			System.err.println("Update the SECTIONS mapping in GenerateReportScreenshots"
+					+ " (and the documentation) to match " + reportFile.getName() + ".");
+			System.exit(1);
+		}
+
+		System.out.println("Done. Generated " + count + " screenshot(s).");
 	}
 
 }
