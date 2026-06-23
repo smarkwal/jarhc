@@ -16,6 +16,6 @@ Checks for executable files bundled as resources:
 * `*.bat`
 * `*.sh`
 
-![Blacklist](../assets/images/report-section-blacklist.png)
+[![Blacklist](../assets/images/report-section-blacklist.png)](../examples/asm/report.html#Blacklist){target="_blank" rel="noopener"}
 
 Next: [JAR Manifests](jar-manifests.md)
