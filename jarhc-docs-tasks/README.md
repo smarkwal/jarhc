@@ -19,8 +19,9 @@ This renders the example report in a headless browser (Chromium, managed by
 [Playwright](https://playwright.dev/java/)) and writes one PNG per report
 section to [`docs/assets/images/`](../docs/assets/images), e.g.
 `report-section-jar-files.png`. Each screenshot is cropped tightly to the
-section's content (title, description and tables) and rendered at 2x scale for
-crisp images.
+section's content (title, description and tables). Images are rendered at 1x
+scale, since wide sections are scaled down to the content column width when
+embedded in the documentation anyway.
 
 The mapping from report section to image file name is defined in
 [`GenerateReportScreenshots.java`](src/main/java/org/jarhc/docs/GenerateReportScreenshots.java).

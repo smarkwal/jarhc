@@ -72,18 +72,20 @@ public class GenerateReportScreenshots {
 	// the rightmost edge of any table or text, across all sections.
 	private static final String MEASURE_MAX_CONTENT_RIGHT =
 			"() => {\n" +
+			contentRightFn() +
 			"  let right = 0;\n" +
 			"  for (const s of document.querySelectorAll('section.report-section')) {\n" +
 			"    right = Math.max(right, contentRight(s));\n" +
 			"  }\n" +
 			"  return Math.ceil(right);\n" +
-			"}\n" + ContentRightFn();
+			"}";
 
 	// JavaScript that returns the tight bounding box (in page coordinates) of a
 	// single section: full height, but width clipped to the actual content
 	// (tables + text) rather than the full-width section box.
 	private static final String MEASURE_SECTION_BOX =
 			"(id) => {\n" +
+			contentRightFn() +
 			"  const s = document.getElementById(id);\n" +
 			"  if (!s) return null;\n" +
 			"  const sr = s.getBoundingClientRect();\n" +
@@ -94,7 +96,7 @@ public class GenerateReportScreenshots {
 			"    width: Math.ceil(right - sr.left + 4),\n" +
 			"    height: Math.ceil(sr.height)\n" +
 			"  };\n" +
-			"}\n" + ContentRightFn();
+			"}";
 
 	/**
 	 * Shared JavaScript helper {@code contentRight(section)}: returns the
@@ -102,8 +104,10 @@ public class GenerateReportScreenshots {
 	 * the given section. It considers tables (which are shrink-to-fit and may
 	 * overflow the section box) and text runs (measured via Range rectangles),
 	 * but ignores full-width block backgrounds such as the section title bar.
+	 * It is declared inside each {@code page.evaluate(...)} function body so
+	 * that every evaluated string is a single, self-contained function.
 	 */
-	private static String ContentRightFn() {
+	private static String contentRightFn() {
 		return "function contentRight(s) {\n" +
 				"  let right = s.getBoundingClientRect().left;\n" +
 				"  for (const t of s.querySelectorAll('table')) {\n" +
