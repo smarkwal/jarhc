@@ -23,22 +23,22 @@ Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.
 
-Artifact    | Uses     | Used by     | Maven coordinates           | Updates    | Direct dependencies          | Status
-------------+----------+-------------+-----------------------------+------------+------------------------------+--------------
-asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-            |          |             |                             | 7.2        | org.ow2.asm:asm-tree:7.0     | OK
-            |          |             |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | OK [Provided]
-            |          |             |                             | [...]      |                              |
-            |          |             |                             | 9.5        |                              |
-            |          |             |                             | 9.6        |                              |
-            |          |             |                             | 9.7, 9.7.1 |                              |
-asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | 7.1        | org.ow2.asm:asm:7.0          | OK [Provided]
-            |          |             |                             | 7.2        |                              |
-            |          |             |                             | 7.3, 7.3.1 |                              |
-            |          |             |                             | [...]      |                              |
-            |          |             |                             | 9.5        |                              |
-            |          |             |                             | 9.6        |                              |
-            |          |             |                             | 9.7, 9.7.1 |                              |
+Artifact    | Uses     | Used by     | Maven coordinates           | Updates    | Direct dependencies
+------------+----------+-------------+-----------------------------+------------+-----------------------------------------
+asm-commons | asm-tree | [none]      | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 [not found]
+            |          |             |                             | 7.2        | org.ow2.asm:asm-tree:7.0 [OK]
+            |          |             |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0 [OK] [Provided]
+            |          |             |                             | [...]      |
+            |          |             |                             | 9.5        |
+            |          |             |                             | 9.6        |
+            |          |             |                             | 9.7, 9.7.1 |
+asm-tree    | [none]   | asm-commons | org.ow2.asm:asm-tree:7.0    | 7.1        | org.ow2.asm:asm:7.0 [OK] [Provided]
+            |          |             |                             | 7.2        |
+            |          |             |                             | 7.3, 7.3.1 |
+            |          |             |                             | [...]      |
+            |          |             |                             | 9.5        |
+            |          |             |                             | 9.6        |
+            |          |             |                             | 9.7, 9.7.1 |
 
 JAR Manifests
 -------------

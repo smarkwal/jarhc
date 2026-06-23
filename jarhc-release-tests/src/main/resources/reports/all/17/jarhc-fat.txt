@@ -16,9 +16,9 @@ Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.
 
-Artifact  | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies | Status
-----------+--------+---------+-------------------+-----------+---------------------+-------
-jarhc-app | [none] | [none]  | [unknown]         | [unknown] | [unknown]           |
+Artifact  | Uses   | Used by | Maven coordinates | Updates   | Direct dependencies
+----------+--------+---------+-------------------+-----------+--------------------
+jarhc-app | [none] | [none]  | [unknown]         | [unknown] | [unknown]
 
 Binary Compatibility
 --------------------

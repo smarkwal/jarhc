@@ -24,8 +24,10 @@ import org.jarhc.artifacts.Artifact;
 public class Markdown {
 
 	// special labels which will be colored in HTML rendering
+	public static final String OK = "[OK]";
 	public static final String ERROR = "[error]";
 	public static final String UNKNOWN = "[unknown]";
+	public static final String NOT_FOUND = "[not found]";
 	public static final String NONE = "[none]";
 	public static final String MORE = "[...]";
 
@@ -142,8 +144,10 @@ public class Markdown {
 	}
 
 	private static String renderLabels(String text) {
+		text = text.replace(OK, "<span style=\"color:green\">[OK]</span>");
 		text = text.replace(ERROR, "<span style=\"color:red\">[error]</span>");
 		text = text.replace(UNKNOWN, "<span style=\"color:orange\">[unknown]</span>");
+		text = text.replace(NOT_FOUND, "<span style=\"color:orange\">[not found]</span>");
 		text = text.replace(NONE, "<span style=\"color:gray\">[none]</span>");
 		text = text.replace(MORE, "<span style=\"color:gray\">[...]</span>");
 		return text;
