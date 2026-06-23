@@ -1,0 +1,8 @@
+org.ow2.asm:asm:9.9:jar
+org.ow2.asm:asm-commons:9.9:jar
+org.ow2.asm:asm-tree:9.9:jar
+--title ASM 9.9
+--output report.txt
+--output report.html
+--output report-list.txt
+--output report.json

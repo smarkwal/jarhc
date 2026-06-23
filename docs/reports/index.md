@@ -4,12 +4,12 @@ The JarHC report is available in HTML, text, or JSON format. All report formats 
 
 ## Examples
 
-Example reports for ASM 7.0:
+Example reports for ASM 9.9:
 
-* [HTML report](../examples/asm-7.0/report.html)
-* [Text report (table format)](../examples/asm-7.0/report.txt)
-* [Text report (list format)](../examples/asm-7.0/report-list.txt)
-* [JSON report](../examples/asm-7.0/report.json)
+* [HTML report](../examples/asm/report.html)
+* [Text report (table format)](../examples/asm/report.txt)
+* [Text report (list format)](../examples/asm/report-list.txt)
+* [JSON report](../examples/asm/report.json)
 
 ## Report sections
 

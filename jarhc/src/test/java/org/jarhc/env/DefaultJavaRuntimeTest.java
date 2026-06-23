@@ -88,6 +88,35 @@ class DefaultJavaRuntimeTest {
 	}
 
 	@Test
+	void test_getJavaHome_override() {
+
+		// prepare
+		String originalValue = System.getProperty("jarhc.javahome.override");
+		try {
+			String overrideValue = "/path/to/override-java";
+			System.setProperty("jarhc.javahome.override", overrideValue);
+			JavaRuntime javaRuntime = new DefaultJavaRuntime(logger);
+
+			// test
+			String result = javaRuntime.getJavaHome();
+
+			// assert
+			assertEquals(overrideValue, result);
+			assertEquals(overrideValue, System.getProperty("jarhc.javahome.override"));
+
+		} finally {
+
+			// reset
+			if (originalValue != null) {
+				System.setProperty("jarhc.javahome.override", originalValue);
+			} else {
+				System.clearProperty("jarhc.javahome.override");
+			}
+		}
+
+	}
+
+	@Test
 	void test_getClassDef_String() {
 
 		// prepare
