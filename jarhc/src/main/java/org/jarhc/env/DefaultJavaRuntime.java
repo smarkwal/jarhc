@@ -91,6 +91,10 @@ public class DefaultJavaRuntime extends JavaRuntime {
 
 	@Override
 	public String getJavaHome() {
+		String value = System.getProperty("jarhc.javahome.override");
+		if (value != null) {
+			return value;
+		}
 		return systemProperties.getProperty("java.home");
 	}
 

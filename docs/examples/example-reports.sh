@@ -10,7 +10,8 @@ source ../../.env
 set +o allexport
 
 # use fixed timestamp to make reports reproducible
-JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS} -Djarhc.timestamp.override=1739992928000"
+# and a fixed Java home to hide local installation details
+JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS} -Djarhc.timestamp.override=1739992928000 -Djarhc.javahome.override=/opt/java-17"
 
 for report in asm-7.0 asm-commons-7.0 asm-7.0-provided \
              jarhc-1.7 jarhc-2.2.2 ; do
