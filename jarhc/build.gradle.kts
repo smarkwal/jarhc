@@ -479,18 +479,5 @@ fun getGitBranchName(): String {
 }
 
 fun getGitBranchTarget(branchName: String): String {
-    // Gitflow workflow merge targets
-    return if (branchName == "master") {
-        "master"
-    } else if (branchName.startsWith("hotfix/")) {
-        "master"
-    } else if (branchName.startsWith("release/")) {
-        "master"
-    } else if (branchName == "develop") {
-        "master"
-    } else if (branchName.startsWith("feature/")) {
-        "develop"
-    } else {
-        branchName
-    }
+    return "master"
 }
