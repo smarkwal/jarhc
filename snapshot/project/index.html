@@ -966,6 +966,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#open-source-insights-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Source Insights (API)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1021,6 +1032,17 @@
     <span class="md-ellipsis">
       
         Sonar analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locking-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locking dependencies
       
     </span>
   </a>
@@ -1155,6 +1177,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#open-source-insights-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Source Insights (API)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1210,6 +1243,17 @@
     <span class="md-ellipsis">
       
         Sonar analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locking-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locking dependencies
       
     </span>
   </a>
@@ -1274,6 +1318,8 @@
 <h3 id="slf4j"><a href="https://www.slf4j.org">SLF4J</a><a class="headerlink" href="#slf4j" title="Permanent link">&para;</a></h3>
 <p>The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction for various logging frameworks (e.g. java.util.logging, logback, log4j) allowing the end user to plug in the desired logging framework at deployment time.</p>
 <p>License: <a href="https://www.slf4j.org/license.html">MIT License</a>.</p>
+<h3 id="open-source-insights-api"><a href="https://deps.dev/">Open Source Insights</a> (API)<a class="headerlink" href="#open-source-insights-api" title="Permanent link">&para;</a></h3>
+<p>Open Source Insights is a service developed and hosted by Google to help developers better understand the structure, construction, and security of open source software packages.</p>
 <h2 id="developers">Developers<a class="headerlink" href="#developers" title="Permanent link">&para;</a></h2>
 <p>Stephan Markwalder - <a href="https://twitter.com/smarkwal">@smarkwal</a></p>
 <h2 id="ideas">Ideas<a class="headerlink" href="#ideas" title="Permanent link">&para;</a></h2>
@@ -1313,8 +1359,15 @@
 <p>Finally, run the Sonar analysis.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./gradlew<span class="w"> </span>sonar
 </code></pre></div>
-<p>Scan results can be found in SonarCloud:
-https://sonarcloud.io/project/overview?id=smarkwal_jarhc</p>
+<p>Scan results can be found in <a href="https://sonarcloud.io/project/overview?id=smarkwal_jarhc">SonarCloud</a>.</p>
+<h3 id="locking-dependencies">Locking dependencies<a class="headerlink" href="#locking-dependencies" title="Permanent link">&para;</a></h3>
+<p>To lock the dependencies to their current versions, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./gradlew<span class="w"> </span>dependencies<span class="w"> </span>buildEnvironment<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">          </span>:jarhc:dependencies<span class="w"> </span>:jarhc:buildEnvironment<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">          </span>:jarhc-release-tests:dependencies<span class="w"> </span>:jarhc-release-tests:buildEnvironment<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">          </span>--write-locks
+</code></pre></div>
+<p>See <a href="https://docs.gradle.org/current/userguide/dependency_locking.html">Gradle documentation</a> for more information.</p>
 <h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
 <p>The documentation is automatically built and published to GitHub Pages:</p>
 <ol>
@@ -1322,11 +1375,11 @@ https://sonarcloud.io/project/overview?id=smarkwal_jarhc</p>
 <li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml">Docs Release</a>.</li>
 </ol>
 <p>To test the documentation locally before publishing, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
 </code></pre></div>
-<p>And then visit http://localhost:8000/jarhc/ in your browser.</p>
+<p>And then visit <a href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
 <p>To build and inspect the documentation locally, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
 </code></pre></div>
 <p>And then open the generated file <code>site/index.html</code> in your browser.</p>
 
