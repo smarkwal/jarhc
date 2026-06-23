@@ -1151,10 +1151,10 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>JarHC - JAR Health Check 3.0.0
 </code></pre></div>
 <h3 id="your-first-analysis">Your first analysis<a class="headerlink" href="#your-first-analysis" title="Permanent link">&para;</a></h3>
-<p>Let's analyze the open-source library <strong>ASM Commons 7.0</strong> which is one artifact of <a href="https://asm.ow2.io/">ASM</a>.</p>
-<p>The official Maven artifact coordinates for ASM Commons 7.0 is <code>org.ow2.asm:asm-commons:7.0</code>.
+<p>Let's analyze the open-source library <strong>ASM Commons 9.9</strong> which is one artifact of <a href="https://asm.ow2.io/">ASM</a>.</p>
+<p>The official Maven artifact coordinates for ASM Commons 9.9 is <code>org.ow2.asm:asm-commons:9.9</code>.
 Pass this to JarHC:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:7.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:9.9
 </code></pre></div>
 <p>The output is a text report with over 500 lines, starting like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>JarHC - JAR Health Check 3.0.0
@@ -1174,8 +1174,8 @@ Pass this to JarHC:</p>
 <a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>Artifact    | Version | Source                      | Size    | Multi-release | Java version (classes) | Resources | Packages                  | Checksum (SHA-1)                         | Coordinates                 | Issues
 <a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>------------+---------+-----------------------------+---------+---------------+------------------------+-----------+---------------------------+------------------------------------------+-----------------------------+-------
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>asm-commons | 7.0     | org.ow2.asm:asm-commons:7.0 | 78.0 KB | No            | Java 5 (32)            | 0         | org.objectweb.asm.commons | 478006d07b7c561ae3a92ddc1829bca81ae0cdd1 | org.ow2.asm:asm-commons:7.0 |
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Classpath   | -       | -                           | 78.0 KB | -             | Java 5 (32)            | 0         | 1                         | -                                        | -                           | -
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>asm-commons | 9.9     | org.ow2.asm:asm-commons:9.9 | 72.6 KB | No            | Java 5 (27)            | 0         | org.objectweb.asm.commons | db9165a3bf908ded6b08612d583a15d1d0c7bda0 | org.ow2.asm:asm-commons:9.9 |
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Classpath   | -       | -                           | 72.6 KB | -             | Java 5 (27)            | 0         | 1                         | -                                        | -                           | -
 <a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>[...]
 </code></pre></div>
@@ -1190,13 +1190,13 @@ HTML reports are usually easier to read for humans.</li>
 </ul>
 <p>You can also override the default report title "JAR Health Check Report" using the option <code>--title &lt;text&gt;</code>. 
 Note that you will have to wrap the title in quotes if it contains spaces or other special characters.</p>
-<p>So, to generate an HTML report for ASM Commons 7.0:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:7.0 --output asm-commons-7.0.html --title &quot;ASM Commons 7.0&quot;
+<p>So, to generate an HTML report for ASM Commons 9.9:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:9.9 --output asm-commons-9.9.html --title &quot;ASM Commons 9.9&quot;
 </code></pre></div></p>
-<p>You can look at the result here: <a href="../examples/asm-commons-7.0/report.html">asm-commons-7.0.html</a></p>
+<p>You can look at the result here: <a href="../examples/asm-commons/report.html">asm-commons-9.9.html</a></p>
 <h3 id="add-more-artifacts">Add more artifacts<a class="headerlink" href="#add-more-artifacts" title="Permanent link">&para;</a></h3>
 <p>Many of the sections in the above HTML report are rather short. 
-Not so the section <a href="../examples/asm-commons-7.0/report.html#BinaryCompatibility">"Binary Compatibility"</a>.
+Not so the section <a href="../examples/asm-commons/report.html#BinaryCompatibility">"Binary Compatibility"</a>.
 This section is full of issues like these:</p>
 <ul>
 <li><code>Interface not found: org.objectweb.asm.Opcodes</code></li>
@@ -1204,44 +1204,43 @@ This section is full of issues like these:</p>
 <li><code>Class not found: org.objectweb.asm.ClassVisitor</code></li>
 <li>and many more ...</li>
 </ul>
-<p>What JarHC is telling you here is that the Java classes in <code>asm-commons-7.0.jar</code> contain references to these classes, but these classes are not included in ASM Commons 7.0.</p>
-<p>The explanation for this is found in section <a href="../examples/asm-commons-7.0/report.html#Dependencies">"Dependencies"</a>:</p>
+<p>What JarHC is telling you here is that the Java classes in <code>asm-commons-9.9.jar</code> contain references to these classes, but these classes are not included in ASM Commons 9.9.</p>
+<p>The explanation for this is found in section <a href="../examples/asm-commons/report.html#Dependencies">"Dependencies"</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Dependencies
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>------------
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Dependencies as declared in POM file.
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Dependencies between JAR files, and as declared in POM file.
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>JAR file            | Maven coordinates           | Direct dependencies          | Status
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>--------------------+-----------------------------+------------------------------+------------
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>asm-commons-7.0.jar | org.ow2.asm:asm-commons:7.0 | org.ow2.asm:asm:7.0          | Unsatisfied
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>                    |                             | org.ow2.asm:asm-tree:7.0     | Unsatisfied
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>                    |                             | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Artifact    | Uses   | Used by | Maven coordinates           | Updates      | Direct dependencies
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>------------+--------+---------+-----------------------------+--------------+-------------------------------------
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>asm-commons | [none] | [none]  | org.ow2.asm:asm-commons:9.9 | 9.9.1        | org.ow2.asm:asm-tree:9.9 [not found]
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>            |        |         |                             | 9.10, 9.10.1 | org.ow2.asm:asm:9.9 [not found]
 </code></pre></div>
-<p>ASM Commons has dependencies on three more ASM libraries:</p>
+<p>ASM Commons has dependencies on two more ASM libraries:</p>
 <ul>
-<li><strong>ASM 7.0</strong> with coordinates <code>org.ow2.asm:asm:7.0</code></li>
-<li><strong>ASM Tree 7.0</strong> with coordinates <code>org.ow2.asm:asm-tree:7.0</code></li>
-<li><strong>ASM Analysis 7.0</strong> with coordinates <code>org.ow2.asm:asm-analysis:7.0</code></li>
+<li><strong>ASM Tree 9.9</strong> with coordinates <code>org.ow2.asm:asm-tree:9.9</code></li>
+<li><strong>ASM 9.9</strong> with coordinates <code>org.ow2.asm:asm:9.9</code></li>
 </ul>
-<p>The values "Unsatisfied" in column "Status" tell you that these artifacts have not been found on the classpath by JarHC.
+<p>The marker "[not found]" in column "Direct dependencies" tells you that these artifacts have not been found on the classpath by JarHC.
 Since these artifacts are not present in the analysis, the report lists a lot of issues due to missing classes.</p>
-<p>You can fix this by adding these artifacts to the analysis as well. There are two ways to do this:</p>
+<p>You can fix this by adding the missing ASM libraries to the analysis as well. There are two ways to do this:</p>
 <ul>
 <li>Add them to the "classpath", which means that their content is also analyzed by JarHC, and issues found in them will also be included in the report.</li>
-<li>Add them as "provided" artifacts, which means that their content will not be analyzed by JarHC. They will only be used to validate the references in ASM Commons 7.0.</li>
+<li>Add them as "provided" artifacts, which means that their content will not be analyzed by JarHC. They will only be used to validate the references in ASM Commons 9.9.</li>
 </ul>
 <h4 id="add-artifacts-to-classpath">Add artifacts to classpath<a class="headerlink" href="#add-artifacts-to-classpath" title="Permanent link">&para;</a></h4>
-<p>To add artifacts to the classpath, just add their coordinates to your JarHC command:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:7.0 org.ow2.asm:asm:7.0 org.ow2.asm:asm-tree:7.0 org.ow2.asm:asm-analysis:7.0
+<p>To add artifacts to the classpath, just add their coordinates to your JarHC command.
+Here we add all three ASM modules so that the complete library is analyzed together:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:9.9 org.ow2.asm:asm:9.9 org.ow2.asm:asm-tree:9.9
 </code></pre></div></p>
-<p>The <a href="../examples/asm-7.0/report.html">HTML report</a> now contains an empty section "Binary Compatibility" (no issues found).</p>
+<p>The <a href="../examples/asm/report.html">HTML report</a> now contains an empty section "Binary Compatibility" (no issues found).</p>
 <h4 id="add-artifacts-as-provided">Add artifacts as provided<a class="headerlink" href="#add-artifacts-as-provided" title="Permanent link">&para;</a></h4>
 <p>To add artifacts only as provided libraries, use the option <code>--provided &lt;artifact&gt;</code>:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:7.0 --provided org.ow2.asm:asm:7.0 --provided org.ow2.asm:asm-tree:7.0 --provided org.ow2.asm:asm-analysis:7.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:9.9 --provided org.ow2.asm:asm:9.9 --provided org.ow2.asm:asm-tree:9.9
 </code></pre></div></p>
 <p>You can make the command line a little shorter if you pass all provided artifacts as comma-separated list:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:7.0 --provided org.ow2.asm:asm:7.0,org.ow2.asm:asm-tree:7.0,org.ow2.asm:asm-analysis:7.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>java -jar jarhc.jar org.ow2.asm:asm-commons:9.9 --provided org.ow2.asm:asm:9.9,org.ow2.asm:asm-tree:9.9
 </code></pre></div></p>
-<p>The <a href="../examples/asm-7.0-provided/report.html">HTML report</a> looks very similar, except that all the sections only list issues found for ASM Commons 7.0.</p>
+<p>The <a href="../examples/asm-provided/report.html">HTML report</a> looks very similar, except that all the sections only list issues found for ASM Commons 9.9.</p>
 <h4 id="classpath-vs-provided">Classpath vs. provided<a class="headerlink" href="#classpath-vs-provided" title="Permanent link">&para;</a></h4>
 <p>To be continued ...</p>
 
