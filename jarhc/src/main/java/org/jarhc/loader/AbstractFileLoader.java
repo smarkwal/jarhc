@@ -226,11 +226,14 @@ abstract class AbstractFileLoader {
 		String checksum = archive.getFileChecksum();
 
 		// try to identify JAR file as Maven artifact
+		String source = coordinates != null ? coordinates : fileName;
 		List<Artifact> artifacts = null;
 		try {
 			artifacts = repository.findArtifacts(checksum);
+			if (artifacts.isEmpty()) {
+				logger.info("Artifact Finder: No artifact found for '{}' with checksum '{}'", source, checksum);
+			}
 		} catch (RepositoryException e) {
-			String source = coordinates != null ? coordinates : fileName;
 			if (ExceptionUtils.getRootCause(e) instanceof SocketTimeoutException) {
 				logger.warn("Artifact Finder: Timeout for artifact '{}' with checksum '{}'", source, checksum);
 			} else {
