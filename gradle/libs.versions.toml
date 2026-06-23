@@ -1,0 +1,52 @@
+# Gradle version catalog
+# https://docs.gradle.org/current/userguide/version_catalogs.html
+
+[versions]
+slf4j = "2.0.18"
+junit = "5.12.2"
+assertj = "3.27.7"
+jmh = "1.37"
+testcontainers = "1.21.4"
+
+[libraries]
+
+# main dependencies (jarhc)
+asm = { module = "org.ow2.asm:asm", version = "9.10.1" }
+json = { module = "org.json:json", version = "20260522" }
+maven-resolver-supplier = { module = "org.apache.maven.resolver:maven-resolver-supplier", version = "1.9.27" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+slf4j-jul = { module = "org.slf4j:jul-to-slf4j", version.ref = "slf4j" }
+slf4j-jcl = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
+# fix CVE-2025-67030 in plexus-utils < 3.6.0
+# (dependency of maven-resolver-supplier 1.9.27)
+# check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
+plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.1" }
+
+# benchmark dependencies (jarhc)
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
+jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
+
+# test dependencies (jarhc + jarhc-release-tests)
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+mockito-core = { module = "org.mockito:mockito-core", version = "5.23.0" }
+
+# release test dependencies (jarhc-release-tests)
+testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
+commons-io = { module = "commons-io:commons-io", version = "2.22.0" }
+# fix CVE-2024-25710 and CVE-2024-26308 in commons-compress < 1.26.0
+# (dependency of testcontainers 1.21.4)
+# check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep commons-compress
+commons-compress = { module = "org.apache.commons:commons-compress", version = "1.28.0" }
+
+[plugins]
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version = "2.0.0" }
+versions = { id = "com.github.ben-manes.versions", version = "0.54.0" }
+license-report = { id = "com.github.jk1.dependency-license-report", version = "3.1.4" }
+sonarqube = { id = "org.sonarqube", version = "7.3.1.8318" }
+jarhc = { id = "org.jarhc", version = "1.2.0" }

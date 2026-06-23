@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 
 public class QueryHandler implements HttpHandler {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(QueryHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(QueryHandler.class);
 
 	private final ServerMode mode;
 	private final LocalQueryClient localQueryClient;

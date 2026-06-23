@@ -34,6 +34,8 @@ public class FileUtils {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileUtils.class);
 
+	private static final SecureRandom RANDOM = new SecureRandom();
+
 	private FileUtils() {
 		throw new IllegalStateException("utility class");
 	}
@@ -176,8 +178,7 @@ public class FileUtils {
 
 		// create a random directory name
 		byte[] data = new byte[8];
-		SecureRandom random = new SecureRandom();
-		random.nextBytes(data);
+		RANDOM.nextBytes(data);
 		String name = prefix + DigestUtils.hex(data);
 
 		File directory = new File(tmpDir, name);
