@@ -32,7 +32,7 @@ public class TestResult {
 
 	private static String normalize(String stdOut) {
 		// remove INFO log messages for "artifact not found" issues (very common in release tests)
-		return stdOut.replaceAll("INFO JarFileLoader - Artifact Finder: No artifact found for '.*' with checksum '.*'[\\r\\n]+", "");
+		return stdOut.replaceAll("(?m)^INFO \\S+ - Artifact Finder: No artifact found for '[^']*' with checksum '[0-9a-f]+'\\R?", "");
 	}
 
 	TestResult(Container.ExecResult result) {
