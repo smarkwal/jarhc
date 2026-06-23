@@ -37,6 +37,10 @@ The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstract
 
 License: [MIT License](https://www.slf4j.org/license.html).
 
+### [Open Source Insights](https://deps.dev/) (API)
+
+Open Source Insights is a service developed and hosted by Google to help developers better understand the structure, construction, and security of open source software packages.
+
 ## Developers
 
 Stephan Markwalder - [@smarkwal](https://twitter.com/smarkwal)
