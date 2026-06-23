@@ -14,15 +14,15 @@ Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.
 
-Artifact    | Uses   | Used by | Maven coordinates           | Updates    | Direct dependencies          | Status
-------------+--------+---------+-----------------------------+------------+------------------------------+------------
-asm-commons | [none] | [none]  | org.ow2.asm:asm-commons:7.0 | 7.1        | org.ow2.asm:asm-analysis:7.0 | Unsatisfied
-            |        |         |                             | 7.2        | org.ow2.asm:asm-tree:7.0     | Unsatisfied
-            |        |         |                             | 7.3, 7.3.1 | org.ow2.asm:asm:7.0          | Unsatisfied
-            |        |         |                             | [...]      |                              |
-            |        |         |                             | 9.5        |                              |
-            |        |         |                             | 9.6        |                              |
-            |        |         |                             | 9.7, 9.7.1 |                              |
+Artifact    | Uses   | Used by | Maven coordinates           | Updates      | Direct dependencies
+------------+--------+---------+-----------------------------+--------------+-----------------------------------------
+asm-commons | [none] | [none]  | org.ow2.asm:asm-commons:7.0 | 7.1          | org.ow2.asm:asm-analysis:7.0 [not found]
+            |        |         |                             | 7.2          | org.ow2.asm:asm-tree:7.0 [not found]
+            |        |         |                             | 7.3, 7.3.1   | org.ow2.asm:asm:7.0 [not found]
+            |        |         |                             | [...]        |
+            |        |         |                             | 9.8          |
+            |        |         |                             | 9.9, 9.9.1   |
+            |        |         |                             | 9.10, 9.10.1 |
 
 Duplicate Classes
 -----------------
@@ -485,8 +485,8 @@ Java Runtime
 ------------
 Information about JRE/JDK runtime.
 
-Java home    : /home/markwalder/.jdks/temurin-17.0.14
+Java home    : /opt/java-17
 Java runtime : OpenJDK Runtime Environment
-Java version : 17.0.14
+Java version : 17.0.19
 Java vendor  : Eclipse Adoptium
 
