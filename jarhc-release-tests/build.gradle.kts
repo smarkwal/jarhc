@@ -40,23 +40,19 @@ idea {
 
 dependencies {
 
-    implementation(platform("org.junit:junit-bom:5.12.2"))
-    implementation("org.junit.jupiter:junit-jupiter")
-    runtimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("org.assertj:assertj-core:3.27.7")
-    implementation("org.testcontainers:testcontainers:1.21.4")
-    implementation("org.testcontainers:junit-jupiter:1.21.4")
-    implementation("org.apache.commons:commons-lang3:3.20.0")
-    implementation("commons-io:commons-io:2.22.0")
-    // align SLF4J API to 2.0.18 on all configurations
-    // (Testcontainers pulls slf4j-api 1.7.36 onto the compile classpath)
-    implementation("org.slf4j:slf4j-api:2.0.18")
-    runtimeOnly("org.slf4j:slf4j-simple:2.0.18")
+    implementation(platform(libs.junit.bom))
+    implementation(libs.junit.jupiter)
+    runtimeOnly(libs.junit.platform.launcher)
+    implementation(libs.assertj.core)
+    implementation(libs.testcontainers.core)
+    implementation(libs.testcontainers.junit)
+    implementation(libs.commons.lang3)
+    implementation(libs.commons.io)
+    implementation(libs.slf4j.api)
+    runtimeOnly(libs.slf4j.simple)
 
-    // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
-    // (dependency of Testcontainers 1.21.0)
-    // check dependencies with ../gradlew dependencies --configuration testRuntimeClasspath | grep compress
-    implementation("org.apache.commons:commons-compress:1.28.0")
+    // fix CVE-2024-25710 and CVE-2024-26308
+    implementation(libs.commons.compress)
 
 }
 

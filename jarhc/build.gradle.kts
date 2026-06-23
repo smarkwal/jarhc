@@ -23,13 +23,13 @@ plugins {
     `maven-publish`
 
     // create report with all open-source licenses
-    id("com.github.jk1.dependency-license-report") version "3.1.4"
+    alias(libs.plugins.license.report)
 
     // run Sonar analysis
-    id("org.sonarqube") version "7.3.1.8318"
+    alias(libs.plugins.sonarqube)
 
     // JarHC Gradle plugin
-    id("org.jarhc") version "1.2.0"
+    alias(libs.plugins.jarhc)
 
 }
 
@@ -133,31 +133,29 @@ val includeInJarApp = configurations.create("includeInJarApp")
 dependencies {
 
     // main dependencies
-    implementation("org.ow2.asm:asm:9.10.1")
-    implementation("org.json:json:20260522")
-    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.27")
-    implementation("org.slf4j:jul-to-slf4j:2.0.18")
-    implementation("org.slf4j:jcl-over-slf4j:2.0.18")
-    api("org.slf4j:slf4j-api:2.0.18")
+    implementation(libs.asm)
+    implementation(libs.json)
+    implementation(libs.maven.resolver.supplier)
+    implementation(libs.slf4j.jul)
+    implementation(libs.slf4j.jcl)
+    api(libs.slf4j.api)
 
     // additional libraries to be added to jar-app
-    includeInJarApp("org.slf4j:slf4j-simple:2.0.18")
+    includeInJarApp(libs.slf4j.simple)
 
     // test dependencies
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
-    testImplementation("org.assertj:assertj-core:3.27.7")
-    testImplementation("org.mockito:mockito-core:5.23.0")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("org.slf4j:slf4j-simple:2.0.18")
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.mockito.core)
+    testRuntimeOnly(libs.junit.platform.launcher)
+    testRuntimeOnly(libs.slf4j.simple)
 
     // benchmark dependencies
-    jmhImplementation("org.openjdk.jmh:jmh-core:1.37")
-    jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+    jmhImplementation(libs.jmh.core)
+    jmhAnnotationProcessor(libs.jmh.generator.annprocess)
 
-    // fix CVE-2025-67030 in plexus-utils < 3.6.0
-    // (dependency of maven-resolver-supplier 1.9.27)
-    // check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
-    implementation("org.codehaus.plexus:plexus-utils:3.6.1")
+    // fix CVE-2025-67030
+    implementation(libs.plexus.utils)
 
 }
 

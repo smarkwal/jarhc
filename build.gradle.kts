@@ -21,11 +21,11 @@ plugins {
     idea
 
     // publish to Sonatype OSSRH and release to Maven Central
-    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
+    alias(libs.plugins.nexus.publish)
 
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
-    id("com.github.ben-manes.versions") version "0.54.0"
+    alias(libs.plugins.versions)
 
 }
 
