@@ -6,4 +6,6 @@
 
 Also checks how "similar" duplicate and shadowed Java classes are (exact copy, same API, or different API).
 
+[![Duplicate Classes](../assets/images/report-section-duplicate-classes.png)](../examples/asm/report.html#DuplicateClasses){target="_blank" rel="noopener"}
+
 Next: [Binary Compatibility](binary-compatibility.md)
