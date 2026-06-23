@@ -61,7 +61,7 @@ abstract class AbstractTest {
 	}
 
 	@TestFactory
-	Collection<DynamicTest> testAnalyzers(@TempDir Path tempDir) throws IOException {
+	Collection<DynamicTest> testAnalyzers(@TempDir Path tempDir) {
 
 		// prepare context
 		Options options = new Options();
