@@ -29,7 +29,19 @@ plugins {
 
 }
 
+// lock the buildscript classpath (plugins) of root project
+buildscript {
+    configurations.classpath {
+        resolutionStrategy.activateDependencyLocking()
+    }
+}
+
 allprojects {
+
+    // lock all dependency configurations in every project ---------------------
+    dependencyLocking {
+        lockAllConfigurations()
+    }
 
     // load user-specific properties -------------------------------------------
     val userPropertiesFile = file("${rootDir}/gradle.user.properties")
@@ -44,6 +56,13 @@ allprojects {
 }
 
 subprojects {
+
+    // lock the buildscript classpath (plugins) of every subproject ------------
+    buildscript {
+        configurations.classpath {
+            resolutionStrategy.activateDependencyLocking()
+        }
+    }
 
     apply(plugin = "idea")
 

@@ -37,6 +37,10 @@ The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstract
 
 License: [MIT License](https://www.slf4j.org/license.html).
 
+### [Open Source Insights](https://deps.dev/) (API)
+
+Open Source Insights is a service developed and hosted by Google to help developers better understand the structure, construction, and security of open source software packages.
+
 ## Developers
 
 Stephan Markwalder - [@smarkwal](https://twitter.com/smarkwal)
@@ -108,8 +112,20 @@ Finally, run the Sonar analysis.
 ./gradlew sonar
 ```
 
-Scan results can be found in SonarCloud:
-https://sonarcloud.io/project/overview?id=smarkwal_jarhc
+Scan results can be found in [SonarCloud](https://sonarcloud.io/project/overview?id=smarkwal_jarhc).
+
+### Locking dependencies
+
+To lock the dependencies to their current versions, run:
+
+```shell
+./gradlew dependencies buildEnvironment \
+          :jarhc:dependencies :jarhc:buildEnvironment \
+          :jarhc-release-tests:dependencies :jarhc-release-tests:buildEnvironment \
+          --write-locks
+```
+
+See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_locking.html) for more information.
 
 ### Documentation
 
@@ -124,7 +140,7 @@ To test the documentation locally before publishing, run:
 docker run --rm -it -p 8000:8000 -v "$PWD":/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000
 ```
 
-And then visit http://localhost:8000/jarhc/ in your browser.
+And then visit [http://localhost:8000](http://localhost:8000) in your browser.
 
 To build and inspect the documentation locally, run:
 

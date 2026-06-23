@@ -48,7 +48,9 @@ dependencies {
     implementation("org.testcontainers:junit-jupiter:1.21.4")
     implementation("org.apache.commons:commons-lang3:3.20.0")
     implementation("commons-io:commons-io:2.22.0")
-    runtimeOnly("org.slf4j:slf4j-api:2.0.18")
+    // align SLF4J API to 2.0.18 on all configurations
+    // (Testcontainers pulls slf4j-api 1.7.36 onto the compile classpath)
+    implementation("org.slf4j:slf4j-api:2.0.18")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.18")
 
     // fix CVE-2024-25710 and CVE-2024-26308 in Commons Compress < 1.26.0
