@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 public class RepoHandler implements HttpHandler {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(RepoHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RepoHandler.class);
 
 	private static final Map<String, String> contentTypes = new HashMap<>();
 
