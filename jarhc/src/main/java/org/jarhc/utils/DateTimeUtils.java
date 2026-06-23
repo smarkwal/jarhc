@@ -16,10 +16,10 @@
 
 package org.jarhc.utils;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DateTimeUtils {
 
@@ -30,8 +30,8 @@ public class DateTimeUtils {
 	}
 
 	public static String formatTimestamp(long timestamp) {
-		Date date = new Date(timestamp);
-		LocalDateTime dateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		Instant instant = Instant.ofEpochMilli(timestamp);
+		LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 		return DATE_TIME_FORMAT.format(dateTime);
 	}
 
