@@ -276,6 +276,7 @@
 
 			initMinimap();
 			initCollapseExpand();
+			initExpandFromHash();
 			initRowMarking();
 			initKeyboardShortcuts();
 		}
@@ -316,6 +317,24 @@
 						updateMinimap();
 					});
 				}
+			}
+		}
+
+		function initExpandFromHash() {
+			expandHashTarget();
+			// also handle in-page anchor clicks (e.g. from the Table of Contents)
+			window.addEventListener("hashchange", expandHashTarget);
+		}
+
+		function expandHashTarget() {
+			if (!location.hash) return;
+			const target = document.getElementById(decodeURIComponent(location.hash.substring(1)));
+			if (!target) return;
+			const section = target.closest(".report-section");
+			if (section && section.classList.contains("collapsed")) {
+				section.classList.remove("collapsed");   // expand only, never collapse
+				updateMinimap();
+				section.scrollIntoView();                // re-align: expanding shifted the layout
 			}
 		}
 
