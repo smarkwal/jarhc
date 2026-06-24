@@ -10,7 +10,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "master"
+    target-branch: "main"
     open-pull-requests-limit: 0
 
   # Keep the GitHub Actions (pinned to commit SHAs) up to date. Dependabot
@@ -20,7 +20,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "master"
+    target-branch: "main"
     groups:
       github-actions:
         patterns:
@@ -40,7 +40,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "master"
+    target-branch: "main"
     groups:
       pip:
         patterns:

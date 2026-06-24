@@ -1,11 +1,11 @@
 name: Docs Snapshot
 
-# Publish the "snapshot" docs version (current master) to GitHub Pages.
+# Publish the "snapshot" docs version (current main) to GitHub Pages.
 # Releases are published by docs-release.yml.
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'docs/**'
       - 'mkdocs.yml'

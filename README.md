@@ -21,8 +21,8 @@ More information can be found in the [documentation](https://smarkwal.github.io/
 [![Downloads](https://img.shields.io/github/downloads/smarkwal/jarhc/total?label=Downloads)](https://github.com/smarkwal/jarhc/releases)
 
 [![Build](https://github.com/smarkwal/jarhc/actions/workflows/build.yml/badge.svg)](https://github.com/smarkwal/jarhc/actions/workflows/build.yml)
-[![Tests](https://img.shields.io/sonar/tests/smarkwal_jarhc/master?label=Tests&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/component_measures?id=smarkwal_jarhc&metric=test_success_density&selected=smarkwal_jarhc%3Asrc%2Ftest%2Fjava%2Forg%2Fjarhc)
-[![Coverage](https://img.shields.io/sonar/coverage/smarkwal_jarhc/master?label=Coverage&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/component_measures?id=smarkwal_jarhc&metric=coverage&view=list)
-[![Quality](https://img.shields.io/sonar/quality_gate/smarkwal_jarhc/master?label=Quality&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=smarkwal_jarhc)
+[![Tests](https://img.shields.io/sonar/tests/smarkwal_jarhc/main?label=Tests&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/component_measures?id=smarkwal_jarhc&metric=test_success_density&selected=smarkwal_jarhc%3Asrc%2Ftest%2Fjava%2Forg%2Fjarhc)
+[![Coverage](https://img.shields.io/sonar/coverage/smarkwal_jarhc/main?label=Coverage&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/component_measures?id=smarkwal_jarhc&metric=coverage&view=list)
+[![Quality](https://img.shields.io/sonar/quality_gate/smarkwal_jarhc/main?label=Quality&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=smarkwal_jarhc)
 
 [![Issues](https://img.shields.io/github/issues/smarkwal/jarhc?label=Issues)](https://github.com/smarkwal/jarhc/issues)
