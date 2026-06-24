@@ -31,3 +31,16 @@ updates:
       # Bump to v6 deliberately, not automatically.
       - dependency-name: "gradle/actions"
         update-types: ["version-update:semver-major"]
+
+  # Python docs toolchain. Dependabot updates docs-requirements.in and
+  # regenerates the hash-pinned docs-requirements.txt lockfile. Grouped
+  # into a single PR to keep the volume low.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    target-branch: "master"
+    groups:
+      pip:
+        patterns:
+          - "*"
