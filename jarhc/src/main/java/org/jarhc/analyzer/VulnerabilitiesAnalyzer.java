@@ -97,8 +97,8 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 
 	private Map<Vulnerability, TreeSet<String>> collectVulnerabilities(Classpath classpath) {
 
-		// use a sorted map keyed by advisory ID so identical advisories merge,
-		// independent of object identity
+		// Use a map keyed by Vulnerability (equals/hashCode are based on advisoryId)
+		// so identical advisories merge independent of object identity.
 		Map<Vulnerability, TreeSet<String>> result = new LinkedHashMap<>();
 
 		List<JarFile> jarFiles = classpath.getJarFiles();
