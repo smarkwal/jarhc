@@ -65,7 +65,7 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 
 		ReportTable table = buildTable(classpath);
 
-		ReportSection section = new ReportSection("Vulnerabilities", "Known security vulnerabilities found in the artifacts (source: deps.dev / OSV).");
+		ReportSection section = new ReportSection("Vulnerabilities", "Known security vulnerabilities found in the artifacts.");
 		section.addTable(table);
 		return section;
 	}
