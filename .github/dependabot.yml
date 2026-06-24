@@ -25,3 +25,9 @@ updates:
       github-actions:
         patterns:
           - "*"
+    ignore:
+      # Stay on gradle/actions v5: v6 moves caching into the proprietary
+      # gradle-actions-caching component (Gradle commercial Terms of Use).
+      # Bump to v6 deliberately, not automatically.
+      - dependency-name: "gradle/actions"
+        update-types: ["version-update:semver-major"]
