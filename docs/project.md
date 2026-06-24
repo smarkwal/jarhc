@@ -118,15 +118,17 @@ Scan results can be found in [SonarCloud](https://sonarcloud.io/project/overview
 
 #### Gradle
 
-To lock the Gradle dependencies of all subprojects to their current versions, run:
+To lock the Gradle dependencies of all projects (root project and subprojects) to
+their current versions, run:
 
 ```shell
-./gradlew dependencies buildEnvironment \
-          :jarhc:dependencies :jarhc:buildEnvironment \
-          :jarhc-release-tests:dependencies :jarhc-release-tests:buildEnvironment \
-          :jarhc-docs-tasks:dependencies :jarhc-docs-tasks:buildEnvironment \
-          --write-locks
+./gradlew updateGradleLockfiles --write-locks
 ```
+
+The `updateGradleLockfiles` task resolves the dependencies and buildscript
+classpaths of every project, so new subprojects are covered automatically without
+having to be listed. The `--write-locks` flag is required; the task fails fast if
+it is missing.
 
 See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_locking.html) for more information.
 
