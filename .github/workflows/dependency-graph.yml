@@ -2,6 +2,12 @@ name: Dependency Graph
 
 on:
   push:
+    # Don't run on Dependabot branches: this job needs contents:write to
+    # submit the graph, but Dependabot runs get a read-only token, so the
+    # submission can't succeed anyway. Avoids needless execution of bumped
+    # dependencies on the runner.
+    branches-ignore:
+      - 'dependabot/**'
     paths:
       - '.github/**'
       - '**.gradle.kts'
