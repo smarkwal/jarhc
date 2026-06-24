@@ -21,12 +21,12 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
     - name: Set up JDK 11 and 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         distribution: 'temurin'
         java-version: |
@@ -34,7 +34,7 @@ jobs:
           17
 
     - name: Restore Sonar Cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
@@ -45,7 +45,7 @@ jobs:
       run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      uses: gradle/actions/setup-gradle@v5
       with:
         cache-read-only: false
 
@@ -53,20 +53,20 @@ jobs:
       run: './gradlew --no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ always() }}
       with:
         name: reports
         path: jarhc/build/reports
 
     - name: Upload libs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: libs
         path: jarhc/build/libs
 
     - name: Upload docs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: docs
         path: jarhc/build/docs
