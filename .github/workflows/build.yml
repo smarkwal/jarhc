@@ -38,7 +38,9 @@ jobs:
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
-        key: sonar-cache
+        key: sonar-cache-${{ runner.os }}-${{ hashFiles('**/*.gradle*', 'gradle/libs.versions.toml') }}
+        restore-keys: |
+          sonar-cache-${{ runner.os }}-
 
     - name: Set Push Gradle options
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
