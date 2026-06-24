@@ -48,7 +48,8 @@ class VulnerabilitiesAnalyzerTest {
 
 	private static final Vulnerability LOG4SHELL = new Vulnerability("GHSA-jfh8-c2jp-5v3q", List.of("CVE-2021-44228"), 10.0, "CVSS:3.1/AV:N", "Remote code injection in Log4j", "https://osv.dev/GHSA-jfh8-c2jp-5v3q");
 	private static final Vulnerability INCOMPLETE_FIX = new Vulnerability("GHSA-7rjr-3q55-vv33", List.of("CVE-2021-45046"), 9.0, "CVSS:3.1/AV:N", "Incomplete fix", "https://osv.dev/GHSA-7rjr-3q55-vv33");
-	private static final Vulnerability SHARED = new Vulnerability("GHSA-shared", List.of("CVE-2020-1234"), 5.0, "CVSS:3.1/AV:L", "Shared issue", "https://osv.dev/GHSA-shared");
+	// SHARED has both a CVE alias and a secondary non-CVE alias to exercise the column split
+	private static final Vulnerability SHARED = new Vulnerability("GHSA-shared", List.of("CVE-2020-1234", "GHSA-secondary"), 5.0, "CVSS:3.1/AV:L", "Shared issue", "https://osv.dev/GHSA-shared");
 	private static final Vulnerability NO_CVE = new Vulnerability("GHSA-new0", List.of(), null, null, "Very new issue", "https://osv.dev/GHSA-new0");
 
 	@Test
@@ -72,21 +73,23 @@ class VulnerabilitiesAnalyzerTest {
 		List<String[]> rows = assertTable(section);
 		assertEquals(4, rows.size());
 
-		// order: no-CVE first, then year desc (2021 before 2020), then sequence desc (45046 before 44228)
-		// the CVE column links to the NVD detail page
-		assertValuesEquals(rows.get(0), "GHSA-new0", "libB", "[unknown]", "Very new issue", "[GHSA-new0](https://osv.dev/GHSA-new0)");
+		// order: no-CVE first ([unknown]), then year desc (2021 before 2020), then sequence desc (45046 before 44228)
+		// the CVE column links to the NVD detail page; advisory column shows the advisory link
+		assertValuesEquals(rows.get(0), "[unknown]", "libB", "[unknown]", "Very new issue", "[GHSA-new0](https://osv.dev/GHSA-new0)");
 		assertValuesEquals(rows.get(1), "[CVE-2021-45046](https://nvd.nist.gov/vuln/detail/CVE-2021-45046)", "libA", "9.0 Critical", "Incomplete fix", "[GHSA-7rjr-3q55-vv33](https://osv.dev/GHSA-7rjr-3q55-vv33)");
 		assertValuesEquals(rows.get(2), "[CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)", "libA", "10.0 Critical", "Remote code injection in Log4j", "[GHSA-jfh8-c2jp-5v3q](https://osv.dev/GHSA-jfh8-c2jp-5v3q)");
-		assertValuesEquals(rows.get(3), "[CVE-2020-1234](https://nvd.nist.gov/vuln/detail/CVE-2020-1234)", joinLines("libA", "libB"), "5.0 Medium", "Shared issue", "[GHSA-shared](https://osv.dev/GHSA-shared)");
+		// SHARED: the CVE alias goes into the CVE column, the secondary GHSA alias is appended in the advisory column
+		assertValuesEquals(rows.get(3), "[CVE-2020-1234](https://nvd.nist.gov/vuln/detail/CVE-2020-1234)", joinLines("libA", "libB"), "5.0 Medium", "Shared issue", joinLines("[GHSA-shared](https://osv.dev/GHSA-shared)", "GHSA-secondary"));
 	}
 
 	@Test
 	void cveComparator_sortsByYearThenSequenceDescending() {
 		VulnerabilitiesAnalyzer.CveComparator comparator = VulnerabilitiesAnalyzer.CveComparator.INSTANCE;
 
-		// no-CVE values come first, alphabetically
+		// [unknown] (no-CVE) comes before any CVE
+		assertNegative(comparator.compare("[unknown]", "CVE-2026-1"));
+		// any value without a CVE pattern sorts before any CVE (general rule)
 		assertNegative(comparator.compare("GHSA-aaa", "CVE-2026-1"));
-		assertNegative(comparator.compare("GHSA-aaa", "GHSA-bbb"));
 
 		// newer year first
 		assertNegative(comparator.compare("CVE-2026-1", "CVE-2021-99999"));

@@ -47,12 +47,17 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.report.writer.ReportWriter;
 import org.jarhc.report.writer.impl.FileReportWriter;
 import org.jarhc.report.writer.impl.StreamReportWriter;
+import org.jarhc.utils.JarHcException;
 import org.jarhc.utils.StringUtils;
 import org.jarhc.utils.VersionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Application {
+
+	private static final VulnerabilityFinder NO_VULNERABILITY_FINDER_REGISTERED = artifact -> {
+		throw new JarHcException("No Vulnerability Finder registered");
+	};
 
 	private PrintStream out = System.out;
 	private Repository repository;
@@ -144,7 +149,8 @@ public class Application {
 		injector.addBinding(Options.class, options);
 		injector.addBinding(JavaRuntime.class, javaRuntime);
 		injector.addBinding(Repository.class, repository);
-		injector.addBinding(VulnerabilityFinder.class, vulnerabilityFinder);
+		VulnerabilityFinder effectiveFinder = vulnerabilityFinder != null ? vulnerabilityFinder : NO_VULNERABILITY_FINDER_REGISTERED;
+		injector.addBinding(VulnerabilityFinder.class, effectiveFinder);
 
 		// get a new analyzer registry/factory
 		AnalyzerRegistry registry = new AnalyzerRegistry(injector);

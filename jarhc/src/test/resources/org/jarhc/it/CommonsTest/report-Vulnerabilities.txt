@@ -7,19 +7,19 @@ Known security vulnerabilities found in the artifacts.
 
 CVE            | Artifacts             | Severity   | Description                                                                                     | Advisory
 ---------------+-----------------------+------------+-------------------------------------------------------------------------------------------------+--------------------
-CVE-2019-10086 | commons-beanutils     | 7.3 High   | Insecure Deserialization in Apache Commons Beanutils                                            | GHSA-6phf-73q6-gh87
-CVE-2014-0114  | commons-beanutils     | [unknown]  | Arbitrary code execution in Apache Commons BeanUtils                                            | GHSA-p66x-2cv9-qq3v
+CVE-2025-48976 | commons-fileupload    | [unknown]  | Apache Commons FileUpload, Apache Commons FileUpload: FileUpload DoS via part headers           | GHSA-vv7r-c36w-3prj
+CVE-2025-48924 | commons-lang          | 6.5 Medium | Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs         | GHSA-j288-q9x7-2f5v
 CVE-2025-48734 | commons-beanutils     | 8.8 High   | Apache Commons Improper Access Control vulnerability                                            | GHSA-wxr5-93ph-8wr9
+CVE-2025-46392 | commons-configuration | [unknown]  | Apache Commons Configuration Uncontrolled Resource Consumption                                  | GHSA-pvp8-3xj6-8c6x
+CVE-2024-47554 | commons-io            | 7.5 High   | Apache Commons IO: Possible denial of service attack on untrusted input to XmlStreamReader      | GHSA-78wr-2p64-hpwj
 CVE-2024-25710 | commons-compress      | 5.9 Medium | Apache Commons Compress: Denial of service caused by an infinite loop for a corrupted DUMP file | GHSA-4g9r-vxhx-9pgx
-CVE-2021-35515 | commons-compress      | 7.5 High   | Excessive Iteration in Compress                                                                 | GHSA-7hfm-57qf-j43q
-CVE-2021-35516 | commons-compress      | 7.5 High   | Improper Handling of Length Parameter Inconsistency in Compress                                 | GHSA-crv7-7245-f45f
+CVE-2023-24998 | commons-fileupload    | 7.5 High   | Apache Commons FileUpload denial of service vulnerability                                       | GHSA-hfrx-6qgj-fp6c
+CVE-2021-37533 | commons-net           | 6.5 Medium | Apache Commons Net vulnerable to information leakage via malicious server                       | GHSA-cgp8-4m63-fhh5
 CVE-2021-36090 | commons-compress      | 7.5 High   | Improper Handling of Length Parameter Inconsistency in Compress                                 | GHSA-mc84-pj99-q6hh
 CVE-2021-35517 | commons-compress      | 7.5 High   | Improper Handling of Length Parameter Inconsistency in Compress                                 | GHSA-xqfj-vm6h-2x34
-CVE-2025-46392 | commons-configuration | [unknown]  | Apache Commons Configuration Uncontrolled Resource Consumption                                  | GHSA-pvp8-3xj6-8c6x
-CVE-2023-24998 | commons-fileupload    | 7.5 High   | Apache Commons FileUpload denial of service vulnerability                                       | GHSA-hfrx-6qgj-fp6c
-CVE-2025-48976 | commons-fileupload    | [unknown]  | Apache Commons FileUpload, Apache Commons FileUpload: FileUpload DoS via part headers           | GHSA-vv7r-c36w-3prj
-CVE-2024-47554 | commons-io            | 7.5 High   | Apache Commons IO: Possible denial of service attack on untrusted input to XmlStreamReader      | GHSA-78wr-2p64-hpwj
+CVE-2021-35516 | commons-compress      | 7.5 High   | Improper Handling of Length Parameter Inconsistency in Compress                                 | GHSA-crv7-7245-f45f
+CVE-2021-35515 | commons-compress      | 7.5 High   | Excessive Iteration in Compress                                                                 | GHSA-7hfm-57qf-j43q
 CVE-2021-29425 | commons-io            | 4.8 Medium | Path Traversal and Improper Input Validation in Apache Commons IO                               | GHSA-gwrp-pvrq-jmwv
-CVE-2025-48924 | commons-lang          | 6.5 Medium | Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs         | GHSA-j288-q9x7-2f5v
-CVE-2021-37533 | commons-net           | 6.5 Medium | Apache Commons Net vulnerable to information leakage via malicious server                       | GHSA-cgp8-4m63-fhh5
+CVE-2019-10086 | commons-beanutils     | 7.3 High   | Insecure Deserialization in Apache Commons Beanutils                                            | GHSA-6phf-73q6-gh87
+CVE-2014-0114  | commons-beanutils     | [unknown]  | Arbitrary code execution in Apache Commons BeanUtils                                            | GHSA-p66x-2cv9-qq3v
 

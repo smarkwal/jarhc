@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.artifacts.Vulnerability;
@@ -89,6 +91,7 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 					getAdvisoryLink(vulnerability)
 			);
 		}
+		table.sortRows();
 		return table;
 	}
 
@@ -145,23 +148,21 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 	}
 
 	private static String getCveInfo(Vulnerability vulnerability) {
-		List<String> aliases = vulnerability.getCveAliases();
-		if (aliases.isEmpty()) {
-			// no CVE assigned (yet): fall back to the advisory ID
-			return vulnerability.getAdvisoryId();
+		// only CVE identifiers go into the CVE column; if there are none, the
+		// advisory is assumed to be very new and shown as [unknown]
+		List<String> cveAliases = vulnerability.getAliases().stream()
+				.filter(VulnerabilitiesAnalyzer::isCVE)
+				.collect(Collectors.toList());
+		if (cveAliases.isEmpty()) {
+			return Markdown.UNKNOWN;
 		}
-		return aliases.stream().map(VulnerabilitiesAnalyzer::toCveLink).collect(StringUtils.joinLines());
+		return cveAliases.stream()
+				.map(alias -> Markdown.link(alias, NVD_URL + alias))
+				.collect(StringUtils.joinLines());
 	}
 
-	/**
-	 * Render a CVE identifier as a link to its NVD detail page. Aliases that are
-	 * not CVE identifiers are returned unchanged.
-	 */
-	private static String toCveLink(String alias) {
-		if (CVE_PATTERN.matcher(alias).matches()) {
-			return Markdown.link(alias, NVD_URL + alias);
-		}
-		return alias;
+	private static boolean isCVE(String alias) {
+		return CVE_PATTERN.matcher(alias).matches();
 	}
 
 	private static String getSeverityInfo(Vulnerability vulnerability) {
@@ -204,18 +205,24 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 	private static String getAdvisoryLink(Vulnerability vulnerability) {
 		String advisoryId = vulnerability.getAdvisoryId();
 		String url = vulnerability.getUrl();
-		if (url == null || url.isEmpty()) {
-			return advisoryId;
+		String mainLink = (url == null || url.isEmpty()) ? advisoryId : Markdown.link(advisoryId, url);
+
+		// append any non-CVE aliases (e.g. secondary GHSA IDs) below the primary link
+		List<String> otherAliases = vulnerability.getAliases().stream()
+				.filter(alias -> !isCVE(alias))
+				.collect(Collectors.toList());
+		if (otherAliases.isEmpty()) {
+			return mainLink;
 		}
-		return Markdown.link(advisoryId, url);
+		return Stream.concat(Stream.of(mainLink), otherAliases.stream())
+				.collect(StringUtils.joinLines());
 	}
 
 	/**
 	 * Orders the rows of the vulnerabilities table by the value of the first
 	 * ("CVE") column:
 	 * <ul>
-	 * <li>Rows without a CVE come first (assumed to be very new advisories),
-	 * sorted alphabetically by their value (the advisory ID).</li>
+	 * <li>Rows without a CVE (column value {@code [unknown]}) come first.</li>
 	 * <li>Rows with a CVE follow, sorted by year (newest first) and then by the
 	 * sequence number (numerically, descending).</li>
 	 * </ul>

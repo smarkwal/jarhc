@@ -63,6 +63,7 @@ class RemoteSystemsClient {
 		try {
 			response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
 		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 			throw new IOException(e);
 		}
 
