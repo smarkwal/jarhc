@@ -156,14 +156,14 @@ code runs. The corresponding version is noted in a comment on the same line:
 uses: actions/checkout@<commit-sha> # v7.0.0
 ```
 
-These pins are kept up to date by Dependabot (see [`.github/dependabot.yml`](https://github.com/smarkwal/jarhc/blob/master/.github/dependabot.yml)).
+These pins are kept up to date by Dependabot (see [`.github/dependabot.yml`](https://github.com/smarkwal/jarhc/blob/main/.github/dependabot.yml)).
 
 ### Documentation
 
 The documentation is automatically built and published to GitHub Pages:
 
-1. On every push to the `master` branch by the GitHub workflow [Docs Snapshot](https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-snapshot.yml).
-2. On every release by the GitHub workflow [Docs Release](https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml).
+1. On every push to the `main` branch by the GitHub workflow [Docs Snapshot](https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-snapshot.yml).
+2. On every release by the GitHub workflow [Docs Release](https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-release.yml).
 
 To test the documentation locally before publishing, run:
 

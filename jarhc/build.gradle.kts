@@ -437,5 +437,5 @@ fun getGitBranchName(): String {
 }
 
 fun getGitBranchTarget(branchName: String): String {
-    return "master"
+    return "main"
 }
