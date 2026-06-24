@@ -137,18 +137,20 @@ See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_
 The documentation toolchain pins its Python dependencies in a hash-pinned lockfile.
 The top-level dependencies are declared in `docs-requirements.in`; the fully resolved
 lockfile `docs-requirements.txt` (every transitive dependency at an exact version plus
-a SHA-256 hash) is generated from it.
+a SHA-256 hash) is generated from it with `pip-compile` (pip-tools).
 
 After editing `docs-requirements.in` — or to refresh the pinned versions — regenerate
 the lockfile with a Python container (no local Python installation required):
 
 ```shell
-docker run --rm -v "$PWD":/work -w /work ghcr.io/astral-sh/uv:python3.12-bookworm-slim \
-  uv pip compile --generate-hashes --universal --python-version 3.12 \
-      -o docs-requirements.txt docs-requirements.in
+docker run --rm -v "$PWD":/work -w /work python:3.12-slim \
+  sh -c "pip install -q pip-tools && \
+         pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in"
 ```
 
 Python is pinned to 3.12 to match the version used by the documentation workflows.
+Dependabot recognises the `pip-compile` lockfile and regenerates it (with updated
+hashes) when it bumps a dependency, so routine updates do not need this command.
 
 #### GitHub Actions
 

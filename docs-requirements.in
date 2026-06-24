@@ -3,11 +3,12 @@
 # pymdown-extensions ships as a dependency of mkdocs-material.
 #
 # This is the human-edited source. The fully resolved, hash-pinned lockfile
-# `docs-requirements.txt` is generated from it with:
+# `docs-requirements.txt` is generated from it with pip-compile (pip-tools):
 #
-#   uv pip compile --generate-hashes --universal \
-#     --python-version 3.12 -o docs-requirements.txt docs-requirements.in
+#   pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in
 #
-# Dependabot keeps the lockfile (and its hashes) up to date.
+# (run inside a python:3.12 container -- see docs/project.md). Dependabot has
+# first-class support for pip-compile and regenerates the lockfile (with hashes)
+# when it bumps a dependency.
 mkdocs-material~=9.6
 mike~=2.1
