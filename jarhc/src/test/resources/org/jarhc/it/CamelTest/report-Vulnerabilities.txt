@@ -1,0 +1,13 @@
+JAR Health Check Report
+=======================
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE            | Artifacts  | Severity     | Description                                                             | Advisory
+---------------+------------+--------------+-------------------------------------------------------------------------+--------------------
+CVE-2022-45046 | camel-ldap | 9.8 Critical | camel-ldap component allows LDAP Injection when using the filter option | GHSA-w66j-xc7r-m2jv
+CVE-2020-11971 | camel-core | 7.5 High     | Improper Input Validation in Apache Camel                               | GHSA-hfg5-xpvw-c9x4
+CVE-2019-0188  | camel-core | 7.5 High     | XML External Entity injection in Apache Camel                           | GHSA-h896-mx9x-g32g
+

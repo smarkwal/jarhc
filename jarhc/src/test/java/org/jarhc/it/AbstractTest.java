@@ -31,8 +31,10 @@ import org.jarhc.app.ArtifactSource;
 import org.jarhc.app.JarSource;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.ArtifactFinder;
+import org.jarhc.artifacts.DepsDevAPIVulnerabilityFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.VulnerabilityFinder;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.jarhc.it.utils.ArtifactFinderMock;
@@ -77,11 +79,15 @@ abstract class AbstractTest {
 			sources.add(source);
 		}
 
+		// vulnerability finder backed by the mock server (URLs set by MavenProxyServerExtension)
+		VulnerabilityFinder vulnerabilityFinder = new DepsDevAPIVulnerabilityFinder();
+
 		// prepare an injector
 		Injector injector = new Injector();
 		injector.addBinding(Options.class, options);
 		injector.addBinding(JavaRuntime.class, javaRuntime);
 		injector.addBinding(Repository.class, repository);
+		injector.addBinding(VulnerabilityFinder.class, vulnerabilityFinder);
 
 		// load classpath
 		ClasspathLoader classpathLoader = LoaderBuilder.create()

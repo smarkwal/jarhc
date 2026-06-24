@@ -45,6 +45,7 @@ nav:
   - Reports:
       - Overview: reports/index.md
       - JAR Files: reports/jar-files.md
+      - Vulnerabilities: reports/vulnerabilities.md
       - Dependencies: reports/dependencies.md
       - Duplicate Classes: reports/duplicate-classes.md
       - Binary Compatibility: reports/binary-compatibility.md

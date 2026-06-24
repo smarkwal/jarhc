@@ -122,6 +122,15 @@ slf4j-api                    | 2.0.16                                    | org.s
 Classpath                    | -                                         | -                                                                           | 6.89 MB | -                              | Java 11 (132), Java 10 (1), Java 8 (2704), Java 7 (254), | 148       | 231                                                   | -                                        | -                                                                           | -
                              |                                           |                                                                             |         |                                | Java 6 (947), Java 5 (524)                               |           |                                                       |                                          |                                                                             |
 
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE            | Artifacts     | Severity   | Description                                                                             | Advisory
+---------------+---------------+------------+-----------------------------------------------------------------------------------------+--------------------
+CVE-2025-67030 | plexus-utils  | [unknown]  | Plexus-Utils has a Directory Traversal vulnerability in its extractFile method          | GHSA-6fmv-xxpf-w3cw
+CVE-2025-48924 | commons-lang3 | 6.5 Medium | Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs | GHSA-j288-q9x7-2f5v
+
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.

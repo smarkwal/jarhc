@@ -39,6 +39,7 @@ public class AnalyzerRegistry {
 	public AnalyzerRegistry(Injector injector) {
 		this.injector = injector;
 		descriptions.add(new AnalyzerDescription("jf", "JAR Files", JarFilesAnalyzer.class));
+		descriptions.add(new AnalyzerDescription("v", "Vulnerabilities", VulnerabilitiesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("d", "Dependencies", DependenciesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("dc", "Duplicate Classes", DuplicateClassesAnalyzer.class));
 		descriptions.add(new AnalyzerDescription("bc", "Binary Compatibility", BinaryCompatibilityAnalyzer.class));

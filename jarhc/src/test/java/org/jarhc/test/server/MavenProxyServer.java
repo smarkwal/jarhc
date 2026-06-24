@@ -24,8 +24,10 @@ import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.jarhc.test.server.advisories.AdvisoriesHandler;
 import org.jarhc.test.server.query.QueryHandler;
 import org.jarhc.test.server.repo.RepoHandler;
+import org.jarhc.test.server.systems.SystemsHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,10 +53,7 @@ public class MavenProxyServer {
 		System.out.println("Starting server...");
 		server.start();
 		System.out.println("Server started.");
-
-		System.out.println("Server URLs:");
-		System.out.println("- " + server.getQueryURL());
-		System.out.println("- " + server.getRepoURL());
+		System.out.println("Server base URL: " + server.getBaseURL());
 
 		System.out.println("Type 'exit' to stop the server.");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -98,10 +97,6 @@ public class MavenProxyServer {
 		return "http://localhost:" + port;
 	}
 
-	public String getQueryURL() {
-		return getBaseURL() + "/query?hash=%s";
-	}
-
 	public String getRepoURL() {
 		return getBaseURL() + "/repo/";
 	}
@@ -119,11 +114,17 @@ public class MavenProxyServer {
 		// create subdirectories (if not exist)
 		Path queryPath = rootPath.resolve("query");
 		Files.createDirectories(queryPath);
+		Path systemsPath = rootPath.resolve("systems");
+		Files.createDirectories(systemsPath);
+		Path advisoriesPath = rootPath.resolve("advisories");
+		Files.createDirectories(advisoriesPath);
 		Path repoPath = rootPath.resolve("repo");
 		Files.createDirectories(repoPath);
 
 		server = HttpServer.create(new InetSocketAddress("localhost", port), 0);
 		server.createContext("/query", new QueryHandler(mode, timeout, queryPath));
+		server.createContext("/systems", new SystemsHandler(mode, timeout, systemsPath));
+		server.createContext("/advisories", new AdvisoriesHandler(mode, timeout, advisoriesPath));
 		server.createContext("/repo", new RepoHandler(mode, timeout, repoPath));
 		server.setExecutor(null); // creates a default executor
 		server.start();
@@ -133,9 +134,7 @@ public class MavenProxyServer {
 		port = server.getAddress().getPort();
 
 		if (LOGGER.isTraceEnabled()) {
-			LOGGER.trace("Server endpoints:");
-			LOGGER.trace("- {}", getQueryURL());
-			LOGGER.trace("- {}", getRepoURL());
+			LOGGER.trace("Server base URL: {}", getBaseURL());
 		}
 	}
 

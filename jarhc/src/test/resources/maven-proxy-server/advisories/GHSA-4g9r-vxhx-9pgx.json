@@ -1,0 +1,1 @@
+{"advisoryKey":{"id":"GHSA-4g9r-vxhx-9pgx"},"url":"https://osv.dev/vulnerability/GHSA-4g9r-vxhx-9pgx","title":"Apache Commons Compress: Denial of service caused by an infinite loop for a corrupted DUMP file","aliases":["CVE-2024-25710"],"cvss3Score":5.9,"cvss3Vector":"CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:H"}

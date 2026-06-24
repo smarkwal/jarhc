@@ -18,4 +18,4 @@ List of JAR files found in classpath with the following information:
 
 [![JAR Files](../assets/images/report-section-jar-files.png)](../examples/asm/report.html#JARFiles){target="_blank" rel="noopener"}
 
-Next: [Dependencies](dependencies.md)
+Next: [Vulnerabilities](vulnerabilities.md)

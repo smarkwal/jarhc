@@ -28,6 +28,10 @@ public class ReportTable {
 	private final String[] columns;
 	private final List<String[]> rows = new ArrayList<>();
 
+	// comparator used by sortRows() to order rows by their first column value;
+	// analyzers may inject a custom comparator (see withRowComparator)
+	private Comparator<String> rowComparator = RowComparator.INSTANCE;
+
 	public ReportTable(String... columns) {
 		this.columns = columns;
 	}
@@ -49,17 +53,21 @@ public class ReportTable {
 		return rows.isEmpty();
 	}
 
-	public void sortRows() {
-		rows.sort(ReportTable::compareRows);
+	/**
+	 * Set the comparator used by {@link #sortRows()} to order rows by their
+	 * first column value. Defaults to {@link RowComparator#INSTANCE}.
+	 *
+	 * @param rowComparator Comparator for the first column value.
+	 * @return This table (for method chaining).
+	 */
+	public ReportTable withRowComparator(Comparator<String> rowComparator) {
+		if (rowComparator == null) throw new IllegalArgumentException("rowComparator");
+		this.rowComparator = rowComparator;
+		return this;
 	}
 
-	private static int compareRows(String[] row1, String[] row2) {
-
-		// get values from first column
-		String value1 = row1[0];
-		String value2 = row2[0];
-
-		return RowComparator.INSTANCE.compare(value1, value2);
+	public void sortRows() {
+		rows.sort((row1, row2) -> rowComparator.compare(row1[0], row2[0]));
 	}
 
 	public static class RowComparator implements Comparator<String> {

@@ -88,6 +88,11 @@ Artifact: Classpath
 	Issues:
 		-
 
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.

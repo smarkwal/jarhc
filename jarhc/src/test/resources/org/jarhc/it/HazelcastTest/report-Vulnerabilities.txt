@@ -1,0 +1,14 @@
+JAR Health Check Report
+=======================
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE            | Artifacts | Severity     | Description                                                         | Advisory
+---------------+-----------+--------------+---------------------------------------------------------------------+--------------------
+CVE-2023-45860 | hazelcast | 6.5 Medium   | Hazelcast Platform permission checking in CSV File Source connector | GHSA-8h4x-xvjp-vf99
+CVE-2023-45859 | hazelcast | 7.6 High     | Missing permission checks on Hazelcast client protocol              | GHSA-xh6m-7cr7-xx66
+CVE-2023-33265 | hazelcast | 7.6 High     | Hazelcast Executor Services don't check client permissions properly | GHSA-c5vj-wp4v-mmvx
+CVE-2022-36437 | hazelcast | 9.1 Critical | Hazelcast connection caching                                        | GHSA-c5hg-mr8r-f6jp
+

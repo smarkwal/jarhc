@@ -11,6 +11,13 @@ slf4j-api | 1.7.28  | org.slf4j:slf4j-api:1.7.28 | 40.2 KB | No            | Jav
           |         |                            |         |               |                        |           |                            |                                          | org.netbeans.external:slf4j-api:RELEASE113 |
 Classpath | -       | -                          | 40.2 KB | -             | Java 5 (34)            | 0         | 4                          | -                                        | -                                          | -
 
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE | Artifacts | Severity | Description | Advisory
+----+-----------+----------+-------------+---------
+
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.

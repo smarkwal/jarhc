@@ -1,0 +1,1 @@
+{"advisoryKey":{"id":"GHSA-cj7v-27pg-wf7q"},"url":"https://osv.dev/vulnerability/GHSA-cj7v-27pg-wf7q","title":"Jetty invalid URI parsing may produce invalid HttpURI.authority","aliases":["CVE-2022-2047"],"cvss3Score":2.7,"cvss3Vector":"CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:N/I:L/A:N"}

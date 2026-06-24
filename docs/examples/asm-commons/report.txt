@@ -10,6 +10,13 @@ Artifact    | Version | Source                      | Size    | Multi-release | 
 asm-commons | 9.9     | org.ow2.asm:asm-commons:9.9 | 72.6 KB | No            | Java 5 (27)            | 0         | org.objectweb.asm.commons | db9165a3bf908ded6b08612d583a15d1d0c7bda0 | org.ow2.asm:asm-commons:9.9 |
 Classpath   | -       | -                           | 72.6 KB | -             | Java 5 (27)            | 0         | 1                         | -                                        | -                           | -
 
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE | Artifacts | Severity | Description | Advisory
+----+-----------+----------+-------------+---------
+
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.

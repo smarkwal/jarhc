@@ -32,10 +32,14 @@ import org.jarhc.app.PropertiesManager;
 import org.jarhc.app.PropertiesManagerImpl;
 import org.jarhc.artifacts.ArtifactFinder;
 import org.jarhc.artifacts.DepsDevAPIArtifactFinder;
+import org.jarhc.artifacts.DepsDevAPIVulnerabilityFinder;
 import org.jarhc.artifacts.DiskCacheArtifactFinder;
+import org.jarhc.artifacts.DiskCacheVulnerabilityFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.artifacts.MemoryCacheArtifactFinder;
+import org.jarhc.artifacts.MemoryCacheVulnerabilityFinder;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.VulnerabilityFinder;
 import org.jarhc.utils.FileUtils;
 import org.jarhc.utils.JarHcException;
 import org.slf4j.Logger;
@@ -76,13 +80,20 @@ public class Main {
 		Command command = options.getCommand();
 		if (command == Command.SCAN) {
 
+			// find data directory
+			resolveDataPath(options);
+
 			// prepare Maven repository
 			Repository repository = createRepository(options);
+
+			// prepare vulnerability finder
+			VulnerabilityFinder vulnerabilityFinder = createVulnerabilityFinder(options);
 
 			// create and run application
 			Logger logger = LoggerFactory.getLogger(Application.class);
 			Application application = new Application(logger);
 			application.setRepository(repository);
+			application.setVulnerabilityFinder(vulnerabilityFinder);
 			exitCode = application.run(options);
 
 		} else if (command == Command.DIFF) {
@@ -163,10 +174,7 @@ public class Main {
 
 	private static Repository createRepository(Options options) {
 
-		String dataPath = findDataPath(options);
-
-		// write absolute data path back into options
-		options.setDataPath(dataPath);
+		String dataPath = options.getDataPath();
 
 		File directory = new File(dataPath);
 		if (!directory.isDirectory()) {
@@ -193,6 +201,24 @@ public class Main {
 		int javaVersion = options.getRelease();
 		Logger mavenRepositoryLogger = LoggerFactory.getLogger(MavenRepository.class);
 		return new MavenRepository(javaVersion, options, dataPath, artifactFinder, mavenRepositoryLogger);
+	}
+
+	private static VulnerabilityFinder createVulnerabilityFinder(Options options) {
+
+		String dataPath = options.getDataPath();
+
+		File cacheDir = new File(dataPath, "vulnerabilities");
+		VulnerabilityFinder apiFinder = new DepsDevAPIVulnerabilityFinder();
+		VulnerabilityFinder diskCacheFinder = new DiskCacheVulnerabilityFinder(cacheDir, apiFinder);
+		return new MemoryCacheVulnerabilityFinder(diskCacheFinder);
+	}
+
+	private static void resolveDataPath(Options options) {
+
+		String dataPath = findDataPath(options);
+
+		// write absolute data path back into options
+		options.setDataPath(dataPath);
 	}
 
 	private static String findDataPath(Options options) {

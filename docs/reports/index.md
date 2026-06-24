@@ -14,6 +14,7 @@ Example reports for ASM 9.9:
 ## Report sections
 
 * [JAR Files](jar-files.md)
+* [Vulnerabilities](vulnerabilities.md)
 * [Dependencies](dependencies.md)
 * [Duplicate Classes](duplicate-classes.md)
 * [Binary Compatibility](binary-compatibility.md)

@@ -1,0 +1,14 @@
+JAR Health Check Report
+=======================
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE            | Artifacts  | Severity   | Description                              | Advisory
+---------------+------------+------------+------------------------------------------+--------------------
+CVE-2022-23437 | xercesImpl | 6.5 Medium | Infinite Loop in Apache Xerces Java      | GHSA-h65f-jvqw-m9fj
+CVE-2020-14338 | xercesImpl | 5.3 Medium | Improper Input Validation in Xerces      | GHSA-w4jq-qh47-hvjq
+CVE-2013-4002  | xercesImpl | [unknown]  | Missing XML Validation in Apache Xerces2 | GHSA-7j4h-8wpf-rqfh
+CVE-2012-0881  | xercesImpl | 7.5 High   | Denial of service in Apache Xerces2      | GHSA-vmqm-g3vh-847m
+
