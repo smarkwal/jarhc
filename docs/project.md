@@ -148,6 +148,18 @@ docker run --rm -v "$PWD":/work -w /work ghcr.io/astral-sh/uv:python3.12-bookwor
 
 Python is pinned to 3.12 to match the version used by the documentation workflows.
 
+#### GitHub Actions
+
+The GitHub Actions used in the workflows are pinned to a specific commit SHA
+rather than a version tag, so that a moved or re-pointed tag cannot change which
+code runs. The corresponding version is noted in a comment on the same line:
+
+```yaml
+uses: actions/checkout@<commit-sha> # v7.0.0
+```
+
+These pins are kept up to date by Dependabot (see [`.github/dependabot.yml`](https://github.com/smarkwal/jarhc/blob/master/.github/dependabot.yml)).
+
 ### Documentation
 
 The documentation is automatically built and published to GitHub Pages:
