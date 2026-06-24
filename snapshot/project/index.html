@@ -1047,6 +1047,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Locking dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python (documentation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1258,6 +1297,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Locking dependencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python (documentation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1361,13 +1439,37 @@
 </code></pre></div>
 <p>Scan results can be found in <a href="https://sonarcloud.io/project/overview?id=smarkwal_jarhc">SonarCloud</a>.</p>
 <h3 id="locking-dependencies">Locking dependencies<a class="headerlink" href="#locking-dependencies" title="Permanent link">&para;</a></h3>
-<p>To lock the dependencies to their current versions, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./gradlew<span class="w"> </span>dependencies<span class="w"> </span>buildEnvironment<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">          </span>:jarhc:dependencies<span class="w"> </span>:jarhc:buildEnvironment<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">          </span>:jarhc-release-tests:dependencies<span class="w"> </span>:jarhc-release-tests:buildEnvironment<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">          </span>--write-locks
+<h4 id="gradle">Gradle<a class="headerlink" href="#gradle" title="Permanent link">&para;</a></h4>
+<p>To lock the Gradle dependencies of all projects (root project and subprojects) to
+their current versions, run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./gradlew<span class="w"> </span>updateGradleLockfiles<span class="w"> </span>--write-locks
 </code></pre></div>
+<p>The <code>updateGradleLockfiles</code> task resolves the dependencies and buildscript
+classpaths of every project, so new subprojects are covered automatically without
+having to be listed. The <code>--write-locks</code> flag is required; the task fails fast if
+it is missing.</p>
 <p>See <a href="https://docs.gradle.org/current/userguide/dependency_locking.html">Gradle documentation</a> for more information.</p>
+<h4 id="python-documentation">Python (documentation)<a class="headerlink" href="#python-documentation" title="Permanent link">&para;</a></h4>
+<p>The documentation toolchain pins its Python dependencies in a hash-pinned lockfile.
+The top-level dependencies are declared in <code>docs-requirements.in</code>; the fully resolved
+lockfile <code>docs-requirements.txt</code> (every transitive dependency at an exact version plus
+a SHA-256 hash) is generated from it with <code>pip-compile</code> (pip-tools).</p>
+<p>After editing <code>docs-requirements.in</code> — or to refresh the pinned versions — regenerate
+the lockfile with a Python container (no local Python installation required):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -q pip-tools &amp;&amp; \</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">         pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in&quot;</span>
+</code></pre></div>
+<p>Python is pinned to 3.12 to match the version used by the documentation workflows.
+Dependabot recognises the <code>pip-compile</code> lockfile and regenerates it (with updated
+hashes) when it bumps a dependency, so routine updates do not need this command.</p>
+<h4 id="github-actions">GitHub Actions<a class="headerlink" href="#github-actions" title="Permanent link">&para;</a></h4>
+<p>The GitHub Actions used in the workflows are pinned to a specific commit SHA
+rather than a version tag, so that a moved or re-pointed tag cannot change which
+code runs. The corresponding version is noted in a comment on the same line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@&lt;commit-sha&gt;</span><span class="w"> </span><span class="c1"># v7.0.0</span>
+</code></pre></div>
+<p>These pins are kept up to date by Dependabot (see <a href="https://github.com/smarkwal/jarhc/blob/master/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>).</p>
 <h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
 <p>The documentation is automatically built and published to GitHub Pages:</p>
 <ol>
@@ -1375,11 +1477,11 @@
 <li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml">Docs Release</a>.</li>
 </ol>
 <p>To test the documentation locally before publishing, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
 </code></pre></div>
 <p>And then visit <a href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
 <p>To build and inspect the documentation locally, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
 </code></pre></div>
 <p>And then open the generated file <code>site/index.html</code> in your browser.</p>
 
