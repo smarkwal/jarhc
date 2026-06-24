@@ -90,12 +90,6 @@ To run the release tests:
 ./gradlew :jarhc-release-tests:test
 ```
 
-To run the benchmarks:
-
-```shell
-./gradlew :jarhc:jmh
-```
-
 ### Sonar analysis
 
 Run a full build first (see above).

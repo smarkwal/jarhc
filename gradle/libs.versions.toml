@@ -5,7 +5,6 @@
 slf4j = "2.0.18"
 junit = "5.12.2"
 assertj = "3.27.7"
-jmh = "1.37"
 testcontainers = "1.21.4"
 playwright = "1.50.0"
 
@@ -23,10 +22,6 @@ slf4j-jcl = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 # (dependency of maven-resolver-supplier 1.9.27)
 # check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
 plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.1" }
-
-# benchmark dependencies (jarhc)
-jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
-jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
 
 # test dependencies (jarhc + jarhc-release-tests)
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }

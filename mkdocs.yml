@@ -87,10 +87,9 @@ extra:
 
 # Files kept in the repo but not part of the published site:
 #  - generated self-report (written by the `jarhcReport` Gradle task)
-#  - benchmark snapshot, logo source, example-report generator script
+#  - logo source, example-report generator script
 exclude_docs: |
   jarhc-report.html
   jarhc-report.txt
-  benchmark-results.txt
   assets/jarhc-logo.pptx
   examples/example-reports.sh
