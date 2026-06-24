@@ -4,6 +4,8 @@
 version: 2
 updates:
 
+  # Gradle dependency updates are intentionally disabled (too many PRs).
+  # Re-enable by raising open-pull-requests-limit above 0.
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
@@ -11,9 +13,15 @@ updates:
     target-branch: "master"
     open-pull-requests-limit: 0
 
+  # Keep the GitHub Actions (pinned to commit SHAs) up to date. Dependabot
+  # bumps both the SHA and the trailing "# vX.Y.Z" comment. All action
+  # updates are grouped into a single PR to keep the volume low.
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     target-branch: "master"
-    open-pull-requests-limit: 0
+    groups:
+      github-actions:
+        patterns:
+          - "*"
