@@ -1,8 +1,0 @@
-Benchmark                                                         Mode  Cnt  Score   Error  Units
-o.j.analyzer.AnalyzerBenchmarks.test_BinaryCompatibilityAnalyzer    ss   10  0.319 ± 0.031   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_BlacklistAnalyzer              ss   10  0.104 ± 0.022   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_DuplicatesAnalyzer             ss   10  0.016 ± 0.002   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JarFilesAnalyzer               ss   10  0.044 ± 0.012   s/op
-o.j.analyzer.AnalyzerBenchmarks.test_JavaRuntimeAnalyzer            ss   10  0.010 ± 0.005   s/op
-o.j.env.DefaultJavaRuntimeBenchmark.getClassDef                     ss   10  0.036 ± 0.008   s/op
-o.j.test.JavaRuntimeMockBenchmark.createOracleRuntime               ss   10  0.162 ± 0.013   s/op

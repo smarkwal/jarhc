@@ -47,12 +47,10 @@ idea {
             file("src/main/resources")
         )
         testSources.from(
-            file("src/test/java"),
-            file("src/jmh/java")
+            file("src/test/java")
         )
         testResources.from(
-            file("src/test/resources"),
-            file("src/jmh/resources")
+            file("src/test/resources")
         )
         isDownloadJavadoc = true
         isDownloadSources = true
@@ -81,10 +79,6 @@ gradle.taskGraph.whenReady {
 // command line option: -Pskip.tests
 val skipTests: Boolean = project.hasProperty("skip.tests")
 
-// select JMH benchmarks
-// to run a single benchmark: -Pbenchmarks=DefaultJavaRuntimeBenchmark
-val benchmarks: String = providers.gradleProperty("benchmarks").orNull ?: ".*"
-
 // constants -------------------------------------------------------------------
 
 val mainClassName: String = "org.jarhc.Main"
@@ -97,16 +91,6 @@ val jacocoTestReportXml: String = "${layout.buildDirectory.get()}/reports/jacoco
 
 // additional source sets and configurations -----------------------------------
 
-sourceSets {
-
-    create("jmh") {
-        java {
-            compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-            runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
-        }
-    }
-}
-
 configurations {
 
     // exclude commons-logging because it is replaced by jcl-over-slf4j
@@ -116,15 +100,6 @@ configurations {
     }
 
 }
-
-val jmhImplementation = configurations.getByName("jmhImplementation").apply {
-    extendsFrom(
-        configurations.implementation.get(),
-        configurations.testImplementation.get()
-    )
-}
-
-val jmhAnnotationProcessor = configurations.getByName("jmhAnnotationProcessor")
 
 val includeInJarApp = configurations.create("includeInJarApp")
 
@@ -149,10 +124,6 @@ dependencies {
     testImplementation(libs.mockito.core)
     testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.slf4j.simple)
-
-    // benchmark dependencies
-    jmhImplementation(libs.jmh.core)
-    jmhAnnotationProcessor(libs.jmh.generator.annprocess)
 
     // fix CVE-2025-67030
     implementation(libs.plexus.utils)
@@ -432,17 +403,6 @@ tasks.withType<Test> {
         showStandardStreams = true
     }
 
-}
-
-tasks.register<JavaExec>("jmh") {
-    group = "verification"
-    description = "Runs JMH benchmarks."
-
-    // settings
-    // documentation: https://github.com/guozheng/jmh-tutorial/blob/master/README.md
-    classpath = sourceSets["jmh"].runtimeClasspath
-    mainClass.set("org.openjdk.jmh.Main")
-    args = listOf(benchmarks, "-jvmArgs", "-Xms1G -Xmx2G")
 }
 
 tasks.withType<JavaCompile> {
