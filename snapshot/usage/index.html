@@ -814,6 +814,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../reports/vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../reports/dependencies/" class="md-nav__link">
         
   
@@ -1633,18 +1661,18 @@ It is a kind of "alias" for a frequently used set of artifacts.</p>
 <h3 id="java-system-properties">Java System Properties<a class="headerlink" href="#java-system-properties" title="Permanent link">&para;</a></h3>
 <p>A set of low-level options can be set using Java System Properties.</p>
 <h4 id="http-client-for-depsdev-api">HTTP client for deps.dev API<a class="headerlink" href="#http-client-for-depsdev-api" title="Permanent link">&para;</a></h4>
-<p>URL pattern with <code>%s</code> as placeholder for URL-encoded base64 checksum:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">jarhc.search.url</span><span class="o">=</span><span class="s">https://api.deps.dev/v3/query?hash.type=SHA1&amp;hash.value=%s</span>
+<p>Base URL of the deps.dev API (the individual endpoint paths are appended automatically):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">jarhc.depsdev.url</span><span class="o">=</span><span class="s">https://api.deps.dev/v3</span>
 </code></pre></div>
 <p>Timeout in seconds:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">jarhc.search.timeout</span><span class="o">=</span><span class="s">30</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">jarhc.depsdev.timeout</span><span class="o">=</span><span class="s">30</span>
 </code></pre></div>
 <p>HTTP request header "User-Agent":</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="na">jarhc.search.headers.User-Agent</span><span class="o">=</span><span class="s">Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="na">jarhc.depsdev.headers.User-Agent</span><span class="o">=</span><span class="s">Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0</span>
 </code></pre></div>
 <p>The above default User-Agent value is from a Firefox browser on Ubuntu Linux in September 2024.</p>
 <p>Additional HTTP request headers:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="na">jarhc.search.headers.&lt;NAME&gt;</span><span class="o">=</span><span class="s">&lt;VALUE&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="na">jarhc.depsdev.headers.&lt;NAME&gt;</span><span class="o">=</span><span class="s">&lt;VALUE&gt;</span>
 </code></pre></div>
 
 

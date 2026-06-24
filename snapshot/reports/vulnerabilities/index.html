@@ -12,13 +12,13 @@
         <meta name="author" content="Stephan Markwalder">
       
       
-        <link rel="canonical" href="https://smarkwal.github.io/jarhc/snapshot/reports/binary-compatibility/">
+        <link rel="canonical" href="https://smarkwal.github.io/jarhc/snapshot/reports/vulnerabilities/">
       
       
-        <link rel="prev" href="../duplicate-classes/">
+        <link rel="prev" href="../jar-files/">
       
       
-        <link rel="next" href="../blacklist/">
+        <link rel="next" href="../dependencies/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Binary Compatibility - JarHC - JAR Health Check</title>
+        <title>Vulnerabilities - JarHC - JAR Health Check</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#binary-compatibility" class="md-skip">
+        <a href="#vulnerabilities" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Binary Compatibility
+              Vulnerabilities
             
           </span>
         </div>
@@ -512,10 +512,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../vulnerabilities/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -531,6 +540,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -596,19 +606,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../binary-compatibility/" class="md-nav__link">
         
   
   
@@ -624,7 +625,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -929,10 +929,30 @@
   
 
 
-<h1 id="binary-compatibility">Binary Compatibility<a class="headerlink" href="#binary-compatibility" title="Permanent link">&para;</a></h1>
-<p>Validates superclass and interface contracts, method calls, and field access. Reports missing classes, methods, or fields, and validates access permissions.</p>
-<p><a href="../../examples/asm/report.html#BinaryCompatibility" rel="noopener" target="_blank"><img alt="Binary Compatibility" src="../../assets/images/report-section-binary-compatibility.png" /></a></p>
-<p>Next: <a href="../blacklist/">Blacklist</a></p>
+<h1 id="vulnerabilities">Vulnerabilities<a class="headerlink" href="#vulnerabilities" title="Permanent link">&para;</a></h1>
+<p>Reports known security vulnerabilities for the artifacts on the classpath.</p>
+<p>For every artifact that can be identified by its Maven coordinates, JarHC looks
+up known security advisories using the <a href="https://deps.dev">deps.dev</a> API from
+Google, which aggregates data from the <a href="https://osv.dev">OSV</a> database.</p>
+<p>The report contains one row per vulnerability, listing all affected artifacts:</p>
+<ul>
+<li><strong>CVE</strong> &ndash; the CVE identifier(s) of the vulnerability, linking to the
+  corresponding <a href="https://nvd.nist.gov">NVD</a> detail page. For advisories that
+  have not (yet) been assigned a CVE, this column shows <code>[unknown]</code>; the
+  advisory identifier (for example, a GHSA ID) is then found in the <strong>Advisory</strong>
+  column.</li>
+<li><strong>Artifacts</strong> &ndash; all artifacts on the classpath affected by the vulnerability.</li>
+<li><strong>Severity</strong> &ndash; the CVSS v3 base score and its qualitative rating
+  (Critical, High, Medium, Low, None). Advisories that have not yet been scored
+  are reported as <code>[unknown]</code>.</li>
+<li><strong>Description</strong> &ndash; a short description of the vulnerability (truncated to
+  128 characters).</li>
+<li><strong>Advisory</strong> &ndash; a link to the advisory with further details.</li>
+</ul>
+<p>Vulnerabilities are sorted by CVE: advisories without a CVE first, then by year
+and by number (newest first).</p>
+<p><a href="../../examples/asm/report.html#Vulnerabilities" rel="noopener" target="_blank"><img alt="Vulnerabilities" src="../../assets/images/report-section-vulnerabilities.png" /></a></p>
+<p>Next: <a href="../dependencies/">Dependencies</a></p>
 
 
 

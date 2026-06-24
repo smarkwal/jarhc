@@ -606,6 +606,7 @@
 <h2 class="report-toc-title">Table of Contents</h2>
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Vulnerabilities">Vulnerabilities</a></li>
 <li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
@@ -668,6 +669,26 @@
 			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
 	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Vulnerabilities" title="Vulnerabilities">
+<h2 class="report-section-title">Vulnerabilities</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Known security vulnerabilities found in the artifacts.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>CVE</th>
+		<th>Artifacts</th>
+		<th>Severity</th>
+		<th>Description</th>
+		<th>Advisory</th>
+	</tr>
+</thead>
+<tbody>
 </tbody>
 </table>
 </div>
@@ -876,14 +897,15 @@
 
 </body>
 <!-- JSON REPORT DATA
-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
+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
+
 -->
 </html>
