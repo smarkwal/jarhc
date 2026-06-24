@@ -1466,12 +1466,12 @@ rather than a version tag, so that a moved or re-pointed tag cannot change which
 code runs. The corresponding version is noted in a comment on the same line:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@&lt;commit-sha&gt;</span><span class="w"> </span><span class="c1"># v7.0.0</span>
 </code></pre></div>
-<p>These pins are kept up to date by Dependabot (see <a href="https://github.com/smarkwal/jarhc/blob/master/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>).</p>
+<p>These pins are kept up to date by Dependabot (see <a href="https://github.com/smarkwal/jarhc/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>).</p>
 <h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
 <p>The documentation is automatically built and published to GitHub Pages:</p>
 <ol>
-<li>On every push to the <code>master</code> branch by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-snapshot.yml">Docs Snapshot</a>.</li>
-<li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/master/.github/workflows/docs-release.yml">Docs Release</a>.</li>
+<li>On every push to the <code>main</code> branch by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-snapshot.yml">Docs Snapshot</a>.</li>
+<li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-release.yml">Docs Release</a>.</li>
 </ol>
 <p>To test the documentation locally before publishing, run:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
