@@ -1,0 +1,1 @@
+{"advisoryKey":{"id":"GHSA-c5vj-wp4v-mmvx"},"url":"https://osv.dev/vulnerability/GHSA-c5vj-wp4v-mmvx","title":"Hazelcast Executor Services don't check client permissions properly","aliases":["CVE-2023-33265"],"cvss3Score":7.6,"cvss3Vector":"CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:H"}

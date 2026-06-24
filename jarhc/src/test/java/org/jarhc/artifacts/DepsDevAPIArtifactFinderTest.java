@@ -33,12 +33,12 @@ import org.slf4j.Logger;
 class DepsDevAPIArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(DepsDevAPIArtifactFinder.class);
-	private final DepsDevAPIArtifactFinder.Settings settings = Mockito.mock(DepsDevAPIArtifactFinder.Settings.class);
+	private final DepsDevSettings settings = Mockito.mock(DepsDevSettings.class);
 	private final DepsDevAPIArtifactFinder artifactFinder = new DepsDevAPIArtifactFinder(logger, settings);
 
 	@BeforeEach
 	void setUp() {
-		doReturn("http://localhost/hash=%s").when(settings).getUrl();
+		doReturn("http://localhost").when(settings).getBaseUrl();
 		doReturn(10).when(settings).getTimeout();
 		doReturn(Map.of()).when(settings).getHeaders();
 	}
@@ -57,7 +57,7 @@ class DepsDevAPIArtifactFinderTest {
 	void test_findArtifact_withInvalidURL() {
 
 		// prepare
-		doReturn("htp://localhost/hash=%s").when(settings).getUrl();
+		doReturn("htp://localhost").when(settings).getBaseUrl();
 
 		// test
 		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("1234"));
@@ -73,14 +73,14 @@ class DepsDevAPIArtifactFinderTest {
 	void test_findArtifact_withUnknownURL() {
 
 		// prepare
-		doReturn("http://unknown/hash=%s").when(settings).getUrl();
+		doReturn("http://unknown").when(settings).getBaseUrl();
 
 		// test
 		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("1234"));
 
 		// assert
 		assertThat(result)
-				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/hash=")
+				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/query?")
 				.hasCause(new UnknownHostException("unknown"));
 		assertLogger(logger)
 				.hasWarn("Problem with api.deps.dev. Visit https://deps.dev to check the status of the deps.dev API.")
@@ -91,7 +91,7 @@ class DepsDevAPIArtifactFinderTest {
 
 		// assert
 		assertThat(result)
-				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/hash=")
+				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/query?")
 				.hasCause(new UnknownHostException("unknown"));
 		assertLogger(logger)
 				// no additional warning

@@ -25,11 +25,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jarhc.utils.IOUtils;
 import org.json.JSONArray;
@@ -55,26 +53,25 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 	// incompatible with hash queries (the API responds with HTTP 404). Results are
 	// filtered to the Maven system on the client side instead.
 
-	private static final String QUERY_URL = "https://api.deps.dev/v3/query?hash.type=SHA1&hash.value=%s";
-	private static final int QUERY_TIMEOUT = 30;
-	private static final String QUERY_USER_AGENT = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0";
+	// endpoint path appended to the deps.dev base URL (see DepsDevSettings)
+	private static final String QUERY_PATH = "/query?hash.type=SHA1&hash.value=%s";
 
 	private static final String MAVEN_SYSTEM = "MAVEN";
 
 	private final Logger logger;
-	private final Settings settings;
+	private final DepsDevSettings settings;
 
 	private final AtomicBoolean statusInfoLogged = new AtomicBoolean(false);
 
 	public DepsDevAPIArtifactFinder() {
-		this(LoggerFactory.getLogger(DepsDevAPIArtifactFinder.class), Settings.fromSystemProperties());
+		this(LoggerFactory.getLogger(DepsDevAPIArtifactFinder.class), DepsDevSettings.fromSystemProperties());
 	}
 
 	public DepsDevAPIArtifactFinder(Logger logger) {
-		this(logger, Settings.fromSystemProperties());
+		this(logger, DepsDevSettings.fromSystemProperties());
 	}
 
-	DepsDevAPIArtifactFinder(Logger logger, Settings settings) {
+	DepsDevAPIArtifactFinder(Logger logger, DepsDevSettings settings) {
 		this.logger = logger;
 		this.settings = settings;
 	}
@@ -94,7 +91,7 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 
 		URL url;
 		try {
-			url = new URL(String.format(settings.getUrl(), hashValue));
+			url = new URL(String.format(settings.getBaseUrl() + QUERY_PATH, hashValue));
 		} catch (MalformedURLException e) {
 			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
@@ -269,71 +266,6 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 		});
 
 		return artifacts;
-	}
-
-	/**
-	 * Settings for the deps.dev API.
-	 */
-	public static class Settings {
-
-		private final String url;
-		private final int timeout;
-		private final Map<String, String> headers;
-
-		/**
-		 * Read settings from Java System Properties.
-		 *
-		 * @return Settings loaded from Java System Properties.
-		 */
-		public static Settings fromSystemProperties() {
-			Properties systemProperties = System.getProperties();
-			return fromProperties(systemProperties);
-		}
-
-		/**
-		 * Read settings from Java properties.
-		 *
-		 * @param properties Java properties
-		 * @return Settings loaded Java properties.
-		 */
-		public static Settings fromProperties(Properties properties) {
-
-			// read settings from properties (using default values if property is not set)
-			String url = properties.getProperty("jarhc.search.url", QUERY_URL);
-			int timeout = Integer.parseInt(properties.getProperty("jarhc.search.timeout", String.valueOf(QUERY_TIMEOUT)));
-			Map<String, String> headers = new HashMap<>();
-			headers.put("User-Agent", properties.getProperty("jarhc.search.headers.User-Agent", QUERY_USER_AGENT));
-
-			// read additional HTTP headers from properties
-			for (String propertyName : properties.stringPropertyNames()) {
-				if (propertyName.startsWith("jarhc.search.headers.")) {
-					String headerName = propertyName.substring("jarhc.search.headers.".length());
-					String headerValue = properties.getProperty(propertyName);
-					headers.put(headerName, headerValue);
-				}
-			}
-
-			return new Settings(url, timeout, headers);
-		}
-
-		public Settings(String url, int timeout, Map<String, String> headers) {
-			this.url = url;
-			this.timeout = timeout;
-			this.headers = headers;
-		}
-
-		public String getUrl() {
-			return url;
-		}
-
-		public int getTimeout() {
-			return timeout;
-		}
-
-		public Map<String, String> getHeaders() {
-			return headers;
-		}
-
 	}
 
 }

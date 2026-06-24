@@ -30,6 +30,7 @@ import org.jarhc.analyzer.AnalyzerDescription;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.VulnerabilityFinder;
 import org.jarhc.env.ClasspathJavaRuntime;
 import org.jarhc.env.DefaultJavaRuntime;
 import org.jarhc.env.JavaRuntime;
@@ -55,6 +56,7 @@ public class Application {
 
 	private PrintStream out = System.out;
 	private Repository repository;
+	private VulnerabilityFinder vulnerabilityFinder;
 	private Supplier<JavaRuntime> javaRuntimeFactory;
 	private final Logger logger;
 
@@ -72,6 +74,10 @@ public class Application {
 
 	public void setRepository(Repository repository) {
 		this.repository = repository;
+	}
+
+	public void setVulnerabilityFinder(VulnerabilityFinder vulnerabilityFinder) {
+		this.vulnerabilityFinder = vulnerabilityFinder;
 	}
 
 	public void setJavaRuntimeFactory(Supplier<JavaRuntime> javaRuntimeFactory) {
@@ -138,6 +144,7 @@ public class Application {
 		injector.addBinding(Options.class, options);
 		injector.addBinding(JavaRuntime.class, javaRuntime);
 		injector.addBinding(Repository.class, repository);
+		injector.addBinding(VulnerabilityFinder.class, vulnerabilityFinder);
 
 		// get a new analyzer registry/factory
 		AnalyzerRegistry registry = new AnalyzerRegistry(injector);

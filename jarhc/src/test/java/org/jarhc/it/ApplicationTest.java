@@ -29,6 +29,7 @@ import org.jarhc.TestUtils;
 import org.jarhc.app.Application;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.ArtifactFinder;
+import org.jarhc.artifacts.DepsDevAPIVulnerabilityFinder;
 import org.jarhc.artifacts.MavenRepository;
 import org.jarhc.it.utils.ArtifactFinderMock;
 import org.jarhc.it.utils.MavenProxyServerExtension;
@@ -64,6 +65,9 @@ class ApplicationTest {
 		ArtifactFinder artifactFinder = ArtifactFinderMock.getArtifactFinder();
 		MavenRepository repository = new MavenRepository(11, TestUtils.getTestRepositorySettings(), tempDir.toString(), artifactFinder, mavenRepositoryLogger);
 		application.setRepository(repository);
+
+		// vulnerability finder backed by the mock server (URLs set by MavenProxyServerExtension)
+		application.setVulnerabilityFinder(new DepsDevAPIVulnerabilityFinder());
 	}
 
 	@Test

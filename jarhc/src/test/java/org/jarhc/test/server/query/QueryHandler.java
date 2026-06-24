@@ -59,7 +59,7 @@ public class QueryHandler implements HttpHandler {
 		}
 
 		Map<String, String> params = queryToMap(uri);
-		String hash = params.get("hash");
+		String hash = params.get("hash.value");
 
 		// decode the base64 hash value into a hex checksum
 		String checksum = decodeChecksum(hash);

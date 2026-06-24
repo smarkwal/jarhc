@@ -1,0 +1,1 @@
+{"advisoryKey":{"id":"GHSA-78wr-2p64-hpwj"},"url":"https://osv.dev/vulnerability/GHSA-78wr-2p64-hpwj","title":"Apache Commons IO: Possible denial of service attack on untrusted input to XmlStreamReader","aliases":["CVE-2024-47554"],"cvss3Score":7.5,"cvss3Vector":"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"}

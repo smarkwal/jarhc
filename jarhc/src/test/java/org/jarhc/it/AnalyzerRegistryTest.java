@@ -25,6 +25,7 @@ import org.jarhc.analyzer.Analyzer;
 import org.jarhc.analyzer.AnalyzerRegistry;
 import org.jarhc.app.Options;
 import org.jarhc.artifacts.Repository;
+import org.jarhc.artifacts.VulnerabilityFinder;
 import org.jarhc.env.JavaRuntime;
 import org.jarhc.inject.Injector;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,12 +44,14 @@ class AnalyzerRegistryTest {
 		Options options = Mockito.mock(Options.class);
 		JavaRuntime javaRuntime = Mockito.mock(JavaRuntime.class);
 		Repository repository = Mockito.mock(Repository.class);
+		VulnerabilityFinder vulnerabilityFinder = Mockito.mock(VulnerabilityFinder.class);
 
 		// prepare an injector
 		Injector injector = new Injector();
 		injector.addBinding(Options.class, options);
 		injector.addBinding(JavaRuntime.class, javaRuntime);
 		injector.addBinding(Repository.class, repository);
+		injector.addBinding(VulnerabilityFinder.class, vulnerabilityFinder);
 
 		registry = new AnalyzerRegistry(injector);
 	}

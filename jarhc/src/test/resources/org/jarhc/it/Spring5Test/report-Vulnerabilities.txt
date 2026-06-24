@@ -1,0 +1,26 @@
+JAR Health Check Report
+=======================
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts (source: deps.dev / OSV).
+
+CVE              | Artifacts         | Severity     | Description                                                                            | Advisory
+-----------------+-------------------+--------------+----------------------------------------------------------------------------------------+--------------------
+CVE-2022-22965   | spring-beans      | 9.8 Critical | Remote Code Execution in Spring Framework                                              | GHSA-36p3-wjmg-h94x
+CVE-2022-22970   | spring-beans      | 7.5 High     | Denial of service in Spring Framework                                                  | GHSA-hh26-6xwr-ggv7
+CVE-2024-38820   | spring-context    | 5.3 Medium   | Spring Framework DataBinder Case Sensitive Match Exception                             | GHSA-4gc7-5j7h-4qph
+                 | spring-web        |              |                                                                                        |
+CVE-2025-22233   | spring-context    | 3.1 Low      | Spring Framework DataBinder Case Sensitive Match Exception                             | GHSA-4wp7-92pw-q264
+CVE-2022-22968   | spring-context    | 7.5 High     | Improper handling of case sensitivity in Spring Framework                              | GHSA-g5mm-vmx4-3rg7
+CVE-2022-22950   | spring-expression | 6.5 Medium   | Allocation of Resources Without Limits or Throttling in Spring Framework               | GHSA-558x-2xjg-6232
+CVE-2023-20861   | spring-expression | 6.5 Medium   | Spring Framework vulnerable to denial of service via specially crafted SpEL expression | GHSA-564r-hj7v-mcr5
+CVE-2024-38808   | spring-expression | 4.3 Medium   | Spring Framework vulnerable to Denial of Service                                       | GHSA-9cmq-m9j5-mvww
+CVE-2023-20863   | spring-expression | 7.5 High     | Spring Framework vulnerable to denial of service                                       | GHSA-wxqc-pxw9-g2p8
+CVE-2022-22971   | spring-messaging  | 6.5 Medium   | Allocation of Resources Without Limits or Throttling in Spring Framework               | GHSA-rqph-vqwm-22vc
+CVE-2024-38809   | spring-web        | 5.3 Medium   | Spring Framework DoS via conditional HTTP request                                      | GHSA-2rmj-mq67-h97g
+CVE-2024-22262   | spring-web        | 8.1 High     | Spring Framework URL Parsing with Host Validation                                      | GHSA-2wrp-6fg6-hmc5
+CVE-2016-1000027 | spring-web        | 9.8 Critical | Pivotal Spring Framework contains unsafe Java deserialization methods                  | GHSA-4wrc-f8pq-fpqp
+CVE-2024-22243   | spring-web        | 8.1 High     | Spring Web vulnerable to Open Redirect or Server Side Request Forgery                  | GHSA-ccgv-vj62-xf9h
+CVE-2024-22259   | spring-web        | 8.1 High     | Spring Framework URL Parsing with Host Validation Vulnerability                        | GHSA-hgjh-9rj2-g67j
+

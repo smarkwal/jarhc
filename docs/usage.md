@@ -293,22 +293,22 @@ A set of low-level options can be set using Java System Properties.
 
 #### HTTP client for deps.dev API
 
-URL pattern with `%s` as placeholder for URL-encoded base64 checksum:
+Base URL of the deps.dev API (the individual endpoint paths are appended automatically):
 
 ```properties
-jarhc.search.url=https://api.deps.dev/v3/query?hash.type=SHA1&hash.value=%s
+jarhc.depsdev.url=https://api.deps.dev/v3
 ```
 
 Timeout in seconds:
 
 ```properties
-jarhc.search.timeout=30
+jarhc.depsdev.timeout=30
 ```
 
 HTTP request header "User-Agent":
 
 ```properties
-jarhc.search.headers.User-Agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0
+jarhc.depsdev.headers.User-Agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0
 ```
 
 The above default User-Agent value is from a Firefox browser on Ubuntu Linux in September 2024.
@@ -316,5 +316,5 @@ The above default User-Agent value is from a Firefox browser on Ubuntu Linux in 
 Additional HTTP request headers:
 
 ```properties
-jarhc.search.headers.<NAME>=<VALUE>
+jarhc.depsdev.headers.<NAME>=<VALUE>
 ```
