@@ -46,6 +46,7 @@ public class GenerateReportScreenshots {
 
 	static {
 		SECTIONS.put("JARFiles", "report-section-jar-files.png");
+		SECTIONS.put("Vulnerabilities", "report-section-vulnerabilities.png");
 		SECTIONS.put("Dependencies", "report-section-dependencies.png");
 		SECTIONS.put("DuplicateClasses", "report-section-duplicate-classes.png");
 		SECTIONS.put("BinaryCompatibility", "report-section-binary-compatibility.png");

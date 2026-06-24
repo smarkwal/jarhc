@@ -23,4 +23,6 @@ The report contains one row per vulnerability, listing all affected artifacts:
 Vulnerabilities are sorted by CVE: advisories without a CVE first, then by year
 and by number (newest first).
 
+[![Vulnerabilities](../assets/images/report-section-vulnerabilities.png)](../examples/asm/report.html#Vulnerabilities){target="_blank" rel="noopener"}
+
 Next: [Dependencies](dependencies.md)
