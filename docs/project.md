@@ -116,16 +116,37 @@ Scan results can be found in [SonarCloud](https://sonarcloud.io/project/overview
 
 ### Locking dependencies
 
-To lock the dependencies to their current versions, run:
+#### Gradle
+
+To lock the Gradle dependencies of all subprojects to their current versions, run:
 
 ```shell
 ./gradlew dependencies buildEnvironment \
           :jarhc:dependencies :jarhc:buildEnvironment \
           :jarhc-release-tests:dependencies :jarhc-release-tests:buildEnvironment \
+          :jarhc-docs-tasks:dependencies :jarhc-docs-tasks:buildEnvironment \
           --write-locks
 ```
 
 See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_locking.html) for more information.
+
+#### Python (documentation)
+
+The documentation toolchain pins its Python dependencies in a hash-pinned lockfile.
+The top-level dependencies are declared in `docs-requirements.in`; the fully resolved
+lockfile `docs-requirements.txt` (every transitive dependency at an exact version plus
+a SHA-256 hash) is generated from it.
+
+After editing `docs-requirements.in` — or to refresh the pinned versions — regenerate
+the lockfile with a Python container (no local Python installation required):
+
+```shell
+docker run --rm -v "$PWD":/work -w /work ghcr.io/astral-sh/uv:python3.12-bookworm-slim \
+  uv pip compile --generate-hashes --universal --python-version 3.12 \
+      -o docs-requirements.txt docs-requirements.in
+```
+
+Python is pinned to 3.12 to match the version used by the documentation workflows.
 
 ### Documentation
 
