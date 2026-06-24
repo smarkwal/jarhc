@@ -4,6 +4,8 @@
 version: 2
 updates:
 
+  # Gradle dependency updates are intentionally disabled (too many PRs).
+  # Re-enable by raising open-pull-requests-limit above 0.
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
@@ -11,9 +13,35 @@ updates:
     target-branch: "master"
     open-pull-requests-limit: 0
 
+  # Keep the GitHub Actions (pinned to commit SHAs) up to date. Dependabot
+  # bumps both the SHA and the trailing "# vX.Y.Z" comment. All action
+  # updates are grouped into a single PR to keep the volume low.
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     target-branch: "master"
-    open-pull-requests-limit: 0
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    ignore:
+      # Stay on gradle/actions v5: v6 moves caching into the proprietary
+      # gradle-actions-caching component (Gradle commercial Terms of Use).
+      # Bump to v6 deliberately, not automatically.
+      - dependency-name: "gradle/actions"
+        update-types: ["version-update:semver-major"]
+
+  # Python docs toolchain. The lockfile is a pip-compile output, which
+  # Dependabot supports: it regenerates the hash-pinned docs-requirements.txt
+  # (updating docs-requirements.in when a constraint must change). Grouped
+  # into a single PR to keep the volume low.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    target-branch: "master"
+    groups:
+      pip:
+        patterns:
+          - "*"

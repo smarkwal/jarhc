@@ -110,6 +110,18 @@ tasks {
         }
     }
 
+    // Refresh all Gradle dependency lockfiles in one invocation: root project,
+    // every subproject, and their buildscript classpaths. New subprojects are
+    // picked up automatically, so there is no list to keep in sync.
+    // Usage: ./gradlew updateGradleLockfiles --write-locks
+    register("updateGradleLockfiles") {
+        group = "help"
+        description = "Resolves all dependencies of all projects to refresh the lockfiles (run with --write-locks)."
+        dependsOn(allprojects.flatMap { p ->
+            listOf(p.tasks.named("dependencies"), p.tasks.named("buildEnvironment"))
+        })
+    }
+
     dependencyUpdates {
         gradleReleaseChannel = "current"
         rejectVersionIf {
@@ -117,6 +129,14 @@ tasks {
         }
     }
 
+}
+
+// Fail fast if updateGradleLockfiles is run without --write-locks, instead of
+// silently resolving dependencies without rewriting the lockfiles.
+gradle.taskGraph.whenReady {
+    if (hasTask(":updateGradleLockfiles") && !gradle.startParameter.isWriteDependencyLocks) {
+        throw GradleException("Run with --write-locks: ./gradlew updateGradleLockfiles --write-locks")
+    }
 }
 
 fun isUnstableVersion(candidate: ModuleComponentIdentifier): Boolean {

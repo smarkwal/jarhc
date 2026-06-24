@@ -21,12 +21,12 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         fetch-depth: 0
 
     - name: Set up JDK 11 and 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@ad2b38190b15e4d6bdf0c97fb4fca8412226d287 # v5.3.0
       with:
         distribution: 'temurin'
         java-version: |
@@ -34,18 +34,20 @@ jobs:
           17
 
     - name: Restore Sonar Cache
-      uses: actions/cache@v4
+      uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       with:
         path: /home/runner/.sonar/cache
-        key: sonar-cache
+        key: sonar-cache-${{ runner.os }}-${{ hashFiles('**/*.gradle*', 'gradle/libs.versions.toml') }}
+        restore-keys: |
+          sonar-cache-${{ runner.os }}-
 
     - name: Set Push Gradle options
       if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
       run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
       with:
         cache-read-only: false
 
@@ -53,20 +55,20 @@ jobs:
       run: './gradlew --no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: ${{ always() }}
       with:
         name: reports
         path: jarhc/build/reports
 
     - name: Upload libs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: libs
         path: jarhc/build/libs
 
     - name: Upload docs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: docs
         path: jarhc/build/docs

@@ -1,0 +1,14 @@
+# Top-level Python dependencies for building the JarHC documentation site.
+# Installed only on the CI runners (see .github/workflows/docs-*.yml).
+# pymdown-extensions ships as a dependency of mkdocs-material.
+#
+# This is the human-edited source. The fully resolved, hash-pinned lockfile
+# `docs-requirements.txt` is generated from it with pip-compile (pip-tools):
+#
+#   pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in
+#
+# (run inside a python:3.12 container -- see docs/project.md). Dependabot has
+# first-class support for pip-compile and regenerates the lockfile (with hashes)
+# when it bumps a dependency.
+mkdocs-material~=9.6
+mike~=2.1
