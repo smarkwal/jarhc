@@ -607,6 +607,7 @@
 <ul class="report-toc">
 <li class="report-toc-item"><a href="#Reports">Reports</a></li>
 <li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Vulnerabilities">Vulnerabilities</a></li>
 <li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
 <li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
 <li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
@@ -1379,6 +1380,68 @@
 		<td>
 			<div class="report-text-block report-issue no-diff">-</div>
 		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Vulnerabilities" title="Vulnerabilities">
+<h2 class="report-section-title">Vulnerabilities</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Known security vulnerabilities found in the artifacts.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>CVE</th>
+		<th>Artifacts</th>
+		<th>Severity</th>
+		<th>Description</th>
+		<th>Advisory</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row diff">
+		<td><span class="deleted"><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-8908" target="_blank" rel="noopener noreferrer">CVE-2020-8908</a></span></td>
+		<td><span class="deleted">guava</span></td>
+		<td><span class="deleted">3.3 Low</span></td>
+		<td><span class="deleted">Information Disclosure in Guava</span></td>
+		<td><span class="deleted"><a href="https://osv.dev/vulnerability/GHSA-5mg8-w23w-74h3" target="_blank" rel="noopener noreferrer">GHSA-5mg8-w23w-74h3</a></span></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td><span class="deleted"><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45688" target="_blank" rel="noopener noreferrer">CVE-2022-45688</a></span></td>
+		<td><span class="deleted">json</span></td>
+		<td><span class="deleted">7.5 High</span></td>
+		<td><span class="deleted">json stack overflow vulnerability</span></td>
+		<td><span class="deleted"><a href="https://osv.dev/vulnerability/GHSA-3vqj-43w4-2q58" target="_blank" rel="noopener noreferrer">GHSA-3vqj-43w4-2q58</a></span></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td><span class="deleted"><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2976" target="_blank" rel="noopener noreferrer">CVE-2023-2976</a></span></td>
+		<td><span class="deleted">guava</span></td>
+		<td><span class="deleted">5.5 Medium</span></td>
+		<td><span class="deleted">Guava vulnerable to insecure use of temporary directory</span></td>
+		<td><span class="deleted"><a href="https://osv.dev/vulnerability/GHSA-7g45-4rm6-3mm3" target="_blank" rel="noopener noreferrer">GHSA-7g45-4rm6-3mm3</a></span></td>
+	</tr>
+	<tr class="report-table-row diff">
+		<td><span class="deleted"><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5072" target="_blank" rel="noopener noreferrer">CVE-2023-5072</a></span></td>
+		<td><span class="deleted">json</span></td>
+		<td><span class="deleted">7.5 High</span></td>
+		<td><span class="deleted">Java: DoS Vulnerability in JSON-JAVA</span></td>
+		<td><span class="deleted"><a href="https://osv.dev/vulnerability/GHSA-4jq9-2xhw-jpx7" target="_blank" rel="noopener noreferrer">GHSA-4jq9-2xhw-jpx7</a></span></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48924" target="_blank" rel="noopener noreferrer">CVE-2025-48924</a></td>
+		<td>commons-lang3</td>
+		<td>6.5 Medium</td>
+		<td>Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs</td>
+		<td><a href="https://osv.dev/vulnerability/GHSA-j288-q9x7-2f5v" target="_blank" rel="noopener noreferrer">GHSA-j288-q9x7-2f5v</a></td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-67030" target="_blank" rel="noopener noreferrer">CVE-2025-67030</a></td>
+		<td>plexus-utils</td>
+		<td><span style="color:orange">[unknown]</span></td>
+		<td>Plexus-Utils has a Directory Traversal vulnerability in its extractFile method </td>
+		<td><a href="https://osv.dev/vulnerability/GHSA-6fmv-xxpf-w3cw" target="_blank" rel="noopener noreferrer">GHSA-6fmv-xxpf-w3cw</a></td>
 	</tr>
 </tbody>
 </table>

@@ -13,6 +13,13 @@ asm-commons | 9.9     | org.ow2.asm:asm-commons:9.9 | 72.6 KB | No            | 
 asm-tree    | 9.9     | org.ow2.asm:asm-tree:9.9    | 50.7 KB | No            | Java 5 (38)            | 0         | org.objectweb.asm.tree      | f8de6eead6d24dd0f45bd065bbe112b2cda6ea21 | org.ow2.asm:asm-tree:9.9    |
 Classpath   | -       | -                           | 247 KB  | -             | Java 5 (103)           | 0         | 4                           | -                                        | -                           | -
 
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE | Artifacts | Severity | Description | Advisory
+----+-----------+----------+-------------+---------
+
 Dependencies
 ------------
 Dependencies between JAR files, and as declared in POM file.

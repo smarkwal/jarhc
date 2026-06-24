@@ -77,6 +77,20 @@
          }]
       },
       {
+         "description": "Known security vulnerabilities found in the artifacts.",
+         "title": "Vulnerabilities",
+         "content": [{
+            "columns": [
+               "CVE",
+               "Artifacts",
+               "Severity",
+               "Description",
+               "Advisory"
+            ],
+            "rows": []
+         }]
+      },
+      {
          "description": "Dependencies between JAR files, and as declared in POM file.",
          "title": "Dependencies",
          "content": [{
