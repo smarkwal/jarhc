@@ -930,11 +930,48 @@
 
 
 <h1 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h1>
-<p>Lists direct dependencies as declared in POM files and analyzes whether these dependencies are satisfied (available on the classpath).</p>
-<blockquote>
-<p><strong>TODO</strong><br/>Update description.<br/><br/>
-Lists dependencies between JAR files ("uses" and "used by"). This report is based on actual usage of classes, methods and fields in Java code.</p>
-</blockquote>
+<p>For each artifact on the classpath, this section shows which other artifacts it
+uses and which artifacts use it, its Maven coordinates, the available updates,
+and its declared direct dependencies. There is one row per artifact. The "Uses"
+and "Used by" relationships are based on the actual usage of classes in the
+bytecode, not on declared dependencies.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact, or the JAR file name if the artifact name is not known.</p>
+<p><strong>Uses</strong></p>
+<p>The other artifacts on the classpath whose classes are used by this artifact, one
+per line. References to classes within the same artifact are ignored. Shows
+<code>[none]</code> if this artifact does not use any other artifact on the classpath.</p>
+<p><strong>Used by</strong></p>
+<p>The other artifacts on the classpath that use classes from this artifact, one per
+line. Shows <code>[none]</code> if no other artifact on the classpath uses it.</p>
+<p><strong>Maven coordinates</strong></p>
+<p>The Maven coordinates of the artifact, shown as a link. Shows <code>[unknown]</code> if no
+coordinates could be determined, or <code>[error]</code> if the lookup failed, for example
+because of a network timeout.</p>
+<p><strong>Updates</strong></p>
+<p>Newer stable versions of the artifact that are available, grouped by minor
+version with one line per minor version and each version shown as a link. Long
+lists are abbreviated with a <code>[...]</code> marker. Shows <code>[none]</code> if the artifact is
+already up to date, <code>[unknown]</code> if no version information is available, or
+<code>[error]</code> if the lookup failed.</p>
+<p><strong>Direct dependencies</strong></p>
+<p>The direct dependencies declared in the artifact's POM file, excluding test
+dependencies. Each dependency is shown as a link, followed by its status on the
+classpath:</p>
+<ul>
+<li><code>[OK]</code>: A matching artifact is present on the classpath. Additional details may
+  follow: <code>(version x.y.z)</code> if the version on the classpath differs from the
+  declared version, the actual coordinates in parentheses if the dependency is
+  satisfied by an artifact with a different group or artifact ID, or the name of
+  the responsible class loader in square brackets if it is not the default
+  classpath.</li>
+<li><code>[not found]</code>: No matching artifact is present on the classpath.</li>
+</ul>
+<p>Shows <code>[none]</code> if the artifact declares no direct dependencies, <code>[unknown]</code> if its
+coordinates could not be determined, or <code>[error]</code> if the dependencies could not be
+resolved.</p>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#Dependencies" rel="noopener" target="_blank"><img alt="Dependencies" src="../../assets/images/report-section-dependencies.png" /></a></p>
 <p>Next: <a href="../duplicate-classes/">Duplicate Classes</a></p>
 
@@ -943,6 +980,9 @@ Lists dependencies between JAR files ("uses" and "used by"). This report is base
 
 
 
+
+  
+  
 
 
 

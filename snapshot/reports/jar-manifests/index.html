@@ -930,9 +930,32 @@
 
 
 <h1 id="jar-manifests">JAR Manifests<a class="headerlink" href="#jar-manifests" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>TODO</strong><br/>Add description.</p>
-</blockquote>
+<p>Shows the information found in the <code>META-INF/MANIFEST.MF</code> file of each artifact,
+grouped into categories. There is one row per artifact that has a manifest.
+Attributes that belong to JPMS modules or OSGi bundles, and attributes that are
+shown in other sections (such as <code>Multi-Release</code> and <code>Automatic-Module-Name</code> in
+the JAR Files section), are not repeated here.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact.</p>
+<p><strong>General</strong></p>
+<p>All manifest attributes that are not covered by the other columns and that do not
+belong to JPMS modules or OSGi bundles. Each attribute is shown as <code>name: value</code>,
+sorted alphabetically.</p>
+<p><strong>Runtime</strong></p>
+<p>The runtime-related manifest attributes: <code>Main Class</code> (from the <code>Main-Class</code>
+attribute) and <code>Class Path</code> (from the <code>Class-Path</code> attribute).</p>
+<p><strong>Implementation</strong></p>
+<p>The implementation-related manifest attributes: the implementation title,
+followed by its version, build, build ID, vendor, vendor ID, and URL where
+present.</p>
+<p><strong>Specification</strong></p>
+<p>The specification-related manifest attributes: the specification title, followed
+by its version and vendor where present.</p>
+<p><strong>Signature</strong></p>
+<p>Information about the JAR file's digital signature. This column is reserved for
+future use and is currently empty.</p>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#JARManifests" rel="noopener" target="_blank"><img alt="JAR Manifests" src="../../assets/images/report-section-jar-manifests.png" /></a></p>
 <p>Next: <a href="../jpms-modules/">JPMS Modules</a></p>
 
@@ -941,6 +964,9 @@
 
 
 
+
+  
+  
 
 
 

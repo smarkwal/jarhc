@@ -440,6 +440,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#compare-two-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compare two reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#report-title" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1263,6 +1274,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#compare-two-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compare two reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#report-title" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1481,7 +1503,7 @@
 
 
 <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
-<p>JarHC is available as command line application:</p>
+<p>JarHC is available as a command line application:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>java -jar jarhc-app.jar [options] &lt;artifact&gt; [&lt;artifact&gt;]*
 </code></pre></div>
 <h3 id="arguments">Arguments<a class="headerlink" href="#arguments" title="Permanent link">&para;</a></h3>
@@ -1513,14 +1535,21 @@ JarHC tries to guess the format based on the filename extension:</p>
 <li><code>*.json</code> -&gt; JSON report</li>
 </ul>
 <p>Example: <code>--output report.html --output report.txt --output report-list.txt --output report.json</code></p>
+<h4 id="compare-two-reports">Compare two reports<a class="headerlink" href="#compare-two-reports" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>--diff &lt;file1&gt; &lt;file2&gt;
+</code></pre></div>
+<p>Compare two existing JarHC reports and generate a report describing the differences between them.
+Both arguments must be paths to existing JarHC reports in HTML or JSON format.
+The diff output is always an HTML report; use <code>--output</code> to set its file path.</p>
+<p>Example: <code>--diff report-v1.html report-v2.html --output report-diff.html</code></p>
 <h4 id="report-title">Report title<a class="headerlink" href="#report-title" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>--title &lt;title&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>--title &lt;title&gt;
 </code></pre></div>
 <p>Report title.</p>
 <p>Default: "JAR Health Check Report".</p>
 <p>Example: <code>--title "MyApp 1.0"</code></p>
 <h4 id="report-sections">Report sections<a class="headerlink" href="#report-sections" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>--sections &lt;sections&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--sections &lt;sections&gt;
 </code></pre></div>
 <p>List of sections to include in the report.</p>
 <p>Default: [none] (include all sections).</p>
@@ -1528,18 +1557,19 @@ JarHC tries to guess the format based on the filename extension:</p>
 <p>If the list of sections is prefixed with '-' the given sections are excluded. Example: <code>--sections "-jm,m,ob,jr"</code></p>
 <p>Sections:</p>
 <ul>
-<li><code>jf</code> - JAR Files</li>
-<li><code>d</code> - Dependencies</li>
-<li><code>dc</code> - Duplicate Classes</li>
-<li><code>bc</code> - Binary Compatibility</li>
-<li><code>bl</code> - Blacklist</li>
-<li><code>jm</code> - JAR Manifests</li>
-<li><code>m</code> - JPMS Modules</li>
-<li><code>ob</code> - OSGi Bundles</li>
-<li><code>jr</code> - Java Runtime</li>
+<li><code>jf</code>: JAR Files</li>
+<li><code>v</code>: Vulnerabilities</li>
+<li><code>d</code>: Dependencies</li>
+<li><code>dc</code>: Duplicate Classes</li>
+<li><code>bc</code>: Binary Compatibility</li>
+<li><code>bl</code>: Blacklist</li>
+<li><code>jm</code>: JAR Manifests</li>
+<li><code>m</code>: JPMS Modules</li>
+<li><code>ob</code>: OSGi Bundles</li>
+<li><code>jr</code>: Java Runtime</li>
 </ul>
 <h4 id="skip-empty-sections">Skip empty sections<a class="headerlink" href="#skip-empty-sections" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--skip-empty
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>--skip-empty
 </code></pre></div>
 <p>Empty sections will not be included in the report.</p>
 <p>Example:
@@ -1552,28 +1582,28 @@ If an analysis shows that there are no duplicate classes and resources, the sect
 </ul>
 <p>Other sections are never empty.</p>
 <h4 id="release">Release<a class="headerlink" href="#release" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>--release &lt;number&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>--release &lt;number&gt;
 </code></pre></div>
 <p>Specify the Java release used when loading classes and resources from multi-release JAR files.</p>
 <p>The value for this option must be a Java major version number greater or equal to 8.</p>
 <p>Default: Major version of Java runtime used to run JarHC.</p>
 <p>Example: <code>--release 11</code></p>
 <h4 id="classpath">Classpath<a class="headerlink" href="#classpath" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>--classpath &lt;artifact&gt;[,&lt;artifact&gt;]*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>--classpath &lt;artifact&gt;[,&lt;artifact&gt;]*
 </code></pre></div>
 <p>Instead of passing Java artifacts as arguments, you can also use the option "--classpath".
 As for arguments, this option supports passing JAR files, WAR files, JMOD files, Maven artifact coordinates, or artifact collections.
 This option can also be used multiple times to add multiple Java artifacts.</p>
 <p>Example: <code>--classpath myapp-1.0.jar,mylib-1.0.jar,libs</code></p>
 <h4 id="provided-and-runtime-classpath">Provided and runtime classpath<a class="headerlink" href="#provided-and-runtime-classpath" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>--provided &lt;artifact&gt;[,&lt;artifact&gt;]*
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>--runtime &lt;artifact&gt;[,&lt;artifact&gt;]*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>--provided &lt;artifact&gt;[,&lt;artifact&gt;]*
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>--runtime &lt;artifact&gt;[,&lt;artifact&gt;]*
 </code></pre></div>
 <p>Specify additional paths to JAR files or directories with JAR files handled as "provided" or "runtime" (JDK/JRE) libraries. Those JAR files are not analyzed, but references to them are validated.</p>
 <p>The value for these options can be a single JAR file, a single directory, or a comma-separated list of JAR files and/or directories. These options can also be used multiple times to add multiple JAR files or directories.</p>
 <p>Example: <code>--provided servlet-api-3.0.jar,jsp-api-3.0.jar --runtime $JAVA_HOME/jre/lib</code></p>
 <h4 id="class-loading-strategy">Class loading strategy<a class="headerlink" href="#class-loading-strategy" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>--strategy ParentLast|ParentFirst
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>--strategy ParentLast|ParentFirst
 </code></pre></div>
 <p>Define the strategy when searching for classes on the classpath.</p>
 <p>With "ParentFirst", JarHC will first try to find the class on the runtime classpath, then on the provided classpath, and finally on the normal classpath.</p>
@@ -1581,29 +1611,29 @@ This option can also be used multiple times to add multiple Java artifacts.</p>
 <p>Default: "ParentLast"</p>
 <p>Example: <code>--strategy ParentFirst</code></p>
 <h4 id="isolated-scan">Isolated scan<a class="headerlink" href="#isolated-scan" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>--isolated-scan
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>--isolated-scan
 </code></pre></div>
 <p>Scan all artifacts on the classpath in isolation. Artifacts cannot "see" each other.
 This mode is useful when JAR files are self-contained and do not depend on each other, for example when scanning a set of plugins of a framework.
 The framework artifacts are usually specified as "provided".</p>
 <h4 id="custom-maven-repository">Custom Maven repository<a class="headerlink" href="#custom-maven-repository" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>--repository-url &lt;url&gt;
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>--repository-username &lt;username&gt;
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>--repository-password &lt;password&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>--repository-url &lt;url&gt;
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>--repository-username &lt;username&gt;
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>--repository-password &lt;password&gt;
 </code></pre></div>
 <p>Specify a custom Maven repository URL. Username and password are optional.
 These values can also be set in a JarHC Properties file (see below).</p>
 <h4 id="ignore-missing-annotations">Ignore missing annotations<a class="headerlink" href="#ignore-missing-annotations" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>--ignore-missing-annotations
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>--ignore-missing-annotations
 </code></pre></div>
 <p>Binary Compatibility will not report an issue if no class definition is found for an annotation.</p>
 <p>This can be used to suppress warnings if libraries make heavy use of annotations for code analysis like @NonNull or @SuppressFBWarnings.</p>
 <h4 id="ignore-exact-copy">Ignore exact copy<a class="headerlink" href="#ignore-exact-copy" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>--ignore-exact-copy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>--ignore-exact-copy
 </code></pre></div>
 <p>Duplicate Classes section does not list classes and resources which are identical.</p>
 <h4 id="path-to-cache-directory">Path to cache directory<a class="headerlink" href="#path-to-cache-directory" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>--data &lt;path&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>--data &lt;path&gt;
 </code></pre></div>
 <p>Specify the path to a local data directory used to cache information about artifacts.
 The special value "TEMP" can be used to create a temporary data directory.
@@ -1612,18 +1642,18 @@ If this option is not present, JarHC will check if environment variable <code>JA
 <p>Example: <code>--data /tmp/jarhc</code> or <code>export JARHC_DATA=/tmp/jarhc</code></p>
 <p>If the directory does not exist, it is automatically created.</p>
 <h3 id="load-options-from-a-file">Load options from a file<a class="headerlink" href="#load-options-from-a-file" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>--options &lt;path&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>--options &lt;path&gt;
 </code></pre></div>
 <p>Load additional options from a file.
 The file must contain one option per line.
 Empty lines and lines starting with '#' are ignored.
 Use '${...}' to reference environment variables.</p>
 <p>Example options file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>--title MyApp 1.0
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>--classpath myapp-1.0.jar,mylib-1.0.jar,libs
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>--release 8
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>--runtime ${JDK_8_HOME}/jre/lib
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>--output report.html
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>--title MyApp 1.0
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>--classpath myapp-1.0.jar,mylib-1.0.jar,libs
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>--release 8
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>--runtime ${JDK_8_HOME}/jre/lib
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>--output report.html
 </code></pre></div>
 <h3 id="jarhc-properties-files">JarHC Properties files<a class="headerlink" href="#jarhc-properties-files" title="Permanent link">&para;</a></h3>
 <p>Some JarHC options can be set in a JarHC Properties file. JarHC automatically loads properties from the following paths:</p>
@@ -1639,40 +1669,40 @@ Use '${...}' to reference environment variables.</p>
 <li><code>collection.&lt;name&gt;</code> (custom artifact collections, see below)</li>
 </ul>
 <p>Example file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="na">repository.url</span><span class="o">=</span><span class="s">https://repo.example.com/maven</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="na">repository.username</span><span class="o">=</span><span class="s">read-only</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="na">repository.password</span><span class="o">=</span><span class="s">secret</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="na">repository.url</span><span class="o">=</span><span class="s">https://repo.example.com/maven</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="na">repository.username</span><span class="o">=</span><span class="s">read-only</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="na">repository.password</span><span class="o">=</span><span class="s">secret</span>
 </code></pre></div>
 <h3 id="artifact-collections">Artifact collections<a class="headerlink" href="#artifact-collections" title="Permanent link">&para;</a></h3>
 <p>An artifact collection is a named list for one or more Java artifacts.
 It is a kind of "alias" for a frequently used set of artifacts.</p>
 <p>Custom collections can be defined in JarHC Properties files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="na">collection.&lt;name&gt;</span><span class="o">=</span><span class="s">&lt;artifact&gt;[,&lt;artifact&gt;]*</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">collection.&lt;name&gt;</span><span class="o">=</span><span class="s">&lt;artifact&gt;[,&lt;artifact&gt;]*</span>
 </code></pre></div>
 <p>Example file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="na">collection.servlet-6.0</span><span class="o">=</span><span class="s">jakarta.servlet:jakarta.servlet-api:6.0.0</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="na">collection.slf4j</span><span class="o">=</span><span class="s">org.slf4j:slf4j-api:2.0.17,org.slf4j:slf4j-simple:2.0.17</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="na">collection.jdk-8</span><span class="o">=</span><span class="s">/opt/jdk-8/jre/lib/rt.jar</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="na">collection.servlet-6.0</span><span class="o">=</span><span class="s">jakarta.servlet:jakarta.servlet-api:6.0.0</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="na">collection.slf4j</span><span class="o">=</span><span class="s">org.slf4j:slf4j-api:2.0.17,org.slf4j:slf4j-simple:2.0.17</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="na">collection.jdk-8</span><span class="o">=</span><span class="s">/opt/jdk-8/jre/lib/rt.jar</span>
 </code></pre></div>
 <p>Such collections can then be used as arguments to JarHC:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>jarhc-app.jar<span class="w"> </span>--classpath<span class="w"> </span>servlet-6.0<span class="w"> </span>--provided<span class="w"> </span>slf4j<span class="w"> </span>--runtime<span class="w"> </span>jdk-8<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>jarhc-app.jar<span class="w"> </span>--classpath<span class="w"> </span>servlet-6.0<span class="w"> </span>--provided<span class="w"> </span>slf4j<span class="w"> </span>--runtime<span class="w"> </span>jdk-8<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
 </code></pre></div>
 <p>Every collection name will be replaced with the list of artifacts in that collection.</p>
 <h3 id="java-system-properties">Java System Properties<a class="headerlink" href="#java-system-properties" title="Permanent link">&para;</a></h3>
 <p>A set of low-level options can be set using Java System Properties.</p>
 <h4 id="http-client-for-depsdev-api">HTTP client for deps.dev API<a class="headerlink" href="#http-client-for-depsdev-api" title="Permanent link">&para;</a></h4>
 <p>Base URL of the deps.dev API (the individual endpoint paths are appended automatically):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">jarhc.depsdev.url</span><span class="o">=</span><span class="s">https://api.deps.dev/v3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">jarhc.depsdev.url</span><span class="o">=</span><span class="s">https://api.deps.dev/v3</span>
 </code></pre></div>
 <p>Timeout in seconds:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="na">jarhc.depsdev.timeout</span><span class="o">=</span><span class="s">30</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="na">jarhc.depsdev.timeout</span><span class="o">=</span><span class="s">30</span>
 </code></pre></div>
 <p>HTTP request header "User-Agent":</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="na">jarhc.depsdev.headers.User-Agent</span><span class="o">=</span><span class="s">Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="na">jarhc.depsdev.headers.User-Agent</span><span class="o">=</span><span class="s">Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0</span>
 </code></pre></div>
 <p>The above default User-Agent value is from a Firefox browser on Ubuntu Linux in September 2024.</p>
 <p>Additional HTTP request headers:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="na">jarhc.depsdev.headers.&lt;NAME&gt;</span><span class="o">=</span><span class="s">&lt;VALUE&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="na">jarhc.depsdev.headers.&lt;NAME&gt;</span><span class="o">=</span><span class="s">&lt;VALUE&gt;</span>
 </code></pre></div>
 
 
@@ -1680,6 +1710,9 @@ It is a kind of "alias" for a frequently used set of artifacts.</p>
 
 
 
+
+  
+  
 
 
 

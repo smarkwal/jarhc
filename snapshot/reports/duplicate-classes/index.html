@@ -930,12 +930,43 @@
 
 
 <h1 id="duplicate-classes">Duplicate Classes<a class="headerlink" href="#duplicate-classes" title="Permanent link">&para;</a></h1>
+<p>Lists Java classes and resources that exist more than once on the classpath, with
+one row per duplicated class or resource. The following cases are reported:</p>
 <ul>
-<li>Java classes found in more than one JAR file of the classpath.</li>
-<li>Java classes found in classpath shadowing provided or runtime Java classes (JRE/JDK).</li>
-<li>Resources (files other than Java class files) found in more than one JAR file under the exact same path and name.</li>
+<li>A Java class found in more than one artifact.</li>
+<li>A Java class that shadows a class provided by a parent class loader, such as
+  the Java runtime.</li>
+<li>A resource (a file other than a Java class file) found under the same path in
+  more than one artifact.</li>
 </ul>
-<p>Also checks how "similar" duplicate and shadowed Java classes are (exact copy, same API, or different API).</p>
+<p>For each entry, the report also shows how similar the duplicates are.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Class/Resource</strong></p>
+<p>The fully qualified name of the duplicated class, or the path of the duplicated
+resource. Classes are listed first, followed by resources, each sorted by name.</p>
+<p><strong>Sources</strong></p>
+<p>The sources that contain the class or resource, one per line, sorted
+alphabetically. For a class, each source shows the artifact name followed by its
+class loader in parentheses, for example <code>commons-io (Classpath)</code>. A class
+provided by a parent class loader, such as the Java runtime, is shown by its
+class loader name only. For a resource, only the artifact name is shown.</p>
+<p><strong>Similarity</strong></p>
+<p>How similar the duplicates are.</p>
+<p>For classes:</p>
+<ul>
+<li><code>Exact copy</code>: The class files are byte-for-byte identical.</li>
+<li><code>Same API</code>: The class files differ, but their non-private API (classes,
+  methods, and fields) is identical.</li>
+<li><code>Different API</code>: The class files expose different APIs. For each further
+  source, a line indicates how similar its API is to the first, for example
+  <code>(116/130 = 90% similar)</code>.</li>
+</ul>
+<p>For resources:</p>
+<ul>
+<li><code>Exact copy</code>: The files have identical content.</li>
+<li><code>Different content</code>: The files differ in content.</li>
+</ul>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#DuplicateClasses" rel="noopener" target="_blank"><img alt="Duplicate Classes" src="../../assets/images/report-section-duplicate-classes.png" /></a></p>
 <p>Next: <a href="../binary-compatibility/">Binary Compatibility</a></p>
 
@@ -944,6 +975,9 @@
 
 
 
+
+  
+  
 
 
 

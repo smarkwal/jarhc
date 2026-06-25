@@ -930,7 +930,38 @@
 
 
 <h1 id="binary-compatibility">Binary Compatibility<a class="headerlink" href="#binary-compatibility" title="Permanent link">&para;</a></h1>
-<p>Validates superclass and interface contracts, method calls, and field access. Reports missing classes, methods, or fields, and validates access permissions.</p>
+<p>Checks whether the compiled code on the classpath is
+<a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-13.html">binary compatible</a>,
+that is, whether every class, method, and field referenced by a class is actually
+present, accessible, and compatible. Only artifacts with at least one issue are listed,
+with one row per artifact.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact that contains the issues.</p>
+<p><strong>Issues</strong></p>
+<p>The binary compatibility issues found in the artifact. Issues are grouped by the
+class in which they occur, or by the manifest attribute they relate to, with each
+individual problem listed below. The following kinds of issues are reported:</p>
+<ul>
+<li>Missing classes, methods, or fields that are referenced but cannot be found on
+  the classpath. When a class is missing, the report also indicates whether its
+  package was found.</li>
+<li>Inaccessible classes, methods, or fields, including illegal access across
+  packages or modules, and classes that are not exported by their module.</li>
+<li>Class hierarchy problems, such as a superclass or interface that cannot be
+  found, a final superclass, an interface that is actually a class, or a violated
+  sealed class constraint.</li>
+<li>Abstract methods that are not implemented by a concrete class.</li>
+<li>Incompatible member usage, such as static access to an instance member or the
+  reverse, an incompatible field type, or write access to a final field.</li>
+<li>Annotation problems, such as a missing annotation type or a class used as an
+  annotation that is not one.</li>
+<li>Class files compiled for a newer Java version than the multi-release folder
+  they are bundled in.</li>
+<li>Manifest problems, such as a <code>Main-Class</code> that does not exist or has no valid
+  main method, or a <code>Class-Path</code> entry that cannot be found or is not a JAR file.</li>
+</ul>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#BinaryCompatibility" rel="noopener" target="_blank"><img alt="Binary Compatibility" src="../../assets/images/report-section-binary-compatibility.png" /></a></p>
 <p>Next: <a href="../blacklist/">Blacklist</a></p>
 
@@ -939,6 +970,9 @@
 
 
 
+
+  
+  
 
 
 

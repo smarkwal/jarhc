@@ -930,9 +930,42 @@
 
 
 <h1 id="osgi-bundles">OSGi Bundles<a class="headerlink" href="#osgi-bundles" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>TODO</strong><br/>Add description.</p>
-</blockquote>
+<p>Lists the OSGi bundle metadata of each artifact that is an OSGi bundle, with one
+row per bundle. The metadata is read from the OSGi headers in the
+<code>META-INF/MANIFEST.MF</code> file. Artifacts that are not OSGi bundles are not listed.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact.</p>
+<p><strong>Name</strong></p>
+<p>The bundle name (<code>Bundle-Name</code>). If the bundle also has a symbolic name
+(<code>Bundle-SymbolicName</code>) that differs from the bundle name, it is shown on a
+separate line labeled <code>Symbolic Name</code>. If only one of the two is present, that
+value is shown.</p>
+<p><strong>Version</strong></p>
+<p>The bundle version (<code>Bundle-Version</code>).</p>
+<p><strong>Description</strong></p>
+<p>The bundle description (<code>Bundle-Description</code>), followed by its vendor
+(<code>Bundle-Vendor</code>), license (<code>Bundle-License</code>), and documentation URL
+(<code>Bundle-DocURL</code>) where present.</p>
+<p><strong>Import Package</strong></p>
+<p>The packages that the bundle imports (<code>Import-Package</code>). Packages imported
+dynamically (<code>DynamicImport-Package</code>) are listed below, under a <code>Dynamic:</code>
+heading.</p>
+<p><strong>Export Package</strong></p>
+<p>The packages that the bundle exports (<code>Export-Package</code>).</p>
+<p><strong>Capabilities</strong></p>
+<p>The capabilities that the bundle requires (<code>Require-Capability</code>), under a
+<code>Required:</code> heading, and the capabilities it provides (<code>Provide-Capability</code>),
+under a <code>Provided:</code> heading.</p>
+<p><strong>Others</strong></p>
+<p>Further bundle headers where present: the activator (<code>Bundle-Activator</code>),
+activation policy (<code>Bundle-ActivationPolicy</code>), manifest version
+(<code>Bundle-ManifestVersion</code>), private packages (<code>Private-Package</code>), included
+resources (<code>Include-Resource</code>), and required execution environment
+(<code>Bundle-RequiredExecutionEnvironment</code>).</p>
+<p>The report currently shows only a subset of the available OSGi headers, chosen to
+keep the table at a reasonable size.</p>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#OSGiBundles" rel="noopener" target="_blank"><img alt="OSGi Bundles" src="../../assets/images/report-section-osgi-bundles.png" /></a></p>
 <p>Next: <a href="../java-runtime/">Java Runtime</a></p>
 
@@ -941,6 +974,9 @@
 
 
 
+
+  
+  
 
 
 

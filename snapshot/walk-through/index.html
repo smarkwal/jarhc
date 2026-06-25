@@ -1162,17 +1162,17 @@
 
 <h1 id="walk-through">Walk-through<a class="headerlink" href="#walk-through" title="Permanent link">&para;</a></h1>
 <h3 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h3>
-<p>Make sure that you have Java 11, 17, or 21 installed:</p>
+<p>Make sure that you have Java 11, 17, 21, or 25 installed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>java -version
 </code></pre></div>
-<p>With <a href="https://adoptium.net/de/temurin/releases/?version=17">OpenJDK 17 from Eclipse Temurin</a>, it should print something like this:
+<p>With <a href="https://adoptium.net/temurin/releases/?version=17">OpenJDK 17 from Eclipse Temurin</a>, it should print something like this:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>openjdk 17.0.12 2024-07-16
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>OpenJDK Runtime Environment Temurin-17.0.12+7 (build 17.0.12+7)
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>OpenJDK 64-Bit Server VM Temurin-17.0.12+7 (build 17.0.12+7, mixed mode, sharing)
 </code></pre></div></p>
 <h3 id="download-and-test">Download and test<a class="headerlink" href="#download-and-test" title="Permanent link">&para;</a></h3>
 <p>Download the file <code>jarhc-&lt;version&gt;-app.jar</code> from the <a href="https://github.com/smarkwal/jarhc/releases/latest">latest release of JarHC</a> and rename it to <code>jarhc.jar</code>.</p>
-<p>Run the following command to test if JarHC can be started:</p>
+<p>Run the following command to check whether JarHC starts:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>java -jar jarhc.jar --version
 </code></pre></div>
 <p>It should print the current version of JarHC, for example:</p>
@@ -1277,6 +1277,9 @@ Here we add all three ASM modules so that the complete library is analyzed toget
 
 
 
+
+  
+  
 
 
 

@@ -930,23 +930,65 @@
 
 
 <h1 id="jar-files">JAR Files<a class="headerlink" href="#jar-files" title="Permanent link">&para;</a></h1>
-<p>List of JAR files found in classpath with the following information:</p>
-<blockquote>
-<p><strong>TODO</strong><br/>Update description.<br/><br/>
-Java versions for which the Java classes in the JAR files have been compiled. This allows you to find the "minimum Java version" required to run all classes.
-List of packages per JAR file.
-Checks for split packages: packages found in multiple JAR files.
-Checks for "fat JARs": JARs with a mix of very different packages, potentially because multiple JAR files have been merged.</p>
-</blockquote>
+<p>Lists all JAR files found on the classpath, one row per JAR file. For each JAR
+file, the report shows its size, contents (Java classes, resources, and
+packages), the Java bytecode versions of its classes, its SHA-1 checksum, and
+the resolved Maven coordinates. Potential problems, such as split packages or
+fat JARs, are reported in the last column.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact, or the JAR file name if the artifact name is not known.</p>
+<p><strong>Version</strong></p>
+<p>The version of the artifact. Shows <code>[unknown]</code> if the version cannot be
+determined.</p>
+<p><strong>Source</strong></p>
+<p>The origin of the JAR file. If Maven coordinates were passed on the command line,
+they are shown as a link to Maven Central. Otherwise, the file name of the JAR
+file is shown.</p>
+<p><strong>Size</strong></p>
+<p>The file size of the JAR file in a human-readable format.</p>
+<p><strong>Multi-release</strong></p>
+<p>Whether the JAR file is a multi-release JAR. Shows <code>No</code>, or <code>Yes</code> followed by the
+additional Java releases it contains, for example <code>Yes (Java 17, Java 11)</code>.</p>
+<p><strong>Java version (classes)</strong></p>
+<p>The Java bytecode versions found in the regular class files, with the number of
+classes per version, for example <code>Java 8 (123), Java 11 (4)</code>. This helps to
+determine the minimum Java version required to run all classes. The <code>module-info</code>
+and <code>package-info</code> classes are excluded. Shows <code>[no class files]</code> if the JAR file
+contains no classes.</p>
+<p><strong>Resources</strong></p>
+<p>The number of resource files (non-class files) in the JAR file.</p>
+<p><strong>Packages</strong></p>
+<p>The Java packages contained in the JAR file. Packages are grouped by common
+parent package to keep the list compact. The following notations are used:</p>
 <ul>
-<li>File size</li>
-<li>Number of Java classes in JAR file</li>
-<li>Number of Resources in JAR file</li>
-<li>Is JAR file a multi-release JAR?</li>
-<li>Is JAR file a JPMS module? If yes, what is the module name?</li>
-<li>SHA-1 checksum</li>
-<li>Maven artifact coordinates (if checksum is found on Maven Central)</li>
+<li><code>org.example.foo</code>: A single package.</li>
+<li><code>org.example.foo (+2 subpackages)</code>: The package itself plus the given number of
+  subpackages.</li>
+<li><code>org.example.foo.* (3 subpackages)</code>: The given number of subpackages under a
+  common parent package that contains no classes of its own.</li>
 </ul>
+<p><strong>Checksum (SHA-1)</strong></p>
+<p>The SHA-1 checksum of the JAR file, linked to a search for this checksum on Maven
+Central. Shows <code>[unknown]</code> if no checksum is available.</p>
+<p><strong>Coordinates</strong></p>
+<p>The Maven coordinates of the artifact whose SHA-1 checksum matches the JAR file,
+shown as a link. If several artifacts share the same checksum, all of them are
+listed. Shows <code>[unknown]</code> if no matching artifact is found, or <code>[error]</code> if the
+lookup failed, for example because of a network timeout.</p>
+<p><strong>Issues</strong></p>
+<p>Potential problems detected for the JAR file:</p>
+<ul>
+<li><strong>Split Package</strong>: A package in this JAR file is also present in at least one
+  other JAR file on the classpath. The affected package is listed.</li>
+<li><strong>Fat JAR</strong>: The JAR file contains classes from several unrelated root packages,
+  which can indicate that multiple JAR files have been merged into a single "fat"
+  or "uber" JAR. The differing root packages are listed.</li>
+</ul>
+<p>The last row, labeled <code>Classpath</code>, summarizes the totals across all JAR files:
+the combined file size, the aggregated Java version counts, the total number of
+resources, and the total number of packages.</p>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#JARFiles" rel="noopener" target="_blank"><img alt="JAR Files" src="../../assets/images/report-section-jar-files.png" /></a></p>
 <p>Next: <a href="../vulnerabilities/">Vulnerabilities</a></p>
 
@@ -955,6 +997,9 @@ Checks for "fat JARs": JARs with a mix of very different packages, potentially b
 
 
 
+
+  
+  
 
 
 

@@ -930,22 +930,32 @@
 
 
 <h1 id="blacklist">Blacklist<a class="headerlink" href="#blacklist" title="Permanent link">&para;</a></h1>
-<p>Reports use of dangerous, unsafe, unstable, or deprecated classes and methods:</p>
+<p>Reports the use of dangerous, unsafe, unstable, or deprecated classes, methods,
+and fields, as well as executable files bundled as resources. Only artifacts with
+at least one issue are listed, with one row per artifact.</p>
+<p>The table contains the following columns:</p>
+<p><strong>Artifact</strong></p>
+<p>The name of the artifact that contains the issues.</p>
+<p><strong>Issues</strong></p>
+<p>The blacklisted references and resources found in the artifact. References are
+grouped by the class in which they occur, with each match listed below it.
+Executable resources are listed directly by their path. The following items are
+flagged:</p>
 <ul>
-<li><code>sun.misc.Unsafe</code></li>
-<li><code>System.exit(...)</code>, <code>Runtime.exit(...)</code>, or <code>Runtime.halt(...)</code></li>
-<li><code>System.load(...)</code>, <code>System.loadLibrary(...)</code>, <code>Runtime.load(...)</code>, or <code>Runtime.loadLibrary(...)</code></li>
-<li><code>Runtime.exec(...)</code></li>
-<li><code>@Deprecated</code>, <code>@VisibleForTesting</code>, <code>@Beta</code>, <code>@DoNotCall</code>,</li>
+<li>Use of <code>sun.misc.Unsafe</code>.</li>
+<li>Stopping the JVM: <code>System.exit</code>, <code>Runtime.exit</code>, or <code>Runtime.halt</code>.</li>
+<li>Loading native libraries: <code>System.load</code>, <code>System.loadLibrary</code>, <code>Runtime.load</code>,
+  or <code>Runtime.loadLibrary</code>.</li>
+<li>Executing system commands: <code>Runtime.exec</code>.</li>
+<li>Use of the deprecated <code>com.sun.image.codec.jpeg</code> API, which was removed in
+  Java 9.</li>
+<li>Elements marked with an annotation for an unstable or deprecated API:
+  <code>@Deprecated</code>, <code>@VisibleForTesting</code>, <code>@Beta</code>, or <code>@DoNotCall</code>. These are
+  reported only when the annotated element is defined in a different artifact.</li>
+<li>Executable files bundled as resources: <code>*.dll</code>, <code>*.exe</code>, <code>*.so</code>, <code>*.bat</code>, or
+  <code>*.sh</code>.</li>
 </ul>
-<p>Checks for executable files bundled as resources:</p>
-<ul>
-<li><code>*.dll</code></li>
-<li><code>*.exe</code></li>
-<li><code>*.so</code></li>
-<li><code>*.bat</code></li>
-<li><code>*.sh</code></li>
-</ul>
+<p><strong>Example</strong></p>
 <p><a href="../../examples/asm/report.html#Blacklist" rel="noopener" target="_blank"><img alt="Blacklist" src="../../assets/images/report-section-blacklist.png" /></a></p>
 <p>Next: <a href="../jar-manifests/">JAR Manifests</a></p>
 
@@ -954,6 +964,9 @@
 
 
 
+
+  
+  
 
 
 

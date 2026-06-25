@@ -1043,10 +1043,10 @@
 and whether they contain any "unpleasant surprises" for you.</p>
 <p>JarHC can analyze the following Java artifacts:</p>
 <ul>
-<li>Maven coordinates - JarHC will download the JAR files from a Maven repository and analyze them.</li>
-<li>JAR files (*.jar) - JarHC will analyze the contained Java classes, and also detect and analyze nested JAR files.</li>
-<li>WAR files (*.war) - JarHC will extract the contained JAR files and analyze them.</li>
-<li>JMOD files (*.jmod) - JarHC will analyze the contained Java classes.</li>
+<li>Maven coordinates: JarHC will download the JAR files from a Maven repository and analyze them.</li>
+<li>JAR files (*.jar): JarHC will analyze the contained Java classes, and also detect and analyze nested JAR files.</li>
+<li>WAR files (*.war): JarHC will extract the contained JAR files and analyze them.</li>
+<li>JMOD files (*.jmod): JarHC will analyze the contained Java classes.</li>
 </ul>
 <h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
 <p>A typical mid-size Java project uses dozens of third-party Java libraries.
@@ -1074,7 +1074,7 @@ But how can you be sure?</p>
 <li><strong>You can use JarHC to analyze the binary compatibility between Hadoop 3.4.0 and SLF4J version 2.0.16.</strong></li>
 </ul>
 <p>While binary compatibility alone does not guarantee functional compatibility, binary compatibility is usually a good indicator whether the libraries will work together as expected.
-And if the JarHC finds binary incompatibilities, you can take a closer look at the affected classes and methods.</p>
+And if JarHC finds binary incompatibilities, you can take a closer look at the affected classes and methods.</p>
 <p><strong>More information</strong></p>
 <p>If you want to know more about the JAR hell, check out these articles:</p>
 <ul>
@@ -1087,15 +1087,16 @@ This is usually a bunch of third-party libraries used in a Java project.
 JarHC analyzes these artifacts and generates a report for various aspects.</p>
 <h2 id="report-sections">Report sections<a class="headerlink" href="#report-sections" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="reports/jar-files/">JAR Files</a> - Lists Java artifacts found on the classpath with information about their JAR files.</li>
-<li><a href="reports/dependencies/">Dependencies</a> - Lists Maven dependencies, finds unsatisfied dependencies, and analyzes the binary code for hidden dependencies.</li>
-<li><a href="reports/duplicate-classes/">Duplicate Classes</a> - Lists duplicate Java classes and resources found in Java artifacts on the classpath.</li>
-<li><a href="reports/binary-compatibility/">Binary Compatibility</a> - Validates every Java class on the classpath and checks whether it is binary-compatible other Java classes it depends on.</li>
-<li><a href="reports/blacklist/">Blacklist</a> - Reports usage of dangerous, unsafe, unstable, or deprecated classes and methods.</li>
-<li><a href="reports/jar-manifests/">JAR Manifests</a> - Lists information found in MANIFEST.MF files of the Java artifacts on the classpath.</li>
-<li><a href="reports/jpms-modules/">JPMS Modules</a> - Lists information about JPMS Modules (Java Platform Module System) found on the classpath.</li>
-<li><a href="reports/osgi-bundles/">OSGi Bundles</a> - Lists information about OSGi Bundles found on the classpath.</li>
-<li><a href="reports/java-runtime/">Java Runtime</a> - Lists information about the Java Runtime (JRE or JDK) used to run JarHC.</li>
+<li><a href="reports/jar-files/">JAR Files</a>: Lists all artifacts on the classpath with their size, content, Java version, checksum, and Maven coordinates.</li>
+<li><a href="reports/vulnerabilities/">Vulnerabilities</a>: Lists known security vulnerabilities for the Java artifacts on the classpath.</li>
+<li><a href="reports/dependencies/">Dependencies</a>: Shows the dependencies between artifacts based on actual class usage, their declared Maven dependencies and whether these are satisfied, and available updates.</li>
+<li><a href="reports/duplicate-classes/">Duplicate Classes</a>: Lists Java classes and resources that occur more than once on the classpath, including classes that shadow the Java runtime, and reports how similar the duplicates are.</li>
+<li><a href="reports/binary-compatibility/">Binary Compatibility</a>: Validates every Java class on the classpath and checks whether it is binary-compatible with other Java classes it depends on, and reports missing or inaccessible classes, methods, and fields.</li>
+<li><a href="reports/blacklist/">Blacklist</a>: Reports usage of dangerous, unsafe, unstable, or deprecated classes, methods, and fields, and executable files bundled as resources.</li>
+<li><a href="reports/jar-manifests/">JAR Manifests</a>: Lists information found in MANIFEST.MF files of the Java artifacts on the classpath.</li>
+<li><a href="reports/jpms-modules/">JPMS Modules</a>: Lists the Java module of each artifact, including explicit, automatic, and auto-generated modules.</li>
+<li><a href="reports/osgi-bundles/">OSGi Bundles</a>: Lists information about OSGi Bundles found on the classpath.</li>
+<li><a href="reports/java-runtime/">Java Runtime</a>: Lists information about the Java Runtime (JRE or JDK) used to run JarHC.</li>
 </ul>
 
 
@@ -1103,6 +1104,9 @@ JarHC analyzes these artifacts and generates a report for various aspects.</p>
 
 
 
+
+  
+  
 
 
 
