@@ -1,6 +1,7 @@
 ---
 sources:
   - jarhc/src/main/java/org/jarhc/app/CommandLineParser.java
+  - jarhc/src/main/java/org/jarhc/app/Diff.java
   - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
   - jarhc/src/main/java/org/jarhc/artifacts/DepsDevSettings.java
 last_reviewed: 2026-06-25
@@ -65,8 +66,8 @@ Example: `--output report.html --output report.txt --output report-list.txt --ou
 ```
 
 Compare two existing JarHC reports and generate a report describing the differences between them.
-Both arguments must be paths to existing JarHC report files in HTML format.
-Use `--output` to write the diff report to a file.
+Both arguments must be paths to existing JarHC reports in HTML or JSON format.
+The diff output is always an HTML report; use `--output` to set its file path.
 
 Example: `--diff report-v1.html report-v2.html --output report-diff.html`
 
