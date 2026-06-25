@@ -1,8 +1,14 @@
+---
+sources:
+  - jarhc/src/main/java/org/jarhc/app/CommandLineParser.java
+last_reviewed: 2026-06-25
+---
+
 # Quick-start
 
 ## Prepare
 
-Test if Java 11, 17, 21, or 25 is installed:
+Check whether Java 11, 17, 21, or 25 is installed:
 
 ```shell
 java -version
@@ -10,7 +16,7 @@ java -version
 
 Download the file `jarhc-<version>-app.jar` from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to `jarhc.jar`.
 
-Test if JarHC can be started:
+Check whether JarHC starts:
 
 ```shell
 java -jar jarhc.jar --version

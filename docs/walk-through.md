@@ -1,14 +1,20 @@
+---
+sources:
+  - docs/examples/asm-commons/report.txt
+last_reviewed: 2026-06-25
+---
+
 # Walk-through
 
 ### Prepare
 
-Make sure that you have Java 11, 17, or 21 installed:
+Make sure that you have Java 11, 17, 21, or 25 installed:
 
 ```
 java -version
 ```
 
-With [OpenJDK 17 from Eclipse Temurin](https://adoptium.net/de/temurin/releases/?version=17), it should print something like this:
+With [OpenJDK 17 from Eclipse Temurin](https://adoptium.net/temurin/releases/?version=17), it should print something like this:
 ```
 openjdk 17.0.12 2024-07-16
 OpenJDK Runtime Environment Temurin-17.0.12+7 (build 17.0.12+7)
@@ -19,7 +25,7 @@ OpenJDK 64-Bit Server VM Temurin-17.0.12+7 (build 17.0.12+7, mixed mode, sharing
 
 Download the file `jarhc-<version>-app.jar` from the [latest release of JarHC](https://github.com/smarkwal/jarhc/releases/latest) and rename it to `jarhc.jar`.
 
-Run the following command to test if JarHC can be started:
+Run the following command to check whether JarHC starts:
 
 ```
 java -jar jarhc.jar --version

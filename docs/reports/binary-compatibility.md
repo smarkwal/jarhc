@@ -6,9 +6,10 @@ last_reviewed: 2026-06-25
 
 # Binary Compatibility
 
-Checks whether the compiled code on the classpath is binary compatible, that is,
-whether every class, method, and field referenced by a class is actually present,
-accessible, and compatible. Only artifacts with at least one issue are listed,
+Checks whether the compiled code on the classpath is
+[binary compatible](https://docs.oracle.com/javase/specs/jls/se17/html/jls-13.html),
+that is, whether every class, method, and field referenced by a class is actually
+present, accessible, and compatible. Only artifacts with at least one issue are listed,
 with one row per artifact.
 
 The table contains the following columns:
