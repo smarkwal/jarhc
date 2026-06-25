@@ -1,6 +1,15 @@
+---
+sources:
+  - jarhc/src/main/java/org/jarhc/app/CommandLineParser.java
+  - jarhc/src/main/java/org/jarhc/app/Diff.java
+  - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
+  - jarhc/src/main/java/org/jarhc/artifacts/DepsDevSettings.java
+last_reviewed: 2026-06-25
+---
+
 # Usage
 
-JarHC is available as command line application:
+JarHC is available as a command line application:
 
 ```
 java -jar jarhc-app.jar [options] <artifact> [<artifact>]*
@@ -50,6 +59,18 @@ JarHC tries to guess the format based on the filename extension:
 
 Example: `--output report.html --output report.txt --output report-list.txt --output report.json`
 
+#### Compare two reports
+
+```
+--diff <file1> <file2>
+```
+
+Compare two existing JarHC reports and generate a report describing the differences between them.
+Both arguments must be paths to existing JarHC reports in HTML or JSON format.
+The diff output is always an HTML report; use `--output` to set its file path.
+
+Example: `--diff report-v1.html report-v2.html --output report-diff.html`
+
 #### Report title
 
 ```
@@ -78,15 +99,16 @@ If the list of sections is prefixed with '-' the given sections are excluded. Ex
 
 Sections:
 
-* `jf` - JAR Files
-* `d` - Dependencies
-* `dc` - Duplicate Classes
-* `bc` - Binary Compatibility
-* `bl` - Blacklist
-* `jm` - JAR Manifests
-* `m` - JPMS Modules
-* `ob` - OSGi Bundles
-* `jr` - Java Runtime
+* `jf`: JAR Files
+* `v`: Vulnerabilities
+* `d`: Dependencies
+* `dc`: Duplicate Classes
+* `bc`: Binary Compatibility
+* `bl`: Blacklist
+* `jm`: JAR Manifests
+* `m`: JPMS Modules
+* `ob`: OSGi Bundles
+* `jr`: Java Runtime
 
 #### Skip empty sections
 

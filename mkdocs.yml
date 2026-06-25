@@ -9,6 +9,19 @@ edit_uri: edit/main/docs/
 
 copyright: JarHC - JAR Health Check | <a href="https://jarhc.org">jarhc.org</a>
 
+# Validation of internal links, anchors, and navigation.
+# These warnings become errors when building with --strict.
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn
+
 theme:
   name: material
   favicon: assets/jarhc-logo.png

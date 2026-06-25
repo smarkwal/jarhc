@@ -1,3 +1,9 @@
+---
+sources:
+  - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
+last_reviewed: 2026-06-25
+---
+
 ![JarHC Logo](assets/jarhc-logo.png)
 
 # JarHC - JAR Health Check
@@ -9,10 +15,10 @@ and whether they contain any "unpleasant surprises" for you.
 
 JarHC can analyze the following Java artifacts:
 
-* Maven coordinates - JarHC will download the JAR files from a Maven repository and analyze them.
-* JAR files (*.jar) - JarHC will analyze the contained Java classes, and also detect and analyze nested JAR files.
-* WAR files (*.war) - JarHC will extract the contained JAR files and analyze them.
-* JMOD files (*.jmod) - JarHC will analyze the contained Java classes.
+* Maven coordinates: JarHC will download the JAR files from a Maven repository and analyze them.
+* JAR files (*.jar): JarHC will analyze the contained Java classes, and also detect and analyze nested JAR files.
+* WAR files (*.war): JarHC will extract the contained JAR files and analyze them.
+* JMOD files (*.jmod): JarHC will analyze the contained Java classes.
 
 ## Motivation
 
@@ -43,7 +49,7 @@ And last but not least:
 * **You can use JarHC to analyze the binary compatibility between Hadoop 3.4.0 and SLF4J version 2.0.16.**
 
 While binary compatibility alone does not guarantee functional compatibility, binary compatibility is usually a good indicator whether the libraries will work together as expected.
-And if the JarHC finds binary incompatibilities, you can take a closer look at the affected classes and methods.
+And if JarHC finds binary incompatibilities, you can take a closer look at the affected classes and methods.
 
 **More information**
 
@@ -60,12 +66,13 @@ JarHC analyzes these artifacts and generates a report for various aspects.
 
 ## Report sections
 
-* [JAR Files](reports/jar-files.md) - Lists Java artifacts found on the classpath with information about their JAR files.
-* [Dependencies](reports/dependencies.md) - Lists Maven dependencies, finds unsatisfied dependencies, and analyzes the binary code for hidden dependencies.
-* [Duplicate Classes](reports/duplicate-classes.md) - Lists duplicate Java classes and resources found in Java artifacts on the classpath.
-* [Binary Compatibility](reports/binary-compatibility.md) - Validates every Java class on the classpath and checks whether it is binary-compatible other Java classes it depends on.
-* [Blacklist](reports/blacklist.md) - Reports usage of dangerous, unsafe, unstable, or deprecated classes and methods.
-* [JAR Manifests](reports/jar-manifests.md) - Lists information found in MANIFEST.MF files of the Java artifacts on the classpath.
-* [JPMS Modules](reports/jpms-modules.md) - Lists information about JPMS Modules (Java Platform Module System) found on the classpath.
-* [OSGi Bundles](reports/osgi-bundles.md) - Lists information about OSGi Bundles found on the classpath.
-* [Java Runtime](reports/java-runtime.md) - Lists information about the Java Runtime (JRE or JDK) used to run JarHC.
+* [JAR Files](reports/jar-files.md): Lists all artifacts on the classpath with their size, content, Java version, checksum, and Maven coordinates.
+* [Vulnerabilities](reports/vulnerabilities.md): Lists known security vulnerabilities for the Java artifacts on the classpath.
+* [Dependencies](reports/dependencies.md): Shows the dependencies between artifacts based on actual class usage, their declared Maven dependencies and whether these are satisfied, and available updates.
+* [Duplicate Classes](reports/duplicate-classes.md): Lists Java classes and resources that occur more than once on the classpath, including classes that shadow the Java runtime, and reports how similar the duplicates are.
+* [Binary Compatibility](reports/binary-compatibility.md): Validates every Java class on the classpath and checks whether it is binary-compatible with other Java classes it depends on, and reports missing or inaccessible classes, methods, and fields.
+* [Blacklist](reports/blacklist.md): Reports usage of dangerous, unsafe, unstable, or deprecated classes, methods, and fields, and executable files bundled as resources.
+* [JAR Manifests](reports/jar-manifests.md): Lists information found in MANIFEST.MF files of the Java artifacts on the classpath.
+* [JPMS Modules](reports/jpms-modules.md): Lists the Java module of each artifact, including explicit, automatic, and auto-generated modules.
+* [OSGi Bundles](reports/osgi-bundles.md): Lists information about OSGi Bundles found on the classpath.
+* [Java Runtime](reports/java-runtime.md): Lists information about the Java Runtime (JRE or JDK) used to run JarHC.

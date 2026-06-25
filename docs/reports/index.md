@@ -1,3 +1,9 @@
+---
+sources:
+  - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
+last_reviewed: 2026-06-25
+---
+
 # Reports
 
 The JarHC report is available in HTML, text, or JSON format. All report formats contain the same information.

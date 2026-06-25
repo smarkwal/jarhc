@@ -1,3 +1,9 @@
+---
+sources:
+  - jarhc/build.gradle.kts
+last_reviewed: 2026-06-25
+---
+
 # Project
 
 ## Requirements
