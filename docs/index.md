@@ -61,6 +61,7 @@ JarHC analyzes these artifacts and generates a report for various aspects.
 ## Report sections
 
 * [JAR Files](reports/jar-files.md) - Lists Java artifacts found on the classpath with information about their JAR files.
+* [Vulnerabilities](reports/vulnerabilities.md) - Lists known vulnerabilities for the Java artifacts on the classpath.
 * [Dependencies](reports/dependencies.md) - Lists Maven dependencies, finds unsatisfied dependencies, and analyzes the binary code for hidden dependencies.
 * [Duplicate Classes](reports/duplicate-classes.md) - Lists duplicate Java classes and resources found in Java artifacts on the classpath.
 * [Binary Compatibility](reports/binary-compatibility.md) - Validates every Java class on the classpath and checks whether it is binary-compatible other Java classes it depends on.
