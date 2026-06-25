@@ -9,6 +9,31 @@ The pages under `docs/reports/` describe the sections of a JarHC report.
 [docs/reports/jar-files.md](docs/reports/jar-files.md) is the reference example
 for the style described below.
 
+### Source tracking (front matter)
+
+Every documentation page that is derived from the source code begins with a YAML
+front matter block. It records the most important sources the page is based on
+and the date the page was last reviewed against them:
+
+```yaml
+---
+sources:
+  - jarhc/src/main/java/org/jarhc/analyzer/JarFilesAnalyzer.java
+last_reviewed: 2026-06-25
+---
+```
+
+- List only the most important sources, not every file that was read. A good
+  entry is one whose change would plausibly change what the page must say, for
+  example the analyzer of a report section and any configuration or resource that
+  drives its output. A reviewer who scans these few files should naturally reach
+  any further resources they reference, so those do not need to be listed.
+- `last_reviewed` is the date (in `YYYY-MM-DD` format) on which the page was last
+  confirmed to match its sources. Update it whenever the page is reviewed, even if
+  no content changes, because the content is still correct.
+- The front matter is page metadata. It is not rendered into the published HTML
+  and is not shown to readers.
+
 ### Tone and accuracy
 
 - Write in a precise and professional style.
@@ -34,7 +59,8 @@ Each report page follows the same skeleton:
    columns appear in the report.
 5. A closing paragraph describing any summary or total row, if the section has
    one.
-6. The screenshot link to the example report.
+6. An **Example** title (bold), followed by the screenshot link to the example
+   report.
 7. A `Next:` line linking to the next report page.
 
 ### Column documentation style
