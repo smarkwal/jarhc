@@ -43,6 +43,9 @@ class JpmsModulesAnalyzerTest {
 				.addModuleInfo(ModuleInfo.forModuleName("b").addExports("b.x").addExports("b.y").addRequires("a").addRequires("java.base"))
 				.addJarFile("C-1.0.1.jar")
 				.addJarFile("d.jar")
+				.addJarFile("Commons-IO-2.6.jar")
+				.addJarFile("foo_bar.jar")
+				.addJarFile("jboss-1.2.3.Final.jar")
 				.build();
 
 		// test
@@ -62,11 +65,14 @@ class JpmsModulesAnalyzerTest {
 		assertValuesEquals(columns, "Artifact", "Module name", "Definition", "Automatic", "Requires", "Exports");
 
 		List<String[]> rows = table.getRows();
-		assertEquals(4, rows.size());
+		assertEquals(7, rows.size());
 		assertValuesEquals(rows.get(0), "a-core", "`a`", "Manifest", "Yes", "", "[all packages]");
 		assertValuesEquals(rows.get(1), "b", "`b`", "Module-Info", "No", joinLines("`a`", "`java.base`"), "`b.x`\n`b.y`");
-		assertValuesEquals(rows.get(2), "C", "`c`", "Auto-generated", "Yes", "", "[all packages]");
+		assertValuesEquals(rows.get(2), "C", "`C`", "Auto-generated", "Yes", "", "[all packages]");
 		assertValuesEquals(rows.get(3), "d", "`d`", "Auto-generated", "Yes", "", "[all packages]");
+		assertValuesEquals(rows.get(4), "Commons-IO", "`Commons.IO`", "Auto-generated", "Yes", "", "[all packages]");
+		assertValuesEquals(rows.get(5), "foo_bar", "`foo.bar`", "Auto-generated", "Yes", "", "[all packages]");
+		assertValuesEquals(rows.get(6), "jboss.Final", "`jboss`", "Auto-generated", "Yes", "", "[all packages]");
 	}
 
 }

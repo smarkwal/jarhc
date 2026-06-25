@@ -20,8 +20,8 @@ import static org.jarhc.utils.Markdown.code;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import org.jarhc.loader.FileNameNormalizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jarhc.model.Classpath;
 import org.jarhc.model.JarFile;
 import org.jarhc.model.ModuleInfo;
@@ -30,6 +30,14 @@ import org.jarhc.report.ReportTable;
 import org.jarhc.utils.Markdown;
 
 public class JpmsModulesAnalyzer implements Analyzer {
+
+	/**
+	 * Pattern matching a hyphen followed by digits that are then followed by a
+	 * dot or the end of the string. This marks the start of the version part
+	 * when deriving an automatic module name from a JAR file name
+	 * (see {@link java.lang.module.ModuleFinder#of(java.nio.file.Path...)}).
+	 */
+	private static final Pattern DASH_VERSION = Pattern.compile("-(\\d+(\\.|$))");
 
 	@Override
 	public ReportSection analyze(Classpath classpath) {
@@ -74,6 +82,27 @@ public class JpmsModulesAnalyzer implements Analyzer {
 		}
 	}
 
+	/**
+	 * Derives the automatic module name for the given JAR file from its file name.
+	 * <p>
+	 * This implements the same algorithm the Java Platform Module System uses when
+	 * deriving an automatic module name for a JAR file on the module path
+	 * (see {@link java.lang.module.ModuleFinder#of(java.nio.file.Path...)}):
+	 * <ol>
+	 *     <li>drop the {@code .jar} file extension,</li>
+	 *     <li>find the first hyphen that is followed by a digit (and then a dot
+	 *     or the end of the string), and discard everything from that hyphen
+	 *     onwards (this is the version part),</li>
+	 *     <li>replace every non-alphanumeric character with a dot,</li>
+	 *     <li>collapse repeated dots, and strip leading and trailing dots.</li>
+	 * </ol>
+	 * Unlike the artifact name derivation (see
+	 * {@link org.jarhc.artifacts.Artifact#fromFileName(String)}), the original
+	 * case is preserved.
+	 *
+	 * @param jarFile JAR file
+	 * @return Derived automatic module name
+	 */
 	private String getModuleNameFromFileName(JarFile jarFile) {
 
 		// start with file name
@@ -84,14 +113,21 @@ public class JpmsModulesAnalyzer implements Analyzer {
 			moduleName = moduleName.substring(0, moduleName.length() - 4);
 		}
 
-		// remove version number
-		moduleName = FileNameNormalizer.getFileNameWithoutVersionNumber(moduleName);
+		// remove version number: discard everything from the first hyphen
+		// that is followed by a digit (and then a dot or the end of the string)
+		Matcher matcher = DASH_VERSION.matcher(moduleName);
+		if (matcher.find()) {
+			moduleName = moduleName.substring(0, matcher.start());
+		}
 
-		// replace all dashes with dots
-		moduleName = moduleName.replace("-", ".");
+		// replace all non-alphanumeric characters with dots
+		moduleName = moduleName.replaceAll("[^A-Za-z0-9]", ".");
 
-		// convert to lower-case
-		moduleName = moduleName.toLowerCase(Locale.ROOT);
+		// collapse repeated dots
+		moduleName = moduleName.replaceAll("\\.{2,}", ".");
+
+		// strip leading and trailing dots
+		moduleName = moduleName.replaceAll("^\\.|\\.$", "");
 
 		return moduleName;
 	}
