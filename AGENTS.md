@@ -80,3 +80,17 @@ Description of the column as one or more sentences.
   inline code: `[unknown]`, `[error]`, `[none]`, `[no class files]`.
 - Show concrete examples in inline code where they aid understanding, for example
   `Yes (Java 17, Java 11)`.
+
+### Reviewing and updating documentation
+
+The `docs-review` skill (`.agents/skills/docs-review/`) packages the workflow for
+reviewing and updating these pages. It bundles a freshness check that flags pages
+whose `sources` changed (by git commit date) after their `last_reviewed` date:
+
+```shell
+.agents/skills/docs-review/scripts/check-docs-freshness.sh
+```
+
+Run it before a release, or after changing analyzers, command line options, or
+dependencies, to find pages that need a re-review. See the skill for the
+page-by-page review and update workflow.
