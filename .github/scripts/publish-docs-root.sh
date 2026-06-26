@@ -15,7 +15,10 @@ tmp="$(mktemp -d)"
 cp docs-root/robots.txt docs-root/sitemap.xml "$tmp/"
 
 git fetch origin gh-pages
-git checkout gh-pages
+# Create or reset the local gh-pages branch to the just-fetched tip. Using
+# FETCH_HEAD (always populated by the fetch above) works whether or not a local
+# gh-pages branch already exists, without relying on remote-tracking refs.
+git checkout -B gh-pages FETCH_HEAD
 
 cp "$tmp/robots.txt" "$tmp/sitemap.xml" .
 git add robots.txt sitemap.xml
