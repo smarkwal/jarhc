@@ -1,7 +1,7 @@
 ---
 name: docs-review
 description: >
-  Review and update the JarHC project documentation under docs/. Use this whenever
+  Review and update the JarHC project documentation under website/docs/. Use this whenever
   the user wants to review documentation, update or rewrite a docs page, check
   whether documentation is stale or out of date relative to the code, verify that a
   report-section page still matches its analyzer, or add a new documentation page.
@@ -13,7 +13,7 @@ description: >
 
 # Documentation review
 
-This skill helps keep the JarHC documentation under `docs/` accurate and in a
+This skill helps keep the JarHC documentation under `website/docs/` accurate and in a
 consistent style. It does three things: find pages that may be out of date,
 update a page against its sources, and scaffold a new page.
 
@@ -35,7 +35,7 @@ with no git history:
 .agents/skills/docs-review/scripts/check-docs-freshness.sh
 ```
 
-The script works from the git repository root and scans `docs/` by default; pass
+The script works from the git repository root and scans `website/docs/` by default; pass
 a different directory as the first argument if needed. A non-zero exit code means
 at least one page needs attention. "Stale" only means a source changed after the
 review date, not that the change was necessarily doc-relevant, so each finding
@@ -69,7 +69,7 @@ broken internal links, invalid anchors, and pages missing from the navigation.
 Strict mode turns MkDocs' link and navigation validation warnings into errors:
 
 ```shell
-docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material build --strict
+docker run --rm -v "$PWD/website":/docs squidfunk/mkdocs-material build --strict
 ```
 
 A non-zero exit code means there is a link or navigation problem to fix.

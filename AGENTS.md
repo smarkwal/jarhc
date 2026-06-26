@@ -4,9 +4,9 @@ Conventions for working in the JarHC repository.
 
 ## Documentation
 
-The documentation under `docs/` is published with MkDocs (Material theme).
-The pages under `docs/reports/` describe the sections of a JarHC report.
-[docs/reports/jar-files.md](docs/reports/jar-files.md) is the reference example
+The documentation under `website/docs/` is published with MkDocs (Material theme).
+The pages under `website/docs/reports/` describe the sections of a JarHC report.
+[website/docs/reports/jar-files.md](website/docs/reports/jar-files.md) is the reference example
 for the style described below.
 
 ### Source tracking (front matter)

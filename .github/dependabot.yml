@@ -33,11 +33,11 @@ updates:
         update-types: ["version-update:semver-major"]
 
   # Python docs toolchain. The lockfile is a pip-compile output, which
-  # Dependabot supports: it regenerates the hash-pinned docs-requirements.txt
-  # (updating docs-requirements.in when a constraint must change). Grouped
+  # Dependabot supports: it regenerates the hash-pinned requirements.txt
+  # (updating requirements.in when a constraint must change). Grouped
   # into a single PR to keep the volume low.
   - package-ecosystem: "pip"
-    directory: "/"
+    directory: "/website"
     schedule:
       interval: "monthly"
     target-branch: "main"

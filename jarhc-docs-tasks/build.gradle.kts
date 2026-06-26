@@ -63,8 +63,8 @@ tasks {
 
         // arguments: <example report HTML file> <output directory for images>
         args(
-            file("$rootDir/docs/examples/asm/report.html").absolutePath,
-            file("$rootDir/docs/assets/images").absolutePath
+            file("$rootDir/website/docs/examples/asm/report.html").absolutePath,
+            file("$rootDir/website/docs/assets/images").absolutePath
         )
     }
 

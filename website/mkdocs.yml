@@ -5,7 +5,7 @@ site_author: Stephan Markwalder
 
 repo_url: https://github.com/smarkwal/jarhc
 repo_name: smarkwal/jarhc
-edit_uri: edit/main/docs/
+edit_uri: edit/main/website/docs/
 
 copyright: JarHC - JAR Health Check | <a href="https://jarhc.org">jarhc.org</a>
 
@@ -100,10 +100,6 @@ extra:
       link: https://github.com/smarkwal/jarhc
 
 # Files kept in the repo but not part of the published site:
-#  - generated self-report (written by the `jarhcReport` Gradle task)
-#  - logo source, example-report generator script
+#  - logo source
 exclude_docs: |
-  jarhc-report.html
-  jarhc-report.txt
   assets/jarhc-logo.pptx
-  examples/example-reports.sh

@@ -11,7 +11,7 @@ build/
 bin/
 
 # MkDocs build output
-/site
+/website/site
 
 # JarHC cache (note: moved to ~/.jarhc)
 /.jarhc

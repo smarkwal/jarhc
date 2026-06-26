@@ -296,8 +296,8 @@ tasks {
             configurations.runtimeClasspath
         )
         reportFiles.setFrom(
-            file("${rootDir}/docs/jarhc-report.html"),
-            file("${rootDir}/docs/jarhc-report.txt")
+            file("${rootDir}/website/docs/jarhc-report.html"),
+            file("${rootDir}/website/docs/jarhc-report.txt")
         )
         sortRows.set(true)
         ignoreMissingAnnotations.set(true)

@@ -6,9 +6,7 @@ name: Docs Check
 on:
   pull_request:
     paths:
-      - 'docs/**'
-      - 'mkdocs.yml'
-      - 'docs-requirements.txt'
+      - 'website/**'
       - '.github/workflows/docs-check.yml'
 
 permissions:
@@ -18,6 +16,12 @@ jobs:
   build:
     name: Build (strict)
     runs-on: ubuntu-latest
+
+    # All run steps execute inside the website/ folder, which holds mkdocs.yml
+    # and the docs/ content.
+    defaults:
+      run:
+        working-directory: website
 
     steps:
 
@@ -29,10 +33,10 @@ jobs:
       with:
         python-version: '3.12'
         cache: pip
-        cache-dependency-path: docs-requirements.txt
+        cache-dependency-path: website/requirements.txt
 
     - name: Install dependencies
-      run: pip install --require-hashes -r docs-requirements.txt
+      run: pip install --require-hashes -r requirements.txt
 
     - name: Build documentation
       run: mkdocs build --strict

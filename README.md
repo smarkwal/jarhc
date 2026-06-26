@@ -12,7 +12,7 @@ java -jar jarhc-app.jar [options] <artifact> [<artifact>]*
 
 More information can be found in the [documentation](https://smarkwal.github.io/jarhc/).
 
-![JarHC Logo](docs/assets/jarhc-logo.png)
+![JarHC Logo](website/docs/assets/jarhc-logo.png)
 
 ---
 

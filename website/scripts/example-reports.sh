@@ -1,12 +1,18 @@
 #!/bin/bash
 
+# Generate the example reports published under website/docs/examples/.
+# This script lives in website/scripts/ but operates on the examples directory;
+# it resolves all paths from the repository root, so it can be run from anywhere.
+repo_root="$(git rev-parse --show-toplevel)"
+cd "${repo_root}/website/docs/examples"
+
 # JarHC version
 version=3.0.1-SNAPSHOT
-jarhc=$(realpath ../../jarhc/build/libs/jarhc-${version}-app.jar)
+jarhc=$(realpath "${repo_root}/jarhc/build/libs/jarhc-${version}-app.jar")
 
 # load environment variables
 set -o allexport
-source ../../.env
+source "${repo_root}/.env"
 set +o allexport
 
 # use fixed timestamp to make reports reproducible
