@@ -12,13 +12,13 @@
 # Usage:
 #   check-docs-freshness.sh [docs-dir]
 #
-# Default docs-dir is "<repo-root>/docs". Exits non-zero if any stale page,
-# missing source, or source without git history is found.
+# Default docs-dir is "<repo-root>/website/docs". Exits non-zero if any stale
+# page, missing source, or source without git history is found.
 
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
-docs_dir="${1:-$repo_root/docs}"
+docs_dir="${1:-$repo_root/website/docs}"
 
 stale=0
 problems=0

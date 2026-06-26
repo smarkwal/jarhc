@@ -5,14 +5,17 @@
 # https://jarhc.org/robots.txt and https://jarhc.org/sitemap.xml.
 #
 # mike deploys each docs version into a sub-directory and never touches these
-# root files, so this script keeps them in sync from docs-root/ on every deploy.
-# It is idempotent: it only commits and pushes when something actually changed.
+# root files, so this script keeps them in sync from website/root/ on every
+# deploy. It is idempotent: it only commits and pushes when something changed.
 #
 set -euo pipefail
 
+# Operate from the repository root, regardless of the caller's working directory.
+cd "$(git rev-parse --show-toplevel)"
+
 # Stash the source files, since switching to gh-pages replaces the working tree.
 tmp="$(mktemp -d)"
-cp docs-root/robots.txt docs-root/sitemap.xml "$tmp/"
+cp website/root/robots.txt website/root/sitemap.xml "$tmp/"
 
 git fetch origin gh-pages
 # Create or reset the local gh-pages branch to the just-fetched tip. Using

@@ -57,5 +57,4 @@ if( [ "$1" == "prepare-commit" ] ); then
 fi
 
 # generate example reports
-cd docs/examples
-./example-reports.sh
+./website/scripts/example-reports.sh

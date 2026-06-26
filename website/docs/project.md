@@ -136,17 +136,17 @@ See [Gradle documentation](https://docs.gradle.org/current/userguide/dependency_
 #### Python (documentation)
 
 The documentation toolchain pins its Python dependencies in a hash-pinned lockfile.
-The top-level dependencies are declared in `docs-requirements.in`; the fully resolved
-lockfile `docs-requirements.txt` (every transitive dependency at an exact version plus
+The top-level dependencies are declared in `requirements.in`; the fully resolved
+lockfile `requirements.txt` (every transitive dependency at an exact version plus
 a SHA-256 hash) is generated from it with `pip-compile` (pip-tools).
 
-After editing `docs-requirements.in` — or to refresh the pinned versions — regenerate
+After editing `requirements.in` — or to refresh the pinned versions — regenerate
 the lockfile with a Python container (no local Python installation required):
 
 ```shell
-docker run --rm -v "$PWD":/work -w /work python:3.12-slim \
+docker run --rm -v "$PWD/website":/work -w /work python:3.12-slim \
   sh -c "pip install -q pip-tools && \
-         pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in"
+         pip-compile --generate-hashes --output-file=requirements.txt requirements.in"
 ```
 
 Python is pinned to 3.12 to match the version used by the documentation workflows.
@@ -175,7 +175,7 @@ The documentation is automatically built and published to GitHub Pages:
 To test the documentation locally before publishing, run:
 
 ```shell
-docker run --rm -it -p 8000:8000 -v "$PWD":/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000
+docker run --rm -it -p 8000:8000 -v "$PWD/website":/docs squidfunk/mkdocs-material serve -a 0.0.0.0:8000
 ```
 
 And then visit [http://localhost:8000](http://localhost:8000) in your browser.
@@ -183,7 +183,7 @@ And then visit [http://localhost:8000](http://localhost:8000) in your browser.
 To build and inspect the documentation locally, run:
 
 ```shell
-docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material build
+docker run --rm -v "$PWD/website":/docs squidfunk/mkdocs-material build --strict
 ```
 
-And then open the generated file `site/index.html` in your browser.
+And then open the generated file `website/site/index.html` in your browser.

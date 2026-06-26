@@ -6,7 +6,7 @@
     <option name="MAIN_CLASS_NAME" value="org.jarhc.Main" />
     <module name="jarhc.jarhc.main" />
     <option name="PROGRAM_PARAMETERS" value="--options options.txt" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/docs/examples/asm-provided" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/website/docs/examples/asm-provided" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

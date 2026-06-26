@@ -2,13 +2,13 @@
 
 Build tooling for the JarHC documentation. This subproject is **not** part of
 the published JarHC artifacts; it only contains tasks that help maintain the
-documentation under [`docs/`](../docs).
+documentation under [`website/docs/`](../website/docs).
 
 ## Generate report section screenshots
 
-The documentation pages under [`docs/reports/`](../docs/reports) embed
+The documentation pages under [`website/docs/reports/`](../website/docs/reports) embed
 screenshots of the individual sections of an example HTML report. These images
-are generated from [`docs/examples/asm/report.html`](../docs/examples/asm/report.html)
+are generated from [`website/docs/examples/asm/report.html`](../website/docs/examples/asm/report.html)
 instead of being captured manually.
 
 ```sh
@@ -17,7 +17,7 @@ instead of being captured manually.
 
 This renders the example report in a headless browser (Chromium, managed by
 [Playwright](https://playwright.dev/java/)) and writes one PNG per report
-section to [`docs/assets/images/`](../docs/assets/images), e.g.
+section to [`website/docs/assets/images/`](../website/docs/assets/images), e.g.
 `report-section-jar-files.png`. Each screenshot is cropped tightly to the
 section's content (title, description and tables). Images are rendered at 1x
 scale, since wide sections are scaled down to the content column width when
