@@ -50,16 +50,3 @@ jobs:
 
     - name: Deploy snapshot docs
       run: mike deploy --push snapshot
-
-    # Make sure the site root (https://smarkwal.github.io/jarhc/) redirects
-    # somewhere so it never returns 404. Released versions own the "latest"
-    # alias and the default (set by docs-release.yml); until the first release
-    # is published, fall back to pointing the root at "snapshot".
-    - name: Ensure the site root has a default version
-      run: |
-        if mike list 2>/dev/null | grep -q '\[.*latest.*\]'; then
-          echo "A released version already owns 'latest'; leaving the default unchanged."
-        else
-          echo "No released version yet; pointing the site root at 'snapshot'."
-          mike set-default --push snapshot
-        fi

@@ -1,4 +1,5 @@
 ---
+description: The JarHC OSGi Bundles report, OSGi bundle metadata such as symbolic name, version, and imported and exported packages.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/OSGiBundlesAnalyzer.java
 last_reviewed: 2026-06-25

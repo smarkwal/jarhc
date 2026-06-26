@@ -1,4 +1,5 @@
 ---
+description: JarHC is a static analysis tool for the JVM that helps you resolve 'JAR hell', find duplicate classes, missing dependencies, and binary incompatibilities on your classpath.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
 last_reviewed: 2026-06-25

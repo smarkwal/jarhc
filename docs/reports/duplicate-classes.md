@@ -1,4 +1,5 @@
 ---
+description: The JarHC Duplicate Classes report, classes and resources that exist in more than one JAR file on the classpath.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/DuplicateClassesAnalyzer.java
 last_reviewed: 2026-06-25

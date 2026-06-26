@@ -1,4 +1,5 @@
 ---
+description: Overview of all JarHC report sections, JAR files, dependencies, vulnerabilities, duplicate classes, binary compatibility, and more.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
 last_reviewed: 2026-06-25

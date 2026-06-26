@@ -31,8 +31,36 @@ last_reviewed: 2026-06-25
 - `last_reviewed` is the date (in `YYYY-MM-DD` format) on which the page was last
   confirmed to match its sources. Update it whenever the page is reviewed, even if
   no content changes, because the content is still correct.
-- The front matter is page metadata. It is not rendered into the published HTML
-  and is not shown to readers.
+- The `sources` and `last_reviewed` fields are internal metadata: they are not
+  rendered into the published HTML and are not shown to readers. The `description`
+  field described next is the exception, it is published.
+
+### Page description (front matter)
+
+Each page should also carry a `description` in its front matter, alongside the
+source-tracking fields:
+
+```yaml
+---
+description: The JarHC JAR Files report, an overview of every JAR file on the classpath, including size, class count, Java version, and checksums.
+sources:
+  - jarhc/src/main/java/org/jarhc/analyzer/JarFilesAnalyzer.java
+last_reviewed: 2026-06-25
+---
+```
+
+Unlike `sources` and `last_reviewed`, this field is published. MkDocs renders it
+into the page's `<meta name="description">` tag, which search engines use for the
+result snippet and which appears in link previews. Pages without it fall back to
+the site-wide `site_description` from `mkdocs.yml`.
+
+- Write one concise sentence (roughly 150 characters) stating what the page
+  covers, phrased for someone reading a search result. Follow the same tone rules
+  as the page body (precise and professional, no em dashes or other stylistic
+  tells), and keep each page's description distinct so every snippet is meaningful.
+- Do not use double quotes in the value. MkDocs does not escape them, so a `"`
+  would close the HTML attribute early and break the tag. Use single quotes if you
+  need to quote a term, for example `'JAR hell'`.
 
 ### Tone and accuracy
 

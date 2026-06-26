@@ -1,4 +1,5 @@
 ---
+description: Get started with JarHC in minutes, download the JAR, run a health check on your classpath, and read your first report.
 sources:
   - jarhc/src/main/java/org/jarhc/app/CommandLineParser.java
 last_reviewed: 2026-06-25

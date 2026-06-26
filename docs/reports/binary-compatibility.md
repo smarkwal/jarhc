@@ -1,4 +1,5 @@
 ---
+description: The JarHC Binary Compatibility report, missing classes, methods, and fields that can cause NoClassDefFoundError or NoSuchMethodError at runtime.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/BinaryCompatibilityAnalyzer.java
 last_reviewed: 2026-06-25
