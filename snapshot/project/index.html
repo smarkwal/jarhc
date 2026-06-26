@@ -1476,14 +1476,14 @@ it is missing.</p>
 <p>See <a href="https://docs.gradle.org/current/userguide/dependency_locking.html">Gradle documentation</a> for more information.</p>
 <h4 id="python-documentation">Python (documentation)<a class="headerlink" href="#python-documentation" title="Permanent link">&para;</a></h4>
 <p>The documentation toolchain pins its Python dependencies in a hash-pinned lockfile.
-The top-level dependencies are declared in <code>docs-requirements.in</code>; the fully resolved
-lockfile <code>docs-requirements.txt</code> (every transitive dependency at an exact version plus
+The top-level dependencies are declared in <code>requirements.in</code>; the fully resolved
+lockfile <code>requirements.txt</code> (every transitive dependency at an exact version plus
 a SHA-256 hash) is generated from it with <code>pip-compile</code> (pip-tools).</p>
-<p>After editing <code>docs-requirements.in</code> — or to refresh the pinned versions — regenerate
+<p>After editing <code>requirements.in</code> — or to refresh the pinned versions — regenerate
 the lockfile with a Python container (no local Python installation required):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -q pip-tools &amp;&amp; \</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">         pip-compile --generate-hashes --output-file=docs-requirements.txt docs-requirements.in&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">         pip-compile --generate-hashes --output-file=requirements.txt requirements.in&quot;</span>
 </code></pre></div>
 <p>Python is pinned to 3.12 to match the version used by the documentation workflows.
 Dependabot recognises the <code>pip-compile</code> lockfile and regenerates it (with updated
@@ -1502,13 +1502,13 @@ code runs. The corresponding version is noted in a comment on the same line:</p>
 <li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-release.yml">Docs Release</a>.</li>
 </ol>
 <p>To test the documentation locally before publishing, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
 </code></pre></div>
 <p>And then visit <a href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
 <p>To build and inspect the documentation locally, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build<span class="w"> </span>--strict
 </code></pre></div>
-<p>And then open the generated file <code>site/index.html</code> in your browser.</p>
+<p>And then open the generated file <code>website/site/index.html</code> in your browser.</p>
 
 
 
