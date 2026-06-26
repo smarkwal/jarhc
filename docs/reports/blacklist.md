@@ -1,4 +1,5 @@
 ---
+description: The JarHC Blacklist report, usage of unsafe, deprecated, or discouraged APIs detected in your JAR files.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/BlacklistAnalyzer.java
   - jarhc/src/main/resources/blacklist-patterns.txt

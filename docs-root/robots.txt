@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Allow: /latest/
+Allow: /sitemap.xml
+
+Sitemap: https://jarhc.org/sitemap.xml

@@ -1,4 +1,5 @@
 ---
+description: The JarHC JAR Manifests report, key attributes from each JAR file's MANIFEST.MF, including implementation and specification metadata.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/JarManifestsAnalyzer.java
 last_reviewed: 2026-06-25

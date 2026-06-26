@@ -1,4 +1,5 @@
 ---
+description: Run JarHC as part of your Gradle build using the official JarHC Gradle plugin.
 last_reviewed: 2026-06-25
 ---
 

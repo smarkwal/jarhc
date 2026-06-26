@@ -20,8 +20,8 @@ update a page against its sources, and scaffold a new page.
 ## Conventions live in AGENTS.md
 
 All documentation conventions (tone, the report-page skeleton, the column
-documentation style, and the front-matter schema for `sources` and
-`last_reviewed`) are defined in the repository's `AGENTS.md`, under the
+documentation style, and the front-matter schema for `sources`,
+`last_reviewed`, and `description`) are defined in the repository's `AGENTS.md`, under the
 "Documentation" section. Read it first and follow it. Do not restate those rules
 here; `AGENTS.md` is the single source of truth so the two cannot drift apart.
 
@@ -59,7 +59,8 @@ For each page that needs attention:
 
 Follow the report-page skeleton defined in `AGENTS.md`. Verify the column names
 and behavior against the analyzer, and add the analyzer (and any resource that
-drives its output) to the page's `sources` front matter.
+drives its output) to the page's `sources` front matter. Also give the page a
+`description` (see `AGENTS.md`).
 
 ## Validate the build
 

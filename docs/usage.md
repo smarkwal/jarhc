@@ -1,4 +1,5 @@
 ---
+description: Complete JarHC command-line reference, options for input artifacts, output formats (text, HTML, JSON), diff reports, and dependency resolution.
 sources:
   - jarhc/src/main/java/org/jarhc/app/CommandLineParser.java
   - jarhc/src/main/java/org/jarhc/app/Diff.java

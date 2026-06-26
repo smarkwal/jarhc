@@ -1,4 +1,5 @@
 ---
+description: About the JarHC project, goals, license, source code, how to contribute, and how to build it from source.
 sources:
   - jarhc/build.gradle.kts
 last_reviewed: 2026-06-25

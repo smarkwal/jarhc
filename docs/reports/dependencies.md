@@ -1,4 +1,5 @@
 ---
+description: The JarHC Dependencies report, direct and transitive dependencies between JAR files, and any missing or unsatisfied dependencies.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/DependenciesAnalyzer.java
 last_reviewed: 2026-06-25

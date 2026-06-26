@@ -1,4 +1,5 @@
 ---
+description: The JarHC Vulnerabilities report, known security vulnerabilities (CVEs) found in your JAR files via the OSS Index database.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/VulnerabilitiesAnalyzer.java
   - jarhc/src/main/java/org/jarhc/artifacts/Vulnerability.java

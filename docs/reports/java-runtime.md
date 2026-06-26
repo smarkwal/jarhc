@@ -1,4 +1,5 @@
 ---
+description: The JarHC Java Runtime report, information about the Java runtime environment used to run the analysis.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/JavaRuntimeAnalyzer.java
 last_reviewed: 2026-06-25

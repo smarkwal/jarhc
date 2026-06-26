@@ -63,3 +63,6 @@ jobs:
       run: |
         mike deploy --push --update-aliases "${{ steps.version.outputs.version }}" latest
         mike set-default --push latest
+
+    - name: Publish root robots.txt and sitemap.xml
+      run: .github/scripts/publish-docs-root.sh

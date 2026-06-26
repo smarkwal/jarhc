@@ -1,4 +1,5 @@
 ---
+description: The JarHC JAR Files report, an overview of every JAR file on the classpath, including size, class count, Java version, and checksums.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/JarFilesAnalyzer.java
 last_reviewed: 2026-06-25
