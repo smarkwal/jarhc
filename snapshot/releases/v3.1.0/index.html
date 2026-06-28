@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="The JarHC Binary Compatibility report, missing classes, methods, and fields that can cause NoClassDefFoundError or NoSuchMethodError at runtime.">
+        <meta name="description" content="Release notes for JarHC 3.1.0, new features, improvements, and changes.">
       
       
         <meta name="author" content="Stephan Markwalder">
       
       
-        <link rel="canonical" href="https://jarhc.org/latest/snapshot/reports/binary-compatibility/">
+        <link rel="canonical" href="https://jarhc.org/latest/snapshot/releases/v3.1.0/">
       
       
-        <link rel="prev" href="../duplicate-classes/">
+        <link rel="prev" href="../../reports/java-runtime/">
       
       
-        <link rel="next" href="../blacklist/">
+        <link rel="next" href="../v3.0.0/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Binary Compatibility - JarHC - JAR Health Check</title>
+        <title>Version 3.1.0 - JarHC - JAR Health Check</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#binary-compatibility" class="md-skip">
+        <a href="#version-310" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Binary Compatibility
+              Version 3.1.0
             
           </span>
         </div>
@@ -402,8 +402,6 @@
       
   
   
-    
-  
   
   
     
@@ -416,11 +414,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -441,7 +439,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -459,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../reports/" class="md-nav__link">
         
   
   
@@ -487,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jar-files/" class="md-nav__link">
+      <a href="../../reports/jar-files/" class="md-nav__link">
         
   
   
@@ -515,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vulnerabilities/" class="md-nav__link">
+      <a href="../../reports/vulnerabilities/" class="md-nav__link">
         
   
   
@@ -543,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dependencies/" class="md-nav__link">
+      <a href="../../reports/dependencies/" class="md-nav__link">
         
   
   
@@ -571,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../duplicate-classes/" class="md-nav__link">
+      <a href="../../reports/duplicate-classes/" class="md-nav__link">
         
   
   
@@ -596,19 +594,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reports/binary-compatibility/" class="md-nav__link">
         
   
   
@@ -624,7 +613,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -637,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blacklist/" class="md-nav__link">
+      <a href="../../reports/blacklist/" class="md-nav__link">
         
   
   
@@ -665,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jar-manifests/" class="md-nav__link">
+      <a href="../../reports/jar-manifests/" class="md-nav__link">
         
   
   
@@ -693,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jpms-modules/" class="md-nav__link">
+      <a href="../../reports/jpms-modules/" class="md-nav__link">
         
   
   
@@ -721,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../osgi-bundles/" class="md-nav__link">
+      <a href="../../reports/osgi-bundles/" class="md-nav__link">
         
   
   
@@ -749,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java-runtime/" class="md-nav__link">
+      <a href="../../reports/java-runtime/" class="md-nav__link">
         
   
   
@@ -781,8 +769,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -793,11 +783,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
@@ -818,7 +808,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -833,10 +823,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../releases/v3.1.0/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version 3.1.0
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -852,6 +869,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Highlights
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -864,7 +923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/v3.0.0/" class="md-nav__link">
+      <a href="../v3.0.0/" class="md-nav__link">
         
   
   
@@ -939,6 +998,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Highlights
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -957,41 +1046,36 @@
   
 
 
-<h1 id="binary-compatibility">Binary Compatibility<a class="headerlink" href="#binary-compatibility" title="Permanent link">&para;</a></h1>
-<p>Checks whether the compiled code on the classpath is
-<a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-13.html">binary compatible</a>,
-that is, whether every class, method, and field referenced by a class is actually
-present, accessible, and compatible. Only artifacts with at least one issue are listed,
-with one row per artifact.</p>
-<p>The table contains the following columns:</p>
-<p><strong>Artifact</strong></p>
-<p>The name of the artifact that contains the issues.</p>
-<p><strong>Issues</strong></p>
-<p>The binary compatibility issues found in the artifact. Issues are grouped by the
-class in which they occur, or by the manifest attribute they relate to, with each
-individual problem listed below. The following kinds of issues are reported:</p>
+<h1 id="version-310">Version 3.1.0<a class="headerlink" href="#version-310" title="Permanent link">&para;</a></h1>
+<h3 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">&para;</a></h3>
+<p><strong>New report section: Vulnerabilities</strong></p>
+<p>Lists known security vulnerabilities (CVEs) for the artifacts on the classpath, one row per advisory. For every artifact that can be identified by its Maven coordinates, JarHC looks up known security advisories from a public vulnerability database and reports the CVE, affected artifacts, CVSS severity, a short description, and a link to the advisory.</p>
+<p><strong>Analyze artifacts in isolation</strong></p>
+<p>The new command line option <code>--isolated-scan</code> analyzes every artifact on the classpath separately. This is useful for a classpath that contains multiple versions of the same library, or for a set of independent libraries such as plugins of a framework.</p>
+<h3 id="other-changes">Other changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<p><strong>Application</strong></p>
 <ul>
-<li>Missing classes, methods, or fields that are referenced but cannot be found on
-  the classpath. When a class is missing, the report also indicates whether its
-  package was found.</li>
-<li>Inaccessible classes, methods, or fields, including illegal access across
-  packages or modules, and classes that are not exported by their module.</li>
-<li>Class hierarchy problems, such as a superclass or interface that cannot be
-  found, a final superclass, an interface that is actually a class, or a violated
-  sealed class constraint.</li>
-<li>Abstract methods that are not implemented by a concrete class.</li>
-<li>Incompatible member usage, such as static access to an instance member or the
-  reverse, an incompatible field type, or write access to a final field.</li>
-<li>Annotation problems, such as a missing annotation type or a class used as an
-  annotation that is not one.</li>
-<li>Class files compiled for a newer Java version than the multi-release folder
-  they are bundled in.</li>
-<li>Manifest problems, such as a <code>Main-Class</code> that does not exist or has no valid
-  main method, or a <code>Class-Path</code> entry that cannot be found or is not a JAR file.</li>
+<li>Support the Java system properties <code>jarhc.repository.url</code>, <code>jarhc.repository.username</code>, and <code>jarhc.repository.password</code> to configure the Maven repository.</li>
+<li>Log an INFO message when an artifact cannot be identified by its checksum.</li>
 </ul>
-<p><strong>Example</strong></p>
-<p><a href="../../examples/asm/report.html#BinaryCompatibility" rel="noopener" target="_blank"><img alt="Binary Compatibility" src="../../assets/images/report-section-binary-compatibility.png" /></a></p>
-<p>Next: <a href="../blacklist/">Blacklist</a></p>
+<p><strong>Report</strong></p>
+<ul>
+<li>Add new section "Vulnerabilities", placed after "JAR Files".</li>
+</ul>
+<p><strong>Dependencies</strong></p>
+<ul>
+<li>Merge the "Status" column into the "Direct dependencies" column, so each direct dependency is shown together with its status on the same line. This produces clearer diff reports.</li>
+</ul>
+<p><strong>HTML report</strong></p>
+<ul>
+<li>Auto-expand the section targeted by the URL anchor, so deep links and bookmarks to collapsed sections open the right section automatically.</li>
+<li>Use <code>central.sonatype.com</code> instead of <code>search.maven.org</code> for checksum-based links.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Use Google's deps.dev API to identify artifacts by their checksum.</li>
+<li>Update plexus-utils to version 3.6.1 to fix CVE-2025-67030.</li>
+</ul>
 
 
 
