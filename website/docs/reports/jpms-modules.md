@@ -2,7 +2,7 @@
 description: The JarHC JPMS Modules report, Java Platform Module System module names, automatic modules, and module descriptors for your JAR files.
 sources:
   - jarhc/src/main/java/org/jarhc/analyzer/JpmsModulesAnalyzer.java
-last_reviewed: 2026-06-25
+last_reviewed: 2026-06-28
 ---
 
 # JPMS Modules

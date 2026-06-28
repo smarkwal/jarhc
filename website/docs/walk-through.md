@@ -1,8 +1,8 @@
 ---
 description: A step-by-step walk-through of a JarHC report, explaining each section using a real-world example library.
 sources:
-  - docs/examples/asm-commons/report.txt
-last_reviewed: 2026-06-25
+  - website/docs/examples/asm-commons/report.txt
+last_reviewed: 2026-06-28
 ---
 
 # Walk-through
