@@ -1,7 +1,7 @@
 {
    "title": "JarHC 2.2.2",
    "type": "SCAN",
-   "version": "3.0.1-SNAPSHOT",
+   "version": "3.1.0",
    "sections": [
       {
          "description": "List of JAR files found in classpath.",
@@ -1305,7 +1305,7 @@
                ],
                [
                   "listenablefuture",
-                  "`listenablefuture.empty.to.avoid.conflict.with.guava`",
+                  "`listenablefuture`",
                   "Auto-generated",
                   "Yes",
                   "",
