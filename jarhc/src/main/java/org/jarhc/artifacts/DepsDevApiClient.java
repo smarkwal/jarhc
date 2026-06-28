@@ -39,11 +39,11 @@ import org.slf4j.Logger;
 class DepsDevApiClient {
 
 	private final Logger logger;
-	private final DepsDevSettings settings;
+	private final DepsDevApiSettings settings;
 
 	private final AtomicBoolean statusInfoLogged = new AtomicBoolean(false);
 
-	DepsDevApiClient(Logger logger, DepsDevSettings settings) {
+	DepsDevApiClient(Logger logger, DepsDevApiSettings settings) {
 		this.logger = logger;
 		this.settings = settings;
 	}

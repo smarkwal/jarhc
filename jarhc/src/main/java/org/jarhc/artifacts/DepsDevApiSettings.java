@@ -28,7 +28,7 @@ import java.util.Properties;
  * (system property {@code jarhc.depsdev.url}); the individual endpoint paths are
  * appended by the respective client.
  */
-public class DepsDevSettings {
+public class DepsDevApiSettings {
 
 	private static final String DEFAULT_BASE_URL = "https://api.deps.dev/v3";
 	private static final int DEFAULT_TIMEOUT = 30;
@@ -43,7 +43,7 @@ public class DepsDevSettings {
 	 *
 	 * @return Settings loaded from Java System Properties.
 	 */
-	public static DepsDevSettings fromSystemProperties() {
+	public static DepsDevApiSettings fromSystemProperties() {
 		return fromProperties(System.getProperties());
 	}
 
@@ -53,7 +53,7 @@ public class DepsDevSettings {
 	 * @param properties Java properties
 	 * @return Settings loaded from Java properties.
 	 */
-	public static DepsDevSettings fromProperties(Properties properties) {
+	public static DepsDevApiSettings fromProperties(Properties properties) {
 
 		// base URL of the deps.dev API (a trailing slash is removed so that
 		// endpoint paths can be appended safely)
@@ -76,10 +76,10 @@ public class DepsDevSettings {
 			}
 		}
 
-		return new DepsDevSettings(baseUrl, timeout, headers);
+		return new DepsDevApiSettings(baseUrl, timeout, headers);
 	}
 
-	public DepsDevSettings(String baseUrl, int timeout, Map<String, String> headers) {
+	public DepsDevApiSettings(String baseUrl, int timeout, Map<String, String> headers) {
 		this.baseUrl = baseUrl;
 		this.timeout = timeout;
 		this.headers = headers;

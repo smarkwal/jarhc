@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 class DepsDevApiArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(DepsDevApiArtifactFinder.class);
-	private final DepsDevSettings settings = Mockito.mock(DepsDevSettings.class);
+	private final DepsDevApiSettings settings = Mockito.mock(DepsDevApiSettings.class);
 	private final DepsDevApiArtifactFinder artifactFinder = new DepsDevApiArtifactFinder(logger, settings);
 
 	@BeforeEach

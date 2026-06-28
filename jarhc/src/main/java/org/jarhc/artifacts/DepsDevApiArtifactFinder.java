@@ -47,24 +47,21 @@ public class DepsDevApiArtifactFinder implements ArtifactFinder {
 	// incompatible with hash queries (the API responds with HTTP 404). Results are
 	// filtered to the Maven system on the client side instead.
 
-	// endpoint path appended to the deps.dev base URL (see DepsDevSettings)
+	// endpoint path appended to the deps.dev base URL (see DepsDevApiSettings)
 	private static final String QUERY_PATH = "/query?hash.type=SHA1&hash.value=%s";
 
 	private static final String MAVEN_SYSTEM = "MAVEN";
 
 	private final Logger logger;
-	private final DepsDevSettings settings;
+	private final DepsDevApiSettings settings;
 	private final DepsDevApiClient client;
 
 	public DepsDevApiArtifactFinder() {
-		this(LoggerFactory.getLogger(DepsDevApiArtifactFinder.class), DepsDevSettings.fromSystemProperties());
+		this(LoggerFactory.getLogger(DepsDevApiArtifactFinder.class), DepsDevApiSettings.fromSystemProperties());
 	}
 
-	public DepsDevApiArtifactFinder(Logger logger) {
-		this(logger, DepsDevSettings.fromSystemProperties());
-	}
-
-	DepsDevApiArtifactFinder(Logger logger, DepsDevSettings settings) {
+	// visible for testing
+	public DepsDevApiArtifactFinder(Logger logger, DepsDevApiSettings settings) {
 		this.logger = logger;
 		this.settings = settings;
 		this.client = new DepsDevApiClient(logger, settings);
