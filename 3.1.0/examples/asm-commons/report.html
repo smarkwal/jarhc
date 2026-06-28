@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
+<html lang="en">
+<head>
+	<title>ASM Commons 9.9</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="JarHC 3.1.0">
+	<style>
+
+		html {
+			scroll-padding-top: 80px;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			line-height: 1.2rem;
+		}
+
+		a {
+			color: #333399;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:visited {
+				color: #333399;
+			}
+		}
+
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			background-color: lightgray;
+			padding: 12px;
+			z-index: 100;
+		}
+
+		#controls {
+			display: flex;
+			align-self: flex-start;
+		}
+
+		.control {
+			display: flex;
+			align-items: center;
+			padding: 8px;
+			margin-right: 10px;
+			background-color: #EEEEEE;
+			border-radius: 8px;
+			user-select: none;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+
+		#showOnlyDiffControl {
+			display: none;
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
+
+		.label {
+			margin-left: 0.5em;
+		}
+
+		#generator {
+			align-self: flex-end;
+			margin-right: 20px;
+			padding: 8px;
+		}
+
+		#minimap {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 70px;
+			left: 10px;
+			width: 70px;
+			height: calc(100% - 80px);
+			z-index: 80;
+			user-select: none;
+			background-color: #EEEEEE;
+		}
+
+		#minimapView {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
+			height: 0;
+			z-index: 90; /* float above minimap */
+			pointer-events: none;
+			user-select: none;
+			border: 4px solid black;
+		}
+
+		.minimapSection {
+			position: absolute;
+			left: 2px;
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
+			padding: 2px;
+			background-color: lightgray;
+			overflow: hidden;
+		}
+
+		.minimapSectionTitle {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1em;
+			overflow-wrap: break-word;
+		}
+
+		#main {
+			margin: 80px 20px 20px 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding: 0;
+			line-height: 1.7em;
+		}
+
+		h2, h3, h4, h5, h6 {
+			margin-top: 3rem;
+		}
+
+		.report-section-title {
+			background-color: black;
+			color: white;
+			padding: 10px 10px 10px 45px;
+			user-select: none;
+
+			/* collapse icon */
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L30,30L30,10"/%3E%3Cpath d="M70,30L50,30L50,10"/%3E%3Cpath d="M10,50L30,50L30,70"/%3E%3Cpath d="M70,50L50,50L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			background-position: center left 5px;
+			background-repeat: no-repeat;
+			background-size: 30px 30px;
+		}
+
+		section.collapsed {
+			.report-section-title { /* replace collapse icon with expand icon */
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L10,10L30,10"/%3E%3Cpath d="M70,30L70,10L50,10"/%3E%3Cpath d="M10,50L10,70L30,70"/%3E%3Cpath d="M70,50L70,70L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			.report-section-content {
+				display: none;
+			}
+		}
+
+		.report-section-content {
+			margin-left: 10px;
+		}
+
+		table {
+			border-collapse: collapse;
+			font-size: 0.8rem;
+		}
+
+		th {
+			background-color: lightgray;
+		}
+
+		th, td {
+			border: 1px solid gray;
+			padding: 0.3rem;
+			vertical-align: top;
+			text-align: left;
+			white-space: nowrap;
+		}
+
+		.report-text-block {
+			margin-bottom: 1em;
+
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
+		}
+
+		.report-issue {
+		}
+
+		code {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: #333399;
+		}
+
+		.inserted {
+			background-color: #D4EDDA;
+		}
+
+		.deleted {
+			background-color: #F8D7DA;
+		}
+
+		.marked {
+			background-color: #FFF6D8;
+		}
+
+		/* special diff report settings */
+
+		.diff-report {
+
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff,
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+		}
+
+		/* special print settings */
+
+		@media print {
+
+			header,
+			#minimap,
+			#minimapView,
+			nav {
+				display: none !important;
+			}
+
+			main {
+				margin: 0;
+			}
+
+			th, td {
+				white-space: normal;
+			}
+
+		}
+
+	</style>
+	<script>
+
+		const HEADER_HEIGHT = 80;
+		const MINIMAP_VSPACE = 10;
+
+		let MINIMAP_ENABLED = false;
+
+		function init() {
+
+			// check if document is a diff report
+			const isDiffReport = "scan" === "diff"
+			if (isDiffReport) {
+				initDiffUI();
+			}
+
+			initMinimap();
+			initCollapseExpand();
+			initExpandFromHash();
+			initRowMarking();
+			initKeyboardShortcuts();
+		}
+
+		function initDiffUI() {
+
+			// support click on control (outside of checkbox and label)
+			const control = document.getElementById("showOnlyDiffControl");
+			control.addEventListener("click", function(event) {
+				if (event.target === control) { // ignore clicks on nested elements
+					// similate click on checkbox
+					const checkbox = document.getElementById("showOnlyDiffCheckbox");
+					checkbox.click();
+				}
+			});
+		}
+
+		function initMinimap() {
+
+			window.addEventListener("scroll", updateMinimapView);
+			window.addEventListener("resize", updateMinimap);
+
+			const minimap = document.getElementById("minimap");
+			minimap.addEventListener("click", scrollMinimapView);
+			// TODO: on mouse drag
+		}
+
+		function initCollapseExpand() {
+
+			// for every report section ...
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				const title = section.querySelector("h2, h3, h4, h5, h6");
+				if (title) {
+					title.addEventListener("click", () => {
+						section.classList.toggle("collapsed");
+						updateMinimap();
+					});
+				}
+			}
+		}
+
+		function initExpandFromHash() {
+			expandHashTarget();
+			// expand on hash change (e.g. back/forward navigation)
+			window.addEventListener("hashchange", expandHashTarget);
+			// also expand on in-page anchor clicks (e.g. from the Table of Contents);
+			// this also covers clicks re-selecting the current hash, which fire no "hashchange" event
+			for (let link of document.querySelectorAll('a[href^="#"]')) {
+				link.addEventListener("click", () => setTimeout(expandHashTarget));
+			}
+		}
+
+		function expandHashTarget() {
+			if (!location.hash) return;
+			let id;
+			try {
+				id = decodeURIComponent(location.hash.substring(1));
+			} catch (e) {
+				id = location.hash.substring(1); // malformed escape: fall back to raw fragment
+			}
+			const target = document.getElementById(id);
+			if (!target) return;
+			const section = target.closest(".report-section");
+			if (section && section.classList.contains("collapsed")) {
+				section.classList.remove("collapsed");   // expand only, never collapse
+				updateMinimap();
+				section.scrollIntoView();                // re-align: expanding shifted the layout
+			}
+		}
+
+		function initRowMarking() {
+
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				row.addEventListener("dblclick", () => {
+					row.classList.toggle("marked");
+				});
+			}
+		}
+
+		function initKeyboardShortcuts() {
+
+			// prepare event handler
+			function handleShortcut(event) {
+				if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+					event.preventDefault();
+					// scroll to previous section
+					scrollToSection(false);
+				} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+					event.preventDefault();
+					// scroll to next section
+					scrollToSection(true);
+				}
+			}
+
+			// register event handler
+			document.addEventListener("keydown", handleShortcut);
+		}
+
+		function scrollToSection(next) {
+
+			const targetY = HEADER_HEIGHT; // target scroll position (relative to viewport)
+
+			// find next section
+			let nextSection = null;
+			let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
+
+			// iterate over all sections
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// get position of section (relative to viewport)
+				const sectionY = section.getBoundingClientRect().top;
+
+				// check if section is closer than previous next section
+				let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+				if (better) {
+					nextSection = section;
+					nextSectionY = sectionY;
+				}
+			}
+
+			// if there is a next section ...
+			if (nextSection) {
+
+				// get current vertical scroll position
+				const scrollY = window.scrollY;
+
+				// scroll to next section
+				window.scrollTo(0, scrollY + nextSectionY - targetY);
+
+			} else if (!next) { // if there is no previous section
+
+				// scroll to top
+				window.scrollTo(0, 0);
+			}
+
+		}
+
+		function showOnlyDiff(enabled) {
+
+			// show or hide table rows
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				if (row.classList.contains("no-diff")) {
+					if (enabled) {
+						row.style.display = "none";
+					} else {
+						row.style.display = "table-row";
+					}
+				}
+			}
+
+			// show or hide issues
+			const issues = document.getElementsByClassName("report-issue");
+			for (let issue of issues) {
+				if (issue.classList.contains("no-diff")) {
+					if (enabled) {
+						issue.style.display = "none";
+					} else {
+						issue.style.display = "block";
+					}
+				}
+			}
+
+			// update minimap
+			updateMinimap();
+		}
+
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
+		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const minimapHeight = minimap.clientHeight;
+
+			// prepare list of new minimap elements
+			const elements = [];
+
+			let previousElementBottom = -MINIMAP_VSPACE;
+
+			// iterate over all report tables and add them to the minimap
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// TODO: fix position
+				let elementTop = (section.offsetTop - HEADER_HEIGHT) * minimapHeight / documentHeight;
+				let elementHeight = section.clientHeight * minimapHeight / documentHeight - MINIMAP_VSPACE;
+
+				const minElementTop = previousElementBottom + MINIMAP_VSPACE;
+				if (elementTop < minElementTop) {
+					elementHeight = elementHeight - (minElementTop - elementTop);
+					elementTop = minElementTop;
+				}
+
+				const minElementHeight = 16; // 12px font size + 2 x 2px padding
+				if (elementHeight < minElementHeight) {
+					elementHeight = minElementHeight;
+				}
+
+				const title = document.createElement("div");
+				title.classList.add("minimapSectionTitle");
+				title.innerText = section.title;
+				title.addEventListener("click", function(event) {
+					window.scrollTo(0, section.offsetTop - HEADER_HEIGHT);
+					event.stopPropagation();
+				})
+
+				const element = document.createElement("div");
+				element.classList.add("minimapSection");
+				element.style.top = elementTop + "px";
+				element.style.height = elementHeight + "px";
+				element.appendChild(title);
+				elements.push(element);
+
+				previousElementBottom = elementTop + elementHeight;
+			}
+
+			// TODO: iterate over all differences and add them to the minimap
+
+			// replace content of minimap
+			minimap.replaceChildren(...elements);
+
+			updateMinimapView();
+		}
+
+		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const scrollY = window.scrollY;
+
+			// calculate new position and height of minimap view
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 4;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+
+			// update position and height of minimap view
+			const minimapView = document.getElementById("minimapView");
+			minimapView.style.top = minimapViewTop + "px";
+			minimapView.style.height = minimapViewHeight + "px";
+		}
+
+		function scrollMinimapView(event) {
+			const minimap = document.getElementById("minimap");
+
+			// calculate height of minimap view
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+			const minimapViewOffset = minimapViewHeight / 2;
+
+			// calculate position of minimap view (relative to top of minimap)
+			let y = event.clientY - minimap.offsetTop;
+			if (y < minimapViewOffset) {
+				y = minimapViewOffset;
+			} else if (y > minimapHeight - minimapViewOffset) {
+				y = minimapHeight - minimapViewOffset;
+			}
+			y = y - minimapViewOffset;
+
+			const scrollY = y / minimapHeight * document.body.scrollHeight;
+			window.scrollTo(0, scrollY);
+
+			updateMinimapView();
+		}
+
+	</script>
+</head>
+<body class="report scan-report" onload="init()">
+
+	<header id="header">
+		<div id="controls">
+			<div class="control" onclick="scrollToSection(true)" title="Ctrl+&#x2193;"><span class="icon icon-down"></span><span class="label">Next section</span></div>
+			<div class="control" onclick="scrollToSection(false)" title="Ctrl+&#x2191;"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
+			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
+		</div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.1.0</a></div>
+	</header>
+
+	<div id="minimap"></div>
+	<div id="minimapView"></div>
+
+	<main id="main">
+		<h1 class="report-title">ASM Commons 9.9</h1>
+		
+<nav>
+<h2 class="report-toc-title">Table of Contents</h2>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Vulnerabilities">Vulnerabilities</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
+<li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
+</ul>
+</nav>
+
+<section class="report-section" id="JARFiles" title="JAR Files">
+<h2 class="report-section-title">JAR Files</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>9.9</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>72.6 KB</td>
+		<td>No</td>
+		<td>Java 5 (27)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td><a href="https://central.sonatype.com/search?q=1:db9165a3bf908ded6b08612d583a15d1d0c7bda0" target="_blank" rel="noopener noreferrer">db9165a3bf908ded6b08612d583a15d1d0c7bda0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>72.6 KB</td>
+		<td>-</td>
+		<td>Java 5 (27)</td>
+		<td>0</td>
+		<td>1</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Vulnerabilities" title="Vulnerabilities">
+<h2 class="report-section-title">Vulnerabilities</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Known security vulnerabilities found in the artifacts.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>CVE</th>
+		<th>Artifacts</th>
+		<th>Severity</th>
+		<th>Description</th>
+		<th>Advisory</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9.1" target="_blank" rel="noopener noreferrer">9.9.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.10" target="_blank" rel="noopener noreferrer">9.10</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.10.1" target="_blank" rel="noopener noreferrer">9.10.1</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:9.9</a> <span style="color:orange">[not found]</span><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.9</a> <span style="color:orange">[not found]</span></div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AdviceAdapter</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitCode()</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitFieldInsn(int,java.lang.String,java.lang.String,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInsn(int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitIntInsn(int,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitInvokeDynamicInsn(java.lang.String,java.lang.String,org.objectweb.asm.Handle,java.lang.Object[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitJumpInsn(int,org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLabel(org.objectweb.asm.Label)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLdcInsn(java.lang.Object)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitLookupSwitchInsn(org.objectweb.asm.Label,int[],org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String,boolean)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitMultiANewArrayInsn(java.lang.String,int)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTableSwitchInsn(int,int,org.objectweb.asm.Label,org.objectweb.asm.Label[])</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTryCatchBlock(org.objectweb.asm.Label,org.objectweb.asm.Label,org.objectweb.asm.Label,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Method not found: <code>void org.objectweb.asm.commons.GeneratorAdapter.visitTypeInsn(int,java.lang.String)</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AdviceAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AdviceAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnalyzerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnalyzerAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.AnalyzerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.AnalyzerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.AnnotationRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.AnnotationVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.AnnotationRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.AnnotationVisitor org.objectweb.asm.commons.AnnotationRemapper.av</code><br>&gt; <code>org.objectweb.asm.commons.AnnotationRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.AnnotationVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ClassRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.RecordComponentVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.ClassRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.ClassRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.ClassVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.CodeSizeEvaluator</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.CodeSizeEvaluator.api</code><br>&gt; <code>org.objectweb.asm.commons.CodeSizeEvaluator</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.FieldRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.FieldVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.FieldRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.FieldRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.FieldVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.GeneratorAdapter</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.GeneratorAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.GeneratorAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.commons.LocalVariablesSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.InstructionAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.InstructionAdapter.api</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.InstructionAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.InstructionAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.JSRInlinerAdapter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Interface not found: <code>org.objectweb.asm.Opcodes</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.JumpInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LocalVariableNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LookupSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TableSwitchInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.JSRInlinerAdapter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (method not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.localVariables</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.JSRInlinerAdapter.mv</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.JSRInlinerAdapter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.JSRInlinerAdapter$Instantiation</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.JSRInlinerAdapter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.JSRInlinerAdapter</code> (field not found)<br>&gt; <code>org.objectweb.asm.Opcodes</code> (class not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.LocalVariablesSorter</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Opcodes</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.Method</code><br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.MethodRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.MethodVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.MethodRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.MethodRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.MethodVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleHashesAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.ModuleVisitor</code><br>• Class not found: <code>org.objectweb.asm.ModuleVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleResolutionAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.ModuleTargetAttribute</code><br>• Superclass not found: <code>org.objectweb.asm.Attribute</code><br>• Class not found: <code>org.objectweb.asm.Attribute</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ByteVector</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.ClassWriter</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.RecordComponentRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.RecordComponentVisitor</code><br>• Class not found: <code>org.objectweb.asm.AnnotationVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.RecordComponentVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.TypePath</code> (package not found)<br>• Field not found: <code>int org.objectweb.asm.commons.RecordComponentRemapper.api</code><br>&gt; <code>org.objectweb.asm.commons.RecordComponentRemapper</code> (field not found)<br>&gt; <code>org.objectweb.asm.RecordComponentVisitor</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.Remapper</code><br>• Class not found: <code>org.objectweb.asm.ConstantDynamic</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.Type</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureReader</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.signature.SignatureWriter</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.SerialVersionUIDAdder</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.FieldVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.SignatureRemapper</code><br>• Superclass not found: <code>org.objectweb.asm.signature.SignatureVisitor</code><br>• Class not found: <code>org.objectweb.asm.signature.SignatureVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.SimpleRemapper</code><br>• Class not found: <code>org.objectweb.asm.Handle</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.StaticInitMerger</code><br>• Superclass not found: <code>org.objectweb.asm.ClassVisitor</code><br>• Class not found: <code>org.objectweb.asm.ClassVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TableSwitchGenerator</code><br>• Class not found: <code>org.objectweb.asm.Label</code> (package not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TryCatchBlockSorter</code><br>• Superclass not found: <code>org.objectweb.asm.tree.MethodNode</code><br>• Class not found: <code>org.objectweb.asm.MethodVisitor</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.MethodNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Method not found: <code>void org.objectweb.asm.commons.TryCatchBlockSorter.accept(org.objectweb.asm.MethodVisitor)</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (method not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>org.objectweb.asm.MethodVisitor org.objectweb.asm.commons.TryCatchBlockSorter.mv</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)<br>• Field not found: <code>java.util.List org.objectweb.asm.commons.TryCatchBlockSorter.tryCatchBlocks</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+			<div class="report-text-block report-issue no-diff"><code>org.objectweb.asm.commons.TryCatchBlockSorter$1</code><br>• Class not found: <code>org.objectweb.asm.tree.AbstractInsnNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.InsnList</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.LabelNode</code> (package not found)<br>• Class not found: <code>org.objectweb.asm.tree.TryCatchBlockNode</code> (package not found)<br>• Field not found: <code>org.objectweb.asm.tree.InsnList org.objectweb.asm.commons.TryCatchBlockSorter.instructions</code><br>&gt; <code>org.objectweb.asm.commons.TryCatchBlockSorter</code> (field not found)<br>&gt; <code>org.objectweb.asm.tree.MethodNode</code> (class not found)</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JARManifests" title="JAR Manifests">
+<h2 class="report-section-title">JAR Manifests</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>9.9</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JPMSModules" title="JPMS Modules">
+<h2 class="report-section-title">JPMS Modules</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>java.base</code></div>
+		</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="OSGiBundles" title="OSGi Bundles">
+<h2 class="report-section-title">OSGi Bundles</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>9.9</td>
+		<td>
+			<div class="report-text-block no-diff">License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt<br>Doc URL: http://asm.ow2.org</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>9.9</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>9.9</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>9.9</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: <code>9.9</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="JavaRuntime" title="Java Runtime">
+<h2 class="report-section-title">Java Runtime</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
+<p class="report-content no-diff">Java home    : <code>/opt/java-17</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.19</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+</div>
+</section>
+
+
+	</main>
+
+</body>
+<!-- JSON REPORT DATA
+H4sIAAAAAAAA/+1cbXPauBb+KxpmP5AZcCCdNoWd3juE0C1pSDKhzf2QMBNhi6CNkby2TMru9L/vkWzAxi/YYJIml8504ljHRzqPnnP0mvNPSVBhklKz1Or3UJtPJpw5qKE1SpWSmFmyoN9uXcBvU2I7lDN48U6razV44xBdwBun1Lz9p2QQR7epJTyRc+oIxEforHWN
+RtQkDhpxlxmIMqSb2HEsLMaarMKvXMp9lnLwTudMECaUVp2b7kTVUGrZgo6wLkDixm9KpdTnrq0T+UD/lj96rilo1SYmwY78/QxPMfJbjsqqauIcQME1cdSnssIrrD/iB/XYHhP90XEnqNz/0qrWpWSbc9ugDAsl0HUcFx4GlZLNn2S7bkvYmVR1DzgQ8KC7veX2g8af
+jjQobQYkmlA+GIDE8ZH2AX09gacLPm/oe1Q+OpZ1SnTvlYbhnwDyExlKPZqv415WYAwb9Q/v8bvhqFH7aBDjw7D28UP9yHj/8R2uvzfqRk0/Hhq4NiiPhbCc5uGhDqDa2NQcDsZA10p1hw7Btj7+71+f6s2sGg8y2QcQ3Zba876GF1X//9Lwaqzd9YBstTQY/Bz8rKzS
+6yvjTwwB/1ybihmauiYjNh5Skwoa5JoYE4R93jhBvt2Ev0hmXfumA4Vz7knBPgE+Qa3weBpoFAgZU+pwexYgR2zjT4lFmEGYLps6JNC7hC0dpYIwtB07yCBAV5soO64ue6o0aEJQTSav+e4oQfhhoKFsfg9PoWY9xO/vluE/nVIbqAfNCFSTTPtbxhkZhB7WUuQWHrT6
+oJwip9UP7hjI1WtpYvXaQQUpqXR1sjyevcImxGsXAgOEx6ABVL0qGRVKoOipa5lUByyRH3UqyBljgz8B+os3squNhaA9j0mhbl4Ut72vUrgqBQ7nkW0RHRVp6YQCmyRt17AThgBwWKo8Y4aoCndRlgZbeALksWco9GEmQq6NpckhUJPOppOWgS1B7Ps7duce1Y6OUBfq
+tEE9QYsOaqIYNZeWzsHu5YcKuzUftaFigZk4nTE8ofo9KlveyLH87iCXwi/Q/ybZXs85HhJzezU9IsbcuKEOFdzeXt0c460VfYPBKl2L1/KQmimnBkrmzx9Exn+w06eQNpVmt6HB5QNgxX/i2pH0LbRtstKAgzUqzrmOzRtwSDwEb+pzO5+a1Z7SwygWD8xnSkyjyxxW
+pkxU/oRBWzMxe9D6wqbsYf2LPaZRTOdw7rGJw2YBT2UPUQJEU/5I/LFIgbXeLZOGoIDkpSq+Hewhj0J+5k6sBS0ThuE9blHcFDDlPWDZATNWPdpzyz1WMVhx/uha/Scq9LECLYFnchy5HSS57T7gxWHr6dli3lcZcm4SzPbgxoAr9ypbF+SpZdt4Fj+C7+c+sdB9k+0M
+uLw/TUxy7r3T5wLXnrUxIHticv0xMZrmfb9fEWZAfmaRxGD7lgBT2wkhvMDiFLhCu30atug6LMLbg6g8CleYZMByyyra9LzYZ6xyDfQZtWRAnqXBxbA5+5vYkf3UvmsRW8+9d7jfVn0T26q53TRMo0yOusK8IhmfZMQaZTkMnExf0r50jwZRLM90rskEW9ZGTr1UspFj
+Rz8vmG2rJmYjXASYzH0SZ9BWvIsozGluBvrt3No0FiqWbEFA9f1zcC+TSgHzsKErChhZQnZtrU0xrTBtBQ9XPW64JilM3TXRuW3Is2bOCBOF6ZWD4RUW42JDVIj/WaJT2GEyu+oKn/J6Kcwn5P2pzhSbLg652rbzv/15/K/jiZkmjrkZvsqdTCyPEG53K7Qt51EKjy1G
+sFBsfukRrNiBYjchMwR4FjKFeygzkVawyEmLyHr/BYf/fRjc+bJ38xVjZKNv/ZLxle8ldYGNtqtuhu+3k96mO6RH8CgBsoTxGNr82ntBMWau9+0dW5nml2f96y4zKdtml1dek/bbcQHTsGea5/+ajlPYPqwCtTUEYmBd3XpT0BajVqqTf4tToLoCWze/T1WgSsWVIvUF
+h9JC9YZvrRSoOuCfxShcOW0vUnPwqHm93vznrJGgp2FdJ5aIOdYOhYe1h63RaJr9mDT3GjbarVuNcKHIkAs8uhy+nE0Q2tUifyuA1EG7K6ip5cbDDE203wwim0+KohCtnxO9Gli2IIoIBrrXR5Rc88rfut4CjKrNq3xTvVc0F8o409gH5I1YFbuF8az7CDvYf33jC5n1
+WwlFbCunscZDJl8/p7V6fV1bHA38Wtx8+7tcxZ9VhCmQZZdrhTTPtffjHcJ/wc6YOMtrDBtcCIp++8w3J05mgtzA74UcnHiH7dggRSn7n01FEcpSnWh9R28TlELXNYq/6ZGl8Q43XbVDumfqW2fqN2w/ELHv6Dfc0Ss3traITQl3v1565vS6rqQldEeWyUtST2aexSQi
+lXM6E+XQqz4YLmbd5NAHhoVrE60/fyoqkMSoLozlMbrTQ1YaMfrEptj008N97562DOOZ7x2/+pu9qfAuibVxEE/h0o45mW7ZxIqbN28fBlJrlSOR3mXyD61hHvSambo1twKHjIsLUAVeE0itOrg5v/FWY+LdiBfY7tjROfCuT2tjOqKo89q4Ps5+YvtCp2lxeKw/T4s3
+NeMU7XkOyOIMy3dEtnsjc0aM3+r/7yddu4ojRZ6gxREvzxnajmmXkEv0u0NkMmUDM5gkcNepIJc5eETUTyEHzgrYLFO12kSmCl1kGFUJRr0gF07ZaQLcJkC1WZ7O2EZ22YjbE7W09qyRiWt7nW+tavfi82GvddH93Ol/03qfK4j8kDEdnV31+qqFl/0/KMLzHRlnNTF0
+DzM6Io7IlubWmz2YMsezywSdyESoXTm7m8B32M/V27eITkcyr6r/+3wOmZKNdN6Mqr++ACLWtRowxtvKql6Tv1xqEyeOoL+DmzMI93RKPgHZSEyaDMmOVTGZ6dlL2TtyTdPrVYS901sHDbFM5Qtwt/q9ClJ5rmfImWCQlKiOMLiCyq88nAkiz/jQBEywXNPvJBtPyBO3
+H+/Y0qKG1vArTeDiIrO3VOxZvja5t+xnXzRTF3qyCJbpRGVZHlGYIvtJll3BJcl0lcPbAxweOz8scMbNcsneL2qsSg7PM3JHP7iPHRNkv8kSNfjJLrlfU1s8rkH3wUPuCs8rTly5uAi5RPB9JjgvPByXWdPDeavBOQA7dOVF4AWYgRdtbAVTZV+KMajaGGsvQ/o51Qlz
+SBOd9E+r76oweLgO+d2k7PHTPGG5/E6mXqb88Lzb7lz0O5r4Ie7YKdfR9+vzJpKCATmoNb7fUDlM8IPYjlysKDPKq46PiKabH6P5TsjE3HFB476SuvCNL1at8jx4HrDQos6jO+Y7jYE6P4iujllQh02pzZmMj010dtTvVOva+8w0PbvuHJ6dfkW2F21Dji9jxDIKL5nq
+lYz5hCD4B7YfckscSg+q1o/BmVSxr1AWX1qEyTp8XcEWz6XnSf5lVD7Walq9sSxhBoyOsqSjm9SCwbRlQH3UnYAz/hzI9k4AJjyxSs368btGo3HUOPpYq9V+/gsHGX4PHmEAAA==
+-->
+</html>

@@ -1,0 +1,1612 @@
+{
+   "title": "JarHC 2.2.2",
+   "type": "SCAN",
+   "version": "3.1.0",
+   "sections": [
+      {
+         "description": "List of JAR files found in classpath.",
+         "title": "JAR Files",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Version",
+               "Source",
+               "Size",
+               "Multi-release",
+               "Java version (classes)",
+               "Resources",
+               "Packages",
+               "Checksum (SHA-1)",
+               "Coordinates",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  "133 KB",
+                  "No",
+                  "Java 5 (128)",
+                  "1",
+                  "`org.eclipse.aether`\n`org.eclipse.aether.artifact`\n`org.eclipse.aether.collection`\n`org.eclipse.aether.deployment`\n`org.eclipse.aether.graph`\n`org.eclipse.aether.installation`\n`org.eclipse.aether.metadata`\n`org.eclipse.aether.repository`\n`org.eclipse.aether.resolution`\n`org.eclipse.aether.transfer`\n`org.eclipse.aether.version`",
+                  "[05dd291e788f50dfb48822dab29defc16ad70860](https://central.sonatype.com/search?q=1:05dd291e788f50dfb48822dab29defc16ad70860)",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-connector-basic",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  "35.9 KB",
+                  "No",
+                  "Java 5 (19)",
+                  "1",
+                  "`org.eclipse.aether.connector.basic`",
+                  "[f5c784bdd704ff64166c086eb6b31e2784c87b66](https://central.sonatype.com/search?q=1:f5c784bdd704ff64166c086eb6b31e2784c87b66)",
+                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-impl",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  "169 KB",
+                  "No",
+                  "Java 5 (96)",
+                  "1",
+                  "`org.eclipse.aether.impl` (+1 subpackage)\n`org.eclipse.aether.internal.impl` (+1 subpackage)",
+                  "[8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1](https://central.sonatype.com/search?q=1:8236fde6a1a4a7c6018d0a09e476f11c5ca8c2e1)",
+                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-spi",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  "30.0 KB",
+                  "No",
+                  "Java 5 (34)",
+                  "1",
+                  "`org.eclipse.aether.spi.*` (8 subpackages)",
+                  "[a532baa7b965d2893ceace03e804b1882f448052](https://central.sonatype.com/search?q=1:a532baa7b965d2893ceace03e804b1882f448052)",
+                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-transport-file",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  "8.71 KB",
+                  "No",
+                  "Java 5 (4)",
+                  "1",
+                  "`org.eclipse.aether.transport.file`",
+                  "[5c257319ccba22a02fa583c3946bfcbb47638bc8](https://central.sonatype.com/search?q=1:5c257319ccba22a02fa583c3946bfcbb47638bc8)",
+                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-transport-http",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  "35.8 KB",
+                  "No",
+                  "Java 5 (20)",
+                  "1",
+                  "`org.eclipse.aether.transport.http`",
+                  "[5beffae29e88251ac419bf96dd1426babdb6a66f](https://central.sonatype.com/search?q=1:5beffae29e88251ac419bf96dd1426babdb6a66f)",
+                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  ""
+               ],
+               [
+                  "aether-util",
+                  "1.1.0",
+                  "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  "146 KB",
+                  "No",
+                  "Java 5 (103)",
+                  "1",
+                  "`org.eclipse.aether.util` (+12 subpackages)",
+                  "[d0f84ba994f0133580e8b957a44593eaa03d42cd](https://central.sonatype.com/search?q=1:d0f84ba994f0133580e8b957a44593eaa03d42cd)",
+                  "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  ""
+               ],
+               [
+                  "asm",
+                  "9.7",
+                  "[[org.ow2.asm:asm:9.7]]",
+                  "122 KB",
+                  "No",
+                  "Java 5 (38)",
+                  "0",
+                  "`org.objectweb.asm` (+1 subpackage)",
+                  "[073d7b3086e14beb604ced229c302feff6449723](https://central.sonatype.com/search?q=1:073d7b3086e14beb604ced229c302feff6449723)",
+                  "[[org.ow2.asm:asm:9.7]]",
+                  ""
+               ],
+               [
+                  "checker-qual",
+                  "3.43.0",
+                  "[[org.checkerframework:checker-qual:3.43.0]]",
+                  "226 KB",
+                  "No",
+                  "Java 8 (369)",
+                  "0",
+                  "`org.checkerframework.*` (30 subpackages)",
+                  "[9425eee39e56b116d2b998b7c2cebcbd11a3c98b](https://central.sonatype.com/search?q=1:9425eee39e56b116d2b998b7c2cebcbd11a3c98b)",
+                  "[[org.checkerframework:checker-qual:3.43.0]]",
+                  ""
+               ],
+               [
+                  "commons-codec",
+                  "1.17.1",
+                  "[[commons-codec:commons-codec:1.17.1]]",
+                  "364 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (107)",
+                  "128",
+                  "`org.apache.commons.codec` (+6 subpackages)",
+                  "[973638b7149d333563584137ebf13a691bb60579](https://central.sonatype.com/search?q=1:973638b7149d333563584137ebf13a691bb60579)",
+                  "[[commons-codec:commons-codec:1.17.1]]",
+                  ""
+               ],
+               [
+                  "commons-lang3",
+                  "3.4",
+                  "[[org.apache.commons:commons-lang3:3.4]]",
+                  "424 KB",
+                  "No",
+                  "Java 6 (224)",
+                  "0",
+                  "`org.apache.commons.lang3` (+11 subpackages)",
+                  "[5fe28b9518e58819180a43a850fbc0dd24b7c050](https://central.sonatype.com/search?q=1:5fe28b9518e58819180a43a850fbc0dd24b7c050)",
+                  "[[org.apache.commons:commons-lang3:3.4]]",
+                  ""
+               ],
+               [
+                  "error_prone_annotations",
+                  "2.28.0",
+                  "[[com.google.errorprone:error_prone_annotations:2.28.0]]",
+                  "18.9 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (27)",
+                  "0",
+                  "`com.google.errorprone.annotations` (+1 subpackage)",
+                  "[59fc00087ce372de42e394d2c789295dff2d19f0](https://central.sonatype.com/search?q=1:59fc00087ce372de42e394d2c789295dff2d19f0)",
+                  "[[com.google.errorprone:error_prone_annotations:2.28.0]]",
+                  ""
+               ],
+               [
+                  "failureaccess",
+                  "1.0.2",
+                  "[[com.google.guava:failureaccess:1.0.2]]",
+                  "4.63 KB",
+                  "No",
+                  "Java 7 (2)",
+                  "0",
+                  "`com.google.common.util.concurrent.internal`",
+                  "[c4a06a64e650562f30b7bf9aaec1bfed43aca12b](https://central.sonatype.com/search?q=1:c4a06a64e650562f30b7bf9aaec1bfed43aca12b)",
+                  "[[com.google.guava:failureaccess:1.0.2]]",
+                  ""
+               ],
+               [
+                  "guava",
+                  "33.3.0-jre",
+                  "[[com.google.guava:guava:33.3.0-jre]]",
+                  "2.94 MB",
+                  "No",
+                  "Java 8 (2001)",
+                  "0",
+                  "`com.google.common.annotations`\n`com.google.common.base` (+1 subpackage)\n`com.google.common.cache`\n`com.google.common.collect`\n`com.google.common.escape`\n`com.google.common.eventbus`\n`com.google.common.graph`\n`com.google.common.hash`\n`com.google.common.html`\n`com.google.common.io`\n`com.google.common.math`\n`com.google.common.net`\n`com.google.common.primitives`\n`com.google.common.reflect`\n`com.google.common.util.concurrent`\n`com.google.common.xml`\n`com.google.thirdparty.publicsuffix`",
+                  "[13b4d0924e6023eda04b4c7aa83b32dfedf735a7](https://central.sonatype.com/search?q=1:13b4d0924e6023eda04b4c7aa83b32dfedf735a7)",
+                  "[[com.google.guava:guava:33.3.0-jre]]",
+                  ""
+               ],
+               [
+                  "httpclient",
+                  "4.5.14",
+                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  "767 KB",
+                  "No",
+                  "Java 6 (470)",
+                  "2",
+                  "`org.apache.http.auth` (+1 subpackage)\n`org.apache.http.client` (+6 subpackages)\n`org.apache.http.conn` (+6 subpackages)\n`org.apache.http.cookie` (+1 subpackage)\n`org.apache.http.impl.auth`\n`org.apache.http.impl.client`\n`org.apache.http.impl.conn` (+1 subpackage)\n`org.apache.http.impl.cookie`\n`org.apache.http.impl.execchain`",
+                  "[1194890e6f56ec29177673f2f12d0b8e627dec98](https://central.sonatype.com/search?q=1:1194890e6f56ec29177673f2f12d0b8e627dec98)",
+                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  ""
+               ],
+               [
+                  "httpcore",
+                  "4.4.16",
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]]",
+                  "320 KB",
+                  "No",
+                  "Java 6 (253)",
+                  "1",
+                  "`org.apache.http`\n`org.apache.http.annotation`\n`org.apache.http.concurrent`\n`org.apache.http.config`\n`org.apache.http.entity`\n`org.apache.http.impl`\n`org.apache.http.impl.bootstrap`\n`org.apache.http.impl.entity`\n`org.apache.http.impl.io`\n`org.apache.http.impl.pool`\n`org.apache.http.io`\n`org.apache.http.message`\n`org.apache.http.params`\n`org.apache.http.pool`\n`org.apache.http.protocol`\n`org.apache.http.ssl`\n`org.apache.http.util`",
+                  "[51cf043c87253c9f58b539c9f7e44c8894223850](https://central.sonatype.com/search?q=1:51cf043c87253c9f58b539c9f7e44c8894223850)",
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]]",
+                  ""
+               ],
+               [
+                  "jarhc",
+                  "2.2.2",
+                  "[[org.jarhc:jarhc:2.2.2]]",
+                  "228 KB",
+                  "No",
+                  "Java 11 (131)",
+                  "6",
+                  "`org.jarhc` (+17 subpackages)",
+                  "[0a545f09b49d7d47e60a5494d7e9f2f5a020f0f9](https://central.sonatype.com/search?q=1:0a545f09b49d7d47e60a5494d7e9f2f5a020f0f9)",
+                  "[[org.jarhc:jarhc:2.2.2]]",
+                  ""
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "2.0.16",
+                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  "18.0 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (8)",
+                  "0",
+                  "`org.apache.commons.logging` (+1 subpackage)",
+                  "[9d08badad22f1ac07deac9188ade596472a2bfd9](https://central.sonatype.com/search?q=1:9d08badad22f1ac07deac9188ade596472a2bfd9)",
+                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  ""
+               ],
+               [
+                  "json",
+                  "20240303",
+                  "[[org.json:json:20240303]]",
+                  "76.5 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (30)",
+                  "0",
+                  "`org.json`",
+                  "[0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a](https://central.sonatype.com/search?q=1:0ebb88e8fb5122b7506d5cf1d69f1ccdb790d22a)",
+                  "[[org.json:json:20240303]]",
+                  ""
+               ],
+               [
+                  "jsr305",
+                  "3.0.2",
+                  "[[com.google.code.findbugs:jsr305:3.0.2]]",
+                  "19.5 KB",
+                  "No",
+                  "Java 5 (35)",
+                  "0",
+                  "`javax.annotation` (+2 subpackages)",
+                  "[25ea2e8b0c338a877313bd4672d3fe056ea78f0d](https://central.sonatype.com/search?q=1:25ea2e8b0c338a877313bd4672d3fe056ea78f0d)",
+                  "[[com.google.code.findbugs:jsr305:3.0.2]]",
+                  ""
+               ],
+               [
+                  "jul-to-slf4j",
+                  "2.0.16",
+                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  "6.20 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (1)",
+                  "0",
+                  "`org.slf4j.bridge`",
+                  "[6d57da3e961daac65bcca0dd3def6cd11e48a24a](https://central.sonatype.com/search?q=1:6d57da3e961daac65bcca0dd3def6cd11e48a24a)",
+                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  ""
+               ],
+               [
+                  "listenablefuture",
+                  "9999.0-empty-to-avoid-conflict-with-guava",
+                  "[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]",
+                  "2.15 KB",
+                  "No",
+                  "[no class files]",
+                  "0",
+                  "",
+                  "[b421526c5f297295adef1c886e5246c39d4ac629](https://central.sonatype.com/search?q=1:b421526c5f297295adef1c886e5246c39d4ac629)",
+                  "[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]",
+                  ""
+               ],
+               [
+                  "maven-aether-provider",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  "65.3 KB",
+                  "No",
+                  "Java 7 (26)",
+                  "0",
+                  "`org.apache.maven.repository.internal`",
+                  "[29e8e7122f7a166ea53785cd75af0ef9d4d848d4](https://central.sonatype.com/search?q=1:29e8e7122f7a166ea53785cd75af0ef9d4d848d4)",
+                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  ""
+               ],
+               [
+                  "maven-artifact",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-artifact:3.3.9]]",
+                  "53.7 KB",
+                  "No",
+                  "Java 7 (32)",
+                  "0",
+                  "`org.apache.maven.artifact`\n`org.apache.maven.artifact.handler`\n`org.apache.maven.artifact.metadata`\n`org.apache.maven.artifact.repository`\n`org.apache.maven.artifact.repository.layout`\n`org.apache.maven.artifact.repository.metadata`\n`org.apache.maven.artifact.resolver` (+1 subpackage)\n`org.apache.maven.artifact.versioning`\n`org.apache.maven.repository`\n`org.apache.maven.repository.legacy.metadata`",
+                  "[0f43afa184555fbc6e36b3334b17246c39b30f6e](https://central.sonatype.com/search?q=1:0f43afa184555fbc6e36b3334b17246c39b30f6e)",
+                  "[[org.apache.maven:maven-artifact:3.3.9]]",
+                  "Split Package: `org.apache.maven.artifact.repository.metadata`"
+               ],
+               [
+                  "maven-builder-support",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-builder-support:3.3.9]]",
+                  "14.5 KB",
+                  "No",
+                  "Java 7 (10)",
+                  "0",
+                  "`org.apache.maven.building`",
+                  "[a96f29da7623c0e1db9824f628548fe8181f6dd0](https://central.sonatype.com/search?q=1:a96f29da7623c0e1db9824f628548fe8181f6dd0)",
+                  "[[org.apache.maven:maven-builder-support:3.3.9]]",
+                  ""
+               ],
+               [
+                  "maven-model",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-model:3.3.9]]",
+                  "160 KB",
+                  "No",
+                  "Java 7 (54)",
+                  "0",
+                  "`org.apache.maven.model`\n`org.apache.maven.model.io.xpp3`\n`org.apache.maven.model.merge`",
+                  "[6efde8cbcb4de4c47f7e9c2a3ab2806022b5c70f](https://central.sonatype.com/search?q=1:6efde8cbcb4de4c47f7e9c2a3ab2806022b5c70f)",
+                  "[[org.apache.maven:maven-model:3.3.9]]",
+                  "Split Package: `org.apache.maven.model.merge`"
+               ],
+               [
+                  "maven-model-builder",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-model-builder:3.3.9]]",
+                  "173 KB",
+                  "No",
+                  "Java 7 (121)",
+                  "1",
+                  "`org.apache.maven.model.building`\n`org.apache.maven.model.composition`\n`org.apache.maven.model.inheritance`\n`org.apache.maven.model.interpolation`\n`org.apache.maven.model.io`\n`org.apache.maven.model.locator`\n`org.apache.maven.model.management`\n`org.apache.maven.model.merge`\n`org.apache.maven.model.normalization`\n`org.apache.maven.model.path`\n`org.apache.maven.model.plugin`\n`org.apache.maven.model.profile` (+1 subpackage)\n`org.apache.maven.model.resolution`\n`org.apache.maven.model.superpom`\n`org.apache.maven.model.validation`",
+                  "[e2055f9adb9f3c9a93e6b36fffe79781a785de2d](https://central.sonatype.com/search?q=1:e2055f9adb9f3c9a93e6b36fffe79781a785de2d)",
+                  "[[org.apache.maven:maven-model-builder:3.3.9]]",
+                  "Split Package: `org.apache.maven.model.merge`"
+               ],
+               [
+                  "maven-repository-metadata",
+                  "3.3.9",
+                  "[[org.apache.maven:maven-repository-metadata:3.3.9]]",
+                  "26.6 KB",
+                  "No",
+                  "Java 7 (9)",
+                  "0",
+                  "`org.apache.maven.artifact.repository.metadata`\n`org.apache.maven.artifact.repository.metadata.io.xpp3`",
+                  "[6850232b35e504057d67bde11efddebf6271e1ce](https://central.sonatype.com/search?q=1:6850232b35e504057d67bde11efddebf6271e1ce)",
+                  "[[org.apache.maven:maven-repository-metadata:3.3.9]]",
+                  "Split Package: `org.apache.maven.artifact.repository.metadata`"
+               ],
+               [
+                  "plexus-component-annotations",
+                  "1.6",
+                  "[[org.codehaus.plexus:plexus-component-annotations:1.6]]",
+                  "4.17 KB",
+                  "No",
+                  "Java 5 (3)",
+                  "0",
+                  "`org.codehaus.plexus.component.annotations`",
+                  "[1a34a4e12b5fded8c548a568f463dfee21500927](https://central.sonatype.com/search?q=1:1a34a4e12b5fded8c548a568f463dfee21500927)",
+                  "[[org.codehaus.plexus:plexus-component-annotations:1.6]]",
+                  ""
+               ],
+               [
+                  "plexus-interpolation",
+                  "1.21",
+                  "[[org.codehaus.plexus:plexus-interpolation:1.21]]",
+                  "61.0 KB",
+                  "No",
+                  "Java 5 (44)",
+                  "0",
+                  "`org.codehaus.plexus.interpolation` (+5 subpackages)",
+                  "[f92de59d295f16868001644acc21720f3ec9eb15](https://central.sonatype.com/search?q=1:f92de59d295f16868001644acc21720f3ec9eb15)",
+                  "[[org.codehaus.plexus:plexus-interpolation:1.21]]",
+                  ""
+               ],
+               [
+                  "plexus-utils",
+                  "3.5.1",
+                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  "263 KB",
+                  "Yes (Java 11, Java 10, Java 9)",
+                  "Java 11 (1), Java 10 (1), Java 8 (106)",
+                  "3",
+                  "`org.codehaus.plexus.util` (+8 subpackages)",
+                  "[c6bfb17c97ecc8863e88778ea301be742c62b06d](https://central.sonatype.com/search?q=1:c6bfb17c97ecc8863e88778ea301be742c62b06d)",
+                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  ""
+               ],
+               [
+                  "slf4j-api",
+                  "2.0.16",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "67.8 KB",
+                  "Yes (Java 9)",
+                  "Java 8 (55)",
+                  "0",
+                  "`org.slf4j`\n`org.slf4j.event`\n`org.slf4j.helpers`\n`org.slf4j.spi`",
+                  "[0172931663a09a1fa515567af5fbef00897d3c04](https://central.sonatype.com/search?q=1:0172931663a09a1fa515567af5fbef00897d3c04)",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  ""
+               ],
+               [
+                  "Classpath",
+                  "-",
+                  "-",
+                  "6.89 MB",
+                  "-",
+                  "Java 11 (132), Java 10 (1), Java 8 (2704), Java 7 (254),\nJava 6 (947), Java 5 (524)",
+                  "148",
+                  "231",
+                  "-",
+                  "-",
+                  "-"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Known security vulnerabilities found in the artifacts.",
+         "title": "Vulnerabilities",
+         "content": [{
+            "columns": [
+               "CVE",
+               "Artifacts",
+               "Severity",
+               "Description",
+               "Advisory"
+            ],
+            "rows": [
+               [
+                  "[CVE-2025-67030](https://nvd.nist.gov/vuln/detail/CVE-2025-67030)",
+                  "plexus-utils",
+                  "[unknown]",
+                  "Plexus-Utils has a Directory Traversal vulnerability in its extractFile method ",
+                  "[GHSA-6fmv-xxpf-w3cw](https://osv.dev/vulnerability/GHSA-6fmv-xxpf-w3cw)"
+               ],
+               [
+                  "[CVE-2025-48924](https://nvd.nist.gov/vuln/detail/CVE-2025-48924)",
+                  "commons-lang3",
+                  "6.5 Medium",
+                  "Apache Commons Lang is vulnerable to Uncontrolled Recursion when processing long inputs",
+                  "[GHSA-j288-q9x7-2f5v](https://osv.dev/vulnerability/GHSA-j288-q9x7-2f5v)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Dependencies between JAR files, and as declared in POM file.",
+         "title": "Dependencies",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Uses",
+               "Used by",
+               "Maven coordinates",
+               "Updates",
+               "Direct dependencies"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "[none]",
+                  "aether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-api:1.1.0]]",
+                  "[none]",
+                  "[none]"
+               ],
+               [
+                  "aether-connector-basic",
+                  "aether-api\naether-spi\naether-util",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-connector-basic:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]\n[[org.eclipse.aether:aether-spi:1.1.0]] [OK]\n[[org.eclipse.aether:aether-util:1.1.0]] [OK]\n[[javax.inject:javax.inject:1]] (provided, optional) [not found]"
+               ],
+               [
+                  "aether-impl",
+                  "aether-api\naether-spi\naether-util\nslf4j-api",
+                  "jarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-impl:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]\n[[org.eclipse.aether:aether-spi:1.1.0]] [OK]\n[[org.eclipse.aether:aether-util:1.1.0]] [OK]\n[[javax.inject:javax.inject:1]] (provided, optional) [not found]\n[[org.eclipse.sisu:org.eclipse.sisu.inject:0.1.1]] (provided, optional) [not found]\n[[org.slf4j:slf4j-api:1.6.2]] (provided, optional) [OK] (version 2.0.16)\n[[org.sonatype.sisu:sisu-guice:3.1.6]] (provided, optional) [not found]"
+               ],
+               [
+                  "aether-spi",
+                  "aether-api",
+                  "aether-connector-basic\naether-impl\naether-transport-file\naether-transport-http\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-spi:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]"
+               ],
+               [
+                  "aether-transport-file",
+                  "aether-api\naether-spi",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-transport-file:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]\n[[org.eclipse.aether:aether-spi:1.1.0]] [OK]\n[[org.eclipse.aether:aether-util:1.1.0]] [OK]\n[[javax.inject:javax.inject:1]] (provided, optional) [not found]"
+               ],
+               [
+                  "aether-transport-http",
+                  "aether-api\naether-spi\naether-util\nhttpclient\nhttpcore",
+                  "jarhc",
+                  "[[org.eclipse.aether:aether-transport-http:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]\n[[org.eclipse.aether:aether-spi:1.1.0]] [OK]\n[[org.eclipse.aether:aether-util:1.1.0]] [OK]\n[[javax.inject:javax.inject:1]] (provided, optional) [not found]\n[[org.apache.httpcomponents:httpclient:4.3.5]] [OK] (version 4.5.14)\n[[org.slf4j:jcl-over-slf4j:1.6.2]] [OK] (version 2.0.16)"
+               ],
+               [
+                  "aether-util",
+                  "aether-api",
+                  "aether-connector-basic\naether-impl\naether-transport-http\njarhc\nmaven-aether-provider",
+                  "[[org.eclipse.aether:aether-util:1.1.0]]",
+                  "[none]",
+                  "[[org.eclipse.aether:aether-api:1.1.0]] [OK]"
+               ],
+               [
+                  "asm",
+                  "[none]",
+                  "jarhc",
+                  "[[org.ow2.asm:asm:9.7]]",
+                  "[9.7.1](org.ow2.asm:asm:9.7.1)\n[9.8](org.ow2.asm:asm:9.8)\n[9.9](org.ow2.asm:asm:9.9), [9.9.1](org.ow2.asm:asm:9.9.1)\n[9.10](org.ow2.asm:asm:9.10), [9.10.1](org.ow2.asm:asm:9.10.1)",
+                  "[none]"
+               ],
+               [
+                  "checker-qual",
+                  "[none]",
+                  "guava",
+                  "[[org.checkerframework:checker-qual:3.43.0]]",
+                  "[3.44.0](org.checkerframework:checker-qual:3.44.0)\n[3.45.0](org.checkerframework:checker-qual:3.45.0)\n[3.46.0](org.checkerframework:checker-qual:3.46.0)\n[...]\n[4.0.0](org.checkerframework:checker-qual:4.0.0)\n[4.1.0](org.checkerframework:checker-qual:4.1.0)\n[4.2.0](org.checkerframework:checker-qual:4.2.0)",
+                  "[none]"
+               ],
+               [
+                  "commons-codec",
+                  "[none]",
+                  "httpclient",
+                  "[[commons-codec:commons-codec:1.17.1]]",
+                  "[1.17.2](commons-codec:commons-codec:1.17.2)\n[1.18.0](commons-codec:commons-codec:1.18.0)\n[1.19.0](commons-codec:commons-codec:1.19.0)\n[1.20.0](commons-codec:commons-codec:1.20.0)\n[1.21.0](commons-codec:commons-codec:1.21.0)\n[1.22.0](commons-codec:commons-codec:1.22.0)",
+                  "[none]"
+               ],
+               [
+                  "commons-lang3",
+                  "[none]",
+                  "maven-aether-provider\nmaven-artifact\nmaven-builder-support\nmaven-model\nmaven-model-builder",
+                  "[[org.apache.commons:commons-lang3:3.4]]",
+                  "[3.5](org.apache.commons:commons-lang3:3.5)\n[3.6](org.apache.commons:commons-lang3:3.6)\n[3.7](org.apache.commons:commons-lang3:3.7)\n[...]\n[3.18.0](org.apache.commons:commons-lang3:3.18.0)\n[3.19.0](org.apache.commons:commons-lang3:3.19.0)\n[3.20.0](org.apache.commons:commons-lang3:3.20.0)",
+                  "[none]"
+               ],
+               [
+                  "error_prone_annotations",
+                  "[none]",
+                  "guava",
+                  "[[com.google.errorprone:error_prone_annotations:2.28.0]]",
+                  "[2.29.0](com.google.errorprone:error_prone_annotations:2.29.0), [2.29.1](com.google.errorprone:error_prone_annotations:2.29.1), [2.29.2](com.google.errorprone:error_prone_annotations:2.29.2)\n[2.30.0](com.google.errorprone:error_prone_annotations:2.30.0)\n[2.31.0](com.google.errorprone:error_prone_annotations:2.31.0)\n[...]\n[2.48.0](com.google.errorprone:error_prone_annotations:2.48.0)\n[2.49.0](com.google.errorprone:error_prone_annotations:2.49.0)\n[2.50.0](com.google.errorprone:error_prone_annotations:2.50.0)",
+                  "[none]"
+               ],
+               [
+                  "failureaccess",
+                  "[none]",
+                  "guava",
+                  "[[com.google.guava:failureaccess:1.0.2]]",
+                  "[1.0.3](com.google.guava:failureaccess:1.0.3)",
+                  "[none]"
+               ],
+               [
+                  "guava",
+                  "checker-qual\nerror_prone_annotations\nfailureaccess\njsr305",
+                  "maven-aether-provider\nmaven-model-builder",
+                  "[[com.google.guava:guava:33.3.0-jre]]",
+                  "[33.3.1-android](com.google.guava:guava:33.3.1-android), [33.3.1-jre](com.google.guava:guava:33.3.1-jre)\n[33.4.0-android](com.google.guava:guava:33.4.0-android), [33.4.0-jre](com.google.guava:guava:33.4.0-jre), [33.4.1-android](com.google.guava:guava:33.4.1-android), [...], [33.4.7-jre](com.google.guava:guava:33.4.7-jre), [33.4.8-android](com.google.guava:guava:33.4.8-android), [33.4.8-jre](com.google.guava:guava:33.4.8-jre)\n[33.5.0-android](com.google.guava:guava:33.5.0-android), [33.5.0-jre](com.google.guava:guava:33.5.0-jre)\n[33.6.0-android](com.google.guava:guava:33.6.0-android), [33.6.0-jre](com.google.guava:guava:33.6.0-jre)",
+                  "[[com.google.guava:failureaccess:1.0.2]] [OK]\n[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]] [OK]\n[[com.google.code.findbugs:jsr305:3.0.2]] [OK]\n[[com.google.errorprone:error_prone_annotations:2.28.0]] [OK]\n[[com.google.j2objc:j2objc-annotations:3.0.0]] [not found]\n[[org.checkerframework:checker-qual:3.43.0]] [OK]"
+               ],
+               [
+                  "httpclient",
+                  "commons-codec\nhttpcore\njcl-over-slf4j",
+                  "aether-transport-http",
+                  "[[org.apache.httpcomponents:httpclient:4.5.14]]",
+                  "[none]",
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]] [OK]\n[[commons-codec:commons-codec:1.11]] [OK] (version 1.17.1)\n[[commons-logging:commons-logging:1.2]] [not found]"
+               ],
+               [
+                  "httpcore",
+                  "[none]",
+                  "aether-transport-http\nhttpclient",
+                  "[[org.apache.httpcomponents:httpcore:4.4.16]]",
+                  "[none]",
+                  "[none]"
+               ],
+               [
+                  "jarhc",
+                  "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util\nasm\njcl-over-slf4j\njson\njul-to-slf4j\nmaven-aether-provider\nslf4j-api",
+                  "[none]",
+                  "[[org.jarhc:jarhc:2.2.2]]",
+                  "[3.0.0](org.jarhc:jarhc:3.0.0)",
+                  "[[com.google.guava:guava:33.3.0-jre]] (runtime) [OK]\n[[commons-codec:commons-codec:1.17.1]] (runtime) [OK]\n[[org.apache.httpcomponents:httpclient:4.5.14]] (runtime) [OK]\n[[org.apache.maven:maven-aether-provider:3.3.9]] (runtime) [OK]\n[[org.codehaus.plexus:plexus-utils:3.5.1]] (runtime) [OK]\n[[org.eclipse.aether:aether-api:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-connector-basic:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-impl:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-spi:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-transport-file:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-transport-http:1.1.0]] (runtime) [OK]\n[[org.eclipse.aether:aether-util:1.1.0]] (runtime) [OK]\n[[org.json:json:20240303]] (runtime) [OK]\n[[org.ow2.asm:asm:9.7]] (runtime) [OK]\n[[org.slf4j:jcl-over-slf4j:2.0.16]] (runtime) [OK]\n[[org.slf4j:jul-to-slf4j:2.0.16]] (runtime) [OK]\n[[org.slf4j:slf4j-api:2.0.16]] [OK]"
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "slf4j-api",
+                  "httpclient\njarhc",
+                  "[[org.slf4j:jcl-over-slf4j:2.0.16]]",
+                  "[2.0.17](org.slf4j:jcl-over-slf4j:2.0.17), [2.0.18](org.slf4j:jcl-over-slf4j:2.0.18)",
+                  "[[org.slf4j:slf4j-api:2.0.16]] [OK]"
+               ],
+               [
+                  "json",
+                  "[none]",
+                  "jarhc",
+                  "[[org.json:json:20240303]]",
+                  "[20241224](org.json:json:20241224)\n[20250107](org.json:json:20250107)\n[20250517](org.json:json:20250517)\n[20251224](org.json:json:20251224)\n[20260522](org.json:json:20260522)",
+                  "[none]"
+               ],
+               [
+                  "jsr305",
+                  "[none]",
+                  "guava",
+                  "[[com.google.code.findbugs:jsr305:3.0.2]]",
+                  "[none]",
+                  "[none]"
+               ],
+               [
+                  "jul-to-slf4j",
+                  "slf4j-api",
+                  "jarhc",
+                  "[[org.slf4j:jul-to-slf4j:2.0.16]]",
+                  "[2.0.17](org.slf4j:jul-to-slf4j:2.0.17), [2.0.18](org.slf4j:jul-to-slf4j:2.0.18)",
+                  "[[org.slf4j:slf4j-api:2.0.16]] [OK]"
+               ],
+               [
+                  "listenablefuture",
+                  "[none]",
+                  "[none]",
+                  "[[com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava]]",
+                  "[none]",
+                  "[none]"
+               ],
+               [
+                  "maven-aether-provider",
+                  "aether-api\naether-impl\naether-spi\naether-util\ncommons-lang3\nguava\nmaven-model\nmaven-model-builder\nmaven-repository-metadata\nplexus-component-annotations\nplexus-utils",
+                  "jarhc",
+                  "[[org.apache.maven:maven-aether-provider:3.3.9]]",
+                  "[none]",
+                  "[[org.apache.maven:maven-model:3.3.9]] [OK]\n[[org.apache.maven:maven-model-builder:3.3.9]] [OK]\n[[org.apache.maven:maven-repository-metadata:3.3.9]] [OK]\n[[com.google.inject:guice:4.0]] (optional) [not found]\n[[org.apache.commons:commons-lang3:3.4]] [OK]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]] [OK]\n[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)\n[[org.eclipse.aether:aether-api:1.0.2.v20150114]] [OK] (version 1.1.0)\n[[org.eclipse.aether:aether-impl:1.0.2.v20150114]] [OK] (version 1.1.0)\n[[org.eclipse.aether:aether-spi:1.0.2.v20150114]] [OK] (version 1.1.0)\n[[org.eclipse.aether:aether-util:1.0.2.v20150114]] [OK] (version 1.1.0)"
+               ],
+               [
+                  "maven-artifact",
+                  "commons-lang3\nplexus-utils",
+                  "maven-model-builder",
+                  "[[org.apache.maven:maven-artifact:3.3.9]]",
+                  "[3.5.0](org.apache.maven:maven-artifact:3.5.0), [3.5.2](org.apache.maven:maven-artifact:3.5.2), [3.5.3](org.apache.maven:maven-artifact:3.5.3), [3.5.4](org.apache.maven:maven-artifact:3.5.4)\n[3.6.0](org.apache.maven:maven-artifact:3.6.0), [3.6.1](org.apache.maven:maven-artifact:3.6.1), [3.6.2](org.apache.maven:maven-artifact:3.6.2), [3.6.3](org.apache.maven:maven-artifact:3.6.3)\n[3.8.1](org.apache.maven:maven-artifact:3.8.1), [3.8.2](org.apache.maven:maven-artifact:3.8.2), [3.8.3](org.apache.maven:maven-artifact:3.8.3), [...], [3.8.7](org.apache.maven:maven-artifact:3.8.7), [3.8.8](org.apache.maven:maven-artifact:3.8.8), [3.8.9](org.apache.maven:maven-artifact:3.8.9)\n[3.9.0](org.apache.maven:maven-artifact:3.9.0), [3.9.1](org.apache.maven:maven-artifact:3.9.1), [3.9.2](org.apache.maven:maven-artifact:3.9.2), [...], [3.9.14](org.apache.maven:maven-artifact:3.9.14), [3.9.15](org.apache.maven:maven-artifact:3.9.15), [3.9.16](org.apache.maven:maven-artifact:3.9.16)",
+                  "[[org.apache.commons:commons-lang3:3.4]] [OK]\n[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)"
+               ],
+               [
+                  "maven-builder-support",
+                  "commons-lang3",
+                  "maven-model-builder",
+                  "[[org.apache.maven:maven-builder-support:3.3.9]]",
+                  "[3.5.0](org.apache.maven:maven-builder-support:3.5.0), [3.5.2](org.apache.maven:maven-builder-support:3.5.2), [3.5.3](org.apache.maven:maven-builder-support:3.5.3), [3.5.4](org.apache.maven:maven-builder-support:3.5.4)\n[3.6.0](org.apache.maven:maven-builder-support:3.6.0), [3.6.1](org.apache.maven:maven-builder-support:3.6.1), [3.6.2](org.apache.maven:maven-builder-support:3.6.2), [3.6.3](org.apache.maven:maven-builder-support:3.6.3)\n[3.8.1](org.apache.maven:maven-builder-support:3.8.1), [3.8.2](org.apache.maven:maven-builder-support:3.8.2), [3.8.3](org.apache.maven:maven-builder-support:3.8.3), [...], [3.8.7](org.apache.maven:maven-builder-support:3.8.7), [3.8.8](org.apache.maven:maven-builder-support:3.8.8), [3.8.9](org.apache.maven:maven-builder-support:3.8.9)\n[3.9.0](org.apache.maven:maven-builder-support:3.9.0), [3.9.1](org.apache.maven:maven-builder-support:3.9.1), [3.9.2](org.apache.maven:maven-builder-support:3.9.2), [...], [3.9.14](org.apache.maven:maven-builder-support:3.9.14), [3.9.15](org.apache.maven:maven-builder-support:3.9.15), [3.9.16](org.apache.maven:maven-builder-support:3.9.16)",
+                  "[[org.apache.commons:commons-lang3:3.4]] [OK]\n[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)"
+               ],
+               [
+                  "maven-model",
+                  "commons-lang3\nplexus-utils",
+                  "maven-aether-provider\nmaven-model-builder",
+                  "[[org.apache.maven:maven-model:3.3.9]]",
+                  "[3.5.0](org.apache.maven:maven-model:3.5.0), [3.5.2](org.apache.maven:maven-model:3.5.2), [3.5.3](org.apache.maven:maven-model:3.5.3), [3.5.4](org.apache.maven:maven-model:3.5.4)\n[3.6.0](org.apache.maven:maven-model:3.6.0), [3.6.1](org.apache.maven:maven-model:3.6.1), [3.6.2](org.apache.maven:maven-model:3.6.2), [3.6.3](org.apache.maven:maven-model:3.6.3)\n[3.8.1](org.apache.maven:maven-model:3.8.1), [3.8.2](org.apache.maven:maven-model:3.8.2), [3.8.3](org.apache.maven:maven-model:3.8.3), [...], [3.8.7](org.apache.maven:maven-model:3.8.7), [3.8.8](org.apache.maven:maven-model:3.8.8), [3.8.9](org.apache.maven:maven-model:3.8.9)\n[3.9.0](org.apache.maven:maven-model:3.9.0), [3.9.1](org.apache.maven:maven-model:3.9.1), [3.9.2](org.apache.maven:maven-model:3.9.2), [...], [3.9.14](org.apache.maven:maven-model:3.9.14), [3.9.15](org.apache.maven:maven-model:3.9.15), [3.9.16](org.apache.maven:maven-model:3.9.16)",
+                  "[[org.apache.commons:commons-lang3:3.4]] [OK]\n[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)"
+               ],
+               [
+                  "maven-model-builder",
+                  "commons-lang3\nguava\nmaven-artifact\nmaven-builder-support\nmaven-model\nplexus-component-annotations\nplexus-interpolation\nplexus-utils",
+                  "maven-aether-provider",
+                  "[[org.apache.maven:maven-model-builder:3.3.9]]",
+                  "[3.5.0](org.apache.maven:maven-model-builder:3.5.0), [3.5.2](org.apache.maven:maven-model-builder:3.5.2), [3.5.3](org.apache.maven:maven-model-builder:3.5.3), [3.5.4](org.apache.maven:maven-model-builder:3.5.4)\n[3.6.0](org.apache.maven:maven-model-builder:3.6.0), [3.6.1](org.apache.maven:maven-model-builder:3.6.1), [3.6.2](org.apache.maven:maven-model-builder:3.6.2), [3.6.3](org.apache.maven:maven-model-builder:3.6.3)\n[3.8.1](org.apache.maven:maven-model-builder:3.8.1), [3.8.2](org.apache.maven:maven-model-builder:3.8.2), [3.8.3](org.apache.maven:maven-model-builder:3.8.3), [...], [3.8.7](org.apache.maven:maven-model-builder:3.8.7), [3.8.8](org.apache.maven:maven-model-builder:3.8.8), [3.8.9](org.apache.maven:maven-model-builder:3.8.9)\n[3.9.0](org.apache.maven:maven-model-builder:3.9.0), [3.9.1](org.apache.maven:maven-model-builder:3.9.1), [3.9.2](org.apache.maven:maven-model-builder:3.9.2), [...], [3.9.14](org.apache.maven:maven-model-builder:3.9.14), [3.9.15](org.apache.maven:maven-model-builder:3.9.15), [3.9.16](org.apache.maven:maven-model-builder:3.9.16)",
+                  "[[org.apache.maven:maven-model:3.3.9]] [OK]\n[[org.apache.maven:maven-artifact:3.3.9]] [OK]\n[[org.apache.maven:maven-builder-support:3.3.9]] [OK]\n[[com.google.guava:guava:18.0]] [OK] (version 33.3.0-jre)\n[[org.apache.commons:commons-lang3:3.4]] [OK]\n[[org.codehaus.plexus:plexus-component-annotations:1.6]] [OK]\n[[org.codehaus.plexus:plexus-interpolation:1.21]] [OK]\n[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)"
+               ],
+               [
+                  "maven-repository-metadata",
+                  "plexus-utils",
+                  "maven-aether-provider",
+                  "[[org.apache.maven:maven-repository-metadata:3.3.9]]",
+                  "[3.5.0](org.apache.maven:maven-repository-metadata:3.5.0), [3.5.2](org.apache.maven:maven-repository-metadata:3.5.2), [3.5.3](org.apache.maven:maven-repository-metadata:3.5.3), [3.5.4](org.apache.maven:maven-repository-metadata:3.5.4)\n[3.6.0](org.apache.maven:maven-repository-metadata:3.6.0), [3.6.1](org.apache.maven:maven-repository-metadata:3.6.1), [3.6.2](org.apache.maven:maven-repository-metadata:3.6.2), [3.6.3](org.apache.maven:maven-repository-metadata:3.6.3)\n[3.8.1](org.apache.maven:maven-repository-metadata:3.8.1), [3.8.2](org.apache.maven:maven-repository-metadata:3.8.2), [3.8.3](org.apache.maven:maven-repository-metadata:3.8.3), [...], [3.8.7](org.apache.maven:maven-repository-metadata:3.8.7), [3.8.8](org.apache.maven:maven-repository-metadata:3.8.8), [3.8.9](org.apache.maven:maven-repository-metadata:3.8.9)\n[3.9.0](org.apache.maven:maven-repository-metadata:3.9.0), [3.9.1](org.apache.maven:maven-repository-metadata:3.9.1), [3.9.2](org.apache.maven:maven-repository-metadata:3.9.2), [...], [3.9.14](org.apache.maven:maven-repository-metadata:3.9.14), [3.9.15](org.apache.maven:maven-repository-metadata:3.9.15), [3.9.16](org.apache.maven:maven-repository-metadata:3.9.16)",
+                  "[[org.codehaus.plexus:plexus-utils:3.0.22]] [OK] (version 3.5.1)"
+               ],
+               [
+                  "plexus-component-annotations",
+                  "[none]",
+                  "maven-aether-provider\nmaven-model-builder",
+                  "[[org.codehaus.plexus:plexus-component-annotations:1.6]]",
+                  "[1.7](org.codehaus.plexus:plexus-component-annotations:1.7), [1.7.1](org.codehaus.plexus:plexus-component-annotations:1.7.1)\n[2.0.0](org.codehaus.plexus:plexus-component-annotations:2.0.0)\n[2.1.0](org.codehaus.plexus:plexus-component-annotations:2.1.0), [2.1.1](org.codehaus.plexus:plexus-component-annotations:2.1.1)\n[2.2.0](org.codehaus.plexus:plexus-component-annotations:2.2.0)",
+                  "[none]"
+               ],
+               [
+                  "plexus-interpolation",
+                  "[none]",
+                  "maven-model-builder",
+                  "[[org.codehaus.plexus:plexus-interpolation:1.21]]",
+                  "[1.22](org.codehaus.plexus:plexus-interpolation:1.22)\n[1.23](org.codehaus.plexus:plexus-interpolation:1.23)\n[1.24](org.codehaus.plexus:plexus-interpolation:1.24)\n[...]\n[1.27](org.codehaus.plexus:plexus-interpolation:1.27)\n[1.28](org.codehaus.plexus:plexus-interpolation:1.28)\n[1.29](org.codehaus.plexus:plexus-interpolation:1.29)",
+                  "[none]"
+               ],
+               [
+                  "plexus-utils",
+                  "[none]",
+                  "maven-aether-provider\nmaven-artifact\nmaven-model\nmaven-model-builder\nmaven-repository-metadata",
+                  "[[org.codehaus.plexus:plexus-utils:3.5.1]]",
+                  "[3.6.0](org.codehaus.plexus:plexus-utils:3.6.0), [3.6.1](org.codehaus.plexus:plexus-utils:3.6.1)\n[4.0.0](org.codehaus.plexus:plexus-utils:4.0.0), [4.0.1](org.codehaus.plexus:plexus-utils:4.0.1), [4.0.2](org.codehaus.plexus:plexus-utils:4.0.2), [4.0.3](org.codehaus.plexus:plexus-utils:4.0.3)",
+                  "[none]"
+               ],
+               [
+                  "slf4j-api",
+                  "[none]",
+                  "aether-impl\njarhc\njcl-over-slf4j\njul-to-slf4j",
+                  "[[org.slf4j:slf4j-api:2.0.16]]",
+                  "[2.0.17](org.slf4j:slf4j-api:2.0.17), [2.0.18](org.slf4j:slf4j-api:2.0.18)",
+                  "[none]"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Duplicate classes, shadowed classes, and duplicate resources.",
+         "title": "Duplicate Classes",
+         "content": [{
+            "columns": [
+               "Class/Resource",
+               "Sources",
+               "Similarity"
+            ],
+            "rows": [[
+               "`about.html`",
+               "aether-api\naether-connector-basic\naether-impl\naether-spi\naether-transport-file\naether-transport-http\naether-util",
+               "Exact copy"
+            ]]
+         }]
+      },
+      {
+         "description": "Compatibility issues between JAR files.",
+         "title": "Binary Compatibility",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "aether-impl",
+                  "`org.eclipse.aether.impl.guice.AetherModule`\n\u2022 Superclass not found: `com.google.inject.AbstractModule`\n\u2022 Class not found: `com.google.inject.AbstractModule` (package not found)\n\u2022 Class not found: `com.google.inject.Module` (package not found)\n\u2022 Class not found: `com.google.inject.binder.AnnotatedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.binder.LinkedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.binder.ScopedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.name.Names` (package not found)\n\u2022 Class not found: `javax.inject.Singleton` (package not found)\n\u2022 Method not found: `com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule.bind(java.lang.Class)`\n> `org.eclipse.aether.impl.guice.AetherModule` (method not found)\n> `com.google.inject.AbstractModule` (class not found)\n\u2022 Method not found: `void org.eclipse.aether.impl.guice.AetherModule.install(com.google.inject.Module)`\n> `org.eclipse.aether.impl.guice.AetherModule` (method not found)\n> `com.google.inject.AbstractModule` (class not found)\n\n`org.eclipse.aether.impl.guice.AetherModule$Slf4jModule`\n\u2022 Superclass not found: `com.google.inject.AbstractModule`\n\u2022 Class not found: `com.google.inject.AbstractModule` (package not found)\n\u2022 Class not found: `com.google.inject.binder.AnnotatedBindingBuilder` (package not found)\n\u2022 Method not found: `com.google.inject.binder.AnnotatedBindingBuilder org.eclipse.aether.impl.guice.AetherModule$Slf4jModule.bind(java.lang.Class)`\n> `org.eclipse.aether.impl.guice.AetherModule$Slf4jModule` (method not found)\n> `com.google.inject.AbstractModule` (class not found)\n\n`org.eclipse.aether.internal.impl.LoggerFactoryProvider`\n\u2022 Interface not found: `javax.inject.Provider`\n\u2022 Class not found: `javax.inject.Provider` (package not found)"
+               ],
+               [
+                  "guava",
+                  "`com.google.common.util.concurrent.AbstractFuture`\n\u2022 Class not found: `com.google.j2objc.annotations.ReflectionSupport$Level` (package not found)\n\n`com.google.common.util.concurrent.AggregateFutureState`\n\u2022 Class not found: `com.google.j2objc.annotations.ReflectionSupport$Level` (package not found)\n\n`com.google.common.util.concurrent.AtomicDouble`\n\u2022 Class not found: `com.google.j2objc.annotations.ReflectionSupport$Level` (package not found)\n\n`com.google.common.util.concurrent.InterruptibleTask`\n\u2022 Class not found: `com.google.j2objc.annotations.ReflectionSupport$Level` (package not found)"
+               ],
+               [
+                  "maven-aether-provider",
+                  "`org.apache.maven.repository.internal.MavenAetherModule`\n\u2022 Superclass not found: `com.google.inject.AbstractModule`\n\u2022 Class not found: `com.google.inject.AbstractModule` (package not found)\n\u2022 Class not found: `com.google.inject.Module` (package not found)\n\u2022 Class not found: `com.google.inject.binder.AnnotatedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.binder.LinkedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.binder.ScopedBindingBuilder` (package not found)\n\u2022 Class not found: `com.google.inject.name.Names` (package not found)\n\u2022 Class not found: `javax.inject.Singleton` (package not found)\n\u2022 Method not found: `com.google.inject.binder.AnnotatedBindingBuilder org.apache.maven.repository.internal.MavenAetherModule.bind(java.lang.Class)`\n> `org.apache.maven.repository.internal.MavenAetherModule` (method not found)\n> `com.google.inject.AbstractModule` (class not found)\n\u2022 Method not found: `void org.apache.maven.repository.internal.MavenAetherModule.install(com.google.inject.Module)`\n> `org.apache.maven.repository.internal.MavenAetherModule` (method not found)\n> `com.google.inject.AbstractModule` (class not found)"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Use of dangerous, unsafe, unstable, or deprecated classes and methods.",
+         "title": "Blacklist",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Issues"
+            ],
+            "rows": [
+               [
+                  "aether-transport-http",
+                  "`org.eclipse.aether.transport.http.GlobalState`\n\u2022 @Deprecated: `public class org.apache.http.conn.scheme.PlainSocketFactory`\n\u2022 @Deprecated: `public class org.apache.http.impl.conn.PoolingClientConnectionManager`\n\u2022 @Deprecated: `public final class org.apache.http.conn.scheme.Scheme`\n\u2022 @Deprecated: `public final class org.apache.http.conn.scheme.SchemeRegistry`\n\u2022 @Deprecated: `public interface org.apache.http.conn.ClientConnectionManager`\n\u2022 @Deprecated: `public interface org.apache.http.conn.scheme.SchemeSocketFactory`\n\n`org.eclipse.aether.transport.http.HttpTransporter`\n\u2022 @Deprecated: `public class org.apache.http.conn.params.ConnRouteParams`\n\u2022 @Deprecated: `public class org.apache.http.impl.client.DecompressingHttpClient`\n\u2022 @Deprecated: `public class org.apache.http.impl.client.DefaultHttpClient`\n\u2022 @Deprecated: `public final class org.apache.http.auth.params.AuthParams`\n\u2022 @Deprecated: `public final class org.apache.http.impl.cookie.DateUtils`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public interface org.apache.http.conn.ClientConnectionManager`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.eclipse.aether.transport.http.LocalState`\n\u2022 @Deprecated: `public interface org.apache.http.conn.ClientConnectionManager`\n\n`org.eclipse.aether.transport.http.SslSocketFactory`\n\u2022 @Deprecated: `public class org.apache.http.conn.ssl.SSLSocketFactory`\n\u2022 @Deprecated: `public interface org.apache.http.conn.ssl.X509HostnameVerifier`\n\n`org.eclipse.aether.transport.http.X509HostnameVerifierAdapter`\n\u2022 @Deprecated: `public interface org.apache.http.conn.ssl.X509HostnameVerifier`"
+               ],
+               [
+                  "guava",
+                  "`com.google.common.cache.Striped64`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)`\n\u2022 `long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)`\n\u2022 `static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()`\n\n`com.google.common.cache.Striped64$Cell`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)`\n\u2022 `long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)`\n\n`com.google.common.hash.LittleEndianByteArray$UnsafeByteArray`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\u2022 `int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)`\n\u2022 `int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)`\n\u2022 `static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()`\n\n`com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$1`\n\u2022 `long sun.misc.Unsafe.getLong(java.lang.Object,long)`\n\u2022 `void sun.misc.Unsafe.putLong(java.lang.Object,long,long)`\n\n`com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$2`\n\u2022 `long sun.misc.Unsafe.getLong(java.lang.Object,long)`\n\u2022 `void sun.misc.Unsafe.putLong(java.lang.Object,long,long)`\n\n`com.google.common.hash.Striped64`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapInt(java.lang.Object,long,int,int)`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)`\n\u2022 `long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)`\n\u2022 `static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()`\n\n`com.google.common.hash.Striped64$Cell`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapLong(java.lang.Object,long,long,long)`\n\u2022 `long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)`\n\n`com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$UnsafeComparator`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\u2022 `int sun.misc.Unsafe.arrayBaseOffset(java.lang.Class)`\n\u2022 `int sun.misc.Unsafe.arrayIndexScale(java.lang.Class)`\n\u2022 `long sun.misc.Unsafe.getLong(java.lang.Object,long)`\n\u2022 `static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()`\n\n`com.google.common.reflect.Types$TypeVariableInvocationHandler`\n\u2022 @Deprecated: `public class java.security.AccessControlException`\n\n`com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\u2022 `boolean sun.misc.Unsafe.compareAndSwapObject(java.lang.Object,long,java.lang.Object,java.lang.Object)`\n\u2022 `java.lang.Object sun.misc.Unsafe.getAndSetObject(java.lang.Object,long,java.lang.Object)`\n\u2022 `long sun.misc.Unsafe.objectFieldOffset(java.lang.reflect.Field)`\n\u2022 `static sun.misc.Unsafe sun.misc.Unsafe.getUnsafe()`\n\u2022 `void sun.misc.Unsafe.putObject(java.lang.Object,long,java.lang.Object)`\n\n`com.google.common.util.concurrent.UncaughtExceptionHandlers$Exiter`\n\u2022 `void java.lang.Runtime.exit(int)`"
+               ],
+               [
+                  "httpclient",
+                  "`org.apache.http.auth.AuthSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.auth.AuthSchemeRegistry`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.auth.AuthSchemeRegistry$1`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.auth.params.AuthParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.auth.params.AuthParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.HttpClient`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.methods.AbstractExecutionAwareRequest`\n\u2022 @Deprecated: `protected org.apache.http.params.HttpParams org.apache.http.message.AbstractHttpMessage.params`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.methods.HttpRequestBase`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.methods.HttpRequestWrapper`\n\u2022 @Deprecated: `protected org.apache.http.params.HttpParams org.apache.http.message.AbstractHttpMessage.params`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.params.AllClientPNames`\n\u2022 @Deprecated: `public interface org.apache.http.params.CoreConnectionPNames`\n\u2022 @Deprecated: `public interface org.apache.http.params.CoreProtocolPNames`\n\n`org.apache.http.client.params.ClientParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.params.HttpClientParamConfig`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.params.HttpClientParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.client.protocol.RequestDefaultHeaders`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.ClientConnectionManagerFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.ClientConnectionOperator`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.ManagedClientConnection`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.MultihomePlainSocketFactory`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.OperatedClientConnection`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.params.ConnConnectionParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.params.ConnManagerParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.params.ConnManagerParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.params.ConnRouteParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.params.ConnRouteParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.PlainSocketFactory`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SchemeLayeredSocketFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SchemeLayeredSocketFactoryAdaptor`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SchemeLayeredSocketFactoryAdaptor2`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SchemeSocketFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SchemeSocketFactoryAdaptor`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SocketFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.scheme.SocketFactoryAdaptor`\n\u2022 @Deprecated: `public class org.apache.http.params.BasicHttpParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.conn.ssl.SSLSocketFactory`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.cookie.CookieSpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.cookie.CookieSpecRegistry`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.cookie.CookieSpecRegistry$1`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.cookie.params.CookieSpecParamBean`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.HttpAbstractParamBean`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.BasicSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.DigestSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.KerberosSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.NTLMSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.NegotiateSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.RFC2617Scheme`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.auth.SPNegoSchemeFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.AbstractAuthenticationHandler`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.AbstractHttpClient`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public final class org.apache.http.protocol.BasicHttpProcessor`\n\u2022 @Deprecated: `public final class org.apache.http.protocol.DefaultedHttpContext`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.AutoRetryHttpClient`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.ClientParamsStack`\n\u2022 @Deprecated: `public abstract class org.apache.http.params.AbstractHttpParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.ContentEncodingHttpClient`\n\u2022 @Deprecated: `public final class org.apache.http.protocol.BasicHttpProcessor`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.DecompressingHttpClient`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.DefaultHttpClient`\n\u2022 @Deprecated: `public class org.apache.http.params.SyncBasicHttpParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public final class org.apache.http.protocol.BasicHttpProcessor`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\u2022 @Deprecated: `public void org.apache.http.protocol.RequestExpectContinue.<init>()`\n\n`org.apache.http.impl.client.DefaultProxyAuthenticationHandler`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.DefaultRedirectHandler`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.DefaultRequestDirector`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public abstract void org.apache.http.HttpMessage.setParams(org.apache.http.params.HttpParams)`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.DefaultTargetAuthenticationHandler`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.EntityEnclosingRequestWrapper$EntityWrapper`\n\u2022 @Deprecated: `public void org.apache.http.entity.HttpEntityWrapper.consumeContent()`\n\n`org.apache.http.impl.client.InternalHttpClient`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParamsNames`\n\n`org.apache.http.impl.client.MinimalHttpClient`\n\u2022 @Deprecated: `public class org.apache.http.params.BasicHttpParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.ProxyClient`\n\u2022 @Deprecated: `public class org.apache.http.params.BasicHttpParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpParamConfig`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.RequestWrapper`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public abstract void org.apache.http.HttpMessage.setParams(org.apache.http.params.HttpParams)`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.client.SystemDefaultHttpClient`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.AbstractPoolEntry`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.AbstractPooledConnAdapter`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.DefaultClientConnection`\n\u2022 @Deprecated: `public class org.apache.http.impl.SocketHttpClientConnection`\n\u2022 @Deprecated: `public class org.apache.http.params.BasicHttpParams`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpProtocolParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.DefaultClientConnectionOperator`\n\u2022 @Deprecated: `public final class org.apache.http.params.HttpConnectionParams`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.DefaultHttpResponseParser`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\u2022 @Deprecated: `public void org.apache.http.impl.io.AbstractMessageParser.<init>(org.apache.http.io.SessionInputBuffer,org.apache.http.message.LineParser,org.apache.http.params.HttpParams)`\n\n`org.apache.http.impl.conn.DefaultHttpRoutePlanner`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.DefaultResponseParser`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\u2022 @Deprecated: `public void org.apache.http.impl.io.AbstractMessageParser.<init>(org.apache.http.io.SessionInputBuffer,org.apache.http.message.LineParser,org.apache.http.params.HttpParams)`\n\n`org.apache.http.impl.conn.LoggingSessionInputBuffer`\n\u2022 @Deprecated: `public abstract boolean org.apache.http.io.SessionInputBuffer.isDataAvailable(int)`\n\u2022 @Deprecated: `public interface org.apache.http.io.EofSensor`\n\n`org.apache.http.impl.conn.ManagedClientConnectionImpl`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.ProxySelectorRoutePlanner`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.SingleClientConnManager`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.tsccm.ConnPoolByRoute`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.BestMatchSpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.BrowserCompatSpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.IgnoreSpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.NetscapeDraftSpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.RFC2109SpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.cookie.RFC2965SpecFactory`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.execchain.HttpResponseProxy`\n\u2022 @Deprecated: `public abstract org.apache.http.params.HttpParams org.apache.http.HttpMessage.getParams()`\n\u2022 @Deprecated: `public abstract void org.apache.http.HttpMessage.setParams(org.apache.http.params.HttpParams)`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.execchain.ProtocolExec`\n\u2022 @Deprecated: `public interface org.apache.http.params.HttpParams`\n\n`org.apache.http.impl.execchain.RequestEntityProxy`\n\u2022 @Deprecated: `public abstract void org.apache.http.HttpEntity.consumeContent()`"
+               ],
+               [
+                  "httpcore",
+                  "`org.apache.http.impl.pool.BasicConnFactory`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "jarhc",
+                  "`org.jarhc.Main`\n\u2022 `static void java.lang.System.exit(int)`"
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "`org.apache.commons.logging.impl.SimpleLog`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "maven-aether-provider",
+                  "`org.apache.maven.repository.internal.DefaultArtifactDescriptorReader`\n\u2022 @Deprecated: `public interface org.apache.maven.model.building.ModelSource`\n\n`org.apache.maven.repository.internal.DefaultModelResolver`\n\u2022 @Deprecated: `public interface org.apache.maven.model.building.ModelSource`\n\n`org.apache.maven.repository.internal.DefaultVersionRangeResolver`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)`\n\n`org.apache.maven.repository.internal.DefaultVersionResolver`\n\u2022 @Deprecated: `public final class org.eclipse.aether.internal.impl.CacheUtils`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)`\n\n`org.apache.maven.repository.internal.DefaultVersionResolver$Key`\n\u2022 @Deprecated: `public final class org.eclipse.aether.internal.impl.CacheUtils`\n\n`org.apache.maven.repository.internal.MavenAetherModule`\n\u2022 @Deprecated: `public final class org.eclipse.aether.impl.AetherModule`"
+               ],
+               [
+                  "maven-model-builder",
+                  "`org.apache.maven.model.interpolation.StringSearchModelInterpolator`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`org.apache.maven.model.io.DefaultModelReader`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.InputStream)`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.Reader)`\n\n`org.apache.maven.model.io.DefaultModelWriter`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.OutputStream)`\n\u2022 @Deprecated: `public static void org.codehaus.plexus.util.IOUtil.close(java.io.Writer)`\n\n`org.apache.maven.model.validation.DefaultModelValidator`\n\u2022 @Deprecated: `public static java.lang.String org.codehaus.plexus.util.StringUtils.defaultString(java.lang.Object,java.lang.String)`"
+               ],
+               [
+                  "plexus-interpolation",
+                  "`org.codehaus.plexus.interpolation.object.FieldBasedObjectInterpolator`\n\u2022 @Deprecated: `public final class java.security.AccessController`"
+               ],
+               [
+                  "plexus-utils",
+                  "`org.codehaus.plexus.util.cli.Commandline`\n\u2022 `java.lang.Process java.lang.Runtime.exec(java.lang.String[],java.lang.String[],java.io.File)`\n\n`org.codehaus.plexus.util.cli.ShutdownHookUtils`\n\u2022 @Deprecated: `public class java.security.AccessControlException`"
+               ],
+               [
+                  "slf4j-api",
+                  "`org.slf4j.LoggerFactory`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`\n\u2022 @Deprecated: `public final class java.security.AccessController`\n\n`org.slf4j.helpers.Util$ClassContextSecurityManager`\n\u2022 @Deprecated: `public class java.lang.SecurityManager`"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.",
+         "title": "JAR Manifests",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "General",
+               "Runtime",
+               "Implementation",
+               "Specification",
+               "Signature"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500800999`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-connector-basic",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500869000`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-impl",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500851302`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-spi",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500817800`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-transport-file",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500889149`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-transport-http",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500896596`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "aether-util",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1454500838263`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "asm",
+                  "Manifest-Version: `1.0`",
+                  "",
+                  "ASM, a very small and fast Java bytecode manipulation framework\nVersion: `9.7`",
+                  "",
+                  ""
+               ],
+               [
+                  "checker-qual",
+                  "Bnd-LastModified: `1714589776801`\nCreated-By: `17.0.11 (Red Hat, Inc.)`\nManifest-Version: `1.0`\nTool: `Bnd-6.4.0.202211291949`",
+                  "",
+                  "Version: `3.43.0`\nURL: `https://checkerframework.org`",
+                  "",
+                  ""
+               ],
+               [
+                  "commons-codec",
+                  "Build-Jdk-Spec: `17`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.4.1.202306080939`",
+                  "",
+                  "Apache Commons Codec\nVersion: `1.17.1`\nVendor: `The Apache Software Foundation`",
+                  "Apache Commons Codec\nVersion: `1.17`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "commons-lang3",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1428064228221`\nBuild-Jdk: `1.7.0_75`\nBuilt-By: `britter`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.3.0.201405100607`\nX-Compile-Source-JDK: `1.6`\nX-Compile-Target-JDK: `1.6`",
+                  "",
+                  "Apache Commons Lang\nVersion: `3.4`\nBuild: `tags/LANG_3_4_RC2@r1671054; 2015-04-03 12:30:21+0000`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache`",
+                  "Apache Commons Lang\nVersion: `3.4`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "error_prone_annotations",
+                  "Build-Jdk-Spec: `17`\nCreated-By: `Maven JAR Plugin 3.2.2`\nManifest-Version: `1.0`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "failureaccess",
+                  "Bnd-LastModified: `1697548556686`\nBuild-Jdk-Spec: `11`\nCreated-By: `Apache Maven Bundle Plugin 5.1.8`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "guava",
+                  "Build-Jdk-Spec: `11`\nCreated-By: `Apache Maven Bundle Plugin 5.1.8`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "httpclient",
+                  "Build-Jdk: `1.8.0_342`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.8.6`\nManifest-Version: `1.0`",
+                  "",
+                  "Apache HttpClient\nVersion: `4.5.14`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.httpcomponents`\nURL: `http://hc.apache.org/httpcomponents-client-ga`",
+                  "Apache HttpClient\nVersion: `4.5`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "httpcore",
+                  "Build-Jdk: `1.8.0_342`\nBuilt-By: `oleg`\nCreated-By: `Apache Maven 3.8.6`\nManifest-Version: `1.0`\nurl: `http://hc.apache.org/httpcomponents-core-ga`\nX-Compile-Source-JDK: `1.6`\nX-Compile-Target-JDK: `1.6`",
+                  "",
+                  "HttpComponents Apache HttpCore\nVersion: `4.4.16`\nBuild: `${scmBranch}@r${buildNumber}; 2022-11-26 09:44:32+0000`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache`\nURL: `http://hc.apache.org/httpcomponents-core-ga`",
+                  "HttpComponents Apache HttpCore\nVersion: `4.4.16`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "jarhc",
+                  "Manifest-Version: `1.0`",
+                  "Main Class: `org.jarhc.Main`",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nOriginally-Created-By: `Apache Maven Bundle Plugin 5.1.9`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "",
+                  "jcl-over-slf4j\nVersion: `2.0.16`",
+                  "",
+                  ""
+               ],
+               [
+                  "json",
+                  "Bnd-LastModified: `1709478962392`\nBuild-Jdk-Spec: `1.8`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "jsr305",
+                  "Archiver-Version: `Plexus Archiver`\nBnd-LastModified: `1490936130302`\nBuild-Jdk: `1.8.0_101`\nBuilt-By: `lan`\nCreated-By: `Apache Maven Bundle Plugin`\nManifest-Version: `1.0`\nTool: `Bnd-2.1.0.20130426-122213`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "jul-to-slf4j",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "",
+                  "jul-to-slf4j\nVersion: `2.0.16`",
+                  "",
+                  ""
+               ],
+               [
+                  "listenablefuture",
+                  "Build-Jdk: `1.8.0_151-google-v7`\nBuilt-By: `cpovirk`\nCreated-By: `Apache Maven 3.5.0`\nManifest-Version: `1.0`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "maven-aether-provider",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "",
+                  "Maven Aether Provider\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Aether Provider\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "maven-artifact",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "Main Class: `org.apache.maven.artifact.versioning.ComparableVersion`",
+                  "Maven Artifact\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Artifact\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "maven-builder-support",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "",
+                  "Maven Builder Support\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Builder Support\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "maven-model",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "",
+                  "Maven Model\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Model\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "maven-model-builder",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "",
+                  "Maven Model Builder\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Model Builder\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "maven-repository-metadata",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_67`\nBuilt-By: `jvanzyl`\nCreated-By: `Apache Maven 3.3.8`\nManifest-Version: `1.0`",
+                  "",
+                  "Maven Repository Metadata Model\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`\nVendor ID: `org.apache.maven`",
+                  "Maven Repository Metadata Model\nVersion: `3.3.9`\nVendor: `The Apache Software Foundation`",
+                  ""
+               ],
+               [
+                  "plexus-component-annotations",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.5.0_22`\nBuilt-By: `release15`\nCreated-By: `Apache Maven 3.0.5`\nManifest-Version: `1.0`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "plexus-interpolation",
+                  "Archiver-Version: `Plexus Archiver`\nBuild-Jdk: `1.7.0_65`\nBuilt-By: `release17`\nCreated-By: `Apache Maven 3.2.3`\nManifest-Version: `1.0`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "plexus-utils",
+                  "Build-Jdk-Spec: `11`\nCreated-By: `Maven JAR Plugin 3.2.2`\nManifest-Version: `1.0`",
+                  "",
+                  "",
+                  "",
+                  ""
+               ],
+               [
+                  "slf4j-api",
+                  "Build-Jdk-Spec: `21`\nCreated-By: `Apache Maven Bundle Plugin 5.1.9`\nManifest-Version: `1.0`\nTool: `Bnd-6.3.1.202206071316`\nX-Compile-Source-JDK: `8`\nX-Compile-Target-JDK: `8`",
+                  "",
+                  "slf4j-api\nVersion: `2.0.16`",
+                  "",
+                  ""
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "List of Java Modules found in classpath.",
+         "title": "JPMS Modules",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Module name",
+               "Definition",
+               "Automatic",
+               "Requires",
+               "Exports"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "`aether.api`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-connector-basic",
+                  "`aether.connector.basic`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-impl",
+                  "`aether.impl`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-spi",
+                  "`aether.spi`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-transport-file",
+                  "`aether.transport.file`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-transport-http",
+                  "`aether.transport.http`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "aether-util",
+                  "`aether.util`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "asm",
+                  "`org.objectweb.asm`",
+                  "Module-Info",
+                  "No",
+                  "`java.base`",
+                  "`org.objectweb.asm`\n`org.objectweb.asm.signature`"
+               ],
+               [
+                  "checker-qual",
+                  "`org.checkerframework.checker.qual`",
+                  "Module-Info",
+                  "No",
+                  "`java.compiler`\n`java.desktop`\n`java.base`\n`jdk.compiler`",
+                  "`org.checkerframework.checker.builder.qual`\n`org.checkerframework.checker.calledmethods.qual`\n`org.checkerframework.checker.compilermsgs.qual`\n`org.checkerframework.checker.fenum.qual`\n`org.checkerframework.checker.formatter.qual`\n`org.checkerframework.checker.guieffect.qual`\n`org.checkerframework.checker.i18n.qual`\n`org.checkerframework.checker.i18nformatter.qual`\n`org.checkerframework.checker.index.qual`\n`org.checkerframework.checker.initialization.qual`\n`org.checkerframework.checker.interning.qual`\n`org.checkerframework.checker.lock.qual`\n`org.checkerframework.checker.mustcall.qual`\n`org.checkerframework.checker.nullness.qual`\n`org.checkerframework.checker.optional.qual`\n`org.checkerframework.checker.propkey.qual`\n`org.checkerframework.checker.regex.qual`\n`org.checkerframework.checker.signature.qual`\n`org.checkerframework.checker.signedness.qual`\n`org.checkerframework.checker.tainting.qual`\n`org.checkerframework.checker.units.qual`\n`org.checkerframework.common.aliasing.qual`\n`org.checkerframework.common.initializedfields.qual`\n`org.checkerframework.common.reflection.qual`\n`org.checkerframework.common.returnsreceiver.qual`\n`org.checkerframework.common.subtyping.qual`\n`org.checkerframework.common.util.count.report.qual`\n`org.checkerframework.common.value.qual`\n`org.checkerframework.dataflow.qual`\n`org.checkerframework.framework.qual`"
+               ],
+               [
+                  "commons-codec",
+                  "`org.apache.commons.codec`",
+                  "Module-Info",
+                  "No",
+                  "`java.base`",
+                  "`org.apache.commons.codec`\n`org.apache.commons.codec.binary`\n`org.apache.commons.codec.cli`\n`org.apache.commons.codec.digest`\n`org.apache.commons.codec.language`\n`org.apache.commons.codec.language.bm`\n`org.apache.commons.codec.net`"
+               ],
+               [
+                  "commons-lang3",
+                  "`commons.lang3`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "error_prone_annotations",
+                  "`com.google.errorprone.annotations`",
+                  "Module-Info",
+                  "No",
+                  "`java.compiler`\n`java.base`",
+                  "`com.google.errorprone.annotations`\n`com.google.errorprone.annotations.concurrent`"
+               ],
+               [
+                  "failureaccess",
+                  "`com.google.common.util.concurrent.internal`",
+                  "Manifest",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "guava",
+                  "`com.google.common`",
+                  "Manifest",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "httpclient",
+                  "`org.apache.httpcomponents.httpclient`",
+                  "Manifest",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "httpcore",
+                  "`org.apache.httpcomponents.httpcore`",
+                  "Manifest",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "jarhc",
+                  "`org.jarhc`",
+                  "Manifest",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "`org.apache.commons.logging`",
+                  "Module-Info",
+                  "No",
+                  "`org.slf4j`\n`java.base`",
+                  "`org.apache.commons.logging`"
+               ],
+               [
+                  "json",
+                  "`org.json`",
+                  "Module-Info",
+                  "No",
+                  "`java.base`",
+                  "`org.json`"
+               ],
+               [
+                  "jsr305",
+                  "`jsr305`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "jul-to-slf4j",
+                  "`jul.to.slf4j`",
+                  "Module-Info",
+                  "No",
+                  "`org.slf4j`\n`java.logging`\n`java.base`",
+                  "`org.slf4j.bridge`"
+               ],
+               [
+                  "listenablefuture",
+                  "`listenablefuture`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-aether-provider",
+                  "`maven.aether.provider`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-artifact",
+                  "`maven.artifact`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-builder-support",
+                  "`maven.builder.support`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-model",
+                  "`maven.model`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-model-builder",
+                  "`maven.model.builder`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "maven-repository-metadata",
+                  "`maven.repository.metadata`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "plexus-component-annotations",
+                  "`plexus.component.annotations`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "plexus-interpolation",
+                  "`plexus.interpolation`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "plexus-utils",
+                  "`plexus.utils`",
+                  "Auto-generated",
+                  "Yes",
+                  "",
+                  "[all packages]"
+               ],
+               [
+                  "slf4j-api",
+                  "`org.slf4j`",
+                  "Module-Info",
+                  "No",
+                  "`java.base`",
+                  "`org.slf4j`\n`org.slf4j.event`\n`org.slf4j.helpers`\n`org.slf4j.spi`"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information about OSGi Bundles.",
+         "title": "OSGi Bundles",
+         "content": [{
+            "columns": [
+               "Artifact",
+               "Name",
+               "Version",
+               "Description",
+               "Import Package",
+               "Export Package",
+               "Capabilities",
+               "Others"
+            ],
+            "rows": [
+               [
+                  "aether-api",
+                  "Aether API\nSymbolic Name: `org.eclipse.aether.api`",
+                  "1.1.0",
+                  "The application programming interface for the repository\nsystem.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-api/",
+                  "",
+                  "`org.eclipse.aether` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.deployment`,\n\t\t`org.eclipse.aether.installation`, `org.eclipse.aether.metadata`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.resolution`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.artifact` (Version: `1.1.0`)\n`org.eclipse.aether.collection` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.version`\n`org.eclipse.aether.deployment` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.graph` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.installation` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.metadata` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.repository` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`\n`org.eclipse.aether.resolution` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.version`\n`org.eclipse.aether.transfer` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`\n`org.eclipse.aether.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-connector-basic",
+                  "Aether Connector Basic\nSymbolic Name: `org.eclipse.aether.connector.basic`",
+                  "1.1.0",
+                  "A repository connector implementation for repositories using\nURI-based layouts.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-connector-basic/",
+                  "`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.checksum` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.layout` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.io` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.concurrency` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.connector.basic` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.spi.connector`,\n\t\t`org.eclipse.aether.spi.connector.checksum`, `org.eclipse.aether.spi.connector.layout`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`, `org.eclipse.aether.spi.locator`,\n\t\t`org.eclipse.aether.spi.log`, `org.eclipse.aether.transfer`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-impl",
+                  "Aether Implementation\nSymbolic Name: `org.eclipse.aether.impl`",
+                  "1.1.0",
+                  "An implementation of the repository system.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-impl/",
+                  "`com.google.inject` (Version: `[1.3,2)`) (optional)\n`com.google.inject.binder` (Version: `[1.3,2)`) (optional)\n`com.google.inject.name` (Version: `[1.3,2)`) (optional)\n`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.collection` (Version: `[1.1,2)`)\n`org.eclipse.aether.deployment` (Version: `[1.1,2)`)\n`org.eclipse.aether.graph` (Version: `[1.1,2)`)\n`org.eclipse.aether.installation` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.resolution` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.checksum` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.layout` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.io` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.localrepo` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.concurrency` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.graph.transformer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util.graph.visitor` (Version: `[1.1,2)`)\n`org.eclipse.aether.version` (Version: `[1.1,2)`)\n`org.eclipse.sisu` (optional)\n`org.slf4j` (Version: `[1.6,2)`) (optional)\n`org.slf4j.spi` (Version: `[1.6,2)`) (optional)",
+                  "`org.eclipse.aether.internal.impl` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.connector.checksum`,\n\t\t`org.eclipse.aether.spi.connector.layout`, `org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.io`,\n\t\t`org.eclipse.aether.spi.localrepo`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`\n\tx-internal:: `true`\n`org.eclipse.aether.internal.impl.slf4j` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`, `org.slf4j`\n\tx-internal:: `true`\n`org.eclipse.aether.impl` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.collection`,\n\t\t`org.eclipse.aether.deployment`, `org.eclipse.aether.impl.guice`, `org.eclipse.aether.installation`,\n\t\t`org.eclipse.aether.metadata`, `org.eclipse.aether.repository`, `org.eclipse.aether.resolution`,\n\t\t`org.eclipse.aether.spi.connector`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.impl.guice` (Version: `1.1.0`)\n\tUses: `com.google.inject`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-spi",
+                  "Aether SPI\nSymbolic Name: `org.eclipse.aether.spi`",
+                  "1.1.0",
+                  "The service provider interface for repository system\nimplementations and repository connectors.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-spi/",
+                  "`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.spi.connector` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.checksum` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.layout` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.connector.transport` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.spi.io` (Version: `1.1.0`)\n`org.eclipse.aether.spi.localrepo` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.repository`\n`org.eclipse.aether.spi.locator` (Version: `1.1.0`)\n`org.eclipse.aether.spi.log` (Version: `1.1.0`)",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-transport-file",
+                  "Aether Transport File\nSymbolic Name: `org.eclipse.aether.transport.file`",
+                  "1.1.0",
+                  "A transport implementation for repositories using file://\nURLs.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-transport-file/",
+                  "`javax.inject` (optional)\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.transport.file` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-transport-http",
+                  "Aether Transport HTTP\nSymbolic Name: `org.eclipse.aether.transport.http`",
+                  "1.1.0",
+                  "A transport implementation for repositories using http://\nand https:// URLs.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL:\nhttp://www.eclipse.org/aether/aether-transport-http/",
+                  "`org.apache.http` (Version: `[4.2.1,4.4)`)\n`org.apache.http.auth` (Version: `[4.2.1,4.4)`)\n`org.apache.http.auth.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client.methods` (Version: `[4.2.1,4.4)`)\n`org.apache.http.client.utils` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.scheme` (Version: `[4.2.1,4.4)`)\n`org.apache.http.conn.ssl` (Version: `[4.2.1,4.4)`)\n`org.apache.http.entity` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.auth` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.client` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.conn` (Version: `[4.2.1,4.4)`)\n`org.apache.http.impl.cookie` (Version: `[4.2.1,4.4)`)\n`org.apache.http.params` (Version: `[4.2.1,4.4)`)\n`org.apache.http.protocol` (Version: `[4.2.1,4.4)`)\n`org.apache.http.util` (Version: `[4.2.1,4.4)`)\n`javax.inject` (optional)\n`javax.net`\n`javax.net.ssl`\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.connector.transport` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.locator` (Version: `[1.1,2)`)\n`org.eclipse.aether.spi.log` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.util` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.transport.http` (Version: `1.1.0`)\n\tUses: `javax.inject`, `org.eclipse.aether`, `org.eclipse.aether.repository`,\n\t\t`org.eclipse.aether.spi.connector.transport`, `org.eclipse.aether.spi.locator`, `org.eclipse.aether.spi.log`,\n\t\t`org.eclipse.aether.transfer`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "aether-util",
+                  "Aether Utilities\nSymbolic Name: `org.eclipse.aether.util`",
+                  "1.1.0",
+                  "A collection of utility classes to ease usage of the\nrepository system.\nVendor: Eclipse Aether\nLicense: http://www.eclipse.org/legal/epl-v10.html\nDoc URL: http://www.eclipse.org/aether/aether-util/",
+                  "`javax.net.ssl`\n`org.eclipse.aether` (Version: `[1.1,2)`)\n`org.eclipse.aether.artifact` (Version: `[1.1,2)`)\n`org.eclipse.aether.collection` (Version: `[1.1,2)`)\n`org.eclipse.aether.graph` (Version: `[1.1,2)`)\n`org.eclipse.aether.metadata` (Version: `[1.1,2)`)\n`org.eclipse.aether.repository` (Version: `[1.1,2)`)\n`org.eclipse.aether.resolution` (Version: `[1.1,2)`)\n`org.eclipse.aether.transfer` (Version: `[1.1,2)`)\n`org.eclipse.aether.version` (Version: `[1.1,2)`)",
+                  "`org.eclipse.aether.util` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`\n`org.eclipse.aether.util.artifact` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`\n`org.eclipse.aether.util.concurrency` (Version: `1.1.0`)\n`org.eclipse.aether.util.filter` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.artifact`, `org.eclipse.aether.graph`, `org.eclipse.aether.version`\n`org.eclipse.aether.util.graph.manager` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.selector` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.transformer` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.traverser` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.collection`, `org.eclipse.aether.graph`\n`org.eclipse.aether.util.graph.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.collection`\n`org.eclipse.aether.util.graph.visitor` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.graph`\n`org.eclipse.aether.util.listener` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether`, `org.eclipse.aether.transfer`\n`org.eclipse.aether.util.repository` (Version: `1.1.0`)\n\tUses: `javax.net.ssl`, `org.eclipse.aether`, `org.eclipse.aether.artifact`, `org.eclipse.aether.metadata`,\n\t\t`org.eclipse.aether.repository`, `org.eclipse.aether.resolution`\n`org.eclipse.aether.util.version` (Version: `1.1.0`)\n\tUses: `org.eclipse.aether.version`",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "asm",
+                  "`org.objectweb.asm`",
+                  "9.7",
+                  "License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt\nDoc URL: http://asm.ow2.org",
+                  "",
+                  "`org.objectweb.asm` (Version: `9.7`)\n`org.objectweb.asm.signature` (Version: `9.7`)",
+                  "",
+                  "Manifest Version: 2\nRequired Execution Environment: J2SE-1.5"
+               ],
+               [
+                  "checker-qual",
+                  "`checker-qual`",
+                  "3.43.0",
+                  "License: MIT",
+                  "`org.checkerframework.checker.nullness.qual`\n`org.checkerframework.dataflow.qual`\n`org.checkerframework.framework.qual`",
+                  "`org.checkerframework.checker.builder.qual` (Version: `3.43.0`)\n`org.checkerframework.checker.calledmethods.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.compilermsgs.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.fenum.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.formatter.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.checker.nullness.qual`, `org.checkerframework.dataflow.qual`,\n\t\t`org.checkerframework.framework.qual`\n`org.checkerframework.checker.guieffect.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.i18n.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.i18nformatter.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.checker.nullness.qual`, `org.checkerframework.framework.qual`\n`org.checkerframework.checker.index.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.initialization.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.interning.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.lock.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.mustcall.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.nullness.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.optional.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.propkey.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.regex.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.signature.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.signedness.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.tainting.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.checker.units.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.aliasing.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.initializedfields.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.reflection.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.returnsreceiver.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.subtyping.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.util.count.report.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.common.value.qual` (Version: `3.43.0`)\n\tUses: `org.checkerframework.framework.qual`\n`org.checkerframework.dataflow.qual` (Version: `3.43.0`)\n`org.checkerframework.framework.qual` (Version: `3.43.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "commons-codec",
+                  "Apache Commons Codec\nSymbolic Name: `org.apache.commons.commons-codec`",
+                  "1.17.1",
+                  "The Apache Commons Codec component contains encoders and\ndecoders for     various formats such as Base16, Base32,\nBase64, digest, and Hexadecimal. In addition to these\nwidely used encoders and decoders, the codec package also\nmaintains a     collection of phonetic encoding utilities.\nVendor: The Apache Software Foundation\nLicense: https://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://commons.apache.org/proper/commons-codec/",
+                  "`javax.crypto`\n`javax.crypto.spec`",
+                  "`org.apache.commons.codec` (Version: `1.17.1`)\n`org.apache.commons.codec.binary` (Version: `1.17.1`)\n`org.apache.commons.codec.cli` (Version: `1.17.1`)\n`org.apache.commons.codec.digest` (Version: `1.17.1`)\n`org.apache.commons.codec.language` (Version: `1.17.1`)\n`org.apache.commons.codec.language.bm` (Version: `1.17.1`)\n`org.apache.commons.codec.net` (Version: `1.17.1`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2\nInclude Resource:\norg/apache/commons/codec/language/bm/ash_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_any.txt\norg/apache/commons/codec/language/bm/ash_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_common.txt\norg/apache/commons/codec/language/bm/ash_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_english.txt\norg/apache/commons/codec/language/bm/ash_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_french.txt\norg/apache/commons/codec/language/bm/ash_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_german.txt\norg/apache/commons/codec/language/bm/ash_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hebrew.txt\norg/apache/commons/codec/language/bm/ash_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_hungarian.txt\norg/apache/commons/codec/language/bm/ash_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_polish.txt\norg/apache/commons/codec/language/bm/ash_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_romanian.txt\norg/apache/commons/codec/language/bm/ash_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_russian.txt\norg/apache/commons/codec/language/bm/ash_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_approx_spanish.txt\norg/apache/commons/codec/language/bm/ash_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_any.txt\norg/apache/commons/codec/language/bm/ash_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_approx_common.txt\norg/apache/commons/codec/language/bm/ash_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_common.txt\norg/apache/commons/codec/language/bm/ash_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_english.txt\norg/apache/commons/codec/language/bm/ash_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_french.txt\norg/apache/commons/codec/language/bm/ash_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_german.txt\norg/apache/commons/codec/language/bm/ash_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hebrew.txt\norg/apache/commons/codec/language/bm/ash_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_hungarian.txt\norg/apache/commons/codec/language/bm/ash_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_polish.txt\norg/apache/commons/codec/language/bm/ash_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_romanian.txt\norg/apache/commons/codec/language/bm/ash_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_russian.txt\norg/apache/commons/codec/language/bm/ash_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_exact_spanish.txt\norg/apache/commons/codec/language/bm/ash_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_hebrew_common.txt\norg/apache/commons/codec/language/bm/ash_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_lang.txt\norg/apache/commons/codec/language/bm/ash_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_languages.txt\norg/apache/commons/codec/language/bm/ash_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_any.txt\norg/apache/commons/codec/language/bm/ash_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_cyrillic.txt\norg/apache/commons/codec/language/bm/ash_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_english.txt\norg/apache/commons/codec/language/bm/ash_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_french.txt\norg/apache/commons/codec/language/bm/ash_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_german.txt\norg/apache/commons/codec/language/bm/ash_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hebrew.txt\norg/apache/commons/codec/language/bm/ash_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_hungarian.txt\norg/apache/commons/codec/language/bm/ash_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_polish.txt\norg/apache/commons/codec/language/bm/ash_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_romanian.txt\norg/apache/commons/codec/language/bm/ash_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_russian.txt\norg/apache/commons/codec/language/bm/ash_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/ash_rules_spanish.txt\norg/apache/commons/codec/language/bm/gen_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_any.txt\norg/apache/commons/codec/language/bm/gen_approx_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_arabic.txt\norg/apache/commons/codec/language/bm/gen_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_common.txt\norg/apache/commons/codec/language/bm/gen_approx_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_approx_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_czech.txt\norg/apache/commons/codec/language/bm/gen_approx_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_dutch.txt\norg/apache/commons/codec/language/bm/gen_approx_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_english.txt\norg/apache/commons/codec/language/bm/gen_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_french.txt\norg/apache/commons/codec/language/bm/gen_approx_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_german.txt\norg/apache/commons/codec/language/bm/gen_approx_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greek.txt\norg/apache/commons/codec/language/bm/gen_approx_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hebrew.txt\norg/apache/commons/codec/language/bm/gen_approx_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_hungarian.txt\norg/apache/commons/codec/language/bm/gen_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_italian.txt\norg/apache/commons/codec/language/bm/gen_approx_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_polish.txt\norg/apache/commons/codec/language/bm/gen_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_portuguese.txt\norg/apache/commons/codec/language/bm/gen_approx_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_romanian.txt\norg/apache/commons/codec/language/bm/gen_approx_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_russian.txt\norg/apache/commons/codec/language/bm/gen_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_spanish.txt\norg/apache/commons/codec/language/bm/gen_approx_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_approx_turkish.txt\norg/apache/commons/codec/language/bm/gen_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_any.txt\norg/apache/commons/codec/language/bm/gen_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_approx_common.txt\norg/apache/commons/codec/language/bm/gen_exact_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_arabic.txt\norg/apache/commons/codec/language/bm/gen_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_common.txt\norg/apache/commons/codec/language/bm/gen_exact_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_exact_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_czech.txt\norg/apache/commons/codec/language/bm/gen_exact_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_dutch.txt\norg/apache/commons/codec/language/bm/gen_exact_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_english.txt\norg/apache/commons/codec/language/bm/gen_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_french.txt\norg/apache/commons/codec/language/bm/gen_exact_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_german.txt\norg/apache/commons/codec/language/bm/gen_exact_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greek.txt\norg/apache/commons/codec/language/bm/gen_exact_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hebrew.txt\norg/apache/commons/codec/language/bm/gen_exact_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_hungarian.txt\norg/apache/commons/codec/language/bm/gen_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_italian.txt\norg/apache/commons/codec/language/bm/gen_exact_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_polish.txt\norg/apache/commons/codec/language/bm/gen_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_portuguese.txt\norg/apache/commons/codec/language/bm/gen_exact_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_romanian.txt\norg/apache/commons/codec/language/bm/gen_exact_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_russian.txt\norg/apache/commons/codec/language/bm/gen_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_spanish.txt\norg/apache/commons/codec/language/bm/gen_exact_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_exact_turkish.txt\norg/apache/commons/codec/language/bm/gen_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_hebrew_common.txt\norg/apache/commons/codec/language/bm/gen_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_lang.txt\norg/apache/commons/codec/language/bm/gen_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_languages.txt\norg/apache/commons/codec/language/bm/gen_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_any.txt\norg/apache/commons/codec/language/bm/gen_rules_arabic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_arabic.txt\norg/apache/commons/codec/language/bm/gen_rules_cyrillic.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_cyrillic.txt\norg/apache/commons/codec/language/bm/gen_rules_czech.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_czech.txt\norg/apache/commons/codec/language/bm/gen_rules_dutch.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_dutch.txt\norg/apache/commons/codec/language/bm/gen_rules_english.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_english.txt\norg/apache/commons/codec/language/bm/gen_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_french.txt\norg/apache/commons/codec/language/bm/gen_rules_german.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_german.txt\norg/apache/commons/codec/language/bm/gen_rules_greek.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greek.txt\norg/apache/commons/codec/language/bm/gen_rules_greeklatin.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_greeklatin.txt\norg/apache/commons/codec/language/bm/gen_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hebrew.txt\norg/apache/commons/codec/language/bm/gen_rules_hungarian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_hungarian.txt\norg/apache/commons/codec/language/bm/gen_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_italian.txt\norg/apache/commons/codec/language/bm/gen_rules_polish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_polish.txt\norg/apache/commons/codec/language/bm/gen_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_portuguese.txt\norg/apache/commons/codec/language/bm/gen_rules_romanian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_romanian.txt\norg/apache/commons/codec/language/bm/gen_rules_russian.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_russian.txt\norg/apache/commons/codec/language/bm/gen_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_spanish.txt\norg/apache/commons/codec/language/bm/gen_rules_turkish.txt=src/main/resources/org/apache/commons/codec/language/bm/gen_rules_turkish.txt\norg/apache/commons/codec/language/bm/lang.txt=src/main/resources/org/apache/commons/codec/language/bm/lang.txt\norg/apache/commons/codec/language/bm/sep_approx_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_any.txt\norg/apache/commons/codec/language/bm/sep_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_common.txt\norg/apache/commons/codec/language/bm/sep_approx_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_french.txt\norg/apache/commons/codec/language/bm/sep_approx_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_hebrew.txt\norg/apache/commons/codec/language/bm/sep_approx_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_italian.txt\norg/apache/commons/codec/language/bm/sep_approx_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_portuguese.txt\norg/apache/commons/codec/language/bm/sep_approx_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_approx_spanish.txt\norg/apache/commons/codec/language/bm/sep_exact_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_any.txt\norg/apache/commons/codec/language/bm/sep_exact_approx_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_approx_common.txt\norg/apache/commons/codec/language/bm/sep_exact_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_common.txt\norg/apache/commons/codec/language/bm/sep_exact_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_french.txt\norg/apache/commons/codec/language/bm/sep_exact_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_hebrew.txt\norg/apache/commons/codec/language/bm/sep_exact_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_italian.txt\norg/apache/commons/codec/language/bm/sep_exact_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_portuguese.txt\norg/apache/commons/codec/language/bm/sep_exact_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_exact_spanish.txt\norg/apache/commons/codec/language/bm/sep_hebrew_common.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_hebrew_common.txt\norg/apache/commons/codec/language/bm/sep_lang.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_lang.txt\norg/apache/commons/codec/language/bm/sep_languages.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_languages.txt\norg/apache/commons/codec/language/bm/sep_rules_any.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_any.txt\norg/apache/commons/codec/language/bm/sep_rules_french.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_french.txt\norg/apache/commons/codec/language/bm/sep_rules_hebrew.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_hebrew.txt\norg/apache/commons/codec/language/bm/sep_rules_italian.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_italian.txt\norg/apache/commons/codec/language/bm/sep_rules_portuguese.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_portuguese.txt\norg/apache/commons/codec/language/bm/sep_rules_spanish.txt=src/main/resources/org/apache/commons/codec/language/bm/sep_rules_spanish.txt\norg/apache/commons/codec/language/dmrules.txt=src/main/resources/org/apache/commons/codec/language/dmrules.txt\nMETA-INF/LICENSE.txt=LICENSE.txt\nMETA-INF/NOTICE.txt=NOTICE.txt"
+               ],
+               [
+                  "commons-lang3",
+                  "Apache Commons Lang\nSymbolic Name: `org.apache.commons.lang3`",
+                  "3.4.0",
+                  "Apache Commons Lang, a package of Java utility classes for\nthe  classes that are in java.lang's hierarchy, or are\nconsidered to be so  standard as to justify existence in\njava.lang.\nVendor: The Apache Software Foundation\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: http://commons.apache.org/proper/commons-lang/",
+                  "",
+                  "`org.apache.commons.lang3` (Version: `3.4`)\n`org.apache.commons.lang3.builder` (Version: `3.4`)\n`org.apache.commons.lang3.concurrent` (Version: `3.4`)\n`org.apache.commons.lang3.event` (Version: `3.4`)\n`org.apache.commons.lang3.exception` (Version: `3.4`)\n`org.apache.commons.lang3.math` (Version: `3.4`)\n`org.apache.commons.lang3.mutable` (Version: `3.4`)\n`org.apache.commons.lang3.reflect` (Version: `3.4`)\n`org.apache.commons.lang3.text` (Version: `3.4`)\n`org.apache.commons.lang3.text.translate` (Version: `3.4`)\n`org.apache.commons.lang3.time` (Version: `3.4`)\n`org.apache.commons.lang3.tuple` (Version: `3.4`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.6))\"`",
+                  "Manifest Version: 2\nInclude Resource:\nMETA-INF/LICENSE.txt=LICENSE.txt\nMETA-INF/NOTICE.txt=NOTICE.txt"
+               ],
+               [
+                  "error_prone_annotations",
+                  "error-prone annotations\nSymbolic Name: `com.google.errorprone.annotations`",
+                  "2.28.0",
+                  "Error Prone is a static analysis tool for Java that catches\ncommon programming mistakes at compile-time.\nVendor: Google LLC\nLicense: \"Apache\n2.0\";link=\"http://www.apache.org/licenses/LICENSE-2.0.txt\"\nDoc URL: https://errorprone.info/error_prone_annotations",
+                  "`javax.lang.model.element`",
+                  "`com.google.errorprone.annotations` (Version: `2.28.0`)\n\tUses: `javax.lang.model.element`\n`com.google.errorprone.annotations.concurrent` (Version: `2.28.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "failureaccess",
+                  "Guava InternalFutureFailureAccess and InternalFutures\nSymbolic Name: `com.google.guava.failureaccess`",
+                  "1.0.2",
+                  "Contains\ncom.google.common.util.concurrent.internal.InternalFutureFailureAccess\nand    InternalFutures. Most users will never need to use\nthis artifact. Its    classes are conceptually a part of\nGuava, but they're in this separate    artifact so that\nAndroid libraries can use them without pulling in all of\nGuava (just as they can use ListenableFuture by depending on\nthe    listenablefuture artifact).\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://github.com/google/guava/",
+                  "",
+                  "`com.google.common.util.concurrent.internal` (Version: `1.0.2`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.7))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "guava",
+                  "Guava: Google Core Libraries for Java\nSymbolic Name: `com.google.guava`",
+                  "33.3.0.jre",
+                  "Guava is a suite of core and expanded libraries that include\nutility classes, Google's collections, I/O classes, and\nmuch more.\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: https://github.com/google/guava/",
+                  "`com.google.common.util.concurrent.internal` (Version: `[1.0,2)`)\n`javax.annotation` (Version: `[3.0,4)`) (optional)\n`javax.crypto` (optional)\n`javax.crypto.spec` (optional)\n`sun.misc` (optional)",
+                  "`com.google.common.annotations` (Version: `33.3.0`)\n`com.google.common.base` (Version: `33.3.0`)\n\tUses: `javax.annotation`\n`com.google.common.cache` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent`, `javax.annotation`\n`com.google.common.collect` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.escape` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.eventbus` (Version: `33.3.0`)\n`com.google.common.graph` (Version: `33.3.0`)\n\tUses: `com.google.common.collect`, `javax.annotation`\n`com.google.common.hash` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.html` (Version: `33.3.0`)\n\tUses: `com.google.common.escape`\n`com.google.common.io` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.graph`, `com.google.common.hash`,\n\t\t`javax.annotation`\n`com.google.common.math` (Version: `33.3.0`)\n\tUses: `javax.annotation`\n`com.google.common.net` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.escape`, `javax.annotation`\n`com.google.common.primitives` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `javax.annotation`\n`com.google.common.reflect` (Version: `33.3.0`)\n\tUses: `com.google.common.collect`, `com.google.common.io`, `javax.annotation`\n`com.google.common.util.concurrent` (Version: `33.3.0`)\n\tUses: `com.google.common.base`, `com.google.common.collect`, `com.google.common.util.concurrent.internal`,\n\t\t`javax.annotation`\n`com.google.common.xml` (Version: `33.3.0`)\n\tUses: `com.google.common.escape`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "jcl-over-slf4j",
+                  "JCL 1.2 implemented over SLF4J\nSymbolic Name: `jcl.over.slf4j`",
+                  "2.0.16",
+                  "JCL 1.2 implemented over SLF4J\nVendor: SLF4J.ORG\nLicense: https://www.apache.org/licenses/LICENSE-2.0.txt\nDoc URL: http://www.slf4j.org",
+                  "`org.slf4j` (Version: `[2.0,3)`)\n`org.slf4j.spi` (Version: `[2.0,3)`)",
+                  "`org.apache.commons.logging` (Version: `1.2`)\n`org.apache.commons.logging.impl` (Version: `1.2`)\n\tUses: `org.apache.commons.logging`, `org.slf4j`, `org.slf4j.spi`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "json",
+                  "JSON in Java\nSymbolic Name: `json`",
+                  "20240303.0.0",
+                  "JSON is a light-weight, language independent, data\ninterchange format.        See http://www.JSON.org/\nThe files in this package implement JSON encoders/decoders\nin Java.        It also includes the capability to convert\nbetween JSON and XML, HTTP        headers, Cookies, and CDL.\nThis is a reference implementation. There are a large number\nof JSON packages        in Java. Perhaps someday the Java\ncommunity will standardize on one. Until        then, choose\ncarefully.\nLicense:\nhttps://github.com/stleary/JSON-java/blob/master/LICENSE",
+                  "",
+                  "`org.json` (Version: `20240303.0.0`)",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "jsr305",
+                  "FindBugs-jsr305\nSymbolic Name: `org.jsr-305`",
+                  "3.0.2",
+                  "JSR305 Annotations for Findbugs\nLicense: http://www.apache.org/licenses/LICENSE-2.0.txt",
+                  "",
+                  "`javax.annotation` (Version: `3.0.2`)\n\tUses: `javax.annotation.meta`\n`javax.annotation.concurrent` (Version: `3.0.2`)\n`javax.annotation.meta` (Version: `3.0.2`)\n\tUses: `javax.annotation`",
+                  "",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "jul-to-slf4j",
+                  "JUL to SLF4J bridge\nSymbolic Name: `jul.to.slf4j`",
+                  "2.0.16",
+                  "JUL to SLF4J bridge\nVendor: SLF4J.ORG\nLicense: http://www.opensource.org/licenses/mit-license.php\nDoc URL: http://www.slf4j.org",
+                  "`org.slf4j` (Version: `[2.0,3)`)\n`org.slf4j.spi` (Version: `[2.0,3)`)",
+                  "`org.slf4j.bridge` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.spi`",
+                  "Required:\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ],
+               [
+                  "slf4j-api",
+                  "SLF4J API Module\nSymbolic Name: `slf4j.api`",
+                  "2.0.16",
+                  "The slf4j API\nVendor: SLF4J.ORG\nLicense: http://www.opensource.org/licenses/mit-license.php\nDoc URL: http://www.slf4j.org",
+                  "`org.slf4j.spi` (Version: `[2.0.16,3)`)",
+                  "`org.slf4j` (Version: `2.0.16`)\n\tUses: `org.slf4j.event`, `org.slf4j.helpers`, `org.slf4j.spi`\n`org.slf4j.event` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.helpers`\n`org.slf4j.helpers` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.spi`\n`org.slf4j.spi` (Version: `2.0.16`)\n\tUses: `org.slf4j`, `org.slf4j.event`, `org.slf4j.helpers`\n`org.slf4j` (Version: `1.7.36`)\n`org.slf4j.helpers` (Version: `1.7.36`)",
+                  "Required:\n`osgi.extender;filter:=\"(&(osgi.extender=osgi.serviceloader.processor)(version>=1.0.0)(!(version>=2.0.0)))\"`\n`osgi.serviceloader;filter:=\"(osgi.serviceloader=org.slf4j.spi.SLF4JServiceProvider)\";osgi.serviceloader=\"org.slf4j.spi.SLF4JServiceProvider\"`\n`osgi.ee;filter:=\"(&(osgi.ee=JavaSE)(version=1.8))\"`",
+                  "Manifest Version: 2"
+               ]
+            ]
+         }]
+      },
+      {
+         "description": "Information about JRE/JDK runtime.",
+         "title": "Java Runtime",
+         "content": ["Java home    : `/opt/java-17`\nJava runtime : `OpenJDK Runtime Environment`\nJava version : `17.0.19`\nJava vendor  : `Eclipse Adoptium`"]
+      }
+   ],
+   "timestamp": 1739992928000
+}

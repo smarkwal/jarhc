@@ -1,0 +1,296 @@
+ASM 9.9
+=======
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+Artifact: asm
+	Version:
+		9.9
+	Source:
+		org.ow2.asm:asm:9.9
+	Size:
+		123 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (38)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+	Checksum (SHA-1):
+		c29635c8a7afa03d74b33c1884df8abb2b3f3dcc
+	Coordinates:
+		org.ow2.asm:asm:9.9
+
+Artifact: asm-commons
+	Version:
+		9.9
+	Source:
+		org.ow2.asm:asm-commons:9.9
+	Size:
+		72.6 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (27)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm.commons
+	Checksum (SHA-1):
+		db9165a3bf908ded6b08612d583a15d1d0c7bda0
+	Coordinates:
+		org.ow2.asm:asm-commons:9.9
+
+Artifact: asm-tree
+	Version:
+		9.9
+	Source:
+		org.ow2.asm:asm-tree:9.9
+	Size:
+		50.7 KB
+	Multi-release:
+		No
+	Java version (classes):
+		Java 5 (38)
+	Resources:
+		0
+	Packages:
+		org.objectweb.asm.tree
+	Checksum (SHA-1):
+		f8de6eead6d24dd0f45bd065bbe112b2cda6ea21
+	Coordinates:
+		org.ow2.asm:asm-tree:9.9
+
+Artifact: Classpath
+	Version:
+		-
+	Source:
+		-
+	Size:
+		247 KB
+	Multi-release:
+		-
+	Java version (classes):
+		Java 5 (103)
+	Resources:
+		0
+	Packages:
+		4
+	Checksum (SHA-1):
+		-
+	Coordinates:
+		-
+	Issues:
+		-
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact: asm
+	Uses:
+		[none]
+	Used by:
+		asm-commons
+		asm-tree
+	Maven coordinates:
+		org.ow2.asm:asm:9.9
+	Updates:
+		9.9.1
+		9.10, 9.10.1
+	Direct dependencies:
+		[none]
+
+Artifact: asm-commons
+	Uses:
+		asm
+		asm-tree
+	Used by:
+		[none]
+	Maven coordinates:
+		org.ow2.asm:asm-commons:9.9
+	Updates:
+		9.9.1
+		9.10, 9.10.1
+	Direct dependencies:
+		org.ow2.asm:asm-tree:9.9 [OK]
+		org.ow2.asm:asm:9.9 [OK]
+
+Artifact: asm-tree
+	Uses:
+		asm
+	Used by:
+		asm-commons
+	Maven coordinates:
+		org.ow2.asm:asm-tree:9.9
+	Updates:
+		9.9.1
+		9.10, 9.10.1
+	Direct dependencies:
+		org.ow2.asm:asm:9.9 [OK]
+
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact: asm-commons
+	Issues:
+		org.objectweb.asm.commons.InstructionAdapter
+		• @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
+
+Artifact: asm
+	General:
+		Manifest-Version: 1.0
+	Implementation:
+		ASM, a very small and fast Java bytecode manipulation framework
+		Version: 9.9
+
+Artifact: asm-commons
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true
+	Implementation:
+		Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework
+		Version: 9.9
+
+Artifact: asm-tree
+	General:
+		Manifest-Version: 1.0
+		Module-Requires: org.objectweb.asm;transitive=true
+	Implementation:
+		Tree API of ASM, a very small and fast Java bytecode manipulation framework
+		Version: 9.9
+
+JPMS Modules
+------------
+List of Java Modules found in classpath.
+
+Artifact: asm
+	Module name:
+		org.objectweb.asm
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		java.base
+	Exports:
+		org.objectweb.asm
+		org.objectweb.asm.signature
+
+Artifact: asm-commons
+	Module name:
+		org.objectweb.asm.commons
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		org.objectweb.asm.tree
+		java.base
+	Exports:
+		org.objectweb.asm.commons
+
+Artifact: asm-tree
+	Module name:
+		org.objectweb.asm.tree
+	Definition:
+		Module-Info
+	Automatic:
+		No
+	Requires:
+		org.objectweb.asm
+		java.base
+	Exports:
+		org.objectweb.asm.tree
+
+OSGi Bundles
+------------
+Information about OSGi Bundles.
+
+Artifact: asm
+	Name:
+		org.objectweb.asm
+	Version:
+		9.9
+	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
+		Doc URL: http://asm.ow2.org
+	Export Package:
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-commons
+	Name:
+		org.objectweb.asm.commons
+	Version:
+		9.9
+	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
+		org.objectweb.asm.tree (Version: 9.9)
+	Export Package:
+		org.objectweb.asm.commons (Version: 9.9)
+		   Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Artifact: asm-tree
+	Name:
+		org.objectweb.asm.tree
+	Version:
+		9.9
+	Description:
+		License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt
+		Doc URL: http://asm.ow2.org
+	Import Package:
+		org.objectweb.asm (Version: 9.9)
+		org.objectweb.asm.signature (Version: 9.9)
+	Export Package:
+		org.objectweb.asm.tree (Version: 9.9)
+		   Uses: org.objectweb.asm, org.objectweb.asm.signature
+	Others:
+		Manifest Version: 2
+		Required Execution Environment: J2SE-1.5
+
+Java Runtime
+------------
+Information about JRE/JDK runtime.
+
+Java home    : /opt/java-17
+Java runtime : OpenJDK Runtime Environment
+Java version : 17.0.19
+Java vendor  : Eclipse Adoptium
+

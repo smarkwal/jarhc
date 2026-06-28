@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, HttpUrlsUsage, SpellCheckingInspection, GrazieInspection, DeprecatedClassUsageInspection -->
+<html lang="en">
+<head>
+	<title>ASM 9.9</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="JarHC 3.1.0">
+	<style>
+
+		html {
+			scroll-padding-top: 80px;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			line-height: 1.2rem;
+		}
+
+		a {
+			color: #333399;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:visited {
+				color: #333399;
+			}
+		}
+
+		#header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			background-color: lightgray;
+			padding: 12px;
+			z-index: 100;
+		}
+
+		#controls {
+			display: flex;
+			align-self: flex-start;
+		}
+
+		.control {
+			display: flex;
+			align-items: center;
+			padding: 8px;
+			margin-right: 10px;
+			background-color: #EEEEEE;
+			border-radius: 8px;
+			user-select: none;
+
+			&:hover {
+				background-color: white;
+			}
+		}
+
+		#showOnlyDiffControl {
+			display: none;
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+
+			&.icon-up {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,234.8l90.5,90.5c10.2,9.8,26.4,9.5,36.2-0.6c9.6-9.9,9.6-25.6,0-35.6L274.1,180.5c-10-10-26.2-10-36.2,0L129.3,289.1c-9.8,10.2-9.5,26.4,0.6,36.2c9.9,9.6,25.6,9.6,35.6,0L256,234.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			&.icon-down {
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"%3E%3Cg%3E%3Cpath d="M256,302.8l-90.5-90.5c-10.2-9.8-26.4-9.5-36.2,0.6c-9.6,9.9-9.6,25.6,0,35.6l108.6,108.6c9.9,10,26.1,10,36.1,0.1l0.1-0.1l108.6-108.6c10.2-9.8,10.4-26,0.6-36.2c-9.8-10.2-26-10.4-36.2-0.6l-0.6,0.6L256,302.8z M256,512C114.6,512,0,397.4,0,256S114.6,0,256,0s256,114.6,256,256S397.4,512,256,512z"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
+
+		.label {
+			margin-left: 0.5em;
+		}
+
+		#generator {
+			align-self: flex-end;
+			margin-right: 20px;
+			padding: 8px;
+		}
+
+		#minimap {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 70px;
+			left: 10px;
+			width: 70px;
+			height: calc(100% - 80px);
+			z-index: 80;
+			user-select: none;
+			background-color: #EEEEEE;
+		}
+
+		#minimapView {
+			display: none; /* hidden by default */
+			position: fixed;
+			top: 66px; /* minimap top - 4px border */
+			left: 6px; /* minimap left - 4px border */
+			width: 70px; /* minimap width */
+			height: 0;
+			z-index: 90; /* float above minimap */
+			pointer-events: none;
+			user-select: none;
+			border: 4px solid black;
+		}
+
+		.minimapSection {
+			position: absolute;
+			left: 2px;
+			width: 62px; /* minimap width - 2x 2px inset - 2x 2px padding */
+			padding: 2px;
+			background-color: lightgray;
+			overflow: hidden;
+		}
+
+		.minimapSectionTitle {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1em;
+			overflow-wrap: break-word;
+		}
+
+		#main {
+			margin: 80px 20px 20px 20px;
+		}
+
+		nav ul {
+			list-style-type: none;
+			margin-left: 10px;
+			padding: 0;
+			line-height: 1.7em;
+		}
+
+		h2, h3, h4, h5, h6 {
+			margin-top: 3rem;
+		}
+
+		.report-section-title {
+			background-color: black;
+			color: white;
+			padding: 10px 10px 10px 45px;
+			user-select: none;
+
+			/* collapse icon */
+			background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L30,30L30,10"/%3E%3Cpath d="M70,30L50,30L50,10"/%3E%3Cpath d="M10,50L30,50L30,70"/%3E%3Cpath d="M70,50L50,50L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			background-position: center left 5px;
+			background-repeat: no-repeat;
+			background-size: 30px 30px;
+		}
+
+		section.collapsed {
+			.report-section-title { /* replace collapse icon with expand icon */
+				background-image: url('data:image/svg+xml,%3C%3Fxml version="1.0" encoding="utf-8"%3F%3E%3Csvg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;"%3E%3Cg style="stroke:white;stroke-width:6" fill="none"%3E%3Cpath d="M10,30L10,10L30,10"/%3E%3Cpath d="M70,30L70,10L50,10"/%3E%3Cpath d="M10,50L10,70L30,70"/%3E%3Cpath d="M70,50L70,70L50,70"/%3E%3C/g%3E%3C/svg%3E%0A');
+			}
+
+			.report-section-content {
+				display: none;
+			}
+		}
+
+		.report-section-content {
+			margin-left: 10px;
+		}
+
+		table {
+			border-collapse: collapse;
+			font-size: 0.8rem;
+		}
+
+		th {
+			background-color: lightgray;
+		}
+
+		th, td {
+			border: 1px solid gray;
+			padding: 0.3rem;
+			vertical-align: top;
+			text-align: left;
+			white-space: nowrap;
+		}
+
+		.report-text-block {
+			margin-bottom: 1em;
+
+			&:last-child { /* no margin after last block */
+				margin-bottom: 0;
+			}
+		}
+
+		.report-issue {
+		}
+
+		code {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: #333399;
+		}
+
+		.inserted {
+			background-color: #D4EDDA;
+		}
+
+		.deleted {
+			background-color: #F8D7DA;
+		}
+
+		.marked {
+			background-color: #FFF6D8;
+		}
+
+		/* special diff report settings */
+
+		.diff-report {
+
+			#showOnlyDiffControl {
+				display: flex; /* only available in diff report */
+			}
+
+			.report-table-row.no-diff,
+			.report-issue.no-diff {
+				display: none; /* default: only show differences */
+			}
+
+		}
+
+		/* special print settings */
+
+		@media print {
+
+			header,
+			#minimap,
+			#minimapView,
+			nav {
+				display: none !important;
+			}
+
+			main {
+				margin: 0;
+			}
+
+			th, td {
+				white-space: normal;
+			}
+
+		}
+
+	</style>
+	<script>
+
+		const HEADER_HEIGHT = 80;
+		const MINIMAP_VSPACE = 10;
+
+		let MINIMAP_ENABLED = false;
+
+		function init() {
+
+			// check if document is a diff report
+			const isDiffReport = "scan" === "diff"
+			if (isDiffReport) {
+				initDiffUI();
+			}
+
+			initMinimap();
+			initCollapseExpand();
+			initExpandFromHash();
+			initRowMarking();
+			initKeyboardShortcuts();
+		}
+
+		function initDiffUI() {
+
+			// support click on control (outside of checkbox and label)
+			const control = document.getElementById("showOnlyDiffControl");
+			control.addEventListener("click", function(event) {
+				if (event.target === control) { // ignore clicks on nested elements
+					// similate click on checkbox
+					const checkbox = document.getElementById("showOnlyDiffCheckbox");
+					checkbox.click();
+				}
+			});
+		}
+
+		function initMinimap() {
+
+			window.addEventListener("scroll", updateMinimapView);
+			window.addEventListener("resize", updateMinimap);
+
+			const minimap = document.getElementById("minimap");
+			minimap.addEventListener("click", scrollMinimapView);
+			// TODO: on mouse drag
+		}
+
+		function initCollapseExpand() {
+
+			// for every report section ...
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				const title = section.querySelector("h2, h3, h4, h5, h6");
+				if (title) {
+					title.addEventListener("click", () => {
+						section.classList.toggle("collapsed");
+						updateMinimap();
+					});
+				}
+			}
+		}
+
+		function initExpandFromHash() {
+			expandHashTarget();
+			// expand on hash change (e.g. back/forward navigation)
+			window.addEventListener("hashchange", expandHashTarget);
+			// also expand on in-page anchor clicks (e.g. from the Table of Contents);
+			// this also covers clicks re-selecting the current hash, which fire no "hashchange" event
+			for (let link of document.querySelectorAll('a[href^="#"]')) {
+				link.addEventListener("click", () => setTimeout(expandHashTarget));
+			}
+		}
+
+		function expandHashTarget() {
+			if (!location.hash) return;
+			let id;
+			try {
+				id = decodeURIComponent(location.hash.substring(1));
+			} catch (e) {
+				id = location.hash.substring(1); // malformed escape: fall back to raw fragment
+			}
+			const target = document.getElementById(id);
+			if (!target) return;
+			const section = target.closest(".report-section");
+			if (section && section.classList.contains("collapsed")) {
+				section.classList.remove("collapsed");   // expand only, never collapse
+				updateMinimap();
+				section.scrollIntoView();                // re-align: expanding shifted the layout
+			}
+		}
+
+		function initRowMarking() {
+
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				row.addEventListener("dblclick", () => {
+					row.classList.toggle("marked");
+				});
+			}
+		}
+
+		function initKeyboardShortcuts() {
+
+			// prepare event handler
+			function handleShortcut(event) {
+				if (event.ctrlKey && event.key === "ArrowUp") { // Ctrl + ArrowUp
+					event.preventDefault();
+					// scroll to previous section
+					scrollToSection(false);
+				} else if (event.ctrlKey && event.key === "ArrowDown") { // Ctrl + ArrowDown
+					event.preventDefault();
+					// scroll to next section
+					scrollToSection(true);
+				}
+			}
+
+			// register event handler
+			document.addEventListener("keydown", handleShortcut);
+		}
+
+		function scrollToSection(next) {
+
+			const targetY = HEADER_HEIGHT; // target scroll position (relative to viewport)
+
+			// find next section
+			let nextSection = null;
+			let nextSectionY = next ? Number.MAX_VALUE : -Number.MAX_VALUE;
+
+			// iterate over all sections
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// get position of section (relative to viewport)
+				const sectionY = section.getBoundingClientRect().top;
+
+				// check if section is closer than previous next section
+				let better = next ? (sectionY > targetY + 10 && sectionY < nextSectionY) : (sectionY < targetY - 10 && sectionY > nextSectionY);
+				if (better) {
+					nextSection = section;
+					nextSectionY = sectionY;
+				}
+			}
+
+			// if there is a next section ...
+			if (nextSection) {
+
+				// get current vertical scroll position
+				const scrollY = window.scrollY;
+
+				// scroll to next section
+				window.scrollTo(0, scrollY + nextSectionY - targetY);
+
+			} else if (!next) { // if there is no previous section
+
+				// scroll to top
+				window.scrollTo(0, 0);
+			}
+
+		}
+
+		function showOnlyDiff(enabled) {
+
+			// show or hide table rows
+			const rows = document.getElementsByClassName("report-table-row");
+			for (let row of rows) {
+				if (row.classList.contains("no-diff")) {
+					if (enabled) {
+						row.style.display = "none";
+					} else {
+						row.style.display = "table-row";
+					}
+				}
+			}
+
+			// show or hide issues
+			const issues = document.getElementsByClassName("report-issue");
+			for (let issue of issues) {
+				if (issue.classList.contains("no-diff")) {
+					if (enabled) {
+						issue.style.display = "none";
+					} else {
+						issue.style.display = "block";
+					}
+				}
+			}
+
+			// update minimap
+			updateMinimap();
+		}
+
+		function showMinimap(enabled) {
+
+			// remember state
+			MINIMAP_ENABLED = enabled;
+
+			// find all relevant elements
+			let minimap = document.getElementById("minimap");
+			let minimapView = document.getElementById("minimapView");
+			let main = document.getElementById("main");
+
+			if (enabled) {
+
+				// show minimap
+				minimap.style.display = "block";
+				minimapView.style.display = "block";
+				main.style.marginLeft = "100px";
+
+				// re-calculate minimap
+				updateMinimap();
+
+			} else {
+
+				// hide minimap
+				minimap.style.display = "none";
+				minimapView.style.display = "none";
+				main.style.marginLeft = "20px";
+			}
+		}
+
+		function updateMinimap() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const minimapHeight = minimap.clientHeight;
+
+			// prepare list of new minimap elements
+			const elements = [];
+
+			let previousElementBottom = -MINIMAP_VSPACE;
+
+			// iterate over all report tables and add them to the minimap
+			const sections = document.getElementsByClassName("report-section");
+			for (let section of sections) {
+
+				// TODO: fix position
+				let elementTop = (section.offsetTop - HEADER_HEIGHT) * minimapHeight / documentHeight;
+				let elementHeight = section.clientHeight * minimapHeight / documentHeight - MINIMAP_VSPACE;
+
+				const minElementTop = previousElementBottom + MINIMAP_VSPACE;
+				if (elementTop < minElementTop) {
+					elementHeight = elementHeight - (minElementTop - elementTop);
+					elementTop = minElementTop;
+				}
+
+				const minElementHeight = 16; // 12px font size + 2 x 2px padding
+				if (elementHeight < minElementHeight) {
+					elementHeight = minElementHeight;
+				}
+
+				const title = document.createElement("div");
+				title.classList.add("minimapSectionTitle");
+				title.innerText = section.title;
+				title.addEventListener("click", function(event) {
+					window.scrollTo(0, section.offsetTop - HEADER_HEIGHT);
+					event.stopPropagation();
+				})
+
+				const element = document.createElement("div");
+				element.classList.add("minimapSection");
+				element.style.top = elementTop + "px";
+				element.style.height = elementHeight + "px";
+				element.appendChild(title);
+				elements.push(element);
+
+				previousElementBottom = elementTop + elementHeight;
+			}
+
+			// TODO: iterate over all differences and add them to the minimap
+
+			// replace content of minimap
+			minimap.replaceChildren(...elements);
+
+			updateMinimapView();
+		}
+
+		function updateMinimapView() {
+			if (!MINIMAP_ENABLED) return;
+
+			const minimap = document.getElementById("minimap");
+
+			// get dimensions
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const scrollY = window.scrollY;
+
+			// calculate new position and height of minimap view
+			const minimapViewTop = minimapHeight * scrollY / documentHeight + 70 - 4;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+
+			// update position and height of minimap view
+			const minimapView = document.getElementById("minimapView");
+			minimapView.style.top = minimapViewTop + "px";
+			minimapView.style.height = minimapViewHeight + "px";
+		}
+
+		function scrollMinimapView(event) {
+			const minimap = document.getElementById("minimap");
+
+			// calculate height of minimap view
+			const documentHeight = document.body.scrollHeight;
+			const viewportHeight = window.innerHeight;
+			const minimapHeight = minimap.clientHeight;
+			const minimapViewHeight = minimapHeight * viewportHeight / documentHeight - 4;
+			const minimapViewOffset = minimapViewHeight / 2;
+
+			// calculate position of minimap view (relative to top of minimap)
+			let y = event.clientY - minimap.offsetTop;
+			if (y < minimapViewOffset) {
+				y = minimapViewOffset;
+			} else if (y > minimapHeight - minimapViewOffset) {
+				y = minimapHeight - minimapViewOffset;
+			}
+			y = y - minimapViewOffset;
+
+			const scrollY = y / minimapHeight * document.body.scrollHeight;
+			window.scrollTo(0, scrollY);
+
+			updateMinimapView();
+		}
+
+	</script>
+</head>
+<body class="report scan-report" onload="init()">
+
+	<header id="header">
+		<div id="controls">
+			<div class="control" onclick="scrollToSection(true)" title="Ctrl+&#x2193;"><span class="icon icon-down"></span><span class="label">Next section</span></div>
+			<div class="control" onclick="scrollToSection(false)" title="Ctrl+&#x2191;"><span class="icon icon-up"></span><span class="label">Previous section</span></div>
+			<div class="control" id="showOnlyDiffControl"><input type="checkbox" id="showOnlyDiffCheckbox" checked="checked" onchange="showOnlyDiff(this.checked)"><label class="label" for="showOnlyDiffCheckbox">Show only differences</label></div>
+			<div class="control" id="showMinimapControl"><input type="checkbox" id="showMinimapCheckbox" onchange="showMinimap(this.checked)"><label class="label" for="showMinimapCheckbox">Show MiniMap (Beta)</label></div>
+		</div>
+		<div id="generator">Generated with <a href="http://jarhc.org" target="_blank">JarHC 3.1.0</a></div>
+	</header>
+
+	<div id="minimap"></div>
+	<div id="minimapView"></div>
+
+	<main id="main">
+		<h1 class="report-title">ASM 9.9</h1>
+		
+<nav>
+<h2 class="report-toc-title">Table of Contents</h2>
+<ul class="report-toc">
+<li class="report-toc-item"><a href="#JARFiles">JAR Files</a></li>
+<li class="report-toc-item"><a href="#Vulnerabilities">Vulnerabilities</a></li>
+<li class="report-toc-item"><a href="#Dependencies">Dependencies</a></li>
+<li class="report-toc-item"><a href="#DuplicateClasses">Duplicate Classes</a></li>
+<li class="report-toc-item"><a href="#BinaryCompatibility">Binary Compatibility</a></li>
+<li class="report-toc-item"><a href="#Blacklist">Blacklist</a></li>
+<li class="report-toc-item"><a href="#JARManifests">JAR Manifests</a></li>
+<li class="report-toc-item"><a href="#JPMSModules">JPMS Modules</a></li>
+<li class="report-toc-item"><a href="#OSGiBundles">OSGi Bundles</a></li>
+<li class="report-toc-item"><a href="#JavaRuntime">Java Runtime</a></li>
+</ul>
+</nav>
+
+<section class="report-section" id="JARFiles" title="JAR Files">
+<h2 class="report-section-title">JAR Files</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of JAR files found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Version</th>
+		<th>Source</th>
+		<th>Size</th>
+		<th>Multi-release</th>
+		<th>Java version (classes)</th>
+		<th>Resources</th>
+		<th>Packages</th>
+		<th>Checksum (SHA-1)</th>
+		<th>Coordinates</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>9.9</td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>72.6 KB</td>
+		<td>No</td>
+		<td>Java 5 (27)</td>
+		<td>0</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td><a href="https://central.sonatype.com/search?q=1:db9165a3bf908ded6b08612d583a15d1d0c7bda0" target="_blank" rel="noopener noreferrer">db9165a3bf908ded6b08612d583a15d1d0c7bda0</a></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>
+			<div class="report-text-block report-issue no-diff"></div>
+		</td>
+	</tr>
+	<tr class="report-table-row no-diff">
+		<td>Classpath</td>
+		<td>-</td>
+		<td>-</td>
+		<td>72.6 KB</td>
+		<td>-</td>
+		<td>Java 5 (27)</td>
+		<td>0</td>
+		<td>1</td>
+		<td>-</td>
+		<td>-</td>
+		<td>
+			<div class="report-text-block report-issue no-diff">-</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Vulnerabilities" title="Vulnerabilities">
+<h2 class="report-section-title">Vulnerabilities</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Known security vulnerabilities found in the artifacts.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>CVE</th>
+		<th>Artifacts</th>
+		<th>Severity</th>
+		<th>Description</th>
+		<th>Advisory</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Dependencies" title="Dependencies">
+<h2 class="report-section-title">Dependencies</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Dependencies between JAR files, and as declared in POM file.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Uses</th>
+		<th>Used by</th>
+		<th>Maven coordinates</th>
+		<th>Updates</th>
+		<th>Direct dependencies</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><span style="color:gray">[none]</span></td>
+		<td><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-commons:9.9</a></td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.9.1" target="_blank" rel="noopener noreferrer">9.9.1</a><br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.10" target="_blank" rel="noopener noreferrer">9.10</a>, <a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-commons/9.10.1" target="_blank" rel="noopener noreferrer">9.10.1</a></div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm-tree/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm-tree:9.9</a> <span style="color:green">[OK]</span> [Provided]<br><a href="https://central.sonatype.com/artifact/org.ow2.asm/asm/9.9" target="_blank" rel="noopener noreferrer">org.ow2.asm:asm:9.9</a> <span style="color:green">[OK]</span> [Provided]</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="DuplicateClasses" title="Duplicate Classes">
+<h2 class="report-section-title">Duplicate Classes</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Duplicate classes, shadowed classes, and duplicate resources.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Class/Resource</th>
+		<th>Sources</th>
+		<th>Similarity</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="BinaryCompatibility" title="Binary Compatibility">
+<h2 class="report-section-title">Binary Compatibility</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Compatibility issues between JAR files.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="Blacklist" title="Blacklist">
+<h2 class="report-section-title">Blacklist</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Use of dangerous, unsafe, unstable, or deprecated classes and methods.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Issues</th>
+	</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JARManifests" title="JAR Manifests">
+<h2 class="report-section-title">JAR Manifests</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>General</th>
+		<th>Runtime</th>
+		<th>Implementation</th>
+		<th>Specification</th>
+		<th>Signature</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td>
+			<div class="report-text-block no-diff">Manifest-Version: <code>1.0</code><br>Module-Requires: <code>org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework<br>Version: <code>9.9</code></div>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="JPMSModules" title="JPMS Modules">
+<h2 class="report-section-title">JPMS Modules</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">List of Java Modules found in classpath.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Module name</th>
+		<th>Definition</th>
+		<th>Automatic</th>
+		<th>Requires</th>
+		<th>Exports</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>Module-Info</td>
+		<td>No</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code><br><code>org.objectweb.asm.tree</code><br><code>java.base</code></div>
+		</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section collapsed" id="OSGiBundles" title="OSGi Bundles">
+<h2 class="report-section-title">OSGi Bundles</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about OSGi Bundles.</p>
+<table class="report-table">
+<thead>
+	<tr class="report-table-header">
+		<th>Artifact</th>
+		<th>Name</th>
+		<th>Version</th>
+		<th>Description</th>
+		<th>Import Package</th>
+		<th>Export Package</th>
+		<th>Capabilities</th>
+		<th>Others</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="report-table-row no-diff">
+		<td>asm-commons</td>
+		<td><code>org.objectweb.asm.commons</code></td>
+		<td>9.9</td>
+		<td>
+			<div class="report-text-block no-diff">License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt<br>Doc URL: http://asm.ow2.org</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm</code> (Version: <code>9.9</code>)<br><code>org.objectweb.asm.signature</code> (Version: <code>9.9</code>)<br><code>org.objectweb.asm.tree</code> (Version: <code>9.9</code>)</div>
+		</td>
+		<td>
+			<div class="report-text-block no-diff"><code>org.objectweb.asm.commons</code> (Version: <code>9.9</code>)<br>&nbsp;&nbsp;&nbsp;Uses: <code>org.objectweb.asm</code>, <code>org.objectweb.asm.signature</code>, <code>org.objectweb.asm.tree</code></div>
+		</td>
+		<td></td>
+		<td>
+			<div class="report-text-block no-diff">Manifest Version: 2<br>Required Execution Environment: J2SE-1.5</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="report-section" id="JavaRuntime" title="Java Runtime">
+<h2 class="report-section-title">Java Runtime</h2>
+<div class="report-section-content">
+<p class="report-section-description no-diff">Information about JRE/JDK runtime.</p>
+<p class="report-content no-diff">Java home    : <code>/opt/java-17</code><br>Java runtime : <code>OpenJDK Runtime Environment</code><br>Java version : <code>17.0.19</code><br>Java vendor  : <code>Eclipse Adoptium</code></p>
+</div>
+</section>
+
+
+	</main>
+
+</body>
+<!-- JSON REPORT DATA
+H4sIAAAAAAAA/61XW0/jOhD+K1aeQGrSpohLu1odlbbs4VJAdHdfSiWc2KVeEjtrO4WeFf/9zOTSphBKdXSQII7ni2c8882FP44VNuJO1+mNR6TjdZyGY5cJboz7vWt4W3BthJKwceD5Xgt2DA8t7BinO/njMG5CLRKbQ66EsUTNyEXvjsxExA2ZqVQyIiQJI2pMQu3c
+QxWFUsSdIQ72QiUtlzY7NVRRGmcanJ62YkZDC4ifhSkNZ6xSHXJciH/wMUojK1zNI04Nvl/QBSWF5WQvU83NPgjuuMk+RYW3NHyij9myP+fhk0ljsjf+u+f6iOwrpZmQ1GaAc2NSWEwbjlbPaNfEoSZ2QxXH6ImGk7tuMlH60VPPbQ+k3QqiC/LpFBDHbe+IXJ7C6lqV
+hh6SvfYx6kTvPmQnBL/Ayc88wHO84owHVMCCjn90SA+CWad1wjg7ClonR36bHZ4cUP+Q+awVHgeMtqZ7c2sT0202Q3CqppFnFFwGQovHNQ2nOpz/9fur3931xP2d7gcumjj9Mtaw4Ra/64u7tff2K1jXmU5fp6+Nt/S6lOpZEuBfqoVdkkUaSa5pICJhRZVrds4JLXhj
+qnz7ufnFx6zr/xyCsOQeAscc+ARaYTmoGAUgthBG6WWFHLXGD3jCJeMyRFMDDtHlcp0oDULBdmoI40BXzbN73N6MMmn1CtVjdsqaHyYDwoORAM0f0QVoDjf4/SNhxWogNFAPzKio+Zj2E6kkn24sPqXIBBaeP93bgvP8/XsJOL+1Dea39hskQ20/DuX17LWa89wuMrm5
+hD+3Wi0EJMEU1L9F1wM/oOogTSIRgk9JUX0axMwpU88QhdUOhpytgLqsTRvhXon7+VdbOIuAZlnhVlUyI6+IBbAK6fsJS/sqhsQVWYYsicjK3nu2Vi08BRLpJdn4cCdivquptQYBb7GjMCofuVYpeC2Vhs549rQ0iGClNPIVeAt+Wrk3827M7VyxTXsjqPsRNKr/0chz
+OVM6pvi2rkKj4feee3591hz1rs/PhuPv3uisQfhLyBNLLm5H48zCm/E3Qai1WgSp3fQsuntEpZhxY3fL9W8cy1uEjS6VVsTIgvM4iXgM39GiYI0THooZkqp4F49QBlLNt+R5aYZb9OAueYBh4OFejhRLI+7e8d8pFA4D++/61xdoP9JAwV3wr1anvPG+w2EevoVhu8vr
+1iyNojyqhDKaWDCBBBTrGbgb5hZIJGz2S2JiCkj06ozCIJI1mWBpeagYJzFcIUmjIkiaxvxZ6ad7ub4R5Heh9IOkXo03eHB+808nHIxzAd0phDmWSJoFb8BnQoqy06RWIcnCbJDJHQ7L4UuitN1WpbfPFEUIkcPlWPL+Awh1zSkYN5T8Aod4GJKHT7TV+7WaPjRQqc2z
+4hQc+6bYVPd3cud17sf16LjZvCE5wHekGAVXzqxs9GlSnRduYLbQ/93X+Zh4JWAoM7xLTscD98CFwp0a/iUS8ulrObXhd9h7hGpenfeH1+OhZ1/svRyokPy4u+oSBFZwoLU+bmRvk+D7tYE0ZQ3YEZ8F/h10+/VrTr63OJ3UFY2HRs1mxcxacWZVnsFlwSIrne17WSQN
+I8MXmCEzug3lQmglsT52yUV7PHR973Bnml7cDZsXg0ui82q7kfhYI9ZVeM3UXDJXMSfwA3dvqsQ2MYNc/xiSKRMXB6L4BgYx1FGcVbW4RJf/6WBVPvZg2umsJZJBd0TJMIxEAs20x0CfSGNIxtcp2huDm2icOF3/+KDT6bQ77ZNWq/X6L4nbN5YbDgAA
+-->
+</html>

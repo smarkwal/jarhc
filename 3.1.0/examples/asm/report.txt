@@ -1,0 +1,108 @@
+ASM 9.9
+=======
+
+JAR Files
+---------
+List of JAR files found in classpath.
+
+Artifact    | Version | Source                      | Size    | Multi-release | Java version (classes) | Resources | Packages                    | Checksum (SHA-1)                         | Coordinates                 | Issues
+------------+---------+-----------------------------+---------+---------------+------------------------+-----------+-----------------------------+------------------------------------------+-----------------------------+-------
+asm         | 9.9     | org.ow2.asm:asm:9.9         | 123 KB  | No            | Java 5 (38)            | 0         | org.objectweb.asm           | c29635c8a7afa03d74b33c1884df8abb2b3f3dcc | org.ow2.asm:asm:9.9         |
+            |         |                             |         |               |                        |           | org.objectweb.asm.signature |                                          |                             |
+asm-commons | 9.9     | org.ow2.asm:asm-commons:9.9 | 72.6 KB | No            | Java 5 (27)            | 0         | org.objectweb.asm.commons   | db9165a3bf908ded6b08612d583a15d1d0c7bda0 | org.ow2.asm:asm-commons:9.9 |
+asm-tree    | 9.9     | org.ow2.asm:asm-tree:9.9    | 50.7 KB | No            | Java 5 (38)            | 0         | org.objectweb.asm.tree      | f8de6eead6d24dd0f45bd065bbe112b2cda6ea21 | org.ow2.asm:asm-tree:9.9    |
+Classpath   | -       | -                           | 247 KB  | -             | Java 5 (103)           | 0         | 4                           | -                                        | -                           | -
+
+Vulnerabilities
+---------------
+Known security vulnerabilities found in the artifacts.
+
+CVE | Artifacts | Severity | Description | Advisory
+----+-----------+----------+-------------+---------
+
+Dependencies
+------------
+Dependencies between JAR files, and as declared in POM file.
+
+Artifact    | Uses     | Used by     | Maven coordinates           | Updates      | Direct dependencies
+------------+----------+-------------+-----------------------------+--------------+------------------------------
+asm         | [none]   | asm-commons | org.ow2.asm:asm:9.9         | 9.9.1        | [none]
+            |          | asm-tree    |                             | 9.10, 9.10.1 |
+asm-commons | asm      | [none]      | org.ow2.asm:asm-commons:9.9 | 9.9.1        | org.ow2.asm:asm-tree:9.9 [OK]
+            | asm-tree |             |                             | 9.10, 9.10.1 | org.ow2.asm:asm:9.9 [OK]
+asm-tree    | asm      | asm-commons | org.ow2.asm:asm-tree:9.9    | 9.9.1        | org.ow2.asm:asm:9.9 [OK]
+            |          |             |                             | 9.10, 9.10.1 |
+
+Duplicate Classes
+-----------------
+Duplicate classes, shadowed classes, and duplicate resources.
+
+Class/Resource | Sources | Similarity
+---------------+---------+-----------
+
+Binary Compatibility
+--------------------
+Compatibility issues between JAR files.
+
+Artifact | Issues
+---------+-------
+
+Blacklist
+---------
+Use of dangerous, unsafe, unstable, or deprecated classes and methods.
+
+Artifact    | Issues
+------------+-----------------------------------------------------------------------------------------------------------------------------------
+asm-commons | org.objectweb.asm.commons.InstructionAdapter
+            | • @Deprecated: public void org.objectweb.asm.MethodVisitor.visitMethodInsn(int,java.lang.String,java.lang.String,java.lang.String)
+
+JAR Manifests
+-------------
+Information found in META-INF/MANIFEST.MF, except JPMS and OSGi attributes.
+
+Artifact    | General                                                                                   | Runtime | Implementation                                                                                  | Specification | Signature
+------------+-------------------------------------------------------------------------------------------+---------+-------------------------------------------------------------------------------------------------+---------------+----------
+asm         | Manifest-Version: 1.0                                                                     |         | ASM, a very small and fast Java bytecode manipulation framework                                 |               |
+            |                                                                                           |         | Version: 9.9                                                                                    |               |
+asm-commons | Manifest-Version: 1.0                                                                     |         | Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework |               |
+            | Module-Requires: org.objectweb.asm;transitive=true,org.objectweb.asm.tree;transitive=true |         | Version: 9.9                                                                                    |               |
+asm-tree    | Manifest-Version: 1.0                                                                     |         | Tree API of ASM, a very small and fast Java bytecode manipulation framework                     |               |
+            | Module-Requires: org.objectweb.asm;transitive=true                                        |         | Version: 9.9                                                                                    |               |
+
+JPMS Modules
+------------
+List of Java Modules found in classpath.
+
+Artifact    | Module name               | Definition  | Automatic | Requires               | Exports
+------------+---------------------------+-------------+-----------+------------------------+----------------------------
+asm         | org.objectweb.asm         | Module-Info | No        | java.base              | org.objectweb.asm
+            |                           |             |           |                        | org.objectweb.asm.signature
+asm-commons | org.objectweb.asm.commons | Module-Info | No        | org.objectweb.asm      | org.objectweb.asm.commons
+            |                           |             |           | org.objectweb.asm.tree |
+            |                           |             |           | java.base              |
+asm-tree    | org.objectweb.asm.tree    | Module-Info | No        | org.objectweb.asm      | org.objectweb.asm.tree
+            |                           |             |           | java.base              |
+
+OSGi Bundles
+------------
+Information about OSGi Bundles.
+
+Artifact    | Name                      | Version | Description                                               | Import Package                             | Export Package                                                                  | Capabilities | Others
+------------+---------------------------+---------+-----------------------------------------------------------+--------------------------------------------+---------------------------------------------------------------------------------+--------------+-----------------------------------------
+asm         | org.objectweb.asm         | 9.9     | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt |                                            | org.objectweb.asm (Version: 9.9)                                                |              | Manifest Version: 2
+            |                           |         | Doc URL: http://asm.ow2.org                               |                                            | org.objectweb.asm.signature (Version: 9.9)                                      |              | Required Execution Environment: J2SE-1.5
+asm-commons | org.objectweb.asm.commons | 9.9     | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt | org.objectweb.asm (Version: 9.9)           | org.objectweb.asm.commons (Version: 9.9)                                        |              | Manifest Version: 2
+            |                           |         | Doc URL: http://asm.ow2.org                               | org.objectweb.asm.signature (Version: 9.9) |    Uses: org.objectweb.asm, org.objectweb.asm.signature, org.objectweb.asm.tree |              | Required Execution Environment: J2SE-1.5
+            |                           |         |                                                           | org.objectweb.asm.tree (Version: 9.9)      |                                                                                 |              |
+asm-tree    | org.objectweb.asm.tree    | 9.9     | License: BSD-3-Clause;link=https://asm.ow2.io/LICENSE.txt | org.objectweb.asm (Version: 9.9)           | org.objectweb.asm.tree (Version: 9.9)                                           |              | Manifest Version: 2
+            |                           |         | Doc URL: http://asm.ow2.org                               | org.objectweb.asm.signature (Version: 9.9) |    Uses: org.objectweb.asm, org.objectweb.asm.signature                         |              | Required Execution Environment: J2SE-1.5
+
+Java Runtime
+------------
+Information about JRE/JDK runtime.
+
+Java home    : /opt/java-17
+Java runtime : OpenJDK Runtime Environment
+Java version : 17.0.19
+Java vendor  : Eclipse Adoptium
+
