@@ -48,6 +48,7 @@ public class DepsDevApiArtifactFinder implements ArtifactFinder {
 	// filtered to the Maven system on the client side instead.
 
 	// endpoint path appended to the deps.dev base URL (see DepsDevApiSettings)
+	@SuppressWarnings("java:S1075") // URIs should not be hardcoded
 	private static final String QUERY_PATH = "/query?hash.type=SHA1&hash.value=%s";
 
 	private static final String MAVEN_SYSTEM = "MAVEN";
