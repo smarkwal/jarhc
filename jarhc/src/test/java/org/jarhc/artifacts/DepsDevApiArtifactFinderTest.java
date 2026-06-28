@@ -30,13 +30,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 
-class DepsDevAPIVulnerabilityFinderTest {
+class DepsDevApiArtifactFinderTest {
 
-	private final Logger logger = LoggerBuilder.collect(DepsDevAPIVulnerabilityFinder.class);
+	private final Logger logger = LoggerBuilder.collect(DepsDevApiArtifactFinder.class);
 	private final DepsDevSettings settings = Mockito.mock(DepsDevSettings.class);
-	private final DepsDevAPIVulnerabilityFinder finder = new DepsDevAPIVulnerabilityFinder(logger, settings);
-
-	private final Artifact artifact = new Artifact("org.example", "lib", "1.0", "jar");
+	private final DepsDevApiArtifactFinder artifactFinder = new DepsDevApiArtifactFinder(logger, settings);
 
 	@BeforeEach
 	void setUp() {
@@ -46,36 +44,57 @@ class DepsDevAPIVulnerabilityFinderTest {
 	}
 
 	@Test
-	void findVulnerabilities_rejectsNullArtifact() {
-		assertThrows(IllegalArgumentException.class, () -> finder.findVulnerabilities(null));
+	void test_findArtifact_withInvalidChecksum() {
+
+		// test
+		assertThrows(IllegalArgumentException.class, () -> artifactFinder.findArtifacts("this is NOT a checksum!"));
+
+		// assert
 		assertLogger(logger).isEmpty();
 	}
 
 	@Test
-	void findVulnerabilities_withMalformedUrl() {
+	void test_findArtifact_withInvalidURL() {
 
+		// prepare
 		doReturn("htp://localhost").when(settings).getBaseUrl();
 
-		Exception result = assertThrows(RepositoryException.class, () -> finder.findVulnerabilities(artifact));
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("1234"));
 
+		// assert
 		assertThat(result)
-				.hasMessageStartingWith("Malformed URL: htp://localhost/systems/MAVEN/packages/")
-				.hasCauseInstanceOf(MalformedURLException.class);
+				.hasMessage("Malformed URL for checksum: 1234")
+				.hasCause(new MalformedURLException("unknown protocol: htp"));
 		assertLogger(logger).isEmpty();
 	}
 
 	@Test
-	void findVulnerabilities_withUnknownHost() {
+	void test_findArtifact_withUnknownURL() {
 
+		// prepare
 		doReturn("http://unknown").when(settings).getBaseUrl();
 
-		Exception result = assertThrows(RepositoryException.class, () -> finder.findVulnerabilities(artifact));
+		// test
+		Exception result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("1234"));
 
+		// assert
 		assertThat(result)
-				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/systems/MAVEN/packages/")
-				.hasCauseInstanceOf(UnknownHostException.class);
+				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/query?")
+				.hasCause(new UnknownHostException("unknown"));
 		assertLogger(logger)
 				.hasWarn("Problem with api.deps.dev. Visit https://deps.dev to check the status of the deps.dev API.")
+				.isEmpty();
+
+		// test
+		result = assertThrows(RepositoryException.class, () -> artifactFinder.findArtifacts("1234"));
+
+		// assert
+		assertThat(result)
+				.hasMessageStartingWith("Unexpected I/O error for URL: http://unknown/query?")
+				.hasCause(new UnknownHostException("unknown"));
+		assertLogger(logger)
+				// no additional warning
 				.isEmpty();
 	}
 

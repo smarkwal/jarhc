@@ -31,8 +31,8 @@ import org.jarhc.app.Options.Command;
 import org.jarhc.app.PropertiesManager;
 import org.jarhc.app.PropertiesManagerImpl;
 import org.jarhc.artifacts.ArtifactFinder;
-import org.jarhc.artifacts.DepsDevAPIArtifactFinder;
-import org.jarhc.artifacts.DepsDevAPIVulnerabilityFinder;
+import org.jarhc.artifacts.DepsDevApiArtifactFinder;
+import org.jarhc.artifacts.DepsDevApiVulnerabilityFinder;
 import org.jarhc.artifacts.DiskCacheArtifactFinder;
 import org.jarhc.artifacts.DiskCacheVulnerabilityFinder;
 import org.jarhc.artifacts.MavenRepository;
@@ -194,7 +194,7 @@ public class Main {
 		}
 
 		File cacheDir = new File(dataPath, "checksums");
-		ArtifactFinder apiArtifactFinder = new DepsDevAPIArtifactFinder();
+		ArtifactFinder apiArtifactFinder = new DepsDevApiArtifactFinder();
 		ArtifactFinder diskCacheArtifactFinder = new DiskCacheArtifactFinder(cacheDir, apiArtifactFinder);
 		ArtifactFinder artifactFinder = new MemoryCacheArtifactFinder(diskCacheArtifactFinder);
 
@@ -208,7 +208,7 @@ public class Main {
 		String dataPath = options.getDataPath();
 
 		File cacheDir = new File(dataPath, "vulnerabilities");
-		VulnerabilityFinder apiFinder = new DepsDevAPIVulnerabilityFinder();
+		VulnerabilityFinder apiFinder = new DepsDevApiVulnerabilityFinder();
 		VulnerabilityFinder diskCacheFinder = new DiskCacheVulnerabilityFinder(cacheDir, apiFinder);
 		return new MemoryCacheVulnerabilityFinder(diskCacheFinder);
 	}
