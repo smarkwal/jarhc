@@ -44,9 +44,6 @@ public class MavenProxyServer {
 
 	public static void main(String[] args) throws IOException {
 
-		// TODO: parse arguments to get mode, port and timeout
-		// TODO: support setting address
-
 		Path rootPath = Path.of("jarhc/src/test/resources/maven-proxy-server");
 		MavenProxyServer server = new MavenProxyServer(ServerMode.LocalRemoteUpdate, 8080, 10, rootPath);
 

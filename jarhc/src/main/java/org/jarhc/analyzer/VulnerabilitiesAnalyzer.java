@@ -110,14 +110,7 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 				continue;
 			}
 
-			List<Vulnerability> vulnerabilities;
-			try {
-				vulnerabilities = vulnerabilityFinder.findVulnerabilities(artifact);
-			} catch (RepositoryException e) {
-				logger.error("Vulnerability lookup error for artifact: {}", artifact.toCoordinates(), e);
-				continue;
-			}
-
+			List<Vulnerability> vulnerabilities = findVulnerabilities(artifact);
 			for (Vulnerability vulnerability : vulnerabilities) {
 				result.computeIfAbsent(vulnerability, v -> new TreeSet<>(StringUtils.SMART_ORDER))
 						.add(jarFile.getDisplayName());
@@ -125,6 +118,19 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Look up the vulnerabilities for the given artifact, returning an empty list
+	 * if the lookup fails.
+	 */
+	private List<Vulnerability> findVulnerabilities(Artifact artifact) {
+		try {
+			return vulnerabilityFinder.findVulnerabilities(artifact);
+		} catch (RepositoryException e) {
+			logger.error("Vulnerability lookup error for artifact: {}", artifact.toCoordinates(), e);
+			return List.of();
+		}
 	}
 
 	/**
@@ -229,6 +235,7 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 	 * The first CVE found in the value is used as the sort key, so a value
 	 * listing multiple CVEs is sorted by its first (top) one.
 	 */
+	@SuppressWarnings("java:S6548") // The Singleton design pattern should be used with care
 	static class CveComparator implements Comparator<String> {
 
 		static final CveComparator INSTANCE = new CveComparator();
@@ -260,6 +267,7 @@ public class VulnerabilitiesAnalyzer implements Analyzer {
 		 * Parse the first CVE found in the given value into <code>[year, number]</code>,
 		 * or return <code>null</code> if it contains no CVE.
 		 */
+		@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 		private static int[] parseCve(String value) {
 			Matcher matcher = CVE_PATTERN.matcher(value);
 			if (matcher.find()) {

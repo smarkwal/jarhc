@@ -18,8 +18,8 @@ package org.jarhc.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -135,16 +135,11 @@ class MainTest extends AbstractOutputTest {
 		// prepare
 		String[] args = new String[] { "--help" };
 
-		try {
+		// test
+		SystemExitException e = assertThrows(SystemExitException.class, () -> Main.main(args));
 
-			// test
-			Main.main(args);
-
-			fail("System.exit(...) not called");
-
-		} catch (SystemExitException e) {
-			assertEquals(0, e.getStatus());
-		}
+		// assert
+		assertEquals(0, e.getStatus());
 
 		String output = getOutput();
 		assertTrue(output.startsWith("Usage: java -jar JarHC.jar [options] <artifact> [<artifact>]*"));
@@ -157,16 +152,11 @@ class MainTest extends AbstractOutputTest {
 		// prepare
 		String[] args = new String[] { "--unknown-option" };
 
-		try {
+		// test
+		SystemExitException e = assertThrows(SystemExitException.class, () -> Main.main(args));
 
-			// test
-			Main.main(args);
-
-			fail("System.exit(...) not called");
-
-		} catch (SystemExitException e) {
-			assertEquals(-100, e.getStatus());
-		}
+		// assert
+		assertEquals(-100, e.getStatus());
 
 		String output = getOutput();
 		assertTrue(output.startsWith("Unknown option: '--unknown-option'."));

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.jarhc.utils.ExceptionUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,13 +62,9 @@ class InjectorTest {
 
 	@Test
 	void test_createInstance_private_constructor() {
-		try {
-			injector.createInstance(TestObject3.class);
-			fail("expected exception not thrown");
-		} catch (InjectorException e) {
-			assertEquals("No supported constructor found in class: org.jarhc.inject.InjectorTest$TestObject3", e.getMessage());
-			assertNull(e.getCause());
-		}
+		InjectorException e = assertThrows(InjectorException.class, () -> injector.createInstance(TestObject3.class));
+		assertEquals("No supported constructor found in class: org.jarhc.inject.InjectorTest$TestObject3", e.getMessage());
+		assertNull(e.getCause());
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -80,16 +76,12 @@ class InjectorTest {
 
 	@Test
 	void test_createInstance_broken_constructor() {
-		try {
-			injector.createInstance(TestObject4.class);
-			fail("expected exception not thrown");
-		} catch (InjectorException e) {
-			assertEquals("Error creating instance of class: org.jarhc.inject.InjectorTest$TestObject4", e.getMessage());
-			Throwable cause = ExceptionUtils.getRootCause(e);
-			assertNotNull(cause);
-			assertInstanceOf(NullPointerException.class, cause);
-			assertEquals("broken", cause.getMessage());
-		}
+		InjectorException e = assertThrows(InjectorException.class, () -> injector.createInstance(TestObject4.class));
+		assertEquals("Error creating instance of class: org.jarhc.inject.InjectorTest$TestObject4", e.getMessage());
+		Throwable cause = ExceptionUtils.getRootCause(e);
+		assertNotNull(cause);
+		assertInstanceOf(NullPointerException.class, cause);
+		assertEquals("broken", cause.getMessage());
 	}
 
 	public static class TestObject4 {
@@ -103,13 +95,9 @@ class InjectorTest {
 	void test_createInstance_multiple_constructors() {
 		injector.addBinding(String.class, "Hello");
 		injector.addBinding(Integer.class, 42);
-		try {
-			injector.createInstance(TestObject5.class);
-			fail("expected exception not thrown");
-		} catch (InjectorException e) {
-			assertEquals("Multiple supported constructor found in class: org.jarhc.inject.InjectorTest$TestObject5", e.getMessage());
-			assertNull(e.getCause());
-		}
+		InjectorException e = assertThrows(InjectorException.class, () -> injector.createInstance(TestObject5.class));
+		assertEquals("Multiple supported constructor found in class: org.jarhc.inject.InjectorTest$TestObject5", e.getMessage());
+		assertNull(e.getCause());
 	}
 
 	@SuppressWarnings("unused")

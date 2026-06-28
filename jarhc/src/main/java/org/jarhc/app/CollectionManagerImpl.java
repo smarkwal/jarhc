@@ -40,6 +40,7 @@ public class CollectionManagerImpl implements CollectionManager {
 	}
 
 	@Override
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	public List<String> getCollection(String name) {
 
 		// check if collection has already been cached
@@ -64,6 +65,7 @@ public class CollectionManagerImpl implements CollectionManager {
 		return collection;
 	}
 
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	private List<String> findCollection(String name) {
 
 		// try to find collection in properties

@@ -213,22 +213,37 @@ public class OSGiBundleInfo {
 		return bundleDocURL;
 	}
 
+	/**
+	 * @return the Import-Package entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<ImportPackage> getImportPackage() {
 		return importPackage;
 	}
 
+	/**
+	 * @return the DynamicImport-Package entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<ImportPackage> getDynamicImportPackage() {
 		return dynamicImportPackage;
 	}
 
+	/**
+	 * @return the Export-Package entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<ExportPackage> getExportPackage() {
 		return exportPackage;
 	}
 
+	/**
+	 * @return the Require-Capability entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<String> getRequireCapability() {
 		return requireCapability;
 	}
 
+	/**
+	 * @return the Provide-Capability entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<String> getProvideCapability() {
 		return provideCapability;
 	}
@@ -257,6 +272,9 @@ public class OSGiBundleInfo {
 		return bundleCopyright;
 	}
 
+	/**
+	 * @return the Bundle-Developers entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<String> getBundleDevelopers() {
 		return bundleDevelopers;
 	}
@@ -313,6 +331,9 @@ public class OSGiBundleInfo {
 		return importService;
 	}
 
+	/**
+	 * @return the Include-Resource entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<String> getIncludeResource() {
 		return includeResource;
 	}
@@ -325,6 +346,9 @@ public class OSGiBundleInfo {
 		return moduleType;
 	}
 
+	/**
+	 * @return the Private-Package entries, or {@code null} if the attribute is absent from the manifest.
+	 */
 	public List<String> getPrivatePackage() {
 		return privatePackage;
 	}
@@ -345,18 +369,21 @@ public class OSGiBundleInfo {
 		return webFilterMappings;
 	}
 
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	private List<ImportPackage> parseImportPackage(String value) {
 		if (value == null) return null;
 		List<String> lines = splitAttributeValue(value);
 		return lines.stream().map(ImportPackage::new).collect(Collectors.toList());
 	}
 
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	private List<ExportPackage> parseExportPackage(String value) {
 		if (value == null) return null;
 		List<String> lines = splitAttributeValue(value);
 		return lines.stream().map(ExportPackage::new).collect(Collectors.toList());
 	}
 
+	@SuppressWarnings("java:S1168") // Empty arrays and collections should be returned instead of null
 	private List<String> splitAttributeValue(String value) {
 		if (value == null) return null;
 
