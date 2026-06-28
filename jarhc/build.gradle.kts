@@ -19,8 +19,10 @@ import com.github.jk1.license.render.CsvReportRenderer
 plugins {
     `java-library`
     jacoco
-    signing
-    `maven-publish`
+
+    // publish to Maven Central via the Central Portal
+    // (applies maven-publish and signing automatically)
+    alias(libs.plugins.central.publish)
 
     // create report with all open-source licenses
     alias(libs.plugins.license.report)
@@ -145,11 +147,8 @@ java {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
 
-    // automatically package source code as artifact -sources.jar
-    withSourcesJar()
-
-    // automatically package Javadoc as artifact -javadoc.jar
-    withJavadocJar()
+    // Note: the -sources.jar and -javadoc.jar artifacts are configured by the
+    // Maven Central publish plugin (mavenPublishing block below).
 }
 
 val sonarBranchName: String = getGitBranchName()
@@ -189,47 +188,49 @@ sonar {
     }
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
+mavenPublishing {
 
-            from(components["java"])
+    // Upload to the Central Portal and create a deployment. The deployment is
+    // NOT released automatically: review and publish it manually at
+    // https://central.sonatype.com/publishing
+    // Use 'publishAndReleaseToMavenCentral' instead to also release in one step.
+    publishToMavenCentral()
 
-            pom {
+    // sign all artifacts (uses the 'signing.*' properties)
+    signAllPublications()
 
-                name.set("JarHC - JAR Health Check")
-                description.set("JarHC is a static analysis tool to help you find your way through \"JAR hell\" or \"classpath hell\".")
-                url.set("http://jarhc.org")
+    // Maven coordinates of the published artifact
+    coordinates("org.jarhc", "jarhc", project.version.toString())
 
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
+    pom {
 
-                developers {
-                    developer {
-                        id.set("smarkwal")
-                        name.set("Stephan Markwalder")
-                        email.set("stephan@markwalder.net")
-                        url.set("https://github.com/smarkwal")
-                    }
-                }
+        name.set("JarHC - JAR Health Check")
+        description.set("JarHC is a static analysis tool to help you find your way through \"JAR hell\" or \"classpath hell\".")
+        url.set("http://jarhc.org")
 
-                scm {
-                    connection.set("scm:git:git://github.com/smarkwal/jarhc.git")
-                    developerConnection.set("scm:git:ssh://github.com/smarkwal/jarhc.git")
-                    url.set("https://github.com/smarkwal/jarhc")
-                }
-
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
             }
         }
-    }
-}
 
-signing {
-    sign(publishing.publications["maven"])
+        developers {
+            developer {
+                id.set("smarkwal")
+                name.set("Stephan Markwalder")
+                email.set("stephan@markwalder.net")
+                url.set("https://github.com/smarkwal")
+            }
+        }
+
+        scm {
+            connection.set("scm:git:git://github.com/smarkwal/jarhc.git")
+            developerConnection.set("scm:git:ssh://github.com/smarkwal/jarhc.git")
+            url.set("https://github.com/smarkwal/jarhc")
+        }
+
+    }
 }
 
 // tasks -----------------------------------------------------------------------

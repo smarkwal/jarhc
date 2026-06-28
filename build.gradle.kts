@@ -20,9 +20,6 @@ plugins {
 
     idea
 
-    // publish to Sonatype OSSRH and release to Maven Central
-    alias(libs.plugins.nexus.publish)
-
     // Gradle Versions Plugin
     // https://github.com/ben-manes/gradle-versions-plugin
     alias(libs.plugins.versions)
@@ -92,12 +89,6 @@ idea {
         vcs = "Git"
     }
 
-}
-
-nexusPublishing {
-    this.repositories {
-        sonatype()
-    }
 }
 
 tasks {
