@@ -30,11 +30,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 
-class DepsDevAPIArtifactFinderTest {
+class DepsDevApiArtifactFinderTest {
 
-	private final Logger logger = LoggerBuilder.collect(DepsDevAPIArtifactFinder.class);
-	private final DepsDevSettings settings = Mockito.mock(DepsDevSettings.class);
-	private final DepsDevAPIArtifactFinder artifactFinder = new DepsDevAPIArtifactFinder(logger, settings);
+	private final Logger logger = LoggerBuilder.collect(DepsDevApiArtifactFinder.class);
+	private final DepsDevApiSettings settings = Mockito.mock(DepsDevApiSettings.class);
+	private final DepsDevApiArtifactFinder artifactFinder = new DepsDevApiArtifactFinder(logger, settings);
 
 	@BeforeEach
 	void setUp() {

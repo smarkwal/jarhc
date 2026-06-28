@@ -16,9 +16,6 @@
 
 package org.jarhc.artifacts;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -26,10 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.jarhc.utils.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * Artifacts are looked up by the SHA-1 checksum of their content. The checksum
  * is passed to the API as a URL-encoded, base64-encoded value.
  */
-public class DepsDevAPIArtifactFinder implements ArtifactFinder {
+public class DepsDevApiArtifactFinder implements ArtifactFinder {
 
 	// Example request URLs (hash.value is the URL-encoded base64 of the raw SHA-1 bytes):
 	// https://api.deps.dev/v3/query?hash.type=SHA1&hash.value=gViT318x2i7OQED%2BChL9RLV3r68%3D (commons-io:commons-io:2.6)
@@ -53,27 +47,25 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 	// incompatible with hash queries (the API responds with HTTP 404). Results are
 	// filtered to the Maven system on the client side instead.
 
-	// endpoint path appended to the deps.dev base URL (see DepsDevSettings)
+	// endpoint path appended to the deps.dev base URL (see DepsDevApiSettings)
+	@SuppressWarnings("java:S1075") // URIs should not be hardcoded
 	private static final String QUERY_PATH = "/query?hash.type=SHA1&hash.value=%s";
 
 	private static final String MAVEN_SYSTEM = "MAVEN";
 
 	private final Logger logger;
-	private final DepsDevSettings settings;
+	private final DepsDevApiSettings settings;
+	private final DepsDevApiClient client;
 
-	private final AtomicBoolean statusInfoLogged = new AtomicBoolean(false);
-
-	public DepsDevAPIArtifactFinder() {
-		this(LoggerFactory.getLogger(DepsDevAPIArtifactFinder.class), DepsDevSettings.fromSystemProperties());
+	public DepsDevApiArtifactFinder() {
+		this(LoggerFactory.getLogger(DepsDevApiArtifactFinder.class), DepsDevApiSettings.fromSystemProperties());
 	}
 
-	public DepsDevAPIArtifactFinder(Logger logger) {
-		this(logger, DepsDevSettings.fromSystemProperties());
-	}
-
-	DepsDevAPIArtifactFinder(Logger logger, DepsDevSettings settings) {
+	// visible for testing
+	public DepsDevApiArtifactFinder(Logger logger, DepsDevApiSettings settings) {
 		this.logger = logger;
 		this.settings = settings;
+		this.client = new DepsDevApiClient(logger, settings);
 	}
 
 	@Override
@@ -96,7 +88,7 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
 
-		Optional<String> text = downloadText(url);
+		Optional<String> text = client.downloadText(url);
 		if (text.isEmpty()) {
 			// artifact not found (API responded with HTTP 404)
 			if (logger.isDebugEnabled()) {
@@ -161,68 +153,6 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 			bytes[i] = (byte) ((high << 4) | low);
 		}
 		return bytes;
-	}
-
-	/**
-	 * Download the response body for the given URL.
-	 *
-	 * @param url URL
-	 * @return Response body, or an empty {@link Optional} if the API responded with HTTP 404.
-	 * @throws RepositoryException If an unexpected I/O error occurs.
-	 */
-	private Optional<String> downloadText(URL url) throws RepositoryException {
-		try {
-			Optional<byte[]> data = downloadFile(url);
-			return data.map(bytes -> new String(bytes, StandardCharsets.UTF_8));
-		} catch (IOException e) {
-			// log information about deps.dev status once
-			if (statusInfoLogged.compareAndSet(false, true)) {
-				logger.warn("Problem with api.deps.dev. Visit https://deps.dev to check the status of the deps.dev API.");
-			}
-			throw new RepositoryException("Unexpected I/O error for URL: " + url, e);
-		}
-	}
-
-	private Optional<byte[]> downloadFile(URL url) throws IOException {
-
-		HttpURLConnection connection = null;
-		try {
-
-			// get connection settings
-			int timeout = settings.getTimeout() * 1000;
-			Map<String, String> headers = settings.getHeaders();
-
-			// prepare connection
-			connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("GET");
-			for (Map.Entry<String, String> header : headers.entrySet()) {
-				connection.setRequestProperty(header.getKey(), header.getValue());
-			}
-			connection.setConnectTimeout(timeout);
-			connection.setReadTimeout(timeout);
-			connection.setDoOutput(false);
-			connection.setDoInput(true);
-
-			// get response
-			int status = connection.getResponseCode();
-			if (status == 404) {
-				// no results match the query (artifact not found)
-				return Optional.empty();
-			} else if (status != 200) {
-				throw new IOException("Unexpected status code '" + status + "' for URL: " + url);
-			}
-
-			try (InputStream stream = connection.getInputStream()) {
-				byte[] data = IOUtils.toByteArray(stream);
-				return Optional.of(data);
-			}
-
-		} finally {
-			if (connection != null) {
-				connection.disconnect();
-			}
-		}
-
 	}
 
 	private List<Artifact> parseArtifacts(JSONArray results) {

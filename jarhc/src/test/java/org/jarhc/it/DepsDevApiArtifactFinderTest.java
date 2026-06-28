@@ -23,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.List;
 import org.jarhc.artifacts.Artifact;
 import org.jarhc.artifacts.ArtifactFinder;
-import org.jarhc.artifacts.DepsDevAPIArtifactFinder;
+import org.jarhc.artifacts.DepsDevApiArtifactFinder;
+import org.jarhc.artifacts.DepsDevApiSettings;
 import org.jarhc.artifacts.RepositoryException;
 import org.jarhc.it.utils.MavenProxyServerExtension;
 import org.jarhc.test.log.LoggerBuilder;
@@ -34,9 +35,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 
 @ExtendWith(MavenProxyServerExtension.class)
-class DepsDevAPIArtifactFinderTest {
+class DepsDevApiArtifactFinderTest {
 
-	private final Logger logger = LoggerBuilder.collect(DepsDevAPIArtifactFinder.class);
+	private final Logger logger = LoggerBuilder.collect(DepsDevApiArtifactFinder.class);
 
 	private ArtifactFinder artifactFinder;
 
@@ -44,7 +45,7 @@ class DepsDevAPIArtifactFinderTest {
 	void setUp() {
 		// the finder reads the deps.dev base URL from system property "jarhc.depsdev.url",
 		// which is set by MavenProxyServerExtension
-		artifactFinder = new DepsDevAPIArtifactFinder(logger);
+		artifactFinder = new DepsDevApiArtifactFinder(logger, DepsDevApiSettings.fromSystemProperties());
 	}
 
 	@AfterEach
