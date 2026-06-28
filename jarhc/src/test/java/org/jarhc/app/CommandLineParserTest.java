@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -559,15 +558,11 @@ class CommandLineParserTest {
 	void test_help() {
 
 		// test
-		try {
-			parser.parse(new String[] { "--help" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("OK", e.getMessage());
-			assertEquals(0, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "--help" }));
 
 		// assert
+		assertEquals("OK", e.getMessage());
+		assertEquals(0, e.getExitCode());
 		assertTrue(out.getText().startsWith("Usage:"));
 		assertEquals("", err.getText());
 
@@ -577,15 +572,11 @@ class CommandLineParserTest {
 	void test_version() {
 
 		// test
-		try {
-			parser.parse(new String[] { "--version" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("OK", e.getMessage());
-			assertEquals(0, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "--version" }));
 
 		// assert
+		assertEquals("OK", e.getMessage());
+		assertEquals(0, e.getExitCode());
 		assertTrue(out.getText().startsWith("JarHC"));
 		assertEquals("", err.getText());
 
@@ -628,13 +619,11 @@ class CommandLineParserTest {
 	void test_strategy_Unknown() {
 
 		// test
-		try {
-			parser.parse(new String[] { "--strategy", "Unknown", "com.test:test:1.0" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("Unknown class loader strategy: Unknown", e.getMessage());
-			assertEquals(-13, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "--strategy", "Unknown", "com.test:test:1.0" }));
+
+		// assert
+		assertEquals("Unknown class loader strategy: Unknown", e.getMessage());
+		assertEquals(-13, e.getExitCode());
 
 	}
 
@@ -642,13 +631,11 @@ class CommandLineParserTest {
 	void test_strategy_Incomplete() {
 
 		// test
-		try {
-			parser.parse(new String[] { "com.test:test:1.0", "--strategy" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("Class loader strategy not specified.", e.getMessage());
-			assertEquals(-12, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "com.test:test:1.0", "--strategy" }));
+
+		// assert
+		assertEquals("Class loader strategy not specified.", e.getMessage());
+		assertEquals(-12, e.getExitCode());
 
 	}
 
@@ -689,13 +676,11 @@ class CommandLineParserTest {
 	void test_release_Invalid() {
 
 		// test
-		try {
-			parser.parse(new String[] { "--release", "latest", "com.test:test:1.0" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("Release 'latest' is not valid.", e.getMessage());
-			assertEquals(-15, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "--release", "latest", "com.test:test:1.0" }));
+
+		// assert
+		assertEquals("Release 'latest' is not valid.", e.getMessage());
+		assertEquals(-15, e.getExitCode());
 
 	}
 
@@ -703,13 +688,11 @@ class CommandLineParserTest {
 	void test_release_Unsupported() {
 
 		// test
-		try {
-			parser.parse(new String[] { "--release", "5", "com.test:test:1.0" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("Release 5 is not supported.", e.getMessage());
-			assertEquals(-16, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "--release", "5", "com.test:test:1.0" }));
+
+		// assert
+		assertEquals("Release 5 is not supported.", e.getMessage());
+		assertEquals(-16, e.getExitCode());
 
 	}
 
@@ -717,13 +700,11 @@ class CommandLineParserTest {
 	void test_release_Incomplete() {
 
 		// test
-		try {
-			parser.parse(new String[] { "com.test:test:1.0", "--release" });
-			fail("CommandLineException not thrown");
-		} catch (CommandLineException e) {
-			assertEquals("Release not specified.", e.getMessage());
-			assertEquals(-14, e.getExitCode());
-		}
+		CommandLineException e = assertThrows(CommandLineException.class, () -> parser.parse(new String[] { "com.test:test:1.0", "--release" }));
+
+		// assert
+		assertEquals("Release not specified.", e.getMessage());
+		assertEquals(-14, e.getExitCode());
 
 	}
 

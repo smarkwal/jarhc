@@ -50,7 +50,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isTraceEnabled() {
-		return isEnabled(Level.TRACE, null);
+		return isEnabled(Level.TRACE);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isTraceEnabled(Marker marker) {
-		return isEnabled(Level.TRACE, marker);
+		return isEnabled(Level.TRACE);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isDebugEnabled() {
-		return isEnabled(Level.DEBUG, null);
+		return isEnabled(Level.DEBUG);
 	}
 
 	@Override
@@ -140,7 +140,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isDebugEnabled(Marker marker) {
-		return isEnabled(Level.DEBUG, marker);
+		return isEnabled(Level.DEBUG);
 	}
 
 	@Override
@@ -170,7 +170,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isInfoEnabled() {
-		return isEnabled(Level.INFO, null);
+		return isEnabled(Level.INFO);
 	}
 
 	@Override
@@ -200,7 +200,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isInfoEnabled(Marker marker) {
-		return isEnabled(Level.INFO, marker);
+		return isEnabled(Level.INFO);
 	}
 
 	@Override
@@ -230,7 +230,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isWarnEnabled() {
-		return isEnabled(Level.WARN, null);
+		return isEnabled(Level.WARN);
 	}
 
 	@Override
@@ -260,7 +260,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isWarnEnabled(Marker marker) {
-		return isEnabled(Level.WARN, marker);
+		return isEnabled(Level.WARN);
 	}
 
 	@Override
@@ -290,7 +290,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isErrorEnabled() {
-		return isEnabled(Level.ERROR, null);
+		return isEnabled(Level.ERROR);
 	}
 
 	@Override
@@ -320,7 +320,7 @@ abstract class AbstractLogger implements Logger {
 
 	@Override
 	public boolean isErrorEnabled(Marker marker) {
-		return isEnabled(Level.ERROR, marker);
+		return isEnabled(Level.ERROR);
 	}
 
 	@Override
@@ -350,7 +350,7 @@ abstract class AbstractLogger implements Logger {
 
 	// private methods ---------------------------------------------------------
 
-	private boolean isEnabled(Level level, Marker marker) {
+	private boolean isEnabled(Level level) {
 		if (threshold == null) return true;
 		return level.toInt() >= threshold.toInt();
 	}
@@ -375,7 +375,7 @@ abstract class AbstractLogger implements Logger {
 	}
 
 	private synchronized void log(Level level, Marker marker, String msg, Throwable t) {
-		if (isEnabled(level, marker)) {
+		if (isEnabled(level)) {
 			LogEvent event = new LogEvent(level, marker, getName(), msg, t);
 			log(event);
 		}

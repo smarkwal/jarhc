@@ -127,7 +127,7 @@ public class JpmsModulesAnalyzer implements Analyzer {
 		moduleName = moduleName.replaceAll("\\.{2,}", ".");
 
 		// strip leading and trailing dots
-		moduleName = moduleName.replaceAll("^\\.|\\.$", "");
+		moduleName = moduleName.replaceAll("^\\.", "").replaceAll("\\.$", "");
 
 		return moduleName;
 	}

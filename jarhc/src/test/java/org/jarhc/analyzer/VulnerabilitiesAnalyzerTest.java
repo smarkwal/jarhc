@@ -130,7 +130,7 @@ class VulnerabilitiesAnalyzerTest {
 	}
 
 	@Test
-	void analyze_skipsArtifactsWithUnknownCoordinates() throws RepositoryException {
+	void analyze_skipsArtifactsWithUnknownCoordinates() {
 
 		Classpath classpath = classpath(
 				JarFile.withName("unknown.jar").withArtifacts(List.of()).build()

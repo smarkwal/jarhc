@@ -91,7 +91,7 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 
 		URL url;
 		try {
-			url = new URL(String.format(settings.getBaseUrl() + QUERY_PATH, hashValue));
+			url = new URL(settings.getBaseUrl() + String.format(QUERY_PATH, hashValue));
 		} catch (MalformedURLException e) {
 			throw new RepositoryException("Malformed URL for checksum: " + checksum, e);
 		}
@@ -231,30 +231,10 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 		ArrayList<Artifact> artifacts = new ArrayList<>();
 
 		for (int i = 0; i < results.length(); i++) {
-			JSONObject result = results.getJSONObject(i);
-
-			JSONObject version = result.getJSONObject("version");
-			JSONObject versionKey = version.getJSONObject("versionKey");
-
-			String system = versionKey.getString("system");
-			if (!MAVEN_SYSTEM.equals(system)) {
-				// skip artifacts from other package systems (e.g. NPM, PYPI)
-				continue;
+			Artifact artifact = parseArtifact(results.getJSONObject(i));
+			if (artifact != null) {
+				artifacts.add(artifact);
 			}
-
-			// deps.dev returns the Maven name as "groupId:artifactId"
-			String name = versionKey.getString("name");
-			int index = name.indexOf(':');
-			if (index < 0) {
-				continue;
-			}
-			String groupId = name.substring(0, index);
-			String artifactId = name.substring(index + 1);
-			String versionNumber = versionKey.getString("version");
-
-			// deps.dev does not report the packaging type, default to "jar"
-			Artifact artifact = new Artifact(groupId, artifactId, versionNumber, "jar");
-			artifacts.add(artifact);
 		}
 
 		// multiple matches:
@@ -266,6 +246,35 @@ public class DepsDevAPIArtifactFinder implements ArtifactFinder {
 		});
 
 		return artifacts;
+	}
+
+	/**
+	 * Parse a single deps.dev result into a Maven artifact, or return
+	 * <code>null</code> if the result is not a usable Maven artifact.
+	 */
+	private static Artifact parseArtifact(JSONObject result) {
+
+		JSONObject version = result.getJSONObject("version");
+		JSONObject versionKey = version.getJSONObject("versionKey");
+
+		String system = versionKey.getString("system");
+		if (!MAVEN_SYSTEM.equals(system)) {
+			// skip artifacts from other package systems (e.g. NPM, PYPI)
+			return null;
+		}
+
+		// deps.dev returns the Maven name as "groupId:artifactId"
+		String name = versionKey.getString("name");
+		int index = name.indexOf(':');
+		if (index < 0) {
+			return null;
+		}
+		String groupId = name.substring(0, index);
+		String artifactId = name.substring(index + 1);
+		String versionNumber = versionKey.getString("version");
+
+		// deps.dev does not report the packaging type, default to "jar"
+		return new Artifact(groupId, artifactId, versionNumber, "jar");
 	}
 
 }
