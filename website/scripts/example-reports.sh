@@ -6,8 +6,8 @@
 repo_root="$(git rev-parse --show-toplevel)"
 cd "${repo_root}/website/docs/examples"
 
-# JarHC version
-version=3.0.1-SNAPSHOT
+# JarHC version (read from gradle.properties)
+version=$(sed -n -E 's/^version[[:space:]]*=[[:space:]]*(.+)$/\1/p' "${repo_root}/gradle.properties")
 jarhc=$(realpath "${repo_root}/jarhc/build/libs/jarhc-${version}-app.jar")
 
 # load environment variables
