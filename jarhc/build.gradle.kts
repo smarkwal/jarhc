@@ -238,6 +238,10 @@ tasks {
 
     processResources {
 
+        // declare the version as a task input so that the task is no longer
+        // up-to-date when the version changes
+        inputs.property("version", project.version)
+
         // replace placeholders in resources
         // (see src/main/resources/jarhc.properties)
         expand(
