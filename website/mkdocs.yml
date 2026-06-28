@@ -1,6 +1,6 @@
 site_name: JarHC - JAR Health Check
 site_description: JarHC is a static analysis tool to help you find your way through 'JAR hell'.
-site_url: https://jarhc.org/latest/
+site_url: https://jarhc.org/
 site_author: Stephan Markwalder
 
 repo_url: https://github.com/smarkwal/jarhc
@@ -74,6 +74,12 @@ nav:
 
 plugins:
   - search
+  # mike appends a version segment to site_url when building each deployed
+  # version. Pin it to the "latest" alias so the generated canonical URLs and
+  # sitemap point at the stable https://jarhc.org/latest/ paths (the only paths
+  # allowed by robots.txt) instead of the version-numbered directory.
+  - mike:
+      canonical_version: latest
 
 markdown_extensions:
   - admonition
