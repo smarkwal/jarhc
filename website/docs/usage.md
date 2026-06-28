@@ -5,7 +5,7 @@ sources:
   - jarhc/src/main/java/org/jarhc/app/Diff.java
   - jarhc/src/main/java/org/jarhc/analyzer/AnalyzerRegistry.java
   - jarhc/src/main/java/org/jarhc/artifacts/DepsDevApiSettings.java
-last_reviewed: 2026-06-25
+last_reviewed: 2026-06-28
 ---
 
 # Usage
