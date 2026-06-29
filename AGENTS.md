@@ -37,7 +37,6 @@ exception, it is a detailed style guide. Preserve both styles when editing.
   - GitHub Actions: grouped into one PR; bumps the SHA and the `# vX.Y.Z` comment.
   - Python docs toolchain (`website/`): grouped into one PR.
   - Gradle dependencies: intentionally disabled (`open-pull-requests-limit: 0`); update manually.
-  - `gradle/actions` major bumps are not auto-applied (Dependabot ignores semver-major); bump deliberately.
 
 ## Building
 
