@@ -430,7 +430,13 @@ tasks.withType<GenerateModuleMetadata> {
 // helper functions ------------------------------------------------------------
 
 fun getGitBranchName(): String {
-    val file = project.rootDir.resolve(".git/HEAD")
+    var gitDir = project.rootDir.resolve(".git")
+    // In worktrees and submodules, .git is a file: "gitdir: <path>"
+    if (gitDir.isFile) {
+        val gitdir = gitDir.readText(Charsets.UTF_8).trim().removePrefix("gitdir: ")
+        gitDir = project.rootDir.resolve(gitdir)
+    }
+    val file = gitDir.resolve("HEAD")
     if (file.isFile) {
         val content = file.readText(Charsets.UTF_8).trim()
         if (content.startsWith("ref: refs/heads/")) {
