@@ -79,7 +79,7 @@ gradle.taskGraph.whenReady {
 
 // flag to skip tests
 // command line option: -Pskip.tests
-val skipTests: Boolean = project.hasProperty("skip.tests")
+val skipTests = providers.gradleProperty("skip.tests").isPresent
 
 // constants -------------------------------------------------------------------
 
@@ -368,10 +368,10 @@ val jarApp = tasks.register<Jar>("jar-app") {
 }
 
 // common settings for all test tasks
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 
     // skip tests if property "skip.tests" is set
-    onlyIf { !skipTests }
+    if (skipTests) enabled = false
 
     // disable up-to-date check -> re-run tests every time
     outputs.upToDateWhen { false }

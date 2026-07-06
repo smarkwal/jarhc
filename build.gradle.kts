@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
-import java.util.*
 
 plugins {
 
@@ -38,16 +37,6 @@ allprojects {
     // lock all dependency configurations in every project ---------------------
     dependencyLocking {
         lockAllConfigurations()
-    }
-
-    // load user-specific properties -------------------------------------------
-    val userPropertiesFile = file("${rootDir}/gradle.user.properties")
-    if (userPropertiesFile.exists()) {
-        val userProperties = Properties()
-        userProperties.load(userPropertiesFile.inputStream())
-        userProperties.forEach {
-            project.ext.set(it.key.toString(), it.value)
-        }
     }
 
 }
