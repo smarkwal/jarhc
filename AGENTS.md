@@ -10,6 +10,7 @@ exception, it is a detailed style guide. Preserve both styles when editing.
 - All changes go through a branch and a pull request.
 - Never force-push.
 - GitHub Copilot reviews every pull request.
+- SonarCloud analyzes every pull request and decorates it with findings.
 - Leave `dependabot/...` branches to Dependabot.
 
 ## Project layout
@@ -206,5 +207,14 @@ Shared terms, used both as commit message prefixes and as branch name categories
 
 - Do not apply Copilot's suggestions automatically.
 - Review each comment, plus any "comments suppressed due to low confidence" note, and decide whether it is worth fixing or a false positive.
+- Evaluate Copilot's own proposed fix on its merits before offering an alternative. If you propose a different fix, present Copilot's suggestion alongside it and explain why yours is better; do not silently replace it.
 - Propose how a fix would look and wait for the user's approval before changing anything.
 - Once approved: apply the fix, run the build to test it, commit and push, then reply to the comment and mark the thread resolved.
+
+## Handling SonarCloud findings
+
+- Do not apply SonarCloud's findings automatically.
+- Review each finding and decide whether it is worth fixing or a false positive.
+- The details (rule, file, line, message) can be read from the SonarCloud API or the pull request annotations.
+- Propose how a fix would look and wait for the user's approval before changing anything.
+- Once approved: apply the fix, run the build to test it, then commit and push.
