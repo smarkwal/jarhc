@@ -1,6 +1,6 @@
 ---
 description: Run JarHC as part of your Gradle build using the official JarHC Gradle plugin.
-last_reviewed: 2026-06-25
+last_reviewed: 2026-06-29
 ---
 
 # Gradle Plugin
@@ -9,9 +9,11 @@ JarHC is available as a Gradle plugin. It can be used to analyze the dependencie
 
 ```kotlin
 plugins {
-    id("org.jarhc") version "1.2.0"
+    id("org.jarhc") version "3.1.0"
 }
 ```
+
+The plugin requires Gradle 8.8 or later.
 
 The plugin adds a task `jarhcReport` to the project.
 
