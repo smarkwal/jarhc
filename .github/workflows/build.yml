@@ -54,7 +54,7 @@ jobs:
         if [ "$EVENT_NAME" = "push" ]; then
           echo "SONAR_GRADLE_OPTIONS=sonar" >> "$GITHUB_ENV"
         elif [ "$EVENT_NAME" = "pull_request" ] && [ "$PR_SAME_REPO" = "true" ] && [ "${PR_HEAD_REF#dependabot/}" = "$PR_HEAD_REF" ]; then
-          echo "SONAR_GRADLE_OPTIONS=sonar -Dsonar.pullrequest.key=$PR_NUMBER -Dsonar.pullrequest.branch=$PR_HEAD_REF -Dsonar.pullrequest.base=$PR_BASE_REF" >> "$GITHUB_ENV"
+          printf 'SONAR_GRADLE_OPTIONS=sonar -Dsonar.pullrequest.key=%q -Dsonar.pullrequest.branch=%q -Dsonar.pullrequest.base=%q\n' "$PR_NUMBER" "$PR_HEAD_REF" "$PR_BASE_REF" >> "$GITHUB_ENV"
         fi
 
     - name: Restore Sonar Cache
