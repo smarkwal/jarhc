@@ -8,6 +8,7 @@ exception, it is a detailed style guide. Preserve both styles when editing.
 
 - Pushes to `main` are blocked by GitHub.
 - All changes go through a branch and a pull request.
+- Never force-push.
 - GitHub Copilot reviews every pull request.
 - Leave `dependabot/...` branches to Dependabot.
 
