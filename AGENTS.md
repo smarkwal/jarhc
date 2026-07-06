@@ -207,6 +207,7 @@ Shared terms, used both as commit message prefixes and as branch name categories
 
 - Do not apply Copilot's suggestions automatically.
 - Review each comment, plus any "comments suppressed due to low confidence" note, and decide whether it is worth fixing or a false positive.
+- Evaluate Copilot's own proposed fix on its merits before offering an alternative. If you propose a different fix, present Copilot's suggestion alongside it and explain why yours is better; do not silently replace it.
 - Propose how a fix would look and wait for the user's approval before changing anything.
 - Once approved: apply the fix, run the build to test it, commit and push, then reply to the comment and mark the thread resolved.
 
