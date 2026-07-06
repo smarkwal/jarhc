@@ -48,4 +48,4 @@ central-publish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
 versions = { id = "com.github.ben-manes.versions", version = "0.54.0" }
 license-report = { id = "com.github.jk1.dependency-license-report", version = "3.1.4" }
 sonarqube = { id = "org.sonarqube", version = "7.3.1.8318" }
-jarhc = { id = "org.jarhc", version = "1.2.0" }
+jarhc = { id = "org.jarhc", version = "3.1.0" }

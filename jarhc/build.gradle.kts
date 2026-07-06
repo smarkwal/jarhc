@@ -304,7 +304,6 @@ tasks {
             file("${rootDir}/website/docs/jarhc-report.html"),
             file("${rootDir}/website/docs/jarhc-report.txt")
         )
-        sortRows.set(true)
         ignoreMissingAnnotations.set(true)
     }
 
