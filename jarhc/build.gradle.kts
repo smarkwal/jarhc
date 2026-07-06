@@ -165,7 +165,7 @@ sonar {
         // sonar.pullrequest.* properties on the command line. Branch properties
         // must not be set in that case: SonarScanner rejects mixing branch and
         // pull request analysis.
-        if (System.getProperty("sonar.pullrequest.key") == null) {
+        if (System.getProperty("sonar.pullrequest.key").isNullOrBlank()) {
 
             // Git branch
             val sonarBranchName = getGitBranchName()
