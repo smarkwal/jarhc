@@ -218,3 +218,11 @@ Shared terms, used both as commit message prefixes and as branch name categories
 - The details (rule, file, line, message) can be read from the SonarCloud API or the pull request annotations.
 - Propose how a fix would look and wait for the user's approval before changing anything.
 - Once approved: apply the fix, run the build to test it, then commit and push.
+
+## Merging pull requests
+
+- Default to a merge commit.
+- Squash only when all commits form one logical change (for example, review fixups).
+- If the choice is unclear, recommend a method and let the user decide.
+- After merging, ask before switching to `main`, pulling, and deleting the local PR branch.
+- If the work came from a GitHub issue, comment on it, focusing on any differences from the issue description.
