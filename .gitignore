@@ -28,7 +28,6 @@ bin/
 *.jfr
 
 # user-specific files
-gradle.user.properties
 *.gpg
 .java-version
 
