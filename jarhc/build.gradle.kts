@@ -151,9 +151,6 @@ java {
     // Maven Central publish plugin (mavenPublishing block below).
 }
 
-val sonarBranchName: String = getGitBranchName()
-val sonarBranchTarget: String = getGitBranchTarget(sonarBranchName)
-
 sonar {
     // documentation: https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner-for-gradle/
 
@@ -164,15 +161,24 @@ sonar {
         property("sonar.organization", "smarkwal")
         property("sonar.projectKey", "smarkwal_jarhc")
 
-        // Git branch
-        property("sonar.branch.name", sonarBranchName)
+        // In pull request analysis mode the build workflow passes the
+        // sonar.pullrequest.* properties on the command line. Branch properties
+        // must not be set in that case: SonarScanner rejects mixing branch and
+        // pull request analysis.
+        if (System.getProperty("sonar.pullrequest.key") == null) {
 
-        // target Git branch for merge
-        if (sonarBranchTarget != sonarBranchName) {
-            // https://docs.sonarsource.com/sonarqube-cloud/enriching/branch-analysis-setup/
-            property("sonar.branch.target", sonarBranchTarget)
-            // https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/analysis-parameters/
-            property("sonar.newCode.referenceBranch", sonarBranchTarget)
+            // Git branch
+            val sonarBranchName = getGitBranchName()
+            val sonarBranchTarget = getGitBranchTarget(sonarBranchName)
+            property("sonar.branch.name", sonarBranchName)
+
+            // target Git branch for merge
+            if (sonarBranchTarget != sonarBranchName) {
+                // https://docs.sonarsource.com/sonarqube-cloud/enriching/branch-analysis-setup/
+                property("sonar.branch.target", sonarBranchTarget)
+                // https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/analysis-parameters/
+                property("sonar.newCode.referenceBranch", sonarBranchTarget)
+            }
         }
 
         // paths to test sources and test classes

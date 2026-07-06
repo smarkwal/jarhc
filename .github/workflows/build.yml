@@ -1,7 +1,13 @@
 name: Build
 
+# Branch analysis runs on the main branch (the baseline); pull requests are
+# analyzed in pull request mode so SonarCloud decorates the PR. Feature branches
+# are built and analyzed through their pull request, not on every push.
 on:
   push:
+    branches:
+      - main
+  pull_request:
   workflow_dispatch:
     inputs:
       additionalGradleOptions:
@@ -16,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      PUSH_GRADLE_OPTIONS: ''
+      SONAR_GRADLE_OPTIONS: ''
 
     steps:
 
@@ -33,18 +39,32 @@ jobs:
           11
           17
 
+    # Determine the Sonar analysis mode:
+    #  - push to main: branch analysis (the baseline).
+    #  - same-repo, non-dependabot pull request: pull request analysis (decorates the PR).
+    #  - forks and dependabot: no SONAR_TOKEN is available, so Sonar is skipped.
+    - name: Configure Sonar analysis
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+        PR_SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        PR_HEAD_REF: ${{ github.head_ref }}
+        PR_BASE_REF: ${{ github.base_ref }}
+      run: |
+        if [ "$EVENT_NAME" = "push" ]; then
+          echo "SONAR_GRADLE_OPTIONS=sonar" >> "$GITHUB_ENV"
+        elif [ "$EVENT_NAME" = "pull_request" ] && [ "$PR_SAME_REPO" = "true" ] && [ "${PR_HEAD_REF#dependabot/}" = "$PR_HEAD_REF" ]; then
+          echo "SONAR_GRADLE_OPTIONS=sonar -Dsonar.pullrequest.key=$PR_NUMBER -Dsonar.pullrequest.branch=$PR_HEAD_REF -Dsonar.pullrequest.base=$PR_BASE_REF" >> "$GITHUB_ENV"
+        fi
+
     - name: Restore Sonar Cache
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-      if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
+      if: ${{ env.SONAR_GRADLE_OPTIONS != '' }}
       with:
         path: /home/runner/.sonar/cache
         key: sonar-cache-${{ runner.os }}-${{ hashFiles('**/*.gradle*', 'gradle/libs.versions.toml') }}
         restore-keys: |
           sonar-cache-${{ runner.os }}-
-
-    - name: Set Push Gradle options
-      if: ${{ github.event_name == 'push' && !startsWith(github.ref_name, 'dependabot/') }}
-      run: echo "PUSH_GRADLE_OPTIONS=sonar" >> $GITHUB_ENV
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@3f131e8634966bd73d06cc69884922b02e6faf92 # v6.2.0
@@ -53,7 +73,7 @@ jobs:
         cache-read-only: false
 
     - name: Build with Gradle
-      run: './gradlew --no-daemon :jarhc:build ${{ env.PUSH_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
+      run: './gradlew --no-daemon :jarhc:build ${{ env.SONAR_GRADLE_OPTIONS }} ${{ github.event.inputs.additionalGradleOptions }}'
 
     - name: Upload reports
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
