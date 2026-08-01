@@ -10,5 +10,5 @@
 # (run inside a python:3.12 container -- see website/docs/project.md). Dependabot has
 # first-class support for pip-compile and regenerates the lockfile (with hashes)
 # when it bumps a dependency.
-mkdocs-material~=9.6
+mkdocs-material~=9.7
 mike~=2.1
