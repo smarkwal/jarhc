@@ -133,7 +133,7 @@ class DiffReportGeneratorTest {
 			// add table with 3 columns and 3 rows
 			ReportTable table = new ReportTable("Column 1", "Column 2", "Column 3");
 			for (int r = 1; r <= 3; r++) {
-				String[] values = new String[] { "Value " + r + ".1", "Value " + r + ".2", "Value " + r + ".3" };
+				String[] values = { "Value " + r + ".1", "Value " + r + ".2", "Value " + r + ".3" };
 				table.addRow(values);
 			}
 			section.addTable(table);

@@ -39,7 +39,7 @@ public class SmartDependencyComparator implements Comparator<Dependency> {
 		int order1 = getOrder(dependency1);
 		int order2 = getOrder(dependency2);
 		if (order1 != order2) {
-			return order1 - order2;
+			return Integer.compare(order1, order2);
 		}
 		return dependency1.compareTo(dependency2);
 	}

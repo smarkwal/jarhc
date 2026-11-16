@@ -65,7 +65,7 @@ class MainTest extends AbstractOutputTest {
 		File reportFile = new File(tempDir.toFile(), "report.txt");
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
-		String[] args = new String[] {
+		String[] args = {
 				"--title", "SLF4J 1.7.28",
 				"--output", reportFile.getAbsolutePath(),
 				"--sections", "-jr", // exclude section Java Runtime
@@ -96,7 +96,7 @@ class MainTest extends AbstractOutputTest {
 		// prepare
 		File reportFile = new File(tempDir.toFile(), "report.txt");
 
-		String[] args = new String[] {
+		String[] args = {
 				"--title", "SLF4J 1.7.28",
 				"--output", reportFile.getAbsolutePath(),
 				"--sections", "-jr", // exclude section Java Runtime
@@ -133,7 +133,7 @@ class MainTest extends AbstractOutputTest {
 	void main_print_help() {
 
 		// prepare
-		String[] args = new String[] { "--help" };
+		String[] args = { "--help" };
 
 		// test
 		SystemExitException e = assertThrows(SystemExitException.class, () -> Main.main(args));
@@ -150,7 +150,7 @@ class MainTest extends AbstractOutputTest {
 	void main_print_usage() {
 
 		// prepare
-		String[] args = new String[] { "--unknown-option" };
+		String[] args = { "--unknown-option" };
 
 		// test
 		SystemExitException e = assertThrows(SystemExitException.class, () -> Main.main(args));

@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
@@ -27,13 +28,12 @@ import java.util.Map;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 
 class DepsDevApiArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(DepsDevApiArtifactFinder.class);
-	private final DepsDevApiSettings settings = Mockito.mock(DepsDevApiSettings.class);
+	private final DepsDevApiSettings settings = mock(DepsDevApiSettings.class);
 	private final DepsDevApiArtifactFinder artifactFinder = new DepsDevApiArtifactFinder(logger, settings);
 
 	@BeforeEach
