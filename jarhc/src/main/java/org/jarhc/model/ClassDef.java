@@ -523,7 +523,7 @@ public class ClassDef extends Def implements Comparable<ClassDef> {
 	public int compareTo(ClassDef classDef) {
 		int diff = this.getClassName().compareTo(classDef.getClassName());
 		if (diff != 0) return diff;
-		return System.identityHashCode(this) - System.identityHashCode(classDef);
+		return Integer.compare(System.identityHashCode(this), System.identityHashCode(classDef));
 	}
 
 }
