@@ -27,7 +27,7 @@ exception, it is a detailed style guide. Preserve both styles when editing.
 - `jarhc` bytecode: Java 11.
 - Build runs on: Java 17 (subprojects fail fast on anything older).
 - CI installs both JDK 11 and 17.
-- Gradle wrapper: 9.6.1.
+- Gradle wrapper: 9.9.1.
 
 ## Dependencies
 

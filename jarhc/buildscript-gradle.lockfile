@@ -1,7 +1,6 @@
 # This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
-# To regenerate this file, run: ./gradlew dependencies --write-locks
 com.github.jk1.dependency-license-report:com.github.jk1.dependency-license-report.gradle.plugin:3.1.5=classpath
 com.github.jk1:gradle-license-report:3.1.5=classpath
 com.squareup.moshi:moshi-kotlin:1.15.2=classpath
@@ -18,10 +17,10 @@ com.vanniktech:central-portal:0.37.0=classpath
 com.vanniktech:gradle-maven-publish-plugin:0.37.0=classpath
 org.jarhc.gradle:jarhc-gradle-plugin:3.1.0=classpath
 org.jarhc:org.jarhc.gradle.plugin:3.1.0=classpath
-org.jetbrains.kotlin:kotlin-reflect:2.3.21=classpath
+org.jetbrains.kotlin:kotlin-reflect:2.4.21=classpath
 org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21=classpath
 org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21=classpath
-org.jetbrains.kotlin:kotlin-stdlib:2.3.21=classpath
+org.jetbrains.kotlin:kotlin-stdlib:2.4.21=classpath
 org.jetbrains:annotations:13.0=classpath
 org.slf4j:slf4j-api:2.0.18=classpath
 org.sonarqube:org.sonarqube.gradle.plugin:7.6.0.18749=classpath
