@@ -63,6 +63,15 @@ class ClassDefTest {
 	}
 
 	@Test
+	void compareToUsesIdentityHashCodeForSameClassName() {
+		ClassDef other = new ClassDef(classDef.getClassName());
+		int expected = Integer.compare(System.identityHashCode(classDef), System.identityHashCode(other));
+
+		assertEquals(expected, classDef.compareTo(other));
+		assertEquals(-expected, other.compareTo(classDef));
+	}
+
+	@Test
 	void test_toString() {
 
 		// test
