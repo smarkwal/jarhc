@@ -47,7 +47,7 @@ abstract class AbstractMainTest extends AbstractOutputTest {
 		File reportFile = new File(tempDir.toFile(), reportFileName);
 		File dataDir = new File(tempDir.toFile(), ".jarhc");
 
-		String[] commonArgs = new String[] {
+		String[] commonArgs = {
 				"--title", this.getClass().getSimpleName(),
 				"--output", reportFile.getAbsolutePath(),
 				"--sections", "-jr", // exclude section Java Runtime

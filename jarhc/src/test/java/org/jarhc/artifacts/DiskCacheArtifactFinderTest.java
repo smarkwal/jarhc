@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -33,13 +34,12 @@ import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 
 class DiskCacheArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(DiskCacheArtifactFinder.class);
-	private final ArtifactFinder delegate = Mockito.mock(ArtifactFinder.class);
+	private final ArtifactFinder delegate = mock(ArtifactFinder.class);
 	private File cacheDir;
 	private DiskCacheArtifactFinder artifactFinder;
 

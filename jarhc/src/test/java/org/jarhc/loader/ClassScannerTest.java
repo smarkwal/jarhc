@@ -41,7 +41,7 @@ class ClassScannerTest {
 
 		// assert
 		List<ClassRef> classRefs = new ArrayList<>(classDef.getClassRefs());
-		String[] classNames = new String[] {
+		String[] classNames = {
 				"a.Main",
 				"a.Base",
 				"a.Interface",

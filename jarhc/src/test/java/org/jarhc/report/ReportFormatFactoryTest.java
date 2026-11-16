@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -35,7 +36,6 @@ import org.jarhc.utils.JarHcException;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
-import org.mockito.Mockito;
 
 class ReportFormatFactoryTest {
 
@@ -167,7 +167,7 @@ class ReportFormatFactoryTest {
 	void getReportFormat_throwsRuntimeException_onInjectorException() throws InjectorException {
 
 		// prepare injector
-		Injector injectorMock = Mockito.mock(Injector.class);
+		Injector injectorMock = mock(Injector.class);
 		when(injectorMock.createInstance(any(Class.class))).thenThrow(new InjectorException("test"));
 
 		// prepare

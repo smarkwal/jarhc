@@ -19,6 +19,7 @@ package org.jarhc.artifacts;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.jarhc.test.log.LoggerAssertions.assertLogger;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -26,13 +27,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jarhc.test.log.LoggerBuilder;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 
 class MemoryCacheArtifactFinderTest {
 
 	private final Logger logger = LoggerBuilder.collect(MemoryCacheArtifactFinder.class);
-	private final ArtifactFinder delegate = Mockito.mock(ArtifactFinder.class);
+	private final ArtifactFinder delegate = mock(ArtifactFinder.class);
 	private final MemoryCacheArtifactFinder artifactFinder = new MemoryCacheArtifactFinder(delegate, logger);
 
 	@Test

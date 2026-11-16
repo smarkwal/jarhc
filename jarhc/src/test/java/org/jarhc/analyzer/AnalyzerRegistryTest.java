@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +35,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
-import org.mockito.Mockito;
 
 class AnalyzerRegistryTest {
 
@@ -45,10 +45,10 @@ class AnalyzerRegistryTest {
 	void setUp() throws InjectorException {
 
 		// prepare an injector which will return mock analyzers
-		Injector injector = Mockito.mock(Injector.class);
+		Injector injector = mock(Injector.class);
 		doAnswer(args -> {
 			Class<?> analyzerClass = args.getArgument(0, Class.class);
-			return Mockito.mock(analyzerClass);
+			return mock(analyzerClass);
 		}).when(injector).createInstance(any(Class.class));
 
 		registry = new AnalyzerRegistry(injector);
