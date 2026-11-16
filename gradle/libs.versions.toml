@@ -2,17 +2,17 @@
 # https://docs.gradle.org/current/userguide/version_catalogs.html
 
 [versions]
-slf4j = "2.0.18"
-junit = "5.12.2"
+slf4j = "2.0.20"
+junit = "5.14.4"
 assertj = "3.27.7"
-testcontainers = "1.21.4"
-playwright = "1.60.0"
+testcontainers = "2.0.5"
+playwright = "1.65.0"
 
 [libraries]
 
 # main dependencies (jarhc)
-asm = { module = "org.ow2.asm:asm", version = "9.10.1" }
-json = { module = "org.json:json", version = "20260522" }
+asm = { module = "org.ow2.asm:asm", version = "9.11.1" }
+json = { module = "org.json:json", version = "20260814" }
 maven-resolver-supplier = { module = "org.apache.maven.resolver:maven-resolver-supplier", version = "1.9.27" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
@@ -21,22 +21,22 @@ slf4j-jcl = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 # fix CVE-2025-67030 in plexus-utils < 3.6.0
 # (dependency of maven-resolver-supplier 1.9.27)
 # check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
-plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.1" }
+plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.4" }
 
 # test dependencies (jarhc + jarhc-release-tests)
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
-mockito-core = { module = "org.mockito:mockito-core", version = "5.23.0" }
+mockito-core = { module = "org.mockito:mockito-core", version = "5.24.0" }
 
 # release test dependencies (jarhc-release-tests)
 testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
-testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
-commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.20.0" }
+testcontainers-junit = { module = "org.testcontainers:testcontainers-junit-jupiter", version.ref = "testcontainers" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version = "3.22.0" }
 commons-io = { module = "commons-io:commons-io", version = "2.22.0" }
 # fix CVE-2024-25710 and CVE-2024-26308 in commons-compress < 1.26.0
-# (dependency of testcontainers 1.21.4)
+# (dependency of testcontainers 2.0.5)
 # check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep commons-compress
 commons-compress = { module = "org.apache.commons:commons-compress", version = "1.28.0" }
 
@@ -45,7 +45,7 @@ playwright = { module = "com.microsoft.playwright:playwright", version.ref = "pl
 
 [plugins]
 central-publish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
-versions = { id = "com.github.ben-manes.versions", version = "0.54.0" }
-license-report = { id = "com.github.jk1.dependency-license-report", version = "3.1.4" }
-sonarqube = { id = "org.sonarqube", version = "7.3.1.8318" }
+versions = { id = "io.github.ben-manes.versions", version = "0.67.0" }
+license-report = { id = "com.github.jk1.dependency-license-report", version = "3.1.5" }
+sonarqube = { id = "org.sonarqube", version = "7.6.0.18749" }
 jarhc = { id = "org.jarhc", version = "3.1.0" }

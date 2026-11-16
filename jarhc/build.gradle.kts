@@ -333,7 +333,7 @@ val jarApp = tasks.register<Jar>("jar-app") {
     manifest {
         attributes["Main-Class"] = mainClassName
 
-        // plexus-utils-3.6.1.jar is a multi-release JAR
+        // Plexus Utils is a multi-release JAR
         // -> fat/uber JAR is also a multi-release JAR
         attributes["Multi-Release"] = "true"
     }
