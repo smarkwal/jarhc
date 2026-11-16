@@ -2,7 +2,10 @@
 description: About the JarHC project, goals, license, source code, how to contribute, and how to build it from source.
 sources:
   - jarhc/build.gradle.kts
-last_reviewed: 2026-06-28
+  - jarhc-release-tests/build.gradle.kts
+  - jarhc-release-tests/src/main/java/org/jarhc/test/release/JarHcTest.java
+  - .github/workflows/docs-check.yml
+last_reviewed: 2026-11-16
 ---
 
 # Project
@@ -91,11 +94,32 @@ To run a build without tests:
 ./gradlew :jarhc:build -Pskip.tests
 ```
 
-To run the release tests:
+### Release tests
+
+The release tests use local Java 11 and Docker. By default the Docker matrix
+uses Eclipse Temurin images for Java 11, 17, 21, and 25.
 
 ```shell
 ./gradlew :jarhc-release-tests:test
 ```
+
+To also test Amazon Corretto, IBM Semeru, and Microsoft OpenJDK, run the full
+Docker matrix:
+
+```shell
+./gradlew :jarhc-release-tests:test -Pjarhc.test.docker.filter=all
+```
+
+The suite compares generated artifacts and reports with checked-in fixtures.
+The fixture at `jarhc-release-tests/src/main/resources/pom.xml` is a snapshot of
+the generated publication POM. Dependabot can flag a dependency version in that
+snapshot separately from the version used by the Gradle build.
+
+If a mismatch reflects an expected change, regenerate the fixtures by adding
+`-Pjarhc.test.resources.generate` to the test command. Review the resulting
+diff, then rerun the same matrix with the generation flag removed to verify
+the fixtures. See the [release checklist](https://github.com/smarkwal/jarhc/blob/main/release.md#2-build--verify)
+for the rest of the release verification steps.
 
 ### Sonar analysis
 
@@ -152,6 +176,18 @@ docker run --rm -v "$PWD/website":/work -w /work python:3.12-slim \
 Python is pinned to 3.12 to match the version used by the documentation workflows.
 Dependabot recognises the `pip-compile` lockfile and regenerates it (with updated
 hashes) when it bumps a dependency, so routine updates do not need this command.
+
+For a targeted upgrade, add `--upgrade-package <name>` to the `pip-compile`
+command and repeat the option for each package to upgrade. This also works for
+transitive dependencies. Check the resulting pins in `requirements.txt` against
+any applicable patched versions, then install and build with the same Python
+version and lockfile used by the documentation CI check:
+
+```shell
+docker run --rm -v "$PWD/website":/work -w /work python:3.12-slim \
+  sh -ec 'pip install --require-hashes -r requirements.txt
+          mkdocs build --strict'
+```
 
 #### GitHub Actions
 

@@ -35,6 +35,9 @@ exception, it is a detailed style guide. Preserve both styles when editing.
 - Dependency locking is enabled; lockfiles are committed.
 - Check for updates: `./gradlew dependencyUpdates`.
 - After changing any version, refresh the lockfiles: `./gradlew updateGradleLockfiles --write-locks`.
+- If a wrapper upgrade changes Gradle's bundled Kotlin and the buildscript locks block configuration, run `./gradlew updateGradleLockfiles --write-locks` with the new distribution before rerunning `./gradlew wrapper`.
+- Keep JaCoCo on Gradle's default version. Check Java 11 compatibility before major upgrades to runtime or test dependencies.
+- For a Dependabot alert, check `dependency.manifest_path` to identify which manifest or fixture needs updating.
 - Dependabot runs monthly:
   - GitHub Actions: grouped into one PR; bumps the SHA and the `# vX.Y.Z` comment.
   - Python docs toolchain (`website/`): grouped into one PR.
@@ -216,6 +219,9 @@ Shared terms, used both as commit message prefixes and as branch name categories
 - Do not apply SonarCloud's findings automatically.
 - Review each finding and decide whether it is worth fixing or a false positive.
 - The details (rule, file, line, message) can be read from the SonarCloud API or the pull request annotations.
+- Check both **SonarCloud Code Analysis** (quality gate) and **SonarCloud** (code scanning) against the current PR head.
+- Query SonarCloud for open findings. GitHub code scanning shows the security findings SonarCloud exports.
+- After merging, verify that SonarCloud has analyzed the merge commit before reporting issue counts on `main`.
 - Propose how a fix would look and wait for the user's approval before changing anything.
 - Once approved: apply the fix, run the build to test it, then commit and push.
 
