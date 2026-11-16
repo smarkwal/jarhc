@@ -1084,6 +1084,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#release-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sonar-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1334,6 +1345,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#release-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sonar-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1479,23 +1501,40 @@
 <p>To run a build without tests:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./gradlew<span class="w"> </span>:jarhc:build<span class="w"> </span>-Pskip.tests
 </code></pre></div>
-<p>To run the release tests:</p>
+<h3 id="release-tests">Release tests<a class="headerlink" href="#release-tests" title="Permanent link">&para;</a></h3>
+<p>Running the release tests requires Java 17 or later for Gradle, a Java 11
+toolchain for local test execution, and Docker for the container matrix.
+By default the Docker matrix uses Eclipse Temurin images for Java 11, 17, 21,
+and 25.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./gradlew<span class="w"> </span>:jarhc-release-tests:test
 </code></pre></div>
+<p>To also test Amazon Corretto, IBM Semeru, and Microsoft OpenJDK, run the full
+Docker matrix:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./gradlew<span class="w"> </span>:jarhc-release-tests:test<span class="w"> </span>-Pjarhc.test.docker.filter<span class="o">=</span>all
+</code></pre></div>
+<p>The suite compares generated artifacts and reports with checked-in fixtures.
+The fixture at <code>jarhc-release-tests/src/main/resources/pom.xml</code> is a snapshot of
+the generated publication POM. Dependabot can flag a dependency version in that
+snapshot separately from the version used by the Gradle build.</p>
+<p>If a mismatch reflects an expected change, regenerate the fixtures by adding
+<code>-Pjarhc.test.resources.generate</code> to the test command. Review the resulting
+diff, then rerun the same matrix with the generation flag removed to verify
+the fixtures. See the <a href="https://github.com/smarkwal/jarhc/blob/main/release.md#2-build--verify">release checklist</a>
+for the rest of the release verification steps.</p>
 <h3 id="sonar-analysis">Sonar analysis<a class="headerlink" href="#sonar-analysis" title="Permanent link">&para;</a></h3>
 <p>Run a full build first (see above).</p>
 <p>Next, set your <a href="https://sonarcloud.io/account/security/">Sonar token for SonarCloud</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SONAR_TOKEN</span><span class="o">=</span>your-token-here
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SONAR_TOKEN</span><span class="o">=</span>your-token-here
 </code></pre></div>
 <p>Finally, run the Sonar analysis.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./gradlew<span class="w"> </span>sonar
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./gradlew<span class="w"> </span>sonar
 </code></pre></div>
 <p>Scan results can be found in <a href="https://sonarcloud.io/project/overview?id=smarkwal_jarhc">SonarCloud</a>.</p>
 <h3 id="locking-dependencies">Locking dependencies<a class="headerlink" href="#locking-dependencies" title="Permanent link">&para;</a></h3>
 <h4 id="gradle">Gradle<a class="headerlink" href="#gradle" title="Permanent link">&para;</a></h4>
 <p>To lock the Gradle dependencies of all projects (root project and subprojects) to
 their current versions, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./gradlew<span class="w"> </span>updateGradleLockfiles<span class="w"> </span>--write-locks
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./gradlew<span class="w"> </span>updateGradleLockfiles<span class="w"> </span>--write-locks
 </code></pre></div>
 <p>The <code>updateGradleLockfiles</code> task resolves the dependencies and buildscript
 classpaths of every project, so new subprojects are covered automatically without
@@ -1509,18 +1548,27 @@ lockfile <code>requirements.txt</code> (every transitive dependency at an exact 
 a SHA-256 hash) is generated from it with <code>pip-compile</code> (pip-tools).</p>
 <p>After editing <code>requirements.in</code> — or to refresh the pinned versions — regenerate
 the lockfile with a Python container (no local Python installation required):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -q pip-tools &amp;&amp; \</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">         pip-compile --generate-hashes --output-file=requirements.txt requirements.in&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;pip install -q pip-tools &amp;&amp; \</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">         pip-compile --generate-hashes --output-file=requirements.txt requirements.in&quot;</span>
 </code></pre></div>
 <p>Python is pinned to 3.12 to match the version used by the documentation workflows.
 Dependabot recognises the <code>pip-compile</code> lockfile and regenerates it (with updated
 hashes) when it bumps a dependency, so routine updates do not need this command.</p>
+<p>For a targeted upgrade, add <code>--upgrade-package &lt;name&gt;</code> to the <code>pip-compile</code>
+command and repeat the option for each package to upgrade. This also works for
+transitive dependencies. Check the resulting pins in <code>requirements.txt</code> against
+any applicable patched versions, then install and build with the same Python
+version and lockfile used by the documentation CI check:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/work<span class="w"> </span>-w<span class="w"> </span>/work<span class="w"> </span>python:3.12-slim<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>sh<span class="w"> </span>-ec<span class="w"> </span><span class="s1">&#39;pip install --require-hashes -r requirements.txt</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s1">          mkdocs build --strict&#39;</span>
+</code></pre></div>
 <h4 id="github-actions">GitHub Actions<a class="headerlink" href="#github-actions" title="Permanent link">&para;</a></h4>
 <p>The GitHub Actions used in the workflows are pinned to a specific commit SHA
 rather than a version tag, so that a moved or re-pointed tag cannot change which
 code runs. The corresponding version is noted in a comment on the same line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@&lt;commit-sha&gt;</span><span class="w"> </span><span class="c1"># v7.0.0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@&lt;commit-sha&gt;</span><span class="w"> </span><span class="c1"># v7.0.0</span>
 </code></pre></div>
 <p>These pins are kept up to date by Dependabot (see <a href="https://github.com/smarkwal/jarhc/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>).</p>
 <h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
@@ -1530,11 +1578,11 @@ code runs. The corresponding version is noted in a comment on the same line:</p>
 <li>On every release by the GitHub workflow <a href="https://github.com/smarkwal/jarhc/blob/main/.github/workflows/docs-release.yml">Docs Release</a>.</li>
 </ol>
 <p>To test the documentation locally before publishing, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>serve<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.0.0.0:8000
 </code></pre></div>
 <p>And then visit <a href="http://localhost:8000">http://localhost:8000</a> in your browser.</p>
 <p>To build and inspect the documentation locally, run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build<span class="w"> </span>--strict
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/website&quot;</span>:/docs<span class="w"> </span>squidfunk/mkdocs-material<span class="w"> </span>build<span class="w"> </span>--strict
 </code></pre></div>
 <p>And then open the generated file <code>website/site/index.html</code> in your browser.</p>
 
