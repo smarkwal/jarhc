@@ -74,7 +74,7 @@ public class TestUtils {
 				content = content.replaceAll("Java home (.*)\\.aarch64", "Java home $1.***64");
 
 				// mask patch version of Java version
-				content = content.replaceAll("Java version : (\\d+)\\.(\\d+)\\.(\\d+)", "Java version : $1.$2.*");
+				content = content.replaceAll("Java version : (\\d+)\\.(\\d+)(?:\\.\\d+)+", "Java version : $1.$2.*");
 
 				// write content back into file
 				FileUtils.writeStringToFile(file, content, StandardCharsets.UTF_8);
