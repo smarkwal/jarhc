@@ -21,7 +21,7 @@ slf4j-jcl = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 # fix CVE-2025-67030 in plexus-utils < 3.6.0
 # (dependency of maven-resolver-supplier 1.9.27)
 # check dependencies with ../gradlew dependencies --configuration runtimeClasspath | grep plexus-utils
-plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.1" }
+plexus-utils = { module = "org.codehaus.plexus:plexus-utils", version = "3.6.4" }
 
 # test dependencies (jarhc + jarhc-release-tests)
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
