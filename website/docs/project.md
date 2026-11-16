@@ -96,8 +96,10 @@ To run a build without tests:
 
 ### Release tests
 
-The release tests use local Java 11 and Docker. By default the Docker matrix
-uses Eclipse Temurin images for Java 11, 17, 21, and 25.
+Running the release tests requires Java 17 or later for Gradle, a Java 11
+toolchain for local test execution, and Docker for the container matrix.
+By default the Docker matrix uses Eclipse Temurin images for Java 11, 17, 21,
+and 25.
 
 ```shell
 ./gradlew :jarhc-release-tests:test
